@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Resource" version="1.1">
+	<Resource type="ResourceImageSet" name="TextCursorImage">
+		<Group name="LineBreak" texture="LineBreak_a.png" size="24 24">
+			<Index name="show" rate="0.12">
+				<Frame point="0 0"/>
+				<Frame point="24 0"/>
+				<Frame point="48 0"/>
+				<Frame point="72 0"/>
+				<Frame point="96 0"/>
+				<Frame point="120 0"/>
+				<Frame point="144 0"/>
+				<Frame point="168 0"/>
+				<Frame point="192 0"/>
+				<Frame point="216 0"/>
+				<Frame point="240 0"/>
+				<Frame point="264 0"/>
+				<Frame point="288 0"/>
+				<Frame point="312 0"/>
+				<Frame point="336 0"/>
+				<Frame point="360 0"/>
+			</Index>
+		</Group>
+		<Group name="PageBreak" texture="PageBreak_a.png" size="24 24">
+			<Index name="show" rate="0.12">
+				<Frame point="0 0"/>
+				<Frame point="24 0"/>
+				<Frame point="48 0"/>
+				<Frame point="72 0"/>
+				<Frame point="96 0"/>
+				<Frame point="120 0"/>
+				<Frame point="144 0"/>
+				<Frame point="168 0"/>
+				<Frame point="192 0"/>
+				<Frame point="216 0"/>
+				<Frame point="240 0"/>
+				<Frame point="264 0"/>
+				<Frame point="288 0"/>
+				<Frame point="312 0"/>
+				<Frame point="336 0"/>
+				<Frame point="360 0"/>
+			</Index>
+		</Group>
+	</Resource>
+</MyGUI>

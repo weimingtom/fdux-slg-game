@@ -1,0 +1,208 @@
+23:54:51: Creating resource group General
+23:54:51: Creating resource group Internal
+23:54:51: Creating resource group Autodetect
+23:54:51: SceneManagerFactory for type 'DefaultSceneManager' registered.
+23:54:51: Registering ResourceManager for type Material
+23:54:51: Registering ResourceManager for type Mesh
+23:54:51: Registering ResourceManager for type Skeleton
+23:54:51: MovableObjectFactory for type 'ParticleSystem' registered.
+23:54:51: OverlayElementFactory for type Panel registered.
+23:54:51: OverlayElementFactory for type BorderPanel registered.
+23:54:51: OverlayElementFactory for type TextArea registered.
+23:54:51: Registering ResourceManager for type Font
+23:54:51: ArchiveFactory for archive type FileSystem registered.
+23:54:51: ArchiveFactory for archive type Zip registered.
+23:54:51: DDS codec registering
+23:54:51: FreeImage version: 3.13.1
+23:54:51: This program uses FreeImage, a free, open source image library supporting all common bitmap formats. See http://freeimage.sourceforge.net for details
+23:54:51: Supported formats: bmp,ico,jpg,jif,jpeg,jpe,jng,koa,iff,lbm,mng,pbm,pbm,pcd,pcx,pgm,pgm,png,ppm,ppm,ras,tga,targa,tif,tiff,wap,wbmp,wbm,psd,cut,xbm,xpm,gif,hdr,g3,sgi,exr,j2k,j2c,jp2,pfm,pct,pict,pic,bay,bmq,cr2,crw,cs1,dc2,dcr,dng,erf,fff,hdr,k25,kdc,mdc,mos,mrw,nef,orf,pef,pxn,raf,raw,rdc,sr2,srf,arw,3fr,cine,ia,kc2,mef,nrw,qtk,rw2,sti,drf,dsc,ptx,cap,iiq,rwz
+23:54:51: Registering ResourceManager for type HighLevelGpuProgram
+23:54:51: Registering ResourceManager for type Compositor
+23:54:51: MovableObjectFactory for type 'Entity' registered.
+23:54:51: MovableObjectFactory for type 'Light' registered.
+23:54:51: MovableObjectFactory for type 'BillboardSet' registered.
+23:54:51: MovableObjectFactory for type 'ManualObject' registered.
+23:54:51: MovableObjectFactory for type 'BillboardChain' registered.
+23:54:51: MovableObjectFactory for type 'RibbonTrail' registered.
+23:54:51: Loading library .\RenderSystem_Direct3D9_d
+23:54:51: Installing plugin: D3D9 RenderSystem
+23:54:51: D3D9 : Direct3D9 Rendering Subsystem created.
+23:54:51: D3D9: Driver Detection Starts
+23:54:51: D3D9: Driver Detection Ends
+23:54:51: Plugin successfully installed
+23:54:51: Loading library .\RenderSystem_GL_d
+23:54:51: Installing plugin: GL RenderSystem
+23:54:51: OpenGL Rendering Subsystem created.
+23:54:52: Plugin successfully installed
+23:54:52: *-*-* OGRE Initialising
+23:54:52: *-*-* Version 1.7.1 (Cthugha)
+23:54:52: D3D9 : RenderSystem Option: Allow NVPerfHUD = No
+23:54:52: D3D9 : RenderSystem Option: FSAA = 0
+23:54:52: D3D9 : RenderSystem Option: Floating-point mode = Fastest
+23:54:52: D3D9 : RenderSystem Option: Full Screen = No
+23:54:52: D3D9 : RenderSystem Option: Rendering Device = Monitor-1-ATI Mobility Radeon HD 5650
+23:54:52: D3D9 : RenderSystem Option: Resource Creation Policy = Create on all devices
+23:54:52: D3D9 : RenderSystem Option: VSync = No
+23:54:52: D3D9 : RenderSystem Option: VSync Interval = 1
+23:54:52: D3D9 : RenderSystem Option: Video Mode = 800 x 600 @ 32-bit colour
+23:54:52: D3D9 : RenderSystem Option: sRGB Gamma Conversion = No
+23:54:52: CPU Identifier & Features
+23:54:52: -------------------------
+23:54:52:  *   CPU ID: GenuineIntel: Intel(R) Core(TM) i5 CPU       M 450  @ 2.40GHz
+23:54:52:  *      SSE: yes
+23:54:52:  *     SSE2: yes
+23:54:52:  *     SSE3: yes
+23:54:52:  *      MMX: yes
+23:54:52:  *   MMXEXT: yes
+23:54:52:  *    3DNOW: no
+23:54:52:  * 3DNOWEXT: no
+23:54:52:  *     CMOV: yes
+23:54:52:  *      TSC: yes
+23:54:52:  *      FPU: yes
+23:54:52:  *      PRO: yes
+23:54:52:  *       HT: no
+23:54:52: -------------------------
+23:54:52: D3D9 : Subsystem Initialising
+23:54:52: Registering ResourceManager for type Texture
+23:54:52: Registering ResourceManager for type GpuProgram
+23:54:52: D3D9RenderSystem::_createRenderWindow "RenderWindow", 800x600 windowed  miscParams: FSAA=0 FSAAHint= colourDepth=32 gamma=false monitorIndex=0 useNVPerfHUD=false vsync=false vsyncInterval=1 
+23:54:52: D3D9 : Created D3D9 Rendering Window 'RenderWindow' : 800x600, 32bpp
+23:54:52: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+23:54:52: D3D9: Vertex texture format supported - PF_L8
+23:54:52: D3D9: Vertex texture format supported - PF_L16
+23:54:52: D3D9: Vertex texture format supported - PF_A8
+23:54:52: D3D9: Vertex texture format supported - PF_A4L4
+23:54:52: D3D9: Vertex texture format supported - PF_BYTE_LA
+23:54:52: D3D9: Vertex texture format supported - PF_R5G6B5
+23:54:52: D3D9: Vertex texture format supported - PF_B5G6R5
+23:54:52: D3D9: Vertex texture format supported - PF_A4R4G4B4
+23:54:52: D3D9: Vertex texture format supported - PF_A1R5G5B5
+23:54:52: D3D9: Vertex texture format supported - PF_A8R8G8B8
+23:54:52: D3D9: Vertex texture format supported - PF_B8G8R8A8
+23:54:52: D3D9: Vertex texture format supported - PF_A2R10G10B10
+23:54:52: D3D9: Vertex texture format supported - PF_A2B10G10R10
+23:54:52: D3D9: Vertex texture format supported - PF_DXT1
+23:54:52: D3D9: Vertex texture format supported - PF_DXT2
+23:54:52: D3D9: Vertex texture format supported - PF_DXT3
+23:54:52: D3D9: Vertex texture format supported - PF_DXT4
+23:54:52: D3D9: Vertex texture format supported - PF_DXT5
+23:54:52: D3D9: Vertex texture format supported - PF_FLOAT16_RGB
+23:54:52: D3D9: Vertex texture format supported - PF_FLOAT16_RGBA
+23:54:52: D3D9: Vertex texture format supported - PF_FLOAT32_RGB
+23:54:52: D3D9: Vertex texture format supported - PF_FLOAT32_RGBA
+23:54:52: D3D9: Vertex texture format supported - PF_X8R8G8B8
+23:54:52: D3D9: Vertex texture format supported - PF_X8B8G8R8
+23:54:52: D3D9: Vertex texture format supported - PF_R8G8B8A8
+23:54:52: D3D9: Vertex texture format supported - PF_DEPTH
+23:54:52: D3D9: Vertex texture format supported - PF_SHORT_RGBA
+23:54:52: D3D9: Vertex texture format supported - PF_FLOAT16_R
+23:54:52: D3D9: Vertex texture format supported - PF_FLOAT32_R
+23:54:52: D3D9: Vertex texture format supported - PF_SHORT_GR
+23:54:52: D3D9: Vertex texture format supported - PF_FLOAT16_GR
+23:54:52: D3D9: Vertex texture format supported - PF_FLOAT32_GR
+23:54:52: D3D9: Vertex texture format supported - PF_SHORT_RGB
+23:54:52: D3D9: Vertex texture format supported - PF_PVRTC_RGB2
+23:54:52: D3D9: Vertex texture format supported - PF_PVRTC_RGBA2
+23:54:52: D3D9: Vertex texture format supported - PF_PVRTC_RGB4
+23:54:52: D3D9: Vertex texture format supported - PF_PVRTC_RGBA4
+23:54:52: RenderSystem capabilities
+23:54:52: -------------------------
+23:54:52: RenderSystem Name: Direct3D9 Rendering Subsystem
+23:54:52: GPU Vendor: ati
+23:54:52: Device Name: Monitor-1-ATI Mobility Radeon HD 5650
+23:54:52: Driver Version: 8.14.1.6099
+23:54:52:  * Fixed function pipeline: yes
+23:54:52:  * Hardware generation of mipmaps: yes
+23:54:52:  * Texture blending: yes
+23:54:52:  * Anisotropic texture filtering: yes
+23:54:52:  * Dot product texture operation: yes
+23:54:52:  * Cube mapping: yes
+23:54:52:  * Hardware stencil buffer: yes
+23:54:52:    - Stencil depth: 8
+23:54:52:    - Two sided stencil support: yes
+23:54:52:    - Wrap stencil values: yes
+23:54:52:  * Hardware vertex / index buffers: yes
+23:54:52:  * Vertex programs: yes
+23:54:52:  * Number of floating-point constants for vertex programs: 256
+23:54:52:  * Number of integer constants for vertex programs: 16
+23:54:52:  * Number of boolean constants for vertex programs: 16
+23:54:52:  * Fragment programs: yes
+23:54:52:  * Number of floating-point constants for fragment programs: 224
+23:54:52:  * Number of integer constants for fragment programs: 16
+23:54:52:  * Number of boolean constants for fragment programs: 16
+23:54:52:  * Geometry programs: no
+23:54:52:  * Number of floating-point constants for geometry programs: 0
+23:54:52:  * Number of integer constants for geometry programs: 0
+23:54:52:  * Number of boolean constants for geometry programs: 0
+23:54:52:  * Supported Shader Profiles: hlsl ps_1_1 ps_1_2 ps_1_3 ps_1_4 ps_2_0 ps_2_a ps_2_b ps_2_x ps_3_0 vs_1_1 vs_2_0 vs_2_a vs_2_x vs_3_0
+23:54:52:  * Texture Compression: yes
+23:54:52:    - DXT: yes
+23:54:52:    - VTC: no
+23:54:52:    - PVRTC: no
+23:54:52:  * Scissor Rectangle: yes
+23:54:52:  * Hardware Occlusion Query: yes
+23:54:52:  * User clip planes: yes
+23:54:52:  * VET_UBYTE4 vertex element type: yes
+23:54:52:  * Infinite far plane projection: yes
+23:54:52:  * Hardware render-to-texture: yes
+23:54:52:  * Floating point textures: yes
+23:54:52:  * Non-power-of-two textures: yes
+23:54:52:  * Volume textures: yes
+23:54:52:  * Multiple Render Targets: 4
+23:54:52:    - With different bit depths: yes
+23:54:52:  * Point Sprites: yes
+23:54:52:  * Extended point parameters: yes
+23:54:52:  * Max Point Size: 10
+23:54:52:  * Vertex texture fetch: yes
+23:54:52:  * Number of world matrices: 0
+23:54:52:  * Number of texture units: 8
+23:54:52:  * Stencil buffer depth: 8
+23:54:52:  * Number of vertex blend matrices: 0
+23:54:52:    - Max vertex textures: 4
+23:54:52:    - Vertex textures shared: no
+23:54:52:  * Render to Vertex Buffer : no
+23:54:52:  * DirectX per stage constants: yes
+23:54:52: ***************************************
+23:54:52: *** D3D9 : Subsystem Initialised OK ***
+23:54:52: ***************************************
+23:54:52: DefaultWorkQueue('Root') initialising on thread 0038F200.
+23:54:52: DefaultWorkQueue('Root')::WorkerFunc - thread 003C3D40 starting.
+23:54:52: DefaultWorkQueue('Root')::WorkerFunc - thread 003C3DB0 starting.
+23:54:52: DefaultWorkQueue('Root')::WorkerFunc - thread 003C42E0 starting.
+23:54:52: DefaultWorkQueue('Root')::WorkerFunc - thread 003C6FA8 starting.
+23:54:52: Particle Renderer Type 'billboard' registered
+23:54:52: Added resource location '../media/MyGUI_Media' of type 'FileSystem' to resource group 'General'
+23:54:52: Added resource location '../media/GUI' of type 'FileSystem' to resource group 'General'
+23:54:52: Added resource location '../media/UI' of type 'FileSystem' to resource group 'General'
+23:54:52: Parsing scripts for resource group Autodetect
+23:54:52: Finished parsing scripts for resource group Autodetect
+23:54:52: Parsing scripts for resource group General
+23:54:52: Finished parsing scripts for resource group General
+23:54:52: Parsing scripts for resource group Internal
+23:54:52: Finished parsing scripts for resource group Internal
+23:54:58: Texture: MyGUI_BlueWhiteSkins.png: Loading 1 faces(PF_A8R8G8B8,512x256x1) with 0 generated mipmaps from Image. Internal format is PF_A8R8G8B8,512x256x1.
+23:54:59: Texture: MyGUI_Pointers.png: Loading 1 faces(PF_A8R8G8B8,256x128x1) with 0 generated mipmaps from Image. Internal format is PF_A8R8G8B8,256x128x1.
+23:54:59: Texture: 3.png: Loading 1 faces(PF_A8R8G8B8,800x600x1) with 0 generated mipmaps from Image. Internal format is PF_A8R8G8B8,800x600x1.
+23:55:41: DefaultWorkQueue('Root') shutting down on thread 0038F200.
+23:55:41: DefaultWorkQueue('Root')::WorkerFunc - thread 003C42E0 stopped.
+23:55:41: DefaultWorkQueue('Root')::WorkerFunc - thread 003C3DB0 stopped.
+23:55:41: DefaultWorkQueue('Root')::WorkerFunc - thread 003C3D40 stopped.
+23:55:41: DefaultWorkQueue('Root')::WorkerFunc - thread 003C6FA8 stopped.
+23:55:41: *-*-* OGRE Shutdown
+23:55:41: Unregistering ResourceManager for type Compositor
+23:55:41: Unregistering ResourceManager for type Font
+23:55:41: Unregistering ResourceManager for type Skeleton
+23:55:41: Unregistering ResourceManager for type Mesh
+23:55:41: Unregistering ResourceManager for type HighLevelGpuProgram
+23:55:41: Uninstalling plugin: GL RenderSystem
+23:55:41: *** Stopping Win32GL Subsystem ***
+23:55:41: Plugin successfully uninstalled
+23:55:41: Unloading library .\RenderSystem_GL_d
+23:55:41: Uninstalling plugin: D3D9 RenderSystem
+23:55:41: D3D9 : Shutting down cleanly.
+23:55:41: Unregistering ResourceManager for type Texture
+23:55:41: Unregistering ResourceManager for type GpuProgram
+23:55:41: D3D9 : Direct3D9 Rendering Subsystem destroyed.
+23:55:41: Plugin successfully uninstalled
+23:55:41: Unloading library .\RenderSystem_Direct3D9_d
+23:55:41: Unregistering ResourceManager for type Material

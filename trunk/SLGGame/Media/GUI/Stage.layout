@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout" version="3.2.0">
+	<Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" layer="Overlapped" name="BackGroundGroup">
+		<Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" name="BackGround"/>
+		<Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" name="BackGroundUniversal">
+			<Property key="Visible" value="false"/>
+		</Widget>
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" layer="Overlapped" name="LeftLayerGroup">
+		<Widget type="ImageBox" skin="ImageBox" position="5 25 275 480" name="LeftLayer"/>
+		<Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" name="LeftLayerUniversal">
+			<Property key="Visible" value="false"/>
+		</Widget>
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" layer="Overlapped" name="MidLayerGroup">
+		<Widget type="ImageBox" skin="ImageBox" position="295 25 245 480" name="MidLayer"/>
+		<Widget type="ImageBox" skin="ImageBox" position="0 0 245 480" name="MidUniversal">
+			<Property key="Visible" value="false"/>
+		</Widget>
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" layer="Overlapped" name="RightLayerGroup">
+		<Widget type="ImageBox" skin="ImageBox" position="545 25 250 480" name="RightLayer"/>
+		<Widget type="ImageBox" skin="ImageBox" position="0 0 250 480" name="RightUniversal">
+			<Property key="Visible" value="false"/>
+		</Widget>
+	</Widget>
+		
+	<Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" layer="Overlapped" name="TextBoxBG">
+		<Property key="ImageTexture" value="3.png"/>
+		<Widget type="EditBox" skin="WordWrapEmpty" position_real="0.0483163 0.765363 0.885798 0.189944" name="TextBox"/>
+		<Widget type="EditBox" skin="WordWrapEmpty" position="40 410 195 30" name="RoleName"/>
+		<Widget type="EditBox" skin="WordWrapEmpty" position="45 410 190 30" name="RoleNameUniversal"/>
+		<Widget type="ImageBox" skin="ImageBox" position="0 0 24 24" name="TextCursor">
+			<Property key="Visible" value="false"/>
+		</Widget>
+	</Widget>
+	<Widget type="ImageBox" skin="ImageBox" position="0 0 0 0" layer="Overlapped" name="EffectLayer">
+		<Property key="Visible" value="true"/>
+	</Widget>
+</MyGUI>
