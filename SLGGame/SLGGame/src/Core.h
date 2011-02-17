@@ -14,6 +14,8 @@ class LuaSystem;
 
 class AudioSystem;
 
+class StateManager;
+
 //游戏核心类,处理游戏初始化以及结束,存放了各个系统的指针
 class Core:public IISingleton<Core>,public Ogre::WindowEventListener
 {
@@ -38,6 +40,9 @@ public:
 	GUISystem* mGUISystem;
 	LuaSystem* mLuaSystem;
 	AudioSystem* mAudioSystem;
+
+	//游戏管理器
+	StateManager* mStateManager;
 	
 	//系统初始化
 	bool initialize();

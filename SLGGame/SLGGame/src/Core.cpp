@@ -1,10 +1,10 @@
 #include "Core.h"
 
 #include "GUISystem.h"
-
 #include "LuaSystem.h"
-
 #include "AudioSystem.h"
+
+#include "StateManager.h"
 
 Core::Core(void):isRun(false)
 {
@@ -46,7 +46,6 @@ bool Core::initialize()
 		Ogre::ResourceGroupManager::getSingletonPtr()->initialiseAllResourceGroups();
 
 		mGUISystem=new GUISystem(mWindow,mSceneMgr);
-		mGUISystem->createScene(StageScene);
 
 		mLuaSystem=new LuaSystem();
 
@@ -55,6 +54,8 @@ bool Core::initialize()
 		mAudioSystem->init();
 
 		initializeOIS();
+
+		mStateManager=new StateManager();
 
 		isRun=true;
 
@@ -119,7 +120,8 @@ void Core::initializeOIS()
 
 	//Default mode is foreground exclusive..but, we want to show mouse - so nonexclusive
 	pl.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_FOREGROUND" )));
-	pl.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_NONEXCLUSIVE")));
+	pl.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_NONEXCLUSIVE;")));
+	//pl.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_EXCLUSIVE")));//无鼠标模式
 
 	mInputManager = OIS::InputManager::createInputSystem( pl );
 
