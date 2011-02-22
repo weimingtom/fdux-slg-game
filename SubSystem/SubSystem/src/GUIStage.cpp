@@ -4,20 +4,43 @@
 
 #include <ogre.h>
 
-GUIStage::GUIStage(int width,int height):mCheckMouseDown(false),mIsMouseDown(false),mTextX(0),mTextY(0)
+GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout"),mCheckMouseDown(false),mIsMouseDown(false),mTextX(0),mTextY(0)
 {
-	mWidgetVector=MyGUI::LayoutManager::getInstance().loadLayout("Stage.layout");
-	mWidgetVector.at(0)->setSize(width,height);//设置背景大小
-	mWidgetVector.at(0)->findWidget("BackGround")->setSize(width,height);
-	mWidgetVector.at(0)->findWidget("BackGroundUniversal")->setSize(width,height);
+	assignWidget(mBackGroundGroup, "BackGroundGroup");
+	assignWidget(mBackGround, "BackGround");
+	assignWidget(mBackGroundUniversal, "BackGroundUniversal");
 
-	mWidgetVector.at(1)->setSize(width,height);//设置左大小
-	mWidgetVector.at(2)->setSize(width,height);//设置中大小
-	mWidgetVector.at(3)->setSize(width,height);//设置右大小
+	assignWidget(mLeftLayerGroup, "LeftLayerGroup");
+	assignWidget(mLeftLayer, "LeftLayer");
+	assignWidget(mLeftLayerUniversal, "LeftLayerUniversal");
 
-	mWidgetVector.at(4)->setSize(width,height);//TextBoxBG
-	mWidgetVector.at(5)->setSize(width,height);//EFLayer
-	mWidgetVector.at(5)->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::eventMouseButtonClick);
+	assignWidget(mMidLayerGroup, "MidLayerGroup");
+	assignWidget(mMidLayer, "MidLayer");
+	assignWidget(mMidLayerUniversal, "MidLayerUniversal");
+
+	assignWidget(mRightLayerGroup, "RightLayerGroup");
+	assignWidget(mRightLayer, "RightLayer");
+	assignWidget(mRightUniversal, "RightLayerUniversal");
+
+	assignWidget(mTextBoxBG, "TextBoxBG");
+	assignWidget(mTextBox, "TextBox");
+	assignWidget(mRoleName, "RoleName");
+	assignWidget(mRoleNameUniversal, "RoleNameUniversal");
+	assignWidget(mTextCursor, "TextCursor");
+
+	assignWidget(mEffectLayer, "EffectLayer");
+
+	mBackGroundGroup->setSize(width,height);//设置背景大小
+	mBackGround->setSize(width,height);
+	mBackGroundUniversal->setSize(width,height);
+
+	mLeftLayerGroup->setSize(width,height);//设置左大小
+	mMidLayerGroup->setSize(width,height);//设置中大小
+	mRightLayerGroup->setSize(width,height);//设置右大小
+
+	mTextBoxBG->setSize(width,height);//TextBoxBG
+	mEffectLayer->setSize(width,height);//EFLayer
+	mEffectLayer->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::eventMouseButtonClick);
 }
 
 GUIStage::~GUIStage(void)
@@ -58,23 +81,23 @@ bool GUIStage::CheckMouseState()
 
 void GUIStage::setTextDialog( const GUIDialogAttribute& attribute )
 {
-	mWidgetVector.at(4)->findWidget("TextBox")->castType<MyGUI::EditBox>()->setPosition(attribute.TextLeft,attribute.TextTop);
+	mTextBox->setPosition(attribute.TextLeft,attribute.TextTop);
 	mTextX=attribute.TextLeft;
 	mTextY=attribute.TextTop;
 
-	mWidgetVector.at(4)->findWidget("TextBox")->castType<MyGUI::EditBox>()->setSize(attribute.TextWidth,attribute.TextHeight);
-	mWidgetVector.at(4)->findWidget("TextBox")->castType<MyGUI::EditBox>()->setTextColour(MyGUI::Colour(attribute.TextRed,attribute.TextGreen,attribute.TextBlue));
-	mWidgetVector.at(4)->findWidget("TextBox")->castType<MyGUI::EditBox>()->setFontName(attribute.TextFont);
+	mTextBox->setSize(attribute.TextWidth,attribute.TextHeight);
+	mTextBox->setTextColour(MyGUI::Colour(attribute.TextRed,attribute.TextGreen,attribute.TextBlue));
+	mTextBox->setFontName(attribute.TextFont);
 
-	mWidgetVector.at(4)->findWidget("RoleName")->castType<MyGUI::EditBox>()->setPosition(attribute.RoleNameLeft,attribute.RoleNameTop);
-	mWidgetVector.at(4)->findWidget("RoleName")->castType<MyGUI::EditBox>()->setSize(attribute.RoleNameWidth,attribute.RoleNameHeight);
-	mWidgetVector.at(4)->findWidget("RoleName")->castType<MyGUI::EditBox>()->setTextColour(MyGUI::Colour(attribute.RoleNameRed,attribute.RoleNameGreen,attribute.RoleNameBlue));
-	mWidgetVector.at(4)->findWidget("RoleName")->castType<MyGUI::EditBox>()->setFontName(attribute.RoleFont);
+	mRoleName->setPosition(attribute.RoleNameLeft,attribute.RoleNameTop);
+	mRoleName->setSize(attribute.RoleNameWidth,attribute.RoleNameHeight);
+	mRoleName->setTextColour(MyGUI::Colour(attribute.RoleNameRed,attribute.RoleNameGreen,attribute.RoleNameBlue));
+	mRoleName->setFontName(attribute.RoleFont);
 
-	mWidgetVector.at(4)->findWidget("RoleNameUniversal")->castType<MyGUI::EditBox>()->setPosition(attribute.RoleNameLeft,attribute.RoleNameTop);
-	mWidgetVector.at(4)->findWidget("RoleNameUniversal")->castType<MyGUI::EditBox>()->setSize(attribute.RoleNameWidth,attribute.RoleNameHeight);
-	mWidgetVector.at(4)->findWidget("RoleNameUniversal")->castType<MyGUI::EditBox>()->setTextColour(MyGUI::Colour(attribute.RoleNameRed,attribute.RoleNameGreen,attribute.RoleNameBlue));
-	mWidgetVector.at(4)->findWidget("RoleNameUniversal")->castType<MyGUI::EditBox>()->setFontName(attribute.RoleFont);
+	mRoleNameUniversal->setPosition(attribute.RoleNameLeft,attribute.RoleNameTop);
+	mRoleNameUniversal->setSize(attribute.RoleNameWidth,attribute.RoleNameHeight);
+	mRoleNameUniversal->setTextColour(MyGUI::Colour(attribute.RoleNameRed,attribute.RoleNameGreen,attribute.RoleNameBlue));
+	mRoleNameUniversal->setFontName(attribute.RoleFont);
 }
 
 
@@ -91,12 +114,11 @@ void GUIStage::setTextDialogVisible( bool visible )
 		mSetpDirection=false;
 	}
 
-	mWidgetVector.at(4)->setVisible(true);
-
-	mWidgetVector.at(4)->setAlpha(mSetp);
+	mTextBoxBG->setAlpha(mSetp);
+	mTextBoxBG->setVisible(true);
 
 	mTimerWork=DialogVisible;
-	mTickTime=DefaultDialogVisibleTime*1000;
+	mTickTime=DefaultDialogVisibleTime*1000/100;
 
 	//开始帧更新
 	mTimer.reset();
@@ -117,7 +139,7 @@ void GUIStage::showText( std::wstring text,float delay)
 {
 	if(delay==0)
 	{
-		mWidgetVector.at(4)->findWidget("TextBox")->castType<MyGUI::EditBox>()->addText(text);
+		mTextBox->addText(text);
 	}
 	else
 	{
@@ -141,32 +163,43 @@ void GUIStage::showImage( std::string imageName,GUIImageLayer layer,float time,i
 	{
 	case EffectsLayer:
 		{
-			mScrLayer=mWidgetVector.at(5)->castType<MyGUI::ImageBox>();
+			mScrLayer=mEffectLayer;
 			mUniversalLayer=NULL;
 		}
 	case LeftLayer:
 		{
-			mScrLayer=mWidgetVector.at(1)->findWidget("LeftLayer")->castType<MyGUI::ImageBox>();
-			mUniversalLayer=mWidgetVector.at(1)->findWidget("LeftLayerUniversal")->castType<MyGUI::ImageBox>();
+			mScrLayer=mLeftLayer;
+			mUniversalLayer=mLeftLayerUniversal;
 			break;
 		}
 	case MidLayer:
 		{
-			mScrLayer=mWidgetVector.at(2)->findWidget("MidLayer")->castType<MyGUI::ImageBox>();
-			mUniversalLayer=mWidgetVector.at(2)->findWidget("MidUniversal")->castType<MyGUI::ImageBox>();
+			mScrLayer=mMidLayer;
+			mUniversalLayer=mMidLayerUniversal;
 			break;
 		}
 	case RightLayer:
 		{
-			mScrLayer=mWidgetVector.at(3)->findWidget("RightLayer")->castType<MyGUI::ImageBox>();
-			mUniversalLayer=mWidgetVector.at(3)->findWidget("RightUniversal")->castType<MyGUI::ImageBox>();
+			mScrLayer=mRightLayer;
+			mUniversalLayer=mRightUniversal;
 			break;
 		}
 	case BackGroundLayer:
 		{
-			mScrLayer=mWidgetVector.at(0)->findWidget("BackGround")->castType<MyGUI::ImageBox>();
-			mUniversalLayer=mWidgetVector.at(0)->findWidget("BackGroundUniversal")->castType<MyGUI::ImageBox>();
+			mScrLayer=mBackGround;
+			mUniversalLayer=mBackGroundUniversal;
 			break;
+		}
+	case AllLayer://如果为清除所有的人物
+		{
+			mSetp=1;
+			mTimerWork=ClearAllRoleWork;
+			mTickTime=time/100;
+
+			//开始帧更新
+			mTimer.reset();
+			GUISystem::getSingletonPtr()->setFrameUpdateScene(StageScene);
+			return;
 		}
 	}
 
@@ -226,9 +259,9 @@ void GUIStage::showImage( std::string imageName,GUIImageLayer layer,float time,i
 
 void GUIStage::showRoleName( std::wstring text )
 {
-	mWidgetVector.at(4)->findWidget("RoleNameUniversal")->castType<MyGUI::EditBox>()->setAlpha(0);
-	mWidgetVector.at(4)->findWidget("RoleNameUniversal")->castType<MyGUI::EditBox>()->setCaption(text);
-	mWidgetVector.at(4)->findWidget("RoleNameUniversal")->castType<MyGUI::EditBox>()->setVisible(true);
+	mRoleNameUniversal->setAlpha(0);
+	mRoleNameUniversal->setCaption(text);
+	mRoleNameUniversal->setVisible(true);
 
 	mSetp=0;
 	mTimerWork=RoleNameWork;
@@ -246,13 +279,13 @@ void GUIStage::showOtherText()
 	mTimerWork=NoneWork;
 	GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);
 
-	mWidgetVector.at(4)->findWidget("TextBox")->castType<MyGUI::EditBox>()->addText(mTextBuffer);
+	mTextBox->addText(mTextBuffer);
 	mTextBuffer.clear();
 }
 
 void GUIStage::clearText()
 {
-	mWidgetVector.at(4)->findWidget("TextBox")->castType<MyGUI::EditBox>()->setCaption("");
+	mTextBox->setCaption("");
 }
 
 void GUIStage::FrameEvent()
@@ -270,7 +303,14 @@ void GUIStage::FrameEvent()
 				{
 					if (!mTextBuffer.empty())
 					{
-						mWidgetVector.at(4)->findWidget("TextBox")->castType<MyGUI::EditBox>()->addText(mTextBuffer.substr(0,1));
+						mTextBox->addText(mTextBuffer.substr(0,1));
+						if (mTextBox->getHScrollPosition()!=0)//自动换行
+						{
+							int length=mTextBox->getTextLength();
+							mTextBox->eraseText(length-1);
+							mTextBox->addText("\n");
+							mTextBox->addText(mTextBuffer.substr(0,1));
+						}
 						mTextBuffer.erase(mTextBuffer.begin());
 					}
 					else
@@ -284,8 +324,9 @@ void GUIStage::FrameEvent()
 				}
 			case UniversalWork:
 				{
-					if(mSetp<=1.0)
+					if(mSetp+0.01<=1.0)
 					{
+
 						mScrLayer->setAlpha(1.0-mSetp);
 						mUniversalLayer->setAlpha(mSetp);
 
@@ -309,16 +350,14 @@ void GUIStage::FrameEvent()
 					{
 						if (mSetpDirection)//判定渐变步方向
 						{
-							if(mSetp<=1.0)
+							if(mSetp+0.01<=1.0)
 							{
 								mSetp+=0.01;
-
-								mWidgetVector.at(4)->setAlpha(mSetp);
+								
+								mTextBoxBG->setAlpha(mSetp);
 							}
 							else
 							{
-								mWidgetVector.at(4)->setAlpha(1.0);
-
 								//停止帧更新
 								mTickTime=0;
 								mTimerWork=NoneWork;
@@ -327,17 +366,16 @@ void GUIStage::FrameEvent()
 						}
 						else
 						{
-							if(mSetp>=0)
+							if(mSetp-0.01>=0)
 							{
 								mSetp-=0.01;
-
-								mWidgetVector.at(4)->setAlpha(mSetp);
+								
+								mTextBoxBG->setAlpha(mSetp);
 							}
 							else
 							{
-								mWidgetVector.at(4)->setAlpha(0);
-								mWidgetVector.at(4)->setVisible(false);
 
+								mTextBoxBG->setVisible(false);
 
 								//停止帧更新
 								mTickTime=0;
@@ -360,19 +398,19 @@ void GUIStage::FrameEvent()
 					}
 				case RoleNameWork:
 					{
-						if(mSetp<=1.0)
+						if(mSetp+0.01<=1.0)
 						{
-							mWidgetVector.at(4)->findWidget("RoleName")->castType<MyGUI::EditBox>()->setAlpha(1.0-mSetp);
-							mWidgetVector.at(4)->findWidget("RoleNameUniversal")->castType<MyGUI::EditBox>()->setAlpha(mSetp);
+							mRoleName->setAlpha(1.0-mSetp);
+							mRoleNameUniversal->setAlpha(mSetp);
 
 							mSetp+=0.01;
 						}
 						else
 						{
-							std::string s=mWidgetVector.at(4)->findWidget("RoleNameUniversal")->castType<MyGUI::EditBox>()->getCaption();
-							mWidgetVector.at(4)->findWidget("RoleNameUniversal")->castType<MyGUI::EditBox>()->setVisible(false);
-							mWidgetVector.at(4)->findWidget("RoleName")->castType<MyGUI::EditBox>()->setCaption(s);
-							mWidgetVector.at(4)->findWidget("RoleName")->castType<MyGUI::EditBox>()->setAlpha(1);
+							std::string s=mRoleNameUniversal->getCaption();
+							mRoleNameUniversal->setVisible(false);
+							mRoleName->setCaption(s);
+							mRoleName->setAlpha(1);
 
 							//停止帧更新
 							mTickTime=0;
@@ -382,6 +420,33 @@ void GUIStage::FrameEvent()
 
 						break;
 					}
+				case ClearAllRoleWork:
+					{
+						if(mSetp-0.01>=0)
+						{
+							mSetp-=0.01;
+
+							mLeftLayer->setAlpha(mSetp);
+							mMidLayer->setAlpha(mSetp);
+							mRightLayer->setAlpha(mSetp);
+
+						}
+						else
+						{
+							
+							mLeftLayer->setImageTexture("");
+							mLeftLayer->setAlpha(1.0);
+							mMidLayer->setImageTexture("");
+							mMidLayer->setAlpha(1.0);
+							mRightLayer->setImageTexture("");
+							mRightLayer->setAlpha(1.0);
+
+							//停止帧更新
+							mTickTime=0;
+							mTimerWork=NoneWork;
+							GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);
+						}
+					}
 			}
 		}
 	}
@@ -389,26 +454,26 @@ void GUIStage::FrameEvent()
 
 void GUIStage::showTextCursor( bool isLine )
 {
-	MyGUI::IntPoint p=mWidgetVector.at(4)->findWidget("TextBox")->castType<MyGUI::EditBox>()->getTextCursorPos();
+	MyGUI::IntPoint p=mTextBox->getTextCursorPos();
 
-	mWidgetVector.at(4)->findWidget("TextCursor")->setPosition(p.left,p.top);
-	mWidgetVector.at(4)->findWidget("TextCursor")->castType<MyGUI::ImageBox>()->setVisible(true);
-	mWidgetVector.at(4)->findWidget("TextCursor")->castType<MyGUI::ImageBox>()->setItemResource ("TextCursorImage");
+	mTextCursor->setPosition(p.left,p.top);
+	mTextCursor->setVisible(true);
+	mTextCursor->setItemResource ("TextCursorImage");
 
 	if(!isLine)
 	{
-		mWidgetVector.at(4)->findWidget("TextCursor")->castType<MyGUI::ImageBox>()->setItemGroup("LineBreak");
+		mTextCursor->setItemGroup("LineBreak");
 	}
 	else
 	{
-		mWidgetVector.at(4)->findWidget("TextCursor")->castType<MyGUI::ImageBox>()->setItemGroup("PageBreak");
+		mTextCursor->setItemGroup("PageBreak");
 	}
 
-	mWidgetVector.at(4)->findWidget("TextCursor")->castType<MyGUI::ImageBox>()->setItemName("show");
+	mTextCursor->setItemName("show");
 
 }
 
 void GUIStage::hideTextCursor()
 {
-	mWidgetVector.at(4)->findWidget("TextCursor")->castType<MyGUI::ImageBox>()->setVisible(false);
+	mTextCursor->setVisible(false);
 }

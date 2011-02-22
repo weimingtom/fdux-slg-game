@@ -50,7 +50,8 @@ public:
 		UniversalWork,//过渡效果
 		DialogVisible,//对话框显隐
 		WaitWork,//等待
-		RoleNameWork//名字渐变
+		RoleNameWork,//名字渐变
+		ClearAllRoleWork//清除所有的角色图片
 	};
 	TimerWork mTimerWork;
 
@@ -74,4 +75,29 @@ private:
 	MyGUI::ImageBox* mUniversalLayer;//当前使用的渐变层
 	MyGUI::ImageBox* mScrLayer;//当前被执行渐变的层
 	std::string mTextureName;//目标贴图名
+
+	MyGUI::ImageBox* mBackGroundGroup;
+	MyGUI::ImageBox* mBackGround;
+	MyGUI::ImageBox* mBackGroundUniversal;
+
+	MyGUI::ImageBox* mLeftLayerGroup;
+	MyGUI::ImageBox* mLeftLayer;
+	MyGUI::ImageBox* mLeftLayerUniversal;
+
+	MyGUI::ImageBox* mMidLayerGroup;
+	MyGUI::ImageBox* mMidLayer;
+	MyGUI::ImageBox* mMidLayerUniversal;
+
+	MyGUI::ImageBox* mRightLayerGroup;
+	MyGUI::ImageBox* mRightLayer;
+	MyGUI::ImageBox* mRightUniversal;
+
+	MyGUI::ImageBox* mTextBoxBG;
+	MyGUI::EditBox* mTextBox;
+	MyGUI::EditBox* mRoleName;
+	MyGUI::EditBox* mRoleNameUniversal;
+	MyGUI::ImageBox* mTextCursor;
+
+	MyGUI::ImageBox* mEffectLayer;
+
 };

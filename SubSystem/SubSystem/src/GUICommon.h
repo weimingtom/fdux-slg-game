@@ -8,7 +8,8 @@ enum GUIImageLayer
 	LeftLayer,
 	MidLayer,
 	RightLayer,
-	BackGroundLayer
+	BackGroundLayer,
+	AllLayer
 };
 
 struct GUIDialogAttribute
@@ -47,7 +48,7 @@ enum GUISceneType
 	StageScene
 };
 
-#define DefaultDialogVisibleTime 0.05//默认对话框渐出时间
+#define DefaultDialogVisibleTime 0.5//默认对话框渐出时间
 #define DefaultRoleNameVisibleTime 1//默认角色名渐变时间
 #define DefaultShowTextTime 0.1//默认打字效果速度
 #define DefaultCursorTime 0.01//默认光标闪烁频率

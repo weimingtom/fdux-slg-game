@@ -60,6 +60,7 @@ ScriptParse::~ScriptParse(void)
 QString ScriptParse::parse( QString text )
 {
 	mResult.clear();
+	mError="";
 	QString::Iterator it;
 	bool isOrderBegin=false;
 	bool isTextBegin=true;
