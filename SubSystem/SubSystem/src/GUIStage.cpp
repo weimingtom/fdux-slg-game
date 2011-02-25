@@ -4,7 +4,7 @@
 
 #include <ogre.h>
 
-GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout"),mCheckMouseDown(false),mIsMouseDown(false),mTextX(0),mTextY(0)
+GUIStage::GUIStage(int width,int height):GUIScene(width,height,"Stage.layout"),mCheckMouseDown(false),mIsMouseDown(false),mTextX(0),mTextY(0)
 {
 	assignWidget(mBackGroundGroup, "BackGroundGroup");
 	assignWidget(mBackGround, "BackGround");
@@ -47,7 +47,7 @@ GUIStage::~GUIStage(void)
 {
 }
 
-void GUIStage::showScene()
+void GUIStage::showScene(std::string arg)
 {
 
 }
@@ -116,8 +116,9 @@ void GUIStage::setTextDialogVisible( bool visible )
 
 	mTextBoxBG->setAlpha(mSetp);
 	mTextBoxBG->setVisible(true);
+	mFadeWidget=mTextBoxBG;
 
-	mTimerWork=DialogVisible;
+	mTimerWork=FadeInOutWork;
 	mTickTime=DefaultDialogVisibleTime*1000/100;
 
 	//开始帧更新
@@ -346,44 +347,9 @@ void GUIStage::FrameEvent()
 
 					break;
 				}
-				case DialogVisible:
+				case FadeInOutWork:
 					{
-						if (mSetpDirection)//判定渐变步方向
-						{
-							if(mSetp+0.01<=1.0)
-							{
-								mSetp+=0.01;
-								
-								mTextBoxBG->setAlpha(mSetp);
-							}
-							else
-							{
-								//停止帧更新
-								mTickTime=0;
-								mTimerWork=NoneWork;
-								GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);
-							}
-						}
-						else
-						{
-							if(mSetp-0.01>=0)
-							{
-								mSetp-=0.01;
-								
-								mTextBoxBG->setAlpha(mSetp);
-							}
-							else
-							{
-
-								mTextBoxBG->setVisible(false);
-
-								//停止帧更新
-								mTickTime=0;
-								mTimerWork=NoneWork;
-								GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);
-							}
-
-						}
+						FadeInOut();//调用基类的淡入淡出程序
 
 						break;
 					}

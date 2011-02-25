@@ -150,7 +150,7 @@ void ScriptEditor::ClearTextButton()
 void ScriptEditor::ShowTextButton()
 {
 	//std::string a=ui.TextEdit->toPlainText().toStdString();
-	static_cast<GUIStage*>(OgreCore::getSingletonPtr()->mGUISystem->getScene(StageScene))->showScene();
+	static_cast<GUIStage*>(OgreCore::getSingletonPtr()->mGUISystem->getScene(StageScene))->showScene("");
 }
 
 void ScriptEditor::ShowRoleNameButton()

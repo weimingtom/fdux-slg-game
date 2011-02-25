@@ -1,5 +1,6 @@
 #include "GUISystem.h"
 
+#include "GUIScene.h"
 #include "GUIStage.h"
 
 GUISystem::GUISystem(Ogre::RenderWindow* window,Ogre::SceneManager* scene):mWindow(window),mSceneManager(scene),mFrameUpdateScene(NULL)
@@ -17,6 +18,13 @@ GUISystem::~GUISystem(void)
 		delete (*it);
 	}
 	mSceneList.clear();
+
+	std::map<GUISceneType,GUISceneFactory*>::iterator iter;
+
+	for(iter = mSceneFactorys.begin(); iter != mSceneFactorys.end(); iter++)
+	{
+		delete iter->second;
+	}
 
 	if (mGUI)
 	{
@@ -64,20 +72,35 @@ bool GUISystem::mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID id
 	return true;
 }
 
-void GUISystem::createScene(GUISceneType type )
+
+void GUISystem::registerSceneFactory( GUISceneType type,GUISceneFactory* factory )
+{
+	mSceneFactorys[type]=factory;
+}
+
+
+GUIScene* GUISystem::createScene(GUISceneType type )
 {
 	GUIScene* scene=NULL;
-	switch(type)
+
+	std::map<GUISceneType,GUISceneFactory*>::iterator itr;
+	itr = mSceneFactorys.find(type);
+
+	if( itr != mSceneFactorys.end() )
 	{
-	case StageScene:
-		scene=new GUIStage(mWindow->getWidth(),mWindow->getHeight());
-		break;
+		scene=itr->second->CreateScene(mWindow->getWidth(),mWindow->getHeight());
+	}
+	else
+	{
+		return NULL;
 	}
 
 	if (scene!=NULL)
 	{
 		mSceneList.push_back(scene);
 	}
+
+	return scene;
 }
 
 void GUISystem::destoryScene( GUISceneType type )
