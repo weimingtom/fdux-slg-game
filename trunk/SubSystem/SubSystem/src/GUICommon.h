@@ -45,7 +45,8 @@ struct GUIImageAttribute
 enum GUISceneType
 {
 	NoneScene,
-	StageScene
+	StageScene,
+	MenuScene
 };
 
 #define DefaultDialogVisibleTime 0.5//默认对话框渐出时间

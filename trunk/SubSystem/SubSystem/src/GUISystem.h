@@ -1,7 +1,6 @@
 #pragma once
 
 #include "GUICommon.h"
-#include "GUIScene.h"
 #include "iisingleton.hpp"
 
 #include <OIS.h>
@@ -10,8 +9,12 @@
 #include <MyGUI_OgrePlatform.h>
 
 #include <vector>
+#include <map>
 
 using namespace izayoi;
+
+class GUIScene;
+class GUISceneFactory;
 
 class GUISystem:public OIS::KeyListener,public OIS::MouseListener,public IISingleton<GUISystem>
 {
@@ -29,7 +32,8 @@ public:
 	bool mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id);
 	
 	//GUI场景控制
-	void createScene(GUISceneType type);
+	void registerSceneFactory(GUISceneType type,GUISceneFactory* factory);
+	GUIScene* createScene(GUISceneType type);
 	void destoryScene(GUISceneType type);
 	GUIScene* getScene(GUISceneType type);
 	void setFrameUpdateScene(GUISceneType type);
@@ -45,6 +49,7 @@ private:
 	Ogre::RenderWindow* mWindow;
 
 	std::vector<GUIScene*> mSceneList;
+	std::map<GUISceneType,GUISceneFactory*> mSceneFactorys;
 	//需要帧更新的场景
 	GUIScene* mFrameUpdateScene;
 };

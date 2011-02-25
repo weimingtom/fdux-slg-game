@@ -1,6 +1,7 @@
 #include "OgreCore.h"
 
 #include "GUISystem.h"
+#include "GUIStage.h"
 
 #include "LuaSystem.h"
 
@@ -45,6 +46,7 @@ bool OgreCore::setup()
 		Ogre::ResourceGroupManager::getSingletonPtr()->initialiseAllResourceGroups();
 		
 		mGUISystem=new GUISystem(mWindow,mSceneMgr);
+		mGUISystem->registerSceneFactory(StageScene,new GUIStageFactory());
 		mGUISystem->createScene(StageScene);
 
 		mLuaSystem=new LuaSystem();

@@ -8,7 +8,7 @@ public:
 	GUIStage(int width,int height);
 	~GUIStage(void);
 
-	void showScene();//显示场景
+	void showScene(std::string arg);//显示场景
 	void hideScene();//隐藏场景
 
 	//帧事件	
@@ -42,19 +42,6 @@ public:
 		return StageScene;
 	}
 
-	//当前定时器的工作
-	enum TimerWork
-	{
-		NoneWork,
-		PrinterWork,//打字机效果
-		UniversalWork,//过渡效果
-		DialogVisible,//对话框显隐
-		WaitWork,//等待
-		RoleNameWork,//名字渐变
-		ClearAllRoleWork//清除所有的角色图片
-	};
-	TimerWork mTimerWork;
-
 private:
 
 	void eventMouseButtonClick(MyGUI::Widget* _sender);
@@ -67,11 +54,6 @@ private:
 
 	std::wstring mTextBuffer;//文本缓冲
 
-	MyGUI::Timer mTimer;//定时器
-	float mTickTime;//单次触发时间
-
-	float mSetp;//渐变步
-	bool mSetpDirection;//渐变步的方向,true为正方向
 	MyGUI::ImageBox* mUniversalLayer;//当前使用的渐变层
 	MyGUI::ImageBox* mScrLayer;//当前被执行渐变的层
 	std::string mTextureName;//目标贴图名
@@ -100,4 +82,18 @@ private:
 
 	MyGUI::ImageBox* mEffectLayer;
 
+};
+
+class GUIStageFactory:
+	public GUISceneFactory
+{
+public:
+	GUIStageFactory(){}
+
+	~GUIStageFactory(){}
+
+	GUIScene* CreateScene(int Width,int Height)
+	{
+		return new GUIStage(Width,Height);
+	}
 };
