@@ -13,4 +13,7 @@ public:
 	void uninitialize();
 
 	void update();
+
+private:
+
 };

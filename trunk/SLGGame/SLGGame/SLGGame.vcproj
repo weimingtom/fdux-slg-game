@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;..\..\lua-5.1.4\include&quot;;..\..\bass24\c;..\..\SubSystem\SubSystem\src;..\..\MyGUI_3.2.0_RC1\MyGUIEngine\include;..\..\MyGUI_3.2.0_RC1\Platforms\Ogre\OgrePlatform\include;&quot;$(OGRE_HOME)\boost_1_42&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;&quot;$(OGRE_HOME)\include\OGRE&quot;"
+				AdditionalIncludeDirectories="..\..\ticpp;&quot;..\..\lua-5.1.4\include&quot;;..\..\bass24\c;..\..\SubSystem\SubSystem\src;..\..\MyGUI_3.2.0_RC1\MyGUIEngine\include;..\..\MyGUI_3.2.0_RC1\Platforms\Ogre\OgrePlatform\include;&quot;$(OGRE_HOME)\boost_1_42&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;&quot;$(OGRE_HOME)\include\OGRE&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -61,10 +61,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="OgreMain_d.lib OIS_d.lib SubSystem.lib MyGUI.OgrePlatform_d.lib MyGUIEngine_d.lib bass.lib lua51.lib"
+				AdditionalDependencies="OgreMain_d.lib OIS_d.lib SubSystem.lib MyGUI.OgrePlatform_d.lib MyGUIEngine_d.lib bass.lib lua51.lib ticpp.lib"
 				OutputFile="$(OutDir)\ForgottenBattlefield.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;$(OGRE_HOME)\lib\debug\&quot;;&quot;$(OGRE_HOME)\boost_1_42\lib&quot;;..\..\bass24\c;..\debug;&quot;..\..\lua-5.1.4\bin&quot;;..\..\MyGUI3.2\lib\Debug"
+				AdditionalLibraryDirectories="&quot;$(OGRE_HOME)\lib\debug\&quot;;&quot;$(OGRE_HOME)\boost_1_42\lib&quot;;..\..\bass24\c;..\debug;&quot;..\..\lua-5.1.4\bin&quot;;..\..\MyGUI3.2\lib\Debug;..\..\ticpp\lib"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -196,6 +196,50 @@
 				RelativePath=".\src\SLGGame.cpp"
 				>
 			</File>
+		</Filter>
+		<Filter
+			Name="Manager"
+			>
+			<Filter
+				Name="State"
+				>
+				<File
+					RelativePath=".\src\StateManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\StateManager.h"
+					>
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="State"
+			>
+			<File
+				RelativePath=".\src\GameState.h"
+				>
+			</File>
+			<Filter
+				Name="Menu"
+				>
+				<File
+					RelativePath=".\src\GUIMenu.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\GUIMenu.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\MenuState.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\MenuState.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 	</Files>
 	<Globals>

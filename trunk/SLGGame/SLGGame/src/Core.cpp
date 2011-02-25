@@ -1,6 +1,9 @@
 #include "Core.h"
 
 #include "GUISystem.h"
+#include "GUIMenu.h"
+#include "GUIStage.h"
+
 #include "LuaSystem.h"
 #include "AudioSystem.h"
 
@@ -28,7 +31,7 @@ bool Core::initialize()
 	}
 	if (rtn)
 	{
-		mWindow=mRoot->initialise(true, "RenderWindow");
+		mWindow=mRoot->initialise(true, "忘却的战场");
 		Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
 
 		mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC);
@@ -46,6 +49,8 @@ bool Core::initialize()
 		Ogre::ResourceGroupManager::getSingletonPtr()->initialiseAllResourceGroups();
 
 		mGUISystem=new GUISystem(mWindow,mSceneMgr);
+		mGUISystem->registerSceneFactory(StageScene,new GUIStageFactory());
+		mGUISystem->registerSceneFactory(MenuScene,new GUIMenuFactory());
 
 		mLuaSystem=new LuaSystem();
 
@@ -56,6 +61,7 @@ bool Core::initialize()
 		initializeOIS();
 
 		mStateManager=new StateManager();
+		mStateManager->changeState("logo",StateManager::Menu);
 
 		isRun=true;
 
@@ -120,14 +126,22 @@ void Core::initializeOIS()
 
 	//Default mode is foreground exclusive..but, we want to show mouse - so nonexclusive
 	pl.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_FOREGROUND" )));
-	pl.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_NONEXCLUSIVE;")));
-	//pl.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_EXCLUSIVE")));//无鼠标模式
+	//pl.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_NONEXCLUSIVE;")));
+	pl.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_EXCLUSIVE")));//无鼠标模式
 
 	mInputManager = OIS::InputManager::createInputSystem( pl );
 
 	//Create all devices
 	mKeyboard = static_cast<OIS::Keyboard*>(mInputManager->createInputObject( OIS::OISKeyboard, true ));
-	mMouse = static_cast<OIS::Mouse*>(mInputManager->createInputObject( OIS::OISMouse, true ));
+	try
+	{
+		mMouse = static_cast<OIS::Mouse*>(mInputManager->createInputObject( OIS::OISMouse, true ));
+	}
+	catch (OIS::Exception e)
+	{
+		std::cout<<e.eText<<std::endl;
+	}
+	
 
 	mKeyboard->setEventCallback(static_cast<OIS::KeyListener*>(mGUISystem));
 	mMouse->setEventCallback(static_cast<OIS::MouseListener*>(mGUISystem));
