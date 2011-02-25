@@ -1,6 +1,8 @@
 #include "StateManager.h"
 
-StateManager::StateManager(void):mBaseState(nullptr),mAffixationState(nullptr)
+#include "MenuState.h"
+
+StateManager::StateManager(void):mBaseState(NULL),mAffixationState(NULL)
 {
 }
 
@@ -10,18 +12,20 @@ StateManager::~StateManager(void)
 
 void StateManager::changeState( std::string arg,StateType type )
 {
-	if (mAffixationState==NULL)//必须没有附加状态
+	if (mAffixationState!=NULL)
 	{
-		if (mBaseState!=NULL)
-		{
-			mBaseState->uninitialize();
-			delete mBaseState;
-		}
-		
-		mBaseState=CreateState(type);
-
-		mBaseState->initialize(arg);
+		removeAffixationState();
 	}
+
+	if (mBaseState!=NULL)
+	{
+		mBaseState->uninitialize();
+		delete mBaseState;
+	}
+
+	mBaseState=CreateState(type);
+
+	mBaseState->initialize(arg);
 }
 
 void StateManager::addAffixationState( std::string arg,StateType type )
@@ -68,7 +72,8 @@ GameState* StateManager::CreateState( StateType type )
 	switch(type)
 	{
 	case Menu:
-		{
+		{	
+			state=new MenuState();
 			break;
 		}
 	case AVG:
