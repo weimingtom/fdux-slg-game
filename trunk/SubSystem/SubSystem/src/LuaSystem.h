@@ -8,6 +8,7 @@
 #include <list>
 
 struct lua_State;
+struct luaL_Reg;
 
 using namespace izayoi;
 
@@ -29,6 +30,8 @@ public:
 	void runScript(const std::string script);
 
 	std::string luaCallString(const std::string Szcode);
+
+	void registerCLib(const std::string libName,const luaL_Reg* lib);
 
 	void registerListener(LuaSystemListener* listener);
 
