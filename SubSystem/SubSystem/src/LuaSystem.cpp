@@ -98,4 +98,9 @@ void LuaSystem::registerListener( LuaSystemListener* listener )
 	mListener=listener;
 }
 
+void LuaSystem::registerCLib( const std::string libName,const luaL_Reg* lib )
+{
+	luaL_register(L, libName.c_str(),lib);
+}
+
 
