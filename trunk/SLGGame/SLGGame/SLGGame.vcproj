@@ -61,10 +61,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="OgreMain_d.lib OIS_d.lib SubSystem.lib MyGUI.OgrePlatform_d.lib MyGUIEngine_d.lib bass.lib lua51.lib ticpp.lib"
+				AdditionalDependencies="ticppd.lib OgreMain_d.lib OIS_d.lib SubSystem.lib MyGUI.OgrePlatform_d.lib MyGUIEngine_d.lib bass.lib lua51.lib"
 				OutputFile="$(OutDir)\ForgottenBattlefield.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="&quot;$(OGRE_HOME)\lib\debug\&quot;;&quot;$(OGRE_HOME)\boost_1_42\lib&quot;;..\..\bass24\c;..\debug;&quot;..\..\lua-5.1.4\bin&quot;;..\..\MyGUI3.2\lib\Debug;..\..\ticpp\lib"
+				IgnoreAllDefaultLibraries="false"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -209,6 +210,18 @@
 				</File>
 				<File
 					RelativePath=".\src\StateManager.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Data"
+				>
+				<File
+					RelativePath=".\src\DataLibrary.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\DataLibrary.h"
 					>
 				</File>
 			</Filter>

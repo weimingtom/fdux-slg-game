@@ -4,8 +4,12 @@
 
 #include "GameState.h"
 
+#include "iisingleton.hpp"
+
+using namespace izayoi;
+
 //状态管理器,用于管理各种状态
-class StateManager
+class StateManager:public IISingleton<StateManager>
 {
 public:
 	StateManager(void);

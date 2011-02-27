@@ -8,6 +8,7 @@
 #include "AudioSystem.h"
 
 #include "StateManager.h"
+#include "DataLibrary.h"
 
 Core::Core(void):isRun(false)
 {
@@ -62,6 +63,8 @@ bool Core::initialize()
 
 		mStateManager=new StateManager();
 		mStateManager->changeState("logo",StateManager::Menu);
+
+		mDataLibrary=new DataLibrary();
 
 		isRun=true;
 

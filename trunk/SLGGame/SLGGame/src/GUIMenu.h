@@ -18,6 +18,9 @@ public:
 		return MenuScene;
 	}
 private:
+
+	void onNewGame(MyGUI::Widget* _sender);
+
 	enum MenuStateEnum
 	{
 		NoneState,
@@ -34,6 +37,10 @@ private:
 
 	MyGUI::ImageBox* mLogoImage;
 	MyGUI::ImageBox* mMenuImage;
+
+	MyGUI::Button* mNewGame;
+	MyGUI::Button* mExit;
+
 };
 
 class GUIMenuFactory:
