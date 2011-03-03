@@ -27,6 +27,8 @@ public:
 
 	void onFrameUpdate();
 
+	void runScriptFromFile(const std::string& filename,int lineNum);
+
 	void runScript(const std::string script);
 
 	std::string luaCallString(const std::string Szcode);
