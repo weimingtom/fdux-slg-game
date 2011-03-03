@@ -1,9 +1,15 @@
 #include "StateManager.h"
 
+#include "AVGState.h"
 #include "MenuState.h"
+
+#include "LuaSystem.h"
+#include "LuaStateFun.h"
 
 StateManager::StateManager(void):mBaseState(NULL),mAffixationState(NULL)
 {
+	//×¢²áluaº¯Êý
+	LuaSystem::getSingletonPtr()->registerCLib("StateLib",StateLib);
 }
 
 StateManager::~StateManager(void)
@@ -78,6 +84,7 @@ GameState* StateManager::CreateState( StateType type )
 		}
 	case AVG:
 		{
+			state=new AVGState();
 			break;
 		}
 	}

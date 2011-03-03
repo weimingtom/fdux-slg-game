@@ -253,6 +253,22 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Avg"
+				>
+				<File
+					RelativePath=".\src\AVGState.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\AVGState.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\LuaStateFun.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 	</Files>
 	<Globals>
