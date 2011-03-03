@@ -2,7 +2,10 @@
 
 #include "DataLibrary.h"
 
+#include "Core.h"
 #include "LuaSystem.h"
+
+#include "StateManager.h"
 
 #include <iostream>
 
@@ -18,6 +21,8 @@ GUIMenu::GUIMenu(int width,int height):GUIScene(width,height,"MainMenu.layout"),
 	mMenuImage->setSize(width,height);
 
 	mNewGame->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onNewGame);
+	mExit->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onExit);
+	setButtonLock(false);
 }
 
 GUIMenu::~GUIMenu(void)
@@ -88,9 +93,36 @@ void GUIMenu::FrameEvent()
 
 					break;
 				}
+			case NewState:
+				{
+					FadeInOut();
+
+					if (mTimerWork==NoneWork)
+					{
+						StateManager::getSingletonPtr()->changeState("Chapter1.lua",StateManager::AVG);
+					}
+
+					break;
+				}
 			case MainMenuState:
 				{
 					FadeInOut();
+
+					if (mTimerWork==NoneWork)
+					{
+						setButtonLock(true);
+					}
+
+					break;
+				}
+			case ExitState:
+				{
+					FadeInOut();
+
+					if (mTimerWork==NoneWork)
+					{
+						Core::getSingletonPtr()->stop();
+					}
 
 					break;
 				}
@@ -115,19 +147,35 @@ void GUIMenu::FrameEvent()
 
 void GUIMenu::onNewGame( MyGUI::Widget* _sender )
 {
-	DataLibrary::getSingletonPtr()->setData("GameData/Test/Test1",-1);
-	DataLibrary::getSingletonPtr()->setData("GameData/Test/Test2",1);
-	DataLibrary::getSingletonPtr()->setData("GameData/Test/Test3",1.1);
-	DataLibrary::getSingletonPtr()->setData("GameData/Test/Test4","aaaa");
+	setButtonLock(false);
 
-	DataLibrary::getSingletonPtr()->saveXmlData(DataLibrary::GameData,"test1.xml");
+	mMenuState=NewState;
+	mSetp=1;
+	mSetpDirection=false;//从无到有方向
+	mTimerWork=FadeInOutWork;
+	mTickTime=2*1000/100;
 
-	std::cout<<DataLibrary::getSingletonPtr()->getDataI("GameData/Test/Test1")<<std::endl;
-	std::cout<<DataLibrary::getSingletonPtr()->getDataUI("GameData/Test/Test2")<<std::endl;
-	std::cout<<DataLibrary::getSingletonPtr()->getDataF("GameData/Test/Test3")<<std::endl;
-	std::cout<<DataLibrary::getSingletonPtr()->getDataS("GameData/Test/Test4")<<std::endl;
+	mTimer.reset();
+	GUISystem::getSingletonPtr()->setFrameUpdateScene(MenuScene);
+}
 
-	LuaSystem::getSingletonPtr()->luaCallString("DataLib.SetData(\"GameData/Test/Test1\",\"I\",3)");
-	LuaSystem::getSingletonPtr()->luaCallString("print(DataLib.GetData(\"GameData/Test/Test1\",\"I\"))");
+void GUIMenu::onExit( MyGUI::Widget* _sender )
+{
+	setButtonLock(false);
+
+	mMenuState=ExitState;
+	mSetp=1;
+	mSetpDirection=false;//从无到有方向
+	mTimerWork=FadeInOutWork;
+	mTickTime=2*1000/100;
+
+	mTimer.reset();
+	GUISystem::getSingletonPtr()->setFrameUpdateScene(MenuScene);
+}
+
+void GUIMenu::setButtonLock( bool isLock )
+{
+	mNewGame->setEnabled(isLock);
+	mExit->setEnabled(isLock);
 }
 

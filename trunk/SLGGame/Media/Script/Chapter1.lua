@@ -1,0 +1,16 @@
+left=1;
+mid=2;
+right=3;
+all=5;
+GUI.SetTextRect(30,530,700,200);
+GUI.SetRoleNameRect(50,480,150,80);
+GUI.SetUITextColor(1,1,1);
+GUI.SetRoleNameColor(1,1,1);
+GUI.SetFont("fireflysung","fireflysung");
+GUI.SetDialogAttribute();
+GUI.SetDialogVisible(1);
+GUI.ShowImage("bg1.jpg",4,1000);
+GUI.ShowRoleName("丘比");
+GUI.ShowText("和我进行契约,然后成为魔法少女吧!",2);
+GUI.ShowText("\n",1);
+GUI.ShowText("不成为魔法少女么?",1);

@@ -20,12 +20,17 @@ public:
 private:
 
 	void onNewGame(MyGUI::Widget* _sender);
+	void onExit(MyGUI::Widget* _sender);
+
+	void setButtonLock(bool isLock);
 
 	enum MenuStateEnum
 	{
 		NoneState,
 		LogoState,
+		NewState,
 		WaitState,
+		ExitState,
 		MainMenuState,
 		SaveMenuState,
 		LoadMenuState,

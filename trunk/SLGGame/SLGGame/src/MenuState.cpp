@@ -27,7 +27,6 @@ void MenuState::initialize( std::string arg )
 
 void MenuState::uninitialize()
 {
-	GUISystem::getSingletonPtr()->getScene(MenuScene)->hideScene();
 	GUISystem::getSingletonPtr()->destoryScene(MenuScene);
 }
 
