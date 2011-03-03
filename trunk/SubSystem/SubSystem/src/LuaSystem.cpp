@@ -103,4 +103,23 @@ void LuaSystem::registerCLib( const std::string libName,const luaL_Reg* lib )
 	luaL_register(L, libName.c_str(),lib);
 }
 
+void LuaSystem::runScriptFromFile( const std::string& filename,int lineNum)
+{
+	mScriptBuffer.clear();
+
+	Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(filename, "General", true);
+
+	runScript(stream->getAsString());
+
+	//跳过指定数量的行
+	
+	if (lineNum!=0)
+	{
+		for (int i=0;i<lineNum;i++ )
+		{
+			mScriptBuffer.erase(mScriptBuffer.begin());
+		}
+	}
+}
+
 
