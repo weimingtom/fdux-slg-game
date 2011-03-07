@@ -13,5 +13,5 @@ public:
 
 	virtual void uninitialize()=0;
 
-	virtual void update()=0;
+	virtual void update(unsigned int deltaTime)=0;
 };

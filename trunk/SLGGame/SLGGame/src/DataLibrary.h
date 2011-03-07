@@ -33,25 +33,25 @@ public:
 	void loadXmlData(DataBlock type,std::string fileName);
 	void saveXmlData(DataBlock type,std::string fileName);
 
-	void setData(std::string path,int value);
-	void setData(std::string path,unsigned int value);
-	void setData(std::string path,float value);
-	void setData(std::string path,double value);
-	void setData(std::string path,std::string value);
+	bool setData(std::string path,const int& value,bool createpath=true);
+	bool setData(std::string path,const unsigned int& value,bool createpath=true);
+	bool setData(std::string path,const float& value,bool createpath=true);
+	bool setData(std::string path,const double& value,bool createpath=true);
+	bool setData(std::string path,const std::string& value,bool createpath=true);
 
-	int getDataI(std::string path);
-	unsigned int getDataUI(std::string path);
-	float getDataF(std::string path);
-	double getDataD(std::string path);
-	std::string getDataS(std::string path);
+	bool getData(std::string path,int& value);
+	bool getData(std::string path,unsigned int& value);
+	bool getData(std::string path,float& value);
+	bool getData(std::string path,double& value);
+	bool getData(std::string path,std::string& value);
 
 	DataType getDataType(std::string path);
 private:
 	ticpp::Document mSystemConfig;
 	ticpp::Document mGameData;
 
-	ticpp::Element* getNode(std::string path);
-	ticpp::Element* findNode(ticpp::Element* parent,std::queue<std::string>* path);
+	ticpp::Element* getNode(std::string path,bool createpath);
+	ticpp::Element* findNode(ticpp::Element* parent,std::queue<std::string>* path,bool createpath);
 	void split(const std::string& s, char c,std::queue<std::string>& v);
 };
 
@@ -66,27 +66,31 @@ extern "C"
 	{
 		std::string path(luaL_checkstring(L, 1));
 		std::string type(luaL_checkstring(L, 2));
+
+		bool ret;
 		
 		if (type=="I")
 		{
-			DataLibrary::getSingletonPtr()->setData(path,luaL_checkint(L, 3));
+			ret=DataLibrary::getSingletonPtr()->setData(path,luaL_checkint(L, 3),(bool)luaL_optint(L,4,1));
 		}
 		else if(type=="UI")
 		{
-			DataLibrary::getSingletonPtr()->setData(path,(unsigned int)luaL_checkint(L, 3));
+			ret=DataLibrary::getSingletonPtr()->setData(path,(unsigned int)luaL_checkint(L, 3),(bool)luaL_optint(L,4,1));
 		}
 		else if(type=="F")
 		{
-			DataLibrary::getSingletonPtr()->setData(path,(float)luaL_checknumber(L, 3));
+			ret=DataLibrary::getSingletonPtr()->setData(path,(float)luaL_checknumber(L, 3),(bool)luaL_optint(L,4,1));
 		}
 		else if(type=="D")
 		{
-			DataLibrary::getSingletonPtr()->setData(path,(double)luaL_checknumber(L, 3));
+			ret=DataLibrary::getSingletonPtr()->setData(path,(double)luaL_checknumber(L, 3),(bool)luaL_optint(L,4,1));
 		}
 		else if(type=="S")
 		{
-			DataLibrary::getSingletonPtr()->setData(path,std::string(luaL_checkstring(L, 3)));
+			ret=DataLibrary::getSingletonPtr()->setData(path,std::string(luaL_checkstring(L, 3)),(bool)luaL_optint(L,4,1));
 		}
+		
+		lua_pushboolean(L,ret);
 
 		return 1;
 	}
@@ -95,26 +99,36 @@ extern "C"
 	{
 		std::string path(luaL_checkstring(L, 1));
 		std::string type(luaL_checkstring(L, 2));
-
+		
 		if (type=="I")
 		{
-			lua_pushnumber(L, DataLibrary::getSingletonPtr()->getDataI(path));
+			int value=0;
+			DataLibrary::getSingletonPtr()->getData(path,value);
+			lua_pushnumber(L,value);
 		}
 		else if(type=="UI")
 		{
-			lua_pushnumber(L, DataLibrary::getSingletonPtr()->getDataUI(path));
+			unsigned int value=0;
+			DataLibrary::getSingletonPtr()->getData(path,value);
+			lua_pushnumber(L,value);
 		}
 		else if(type=="F")
 		{
-			lua_pushnumber(L, DataLibrary::getSingletonPtr()->getDataF(path));
+			float value=0;
+			DataLibrary::getSingletonPtr()->getData(path,value);
+			lua_pushnumber(L,value);
 		}
 		else if(type=="D")
 		{
-			lua_pushnumber(L, DataLibrary::getSingletonPtr()->getDataD(path));
+			double value=0;
+			DataLibrary::getSingletonPtr()->getData(path,value);
+			lua_pushnumber(L,value);
 		}
 		else if(type=="S")
 		{
-			lua_pushstring(L, DataLibrary::getSingletonPtr()->getDataS(path).c_str());
+			std::string value="";
+			DataLibrary::getSingletonPtr()->getData(path,value);
+			lua_pushstring(L,value.c_str());
 		}
 
 		return 1;

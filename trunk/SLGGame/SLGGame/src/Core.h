@@ -59,11 +59,13 @@ public:
 private:
 	void Uninitialize();
 
-	void RenderingFrame();
+	void RenderingFrame(unsigned int deltaTime);
 	
 	void initializeOIS();
 
 	void initializeResource();
 
 	bool isRun;
+
+	
 };
