@@ -18,7 +18,7 @@ extern "C"
 		return 1;
 	}
 
-	static int BattleState(lua_State* L)
+	static int BattleState1(lua_State* L)
 	{
 		std::string arg(luaL_checkstring(L, 1));
 
@@ -39,7 +39,7 @@ extern "C"
 	static const struct luaL_Reg StateLib[] =
 	{
 		{"AvgState",AvgState},
-		{"BattleState",BattleState},
+		{"BattleState",BattleState1},
 		{"SupplyState",SupplyState},
 
 		{NULL,NULL}

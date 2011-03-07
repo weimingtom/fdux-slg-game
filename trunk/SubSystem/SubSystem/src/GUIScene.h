@@ -81,9 +81,9 @@ protected:
 	{
 		if (mSetpDirection)//判定渐变步方向
 		{
-			if(mSetp+0.01<=1.0)
+			if(mSetp+0.01f<=1.0)
 			{
-				mSetp+=0.01;
+				mSetp+=0.01f;
 
 				mFadeWidget->setAlpha(mSetp);
 			}

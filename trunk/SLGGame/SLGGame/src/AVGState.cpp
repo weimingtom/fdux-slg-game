@@ -36,7 +36,7 @@ void AVGState::initialize( std::string arg )
 
 void AVGState::uninitialize()
 {
-
+	GUISystem::getSingletonPtr()->destoryScene(StageScene);
 }
 
 void AVGState::update(unsigned int deltaTime)

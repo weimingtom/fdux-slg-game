@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<MapName>newmap</MapName>
+<MapTeam>
+    <Team2 TeamType="none" TeamFaction="none" />
+    <Team3 TeamType="none" TeamFaction="none" />
+    <Team4 TeamType="none" TeamFaction="none" />
+</MapTeam>
+<MapScript>ddsadsa</MapScript>
+<MapInfo>dcxvafdfs&#x0A;dasdsadsa</MapInfo>
+<MapSize>20</MapSize>
+<MapData>hglglglglgldldldlglgwglglglglglglglglglghghghglglglglglglglgwgwglglglglglglglglghglglglglglgwglgldlgwglglglglglglglglglglglglglglglglglgldlgwgwglglglglglglglglglglghglglgldldldldlglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglgıııı««««««««îşîş</MapData>
+<MapObject>
+    <knot_0 Type="none" GridX="6" GridY="2" Mesh="knot.mesh" />
+</MapObject>
+<MapSquad>
+    <Team1 />
+    <Team2 />
+    <Team3 />
+    <Team4 />
+</MapSquad>
+<MapArea />

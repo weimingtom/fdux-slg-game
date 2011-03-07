@@ -1,0 +1,33 @@
+material TerrainTile
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				tex_coord_set 0
+				texture GreenLand.tga
+			}
+			texture_unit
+			{
+				tex_coord_set 1
+				colour_op alpha_blend
+				texture Desert.tga
+			}
+			texture_unit
+			{
+				tex_coord_set 2
+				colour_op alpha_blend
+				texture Swamp.tga
+			}
+			texture_unit
+			{
+				tex_coord_set 3
+				colour_op alpha_blend
+				texture Snow.tga
+			}
+		}
+	}
+}

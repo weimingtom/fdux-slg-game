@@ -14,3 +14,4 @@ GUI.ShowRoleName("丘比");
 GUI.ShowText("和我进行契约,然后成为魔法少女吧!",2);
 GUI.ShowText("\n",1);
 GUI.ShowText("不成为魔法少女么?",1);
+StateLib.BattleState("demo.xml");

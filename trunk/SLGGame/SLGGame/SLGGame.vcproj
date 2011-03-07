@@ -269,6 +269,42 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Battle"
+				>
+				<File
+					RelativePath=".\src\BattleState.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\BattleState.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\CameraContral.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\CameraContral.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\MapDataManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\MapDataManager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Terrain.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Terrain.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Battle"

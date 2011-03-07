@@ -1,0 +1,71 @@
+material WaterMat1
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 1.0 1.0 1.0 1.0
+			
+			texture_unit
+			{
+				tex_coord_set 0
+				texture GreenLand.tga
+			}
+		}
+	}
+}
+
+material WaterMat2
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 1.0 1.0 1.0 1.0
+			
+			texture_unit
+			{
+				tex_coord_set 0
+				texture Desert.tga
+			}
+		}
+	}
+}
+
+material WaterMat3
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 1.0 1.0 1.0 1.0
+			
+			texture_unit
+			{
+				tex_coord_set 0
+				texture Swamp.tga
+			}
+		}
+	}
+}
+
+material WaterMat4
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 1.0 1.0 1.0 1.0
+			
+			texture_unit
+			{
+				tex_coord_set 0
+				texture Snow.tga
+			}
+		}
+	}
+}

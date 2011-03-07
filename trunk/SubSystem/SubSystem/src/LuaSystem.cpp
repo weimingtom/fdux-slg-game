@@ -3,6 +3,7 @@
 #include <Ogre.h>
 
 #include "LuaFun.cpp"
+#include "LuaCommonLib.h"
 
 extern "C"
 {
@@ -19,6 +20,7 @@ LuaSystem::LuaSystem(void)
 	luaL_openlibs(L);
 	LuaBreakupFun=NULL;
 	mListener=NULL;
+	mContextStack.push_back("\0");
 	luaL_register(L, "GUI",GUILib);
 }
 
@@ -123,3 +125,42 @@ void LuaSystem::runScriptFromFile( const std::string& filename,int lineNum)
 }
 
 
+std::string LuaSystem::GetContext()
+{
+	return *(mContextStack.end());
+}
+
+bool LuaSystem::ExecuteFile(std::string filename, std::string context)
+{
+	if(context == "\0")
+		return false;
+	mContextStack.push_back(context);
+	Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(filename, "General", true);
+	int result;
+	result = luaL_loadstring(L,stream->getAsString().c_str());
+	if(!result)
+		result = lua_pcall(L,0 ,0, 0);
+	mContextStack.pop_back();
+	return !result;
+}
+
+bool LuaSystem::ExecuteFunction(std::string filename, std::string funcname, std::string context)
+{
+	if(context == "\0")
+		return false;
+	mContextStack.push_back(context);
+	Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(filename, "General", true);
+	int result;
+	result = luaL_loadstring(L,stream->getAsString().c_str());
+	if(!result)
+	{
+		result = lua_pcall(L,0 ,0, 0);
+		if(!result)
+		{
+			lua_getglobal(L, funcname.c_str());
+			result = lua_pcall(L,0 ,0, 0);
+		}
+	}
+	mContextStack.pop_back();
+	return !result;
+}
