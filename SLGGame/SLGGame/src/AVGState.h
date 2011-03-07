@@ -11,7 +11,7 @@ public:
 
 	void initialize(std::string arg);
 	void uninitialize();
-	void update();
+	void update(unsigned int deltaTime);
 private:
 	void split(const std::string& s, char c,std::queue<std::string>& v);
 };

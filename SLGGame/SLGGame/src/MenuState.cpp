@@ -30,7 +30,7 @@ void MenuState::uninitialize()
 	GUISystem::getSingletonPtr()->destoryScene(MenuScene);
 }
 
-void MenuState::update()
+void MenuState::update(unsigned int deltaTime)
 {
 	
 }

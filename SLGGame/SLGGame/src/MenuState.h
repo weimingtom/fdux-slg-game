@@ -12,7 +12,7 @@ public:
 
 	void uninitialize();
 
-	void update();
+	void update(unsigned int deltaTime);
 
 private:
 

@@ -34,7 +34,7 @@ public:
 	void removeAffixationState();
 	
 	//Ö¡¸üÐÂ
-	void StateUpdate();
+	void StateUpdate(unsigned int deltaTime);
 
 private:
 	GameState* CreateState(StateType type);

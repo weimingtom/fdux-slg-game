@@ -39,7 +39,7 @@ void AVGState::uninitialize()
 
 }
 
-void AVGState::update()
+void AVGState::update(unsigned int deltaTime)
 {
 
 }

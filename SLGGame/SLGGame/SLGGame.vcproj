@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\ticpp;&quot;..\..\lua-5.1.4\include&quot;;..\..\bass24\c;..\..\SubSystem\SubSystem\src;..\..\MyGUI_3.2.0_RC1\MyGUIEngine\include;..\..\MyGUI_3.2.0_RC1\Platforms\Ogre\OgrePlatform\include;&quot;$(OGRE_HOME)\boost_1_42&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;&quot;$(OGRE_HOME)\include\OGRE&quot;"
+				AdditionalIncludeDirectories="..\..\ticpp;&quot;..\..\lua-5.1.4\include&quot;;..\..\bass24\c;..\..\SubSystem\SubSystem\src;..\..\MyGUI_3.2.0_RC1\MyGUIEngine\include;..\..\MyGUI_3.2.0_RC1\Platforms\Ogre\OgrePlatform\include;&quot;..\..\Particle Universe\Particle Universe Plugin\VCBuild\sdk\include\ParticleUniverse&quot;;&quot;$(OGRE_HOME)\boost_1_42&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;&quot;$(OGRE_HOME)\include\OGRE&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -61,10 +61,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="ticppd.lib OgreMain_d.lib OIS_d.lib SubSystem.lib MyGUI.OgrePlatform_d.lib MyGUIEngine_d.lib bass.lib lua51.lib"
+				AdditionalDependencies="ticppd.lib OgreMain_d.lib OIS_d.lib SubSystem.lib MyGUI.OgrePlatform_d.lib MyGUIEngine_d.lib bass.lib lua51.lib ParticleUniverse_d.lib"
 				OutputFile="$(OutDir)\ForgottenBattlefield.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;$(OGRE_HOME)\lib\debug\&quot;;&quot;$(OGRE_HOME)\boost_1_42\lib&quot;;..\..\bass24\c;..\debug;&quot;..\..\lua-5.1.4\bin&quot;;..\..\MyGUI3.2\lib\Debug;..\..\ticpp\lib"
+				AdditionalLibraryDirectories="&quot;$(OGRE_HOME)\lib\debug\&quot;;&quot;$(OGRE_HOME)\boost_1_42\lib&quot;;..\..\bass24\c;..\debug;&quot;..\..\lua-5.1.4\bin&quot;;..\..\MyGUI3.2\lib\Debug;..\..\ticpp\lib;&quot;..\..\Particle Universe\Particle Universe Plugin\VCBuild\lib\Debug&quot;"
 				IgnoreAllDefaultLibraries="false"
 				GenerateDebugInformation="true"
 				SubSystem="1"
@@ -266,6 +266,54 @@
 				</File>
 				<File
 					RelativePath=".\src\LuaStateFun.h"
+					>
+				</File>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="Battle"
+			>
+			<Filter
+				Name="Control"
+				>
+				<File
+					RelativePath=".\src\GamePlayer.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\TurnControl.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\TurnControl.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\UnitAnimationControl.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\UnitAnimationControl.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="View"
+				>
+				<File
+					RelativePath=".\src\UnitGraphics.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\UnitGraphics.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\UnitGrapManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\UnitGrapManager.h"
 					>
 				</File>
 			</Filter>

@@ -154,10 +154,9 @@ void Core::initializeOIS()
 	mMouse->getMouseState().height = mWindow->getHeight();
 }
 
-void Core::RenderingFrame()
+void Core::RenderingFrame(unsigned int deltaTime)
 {
 	Ogre::WindowEventUtilities::messagePump();
-	mRoot->renderOneFrame();
 
 	mKeyboard->capture();
 	mMouse->capture();
@@ -167,13 +166,21 @@ void Core::RenderingFrame()
 	mAudioSystem->FrameUpdate();
 
 	mLuaSystem->onFrameUpdate();
+
+	mStateManager->StateUpdate(deltaTime);
+
+	mRoot->renderOneFrame();
 }
 
 void Core::run()
 {
+	MyGUI::Timer timer;
+
+	timer.reset();
 	while(isRun)
 	{
-		RenderingFrame();
+		RenderingFrame(timer.getMilliseconds());
+		timer.reset();
 	}
 
 	Uninitialize();

@@ -60,62 +60,86 @@ void DataLibrary::saveXmlData( DataBlock type,std::string fileName )
 	}
 }
 
-void DataLibrary::setData( std::string path,int value )
+bool DataLibrary::setData( std::string path,const int& value,bool createpath)
 {
-	ticpp::Element* node=getNode(path);
+	ticpp::Element* node=getNode(path,createpath);
 	if (node!=NULL)
 	{
 		node->SetAttribute("value",value);
 		node->SetAttribute("type","Int");
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
 
-void DataLibrary::setData( std::string path,unsigned int value )
+bool DataLibrary::setData( std::string path,const unsigned int& value,bool createpath)
 {
-	ticpp::Element* node=getNode(path);
+	ticpp::Element* node=getNode(path,createpath);
 	if (node!=NULL)
 	{
 		node->SetAttribute("value",value);
 		node->SetAttribute("type","UInt");
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
 
-void DataLibrary::setData( std::string path,float value )
+bool DataLibrary::setData( std::string path,const float& value,bool createpath)
 {
-	ticpp::Element* node=getNode(path);
+	ticpp::Element* node=getNode(path,createpath);
 	if (node!=NULL)
 	{
 		node->SetAttribute("value",value);	
 		node->SetAttribute("type","Float");
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
 
-void DataLibrary::setData( std::string path,double value )
+bool DataLibrary::setData( std::string path,const double& value,bool createpath )
 {
-	ticpp::Element* node=getNode(path);
+	ticpp::Element* node=getNode(path,createpath);
 	if (node!=NULL)
 	{
 		node->SetAttribute("value",value);
 		node->SetAttribute("type","Double");
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
 
-void DataLibrary::setData( std::string path,std::string value )
+bool DataLibrary::setData( std::string path,const std::string& value,bool createpath )
 {
-	ticpp::Element* node=getNode(path);
+	ticpp::Element* node=getNode(path,createpath);
 	if (node!=NULL)
 	{
 		node->SetAttribute("value",value);
 		node->SetAttribute("type","String");
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
 
-int DataLibrary::getDataI( std::string path)
+bool DataLibrary::getData( std::string path,int& value )
 {
-	ticpp::Element* node=getNode(path);
+	ticpp::Element* node=getNode(path,false);
 	if (node!=NULL)
 	{
-		int value=0;
 		try
 		{
 			node->GetAttribute("value",&value);
@@ -123,24 +147,23 @@ int DataLibrary::getDataI( std::string path)
 		catch (ticpp::Exception& e)
 		{
 			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LogMessageLevel::LML_CRITICAL);
-			return -1;
+			return false;
 		}
-
-		return 	value;
+		
+		return 	true;
 	}
 	else
 	{
 		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LogMessageLevel::LML_CRITICAL);
-		return -1;
+		return false;
 	}
 }
 
-unsigned int DataLibrary::getDataUI( std::string path )
+bool DataLibrary::getData( std::string path,unsigned int& value )
 {
-	ticpp::Element* node=getNode(path);
+	ticpp::Element* node=getNode(path,false);
 	if (node!=NULL)
 	{
-		unsigned int value=0;
 		try
 		{
 			node->GetAttribute("value",&value);
@@ -148,24 +171,23 @@ unsigned int DataLibrary::getDataUI( std::string path )
 		catch (ticpp::Exception& e)
 		{
 			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LogMessageLevel::LML_CRITICAL);
-			return 0;
+			return false;
 		}
 
-		return 	value;	
+		return 	true;	
 	}
 	else
 	{
 		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LogMessageLevel::LML_CRITICAL);
-		return 0;
+		return false;
 	}
 }
 
-float DataLibrary::getDataF( std::string path )
+bool DataLibrary::getData( std::string path,float& value )
 {
-	ticpp::Element* node=getNode(path);
+	ticpp::Element* node=getNode(path,false);
 	if (node!=NULL)
 	{
-		float value=0;
 		try
 		{
 			node->GetAttribute("value",&value);
@@ -173,24 +195,23 @@ float DataLibrary::getDataF( std::string path )
 		catch (ticpp::Exception& e)
 		{
 			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LogMessageLevel::LML_CRITICAL);
-			return 0;
+			return false;
 		}
 
-		return 	value;		
+		return 	true;		
 	}
 	else
 	{
 		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LogMessageLevel::LML_CRITICAL);
-		return 0;
+		return false;
 	}
 }
 
-double DataLibrary::getDataD( std::string path )
+bool DataLibrary::getData( std::string path,double& value )
 {
-	ticpp::Element* node=getNode(path);
+	ticpp::Element* node=getNode(path,false);
 	if (node!=NULL)
 	{
-		double value=0;
 		try
 		{
 			node->GetAttribute("value",&value);
@@ -198,24 +219,23 @@ double DataLibrary::getDataD( std::string path )
 		catch (ticpp::Exception& e)
 		{
 			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LogMessageLevel::LML_CRITICAL);
-			return 0;
+			return false;
 		}
 
-		return 	value;		
+		return 	true;		
 	}
 	else
 	{
 		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LogMessageLevel::LML_CRITICAL);
-		return 0;
+		return false;
 	}
 }
 
-std::string DataLibrary::getDataS( std::string path )
+bool DataLibrary::getData( std::string path,std::string& value )
 {
-	ticpp::Element* node=getNode(path);
+	ticpp::Element* node=getNode(path,false);
 	if (node!=NULL)
 	{
-		std::string value="";
 		try
 		{
 			node->GetAttribute("value",&value);
@@ -223,19 +243,19 @@ std::string DataLibrary::getDataS( std::string path )
 		catch (ticpp::Exception& e)
 		{
 			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LogMessageLevel::LML_CRITICAL);
-			return "";
+			return false;
 		}
 
-		return 	value;			
+		return 	true;			
 	}
 	else
 	{
 		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LogMessageLevel::LML_CRITICAL);
-		return "";
+		return false;
 	}
 }
 
-ticpp::Element* DataLibrary::findNode( ticpp::Element* parent,std::queue<std::string>* path )
+ticpp::Element* DataLibrary::findNode( ticpp::Element* parent,std::queue<std::string>* path,bool createpath)
 {
 	std::string nodeName=path->front();
 	path->pop();
@@ -247,7 +267,7 @@ ticpp::Element* DataLibrary::findNode( ticpp::Element* parent,std::queue<std::st
 		{
 			if (!path->empty())
 			{
-				return findNode(chila,path);
+				return findNode(chila,path,createpath);
 			}
 			else
 			{
@@ -256,34 +276,43 @@ ticpp::Element* DataLibrary::findNode( ticpp::Element* parent,std::queue<std::st
 		}
 	}
 	
-	ticpp::Element* newNode=new ticpp::Element(nodeName);
-	parent->LinkEndChild(newNode);
-	if (!path->empty())
+	if(createpath)
 	{
-		return findNode(newNode,path);
+		ticpp::Element* newNode=new ticpp::Element(nodeName);
+		parent->LinkEndChild(newNode);
+		if (!path->empty())
+		{
+			return findNode(newNode,path,createpath);
+		}
+		else
+		{
+			return newNode;
+		}
 	}
 	else
 	{
-		return newNode;
+		return NULL;
 	}
+
 }
 
 void DataLibrary::split(const std::string& s, char c,std::queue<std::string>& v) 
 {
-			   std::string::size_type i = 0;
-			   std::string::size_type j = s.find(c);
+	std::string::size_type i = 0;
+	std::string::size_type j = s.find(c);
 
-			   while (j != std::string::npos) {
-				   v.push(s.substr(i, j-i));
-				   i = ++j;
-				   j = s.find(c, j);
+	while (j != std::string::npos) 
+	{
+		v.push(s.substr(i, j-i));
+		i = ++j;
+		j = s.find(c, j);
 
-				   if (j == std::string::npos)
-					   v.push(s.substr(i, s.length( )));
-			   }
+		if (j == std::string::npos)
+			v.push(s.substr(i, s.length( )));
+	}
 }
 
-ticpp::Element* DataLibrary::getNode( std::string path )
+ticpp::Element* DataLibrary::getNode( std::string path,bool createpath)
 {
 	std::queue<std::string> pathQueue;
 	split(path,'/',pathQueue);
@@ -300,7 +329,7 @@ ticpp::Element* DataLibrary::getNode( std::string path )
 		}
 
 		pathQueue.pop();
-		return findNode(parent,&pathQueue);
+		return findNode(parent,&pathQueue,createpath);
 	}
 	else
 	{
@@ -310,7 +339,7 @@ ticpp::Element* DataLibrary::getNode( std::string path )
 
 DataLibrary::DataType DataLibrary::getDataType( std::string path )
 {
-	ticpp::Element* node=getNode(path);
+	ticpp::Element* node=getNode(path,false);
 	if (node!=NULL)
 	{
 		std::string value=0;

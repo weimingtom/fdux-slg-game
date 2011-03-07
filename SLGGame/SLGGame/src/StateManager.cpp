@@ -59,15 +59,15 @@ void StateManager::removeAffixationState()
 	}
 }
 
-void StateManager::StateUpdate()
+void StateManager::StateUpdate(unsigned int deltaTime)
 {
 	if(mAffixationState!=NULL)
 	{
-		mAffixationState->update();
+		mAffixationState->update(deltaTime);
 	}
 	else
 	{
-		mBaseState->update();
+		mBaseState->update(deltaTime);
 	}
 }
 
