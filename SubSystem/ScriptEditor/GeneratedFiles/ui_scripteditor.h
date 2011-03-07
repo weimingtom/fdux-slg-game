@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'scripteditor.ui'
 **
-** Created: Fri Feb 25 10:29:53 2011
-**      by: Qt User Interface Compiler version 4.6.3
+** Created: Tue Mar 1 13:56:59 2011
+**      by: Qt User Interface Compiler version 4.7.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/

@@ -209,7 +209,19 @@
 			Name="LUA"
 			>
 			<File
+				RelativePath=".\src\LuaCommonLib.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\LuaCommonLib.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\LuaFun.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\LuaInclude.h"
 				>
 			</File>
 			<File

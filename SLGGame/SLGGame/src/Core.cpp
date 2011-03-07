@@ -38,7 +38,7 @@ bool Core::initialize()
 		mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC);
 
 		mCamera = mSceneMgr->createCamera("PlayerCam");
-		mCamera->setPosition(Ogre::Vector3(0,10,382));
+		mCamera->setPosition(Ogre::Vector3(0,50,382));
 		mCamera->lookAt(Ogre::Vector3(0,0,0));
 		mCamera->setNearClipDistance(5);
 

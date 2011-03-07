@@ -2,6 +2,7 @@
 
 #include "AVGState.h"
 #include "MenuState.h"
+#include "BattleState.h"
 
 #include "LuaSystem.h"
 #include "LuaStateFun.h"
@@ -85,6 +86,11 @@ GameState* StateManager::CreateState( StateType type )
 	case AVG:
 		{
 			state=new AVGState();
+			break;
+		}
+	case Battle:
+		{
+			state = new BattleState();
 			break;
 		}
 	}

@@ -1,0 +1,101 @@
+material CliffMat1
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 1.0 1.0 1.0 1.0
+			
+			texture_unit
+			{
+				tex_coord_set 0
+				texture GreenLand.tga
+			}
+			texture_unit
+			{
+				tex_coord_set 1
+				texture Cliff.tga
+				tex_address_mode wrap
+				filtering trilinear
+				colour_op alpha_blend
+			}
+		}
+	}
+}
+
+material CliffMat2
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 1.0 1.0 1.0 1.0
+			
+			texture_unit
+			{
+				tex_coord_set 0
+				texture Desert.tga
+			}
+			texture_unit
+			{
+				tex_coord_set 1
+				texture Cliff.tga
+				tex_address_mode wrap
+				filtering trilinear
+				colour_op alpha_blend
+			}
+		}
+	}
+}
+material CliffMat3
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 1.0 1.0 1.0 1.0
+			
+			texture_unit
+			{
+				tex_coord_set 0
+				texture Swamp.tga
+			}
+			texture_unit
+			{
+				tex_coord_set 1
+				texture Cliff.tga
+				tex_address_mode wrap
+				filtering trilinear
+				colour_op alpha_blend
+			}
+		}
+	}
+}
+material CliffMat4
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			ambient 1.0 1.0 1.0 1.0
+			
+			texture_unit
+			{
+				tex_coord_set 0
+				texture Snow.tga
+			}
+			texture_unit
+			{
+				tex_coord_set 1
+				texture Cliff.tga
+				tex_address_mode wrap
+				filtering trilinear
+				colour_op alpha_blend
+			}
+		}
+	}
+}
