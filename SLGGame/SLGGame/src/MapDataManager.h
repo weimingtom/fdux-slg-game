@@ -15,13 +15,15 @@ static const int	HighGround = 2;
 static const int	Cliff = 3;
 static const int	Ramp = 4;
 
+class Terrain;
+
 class MapDataManager
 {
 public:
 	MapDataManager();
 	~MapDataManager();
 
-	bool loadMap(std::string mapname);
+	bool loadMap(std::string mapname, Terrain* terrain);
 
 	GroundType getGroundType(int x, int y);
 	TerrainType getTerrainType(int x, int y);

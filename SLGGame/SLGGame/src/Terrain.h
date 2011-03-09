@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Core.h"
+#include "iisingleton.hpp"
 
 #include <vector>
 

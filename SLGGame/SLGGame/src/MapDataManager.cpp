@@ -1,6 +1,7 @@
 #include "MapDataManager.h"
 
 #include "DataLibrary.h"
+#include "Terrain.h"
 #include <ticpp.h>
 
 MapDataManager::MapDataManager()
@@ -13,7 +14,7 @@ MapDataManager::~MapDataManager()
 
 }
 
-bool MapDataManager::loadMap(std::string mapname)
+bool MapDataManager::loadMap(std::string mapname, Terrain* terrain)
 {
 	DataLibrary* datalibrary = DataLibrary::getSingletonPtr();
 	std::string path = ".\\..\\Media\\Map\\" + mapname;
@@ -88,6 +89,9 @@ bool MapDataManager::loadMap(std::string mapname)
 			}
 		}
 	}
+
+	terrain->createTerrain(this);
+	
 	return true;
 }
 
