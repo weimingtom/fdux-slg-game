@@ -3,6 +3,7 @@
 #include <ticpp.h>
 #include "Terrain.h"
 #include "MapDataManager.h"
+#include "CameraContral.h"
 
 BattleState::BattleState(void)
 {
@@ -15,12 +16,13 @@ BattleState::~BattleState(void)
 void BattleState::initialize( std::string arg )
 {
 	mMapDataManager = new MapDataManager(); 
+	mTerrain = new Terrain();
 	//载入新战场
-	if(mMapDataManager->loadMap(arg))
+	if(mMapDataManager->loadMap(arg, mTerrain))
 	{
-		mTerrain = new Terrain();
-		mTerrain->createTerrain(mMapDataManager);
-
+		mCameraContral = new CameraContral(mTerrain);
+		mCameraContral->resetCamera();
+		mCameraContral->moveCamera(-100.0f,-100.0f);
 	}
 }
 
