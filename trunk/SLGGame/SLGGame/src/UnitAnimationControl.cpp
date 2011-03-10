@@ -8,12 +8,12 @@ UnitAnimationControl::~UnitAnimationControl(void)
 {
 }
 
-void UnitAnimationControl::moveUnit( UnitGraphics* unit,int x,int y )
+void UnitAnimationControl::moveUnit( SquadGraphics* unit,int x,int y )
 {
 
 }
 
-void UnitAnimationControl::useSkill( UnitGraphics* srcUnit,UnitGraphics* destUnit,std::string name )
+void UnitAnimationControl::useSkill( SquadGraphics* srcUnit,SquadGraphics* destUnit,std::string name )
 {
 
 }

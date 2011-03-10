@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GameData>
+	<Squad>
+		<sinbad>
+			<CommanderMesh type="String" value="Sinbad.mesh"/>
+			<CommanderMat type="String" value="null"/>
+			
+			<SoldierMesh type="String" value="Sinbad.mesh"/>
+			<SoldierMat type="String" value="null"/>
+			<!--<SoldierMesh type="String" value="ninja.mesh"/>
+			<SoldierMat type="String" value="Examples/Ninja"/>-->
+			
+			<CommanderMainWeapon type="String" value="Sword"/>
+			<CommanderSecWeapon type="String" value="null"/>
+			<CommanderShield type="String" value="null"/>	
+			
+			<SoldierMainWeapon type="String" value="Sword"/>
+			<SoldierSecWeapon type="String" value="null"/>
+			<SoldierShield type="String" value="null"/>			
+		</sinbad>
+	</Squad>
+	<Weapon>
+		<Sword>
+			<meshName type="String" value="Sword.mesh"/>
+			<matName type="String" value="null"/>
+		</Sword>
+	</Weapon>
+</GameData>

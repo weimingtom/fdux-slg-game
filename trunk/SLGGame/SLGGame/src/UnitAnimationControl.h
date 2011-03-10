@@ -1,6 +1,6 @@
 #pragma once
 
-#include "UnitGraphics.h"
+#include "SquadGraphics.h"
 
 class UnitAnimationControl
 {
@@ -8,7 +8,7 @@ public:
 	UnitAnimationControl(void);
 	~UnitAnimationControl(void);
 
-	void moveUnit(UnitGraphics* unit,int x,int y);
+	void moveUnit(SquadGraphics* unit,int x,int y);
 
-	void useSkill(UnitGraphics* srcUnit,UnitGraphics* destUnit,std::string name);
+	void useSkill(SquadGraphics* srcUnit,SquadGraphics* destUnit,std::string name);
 };
