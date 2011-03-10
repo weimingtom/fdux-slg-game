@@ -5,6 +5,8 @@ class Terrain;
 class CameraContral;
 class MapDataManager;
 
+class SquadGrapManager;
+
 class BattleState :
 	public GameState
 {
@@ -23,4 +25,6 @@ private:
 	MapDataManager *mMapDataManager; //管理地图数据
 	Terrain *mTerrain; //地形试图
 	CameraContral *mCameraContral; //摄像机管理
+
+	SquadGrapManager* mUnitGrapManager;
 };

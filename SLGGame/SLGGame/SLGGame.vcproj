@@ -337,19 +337,35 @@
 				Name="View"
 				>
 				<File
-					RelativePath=".\src\UnitGraphics.cpp"
+					RelativePath=".\src\SquadGraphics.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\src\UnitGraphics.h"
+					RelativePath=".\src\SquadGraphics.h"
 					>
 				</File>
 				<File
-					RelativePath=".\src\UnitGrapManager.cpp"
+					RelativePath=".\src\SquadGrapManager.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\src\UnitGrapManager.h"
+					RelativePath=".\src\SquadGrapManager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\UnitGrap.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\UnitGrap.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\WeaponGrap.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\WeaponGrap.h"
 					>
 				</File>
 			</Filter>
