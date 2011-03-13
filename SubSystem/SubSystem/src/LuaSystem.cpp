@@ -3,7 +3,6 @@
 #include <Ogre.h>
 
 #include "LuaFun.cpp"
-#include "LuaCommonLib.h"
 
 extern "C"
 {

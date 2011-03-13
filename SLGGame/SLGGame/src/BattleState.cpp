@@ -6,6 +6,7 @@
 #include "Terrain.h"
 #include "MapDataManager.h"
 #include "CameraContral.h"
+#include "cutscencediretor.h"
 
 #include "DataLibrary.h"
 #include "SquadGrapManager.h"
@@ -18,6 +19,8 @@ BattleState::~BattleState(void)
 {
 }
 
+#include "DelayCutScence.h"
+#include "testcloselight.h"
 void BattleState::initialize( std::string arg )
 {
 	mMapDataManager = new MapDataManager(); 
@@ -25,18 +28,18 @@ void BattleState::initialize( std::string arg )
 	//载入新战场
 	if(mMapDataManager->loadMap(arg, mTerrain))
 	{
-		mTerrain = new Terrain();
-		mTerrain->createTerrain(mMapDataManager);
-
 		mCameraContral = new CameraContral(mTerrain);
 		mCameraContral->resetCamera();
 		mCameraContral->moveCamera(-100.0f,-100.0f);
+		mCameraContral->riseCamera(100);
 
 		DataLibrary::getSingletonPtr()->loadXmlData(DataLibrary::GameData,"../media/mesh/sinbad.xml");
 		mUnitGrapManager=new SquadGrapManager(Core::getSingletonPtr()->mSceneMgr);
 		mUnitGrapManager->createUnit("sinbad",1,1);
 
 	}
+	mDirector = new CutScenceDirector();
+	mDirector->addCutScence(new DelayCutScence(5000, new TestCloseLight()));
 }
 
 void BattleState::uninitialize()
@@ -62,5 +65,6 @@ void BattleState::uninitialize()
 
 void BattleState::update(unsigned int deltaTime)
 {
-
+	//测试用
+	mDirector->update(deltaTime);
 }
