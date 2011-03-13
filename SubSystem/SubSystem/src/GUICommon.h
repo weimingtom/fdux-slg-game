@@ -46,7 +46,8 @@ enum GUISceneType
 {
 	NoneScene,
 	StageScene,
-	MenuScene
+	MenuScene,
+	PUDebugScene
 };
 
 #define DefaultDialogVisibleTime 0.5//默认对话框渐出时间
