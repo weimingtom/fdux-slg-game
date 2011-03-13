@@ -10,6 +10,13 @@ public:
 	WeaponGrap(std::string name);
 	~WeaponGrap(void);
 
-	std::string name;
+	void attachWeapon(Ogre::Entity* body,std::string boneName);
+
+	void detachWeapon(Ogre::Entity* body);
+
+	std::string getAttachBoneName();
+
+private:
+	std::string mBoneName;
 	Ogre::Entity* mWeaponEntity;
 };

@@ -15,12 +15,14 @@ GUIMenu::GUIMenu(int width,int height):GUIScene(width,height,"MainMenu.layout"),
 	assignWidget(mMenuImage,"BackGround");
 
 	assignWidget(mNewGame,"New");
+	assignWidget(mLoad,"Load");
 	assignWidget(mExit,"Exit");
 
 	mLogoImage->setSize(width,height);
 	mMenuImage->setSize(width,height);
 
 	mNewGame->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onNewGame);
+	mLoad->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onLoad);
 	mExit->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onExit);
 	setButtonLock(false);
 }
@@ -104,6 +106,17 @@ void GUIMenu::FrameEvent()
 
 					break;
 				}
+			case LoadMenuState:
+				{
+					FadeInOut();
+
+					if (mTimerWork==NoneWork)
+					{
+						StateManager::getSingletonPtr()->changeState("demo.xml",StateManager::Battle);
+					}
+
+					break;
+				}
 			case MainMenuState:
 				{
 					FadeInOut();
@@ -176,6 +189,21 @@ void GUIMenu::onExit( MyGUI::Widget* _sender )
 void GUIMenu::setButtonLock( bool isLock )
 {
 	mNewGame->setEnabled(isLock);
+	mLoad->setEnabled(isLock);
 	mExit->setEnabled(isLock);
+}
+
+void GUIMenu::onLoad( MyGUI::Widget* _sender )
+{
+	setButtonLock(false);
+
+	mMenuState=LoadMenuState;
+	mSetp=1;
+	mSetpDirection=false;//从无到有方向
+	mTimerWork=FadeInOutWork;
+	mTickTime=2*1000/100;
+
+	mTimer.reset();
+	GUISystem::getSingletonPtr()->setFrameUpdateScene(MenuScene);
 }
 

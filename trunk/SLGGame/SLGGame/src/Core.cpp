@@ -2,6 +2,7 @@
 
 #include "GUISystem.h"
 #include "GUIMenu.h"
+#include "GUIPUDebug.h"
 #include "GUIStage.h"
 
 #include "LuaSystem.h"
@@ -9,6 +10,9 @@
 
 #include "StateManager.h"
 #include "DataLibrary.h"
+#include "timer.hpp"
+
+#include <ParticleUniverseSystemManager.h> 
 
 Core::Core(void):isRun(false)
 {
@@ -49,9 +53,13 @@ bool Core::initialize()
 
 		Ogre::ResourceGroupManager::getSingletonPtr()->initialiseAllResourceGroups();
 
+		mDebugOverlay = Ogre::OverlayManager::getSingleton().getByName("Core/DebugOverlay");
+		mDebugOverlay->show();
+
 		mGUISystem=new GUISystem(mWindow,mSceneMgr);
 		mGUISystem->registerSceneFactory(StageScene,new GUIStageFactory());
 		mGUISystem->registerSceneFactory(MenuScene,new GUIMenuFactory());
+		mGUISystem->registerSceneFactory(PUDebugScene,new GUIPUDebugFactory());
 
 		mLuaSystem=new LuaSystem();
 
@@ -177,13 +185,16 @@ void Core::RenderingFrame(unsigned int deltaTime)
 
 void Core::run()
 {
-	MyGUI::Timer timer;
+	Timer timer;
+	unsigned long t=0;
 
 	timer.reset();
 	while(isRun)
 	{
-		RenderingFrame(timer.getMilliseconds());
 		timer.reset();
+		RenderingFrame(t);
+		t=timer.getMilliseconds();
+		updateStats();
 	}
 
 	Uninitialize();
@@ -228,4 +239,56 @@ bool Core::windowClosing( Ogre::RenderWindow* rw )
 {
 	stop();
 	return true;
+}
+
+ParticleUniverse::ParticleSystem* Core::createPUSystem( std::string name,std::string script )
+{
+	ParticleUniverse::ParticleSystem* pSys=ParticleUniverse::ParticleSystemManager::getSingletonPtr()->createParticleSystem(name,script,mSceneMgr);
+	mPUSystems.push_back(pSys);
+	return pSys;
+}
+
+void Core::destroyPUSystem( ParticleUniverse::ParticleSystem* pu )
+{
+	for (std::vector<ParticleUniverse::ParticleSystem*>::iterator it=mPUSystems.begin();it!=mPUSystems.end();it++)
+	{
+		if (pu==(*it))
+		{
+			mPUSystems.erase(it);
+		}
+	}
+
+	 ParticleUniverse::ParticleSystemManager::getSingletonPtr()->destroyParticleSystem(pu,mSceneMgr);
+}
+
+void Core::updateStats(void)
+{
+	static Ogre::String currFps = "Current FPS: ";
+	static Ogre::String avgFps = "Average FPS: ";
+	static Ogre::String bestFps = "Best FPS: ";
+	static Ogre::String worstFps = "Worst FPS: ";
+	static Ogre::String tris = "Triangle Count: ";
+	static Ogre::String batches = "Batch Count: ";
+
+	// update stats when necessary
+
+	Ogre::OverlayElement* guiAvg = Ogre::OverlayManager::getSingleton().getOverlayElement("Core/AverageFps");
+	Ogre::OverlayElement* guiCurr = Ogre::OverlayManager::getSingleton().getOverlayElement("Core/CurrFps");
+	Ogre::OverlayElement* guiBest = Ogre::OverlayManager::getSingleton().getOverlayElement("Core/BestFps");
+	Ogre::OverlayElement* guiWorst = Ogre::OverlayManager::getSingleton().getOverlayElement("Core/WorstFps");
+
+	const Ogre::RenderTarget::FrameStats& stats = mWindow->getStatistics();
+	guiAvg->setCaption(avgFps + Ogre::StringConverter::toString(stats.avgFPS));
+	guiCurr->setCaption(currFps + Ogre::StringConverter::toString(stats.lastFPS));
+	guiBest->setCaption(bestFps + Ogre::StringConverter::toString(stats.bestFPS)
+		+" "+Ogre::StringConverter::toString(stats.bestFrameTime)+" ms");
+	guiWorst->setCaption(worstFps + Ogre::StringConverter::toString(stats.worstFPS)
+		+" "+Ogre::StringConverter::toString(stats.worstFrameTime)+" ms");
+
+	Ogre::OverlayElement* guiTris = Ogre::OverlayManager::getSingleton().getOverlayElement("Core/NumTris");
+	guiTris->setCaption(tris + Ogre::StringConverter::toString(stats.triangleCount));
+
+	Ogre::OverlayElement* guiBatches = Ogre::OverlayManager::getSingleton().getOverlayElement("Core/NumBatches");
+	guiBatches->setCaption(batches + Ogre::StringConverter::toString(stats.batchCount));
+
 }

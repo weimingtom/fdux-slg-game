@@ -1,0 +1,47 @@
+#pragma once
+
+#include "GUIScene.h"
+
+class GUIPUDebug:
+	public GUIScene
+{
+public:
+	GUIPUDebug(int width,int height);
+	~GUIPUDebug(void);
+
+	void showScene(std::string arg);
+	void hideScene();
+
+	void FrameEvent();
+
+	GUISceneType getType()
+	{
+		return PUDebugScene;
+	}
+private:
+	void onStart(MyGUI::Widget* _sender);
+	void onRefresh(MyGUI::Widget* _sender);
+
+	MyGUI::ListBox* mPUList;
+	MyGUI::Button* mStart;
+	MyGUI::Button* mRefresh;
+	MyGUI::EditBox* mScaleX;
+	MyGUI::EditBox* mScaleY;
+	MyGUI::EditBox* mScaleZ;
+	MyGUI::EditBox* mScaleTime;
+
+};
+
+class GUIPUDebugFactory:
+	public GUISceneFactory
+{
+public:
+	GUIPUDebugFactory(){}
+
+	~GUIPUDebugFactory(){}
+
+	GUIScene* CreateScene(int Width,int Height)
+	{
+		return new GUIPUDebug(Width,Height);
+	}
+};
