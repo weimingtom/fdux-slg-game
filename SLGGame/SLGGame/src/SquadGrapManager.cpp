@@ -29,7 +29,7 @@ void SquadGrapManager::destoryUnit( SquadGraphics* unit )
 	//将队列中的进行消除
 	for (std::vector<SquadGraphics*>::iterator it=mUnitList.begin();it!=mUnitList.end();it++)
 	{
-		if (unit=(*it))
+		if (unit==(*it))
 		{
 			mUnitList.erase(it);
 		}

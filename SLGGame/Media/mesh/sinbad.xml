@@ -4,6 +4,7 @@
 		<sinbad>
 			<CommanderMesh type="String" value="Sinbad.mesh"/>
 			<CommanderMat type="String" value="null"/>
+			<CommanderInitAnimation type="String" value="IdleTop"/>
 			
 			<SoldierMesh type="String" value="Sinbad.mesh"/>
 			<SoldierMat type="String" value="null"/>
@@ -16,7 +17,8 @@
 			
 			<SoldierMainWeapon type="String" value="Sword"/>
 			<SoldierSecWeapon type="String" value="null"/>
-			<SoldierShield type="String" value="null"/>			
+			<SoldierShield type="String" value="null"/>
+			<SoldierInitAnimation type="String" value="IdleTop"/>
 		</sinbad>
 	</Squad>
 	<Weapon>

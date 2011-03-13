@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout" version="3.2.0">
+    <Widget type="Window" skin="Window" position="0 0 410 340" layer="Info" name="PUDebugWindow">
+        <Property key="Caption" value="PUDebug"/>
+        <Property key="Alpha" value="0.5"/>
+        <Widget type="ListBox" skin="ListBox" position="5 30 225 270" name="PUList"/>
+        <Widget type="TextBox" skin="TextBox" position="10 5 75 20">
+            <Property key="Caption" value="PUSystem:"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="235 30 160 30" name="Start">
+            <Property key="Caption" value="Start"/>
+        </Widget>
+        <Widget type="EditBox" skin="EditBox" position="285 65 105 25" name="ScaleX"/>
+        <Widget type="TextBox" skin="TextBox" position="230 70 50 15">
+            <Property key="Caption" value="ScaleX:"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="230 100 50 15">
+            <Property key="Caption" value="ScaleY:"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="230 130 50 15">
+            <Property key="Caption" value="ScaleZ:"/>
+        </Widget>
+        <Widget type="EditBox" skin="EditBox" position="285 95 105 25" name="ScaleY"/>
+        <Widget type="EditBox" skin="EditBox" position="285 125 105 25" name="ScaleZ"/>
+        <Widget type="TextBox" skin="TextBox" position="230 160 75 15">
+            <Property key="Caption" value="ScaleTime:"/>
+        </Widget>
+        <Widget type="EditBox" skin="EditBox" position="305 155 85 25" name="ScaleTime"/>
+        <Widget type="Button" skin="Button" position="95 5 130 25" name="Refresh">
+            <Property key="Caption" value="Refresh"/>
+        </Widget>
+    </Widget>
+</MyGUI>

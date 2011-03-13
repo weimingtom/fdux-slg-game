@@ -37,7 +37,7 @@ void DataLibrary::loadXmlData( DataBlock type,std::string fileName )
 	}
 	catch (ticpp::Exception& e)
 	{
-		Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LogMessageLevel::LML_CRITICAL);
+		Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
 	}
 }
 
@@ -56,7 +56,7 @@ void DataLibrary::saveXmlData( DataBlock type,std::string fileName )
 	}
 	catch (ticpp::Exception& e)
 	{
-		Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LogMessageLevel::LML_CRITICAL);
+		Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
 	}
 }
 
@@ -146,7 +146,7 @@ bool DataLibrary::getData( std::string path,int& value )
 		}
 		catch (ticpp::Exception& e)
 		{
-			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LogMessageLevel::LML_CRITICAL);
+			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
 			return false;
 		}
 		
@@ -154,7 +154,7 @@ bool DataLibrary::getData( std::string path,int& value )
 	}
 	else
 	{
-		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LogMessageLevel::LML_CRITICAL);
+		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LML_CRITICAL);
 		return false;
 	}
 }
@@ -170,7 +170,7 @@ bool DataLibrary::getData( std::string path,unsigned int& value )
 		}
 		catch (ticpp::Exception& e)
 		{
-			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LogMessageLevel::LML_CRITICAL);
+			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
 			return false;
 		}
 
@@ -178,7 +178,7 @@ bool DataLibrary::getData( std::string path,unsigned int& value )
 	}
 	else
 	{
-		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LogMessageLevel::LML_CRITICAL);
+		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LML_CRITICAL);
 		return false;
 	}
 }
@@ -194,7 +194,7 @@ bool DataLibrary::getData( std::string path,float& value )
 		}
 		catch (ticpp::Exception& e)
 		{
-			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LogMessageLevel::LML_CRITICAL);
+			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
 			return false;
 		}
 
@@ -202,7 +202,7 @@ bool DataLibrary::getData( std::string path,float& value )
 	}
 	else
 	{
-		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LogMessageLevel::LML_CRITICAL);
+		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LML_CRITICAL);
 		return false;
 	}
 }
@@ -218,7 +218,7 @@ bool DataLibrary::getData( std::string path,double& value )
 		}
 		catch (ticpp::Exception& e)
 		{
-			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LogMessageLevel::LML_CRITICAL);
+			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
 			return false;
 		}
 
@@ -226,7 +226,7 @@ bool DataLibrary::getData( std::string path,double& value )
 	}
 	else
 	{
-		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LogMessageLevel::LML_CRITICAL);
+		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LML_CRITICAL);
 		return false;
 	}
 }
@@ -242,7 +242,7 @@ bool DataLibrary::getData( std::string path,std::string& value )
 		}
 		catch (ticpp::Exception& e)
 		{
-			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LogMessageLevel::LML_CRITICAL);
+			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
 			return false;
 		}
 
@@ -250,7 +250,7 @@ bool DataLibrary::getData( std::string path,std::string& value )
 	}
 	else
 	{
-		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LogMessageLevel::LML_CRITICAL);
+		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LML_CRITICAL);
 		return false;
 	}
 }
@@ -349,7 +349,7 @@ DataLibrary::DataType DataLibrary::getDataType( std::string path )
 		}
 		catch (ticpp::Exception& e)
 		{
-			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LogMessageLevel::LML_CRITICAL);
+			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
 			return NoneType;
 		}
 		
@@ -379,7 +379,7 @@ DataLibrary::DataType DataLibrary::getDataType( std::string path )
 	}
 	else
 	{
-		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LogMessageLevel::LML_CRITICAL);
+		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LML_CRITICAL);
 		return NoneType;
 	}
 }

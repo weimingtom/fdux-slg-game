@@ -20,6 +20,7 @@ public:
 private:
 
 	void onNewGame(MyGUI::Widget* _sender);
+	void onLoad(MyGUI::Widget* _sender);
 	void onExit(MyGUI::Widget* _sender);
 
 	void setButtonLock(bool isLock);
@@ -44,6 +45,7 @@ private:
 	MyGUI::ImageBox* mMenuImage;
 
 	MyGUI::Button* mNewGame;
+	MyGUI::Button* mLoad;
 	MyGUI::Button* mExit;
 
 };

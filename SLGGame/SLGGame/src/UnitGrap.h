@@ -4,7 +4,11 @@
 #include <string>
 #include <vector>
 
+#include <ParticleUniverseSystem.h> 
+
 #include "WeaponGrap.h"
+
+class AnimationBlender;
 
 //单位类,由单位组成小队
 class UnitGrap
@@ -15,6 +19,7 @@ public:
 	
 	enum WeaponType
 	{
+		NoneWepon,
 		MainWepon,
 		SecWepon,
 		Shield
@@ -24,7 +29,7 @@ public:
 
 	void setWeapon(WeaponType type,std::string boneName);
 
-	void setAnimation(std::string name);
+	void setEffect(std::string name);
 
 	void update(unsigned int deltaTime);
 
@@ -35,6 +40,6 @@ public:
 	WeaponGrap* mSecWeapon;
 	WeaponGrap* mShield;
 
-	std::vector<Ogre::AnimationState*> mAnimsList;
-	Ogre::AnimationState* mCurrentAnim;
+	AnimationBlender* mAniBlender;//动画代理
+	ParticleUniverse::ParticleSystem* mPUSystem;
 };

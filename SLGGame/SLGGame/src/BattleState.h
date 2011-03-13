@@ -28,6 +28,5 @@ private:
 	CameraContral *mCameraContral; //ÉãÏñ»ú¹ÜÀí
 	CutScenceDirector *mDirector;
 
-
-	SquadGrapManager* mUnitGrapManager;
+	SquadGrapManager* mSquadGrapManager;
 };

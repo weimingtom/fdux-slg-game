@@ -11,6 +11,8 @@
 #include "DataLibrary.h"
 #include "SquadGrapManager.h"
 
+#include "GUISystem.h"
+
 BattleState::BattleState(void)
 {
 }
@@ -30,13 +32,17 @@ void BattleState::initialize( std::string arg )
 	{
 		mCameraContral = new CameraContral(mTerrain);
 		mCameraContral->resetCamera();
-		mCameraContral->moveCamera(-100.0f,-100.0f);
-		mCameraContral->riseCamera(100);
+		mCameraContral->moveCamera(0,0);
+		mCameraContral->riseCamera(50);
+		
+		GUISystem::getSingletonPtr()->createScene(PUDebugScene);
 
 		DataLibrary::getSingletonPtr()->loadXmlData(DataLibrary::GameData,"../media/mesh/sinbad.xml");
-		mUnitGrapManager=new SquadGrapManager(Core::getSingletonPtr()->mSceneMgr);
-		mUnitGrapManager->createUnit("sinbad",1,1);
-
+		mSquadGrapManager=new SquadGrapManager(Core::getSingletonPtr()->mSceneMgr);
+		SquadGraphics* s=mSquadGrapManager->createUnit("sinbad",1,1);
+		s->setEffect("Seal/mp_seal_01",SquadGraphics::Commander);
+		//s->setAnimation("IdleTop",SquadGraphics::Squad,true);
+		
 	}
 	mDirector = new CutScenceDirector();
 	mDirector->addCutScence(new DelayCutScence(5000, new TestCloseLight()));
@@ -56,15 +62,18 @@ void BattleState::uninitialize()
 		mMapDataManager =NULL;
 	}
 
-	if (mUnitGrapManager!=NULL)
+	if (mSquadGrapManager!=NULL)
 	{
-		delete mUnitGrapManager;
-		mUnitGrapManager=NULL;
+		delete mSquadGrapManager;
+		mSquadGrapManager=NULL;
 	}
+
+	GUISystem::getSingletonPtr()->destoryScene(PUDebugScene);
 }
 
 void BattleState::update(unsigned int deltaTime)
 {
 	//²âÊÔÓÃ
 	mDirector->update(deltaTime);
+	mSquadGrapManager->update(deltaTime);
 }

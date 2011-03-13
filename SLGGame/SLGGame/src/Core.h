@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Ogre.h>
+#include <ParticleUniverseSystem.h> 
 
 #include <OIS.h>
 
@@ -32,6 +33,12 @@ public:
 	Ogre::Camera* mCamera;
 	Ogre::SceneManager* mSceneMgr;
 	Ogre::RenderWindow* mWindow;
+	Ogre::Overlay* mDebugOverlay;
+
+	//粒子系统
+	ParticleUniverse::ParticleSystem* createPUSystem(std::string name,std::string script);
+	void destroyPUSystem(ParticleUniverse::ParticleSystem* pu);
+	std::vector<ParticleUniverse::ParticleSystem*> mPUSystems;
 
 	//OIS系统指针
 	OIS::InputManager*	mInputManager;
@@ -64,6 +71,8 @@ private:
 	void initializeOIS();
 
 	void initializeResource();
+
+	void updateStats(void);
 
 	bool isRun;
 

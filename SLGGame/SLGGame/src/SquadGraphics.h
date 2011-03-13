@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Ogre.h>
+#include <ParticleUniverseSystem.h> 
 
 #include <string>
 #include <vector>
@@ -23,11 +24,18 @@ public:
 		SceWepon
 	};
 
+	enum Object
+	{
+		Commander,
+		Soldier,
+		Squad
+	};
+
 	void setMovePath();
 
-	void setAnimation(std::string name);
+	void setAnimation(std::string name,Object object,bool isLoop);
 
-	void setEffect(std::string name,std::string position);
+	void setEffect(std::string name,Object object);
 
 	void setGrid(int x,int y);
 
@@ -49,7 +57,7 @@ private:
 
 	UnitGrap* mCommanderUnit;
 	std::vector<UnitGrap*> mSoldierUnits;
-
-
+	
+	ParticleUniverse::ParticleSystem* mPUSystem;
 
 };
