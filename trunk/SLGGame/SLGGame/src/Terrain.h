@@ -15,7 +15,8 @@ static const float WATERDEEP = -2.0f;
 
 
 static const int VERTEX_POS_BINDING=0;//顶点位置绑定位置
-static const int VERTEX_UV_BINDING=1;//贴图坐标绑定位置
+static const int VERTEX_NOM_BINDING=1;
+static const int VERTEX_UV_BINDING=2;//贴图坐标绑定位置
 static const int TEXTURE_COUNT=4;//贴图坐标数
 static const int VERTEX_QUAD = 4;//每一个地形块拥有的顶点数
 static const int VERTEX_PREQUAD = 6;//每一个地形块的索引数
@@ -63,6 +64,6 @@ private:
 
 	MapDataManager *mMapData;
 
-	void createTile(int x, int y,float sx, float sy, float *posbuffer, float *uvbuffer);
+	void createTile(int x, int y,float sx, float sy, float *posbuffer, float *uvbuffer, float *nombuffer);
 	std::string randMesh(int x, int y);
 };

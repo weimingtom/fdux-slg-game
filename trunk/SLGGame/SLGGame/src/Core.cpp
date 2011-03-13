@@ -61,10 +61,13 @@ bool Core::initialize()
 
 		initializeOIS();
 
-		mStateManager=new StateManager();
-		mStateManager->changeState("logo",StateManager::Menu);
 
 		mDataLibrary=new DataLibrary();
+
+		mStateManager=new StateManager();
+		mStateManager->changeState("demo.xml",StateManager::Battle);
+
+
 
 		isRun=true;
 

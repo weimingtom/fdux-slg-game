@@ -23,8 +23,8 @@ void CameraContral::moveCamera(float dx,float dy)
 void ::CameraContral::riseCamera(float dh)
 {
 	mHeight += dh;
-	mHeight = (mHeight > 50.0f)? 50.0f: mHeight;
-	mHeight = (mHeight < 10.0f)? 20.0f: mHeight;
+	mHeight = (mHeight > 100.0f)? 100.0f: mHeight;
+	mHeight = (mHeight < 10.0f)? 10.0f: mHeight;
 	setCamera();
 }
 

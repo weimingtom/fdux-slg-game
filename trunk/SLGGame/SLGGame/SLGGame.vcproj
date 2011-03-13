@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\ticpp;&quot;..\..\lua-5.1.4\include&quot;;..\..\bass24\c;..\..\SubSystem\SubSystem\src;..\..\MyGUI_3.2.0_RC1\MyGUIEngine\include;..\..\MyGUI_3.2.0_RC1\Platforms\Ogre\OgrePlatform\include;&quot;..\..\Particle Universe\Particle Universe Plugin\VCBuild\sdk\include\ParticleUniverse&quot;;&quot;$(OGRE_HOME)\boost_1_42&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;&quot;$(OGRE_HOME)\include\OGRE&quot;"
+				AdditionalIncludeDirectories="..\..\ticpp;&quot;..\..\lua-5.1.4\include&quot;;..\..\bass24\c;..\..\SubSystem\SubSystem\src;..\..\MyGUI_3.2.0_RC1\MyGUIEngine\include;..\..\MyGUI_3.2.0_RC1\Platforms\Ogre\OgrePlatform\include;&quot;..\..\Particle Universe\Particle Universe Plugin\VCBuild\sdk\include\ParticleUniverse&quot;;&quot;$(OGRE_HOME)\boost_1_44&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;&quot;$(OGRE_HOME)\include\OGRE&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -64,7 +64,7 @@
 				AdditionalDependencies="ticppd.lib OgreMain_d.lib OIS_d.lib SubSystem.lib MyGUI.OgrePlatform_d.lib MyGUIEngine_d.lib bass.lib lua51.lib ParticleUniverse_d.lib"
 				OutputFile="$(OutDir)\ForgottenBattlefield.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;$(OGRE_HOME)\lib\debug\&quot;;&quot;$(OGRE_HOME)\boost_1_42\lib&quot;;..\..\bass24\c;..\debug;&quot;..\..\lua-5.1.4\bin&quot;;..\..\MyGUI3.2\lib\Debug;..\..\ticpp\lib;&quot;..\..\Particle Universe\Particle Universe Plugin\VCBuild\lib\Debug&quot;"
+				AdditionalLibraryDirectories="&quot;$(OGRE_HOME)\lib\debug\&quot;;&quot;$(OGRE_HOME)\boost_1_44\lib&quot;;..\..\bass24\c;..\debug;&quot;..\..\lua-5.1.4\bin&quot;;..\..\MyGUI3.2\lib\Debug;..\..\ticpp\lib;&quot;..\..\Particle Universe\Particle Universe Plugin\VCBuild\lib\Debug&quot;"
 				IgnoreAllDefaultLibraries="false"
 				GenerateDebugInformation="true"
 				SubSystem="1"
@@ -368,6 +368,50 @@
 					RelativePath=".\src\WeaponGrap.h"
 					>
 				</File>
+				<Filter
+					Name="CutScence"
+					>
+					<File
+						RelativePath=".\src\CombineCutScence.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\CombineCutScence.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\cutscence.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\cutscencedirector.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\cutscencediretor.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\cutscenes.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\DelayCutScence.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\DelayCutScence.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\TestCloseLight.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\testcloselight.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 	</Files>

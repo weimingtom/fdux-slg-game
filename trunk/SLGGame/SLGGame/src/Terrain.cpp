@@ -18,13 +18,13 @@ bool Terrain::createTerrain(MapDataManager *data)
 	int terrainszie = mMapData->getMapSize() + 9;
 
 	//创建灯光
-	Core::getSingleton().mSceneMgr->setAmbientLight(Ogre::ColourValue(0.25f, 0.25f, 0.25f));
+	Core::getSingleton().mSceneMgr->setAmbientLight(Ogre::ColourValue(0.0f, 0.0f, 0.0f));
 	mLight = Core::getSingleton().mSceneMgr->createLight("TerrainLight");
 	mLight->setType(Ogre::Light::LightTypes::LT_DIRECTIONAL);
 	mLight->setPosition(-500.0f,500.0f, 500.0f);
 	mLight->setDirection(1.0f, -1.0f, -1.0f);
 	mLight->setCastShadows(true);
-	mLight->setDiffuseColour(Ogre::ColourValue(1.0f, 1.0f,1.0f));
+	mLight->setDiffuseColour(Ogre::ColourValue(0.5f, 0.5f,0.5f));
 
 	//创建地面Mesh
 	mTerrainNode = Core::getSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode("TerrainNode");
@@ -49,6 +49,7 @@ bool Terrain::createTerrain(MapDataManager *data)
 	//设置顶点数据结构
 	size_t offsetUV = 0;
 	vdecl->addElement(VERTEX_POS_BINDING, 0, Ogre::VET_FLOAT3,Ogre::VES_POSITION);//向顶点添加一个位置元素
+	vdecl->addElement(VERTEX_NOM_BINDING, 0, Ogre::VET_FLOAT3,Ogre::VES_NORMAL);
 	for(int i = 0 ; i < TEXTURE_COUNT ; i ++)
 	{
 		offsetUV += vdecl->addElement (VERTEX_UV_BINDING, offsetUV, Ogre::VET_FLOAT2,  Ogre::VES_TEXTURE_COORDINATES , i).getSize();
@@ -61,6 +62,13 @@ bool Terrain::createTerrain(MapDataManager *data)
 		numVertices,
 		Ogre::HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY);
 	vbind->setBinding(VERTEX_POS_BINDING, vbufPos);
+
+	Ogre::HardwareVertexBufferSharedPtr vbufNOM =
+		Ogre::HardwareBufferManager::getSingleton().createVertexBuffer(
+		vdecl->getVertexSize(VERTEX_NOM_BINDING),
+		numVertices,
+		Ogre::HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY);
+	vbind->setBinding(VERTEX_NOM_BINDING, vbufNOM);
 
 	// 创建纹理坐标顶点缓冲区
 	Ogre::HardwareVertexBufferSharedPtr vbufUV =
@@ -80,18 +88,21 @@ bool Terrain::createTerrain(MapDataManager *data)
 	//创建地形
 	float* pBufferPos = (float*)vbufPos->lock(Ogre::HardwareBuffer::HBL_DISCARD);
 	float* pBufferUV = (float*)vbufUV->lock(Ogre::HardwareBuffer::HBL_DISCARD);
+	float* pBufferNom = (float*)vbufNOM->lock(Ogre::HardwareBuffer::HBL_DISCARD);
 
 	float startpos = - terrainszie * TILESIZE / 2;
 	for(int y = 0 ; y < terrainszie; y ++)
 	{
 		for(int x = 0 ; x < terrainszie; x ++)
 		{
-			createTile(x, y, startpos + x * TILESIZE, startpos + y * TILESIZE, pBufferPos, pBufferUV);
+			createTile(x, y, startpos + x * TILESIZE, startpos + y * TILESIZE, pBufferPos, pBufferUV, pBufferNom);
 			pBufferPos += 3 * VERTEX_QUAD ;
+			pBufferNom += 3 * VERTEX_QUAD ;
 			pBufferUV += 2 * VERTEX_QUAD * 4;
 		}
 	}
 
+	vbufNOM->unlock();
 	vbufUV->unlock();
 	vbufPos->unlock();
 
@@ -171,7 +182,7 @@ float Terrain::getHeight(float x, float y)
 	return 0.0f;
 }
 
-void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, float *uvbuffer)
+void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, float *uvbuffer, float *nombuffer)
 {
 	//确定地形块类型
 	TerrainType tt[VERTEX_QUAD];
@@ -201,10 +212,10 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 	gt[BOTTOMLEFT] = mMapData->getGroundType(x -4 , y -3 );
 	gt[BOTTOMRIGHT] = mMapData->getGroundType(x -3, y -3 );
 	int groundindex[4] = {0,0,0,0};
-	groundindex[gt[TOPLEFT]] += 2;
-	groundindex[gt[TOPRIGHT]] += 1;
-	groundindex[gt[BOTTOMLEFT]] += 8;
-	groundindex[gt[BOTTOMRIGHT]] += 4;
+	groundindex[gt[TOPLEFT]] +=8;
+	groundindex[gt[TOPRIGHT]] += 4;
+	groundindex[gt[BOTTOMLEFT]] += 2;
+	groundindex[gt[BOTTOMRIGHT]] += 1;
 
 	//绘制地形块位置
 	//左上
@@ -234,6 +245,35 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 	(*posbuffer)= height;
 	posbuffer++;
 	(*posbuffer) = sy + TILESIZE;
+
+	//法线
+	(*nombuffer) = 0.0f;
+	nombuffer++;
+	(*nombuffer)= 1.0f;
+	nombuffer++;
+	(*nombuffer) = 0.0f;
+	//右上
+	nombuffer++;
+	(*nombuffer) = 0.0f;
+	nombuffer++;
+	(*nombuffer)= 1.0f;
+	nombuffer++;
+	(*nombuffer) = 0.0f;
+	//左下
+	nombuffer++;
+	(*nombuffer) = 0.0f;
+	nombuffer++;
+	(*nombuffer)= 1.0f;
+	nombuffer++;
+	(*nombuffer) = 0.0f;
+	//右下
+	nombuffer++;
+	(*nombuffer) = 0.0f;
+	nombuffer++;
+	(*nombuffer)= 1.0f;
+	nombuffer++;
+	(*nombuffer) = 0.0f;
+	
 
 	//绘制地形块UV
 	bool bottomlayer = false;
