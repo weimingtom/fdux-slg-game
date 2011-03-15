@@ -7,7 +7,11 @@ CombineCutScence::CombineCutScence()
 }
 CombineCutScence::~CombineCutScence()
 {
-
+	CutScenceIte ite;
+	for(ite = mCutScence.begin(); ite != mCutScence.end();ite++)
+	{
+		delete *ite;
+	}
 }
 
 void CombineCutScence::addCutScence(CutScence* cutscence)

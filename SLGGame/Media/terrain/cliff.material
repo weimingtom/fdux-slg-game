@@ -5,12 +5,11 @@ material CliffMat1
 	{
 		pass
 		{
-			ambient 1.0 1.0 1.0 1.0
-			
 			texture_unit
 			{
 				tex_coord_set 0
 				texture GreenLand.tga
+				colour_op alpha_blend
 			}
 			texture_unit
 			{
@@ -19,6 +18,10 @@ material CliffMat1
 				tex_address_mode wrap
 				filtering trilinear
 				colour_op alpha_blend
+			}
+			texture_unit
+			{
+				colour_op_ex modulate src_current src_diffuse 
 			}
 		}
 	}
@@ -31,12 +34,11 @@ material CliffMat2
 	{
 		pass
 		{
-			ambient 1.0 1.0 1.0 1.0
-			
 			texture_unit
 			{
 				tex_coord_set 0
 				texture Desert.tga
+				colour_op alpha_blend
 			}
 			texture_unit
 			{
@@ -45,6 +47,10 @@ material CliffMat2
 				tex_address_mode wrap
 				filtering trilinear
 				colour_op alpha_blend
+			}
+			texture_unit
+			{
+				colour_op_ex modulate src_current src_diffuse 
 			}
 		}
 	}
@@ -56,12 +62,11 @@ material CliffMat3
 	{
 		pass
 		{
-			ambient 1.0 1.0 1.0 1.0
-			
 			texture_unit
 			{
 				tex_coord_set 0
 				texture Swamp.tga
+				colour_op alpha_blend
 			}
 			texture_unit
 			{
@@ -70,6 +75,10 @@ material CliffMat3
 				tex_address_mode wrap
 				filtering trilinear
 				colour_op alpha_blend
+			}
+			texture_unit
+			{
+				colour_op_ex modulate src_current src_diffuse 
 			}
 		}
 	}
@@ -81,12 +90,11 @@ material CliffMat4
 	{
 		pass
 		{
-			ambient 1.0 1.0 1.0 1.0
-			
 			texture_unit
 			{
 				tex_coord_set 0
 				texture Snow.tga
+				colour_op alpha_blend
 			}
 			texture_unit
 			{
@@ -95,6 +103,10 @@ material CliffMat4
 				tex_address_mode wrap
 				filtering trilinear
 				colour_op alpha_blend
+			}
+			texture_unit
+			{
+				colour_op_ex modulate src_current src_diffuse 
 			}
 		}
 	}

@@ -44,7 +44,8 @@ bool Core::initialize()
 		mCamera = mSceneMgr->createCamera("PlayerCam");
 		mCamera->setPosition(Ogre::Vector3(0,50,382));
 		mCamera->lookAt(Ogre::Vector3(0,0,0));
-		mCamera->setNearClipDistance(5);
+		mCamera->setNearClipDistance(0.5f);
+		mCamera->setFarClipDistance(500.0f);
 
 		Ogre::Viewport* vp = mWindow->addViewport(mCamera);
 		mCamera->setAspectRatio(Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));

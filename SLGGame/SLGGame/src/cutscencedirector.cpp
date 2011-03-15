@@ -7,7 +7,11 @@ CutScenceDirector::CutScenceDirector()
 }
 CutScenceDirector::~CutScenceDirector()
 {
-
+	CutScenceIte ite;
+	for(ite = mCutScence.begin(); ite != mCutScence.end();ite++)
+	{
+		delete ite->second;
+	}
 }
 
 int CutScenceDirector::addCutScence(CutScence* cutscence)
@@ -28,26 +32,6 @@ void CutScenceDirector::skipCutScence(int id)
 	if(ite != mCutScence.end())
 	{
 		ite->second->skipall();
-	}
-}
-
-void CutScenceDirector::pauseCutScence(int id)
-{
-	CutScenceIte ite;
-	ite = mCutScence.find(id);
-	if(ite != mCutScence.end())
-	{
-		ite->second->pause();
-	}
-}
-
-void CutScenceDirector::playCutScence(int id)
-{
-	CutScenceIte ite;
-	ite = mCutScence.find(id);
-	if(ite != mCutScence.end())
-	{
-		ite->second->play();
 	}
 }
 

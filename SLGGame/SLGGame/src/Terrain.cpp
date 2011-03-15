@@ -18,13 +18,14 @@ bool Terrain::createTerrain(MapDataManager *data)
 	int terrainszie = mMapData->getMapSize() + 9;
 
 	//创建灯光
-	Core::getSingleton().mSceneMgr->setAmbientLight(Ogre::ColourValue(0.0f, 0.0f, 0.0f));
+	Core::getSingleton().mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5f, 0.5f, 0.5f));
+	Core::getSingleton().mSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
 	mLight = Core::getSingleton().mSceneMgr->createLight("TerrainLight");
 	mLight->setType(Ogre::Light::LightTypes::LT_DIRECTIONAL);
 	mLight->setPosition(-500.0f,500.0f, 500.0f);
 	mLight->setDirection(1.0f, -1.0f, -1.0f);
 	mLight->setCastShadows(true);
-	mLight->setDiffuseColour(Ogre::ColourValue(0.5f, 0.5f,0.5f));
+	mLight->setDiffuseColour(Ogre::ColourValue(1.0f, 1.0f,1.0f));
 
 	//创建地面Mesh
 	mTerrainNode = Core::getSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode("TerrainNode");
@@ -175,6 +176,13 @@ bool Terrain::createTerrain(MapDataManager *data)
 void Terrain::destoryTerrian()
 {
 	
+}
+
+void Terrain::getWorldCoords(int x, int y, float &wx, float &wy)
+{
+	int s = mMapData->getMapSize();
+	wx = ((float)x - (float)s / 2.0f + 0.5f) * TILESIZE ;
+	wy = ((float)y - (float)s / 2.0f + 0.5f) * TILESIZE;
 }
 
 float Terrain::getHeight(float x, float y)
