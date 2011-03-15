@@ -45,7 +45,6 @@ void BattleState::initialize( std::string arg )
 		
 	}
 	mDirector = new CutScenceDirector();
-	mDirector->addCutScence(new DelayCutScence(5000, new TestCloseLight()));
 }
 
 void BattleState::uninitialize()

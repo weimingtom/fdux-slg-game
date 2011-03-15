@@ -12,8 +12,6 @@ public:
 
 	int addCutScence(CutScence* cutscence);
 	void skipCutScence(int id);
-	void pauseCutScence(int id);
-	void playCutScence(int id);
 
 	void update(unsigned int deltaTime);
 private:

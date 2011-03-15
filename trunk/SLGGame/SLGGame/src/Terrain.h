@@ -46,6 +46,7 @@ public:
 	bool createTerrain(MapDataManager *data);
 	void destoryTerrian();
 
+	void getWorldCoords(int x, int y, float &wx, float &wy);
 	float getHeight(float x, float y);
 
 private:

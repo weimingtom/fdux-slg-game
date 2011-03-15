@@ -1,3 +1,4 @@
+
 material TerrainTile
 {
 	receive_shadows on
@@ -9,24 +10,29 @@ material TerrainTile
 			{
 				tex_coord_set 0
 				texture GreenLand.tga
+				colour_op alpha_blend
 			}
 			texture_unit
 			{
 				tex_coord_set 1
-				colour_op alpha_blend
 				texture Desert.tga
+				colour_op alpha_blend
 			}
 			texture_unit
 			{
-				tex_coord_set 2
+				tex_coord_set 2 
+				texture Swamp.tga  
 				colour_op alpha_blend
-				texture Swamp.tga
 			}
 			texture_unit
 			{
 				tex_coord_set 3
-				colour_op alpha_blend
 				texture Snow.tga
+				colour_op alpha_blend
+			}
+			texture_unit
+			{
+				colour_op_ex modulate src_current src_diffuse 
 			}
 		}
 	}
