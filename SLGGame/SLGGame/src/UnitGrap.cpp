@@ -10,7 +10,8 @@ mNode(node),
 mMainWeapon(NULL),
 mSecWeapon(NULL),
 mShield(NULL),
-mPUSystem(NULL)
+mPUSystem(NULL),
+mPUSystemEnd(false)
 {
 	mUnitEntity=Core::getSingletonPtr()->mSceneMgr->createEntity(meshName);
 	if (matName!="null")
@@ -151,7 +152,26 @@ void UnitGrap::setEffect( std::string name )
 	}
 
 	mPUSystem=Core::getSingletonPtr()->createPUSystem(mNode->getName()+"_PU",name);
+	mPUSystem->addParticleSystemListener(this);
 	mNode->attachObject(mPUSystem);
 	mPUSystem->prepare();
 	mPUSystem->start();
+}
+
+bool UnitGrap::isEffectOver()
+{
+	return mPUSystemEnd;
+}
+
+void UnitGrap::handleParticleSystemEvent( ParticleUniverse::ParticleSystem *particleSystem, ParticleUniverse::ParticleUniverseEvent &particleUniverseEvent )
+{
+	if (particleUniverseEvent.componentType==ParticleUniverse::CT_SYSTEM && particleUniverseEvent.eventType==ParticleUniverse::PU_EVT_NO_PARTICLES_LEFT)
+	{
+		mPUSystemEnd=true;
+	}
+}
+
+void UnitGrap::stopEffect()
+{
+	mPUSystem->stop();
 }

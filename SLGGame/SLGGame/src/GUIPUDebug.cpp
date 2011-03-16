@@ -2,6 +2,9 @@
 
 #include "Core.h"
 
+#include "cutscencediretor.h"
+#include "MoveCutScenece.h"
+
 #include <ParticleUniverseSystem.h> 
 
 GUIPUDebug::GUIPUDebug(int width,int height):GUIScene(width,height,"PUDebug.layout")
@@ -15,8 +18,13 @@ GUIPUDebug::GUIPUDebug(int width,int height):GUIScene(width,height,"PUDebug.layo
 	assignWidget(mScaleZ,"ScaleZ");
 	assignWidget(mScaleTime,"ScaleTime");
 
+	assignWidget(mSquadID,"SquadID");
+	assignWidget(mMove,"Move");
+
 	mStart->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIPUDebug::onStart);
 	mRefresh->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIPUDebug::onRefresh);
+
+	mMove->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIPUDebug::onMove);
 }
 
 GUIPUDebug::~GUIPUDebug(void)
@@ -48,6 +56,21 @@ void GUIPUDebug::onRefresh( MyGUI::Widget* _sender )
 	{
 		mPUList->addItem((*it)->getName());
 	}
+}
+
+void GUIPUDebug::onMove( MyGUI::Widget* _sender )
+{
+	std::vector<Ogre::Vector2> grids;
+	Ogre::Vector2 currentGrid(7,7);
+
+	grids.push_back(Ogre::Vector2(7,6));
+	grids.push_back(Ogre::Vector2(7,5));
+	grids.push_back(Ogre::Vector2(7,4));
+	grids.push_back(Ogre::Vector2(7,3));
+	grids.push_back(Ogre::Vector2(8,3));
+	grids.push_back(Ogre::Vector2(9,3));
+
+	mDirector->addCutScence(new MoveCutScenece(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()),grids,currentGrid));
 }
 
 void GUIPUDebug::showScene( std::string arg )

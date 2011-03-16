@@ -37,7 +37,9 @@ struct stTileEntityData
 	Ogre::Entity* mTileEntity;
 };
 
-class Terrain
+using namespace izayoi;
+
+class Terrain:public IISingleton<Terrain>
 {
 public:
 	Terrain();

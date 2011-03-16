@@ -10,8 +10,10 @@
 
 #include "DataLibrary.h"
 #include "SquadGrapManager.h"
+#include "SquadGraphics.h"
 
 #include "GUISystem.h"
+#include "GUIPUDebug.h"
 
 BattleState::BattleState(void)
 {
@@ -34,17 +36,17 @@ void BattleState::initialize( std::string arg )
 		mCameraContral->resetCamera();
 		mCameraContral->moveCamera(0,0);
 		mCameraContral->riseCamera(50);
-		
-		GUISystem::getSingletonPtr()->createScene(PUDebugScene);
 
 		DataLibrary::getSingletonPtr()->loadXmlData(DataLibrary::GameData,"../media/mesh/sinbad.xml");
 		mSquadGrapManager=new SquadGrapManager(Core::getSingletonPtr()->mSceneMgr);
-		SquadGraphics* s=mSquadGrapManager->createUnit("sinbad",1,1);
+		SquadGraphics* s=mSquadGrapManager->createSquad("sinbad",1,7,7,SquadGrapManager::North);
+
 		s->setEffect("Seal/mp_seal_01",SquadGraphics::Commander);
-		//s->setAnimation("IdleTop",SquadGraphics::Squad,true);
 		
 	}
 	mDirector = new CutScenceDirector();
+	GUIPUDebug* puDebug=(GUIPUDebug*)GUISystem::getSingletonPtr()->createScene(PUDebugScene);
+	puDebug->mDirector =mDirector;
 }
 
 void BattleState::uninitialize()
