@@ -12,6 +12,7 @@ class BattleState :
 	public GameState
 {
 public:
+
 	BattleState(void);
 	~BattleState(void);
 

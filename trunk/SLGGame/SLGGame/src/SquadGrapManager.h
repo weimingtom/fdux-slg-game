@@ -1,18 +1,33 @@
 #pragma once
 
-#include "SquadGraphics.h"
+#include <ogre.h>
 
 #include <string>
 #include <vector>
 
-class SquadGrapManager
+#include "iisingleton.hpp"
+
+class SquadGraphics;
+
+using namespace izayoi;
+
+class SquadGrapManager:public IISingleton<SquadGrapManager>
 {
 public:
 	SquadGrapManager(Ogre::SceneManager* sceneMgr);
 	~SquadGrapManager(void);
 
-	SquadGraphics* createUnit(std::string unitName,int x,int y);
-	void destoryUnit(SquadGraphics* unit);
+	enum Direction
+	{
+		North,
+		South,
+		West,
+		East
+	};
+
+	SquadGraphics* createSquad(std::string unitName,unsigned int id,int x,int y,Direction d);
+	void destorySquad(unsigned int id);
+	SquadGraphics* getSquad(unsigned int id);
 
 	void update(unsigned int deltaTime);
 

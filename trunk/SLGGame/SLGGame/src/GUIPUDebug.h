@@ -2,6 +2,8 @@
 
 #include "GUIScene.h"
 
+class CutScenceDirector;
+
 class GUIPUDebug:
 	public GUIScene
 {
@@ -18,9 +20,12 @@ public:
 	{
 		return PUDebugScene;
 	}
+
+	CutScenceDirector* mDirector;
 private:
 	void onStart(MyGUI::Widget* _sender);
 	void onRefresh(MyGUI::Widget* _sender);
+	void onMove(MyGUI::Widget* _sender);
 
 	MyGUI::ListBox* mPUList;
 	MyGUI::Button* mStart;
@@ -29,6 +34,11 @@ private:
 	MyGUI::EditBox* mScaleY;
 	MyGUI::EditBox* mScaleZ;
 	MyGUI::EditBox* mScaleTime;
+
+	MyGUI::EditBox* mSquadID;
+	MyGUI::Button* mMove;
+
+	
 
 };
 

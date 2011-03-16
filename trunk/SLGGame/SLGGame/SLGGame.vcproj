@@ -397,6 +397,14 @@
 					Name="CutScence"
 					>
 					<File
+						RelativePath=".\src\AnimationCutScenece.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\AnimationCutScenece.h"
+						>
+					</File>
+					<File
 						RelativePath=".\src\CombineCutScence.cpp"
 						>
 					</File>
@@ -426,6 +434,22 @@
 					</File>
 					<File
 						RelativePath=".\src\DelayCutScence.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\EffectCutScenece.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\EffectCutScenece.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\MoveCutScenece.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\MoveCutScenece.h"
 						>
 					</File>
 					<File

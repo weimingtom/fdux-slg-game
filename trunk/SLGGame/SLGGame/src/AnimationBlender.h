@@ -16,6 +16,7 @@ private:
 	Ogre::Entity *mEntity;
 	Ogre::AnimationState *mSource;
 	Ogre::AnimationState *mTarget;
+	std::string mInitAni;
 	BlendingTransition mTransition;
 	bool loop;
 	~AnimationBlender() {}
@@ -29,4 +30,5 @@ public:
 	Ogre::AnimationState *getTarget() { return mTarget; }
 	AnimationBlender( Ogre::Entity *);
 	void init( const Ogre::String &animation, bool l=true );
+	void BackToInit();
 };

@@ -4,14 +4,15 @@
 #include <string>
 #include <vector>
 
-#include <ParticleUniverseSystem.h> 
+#include <ParticleUniverseSystem.h>
+#include <ParticleUniverseSystemListener.h>
 
 #include "WeaponGrap.h"
 
 class AnimationBlender;
 
 //单位类,由单位组成小队
-class UnitGrap
+class UnitGrap:public ParticleUniverse::ParticleSystemListener 
 {
 public:
 	UnitGrap(std::string meshName,std::string matName,Ogre::SceneNode* node);
@@ -31,7 +32,13 @@ public:
 
 	void setEffect(std::string name);
 
+	bool isEffectOver();
+
+	void stopEffect();
+
 	void update(unsigned int deltaTime);
+
+	void handleParticleSystemEvent (ParticleUniverse::ParticleSystem *particleSystem, ParticleUniverse::ParticleUniverseEvent &particleUniverseEvent);
 
 	Ogre::SceneNode* mNode;
 	Ogre::Entity* mUnitEntity;
@@ -42,4 +49,5 @@ public:
 
 	AnimationBlender* mAniBlender;//动画代理
 	ParticleUniverse::ParticleSystem* mPUSystem;
+	bool mPUSystemEnd;
 };

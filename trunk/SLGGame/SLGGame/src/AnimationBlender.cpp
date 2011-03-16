@@ -22,7 +22,14 @@ void AnimationBlender::init(const String &animation, bool l)
 	mTarget = 0;
 	complete = false;
 	loop = l;
+	mInitAni=animation;
 } 
+
+void AnimationBlender::BackToInit()
+{
+	blend(mInitAni,BlendWhileAnimating,0.2,true);
+}
+
 void AnimationBlender::blend( const String &animation, BlendingTransition transition, Real duration, bool l )
 {
 	loop = l;
