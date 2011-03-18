@@ -1,12 +1,10 @@
-material WaterMat1
+material BankMat1
 {
 	receive_shadows on
 	technique
 	{
 		pass
 		{
-			ambient 1.0 1.0 1.0 1.0
-			
 			texture_unit
 			{
 				tex_coord_set 0
@@ -16,15 +14,13 @@ material WaterMat1
 	}
 }
 
-material WaterMat2
+material BankMat2
 {
 	receive_shadows on
 	technique
 	{
 		pass
 		{
-			ambient 1.0 1.0 1.0 1.0
-			
 			texture_unit
 			{
 				tex_coord_set 0
@@ -34,15 +30,13 @@ material WaterMat2
 	}
 }
 
-material WaterMat3
+material BankMat3
 {
 	receive_shadows on
 	technique
 	{
 		pass
 		{
-			ambient 1.0 1.0 1.0 1.0
-			
 			texture_unit
 			{
 				tex_coord_set 0
@@ -52,15 +46,13 @@ material WaterMat3
 	}
 }
 
-material WaterMat4
+material BankMat4
 {
 	receive_shadows on
 	technique
 	{
 		pass
 		{
-			ambient 1.0 1.0 1.0 1.0
-			
 			texture_unit
 			{
 				tex_coord_set 0

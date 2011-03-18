@@ -6,7 +6,7 @@
 #include "Terrain.h"
 #include "MapDataManager.h"
 #include "CameraContral.h"
-#include "cutscencediretor.h"
+#include "cutscenediretor.h"
 
 #include "DataLibrary.h"
 #include "SquadGrapManager.h"
@@ -23,8 +23,7 @@ BattleState::~BattleState(void)
 {
 }
 
-#include "DelayCutScence.h"
-#include "testcloselight.h"
+#include "DelayCutScene.h"
 void BattleState::initialize( std::string arg )
 {
 	mMapDataManager = new MapDataManager(); 
@@ -44,7 +43,7 @@ void BattleState::initialize( std::string arg )
 		s->setEffect("Seal/mp_seal_01",SquadGraphics::Commander);
 		
 	}
-	mDirector = new CutScenceDirector();
+	mDirector = new CutSceneDirector();
 	GUIPUDebug* puDebug=(GUIPUDebug*)GUISystem::getSingletonPtr()->createScene(PUDebugScene);
 	puDebug->mDirector =mDirector;
 }

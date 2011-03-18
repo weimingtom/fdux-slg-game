@@ -2,9 +2,9 @@
 
 #include "Core.h"
 
-#include "cutscencediretor.h"
-#include "MoveCutScenece.h"
-#include "DirectionCutScenece.h"
+#include "cutscenediretor.h"
+#include "MoveCutScene.h"
+#include "DirectionCutScene.h"
 
 #include "SquadGrapManager.h"
 #include "SquadGraphics.h"
@@ -84,7 +84,7 @@ void GUIPUDebug::onMove( MyGUI::Widget* _sender )
 		grids.push_back(Ogre::Vector2(9,8));
 		grids.push_back(Ogre::Vector2(8,8));
 
-		mDirector->addCutScence(new MoveCutScenece(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()),grids,currentGrid));
+		mDirector->addCutScene(new MoveCutScene(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()),grids,currentGrid));
 	}
 }
 
@@ -93,27 +93,27 @@ void GUIPUDebug::onDirection( MyGUI::Widget* _sender )
 {
 	if(Ogre::StringConverter::parseInt(mSquadID->getOnlyText())!=0)
 	{
-		DirectionCutScenece::Direction d;
+		DirectionCutScene::Direction d;
 		if (mDirectionList->getIndexSelected()==0)
 		{
-			d=DirectionCutScenece::North;
+			d=DirectionCutScene::North;
 		}
 		else if (mDirectionList->getIndexSelected()==1)
 		{
-			d=DirectionCutScenece::South;
+			d=DirectionCutScene::South;
 		}
 		else if (mDirectionList->getIndexSelected()==2)
 		{
-			d=DirectionCutScenece::West;
+			d=DirectionCutScene::West;
 		}
 		else
 		{
-			d=DirectionCutScenece::East;
+			d=DirectionCutScene::East;
 		}
 		
 		SquadGrapManager::getSingletonPtr()->getSquad(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()))->setAnimation("RunBase",SquadGraphics::Squad,true);
 
-		mDirector->addCutScence(new DirectionCutScenece(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()),d));
+		mDirector->addCutScene(new DirectionCutScene(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()),d));
 	}
 
 }
@@ -125,7 +125,7 @@ void GUIPUDebug::onFormation( MyGUI::Widget* _sender )
 
 		SquadGrapManager::getSingletonPtr()->getSquad(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()))->setFormation((SquadGraphics::Formation)mFormationList->getIndexSelected(),true);
 
-		//mDirector->addCutScence(new DirectionCutScenece(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()),d));
+		//mDirector->addCutScene(new DirectionCutScene(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()),d));
 	}
 }
 
