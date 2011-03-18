@@ -323,7 +323,7 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 	{
 		usemesh = true;
 		meshName = "Bank";
-		materialName = "Water";
+		materialName = "Bank";
 		meshindex = terrainindex[Water];
 	}
 	if(usemesh)

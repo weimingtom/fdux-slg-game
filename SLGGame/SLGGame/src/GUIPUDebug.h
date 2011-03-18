@@ -2,7 +2,7 @@
 
 #include "GUIScene.h"
 
-class CutScenceDirector;
+class CutSceneDirector;
 
 class GUIPUDebug:
 	public GUIScene
@@ -21,7 +21,7 @@ public:
 		return PUDebugScene;
 	}
 
-	CutScenceDirector* mDirector;
+	CutSceneDirector* mDirector;
 private:
 	void onStart(MyGUI::Widget* _sender);
 	void onRefresh(MyGUI::Widget* _sender);

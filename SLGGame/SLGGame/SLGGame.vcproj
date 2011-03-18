@@ -397,75 +397,67 @@
 					Name="CutScence"
 					>
 					<File
-						RelativePath=".\src\AnimationCutScenece.cpp"
+						RelativePath=".\src\AnimationCutScene.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\src\AnimationCutScenece.h"
+						RelativePath=".\src\AnimationCutScene.h"
 						>
 					</File>
 					<File
-						RelativePath=".\src\CombineCutScence.cpp"
+						RelativePath=".\src\CombineCutScene.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\src\CombineCutScence.h"
+						RelativePath=".\src\CombineCutScene.h"
 						>
 					</File>
 					<File
-						RelativePath=".\src\cutscence.cpp"
+						RelativePath=".\src\cutscene.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\src\cutscencedirector.cpp"
+						RelativePath=".\src\cutscene.h"
 						>
 					</File>
 					<File
-						RelativePath=".\src\cutscencediretor.h"
+						RelativePath=".\src\cutscenedirector.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\src\cutscenes.h"
+						RelativePath=".\src\cutscenediretor.h"
 						>
 					</File>
 					<File
-						RelativePath=".\src\DelayCutScence.cpp"
+						RelativePath=".\src\DelayCutScene.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\src\DelayCutScence.h"
+						RelativePath=".\src\DelayCutScene.h"
 						>
 					</File>
 					<File
-						RelativePath=".\src\DirectionCutScenece.cpp"
+						RelativePath=".\src\DirectionCutScene.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\src\DirectionCutScenece.h"
+						RelativePath=".\src\DirectionCutScene.h"
 						>
 					</File>
 					<File
-						RelativePath=".\src\EffectCutScenece.cpp"
+						RelativePath=".\src\EffectCutScene.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\src\EffectCutScenece.h"
+						RelativePath=".\src\EffectCutScene.h"
 						>
 					</File>
 					<File
-						RelativePath=".\src\MoveCutScenece.cpp"
+						RelativePath=".\src\MoveCutScene.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\src\MoveCutScenece.h"
-						>
-					</File>
-					<File
-						RelativePath=".\src\TestCloseLight.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\src\testcloselight.h"
+						RelativePath=".\src\MoveCutScene.h"
 						>
 					</File>
 				</Filter>

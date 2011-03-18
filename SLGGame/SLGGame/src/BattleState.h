@@ -4,7 +4,7 @@
 class Terrain;
 class CameraContral;
 class MapDataManager;
-class CutScenceDirector;
+class CutSceneDirector;
 
 class SquadGrapManager;
 
@@ -27,7 +27,7 @@ private:
 	MapDataManager *mMapDataManager; //管理地图数据
 	Terrain *mTerrain; //地形试图
 	CameraContral *mCameraContral; //摄像机管理
-	CutScenceDirector *mDirector;
+	CutSceneDirector *mDirector;
 
 	SquadGrapManager* mSquadGrapManager;
 };

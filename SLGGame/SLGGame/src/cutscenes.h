@@ -1,10 +1,10 @@
 #pragma once
 
-class CutScence
+class CutScene
 {
 public:
-	CutScence(unsigned int lasttime = 0);
-	~CutScence();
+	CutScene(unsigned int lasttime = 0);
+	~CutScene();
 	
 	void play() {mPaused = false;}
 	void pause() {mPaused = true;} 
@@ -13,16 +13,16 @@ public:
 	bool end(); //∆¨∂œ «∑ÒΩ· ¯
 	void update(unsigned int deltaTime);
 
-	void setNextScence(CutScence* next);
-	CutScence* getNextScence() { return mNextScence;}
+	void setNextScene(CutScene* next);
+	CutScene* getNextScene() { return mNextScene;}
 protected:
-	CutScence *mNextScence;
+	CutScene *mNextScene;
 	unsigned int mLastTime;
 	unsigned int mPassedTime;
 
 	bool mPaused;
 
-	virtual bool endCutScence() = 0;
-	virtual void skipCutScence() = 0;
-	virtual void updateCutScence(unsigned int deltaTime) = 0;
+	virtual bool endCutScene() = 0;
+	virtual void skipCutScene() = 0;
+	virtual void updateCutScene(unsigned int deltaTime) = 0;
 };
