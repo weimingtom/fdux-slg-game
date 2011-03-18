@@ -4,6 +4,10 @@
 
 #include "cutscencediretor.h"
 #include "MoveCutScenece.h"
+#include "DirectionCutScenece.h"
+
+#include "SquadGrapManager.h"
+#include "SquadGraphics.h"
 
 #include <ParticleUniverseSystem.h> 
 
@@ -21,10 +25,18 @@ GUIPUDebug::GUIPUDebug(int width,int height):GUIScene(width,height,"PUDebug.layo
 	assignWidget(mSquadID,"SquadID");
 	assignWidget(mMove,"Move");
 
+	assignWidget(mDirection,"Direction");
+	assignWidget(mDirectionList,"DirectionList");
+
+	assignWidget(mFormation,"Formation");
+	assignWidget(mFormationList,"FormationList");
+
 	mStart->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIPUDebug::onStart);
 	mRefresh->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIPUDebug::onRefresh);
 
 	mMove->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIPUDebug::onMove);
+	mDirection->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIPUDebug::onDirection);
+	mFormation->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIPUDebug::onFormation);
 }
 
 GUIPUDebug::~GUIPUDebug(void)
@@ -60,17 +72,61 @@ void GUIPUDebug::onRefresh( MyGUI::Widget* _sender )
 
 void GUIPUDebug::onMove( MyGUI::Widget* _sender )
 {
-	std::vector<Ogre::Vector2> grids;
-	Ogre::Vector2 currentGrid(7,7);
+	if(Ogre::StringConverter::parseInt(mSquadID->getOnlyText())!=0)
+	{
+		std::vector<Ogre::Vector2> grids;
+		Ogre::Vector2 currentGrid(7,7);
 
-	grids.push_back(Ogre::Vector2(7,6));
-	grids.push_back(Ogre::Vector2(7,5));
-	grids.push_back(Ogre::Vector2(7,4));
-	grids.push_back(Ogre::Vector2(7,3));
-	grids.push_back(Ogre::Vector2(8,3));
-	grids.push_back(Ogre::Vector2(9,3));
+		grids.push_back(Ogre::Vector2(7,8));
+		grids.push_back(Ogre::Vector2(7,9));
+		grids.push_back(Ogre::Vector2(8,9));
+		grids.push_back(Ogre::Vector2(9,9));
+		grids.push_back(Ogre::Vector2(9,8));
+		grids.push_back(Ogre::Vector2(8,8));
 
-	mDirector->addCutScence(new MoveCutScenece(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()),grids,currentGrid));
+		mDirector->addCutScence(new MoveCutScenece(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()),grids,currentGrid));
+	}
+}
+
+
+void GUIPUDebug::onDirection( MyGUI::Widget* _sender )
+{
+	if(Ogre::StringConverter::parseInt(mSquadID->getOnlyText())!=0)
+	{
+		DirectionCutScenece::Direction d;
+		if (mDirectionList->getIndexSelected()==0)
+		{
+			d=DirectionCutScenece::North;
+		}
+		else if (mDirectionList->getIndexSelected()==1)
+		{
+			d=DirectionCutScenece::South;
+		}
+		else if (mDirectionList->getIndexSelected()==2)
+		{
+			d=DirectionCutScenece::West;
+		}
+		else
+		{
+			d=DirectionCutScenece::East;
+		}
+		
+		SquadGrapManager::getSingletonPtr()->getSquad(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()))->setAnimation("RunBase",SquadGraphics::Squad,true);
+
+		mDirector->addCutScence(new DirectionCutScenece(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()),d));
+	}
+
+}
+
+void GUIPUDebug::onFormation( MyGUI::Widget* _sender )
+{
+	if(Ogre::StringConverter::parseInt(mSquadID->getOnlyText())!=0)
+	{
+
+		SquadGrapManager::getSingletonPtr()->getSquad(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()))->setFormation((SquadGraphics::Formation)mFormationList->getIndexSelected(),true);
+
+		//mDirector->addCutScence(new DirectionCutScenece(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()),d));
+	}
 }
 
 void GUIPUDebug::showScene( std::string arg )
@@ -87,5 +143,6 @@ void GUIPUDebug::FrameEvent()
 {
 
 }
+
 
 

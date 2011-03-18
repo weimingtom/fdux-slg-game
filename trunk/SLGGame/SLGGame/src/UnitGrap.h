@@ -36,12 +36,17 @@ public:
 
 	void stopEffect();
 
+	void setPosition(float x,float z);
+
+	void setHeight();
+
 	void update(unsigned int deltaTime);
 
 	void handleParticleSystemEvent (ParticleUniverse::ParticleSystem *particleSystem, ParticleUniverse::ParticleUniverseEvent &particleUniverseEvent);
 
 	Ogre::SceneNode* mNode;
 	Ogre::Entity* mUnitEntity;
+	bool mIsCheckHeight;
 
 	WeaponGrap* mMainWeapon;
 	WeaponGrap* mSecWeapon;

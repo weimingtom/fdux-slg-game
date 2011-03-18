@@ -40,8 +40,17 @@ public:
 		East
 	};
 
+	enum Formation
+	{
+		Line,
+		Circular,
+		Loose
+	};
+
 	void setMovePath(std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions);
-	bool isMoveOver();
+	void setDirection(Direction d,bool isAnim);
+	void setFormation(Formation f,bool isAnim);
+	bool isTransformOver();
 
 	void setAnimation(std::string name,Object object,bool isLoop);
 	bool isAnimationOver(Object object);
@@ -55,18 +64,18 @@ public:
 
 	void setScale(Ogre::Vector3 scale,bool isAnim);
 
-	void setDirection(Direction d,bool isAnim);
-
 	void setHealth(int health);
 
 	void setWeaponMode(WeaponMode mode);
 
 private:
-	SquadGraphics(std::string unitName,Ogre::Vector2& grid,Direction direction,unsigned int index);
+	SquadGraphics(std::string unitName,Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index);
 
 	void update(unsigned int deltaTime);
 
 	void handleParticleSystemEvent (ParticleUniverse::ParticleSystem *particleSystem, ParticleUniverse::ParticleUniverseEvent &particleUniverseEvent);
+
+	void setCheckUnitHeight(bool enable);
 
 	unsigned int mID;
 

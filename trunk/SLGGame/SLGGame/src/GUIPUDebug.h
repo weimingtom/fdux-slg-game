@@ -26,6 +26,8 @@ private:
 	void onStart(MyGUI::Widget* _sender);
 	void onRefresh(MyGUI::Widget* _sender);
 	void onMove(MyGUI::Widget* _sender);
+	void onDirection(MyGUI::Widget* _sender);
+	void onFormation(MyGUI::Widget* _sender);
 
 	MyGUI::ListBox* mPUList;
 	MyGUI::Button* mStart;
@@ -38,7 +40,11 @@ private:
 	MyGUI::EditBox* mSquadID;
 	MyGUI::Button* mMove;
 
-	
+	MyGUI::Button* mDirection;
+	MyGUI::ListBox* mDirectionList;
+
+	MyGUI::Button* mFormation;
+	MyGUI::ListBox* mFormationList;
 
 };
 

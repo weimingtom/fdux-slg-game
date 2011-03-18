@@ -35,11 +35,11 @@ void BattleState::initialize( std::string arg )
 		mCameraContral = new CameraContral(mTerrain);
 		mCameraContral->resetCamera();
 		mCameraContral->moveCamera(0,0);
-		mCameraContral->riseCamera(50);
+		mCameraContral->riseCamera(20);
 
 		DataLibrary::getSingletonPtr()->loadXmlData(DataLibrary::GameData,"../media/mesh/sinbad.xml");
 		mSquadGrapManager=new SquadGrapManager(Core::getSingletonPtr()->mSceneMgr);
-		SquadGraphics* s=mSquadGrapManager->createSquad("sinbad",1,7,7,SquadGrapManager::North);
+		SquadGraphics* s=mSquadGrapManager->createSquad("sinbad",1,10,10,SquadGrapManager::North,SquadGrapManager::Loose);
 
 		s->setEffect("Seal/mp_seal_01",SquadGraphics::Commander);
 		

@@ -437,6 +437,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\src\DirectionCutScenece.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\DirectionCutScenece.h"
+						>
+					</File>
+					<File
 						RelativePath=".\src\EffectCutScenece.cpp"
 						>
 					</File>

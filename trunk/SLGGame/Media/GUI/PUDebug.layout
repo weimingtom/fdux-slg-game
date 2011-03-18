@@ -2,7 +2,7 @@
 <MyGUI type="Layout" version="3.2.0">
     <Widget type="Window" skin="Window" position="0 0 410 340" layer="Info" name="PUDebugWindow">
         <Property key="Caption" value="Debug"/>
-        <Property key="Alpha" value="0.5"/>
+        <Property key="Alpha" value="1"/>
         <Widget type="TabControl" skin="TabControl" position="-5 0 405 305">
             <Widget type="TabItem" skin="" position="2 24 399 277">
                 <Property key="Caption" value="PU"/>
@@ -41,6 +41,23 @@
                 <Widget type="EditBox" skin="EditBox" position="95 10 150 25" name="SquadID"/>
                 <Widget type="Button" skin="Button" position="15 45 125 30" name="Move">
                     <Property key="Caption" value="Move"/>
+                </Widget>
+                <Widget type="Button" skin="Button" position="145 45 125 30" name="Direction">
+                    <Property key="Caption" value="Direction"/>
+                </Widget>
+                <Widget type="ListBox" skin="ListBox" position="145 80 120 95" name="DirectionList">
+                    <Property key="AddItem" value="North"/>
+                    <Property key="AddItem" value="South"/>
+                    <Property key="AddItem" value="West"/>
+                    <Property key="AddItem" value="East"/>
+                </Widget>
+                <Widget type="Button" skin="Button" position="275 45 120 30" name="Formation">
+                    <Property key="Caption" value="Formation"/>
+                </Widget>
+                <Widget type="ListBox" skin="ListBox" position="275 80 115 95" name="FormationList">
+                    <Property key="AddItem" value="Line"/>
+                    <Property key="AddItem" value="Circular"/>
+                    <Property key="AddItem" value="Loose"/>
                 </Widget>
             </Widget>
         </Widget>
