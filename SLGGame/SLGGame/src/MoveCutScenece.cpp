@@ -19,12 +19,12 @@ MoveCutScenece::MoveCutScenece(unsigned int id,std::vector<Ogre::Vector2>& grids
 		Ogre::Vector2 diffGrid=(*it)-current;
 		
 		//确定位置
-		float wx,wy,height=0;
+		float wx=0,wy=0,height=0;
 
 		if (it+1==grids.end())//如果为最后一个节点
 		{
 			Terrain::getSingletonPtr()->getWorldCoords((*it).x,(*it).y,wx,wy);//移动到最后一个节点的中心
-			height=Terrain::getSingletonPtr()->getHeight(wx,wy);
+			//height=Terrain::getSingletonPtr()->getHeight(wx,wy);
 
 			Ogre::Vector3 v(wx,height,wy);
 			mEndPosition=v;
@@ -33,7 +33,7 @@ MoveCutScenece::MoveCutScenece(unsigned int id,std::vector<Ogre::Vector2>& grids
 		else
 		{
 			Terrain::getSingletonPtr()->getWorldCoords(current.x,current.y,wx,wy);
-			height=Terrain::getSingletonPtr()->getHeight(wx,wy);
+			//height=Terrain::getSingletonPtr()->getHeight(wx,wy);
 
 			Ogre::Vector3 v(wx+diffGrid.x*(TILESIZE/2),height,wy+diffGrid.y*(TILESIZE/2));
 			vectors[index]=v;
@@ -78,7 +78,7 @@ MoveCutScenece::~MoveCutScenece(void)
 
 bool MoveCutScenece::endCutScence()
 {
-	return mSquadGraphics->isMoveOver();
+	return mSquadGraphics->isTransformOver();
 }
 
 void MoveCutScenece::skipCutScence()

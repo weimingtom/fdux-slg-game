@@ -5,9 +5,11 @@
 			<CommanderMesh type="String" value="Sinbad.mesh"/>
 			<CommanderMat type="String" value="null"/>
 			<CommanderInitAnimation type="String" value="IdleTop"/>
+			<CommanderScale type="Vector3" value="0.5,0.5,0.5"/>
 			
 			<SoldierMesh type="String" value="Sinbad.mesh"/>
 			<SoldierMat type="String" value="null"/>
+			<SoldierScale type="Vector3" value="0.5,0.5,0.5"/>
 			<!--<SoldierMesh type="String" value="ninja.mesh"/>
 			<SoldierMat type="String" value="Examples/Ninja"/>-->
 			

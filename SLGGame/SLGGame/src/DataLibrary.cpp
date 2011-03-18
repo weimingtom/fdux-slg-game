@@ -135,6 +135,22 @@ bool DataLibrary::setData( std::string path,const std::string& value,bool create
 	}
 }
 
+bool DataLibrary::setData( std::string path,const Ogre::Vector3& value,bool createpath )
+{
+	ticpp::Element* node=getNode(path,createpath);
+	if (node!=NULL)
+	{
+		std::string v=Ogre::StringConverter::toString(value.x)+","+Ogre::StringConverter::toString(value.y)+","+Ogre::StringConverter::toString(value.z);
+		node->SetAttribute("value",v);
+		node->SetAttribute("type","Vector3");
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 bool DataLibrary::getData( std::string path,int& value )
 {
 	ticpp::Element* node=getNode(path,false);
@@ -239,6 +255,46 @@ bool DataLibrary::getData( std::string path,std::string& value )
 		try
 		{
 			node->GetAttribute("value",&value);
+		}
+		catch (ticpp::Exception& e)
+		{
+			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
+			return false;
+		}
+
+		return 	true;			
+	}
+	else
+	{
+		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LML_CRITICAL);
+		return false;
+	}
+}
+
+bool DataLibrary::getData( std::string path,Ogre::Vector3& value )
+{
+	ticpp::Element* node=getNode(path,false);
+	if (node!=NULL)
+	{
+		try
+		{
+			std::string v;
+			std::queue<std::string> vl;
+			node->GetAttribute("value",&v);
+			split(v,',',vl);
+			if (vl.size()!=3)
+			{
+				Ogre::LogManager::getSingletonPtr()->logMessage(path+" has a bad format",Ogre::LML_CRITICAL);
+				return false;
+			}
+			else
+			{
+				value.x=Ogre::StringConverter::parseReal(vl.front());
+				vl.pop();
+				value.y=Ogre::StringConverter::parseReal(vl.front());
+				vl.pop();
+				value.z=Ogre::StringConverter::parseReal(vl.front());
+			}
 		}
 		catch (ticpp::Exception& e)
 		{

@@ -8,7 +8,11 @@
 
 #include "Terrain.h"
 
-SquadGraphics::SquadGraphics(std::string unitName,Ogre::Vector2& grid,Direction direction,unsigned int index):mID(index),mPUSystem(NULL),mPUSystemEnd(false),mNodeAnimation(NULL),mNodeAnimationState(NULL)
+const Ogre::Vector3 LineVector[5]={Ogre::Vector3(0,0,4),Ogre::Vector3(-4,0,4),Ogre::Vector3(4,0,4),Ogre::Vector3(2,0,-2),Ogre::Vector3(-2,0,-2)};
+const Ogre::Vector3 CircularVector[5]={Ogre::Vector3(0,0,3),Ogre::Vector3(-3,0,1),Ogre::Vector3(3,0,1),Ogre::Vector3(2,0,-2),Ogre::Vector3(-2,0,-2)};
+const Ogre::Vector3 LooseVector[5]={Ogre::Vector3(0,0,0),Ogre::Vector3(-3,0,3),Ogre::Vector3(3,0,3),Ogre::Vector3(3,0,-3),Ogre::Vector3(-3,0,-3)};
+
+SquadGraphics::SquadGraphics(std::string unitName,Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index):mID(index),mPUSystem(NULL),mPUSystemEnd(false),mNodeAnimation(NULL),mNodeAnimationState(NULL)
 {
 	mSceneMgr=Core::getSingletonPtr()->mSceneMgr;
 	mNode=mSceneMgr->getRootSceneNode()->createChildSceneNode(unitName+Ogre::StringConverter::toString(index));
@@ -22,10 +26,17 @@ SquadGraphics::SquadGraphics(std::string unitName,Ogre::Vector2& grid,Direction 
 	std::string secWeaponName;
 	std::string shieldName;
 	std::string initAnimation;
+	Ogre::Vector3 commanderScale;
+	Ogre::Vector3 soldierScale;
+
 	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+unitName+std::string("/CommanderMesh"),commanderMesh);
 	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+unitName+std::string("/CommanderMat"),commanderMat);
+	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+unitName+std::string("/CommanderScale"),commanderScale);
+
 	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+unitName+std::string("/SoldierMesh"),soldierMesh);
 	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+unitName+std::string("/SoldierMat"),soldierMat);
+	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+unitName+std::string("/SoldierScale"),soldierScale);
+
 	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+unitName+std::string("/CommanderMainWeapon"),mainWeaponName);
 	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+unitName+std::string("/CommanderSecWeapon"),secWeaponName);
 	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+unitName+std::string("/CommanderShield"),shieldName);
@@ -37,6 +48,7 @@ SquadGraphics::SquadGraphics(std::string unitName,Ogre::Vector2& grid,Direction 
 	mCommanderUnit->createWeapon(secWeaponName,UnitGrap::SecWepon);
 	mCommanderUnit->createWeapon(shieldName,UnitGrap::Shield);
 	mCommanderUnit->mAniBlender->init(initAnimation);
+	mCommanderUnit->mNode->setScale(commanderScale);
 
 	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+unitName+std::string("/SoldierMainWeapon"),mainWeaponName);
 	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+unitName+std::string("/SoldierSecWeapon"),secWeaponName);
@@ -46,6 +58,7 @@ SquadGraphics::SquadGraphics(std::string unitName,Ogre::Vector2& grid,Direction 
 	{
 		UnitGrap* unit=new UnitGrap(soldierMesh,soldierMat,mNode->createChildSceneNode("Soldier"+Ogre::StringConverter::toString(i)));
 		
+		unit->mNode->setScale(soldierScale);
 		unit->createWeapon(mainWeaponName,UnitGrap::MainWepon);
 		unit->createWeapon(secWeaponName,UnitGrap::SecWepon);
 		unit->createWeapon(shieldName,UnitGrap::Shield);
@@ -57,7 +70,7 @@ SquadGraphics::SquadGraphics(std::string unitName,Ogre::Vector2& grid,Direction 
 	//设置参数
 	setGrid(grid.x,grid.y);
 	setDirection(direction,false);
-	setHealth(5);
+	setFormation(f,false);
 	setWeaponMode(SquadGraphics::MainWepon);
 
 
@@ -91,7 +104,7 @@ SquadGraphics::~SquadGraphics(void)
 void SquadGraphics::setMovePath(std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions)
 {
 	mNodeAnimation = mSceneMgr->createAnimation(mNode->getName()+"_Ani", vectors.size()*1);
-	mNodeAnimation->setInterpolationMode(Ogre::Animation::IM_SPLINE);
+	mNodeAnimation->setInterpolationMode(Ogre::Animation::IM_LINEAR);
 	Ogre::NodeAnimationTrack* track = mNodeAnimation->createNodeTrack(1, mNode);
 	
 	int timePosition=0;
@@ -118,12 +131,13 @@ void SquadGraphics::setMovePath(std::map<int,Ogre::Vector3>& vectors,std::map<in
 	
 	mNodeAnimationState = mSceneMgr->createAnimationState(mNode->getName()+"_Ani");
 
+	setCheckUnitHeight(true);
 	mNodeAnimationState->setLoop(false);
 	mNodeAnimationState->setEnabled(true);
 
 }
 
-bool SquadGraphics::isMoveOver()
+bool SquadGraphics::isTransformOver()
 {
 	if (mNodeAnimationState!=NULL)
 	{
@@ -247,6 +261,110 @@ void SquadGraphics::setEffect( std::string name,Object object)
 	}
 }
 
+void SquadGraphics::setFormation( Formation f,bool isAnim )
+{
+	Ogre::Vector3 CommanderVector;
+	Ogre::Vector3 SoldierVector[4];
+
+	switch(f)//确定各个位置
+	{
+	case Line:
+		{
+			CommanderVector=LineVector[0];
+
+			for (int i=1;i<5;i++)
+			{
+				SoldierVector[i-1]=LineVector[i];
+			}
+			break;
+		}
+	case Circular:
+		{
+			CommanderVector=CircularVector[0];
+
+			for (int i=1;i<5;i++)
+			{
+				SoldierVector[i-1]=CircularVector[i];
+			}
+			break;
+		}
+	case Loose:
+		{
+			CommanderVector=LooseVector[0];
+
+			for (int i=1;i<5;i++)
+			{
+				SoldierVector[i-1]=LooseVector[i];
+			}
+			break;
+		}
+	}
+
+	if (isAnim)
+	{
+		mNodeAnimation = mSceneMgr->createAnimation(mNode->getName()+"_Ani",2);
+		mNodeAnimation->setInterpolationMode(Ogre::Animation::IM_LINEAR);
+		Ogre::NodeAnimationTrack* track = mNodeAnimation->createNodeTrack(0,mCommanderUnit->mNode);
+
+		Ogre::TransformKeyFrame* kf = track->createNodeKeyFrame(0);
+		kf->setTranslate(mCommanderUnit->mNode->getPosition());
+		kf->setRotation(mCommanderUnit->mNode->getOrientation());
+		kf->setScale(mCommanderUnit->mNode->getScale());
+		Ogre::Quaternion q=mCommanderUnit->mNode->getOrientation();
+
+		kf=track->createNodeKeyFrame(1.5);
+		kf->setTranslate(CommanderVector);
+		kf->setRotation(mCommanderUnit->mNode->getPosition().getRotationTo(CommanderVector));
+		kf->setScale(mCommanderUnit->mNode->getScale());
+
+		kf=track->createNodeKeyFrame(2);
+		kf->setTranslate(CommanderVector);
+		kf->setRotation(q);
+		kf->setScale(mCommanderUnit->mNode->getScale());
+
+		int i=0;
+		for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+		{
+			track = mNodeAnimation->createNodeTrack(i+1,(*it)->mNode);
+
+			Ogre::TransformKeyFrame* kf = track->createNodeKeyFrame(0);
+			kf->setTranslate((*it)->mNode->getPosition());
+			kf->setRotation((*it)->mNode->getOrientation());
+			kf->setScale((*it)->mNode->getScale());
+			Ogre::Quaternion q=(*it)->mNode->getOrientation();
+
+			kf=track->createNodeKeyFrame(1.5);
+			kf->setTranslate(SoldierVector[i]);
+			kf->setRotation((*it)->mNode->getPosition().getRotationTo(SoldierVector[i]));
+			kf->setScale((*it)->mNode->getScale());
+
+			kf=track->createNodeKeyFrame(2);
+			kf->setTranslate(SoldierVector[i]);
+			kf->setRotation(q);
+			kf->setScale((*it)->mNode->getScale());
+			i++;
+		}
+
+		mNodeAnimationState = mSceneMgr->createAnimationState(mNode->getName()+"_Ani");
+
+		setCheckUnitHeight(true);
+		mNodeAnimationState->setLoop(false);
+		mNodeAnimationState->setEnabled(true);
+
+	}
+	else
+	{
+		mCommanderUnit->setPosition(CommanderVector.x,CommanderVector.z);
+		
+		int i=0;
+		for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+		{
+			(*it)->setPosition(SoldierVector[i].x,SoldierVector[i].z);
+			i++;
+		}
+	}
+}
+
 void SquadGraphics::handleParticleSystemEvent( ParticleUniverse::ParticleSystem *particleSystem, ParticleUniverse::ParticleUniverseEvent &particleUniverseEvent )
 {
 	if (particleUniverseEvent.componentType==ParticleUniverse::CT_SYSTEM && particleUniverseEvent.eventType==ParticleUniverse::PU_EVT_NO_PARTICLES_LEFT)
@@ -340,7 +458,7 @@ void SquadGraphics::setDirection( Direction d,bool isAnim )
 		}
 	case South:
 		{
-			q.FromAngleAxis(Ogre::Degree(0),Ogre::Vector3(0,1,0));
+			q.FromAngleAxis(Ogre::Degree(360),Ogre::Vector3(0,1,0));
 			break;
 		}
 	case West:
@@ -358,14 +476,20 @@ void SquadGraphics::setDirection( Direction d,bool isAnim )
 	if (isAnim)
 	{
 		mNodeAnimation = mSceneMgr->createAnimation(mNode->getName()+"_Ani", 2);
-		mNodeAnimation->setInterpolationMode(Ogre::Animation::IM_SPLINE);
+		mNodeAnimation->setInterpolationMode(Ogre::Animation::IM_LINEAR);
 		Ogre::NodeAnimationTrack* track = mNodeAnimation->createNodeTrack(1, mNode);
 
-		Ogre::TransformKeyFrame* kf = track->createNodeKeyFrame(4);
+		Ogre::TransformKeyFrame* kf = track->createNodeKeyFrame(0);
+		kf->setTranslate(mNode->getPosition());
+		kf->setRotation(mNode->getOrientation());
+
+		kf = track->createNodeKeyFrame(2);
+		kf->setTranslate(mNode->getPosition());
 		kf->setRotation(q);
 
 		mNodeAnimationState = mSceneMgr->createAnimationState(mNode->getName()+"_Ani");
-
+		
+		mNodeAnimationState->setLoop(false);
 		mNodeAnimationState->setEnabled(true);
 	}
 	else
@@ -374,13 +498,22 @@ void SquadGraphics::setDirection( Direction d,bool isAnim )
 	}
 }
 
+void SquadGraphics::setCheckUnitHeight( bool enable )
+{
+	mCommanderUnit->mIsCheckHeight=enable;
+	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+	{
+		(*it)->mIsCheckHeight=enable;
+	}
+}
+
 void SquadGraphics::setHealth( int health )
 {
 	mCommanderUnit->mNode->setPosition(0,5,0);
-	mSoldierUnits.at(0)->mNode->setPosition(-2,5,2);
-	mSoldierUnits.at(1)->mNode->setPosition(2,5,-2);
-	mSoldierUnits.at(2)->mNode->setPosition(-2,5,-2);
-	mSoldierUnits.at(3)->mNode->setPosition(2,5,2);
+	mSoldierUnits.at(0)->mNode->setPosition(-2,2.5,2);
+	mSoldierUnits.at(1)->mNode->setPosition(2,2.5,-2);
+	mSoldierUnits.at(2)->mNode->setPosition(-2,2.5,-2);
+	mSoldierUnits.at(3)->mNode->setPosition(2,2.5,2);
 }
 
 void SquadGraphics::setWeaponMode( WeaponMode mode )
@@ -415,6 +548,7 @@ void SquadGraphics::update( unsigned int deltaTime )
 			mSceneMgr->destroyAnimation(mNode->getName()+"_Ani");
 			mNodeAnimation=NULL;
 			mNodeAnimationState=NULL;
+			setCheckUnitHeight(false);
 		}
 		else
 		{

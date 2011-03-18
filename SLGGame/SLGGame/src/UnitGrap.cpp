@@ -2,6 +2,7 @@
 
 #include "Core.h"
 #include "AnimationBlender.h"
+#include "Terrain.h"
 
 #include <iostream>
 
@@ -11,7 +12,8 @@ mMainWeapon(NULL),
 mSecWeapon(NULL),
 mShield(NULL),
 mPUSystem(NULL),
-mPUSystemEnd(false)
+mPUSystemEnd(false),
+mIsCheckHeight(false)
 {
 	mUnitEntity=Core::getSingletonPtr()->mSceneMgr->createEntity(meshName);
 	if (matName!="null")
@@ -137,11 +139,6 @@ void UnitGrap::createWeapon( std::string name,WeaponType type )
 	}
 }
 
-void UnitGrap::update( unsigned int deltaTime )
-{
-	mAniBlender->addTime(deltaTime/1000.0f);
-}
-
 void UnitGrap::setEffect( std::string name )
 {
 	if (mPUSystem!=NULL)
@@ -174,4 +171,27 @@ void UnitGrap::handleParticleSystemEvent( ParticleUniverse::ParticleSystem *part
 void UnitGrap::stopEffect()
 {
 	mPUSystem->stop();
+}
+
+void UnitGrap::setPosition( float x,float z )
+{
+	mNode->setPosition(x,0,z);
+	setHeight();
+}
+
+void UnitGrap::setHeight()
+{
+	Ogre::Vector3 lv=mNode->getPosition();
+	Ogre::Vector3 v=mNode->convertLocalToWorldPosition(lv);
+	lv.y=Terrain::getSingletonPtr()->getHeight(v.x,v.z);
+	mNode->setPosition(lv);
+}
+
+void UnitGrap::update( unsigned int deltaTime )
+{
+	mAniBlender->addTime(deltaTime/1000.0f);
+	if (mIsCheckHeight)
+	{
+		setHeight();
+	}
 }
