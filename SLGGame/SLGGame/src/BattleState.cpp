@@ -3,6 +3,7 @@
 #include "Core.h"
 
 #include <ticpp.h>
+#include <stdlib.h>
 #include "Terrain.h"
 #include "MapDataManager.h"
 #include "CameraContral.h"
@@ -28,6 +29,8 @@ void BattleState::initialize( std::string arg )
 {
 	mMapDataManager = new MapDataManager(); 
 	mTerrain = new Terrain();
+	srand((int)time(0));
+
 	//载入新战场
 	if(mMapDataManager->loadMap(arg, mTerrain))
 	{
@@ -38,7 +41,8 @@ void BattleState::initialize( std::string arg )
 
 		DataLibrary::getSingletonPtr()->loadXmlData(DataLibrary::GameData,"../media/mesh/sinbad.xml");
 		mSquadGrapManager=new SquadGrapManager(Core::getSingletonPtr()->mSceneMgr);
-		SquadGraphics* s=mSquadGrapManager->createSquad("sinbad",1,10,10,SquadGrapManager::North,SquadGrapManager::Loose);
+		SquadGraphics* s=mSquadGrapManager->createSquad("SinbadSquad",1,10,10,SquadGrapManager::North,SquadGrapManager::Loose);
+		s=mSquadGrapManager->createSquad("NinjaSquad",2,8,8,SquadGrapManager::North,SquadGrapManager::Loose);
 
 		s->setEffect("Seal/mp_seal_01",SquadGraphics::Commander);
 		

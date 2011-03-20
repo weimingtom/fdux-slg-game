@@ -51,8 +51,9 @@ public:
 	void setDirection(Direction d,bool isAnim);
 	void setFormation(Formation f,bool isAnim);
 	bool isTransformOver();
+	void stopTransform();
 
-	void setAnimation(std::string name,Object object,bool isLoop);
+	void setAnimation(std::string name,Object object,bool isLoop,bool returnInit);
 	bool isAnimationOver(Object object);
 	void setInitAnimation(Object object);
 
@@ -64,12 +65,16 @@ public:
 
 	void setScale(Ogre::Vector3 scale,bool isAnim);
 
-	void setHealth(int health);
+	void setDeath();
+	void setRecover(int num);
+	bool isDeathOver();
+	bool isRecoverOver();
+	void stopDeath();
 
 	void setWeaponMode(WeaponMode mode);
 
 private:
-	SquadGraphics(std::string unitName,Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index);
+	SquadGraphics(std::string squadName,Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index);
 
 	void update(unsigned int deltaTime);
 
@@ -77,18 +82,43 @@ private:
 
 	void setCheckUnitHeight(bool enable);
 
+	void doDeathStep();
+
+	UnitGrap* createSoldier();
+
 	unsigned int mID;
 
 	Ogre::SceneNode* mNode;
 	Ogre::SceneManager* mSceneMgr;
 
+	std::string mCommanderUnitName;
 	UnitGrap* mCommanderUnit;
+	std::string mSoldierUnitName;
+	std::string mMainWeaponName;
+	std::string mSecWeaponName;
+	std::string mShieldName;
 	std::vector<UnitGrap*> mSoldierUnits;
+	int mSoldierIndex;
+	Formation mFormation;
+
+	enum DeathStep
+	{
+		playAni,
+		changeMat,
+		moveUnit,
+		resetAni
+	};
+	UnitGrap* mDeathUnit;
+	UnitGrap* mReliefUnit;
+	std::string mReliefAniName;
+	bool mReliefAniLoop;
+	DeathStep mDeathStep;
 	
 	ParticleUniverse::ParticleSystem* mPUSystem;
 	bool mPUSystemEnd;
 
 	Ogre::Animation* mNodeAnimation;
 	Ogre::AnimationState* mNodeAnimationState;
+	bool mReturnInitAni;
 
 };

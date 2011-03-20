@@ -8,7 +8,7 @@ AnimationCutScene::AnimationCutScene(unsigned int id,AnimationObject object,std:
 	
 	mSquadGraphics=SquadGrapManager::getSingletonPtr()->getSquad(id);
 	
-	mSquadGraphics->setAnimation(name,(SquadGraphics::Object)object,isLoop);
+	mSquadGraphics->setAnimation(name,(SquadGraphics::Object)object,isLoop,isBackToWait);
 	mObject=object;
 }
 

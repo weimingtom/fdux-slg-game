@@ -256,6 +256,7 @@ void Core::destroyPUSystem( ParticleUniverse::ParticleSystem* pu )
 		if (pu==(*it))
 		{
 			mPUSystems.erase(it);
+			break;
 		}
 	}
 

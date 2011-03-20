@@ -31,12 +31,18 @@ GUIPUDebug::GUIPUDebug(int width,int height):GUIScene(width,height,"PUDebug.layo
 	assignWidget(mFormation,"Formation");
 	assignWidget(mFormationList,"FormationList");
 
+	assignWidget(mDeath,"Death");
+	assignWidget(mRecover,"Recover");
+	assignWidget(mRecoverNum,"RecoverNum");
+
 	mStart->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIPUDebug::onStart);
 	mRefresh->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIPUDebug::onRefresh);
 
 	mMove->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIPUDebug::onMove);
 	mDirection->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIPUDebug::onDirection);
 	mFormation->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIPUDebug::onFormation);
+	mDeath->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIPUDebug::onDeath);
+	mRecover->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIPUDebug::onRecover);
 }
 
 GUIPUDebug::~GUIPUDebug(void)
@@ -75,14 +81,14 @@ void GUIPUDebug::onMove( MyGUI::Widget* _sender )
 	if(Ogre::StringConverter::parseInt(mSquadID->getOnlyText())!=0)
 	{
 		std::vector<Ogre::Vector2> grids;
-		Ogre::Vector2 currentGrid(7,7);
+		Ogre::Vector2 currentGrid(10,10);
 
-		grids.push_back(Ogre::Vector2(7,8));
-		grids.push_back(Ogre::Vector2(7,9));
-		grids.push_back(Ogre::Vector2(8,9));
-		grids.push_back(Ogre::Vector2(9,9));
+		grids.push_back(Ogre::Vector2(10,9));
+		grids.push_back(Ogre::Vector2(10,8));
+		grids.push_back(Ogre::Vector2(10,7));
+		grids.push_back(Ogre::Vector2(9,7));
 		grids.push_back(Ogre::Vector2(9,8));
-		grids.push_back(Ogre::Vector2(8,8));
+		grids.push_back(Ogre::Vector2(9,9));
 
 		mDirector->addCutScene(new MoveCutScene(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()),grids,currentGrid));
 	}
@@ -111,7 +117,7 @@ void GUIPUDebug::onDirection( MyGUI::Widget* _sender )
 			d=DirectionCutScene::East;
 		}
 		
-		SquadGrapManager::getSingletonPtr()->getSquad(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()))->setAnimation("RunBase",SquadGraphics::Squad,true);
+//		SquadGrapManager::getSingletonPtr()->getSquad(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()))->setAnimation("RunBase",SquadGraphics::Squad,true);
 
 		mDirector->addCutScene(new DirectionCutScene(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()),d));
 	}
@@ -123,11 +129,32 @@ void GUIPUDebug::onFormation( MyGUI::Widget* _sender )
 	if(Ogre::StringConverter::parseInt(mSquadID->getOnlyText())!=0)
 	{
 
-		SquadGrapManager::getSingletonPtr()->getSquad(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()))->setFormation((SquadGraphics::Formation)mFormationList->getIndexSelected(),true);
+		SquadGraphics* s=SquadGrapManager::getSingletonPtr()->getSquad(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()));
+		s->setFormation((SquadGraphics::Formation)mFormationList->getIndexSelected(),true);
 
 		//mDirector->addCutScene(new DirectionCutScene(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()),d));
 	}
 }
+
+
+void GUIPUDebug::onDeath( MyGUI::Widget* _sender )
+{
+	if(Ogre::StringConverter::parseInt(mSquadID->getOnlyText())!=0)
+	{
+
+		SquadGrapManager::getSingletonPtr()->getSquad(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()))->setDeath();
+	}
+}
+
+
+void GUIPUDebug::onRecover( MyGUI::Widget* _sender )
+{
+	if(Ogre::StringConverter::parseInt(mSquadID->getOnlyText())!=0)
+	{
+		SquadGrapManager::getSingletonPtr()->getSquad(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()))->setRecover(Ogre::StringConverter::parseInt(mRecoverNum->getOnlyText()));
+	}
+}
+
 
 void GUIPUDebug::showScene( std::string arg )
 {

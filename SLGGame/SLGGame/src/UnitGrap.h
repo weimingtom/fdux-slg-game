@@ -15,7 +15,7 @@ class AnimationBlender;
 class UnitGrap:public ParticleUniverse::ParticleSystemListener 
 {
 public:
-	UnitGrap(std::string meshName,std::string matName,Ogre::SceneNode* node);
+	UnitGrap(std::string unitName,Ogre::SceneNode* node);
 	~UnitGrap(void);
 	
 	enum WeaponType
@@ -26,9 +26,15 @@ public:
 		Shield
 	};
 
+	enum BoneType
+	{
+		LeftHand,
+		RightHand
+	};
+
 	void createWeapon(std::string name,WeaponType type);
 
-	void setWeapon(WeaponType type,std::string boneName);
+	void setWeapon(WeaponType type,BoneType bone);
 
 	void setEffect(std::string name);
 
@@ -40,6 +46,12 @@ public:
 
 	void setHeight();
 
+	void setAnimation(std::string name,bool loop,bool returnInit);
+
+	void setFadeInOut(bool isIn);
+
+	void doFadeInOut(unsigned int deltaTime);
+
 	void update(unsigned int deltaTime);
 
 	void handleParticleSystemEvent (ParticleUniverse::ParticleSystem *particleSystem, ParticleUniverse::ParticleUniverseEvent &particleUniverseEvent);
@@ -47,12 +59,23 @@ public:
 	Ogre::SceneNode* mNode;
 	Ogre::Entity* mUnitEntity;
 	bool mIsCheckHeight;
+	float mAlpha;
+	unsigned int mAlphaDeltaTime;
+	bool mFadeInOut;
 
 	WeaponGrap* mMainWeapon;
 	WeaponGrap* mSecWeapon;
 	WeaponGrap* mShield;
+	std::string mLeftHandBoneName;
+	std::string mRightHandBoneName;
+	std::string mWalkName;
+	std::string mDeathName;
+	std::string mRecoverName;
+	std::string mRotationName;
+	int mFormationPosition;
 
 	AnimationBlender* mAniBlender;//¶¯»­´úÀí
 	ParticleUniverse::ParticleSystem* mPUSystem;
 	bool mPUSystemEnd;
+	bool mReturnInitAni;
 };

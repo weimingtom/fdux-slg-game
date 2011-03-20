@@ -83,6 +83,7 @@ bool MoveCutScene::endCutScene()
 
 void MoveCutScene::skipCutScene()
 {
+	mSquadGraphics->stopTransform();
 	mSquadGraphics->setGrid(mEndPosition.x,mEndPosition.y);
 	mSquadGraphics->setDirection((SquadGraphics::Direction)mDirection,false);
 }
