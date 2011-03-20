@@ -187,7 +187,7 @@ void Terrain::getWorldCoords(int x, int y, float &wx, float &wy)
 
 float Terrain::getHeight(float x, float y)
 {
-	return 0.0f;
+	return 2.5f;
 }
 
 void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, float *uvbuffer, float *nombuffer)

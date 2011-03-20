@@ -59,6 +59,13 @@
                     <Property key="AddItem" value="Circular"/>
                     <Property key="AddItem" value="Loose"/>
                 </Widget>
+                <Widget type="Button" skin="Button" position="15 80 125 30" name="Death">
+                    <Property key="Caption" value="Death"/>
+                </Widget>
+                <Widget type="Button" skin="Button" position="15 115 125 30" name="Recover">
+                    <Property key="Caption" value="Recover"/>
+                </Widget>
+                <Widget type="EditBox" skin="EditBox" position="15 150 125 25" name="RecoverNum"/>
             </Widget>
         </Widget>
     </Widget>

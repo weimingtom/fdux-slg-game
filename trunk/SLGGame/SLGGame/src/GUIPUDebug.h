@@ -28,6 +28,8 @@ private:
 	void onMove(MyGUI::Widget* _sender);
 	void onDirection(MyGUI::Widget* _sender);
 	void onFormation(MyGUI::Widget* _sender);
+	void onDeath(MyGUI::Widget* _sender);
+	void onRecover(MyGUI::Widget* _sender);
 
 	MyGUI::ListBox* mPUList;
 	MyGUI::Button* mStart;
@@ -45,6 +47,10 @@ private:
 
 	MyGUI::Button* mFormation;
 	MyGUI::ListBox* mFormationList;
+
+	MyGUI::Button* mDeath;
+	MyGUI::Button* mRecover;
+	MyGUI::EditBox* mRecoverNum;
 
 };
 

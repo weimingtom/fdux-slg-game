@@ -1,32 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GameData>
 	<Squad>
-		<sinbad>
-			<CommanderMesh type="String" value="Sinbad.mesh"/>
-			<CommanderMat type="String" value="null"/>
-			<CommanderInitAnimation type="String" value="IdleTop"/>
-			<CommanderScale type="Vector3" value="0.5,0.5,0.5"/>
-			
-			<SoldierMesh type="String" value="Sinbad.mesh"/>
-			<SoldierMat type="String" value="null"/>
-			<SoldierScale type="Vector3" value="0.5,0.5,0.5"/>
-			<!--<SoldierMesh type="String" value="ninja.mesh"/>
-			<SoldierMat type="String" value="Examples/Ninja"/>-->
-			
+		<SinbadSquad>
+			<CommanderUnit type="String" value="Sinbad"/>
 			<CommanderMainWeapon type="String" value="Sword"/>
 			<CommanderSecWeapon type="String" value="null"/>
 			<CommanderShield type="String" value="null"/>	
 			
+			<SoldierUnit type="String" value="Sinbad"/>
 			<SoldierMainWeapon type="String" value="Sword"/>
 			<SoldierSecWeapon type="String" value="null"/>
 			<SoldierShield type="String" value="null"/>
-			<SoldierInitAnimation type="String" value="IdleTop"/>
-		</sinbad>
+		</SinbadSquad>
+		<NinjaSquad>
+			<CommanderUnit type="String" value="Ninja"/>
+			<CommanderMainWeapon type="String" value="Sword"/>
+			<CommanderSecWeapon type="String" value="null"/>
+			<CommanderShield type="String" value="null"/>	
+			
+			<SoldierUnit type="String" value="Ninja"/>
+			<SoldierMainWeapon type="String" value="Sword"/>
+			<SoldierSecWeapon type="String" value="null"/>
+			<SoldierShield type="String" value="null"/>
+		</NinjaSquad>
 	</Squad>
+	
+	<Unit>
+		<Sinbad>
+			<MeshName type="String" value="Sinbad.mesh"/>
+			<MatName type="String" value="null"/>
+			<InitAnimation type="String" value="IdleTop"/>
+			<Scale type="Vector3" value="0.5,0.5,0.5"/>
+			<LeftHandBone type="String" value="Handle.L"/>
+			<RightHandBone type="String" value="Handle.R"/>
+			<WalkName type="String" value="RunBase"/>
+			<DeathName type="String" value="Dance"/>
+			<RecoverName type="String" value="DrawSwords"/>
+			<RotationName type="String" value="JumpLoop"/>
+		</Sinbad>
+		<Ninja>
+			<MeshName type="String" value="ninja.mesh"/>
+			<MatName type="String" value="null"/>
+			<InitAnimation type="String" value="Idle1"/>
+			<Scale type="Vector3" value="0.03,0.03,0.03"/>
+			<LeftHandBone type="String" value="Joint17"/>
+			<RightHandBone type="String" value="Joint13"/>
+			<WalkName type="String" value="Walk"/>
+			<DeathName type="String" value="Death1"/>
+			<RecoverName type="String" value="Backflip"/>
+			<RotationName type="String" value="Stealth"/>
+		</Ninja>
+	</Unit>
+	
 	<Weapon>
 		<Sword>
-			<meshName type="String" value="Sword.mesh"/>
-			<matName type="String" value="null"/>
+			<MeshName type="String" value="Sword.mesh"/>
+			<MatName type="String" value="null"/>
 		</Sword>
 	</Weapon>
 </GameData>

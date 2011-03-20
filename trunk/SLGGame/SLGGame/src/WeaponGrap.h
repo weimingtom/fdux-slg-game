@@ -16,6 +16,12 @@ public:
 
 	std::string getAttachBoneName();
 
+	void startFade();
+	
+	void overFade(bool isV);
+
+	void doFade(float alpha);
+
 private:
 	std::string mBoneName;
 	Ogre::Entity* mWeaponEntity;

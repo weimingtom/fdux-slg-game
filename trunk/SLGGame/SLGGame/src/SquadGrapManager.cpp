@@ -34,6 +34,7 @@ void SquadGrapManager::destorySquad(unsigned int id)
 		{
 			delete (*it);
 			mUnitList.erase(it);
+			break;
 		}
 	}
 }
