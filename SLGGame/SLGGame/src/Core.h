@@ -19,6 +19,8 @@ class StateManager;
 
 class DataLibrary;
 
+class InputControl;
+
 //游戏核心类,处理游戏初始化以及结束,存放了各个系统的指针
 class Core:public IISingleton<Core>,public Ogre::WindowEventListener
 {
@@ -46,6 +48,7 @@ public:
 	OIS::Mouse*	mMouse;
 
 	//游戏子系统指针
+	InputControl* mInputControl;
 	GUISystem* mGUISystem;
 	LuaSystem* mLuaSystem;
 	AudioSystem* mAudioSystem;
