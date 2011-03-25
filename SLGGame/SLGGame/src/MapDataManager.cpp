@@ -51,7 +51,7 @@ bool MapDataManager::loadMap(std::string mapname, Terrain* terrain)
 						int v = (j<0)?0:j;
 						v = (v >= mMapSize)?mMapSize-1:v;
 						int tempindex = u * mMapSize + v;
-						if(str[tempindex * 2] == 'h')
+						if(str[tempindex * 2] == 'h' )
 						{	
 							iscliff = true;
 						}
@@ -69,6 +69,10 @@ bool MapDataManager::loadMap(std::string mapname, Terrain* terrain)
 			else if(str[index * 2] == 'h')
 			{
 				datalibrary->setData(datapath + "/TerrainType", HighGround);
+			}
+			else if(str[index * 2] == 'r')
+			{
+				datalibrary->setData(datapath + "/TerrainType", Ramp);
 			}
 
 			if(str[index * 2+1] == 'g')

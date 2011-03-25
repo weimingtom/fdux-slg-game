@@ -20,6 +20,7 @@ int CutSceneDirector::addCutScene(CutScene* cutscene)
 	{
 		int id = mId++;
 		mCutScene.insert(CutScenePair(id, cutscene));
+		cutscene->start();
 		return id;
 	}
 	return -1;

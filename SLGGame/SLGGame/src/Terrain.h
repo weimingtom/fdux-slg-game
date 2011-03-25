@@ -2,6 +2,7 @@
 
 #include "Core.h"
 #include "iisingleton.hpp"
+#include "CollisionTools.h"
 
 #include <vector>
 
@@ -29,7 +30,7 @@ static const int BOTTOMRIGHT = 3;
 static const float TERRAINTEXSIZE = 256.0f;
 static const float TERRAINTEXTILESIZE = 64.0f;
 
-
+static const Ogre::uint32 TERRAIN_MASK = 1 << 0;
 
 struct stTileEntityData
 {
@@ -52,6 +53,9 @@ public:
 	float getHeight(float x, float y);
 
 private:
+
+	MOC::CollisionTools* mCollisionTools;
+
 	Ogre::SceneNode* mTerrainNode;
 	Ogre::Entity* mTerrainEntity;
 	Ogre::MeshPtr mTerrainMesh;
@@ -59,11 +63,12 @@ private:
 	Ogre::SceneNode* mWaterNode;
 	Ogre::ManualObject* mWaterObject;
 
+	Ogre::SceneNode* mGridNode;
+	Ogre::ManualObject* mGrid;
+
 	Ogre::Light* mLight;
 
 	std::vector<stTileEntityData *> mTileEntityVector;
-
-	float* mHeightMap;
 
 	MapDataManager *mMapData;
 

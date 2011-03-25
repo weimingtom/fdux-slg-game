@@ -4,7 +4,7 @@
 
 Terrain::Terrain()
 {
-
+	mCollisionTools = new MOC::CollisionTools(Core::getSingleton().mSceneMgr);
 }
 
 Terrain::~Terrain()
@@ -14,6 +14,7 @@ Terrain::~Terrain()
 
 bool Terrain::createTerrain(MapDataManager *data)
 {
+	Ogre::Entity::setDefaultQueryFlags(0);
 	mMapData = data;
 	int terrainszie = mMapData->getMapSize() + 9;
 
@@ -139,6 +140,7 @@ bool Terrain::createTerrain(MapDataManager *data)
 
 	mTerrainEntity = Core::getSingleton().mSceneMgr->createEntity("TerrianMesh");
 	mTerrainNode->attachObject(mTerrainEntity);
+	mTerrainEntity->setQueryFlags(TERRAIN_MASK);
 	mTerrainNode->setPosition(0,0,0);
 
 	//创建水面
@@ -154,22 +156,69 @@ bool Terrain::createTerrain(MapDataManager *data)
 			{
 				mWaterObject->position(startpos + x * TILESIZE, 0.0f, startpos + y * TILESIZE);
 				mWaterObject->colour(1.0f,1.0f,1.0f);
+				mWaterObject->normal(0.0f,1.0f,0.0f);
 				mWaterObject->position(startpos + (x+1) * TILESIZE, 0.0f, startpos + (y+1) * TILESIZE);
 				mWaterObject->colour(1.0f,1.0f,1.0f);
+				mWaterObject->normal(0.0f,1.0f,0.0f);
 				mWaterObject->position(startpos + (x+1) * TILESIZE, 0.0f, startpos + y * TILESIZE);
 				mWaterObject->colour(1.0f,1.0f,1.0f);
+				mWaterObject->normal(0.0f,1.0f,0.0f);
 				mWaterObject->position(startpos + (x+1) * TILESIZE, 0.0f, startpos + (y+1) * TILESIZE);
 				mWaterObject->colour(1.0f,1.0f,1.0f);
+				mWaterObject->normal(0.0f,1.0f,0.0f);
 				mWaterObject->position(startpos + x * TILESIZE, 0.0f, startpos + y * TILESIZE);
 				mWaterObject->colour(1.0f,1.0f,1.0f);
+				mWaterObject->normal(0.0f,1.0f,0.0f);
 				mWaterObject->position(startpos + x * TILESIZE, 0.0f, startpos + (y+1) * TILESIZE);
 				mWaterObject->colour(1.0f,1.0f,1.0f);
+				mWaterObject->normal(0.0f,1.0f,0.0f);
 			}
 		}
 	mWaterObject->end();
 
 	mWaterNode->attachObject(mWaterObject);
 	mWaterNode->setPosition(0,WATERHEIGHT,0);
+
+
+	mGridNode = Core::getSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode("GridNode");
+	mGrid = Core::getSingleton().mSceneMgr->createManualObject("GridObject");
+	mGrid->begin("GridMat",Ogre::RenderOperation::OT_LINE_LIST);
+	startpos += 3 * TILESIZE;
+	for(int y = 0; y < mMapData->getMapSize(); y++)
+		for(int x = 0; x < mMapData->getMapSize(); x++)
+		{
+			if(mMapData->getTerrainType(x, y ) != Water && mMapData->getTerrainType(x, y ) != Cliff)
+			{
+				float xx = startpos + x * TILESIZE;
+				float yy = startpos + y * TILESIZE;
+				if(y == 0 || mMapData->getTerrainType(x, y - 1) == Water || mMapData->getTerrainType(x, y -1 ) == Cliff)
+				{
+					mGrid->position(xx,getHeight(xx,yy),yy);
+					mGrid->colour(1.0f,1.0f,1.0f);
+					mGrid->position(xx+TILESIZE,getHeight(xx+TILESIZE,yy),yy);
+					mGrid->colour(1.0f,1.0f,1.0f);
+				}
+				if(x == 0 || mMapData->getTerrainType(x -1 , y ) == Water || mMapData->getTerrainType(x -1, y ) == Cliff)
+				{
+					mGrid->position(xx,getHeight(xx,yy+TILESIZE),yy+TILESIZE);
+					mGrid->colour(1.0f,1.0f,1.0f);
+					mGrid->position(xx,getHeight(xx,yy),yy);
+					mGrid->colour(1.0f,1.0f,1.0f);
+				}
+				mGrid->position(xx+TILESIZE,getHeight(xx+TILESIZE,yy),yy);
+				mGrid->colour(1.0f,1.0f,1.0f);
+				mGrid->position(xx+TILESIZE,getHeight(xx+TILESIZE,yy+TILESIZE),yy+TILESIZE);
+				mGrid->colour(1.0f,1.0f,1.0f);
+				mGrid->position(xx,getHeight(xx,yy+TILESIZE),yy+TILESIZE);
+				mGrid->colour(1.0f,1.0f,1.0f);
+				mGrid->position(xx+TILESIZE,getHeight(xx+TILESIZE,yy+TILESIZE),yy+TILESIZE);
+				mGrid->colour(1.0f,1.0f,1.0f);
+			}
+		}
+	mGrid->end();
+	mGridNode->attachObject(mGrid);
+	mGridNode->setPosition(0,PLANEHEIGHT+ 0.5f,0);
+
 	return true;
 }
 
@@ -187,8 +236,37 @@ void Terrain::getWorldCoords(int x, int y, float &wx, float &wy)
 
 float Terrain::getHeight(float x, float y)
 {
-	return 2.5f;
+	float height = PLANEHEIGHT;
+	int xx = 0,yy = 0;
+	int s = mMapData->getMapSize();
+	xx = x / TILESIZE + s /2.0f;
+	yy = y / TILESIZE + s / 2.0f;
+	switch (mMapData->getTerrainType(xx,yy))
+	{
+	case HighGround:
+		height = HEIGHGROUNDHEIGHT;
+		break;
+	case LowGround:
+	case Water:
+		height = PLANEHEIGHT;
+		break;
+	case Cliff:
+	case Ramp:
+		Ogre::Entity* entity = NULL;
+		Ogre::Vector3 result = Ogre::Vector3::ZERO;
+		float distToColl = 20.0f;
+		if(mCollisionTools->raycastFromPoint(Ogre::Vector3(x,20.0f,y),Ogre::Vector3::NEGATIVE_UNIT_Y,result,(Ogre::ulong&)entity,distToColl,TERRAIN_MASK))
+		{
+			height = 20.0f - distToColl;
+		}
+		else
+			height = PLANEHEIGHT;
+		break;
+	}
+	return height;
 }
+
+//设定
 
 void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, float *uvbuffer, float *nombuffer)
 {
@@ -204,7 +282,7 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 	terrainindex[tt[BOTTOMLEFT]] += 8;
 	terrainindex[tt[BOTTOMRIGHT]] += 4;
 	float height = WATERDEEP;
-	if(terrainindex[LowGround] + terrainindex[Cliff] == 15)
+	if(terrainindex[LowGround] + terrainindex[Cliff] + terrainindex[Ramp]== 15)
 	{
 		height = PLANEHEIGHT;
 	}
@@ -348,22 +426,122 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 		{
 		case 1:
 			meshName = meshName + "1";
+			if(meshName == "Cliff1")
+			{
+				int i = 0;
+				if(tt[BOTTOMRIGHT] == Ramp)
+					i += 1;
+				if(tt[TOPLEFT] == Ramp)
+					i += 2;
+				switch(i)
+				{
+				case 1:
+					meshName = "Ramp1_1";
+					break;
+				case 2:
+					meshName = "Ramp1_2";
+					break;
+				case 3:
+					meshName = "Ramp1_3";
+					break;
+				}
+			}
 			angle = 0;
 			break;
 		case 2:
 			meshName = meshName + "1";
+			if(meshName == "Cliff1")
+			{
+				int i = 0;
+				if(tt[BOTTOMLEFT] == Ramp)
+					i += 1;
+				if(tt[TOPRIGHT] == Ramp)
+					i += 2;
+				switch(i)
+				{
+				case 1:
+					meshName = "Ramp1_1";
+					break;
+				case 2:
+					meshName = "Ramp1_2";
+					break;
+				case 3:
+					meshName = "Ramp1_3";
+					break;
+				}
+			}
 			angle = 90;
 			break;
 		case 3:
 			meshName = meshName + "2";
+			if(meshName == "Cliff2")
+			{
+				int i = 0;
+				if(tt[BOTTOMRIGHT] == Ramp)
+					i += 1;
+				if(tt[BOTTOMLEFT] == Ramp)
+					i += 2;
+				switch(i)
+				{
+				case 1:
+					meshName = "Ramp2_1";
+					break;
+				case 2:
+					meshName = "Ramp2_2";
+					break;
+				case 3:
+					meshName = "Ramp2_3";
+					break;
+				}
+			}
 			angle = 0;
 			break;
 		case 4:
 			meshName = meshName + "1";
+			if(meshName == "Cliff1")
+			{
+				int i = 0;
+				if(tt[TOPRIGHT] == Ramp)
+					i += 1;
+				if(tt[BOTTOMLEFT] == Ramp)
+					i += 2;
+				switch(i)
+				{
+				case 1:
+					meshName = "Ramp1_1";
+					break;
+				case 2:
+					meshName = "Ramp1_2";
+					break;
+				case 3:
+					meshName = "Ramp1_3";
+					break;
+				}
+			}
 			angle = -90;
 			break;
 		case 5:
 			meshName = meshName + "2";
+			if(meshName == "Cliff2")
+			{
+				int i = 0;
+				if(tt[TOPRIGHT] == Ramp)
+					i += 1;
+				if(tt[TOPLEFT] == Ramp)
+					i += 2;
+				switch(i)
+				{
+				case 1:
+					meshName = "Ramp2_1";
+					break;
+				case 2:
+					meshName = "Ramp2_2";
+					break;
+				case 3:
+					meshName = "Ramp2_3";
+					break;
+				}
+			}
 			angle = -90;
 			break;
 		case 6:
@@ -376,6 +554,26 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 			break;
 		case 8:
 			meshName = meshName + "1";
+			if(meshName == "Cliff1")
+			{
+				int i = 0;
+				if(tt[TOPLEFT] == Ramp)
+					i += 1;
+				if(tt[BOTTOMRIGHT] == Ramp)
+					i += 2;
+				switch(i)
+				{
+				case 1:
+					meshName = "Ramp1_1";
+					break;
+				case 2:
+					meshName = "Ramp1_2";
+					break;
+				case 3:
+					meshName = "Ramp1_3";
+					break;
+				}
+			}
 			angle = 180;
 			break;
 		case 9:
@@ -384,6 +582,26 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 			break;
 		case 10:
 			meshName = meshName + "2";
+			if(meshName == "Cliff2")
+			{
+				int i = 0;
+				if(tt[BOTTOMLEFT] == Ramp)
+					i += 1;
+				if(tt[TOPLEFT] == Ramp)
+					i += 2;
+				switch(i)
+				{
+				case 1:
+					meshName = "Ramp2_1";
+					break;
+				case 2:
+					meshName = "Ramp2_2";
+					break;
+				case 3:
+					meshName = "Ramp2_3";
+					break;
+				}
+			}
 			angle = 90;
 			break;
 		case 11:
@@ -392,6 +610,26 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 			break;
 		case 12:
 			meshName = meshName + "2";
+			if(meshName == "Cliff1")
+			{
+				int i = 0;
+				if(tt[TOPLEFT] == Ramp)
+					i += 1;
+				if(tt[TOPRIGHT] == Ramp)
+					i += 2;
+				switch(i)
+				{
+				case 1:
+					meshName = "Ramp2_1";
+					break;
+				case 2:
+					meshName = "Ramp2_2";
+					break;
+				case 3:
+					meshName = "Ramp2_3";
+					break;
+				}
+			}
 			angle = 180;
 			break;
 		case 13:
@@ -409,6 +647,7 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 		entitydata->mTileEntity->setMaterialName(materialName);
 		entitydata->mTileNode = mTerrainNode->createChildSceneNode();
 		entitydata->mTileNode->attachObject(entitydata->mTileEntity);
+		entitydata->mTileEntity->setQueryFlags(TERRAIN_MASK);
 		entitydata->mTileNode->setPosition(sx + TILESIZE /2 ,PLANEHEIGHT,sy + TILESIZE /2);
 		entitydata->mTileNode->yaw(Ogre::Degree(angle));
 		mTileEntityVector.push_back(entitydata);

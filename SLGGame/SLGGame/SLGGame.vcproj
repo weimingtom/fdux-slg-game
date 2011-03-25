@@ -175,6 +175,14 @@
 			Name="Core"
 			>
 			<File
+				RelativePath=".\src\CollisionTools.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\CollisionTools.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\Core.cpp"
 				>
 			</File>

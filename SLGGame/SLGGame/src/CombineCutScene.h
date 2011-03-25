@@ -12,6 +12,7 @@ public:
 	void addCutScene(CutScene* cutscene);
 
 private:
+	virtual void startCutScence();
 	virtual bool endCutScene();
 	virtual void skipCutScene();
 	virtual void updateCutScene(unsigned int deltaTime);
