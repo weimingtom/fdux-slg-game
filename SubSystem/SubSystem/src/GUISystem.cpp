@@ -3,12 +3,18 @@
 #include "GUIScene.h"
 #include "GUIStage.h"
 
+#include "MyGUI_RTTLayer.h"
+
 GUISystem::GUISystem(Ogre::RenderWindow* window,Ogre::SceneManager* scene):mWindow(window),mSceneManager(scene),mFrameUpdateScene(NULL)
 {
 	mPlatform = new MyGUI::OgrePlatform();
 	mPlatform->initialise(mWindow, mSceneManager);
 	mGUI = new MyGUI::Gui();
 	mGUI->initialise("MyGUI_Core.xml");
+	MyGUI::FactoryManager::getInstance().registerFactory<MyGUI::RTTLayer>("Layer");
+	MyGUI::ResourceManager::getInstance().load("MyGUI_Layers.xml");
+	MyGUI::ResourceManager::getInstance().load("MyGUI_Pointers.xml");
+	MyGUI::ResourceManager::getInstance().load("MyGUI_Settings.xml");
 }
 
 GUISystem::~GUISystem(void)
@@ -44,32 +50,28 @@ GUISystem::~GUISystem(void)
 bool GUISystem::keyPressed( const OIS::KeyEvent &arg )
 {
 	//将OIS的消息注入到MyGUI中
-	mGUI->injectKeyPress(MyGUI::KeyCode::Enum(arg.key), (MyGUI::Char)arg.text);
-	return true;
+	return mGUI->injectKeyPress(MyGUI::KeyCode::Enum(arg.key), (MyGUI::Char)arg.text);
+	
 }
 
 bool GUISystem::keyReleased( const OIS::KeyEvent &arg )
 {
-	mGUI->injectKeyRelease(MyGUI::KeyCode::Enum(arg.key));
-	return true;
+	return mGUI->injectKeyRelease(MyGUI::KeyCode::Enum(arg.key));
 }
 
 bool GUISystem::mouseMoved( const OIS::MouseEvent &arg )
 {
-	mGUI->injectMouseMove(arg.state.X.abs,arg.state.Y.abs,arg.state.Z.abs);
-	return true;
+	return mGUI->injectMouseMove(arg.state.X.abs,arg.state.Y.abs,arg.state.Z.abs);
 }
 
 bool GUISystem::mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
 {
-	mGUI->injectMousePress(arg.state.X.abs,arg.state.Y.abs, MyGUI::MouseButton::Enum(id));
-	return true;
+	return mGUI->injectMousePress(arg.state.X.abs,arg.state.Y.abs, MyGUI::MouseButton::Enum(id));
 }
 
 bool GUISystem::mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
 {
-	mGUI->injectMouseRelease(arg.state.X.abs,arg.state.Y.abs, MyGUI::MouseButton::Enum(id));
-	return true;
+	return mGUI->injectMouseRelease(arg.state.X.abs,arg.state.Y.abs, MyGUI::MouseButton::Enum(id));
 }
 
 

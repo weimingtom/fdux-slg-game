@@ -176,6 +176,14 @@
 				RelativePath=".\src\GUISystem.h"
 				>
 			</File>
+			<File
+				RelativePath=".\src\MyGUI_RTTLayer.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\MyGUI_RTTLayer.h"
+				>
+			</File>
 			<Filter
 				Name="Stage"
 				>

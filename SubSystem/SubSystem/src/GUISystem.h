@@ -3,7 +3,6 @@
 #include "GUICommon.h"
 #include "iisingleton.hpp"
 
-#include <OIS.h>
 #include <ogre.h>
 #include <MyGUI.h>
 #include <MyGUI_OgrePlatform.h>
@@ -13,10 +12,12 @@
 
 using namespace izayoi;
 
+#include <OIS.h>
+
 class GUIScene;
 class GUISceneFactory;
 
-class GUISystem:public OIS::KeyListener,public OIS::MouseListener,public IISingleton<GUISystem>
+class GUISystem:public IISingleton<GUISystem>
 {
 public:
 	GUISystem(Ogre::RenderWindow* window,Ogre::SceneManager* scene);
