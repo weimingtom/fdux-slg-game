@@ -20,6 +20,7 @@ public:
 	~EffectCutScene(void);
 
 protected:
+	void startCutScence() {}
 	bool endCutScene();
 	void skipCutScene();
 	void updateCutScene(unsigned int deltaTime);

@@ -19,6 +19,15 @@ void CombineCutScene::addCutScene(CutScene* cutscene)
 	mCutScene.push_back(cutscene);
 }
 
+void CombineCutScene::startCutScence()
+{
+	CutSceneIte ite;
+	for(ite = mCutScene.begin(); ite != mCutScene.end();ite++)
+	{
+		(*ite)->start();
+	}
+}
+
 bool CombineCutScene::endCutScene()
 {
 	CutSceneIte ite;

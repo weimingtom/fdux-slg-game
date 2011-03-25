@@ -38,8 +38,8 @@ void BattleState::initialize( std::string arg )
 	{
 		mCameraContral = new CameraContral(mTerrain);
 		mCameraContral->resetCamera();
-		mCameraContral->moveCamera(0,0);
-		mCameraContral->riseCamera(20);
+		mCameraContral->moveCamera(0.0f,0.0f);
+		mCameraContral->riseCamera(50.0f);
 
 		DataLibrary::getSingletonPtr()->loadXmlData(DataLibrary::GameData,"../media/mesh/sinbad.xml");
 		mSquadGrapManager=new SquadGrapManager(Core::getSingletonPtr()->mSceneMgr);
@@ -52,6 +52,7 @@ void BattleState::initialize( std::string arg )
 	mDirector = new CutSceneDirector();
 	GUIPUDebug* puDebug=(GUIPUDebug*)GUISystem::getSingletonPtr()->createScene(PUDebugScene);
 	puDebug->mDirector =mDirector;
+	
 }
 
 void BattleState::uninitialize()

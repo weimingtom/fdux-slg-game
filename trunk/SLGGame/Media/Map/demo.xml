@@ -1,21 +1,44 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<MapName>newmap</MapName>
+<MapName>map1</MapName>
 <MapTeam>
-    <Team2 TeamType="none" TeamFaction="none" />
-    <Team3 TeamType="none" TeamFaction="none" />
-    <Team4 TeamType="none" TeamFaction="none" />
+    <Team2 TeamType="alliance" TeamFaction="winsock" />
+    <Team3 TeamType="enemy1" TeamFaction="linsummer" />
+    <Team4 TeamType="enemy1" TeamFaction="uncleA" />
 </MapTeam>
-<MapScript>ddsadsa</MapScript>
-<MapInfo>dcxvafdfs&#x0A;dasdsadsa</MapInfo>
+<MapScript>testscript</MapScript>
+<MapInfo>mapinfo1</MapInfo>
 <MapSize>20</MapSize>
-<MapData>hglglglglgldldldlglgwglglglglglglglglglghghghglglglglglglglgwgwglglglglglglglglghglglglglglgwglgldlgwglglglglglglglglglglglglglglglglglgldlgwgwglglglglglglglglglglghglglgldldldldlglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglgıııı««««««««îşîş</MapData>
+<MapData>lglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglgldldldldlglglghglglglglglglglglglglglglgldhdhdldlglghghghglglglglglghghglglgldldldhdhdldlglghghdhglglglglglghghgrglgldwdldldrdldlglghghghglglglglglglglglglgldwdldldldlglglglgrglglglglglglglglglglgldwdwdwdldlglglglglglglglglglglglglglglgldldldldldlglglglglglglglglglglghghgrglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglgrglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglg</MapData>
 <MapObject>
-    <knot_0 Type="none" GridX="6" GridY="2" Mesh="knot.mesh" />
+    <knot_0 Type="none" GridX="5" GridY="3" Mesh="knot.mesh" />
 </MapObject>
+<MapEffect>
+    <mapeffect_0 Type="none" GridX="11" GridY="15" />
+    <mapeffect_1 Type="none" GridX="11" GridY="12" />
+</MapEffect>
 <MapSquad>
-    <Team1 />
-    <Team2 />
-    <Team3 />
-    <Team4 />
+    <Team1>
+        <Team1Squad_0 Type="none" GridX="7" GridY="11" />
+        <Team1Squad_1 Type="none" GridX="6" GridY="12" />
+    </Team1>
+    <Team2>
+        <Team2Squad_0 Type="none" GridX="6" GridY="14" />
+        <Team2Squad_1 Type="none" GridX="6" GridY="16" />
+    </Team2>
+    <Team3>
+        <Team3Squad_0 Type="HeavyBodyGuard" GridX="11" GridY="14" />
+    </Team3>
+    <Team4>
+        <Team4Squad_0 Type="none" GridX="10" GridY="16" />
+    </Team4>
 </MapSquad>
-<MapArea />
+<MapArea>
+    <Area0>
+        <0 X="10" Y="14" />
+        <1 X="9" Y="15" />
+        <2 X="9" Y="16" />
+        <3 X="10" Y="16" />
+        <4 X="10" Y="15" />
+        <5 X="9" Y="14" />
+    </Area0>
+</MapArea>
