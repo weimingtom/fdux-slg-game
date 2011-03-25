@@ -12,6 +12,7 @@
 #include "DataLibrary.h"
 #include "SquadGrapManager.h"
 #include "SquadGraphics.h"
+#include "BillboardManager.h"
 
 #include "GUISystem.h"
 #include "GUIPUDebug.h"
@@ -30,6 +31,7 @@ void BattleState::initialize( std::string arg )
 	mMapDataManager = new MapDataManager(); 
 	mTerrain = new Terrain();
 	srand((int)time(0));
+	new BillboardManager();
 
 	//载入新战场
 	if(mMapDataManager->loadMap(arg, mTerrain))

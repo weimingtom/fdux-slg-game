@@ -7,6 +7,7 @@
 
 #include "LuaSystem.h"
 #include "AudioSystem.h"
+#include "InputControl.h"
 
 #include "StateManager.h"
 #include "DataLibrary.h"
@@ -67,6 +68,9 @@ bool Core::initialize()
 		mAudioSystem=new AudioSystem();
 
 		mAudioSystem->init();
+
+		mInputControl=new InputControl();
+		mInputControl->setGUISystem(mGUISystem);
 
 		initializeOIS();
 
@@ -158,8 +162,8 @@ void Core::initializeOIS()
 	}
 	
 
-	mKeyboard->setEventCallback(static_cast<OIS::KeyListener*>(mGUISystem));
-	mMouse->setEventCallback(static_cast<OIS::MouseListener*>(mGUISystem));
+	mKeyboard->setEventCallback(static_cast<OIS::KeyListener*>(mInputControl));
+	mMouse->setEventCallback(static_cast<OIS::MouseListener*>(mInputControl));
 
 	//Set initial mouse clipping size
 	mMouse->getMouseState().width = mWindow->getWidth();

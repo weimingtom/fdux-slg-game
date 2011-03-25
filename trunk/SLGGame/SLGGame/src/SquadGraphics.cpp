@@ -8,6 +8,7 @@
 
 #include "UnitGrap.h"
 #include "AnimationBlender.h"
+#include "BillboardManager.h"
 
 #include "Terrain.h"
 
@@ -63,6 +64,8 @@ mFormation(f)
 	setDirection(direction,false);
 	setFormation(f,false);
 	setWeaponMode(SquadGraphics::MainWepon);
+
+	mNode->attachObject(BillboardManager::getSingletonPtr()->getBillboardSet());
 
 }
 

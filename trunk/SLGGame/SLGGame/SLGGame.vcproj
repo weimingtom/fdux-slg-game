@@ -326,19 +326,19 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\InputControl.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\InputControl.h"
+					>
+				</File>
+				<File
 					RelativePath=".\src\TurnControl.cpp"
 					>
 				</File>
 				<File
 					RelativePath=".\src\TurnControl.h"
-					>
-				</File>
-				<File
-					RelativePath=".\src\UnitAnimationControl.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\src\UnitAnimationControl.h"
 					>
 				</File>
 			</Filter>
@@ -458,6 +458,18 @@
 					</File>
 					<File
 						RelativePath=".\src\MoveCutScene.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Billboard"
+					>
+					<File
+						RelativePath=".\src\BillboardManager.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\BillboardManager.h"
 						>
 					</File>
 				</Filter>
