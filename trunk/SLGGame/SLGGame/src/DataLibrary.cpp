@@ -41,6 +41,57 @@ void DataLibrary::loadXmlData( DataBlock type,std::string fileName )
 	}
 }
 
+void DataLibrary::appendXmlDate( DataBlock type,std::string fileName )
+{
+	ticpp::Document* currentDoc;
+	if (type==SystemConfig)
+	{
+		currentDoc=&mSystemConfig;
+	}
+	else
+	{
+		currentDoc=&mGameData;
+	}
+
+
+	try
+	{
+		ticpp::Document doc;
+		doc.LoadFile(fileName,TIXML_ENCODING_UTF8);
+
+		ticpp::Element* srcElement=doc.FirstChildElement();
+		ticpp::Element* destElement=currentDoc->FirstChildElement();
+
+		copyElement(srcElement,destElement);
+
+	}
+	catch (ticpp::Exception& e)
+	{
+		Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
+	}
+}
+
+void DataLibrary::copyElement( ticpp::Element* srcElement,ticpp::Element* destElement )
+{
+
+	ticpp::Iterator< ticpp::Element > child;
+	for ( child = child.begin(srcElement); child != child.end(); child++ )
+	{
+		ticpp::Element* findElement=destElement->FirstChildElement(child->Value(),false);
+		if(findElement!=NULL)//如果有,就继续递归
+		{
+			copyElement(&(*child),findElement);
+		}
+		else//如果没找到,说明目标节点下面没有该源节点
+		{
+			std::auto_ptr< ticpp::Node > clonedNode=child->Clone();
+			destElement->LinkEndChild(clonedNode->ToElement());
+		}
+	}
+
+	
+}
+
 void DataLibrary::saveXmlData( DataBlock type,std::string fileName )
 {
 	try

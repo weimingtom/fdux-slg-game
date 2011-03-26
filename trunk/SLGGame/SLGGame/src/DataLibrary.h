@@ -33,6 +33,8 @@ public:
 	};
 
 	void loadXmlData(DataBlock type,std::string fileName);
+	void appendXmlDate(DataBlock type,std::string fileName);
+	void copyElement(ticpp::Element* srcElement,ticpp::Element* destElement);
 	void saveXmlData(DataBlock type,std::string fileName);
 
 	bool setData(std::string path,const int& value,bool createpath=true);
