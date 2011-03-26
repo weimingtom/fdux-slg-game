@@ -32,8 +32,7 @@ public:
 		Vector3Type
 	};
 
-	void loadXmlData(DataBlock type,std::string fileName);
-	void appendXmlDate(DataBlock type,std::string fileName);
+	void loadXmlData(DataBlock type,std::string fileName,bool append);
 	void copyElement(ticpp::Element* srcElement,ticpp::Element* destElement);
 	void saveXmlData(DataBlock type,std::string fileName);
 
@@ -56,6 +55,7 @@ private:
 	ticpp::Document mSystemConfig;
 	ticpp::Document mGameData;
 
+	void appendXmlDate(ticpp::Document* currentDoc,std::string fileName);
 	ticpp::Element* getNode(std::string path,bool createpath);
 	ticpp::Element* findNode(ticpp::Element* parent,std::queue<std::string>* path,bool createpath);
 	void split(const std::string& s, char c,std::queue<std::string>& v);
