@@ -17,6 +17,8 @@
 #include "GUISystem.h"
 #include "GUIPUDebug.h"
 
+#include "InputControl.h"
+
 BattleState::BattleState(void)
 {
 }
@@ -41,12 +43,19 @@ void BattleState::initialize( std::string arg )
 		mCameraContral->moveCamera(0.0f,0.0f);
 		mCameraContral->riseCamera(50.0f);
 
-		DataLibrary::getSingletonPtr()->loadXmlData(DataLibrary::GameData,"../media/mesh/sinbad.xml");
+		Core::getSingletonPtr()->mInputControl->setCameraContral(mCameraContral);
+
+		DataLibrary::getSingletonPtr()->appendXmlDate(DataLibrary::GameData,"../media/mesh/sinbad.xml");
 		mSquadGrapManager=new SquadGrapManager(Core::getSingletonPtr()->mSceneMgr);
-		SquadGraphics* s=mSquadGrapManager->createSquad("SinbadSquad",1,10,10,SquadGrapManager::North,SquadGrapManager::Loose);
+		SquadGraphics* s;//=mSquadGrapManager->createSquad("SinbadSquad",1,10,10,SquadGrapManager::North,SquadGrapManager::Loose);
 		s=mSquadGrapManager->createSquad("NinjaSquad",2,8,8,SquadGrapManager::North,SquadGrapManager::Loose);
+		//s=mSquadGrapManager->createSquad("NinjaSquad",3,10,9,SquadGrapManager::North,SquadGrapManager::Loose);
+		//s=mSquadGrapManager->createSquad("NinjaSquad",4,10,8,SquadGrapManager::North,SquadGrapManager::Loose);
+		//s=mSquadGrapManager->createSquad("NinjaSquad",5,9,9,SquadGrapManager::North,SquadGrapManager::Loose);
+		//s=mSquadGrapManager->createSquad("NinjaSquad",6,9,8,SquadGrapManager::North,SquadGrapManager::Loose);
 
 		s->setEffect("Seal/mp_seal_01",SquadGraphics::Commander);
+//		std::cout<<mTerrain->getHeight(96,-144)<<std::endl;
 		
 	}
 	mDirector = new CutSceneDirector();

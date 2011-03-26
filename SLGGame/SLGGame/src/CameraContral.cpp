@@ -2,6 +2,8 @@
 
 #include "Terrain.h"
 
+#include <iostream>
+
 CameraContral::CameraContral(Terrain *terrain)
 {
 	mTerrain = terrain;
@@ -42,4 +44,14 @@ void CameraContral::setCamera()
 	float d = mHeight;//´ý¶¨¹«Ê½
 	mCamera->setPosition(mX + d, height, mY +d);
 	mCamera->lookAt(mX,mTerrain->getHeight(mX,mY), mY );
+}
+
+void CameraContral::cameraQuery( int dx,int dy )
+{
+	Ogre::Ray mouseRay = mCamera->getCameraToViewportRay(float(dx)/float(Core::getSingletonPtr()->mWindow->getWidth()),float(dy)/float(Core::getSingletonPtr()->mWindow->getHeight()));
+	Ogre::RaySceneQuery* rsq=Core::getSingletonPtr()->mSceneMgr->createRayQuery(mouseRay);
+	Ogre::RaySceneQueryResult r=rsq->execute();
+	std::cout<<r.size()<<std::endl;
+
+	std::cout<<mTerrain->getHeight(96,-144)<<std::endl;
 }

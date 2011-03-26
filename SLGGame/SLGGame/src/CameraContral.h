@@ -14,6 +14,7 @@ public:
 	void riseCamera(float dh);
 	void resetCamera();
 	Ogre::Camera*  getCamera() {return mCamera;}
+	void cameraQuery(int dx,int dy);
 private:
 
 	void setCamera();

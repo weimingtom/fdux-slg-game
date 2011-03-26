@@ -34,7 +34,7 @@ bool InputControl::mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID 
 {
 	if (!mGUISystem->mousePressed(arg,id))
 	{
-
+		mCameraContral->cameraQuery(arg.state.X.abs,arg.state.Y.abs);
 	}
 	return true;
 }
