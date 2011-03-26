@@ -20,28 +20,7 @@ DataLibrary::~DataLibrary(void)
 {
 }
 
-void DataLibrary::loadXmlData( DataBlock type,std::string fileName )
-{
-	try
-	{
-		if (type==SystemConfig)
-		{
-			mSystemConfig.Clear();
-			mSystemConfig.LoadFile(fileName,TIXML_ENCODING_UTF8);
-		}
-		else
-		{
-			mGameData.Clear();
-			mGameData.LoadFile(fileName,TIXML_ENCODING_UTF8);
-		}
-	}
-	catch (ticpp::Exception& e)
-	{
-		Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
-	}
-}
-
-void DataLibrary::appendXmlDate( DataBlock type,std::string fileName )
+void DataLibrary::loadXmlData( DataBlock type,std::string fileName,bool append)
 {
 	ticpp::Document* currentDoc;
 	if (type==SystemConfig)
@@ -53,7 +32,26 @@ void DataLibrary::appendXmlDate( DataBlock type,std::string fileName )
 		currentDoc=&mGameData;
 	}
 
+	try
+	{
+		if (append)
+		{
+			appendXmlDate(currentDoc,fileName);
+		}
+		else
+		{
+			currentDoc->Clear();
+			currentDoc->LoadFile(fileName,TIXML_ENCODING_UTF8);
+		}
+	}
+	catch (ticpp::Exception& e)
+	{
+		Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
+	}
+}
 
+void DataLibrary::appendXmlDate( ticpp::Document* currentDoc,std::string fileName )
+{
 	try
 	{
 		ticpp::Document doc;

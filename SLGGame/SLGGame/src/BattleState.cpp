@@ -45,7 +45,7 @@ void BattleState::initialize( std::string arg )
 
 		Core::getSingletonPtr()->mInputControl->setCameraContral(mCameraContral);
 
-		DataLibrary::getSingletonPtr()->appendXmlDate(DataLibrary::GameData,"../media/mesh/sinbad.xml");
+		DataLibrary::getSingletonPtr()->loadXmlData(DataLibrary::GameData,"../media/mesh/sinbad.xml",true);
 		mSquadGrapManager=new SquadGrapManager(Core::getSingletonPtr()->mSceneMgr);
 		SquadGraphics* s;//=mSquadGrapManager->createSquad("SinbadSquad",1,10,10,SquadGrapManager::North,SquadGrapManager::Loose);
 		s=mSquadGrapManager->createSquad("NinjaSquad",2,8,8,SquadGrapManager::North,SquadGrapManager::Loose);
