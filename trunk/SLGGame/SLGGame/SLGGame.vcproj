@@ -321,6 +321,42 @@
 					RelativePath=".\src\Terrain.h"
 					>
 				</File>
+				<Filter
+					Name="SubBattleState"
+					>
+					<File
+						RelativePath=".\src\BattleDeployState.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\BattleDeployState.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\BattleLoadState.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\BattleLoadState.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\cutscenedirector.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\cutscenediretor.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\SubBattleState.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\SubBattleState.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 		<Filter
@@ -426,14 +462,6 @@
 					</File>
 					<File
 						RelativePath=".\src\cutscene.h"
-						>
-					</File>
-					<File
-						RelativePath=".\src\cutscenedirector.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\src\cutscenediretor.h"
 						>
 					</File>
 					<File

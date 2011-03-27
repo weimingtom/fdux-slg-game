@@ -1,19 +1,22 @@
 #pragma once
 
+#include "SubBattleState.h"
+
 #include <map>
+
 
 class CutScene;
 
-class CutSceneDirector
+class CutSceneDirector:public SubBattleState
 {
 public:
-	CutSceneDirector();
+	CutSceneDirector(BattleState* mainState);
 	~CutSceneDirector();
 
 	int addCutScene(CutScene* cutscene);
 	void skipCutScene(int id);
 
-	void update(unsigned int deltaTime);
+	virtual void update(unsigned int deltaTime);
 private:
 	typedef std::pair<int, CutScene*> CutScenePair;
 	typedef std::map<int, CutScene*>::iterator CutSceneIte;
