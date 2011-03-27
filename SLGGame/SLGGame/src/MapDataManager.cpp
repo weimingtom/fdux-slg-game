@@ -14,8 +14,9 @@ MapDataManager::~MapDataManager()
 
 }
 
-bool MapDataManager::loadMap(std::string mapname, Terrain* terrain)
+bool MapDataManager::loadMap(std::string mapname)
 {
+	Terrain* terrain = Terrain::getSingletonPtr();
 	DataLibrary* datalibrary = DataLibrary::getSingletonPtr();
 	std::string path = ".\\..\\Media\\Map\\" + mapname;
 	ticpp::Document *doc = new ticpp::Document();

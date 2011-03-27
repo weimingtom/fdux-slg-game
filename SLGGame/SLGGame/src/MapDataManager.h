@@ -23,7 +23,7 @@ public:
 	MapDataManager();
 	~MapDataManager();
 
-	bool loadMap(std::string mapname, Terrain* terrain);
+	bool loadMap(std::string mapname);
 
 	GroundType getGroundType(int x, int y);
 	TerrainType getTerrainType(int x, int y);

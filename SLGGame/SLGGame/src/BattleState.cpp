@@ -5,37 +5,36 @@
 #include <ticpp.h>
 #include <stdlib.h>
 #include "Terrain.h"
-#include "MapDataManager.h"
-#include "CameraContral.h"
-#include "cutscenediretor.h"
 
-#include "DataLibrary.h"
-#include "SquadGrapManager.h"
-#include "SquadGraphics.h"
 #include "BillboardManager.h"
 
 #include "GUISystem.h"
-#include "GUIPUDebug.h"
 
 #include "InputControl.h"
 
+#include "BattleLoadState.h"
+
 BattleState::BattleState(void)
 {
+
 }
 
 BattleState::~BattleState(void)
 {
+
 }
 
-#include "DelayCutScene.h"
 void BattleState::initialize( std::string arg )
 {
-	mMapDataManager = new MapDataManager(); 
 	mTerrain = new Terrain();
 	srand((int)time(0));
 	new BillboardManager();
 
+	BattleLoadState* loadState = new BattleLoadState(this,arg);
+	PushState(loadState);
+
 	//载入新战场
+	/*
 	if(mMapDataManager->loadMap(arg, mTerrain))
 	{
 		mCameraContral = new CameraContral(mTerrain);
@@ -58,9 +57,9 @@ void BattleState::initialize( std::string arg )
 //		std::cout<<mTerrain->getHeight(96,-144)<<std::endl;
 		
 	}
-	mDirector = new CutSceneDirector();
 	GUIPUDebug* puDebug=(GUIPUDebug*)GUISystem::getSingletonPtr()->createScene(PUDebugScene);
-	puDebug->mDirector =mDirector;
+	//puDebug->mDirector = mDirector;
+	*/
 	
 }
 
@@ -69,27 +68,38 @@ void BattleState::uninitialize()
 	if(mTerrain != NULL)
 	{
 		mTerrain->destoryTerrian();
-		delete mTerrain;
-		mTerrain = NULL;
-	}
-	if(mMapDataManager != NULL)
-	{
-		delete mMapDataManager;
-		mMapDataManager =NULL;
+		//delete mTerrain;
+		//mTerrain = NULL;
 	}
 
-	if (mSquadGrapManager!=NULL)
-	{
-		delete mSquadGrapManager;
-		mSquadGrapManager=NULL;
-	}
-
-	GUISystem::getSingletonPtr()->destoryScene(PUDebugScene);
+	//GUISystem::getSingletonPtr()->destoryScene(PUDebugScene);
 }
 
 void BattleState::update(unsigned int deltaTime)
 {
-	//测试用
-	mDirector->update(deltaTime);
-	mSquadGrapManager->update(deltaTime);
+	mSubStateStack.back()->update(deltaTime);
+}
+
+void BattleState::ChangeState(SubBattleState* substate)
+{
+	if(substate == NULL)
+		return;
+	if(mSubStateStack.size() > 0)
+	{
+		SubBattleState* ite = mSubStateStack.back();
+		delete ite;
+		mSubStateStack.pop_back();
+	}
+	mSubStateStack.push_back(substate);
+
+}
+void BattleState::PushState(SubBattleState* substate)
+{
+	mSubStateStack.push_back(substate);
+}
+void BattleState::PopState()
+{
+	SubBattleState* ite = mSubStateStack.back();
+	delete ite;
+	mSubStateStack.pop_back();
 }

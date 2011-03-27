@@ -1,7 +1,10 @@
 #include "cutscenediretor.h"
 #include "cutscene.h"
 
-CutSceneDirector::CutSceneDirector()
+#include "BattleState.h"
+
+CutSceneDirector::CutSceneDirector(BattleState* mainState)
+:SubBattleState(mainState)
 {
 	mId = 0;
 }
@@ -52,4 +55,6 @@ void CutSceneDirector::update(unsigned int deltaTime)
 			ite++;
 		}
 	}
+	if(mCutScene.size() == 0)
+		mMainState->PopState();
 }

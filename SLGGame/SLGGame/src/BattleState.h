@@ -1,12 +1,16 @@
 #pragma once
 #include "gamestate.h"
 
+#include <vector>
+class SubBattleState;
+
 class Terrain;
 class CameraContral;
 class MapDataManager;
 class CutSceneDirector;
 
 class SquadGrapManager;
+
 
 class BattleState :
 	public GameState
@@ -22,12 +26,14 @@ public:
 
 	void update(unsigned int deltaTime);
 
+	void ChangeState(SubBattleState* substate); //切换状态
+	void PushState(SubBattleState* substate); //压入状态
+	void PopState(); //压出状态
+
 private:
 
-	MapDataManager *mMapDataManager; //管理地图数据
 	Terrain *mTerrain; //地形试图
-	CameraContral *mCameraContral; //摄像机管理
-	CutSceneDirector *mDirector;
 
-	SquadGrapManager* mSquadGrapManager;
+	std::vector<SubBattleState*> mSubStateStack; //战斗状态堆栈
+	typedef std::vector<SubBattleState*>::iterator SubStateIte;
 };

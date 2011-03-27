@@ -20,12 +20,12 @@ bool Terrain::createTerrain(MapDataManager *data)
 
 	//创建灯光
 	Core::getSingleton().mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5f, 0.5f, 0.5f));
-	Core::getSingleton().mSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
+	//Core::getSingleton().mSceneMgr->setShadowTechnique(Ogre::SHADOWDETAILTYPE_TEXTURE);
 	mLight = Core::getSingleton().mSceneMgr->createLight("TerrainLight");
 	mLight->setType(Ogre::Light::LightTypes::LT_DIRECTIONAL);
 	mLight->setPosition(-500.0f,500.0f, 500.0f);
 	mLight->setDirection(1.0f, -1.0f, -1.0f);
-	mLight->setCastShadows(true);
+	//mLight->setCastShadows(true);
 	mLight->setDiffuseColour(Ogre::ColourValue(1.0f, 1.0f,1.0f));
 
 	//创建地面Mesh
@@ -179,46 +179,6 @@ bool Terrain::createTerrain(MapDataManager *data)
 	mWaterNode->attachObject(mWaterObject);
 	mWaterNode->setPosition(0,WATERHEIGHT,0);
 
-
-	mGridNode = Core::getSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode("GridNode");
-	mGrid = Core::getSingleton().mSceneMgr->createManualObject("GridObject");
-	mGrid->begin("GridMat",Ogre::RenderOperation::OT_LINE_LIST);
-	startpos += 3 * TILESIZE;
-	for(int y = 0; y < mMapData->getMapSize(); y++)
-		for(int x = 0; x < mMapData->getMapSize(); x++)
-		{
-			if(mMapData->getTerrainType(x, y ) != Water && mMapData->getTerrainType(x, y ) != Cliff)
-			{
-				float xx = startpos + x * TILESIZE;
-				float yy = startpos + y * TILESIZE;
-				if(y == 0 || mMapData->getTerrainType(x, y - 1) == Water || mMapData->getTerrainType(x, y -1 ) == Cliff)
-				{
-					mGrid->position(xx,getHeight(xx,yy),yy);
-					mGrid->colour(1.0f,1.0f,1.0f);
-					mGrid->position(xx+TILESIZE,getHeight(xx+TILESIZE,yy),yy);
-					mGrid->colour(1.0f,1.0f,1.0f);
-				}
-				if(x == 0 || mMapData->getTerrainType(x -1 , y ) == Water || mMapData->getTerrainType(x -1, y ) == Cliff)
-				{
-					mGrid->position(xx,getHeight(xx,yy+TILESIZE),yy+TILESIZE);
-					mGrid->colour(1.0f,1.0f,1.0f);
-					mGrid->position(xx,getHeight(xx,yy),yy);
-					mGrid->colour(1.0f,1.0f,1.0f);
-				}
-				mGrid->position(xx+TILESIZE,getHeight(xx+TILESIZE,yy),yy);
-				mGrid->colour(1.0f,1.0f,1.0f);
-				mGrid->position(xx+TILESIZE,getHeight(xx+TILESIZE,yy+TILESIZE),yy+TILESIZE);
-				mGrid->colour(1.0f,1.0f,1.0f);
-				mGrid->position(xx,getHeight(xx,yy+TILESIZE),yy+TILESIZE);
-				mGrid->colour(1.0f,1.0f,1.0f);
-				mGrid->position(xx+TILESIZE,getHeight(xx+TILESIZE,yy+TILESIZE),yy+TILESIZE);
-				mGrid->colour(1.0f,1.0f,1.0f);
-			}
-		}
-	mGrid->end();
-	mGridNode->attachObject(mGrid);
-	mGridNode->setPosition(0,PLANEHEIGHT+ 0.5f,0);
-
 	return true;
 }
 
@@ -265,8 +225,6 @@ float Terrain::getHeight(float x, float y)
 	}
 	return height;
 }
-
-//设定
 
 void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, float *uvbuffer, float *nombuffer)
 {
@@ -652,6 +610,48 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 		entitydata->mTileNode->yaw(Ogre::Degree(angle));
 		mTileEntityVector.push_back(entitydata);
 	}
+}
+
+void Terrain::createGrid()
+{
+	float startpos = - mMapData->getMapSize() * TILESIZE / 2.0f  -TILESIZE;//公式有错
+	mGridNode = Core::getSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode("GridNode");
+	mGrid = Core::getSingleton().mSceneMgr->createManualObject("GridObject");
+	mGrid->begin("GridMat",Ogre::RenderOperation::OT_LINE_LIST);
+	for(int y = 0; y < mMapData->getMapSize(); y++)
+		for(int x = 0; x < mMapData->getMapSize(); x++)
+		{
+			if(mMapData->getTerrainType(x, y ) != Water && mMapData->getTerrainType(x, y ) != Cliff)
+			{
+				float xx = startpos + x * TILESIZE;
+				float yy = startpos + y * TILESIZE;
+				if(y == 0 || mMapData->getTerrainType(x, y - 1) == Water || mMapData->getTerrainType(x, y -1 ) == Cliff)
+				{
+					mGrid->position(xx,getHeight(xx,yy),yy);
+					mGrid->colour(1.0f,1.0f,1.0f);
+					mGrid->position(xx+TILESIZE,getHeight(xx+TILESIZE,yy),yy);
+					mGrid->colour(1.0f,1.0f,1.0f);
+				}
+				if(x == 0 || mMapData->getTerrainType(x -1 , y ) == Water || mMapData->getTerrainType(x -1, y ) == Cliff)
+				{
+					mGrid->position(xx,getHeight(xx,yy+TILESIZE),yy+TILESIZE);
+					mGrid->colour(1.0f,1.0f,1.0f);
+					mGrid->position(xx,getHeight(xx,yy),yy);
+					mGrid->colour(1.0f,1.0f,1.0f);
+				}
+				mGrid->position(xx+TILESIZE,getHeight(xx+TILESIZE,yy),yy);
+				mGrid->colour(1.0f,1.0f,1.0f);
+				mGrid->position(xx+TILESIZE,getHeight(xx+TILESIZE,yy+TILESIZE),yy+TILESIZE);
+				mGrid->colour(1.0f,1.0f,1.0f);
+				mGrid->position(xx,getHeight(xx,yy+TILESIZE),yy+TILESIZE);
+				mGrid->colour(1.0f,1.0f,1.0f);
+				mGrid->position(xx+TILESIZE,getHeight(xx+TILESIZE,yy+TILESIZE),yy+TILESIZE);
+				mGrid->colour(1.0f,1.0f,1.0f);
+			}
+		}
+		mGrid->end();
+		mGridNode->attachObject(mGrid);
+		mGridNode->setPosition(0,PLANEHEIGHT+ 0.5f,0);
 }
 
 std::string Terrain::randMesh(int x, int y)

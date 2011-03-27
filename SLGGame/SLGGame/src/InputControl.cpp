@@ -5,6 +5,7 @@
 
 InputControl::InputControl(void)
 {
+	mCameraContral = NULL;
 }
 
 InputControl::~InputControl(void)
@@ -25,7 +26,7 @@ bool InputControl::mouseMoved( const OIS::MouseEvent &arg )
 {
 	if (!mGUISystem->mouseMoved(arg))
 	{
-
+		mCameraContral->moveCamera((arg.state.X.abs - 640 )/100.0f,(arg.state.Y.abs - 360) /100.0f);
 	}
 	return true;
 }
@@ -34,7 +35,7 @@ bool InputControl::mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID 
 {
 	if (!mGUISystem->mousePressed(arg,id))
 	{
-		mCameraContral->cameraQuery(arg.state.X.abs,arg.state.Y.abs);
+		//mCameraContral->cameraQuery(arg.state.X.abs,arg.state.Y.abs);
 	}
 	return true;
 }
