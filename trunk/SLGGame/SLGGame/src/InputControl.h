@@ -1,9 +1,11 @@
 #pragma once
 
 #include <OIS.h>
+#include <vector>
 
 class CameraContral;
 class GUISystem;
+class InputListener;
 
 class InputControl:public OIS::KeyListener,public OIS::MouseListener
 {
@@ -11,7 +13,7 @@ public:
 	InputControl(void);
 	~InputControl(void);
 
-	void setCameraContral(CameraContral* camera);
+	//void setCameraContral(CameraContral* camera);
 	void setGUISystem(GUISystem* system);
 
 	/* KeyListener Callbacks */
@@ -23,7 +25,11 @@ public:
 	bool mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id);
 	bool mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id);
 
+	void pushListener(InputListener* listener);
+	void popListener();
+
 private:
-	CameraContral* mCameraContral;
+	//CameraContral* mCameraContral;
 	GUISystem* mGUISystem;
+	std::vector<InputListener*> mLisenerStack;
 };
