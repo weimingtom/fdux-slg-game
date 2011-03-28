@@ -8,6 +8,9 @@ CameraContral::CameraContral()
 {
 	mTerrain = Terrain::getSingletonPtr();
 	mCamera = Core::getSingleton().mCamera;
+	mTerrain->getWorldCoords(0,0,mMinX,mMinY);
+	mMinX -= TILESIZE / 2.0f;
+	mMinY -= TILESIZE / 2.0f;
 }
 
 CameraContral::~CameraContral()
@@ -17,8 +20,12 @@ CameraContral::~CameraContral()
 
 void CameraContral::moveCamera(float dx,float dy)
 {
-	mX +=  dx * 0.5 + dy * 0.5; //公式有误
-	mY +=  dx * 0.5 - dy * 0.5; //公式有误
+	mX +=  dx * 0.5 + dy * 0.5;
+	mY +=  -dx * 0.5 + dy * 0.5;
+	mX = (mX > -mMinX)? -mMinX: mX;
+	mX = (mX < mMinX)? mMinX: mX;
+	mY = (mY > -mMinY)? -mMinY: mY;
+	mY = (mY < mMinY)? mMinY: mY;
 	setCamera();
 }
 
@@ -35,6 +42,10 @@ void CameraContral::moveCameraTo(float x,float y)
 {
 	mX = x;
 	mY = y;
+	mX = (mX > -mMinX)? -mMinX: mX;
+	mX = (mX < mMinX)? mMinX: mX;
+	mY = (mY > -mMinY)? -mMinY: mY;
+	mY = (mY < mMinY)? mMinY: mY;
 	setCamera();
 }
 
@@ -56,10 +67,10 @@ void CameraContral::resetCamera()
 
 void CameraContral::setCamera()
 {
-	float height = mHeight + mTerrain->getHeight(mX,mY);
+	float height = mTerrain->getHeight(mX,mY);
 	float d = mHeight;//待定公式
-	mCamera->setPosition(mX + d, height, mY +d);
-	mCamera->lookAt(mX,mTerrain->getHeight(mX,mY), mY );
+	mCamera->setPosition(mX + d, height +mHeight, mY +d);
+	mCamera->lookAt(mX,height, mY );
 }
 
 void CameraContral::cameraQuery( int dx,int dy )

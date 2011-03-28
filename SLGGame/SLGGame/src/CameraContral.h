@@ -15,7 +15,6 @@ public:
 	void riseCamera(float dh);
 	void riseCameraTo(float h);
 	void resetCamera();
-	Ogre::Camera*  getCamera() {return mCamera;}
 	void cameraQuery(int dx,int dy);
 private:
 
@@ -27,6 +26,9 @@ private:
 	float mHeight;
 	float mX;
 	float mY;
+
+	float mMinX;
+	float mMinY;
 
 	Ogre::SceneNode *mTrancNode;
 };
