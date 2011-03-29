@@ -5,6 +5,7 @@
 
 class CameraContral;
 
+class SquadGrapManager;
 class BattleDeployState:public SubBattleState, public InputListener
 {
 public:
@@ -21,6 +22,7 @@ public:
 	virtual bool mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id);
 private:
 	CameraContral* mCameraContral;
+	SquadGrapManager* mSquadGrapManager;
 
 	int mMouseX;
 	int mMouseY;

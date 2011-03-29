@@ -227,9 +227,6 @@ void Core::Uninitialize()
 
 	if (mRoot)
 	{
-		Ogre::RenderWindow* window = mRoot->getAutoCreatedWindow();
-		if (window)
-			window->removeAllViewports();
 		delete mRoot;
 		mRoot = nullptr;
 	}

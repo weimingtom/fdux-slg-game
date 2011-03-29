@@ -29,12 +29,12 @@ void WeaponGrap::attachWeapon( Ogre::Entity* body,std::string boneName )
 	body->attachObjectToBone(boneName,mWeaponEntity);
 	mBoneName=boneName;
 
-	ParticleUniverse::ParticleSystem* pSys = Core::getSingletonPtr()->createPUSystem(mWeaponEntity->getName()+"_"+Ogre::StringConverter::toString(1),"PUMediaPack/Fireplace_01");
-	Ogre::TagPoint* p= body->attachObjectToBone(boneName,pSys);
-	pSys->setScale(Ogre::Vector3(0.01,0.01,0.01));
-	pSys->setScaleVelocity(0.01);
-	pSys->prepare();
-	pSys->start();
+	//ParticleUniverse::ParticleSystem* pSys = Core::getSingletonPtr()->createPUSystem(mWeaponEntity->getName()+"_"+Ogre::StringConverter::toString(1),"PUMediaPack/Fireplace_01");
+	//Ogre::TagPoint* p= body->attachObjectToBone(boneName,pSys);
+	//pSys->setScale(Ogre::Vector3(0.01,0.01,0.01));
+	//pSys->setScaleVelocity(0.01);
+	//pSys->prepare();
+	//pSys->start();
 
 }
 

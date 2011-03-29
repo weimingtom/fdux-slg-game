@@ -14,7 +14,6 @@ Terrain::~Terrain()
 
 bool Terrain::createTerrain(MapDataManager *data)
 {
-	Ogre::Entity::setDefaultQueryFlags(0);
 	mMapData = data;
 	int terrainszie = mMapData->getMapSize() + 9;
 
@@ -25,7 +24,7 @@ bool Terrain::createTerrain(MapDataManager *data)
 	mLight->setType(Ogre::Light::LightTypes::LT_DIRECTIONAL);
 	mLight->setPosition(-500.0f,500.0f, 500.0f);
 	mLight->setDirection(1.0f, -1.0f, -1.0f);
-	//mLight->setCastShadows(true);
+	//mLight->setCastShadows(false);
 	mLight->setDiffuseColour(Ogre::ColourValue(1.0f, 1.0f,1.0f));
 
 	//创建地面Mesh
