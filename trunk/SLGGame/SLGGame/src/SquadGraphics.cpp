@@ -65,7 +65,7 @@ mFormation(f)
 	setFormation(f,false);
 	setWeaponMode(SquadGraphics::MainWepon);
 
-	mNode->attachObject(BillboardManager::getSingletonPtr()->getBillboardSet());
+//	mNode->attachObject(BillboardManager::getSingletonPtr()->getBillboardSet());
 
 }
 

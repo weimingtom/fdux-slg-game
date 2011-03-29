@@ -9,8 +9,6 @@ class CameraContral;
 class MapDataManager;
 class CutSceneDirector;
 
-class SquadGrapManager;
-
 
 class BattleState :
 	public GameState

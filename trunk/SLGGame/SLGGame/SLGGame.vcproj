@@ -120,6 +120,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="..\..\ticpp;&quot;..\..\lua-5.1.4\include&quot;;..\..\bass24\c;..\..\SubSystem\SubSystem\src;..\..\MyGUI_3.2.0_RC1\MyGUIEngine\include;..\..\MyGUI_3.2.0_RC1\Platforms\Ogre\OgrePlatform\include;&quot;..\..\Particle Universe\Particle Universe Plugin\VCBuild\sdk\include\ParticleUniverse&quot;;&quot;$(OGRE_HOME)\boost_1_42&quot;;&quot;$(OGRE_HOME)\boost_1_44&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;&quot;$(OGRE_HOME)\include\OGRE&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -138,7 +139,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="ticpp.lib OgreMain.lib OIS.lib SubSystem.lib MyGUI.OgrePlatform.lib MyGUIEngine.lib bass.lib lua51.lib ParticleUniverse.lib"
 				LinkIncremental="1"
+				AdditionalLibraryDirectories="&quot;$(OGRE_HOME)\lib\release\&quot;;&quot;$(OGRE_HOME)\boost_1_42\lib&quot;;&quot;$(OGRE_HOME)\boost_1_44\lib&quot;;..\..\bass24\c;..\release;&quot;..\..\lua-5.1.4\bin&quot;;..\..\MyGUI3.2\lib\Release;..\..\ticpp\lib;&quot;..\..\Particle Universe\Particle Universe Plugin\VCBuild\lib\Release&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"
