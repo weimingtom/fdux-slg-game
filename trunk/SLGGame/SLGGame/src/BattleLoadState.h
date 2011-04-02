@@ -6,7 +6,8 @@
 class MapDataManager;
 
 const int LOADTERRAIN = 0;
-const int LOADGRID = 1;
+const int LOADOBJECT = 1;
+const int LOADGRID = 2;
 
 class BattleLoadState: public SubBattleState
 {

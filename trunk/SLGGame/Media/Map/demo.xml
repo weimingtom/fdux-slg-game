@@ -10,11 +10,11 @@
 <MapSize>20</MapSize>
 <MapData>lglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglgldldldldlglglghglglglglglglglglglglglglgldhdhdldlglghghghglglglglglghghglglgldldldhdhdldlglghghdhglglglglglghghgrglgldwdldldrdldlglghghghglglglglglglglglglgldwdldldldlglglglgrglglglglglglglglglglgldwdwdwdldlglglglglglglglglglglglglglglgldldldldldlglglglglglglglglglglghghgrglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglgrglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglg</MapData>
 <MapObject>
-    <knot_0 Type="none" GridX="5" GridY="3" Mesh="knot.mesh" />
+    <City Type="City" GridX="5" GridY="3" Mesh="city.mesh" />
 </MapObject>
 <MapEffect>
-    <mapeffect_0 Type="none" GridX="11" GridY="15" />
-    <mapeffect_1 Type="none" GridX="11" GridY="12" />
+    <mapeffect_0 Type="fireSystem" GridX="5" GridY="3" />
+    <mapeffect_1 Type="fireSystem" GridX="11" GridY="12" />
 </MapEffect>
 <MapSquad>
     <Team1>

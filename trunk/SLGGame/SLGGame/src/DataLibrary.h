@@ -3,6 +3,8 @@
 #define TIXML_USE_TICPP
 #include <ticpp.h>
 #include <queue>
+#include <vector>
+#include <string>
 #include <Ogre.h>
 
 #include "iisingleton.hpp"
@@ -49,6 +51,8 @@ public:
 	bool getData(std::string path,double& value);
 	bool getData(std::string path,std::string& value);
 	bool getData(std::string path,Ogre::Vector3& value);
+
+	std::vector<std::string> getChildList(std::string path);
 
 	DataType getDataType(std::string path);
 private:

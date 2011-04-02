@@ -5,6 +5,8 @@
 Terrain::Terrain()
 {
 	mCollisionTools = new MOC::CollisionTools(Core::getSingleton().mSceneMgr);
+	mObjId = 0;
+	mPUId = 0;
 }
 
 Terrain::~Terrain()
@@ -659,4 +661,61 @@ std::string Terrain::randMesh(int x, int y)
 	int num = abs(x + y)%2 +1;
 	sprintf_s(temp, 8, "_%d", num);
 	return temp;
+}
+
+int Terrain::createMapObj(int x, int y, std::string meshname)
+{
+	stTileEntityData* entitydata = new stTileEntityData;
+	entitydata->mTileEntity = Core::getSingleton().mSceneMgr->createEntity(meshname);
+	entitydata->mTileNode = mTerrainNode->createChildSceneNode();
+	entitydata->mTileNode->attachObject(entitydata->mTileEntity);
+	float xx,yy;
+	getWorldCoords(x,y,xx,yy);
+	entitydata->mTileNode->setPosition(xx ,getHeight(xx,yy),yy);
+	mObjId ++;
+	mMapObjMap.insert(std::map<int, stTileEntityData*>::value_type(mObjId,entitydata ));
+	return mObjId;
+}
+void Terrain::deleteMapObj(int index)
+{
+	std::map<int, stTileEntityData*>::iterator ite;
+	ite = mMapObjMap.find(index);
+	if(ite!=mMapObjMap.end())
+	{
+		ite->second->mTileNode->detachObject(ite->second->mTileEntity);
+		Core::getSingleton().mSceneMgr->destroyEntity(ite->second->mTileEntity);
+		Core::getSingleton().mSceneMgr->destroySceneNode(ite->second->mTileNode);
+		delete ite->second;
+		mMapObjMap.erase(ite);
+	}
+}
+
+int Terrain::createMapParticle(int x, int y,std::string particlename)
+{
+	stTilePUData* pudata = new stTilePUData;
+	pudata->mTileNode = mTerrainNode->createChildSceneNode();
+	pudata->mTileParticle = Core::getSingleton().createPUSystem(pudata->mTileNode->getName() + "_PU", particlename);
+	pudata->mTileNode->attachObject(pudata->mTileParticle);
+	pudata->mTileParticle->prepare();
+	pudata->mTileParticle->start();
+	float xx,yy;
+	getWorldCoords(x,y,xx,yy);
+	pudata->mTileNode->setPosition(xx ,getHeight(xx,yy),yy);
+	mPUId ++;
+	mMapPUMap.insert(std::map<int, stTilePUData*>::value_type(mPUId,pudata ));
+	return mPUId;
+}
+void Terrain::deleteMapParticle(int index)
+{
+	std::map<int, stTilePUData*>::iterator ite;
+	ite = mMapPUMap.find(index);
+	if(ite!=mMapPUMap.end())
+	{
+		ite->second->mTileParticle->stop();
+		ite->second->mTileNode->detachObject(ite->second->mTileParticle);
+		Core::getSingleton().destroyPUSystem(ite->second->mTileParticle);
+		Core::getSingleton().mSceneMgr->destroySceneNode(ite->second->mTileNode);
+		delete ite->second;
+		mMapPUMap.erase(ite);
+	}
 }

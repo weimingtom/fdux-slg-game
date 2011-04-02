@@ -14,7 +14,7 @@ MapDataManager::~MapDataManager()
 
 }
 
-bool MapDataManager::loadMap(std::string mapname)
+bool MapDataManager::loadMapFormFile(std::string mapname)
 {
 	Terrain* terrain = Terrain::getSingletonPtr();
 	DataLibrary* datalibrary = DataLibrary::getSingletonPtr();
@@ -94,10 +94,84 @@ bool MapDataManager::loadMap(std::string mapname)
 			}
 		}
 	}
-
+	element = doc->FirstChildElement("MapObject");
+	ticpp::Iterator<ticpp::Element> child;
+	for(child = child.begin(element); child != child.end(); child++)
+	{
+		std::string objname;
+		std::string datapath;
+		child->GetValue(&objname);
+		datapath = std::string("GameData/BattleData/MapObjectModleInfo/") + objname;
+		int objx,objy;
+		std::string meshname,objtype;
+		child->GetAttribute("GridX",&objx);
+		child->GetAttribute("GridY",&objy);
+		child->GetAttribute("Mesh",&meshname);
+		child->GetAttribute("Type",&objtype);
+		datalibrary->setData(datapath + "/GridX", objx);
+		datalibrary->setData(datapath + "/GridY", objy);
+		datalibrary->setData(datapath + "/Mesh", meshname);
+	}
+	element = doc->FirstChildElement("MapEffect");
+	for(child = child.begin(element); child != child.end(); child++)
+	{
+		std::string particlename;
+		std::string datapath;
+		child->GetValue(&particlename);
+		datapath = std::string("GameData/BattleData/MapParticleInfo/") + particlename;
+		int particlex,particley;
+		std::string scriptname;
+		child->GetAttribute("GridX",&particlex);
+		child->GetAttribute("GridY",&particley);
+		child->GetAttribute("Type",&scriptname);
+		datalibrary->setData(datapath + "/GridX", particlex);
+		datalibrary->setData(datapath + "/GridY", particley);
+		datalibrary->setData(datapath + "/Script", scriptname);
+	}
+	
 	terrain->createTerrain(this);
 	
 	return true;
+}
+
+
+void MapDataManager::loadMapObj()
+{
+	DataLibrary* datalibrary = DataLibrary::getSingletonPtr();
+	Terrain* terrain = Terrain::getSingletonPtr();
+	std::string datapath("GameData/BattleData/MapObjectModleInfo");
+	std::vector<std::string> childlist;
+	childlist = datalibrary->getChildList(datapath);
+	if(childlist.size()>0)
+	{
+		for(int n = 0; n < childlist.size(); n++)
+		{
+			std::string meshname;
+			int x,y;
+			datalibrary->getData(datapath + std::string("/") + childlist[n] + std::string("/Mesh"),meshname);
+			datalibrary->getData(datapath + std::string("/") +childlist[n] + std::string("/GridX"),x);
+			datalibrary->getData(datapath + std::string("/") +childlist[n] + std::string("/GridY"),y);
+			int index;
+			index = terrain->createMapObj(x,y,meshname);
+			datalibrary->setData(datapath + childlist[n] + std::string("/ObjIndex"),index);
+		}
+	}
+	datapath = "GameData/BattleData/MapParticleInfo";
+	childlist = datalibrary->getChildList(datapath);
+	if(childlist.size()>0)
+	{
+		for(int n = 0; n < childlist.size(); n++)
+		{
+			std::string particlename;
+			int x,y;
+			datalibrary->getData(datapath + std::string("/") + childlist[n] + std::string("/Script"),particlename);
+			datalibrary->getData(datapath + std::string("/") +childlist[n] + std::string("/GridX"),x);
+			datalibrary->getData(datapath + std::string("/") +childlist[n] + std::string("/GridY"),y);
+			int index;
+			index = terrain->createMapParticle(x,y,particlename);
+			datalibrary->setData(datapath + childlist[n] + std::string("/ParticleIndex"),index);
+		}
+	}
 }
 
 GroundType MapDataManager::getGroundType(int x, int y)
