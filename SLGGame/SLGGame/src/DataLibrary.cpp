@@ -360,6 +360,23 @@ bool DataLibrary::getData( std::string path,Ogre::Vector3& value )
 	}
 }
 
+std::vector<std::string> DataLibrary::getChildList(std::string path)
+{
+	std::vector<std::string> chlidlist;
+	ticpp::Element* node=getNode(path,false);
+	if(node)
+	{
+		ticpp::Iterator<ticpp::Element> child;
+		for(child = child.begin(node); child != child.end(); child++)
+		{
+			std::string childname;
+			child->GetValue(&childname);
+			chlidlist.push_back(childname);
+		}
+	}
+	return chlidlist;
+}
+
 ticpp::Element* DataLibrary::findNode( ticpp::Element* parent,std::queue<std::string>* path,bool createpath)
 {
 	std::string nodeName=path->front();

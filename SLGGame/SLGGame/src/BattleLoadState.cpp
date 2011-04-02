@@ -12,7 +12,7 @@ BattleLoadState::BattleLoadState(BattleState* mainSate, std::string arg)
 {
 	mState = LOADTERRAIN;
 	mMapDataManager = new MapDataManager;
-	mMapDataManager->loadMap(arg);
+	mMapDataManager->loadMapFormFile(arg);
 }
 
 BattleLoadState::~BattleLoadState()
@@ -25,6 +25,10 @@ void BattleLoadState::update(unsigned int deltaTime)
 	switch(mState)
 	{
 	case LOADTERRAIN:
+		mState = LOADOBJECT;
+		break;
+	case LOADOBJECT:
+		mMapDataManager->loadMapObj();
 		mState = LOADGRID;
 		break;
 	case LOADGRID:

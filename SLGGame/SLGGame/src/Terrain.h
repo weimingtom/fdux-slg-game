@@ -5,6 +5,7 @@
 #include "CollisionTools.h"
 
 #include <vector>
+#include <map>
 
 class MapDataManager;
 
@@ -32,12 +33,6 @@ static const float TERRAINTEXTILESIZE = 64.0f;
 
 static const Ogre::uint32 TERRAIN_MASK = 1 << 0;
 
-struct stTileEntityData
-{
-	Ogre::SceneNode* mTileNode;
-	Ogre::Entity* mTileEntity;
-};
-
 using namespace izayoi;
 
 class Terrain:public IISingleton<Terrain>
@@ -53,6 +48,12 @@ public:
 
 	void getWorldCoords(int x, int y, float &wx, float &wy);
 	float getHeight(float x, float y);
+	
+	int createMapObj(int x, int y, std::string meshname);
+	void deleteMapObj(int index);
+
+	int createMapParticle(int x, int y,std::string particlename);
+	void deleteMapParticle(int index);
 
 private:
 
@@ -70,7 +71,22 @@ private:
 
 	Ogre::Light* mLight;
 
+	struct stTileEntityData
+	{
+		Ogre::SceneNode* mTileNode;
+		Ogre::Entity* mTileEntity;
+	};
 	std::vector<stTileEntityData *> mTileEntityVector;
+	std::map<int, stTileEntityData*> mMapObjMap;
+	int mObjId;
+
+	struct stTilePUData
+	{
+		Ogre::SceneNode* mTileNode;
+		ParticleUniverse::ParticleSystem* mTileParticle;
+	};
+	std::map<int, stTilePUData*> mMapPUMap;
+	int mPUId;
 
 	MapDataManager *mMapData;
 

@@ -1,0 +1,75 @@
+system fireSystem
+{
+    category                                    Fire
+    technique 
+    {
+        material                                ParticleUniverse/Fire
+        default_particle_width                  2
+        default_particle_height                 2
+        renderer                                Billboard
+        {
+            render_queue_group                  80
+        }
+        emitter                                 Point 
+        {
+            emission_rate                       20
+            angle                               30
+            time_to_live                        dyn_random
+            {
+                min                             3
+                max                             6
+            }
+            velocity                            dyn_random
+            {
+                min                             2
+                max                             2.5
+            }
+        }
+        affector                                Gravity 
+        {
+            position                            0 7 0
+            gravity                             35
+        }
+        affector                                Scale 
+        {
+            xyz_scale                           -0.2
+        }
+        affector                                Colour 
+        {
+            time_colour                         0    1 1 1 1
+            time_colour                         1    0 0 0 1
+        }
+    }
+    technique 
+    {
+        material                                ParticleUniverse/Smoke
+        default_particle_width                  1.6
+        default_particle_height                 1.6
+        renderer                                Billboard
+        {
+        }
+        emitter                                 Point 
+        {
+            emission_rate                       10
+            time_to_live                        dyn_random
+            {
+                min                             5
+                max                             7
+            }
+            velocity                            dyn_random
+            {
+                min                             2
+                max                             2.5
+            }
+        }
+        affector                                Scale 
+        {
+            xyz_scale                           0.6
+        }
+        affector                                Colour 
+        {
+            time_colour                         0    1 0.9 0 1
+            time_colour                         1    1 1 1 0
+        }
+    }
+}
