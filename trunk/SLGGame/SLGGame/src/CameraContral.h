@@ -15,7 +15,6 @@ public:
 	void riseCamera(float dh);
 	void riseCameraTo(float h);
 	void resetCamera();
-	void cameraQuery(int dx,int dy);
 private:
 
 	void setCamera();

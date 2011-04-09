@@ -13,7 +13,6 @@ public:
 	InputControl(void);
 	~InputControl(void);
 
-	//void setCameraContral(CameraContral* camera);
 	void setGUISystem(GUISystem* system);
 
 	/* KeyListener Callbacks */
@@ -29,7 +28,6 @@ public:
 	void popListener();
 
 private:
-	//CameraContral* mCameraContral;
 	GUISystem* mGUISystem;
 	std::vector<InputListener*> mLisenerStack;
 };
