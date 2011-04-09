@@ -7,15 +7,22 @@
 class GUIScene
 {
 public:
-	GUIScene(int Width,int Height,std::string layoutFile):mLayoutName(layoutFile),mWidth(Width),mHeight(Height)
+	GUIScene(std::string layoutFile):mContainerWidget(NULL),mLayoutName(layoutFile)
 	{
 		mWidgetList=MyGUI::LayoutManager::getInstance().loadLayout(mLayoutName);
 	}
 
+	GUIScene(MyGUI::Widget* containerWidget):mContainerWidget(containerWidget)
+	{
+	}
+
 	virtual ~GUIScene(void)
 	{
-		MyGUI::LayoutManager::getInstance().unloadLayout(mWidgetList);
-		mWidgetList.clear();
+		if (mContainerWidget==NULL)
+		{
+			MyGUI::LayoutManager::getInstance().unloadLayout(mWidgetList);
+			mWidgetList.clear();
+		}
 	}
 
 	virtual void showScene(std::string arg)=0;//显示场景
@@ -43,33 +50,47 @@ protected:
 	void assignWidget(T * & _widget, const std::string& _name, bool _throw = true)
 	{
 		_widget = nullptr;
-		for (MyGUI::VectorWidgetPtr::iterator iter = mWidgetList.begin(); iter != mWidgetList.end(); ++iter)
-		{
-			MyGUI::Widget* find = (*iter)->findWidget( _name);
-			if (nullptr != find)
-			{
-				T* cast = find->castType<T>(false);
-				if (nullptr != cast)
-				{
-					_widget = cast;
-				}
-				else if (_throw)
-				{
-					MYGUI_EXCEPT("Error cast : dest type = '" << T::getClassTypeName()
-						<< "' source name = '" << find->getName()
-						<< "' source type = '" << find->getTypeName() << "' in layout '" << mLayoutName << "'");
-				}
-				return;
+		MyGUI::Widget* find=NULL;
 
+		if (mContainerWidget==NULL)
+		{
+			for (MyGUI::VectorWidgetPtr::iterator iter = mWidgetList.begin(); iter != mWidgetList.end(); ++iter)
+			{
+				find= (*iter)->findWidget( _name);
+				if (nullptr != find)
+				{
+					break;
+				}
 			}
 		}
-		MYGUI_ASSERT( ! _throw, "widget name '" << _name << "' in layout '" << mLayoutName << "' not found.");
-	}
-	
-	MyGUI::VectorWidgetPtr mWidgetList;
-	std::string mLayoutName;
+		else
+		{
+			find = mContainerWidget->findWidget( _name);
+		}
 
-	int mWidth,mHeight;
+		if (find!=NULL)
+		{
+			T* cast = find->castType<T>(false);
+			if (nullptr != cast)
+			{
+				_widget = cast;
+			}
+			else if (_throw)
+			{
+				MYGUI_EXCEPT("Error cast : dest type = '" << T::getClassTypeName()
+					<< "' source name = '" << find->getName()
+					<< "' source type = '" << find->getTypeName() << "' in layout '" << mLayoutName << "'");
+			}
+		}
+		else
+		{
+			MYGUI_ASSERT( ! _throw, "widget name '" << _name << "' in layout '" << mLayoutName << "' not found.");
+		}
+	}
+
+	MyGUI::VectorWidgetPtr mWidgetList;
+	MyGUI::Widget* mContainerWidget;
+	std::string mLayoutName;
 
 	MyGUI::Timer mTimer;//定时器
 	float mTickTime;//单次触发时间

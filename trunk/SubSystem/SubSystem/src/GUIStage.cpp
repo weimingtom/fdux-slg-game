@@ -4,7 +4,7 @@
 
 #include <ogre.h>
 
-GUIStage::GUIStage(int width,int height):GUIScene(width,height,"Stage.layout"),mCheckMouseDown(false),mIsMouseDown(false),mTextX(0),mTextY(0)
+GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout"),mCheckMouseDown(false),mIsMouseDown(false),mTextX(0),mTextY(0)
 {
 	assignWidget(mBackGroundGroup, "BackGroundGroup");
 	assignWidget(mBackGround, "BackGround");
