@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(OGRE_HOME)\boost_1_44&quot;;&quot;$(OGRE_HOME)\include\ogre&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;..\..\MyGUI_3.2.0_RC1\MyGUIEngine\include\;..\..\MyGUI_3.2.0_RC1\Platforms\Ogre\OgrePlatform\include;..\..\bass24\c;&quot;..\..\lua-5.1.4\include&quot;"
+				AdditionalIncludeDirectories="&quot;$(OGRE_HOME)\boost_1_42&quot;;&quot;$(OGRE_HOME)\boost_1_44&quot;;&quot;$(OGRE_HOME)\include\ogre&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;..\..\MyGUI_3.2.0_RC1\MyGUIEngine\include\;..\..\MyGUI_3.2.0_RC1\Platforms\Ogre\OgrePlatform\include;..\..\bass24\c;&quot;..\..\lua-5.1.4\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -106,6 +106,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="&quot;$(OGRE_HOME)\boost_1_42&quot;;&quot;$(OGRE_HOME)\boost_1_44&quot;;&quot;$(OGRE_HOME)\include\ogre&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;..\..\MyGUI_3.2.0_RC1\MyGUIEngine\include\;..\..\MyGUI_3.2.0_RC1\Platforms\Ogre\OgrePlatform\include;..\..\bass24\c;&quot;..\..\lua-5.1.4\include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
