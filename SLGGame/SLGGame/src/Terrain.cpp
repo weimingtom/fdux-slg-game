@@ -663,6 +663,59 @@ std::string Terrain::randMesh(int x, int y)
 	return temp;
 }
 
+bool Terrain::coordinateToGrid( float x,float y,int& GX,int& GY )
+{
+	Ogre::Vector2 mRenderWindowSize(Core::getSingletonPtr()->mWindow->getWidth(),Core::getSingletonPtr()->mWindow->getHeight());
+
+	// 检查边界条件
+	if  (x < 0 || x > mRenderWindowSize.x || y < 0 || y > mRenderWindowSize.y)
+		return false;
+
+	//执行射线运算,获取与网格的交点
+	Ogre::Ray ray = Core::getSingletonPtr()->mCamera->getCameraToViewportRay(x / mRenderWindowSize.x, y / mRenderWindowSize.y);
+	std::pair<bool, float> result = ray.intersects(mGrid->getBoundingBox());
+	if (result.first)
+	{
+		Ogre::Vector3 point = ray.getPoint(result.second);
+
+		//根据网格的大小,计算在哪一格
+		calculateGrid(point.x,point.z,GX, GY);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+void Terrain::calculateGrid( float x,float y,int& GX, int& GY )
+{
+	// 将坐标转换成正值
+	x=x+(mMapData->getMapSize()+1) * TILESIZE / 2;
+	y=y+(mMapData->getMapSize()+1) * TILESIZE / 2;
+
+	GX=x/TILESIZE;
+	GY=y/TILESIZE;
+
+	if(GX>=mMapData->getMapSize())
+	{
+		GX=mMapData->getMapSize()-1;
+	}
+	else if (GX<0)
+	{
+		GX=0;
+	}
+
+	if(GY>=mMapData->getMapSize())
+	{
+		GY=mMapData->getMapSize()-1;
+	}
+	else if (GY<0)
+	{
+		GY=0;
+	}
+}
+
 int Terrain::createMapObj(int x, int y, std::string meshname)
 {
 	stTileEntityData* entitydata = new stTileEntityData;

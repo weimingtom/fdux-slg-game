@@ -46,7 +46,16 @@ public:
 
 	void createGrid();
 
+	//提供一个对外的接口,用于查询当前鼠标在哪一格
+	bool coordinateToGrid(float x,float y,int& GX,int& GY);
+
+	//计算格子的实际坐标
 	void getWorldCoords(int x, int y, float &wx, float &wy);
+	
+	//计算坐标对应的格子
+	void calculateGrid(float x,float y,int& GX, int& GY);
+	
+	//获取格子的高度
 	float getHeight(float x, float y);
 	
 	int createMapObj(int x, int y, std::string meshname);

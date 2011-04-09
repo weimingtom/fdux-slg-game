@@ -3,10 +3,13 @@
 #include "GUISystem.h"
 #include "CameraContral.h"
 #include "InputListener.h"
+#include "Terrain.h"
+
+#include <iostream>
 
 InputControl::InputControl(void)
 {
-	//mCameraContral = NULL;
+
 }
 
 InputControl::~InputControl(void)
@@ -27,11 +30,7 @@ bool InputControl::mouseMoved( const OIS::MouseEvent &arg )
 {
 	if (!mGUISystem->mouseMoved(arg))
 	{
-		/*
-		if(mCameraContral)
-			mCameraContral->moveCamera((arg.state.X.abs - 640 )/100.0f,(arg.state.Y.abs - 360) /100.0f);
-		*/
-		if(mLisenerStack.size()  > 0)
+		if(mLisenerStack.size() > 0)
 		{
 			mLisenerStack.back()->mouseMoved(arg);
 		}
@@ -43,7 +42,10 @@ bool InputControl::mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID 
 {
 	if (!mGUISystem->mousePressed(arg,id))
 	{
-		//mCameraContral->cameraQuery(arg.state.X.abs,arg.state.Y.abs);
+		if(mLisenerStack.size() > 0)
+		{
+			mLisenerStack.back()->mousePressed(arg,id);
+		}
 	}
 	return true;
 }
@@ -56,13 +58,6 @@ bool InputControl::mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID
 	}
 	return true;
 }
-
-/*
-void InputControl::setCameraContral( CameraContral* camera )
-{
-	mCameraContral=camera;
-}
-*/
 
 void InputControl::setGUISystem( GUISystem* system )
 {

@@ -73,12 +73,3 @@ void CameraContral::setCamera()
 	mCamera->lookAt(mX,height, mY );
 }
 
-void CameraContral::cameraQuery( int dx,int dy )
-{
-	Ogre::Ray mouseRay = mCamera->getCameraToViewportRay(float(dx)/float(Core::getSingletonPtr()->mWindow->getWidth()),float(dy)/float(Core::getSingletonPtr()->mWindow->getHeight()));
-	Ogre::RaySceneQuery* rsq=Core::getSingletonPtr()->mSceneMgr->createRayQuery(mouseRay);
-	Ogre::RaySceneQueryResult r=rsq->execute();
-	std::cout<<r.size()<<std::endl;
-
-	std::cout<<mTerrain->getHeight(96,-144)<<std::endl;
-}

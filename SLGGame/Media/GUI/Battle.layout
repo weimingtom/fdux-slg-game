@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout" version="3.2.0">
+    <Widget type="Window" skin="WindowCSX" position_real="0 0 0.215959 0.202514" layer="Main">
+        <Property key="Caption" value="Game State"/>
+        <Widget type="TextBox" skin="TextBox" position="5 15 75 20">
+            <Property key="Caption" value="Game Turn:"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="5 45 100 20">
+            <Property key="Caption" value="Current Player:"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="115 45 165 20" name="PlayerLabel"/>
+        <Widget type="TextBox" skin="TextBox" position="90 15 190 20" name="TurnLabel"/>
+        <Widget type="Button" skin="Button" position="5 75 275 30" name="NextTurnButton">
+            <Property key="Caption" value="Next Turn"/>
+        </Widget>
+    </Widget>
+    <Widget type="Window" skin="WindowCSX" position_real="0 0.592179 0.216691 0.361732">
+        <Property key="Caption" value="Squad Info"/>
+        <Widget type="ImageBox" skin="ImageBox" position="5 5 115 145"/>
+        <Widget type="TextBox" skin="TextBox" position="130 10 45 21">
+            <Property key="Caption" value="Name:"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="180 10 105 20" name="SquadNameLabel"/>
+        <Widget type="TextBox" skin="TextBox" position="130 40 45 20">
+            <Property key="Caption" value="Type:"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="180 40 105 20" name="SquadTypeLabel"/>
+        <Widget type="TextBox" skin="TextBox" position="130 70 65 20">
+            <Property key="Caption" value="Describe:"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="130 95 155 55" name="SquadDescribeLabel"/>
+    </Widget>
+    <Widget type="Window" skin="WindowCSX" position_real="0.617862 0 0.131772 0.263966">
+        <Property key="Caption" value="Terrain"/>
+        <Widget type="TextBox" skin="TextBox" position="5 5 45 20">
+            <Property key="Caption" value="Name:"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="55 5 110 20" name="TerrainNameLabel"/>
+        <Widget type="TextBox" skin="TextBox" position="5 35 65 20">
+            <Property key="Caption" value="Describe:"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="5 60 160 20" name="TerrainDescribeLabel"/>
+        <Widget type="TextBox" skin="TextBox" position="5 85 60 20">
+            <Property key="Caption" value="Defence:"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="70 85 60 20" name="TerrainDefenceLabel"/>
+        <Widget type="TextBox" skin="TextBox" position="5 110 60 15">
+            <Property key="Caption" value="CavAp:"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="70 110 60 15" name="TerrainCavApLabel"/>
+        <Widget type="TextBox" skin="TextBox" position="5 130 60 15">
+            <Property key="Caption" value="InfAp:"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="70 130 60 15" name="TerrainInfApLabel"/>
+    </Widget>
+    <Widget type="Window" skin="WindowCS" position="295 0 115 155">
+        <Property key="Caption" value="Command"/>
+        <Widget type="Button" skin="Button" position="0 0 105 30" name="CmdMoveButton">
+            <Property key="Caption" value="Move"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="0 30 105 30" name="CmdAttackButton">
+            <Property key="Caption" value="Attack"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="0 60 105 30" name="CmdFormationButton">
+            <Property key="Caption" value="Formation"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="0 90 105 30" name="CmdSkillButton">
+            <Property key="Caption" value="Skill"/>
+        </Widget>
+    </Widget>
+    <Widget type="Window" skin="WindowCS" position="0 145 220 140">
+        <Property key="Caption" value="Mission"/>
+        <Widget type="ListBox" skin="ListBox" position="0 0 210 105" name="MissionList"/>
+    </Widget>
+</MyGUI>

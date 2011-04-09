@@ -12,6 +12,10 @@
 
 #include "DataLibrary.h"
 
+#include "Terrain.h"
+
+#include "GUIPUDebug.h"
+
 BattleDeployState::BattleDeployState(BattleState* mainState)
 :SubBattleState(mainState)
 {
@@ -26,13 +30,14 @@ BattleDeployState::BattleDeployState(BattleState* mainState)
 	DataLibrary::getSingletonPtr()->loadXmlData(DataLibrary::GameData,"../media/mesh/sinbad.xml",true);
 	mSquadGrapManager=new SquadGrapManager(Core::getSingletonPtr()->mSceneMgr);
 	SquadGraphics* s;//=mSquadGrapManager->createSquad("SinbadSquad",1,10,10,SquadGrapManager::North,SquadGrapManager::Loose);
+	GUIPUDebug* puDebug=(GUIPUDebug*)GUISystem::getSingletonPtr()->createScene(PUDebugScene);
 
 	//int k=1;
 	//for (int i=8;i<14;i++)
 	//{
 	//	for (int j=8;j<13;j++)
 	//	{
-	//		s=mSquadGrapManager->createSquad("NinjaSquad",k,i,j,SquadGrapManager::North,SquadGrapManager::Loose);
+	//		s=mSquadGrapManager->createSquad("SinbadSquad",k,i,j,SquadGrapManager::North,SquadGrapManager::Loose);
 	//		k++;
 	//	}
 	//}
@@ -40,7 +45,6 @@ BattleDeployState::BattleDeployState(BattleState* mainState)
 }
 BattleDeployState::~BattleDeployState()
 {
-	//Core::getSingleton().mInputControl->setCameraContral(NULL);
 	Core::getSingleton().mInputControl->popListener();
 	delete mSquadGrapManager;
 }
@@ -78,7 +82,12 @@ bool BattleDeployState::mouseMoved(const OIS::MouseEvent &arg)
 }
 bool BattleDeployState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
 {
-	return false;
+	int GX,GY;
+	if(Terrain::getSingletonPtr()->coordinateToGrid(arg.state.X.abs,arg.state.Y.abs,GX,GY))
+	{
+		std::cout<<GX<<","<<GY<<std::endl;
+	}
+	return true;
 }
 bool BattleDeployState::mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
 {

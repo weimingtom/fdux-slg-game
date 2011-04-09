@@ -8,8 +8,8 @@ class GUIPUDebug:
 	public GUIScene
 {
 public:
-	GUIPUDebug(int width,int height);
-	~GUIPUDebug(void);
+	GUIPUDebug();
+	virtual ~GUIPUDebug(void);
 
 	void showScene(std::string arg);
 	void hideScene();
@@ -64,6 +64,6 @@ public:
 
 	GUIScene* CreateScene(int Width,int Height)
 	{
-		return new GUIPUDebug(Width,Height);
+		return new GUIPUDebug();
 	}
 };
