@@ -7,7 +7,7 @@
 class WeaponGrap
 {
 public:
-	WeaponGrap(std::string name);
+	WeaponGrap(std::string mesh, std::string mat);
 	~WeaponGrap(void);
 
 	void attachWeapon(Ogre::Entity* body,std::string boneName);

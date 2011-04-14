@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Data>
+	<StaticData>
+		<StringTable>
+			<Map1 type="String" value = "测试地图"/>
+			<NewGame type="String" value = "开始游戏"/>
+			<LoadGame type="String" value = "载入游戏"/>
+			<Opition type="String" value = "设置游戏"/>
+			<ExitGame type="String" value = "退出游戏"/>
+			<TestLeaderName type="String" value="测试名称"/>
+			<PWeaponTypeOneHandSword type="String" value="单手剑"/>
+			<PWeaponTypeOneHandHeavy type="String" value="单手重武器"/>
+			<PWeaponTypeOneHandSpear type="String" value="短矛"/>
+			<PWeaponTypeTwoHandSword type="String" value="双手剑"/>
+			<PWeaponTypeTwoHandHeavy type="String" value="双手重武器"/>
+			<PWeaponTypeTwoHandSpear type="String" value="长枪"/>
+			<ArmorTypeHeavy type="String" value="重甲"/>
+			<ArmorTypeLight type="String" value="轻甲"/>
+		</StringTable>
+	</StaticData>
+</Data>

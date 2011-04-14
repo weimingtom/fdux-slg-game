@@ -16,9 +16,9 @@ SquadGrapManager::~SquadGrapManager(void)
 	mUnitList.clear();
 }
 
-SquadGraphics* SquadGrapManager::createSquad( std::string unitName,unsigned int id,int x,int y,Direction d,Formation f )
+SquadGraphics* SquadGrapManager::createSquad( std::string unitName,std::string datapath,unsigned int id,int x,int y,Direction d,Formation f )
 {
-	SquadGraphics* squadGrap=new SquadGraphics(unitName,Ogre::Vector2(x,y),(SquadGraphics::Direction)d,(SquadGraphics::Formation)f,id);
+	SquadGraphics* squadGrap=new SquadGraphics(unitName,datapath,Ogre::Vector2(x,y),(SquadGraphics::Direction)d,(SquadGraphics::Formation)f,id);
 
 	mUnitList.push_back(squadGrap);
 

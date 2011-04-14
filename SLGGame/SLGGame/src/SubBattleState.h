@@ -7,7 +7,7 @@ class SubBattleState
 public:
 	SubBattleState(BattleState* mainState);
 
-	~SubBattleState();
+	virtual ~SubBattleState();
 
 	virtual void update(unsigned int deltaTime) = 0;
 

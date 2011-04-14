@@ -27,9 +27,9 @@ BattleDeployState::BattleDeployState(BattleState* mainState)
 	mMouseY = 320;
 	//Core::getSingleton().mInputControl->setCameraContral(mCameraContral);
 
-	DataLibrary::getSingletonPtr()->loadXmlData(DataLibrary::GameData,"../media/mesh/sinbad.xml",true);
-	mSquadGrapManager=new SquadGrapManager(Core::getSingletonPtr()->mSceneMgr);
-	SquadGraphics* s;//=mSquadGrapManager->createSquad("SinbadSquad",1,10,10,SquadGrapManager::North,SquadGrapManager::Loose);
+	//DataLibrary::getSingletonPtr()->loadXmlData(DataLibrary::GameData,"../media/mesh/sinbad.xml",true);
+	//mSquadGrapManager=new SquadGrapManager(Core::getSingletonPtr()->mSceneMgr);
+	//SquadGraphics* s;//=mSquadGrapManager->createSquad("SinbadSquad",1,10,10,SquadGrapManager::North,SquadGrapManager::Loose);
 	GUIPUDebug* puDebug=(GUIPUDebug*)GUISystem::getSingletonPtr()->createScene(PUDebugScene);
 
 	//int k=1;
@@ -51,7 +51,7 @@ BattleDeployState::~BattleDeployState()
 
 void BattleDeployState::update(unsigned int deltaTime)
 {
-	mSquadGrapManager->update(deltaTime);
+	//mSquadGrapManager->update(deltaTime);
 
 	float dx = 0.0f,dy = 0.0f;
 	if(mMouseX < 20)

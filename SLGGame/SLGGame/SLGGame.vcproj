@@ -186,6 +186,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\Conversion.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\conversion.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\Core.cpp"
 				>
 			</File>
@@ -207,6 +215,18 @@
 			</File>
 			<File
 				RelativePath=".\src\SLGGame.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\squaddefine.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\StringTable.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\StringTable.h"
 				>
 			</File>
 			<File
@@ -277,11 +297,23 @@
 				Name="Avg"
 				>
 				<File
+					RelativePath=".\src\AVGSquadManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\AVGSquadManager.h"
+					>
+				</File>
+				<File
 					RelativePath=".\src\AVGState.cpp"
 					>
 				</File>
 				<File
 					RelativePath=".\src\AVGState.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\LuaAVG.h"
 					>
 				</File>
 				<File
@@ -368,6 +400,14 @@
 			<Filter
 				Name="Control"
 				>
+				<File
+					RelativePath=".\src\BattleSquadManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\BattleSquadManager.h"
+					>
+				</File>
 				<File
 					RelativePath=".\src\GamePlayer.h"
 					>
@@ -557,6 +597,14 @@
 					</File>
 					<File
 						RelativePath=".\src\GUIBattle.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\LoadScene.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\LoadScene.h"
 						>
 					</File>
 					<Filter

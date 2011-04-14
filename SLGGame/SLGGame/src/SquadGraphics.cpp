@@ -20,7 +20,8 @@ const Ogre::Vector3 LooseVector[5]={Ogre::Vector3(0,0,0),Ogre::Vector3(-3,0,3),O
 #define FORMATION_KEYFRAME_TIME 1
 #define RELIEF_MOVE_TIME 1
 
-SquadGraphics::SquadGraphics(std::string squadName,Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index):
+SquadGraphics::SquadGraphics(std::string squadName,std::string datapath,Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index):
+mSquadId(squadName),
 mID(index),
 mPUSystem(NULL),
 mPUSystemEnd(false),
@@ -35,25 +36,65 @@ mFormation(f)
 	mNode=mSceneMgr->getRootSceneNode()->createChildSceneNode(squadName+Ogre::StringConverter::toString(index));
 
 	//获取数据
-	std::string mainWeaponName;
-	std::string secWeaponName;
-	std::string shieldName;
+	//std::string mainWeaponName;
+	//std::string secWeaponName;
+	//std::string shieldName;
 
-	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/CommanderUnit"),mCommanderUnitName);
-	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/CommanderMainWeapon"),mainWeaponName);
-	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/CommanderSecWeapon"),secWeaponName);
-	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/CommanderShield"),shieldName);
+	//DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/CommanderUnit"),mCommanderUnitName);
+	//DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/CommanderMainWeapon"),mainWeaponName);
+	//DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/CommanderSecWeapon"),secWeaponName);
+	//DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/CommanderShield"),shieldName);
+
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	datalib->getData(datapath + std::string("/LeaderMesh"),mLeaderMesh);
+	datalib->getData(datapath + std::string("/LeaderMat"),mLeaderMat);
+	datalib->getData(datapath + std::string("/UnitMesh"),mSoilderMesh);
+	datalib->getData(datapath + std::string("/UnitMat"),mSoilderMat);
+	std::string tempid;
+	datalib->getData(datapath + std::string("/PweaponId"),tempid);
+	if(tempid != "none")
+	{
+		datalib->getData( std::string("GameData/StaticData/PweaponData/") + tempid + std::string("/Mesh"), mPWeaponMesh);
+		datalib->getData( std::string("GameData/StaticData/PweaponData/") + tempid + std::string("/Mat"), mPWeaponMat);
+	}
+	else
+	{
+		mPWeaponMesh = "none";
+		mPWeaponMat = "none";
+	}
+	datalib->getData(datapath + std::string("/SweaponId"),tempid);
+	if(tempid != "none")
+	{
+		datalib->getData( std::string("/GameData/StaticData/SweaponData/") + tempid + std::string("/Mesh"), mSWeaponMesh);
+		datalib->getData( std::string("/GameData/StaticData/SweaponData/") + tempid + std::string("/Mat"), mSWeaponMat);
+	}
+	else
+	{
+		mSWeaponMesh = "none";
+		mSWeaponMat = "none";
+	}
+	datalib->getData(datapath + std::string("/Shield"),tempid);
+	if(tempid != "none")
+	{
+		datalib->getData( std::string("/GameData/StaticData/ShieldData/") + tempid + std::string("/Mesh"), mShieldMesh);
+		datalib->getData( std::string("/GameData/StaticData/ShieldData/") + tempid + std::string("/Mat"), mShieldMat);
+	}
+	else
+	{
+		mShieldMesh = "none";
+		mShieldMat = "none";
+	}
 
 	//组建单位队伍与组建武器
-	mCommanderUnit=new UnitGrap(mCommanderUnitName,mNode->createChildSceneNode(mNode->getName()+"_Commander"));
-	mCommanderUnit->createWeapon(mainWeaponName,UnitGrap::MainWepon);
-	mCommanderUnit->createWeapon(secWeaponName,UnitGrap::SecWepon);
-	mCommanderUnit->createWeapon(shieldName,UnitGrap::Shield);
+	mCommanderUnit=new UnitGrap(mLeaderMesh,mLeaderMat,"none",mNode->createChildSceneNode(mNode->getName()+"_Commander"));
+	mCommanderUnit->createWeapon(mPWeaponMesh,mPWeaponMat,UnitGrap::MainWepon);
+	mCommanderUnit->createWeapon(mSWeaponMesh,mSWeaponMesh,UnitGrap::SecWepon);
+	mCommanderUnit->createWeapon(mShieldMesh,mShieldMat,UnitGrap::Shield);
 
-	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/SoldierUnit"),mSoldierUnitName);
-	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/SoldierMainWeapon"),mMainWeaponName);
-	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/SoldierSecWeapon"),mSecWeaponName);
-	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/SoldierShield"),mShieldName);
+	//DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/SoldierUnit"),mSoldierUnitName);
+	//DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/SoldierMainWeapon"),mMainWeaponName);
+	//DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/SoldierSecWeapon"),mSecWeaponName);
+	//DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/SoldierShield"),mShieldName);
 	for (int i=0;i<4;i++)
 	{
 		createSoldier();
@@ -97,11 +138,11 @@ SquadGraphics::~SquadGraphics(void)
 UnitGrap* SquadGraphics::createSoldier()
 {
 	mSoldierIndex++;
-	UnitGrap* unit=new UnitGrap(mSoldierUnitName,mNode->createChildSceneNode(mNode->getName()+"_Soldier"+Ogre::StringConverter::toString(mSoldierIndex)));
+	UnitGrap* unit=new UnitGrap(mSoilderMesh,mSoilderMat,"none",mNode->createChildSceneNode(mNode->getName()+"_Soldier"+Ogre::StringConverter::toString(mSoldierIndex)));
 
-	unit->createWeapon(mMainWeaponName,UnitGrap::MainWepon);
-	unit->createWeapon(mSecWeaponName,UnitGrap::SecWepon);
-	unit->createWeapon(mShieldName,UnitGrap::Shield);
+	unit->createWeapon(mPWeaponMesh,mPWeaponMat,UnitGrap::MainWepon);
+	unit->createWeapon(mSWeaponMesh,mSWeaponMesh,UnitGrap::SecWepon);
+	unit->createWeapon(mShieldMesh,mShieldMat,UnitGrap::Shield);
 
 	mSoldierUnits.push_back(unit);
 

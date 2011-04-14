@@ -1,6 +1,7 @@
 #include "GUIMenu.h"
 
 #include "DataLibrary.h"
+#include "StringTable.h"
 
 #include "Core.h"
 #include "LuaSystem.h"
@@ -21,8 +22,12 @@ GUIMenu::GUIMenu(int width,int height):GUIScene("MainMenu.layout"),mMenuState(No
 	mLogoImage->setSize(width,height);
 	mMenuImage->setSize(width,height);
 
+	std::string data;
+	mNewGame->setCaption(StringTable::getSingleton().getString("NewGame"));
 	mNewGame->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onNewGame);
+	mLoad->setCaption(StringTable::getSingleton().getString("LoadGame"));
 	mLoad->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onLoad);
+	mExit->setCaption(StringTable::getSingleton().getString("ExitGame"));
 	mExit->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onExit);
 	setButtonLock(false);
 }

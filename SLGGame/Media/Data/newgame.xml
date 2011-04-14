@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Data>
+	<GameData>
+		<StoryData>
+			<ScriptData>
+				<ScriptName type="String" value=""/>
+				<ScriptLine type="String" value=""/>
+			</ScriptData>
+			<Statistics>
+			</Statistics>
+			<SquadData>
+				<EnableSquad>
+				</EnableSquad>
+				<DisableSquad>
+				</DisableSquad>
+			</SquadData>
+		</StoryData>
+	</GameData>
+</Data>

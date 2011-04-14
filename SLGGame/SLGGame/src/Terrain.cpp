@@ -622,18 +622,18 @@ void Terrain::createGrid()
 	for(int y = 0; y < mMapData->getMapSize(); y++)
 		for(int x = 0; x < mMapData->getMapSize(); x++)
 		{
-			if(mMapData->getTerrainType(x, y ) != Water && mMapData->getTerrainType(x, y ) != Cliff)
+			if(mMapData->getPassable(x,y,1))
 			{
 				float xx = startpos + x * TILESIZE;
 				float yy = startpos + y * TILESIZE;
-				if(y == 0 || mMapData->getTerrainType(x, y - 1) == Water || mMapData->getTerrainType(x, y -1 ) == Cliff)
+				if(!mMapData->getPassable(x ,y -1,1))
 				{
 					mGrid->position(xx,getHeight(xx,yy),yy);
 					mGrid->colour(1.0f,1.0f,1.0f);
 					mGrid->position(xx+TILESIZE,getHeight(xx+TILESIZE,yy),yy);
 					mGrid->colour(1.0f,1.0f,1.0f);
 				}
-				if(x == 0 || mMapData->getTerrainType(x -1 , y ) == Water || mMapData->getTerrainType(x -1, y ) == Cliff)
+				if(!mMapData->getPassable(x - 1,y,1))
 				{
 					mGrid->position(xx,getHeight(xx,yy+TILESIZE),yy+TILESIZE);
 					mGrid->colour(1.0f,1.0f,1.0f);
