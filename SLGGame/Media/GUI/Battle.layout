@@ -31,7 +31,7 @@
         </Widget>
         <Widget type="TextBox" skin="TextBox" position="130 95 155 55" name="SquadDescribeLabel"/>
     </Widget>
-    <Widget type="Window" skin="WindowCS" position_real="0.61347 0 0.131772 0.26257" layer="Main">
+    <Widget type="Window" skin="WindowCS" position_real="0.618594 0 0.131772 0.26257" layer="Main" name="Terrain">
         <Property key="Caption" value="Terrain"/>
         <Widget type="TextBox" skin="TextBox" position="5 5 45 20">
             <Property key="Caption" value="Name:"/>

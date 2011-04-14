@@ -45,12 +45,12 @@ public:
 	bool setData(std::string path,const std::string& value,bool createpath=true);
 	bool setData(std::string path,const Ogre::Vector3& value,bool createpath=true);
 
-	bool getData(std::string path,int& value);
-	bool getData(std::string path,unsigned int& value);
-	bool getData(std::string path,float& value);
-	bool getData(std::string path,double& value);
-	bool getData(std::string path,std::string& value);
-	bool getData(std::string path,Ogre::Vector3& value);
+	bool getData(std::string path,int& value,bool testExist=false);
+	bool getData(std::string path,unsigned int& value,bool testExist=false);
+	bool getData(std::string path,float& value,bool testExist=false);
+	bool getData(std::string path,double& value,bool testExist=false);
+	bool getData(std::string path,std::string& value,bool testExist=false);
+	bool getData(std::string path,Ogre::Vector3& value,bool testExist=false);
 
 	bool delNode(std::string path);
 	void createPath(std::string path);

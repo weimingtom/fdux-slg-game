@@ -28,10 +28,12 @@ BattleDeployState::BattleDeployState(BattleState* mainState)
 	mMouseY = 320;
 	//Core::getSingleton().mInputControl->setCameraContral(mCameraContral);
 
-	DataLibrary::getSingletonPtr()->loadXmlData(DataLibrary::GameData,"../media/mesh/sinbad.xml",true);
+	//DataLibrary::getSingletonPtr()->loadXmlData(DataLibrary::GameData,"../media/mesh/sinbad.xml",true);
 	//mSquadGrapManager=new SquadGrapManager(Core::getSingletonPtr()->mSceneMgr);
 	//SquadGraphics* s;//=mSquadGrapManager->createSquad("SinbadSquad",1,10,10,SquadGrapManager::North,SquadGrapManager::Loose);
 	//GUIPUDebug* puDebug=(GUIPUDebug*)GUISystem::getSingletonPtr()->createScene(PUDebugScene);
+	DataLibrary::getSingletonPtr()->setData("GameData/GameData/BattleData/BattleState/Ture",1);
+	DataLibrary::getSingletonPtr()->setData("GameData/GameData/BattleData/BattleState/CurTeam",1);
 	mGUIBattle=(GUIBattle*)GUISystem::getSingletonPtr()->createScene(BattleScene);
 	mGUIBattle->showScene("");
 

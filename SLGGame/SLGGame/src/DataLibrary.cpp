@@ -201,7 +201,7 @@ bool DataLibrary::setData( std::string path,const Ogre::Vector3& value,bool crea
 	}
 }
 
-bool DataLibrary::getData( std::string path,int& value )
+bool DataLibrary::getData( std::string path,int& value,bool testExist )
 {
 	ticpp::Element* node=getNode(path,false);
 	if (node!=NULL)
@@ -220,12 +220,15 @@ bool DataLibrary::getData( std::string path,int& value )
 	}
 	else
 	{
-		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LML_CRITICAL);
+		if (!testExist)
+		{
+			Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LML_CRITICAL);
+		}
 		return false;
 	}
 }
 
-bool DataLibrary::getData( std::string path,unsigned int& value )
+bool DataLibrary::getData( std::string path,unsigned int& value,bool testExist )
 {
 	ticpp::Element* node=getNode(path,false);
 	if (node!=NULL)
@@ -244,12 +247,15 @@ bool DataLibrary::getData( std::string path,unsigned int& value )
 	}
 	else
 	{
-		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LML_CRITICAL);
+		if (!testExist)
+		{
+			Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LML_CRITICAL);
+		}
 		return false;
 	}
 }
 
-bool DataLibrary::getData( std::string path,float& value )
+bool DataLibrary::getData( std::string path,float& value,bool testExist )
 {
 	ticpp::Element* node=getNode(path,false);
 	if (node!=NULL)
@@ -268,12 +274,15 @@ bool DataLibrary::getData( std::string path,float& value )
 	}
 	else
 	{
-		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LML_CRITICAL);
+		if (!testExist)
+		{
+			Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LML_CRITICAL);
+		}
 		return false;
 	}
 }
 
-bool DataLibrary::getData( std::string path,double& value )
+bool DataLibrary::getData( std::string path,double& value,bool testExist )
 {
 	ticpp::Element* node=getNode(path,false);
 	if (node!=NULL)
@@ -292,12 +301,15 @@ bool DataLibrary::getData( std::string path,double& value )
 	}
 	else
 	{
-		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LML_CRITICAL);
+		if (!testExist)
+		{
+			Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LML_CRITICAL);
+		}
 		return false;
 	}
 }
 
-bool DataLibrary::getData( std::string path,std::string& value )
+bool DataLibrary::getData( std::string path,std::string& value,bool testExist )
 {
 	ticpp::Element* node=getNode(path,false);
 	if (node!=NULL)
@@ -316,12 +328,15 @@ bool DataLibrary::getData( std::string path,std::string& value )
 	}
 	else
 	{
-		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LML_CRITICAL);
+		if (!testExist)
+		{
+			Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LML_CRITICAL);
+		}
 		return false;
 	}
 }
 
-bool DataLibrary::getData( std::string path,Ogre::Vector3& value )
+bool DataLibrary::getData( std::string path,Ogre::Vector3& value,bool testExist )
 {
 	ticpp::Element* node=getNode(path,false);
 	if (node!=NULL)
@@ -356,7 +371,10 @@ bool DataLibrary::getData( std::string path,Ogre::Vector3& value )
 	}
 	else
 	{
-		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LML_CRITICAL);
+		if (!testExist)
+		{
+			Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LML_CRITICAL);
+		}
 		return false;
 	}
 }
