@@ -7,12 +7,12 @@
 class GUIScene
 {
 public:
-	GUIScene(std::string layoutFile):mContainerWidget(NULL),mLayoutName(layoutFile)
+	GUIScene(std::string layoutFile,int Width,int Height):mContainerWidget(NULL),mLayoutName(layoutFile),mWidth(Width),mHeigth(Height)
 	{
 		mWidgetList=MyGUI::LayoutManager::getInstance().loadLayout(mLayoutName);
 	}
 
-	GUIScene(MyGUI::Widget* containerWidget):mContainerWidget(containerWidget)
+	GUIScene(MyGUI::Widget* containerWidget,int Width,int Height):mContainerWidget(containerWidget),mWidth(Width),mHeigth(Height)
 	{
 	}
 
@@ -44,6 +44,9 @@ public:
 		ClearAllRoleWork//清除所有的角色图片
 	};
 	TimerWork mTimerWork;
+
+	int mWidth;
+	int mHeigth;
 
 protected:
 	template <typename T>
