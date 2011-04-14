@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GameData>
-	<Squad>
+	<BattleData>
+		<BattleState>
+			<Ture type="UInt" value="1"/>
+			<CurTeam type="UInt" value="1"/>
+		</BattleState>
+	</BattleData>
+<!--	<Squad>
 		<SinbadSquad>
 			<CommanderUnit type="String" value="Sinbad"/>
 			<CommanderMainWeapon type="String" value="Sword"/>
@@ -57,5 +63,5 @@
 			<MeshName type="String" value="Sword.mesh"/>
 			<MatName type="String" value="null"/>
 		</Sword>
-	</Weapon>
+	</Weapon>-->
 </GameData>

@@ -15,6 +15,7 @@
 #include "Terrain.h"
 
 #include "GUIPUDebug.h"
+#include "GUIBattle.h"
 
 BattleDeployState::BattleDeployState(BattleState* mainState)
 :SubBattleState(mainState)
@@ -27,10 +28,12 @@ BattleDeployState::BattleDeployState(BattleState* mainState)
 	mMouseY = 320;
 	//Core::getSingleton().mInputControl->setCameraContral(mCameraContral);
 
-	//DataLibrary::getSingletonPtr()->loadXmlData(DataLibrary::GameData,"../media/mesh/sinbad.xml",true);
+	DataLibrary::getSingletonPtr()->loadXmlData(DataLibrary::GameData,"../media/mesh/sinbad.xml",true);
 	//mSquadGrapManager=new SquadGrapManager(Core::getSingletonPtr()->mSceneMgr);
 	//SquadGraphics* s;//=mSquadGrapManager->createSquad("SinbadSquad",1,10,10,SquadGrapManager::North,SquadGrapManager::Loose);
-	GUIPUDebug* puDebug=(GUIPUDebug*)GUISystem::getSingletonPtr()->createScene(PUDebugScene);
+	//GUIPUDebug* puDebug=(GUIPUDebug*)GUISystem::getSingletonPtr()->createScene(PUDebugScene);
+	mGUIBattle=(GUIBattle*)GUISystem::getSingletonPtr()->createScene(BattleScene);
+	mGUIBattle->showScene("");
 
 	//int k=1;
 	//for (int i=8;i<14;i++)
@@ -85,6 +88,7 @@ bool BattleDeployState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 	int GX,GY;
 	if(Terrain::getSingletonPtr()->coordinateToGrid(arg.state.X.abs,arg.state.Y.abs,GX,GY))
 	{
+		mGUIBattle->GridInputEvent(GX,GY);
 		std::cout<<GX<<","<<GY<<std::endl;
 	}
 	return true;

@@ -1,6 +1,6 @@
 #include "LoadScene.h"
 
-LoadScene::LoadScene(int width,int height,std::string filename, std::string text):GUIScene("Loadling.layout")
+LoadScene::LoadScene(int width,int height,std::string filename, std::string text):GUIScene("Loadling.layout",width,height)
 {
 	assignWidget(mBackgroundImage,"backgroundImage");
 	assignWidget(mLoadProgress,"loadProgress");

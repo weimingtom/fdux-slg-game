@@ -10,7 +10,7 @@
 
 #include <iostream>
 
-GUIMenu::GUIMenu(int width,int height):GUIScene("MainMenu.layout"),mMenuState(NoneState)
+GUIMenu::GUIMenu(int width,int height):GUIScene("MainMenu.layout",width,height),mMenuState(NoneState)
 {
 	assignWidget(mLogoImage,"LogoImage");
 	assignWidget(mMenuImage,"BackGround");
