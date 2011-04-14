@@ -32,6 +32,7 @@ static const float TERRAINTEXSIZE = 256.0f;
 static const float TERRAINTEXTILESIZE = 64.0f;
 
 static const Ogre::uint32 TERRAIN_MASK = 1 << 0;
+static const Ogre::uint32 GRID_MASK = 1 << 2;
 
 using namespace izayoi;
 

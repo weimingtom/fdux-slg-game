@@ -2,6 +2,8 @@
 
 #include "MapDataManager.h"
 
+#include <iostream>
+
 Terrain::Terrain()
 {
 	mCollisionTools = new MOC::CollisionTools(Core::getSingleton().mSceneMgr);
@@ -191,8 +193,8 @@ void Terrain::destoryTerrian()
 void Terrain::getWorldCoords(int x, int y, float &wx, float &wy)
 {
 	int s = mMapData->getMapSize();
-	wx = ((float)x - (float)s / 2.0f + 0.5f) * TILESIZE ;
-	wy = ((float)y - (float)s / 2.0f + 0.5f) * TILESIZE;
+	wx = ((float)x - (float)s / 2.0f - 0.5f) * TILESIZE;
+	wy = ((float)y - (float)s / 2.0f - 0.5f) * TILESIZE;
 }
 
 float Terrain::getHeight(float x, float y)
@@ -651,6 +653,7 @@ void Terrain::createGrid()
 			}
 		}
 		mGrid->end();
+		mGrid->setQueryFlags(GRID_MASK);
 		mGridNode->attachObject(mGrid);
 		mGridNode->setPosition(0,PLANEHEIGHT+ 0.5f,0);
 }
@@ -673,12 +676,12 @@ bool Terrain::coordinateToGrid( float x,float y,int& GX,int& GY )
 
 	//执行射线运算,获取与网格的交点
 	Ogre::Ray ray = Core::getSingletonPtr()->mCamera->getCameraToViewportRay(x / mRenderWindowSize.x, y / mRenderWindowSize.y);
-	std::pair<bool, float> result = ray.intersects(mGrid->getBoundingBox());
-	if (result.first)
+	
+	Ogre::Vector3 point;
+	Ogre::ulong target;
+	float d;
+	if(mCollisionTools->raycast(ray,point,target,d,TERRAIN_MASK))
 	{
-		Ogre::Vector3 point = ray.getPoint(result.second);
-
-		//根据网格的大小,计算在哪一格
 		calculateGrid(point.x,point.z,GX, GY);
 		return true;
 	}
@@ -690,12 +693,19 @@ bool Terrain::coordinateToGrid( float x,float y,int& GX,int& GY )
 
 void Terrain::calculateGrid( float x,float y,int& GX, int& GY )
 {
-	// 将坐标转换成正值
-	x=x+(mMapData->getMapSize()+1) * TILESIZE / 2;
-	y=y+(mMapData->getMapSize()+1) * TILESIZE / 2;
+	//// 将坐标转换成正值
+	//float x1=x+(mMapData->getMapSize()+1) * TILESIZE / 2;
+	//float y1=y+(mMapData->getMapSize()+1) * TILESIZE / 2;
 
-	GX=x/TILESIZE;
-	GY=y/TILESIZE;
+	////向内移动3格半
+	//x1-=2.5* TILESIZE;
+	//y1-=2.5* TILESIZE;
+	
+	float x1=x+mMapData->getMapSize() * TILESIZE / 2.0f+TILESIZE;
+	float y1=y+mMapData->getMapSize() * TILESIZE / 2.0f+TILESIZE;
+
+	GX=x1/TILESIZE;
+	GY=y1/TILESIZE;
 
 	if(GX>=mMapData->getMapSize())
 	{

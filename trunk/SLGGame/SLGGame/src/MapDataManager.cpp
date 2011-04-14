@@ -40,7 +40,7 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 		{
 			int index = (y * mMapSize + x);
 			char datapathtemp[64];
-			sprintf_s(datapathtemp, 64, "GameData/GameData/BattleData/MapData/Map/%d", index);
+			sprintf_s(datapathtemp, 64, "GameData/GameData/BattleData/MapData/Map/M%d", index);
 			std::string datapath = datapathtemp;
 			if(str[index * 2] == 'l')
 			{
@@ -114,7 +114,7 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 		datalibrary->setData(datapath + "/GridY", objy);
 		datalibrary->setData(datapath + "/Mesh", meshname);
 		//物品类型脚本
-		datapath = std::string("GameData/GameData/BattleData/MapData/Map/") + Ogre::StringConverter::toString(objy * mMapSize + objx) + std::string("/MapObjType");
+		datapath = std::string("GameData/GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(objy * mMapSize + objx) + std::string("/MapObjType");
 		datalibrary->setData(datapath, objtype);
 		datalibrary->setData(datapath + "/MapObjModuleId", objname);
 		//执行脚本
@@ -257,7 +257,7 @@ GroundType MapDataManager::getGroundType(int x, int y)
 	int index = y * mMapSize + x;
 	GroundType groundtype;
 	char datapathtemp[128];
-	sprintf_s(datapathtemp, 128, "GameData/GameData/BattleData/MapData/Map/%d/GroundType", index);
+	sprintf_s(datapathtemp, 128, "GameData/GameData/BattleData/MapData/Map/M%d/GroundType", index);
 	DataLibrary::getSingleton().getData(datapathtemp,groundtype);
 	return groundtype;
 }
@@ -270,7 +270,7 @@ TerrainType MapDataManager::getTerrainType(int x, int y)
 	int index = y * mMapSize + x;
 	TerrainType terraintype;
 	char datapathtemp[128];
-	sprintf_s(datapathtemp, 128, "GameData/GameData/BattleData/MapData/Map/%d/TerrainType", index);
+	sprintf_s(datapathtemp, 128, "GameData/GameData/BattleData/MapData/Map/M%d/TerrainType", index);
 	DataLibrary::getSingleton().getData(datapathtemp,terraintype);
 	return terraintype;
 }
@@ -284,7 +284,7 @@ bool MapDataManager::getPassable(int x, int y, int team)
 	int minpassable;
 	int passable;
 	int id;
-	std::string path = std::string("GameData/GameData/BattleData/MapData/Map/") + Ogre::StringConverter::toString(x + y * mMapSize);
+	std::string path = std::string("GameData/GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(x + y * mMapSize);
 	bool re = datalib->getData(path + std::string("/GroundType"), id);
 	re = datalib->getData(std::string("GameData/StaticData/GroundData/Ground") + Ogre::StringConverter::toString(id) + std::string("/GroundModifier/Passable"), passable);
 	maxpassable = passable;
