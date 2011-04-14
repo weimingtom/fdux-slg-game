@@ -6,6 +6,7 @@
 class CameraContral;
 
 class SquadGrapManager;
+class GUIBattle;
 class BattleDeployState:public SubBattleState, public InputListener
 {
 public:
@@ -23,6 +24,7 @@ public:
 private:
 	CameraContral* mCameraContral;
 	SquadGrapManager* mSquadGrapManager;
+	GUIBattle* mGUIBattle;
 
 	int mMouseX;
 	int mMouseY;

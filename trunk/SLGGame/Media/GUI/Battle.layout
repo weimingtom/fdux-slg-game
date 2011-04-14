@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout" version="3.2.0">
-    <Widget type="Window" skin="WindowCSX" position_real="0 0 0.215959 0.202514" layer="Main">
+    <Widget type="Window" skin="WindowCS" position_real="0 0 0.215959 0.202514" layer="Main" name="GameState">
         <Property key="Caption" value="Game State"/>
+        <Property key="Visible" value="true"/>
         <Widget type="TextBox" skin="TextBox" position="5 15 75 20">
             <Property key="Caption" value="Game Turn:"/>
         </Widget>
@@ -14,7 +15,7 @@
             <Property key="Caption" value="Next Turn"/>
         </Widget>
     </Widget>
-    <Widget type="Window" skin="WindowCSX" position_real="0 0.592179 0.216691 0.361732">
+    <Widget type="Window" skin="WindowCS" position_real="0 0.592179 0.215959 0.361732" layer="Main">
         <Property key="Caption" value="Squad Info"/>
         <Widget type="ImageBox" skin="ImageBox" position="5 5 115 145"/>
         <Widget type="TextBox" skin="TextBox" position="130 10 45 21">
@@ -30,7 +31,7 @@
         </Widget>
         <Widget type="TextBox" skin="TextBox" position="130 95 155 55" name="SquadDescribeLabel"/>
     </Widget>
-    <Widget type="Window" skin="WindowCSX" position_real="0.617862 0 0.131772 0.263966">
+    <Widget type="Window" skin="WindowCS" position_real="0.61347 0 0.131772 0.26257" layer="Main">
         <Property key="Caption" value="Terrain"/>
         <Widget type="TextBox" skin="TextBox" position="5 5 45 20">
             <Property key="Caption" value="Name:"/>
@@ -53,7 +54,7 @@
         </Widget>
         <Widget type="TextBox" skin="TextBox" position="70 130 60 15" name="TerrainInfApLabel"/>
     </Widget>
-    <Widget type="Window" skin="WindowCS" position="295 0 115 155">
+    <Widget type="Window" skin="WindowCSX" position="295 0 115 155" layer="Main">
         <Property key="Caption" value="Command"/>
         <Widget type="Button" skin="Button" position="0 0 105 30" name="CmdMoveButton">
             <Property key="Caption" value="Move"/>
@@ -68,7 +69,7 @@
             <Property key="Caption" value="Skill"/>
         </Widget>
     </Widget>
-    <Widget type="Window" skin="WindowCS" position="0 145 220 140">
+    <Widget type="Window" skin="WindowCS" position="0 145 220 140" layer="Main">
         <Property key="Caption" value="Mission"/>
         <Widget type="ListBox" skin="ListBox" position="0 0 210 105" name="MissionList"/>
     </Widget>

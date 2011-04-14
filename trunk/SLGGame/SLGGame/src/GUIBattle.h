@@ -1,12 +1,15 @@
 #pragma once
 
 #include "GUIScene.h"
+#include <list>
+
+class GUISubWindows;
 
 class GUIBattle:
 	public GUIScene
 {
 public:
-	GUIBattle();
+	GUIBattle(int Width,int Height);
 	virtual ~GUIBattle(void);
 
 	void showScene(std::string arg);
@@ -18,8 +21,10 @@ public:
 	{
 		return BattleScene;
 	}
-private:
 
+	void GridInputEvent(int x,int y);
+private:
+	std::list<GUISubWindows*> mSubWindows;
 };
 
 class GUIBattleFactory:
@@ -32,6 +37,6 @@ public:
 
 	GUIScene* CreateScene(int Width,int Height)
 	{
-		return new GUIBattle();
+		return new GUIBattle(Width,Height);
 	}
 };

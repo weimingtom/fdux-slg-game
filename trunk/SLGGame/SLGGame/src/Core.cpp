@@ -5,6 +5,7 @@
 #include "GUIPUDebug.h"
 #include "GUIStage.h"
 #include "LoadScene.h"
+#include "GUIBattle.h"
 
 #include "LuaSystem.h"
 #include "AudioSystem.h"
@@ -68,6 +69,7 @@ bool Core::initialize()
 		mGUISystem->registerSceneFactory(StageScene,new GUIStageFactory());
 		mGUISystem->registerSceneFactory(MenuScene,new GUIMenuFactory());
 		mGUISystem->registerSceneFactory(PUDebugScene,new GUIPUDebugFactory());
+		mGUISystem->registerSceneFactory(BattleScene,new GUIBattleFactory());
 		mGUISystem->registerSceneFactory(LoadingScene, new LoadSceneFactory());
 
 		mLuaSystem=new LuaSystem();

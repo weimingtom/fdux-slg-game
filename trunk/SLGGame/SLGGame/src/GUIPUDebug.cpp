@@ -11,7 +11,7 @@
 
 #include <ParticleUniverseSystem.h> 
 
-GUIPUDebug::GUIPUDebug():GUIScene("PUDebug.layout")
+GUIPUDebug::GUIPUDebug():GUIScene("PUDebug.layout",0,0)
 {
 	assignWidget(mPUList,"PUList");
 	assignWidget(mStart,"Start");

@@ -49,6 +49,7 @@
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="4"
+				CallingConvention="0"
 				DisableSpecificWarnings="4819"
 			/>
 			<Tool
@@ -611,11 +612,15 @@
 						Name="SubWindows"
 						>
 						<File
-							RelativePath=".\src\GUIGameState.cpp"
+							RelativePath=".\src\GUIGameStateWindows.cpp"
 							>
 						</File>
 						<File
-							RelativePath=".\src\GUIGameState.h"
+							RelativePath=".\src\GUIGameStateWindows.h"
+							>
+						</File>
+						<File
+							RelativePath=".\src\GUISubWindows.h"
 							>
 						</File>
 					</Filter>

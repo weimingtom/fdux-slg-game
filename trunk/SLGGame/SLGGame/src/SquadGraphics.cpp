@@ -73,7 +73,7 @@ mFormation(f)
 		mSWeaponMesh = "none";
 		mSWeaponMat = "none";
 	}
-	datalib->getData(datapath + std::string("/Shield"),tempid);
+	datalib->getData(datapath + std::string("/ShieldId"),tempid);
 	if(tempid != "none")
 	{
 		datalib->getData( std::string("/GameData/StaticData/ShieldData/") + tempid + std::string("/Mesh"), mShieldMesh);
