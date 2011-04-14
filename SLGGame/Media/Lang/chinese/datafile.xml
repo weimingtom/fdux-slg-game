@@ -74,7 +74,7 @@
 				<Name type="String" value="高地"/>
 				<Describe type="String" value="高地"/>
 			</Terrain2>
-			<0>
+			<Terrain0>
 				<Name type="String" value="水面"/>
 				<Describe type="String" value="水面"/>
 			</Terrain0>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout" version="3.2.0">
+    <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Back" name="backgroundImage">
+        <Property key="ImageTexture" value="menubg.jpg"/>
+        <Widget type="ProgressBar" skin="ProgressBar" position="435 585 496 80" name="loadProgress">
+            <Property key="Range" value="100"/>
+            <Property key="RangePosition" value="0"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="565 520 230 50" name="loadText"/>
+    </Widget>
+</MyGUI>
