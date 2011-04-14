@@ -4,6 +4,7 @@
 #include "GUIMenu.h"
 #include "GUIPUDebug.h"
 #include "GUIStage.h"
+#include "LoadScene.h"
 
 #include "LuaSystem.h"
 #include "AudioSystem.h"
@@ -11,6 +12,11 @@
 
 #include "StateManager.h"
 #include "DataLibrary.h"
+#include "StringTable.h"
+#include "LuaAVG.h"
+#include "AVGSquadManager.h"
+#include "BattleSquadManager.h"
+#include "SquadGrapManager.h"
 #include "timer.hpp"
 
 #include <ParticleUniverseSystemManager.h> 
@@ -62,8 +68,10 @@ bool Core::initialize()
 		mGUISystem->registerSceneFactory(StageScene,new GUIStageFactory());
 		mGUISystem->registerSceneFactory(MenuScene,new GUIMenuFactory());
 		mGUISystem->registerSceneFactory(PUDebugScene,new GUIPUDebugFactory());
+		mGUISystem->registerSceneFactory(LoadingScene, new LoadSceneFactory());
 
 		mLuaSystem=new LuaSystem();
+		mLuaSystem->registerCLib("AVGLib",AVGLib);
 
 		mAudioSystem=new AudioSystem();
 
@@ -74,11 +82,21 @@ bool Core::initialize()
 
 		initializeOIS();
 
-
+		//初始化数据文件
 		mDataLibrary=new DataLibrary();
+		mDataLibrary->loadXmlData(DataLibrary::GameData,"../media/data/datafile.xml",true);
+		mDataLibrary->loadXmlData(DataLibrary::GameData,"../media/lang/chinese/datafile.xml",true);
+		mDataLibrary->loadXmlData(DataLibrary::GameData,"../media/lang/chinese/stringtable.xml",true);
+		new StringTable;
+		new AVGSquadManager;
+
+		//初始化战斗部分
+		new BattleSquadManager;
+		new SquadGrapManager(mSceneMgr);
+
 
 		mStateManager=new StateManager();
-		mStateManager->changeState("demo.xml",StateManager::Battle);
+		mStateManager->changeState("logo",StateManager::Menu);
 
 
 

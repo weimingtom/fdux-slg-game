@@ -5,15 +5,10 @@
 
 #include <OgreTagPoint.h>
 
-WeaponGrap::WeaponGrap(std::string name)
+WeaponGrap::WeaponGrap(std::string mesh, std::string mat)
 {
-	std::string mesh;
-	std::string mat;
-	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Weapon/")+name+std::string("/MeshName"),mesh);
-	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Weapon/")+name+std::string("/MatName"),mat);
-
 	mWeaponEntity=Core::getSingletonPtr()->mSceneMgr->createEntity(mesh);
-	if (mat!="null")
+	if (mat!="none")
 	{
 		mWeaponEntity->setMaterialName(mat);
 	}

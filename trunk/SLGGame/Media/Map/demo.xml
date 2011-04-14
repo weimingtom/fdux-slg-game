@@ -18,27 +18,27 @@
 </MapEffect>
 <MapSquad>
     <Team1>
-        <Team1Squad_0 Type="none" GridX="7" GridY="11" />
-        <Team1Squad_1 Type="none" GridX="6" GridY="12" />
+        <Team1Squad_0 Type="TestSquad" GridX="7" GridY="11" />
+        <Team1Squad_1 Type="TestSquad" GridX="6" GridY="12" />
     </Team1>
     <Team2>
-        <Team2Squad_0 Type="none" GridX="6" GridY="14" />
-        <Team2Squad_1 Type="none" GridX="6" GridY="16" />
+        <Team2Squad_0 Type="TestSquad" GridX="6" GridY="14" />
+        <Team2Squad_1 Type="TestSquad" GridX="6" GridY="16" />
     </Team2>
     <Team3>
-        <Team3Squad_0 Type="HeavyBodyGuard" GridX="11" GridY="14" />
+        <Team3Squad_0 Type="TestSquad" GridX="11" GridY="14" />
     </Team3>
     <Team4>
-        <Team4Squad_0 Type="none" GridX="10" GridY="16" />
+        <Team4Squad_0 Type="TestSquad" GridX="10" GridY="16" />
     </Team4>
 </MapSquad>
 <MapArea>
-    <Area0>
-        <0 X="10" Y="14" />
-        <1 X="9" Y="15" />
-        <2 X="9" Y="16" />
-        <3 X="10" Y="16" />
-        <4 X="10" Y="15" />
-        <5 X="9" Y="14" />
-    </Area0>
+    <DeployArea>
+        <c0 X="10" Y="14" />
+        <c1 X="9" Y="15" />
+        <c2 X="9" Y="16" />
+        <c3 X="10" Y="16" />
+        <c4 X="10" Y="15" />
+        <c5 X="9" Y="14" />
+    </DeployArea>
 </MapArea>

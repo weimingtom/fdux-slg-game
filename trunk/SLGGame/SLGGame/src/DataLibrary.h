@@ -52,6 +52,10 @@ public:
 	bool getData(std::string path,std::string& value);
 	bool getData(std::string path,Ogre::Vector3& value);
 
+	bool delNode(std::string path);
+	void createPath(std::string path);
+	bool copyNode(std::string srcpath, std::string distpath, bool createpath=true);
+
 	std::vector<std::string> getChildList(std::string path);
 
 	DataType getDataType(std::string path);

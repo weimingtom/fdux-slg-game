@@ -9,7 +9,7 @@
 
 #define ALPHA_DELTA_TIME 100
 
-UnitGrap::UnitGrap(std::string unitName,Ogre::SceneNode* node):
+UnitGrap::UnitGrap(std::string unitmesh, std::string unitmat,std::string factiontex,Ogre::SceneNode* node):
 mNode(node),
 mMainWeapon(NULL),
 mSecWeapon(NULL),
@@ -21,11 +21,12 @@ mFormationPosition(0),
 mAlpha(-1),
 mAlphaDeltaTime(0)
 {
-	std::string meshName;
-	std::string matName;
-	Ogre::Vector3 scale;
+	//std::string meshName;
+	//std::string matName;
+	//Ogre::Vector3 scale;
 	std::string initAnimation;
 
+	/*
 	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Unit/")+unitName+std::string("/MeshName"),meshName);
 	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Unit/")+unitName+std::string("/MatName"),matName);
 	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Unit/")+unitName+std::string("/Scale"),scale);
@@ -36,18 +37,25 @@ mAlphaDeltaTime(0)
 	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Unit/")+unitName+std::string("/DeathName"),mDeathName);
 	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Unit/")+unitName+std::string("/RecoverName"),mRecoverName);
 	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Unit/")+unitName+std::string("/RotationName"),mRotationName);
+	*/
+	initAnimation = "IdleTop";
+	mLeftHandBoneName = "Handle.L";
+	mRightHandBoneName = "Handle.R";
+	mWalkName = "RunBase";
+	mDeathName = "Dance";
+	mRecoverName ="DrawSwords";
+	mRotationName = "JumpLoop";
 
-
-	mUnitEntity=Core::getSingletonPtr()->mSceneMgr->createEntity(meshName);
-	if (matName!="null")
+	mUnitEntity=Core::getSingletonPtr()->mSceneMgr->createEntity(unitmesh);
+	if (unitmat!="none")
 	{
-		mUnitEntity->setMaterialName(matName);
+		mUnitEntity->setMaterialName(unitmat);
 	}
 	mNode->attachObject(mUnitEntity);
 
 	mAniBlender=new AnimationBlender(mUnitEntity);
 	mAniBlender->init(initAnimation);
-	mNode->setScale(scale);
+	//mNode->setScale(scale);
 }
 
 UnitGrap::~UnitGrap(void)
@@ -154,25 +162,25 @@ void UnitGrap::setWeapon( WeaponType type,BoneType bone )
 	}
 }
 
-void UnitGrap::createWeapon( std::string name,WeaponType type )
+void UnitGrap::createWeapon( std::string mesh, std::string mat,WeaponType type )
 {
-	if (name!="null")
+	if (mesh!="none")
 	{
 		switch(type)
 		{
 		case MainWepon:
 			{
-				mMainWeapon=new WeaponGrap(name);
+				mMainWeapon=new WeaponGrap(mesh,mat);
 				break;
 			}
 		case SecWepon:
 			{
-				mSecWeapon=new WeaponGrap(name);
+				mSecWeapon=new WeaponGrap(mesh,mat);
 				break;
 			}
 		case Shield:
 			{
-				mShield=new WeaponGrap(name);
+				mShield=new WeaponGrap(mesh,mat);
 				break;
 			}
 		}

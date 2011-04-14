@@ -29,6 +29,10 @@ public:
 	GroundType getGroundType(int x, int y);
 	TerrainType getTerrainType(int x, int y);
 	int getMapSize() {return mMapSize;}
+	bool getPassable(int x, int y, int team);
+	int getInfApCost(int x, int y, int team);
+	int getCavApCost(int x, int y, int team);
+	int getDefModify(int x, int y, int team);
 private:
 	int mMapSize;
 };

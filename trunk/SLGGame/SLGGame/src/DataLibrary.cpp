@@ -1,6 +1,7 @@
 #include "DataLibrary.h"
 
 #include "LuaSystem.h"
+#include "conversion.h"
 
 #include <OgreLogManager.h> 
 
@@ -358,6 +359,35 @@ bool DataLibrary::getData( std::string path,Ogre::Vector3& value )
 		Ogre::LogManager::getSingletonPtr()->logMessage(path+" is not exist",Ogre::LML_CRITICAL);
 		return false;
 	}
+}
+
+bool DataLibrary::delNode(std::string path)
+{
+	ticpp::Element* node=getNode(path,false);
+	if(node == NULL)
+		return false;
+	ticpp::Node* parent = node->Parent(false);
+	if(parent == NULL)
+		return false;
+	parent->RemoveChild(node);
+	return true;
+}
+
+void DataLibrary::createPath(std::string path)
+{
+	getNode(path,true);
+}
+
+bool DataLibrary::copyNode(std::string srcpath, std::string distpath, bool createpath)
+{
+	ticpp::Element* srcnode=getNode(srcpath,false);
+	if(!srcnode)
+		return false;
+	ticpp::Element* distnode=getNode(distpath,createpath);
+	if(!distnode)
+		return false;
+	copyElement(srcnode,distnode );
+	return true;
 }
 
 std::vector<std::string> DataLibrary::getChildList(std::string path)

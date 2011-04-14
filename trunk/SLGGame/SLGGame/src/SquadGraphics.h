@@ -74,7 +74,7 @@ public:
 	void setWeaponMode(WeaponMode mode);
 
 private:
-	SquadGraphics(std::string squadName,Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index);
+	SquadGraphics(std::string squadName, std::string datapath, Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index);
 
 	void update(unsigned int deltaTime);
 
@@ -91,12 +91,18 @@ private:
 	Ogre::SceneNode* mNode;
 	Ogre::SceneManager* mSceneMgr;
 
-	std::string mCommanderUnitName;
+	std::string mSquadId;
+	std::string mLeaderMesh;
+	std::string mLeaderMat;
 	UnitGrap* mCommanderUnit;
-	std::string mSoldierUnitName;
-	std::string mMainWeaponName;
-	std::string mSecWeaponName;
-	std::string mShieldName;
+	std::string mSoilderMesh;
+	std::string mSoilderMat;
+	std::string mPWeaponMesh;
+	std::string mPWeaponMat;
+	std::string mSWeaponMesh;
+	std::string mSWeaponMat;
+	std::string mShieldMesh;
+	std::string mShieldMat;
 	std::vector<UnitGrap*> mSoldierUnits;
 	int mSoldierIndex;
 	Formation mFormation;

@@ -15,7 +15,7 @@ class AnimationBlender;
 class UnitGrap:public ParticleUniverse::ParticleSystemListener 
 {
 public:
-	UnitGrap(std::string unitName,Ogre::SceneNode* node);
+	UnitGrap(std::string unitmesh, std::string unitmat,std::string factiontex,Ogre::SceneNode* node);
 	~UnitGrap(void);
 	
 	enum WeaponType
@@ -32,7 +32,7 @@ public:
 		RightHand
 	};
 
-	void createWeapon(std::string name,WeaponType type);
+	void createWeapon(std::string mesh, std::string mat,WeaponType type);
 
 	void setWeapon(WeaponType type,BoneType bone);
 
