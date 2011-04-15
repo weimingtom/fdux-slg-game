@@ -18,7 +18,7 @@ SquadGrapManager::~SquadGrapManager(void)
 
 SquadGraphics* SquadGrapManager::createSquad( std::string unitName,std::string datapath,unsigned int id,int x,int y,Direction d,Formation f )
 {
-	SquadGraphics* squadGrap=new SquadGraphics(unitName,datapath,Ogre::Vector2(x,y),(SquadGraphics::Direction)d,(SquadGraphics::Formation)f,id);
+	SquadGraphics* squadGrap=new SquadGraphics(unitName,datapath,Ogre::Vector2(x,y),d,f,id);
 
 	mUnitList.push_back(squadGrap);
 

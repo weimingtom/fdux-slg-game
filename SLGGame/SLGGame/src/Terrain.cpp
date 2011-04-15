@@ -193,7 +193,7 @@ void Terrain::destoryTerrian()
 void Terrain::getWorldCoords(int x, int y, float &wx, float &wy)
 {
 	int s = mMapData->getMapSize();
-	wx = ((float)x - (float)s / 2.0f - 0.5f) * TILESIZE;
+	wx = ((float)x - (float)s / 2.0f - 0.5f) * TILESIZE ;
 	wy = ((float)y - (float)s / 2.0f - 0.5f) * TILESIZE;
 }
 
@@ -617,7 +617,10 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 
 void Terrain::createGrid()
 {
-	float startpos = - mMapData->getMapSize() * TILESIZE / 2.0f  -TILESIZE;//公式有错
+	//float startpos = - mMapData->getMapSize() * TILESIZE / 2.0f  -TILESIZE;//公式有错
+	float startpos;
+	getWorldCoords(0,0,startpos,startpos);
+	startpos -= TILESIZE /2.0f;
 	mGridNode = Core::getSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode("GridNode");
 	mGrid = Core::getSingleton().mSceneMgr->createManualObject("GridObject");
 	mGrid->begin("GridMat",Ogre::RenderOperation::OT_LINE_LIST);

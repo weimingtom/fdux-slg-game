@@ -130,7 +130,7 @@ void GUIPUDebug::onFormation( MyGUI::Widget* _sender )
 	{
 
 		SquadGraphics* s=SquadGrapManager::getSingletonPtr()->getSquad(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()));
-		s->setFormation((SquadGraphics::Formation)mFormationList->getIndexSelected(),true);
+		s->setFormation(mFormationList->getIndexSelected(),true);
 
 		//mDirector->addCutScene(new DirectionCutScene(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()),d));
 	}

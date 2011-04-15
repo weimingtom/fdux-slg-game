@@ -12,7 +12,7 @@ GUITerrainWindows::GUITerrainWindows(MyGUI::Window* window,int Width,int Height)
 
 	window->setPosition(Width-window->getWidth(),0);
 
-	DataLibrary::getSingletonPtr()->getData("GameData/GameData/BattleData/MapData/MapSize",mMapSize);
+	DataLibrary::getSingletonPtr()->getData("GameData/BattleData/MapData/MapSize",mMapSize);
 }
 
 GUITerrainWindows::~GUITerrainWindows(void)

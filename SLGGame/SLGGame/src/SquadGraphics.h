@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 
+#include "squaddefine.h"
+
 //小队的图形类,负责一切图形活动
 
 class UnitGrap;
@@ -30,21 +32,6 @@ public:
 		Commander,
 		Soldier,
 		Squad
-	};
-
-	enum Direction
-	{
-		North,
-		South,
-		West,
-		East
-	};
-
-	enum Formation
-	{
-		Line,
-		Circular,
-		Loose
 	};
 
 	void setMovePath(std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions);
@@ -103,6 +90,7 @@ private:
 	std::string mSWeaponMat;
 	std::string mShieldMesh;
 	std::string mShieldMat;
+	std::string mFactionTexture;
 	std::vector<UnitGrap*> mSoldierUnits;
 	int mSoldierIndex;
 	Formation mFormation;

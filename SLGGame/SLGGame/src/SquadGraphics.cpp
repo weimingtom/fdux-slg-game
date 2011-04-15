@@ -54,8 +54,8 @@ mFormation(f)
 	datalib->getData(datapath + std::string("/PweaponId"),tempid);
 	if(tempid != "none")
 	{
-		datalib->getData( std::string("GameData/StaticData/PweaponData/") + tempid + std::string("/Mesh"), mPWeaponMesh);
-		datalib->getData( std::string("GameData/StaticData/PweaponData/") + tempid + std::string("/Mat"), mPWeaponMat);
+		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/Mesh"), mPWeaponMesh);
+		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/Mat"), mPWeaponMat);
 	}
 	else
 	{
@@ -65,8 +65,8 @@ mFormation(f)
 	datalib->getData(datapath + std::string("/SweaponId"),tempid);
 	if(tempid != "none")
 	{
-		datalib->getData( std::string("/GameData/StaticData/SweaponData/") + tempid + std::string("/Mesh"), mSWeaponMesh);
-		datalib->getData( std::string("/GameData/StaticData/SweaponData/") + tempid + std::string("/Mat"), mSWeaponMat);
+		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/Mesh"), mSWeaponMesh);
+		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/Mat"), mSWeaponMat);
 	}
 	else
 	{
@@ -76,17 +76,21 @@ mFormation(f)
 	datalib->getData(datapath + std::string("/ShieldId"),tempid);
 	if(tempid != "none")
 	{
-		datalib->getData( std::string("/GameData/StaticData/ShieldData/") + tempid + std::string("/Mesh"), mShieldMesh);
-		datalib->getData( std::string("/GameData/StaticData/ShieldData/") + tempid + std::string("/Mat"), mShieldMat);
+		datalib->getData( std::string("StaticData/ShieldData/") + tempid + std::string("/Mesh"), mShieldMesh);
+		datalib->getData( std::string("StaticData/ShieldData/") + tempid + std::string("/Mat"), mShieldMat);
 	}
 	else
 	{
 		mShieldMesh = "none";
 		mShieldMat = "none";
 	}
+	datalib->getData(datapath + std::string("/TeamId"),tempid);
+	datalib->getData( std::string("GameData/BattleData/Team/") + tempid + std::string("/FactionId"), tempid);
+	datalib->getData( std::string("StaticData/FactionData/") + tempid + std::string("/Texture"), mFactionTexture);
+	
 
 	//组建单位队伍与组建武器
-	mCommanderUnit=new UnitGrap(mLeaderMesh,mLeaderMat,"none",mNode->createChildSceneNode(mNode->getName()+"_Commander"));
+	mCommanderUnit=new UnitGrap(mLeaderMesh,mLeaderMat,mFactionTexture,mNode->createChildSceneNode(mNode->getName()+"_Commander"));
 	mCommanderUnit->createWeapon(mPWeaponMesh,mPWeaponMat,UnitGrap::MainWepon);
 	mCommanderUnit->createWeapon(mSWeaponMesh,mSWeaponMesh,UnitGrap::SecWepon);
 	mCommanderUnit->createWeapon(mShieldMesh,mShieldMat,UnitGrap::Shield);
@@ -138,7 +142,7 @@ SquadGraphics::~SquadGraphics(void)
 UnitGrap* SquadGraphics::createSoldier()
 {
 	mSoldierIndex++;
-	UnitGrap* unit=new UnitGrap(mSoilderMesh,mSoilderMat,"none",mNode->createChildSceneNode(mNode->getName()+"_Soldier"+Ogre::StringConverter::toString(mSoldierIndex)));
+	UnitGrap* unit=new UnitGrap(mSoilderMesh,mSoilderMat,mFactionTexture,mNode->createChildSceneNode(mNode->getName()+"_Soldier"+Ogre::StringConverter::toString(mSoldierIndex)));
 
 	unit->createWeapon(mPWeaponMesh,mPWeaponMat,UnitGrap::MainWepon);
 	unit->createWeapon(mSWeaponMesh,mSWeaponMesh,UnitGrap::SecWepon);

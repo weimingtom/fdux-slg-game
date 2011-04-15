@@ -20,7 +20,8 @@ public:
 	enum DataBlock
 	{
 		SystemConfig,
-		GameData
+		GameData,
+		StaticData
 	};
 
 	enum DataType
@@ -62,6 +63,7 @@ public:
 private:
 	ticpp::Document mSystemConfig;
 	ticpp::Document mGameData;
+	ticpp::Document mStaticData;
 
 	void appendXmlDate(ticpp::Document* currentDoc,std::string fileName);
 	ticpp::Element* getNode(std::string path,bool createpath);

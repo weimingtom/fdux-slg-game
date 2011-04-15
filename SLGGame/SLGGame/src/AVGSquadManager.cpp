@@ -15,23 +15,23 @@ AVGSquadManager::~AVGSquadManager()
 bool AVGSquadManager::addSquad(std::string uid, std::string id, std::string path)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
-	std::vector<std::string> squadlist = datalib->getChildList("GameData/StaticData/SquadData");
+	std::vector<std::string> squadlist = datalib->getChildList("StaticData/SquadData");
 	std::vector<std::string>::iterator ite = std::find(squadlist.begin(), squadlist.end(),id);
 	if(ite == squadlist.end())
 		return false;
-	std::string datasrcpath = "GameData/StaticData/SquadData/" + (*ite);
+	std::string datasrcpath = "StaticData/SquadData/" + (*ite);
 	std::string datadistpath;
-	if(path == "GameData/GameData/StoryData/SquadData")
+	if(path == "GameData/StoryData/SquadData")
 	{
-		std::vector<std::string> activesquadlist = datalib->getChildList("GameData/GameData/StoryData/SquadData/EnableSquad");
-		std::vector<std::string> disactivesquadlist = datalib->getChildList("GameData/GameData/StoryData/SquadData/DisableSquad");
+		std::vector<std::string> activesquadlist = datalib->getChildList("GameData/StoryData/SquadData/EnableSquad");
+		std::vector<std::string> disactivesquadlist = datalib->getChildList("GameData/StoryData/SquadData/DisableSquad");
 		ite = std::find(activesquadlist.begin(), activesquadlist.end(),uid);
 		if(ite != activesquadlist.end())
 			return false;
 		ite = std::find(disactivesquadlist.begin(), disactivesquadlist.end(),uid);
 		if(ite != disactivesquadlist.end())
 			return false;
-		datadistpath = "GameData/GameData/StoryData/SquadData/EnableSquad/" + uid;
+		datadistpath = "GameData/StoryData/SquadData/EnableSquad/" + uid;
 	}
 	else
 	{
@@ -92,27 +92,27 @@ bool AVGSquadManager::equipEquipment(std::string path, EquipmentType type, std::
 	switch(type)
 	{
 	case EQUIP_ARMOR:
-		srcpath = "GameData/StaticData/ArmorData";
+		srcpath = "StaticData/ArmorData";
 		distpath = path + std::string("/ArmorId");
 		break;
 	case EQUIP_HORSE:
-		srcpath = "GameData/StaticData/HorseData";
+		srcpath = "StaticData/HorseData";
 		distpath = path + std::string("/HorseId");
 		break;
 	case EQUIP_SOILDER:
-		srcpath = "GameData/StaticData/SoilderData";
+		srcpath = "StaticData/SoilderData";
 		distpath = path + std::string("/SoilderId");
 		break;
 	case EQUIP_SHIELD:
-		srcpath = "GameData/StaticData/ShieldData";
+		srcpath = "StaticData/ShieldData";
 		distpath = path + std::string("/ShieldId");
 		break;
 	case EQUIP_PWEAPON:
-		srcpath = "GameData/StaticData/PweaponData";
+		srcpath = "StaticData/PweaponData";
 		distpath = path + std::string("/PweaponId");
 		break;
 	case EQUIP_SWEAPON:
-		srcpath = "GameData/StaticData/SweaponData";
+		srcpath = "StaticData/SweaponData";
 		distpath = path + std::string("/SweaponId");
 		break;
 	}

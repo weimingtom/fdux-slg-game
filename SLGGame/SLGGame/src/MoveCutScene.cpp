@@ -44,22 +44,22 @@ MoveCutScene::MoveCutScene(unsigned int id,std::vector<Ogre::Vector2>& grids,Ogr
 		if (diffGrid.x==0 && diffGrid.y==-1)//北
 		{
 			q.FromAngleAxis(Ogre::Degree(180),Ogre::Vector3(0,1,0));
-			mDirection=SquadGraphics::North;
+			mDirection=North;
 		}
 		else if (diffGrid.x==0 && diffGrid.y==1)//南
 		{
 			q.FromAngleAxis(Ogre::Degree(0),Ogre::Vector3(0,1,0));
-			mDirection=SquadGraphics::South;
+			mDirection=South;
 		}
 		else if (diffGrid.x==1 && diffGrid.y==0)//东
 		{
 			q.FromAngleAxis(Ogre::Degree(90),Ogre::Vector3(0,1,0));
-			mDirection=SquadGraphics::West;
+			mDirection=West;
 		}
 		else if (diffGrid.x==-1 && diffGrid.y==0)//西
 		{
 			q.FromAngleAxis(Ogre::Degree(270),Ogre::Vector3(0,1,0));
-			mDirection=SquadGraphics::East;
+			mDirection=East;
 		}
 		quaternions[index]=q;
 		
@@ -85,7 +85,7 @@ void MoveCutScene::skipCutScene()
 {
 	mSquadGraphics->stopTransform();
 	mSquadGraphics->setGrid(mEndPosition.x,mEndPosition.y);
-	mSquadGraphics->setDirection((SquadGraphics::Direction)mDirection,false);
+	mSquadGraphics->setDirection(mDirection,false);
 }
 
 void MoveCutScene::updateCutScene( unsigned int deltaTime )
