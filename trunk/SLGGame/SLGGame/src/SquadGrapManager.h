@@ -19,7 +19,7 @@ public:
 	SquadGrapManager(Ogre::SceneManager* sceneMgr);
 	~SquadGrapManager(void);
 
-	SquadGraphics* createSquad(std::string unitName,std::string datapath,unsigned int id,int x,int y,Direction d,Formation f);
+	SquadGraphics* createSquad(std::string unitName,std::string datapath,unsigned int id,int x,int y,Direction d,Formation f,int soldierCount=4);
 	void destorySquad(unsigned int id);
 	SquadGraphics* getSquad(unsigned int id);
 

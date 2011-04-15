@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\ticpp;&quot;..\..\lua-5.1.4\include&quot;;..\..\bass24\c;..\..\SubSystem\SubSystem\src;..\..\MyGUI_3.2.0_RC1\MyGUIEngine\include;..\..\MyGUI_3.2.0_RC1\Platforms\Ogre\OgrePlatform\include;&quot;..\..\Particle Universe\Particle Universe Plugin\VCBuild\sdk\include\ParticleUniverse&quot;;&quot;$(OGRE_HOME)\boost_1_42&quot;;&quot;$(OGRE_HOME)\boost_1_44&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;&quot;$(OGRE_HOME)\include\OGRE&quot;"
+				AdditionalIncludeDirectories="..\..\ticpp;&quot;..\..\lua-5.1.4\include&quot;;..\..\bass24\c;..\..\SubSystem\SubSystem\src;..\..\MyGUI_3.2.0_RC1\MyGUIEngine\include;..\..\MyGUI_3.2.0_RC1\Platforms\Ogre\OgrePlatform\include;&quot;..\..\Particle Universe\Particle Universe Plugin\VCBuild\sdk\include\ParticleUniverse&quot;;&quot;$(OGRE_HOME)\boost_1_42&quot;;&quot;$(OGRE_HOME)\boost_1_44&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;&quot;$(OGRE_HOME)\include\OGRE&quot;;..\..\boost_1_45_0"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -617,6 +617,14 @@
 						</File>
 						<File
 							RelativePath=".\src\GUIGameStateWindows.h"
+							>
+						</File>
+						<File
+							RelativePath=".\src\GUISquadWindows.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\src\GUISquadWindows.h"
 							>
 						</File>
 						<File

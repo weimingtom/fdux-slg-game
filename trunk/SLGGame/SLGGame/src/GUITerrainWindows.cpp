@@ -2,6 +2,8 @@
 
 #include "DataLibrary.h"
 
+#include "boost\format.hpp"
+
 GUITerrainWindows::GUITerrainWindows(MyGUI::Window* window,int Width,int Height):GUISubWindows(window,Width,Height),mWindow(window)
 {
 	assignWidget(mTerrainNameLabel,"TerrainNameLabel");
@@ -39,14 +41,15 @@ bool GUITerrainWindows::GridInputEvent( int x,int y )
 	int Grid=x+mMapSize*y;
 
 	int TerrainType,GroundType;
-	DataLibrary::getSingletonPtr()->getData("GameData/GameData/BattleData/MapData/Map/M"+Ogre::StringConverter::toString(Grid)+"/TerrainType",TerrainType);
+	std::string s=str(boost::format("GameData/BattleData/MapData/Map/M%1%/")%Ogre::StringConverter::toString(Grid));
+	DataLibrary::getSingletonPtr()->getData(s+"TerrainType",TerrainType);
 	
-	DataLibrary::getSingletonPtr()->getData("GameData/GameData/BattleData/MapData/Map/M"+Ogre::StringConverter::toString(Grid)+"/GroundType",GroundType);
+	DataLibrary::getSingletonPtr()->getData(s+"GroundType",GroundType);
 
 	mTerrainNameLabel->setCaption("T:"+Ogre::StringConverter::toString(TerrainType)+",G:"+Ogre::StringConverter::toString(GroundType));
 	
 	std::string MapObjType;
-	if(DataLibrary::getSingletonPtr()->getData("GameData/GameData/BattleData/MapData/Map/M"+Ogre::StringConverter::toString(Grid)+"/MapObjType",MapObjType,true))
+	if(DataLibrary::getSingletonPtr()->getData(s+"MapObjType",MapObjType,true))
 	{
 		mTerrainDescribeLabel->setCaption("ID:"+MapObjType);
 	}

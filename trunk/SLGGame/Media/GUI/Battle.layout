@@ -15,9 +15,9 @@
             <Property key="Caption" value="Next Turn"/>
         </Widget>
     </Widget>
-    <Widget type="Window" skin="WindowCS" position_real="0 0.592179 0.215959 0.361732" layer="Main">
+    <Widget type="Window" skin="WindowCS" position_real="0 0.592179 0.215959 0.361732" layer="Main" name="Squad">
         <Property key="Caption" value="Squad Info"/>
-        <Widget type="ImageBox" skin="ImageBox" position="5 5 115 145"/>
+        <Widget type="ImageBox" skin="ImageBox" position="5 5 115 145" name="SquadImage"/>
         <Widget type="TextBox" skin="TextBox" position="130 10 45 21">
             <Property key="Caption" value="Name:"/>
         </Widget>
@@ -29,9 +29,9 @@
         <Widget type="TextBox" skin="TextBox" position="130 70 65 20">
             <Property key="Caption" value="Describe:"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="130 95 155 55" name="SquadDescribeLabel"/>
+        <Widget type="TextBox" skin="TextBox" position="130 94 155 56" name="SquadDescribeLabel"/>
     </Widget>
-    <Widget type="Window" skin="WindowCS" position_real="0.618594 0 0.131772 0.26257" layer="Main" name="Terrain">
+    <Widget type="Window" skin="WindowCS" position_real="0.61713 0 0.131772 0.26257" layer="Main" name="Terrain">
         <Property key="Caption" value="Terrain"/>
         <Widget type="TextBox" skin="TextBox" position="5 5 45 20">
             <Property key="Caption" value="Name:"/>

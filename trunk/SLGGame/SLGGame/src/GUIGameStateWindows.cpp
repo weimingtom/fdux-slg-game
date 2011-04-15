@@ -16,9 +16,9 @@ GUIGameStateWindows::~GUIGameStateWindows(void)
 void GUIGameStateWindows::showScene( std::string arg )
 {
 	unsigned int value;
-	DataLibrary::getSingletonPtr()->getData("GameData/GameData/BattleData/BattleState/Ture",value);
+	DataLibrary::getSingletonPtr()->getData("GameData/BattleData/BattleState/Ture",value);
 	mTurnLabel->setCaption(Ogre::StringConverter::toString(value));
-	DataLibrary::getSingletonPtr()->getData("GameData/GameData/BattleData/BattleState/CurTeam",value);
+	DataLibrary::getSingletonPtr()->getData("GameData/BattleData/BattleState/CurTeam",value);
 	mPlayerLabel->setCaption(Ogre::StringConverter::toString(value));
 }
 
