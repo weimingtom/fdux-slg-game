@@ -1,121 +1,119 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Data>
-	<StaticData>
-		<SquadData>
-			<TestSquad>
-				<Name type="String" value="测试小队"/>
-				<Describe type="String" value="废物小队"/>
-			</TestSquad>
-		</SquadData>
-		<SoilderData>
-			<TestSoilder>
-				<Name type="String" value="测试兵源"/>
-				<Describe type="String" value="就是一群废物"/>
-			</TestSoilder>
-		</SoilderData>
-		<HorseData>
-			<HeavyHorse>
-				<Name type="String" value="重型战马"/>
-				<Describe type="String" value="重型战马"/>
-			</HeavyHorse>
-		</HorseData>
-		<PweaponData>
-			<TestPWeapon>
-				<Name type="String" value="测试主武器"/>
-				<Describe type="String" value="烂的掉渣的剑"/>
-			</TestPWeapon>
-		</PweaponData>
-		<SweaponData>
-		</SweaponData>
-		<ShieldData>
-		</ShieldData>
-		<ArmorData>
-			<TestArmor>
-				<Name type="String" value="测试盔甲"/>
-				<Describe type="String" value="烂的掉渣的盔甲"/>
-			</TestArmor>
-		</ArmorData>
-		<SkillData>
-			<TestSkill>
-				<Name type="String" value="测试技能"/>
-				<Describe type="String" value="这简直是胡乱指挥"/>
-			</TestSkill>
-		</SkillData>
-		<EffectData>
-			<TestEffect>
-				<Name type="String" value="测试效果"/>
-				<Describe type="String" value="有什么效果"/>
-			</TestEffect>
-		</EffectData>
-		<GroundData>
-			<Ground0>
-				<Name type="String" value="绿地"/>
-				<Describe type="String" value="绿地"/>
-			</Ground0>
-			<Ground1>
-				<Name type="String" value="荒地"/>
-				<Describe type="String" value="荒地"/>
-			</Ground1>
-			<Ground2>
-				<Name type="String" value="沼泽"/>
-				<Describe type="String" value="沼泽"/>
-			</Ground2>
-			<Ground3>
-				<Name type="String" value="雪地"/>
-				<Describe type="String" value="雪地"/>
-			</Ground3>
-		</GroundData>
-		<TerrainData>
-			<Terrain1>
-				<Name type="String" value="平地"/>
-				<Describe type="String" value="平地"/>
-			</Terrain1>
-			<Terrain2>
-				<Name type="String" value="高地"/>
-				<Describe type="String" value="高地"/>
-			</Terrain2>
-			<Terrain0>
-				<Name type="String" value="水面"/>
-				<Describe type="String" value="水面"/>
-			</Terrain0>
-			<Terrain3>
-				<Name type="String" value="悬崖"/>
-				<Describe type="String" value="悬崖"/>
-			</Terrain3>
-			<Terrain4>
-				<Name type="String" value="坡道"/>
-				<Describe type="String" value="坡道"/>
-			</Terrain4>
-		</TerrainData>
-		<MapObjType>
-			<City>
-				<Name type="String" value="城市"/>
-				<Describe type="String" value="城市"/>
-			</City>
-		</MapObjType>
-		<FactionData>
-			<TestFaction>
-				<Name type="String" value="测试阵营"/>
-				<Describe type="String" value="测试阵营"/>
-			</TestFaction>
-			<winsock>
-				<Name type="String" value="萎缩"/>
-				<Describe type="String" value="萎缩的阵营"/>
-			</winsock>
-			<linsummer>
-				<Name type="String" value="奸商"/>
-				<Describe type="String" value="奸商的阵营"/>
-			</linsummer>
-			<uncleA>
-				<Name type="String" value="笨蛋阵营"/>
-				<Describe type="String" value="笨蛋的阵营"/>
-			</uncleA>
-		</FactionData>
-		<CityData>
-			<TestCity>
-				<Name type="String" value="测试城市"/>
-				<Describe type="String" value="测试城市"/>
-			</TestCity>
-		</CityData>
-	</StaticData>
-</Data>
+<StaticData>
+	<SquadData>
+		<TestSquad>
+			<Name type="String" value="测试小队"/>
+			<Describe type="String" value="废物小队"/>
+		</TestSquad>
+	</SquadData>
+	<SoilderData>
+		<TestSoilder>
+			<Name type="String" value="测试兵源"/>
+			<Describe type="String" value="就是一群废物"/>
+		</TestSoilder>
+	</SoilderData>
+	<HorseData>
+		<HeavyHorse>
+			<Name type="String" value="重型战马"/>
+			<Describe type="String" value="重型战马"/>
+		</HeavyHorse>
+	</HorseData>
+	<PweaponData>
+		<TestPWeapon>
+			<Name type="String" value="测试主武器"/>
+			<Describe type="String" value="烂的掉渣的剑"/>
+		</TestPWeapon>
+	</PweaponData>
+	<SweaponData>
+	</SweaponData>
+	<ShieldData>
+	</ShieldData>
+	<ArmorData>
+		<TestArmor>
+			<Name type="String" value="测试盔甲"/>
+			<Describe type="String" value="烂的掉渣的盔甲"/>
+		</TestArmor>
+	</ArmorData>
+	<SkillData>
+		<TestSkill>
+			<Name type="String" value="测试技能"/>
+			<Describe type="String" value="这简直是胡乱指挥"/>
+		</TestSkill>
+	</SkillData>
+	<EffectData>
+		<TestEffect>
+			<Name type="String" value="测试效果"/>
+			<Describe type="String" value="有什么效果"/>
+		</TestEffect>
+	</EffectData>
+	<GroundData>
+		<Ground0>
+			<Name type="String" value="绿地"/>
+			<Describe type="String" value="绿地"/>
+		</Ground0>
+		<Ground1>
+			<Name type="String" value="荒地"/>
+			<Describe type="String" value="荒地"/>
+		</Ground1>
+		<Ground2>
+			<Name type="String" value="沼泽"/>
+			<Describe type="String" value="沼泽"/>
+		</Ground2>
+		<Ground3>
+			<Name type="String" value="雪地"/>
+			<Describe type="String" value="雪地"/>
+		</Ground3>
+	</GroundData>
+	<TerrainData>
+		<Terrain1>
+			<Name type="String" value="平地"/>
+			<Describe type="String" value="平地"/>
+		</Terrain1>
+		<Terrain2>
+			<Name type="String" value="高地"/>
+			<Describe type="String" value="高地"/>
+		</Terrain2>
+		<Terrain0>
+			<Name type="String" value="水面"/>
+			<Describe type="String" value="水面"/>
+		</Terrain0>
+		<Terrain3>
+			<Name type="String" value="悬崖"/>
+			<Describe type="String" value="悬崖"/>
+		</Terrain3>
+		<Terrain4>
+			<Name type="String" value="坡道"/>
+			<Describe type="String" value="坡道"/>
+		</Terrain4>
+	</TerrainData>
+	<MapObjType>
+		<City>
+			<Name type="String" value="城市"/>
+			<Describe type="String" value="城市"/>
+		</City>
+	</MapObjType>
+	<FactionData>
+		<TestFaction>
+			<Name type="String" value="测试阵营"/>
+			<Describe type="String" value="测试阵营"/>
+		</TestFaction>
+		<winsock>
+			<Name type="String" value="萎缩"/>
+			<Describe type="String" value="萎缩的阵营"/>
+		</winsock>
+		<linsummer>
+			<Name type="String" value="奸商"/>
+			<Describe type="String" value="奸商的阵营"/>
+		</linsummer>
+		<uncleA>
+			<Name type="String" value="笨蛋阵营"/>
+			<Describe type="String" value="笨蛋的阵营"/>
+		</uncleA>
+	</FactionData>
+	<CityData>
+		<TestCity>
+			<Name type="String" value="测试城市"/>
+			<Describe type="String" value="测试城市"/>
+		</TestCity>
+	</CityData>
+</StaticData>

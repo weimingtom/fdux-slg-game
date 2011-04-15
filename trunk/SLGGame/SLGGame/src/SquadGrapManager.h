@@ -11,26 +11,13 @@ class SquadGraphics;
 
 using namespace izayoi;
 
+#include "squaddefine.h"
+
 class SquadGrapManager:public IISingleton<SquadGrapManager>
 {
 public:
 	SquadGrapManager(Ogre::SceneManager* sceneMgr);
 	~SquadGrapManager(void);
-
-	enum Direction
-	{
-		North,
-		South,
-		West,
-		East
-	};
-
-	enum Formation
-	{
-		Line,
-		Circular,
-		Loose
-	};
 
 	SquadGraphics* createSquad(std::string unitName,std::string datapath,unsigned int id,int x,int y,Direction d,Formation f);
 	void destorySquad(unsigned int id);

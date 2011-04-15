@@ -6,7 +6,7 @@
 DirectionCutScene::DirectionCutScene(unsigned int id,Direction direction)
 {
 	mSquadGraphics=SquadGrapManager::getSingletonPtr()->getSquad(id);
-	mSquadGraphics->setDirection((SquadGraphics::Direction)direction,true);
+	mSquadGraphics->setDirection(direction,true);
 	mDirection=direction;
 }
 
@@ -21,7 +21,7 @@ bool DirectionCutScene::endCutScene()
 
 void DirectionCutScene::skipCutScene()
 {
-	mSquadGraphics->setDirection((SquadGraphics::Direction)mDirection,false);
+	mSquadGraphics->setDirection(mDirection,false);
 }
 
 void DirectionCutScene::updateCutScene( unsigned int deltaTime )

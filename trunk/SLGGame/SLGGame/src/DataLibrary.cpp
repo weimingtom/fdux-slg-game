@@ -11,6 +11,10 @@ DataLibrary::DataLibrary(void)
 	ticpp::Declaration* decl = new ticpp::Declaration( "1.0", "UTF-8", "" );  
 	mGameData.LinkEndChild( decl );  
 	mGameData.LinkEndChild(new ticpp::Element("GameData"));
+
+	decl = new ticpp::Declaration( "1.0", "UTF-8", "" );  
+	mStaticData.LinkEndChild( decl );  
+	mStaticData.LinkEndChild(new ticpp::Element("StaticData"));
 	
 	decl = new ticpp::Declaration( "1.0", "UTF-8", "" );  
 	mSystemConfig.LinkEndChild( decl );  
@@ -24,13 +28,17 @@ DataLibrary::~DataLibrary(void)
 void DataLibrary::loadXmlData( DataBlock type,std::string fileName,bool append)
 {
 	ticpp::Document* currentDoc;
-	if (type==SystemConfig)
+	switch(type)
 	{
+	case SystemConfig:
 		currentDoc=&mSystemConfig;
-	}
-	else
-	{
+		break;
+	case GameData:
 		currentDoc=&mGameData;
+		break;
+	case StaticData:
+		currentDoc=&mStaticData;
+		break;
 	}
 
 	try
@@ -95,14 +103,19 @@ void DataLibrary::saveXmlData( DataBlock type,std::string fileName )
 {
 	try
 	{
-		if (type==SystemConfig)
+		switch(type)
 		{
+		case SystemConfig:
 			mSystemConfig.SaveFile(fileName);
-		}
-		else
-		{
+			break;
+		case GameData:
 			mGameData.SaveFile(fileName);
+			break;
+		case StaticData:
+			mStaticData.SaveFile(fileName);
+			break;
 		}
+
 	}
 	catch (ticpp::Exception& e)
 	{
@@ -492,6 +505,10 @@ ticpp::Element* DataLibrary::getNode( std::string path,bool createpath)
 		if (pathQueue.front()=="GameData")
 		{
 			parent=mGameData.FirstChildElement();
+		}
+		else if(pathQueue.front()=="StaticData")
+		{
+			parent=mStaticData.FirstChildElement();
 		}
 		else
 		{

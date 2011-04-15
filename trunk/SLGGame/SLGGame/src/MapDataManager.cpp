@@ -27,11 +27,11 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 	//载入地图名字
 	ticpp::Element *element = doc->FirstChildElement("MapName");
 	element->GetText(&str);
-	datalibrary->setData("GameData/GameData/BattleData/MapData/MapName", StringTable::getSingleton().getString(str));
+	datalibrary->setData("GameData/BattleData/MapData/MapName", StringTable::getSingleton().getString(str));
 	//载入地图地形信息
 	element = doc->FirstChildElement("MapSize");
 	element->GetText(&mMapSize);
-	datalibrary->setData("GameData/GameData/BattleData/MapData/MapSize", mMapSize);
+	datalibrary->setData("GameData/BattleData/MapData/MapSize", mMapSize);
 	element = doc->FirstChildElement("MapData");
 	element->GetText(&str);
 	for(int y = 0; y < mMapSize; y++)
@@ -40,7 +40,7 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 		{
 			int index = (y * mMapSize + x);
 			char datapathtemp[64];
-			sprintf_s(datapathtemp, 64, "GameData/GameData/BattleData/MapData/Map/M%d", index);
+			sprintf_s(datapathtemp, 64, "GameData/BattleData/MapData/Map/M%d", index);
 			std::string datapath = datapathtemp;
 			if(str[index * 2] == 'l')
 			{
@@ -103,7 +103,7 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 		std::string objname;
 		std::string datapath;
 		child->GetValue(&objname);
-		datapath = std::string("GameData/GameData/BattleData/MapData/MapObjModleInfo/") + objname;
+		datapath = std::string("GameData/BattleData/MapData/MapObjModleInfo/") + objname;
 		int objx,objy;
 		std::string meshname,objtype;
 		child->GetAttribute("GridX",&objx);
@@ -114,7 +114,7 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 		datalibrary->setData(datapath + "/GridY", objy);
 		datalibrary->setData(datapath + "/Mesh", meshname);
 		//物品类型脚本
-		datapath = std::string("GameData/GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(objy * mMapSize + objx) + std::string("/MapObjType");
+		datapath = std::string("GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(objy * mMapSize + objx) + std::string("/MapObjType");
 		datalibrary->setData(datapath, objtype);
 		datalibrary->setData(datapath + "/MapObjModuleId", objname);
 		//执行脚本
@@ -125,7 +125,7 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 		std::string particlename;
 		std::string datapath;
 		child->GetValue(&particlename);
-		datapath = std::string("GameData/GameData/BattleData/MapData/MapParticleInfo/") + particlename;
+		datapath = std::string("GameData/BattleData/MapData/MapParticleInfo/") + particlename;
 		int particlex,particley;
 		std::string scriptname;
 		child->GetAttribute("GridX",&particlex);
@@ -145,7 +145,7 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 		std::string areaname;
 		std::string datapath;
 		child->GetValue(&areaname);
-		datapath = std::string("GameData/GameData/BattleData/MapData/Area/") + areaname;
+		datapath = std::string("GameData/BattleData/MapData/Area/") + areaname;
 		ticpp::Iterator<ticpp::Element> childchild;
 		for(childchild = childchild.begin(child.Get()); childchild != childchild.end(); childchild++)
 		{
@@ -162,20 +162,24 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 	}
 	//载入队伍信息
 	element = doc->FirstChildElement("MapTeam");
-	datalibrary->setData(std::string("GameData/GameData/BattleData/Team/Team1/FactionId"), std::string("player"));
+	datalibrary->setData(std::string("GameData/BattleData/Team/Team1/FactionId"), std::string("player"));
 	for(int n = 2; n < 5; n++)
 	{
 		std::string name = std::string("Team") + Ogre::StringConverter::toString(n);
 		std::string factionid;
 		ticpp::Element* subelement = element->FirstChildElement(name);
 		subelement->GetAttribute("TeamFaction",&factionid);
-		datalibrary->setData(std::string("GameData/GameData/BattleData/Team/")+ name+ "/FactionId", factionid);
+		datalibrary->setData(std::string("GameData/BattleData/Team/")+ name+ "/FactionId", factionid);
 		if(factionid != "none")
 		{
 			subelement->GetAttribute("TeamType",&factionid);
-			datalibrary->setData(std::string("GameData/GameData/BattleData/Team/")+ name+ "/Relation", factionid);
+			datalibrary->setData(std::string("GameData/BattleData/Team/")+ name+ "/Relation", factionid);
 		}
 	}
+	std::string playerfactionid;
+	datalibrary->getData("GameData/StoryData/Faction",playerfactionid);
+	datalibrary->setData("GameData/BattleData/Team/Team1/FactionId",playerfactionid);
+	datalibrary->setData("GameData/BattleData/Team/Team1/Relation","player");
 	
 	//载入部队信息
 	element = doc->FirstChildElement("MapSquad");
@@ -184,10 +188,7 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 		std::string teamid;
 		std::string datapath;
 		child->GetValue(&teamid);
-		if(teamid == "Team1")
-			datapath = std::string("GameData/GameData/BattleData/Team/Team1/TempSquadList");
-		else
-			datapath = std::string("GameData/GameData/BattleData/Team/" + teamid + "/SquadList");
+		datapath = std::string("GameData/BattleData/SquadList");
 		ticpp::Iterator<ticpp::Element> childchild;
 		for(childchild = childchild.begin(child.Get()); childchild != childchild.end(); childchild++)
 		{
@@ -196,14 +197,26 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 			childchild->GetValue(&squadid);
 			int x;
 			int y;
+			Direction d;
+			int unitnum;
+			Formation f;
 			childchild->GetAttribute("Type",&squadtype);
 			childchild->GetAttribute("GridX",&x);
 			childchild->GetAttribute("GridY",&y);
+			childchild->GetAttribute("UnitNum",&unitnum);
+			childchild->GetAttribute("Direction",&d);
+			childchild->GetAttribute("Formation",&f);
 			AVGSquadManager::getSingleton().addSquad(squadid,squadtype, datapath);
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/GridX"), x, true );
-			datalibrary->setData(datapath + std::string("/") +  squadid + std::string("/GridY"), y, true );
+			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/GridY"), y, true );
+			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/UnitNum"), unitnum, true );
+			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/Direction"), d, true );
+			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/Formation"), f, true );
+			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/TeamId"), teamid, true );
+			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/CreateType"), MapSquad, true );
 		}
 	}
+	//执行地图初始化脚本
 	
 	return true;
 }
@@ -213,7 +226,7 @@ void MapDataManager::loadMapObj()
 {
 	DataLibrary* datalibrary = DataLibrary::getSingletonPtr();
 	Terrain* terrain = Terrain::getSingletonPtr();
-	std::string datapath("GameData/GameData/BattleData/MapData/MapObjModleInfo");
+	std::string datapath("GameData/BattleData/MapData/MapObjModleInfo");
 	std::vector<std::string> childlist;
 	childlist = datalibrary->getChildList(datapath);
 	if(childlist.size()>0)
@@ -230,7 +243,7 @@ void MapDataManager::loadMapObj()
 			datalibrary->setData(datapath + childlist[n] + std::string("/Index"),index);
 		}
 	}
-	datapath = "GameData/GameData/BattleData/MapData/MapParticleInfo";
+	datapath = "GameData/BattleData/MapData/MapParticleInfo";
 	childlist = datalibrary->getChildList(datapath);
 	if(childlist.size()>0)
 	{
@@ -257,7 +270,7 @@ GroundType MapDataManager::getGroundType(int x, int y)
 	int index = y * mMapSize + x;
 	GroundType groundtype;
 	char datapathtemp[128];
-	sprintf_s(datapathtemp, 128, "GameData/GameData/BattleData/MapData/Map/M%d/GroundType", index);
+	sprintf_s(datapathtemp, 128, "GameData/BattleData/MapData/Map/M%d/GroundType", index);
 	DataLibrary::getSingleton().getData(datapathtemp,groundtype);
 	return groundtype;
 }
@@ -270,7 +283,7 @@ TerrainType MapDataManager::getTerrainType(int x, int y)
 	int index = y * mMapSize + x;
 	TerrainType terraintype;
 	char datapathtemp[128];
-	sprintf_s(datapathtemp, 128, "GameData/GameData/BattleData/MapData/Map/M%d/TerrainType", index);
+	sprintf_s(datapathtemp, 128, "GameData/BattleData/MapData/Map/M%d/TerrainType", index);
 	DataLibrary::getSingleton().getData(datapathtemp,terraintype);
 	return terraintype;
 }
@@ -284,13 +297,13 @@ bool MapDataManager::getPassable(int x, int y, int team)
 	int minpassable;
 	int passable;
 	int id;
-	std::string path = std::string("GameData/GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(x + y * mMapSize);
+	std::string path = std::string("GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(x + y * mMapSize);
 	bool re = datalib->getData(path + std::string("/GroundType"), id);
-	re = datalib->getData(std::string("GameData/StaticData/GroundData/Ground") + Ogre::StringConverter::toString(id) + std::string("/GroundModifier/Passable"), passable);
+	re = datalib->getData(std::string("StaticData/GroundData/Ground") + Ogre::StringConverter::toString(id) + std::string("/GroundModifier/Passable"), passable);
 	maxpassable = passable;
 	minpassable = passable;
 	re = datalib->getData(path + std::string("/TerrainType"), id);
-	re = datalib->getData(std::string("GameData/StaticData/TerrainData/Terrain") + Ogre::StringConverter::toString(id) + std::string("/GroundModifier/Passable"), passable);
+	re = datalib->getData(std::string("StaticData/TerrainData/Terrain") + Ogre::StringConverter::toString(id) + std::string("/GroundModifier/Passable"), passable);
 	maxpassable = (maxpassable > passable)? maxpassable:passable;
 	minpassable = (minpassable < passable)? minpassable:passable;
 	//额外修正

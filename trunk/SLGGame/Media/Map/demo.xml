@@ -18,18 +18,18 @@
 </MapEffect>
 <MapSquad>
     <Team1>
-        <Team1Squad_0 Type="TestSquad" GridX="7" GridY="11" />
-        <Team1Squad_1 Type="TestSquad" GridX="6" GridY="12" />
+        <Team1Squad_0 Type="TestSquad" GridX="7" GridY="11" Direction = "0" Formation = "0" UnitNum = "25"/>
+        <Team1Squad_1 Type="TestSquad" GridX="6" GridY="12" Direction = "1" Formation = "0" UnitNum = "25"/>
     </Team1>
     <Team2>
-        <Team2Squad_0 Type="TestSquad" GridX="6" GridY="14" />
-        <Team2Squad_1 Type="TestSquad" GridX="6" GridY="16" />
+        <Team2Squad_0 Type="TestSquad" GridX="6" GridY="14" Direction = "1" Formation = "1" UnitNum = "50"/>
+        <Team2Squad_1 Type="TestSquad" GridX="6" GridY="16" Direction = "2" Formation = "2" UnitNum = "50"/>
     </Team2>
     <Team3>
-        <Team3Squad_0 Type="TestSquad" GridX="11" GridY="14" />
+        <Team3Squad_0 Type="TestSquad" GridX="11" GridY="14" Direction = "3" Formation = "0" UnitNum = "50"/>
     </Team3>
     <Team4>
-        <Team4Squad_0 Type="TestSquad" GridX="10" GridY="16" />
+        <Team4Squad_0 Type="TestSquad" GridX="10" GridY="16" Direction = "0" Formation = "0" UnitNum = "50"/>
     </Team4>
 </MapSquad>
 <MapArea>

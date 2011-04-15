@@ -86,9 +86,9 @@ bool Core::initialize()
 
 		//初始化数据文件
 		mDataLibrary=new DataLibrary();
-		mDataLibrary->loadXmlData(DataLibrary::GameData,"../media/data/datafile.xml",true);
-		mDataLibrary->loadXmlData(DataLibrary::GameData,"../media/lang/chinese/datafile.xml",true);
-		mDataLibrary->loadXmlData(DataLibrary::GameData,"../media/lang/chinese/stringtable.xml",true);
+		mDataLibrary->loadXmlData(DataLibrary::StaticData,"../media/data/datafile.xml",true);
+		mDataLibrary->loadXmlData(DataLibrary::StaticData,"../media/lang/chinese/datafile.xml",true);
+		mDataLibrary->loadXmlData(DataLibrary::StaticData,"../media/lang/chinese/stringtable.xml",true);
 		new StringTable;
 		new AVGSquadManager;
 
