@@ -32,8 +32,8 @@ BattleDeployState::BattleDeployState(BattleState* mainState)
 	//mSquadGrapManager=new SquadGrapManager(Core::getSingletonPtr()->mSceneMgr);
 	//SquadGraphics* s;//=mSquadGrapManager->createSquad("SinbadSquad",1,10,10,SquadGrapManager::North,SquadGrapManager::Loose);
 	//GUIPUDebug* puDebug=(GUIPUDebug*)GUISystem::getSingletonPtr()->createScene(PUDebugScene);
-	DataLibrary::getSingletonPtr()->setData("GameData/GameData/BattleData/BattleState/Ture",1);
-	DataLibrary::getSingletonPtr()->setData("GameData/GameData/BattleData/BattleState/CurTeam",1);
+	DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/Ture",1);
+	DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/CurTeam",1);
 	mGUIBattle=(GUIBattle*)GUISystem::getSingletonPtr()->createScene(BattleScene);
 	mGUIBattle->showScene("");
 

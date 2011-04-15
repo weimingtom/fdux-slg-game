@@ -20,7 +20,7 @@ const Ogre::Vector3 LooseVector[5]={Ogre::Vector3(0,0,0),Ogre::Vector3(-3,0,3),O
 #define FORMATION_KEYFRAME_TIME 1
 #define RELIEF_MOVE_TIME 1
 
-SquadGraphics::SquadGraphics(std::string squadName,std::string datapath,Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index):
+SquadGraphics::SquadGraphics(std::string squadName,std::string datapath,Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index,int soldierCount):
 mSquadId(squadName),
 mID(index),
 mPUSystem(NULL),
@@ -99,7 +99,7 @@ mFormation(f)
 	//DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/SoldierMainWeapon"),mMainWeaponName);
 	//DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/SoldierSecWeapon"),mSecWeaponName);
 	//DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/SoldierShield"),mShieldName);
-	for (int i=0;i<4;i++)
+	for (int i=0;i<soldierCount;i++)
 	{
 		createSoldier();
 	}
