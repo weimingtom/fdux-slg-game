@@ -21,17 +21,29 @@
         <Widget type="TextBox" skin="TextBox" position="130 10 45 21">
             <Property key="Caption" value="Name:"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="180 10 105 20" name="SquadNameLabel"/>
+        <Widget type="TextBox" skin="TextBox" position="180 10 105 20" name="SquadNameLabel">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="Caption" value="name"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
         <Widget type="TextBox" skin="TextBox" position="130 40 45 20">
             <Property key="Caption" value="Type:"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="180 40 105 20" name="SquadTypeLabel"/>
+        <Widget type="TextBox" skin="TextBox" position="180 40 105 20" name="SquadTypeLabel">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+            <Property key="Caption" value="type"/>
+        </Widget>
         <Widget type="TextBox" skin="TextBox" position="130 70 65 20">
             <Property key="Caption" value="Describe:"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="130 94 155 56" name="SquadDescribeLabel"/>
+        <Widget type="TextBox" skin="TextBox" position="130 94 155 56" name="SquadDescribeLabel">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+            <Property key="Caption" value="describe"/>
+        </Widget>
     </Widget>
-    <Widget type="Window" skin="WindowCS" position_real="0.61713 0 0.131772 0.26257" layer="Main" name="Terrain">
+    <Widget type="Window" skin="WindowCS" position_real="0.615666 0 0.131772 0.26257" layer="Main" name="Terrain">
         <Property key="Caption" value="Terrain"/>
         <Widget type="TextBox" skin="TextBox" position="5 5 45 20">
             <Property key="Caption" value="Name:"/>
@@ -54,7 +66,7 @@
         </Widget>
         <Widget type="TextBox" skin="TextBox" position="70 130 60 15" name="TerrainInfApLabel"/>
     </Widget>
-    <Widget type="Window" skin="WindowCSX" position="295 0 115 155" layer="Main">
+    <Widget type="Window" skin="WindowCSX" position="300 0 115 155" layer="Main" name="Command">
         <Property key="Caption" value="Command"/>
         <Widget type="Button" skin="Button" position="0 0 105 30" name="CmdMoveButton">
             <Property key="Caption" value="Move"/>

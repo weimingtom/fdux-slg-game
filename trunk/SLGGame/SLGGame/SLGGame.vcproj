@@ -612,6 +612,14 @@
 						Name="SubWindows"
 						>
 						<File
+							RelativePath=".\src\GUICommandWindows.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\src\GUICommandWindows.h"
+							>
+						</File>
+						<File
 							RelativePath=".\src\GUIGameStateWindows.cpp"
 							>
 						</File>

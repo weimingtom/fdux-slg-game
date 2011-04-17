@@ -2,17 +2,25 @@
 <MyGUI type="Layout" version="3.2.0">
     <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Main" name="BackGround">
         <Property key="ImageTexture" value="menubg.jpg"/>
-        <Widget type="Button" skin="Button" position_real="0.699219 0.520833 0.171094 0.0416667" name="New">
+        <Widget type="Button" skin="Button" position_real="0.699219 0.519444 0.171094 0.0416667" name="New">
             <Property key="Caption" value="New"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
         </Widget>
         <Widget type="Button" skin="Button" position_real="0.699219 0.576389 0.171094 0.0416667" name="Load">
             <Property key="Caption" value="Load"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="Button" skin="Button" position_real="0.699219 0.631944 0.171094 0.0416667" name="Opiton">
+        <Widget type="Button" skin="Button" position_real="0.699219 0.630556 0.171094 0.0416667" name="Opiton">
             <Property key="Caption" value="Opiton"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
         </Widget>
         <Widget type="Button" skin="Button" position_real="0.699219 0.6875 0.171094 0.0416667" name="Exit">
             <Property key="Caption" value="Exit"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
         </Widget>
     </Widget>
     <Widget type="ImageBox" skin="ImageBox" position="0 0 1020 610" layer="Overlapped" name="LogoImage">

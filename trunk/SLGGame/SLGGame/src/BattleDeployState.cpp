@@ -87,12 +87,7 @@ bool BattleDeployState::mouseMoved(const OIS::MouseEvent &arg)
 }
 bool BattleDeployState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
 {
-	int GX,GY;
-	if(Terrain::getSingletonPtr()->coordinateToGrid(arg.state.X.abs,arg.state.Y.abs,GX,GY))
-	{
-		mGUIBattle->GridInputEvent(GX,GY);
-		std::cout<<GX<<","<<GY<<std::endl;
-	}
+	mGUIBattle->SceneInputEvent(arg.state.X.abs,arg.state.Y.abs);
 	return true;
 }
 bool BattleDeployState::mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id)

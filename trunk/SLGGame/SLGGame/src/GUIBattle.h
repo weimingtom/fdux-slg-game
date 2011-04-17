@@ -22,9 +22,11 @@ public:
 		return BattleScene;
 	}
 
-	void GridInputEvent(int x,int y);
+	void SceneInputEvent(float x,float y);
 private:
 	std::list<GUISubWindows*> mSubWindows;
+
+	void GridInputEvent(int x,int y);
 };
 
 class GUIBattleFactory:
