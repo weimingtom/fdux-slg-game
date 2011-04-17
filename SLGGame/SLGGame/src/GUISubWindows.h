@@ -15,6 +15,12 @@ public:
 
 	//格子输入事件,返回值表示是否继续向下传递
 	virtual bool GridInputEvent(int x,int y)=0;
+	
+	//屏幕输入事件,返回值表示是否继续向下传递
+	virtual bool SceneInputEvent(float x,float y)
+	{
+		return true;
+	}
 
 	virtual std::string getName()=0;
 };
