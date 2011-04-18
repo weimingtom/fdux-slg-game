@@ -23,6 +23,7 @@ DataLibrary::DataLibrary(void)
 
 DataLibrary::~DataLibrary(void)
 {
+
 }
 
 void DataLibrary::loadXmlData( DataBlock type,std::string fileName,bool append)
@@ -71,6 +72,7 @@ void DataLibrary::appendXmlDate( ticpp::Document* currentDoc,std::string fileNam
 
 		copyElement(srcElement,destElement);
 
+		delete destElement;
 	}
 	catch (ticpp::Exception& e)
 	{
@@ -94,6 +96,7 @@ void DataLibrary::copyElement( ticpp::Element* srcElement,ticpp::Element* destEl
 			std::auto_ptr< ticpp::Node > clonedNode=child->Clone();
 			destElement->LinkEndChild(clonedNode->ToElement());
 		}
+		delete findElement;
 	}
 
 	
@@ -130,6 +133,11 @@ bool DataLibrary::setData( std::string path,const int& value,bool createpath)
 	{
 		node->SetAttribute("value",value);
 		node->SetAttribute("type","Int");
+		if (mCreateState==CreateState_NoCreate)
+		{
+			delete node;
+		}
+
 		return true;
 	}
 	else
@@ -145,6 +153,11 @@ bool DataLibrary::setData( std::string path,const unsigned int& value,bool creat
 	{
 		node->SetAttribute("value",value);
 		node->SetAttribute("type","UInt");
+		if (mCreateState==CreateState_NoCreate)
+		{
+			delete node;
+		}
+
 		return true;
 	}
 	else
@@ -160,6 +173,11 @@ bool DataLibrary::setData( std::string path,const float& value,bool createpath)
 	{
 		node->SetAttribute("value",value);	
 		node->SetAttribute("type","Float");
+		if (mCreateState==CreateState_NoCreate)
+		{
+			delete node;
+		}
+
 		return true;
 	}
 	else
@@ -175,6 +193,11 @@ bool DataLibrary::setData( std::string path,const double& value,bool createpath 
 	{
 		node->SetAttribute("value",value);
 		node->SetAttribute("type","Double");
+		if (mCreateState==CreateState_NoCreate)
+		{
+			delete node;
+		}
+
 		return true;
 	}
 	else
@@ -190,6 +213,11 @@ bool DataLibrary::setData( std::string path,const std::string& value,bool create
 	{
 		node->SetAttribute("value",value);
 		node->SetAttribute("type","String");
+		if (mCreateState==CreateState_NoCreate)
+		{
+			delete node;
+		}
+
 		return true;
 	}
 	else
@@ -206,6 +234,11 @@ bool DataLibrary::setData( std::string path,const Ogre::Vector3& value,bool crea
 		std::string v=Ogre::StringConverter::toString(value.x)+","+Ogre::StringConverter::toString(value.y)+","+Ogre::StringConverter::toString(value.z);
 		node->SetAttribute("value",v);
 		node->SetAttribute("type","Vector3");
+		if (mCreateState==CreateState_NoCreate)
+		{
+			delete node;
+		}
+
 		return true;
 	}
 	else
@@ -222,10 +255,12 @@ bool DataLibrary::getData( std::string path,int& value,bool testExist )
 		try
 		{
 			node->GetAttribute("value",&value);
+			delete node;
 		}
 		catch (ticpp::Exception& e)
 		{
 			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
+			delete node;
 			return false;
 		}
 		
@@ -249,10 +284,12 @@ bool DataLibrary::getData( std::string path,unsigned int& value,bool testExist )
 		try
 		{
 			node->GetAttribute("value",&value);
+			delete node;
 		}
 		catch (ticpp::Exception& e)
 		{
 			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
+			delete node;
 			return false;
 		}
 
@@ -276,10 +313,12 @@ bool DataLibrary::getData( std::string path,float& value,bool testExist )
 		try
 		{
 			node->GetAttribute("value",&value);
+			delete node;
 		}
 		catch (ticpp::Exception& e)
 		{
 			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
+			delete node;
 			return false;
 		}
 
@@ -303,10 +342,12 @@ bool DataLibrary::getData( std::string path,double& value,bool testExist )
 		try
 		{
 			node->GetAttribute("value",&value);
+			delete node;
 		}
 		catch (ticpp::Exception& e)
 		{
 			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
+			delete node;
 			return false;
 		}
 
@@ -330,10 +371,12 @@ bool DataLibrary::getData( std::string path,std::string& value,bool testExist )
 		try
 		{
 			node->GetAttribute("value",&value);
+			delete node;
 		}
 		catch (ticpp::Exception& e)
 		{
 			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
+			delete node;
 			return false;
 		}
 
@@ -363,6 +406,7 @@ bool DataLibrary::getData( std::string path,Ogre::Vector3& value,bool testExist 
 			if (vl.size()!=3)
 			{
 				Ogre::LogManager::getSingletonPtr()->logMessage(path+" has a bad format",Ogre::LML_CRITICAL);
+				delete node;
 				return false;
 			}
 			else
@@ -372,6 +416,7 @@ bool DataLibrary::getData( std::string path,Ogre::Vector3& value,bool testExist 
 				value.y=Ogre::StringConverter::parseReal(vl.front());
 				vl.pop();
 				value.z=Ogre::StringConverter::parseReal(vl.front());
+				delete node;
 			}
 		}
 		catch (ticpp::Exception& e)
@@ -396,11 +441,20 @@ bool DataLibrary::delNode(std::string path)
 {
 	ticpp::Element* node=getNode(path,false);
 	if(node == NULL)
+	{
 		return false;
+	}
+
 	ticpp::Node* parent = node->Parent(false);
 	if(parent == NULL)
+	{
+		delete node;
 		return false;
+	}
+
 	parent->RemoveChild(node);
+	delete parent;
+
 	return true;
 }
 
@@ -413,11 +467,25 @@ bool DataLibrary::copyNode(std::string srcpath, std::string distpath, bool creat
 {
 	ticpp::Element* srcnode=getNode(srcpath,false);
 	if(!srcnode)
+	{
 		return false;
+	}
+
 	ticpp::Element* distnode=getNode(distpath,createpath);
 	if(!distnode)
+	{
+		delete srcnode;
 		return false;
+	}
+
 	copyElement(srcnode,distnode );
+
+	delete srcnode;
+	if (mCreateState==CreateState_Create)
+	{
+		delete distnode;
+	}
+
 	return true;
 }
 
@@ -435,6 +503,8 @@ std::vector<std::string> DataLibrary::getChildList(std::string path)
 			chlidlist.push_back(childname);
 		}
 	}
+	delete node;
+
 	return chlidlist;
 }
 
@@ -445,18 +515,22 @@ ticpp::Element* DataLibrary::findNode( ticpp::Element* parent,std::queue<std::st
 	
 	if (!parent->NoChildren())
 	{
-		ticpp::Element* chila=parent->FirstChildElement(nodeName,false);
-		if (chila!=NULL)
+		ticpp::Element* child=parent->FirstChildElement(nodeName,false);
+		if (child!=NULL)
 		{
 			if (!path->empty())
 			{
-				return findNode(chila,path,createpath);
+				ticpp::Element* rtn=findNode(child,path,createpath);
+				delete child;
+				return rtn;
 			}
 			else
 			{
-				return chila;
+				mCreateState=CreateState_NoCreate;
+				return child;
 			}
 		}
+		delete child;
 	}
 	
 	if(createpath)
@@ -469,11 +543,13 @@ ticpp::Element* DataLibrary::findNode( ticpp::Element* parent,std::queue<std::st
 		}
 		else
 		{
+			mCreateState=CreateState_Create;
 			return newNode;
 		}
 	}
 	else
 	{
+		mCreateState=CreateState_NoCreate;
 		return NULL;
 	}
 
@@ -497,6 +573,7 @@ void DataLibrary::split(const std::string& s, char c,std::queue<std::string>& v)
 
 ticpp::Element* DataLibrary::getNode( std::string path,bool createpath)
 {
+	mCreateState=CreateState_None;
 	std::queue<std::string> pathQueue;
 	split(path,'/',pathQueue);
 	if (pathQueue.size()>=2)
@@ -516,7 +593,9 @@ ticpp::Element* DataLibrary::getNode( std::string path,bool createpath)
 		}
 
 		pathQueue.pop();
-		return findNode(parent,&pathQueue,createpath);
+		ticpp::Element* e=findNode(parent,&pathQueue,createpath);
+		delete parent;
+		return e;
 	}
 	else
 	{
@@ -537,6 +616,7 @@ DataLibrary::DataType DataLibrary::getDataType( std::string path )
 		catch (ticpp::Exception& e)
 		{
 			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
+			delete node;
 			return NoneType;
 		}
 		
@@ -561,6 +641,8 @@ DataLibrary::DataType DataLibrary::getDataType( std::string path )
 		{
 			type=StringType;
 		} 
+		
+		delete node;
 
 		return 	type;		
 	}

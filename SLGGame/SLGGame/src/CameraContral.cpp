@@ -67,7 +67,7 @@ void CameraContral::resetCamera()
 
 void CameraContral::setCamera()
 {
-	float height = mTerrain->getHeight(mX,mY);
+	float height =mTerrain->getHeight(mX,mY);
 	float d = mHeight;//´ý¶¨¹«Ê½
 	mCamera->setPosition(mX + d, height +mHeight, mY +d);
 	mCamera->lookAt(mX,height, mY );
