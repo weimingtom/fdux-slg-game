@@ -65,6 +65,13 @@ private:
 	ticpp::Document mGameData;
 	ticpp::Document mStaticData;
 
+	typedef int CreateState;
+	static const int	CreateState_None = 0;
+	static const int	CreateState_NoCreate = 1;
+	static const int	CreateState_Create = 2;
+
+	CreateState mCreateState;
+
 	void appendXmlDate(ticpp::Document* currentDoc,std::string fileName);
 	ticpp::Element* getNode(std::string path,bool createpath);
 	ticpp::Element* findNode(ticpp::Element* parent,std::queue<std::string>* path,bool createpath);

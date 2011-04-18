@@ -4,6 +4,7 @@
 #include "Terrain.h"
 #include "StringTable.h"
 #include "AVGSquadManager.h"
+#include "boost/format.hpp"
 #include <ticpp.h>
 
 MapDataManager::MapDataManager()
@@ -28,10 +29,14 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 	ticpp::Element *element = doc->FirstChildElement("MapName");
 	element->GetText(&str);
 	datalibrary->setData("GameData/BattleData/MapData/MapName", StringTable::getSingleton().getString(str));
+	delete element;
+
 	//载入地图地形信息
 	element = doc->FirstChildElement("MapSize");
 	element->GetText(&mMapSize);
 	datalibrary->setData("GameData/BattleData/MapData/MapSize", mMapSize);
+	delete element;
+
 	element = doc->FirstChildElement("MapData");
 	element->GetText(&str);
 	for(int y = 0; y < mMapSize; y++)
@@ -96,6 +101,8 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 			}
 		}
 	}
+	delete element;
+
 	element = doc->FirstChildElement("MapObject");
 	ticpp::Iterator<ticpp::Element> child;
 	for(child = child.begin(element); child != child.end(); child++)
@@ -119,6 +126,8 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 		datalibrary->setData(datapath + "/MapObjModuleId", objname);
 		//执行脚本
 	}
+	delete element;
+
 	element = doc->FirstChildElement("MapEffect");
 	for(child = child.begin(element); child != child.end(); child++)
 	{
@@ -137,6 +146,7 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 	}
 	
 	terrain->createTerrain(this);
+	delete element;
 
 	//载入区域信息
 	element = doc->FirstChildElement("MapArea");
@@ -160,6 +170,8 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 		}
 	
 	}
+	delete element;
+
 	//载入队伍信息
 	element = doc->FirstChildElement("MapTeam");
 	datalibrary->setData(std::string("GameData/BattleData/Team/Team1/FactionId"), std::string("player"));
@@ -175,11 +187,13 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 			subelement->GetAttribute("TeamType",&factionid);
 			datalibrary->setData(std::string("GameData/BattleData/Team/")+ name+ "/Relation", factionid);
 		}
+		delete subelement;
 	}
 	std::string playerfactionid;
 	datalibrary->getData("GameData/StoryData/Faction",playerfactionid);
 	datalibrary->setData("GameData/BattleData/Team/Team1/FactionId",playerfactionid);
 	datalibrary->setData("GameData/BattleData/Team/Team1/Relation","player");
+	delete element;
 	
 	//载入部队信息
 	element = doc->FirstChildElement("MapSquad");
@@ -216,6 +230,7 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/CreateType"), MapSquad, true );
 		}
 	}
+	delete element;
 	//执行地图初始化脚本
 	
 	return true;
@@ -282,9 +297,8 @@ TerrainType MapDataManager::getTerrainType(int x, int y)
 	y = (y > mMapSize -1)?mMapSize -1:y;
 	int index = y * mMapSize + x;
 	TerrainType terraintype;
-	char datapathtemp[128];
-	sprintf_s(datapathtemp, 128, "GameData/BattleData/MapData/Map/M%d/TerrainType", index);
-	DataLibrary::getSingleton().getData(datapathtemp,terraintype);
+	std::string datapath=str(boost::format("GameData/BattleData/MapData/Map/M%1%/TerrainType")%index);
+	DataLibrary::getSingleton().getData(datapath,terraintype);
 	return terraintype;
 }
 
