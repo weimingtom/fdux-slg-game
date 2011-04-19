@@ -22,7 +22,7 @@ struct AttrModifier
 	int	ActionPoint;
 	int	Detection;
 	int	Covert;
-	float Injury;
+	float	Injury;
 	float	Conter;
 };
 

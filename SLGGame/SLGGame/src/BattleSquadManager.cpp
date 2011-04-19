@@ -5,6 +5,8 @@
 
 #include "DataLibrary.h"
 
+#include "BattleSquad.h"
+
 BattleSquadManager::BattleSquadManager()
 {
 	mCurid = 0;
@@ -34,6 +36,9 @@ void BattleSquadManager::initBattleSquad(bool loadfrommap)
 				suqadgrapmanager->createSquad((*ite), datapath, mCurid, -1, 0,North,Line);
 				datalib->setData(datapath +std::string("/Grapid"),mCurid, true);
 				datalib->setData(datapath +std::string("/CreateType"), StroySquad, true );
+				datalib->setData(datapath +std::string("/Direction"), North, true );
+				datalib->setData(datapath +std::string("/Formation"), Line, true );
+				mDeployList.push_back(new BattleSquad((*ite),mCurid,-1,0));
 				mCurid ++;
 			}
 		}
@@ -61,10 +66,34 @@ void BattleSquadManager::creatSquadGrapAtPath(std::string path)
 			datalib->getData(datapath + "/GridY",y);
 			datalib->getData(datapath + "/Direction",d);
 			datalib->getData(datapath + "/Formation",f);
-			datalib->getData(datapath + "/UnitNum",unitnum);
+			datalib->getData(datapath + "/UnitNumber",unitnum);
 			suqadgrapmanager->createSquad((*ite), datapath, mCurid,x,y,d,f);
 			datalib->setData(datapath +std::string("/Grapid"),mCurid);
+			mSquadList.push_back(new BattleSquad((*ite),mCurid,x,y));
 			mCurid ++;
 		}
 	}
+}
+
+void BattleSquadManager::deployConfirm()
+{
+	while(mDeployList.size() > 0)
+	{
+		BattleSquad* suqad = mDeployList.back();
+		mDeployList.pop_back();
+		mSquadList.push_back(suqad);
+	}
+}
+
+bool  BattleSquadManager::allDeployed()
+{
+	BattleSquadIte ite;
+	for(ite = mDeployList.begin(); ite != mDeployList.end(); ite++)
+	{
+		int x;
+		(*ite)->getCrood(&x, NULL);
+		if(x < 0)
+			return false;
+	}
+	return true;
 }

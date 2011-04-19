@@ -23,6 +23,8 @@ public:
 	}
 
 	void SceneInputEvent(float x,float y);
+
+	GUISubWindows* getSubWindow(std::string arg);
 private:
 	std::list<GUISubWindows*> mSubWindows;
 

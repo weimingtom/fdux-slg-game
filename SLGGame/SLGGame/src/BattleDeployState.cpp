@@ -1,21 +1,21 @@
 #include "BattleDeployState.h"
 
 #include "BattleState.h"
-
 #include "CameraContral.h"
-
 #include "Core.h"
-
 #include "InputControl.h"
-
 #include "SquadGrapManager.h"
-
+#include "SquadGraphics.h"
+#include "BattleSquadManager.h"
+#include "BattleSquad.h"
 #include "DataLibrary.h"
-
 #include "Terrain.h"
-
 #include "GUIPUDebug.h"
 #include "GUIBattle.h"
+#include "BattleControlState.h"
+#include "GUIDeployWindow.h"
+#include "AreaGrap.h"
+#include "MapDataManager.h"
 
 BattleDeployState::BattleDeployState(BattleState* mainState)
 :SubBattleState(mainState)
@@ -35,7 +35,21 @@ BattleDeployState::BattleDeployState(BattleState* mainState)
 	DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/Ture",1);
 	DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/CurTeam",1);
 	mGUIBattle=(GUIBattle*)GUISystem::getSingletonPtr()->createScene(BattleScene);
-	mGUIBattle->showScene("");
+	mGUIBattle->showScene("DeployWindow");
+	mDeployWindow = (GUIDeployWindows*)(mGUIBattle->getSubWindow("DeployWindow"));
+	mDeployWindow->setDeployState(this);
+	mSquadManager = BattleSquadManager::getSingletonPtr();
+	mSelectSquad = NULL;
+	//建立部署小队列表
+	BattleSquadManager::BattleSquadIte ite;
+	std::vector<std::string> squadlist;
+	for(ite = mSquadManager->mDeployList.begin(); ite != mSquadManager->mDeployList.end(); ite++)
+	{
+		squadlist.push_back((*ite)->getSquadName());
+	}
+	mDeployWindow->initList(squadlist);
+
+	mAreaGrap = new AreaGrap(std::string("GameData/BattleData/MapData/Area/DeployArea/CoordList"),"CUBE_BLUE");
 
 	//int k=1;
 	//for (int i=8;i<14;i++)
@@ -51,7 +65,8 @@ BattleDeployState::BattleDeployState(BattleState* mainState)
 BattleDeployState::~BattleDeployState()
 {
 	Core::getSingleton().mInputControl->popListener();
-	delete mSquadGrapManager;
+	delete mCameraContral;
+	delete mAreaGrap;
 }
 
 void BattleDeployState::update(unsigned int deltaTime)
@@ -88,9 +103,43 @@ bool BattleDeployState::mouseMoved(const OIS::MouseEvent &arg)
 bool BattleDeployState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
 {
 	mGUIBattle->SceneInputEvent(arg.state.X.abs,arg.state.Y.abs);
+	int GX,GY;
+	Terrain::getSingletonPtr()->coordinateToGrid(arg.state.X.abs,arg.state.Y.abs,GX,GY);
+	if(mSelectSquad)
+	{
+		MapDataManager* datamanager = MapDataManager::getSingletonPtr();
+		if(mAreaGrap->inArea(GX,GY) && datamanager->getPassable(GX,GY,1))
+		{
+			int id = mSelectSquad->getGrapId();
+			SquadGraphics* squadgrap = SquadGrapManager::getSingleton().getSquad(id);
+			squadgrap->setGrid(GX,GY);
+			mSelectSquad->setCrood(GX,GY);
+			char info[64];
+			sprintf_s(info,64,"%d,%d",GX,GY);
+			mDeployWindow->setDeployInfo(mSelectIndex,std::string(info));
+			if(mSquadManager->allDeployed())
+				mDeployWindow->setAllowConfirm(true);
+		}
+	}
 	return true;
 }
 bool BattleDeployState::mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
 {
 	return false;
+}
+
+void BattleDeployState::deployConfirm()
+{
+	if(mSquadManager->allDeployed())
+	{
+		mSquadManager->deployConfirm();
+		BattleControlState* controlstate = new BattleControlState(mMainState);
+		mMainState->ChangeState(controlstate);
+	}
+}
+
+void BattleDeployState::selectIndex(int index)
+{
+	mSelectSquad = mSquadManager->mDeployList[index];
+	mSelectIndex = index;
 }

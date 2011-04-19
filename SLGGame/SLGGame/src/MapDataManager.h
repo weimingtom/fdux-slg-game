@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include "iisingleton.hpp"
+using namespace izayoi;
 
 typedef int GroundType;
 static const int	GreenLand = 0;
@@ -17,7 +19,7 @@ static const int	Ramp = 4;
 
 class Terrain;
 
-class MapDataManager
+class MapDataManager: public IISingleton<MapDataManager>
 {
 public:
 	MapDataManager();

@@ -361,6 +361,14 @@
 					Name="SubBattleState"
 					>
 					<File
+						RelativePath=".\src\BattleControlState.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\BattleControlState.h"
+						>
+					</File>
+					<File
 						RelativePath=".\src\BattleDeployState.cpp"
 						>
 					</File>
@@ -402,6 +410,14 @@
 				Name="Control"
 				>
 				<File
+					RelativePath=".\src\BattleSquad.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\BattleSquad.h"
+					>
+				</File>
+				<File
 					RelativePath=".\src\BattleSquadManager.cpp"
 					>
 				</File>
@@ -437,6 +453,14 @@
 			<Filter
 				Name="View"
 				>
+				<File
+					RelativePath=".\src\AreaGrap.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\AreaGrap.h"
+					>
+				</File>
 				<File
 					RelativePath=".\src\GUIPUDebug.cpp"
 					>
@@ -617,6 +641,14 @@
 						</File>
 						<File
 							RelativePath=".\src\GUICommandWindows.h"
+							>
+						</File>
+						<File
+							RelativePath=".\src\GUIDeployWindow.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\src\GUIDeployWindow.h"
 							>
 						</File>
 						<File
