@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout" version="3.2.0">
-    <Widget type="Window" skin="WindowCS" position_real="0 0 0.215959 0.202514" layer="Main" name="GameState">
+    <Widget type="Window" skin="WindowCS" position_real="0 0 0.11875 0.141667" layer="Main" name="GameState">
         <Property key="Caption" value="Game State"/>
         <Property key="Visible" value="true"/>
         <Widget type="TextBox" skin="TextBox" position="5 15 75 20">
@@ -15,7 +15,7 @@
             <Property key="Caption" value="Next Turn"/>
         </Widget>
     </Widget>
-    <Widget type="Window" skin="WindowCS" position_real="0 0.592179 0.215959 0.361732" layer="Main" name="Squad">
+    <Widget type="Window" skin="WindowCS" position_real="0 0.416667 0.11875 0.253333" layer="Main" name="Squad">
         <Property key="Caption" value="Squad Info"/>
         <Widget type="ImageBox" skin="ImageBox" position="5 5 115 145" name="SquadImage"/>
         <Widget type="TextBox" skin="TextBox" position="130 10 45 21">
@@ -84,5 +84,20 @@
     <Widget type="Window" skin="WindowCS" position="0 145 220 140" layer="Main">
         <Property key="Caption" value="Mission"/>
         <Widget type="ListBox" skin="ListBox" position="0 0 210 105" name="MissionList"/>
+    </Widget>
+    <Widget type="Window" skin="WindowCS" position="290 185 195 275" layer="Main" name="DeployWindow">
+        <Property key="Caption" value="DeployWindow"/>
+        <Widget type="MultiListBox" skin="MultiListBox" position="0 0 185 215" name="DeployList">
+            <Widget type="MultiListItem" skin="" position="0 0 71 186">
+                <Property key="Caption" value="Name"/>
+            </Widget>
+            <Widget type="MultiListItem" skin="" position="71 0 111 186">
+                <Property key="Caption" value="DeployState"/>
+            </Widget>
+        </Widget>
+        <Widget type="Button" skin="Button" position="0 215 185 25" name="DeployConfirm">
+            <Property key="Caption" value="DeployConfirm"/>
+            <Property key="Enabled" value="false"/>
+        </Widget>
     </Widget>
 </MyGUI>

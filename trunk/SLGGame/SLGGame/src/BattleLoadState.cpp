@@ -17,6 +17,7 @@ BattleLoadState::BattleLoadState(BattleState* mainSate, std::string arg)
 	mLoadFromMap =true;
 	mMapFile = arg;
 	mLoadScene = static_cast<LoadScene*>(GUISystem::getSingleton().createScene(LoadingScene));
+	mMapDataManager = MapDataManager::getSingletonPtr();
 }
 
 BattleLoadState::~BattleLoadState()
@@ -33,7 +34,6 @@ void BattleLoadState::update(unsigned int deltaTime)
 		mLoadScene->setText("Loading Terrain");
 		break;
 	case LOADTERRAIN:
-		mMapDataManager = new MapDataManager;
 		if(mLoadFromMap)
 			mMapDataManager->loadMapFormFile(mMapFile);
 		Core::getSingleton().mRoot->renderOneFrame(0.0f);

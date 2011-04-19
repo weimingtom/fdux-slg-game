@@ -5,8 +5,12 @@
 
 class CameraContral;
 
-class SquadGrapManager;
 class GUIBattle;
+class GUIDeployWindows;
+class BattleSquad;
+class BattleSquadManager;
+class AreaGrap;
+
 class BattleDeployState:public SubBattleState, public InputListener
 {
 public:
@@ -21,10 +25,17 @@ public:
 	virtual bool mouseMoved(const OIS::MouseEvent &arg);
 	virtual bool mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id);
 	virtual bool mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id);
+
+	void deployConfirm();
+	void selectIndex(int index);
 private:
 	CameraContral* mCameraContral;
-	SquadGrapManager* mSquadGrapManager;
 	GUIBattle* mGUIBattle;
+	GUIDeployWindows* mDeployWindow;
+	BattleSquad* mSelectSquad;
+	int mSelectIndex;
+	BattleSquadManager* mSquadManager;
+	AreaGrap* mAreaGrap;
 
 	int mMouseX;
 	int mMouseY;

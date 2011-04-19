@@ -4,6 +4,8 @@
 #include "Terrain.h"
 #include "StringTable.h"
 #include "AVGSquadManager.h"
+#include "BattleSquadManager.h"
+#include "BattleSquad.h"
 #include "boost/format.hpp"
 #include <ticpp.h>
 
@@ -223,7 +225,7 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 			AVGSquadManager::getSingleton().addSquad(squadid,squadtype, datapath);
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/GridX"), x, true );
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/GridY"), y, true );
-			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/UnitNum"), unitnum, true );
+			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/UnitNumber"), unitnum, true );
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/Direction"), d, true );
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/Formation"), f, true );
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/TeamId"), teamid, true );
@@ -255,7 +257,7 @@ void MapDataManager::loadMapObj()
 			datalibrary->getData(datapath + std::string("/") +childlist[n] + std::string("/GridY"),y);
 			int index;
 			index = terrain->createMapObj(x,y,meshname);
-			datalibrary->setData(datapath + childlist[n] + std::string("/Index"),index);
+			datalibrary->setData(datapath + std::string("/") + childlist[n] + std::string("/Index"),index);
 		}
 	}
 	datapath = "GameData/BattleData/MapData/MapParticleInfo";
@@ -271,7 +273,7 @@ void MapDataManager::loadMapObj()
 			datalibrary->getData(datapath + std::string("/") +childlist[n] + std::string("/GridY"),y);
 			int index;
 			index = terrain->createMapParticle(x,y,particlename);
-			datalibrary->setData(datapath + childlist[n] + std::string("/Index"),index);
+			datalibrary->setData(datapath + std::string("/") + childlist[n] + std::string("/Index"),index);
 		}
 	}
 }
@@ -321,6 +323,24 @@ bool MapDataManager::getPassable(int x, int y, int team)
 	maxpassable = (maxpassable > passable)? maxpassable:passable;
 	minpassable = (minpassable < passable)? minpassable:passable;
 	//额外修正
+
+	//小队阻挡
+	BattleSquadManager* battlesquadmanager = BattleSquadManager::getSingletonPtr();
+	BattleSquadManager::BattleSquadIte ite;
+	for(ite = battlesquadmanager->mSquadList.begin(); ite != battlesquadmanager->mSquadList.end(); ite++)
+	{
+		int xx,yy;
+		(*ite)->getCrood(&xx,&yy);
+		if(xx ==x && yy == y)
+			return false;
+	}
+	for(ite = battlesquadmanager->mDeployList.begin(); ite != battlesquadmanager->mDeployList.end(); ite++)
+	{
+		int xx,yy;
+		(*ite)->getCrood(&xx,&yy);
+		if(xx ==x && yy == y)
+			return false;
+	}
 
 	if(maxpassable == 2)
 		return true;

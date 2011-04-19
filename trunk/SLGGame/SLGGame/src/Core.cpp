@@ -19,6 +19,7 @@
 #include "BattleSquadManager.h"
 #include "SquadGrapManager.h"
 #include "timer.hpp"
+#include "MapDataManager.h"
 
 #include <ParticleUniverseSystemManager.h> 
 
@@ -94,6 +95,7 @@ bool Core::initialize()
 
 		//初始化战斗部分
 		new BattleSquadManager;
+		new MapDataManager;
 		new SquadGrapManager(mSceneMgr);
 
 

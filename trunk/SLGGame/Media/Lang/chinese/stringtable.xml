@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <StaticData>
 	<StringTable>
-		<Map1 type="String" value = "测试地图"/>
+		<map1 type="String" value = "测试地图"/>
 		<TestLeaderName type="String" value="测试名称"/>
 		<PWeaponTypeOneHandSword type="String" value="单手剑"/>
 		<PWeaponTypeOneHandHeavy type="String" value="单手重武器"/>
@@ -11,6 +11,9 @@
 		<PWeaponTypeTwoHandSpear type="String" value="长枪"/>
 		<ArmorTypeHeavy type="String" value="重甲"/>
 		<ArmorTypeLight type="String" value="轻甲"/>
+		<NotDeploy type="String" value="NotDeploy"/>
+		<DeployConfirm type="String" value="DeployFinish"/>
+		<DeployWindow type="String" value="部署窗口"/>
 		
 		<!--GUI-->
 		<NewGame type="String" value = "开始游戏"/>
