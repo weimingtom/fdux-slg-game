@@ -17,6 +17,22 @@ extern "C"
 	static bool mPrinter=true;//是否打开打字效果
 	static bool mIsShowTextOver=false;//是否已经结束显示,等待按下鼠标?
 	
+	static int SetTextBgRect(lua_State* L)//设定文本背景位置
+	{
+		mAttribute.TextBgLeft=luaL_checkint(L, 1);
+		mAttribute.TextBgTop=luaL_checkint(L,2);
+		mAttribute.TextBgWidth=luaL_checkint(L,3);
+		mAttribute.TextBgHeight=luaL_checkint(L,4);
+
+		return 1;
+	}
+
+	static int SetTextBgImage(lua_State* L)//设定文本背景
+	{
+		mAttribute.TextBgImage=std::string(luaL_checkstring(L,1));
+
+		return 1;
+	}
 
 	static int SetTextRect(lua_State* L)//设定文字位置
 	{
@@ -337,7 +353,9 @@ extern "C"
 		{"SetText",SetText},
 		{"ShowRoleName",ShowRoleName},
 		{"ClearText",ClearText},
-
+		
+		{"SetTextBgImage",SetTextBgImage},
+		{"SetTextBgRect",SetTextBgRect},
 		{"SetTextRect",SetTextRect},
 		{"SetRoleNameRect",SetRoleNameRect},
 		{"SetUITextColor",SetUITextColor},

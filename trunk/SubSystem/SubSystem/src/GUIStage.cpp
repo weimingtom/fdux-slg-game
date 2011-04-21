@@ -81,6 +81,10 @@ bool GUIStage::CheckMouseState()
 
 void GUIStage::setTextDialog( const GUIDialogAttribute& attribute )
 {
+	mTextBoxBG->setPosition(attribute.TextBgLeft,attribute.TextBgTop);
+	mTextBoxBG->setSize(attribute.TextBgWidth,attribute.TextBgHeight);
+	mTextBoxBG->setImageTexture(attribute.TextBgImage);
+
 	mTextBox->setPosition(attribute.TextLeft,attribute.TextTop);
 	mTextX=attribute.TextLeft;
 	mTextY=attribute.TextTop;
