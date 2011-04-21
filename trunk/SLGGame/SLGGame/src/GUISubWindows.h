@@ -4,10 +4,12 @@
 
 #include "GUIScene.h"
 
+#include "BattleState.h"
+
 class GUISubWindows:public GUIScene
 {
 public:
-	GUISubWindows(MyGUI::Window* window,int Width,int Height):GUIScene(window,Width,Height)
+	GUISubWindows(MyGUI::Window* window,int Width,int Height):GUIScene(window,Width,Height),mBattleState(NULL)
 	{
 
 	};
@@ -23,4 +25,11 @@ public:
 	}
 
 	virtual std::string getName()=0;
+
+	void setBattleState(BattleState* state)
+	{
+		mBattleState=state;
+	}
+protected:
+	BattleState* mBattleState;
 };

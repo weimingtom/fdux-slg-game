@@ -3,12 +3,16 @@
 #include "DataLibrary.h"
 #include "boost\format.hpp"
 
+#include "BattleAvgState.h"
+
 GUICommandWindows::GUICommandWindows(MyGUI::Window* window,int Width,int Height):GUISubWindows(window,Width,Height),mWindow(window),mSceneX(0),mSceneY(0)
 {
 	assignWidget(mMoveButton,"CmdMoveButton");
 	assignWidget(mAttackButton,"CmdAttackButton");
 	assignWidget(mFormationButton,"CmdFormationButton");
 	assignWidget(mSkillButton,"CmdSkillButton");
+
+	mMoveButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUICommandWindows::onMove);
 
 	window->setVisible(false);
 }
@@ -30,6 +34,11 @@ void GUICommandWindows::hideScene()
 void GUICommandWindows::FrameEvent()
 {
 
+}
+
+void GUICommandWindows::onMove(MyGUI::Widget* _sender)
+{
+	mBattleState->PushState(new BattleAvgState(mBattleState,"Battle.lua"));
 }
 
 bool GUICommandWindows::SceneInputEvent( float x,float y )

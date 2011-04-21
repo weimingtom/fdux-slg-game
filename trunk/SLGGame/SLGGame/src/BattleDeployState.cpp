@@ -36,6 +36,7 @@ BattleDeployState::BattleDeployState(BattleState* mainState)
 	DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/CurTeam",1);
 	mGUIBattle=(GUIBattle*)GUISystem::getSingletonPtr()->createScene(BattleScene);
 	mGUIBattle->showScene("DeployWindow");
+	mGUIBattle->setBattleState(mMainState);
 	mDeployWindow = (GUIDeployWindows*)(mGUIBattle->getSubWindow("DeployWindow"));
 	mDeployWindow->setDeployState(this);
 	mSquadManager = BattleSquadManager::getSingletonPtr();

@@ -87,3 +87,14 @@ GUISubWindows* GUIBattle::getSubWindow(std::string arg)
 	}
 	return NULL;
 }
+
+void GUIBattle::setBattleState( BattleState* state )
+{
+	mBattleState=state;
+
+	std::list<GUISubWindows*>::iterator it;
+	for (it=mSubWindows.begin();it!=mSubWindows.end();it++)
+	{
+		(*it)->setBattleState(mBattleState);
+	}
+}
