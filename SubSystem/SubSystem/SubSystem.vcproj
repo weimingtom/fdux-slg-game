@@ -222,10 +222,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\LuaInclude.h"
-				>
-			</File>
-			<File
 				RelativePath=".\src\LuaSystem.cpp"
 				>
 			</File>

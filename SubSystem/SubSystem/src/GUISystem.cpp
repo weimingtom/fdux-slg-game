@@ -123,6 +123,12 @@ void GUISystem::destoryScene( GUISceneType type )
 		}
 
 	}
+	
+	if (mFrameUpdateScene==scene)
+	{
+		mFrameUpdateScene=NULL;
+	}
+
 	delete scene;
 }
 
