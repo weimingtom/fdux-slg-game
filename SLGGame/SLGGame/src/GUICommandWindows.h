@@ -2,6 +2,8 @@
 
 #include "GUISubWindows.h"
 
+class BattleState;
+
 class GUICommandWindows:public GUISubWindows
 {
 public:
@@ -28,6 +30,8 @@ public:
 	}
 
 private:
+	void onMove(MyGUI::Widget* _sender);
+
 	MyGUI::Window* mWindow;
 	MyGUI::Button* mMoveButton;
 	MyGUI::Button* mAttackButton;

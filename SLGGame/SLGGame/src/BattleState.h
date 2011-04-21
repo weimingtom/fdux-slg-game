@@ -30,7 +30,7 @@ public:
 
 private:
 
-	Terrain *mTerrain; //地形试图
+	Terrain *mTerrain; //地形视图
 
 	std::vector<SubBattleState*> mSubStateStack; //战斗状态堆栈
 	typedef std::vector<SubBattleState*>::iterator SubStateIte;

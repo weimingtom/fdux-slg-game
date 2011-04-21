@@ -1,9 +1,11 @@
 #pragma once
 
 #include "GUIScene.h"
+#include "BattleState.h"
 #include <list>
 
 class GUISubWindows;
+class BattleState;
 
 class GUIBattle:
 	public GUIScene
@@ -25,10 +27,14 @@ public:
 	void SceneInputEvent(float x,float y);
 
 	GUISubWindows* getSubWindow(std::string arg);
+
+	void setBattleState(BattleState* state);
 private:
 	std::list<GUISubWindows*> mSubWindows;
 
 	void GridInputEvent(int x,int y);
+	
+	BattleState* mBattleState;
 };
 
 class GUIBattleFactory:
