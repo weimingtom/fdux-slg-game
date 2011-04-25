@@ -18,7 +18,14 @@ InputControl::~InputControl(void)
 
 bool InputControl::keyPressed( const OIS::KeyEvent &arg )
 {
-	return mGUISystem->keyPressed(arg);
+	if (!mGUISystem->keyPressed(arg))
+	{
+		if(mLisenerStack.size() > 0)
+		{
+			mLisenerStack.back()->keyPressed(arg);
+		}
+	}
+	return true;
 }
 
 bool InputControl::keyReleased( const OIS::KeyEvent &arg )

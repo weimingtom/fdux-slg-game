@@ -24,6 +24,8 @@ public:
 		return BattleScene;
 	}
 
+	void KeyInputEvent(const OIS::KeyEvent &arg);
+
 	void SceneInputEvent(float x,float y);
 
 	GUISubWindows* getSubWindow(std::string arg);
