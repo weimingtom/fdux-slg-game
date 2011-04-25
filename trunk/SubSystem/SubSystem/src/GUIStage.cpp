@@ -426,7 +426,10 @@ void GUIStage::showTextCursor( bool isLine )
 {
 	MyGUI::IntPoint p=mTextBox->getTextCursorPos();
 
-	mTextCursor->setPosition(p.left,p.top);
+	int l=mTextBoxBG->getLeft();
+	int t=mTextBoxBG->getTop();
+
+	mTextCursor->setPosition(p.left-l,p.top-t);
 	mTextCursor->setVisible(true);
 	mTextCursor->setItemResource ("TextCursorImage");
 
