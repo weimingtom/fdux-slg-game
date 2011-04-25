@@ -15,7 +15,7 @@
             <Property key="Caption" value="Next Turn"/>
         </Widget>
     </Widget>
-    <Widget type="Window" skin="WindowCS" position_real="0 0.416201 0.219619 0.351955" layer="Main" name="Squad">
+    <Widget type="Window" skin="WindowCS" position_real="0 0.413408 0.217423 0.350559" layer="Main" name="Squad">
         <Property key="Caption" value="Squad Info"/>
         <Widget type="ImageBox" skin="ImageBox" position="5 5 115 145" name="SquadImage"/>
         <Widget type="TextBox" skin="TextBox" position="130 10 45 21">
@@ -43,7 +43,7 @@
             <Property key="Caption" value="describe"/>
         </Widget>
     </Widget>
-    <Widget type="Window" skin="WindowCS" position_real="0.614934 0 0.131772 0.26257" layer="Main" name="Terrain">
+    <Widget type="Window" skin="WindowCS" position_real="0.61347 0 0.131772 0.26257" layer="Main" name="Terrain">
         <Property key="Caption" value="Terrain"/>
         <Widget type="TextBox" skin="TextBox" position="5 5 45 20">
             <Property key="Caption" value="Name:"/>
@@ -85,7 +85,7 @@
         <Property key="Caption" value="Mission"/>
         <Widget type="ListBox" skin="ListBox" position="0 0 210 105" name="MissionList"/>
     </Widget>
-    <Widget type="Window" skin="WindowCS" position="590 220 195 275" layer="Main" name="DeployWindow">
+    <Widget type="Window" skin="WindowCS" position="645 0 195 275" layer="Main" name="DeployWindow">
         <Property key="Caption" value="DeployWindow"/>
         <Property key="FontName" value="fireflysung"/>
         <Widget type="MultiListBox" skin="MultiListBox" position="0 0 185 215" name="DeployList">
@@ -99,6 +99,25 @@
         <Widget type="Button" skin="Button" position="0 215 185 25" name="DeployConfirm">
             <Property key="Caption" value="DeployConfirm"/>
             <Property key="Enabled" value="false"/>
+        </Widget>
+    </Widget>
+    <Widget type="Window" skin="WindowCSX" position="465 210 120 190" layer="Popup" name="Menu">
+        <Property key="Visible" value="false"/>
+        <Property key="Caption" value="Menu"/>
+        <Widget type="Button" skin="Button" position="0 0 110 30" name="MenuRestartButton">
+            <Property key="Caption" value="Restart"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="0 30 110 30" name="MenuSaveButton">
+            <Property key="Caption" value="Save"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="0 60 110 30" name="MenuLoadButton">
+            <Property key="Caption" value="Load"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="0 90 110 30" name="MenuOptionButton">
+            <Property key="Caption" value="Option"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="0 120 110 30" name="MenuExitButton">
+            <Property key="Caption" value="Exit"/>
         </Widget>
     </Widget>
 </MyGUI>

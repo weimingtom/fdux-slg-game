@@ -88,7 +88,8 @@ void BattleDeployState::update(unsigned int deltaTime)
 
 bool BattleDeployState::keyPressed(const OIS::KeyEvent &arg)
 {
-	return false;
+	mGUIBattle->KeyInputEvent(arg);
+	return true;
 }
 bool BattleDeployState::keyReleased(const OIS::KeyEvent &arg)
 {

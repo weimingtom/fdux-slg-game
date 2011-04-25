@@ -6,6 +6,8 @@
 
 #include "BattleState.h"
 
+#include <OIS.h>
+
 class GUISubWindows:public GUIScene
 {
 public:
@@ -20,6 +22,12 @@ public:
 	
 	//屏幕输入事件,返回值表示是否继续向下传递
 	virtual bool SceneInputEvent(float x,float y)
+	{
+		return true;
+	}
+
+	//键盘输入事件,返回值表示是否继续向下传递
+	virtual bool KeyInputEvent(const OIS::KeyEvent &arg)
 	{
 		return true;
 	}
