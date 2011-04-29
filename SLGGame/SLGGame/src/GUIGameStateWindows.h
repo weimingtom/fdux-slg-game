@@ -25,6 +25,8 @@ public:
 		return "GameState";
 	}
 
+	void update();
+
 private:
 	MyGUI::Window* mWindow;
 	MyGUI::TextBox* mTurnLabel;

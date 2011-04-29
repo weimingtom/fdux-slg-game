@@ -2,21 +2,19 @@
 
 #include "SubBattleState.h"
 #include "InputListener.h"
-
-class CameraContral;
+#include <string>
 
 class GUIBattle;
-class GUIDeployWindows;
-class BattleSquad;
-class BattleSquadManager;
-class AreaGrap;
 class GUISquadWindows;
+class CameraContral;
+class BattleSquadManager;
+class BattleSquad;
 
-class BattleDeployState:public SubBattleState, public InputListener
+class BattlePlayerState:public SubBattleState, public InputListener
 {
 public:
-	BattleDeployState();
-	~BattleDeployState();
+	BattlePlayerState();
+	~BattlePlayerState();
 
 	virtual void update(unsigned int deltaTime);
 
@@ -27,18 +25,16 @@ public:
 	virtual bool mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id);
 	virtual bool mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id);
 
-	void deployConfirm();
-	void selectIndex(int index);
+	void newTurn();
 private:
-	CameraContral* mCameraContral;
 	GUIBattle* mGUIBattle;
-	GUIDeployWindows* mDeployWindow;
 	GUISquadWindows* mSquadWindow;
-	BattleSquad* mSelectSquad;
-	int mSelectIndex;
-	BattleSquadManager* mSquadManager;
-	AreaGrap* mAreaGrap;
 
 	int mMouseX;
 	int mMouseY;
+
+	CameraContral* mCameraContral;
+	BattleSquadManager* mSquadManager;
+
+	BattleSquad* mSelectSquad;
 };

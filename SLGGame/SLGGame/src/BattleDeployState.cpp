@@ -16,9 +16,9 @@
 #include "GUIDeployWindow.h"
 #include "AreaGrap.h"
 #include "MapDataManager.h"
+#include "GUISquadWindows.h"
 
-BattleDeployState::BattleDeployState(BattleState* mainState)
-:SubBattleState(mainState)
+BattleDeployState::BattleDeployState()
 {
 	mCameraContral = new CameraContral;
 	mCameraContral->resetCamera();
@@ -32,13 +32,13 @@ BattleDeployState::BattleDeployState(BattleState* mainState)
 	//mSquadGrapManager=new SquadGrapManager(Core::getSingletonPtr()->mSceneMgr);
 	//SquadGraphics* s;//=mSquadGrapManager->createSquad("SinbadSquad",1,10,10,SquadGrapManager::North,SquadGrapManager::Loose);
 	//GUIPUDebug* puDebug=(GUIPUDebug*)GUISystem::getSingletonPtr()->createScene(PUDebugScene);
-	DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/Ture",1);
-	DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/CurTeam",1);
-	mGUIBattle=(GUIBattle*)GUISystem::getSingletonPtr()->createScene(BattleScene);
-	mGUIBattle->showScene("DeployWindow");
+	mGUIBattle=static_cast<GUIBattle *>(GUISystem::getSingletonPtr()->createScene(BattleScene));
 	mGUIBattle->setBattleState(mMainState);
-	mDeployWindow = (GUIDeployWindows*)(mGUIBattle->getSubWindow("DeployWindow"));
+	mDeployWindow = static_cast<GUIDeployWindows *>(mGUIBattle->getSubWindow("DeployWindow"));
+	mDeployWindow->showScene("");
 	mDeployWindow->setDeployState(this);
+	mSquadWindow = static_cast<GUISquadWindows *>(mGUIBattle->getSubWindow("SquadWindow"));
+	mSquadWindow->setSquad(NULL);
 	mSquadManager = BattleSquadManager::getSingletonPtr();
 	mSelectSquad = NULL;
 	//建立部署小队列表
@@ -65,6 +65,8 @@ BattleDeployState::BattleDeployState(BattleState* mainState)
 }
 BattleDeployState::~BattleDeployState()
 {
+	mDeployWindow->hideScene();
+	mSquadWindow->setSquad(NULL);
 	Core::getSingleton().mInputControl->popListener();
 	delete mCameraContral;
 	delete mAreaGrap;
@@ -88,7 +90,7 @@ void BattleDeployState::update(unsigned int deltaTime)
 
 bool BattleDeployState::keyPressed(const OIS::KeyEvent &arg)
 {
-	mGUIBattle->KeyInputEvent(arg);
+	//mGUIBattle->KeyInputEvent(arg);
 	return true;
 }
 bool BattleDeployState::keyReleased(const OIS::KeyEvent &arg)
@@ -100,11 +102,11 @@ bool BattleDeployState::mouseMoved(const OIS::MouseEvent &arg)
 {
 	mMouseX = arg.state.X.abs;
 	mMouseY = arg.state.Y.abs;
+	mGUIBattle->SceneInputEvent(arg.state.X.abs,arg.state.Y.abs);
 	return true;
 }
 bool BattleDeployState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
 {
-	mGUIBattle->SceneInputEvent(arg.state.X.abs,arg.state.Y.abs);
 	int GX,GY;
 	Terrain::getSingletonPtr()->coordinateToGrid(arg.state.X.abs,arg.state.Y.abs,GX,GY);
 	if(mSelectSquad)
@@ -135,7 +137,7 @@ void BattleDeployState::deployConfirm()
 	if(mSquadManager->allDeployed())
 	{
 		mSquadManager->deployConfirm();
-		BattleControlState* controlstate = new BattleControlState(mMainState);
+		BattleControlState* controlstate = new BattleControlState(true);
 		mMainState->ChangeState(controlstate);
 	}
 }
@@ -143,5 +145,6 @@ void BattleDeployState::deployConfirm()
 void BattleDeployState::selectIndex(int index)
 {
 	mSelectSquad = mSquadManager->mDeployList[index];
+	mSquadWindow->setSquad(mSelectSquad);
 	mSelectIndex = index;
 }

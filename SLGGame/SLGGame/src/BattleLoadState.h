@@ -15,7 +15,7 @@ const int LOADGRID = 4;
 class BattleLoadState: public SubBattleState
 {
 public:
-	BattleLoadState(BattleState* mainSate, std::string arg);
+	BattleLoadState(std::string arg);
 	~BattleLoadState();
 
 	virtual void update(unsigned int deltaTime);

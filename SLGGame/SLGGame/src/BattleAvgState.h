@@ -8,7 +8,7 @@
 class BattleAvgState:public SubBattleState,public LuaSystemListener
 {
 public:
-	BattleAvgState(BattleState* mainState,std::string arg);
+	BattleAvgState(std::string arg);
 	~BattleAvgState(void);
 
 	void update(unsigned int deltaTime);

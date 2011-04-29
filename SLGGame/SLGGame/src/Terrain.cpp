@@ -346,7 +346,7 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 		uvbuffer += 2;
 	}
 
-	//添加相关模型(这块会随着坡道的添加而更改) 
+	//添加相关模型
 	bool usemesh = false;
 	int meshindex;
 	std::string meshName;
@@ -414,9 +414,9 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 			if(meshName == "Cliff1")
 			{
 				int i = 0;
-				if(tt[BOTTOMLEFT] == Ramp)
-					i += 1;
 				if(tt[TOPRIGHT] == Ramp)
+					i += 1;
+				if(tt[BOTTOMLEFT] == Ramp)
 					i += 2;
 				switch(i)
 				{
@@ -462,9 +462,9 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 			if(meshName == "Cliff1")
 			{
 				int i = 0;
-				if(tt[TOPRIGHT] == Ramp)
-					i += 1;
 				if(tt[BOTTOMLEFT] == Ramp)
+					i += 1;
+				if(tt[TOPRIGHT] == Ramp)
 					i += 2;
 				switch(i)
 				{
@@ -486,7 +486,7 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 			if(meshName == "Cliff2")
 			{
 				int i = 0;
-				if(tt[TOPRIGHT] == Ramp)
+				if(tt[BOTTOMLEFT] == Ramp)
 					i += 1;
 				if(tt[TOPLEFT] == Ramp)
 					i += 2;
@@ -546,9 +546,9 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 			if(meshName == "Cliff2")
 			{
 				int i = 0;
-				if(tt[BOTTOMLEFT] == Ramp)
+				if(tt[TOPRIGHT] == Ramp)
 					i += 1;
-				if(tt[TOPLEFT] == Ramp)
+				if(tt[BOTTOMRIGHT] == Ramp)
 					i += 2;
 				switch(i)
 				{

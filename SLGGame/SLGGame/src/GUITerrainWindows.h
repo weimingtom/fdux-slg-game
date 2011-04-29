@@ -27,11 +27,18 @@ public:
 
 private:
 	MyGUI::Window* mWindow;
-	MyGUI::TextBox* mTerrainNameLabel;
-	MyGUI::TextBox* mTerrainDescribeLabel;
+	MyGUI::TextBox* mTerrainTypeLabel;
+	MyGUI::TextBox* mGroundTypeLabel;
+	MyGUI::TextBox* mGroundObjLabel;
+	MyGUI::TextBox* mPassableLabel;
+	MyGUI::TextBox* mTerrainCovertLabel;
 	MyGUI::TextBox* mTerrainDefenceLabel;
 	MyGUI::TextBox* mTerrainCavApLabel;
 	MyGUI::TextBox* mTerrainInfApLabel;
+	MyGUI::TextBox* mTerrainGridXLabel;
+	MyGUI::TextBox* mTerrainGridYLabel;
 
 	int mMapSize;
+	int mCurX;
+	int mCurY;
 };

@@ -22,9 +22,9 @@ private:
 	Ogre::Camera *mCamera;
 	Terrain *mTerrain;
 
-	float mHeight;
-	float mX;
-	float mY;
+	static float mHeight;
+	static float mX;
+	static float mY;
 
 	float mMinX;
 	float mMinY;

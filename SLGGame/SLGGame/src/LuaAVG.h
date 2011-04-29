@@ -24,10 +24,12 @@ static int SetPlayerFaction(lua_State* L)
 {
 	std::string factionid(luaL_checkstring(L, 1));
 	DataLibrary::getSingleton().setData(std::string("GameData/StoryData/Faction"),factionid);
+	return 0;
 }
 
 static const struct luaL_Reg AVGLib[] =
 {
 	{"AddSquad",AddSquad},
+	{"SetPlayerFaction",SetPlayerFaction},
 	{NULL,NULL}
 };

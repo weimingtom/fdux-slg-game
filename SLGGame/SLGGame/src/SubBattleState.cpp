@@ -2,8 +2,8 @@
 
 #include "BattleState.h"
 
-SubBattleState::SubBattleState(BattleState* mainState)
-:mMainState(mainState)
+SubBattleState::SubBattleState()
+:mMainState(NULL)
 {
 
 }
@@ -11,4 +11,9 @@ SubBattleState::SubBattleState(BattleState* mainState)
 SubBattleState::~SubBattleState()
 {
 
+}
+
+void SubBattleState::setMainState(BattleState* mainstate)
+{
+	mMainState = mainstate;
 }

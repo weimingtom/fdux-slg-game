@@ -35,10 +35,14 @@
 		</TestArmor>
 	</ArmorData>
 	<SkillData>
-		<TestSkill>
-			<Name type="String" value="测试技能"/>
-			<Describe type="String" value="这简直是胡乱指挥"/>
-		</TestSkill>
+		<Move>
+			<Name type="String" value="移动"/>
+			<Describe type="String" value="移动小队"/>
+		</Move>
+		<Attack>
+			<Name type="String" value="攻击"/>
+			<Describe type="String" value="小队对目标进行攻击"/>
+		</Attack>
 	</SkillData>
 	<EffectData>
 		<TestEffect>

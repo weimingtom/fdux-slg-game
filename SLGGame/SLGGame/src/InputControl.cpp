@@ -61,7 +61,10 @@ bool InputControl::mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID
 {
 	if (!mGUISystem->mouseReleased(arg,id))
 	{
-
+		if(mLisenerStack.size() > 0)
+		{
+			mLisenerStack.back()->mouseReleased(arg,id);
+		}
 	}
 	return true;
 }

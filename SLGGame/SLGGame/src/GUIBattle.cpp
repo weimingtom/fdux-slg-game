@@ -6,6 +6,7 @@
 #include "GUIDeployWindow.h"
 #include "GUICommandWindows.h"
 #include "GUIMenuWindow.h"
+#include "GUITargetWindow.h"
 
 #include "Terrain.h"
 
@@ -15,12 +16,14 @@ GUIBattle::GUIBattle(int Width,int Height):GUIScene("Battle.layout",Width,Height
 
 	assignWidget(window,"Menu");
 	mSubWindows.push_back(new GUIMenuWindow(window,Width,Height));
-	assignWidget(window,"Command");
-	mSubWindows.push_back(new GUICommandWindows(window,Width,Height));
 	assignWidget(window,"Terrain");
 	mSubWindows.push_back(new GUITerrainWindows(window,Width,Height));
-	assignWidget(window,"Squad");
+	assignWidget(window,"TargetWindow");
+	mSubWindows.push_back(new GUITargetWindows(window,Width,Height));
+	assignWidget(window,"SquadWindow");
 	mSubWindows.push_back(new GUISquadWindows(window,Width,Height));
+	assignWidget(window,"CommandWindow");
+	mSubWindows.push_back(new GUICommandWindows(window,Width,Height));
 	assignWidget(window,"GameState");
 	mSubWindows.push_back(new GUIGameStateWindows(window,Width,Height));
 	assignWidget(window,"DeployWindow");
@@ -74,7 +77,7 @@ void GUIBattle::GridInputEvent( int x,int y )
 	std::list<GUISubWindows*>::iterator it;
 	for (it=mSubWindows.begin();it!=mSubWindows.end();it++)
 	{
-		if (!(*it)->GridInputEvent(x,y))
+		if ((*it)->GridInputEvent(x,y))
 		{
 			break;
 		}

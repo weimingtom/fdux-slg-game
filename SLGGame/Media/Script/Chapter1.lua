@@ -17,5 +17,6 @@ GUI.ShowText("和我进行契约,然后成为魔法少女吧!",2);
 GUI.ShowText("\n",1);
 GUI.ShowText("不成为魔法少女么?",1);
 AVGLib.AddSquad("maintestsquad","TestSquad");
+AVGLib.AddSquad("maintestsquad2","TestSquad");
 AVGLib.SetPlayerFaction("TestFaction");
 StateLib.BattleState("demo.xml");

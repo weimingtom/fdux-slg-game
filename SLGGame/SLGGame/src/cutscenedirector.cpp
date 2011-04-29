@@ -3,8 +3,7 @@
 
 #include "BattleState.h"
 
-CutSceneDirector::CutSceneDirector(BattleState* mainState)
-:SubBattleState(mainState)
+CutSceneDirector::CutSceneDirector()
 {
 	mId = 0;
 }
@@ -57,4 +56,26 @@ void CutSceneDirector::update(unsigned int deltaTime)
 	}
 	if(mCutScene.size() == 0)
 		mMainState->PopState();
+}
+
+bool CutSceneDirector::keyPressed(const OIS::KeyEvent &arg)
+{
+	return false;
+}
+bool CutSceneDirector::keyReleased(const OIS::KeyEvent &arg)
+{
+	return false;
+}
+
+bool CutSceneDirector::mouseMoved(const OIS::MouseEvent &arg)
+{
+	return false;
+}
+bool CutSceneDirector::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
+{
+	return false;
+}
+bool CutSceneDirector::mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
+{
+	return false;
 }

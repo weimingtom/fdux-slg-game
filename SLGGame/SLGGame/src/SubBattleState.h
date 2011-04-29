@@ -5,7 +5,9 @@ class BattleState;
 class SubBattleState
 {
 public:
-	SubBattleState(BattleState* mainState);
+	SubBattleState();
+
+	void setMainState(BattleState* mainstate);
 
 	virtual ~SubBattleState();
 

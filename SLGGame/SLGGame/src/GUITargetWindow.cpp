@@ -1,103 +1,82 @@
-#include "GUISquadWindows.h"
+#include "GUITargetWindow.h"
 
 #include "DataLibrary.h"
 #include "StringTable.h"
 #include "boost/format.hpp"
 
 #include "BattleSquad.h"
+#include "BattleSquadManager.h"
 
-GUISquadWindows::GUISquadWindows(MyGUI::Window* window,int Width,int Height):GUISubWindows(window,Width,Height),mWindow(window)
+GUITargetWindows::GUITargetWindows(MyGUI::Window* window,int Width,int Height):GUISubWindows(window,Width,Height),mWindow(window)
 {
-	assignWidget(mSquadLeadName,"SquadLeadName");
-	assignWidget(mSquadTypeName,"SquadType");
-	assignWidget(mSquadGridX,"SquadGridX");
-	assignWidget(mSquadGridY,"SquadGridY");
-	assignWidget(mSquadPWeapon,"SquadPWeapon");
-	assignWidget(mSquadSWeapon,"SquadSWeapon");
-	assignWidget(mSquadShield,"SquadShield");
-	assignWidget(mSquadArmor,"SquadArmor");
-	assignWidget(mSquadUnitNum,"SquadUnitNum");
-	assignWidget(mSquadAp,"SquadAp");
-	assignWidget(mSquadAttack,"SquadAttack");
-	assignWidget(mSquadDefence,"SquadDefence");
-	assignWidget(mSquadDirection,"SquadDirection");
-	assignWidget(mSquadFormation,"SquadFormation");
+	assignWidget(mSquadLeadName,"TargetLeadName");
+	assignWidget(mSquadTypeName,"TargetType");
+	assignWidget(mSquadGridX,"TargetGridX");
+	assignWidget(mSquadGridY,"TargetGridY");
+	assignWidget(mSquadPWeapon,"TargetPWeapon");
+	assignWidget(mSquadSWeapon,"TargetSWeapon");
+	assignWidget(mSquadShield,"TargetShield");
+	assignWidget(mSquadArmor,"TargetArmor");
+	assignWidget(mSquadUnitNum,"TargetUnitNum");
+	assignWidget(mSquadAp,"TargetAp");
+	assignWidget(mSquadAttack,"TargetAttack");
+	assignWidget(mSquadDefence,"TargetDefence");
+	assignWidget(mSquadDirection,"TargetDirection");
+	assignWidget(mSquadFormation,"TargetFormation");
 
-	assignWidget(mSquadImage,"SquadImage");
-	assignWidget(mSquadFactionImage,"SquadFactionImage");
+	assignWidget(mSquadImage,"TargetImage");
+	assignWidget(mSquadFactionImage,"TargetFactionImage");
 
 
-	window->setPosition(0,Height-window->getHeight());
+	window->setPosition(Width-window->getWidth(),Height-window->getHeight());
+
+	mCurX = -1;
+	mCurY = -1;
+
+	setSquad(NULL);
 }
 
-GUISquadWindows::~GUISquadWindows(void)
+GUITargetWindows::~GUITargetWindows(void)
 {
 }
 
-void GUISquadWindows::showScene( std::string arg )
+void GUITargetWindows::showScene( std::string arg )
 {
 	mWindow->setVisible(true);
 }
 
-void GUISquadWindows::hideScene()
+void GUITargetWindows::hideScene()
 {
 	mWindow->setVisible(false);
 }
 
-void GUISquadWindows::FrameEvent()
+void GUITargetWindows::FrameEvent()
 {
 
 }
 
-bool GUISquadWindows::GridInputEvent( int x,int y )
+bool GUITargetWindows::GridInputEvent( int x,int y )
 {
-	/*
-	std::vector<std::string> squadList=DataLibrary::getSingletonPtr()->getChildList("GameData/BattleData/SquadList");
+	if(mCurY == y && mCurX == x)
+		return false;
+	mCurX = x;
+	mCurY = y;
 	
-	std::string squadId="";
-	bool flag=false;
-	for (std::vector<std::string>::iterator it=squadList.begin();it!=squadList.end();it++)
+	BattleSquadManager* battlemanager = BattleSquadManager::getSingletonPtr();
+	for(int n = 0; n < battlemanager->mSquadList.size(); n++)
 	{
-		squadId=str(boost::format("GameData/BattleData/SquadList/%1%/GridX")%(*it));
-		int value=0;
-		DataLibrary::getSingletonPtr()->getData(squadId,value);
-		if (value==x)
+		battlemanager->mSquadList[n]->getCrood(&x,&y);
+		if(x == mCurX && y == mCurY)
 		{
-			squadId=str(boost::format("GameData/BattleData/SquadList/%1%/GridY")%(*it));
-			DataLibrary::getSingletonPtr()->getData(squadId,value);
-			if (value==y)
-			{
-				squadId=str(boost::format("GameData/BattleData/SquadList/%1%/")%(*it));
-				flag=true;
-				break;
-			}
+			setSquad(battlemanager->mSquadList[n]);
+			return false;
 		}
 	}
-	
-	if(flag)
-	{
-		std::string value="";
-		DataLibrary::getSingletonPtr()->getData(squadId+"Name",value);
-		mSquadNameLabel->setCaption(value);
-		DataLibrary::getSingletonPtr()->getData(squadId+"Type",value);
-		mSquadTypeLabel->setCaption(value);
-		DataLibrary::getSingletonPtr()->getData(squadId+"Describe",value);
-		mSquadDescribeLabel->setCaption(value);
-		DataLibrary::getSingletonPtr()->getData(squadId+"LeaderPicture",value);
-		mSquadImage->setImageTexture(value);
-	}
-	else
-	{
-		mSquadNameLabel->setCaption(StringTable::getSingletonPtr()->getString("GUINoSquadName"));
-		mSquadTypeLabel->setCaption(StringTable::getSingletonPtr()->getString("GUINoSquadType"));
-		mSquadDescribeLabel->setCaption(StringTable::getSingletonPtr()->getString("GUINoSquadDescribe"));
-		mSquadImage->setImageTexture("");
-	}
-	*/
+	setSquad(NULL);
 	return false;
 }
 
-void GUISquadWindows::setSquad(BattleSquad* squad)
+void GUITargetWindows::setSquad(BattleSquad* squad)
 {
 	mSelectSquad = squad;
 	if(mSelectSquad == NULL)
@@ -109,7 +88,7 @@ void GUISquadWindows::setSquad(BattleSquad* squad)
 	}
 }
 
-void GUISquadWindows::updateSquad()
+void GUITargetWindows::updateSquad()
 {
 	if(mSelectSquad ==NULL)
 		return;

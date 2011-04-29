@@ -1,18 +1,19 @@
 #pragma once
 
 #include "SubBattleState.h"
+#include <string>
 
 class GUIBattle;
+class GUIGameStateWindows;
 
 class BattleControlState:public SubBattleState
 {
 public:
-	BattleControlState(BattleState* mainState);
+	BattleControlState(bool newgame);
 	~BattleControlState();
 
 	virtual void update(unsigned int deltaTime);
-
-	void InitBattle();
 private:
 	GUIBattle* mGUIBattle;
+	GUIGameStateWindows* mGUIState;
 };

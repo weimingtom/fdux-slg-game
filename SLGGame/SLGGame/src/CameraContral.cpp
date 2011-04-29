@@ -13,6 +13,10 @@ CameraContral::CameraContral()
 	mMinY -= TILESIZE / 2.0f;
 }
 
+float CameraContral::mHeight = 20.0f;
+float CameraContral::mX = 0.0f;
+float CameraContral::mY = 0.0f;;
+
 CameraContral::~CameraContral()
 {
 
@@ -20,8 +24,8 @@ CameraContral::~CameraContral()
 
 void CameraContral::moveCamera(float dx,float dy)
 {
-	mX +=  dx * 0.5 + dy * 0.5;
-	mY +=  -dx * 0.5 + dy * 0.5;
+	mX +=  dx * 0.5f + dy * 0.5f;
+	mY +=  -dx * 0.5f + dy * 0.5f;
 	mX = (mX > -mMinX)? -mMinX: mX;
 	mX = (mX < mMinX)? mMinX: mX;
 	mY = (mY > -mMinY)? -mMinY: mY;

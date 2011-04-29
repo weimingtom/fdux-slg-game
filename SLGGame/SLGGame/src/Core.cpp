@@ -20,6 +20,7 @@
 #include "SquadGrapManager.h"
 #include "timer.hpp"
 #include "MapDataManager.h"
+#include "Terrain.h"
 
 #include <ParticleUniverseSystemManager.h> 
 
@@ -33,6 +34,14 @@ Core::~Core(void)
 
 bool Core::initialize()
 {
+	//初始化数据文件
+	mLuaSystem=new LuaSystem();
+	mDataLibrary=new DataLibrary();
+	mDataLibrary->loadXmlData(DataLibrary::StaticData,"../media/data/datafile.xml",true);
+	mDataLibrary->loadXmlData(DataLibrary::StaticData,"../media/lang/chinese/datafile.xml",true);
+	mDataLibrary->loadXmlData(DataLibrary::StaticData,"../media/lang/chinese/stringtable.xml",true);
+	new StringTable;
+
 	bool rtn=false;
 	mRoot = new Ogre::Root("Plugins.cfg","ogre.cfg","log.txt");
 	if(!mRoot->restoreConfig())
@@ -45,7 +54,7 @@ bool Core::initialize()
 	}
 	if (rtn)
 	{
-		mWindow=mRoot->initialise(true, "忘却的战场");
+		mWindow=mRoot->initialise(true, StringTable::getSingleton().getAnsiString("gamename"));
 		Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
 
 		mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC);
@@ -73,9 +82,6 @@ bool Core::initialize()
 		mGUISystem->registerSceneFactory(BattleScene,new GUIBattleFactory());
 		mGUISystem->registerSceneFactory(LoadingScene, new LoadSceneFactory());
 
-		mLuaSystem=new LuaSystem();
-		mLuaSystem->registerCLib("AVGLib",AVGLib);
-
 		mAudioSystem=new AudioSystem();
 
 		mAudioSystem->init();
@@ -85,18 +91,15 @@ bool Core::initialize()
 
 		initializeOIS();
 
-		//初始化数据文件
-		mDataLibrary=new DataLibrary();
-		mDataLibrary->loadXmlData(DataLibrary::StaticData,"../media/data/datafile.xml",true);
-		mDataLibrary->loadXmlData(DataLibrary::StaticData,"../media/lang/chinese/datafile.xml",true);
-		mDataLibrary->loadXmlData(DataLibrary::StaticData,"../media/lang/chinese/stringtable.xml",true);
-		new StringTable;
+		//初始化文字部分
+		mLuaSystem->registerCLib("AVGLib",AVGLib);
 		new AVGSquadManager;
 
 		//初始化战斗部分
 		new BattleSquadManager;
 		new MapDataManager;
 		new SquadGrapManager(mSceneMgr);
+		new Terrain;
 
 
 		mStateManager=new StateManager();

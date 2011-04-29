@@ -4,12 +4,6 @@
 #include <vector>
 class SubBattleState;
 
-class Terrain;
-class CameraContral;
-class MapDataManager;
-class CutSceneDirector;
-
-
 class BattleState :
 	public GameState
 {
@@ -29,8 +23,6 @@ public:
 	void PopState(); //压出状态
 
 private:
-
-	Terrain *mTerrain; //地形视图
 
 	std::vector<SubBattleState*> mSubStateStack; //战斗状态堆栈
 	typedef std::vector<SubBattleState*>::iterator SubStateIte;
