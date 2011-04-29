@@ -4,11 +4,11 @@
 
 class BattleSquad;
 
-class GUISquadWindows:public GUISubWindows
+class GUITargetWindows:public GUISubWindows
 {
 public:
-	GUISquadWindows(MyGUI::Window* window,int Width,int Height);
-	~GUISquadWindows(void);
+	GUITargetWindows(MyGUI::Window* window,int Width,int Height);
+	~GUITargetWindows(void);
 
 	void showScene(std::string arg);
 	void hideScene();
@@ -24,7 +24,7 @@ public:
 
 	std::string getName()
 	{
-		return "SquadWindow";
+		return "TargetWindow";
 	}
 
 	void setSquad(BattleSquad* squad);
@@ -50,4 +50,7 @@ private:
 	MyGUI::ImageBox* mSquadFactionImage;
 
 	BattleSquad* mSelectSquad;
+
+	int mCurX;
+	int mCurY;
 };

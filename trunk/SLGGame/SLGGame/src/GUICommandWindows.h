@@ -3,6 +3,7 @@
 #include "GUISubWindows.h"
 
 class BattleState;
+class BattleSquad;
 
 class GUICommandWindows:public GUISubWindows
 {
@@ -26,18 +27,12 @@ public:
 
 	std::string getName()
 	{
-		return "Command";
+		return "CommandWindow";
 	}
 
+	void setSquad(BattleSquad* squad);
 private:
-	void onMove(MyGUI::Widget* _sender);
-
 	MyGUI::Window* mWindow;
-	MyGUI::Button* mMoveButton;
-	MyGUI::Button* mAttackButton;
-	MyGUI::Button* mFormationButton;
-	MyGUI::Button* mSkillButton;
 
-	float mSceneX,mSceneY;
-
+	BattleSquad* mSelectSquad;
 };

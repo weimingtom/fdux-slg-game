@@ -24,12 +24,12 @@ GUIDeployWindows::~GUIDeployWindows(void)
 
 void GUIDeployWindows::showScene(std::string arg)
 {
-
+	mWindow->setVisible(true);
 }
 
 void GUIDeployWindows::hideScene()
 {
-
+	mWindow->setVisible(false);
 }
 
 void GUIDeployWindows::FrameEvent()

@@ -164,22 +164,22 @@ bool AVGSquadManager::applyModifer(std::string path, std::string modifierpath, s
 	float tempfloat;
 	bool re = datalib->getData(modifierpath + std::string("/Type"),tempint);
 	datalib->setData(path + std::string("/Type"), tempint, true);
-	re = datalib->getData(modifierpath + std::string("/Attack"),tempint);
-	datalib->setData(path + std::string("/Attack"), tempint, true);
-	re = datalib->getData(modifierpath + std::string("/RangedAttack"),tempint);
-	datalib->setData(path + std::string("/RangedAttack"), tempint, true);
-	re = datalib->getData(modifierpath + std::string("/Defence"),tempint);
-	datalib->setData(path + std::string("/Defence"), tempint, true);
+	re = datalib->getData(modifierpath + std::string("/Attack"),tempfloat);
+	datalib->setData(path + std::string("/Attack"), tempfloat, true);
+	re = datalib->getData(modifierpath + std::string("/RangedAttack"),tempfloat);
+	datalib->setData(path + std::string("/RangedAttack"), tempfloat, true);
+	re = datalib->getData(modifierpath + std::string("/Defence"),tempfloat);
+	datalib->setData(path + std::string("/Defence"), tempfloat, true);
 	re = datalib->getData(modifierpath + std::string("/Formation"),tempfloat);
 	datalib->setData(path + std::string("/Formation"), tempfloat, true);
-	re = datalib->getData(modifierpath + std::string("/Initiatice"),tempint);
-	datalib->setData(path + std::string("/Initiatice"), tempint, true);
-	re = datalib->getData(modifierpath + std::string("/ActionPoint"),tempint);
-	datalib->setData(path + std::string("/ActionPoint"), tempint, true);
-	re = datalib->getData(modifierpath + std::string("/Detection"),tempint);
-	datalib->setData(path + std::string("/Detection"), tempint, true);
-	re = datalib->getData(modifierpath + std::string("/Covert"),tempint);
-	datalib->setData(path + std::string("/Covert"), tempint, true);
+	re = datalib->getData(modifierpath + std::string("/Initiative"),tempfloat);
+	datalib->setData(path + std::string("/Initiative"), tempfloat, true);
+	re = datalib->getData(modifierpath + std::string("/ActionPoint"),tempfloat);
+	datalib->setData(path + std::string("/ActionPoint"), tempfloat, true);
+	re = datalib->getData(modifierpath + std::string("/Detection"),tempfloat);
+	datalib->setData(path + std::string("/Detection"), tempfloat, true);
+	re = datalib->getData(modifierpath + std::string("/Covert"),tempfloat);
+	datalib->setData(path + std::string("/Covert"), tempfloat, true);
 	re = datalib->getData(modifierpath + std::string("/Injury"),tempfloat);
 	datalib->setData(path + std::string("/Injury"), tempfloat, true);
 	re = datalib->getData(modifierpath + std::string("/Conter"),tempfloat);
@@ -192,5 +192,102 @@ bool AVGSquadManager::applyModifer(std::string path, AttrModifier* modifier, std
 }
 bool AVGSquadManager::applyEffect(std::string path, std::string id)
 {
+	return true;
+}
+
+bool AVGSquadManager::getSquadAttr(std::string path, AttrType attrtype, AttrCalcType calctype, float &val)
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::vector<std::string> modifierlist = datalib->getChildList(path + std::string("/ModifierList"));
+	if(modifierlist.size() == 0)
+		return false;
+	if(attrtype >= ATTR_RANGEDDEFENCE || attrtype < ATTR_ATTACK)
+		return false;
+	float base = 0.0f;
+	float mbouse = 0.0f;
+	float mbane = 0.0f;
+	float resist = 0.0f;
+	float cbouse = 0.0f;
+	float cbane = 0.0f;
+	std::vector<std::string>::iterator ite;
+	for(ite = modifierlist.begin(); ite != modifierlist.end(); ite++)
+	{
+		AttrModifierType type;
+		float attrval;
+		std::string datapath = path + std::string("/ModifierList/") + (*ite);
+		bool re = datalib->getData(datapath + std::string("/Type"), type);
+		switch(attrtype)
+		{
+		case ATTR_ATTACK:
+			re = datalib->getData(datapath + std::string("/Attack"), attrval);
+			break;
+		case ATTR_RANGEDATTACK:
+			re = datalib->getData(datapath + std::string("/RangedAttack"), attrval);
+			break;
+		case ATTR_DEFENCE:
+			re = datalib->getData(datapath + std::string("/Defence"), attrval);
+			break;
+		case ATTR_FORM:
+			re = datalib->getData(datapath + std::string("/Formation"), attrval);
+			break;
+		case ATTR_INITIATIVE:
+			re = datalib->getData(datapath + std::string("/Initiative"), attrval);
+			break;
+		case ATTR_ACTIONPOINT:
+			re = datalib->getData(datapath + std::string("/ActionPoint"), attrval);
+			break;
+		case ATTR_DETECTION:
+			re = datalib->getData(datapath + std::string("/Detection"), attrval);
+			break;
+		case ATTR_COVERT:
+			re = datalib->getData(datapath + std::string("/Covert"), attrval);
+			break;
+		case ATTR_INJURY:
+			re = datalib->getData(datapath + std::string("/Injury"), attrval);
+			break;
+		case ATTR_CONTER:
+			re = datalib->getData(datapath + std::string("/Conter"), attrval);
+			break;
+		}
+		switch(type)
+		{
+		case ATTRMODIFIER_BASE:
+			base += attrval;
+			break;
+		case ATTRMODIFIER_MAGIC:
+			if(attrval > mbouse)
+				mbouse = attrval;
+			if(attrval < mbane)
+				mbane = attrval;
+			break;
+		case ATTRMODIFIER_COMMAND:
+			if(attrval > cbouse)
+				cbouse = attrval;
+			if(attrval < cbane)
+				cbane = attrval;
+			break;
+		case ATTRMODIFIER_RESISTANCE:
+			if(attrval > resist)
+				resist = attrval;
+			break;
+		}
+	}
+	float bouse = cbouse + mbouse;
+	float bane = cbane + mbane;
+	bane += resist;
+	bane = (bane>0.0f)? 0.0f:bane;
+	bouse = bouse + bane;
+	switch(calctype)
+	{
+	case ATTRCALC_FULL:
+		val = base + bouse;
+		break;
+	case ATTRCALC_ONLYBASE:
+		val = base;
+		break;
+	case ATTRCALC_ONLYBONUS:
+		val = bouse;
+		break;
+	}
 	return true;
 }

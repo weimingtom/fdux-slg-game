@@ -27,10 +27,20 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 	ticpp::Document *doc = new ticpp::Document();
 	doc->LoadFile(path,TIXML_ENCODING_UTF8);
 	std::string str;
-	//载入地图名字
+	//载入地图名字，介绍和脚本名
 	ticpp::Element *element = doc->FirstChildElement("MapName");
 	element->GetText(&str);
 	datalibrary->setData("GameData/BattleData/MapData/MapName", StringTable::getSingleton().getString(str));
+	delete element;
+
+	element = doc->FirstChildElement("MapScript");
+	element->GetText(&str);
+	datalibrary->setData("GameData/BattleData/MapData/MapScript", str);
+	delete element;
+
+	element = doc->FirstChildElement("MapInfo");
+	element->GetText(&str);
+	datalibrary->setData("GameData/BattleData/MapData/MapInfo", StringTable::getSingleton().getString(str));
 	delete element;
 
 	//载入地图地形信息
@@ -126,7 +136,6 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 		datapath = std::string("GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(objy * mMapSize + objx) + std::string("/MapObjType");
 		datalibrary->setData(datapath, objtype);
 		datalibrary->setData(datapath + "/MapObjModuleId", objname);
-		//执行脚本
 	}
 	delete element;
 
@@ -176,7 +185,6 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 
 	//载入队伍信息
 	element = doc->FirstChildElement("MapTeam");
-	datalibrary->setData(std::string("GameData/BattleData/Team/Team1/FactionId"), std::string("player"));
 	for(int n = 2; n < 5; n++)
 	{
 		std::string name = std::string("Team") + Ogre::StringConverter::toString(n);
@@ -221,7 +229,7 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 			childchild->GetAttribute("GridY",&y);
 			childchild->GetAttribute("UnitNum",&unitnum);
 			childchild->GetAttribute("Direction",&d);
-			childchild->GetAttribute("Formation",&f);
+			f = Loose;
 			AVGSquadManager::getSingleton().addSquad(squadid,squadtype, datapath);
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/GridX"), x, true );
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/GridY"), y, true );
@@ -230,10 +238,10 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/Formation"), f, true );
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/TeamId"), teamid, true );
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/CreateType"), MapSquad, true );
+			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/ActionPoint"), 0.0f, true );
 		}
 	}
 	delete element;
-	//执行地图初始化脚本
 	
 	return true;
 }
@@ -348,15 +356,30 @@ bool MapDataManager::getPassable(int x, int y, int team)
 		return false;
 	return true;
 }
-int MapDataManager::getInfApCost(int x, int y, int team)
+float MapDataManager::getInfApCost(int x, int y, int team)
 {
-	return 0;
+	return 0.0f;
 }
-int MapDataManager::getCavApCost(int x, int y, int team)
+float MapDataManager::getCavApCost(int x, int y, int team)
 {
-	return 0;
+	return 0.0f;
 }
-int MapDataManager::getDefModify(int x, int y, int team)
+float MapDataManager::getDefModify(int x, int y, int team)
 {
-	return 0;
+	return 0.0f;
+}
+
+float MapDataManager::getCovert(int x, int y, int team)
+{
+	return 0.0f;
+}
+
+void MapDataManager::clearMap()
+{
+
+}
+
+bool MapDataManager::loadMapFormSave()
+{
+	return false;
 }

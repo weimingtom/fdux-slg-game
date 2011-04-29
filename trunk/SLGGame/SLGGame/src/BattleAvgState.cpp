@@ -5,7 +5,7 @@
 
 #include "BattleState.h"
 
-BattleAvgState::BattleAvgState(BattleState* mainState,std::string arg):SubBattleState(mainState)
+BattleAvgState::BattleAvgState(std::string arg)
 {
 	GUISystem::getSingletonPtr()->createScene(StageScene);
 	LuaSystem::getSingletonPtr()->registerListener(this);

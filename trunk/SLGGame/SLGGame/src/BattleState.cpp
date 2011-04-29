@@ -8,11 +8,9 @@
 
 #include "BillboardManager.h"
 
-#include "GUISystem.h"
-
-#include "InputControl.h"
-
 #include "BattleLoadState.h"
+#include "Terrain.h"
+#include "MapDataManager.h"
 
 BattleState::BattleState(void)
 {
@@ -26,11 +24,10 @@ BattleState::~BattleState(void)
 
 void BattleState::initialize( std::string arg )
 {
-	mTerrain = new Terrain();
 	srand((int)time(0));
 	new BillboardManager();
 
-	BattleLoadState* loadState = new BattleLoadState(this,arg);
+	BattleLoadState* loadState = new BattleLoadState(arg);
 	PushState(loadState);
 
 	//载入新战场
@@ -76,12 +73,17 @@ void BattleState::initialize( std::string arg )
 
 void BattleState::uninitialize()
 {
+	Terrain::getSingleton().destoryTerrian();
+	MapDataManager::getSingleton().clearMap();
+	/*
 	if(mTerrain != NULL)
 	{
+		
 		mTerrain->destoryTerrian();
 		//delete mTerrain;
 		//mTerrain = NULL;
 	}
+	*/
 
 	//GUISystem::getSingletonPtr()->destoryScene(PUDebugScene);
 }
@@ -101,11 +103,13 @@ void BattleState::ChangeState(SubBattleState* substate)
 		delete ite;
 		mSubStateStack.pop_back();
 	}
+	substate->setMainState(this);
 	mSubStateStack.push_back(substate);
 
 }
 void BattleState::PushState(SubBattleState* substate)
 {
+	substate->setMainState(this);
 	mSubStateStack.push_back(substate);
 }
 void BattleState::PopState()

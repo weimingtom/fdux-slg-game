@@ -26,15 +26,20 @@ public:
 	~MapDataManager();
 
 	bool loadMapFormFile(std::string mapname);
+	bool loadMapFormSave();
+
 	void loadMapObj();
+
+	void clearMap();
 
 	GroundType getGroundType(int x, int y);
 	TerrainType getTerrainType(int x, int y);
 	int getMapSize() {return mMapSize;}
 	bool getPassable(int x, int y, int team);
-	int getInfApCost(int x, int y, int team);
-	int getCavApCost(int x, int y, int team);
-	int getDefModify(int x, int y, int team);
+	float getInfApCost(int x, int y, int team);
+	float getCavApCost(int x, int y, int team);
+	float getCovert(int x, int y, int team);
+	float getDefModify(int x, int y, int team);
 private:
 	int mMapSize;
 };

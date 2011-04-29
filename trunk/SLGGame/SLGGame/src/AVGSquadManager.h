@@ -20,5 +20,6 @@ public:
 	bool applyModifer(std::string path, std::string modifierpath, std::string &modifierid);
 	bool applyModifer(std::string path, AttrModifier* modifier, std::string &modifierid);
 	bool applyEffect(std::string path, std::string id);
+	bool getSquadAttr(std::string path, AttrType attrtype, AttrCalcType calctype, float &val);
 private:
 };

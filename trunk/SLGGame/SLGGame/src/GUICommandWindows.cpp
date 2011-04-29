@@ -4,17 +4,11 @@
 #include "boost\format.hpp"
 
 #include "BattleAvgState.h"
+#include "BattleSquad.h"
 
-GUICommandWindows::GUICommandWindows(MyGUI::Window* window,int Width,int Height):GUISubWindows(window,Width,Height),mWindow(window),mSceneX(0),mSceneY(0)
+GUICommandWindows::GUICommandWindows(MyGUI::Window* window,int Width,int Height):GUISubWindows(window,Width,Height),mWindow(window)
 {
-	assignWidget(mMoveButton,"CmdMoveButton");
-	assignWidget(mAttackButton,"CmdAttackButton");
-	assignWidget(mFormationButton,"CmdFormationButton");
-	assignWidget(mSkillButton,"CmdSkillButton");
 
-	mMoveButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUICommandWindows::onMove);
-
-	window->setVisible(false);
 }
 
 GUICommandWindows::~GUICommandWindows(void)
@@ -23,12 +17,12 @@ GUICommandWindows::~GUICommandWindows(void)
 
 void GUICommandWindows::showScene( std::string arg )
 {
-
+	mWindow->setVisible(true);
 }
 
 void GUICommandWindows::hideScene()
 {
-
+	mWindow->setVisible(false);
 }
 
 void GUICommandWindows::FrameEvent()
@@ -36,20 +30,15 @@ void GUICommandWindows::FrameEvent()
 
 }
 
-void GUICommandWindows::onMove(MyGUI::Widget* _sender)
-{
-	mBattleState->PushState(new BattleAvgState(mBattleState,"Battle.lua"));
-}
 
 bool GUICommandWindows::SceneInputEvent( float x,float y )
 {
-	mSceneX=x;
-	mSceneY=y;
-	return true;
+	return false;
 }
 
 bool GUICommandWindows::GridInputEvent( int x,int y )
 {
+	/*
 	std::vector<std::string> squadList=DataLibrary::getSingletonPtr()->getChildList("GameData/BattleData/SquadList");
 
 	std::string squadId="";
@@ -81,6 +70,11 @@ bool GUICommandWindows::GridInputEvent( int x,int y )
 	{
 		mWindow->setVisible(false);
 	}
-
+	*/
 	return true;
+}
+
+void GUICommandWindows::setSquad(BattleSquad* squad)
+{
+
 }

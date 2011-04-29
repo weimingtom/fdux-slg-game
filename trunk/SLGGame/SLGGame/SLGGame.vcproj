@@ -393,6 +393,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\src\BattlePlayerState.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\BattlePlayerState.h"
+						>
+					</File>
+					<File
 						RelativePath=".\src\cutscenedirector.cpp"
 						>
 					</File>
@@ -434,10 +442,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\GamePlayer.h"
-					>
-				</File>
-				<File
 					RelativePath=".\src\InputControl.cpp"
 					>
 				</File>
@@ -447,14 +451,6 @@
 				</File>
 				<File
 					RelativePath=".\src\InputListener.h"
-					>
-				</File>
-				<File
-					RelativePath=".\src\TurnControl.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\src\TurnControl.h"
 					>
 				</File>
 			</Filter>
@@ -685,6 +681,14 @@
 						</File>
 						<File
 							RelativePath=".\src\GUISubWindows.h"
+							>
+						</File>
+						<File
+							RelativePath=".\src\GUITargetWindow.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\src\GUITargetWindow.h"
 							>
 						</File>
 						<File

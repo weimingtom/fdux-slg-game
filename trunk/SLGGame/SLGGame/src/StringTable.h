@@ -11,5 +11,6 @@ public:
 	StringTable();
 	~StringTable();
 	std::string getString(std::string key);
+	std::string getAnsiString(std::string key);
 private:
 };

@@ -10,8 +10,7 @@
 
 #include "MapDataManager.h"
 
-BattleLoadState::BattleLoadState(BattleState* mainSate, std::string arg)
-:SubBattleState(mainSate)
+BattleLoadState::BattleLoadState( std::string arg)
 {
 	mState = LOADSCENE;
 	mLoadFromMap =true;
@@ -55,7 +54,7 @@ void BattleLoadState::update(unsigned int deltaTime)
 		break;
 	case LOADGRID:
 		Terrain::getSingleton().createGrid();
-		BattleDeployState* deploystate = new BattleDeployState(mMainState);
+		BattleDeployState* deploystate = new BattleDeployState;
 		DataLibrary::getSingleton().saveXmlData(DataLibrary::GameData,"test.xml");
 		mLoadScene->setProgress(100);
 		mLoadScene->setText("Finish");
