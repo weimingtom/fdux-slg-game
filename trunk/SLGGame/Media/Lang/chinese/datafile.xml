@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <StaticData>
 	<SquadData>
 		<TestSquad>
@@ -35,10 +35,6 @@
 		</TestArmor>
 	</ArmorData>
 	<SkillData>
-		<Move>
-			<Name type="String" value="移动"/>
-			<Describe type="String" value="移动小队"/>
-		</Move>
 		<Attack>
 			<Name type="String" value="攻击"/>
 			<Describe type="String" value="小队对目标进行攻击"/>
@@ -51,14 +47,14 @@
 		</TestEffect>
 	</EffectData>
 	<GroundData>
-		<Ground0>
+		<Ground1>
 			<Name type="String" value="绿地"/>
 			<Describe type="String" value="绿地"/>
-		</Ground0>
-		<Ground1>
+		</Ground1>
+		<Ground0>
 			<Name type="String" value="荒地"/>
 			<Describe type="String" value="荒地"/>
-		</Ground1>
+		</Ground0>
 		<Ground2>
 			<Name type="String" value="沼泽"/>
 			<Describe type="String" value="沼泽"/>

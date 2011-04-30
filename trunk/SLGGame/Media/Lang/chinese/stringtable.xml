@@ -24,8 +24,8 @@
 		
 		<DirectionNorth type="String" value="北"/>
 		<DirectionSouth type="String" value="南"/>
-		<DirectionWest type="String" value="东"/>
-		<DirectionEast type="String" value="西"/>
+		<DirectionWest type="String" value="西"/>
+		<DirectionEast type="String" value="东"/>
 		
 		<!--GUI-->
 		<gamename type="String" value = "忘却的战场"/>

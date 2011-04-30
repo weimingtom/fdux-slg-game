@@ -18,16 +18,6 @@ GUIMenuWindow::~GUIMenuWindow(void)
 
 void GUIMenuWindow::showScene( std::string arg )
 {
-	if (!mIsAction)
-	{
-		mIsAction=true;
-		mWindow->setVisible(true);
-	}
-	else
-	{
-		mIsAction=false;
-		mWindow->setVisible(false);
-	}
 
 }
 
@@ -43,15 +33,11 @@ void GUIMenuWindow::FrameEvent()
 
 bool GUIMenuWindow::GridInputEvent( int x,int y )
 {
-	return mIsAction;
+	return false;
 }
 
 bool GUIMenuWindow::KeyInputEvent( const OIS::KeyEvent &arg )
 {
-	if (arg.key==OIS::KC_ESCAPE)
-	{
-		showScene("");
-	}
 	return false;
 }
 

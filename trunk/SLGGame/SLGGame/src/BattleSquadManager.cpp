@@ -31,14 +31,21 @@ void BattleSquadManager::initBattleSquad(bool loadfrommap)
 			for(ite = childlist.begin(); ite != childlist.end(); ite++)
 			{
 				std::string datapath = std::string("GameData/BattleData/SquadList/") + (*ite);
+				datalib->copyNode(std::string("GameData/StoryData/SquadData/EnableSquad/") + (*ite),datapath, true);
+				int type;
+				Formation f;
+				datalib->getData(datapath + std::string("/Type"), type );
+				if(type == 1)
+					f = Line;
+				else
+					f = Loose;
 				datalib->setData(datapath +std::string("/TeamId"), std::string("Team1"), true );
 				datalib->setData(datapath +std::string("/Grapid"),mCurid, true);
 				datalib->setData(datapath +std::string("/CreateType"), StroySquad, true );
 				datalib->setData(datapath +std::string("/Direction"), North, true );
-				datalib->setData(datapath +std::string("/Formation"), Loose, true );
+				datalib->setData(datapath +std::string("/Formation"), f, true );
 				datalib->setData(datapath +std::string("/ActionPoint"), 0.0f, true );
 				BattleSquad* battlesquad = new BattleSquad((*ite),mCurid,-1,0); 
-				datalib->copyNode(std::string("GameData/StoryData/SquadData/EnableSquad/") + (*ite),datapath, true);
 				suqadgrapmanager->createSquad((*ite), datapath, mCurid, -1, 0,North,Line,battlesquad->getUnitGrapNum());
 				mDeployList.push_back(battlesquad);
 				mCurid ++;

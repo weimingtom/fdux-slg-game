@@ -2,9 +2,13 @@
 
 #include "Core.h"
 
+#include "iisingleton.hpp"
+
+using namespace izayoi;
+
 class Terrain;
 
-class CameraContral
+class CameraContral:public IISingleton<CameraContral>
 {
 public:
 	CameraContral();
@@ -15,6 +19,8 @@ public:
 	void riseCamera(float dh);
 	void riseCameraTo(float h);
 	void resetCamera();
+
+	void setMoveRect(float minx, float miny);
 private:
 
 	void setCamera();
@@ -22,12 +28,10 @@ private:
 	Ogre::Camera *mCamera;
 	Terrain *mTerrain;
 
-	static float mHeight;
-	static float mX;
-	static float mY;
+	float mHeight;
+	float mX;
+	float mY;
 
 	float mMinX;
 	float mMinY;
-
-	Ogre::SceneNode *mTrancNode;
 };

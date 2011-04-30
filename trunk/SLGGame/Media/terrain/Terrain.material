@@ -8,13 +8,13 @@ material TerrainTile
 			texture_unit
 			{
 				tex_coord_set 0
-				texture GreenLand.tga
+				texture Desert.tga
 				colour_op alpha_blend
 			}
 			texture_unit
 			{
 				tex_coord_set 1
-				texture Desert.tga
+				texture GreenLand.tga
 				colour_op alpha_blend
 			}
 			texture_unit

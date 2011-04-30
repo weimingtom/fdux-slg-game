@@ -2,6 +2,8 @@
 
 #include "GUISubWindows.h"
 
+class BattlePlayerState;
+
 class GUIGameStateWindows:public GUISubWindows
 {
 public:
@@ -26,9 +28,14 @@ public:
 	}
 
 	void update();
+	void setAllowNextTurn(bool allow) {mNextTurn->setEnabled(allow);}
 
 private:
 	MyGUI::Window* mWindow;
 	MyGUI::TextBox* mTurnLabel;
 	MyGUI::TextBox* mPlayerLabel;
+	MyGUI::Button* mNextTurn;
+
+	void onNextTurn(MyGUI::Widget* _sender);
+
 };

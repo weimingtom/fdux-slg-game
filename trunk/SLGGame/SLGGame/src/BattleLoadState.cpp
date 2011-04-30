@@ -7,6 +7,7 @@
 #include "LoadScene.h"
 #include "BattleSquadManager.h"
 #include "DataLibrary.h"
+#include "GUIBattle.h"
 
 #include "MapDataManager.h"
 
@@ -55,6 +56,9 @@ void BattleLoadState::update(unsigned int deltaTime)
 	case LOADGRID:
 		Terrain::getSingleton().createGrid();
 		BattleDeployState* deploystate = new BattleDeployState;
+		GUIBattle* guibattle=static_cast<GUIBattle *>(GUISystem::getSingleton().createScene(BattleScene));
+		guibattle->setBattleState(mMainState);
+		GUISystem::getSingleton().setFrameUpdateScene(BattleScene);
 		DataLibrary::getSingleton().saveXmlData(DataLibrary::GameData,"test.xml");
 		mLoadScene->setProgress(100);
 		mLoadScene->setText("Finish");

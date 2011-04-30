@@ -21,6 +21,7 @@
 #include "timer.hpp"
 #include "MapDataManager.h"
 #include "Terrain.h"
+#include "CameraContral.h"
 
 #include <ParticleUniverseSystemManager.h> 
 
@@ -100,6 +101,7 @@ bool Core::initialize()
 		new MapDataManager;
 		new SquadGrapManager(mSceneMgr);
 		new Terrain;
+		new CameraContral;
 
 
 		mStateManager=new StateManager();

@@ -28,6 +28,8 @@ GUISquadWindows::GUISquadWindows(MyGUI::Window* window,int Width,int Height):GUI
 
 
 	window->setPosition(0,Height-window->getHeight());
+
+	setSquad(NULL);
 }
 
 GUISquadWindows::~GUISquadWindows(void)
@@ -46,7 +48,7 @@ void GUISquadWindows::hideScene()
 
 void GUISquadWindows::FrameEvent()
 {
-
+	updateSquad();
 }
 
 bool GUISquadWindows::GridInputEvent( int x,int y )
@@ -152,7 +154,7 @@ void GUISquadWindows::updateSquad()
 	switch(y)
 	{
 	case Line:
-		mSquadFormation->setCaption(StringTable::getSingleton().getString("DirectionNorth"));
+		mSquadFormation->setCaption(StringTable::getSingleton().getString("FormationLine"));
 		break;
 	case Circular:
 		mSquadFormation->setCaption(StringTable::getSingleton().getString("FormationCirc"));
@@ -170,7 +172,7 @@ void GUISquadWindows::updateSquad()
 
 	re = DataLibrary::getSingletonPtr()->getData(datapath+"/UnitMaxNumber",x);
 	re = DataLibrary::getSingletonPtr()->getData(datapath+"/UnitNumber",y);
-	mSquadUnitNum->setCaption(Ogre::StringConverter::toString(x) + std::string("/") + Ogre::StringConverter::toString(y));
+	mSquadUnitNum->setCaption(Ogre::StringConverter::toString(y) + std::string("/") + Ogre::StringConverter::toString(x));
 
 	re = DataLibrary::getSingletonPtr()->getData(datapath+"/ActionPoint",x);
 	mSquadAp->setCaption(Ogre::StringConverter::toString(x));

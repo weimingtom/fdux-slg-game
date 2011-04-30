@@ -42,7 +42,7 @@ void BattleSquad::setCrood(int x, int y)
 
 void BattleSquad::setDirection(Direction d)
 {
-	DataLibrary::getSingleton().setData(std::string("GameData/BattleData/SquadList/") + mId + std::string("/Direction"),d);
+	DataLibrary::getSingleton().setData(getPath() + std::string("/Direction"),d);
 }
 
 void BattleSquad::getCrood(int* x, int* y)

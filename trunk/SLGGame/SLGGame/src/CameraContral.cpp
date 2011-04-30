@@ -2,24 +2,23 @@
 
 #include "Terrain.h"
 
-#include <iostream>
-
 CameraContral::CameraContral()
 {
 	mTerrain = Terrain::getSingletonPtr();
 	mCamera = Core::getSingleton().mCamera;
-	mTerrain->getWorldCoords(0,0,mMinX,mMinY);
-	mMinX -= TILESIZE / 2.0f;
-	mMinY -= TILESIZE / 2.0f;
+	mMinX -= 0.0f;
+	mMinY -= 0.0f;
 }
-
-float CameraContral::mHeight = 20.0f;
-float CameraContral::mX = 0.0f;
-float CameraContral::mY = 0.0f;;
 
 CameraContral::~CameraContral()
 {
 
+}
+
+void CameraContral::setMoveRect(float minx, float miny)
+{
+	mMinX = minx;
+	mMinY = miny;
 }
 
 void CameraContral::moveCamera(float dx,float dy)
@@ -65,7 +64,7 @@ void CameraContral::resetCamera()
 {
 	mX = 0.0f;
 	mY = 0.0f;
-	mHeight = 20.0f;
+	mHeight = 50.0f;
 	setCamera();
 }
 
