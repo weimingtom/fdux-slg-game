@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout" version="3.2.0">
     <Widget type="Window" skin="WindowCS" position="0 0 295 145" layer="Main" name="GameState">
         <Property key="Caption" value="Game State"/>
@@ -11,9 +11,11 @@
         </Widget>
         <Widget type="TextBox" skin="TextBox" position="115 45 165 20" name="PlayerLabel">
             <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
         </Widget>
         <Widget type="TextBox" skin="TextBox" position="90 15 190 20" name="TurnLabel">
             <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
         </Widget>
         <Widget type="Button" skin="Button" position="5 75 275 30" name="NextTurnButton">
             <Property key="Caption" value="Next Turn"/>

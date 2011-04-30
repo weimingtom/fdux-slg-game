@@ -1,6 +1,7 @@
 #include "Terrain.h"
 
 #include "MapDataManager.h"
+#include "CameraContral.h"
 
 #include <iostream>
 
@@ -21,14 +22,16 @@ bool Terrain::createTerrain(MapDataManager *data)
 	mMapData = data;
 	int terrainszie = mMapData->getMapSize() + 9;
 
+	Core::getSingleton().mSceneMgr->setSkyBox(true, "SkyBox");
+
 	//创建灯光
 	Core::getSingleton().mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5f, 0.5f, 0.5f));
-	//Core::getSingleton().mSceneMgr->setShadowTechnique(Ogre::SHADOWDETAILTYPE_TEXTURE);
+	Core::getSingleton().mSceneMgr->setShadowTechnique(Ogre::SHADOWDETAILTYPE_STENCIL);
 	mLight = Core::getSingleton().mSceneMgr->createLight("TerrainLight");
 	mLight->setType(Ogre::Light::LightTypes::LT_DIRECTIONAL);
 	mLight->setPosition(-500.0f,500.0f, 500.0f);
 	mLight->setDirection(1.0f, -1.0f, -1.0f);
-	//mLight->setCastShadows(false);
+	mLight->setCastShadows(true);
 	mLight->setDiffuseColour(Ogre::ColourValue(1.0f, 1.0f,1.0f));
 
 	//创建地面Mesh
@@ -182,6 +185,10 @@ bool Terrain::createTerrain(MapDataManager *data)
 	mWaterNode->attachObject(mWaterObject);
 	mWaterNode->setPosition(0,WATERHEIGHT,0);
 
+	//设置摄像机移动范围
+	float minx = ( - (float)(terrainszie - 9) / 2.0f - 1.0f) * TILESIZE ;
+	CameraContral::getSingleton().setMoveRect(minx, minx);
+
 	return true;
 }
 
@@ -334,14 +341,15 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 		float u,v;
 		u = (groundindex[n] % 4) * TERRAINTEXTILESIZE / TERRAINTEXSIZE;
 		v = (groundindex[n] / 4) * TERRAINTEXTILESIZE / TERRAINTEXSIZE;
+		float d = 1.0f / TERRAINTEXTILESIZE;
 		*uvbuffer = u;
-		*(uvbuffer + 1) = v;
-		*(uvbuffer + 8) = u + TERRAINTEXTILESIZE / TERRAINTEXSIZE;
-		*(uvbuffer + 9) = v;
-		*(uvbuffer + 16) = u;
-		*(uvbuffer + 17) = v + TERRAINTEXTILESIZE / TERRAINTEXSIZE;
-		*(uvbuffer + 24)= u + TERRAINTEXTILESIZE / TERRAINTEXSIZE;
-		*(uvbuffer + 25) = v + TERRAINTEXTILESIZE / TERRAINTEXSIZE;
+		*(uvbuffer + 1) = v + d;
+		*(uvbuffer + 8) = u + TERRAINTEXTILESIZE / TERRAINTEXSIZE - d;
+		*(uvbuffer + 9) = v + d;
+		*(uvbuffer + 16) = u + d;
+		*(uvbuffer + 17) = v + TERRAINTEXTILESIZE / TERRAINTEXSIZE -d;
+		*(uvbuffer + 24)= u + TERRAINTEXTILESIZE / TERRAINTEXSIZE -d;
+		*(uvbuffer + 25) = v + TERRAINTEXTILESIZE / TERRAINTEXSIZE -d;
 
 		uvbuffer += 2;
 	}
@@ -627,7 +635,7 @@ void Terrain::createGrid()
 	for(int y = 0; y < mMapData->getMapSize(); y++)
 		for(int x = 0; x < mMapData->getMapSize(); x++)
 		{
-			if(mMapData->getPassable(x,y,1))
+			if(mMapData->getPassable(x,y,0))
 			{
 				float xx = startpos + x * TILESIZE;
 				float yy = startpos + y * TILESIZE;
@@ -638,7 +646,7 @@ void Terrain::createGrid()
 					mGrid->position(xx+TILESIZE,getHeight(xx+TILESIZE,yy),yy);
 					mGrid->colour(1.0f,1.0f,1.0f);
 				}
-				if(!mMapData->getPassable(x - 1,y,1))
+				if(!mMapData->getPassable(x - 1,y,0))
 				{
 					mGrid->position(xx,getHeight(xx,yy+TILESIZE),yy+TILESIZE);
 					mGrid->colour(1.0f,1.0f,1.0f);

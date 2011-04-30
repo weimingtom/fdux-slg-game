@@ -223,14 +223,19 @@ bool MapDataManager::loadMapFormFile(std::string mapname)
 			int y;
 			Direction d;
 			int unitnum;
-			Formation f;
 			childchild->GetAttribute("Type",&squadtype);
 			childchild->GetAttribute("GridX",&x);
 			childchild->GetAttribute("GridY",&y);
 			childchild->GetAttribute("UnitNum",&unitnum);
 			childchild->GetAttribute("Direction",&d);
-			f = Loose;
 			AVGSquadManager::getSingleton().addSquad(squadid,squadtype, datapath);
+			int type;
+			Formation f;
+			datalibrary->getData(datapath + std::string("/") + squadid + std::string("/Type"), type );
+			if(type == 1)
+				f = Line;
+			else
+				f = Loose;
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/GridX"), x, true );
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/GridY"), y, true );
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/UnitNumber"), unitnum, true );
@@ -333,21 +338,24 @@ bool MapDataManager::getPassable(int x, int y, int team)
 	//额外修正
 
 	//小队阻挡
-	BattleSquadManager* battlesquadmanager = BattleSquadManager::getSingletonPtr();
-	BattleSquadManager::BattleSquadIte ite;
-	for(ite = battlesquadmanager->mSquadList.begin(); ite != battlesquadmanager->mSquadList.end(); ite++)
+	if(team != 0)
 	{
-		int xx,yy;
-		(*ite)->getCrood(&xx,&yy);
-		if(xx ==x && yy == y)
-			return false;
-	}
-	for(ite = battlesquadmanager->mDeployList.begin(); ite != battlesquadmanager->mDeployList.end(); ite++)
-	{
-		int xx,yy;
-		(*ite)->getCrood(&xx,&yy);
-		if(xx ==x && yy == y)
-			return false;
+		BattleSquadManager* battlesquadmanager = BattleSquadManager::getSingletonPtr();
+		BattleSquadManager::BattleSquadIte ite;
+		for(ite = battlesquadmanager->mSquadList.begin(); ite != battlesquadmanager->mSquadList.end(); ite++)
+		{
+			int xx,yy;
+			(*ite)->getCrood(&xx,&yy);
+			if(xx ==x && yy == y)
+				return false;
+		}
+		for(ite = battlesquadmanager->mDeployList.begin(); ite != battlesquadmanager->mDeployList.end(); ite++)
+		{
+			int xx,yy;
+			(*ite)->getCrood(&xx,&yy);
+			if(xx ==x && yy == y)
+				return false;
+		}
 	}
 
 	if(maxpassable == 2)

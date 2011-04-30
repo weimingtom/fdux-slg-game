@@ -27,6 +27,8 @@ public:
 		return "Menu";
 	}
 
+	void setAllowSave(bool allow) { mSaveButton->setEnabled(allow);}
+
 private:
 
 	void onRestart(MyGUI::Widget* _sender);
@@ -38,6 +40,4 @@ private:
 	MyGUI::Button* mLoadButton;
 	MyGUI::Button* mOptionButton;
 	MyGUI::Button* mExitButton;
-
-	bool mIsAction;
 };

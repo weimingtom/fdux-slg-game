@@ -23,6 +23,7 @@ BattleControlState::BattleControlState(bool newgame)
 	}
 	mGUIBattle = static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
 	mGUIState = static_cast<GUIGameStateWindows *>(mGUIBattle->getSubWindow("GameState"));
+	mGUIState->showScene("");
 	mGUIState->update();
 }
 BattleControlState::~BattleControlState()

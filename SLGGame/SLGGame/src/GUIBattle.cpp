@@ -50,7 +50,11 @@ void GUIBattle::hideScene()
 
 void GUIBattle::FrameEvent()
 {
-	
+	std::list<GUISubWindows*>::iterator it;
+	for (it=mSubWindows.begin();it!=mSubWindows.end();it++)
+	{
+		(*it)->FrameEvent();
+	}
 }
 
 void GUIBattle::SceneInputEvent( float x,float y )
@@ -68,7 +72,7 @@ void GUIBattle::SceneInputEvent( float x,float y )
 	if(Terrain::getSingletonPtr()->coordinateToGrid(x,y,GX,GY))
 	{
 		GridInputEvent(GX,GY);
-		std::cout<<GX<<","<<GY<<std::endl;
+		//std::cout<<GX<<","<<GY<<std::endl;
 	}
 }
 

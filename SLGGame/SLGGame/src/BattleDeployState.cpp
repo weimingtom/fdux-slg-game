@@ -20,9 +20,8 @@
 
 BattleDeployState::BattleDeployState()
 {
-	mCameraContral = new CameraContral;
+	mCameraContral = CameraContral::getSingletonPtr();
 	mCameraContral->resetCamera();
-	mCameraContral->riseCameraTo(50.0f);
 	Core::getSingleton().mInputControl->pushListener(this);
 	mMouseX = 640;
 	mMouseY = 320;
@@ -33,7 +32,7 @@ BattleDeployState::BattleDeployState()
 	//SquadGraphics* s;//=mSquadGrapManager->createSquad("SinbadSquad",1,10,10,SquadGrapManager::North,SquadGrapManager::Loose);
 	//GUIPUDebug* puDebug=(GUIPUDebug*)GUISystem::getSingletonPtr()->createScene(PUDebugScene);
 	mGUIBattle=static_cast<GUIBattle *>(GUISystem::getSingletonPtr()->createScene(BattleScene));
-	mGUIBattle->setBattleState(mMainState);
+	//mGUIBattle->setBattleState(mMainState);
 	mDeployWindow = static_cast<GUIDeployWindows *>(mGUIBattle->getSubWindow("DeployWindow"));
 	mDeployWindow->showScene("");
 	mDeployWindow->setDeployState(this);
@@ -68,7 +67,6 @@ BattleDeployState::~BattleDeployState()
 	mDeployWindow->hideScene();
 	mSquadWindow->setSquad(NULL);
 	Core::getSingleton().mInputControl->popListener();
-	delete mCameraContral;
 	delete mAreaGrap;
 }
 
@@ -91,7 +89,7 @@ void BattleDeployState::update(unsigned int deltaTime)
 bool BattleDeployState::keyPressed(const OIS::KeyEvent &arg)
 {
 	//mGUIBattle->KeyInputEvent(arg);
-	return true;
+	return false;
 }
 bool BattleDeployState::keyReleased(const OIS::KeyEvent &arg)
 {
@@ -111,19 +109,49 @@ bool BattleDeployState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 	Terrain::getSingletonPtr()->coordinateToGrid(arg.state.X.abs,arg.state.Y.abs,GX,GY);
 	if(mSelectSquad)
 	{
-		MapDataManager* datamanager = MapDataManager::getSingletonPtr();
-		if(mAreaGrap->inArea(GX,GY) && datamanager->getPassable(GX,GY,1))
+		if(id == OIS::MB_Left)
 		{
-			int id = mSelectSquad->getGrapId();
-			SquadGraphics* squadgrap = SquadGrapManager::getSingleton().getSquad(id);
-			squadgrap->setGrid(GX,GY);
-			mSelectSquad->setCrood(GX,GY);
-			char info[64];
-			sprintf_s(info,64,"%d,%d",GX,GY);
-			mDeployWindow->setDeployInfo(mSelectIndex,std::string(info));
-			if(mSquadManager->allDeployed())
-				mDeployWindow->setAllowConfirm(true);
+			MapDataManager* datamanager = MapDataManager::getSingletonPtr();
+			if(mAreaGrap->inArea(GX,GY) && datamanager->getPassable(GX,GY,1))
+			{
+				int id = mSelectSquad->getGrapId();
+				SquadGraphics* squadgrap = SquadGrapManager::getSingleton().getSquad(id);
+				squadgrap->setGrid(GX,GY);
+				mSelectSquad->setCrood(GX,GY);
+				char info[64];
+				sprintf_s(info,64,"%d,%d",GX,GY);
+				mDeployWindow->setDeployInfo(mSelectIndex,std::string(info));
+				if(mSquadManager->allDeployed())
+					mDeployWindow->setAllowConfirm(true);
+			}
 		}
+		else if(id == OIS::MB_Right)
+		{
+			int x,y;
+			mSelectSquad->getCrood(&x,&y);
+			if(x != -1 && !(x == GX && y == GY))
+			{
+				Direction d;
+				float k;
+				if(GY-y == 0)
+					k = 2.0f;
+				else
+					k = abs(GX -x)/ abs(GY - y);
+				if( GY > y && k <= 1.0f)
+					d = South;
+				else if( GY < y && k <= 1.0f)
+					d = North;
+				else if( GX > x )
+					d = East;
+				else
+					d = West;
+				mSelectSquad->setDirection(d);
+				int grapid = mSelectSquad->getGrapId();
+				SquadGraphics* squadgrap = SquadGrapManager::getSingleton().getSquad(grapid);
+				squadgrap->setDirection(d,false);
+			}
+		}
+
 	}
 	return true;
 }

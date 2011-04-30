@@ -8,21 +8,25 @@
 #include "BattleSquadManager.h"
 #include "BattleSquad.h"
 #include "CameraContral.h"
+#include "GUIGameStateWindows.h"
 
 BattlePlayerState::BattlePlayerState()
 {
 	mSquadManager = BattleSquadManager::getSingletonPtr();
-	mCameraContral = new CameraContral;
+	mCameraContral = CameraContral::getSingletonPtr();
 	mGUIBattle = static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
 	Core::getSingleton().mInputControl->pushListener(this);
 	mSquadWindow = static_cast<GUISquadWindows *>(mGUIBattle->getSubWindow("SquadWindow"));
 	mSquadWindow->setSquad(NULL);
+	mGUIState = static_cast<GUIGameStateWindows *>(mGUIBattle->getSubWindow("GameState"));
 	newTurn();
+	mGUIState->setAllowNextTurn(true);
 }
 BattlePlayerState::~BattlePlayerState()
 {
 	Core::getSingleton().mInputControl->popListener();
 	mSquadWindow->setSquad(NULL);
+	mGUIState->setAllowNextTurn(false);
 }
 
 void BattlePlayerState::update(unsigned int deltaTime)

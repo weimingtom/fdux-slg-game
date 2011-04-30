@@ -10,7 +10,6 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="TestArmor"/>
 			<SkillTable>
-				<Move type="Int" value="1"/>
 				<Attack type="Int" value="1"/>
 			</SkillTable>
 			<LeaderName type="String" value="TestLeaderName"/>
@@ -34,7 +33,7 @@
 				<Defence type="Float" value="1.0"/>
 				<Formation type="Float" value="0.01"/>
 				<Initiative type="Float" value="1.0"/>
-				<ActionPoint type="Float" value="1.0"/>				
+				<ActionPoint type="Float" value="10.0"/>				
 				<Detection type="Float" value="1.0"/>
 				<Covert type="Float" value="1.0"/>
 				<Injury type="Float" value="0.7"/>
@@ -109,12 +108,6 @@
 		</TestArmor>		
 	</ArmorData>
 	<SkillData>
-		<Move>
-			<Type type="Int" value="1"/>
-			<Range type="Int" value="1"/>
-			<Value type="Int" value="0"/>
-			<Script type="String" value="move.lua"/>
-		</Move>
 		<Attack>
 			<Type type="Int" value="1"/>
 			<Range type="Int" value="1"/>
@@ -129,16 +122,6 @@
 		</TestEffect>		
 	</EffectData>
 	<GroundData>
-		<Ground0>
-			<GroundModifier>
-				<Type type="Int" value="15"/>
-				<Passable type = "Int" value = "1"/>
-				<Covert type="Float" value="0.0"/>
-				<Defence type="Float" value="0.0"/>
-				<CavAp type="Float" value="1.0"/>
-				<InfAp type="Float" value="1.0"/>
-			</GroundModifier>
-		</Ground0>
 		<Ground1>
 			<GroundModifier>
 				<Type type="Int" value="15"/>
@@ -149,6 +132,16 @@
 				<InfAp type="Float" value="1.0"/>
 			</GroundModifier>
 		</Ground1>
+		<Ground0>
+			<GroundModifier>
+				<Type type="Int" value="15"/>
+				<Passable type = "Int" value = "1"/>
+				<Covert type="Float" value="0.0"/>
+				<Defence type="Float" value="0.0"/>
+				<CavAp type="Float" value="1.0"/>
+				<InfAp type="Float" value="1.0"/>
+			</GroundModifier>
+		</Ground0>
 		<Ground2>
 			<GroundModifier>
 				<Type type="Int" value="15"/>

@@ -6,6 +6,7 @@
 
 class GUIBattle;
 class GUISquadWindows;
+class GUIGameStateWindows;
 class CameraContral;
 class BattleSquadManager;
 class BattleSquad;
@@ -29,6 +30,7 @@ public:
 private:
 	GUIBattle* mGUIBattle;
 	GUISquadWindows* mSquadWindow;
+	GUIGameStateWindows* mGUIState;
 
 	int mMouseX;
 	int mMouseY;

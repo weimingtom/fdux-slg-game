@@ -52,7 +52,7 @@ void GUITargetWindows::hideScene()
 
 void GUITargetWindows::FrameEvent()
 {
-
+	updateSquad();
 }
 
 bool GUITargetWindows::GridInputEvent( int x,int y )
@@ -131,7 +131,7 @@ void GUITargetWindows::updateSquad()
 	switch(y)
 	{
 	case Line:
-		mSquadFormation->setCaption(StringTable::getSingleton().getString("DirectionNorth"));
+		mSquadFormation->setCaption(StringTable::getSingleton().getString("FormationLine"));
 		break;
 	case Circular:
 		mSquadFormation->setCaption(StringTable::getSingleton().getString("FormationCirc"));
@@ -149,7 +149,7 @@ void GUITargetWindows::updateSquad()
 
 	re = DataLibrary::getSingletonPtr()->getData(datapath+"/UnitMaxNumber",x);
 	re = DataLibrary::getSingletonPtr()->getData(datapath+"/UnitNumber",y);
-	mSquadUnitNum->setCaption(Ogre::StringConverter::toString(x) + std::string("/") + Ogre::StringConverter::toString(y));
+	mSquadUnitNum->setCaption(Ogre::StringConverter::toString(y) + std::string("/") + Ogre::StringConverter::toString(x));
 
 	re = DataLibrary::getSingletonPtr()->getData(datapath+"/ActionPoint",x);
 	mSquadAp->setCaption(Ogre::StringConverter::toString(x));
