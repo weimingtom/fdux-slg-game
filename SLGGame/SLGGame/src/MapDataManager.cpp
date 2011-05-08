@@ -2,7 +2,6 @@
 
 #include "DataLibrary.h"
 #include "Terrain.h"
-#include "StringTable.h"
 #include "AVGSquadManager.h"
 #include "BattleSquadManager.h"
 #include "BattleSquad.h"
@@ -17,278 +16,6 @@ MapDataManager::MapDataManager()
 MapDataManager::~MapDataManager()
 {
 
-}
-
-bool MapDataManager::loadMapFormFile(std::string mapname)
-{
-	Terrain* terrain = Terrain::getSingletonPtr();
-	DataLibrary* datalibrary = DataLibrary::getSingletonPtr();
-	std::string path = ".\\..\\Media\\Map\\" + mapname;
-	ticpp::Document *doc = new ticpp::Document();
-	doc->LoadFile(path,TIXML_ENCODING_UTF8);
-	std::string str;
-	//载入地图名字，介绍和脚本名
-	ticpp::Element *element = doc->FirstChildElement("MapName");
-	element->GetText(&str);
-	datalibrary->setData("GameData/BattleData/MapData/MapName", StringTable::getSingleton().getString(str));
-	delete element;
-
-	element = doc->FirstChildElement("MapScript");
-	element->GetText(&str);
-	datalibrary->setData("GameData/BattleData/MapData/MapScript", str);
-	delete element;
-
-	element = doc->FirstChildElement("MapInfo");
-	element->GetText(&str);
-	datalibrary->setData("GameData/BattleData/MapData/MapInfo", StringTable::getSingleton().getString(str));
-	delete element;
-
-	//载入地图地形信息
-	element = doc->FirstChildElement("MapSize");
-	element->GetText(&mMapSize);
-	datalibrary->setData("GameData/BattleData/MapData/MapSize", mMapSize);
-	delete element;
-
-	element = doc->FirstChildElement("MapData");
-	element->GetText(&str);
-	for(int y = 0; y < mMapSize; y++)
-	{
-		for(int x = 0; x < mMapSize; x++)
-		{
-			int index = (y * mMapSize + x);
-			char datapathtemp[64];
-			sprintf_s(datapathtemp, 64, "GameData/BattleData/MapData/Map/M%d", index);
-			std::string datapath = datapathtemp;
-			if(str[index * 2] == 'l')
-			{
-				bool iscliff = false;
-				for(int i = y - 1; i < y + 2; i ++)
-				{
-					for(int j =  x - 1; j < x + 2; j++)
-					{
-						int u = (i<0)?0:i;
-						u = (u >= mMapSize)?mMapSize-1:u;
-						int v = (j<0)?0:j;
-						v = (v >= mMapSize)?mMapSize-1:v;
-						int tempindex = u * mMapSize + v;
-						if(str[tempindex * 2] == 'h' )
-						{	
-							iscliff = true;
-						}
-					}
-				}
-				if(iscliff)
-					datalibrary->setData(datapath + "/TerrainType", Cliff);
-				else
-					datalibrary->setData(datapath + "/TerrainType", LowGround);
-			}
-			else if(str[index * 2] == 'w')
-			{
-				datalibrary->setData(datapath + "/TerrainType", Water);
-			}
-			else if(str[index * 2] == 'h')
-			{
-				datalibrary->setData(datapath + "/TerrainType", HighGround);
-			}
-			else if(str[index * 2] == 'r')
-			{
-				datalibrary->setData(datapath + "/TerrainType", Ramp);
-			}
-
-			if(str[index * 2+1] == 'g')
-			{
-				datalibrary->setData(datapath + "/GroundType", GreenLand);
-			}
-			else if(str[index * 2+1] == 'd')
-			{
-				datalibrary->setData(datapath + "/GroundType", Desert);
-			}
-			else if(str[index * 2+1] == 'w')
-			{
-				datalibrary->setData(datapath + "/GroundType", Swamp);
-			}
-			else if(str[index * 2+1] == 's')
-			{
-				datalibrary->setData(datapath + "/GroundType", Snow);
-			}
-		}
-	}
-	delete element;
-
-	element = doc->FirstChildElement("MapObject");
-	ticpp::Iterator<ticpp::Element> child;
-	for(child = child.begin(element); child != child.end(); child++)
-	{
-		std::string objname;
-		std::string datapath;
-		child->GetValue(&objname);
-		datapath = std::string("GameData/BattleData/MapData/MapObjModleInfo/") + objname;
-		int objx,objy;
-		std::string meshname,objtype;
-		child->GetAttribute("GridX",&objx);
-		child->GetAttribute("GridY",&objy);
-		child->GetAttribute("Mesh",&meshname);
-		child->GetAttribute("Type",&objtype);
-		datalibrary->setData(datapath + "/GridX", objx);
-		datalibrary->setData(datapath + "/GridY", objy);
-		datalibrary->setData(datapath + "/Mesh", meshname);
-		//物品类型脚本
-		datapath = std::string("GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(objy * mMapSize + objx) + std::string("/MapObjType");
-		datalibrary->setData(datapath, objtype);
-		datalibrary->setData(datapath + "/MapObjModuleId", objname);
-	}
-	delete element;
-
-	element = doc->FirstChildElement("MapEffect");
-	for(child = child.begin(element); child != child.end(); child++)
-	{
-		std::string particlename;
-		std::string datapath;
-		child->GetValue(&particlename);
-		datapath = std::string("GameData/BattleData/MapData/MapParticleInfo/") + particlename;
-		int particlex,particley;
-		std::string scriptname;
-		child->GetAttribute("GridX",&particlex);
-		child->GetAttribute("GridY",&particley);
-		child->GetAttribute("Type",&scriptname);
-		datalibrary->setData(datapath + "/GridX", particlex);
-		datalibrary->setData(datapath + "/GridY", particley);
-		datalibrary->setData(datapath + "/Script", scriptname);
-	}
-	
-	terrain->createTerrain(this);
-	delete element;
-
-	//载入区域信息
-	element = doc->FirstChildElement("MapArea");
-	for(child = child.begin(element); child != child.end(); child++)
-	{
-		std::string areaname;
-		std::string datapath;
-		child->GetValue(&areaname);
-		datapath = std::string("GameData/BattleData/MapData/Area/") + areaname;
-		ticpp::Iterator<ticpp::Element> childchild;
-		for(childchild = childchild.begin(child.Get()); childchild != childchild.end(); childchild++)
-		{
-			std::string coordname;
-			childchild->GetValue(&coordname);
-			int x;
-			int y;
-			childchild->GetAttribute("X",&x);
-			childchild->GetAttribute("Y",&y);
-			datalibrary->setData(datapath + std::string("/CoordList/") + coordname + std::string("/X"),x );
-			datalibrary->setData(datapath + std::string("/CoordList/") + coordname + std::string("/Y"),y );
-		}
-	
-	}
-	delete element;
-
-	//载入队伍信息
-	element = doc->FirstChildElement("MapTeam");
-	for(int n = 2; n < 5; n++)
-	{
-		std::string name = std::string("Team") + Ogre::StringConverter::toString(n);
-		std::string factionid;
-		ticpp::Element* subelement = element->FirstChildElement(name);
-		subelement->GetAttribute("TeamFaction",&factionid);
-		datalibrary->setData(std::string("GameData/BattleData/Team/")+ name+ "/FactionId", factionid);
-		if(factionid != "none")
-		{
-			subelement->GetAttribute("TeamType",&factionid);
-			datalibrary->setData(std::string("GameData/BattleData/Team/")+ name+ "/Relation", factionid);
-		}
-		delete subelement;
-	}
-	std::string playerfactionid;
-	datalibrary->getData("GameData/StoryData/Faction",playerfactionid);
-	datalibrary->setData("GameData/BattleData/Team/Team1/FactionId",playerfactionid);
-	datalibrary->setData("GameData/BattleData/Team/Team1/Relation","player");
-	delete element;
-	
-	//载入部队信息
-	element = doc->FirstChildElement("MapSquad");
-	for(child = child.begin(element); child != child.end(); child++)
-	{
-		std::string teamid;
-		std::string datapath;
-		child->GetValue(&teamid);
-		datapath = std::string("GameData/BattleData/SquadList");
-		ticpp::Iterator<ticpp::Element> childchild;
-		for(childchild = childchild.begin(child.Get()); childchild != childchild.end(); childchild++)
-		{
-			std::string squadid;
-			std::string squadtype;
-			childchild->GetValue(&squadid);
-			int x;
-			int y;
-			Direction d;
-			int unitnum;
-			childchild->GetAttribute("Type",&squadtype);
-			childchild->GetAttribute("GridX",&x);
-			childchild->GetAttribute("GridY",&y);
-			childchild->GetAttribute("UnitNum",&unitnum);
-			childchild->GetAttribute("Direction",&d);
-			AVGSquadManager::getSingleton().addSquad(squadid,squadtype, datapath);
-			int type;
-			Formation f;
-			datalibrary->getData(datapath + std::string("/") + squadid + std::string("/Type"), type );
-			if(type == 1)
-				f = Line;
-			else
-				f = Loose;
-			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/GridX"), x, true );
-			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/GridY"), y, true );
-			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/UnitNumber"), unitnum, true );
-			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/Direction"), d, true );
-			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/Formation"), f, true );
-			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/TeamId"), teamid, true );
-			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/CreateType"), MapSquad, true );
-			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/ActionPoint"), 0.0f, true );
-		}
-	}
-	delete element;
-	
-	return true;
-}
-
-
-void MapDataManager::loadMapObj()
-{
-	DataLibrary* datalibrary = DataLibrary::getSingletonPtr();
-	Terrain* terrain = Terrain::getSingletonPtr();
-	std::string datapath("GameData/BattleData/MapData/MapObjModleInfo");
-	std::vector<std::string> childlist;
-	childlist = datalibrary->getChildList(datapath);
-	if(childlist.size()>0)
-	{
-		for(int n = 0; n < childlist.size(); n++)
-		{
-			std::string meshname;
-			int x,y;
-			datalibrary->getData(datapath + std::string("/") + childlist[n] + std::string("/Mesh"),meshname);
-			datalibrary->getData(datapath + std::string("/") +childlist[n] + std::string("/GridX"),x);
-			datalibrary->getData(datapath + std::string("/") +childlist[n] + std::string("/GridY"),y);
-			int index;
-			index = terrain->createMapObj(x,y,meshname);
-			datalibrary->setData(datapath + std::string("/") + childlist[n] + std::string("/Index"),index);
-		}
-	}
-	datapath = "GameData/BattleData/MapData/MapParticleInfo";
-	childlist = datalibrary->getChildList(datapath);
-	if(childlist.size()>0)
-	{
-		for(int n = 0; n < childlist.size(); n++)
-		{
-			std::string particlename;
-			int x,y;
-			datalibrary->getData(datapath + std::string("/") + childlist[n] + std::string("/Script"),particlename);
-			datalibrary->getData(datapath + std::string("/") +childlist[n] + std::string("/GridX"),x);
-			datalibrary->getData(datapath + std::string("/") +childlist[n] + std::string("/GridY"),y);
-			int index;
-			index = terrain->createMapParticle(x,y,particlename);
-			datalibrary->setData(datapath + std::string("/") + childlist[n] + std::string("/Index"),index);
-		}
-	}
 }
 
 GroundType MapDataManager::getGroundType(int x, int y)
@@ -366,28 +93,42 @@ bool MapDataManager::getPassable(int x, int y, int team)
 }
 float MapDataManager::getInfApCost(int x, int y, int team)
 {
-	return 0.0f;
+	TerrainType t = getTerrainType(x,y);
+	GroundType g = getGroundType(x,y);
+	float terraincost;
+	float groundcost;
+	bool re = DataLibrary::getSingleton().getData(std::string("StaticData/GroundData/Ground") + Ogre::StringConverter::toString(g) + std::string("/GroundModifier/InfAp"), groundcost);
+	re = DataLibrary::getSingleton().getData(std::string("StaticData/TerrainData/Terrain") + Ogre::StringConverter::toString(t) + std::string("/GroundModifier/InfAp"), terraincost);
+	return groundcost + terraincost;
 }
 float MapDataManager::getCavApCost(int x, int y, int team)
 {
-	return 0.0f;
+	TerrainType t = getTerrainType(x,y);
+	GroundType g = getGroundType(x,y);
+	float terraincost;
+	float groundcost;
+	bool re = DataLibrary::getSingleton().getData(std::string("StaticData/GroundData/Ground") + Ogre::StringConverter::toString(g) + std::string("/GroundModifier/CavAp"), groundcost);
+	re = DataLibrary::getSingleton().getData(std::string("StaticData/TerrainData/Terrain") + Ogre::StringConverter::toString(t) + std::string("/GroundModifier/CavAp"), terraincost);
+	return groundcost + terraincost;
 }
 float MapDataManager::getDefModify(int x, int y, int team)
 {
-	return 0.0f;
+	TerrainType t = getTerrainType(x,y);
+	GroundType g = getGroundType(x,y);
+	float terraincost;
+	float groundcost;
+	bool re = DataLibrary::getSingleton().getData(std::string("StaticData/GroundData/Ground") + Ogre::StringConverter::toString(g) + std::string("/GroundModifier/Defence"), groundcost);
+	re = DataLibrary::getSingleton().getData(std::string("StaticData/TerrainData/Terrain") + Ogre::StringConverter::toString(t) + std::string("/GroundModifier/Defence"), terraincost);
+	return groundcost + terraincost;
 }
 
 float MapDataManager::getCovert(int x, int y, int team)
 {
-	return 0.0f;
-}
-
-void MapDataManager::clearMap()
-{
-
-}
-
-bool MapDataManager::loadMapFormSave()
-{
-	return false;
+	TerrainType t = getTerrainType(x,y);
+	GroundType g = getGroundType(x,y);
+	float terraincost;
+	float groundcost;
+	bool re = DataLibrary::getSingleton().getData(std::string("StaticData/GroundData/Ground") + Ogre::StringConverter::toString(g) + std::string("/GroundModifier/Covert"), groundcost);
+	re = DataLibrary::getSingleton().getData(std::string("StaticData/TerrainData/Terrain") + Ogre::StringConverter::toString(t) + std::string("/GroundModifier/Covert"), terraincost);
+	return groundcost + terraincost;
 }

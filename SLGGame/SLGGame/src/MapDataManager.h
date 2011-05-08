@@ -17,20 +17,15 @@ static const int	HighGround = 2;
 static const int	Cliff = 3;
 static const int	Ramp = 4;
 
-class Terrain;
+class MapLoader;
 
 class MapDataManager: public IISingleton<MapDataManager>
 {
 public:
+	friend MapLoader;
+
 	MapDataManager();
 	~MapDataManager();
-
-	bool loadMapFormFile(std::string mapname);
-	bool loadMapFormSave();
-
-	void loadMapObj();
-
-	void clearMap();
 
 	GroundType getGroundType(int x, int y);
 	TerrainType getTerrainType(int x, int y);

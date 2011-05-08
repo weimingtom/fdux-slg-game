@@ -922,3 +922,8 @@ void SquadGraphics::update( unsigned int deltaTime )
 		(*it)->update(deltaTime);
 	}
 }
+
+void SquadGraphics::setVisible(bool visible)
+{
+	mNode->setVisible(visible);
+}

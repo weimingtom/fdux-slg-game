@@ -31,7 +31,7 @@ BattleDeployState::BattleDeployState()
 	//mSquadGrapManager=new SquadGrapManager(Core::getSingletonPtr()->mSceneMgr);
 	//SquadGraphics* s;//=mSquadGrapManager->createSquad("SinbadSquad",1,10,10,SquadGrapManager::North,SquadGrapManager::Loose);
 	//GUIPUDebug* puDebug=(GUIPUDebug*)GUISystem::getSingletonPtr()->createScene(PUDebugScene);
-	mGUIBattle=static_cast<GUIBattle *>(GUISystem::getSingletonPtr()->createScene(BattleScene));
+	mGUIBattle=static_cast<GUIBattle *>(GUISystem::getSingletonPtr()->getScene(BattleScene));
 	//mGUIBattle->setBattleState(mMainState);
 	mDeployWindow = static_cast<GUIDeployWindows *>(mGUIBattle->getSubWindow("DeployWindow"));
 	mDeployWindow->showScene("");
@@ -43,11 +43,16 @@ BattleDeployState::BattleDeployState()
 	//建立部署小队列表
 	BattleSquadManager::BattleSquadIte ite;
 	std::vector<std::string> squadlist;
-	for(ite = mSquadManager->mDeployList.begin(); ite != mSquadManager->mDeployList.end(); ite++)
+	if(mSquadManager->mDeployList.size() != 0)
 	{
-		squadlist.push_back((*ite)->getSquadName());
+		for(ite = mSquadManager->mDeployList.begin(); ite != mSquadManager->mDeployList.end(); ite++)
+		{
+			squadlist.push_back((*ite)->getSquadName());
+		}
+		mDeployWindow->initList(squadlist);
 	}
-	mDeployWindow->initList(squadlist);
+		mDeployWindow->setAllowConfirm(true);
+
 
 	mAreaGrap = new AreaGrap(std::string("GameData/BattleData/MapData/Area/DeployArea/CoordList"),"CUBE_BLUE");
 
@@ -112,7 +117,7 @@ bool BattleDeployState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 		if(id == OIS::MB_Left)
 		{
 			MapDataManager* datamanager = MapDataManager::getSingletonPtr();
-			if(mAreaGrap->inArea(GX,GY) && datamanager->getPassable(GX,GY,1))
+			if(mAreaGrap->inArea(GX,GY) && datamanager->getPassable(GX,GY,1) && mSquadManager->getBattleSquadAt(GX,GY,0,false) == NULL)
 			{
 				int id = mSelectSquad->getGrapId();
 				SquadGraphics* squadgrap = SquadGrapManager::getSingleton().getSquad(id);

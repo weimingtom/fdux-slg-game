@@ -99,22 +99,22 @@ void GUIPUDebug::onDirection( MyGUI::Widget* _sender )
 {
 	if(Ogre::StringConverter::parseInt(mSquadID->getOnlyText())!=0)
 	{
-		DirectionCutScene::Direction d;
+		Direction d;
 		if (mDirectionList->getIndexSelected()==0)
 		{
-			d=DirectionCutScene::North;
+			d=North;
 		}
 		else if (mDirectionList->getIndexSelected()==1)
 		{
-			d=DirectionCutScene::South;
+			d=South;
 		}
 		else if (mDirectionList->getIndexSelected()==2)
 		{
-			d=DirectionCutScene::West;
+			d=West;
 		}
 		else
 		{
-			d=DirectionCutScene::East;
+			d=East;
 		}
 		
 //		SquadGrapManager::getSingletonPtr()->getSquad(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()))->setAnimation("RunBase",SquadGraphics::Squad,true);

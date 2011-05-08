@@ -55,12 +55,15 @@ void BattleControlState::update(unsigned int deltaTime)
 			}
 			break;
 		case 2:
+			team += 1;
 			nextteam = false;
 			break;
 		case 3:
+			team += 1;
 			nextteam = false;
 			break;
 		case 4:
+			team += 1;
 			nextteam = false;
 			break;
 		}
@@ -68,4 +71,5 @@ void BattleControlState::update(unsigned int deltaTime)
 	DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/Ture",turn);
 	DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/CurTeam",team);
 	mGUIState->update();
+	DataLibrary::getSingleton().saveXmlData(DataLibrary::GameData,"test.xml");
 }

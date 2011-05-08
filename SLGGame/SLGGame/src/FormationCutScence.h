@@ -5,12 +5,12 @@
 
 class SquadGraphics;
 
-class DirectionCutScene:public CutScene
+class FormationCutScene:public CutScene
 {
 public:
 
-	DirectionCutScene(unsigned int id,Direction direction);
-	~DirectionCutScene(void);
+	FormationCutScene(unsigned int id,Formation formation);
+	~FormationCutScene(void);
 
 protected:
 	void startCutScence();
@@ -19,5 +19,6 @@ protected:
 	void updateCutScene(unsigned int deltaTime);
 
 	SquadGraphics* mSquadGraphics;
-	Direction mDirection;
+	Formation mForm;
+	unsigned int time;
 };

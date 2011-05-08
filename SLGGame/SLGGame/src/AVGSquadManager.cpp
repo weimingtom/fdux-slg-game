@@ -81,6 +81,13 @@ bool AVGSquadManager::addSquad(std::string uid, std::string id, std::string path
 	re = datalib->getData(datasrcpath + std::string("/ShieldId"),tempstring);
 	equipEquipment(datadistpath, EQUIP_SHIELD, tempstring);
 
+	//¼¼ÄÜ
+	std::vector<std::string> skilllist = datalib->getChildList(datasrcpath + std::string("/SkillTable"));
+	for(ite = skilllist.begin(); ite != skilllist.end(); ite++)
+	{
+		learnSkill(datadistpath,(*ite));
+	}
+
 	return true;
 }
 
@@ -144,6 +151,19 @@ bool AVGSquadManager::equipEquipment(std::string path, EquipmentType type, std::
 }
 bool AVGSquadManager::learnSkill(std::string path,std::string id)
 {
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	SkillType skilltype;
+	bool re = datalib->getData(std::string("StaticData/SkillData/")+ id+ std::string("/Type"),skilltype);
+	if(!re)
+		return false;
+	datalib->setData(path + std::string("/SkillTable/")+ id, 0);
+	if(skilltype == SKILLTYPE_PASSIVE)
+	{
+		std::string skillcontext = path + std::string("/SkillTable/")+ id + std::string("/ScriptContext");
+		std::string skillscript;
+		datalib->getData(std::string("StaticData/SkillData/")+ id+ std::string("/Script"),skillscript);
+		LuaSystem::getSingleton().ExecuteFunction(skillscript ,"onlearn",skillcontext);
+	}
 	return true;
 }
 bool AVGSquadManager::applyModifer(std::string path, std::string modifierpath, std::string &modifierid)
@@ -274,8 +294,17 @@ bool AVGSquadManager::getSquadAttr(std::string path, AttrType attrtype, AttrCalc
 	}
 	float bouse = cbouse + mbouse;
 	float bane = cbane + mbane;
-	bane += resist;
-	bane = (bane>0.0f)? 0.0f:bane;
+	if(bane < -resist)
+	{
+		bane += resist;
+		resist = 0.0f;
+	}
+	else
+	{
+		bane = 0.0f;
+		resist += bane;
+	}
+	
 	bouse = bouse + bane;
 	switch(calctype)
 	{
@@ -287,6 +316,9 @@ bool AVGSquadManager::getSquadAttr(std::string path, AttrType attrtype, AttrCalc
 		break;
 	case ATTRCALC_ONLYBONUS:
 		val = bouse;
+		break;
+	case ATTRCALC_RESISTLEFT:
+		val = resist - bane;
 		break;
 	}
 	return true;

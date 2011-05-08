@@ -1,6 +1,6 @@
 #include "GUIMenuWindow.h"
 
-GUIMenuWindow::GUIMenuWindow(MyGUI::Window* window,int Width,int Height):GUISubWindows(window,Width,Height),mWindow(window),mIsAction(false)
+GUIMenuWindow::GUIMenuWindow(MyGUI::Window* window,int Width,int Height):GUISubWindows(window,Width,Height),mWindow(window)
 {
 	assignWidget(mRestartButton,"MenuRestartButton");
 	assignWidget(mSaveButton,"MenuSaveButton");

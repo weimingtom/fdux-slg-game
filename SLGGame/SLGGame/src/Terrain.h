@@ -2,6 +2,7 @@
 
 #include "Core.h"
 #include "iisingleton.hpp"
+using namespace izayoi;
 #include "CollisionTools.h"
 
 #include <vector>
@@ -34,15 +35,13 @@ static const float TERRAINTEXTILESIZE = 64.0f;
 static const Ogre::uint32 TERRAIN_MASK = 1 << 0;
 static const Ogre::uint32 GRID_MASK = 1 << 2;
 
-using namespace izayoi;
-
 class Terrain:public IISingleton<Terrain>
 {
 public:
 	Terrain();
 	~Terrain();
 	
-	bool createTerrain(MapDataManager *data);
+	bool createTerrain();
 	void destoryTerrian();
 
 	void createGrid();

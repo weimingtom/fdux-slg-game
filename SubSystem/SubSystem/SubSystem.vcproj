@@ -159,46 +159,6 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="GUI"
-			>
-			<File
-				RelativePath=".\src\GUICommon.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\GUIScene.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\GUISystem.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\GUISystem.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\MyGUI_RTTLayer.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\MyGUI_RTTLayer.h"
-				>
-			</File>
-			<Filter
-				Name="Stage"
-				>
-				<File
-					RelativePath=".\src\GUIStage.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\src\GUIStage.h"
-					>
-				</File>
-			</Filter>
-		</Filter>
-		<Filter
 			Name="Common"
 			>
 			<File
@@ -229,6 +189,46 @@
 				RelativePath=".\src\LuaSystem.h"
 				>
 			</File>
+			<Filter
+				Name="GUI"
+				>
+				<File
+					RelativePath=".\src\GUICommon.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\GUIScene.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\GUISystem.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\GUISystem.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\MyGUI_RTTLayer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\MyGUI_RTTLayer.h"
+					>
+				</File>
+				<Filter
+					Name="Stage"
+					>
+					<File
+						RelativePath=".\src\GUIStage.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\GUIStage.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
 		</Filter>
 	</Files>
 	<Globals>

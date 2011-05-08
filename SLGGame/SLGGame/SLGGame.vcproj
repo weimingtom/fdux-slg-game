@@ -350,6 +350,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\Maploader.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\MapLoader.h"
+					>
+				</File>
+				<File
 					RelativePath=".\src\Terrain.cpp"
 					>
 				</File>
@@ -530,6 +538,14 @@
 					</File>
 					<File
 						RelativePath=".\src\EffectCutScene.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\FormationCutScence.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\FormationCutScence.h"
 						>
 					</File>
 					<File

@@ -2,7 +2,7 @@
 <StaticData>
 	<SquadData>
 		<TestSquad>
-			<Type type="Int" value="1"/>
+			<Type type="Int" value="0"/>
 			<SoilderId type="String" value="TestSoilder"/>
 			<HorseId type="String" value="HeavyHorse"/>
 			<PweaponId type="String" value="TestPWeapon"/>
@@ -109,8 +109,13 @@
 	</ArmorData>
 	<SkillData>
 		<Attack>
-			<Type type="Int" value="1"/>
-			<Range type="Int" value="1"/>
+			<Type type="Int" value="2"/>
+			<MaxRange type="Int" value="1"/>
+			<MinRange type="Int" value="1"/>
+			<Area type="Int" value="1"/>
+			<APType type = "Int" value = "0"/>
+			<APCost type="float" value="3.0"/>
+			<CoolDown type="Int" value="0"/>
 			<Value type="Int" value="0"/>
 			<Script type="String" value="attack.lua"/>
 		</Attack>
@@ -128,8 +133,8 @@
 				<Passable type = "Int" value = "1"/>
 				<Covert type="Float" value="0.0"/>
 				<Defence type="Float" value="0.0"/>
-				<CavAp type="Float" value="1.0"/>
-				<InfAp type="Float" value="1.0"/>
+				<CavAp type="Float" value="2.0"/>
+				<InfAp type="Float" value="2.0"/>
 			</GroundModifier>
 		</Ground1>
 		<Ground0>
@@ -138,8 +143,8 @@
 				<Passable type = "Int" value = "1"/>
 				<Covert type="Float" value="0.0"/>
 				<Defence type="Float" value="0.0"/>
-				<CavAp type="Float" value="1.0"/>
-				<InfAp type="Float" value="1.0"/>
+				<CavAp type="Float" value="2.0"/>
+				<InfAp type="Float" value="2.0"/>
 			</GroundModifier>
 		</Ground0>
 		<Ground2>
@@ -148,8 +153,8 @@
 				<Passable type = "Int" value = "1"/>
 				<Covert type="Float" value="0.0"/>
 				<Defence type="Float" value="-1.0"/>
-				<CavAp type="Float" value="2.0"/>
-				<InfAp type="Float" value="2.0"/>
+				<CavAp type="Float" value="3.5"/>
+				<InfAp type="Float" value="3.0"/>
 			</GroundModifier>
 		</Ground2>
 		<Ground3>
@@ -158,8 +163,8 @@
 				<Passable type = "Int" value = "1"/>
 				<Covert type="Float" value="0.0"/>
 				<Defence type="Float" value="-1.0"/>
-				<CavAp type="Float" value="2.0"/>
-				<InfAp type="Float" value="2.0"/>
+				<CavAp type="Float" value="3.5"/>
+				<InfAp type="Float" value="3.0"/>
 			</GroundModifier>
 		</Ground3>
 	</GroundData>

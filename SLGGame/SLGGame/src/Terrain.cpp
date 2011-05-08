@@ -17,9 +17,9 @@ Terrain::~Terrain()
 
 }
 
-bool Terrain::createTerrain(MapDataManager *data)
+bool Terrain::createTerrain()
 {
-	mMapData = data;
+	mMapData = MapDataManager::getSingletonPtr();
 	int terrainszie = mMapData->getMapSize() + 9;
 
 	Core::getSingleton().mSceneMgr->setSkyBox(true, "SkyBox");

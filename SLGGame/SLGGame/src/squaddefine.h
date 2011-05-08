@@ -61,6 +61,7 @@ typedef int AttrCalcType;
 const AttrCalcType ATTRCALC_FULL = 0;
 const AttrCalcType ATTRCALC_ONLYBASE = 1;
 const AttrCalcType ATTRCALC_ONLYBONUS = 2;
+const AttrCalcType ATTRCALC_RESISTLEFT = 3;
 
 const float FORMBONSE_LINE_FRONT = 1.0f;
 const float FORMBONSE_LINE_SIDE = 0.4f;
@@ -73,3 +74,29 @@ const float FORMBONSE_LOOS_SIDE = 0.0f;
 const float FORMBONSE_LOOS_BACK = 0.0f;
 
 const float RANGEDDEFENCEBONUS = 10.0f;
+
+typedef int SquadType;
+const SquadType SQUAD_NORMAL = 0;
+const SquadType SQUAD_SPECIAL = 1;
+
+const int MOVEEVENT_WRONG = 1;
+const int MOVEEVENT_CHARGE = 2;
+const int MOVEEVENT_SPOT = 4;
+const int MOVEEVENT_AMBUSH = 8;
+const int MOVEEVENT_AMBUSHTEAM1 = 16;
+const int MOVEEVENT_AMBUSHTEAM2 = 32;
+const int MOVEEVENT_AMBUSHTEAM3 = 64;
+const int MOVEEVENT_AMBUSHTEAM4 = 128;
+const int MOVEEVENT_MAPEVENT = 256;
+
+typedef int SkillType;
+const SkillType SKILLTYPE_PASSIVE = 0;
+const SkillType SKILLTYPE_TARGETSELF = 1;
+const SkillType SKILLTYPE_TARGETENEMY = 2;
+const SkillType SKILLTYPE_TARGETFRIEND = 3;
+const SkillType SKILLTYPE_TARGETALL = 4;
+const SkillType SKILLTYPE_TARGETAREA = 5;
+const SkillType SKILLTYPE_TARGETLINE = 6;
+
+const int SKILLAPTYPE_SETUP = 0;
+const int SKILLAPTYPE_BATTLE = 1;

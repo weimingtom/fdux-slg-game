@@ -8,6 +8,7 @@
 #include "BattleSquadManager.h"
 #include "DataLibrary.h"
 #include "GUIBattle.h"
+#include "MapLoader.h"
 
 #include "MapDataManager.h"
 
@@ -17,7 +18,7 @@ BattleLoadState::BattleLoadState( std::string arg)
 	mLoadFromMap =true;
 	mMapFile = arg;
 	mLoadScene = static_cast<LoadScene*>(GUISystem::getSingleton().createScene(LoadingScene));
-	mMapDataManager = MapDataManager::getSingletonPtr();
+	mMapLoader = new MapLoader;
 }
 
 BattleLoadState::~BattleLoadState()
@@ -35,31 +36,30 @@ void BattleLoadState::update(unsigned int deltaTime)
 		break;
 	case LOADTERRAIN:
 		if(mLoadFromMap)
-			mMapDataManager->loadMapFormFile(mMapFile);
+			mMapLoader->loadMapFormFile(mMapFile);
 		Core::getSingleton().mRoot->renderOneFrame(0.0f);
 		mState = LOADOBJECT;
 		mLoadScene->setProgress(25);
 		mLoadScene->setText("Loading MapObject");
 		break;
 	case LOADOBJECT:
-		mMapDataManager->loadMapObj();
+		mMapLoader->loadMapObj();
 		mState = LOADUNIT;
 		mLoadScene->setProgress(50);
 		mLoadScene->setText("Loading Unit");
 		break;
 	case LOADUNIT:
-		BattleSquadManager::getSingleton().initBattleSquad(true);
+		mMapLoader->initBattleSquad(true);
 		mState = LOADGRID;
 		mLoadScene->setProgress(75);
 		mLoadScene->setText("Creating Grid");
 		break;
 	case LOADGRID:
 		Terrain::getSingleton().createGrid();
-		BattleDeployState* deploystate = new BattleDeployState;
 		GUIBattle* guibattle=static_cast<GUIBattle *>(GUISystem::getSingleton().createScene(BattleScene));
+		BattleDeployState* deploystate = new BattleDeployState;
 		guibattle->setBattleState(mMainState);
 		GUISystem::getSingleton().setFrameUpdateScene(BattleScene);
-		DataLibrary::getSingleton().saveXmlData(DataLibrary::GameData,"test.xml");
 		mLoadScene->setProgress(100);
 		mLoadScene->setText("Finish");
 		mMainState->ChangeState(deploystate);

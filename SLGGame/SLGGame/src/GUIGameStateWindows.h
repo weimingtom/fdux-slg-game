@@ -2,8 +2,6 @@
 
 #include "GUISubWindows.h"
 
-class BattlePlayerState;
-
 class GUIGameStateWindows:public GUISubWindows
 {
 public:
