@@ -13,6 +13,8 @@ public:
 
 	virtual void update(unsigned int deltaTime) = 0;
 
+	virtual void reactiveState() {}
+
 protected:
 	BattleState* mMainState;
 };

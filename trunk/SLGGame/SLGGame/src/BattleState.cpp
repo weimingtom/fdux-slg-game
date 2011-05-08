@@ -9,12 +9,11 @@
 #include "BillboardManager.h"
 
 #include "BattleLoadState.h"
-#include "Terrain.h"
-#include "MapDataManager.h"
+#include "SquadGrapManager.h"
 
 BattleState::BattleState(void)
 {
-
+	mSquadGrapManager = SquadGrapManager::getSingletonPtr();
 }
 
 BattleState::~BattleState(void)
@@ -74,7 +73,6 @@ void BattleState::initialize( std::string arg )
 void BattleState::uninitialize()
 {
 	Terrain::getSingleton().destoryTerrian();
-	MapDataManager::getSingleton().clearMap();
 	/*
 	if(mTerrain != NULL)
 	{
@@ -91,6 +89,7 @@ void BattleState::uninitialize()
 void BattleState::update(unsigned int deltaTime)
 {
 	mSubStateStack.back()->update(deltaTime);
+	mSquadGrapManager->update(deltaTime);
 }
 
 void BattleState::ChangeState(SubBattleState* substate)
@@ -117,4 +116,5 @@ void BattleState::PopState()
 	SubBattleState* ite = mSubStateStack.back();
 	delete ite;
 	mSubStateStack.pop_back();
+	mSubStateStack.back()->reactiveState();
 }

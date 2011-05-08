@@ -1,23 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout" version="3.2.0">
-    <Widget type="Window" skin="WindowCS" position="0 0 295 145" layer="Main" name="GameState">
+    <Widget type="Window" skin="WindowCS" position="0 0 200 145" layer="Main" name="GameState">
         <Property key="Caption" value="Game State"/>
         <Property key="Visible" value="false"/>
         <Widget type="TextBox" skin="TextBox" position="5 15 75 20">
             <Property key="Caption" value="Game Turn:"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="5 45 100 20">
-            <Property key="Caption" value="Current Player:"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="115 45 165 20" name="PlayerLabel">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="90 15 190 20" name="TurnLabel">
+        <Widget type="TextBox" skin="TextBox" position="5 45 75 20">
+            <Property key="Caption" value="CurTeam:"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="Button" skin="Button" position="5 75 275 30" name="NextTurnButton">
+        <Widget type="TextBox" skin="TextBox" position="90 45 90 20" name="PlayerLabel">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="90 15 90 20" name="TurnLabel">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="5 75 175 30" name="NextTurnButton">
             <Property key="Caption" value="Next Turn"/>
         </Widget>
     </Widget>
@@ -184,7 +188,7 @@
             <Property key="Enabled" value="false"/>
         </Widget>
     </Widget>
-    <Widget type="Window" skin="WindowCS" position="445 230 120 190" layer="Popup" name="Menu">
+    <Widget type="Window" skin="WindowCS" position="445 165 120 190" layer="Popup" name="Menu">
         <Property key="Visible" value="false"/>
         <Property key="Caption" value="Menu"/>
         <Widget type="Button" skin="Button" position="0 0 110 30" name="MenuRestartButton">
@@ -280,10 +284,46 @@
             <Property key="FontHeight" value="20"/>
         </Widget>
     </Widget>
-    <Widget type="Window" skin="WindowCS" position="415 440 180 175" layer="Main" name="CommandWindow">
+    <Widget type="Window" skin="WindowCS" position="405 365 195 225" layer="Main" name="CommandWindow">
         <Property key="FontName" value="fireflysung"/>
         <Property key="Caption" value="Command"/>
         <Property key="FontHeight" value="20"/>
         <Property key="Visible" value="false"/>
+        <Widget type="Button" skin="Button" position="5 5 55 55" name="Skill1">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="65 5 55 55" name="Skill2">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="125 5 55 55" name="Skill3">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="5 65 55 55" name="Skill4">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="65 65 55 55" name="Skill5">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="125 65 55 55" name="Skill6">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="5 125 55 55" name="Skill7">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="65 125 55 55" name="Skill8">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="125 125 55 55" name="Skill9">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
     </Widget>
 </MyGUI>

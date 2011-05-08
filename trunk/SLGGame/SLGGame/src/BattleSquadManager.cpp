@@ -2,6 +2,7 @@
 
 #include "AVGSquadManager.h"
 #include "SquadGrapManager.h"
+#include "MapDataManager.h"
 
 #include "DataLibrary.h"
 
@@ -16,72 +17,6 @@ BattleSquadManager::~BattleSquadManager()
 
 }
 
-void BattleSquadManager::initBattleSquad(bool loadfrommap)
-{
-	DataLibrary* datalib =DataLibrary::getSingletonPtr();
-	SquadGrapManager* suqadgrapmanager = SquadGrapManager::getSingletonPtr();
-	AVGSquadManager* avgsquadmanager = AVGSquadManager::getSingletonPtr();
-	if(loadfrommap)
-	{
-		std::vector<std::string> childlist;
-		childlist = datalib->getChildList(std::string("GameData/StoryData/SquadData/EnableSquad"));
-		if(childlist.size()>0)
-		{
-			std::vector<std::string>::iterator ite;
-			for(ite = childlist.begin(); ite != childlist.end(); ite++)
-			{
-				std::string datapath = std::string("GameData/BattleData/SquadList/") + (*ite);
-				datalib->copyNode(std::string("GameData/StoryData/SquadData/EnableSquad/") + (*ite),datapath, true);
-				int type;
-				Formation f;
-				datalib->getData(datapath + std::string("/Type"), type );
-				if(type == 1)
-					f = Line;
-				else
-					f = Loose;
-				datalib->setData(datapath +std::string("/TeamId"), std::string("Team1"), true );
-				datalib->setData(datapath +std::string("/Grapid"),mCurid, true);
-				datalib->setData(datapath +std::string("/CreateType"), StroySquad, true );
-				datalib->setData(datapath +std::string("/Direction"), North, true );
-				datalib->setData(datapath +std::string("/Formation"), f, true );
-				datalib->setData(datapath +std::string("/ActionPoint"), 0.0f, true );
-				BattleSquad* battlesquad = new BattleSquad((*ite),mCurid,-1,0); 
-				suqadgrapmanager->createSquad((*ite), datapath, mCurid, -1, 0,North,Line,battlesquad->getUnitGrapNum());
-				mDeployList.push_back(battlesquad);
-				mCurid ++;
-			}
-		}
-	}
-	creatSquadGrapAtPath(std::string("GameData/BattleData/SquadList"));
-}
-void BattleSquadManager::creatSquadGrapAtPath(std::string path)
-{
-	DataLibrary* datalib =DataLibrary::getSingletonPtr();
-	SquadGrapManager* suqadgrapmanager = SquadGrapManager::getSingletonPtr();
-	AVGSquadManager* avgsquadmanager = AVGSquadManager::getSingletonPtr();
-	std::vector<std::string> childlist;
-	childlist = datalib->getChildList(path);
-	if(childlist.size()>0)
-	{
-		std::vector<std::string>::iterator ite;
-		for(ite = childlist.begin(); ite != childlist.end(); ite++)
-		{
-			std::string datapath = path + std::string("/") + (*ite);
-			int x,y;
-			Direction d;
-			Formation f;
-			datalib->getData(datapath + "/GridX",x);
-			datalib->getData(datapath + "/GridY",y);
-			datalib->getData(datapath + "/Direction",d);
-			datalib->getData(datapath + "/Formation",f);
-			BattleSquad* battlesquad =  new BattleSquad((*ite),mCurid,x,y); 
-			suqadgrapmanager->createSquad((*ite), datapath, mCurid,x,y,d,f, battlesquad->getUnitGrapNum());
-			datalib->setData(datapath +std::string("/Grapid"),mCurid);
-			mSquadList.push_back(battlesquad);
-			mCurid ++;
-		}
-	}
-}
 
 void BattleSquadManager::deployConfirm()
 {
@@ -104,4 +39,112 @@ bool  BattleSquadManager::allDeployed()
 			return false;
 	}
 	return true;
+}
+
+int BattleSquadManager::getTeamRelation(int team)
+{
+	std::string temppath,tempstr;
+	temppath = std::string("GameData/BattleData/Team/Team") + Ogre::StringConverter::toString(team) + std::string("/Relation");
+	DataLibrary::getSingleton().getData(temppath,tempstr);
+	if(tempstr == "alliance")
+		return 0;
+	else if(tempstr == "player")
+		return 0;
+	else if(tempstr == "enemy1")
+		return 1;
+	else if(tempstr == "enemy2")
+		return 2;
+	else if(tempstr == "enemy3")
+		return 3;
+	return 0;
+}
+
+BattleSquad* BattleSquadManager::getBattleSquadAt(int x, int y, int team, bool visibleonly)
+{
+	BattleSquadManager::BattleSquadIte ite;
+	int faction = getTeamRelation(team);
+	for(ite = mSquadList.begin(); ite != mSquadList.end(); ite++)
+	{
+		int xx,yy;
+		(*ite)->getCrood(&xx,&yy);
+		if(xx ==x && yy == y)
+		{
+			if(!visibleonly)
+				return (*ite);
+			if((*ite)->viewbyTeam(faction))
+				return (*ite);
+			return NULL;
+		}
+	}
+	for(ite = mDeployList.begin(); ite != mDeployList.end(); ite++)
+	{
+		int xx,yy;
+		(*ite)->getCrood(&xx,&yy);
+		if(xx ==x && yy == y)
+		{
+			return (*ite);
+		}
+	}
+	return NULL;
+}
+
+void BattleSquadManager::moveSquad(BattleSquad* squad,std::vector<int> pointlist, int &stopedpoint, int &eventtype)
+{
+	MapDataManager* mapdata = MapDataManager::getSingletonPtr();
+	for(stopedpoint = 0; stopedpoint * 2 < pointlist.size();stopedpoint++)
+	{
+		//移动条件判断
+		int x = pointlist[stopedpoint*2];
+		int y = pointlist[stopedpoint*2 + 1];
+		int xx,yy;
+		squad->getCrood(&xx, &yy);
+		if( abs(xx -x) + abs(yy -y) != 1)
+		{
+			eventtype |= MOVEEVENT_WRONG;
+			return;
+		}
+		if( !mapdata->getPassable(x,y, squad->getTeam()))
+		{
+			eventtype |= MOVEEVENT_WRONG;
+			return;
+		}
+		if( getBattleSquadAt(x,y,squad->getTeam(), false) != NULL)
+		{
+			eventtype |= MOVEEVENT_WRONG;
+			return;
+		}
+		if( getBattleSquadAt(x,y,squad->getTeam(), true) != NULL)
+		{
+			eventtype |= MOVEEVENT_AMBUSH;
+			//被埋伏效果
+			return;
+		}
+		float apcost;
+		float apleft = squad->getActionPoint();
+		std::string horse;
+		DataLibrary::getSingleton().getData(squad->getPath() + std::string("/HorseId"),horse);
+		if(horse == "none")
+			apcost = mapdata->getInfApCost(x,y,0);
+		else
+			apcost = mapdata->getCavApCost(x,y,0);
+		if(apleft<apcost)
+		{
+			eventtype |= MOVEEVENT_WRONG;
+			return;
+		}
+		//移动一步
+		squad->setCrood(x,y);
+		DataLibrary::getSingleton().setData(squad->getPath() + std::string("/ActionPoint"),apleft - apcost);
+		if(x < xx)
+			squad->setDirection(West);
+		else if(x > xx)
+			squad->setDirection(East);
+		else if( y > yy)
+			squad->setDirection(South);
+		else
+			squad->setDirection(North);
+		//重新可视范围等
+
+
+	}
 }

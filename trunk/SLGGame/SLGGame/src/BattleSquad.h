@@ -35,10 +35,20 @@ public:
 	void newTurn();
 	int getTeam();
 
+	bool viewbyTeam(int team);
+
+	float getActionPoint();
+	float getActionPointCost(int type);
+
+	SquadType getType();
 private:
 	int mX;
 	int mY;
 	int mGrapId;
 	int mTeam;
 	std::string mId;
+
+	float mCovert;
+	float mDetection;
+	bool mViewbyFaction[4];
 };

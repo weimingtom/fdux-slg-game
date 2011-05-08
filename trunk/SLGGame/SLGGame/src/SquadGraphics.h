@@ -60,6 +60,8 @@ public:
 
 	void setWeaponMode(WeaponMode mode);
 
+	void setVisible(bool visible);
+
 private:
 	SquadGraphics(std::string squadName, std::string datapath, Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index,int soldierCount);
 

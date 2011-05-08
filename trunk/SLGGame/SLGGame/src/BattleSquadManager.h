@@ -9,14 +9,16 @@ using namespace izayoi;
 #include "squaddefine.h"
 
 class BattleSquad;
+class MapLoader;
+class CutScene;
 
 class BattleSquadManager:public IISingleton<BattleSquadManager>
 {
 public:
+	friend MapLoader;
+
 	BattleSquadManager();
 	~BattleSquadManager();
-
-	void initBattleSquad(bool loadfrommap);
 
 	typedef std::vector<BattleSquad*>::iterator BattleSquadIte;
 	std::vector<BattleSquad*> mSquadList;
@@ -24,7 +26,18 @@ public:
 
 	void deployConfirm();
 	bool allDeployed();
+	int getTeamRelation(int team);
+
+	BattleSquad* getBattleSquadAt(int x, int y, int team, bool visibleonly);
+
+	void moveSquad(BattleSquad* squad,std::vector<int> pointlist, int &stopedpoint, int &eventtype);
+
+	void meleeAttackSquad(BattleSquad* attacksquad, BattleSquad* defenesquad, int attacktype);
+
+	void setCutScene(CutScene* cutscene);
+	void playCutScene();
 private:
 	int mCurid;
-	void creatSquadGrapAtPath(std::string path);
+	CutScene* mCutSceneQueue;
+	CutScene* mLastCutScene;
 };

@@ -3,8 +3,8 @@
 #include "SubBattleState.h"
 
 #include <string>
-class MapDataManager;
 class LoadScene;
+class MapLoader;
 
 const int LOADSCENE = 0;
 const int LOADTERRAIN = 1;
@@ -20,7 +20,7 @@ public:
 
 	virtual void update(unsigned int deltaTime);
 private:
-	MapDataManager *mMapDataManager;
+	MapLoader *mMapLoader;
 	LoadScene* mLoadScene;
 	bool mLoadFromMap;
 	std::string mMapFile;

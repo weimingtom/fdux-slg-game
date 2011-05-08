@@ -3,6 +3,7 @@
 
 #include <vector>
 class SubBattleState;
+class SquadGrapManager;
 
 class BattleState :
 	public GameState
@@ -26,4 +27,6 @@ private:
 
 	std::vector<SubBattleState*> mSubStateStack; //Õ½¶·×´Ì¬¶ÑÕ»
 	typedef std::vector<SubBattleState*>::iterator SubStateIte;
+
+	SquadGrapManager* mSquadGrapManager;
 };
