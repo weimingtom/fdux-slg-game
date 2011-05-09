@@ -52,7 +52,7 @@ void GUITargetWindows::hideScene()
 
 void GUITargetWindows::FrameEvent()
 {
-	updateSquad();
+	//updateSquad();
 }
 
 bool GUITargetWindows::GridInputEvent( int x,int y )

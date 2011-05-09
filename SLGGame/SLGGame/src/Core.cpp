@@ -22,6 +22,8 @@
 #include "MapDataManager.h"
 #include "Terrain.h"
 #include "CameraContral.h"
+#include "LuaSkill.h"
+#include "LuaScriptCommon.h"
 
 #include <ParticleUniverseSystemManager.h> 
 
@@ -102,6 +104,8 @@ bool Core::initialize()
 		new SquadGrapManager(mSceneMgr);
 		new Terrain;
 		new CameraContral;
+		mLuaSystem->registerCLib("ScriptCommonLib",ScriptCommonLib);
+		mLuaSystem->registerCLib("SkillLib",SkillLib);
 
 
 		mStateManager=new StateManager();

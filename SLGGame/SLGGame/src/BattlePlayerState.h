@@ -68,7 +68,6 @@ private:
 	BattleSquad* mSelectSquad;
 	PlayerControlState mState;
 	AreaGrap* mMoveAreaGrap;
-	AreaGrap* mTargetAreaGrap;
 	struct MoveNode
 	{
 		int x;
@@ -109,8 +108,17 @@ private:
 	void executeMove(int x, int y);
 	int mMoveTargetX;
 	int mMoveTargetY;
+
 	std::string mSkillid;
-	int mSkillTargetX;
-	int mSkillTargetY;
 	BattleSquad* mTargetSquad;
+	SkillType mSkillType;
+	int mSkillArea;
+	AreaGrap* mTargetAreaGrap;
+	void drawSkillMoveArea(SkillType skilltype, float skillcost);
+	void drawSkillArea(SkillType skilltype, int minrange, int maxrange);
+	int skillPass(int x, int y, float &apcost, SkillType skilltype, float skillcost);
+	void useSkillAt(int x,int y);
+	void drawSkillTargetArea(int x,int y);
+	void executeSkillAt(int x, int y);
+	void executeSkillOn(int x, int y, BattleSquad* squad);
 };

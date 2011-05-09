@@ -8,6 +8,9 @@
 
 #include "BattleSquad.h"
 
+#include "cutscenes.h"
+#include "LuaSystem.h"
+
 BattleSquadManager::BattleSquadManager()
 {
 	mCurid = 0;
@@ -57,6 +60,22 @@ int BattleSquadManager::getTeamRelation(int team)
 	else if(tempstr == "enemy3")
 		return 3;
 	return 0;
+}
+
+BattleSquad* BattleSquadManager::getBattleSquad(std::string id)
+{
+	BattleSquadIte ite;
+	for(ite = mSquadList.begin(); ite != mSquadList.end(); ite++)
+	{
+		if(id == (*ite)->getId())
+			return (*ite);
+	}
+	for(ite = mDeployList.begin(); ite != mDeployList.end(); ite++)
+	{
+		if(id == (*ite)->getId())
+			return (*ite);
+	}
+	return NULL;
 }
 
 BattleSquad* BattleSquadManager::getBattleSquadAt(int x, int y, int team, bool visibleonly)
@@ -143,8 +162,95 @@ void BattleSquadManager::moveSquad(BattleSquad* squad,std::vector<int> pointlist
 			squad->setDirection(South);
 		else
 			squad->setDirection(North);
+		//计算冲锋
+
 		//重新可视范围等
 
 
 	}
+}
+
+CutScene* BattleSquadManager::useSkillOn(BattleSquad* attacksquad, BattleSquad* targetsquad, std::string skillid)
+{
+	if(attacksquad == NULL || targetsquad == NULL )
+		return NULL;
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::string skillpath = attacksquad->getPath() + std::string("/SkillTable/") + skillid;
+	int cooldown;
+	bool re = datalib->getData(skillpath + std::string("/CoolDown"),cooldown);
+	if(!re || cooldown > 0)
+		return NULL;
+	int aptype;
+	std::string skillinfopath = std::string("StaticData/SkillData/")+ skillid;
+	re = datalib->getData(skillinfopath+ std::string("/APType"),aptype);
+	if(!re)
+		return NULL;
+	float apcost;
+	datalib->getData(skillinfopath+ std::string("/APCost"),apcost);
+	apcost += attacksquad->getActionPointCost(aptype);
+	float apleft = attacksquad->getActionPoint();
+	if(apleft < apcost)
+		return NULL;
+	SkillType skilltype;
+	datalib->getData(skillinfopath + std::string("/Type"),skilltype);
+	if(skilltype == SKILLTYPE_PASSIVE || skilltype == SKILLTYPE_TARGETAREA || skilltype == SKILLTYPE_TARGETLINE)
+		return NULL;
+	int minrange;
+	int maxrange; 
+	datalib->getData(skillinfopath + std::string("/MaxRange"),maxrange);
+	datalib->getData(skillinfopath + std::string("/MinRange"),minrange);
+	int targetx, targety, casterx,castery;
+	attacksquad->getCrood(&casterx, &castery);
+	targetsquad->getCrood(&targetx, &targety);
+	int dist = abs(casterx - targetx) + abs(castery - targety);
+	if(dist > maxrange || dist < minrange)
+		return NULL;
+	mCutSceneQueue = NULL;
+	mLastCutScene = NULL;
+	std::string skillscript;
+	datalib->getData(skillinfopath + std::string("/Script"),skillscript);
+	//设置脚本上下文
+	datalib->setData(skillpath + std::string("/ScriptContext/skillcast"),0);
+	datalib->setData(skillpath + std::string("/ScriptContext/skillcaster"),attacksquad->getId());
+	datalib->setData(skillpath + std::string("/ScriptContext/skilltarget"),targetsquad->getId());
+	re = LuaSystem::getSingleton().ExecuteFunction(skillscript, "useskill" , skillpath + std::string("/ScriptContext"));
+	if(!re)
+		return NULL;
+	int skillcast;
+	datalib->getData(skillpath + std::string("/ScriptContext/skillcast"),skillcast);
+	if(skillcast == 1)
+	{
+		//技能消耗
+		datalib->setData(attacksquad->getPath() + std::string("/ActionPoint"),apleft - apcost);
+		if(aptype == SKILLAPTYPE_SETUP)
+			datalib->setData(attacksquad->getPath() + std::string("/APSetup"),attacksquad->getActionPointCost(aptype) +2.0f);
+		else
+			datalib->setData(attacksquad->getPath() + std::string("/APBattle"),attacksquad->getActionPointCost(aptype) +2.0f);
+	}
+	return mCutSceneQueue;
+}
+
+CutScene* BattleSquadManager::useSkillAt(BattleSquad* attacksquad, int x, int y, std::string skillid)
+{
+	return NULL;
+}
+
+bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad* defenesquad, int &atkdead, int &atkwound,int &defdead, int &defwound)
+{
+	return true;
+}
+
+void BattleSquadManager::setCutScene(CutScene* cutscene)
+{
+	if(mCutSceneQueue == NULL)
+	{
+		mCutSceneQueue = cutscene;
+		mLastCutScene = cutscene;
+	}
+	else
+	{
+		mLastCutScene->setNextScene(cutscene);
+		mLastCutScene = cutscene;
+	}
+
 }

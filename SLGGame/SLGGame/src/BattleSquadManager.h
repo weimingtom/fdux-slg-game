@@ -28,14 +28,17 @@ public:
 	bool allDeployed();
 	int getTeamRelation(int team);
 
+	BattleSquad* getBattleSquad(std::string id);
 	BattleSquad* getBattleSquadAt(int x, int y, int team, bool visibleonly);
 
 	void moveSquad(BattleSquad* squad,std::vector<int> pointlist, int &stopedpoint, int &eventtype);
 
-	void meleeAttackSquad(BattleSquad* attacksquad, BattleSquad* defenesquad, int attacktype);
+	CutScene* useSkillOn(BattleSquad* attacksquad, BattleSquad* targetsquad, std::string skillid);
+	CutScene* useSkillAt(BattleSquad* attacksquad, int x, int y, std::string skillid);
 
+	//½Å±¾µ÷ÓÃ
+	bool meleeAttackSquad(BattleSquad* attacksquad, BattleSquad* defenesquad, int &atkdead, int &atkwound,int &defdead, int &defwound);
 	void setCutScene(CutScene* cutscene);
-	void playCutScene();
 private:
 	int mCurid;
 	CutScene* mCutSceneQueue;

@@ -10,6 +10,8 @@ public:
 	BattleSquad(std::string id, int grapid,int x, int y);
 	~BattleSquad();
 
+	std::string getId() {return mId;}
+
 	std::string getPath();
 
 	void setCrood(int x, int y);

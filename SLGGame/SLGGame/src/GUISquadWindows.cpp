@@ -48,7 +48,7 @@ void GUISquadWindows::hideScene()
 
 void GUISquadWindows::FrameEvent()
 {
-	updateSquad();
+	//updateSquad();
 }
 
 bool GUISquadWindows::GridInputEvent( int x,int y )

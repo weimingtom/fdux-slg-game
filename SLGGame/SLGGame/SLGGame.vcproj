@@ -461,6 +461,14 @@
 					RelativePath=".\src\InputListener.h"
 					>
 				</File>
+				<File
+					RelativePath=".\src\LuaScriptCommon.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\LuaSkill.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="View"

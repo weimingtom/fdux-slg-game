@@ -126,7 +126,7 @@ void LuaSystem::runScriptFromFile( const std::string& filename,int lineNum)
 
 std::string LuaSystem::GetContext()
 {
-	return *(mContextStack.end());
+	return mContextStack.back();
 }
 
 bool LuaSystem::ExecuteFile(std::string filename, std::string context)

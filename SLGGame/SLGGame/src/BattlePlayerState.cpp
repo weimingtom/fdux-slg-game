@@ -45,8 +45,6 @@ BattlePlayerState::BattlePlayerState()
 	mMoveTargetX = -1;
 	mMoveTargetY = -1;
 	mSkillid = "none";
-	mSkillTargetX = -1;
-	mSkillTargetY = -1;
 	mTargetSquad = NULL;
 }
 BattlePlayerState::~BattlePlayerState()
@@ -95,6 +93,8 @@ bool BattlePlayerState::mouseMoved(const OIS::MouseEvent &arg)
 		createPath(GX,GY);
 		break;
 	case PLAYERCONTROL_SKILL:
+		Terrain::getSingleton().coordinateToGrid(arg.state.X.abs,arg.state.Y.abs,GX,GY);
+		drawSkillTargetArea(GX,GY);
 		break;
 	}
 	return false;
@@ -153,6 +153,7 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 			}
 			break;
 		case PLAYERCONTROL_SKILL:
+			useSkillAt(GX,GY);
 			break;
 		}
 	}
@@ -185,11 +186,20 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 				int grapid = mSelectSquad->getGrapId();
 				SquadGraphics* squadgrap = SquadGrapManager::getSingleton().getSquad(grapid);
 				squadgrap->setDirection(d,false);
+				mSquadWindow->setSquad(mSelectSquad);
 			}
 			break;
 		case PLAYERCONTROL_MOVE:
 			mGUICommand->setSquad(mSelectSquad);
 			clearPathInfo();
+			mState = PLAYERCONTROL_CHOOSESKILL;
+			break;
+		case PLAYERCONTROL_SKILL:
+			mGUICommand->setSquad(mSelectSquad);
+			clearPathInfo();
+			mSkillid = "none";
+			mSkillType = SKILLTYPE_PASSIVE;
+			mSkillArea = 0;
 			mState = PLAYERCONTROL_CHOOSESKILL;
 			break;
 		}
@@ -224,6 +234,14 @@ void BattlePlayerState::reactiveState()
 		mState = PLAYERCONTROL_CHOOSESKILL;
 	}
 	mGUIState->setAllowNextTurn(true);
+	if(mMoveTargetX != -1)
+	{
+		if(mTargetSquad != NULL)
+			executeSkillOn(mMoveTargetX,mMoveTargetY, mTargetSquad);
+		else
+			executeMove(mMoveTargetX,mMoveTargetY);
+	}
+	mSquadWindow->setSquad(mSelectSquad);
 }
 
 void BattlePlayerState::moveSquad()
@@ -436,10 +454,6 @@ void BattlePlayerState::changeFormation(Formation f)
 		}
 	}
 }
-void BattlePlayerState::useSkill(std::string skillid)
-{
-
-}
 
 void BattlePlayerState::clearPathInfo()
 {
@@ -458,6 +472,11 @@ void BattlePlayerState::clearPathInfo()
 	{
 		delete mMoveAreaGrap;
 		mMoveAreaGrap = NULL;
+	}
+	if(mTargetAreaGrap)
+	{
+		delete mTargetAreaGrap;
+		mTargetAreaGrap = NULL;
 	}
 }
 
@@ -592,7 +611,7 @@ void BattlePlayerState::executeMove(int x, int y)
 			movepath.push_back(Ogre::Vector2(croodlist[n*2],croodlist[n*2+1]));
 		}
 	}
-	if(stoppoint != n && (evt & MOVEEVENT_AMBUSH) > 0 )
+	if(stoppoint != n && (evt & (MOVEEVENT_AMBUSH | MOVEEVENT_WRONG)) == 0 )
 	{
 		mMoveTargetX = x;
 		mMoveTargetY = y;
@@ -605,6 +624,409 @@ void BattlePlayerState::executeMove(int x, int y)
 	MoveCutScene* movecutscene = new MoveCutScene(mSelectSquad->getGrapId(),movepath,Ogre::Vector2(startx,starty));
 	DirectionCutScene* dircutscene = new DirectionCutScene(mSelectSquad->getGrapId(),mSelectSquad->getDirection());
 	movecutscene->setNextScene(dircutscene);
+	CutSceneDirector* cutscenedirector = new CutSceneDirector;
+	cutscenedirector->addCutScene(movecutscene);
+	clearPathInfo();
+	mState = PLAYERCONTROL_CUTSCENE;
+	mGUIState->setAllowNextTurn(false);
+	mMainState->PushState(cutscenedirector);
+}
+
+void BattlePlayerState::useSkill(std::string skillid)
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::string skillpath = mSelectSquad->getPath() + std::string("/SkillTable/") + skillid;
+	int cooldown;
+	bool re = datalib->getData(skillpath + std::string("/CoolDown"),cooldown);
+	if(!re || cooldown > 0)
+		return;
+	int aptype ;
+	re = datalib->getData(std::string("StaticData/SkillData/")+ skillid+ std::string("/APType"),aptype);
+	if(!re)
+		return;
+	float apcost;
+	datalib->getData(std::string("StaticData/SkillData/")+ skillid+ std::string("/APCost"),apcost);
+	apcost += mSelectSquad->getActionPointCost(aptype);
+	float apleft = mSelectSquad->getActionPoint();
+	if(apleft < apcost)
+		return;
+	SkillType skilltype;
+	datalib->getData(std::string("StaticData/SkillData/")+ skillid + std::string("/Type"),skilltype);
+	if(skilltype == SKILLTYPE_PASSIVE)
+		return;
+	if(skilltype == SKILLTYPE_TARGETSELF)
+	{
+		CutScene* cutscene = BattleSquadManager::getSingleton().useSkillOn(mSelectSquad, mSelectSquad,skillid);
+		if(cutscene!= NULL)
+		{
+			CutSceneDirector* cutscenedirector = new CutSceneDirector;
+			cutscenedirector->addCutScene(cutscene);
+			mState = PLAYERCONTROL_CUTSCENE;
+			mGUIState->setAllowNextTurn(false);
+			mMainState->PushState(cutscenedirector);
+		}
+		return;
+	}
+	switch(skilltype)
+	{
+	case SKILLTYPE_TARGETENEMY:
+	case SKILLTYPE_TARGETFRIEND:
+	case SKILLTYPE_TARGETALL:
+		drawSkillMoveArea(skilltype, apcost);
+		break;
+	case SKILLTYPE_TARGETAREA:
+	case SKILLTYPE_TARGETLINE:
+		int minrange;
+		int maxrange; 
+		datalib->getData(std::string("StaticData/SkillData/")+ skillid + std::string("/MaxRange"),maxrange);
+		datalib->getData(std::string("StaticData/SkillData/")+ skillid + std::string("/MinRange"),minrange);
+		drawSkillArea(skilltype,minrange,maxrange);
+		break;
+	}
+	mGUICommand->setSquad(NULL);
+	mSkillType = skilltype;
+	mSkillid =skillid;
+	mState = PLAYERCONTROL_SKILL;
+}
+
+void BattlePlayerState::drawSkillMoveArea(SkillType skilltype, float skillcost)
+{
+	int startx,starty;
+	MapDataManager* mapdata = MapDataManager::getSingletonPtr();
+	int mapsize = mapdata->getMapSize();
+	mSelectSquad->getCrood(&startx,&starty);
+	std::vector<int> coordlist;
+	coordlist.push_back(startx);
+	coordlist.push_back(starty);
+	//寻找可以移动的路径
+	int n = 0;
+	bool finding = true;
+	while(finding)
+	{
+		if(n*2 < coordlist.size())
+		{
+			int x = coordlist[n*2];
+			int y = coordlist[n*2 +1];
+			float apleft;
+			if(x == startx && y == starty)
+				apleft = mSelectSquad->getActionPoint();
+			else
+			{
+				MapNodeIte ite;
+				ite = mMoveMap.find(x + y * mapsize);
+				if(ite == mMoveMap.end())
+				{
+					finding = false;
+					break;
+				}
+				else
+					apleft = ite->second->mAPleft;
+			}
+			int xx,yy;
+			float apcost = apleft;
+			xx = x - 1;
+			yy = y;
+			int passable = skillPass(xx,yy, apcost, skilltype, skillcost);
+			if(passable > 0 )
+			{
+				if(passable == 1)
+				{
+					coordlist.push_back(xx);
+					coordlist.push_back(yy);
+				}
+				MapNodeIte ite;
+				ite = mMoveMap.find(xx + yy * mapsize);
+				if(ite == mMoveMap.end())
+				{
+					MoveNode* node = new MoveNode;
+					node->x = xx;
+					node->y = yy;
+					node->mAPleft = apleft - apcost;
+					node->mDirectionToPrew = East;
+					mMoveMap.insert(MapNodeType(xx + yy * mapsize, node));
+				}
+				else
+				{
+					ite->second->mAPleft = apleft - apcost;
+					ite->second->mDirectionToPrew = East;
+				}
+			}
+			xx = x + 1;
+			yy = y;
+			apcost = apleft;
+			passable = skillPass(xx,yy, apcost, skilltype, skillcost);
+			if(passable > 0 )
+			{
+				if(passable == 1)
+				{
+					coordlist.push_back(xx);
+					coordlist.push_back(yy);
+				}
+				MapNodeIte ite;
+				ite = mMoveMap.find(xx + yy * mapsize);
+				if(ite == mMoveMap.end())
+				{
+					MoveNode* node = new MoveNode;
+					node->x = xx;
+					node->y = yy;
+					node->mAPleft = apleft - apcost;
+					node->mDirectionToPrew = West;
+					mMoveMap.insert(MapNodeType(xx + yy * mapsize, node));
+				}
+				else
+				{
+					ite->second->mAPleft = apleft - apcost;
+					ite->second->mDirectionToPrew = West;
+				}
+			}
+			xx = x;
+			yy = y - 1;
+			apcost = apleft;
+			passable = skillPass(xx,yy, apcost, skilltype, skillcost);
+			if(passable > 0 )
+			{
+				if(passable == 1)
+				{
+					coordlist.push_back(xx);
+					coordlist.push_back(yy);
+				}
+				MapNodeIte ite;
+				ite = mMoveMap.find(xx + yy * mapsize);
+				if(ite == mMoveMap.end())
+				{
+					MoveNode* node = new MoveNode;
+					node->x = xx;
+					node->y = yy;
+					node->mAPleft = apleft - apcost;
+					node->mDirectionToPrew = South;
+					mMoveMap.insert(MapNodeType(xx + yy * mapsize, node));
+				}
+				else
+				{
+					ite->second->mAPleft = apleft - apcost;
+					ite->second->mDirectionToPrew = South;
+				}
+			}
+			xx = x;
+			yy = y + 1;
+			apcost = apleft;
+			passable = skillPass(xx,yy, apcost, skilltype, skillcost);
+			if(passable > 0 )
+			{
+				if(passable == 1)
+				{
+					coordlist.push_back(xx);
+					coordlist.push_back(yy);
+				}
+				MapNodeIte ite;
+				ite = mMoveMap.find(xx + yy * mapsize);
+				if(ite == mMoveMap.end())
+				{
+					MoveNode* node = new MoveNode;
+					node->x = xx;
+					node->y = yy;
+					node->mAPleft = apleft - apcost;
+					node->mDirectionToPrew = North;
+					mMoveMap.insert(MapNodeType(xx + yy * mapsize, node));
+				}
+				else
+				{
+					ite->second->mAPleft = apleft - apcost;
+					ite->second->mDirectionToPrew = North;
+				}
+			}
+		}
+		else
+			finding = false;
+		n++;
+	}
+	std::vector<int> movecoordlist;
+	movecoordlist.push_back(startx);
+	movecoordlist.push_back(starty);
+	MapNodeIte movenodeite;
+	for(movenodeite = mMoveMap.begin(); movenodeite != mMoveMap.end(); movenodeite++)
+	{
+		movecoordlist.push_back(movenodeite->second->x);
+		movecoordlist.push_back(movenodeite->second->y);
+	}
+	mMoveAreaGrap = new AreaGrap(movecoordlist,"CUBE_BLUE");
+	//生成移动路径实体
+	float apleft = mSelectSquad->getActionPoint();
+	for(int n = 0; n < apleft/1.0f; n++)
+		mMovePathList.push_back(new MovePath);
+}
+
+void BattlePlayerState::drawSkillArea(SkillType skilltype, int minrange, int maxrange)
+{
+
+}
+
+int BattlePlayerState::skillPass(int x, int y, float &apcost, SkillType skilltype, float skillcost)
+{
+	float apleft = apcost;
+	bool passable = canPass(x,y,apcost);
+	if(passable)
+		return 1;
+	int mapsize = MapDataManager::getSingleton().getMapSize();
+	MapNodeIte ite;
+	ite = mMoveMap.find(x + y * mapsize);
+	if(ite != mMoveMap.end())
+	{
+		if(ite->second->mAPleft >= apleft)
+			return 0;
+	}
+	BattleSquad* blocksquad = BattleSquadManager::getSingleton().getBattleSquadAt(x,y,1,true);
+	if(blocksquad == NULL || apleft < skillcost)
+		return 0;
+	int team = blocksquad->getTeam();
+	int relaction = BattleSquadManager::getSingleton().getTeamRelation(team);
+	apcost = skillcost;
+	switch(skilltype)
+	{
+	case SKILLTYPE_TARGETALL:
+		return 2;
+		break;
+	case SKILLTYPE_TARGETENEMY:
+		if(relaction > 0)
+			return 2;
+		return 0;
+		break;
+	case SKILLTYPE_TARGETFRIEND:
+		if(relaction == 0)
+			return 2;
+		return 0;
+		break;
+	default:
+		return 0;
+		break;
+	}
+}
+
+void BattlePlayerState::useSkillAt(int x,int y)
+{
+	if(!mMoveAreaGrap->inArea(x,y))
+		return;
+	BattleSquad* squad =NULL;
+	switch(mSkillType)
+	{
+	case SKILLTYPE_TARGETALL:
+		squad = BattleSquadManager::getSingleton().getBattleSquadAt(x,y,1,true);
+		if(squad == NULL)
+			return;
+		executeSkillOn( x,  y, squad);
+		break;
+	case SKILLTYPE_TARGETENEMY:
+		squad = BattleSquadManager::getSingleton().getBattleSquadAt(x,y,1,true);
+		if(squad == NULL)
+			return;
+		if(BattleSquadManager::getSingleton().getTeamRelation(squad->getTeam()) > 0)
+			executeSkillOn( x,  y, squad);
+		break;
+	case SKILLTYPE_TARGETFRIEND:
+		squad = BattleSquadManager::getSingleton().getBattleSquadAt(x,y,1,true);
+		if(squad == NULL)
+			return;
+		if(BattleSquadManager::getSingleton().getTeamRelation(squad->getTeam()) == 0)
+			executeSkillOn(x, y, squad);
+		break;
+	default:
+		executeSkillAt(x, y);
+		break;
+	}
+	
+
+}
+
+void BattlePlayerState::drawSkillTargetArea(int x,int y)
+{
+	if(mSkillType == SKILLTYPE_TARGETALL || mSkillType == SKILLTYPE_TARGETENEMY || mSkillType == SKILLTYPE_TARGETFRIEND)
+	{
+		createPath(x,y);
+	}
+}
+
+void BattlePlayerState::executeSkillAt(int x, int y)
+{
+
+}
+
+void BattlePlayerState::executeSkillOn(int x, int y, BattleSquad* squad)
+{
+	int startx,starty;
+	MapDataManager* mapdata = MapDataManager::getSingletonPtr();
+	int mapsize = mapdata->getMapSize();
+	mSelectSquad->getCrood(&startx,&starty);
+	int xx = x,yy = y;
+	std::vector<int> croodlistrev;
+	while(xx != startx || yy !=starty)
+	{
+		MapNodeIte ite;
+		ite = mMoveMap.find(xx + yy * mapsize);
+		croodlistrev.push_back(xx);
+		croodlistrev.push_back(yy);
+		Direction d = ite->second->mDirectionToPrew;
+		switch(d)
+		{
+		case North:
+			yy -= 1;
+			break;
+		case South:
+			yy += 1;
+			break;
+		case East:
+			xx += 1;
+			break;
+		case West:
+			xx -= 1;
+			break;
+		}
+	}
+	std::vector<int> croodlist;
+	int xxx,yyy;
+	while(croodlistrev.size()>2)
+	{
+		yyy = croodlistrev.back();
+		croodlistrev.pop_back();
+		xxx = croodlistrev.back();
+		croodlistrev.pop_back();
+		croodlist.push_back(xxx);
+		croodlist.push_back(yyy);
+	}
+	int stoppoint;
+	int evt;
+	std::vector<Ogre::Vector2> movepath;
+	BattleSquadManager::getSingleton().moveSquad(mSelectSquad, croodlist, stoppoint, evt);
+	int n;
+	for(n = 0; n *2 < croodlist.size(); n++)
+	{
+		if(stoppoint > n)
+		{
+			movepath.push_back(Ogre::Vector2(croodlist[n*2],croodlist[n*2+1]));
+		}
+	}
+	if(stoppoint != n && (evt & (MOVEEVENT_AMBUSH | MOVEEVENT_WRONG)) == 0 )
+	{
+		mMoveTargetX = x;
+		mMoveTargetY = y;
+		mTargetSquad = squad;
+	}
+	else
+	{
+		mMoveTargetX = -1;
+		mMoveTargetY = -1;
+		mTargetSquad = NULL;
+	}
+	MoveCutScene* movecutscene = new MoveCutScene(mSelectSquad->getGrapId(),movepath,Ogre::Vector2(startx,starty));
+	DirectionCutScene* dircutscene = new DirectionCutScene(mSelectSquad->getGrapId(),mSelectSquad->getDirection());
+	movecutscene->setNextScene(dircutscene);
+	if(stoppoint == n)
+	{
+		CutScene* battlecutscene = BattleSquadManager::getSingleton().useSkillOn(mSelectSquad,squad,mSkillid);
+		dircutscene->setNextScene(battlecutscene);
+		mTargetSquad = NULL;
+		mSkillid = "none";
+		mSkillType = SKILLTYPE_PASSIVE;
+	}
 	CutSceneDirector* cutscenedirector = new CutSceneDirector;
 	cutscenedirector->addCutScene(movecutscene);
 	clearPathInfo();
