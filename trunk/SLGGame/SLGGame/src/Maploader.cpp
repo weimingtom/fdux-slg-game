@@ -242,6 +242,7 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/GridX"), x, true );
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/GridY"), y, true );
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/UnitNumber"), unitnum, true );
+			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/WoundNum"), 0, true );
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/Direction"), d, true );
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/Formation"), f, true );
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/TeamId"), teamid, true );
@@ -328,6 +329,7 @@ void MapLoader::initBattleSquad(bool loadfrommap)
 				datalib->setData(datapath +std::string("/Direction"), North, true );
 				datalib->setData(datapath +std::string("/Formation"), f, true );
 				datalib->setData(datapath +std::string("/ActionPoint"), 0.0f, true );
+				datalib->setData(datapath +std::string("/WoundNum"), 0, true );
 				BattleSquad* battlesquad = new BattleSquad((*ite),battlesuqadmanager->mCurid,-1,0); 
 				suqadgrapmanager->createSquad((*ite), datapath, battlesuqadmanager->mCurid, -1, 0,North,Line,battlesquad->getUnitGrapNum());
 				battlesuqadmanager->mDeployList.push_back(battlesquad);

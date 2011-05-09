@@ -187,7 +187,10 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 			apcost += mSelectSquad->getActionPointCost(aptype);
 			mSkill[skillno]->setCaption(str(boost::format("%1%\n%2%")%skillname%apcost));
 			if(apleft >= apcost)
+			{
 				mSkill[skillno]->setEnabled(true);
+				mSkillId[skillno] = (*ite);
+			}
 			else
 				mSkill[skillno]->setEnabled(false);
 		}
@@ -247,4 +250,5 @@ void GUICommandWindows::useSkill(int n)
 		mPlayerState->changeFormation(Circular);
 	if(mSkillId[n] == "loose")
 		mPlayerState->changeFormation(Loose);
+	mPlayerState->useSkill(mSkillId[n]);
 }

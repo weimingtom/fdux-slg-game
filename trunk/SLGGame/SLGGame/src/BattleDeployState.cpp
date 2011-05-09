@@ -51,6 +51,7 @@ BattleDeployState::BattleDeployState()
 		}
 		mDeployWindow->initList(squadlist);
 	}
+	else
 		mDeployWindow->setAllowConfirm(true);
 
 
@@ -154,6 +155,7 @@ bool BattleDeployState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 				int grapid = mSelectSquad->getGrapId();
 				SquadGraphics* squadgrap = SquadGrapManager::getSingleton().getSquad(grapid);
 				squadgrap->setDirection(d,false);
+				mSquadWindow->setSquad(mSelectSquad);
 			}
 		}
 

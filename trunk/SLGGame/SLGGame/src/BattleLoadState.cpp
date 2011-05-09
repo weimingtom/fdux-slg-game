@@ -59,7 +59,7 @@ void BattleLoadState::update(unsigned int deltaTime)
 		GUIBattle* guibattle=static_cast<GUIBattle *>(GUISystem::getSingleton().createScene(BattleScene));
 		BattleDeployState* deploystate = new BattleDeployState;
 		guibattle->setBattleState(mMainState);
-		GUISystem::getSingleton().setFrameUpdateScene(BattleScene);
+		//GUISystem::getSingleton().setFrameUpdateScene(BattleScene);
 		mLoadScene->setProgress(100);
 		mLoadScene->setText("Finish");
 		mMainState->ChangeState(deploystate);
