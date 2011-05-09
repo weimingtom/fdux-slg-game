@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <StaticData>
 	<SquadData>
 		<TestSquad>
@@ -14,10 +14,10 @@
 			</SkillTable>
 			<LeaderName type="String" value="TestLeaderName"/>
 			<LeaderPicture type="String" value="TestLeaderHead.jpg"/>
-			<LeaderMesh type="String" value="Sinbad.mesh"/>
-			<LeaderMat type="String" value="none"/>
-			<UnitMesh type="String" value="Sinbad.mesh"/>
-			<UnitMat type="String" value="none"/>	
+			<LeaderMesh type="String" value="Stronghold.mesh"/>
+			<LeaderMat type="String" value="Stronghold"/>
+			<UnitMesh type="String" value="Stronghold.mesh"/>
+			<UnitMat type="String" value="Stronghold"/>	
 			<UnitMaxNumber type="Int" value="50"/>				
 		</TestSquad>
 	</SquadData>
@@ -65,8 +65,8 @@
 			<Type type="Int" value="1"/>
 			<Value type="Int" value="10"/>
 			<Script type="String" value="none"/>
-			<Mesh type="String" value="Sword.mesh"/>
-			<Mat type="String" value="none"/>
+			<Mesh type="String" value="soul.mesh"/>
+			<Mat type="String" value="soul"/>
 			<AniGroup type="String" value="test"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
