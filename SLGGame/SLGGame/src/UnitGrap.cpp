@@ -38,12 +38,12 @@ mAlphaDeltaTime(0)
 	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Unit/")+unitName+std::string("/RecoverName"),mRecoverName);
 	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Unit/")+unitName+std::string("/RotationName"),mRotationName);
 	*/
-	initAnimation = "Idle";
+	initAnimation = "Ready1H";
 	mLeftHandBoneName = "Bip01 L Hand";
 	mRightHandBoneName = "Bip01 R Finger1";
-	mWalkName = "Run";
+	mWalkName = "Run1H";
 	mDeathName = "Death";
-	mRecoverName ="DrawSwords";
+	mRecoverName ="Recover";
 	mRotationName = "JumpLoop";
 
 	mUnitEntity=Core::getSingletonPtr()->mSceneMgr->createEntity(unitmesh);
