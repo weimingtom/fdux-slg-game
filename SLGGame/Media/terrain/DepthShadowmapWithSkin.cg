@@ -1,0 +1,26 @@
+void casterVP(
+    float4 position            : POSITION,
+	float4  blendIdx : BLENDINDICES,
+	float4	blendWgt : BLENDWEIGHT,
+	float   index : TEXCOORD1,
+
+    out float4 outPos        : POSITION,
+    out float2 outDepth        : TEXCOORD0,
+ 
+	uniform float4x4 viewProjectionMatrix,
+	uniform float numBones,
+	uniform float3x4   worldMatrix3x4Array[80]
+    )
+{
+	float4 blendPos = float4(0,0,0,0);
+	int i;
+	for (i = 0; i < 4; ++i)
+	{
+		blendPos += float4(mul(worldMatrix3x4Array[index*numBones+blendIdx[i]], position).xyz, 1.0) * blendWgt[i];
+	}
+	
+    outPos = mul(viewProjectionMatrix, blendPos);
+ 
+    outDepth.x = outPos.z;
+    outDepth.y = outPos.w;
+}

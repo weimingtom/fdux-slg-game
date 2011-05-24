@@ -21,7 +21,7 @@ void FormationCutScene::startCutScence()
 
 bool FormationCutScene::endCutScene()
 {
-	return time > 200;
+	return time > 150;
 }
 
 void FormationCutScene::skipCutScene()

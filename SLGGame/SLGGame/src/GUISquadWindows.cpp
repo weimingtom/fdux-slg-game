@@ -119,6 +119,7 @@ void GUISquadWindows::updateSquad()
 	std::string datapath = mSelectSquad->getPath();
 	bool re = DataLibrary::getSingletonPtr()->getData(datapath+"/LeaderPicture",tempstr);
 	mSquadImage->setImageTexture(tempstr);
+	//mSquadImage->setImageTexture("shadowdepthmap");
 	tempstr = mSelectSquad->getFactionId();
 	temppath = std::string("StaticData/FactionData/") + tempstr + std::string("/LittlePicture");
 	re = DataLibrary::getSingletonPtr()->getData(temppath,tempstr);

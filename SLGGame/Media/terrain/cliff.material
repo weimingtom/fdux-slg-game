@@ -1,8 +1,9 @@
-material CliffMat1
+import DepthShadowmap/Caster from "Shadow.material"
+material CliffMat1 : DepthShadowmap/Caster
 {
-	receive_shadows on
-	technique
+	technique default
 	{
+		scheme Default
 		pass
 		{
 			texture_unit
@@ -24,14 +25,31 @@ material CliffMat1
 				colour_op_ex modulate src_current src_diffuse 
 			}
 		}
+		pass
+		{
+			lighting off
+			scene_blend modulate
+			vertex_program_ref DepthShadowmap/ReceiverVP
+            {
+            }
+			fragment_program_ref DepthShadowmap/ReceiverFP
+            {
+            }
+			texture_unit
+			{
+				texture shadowdepthmap
+				tex_address_mode border
+				tex_border_colour 1.0 1.0 1.0 1.0
+			}
+		}
 	}
 }
 
-material CliffMat2
+material CliffMat2 : DepthShadowmap/Caster
 {
-	receive_shadows on
-	technique
+	technique default
 	{
+		scheme Default
 		pass
 		{
 			texture_unit
@@ -53,13 +71,30 @@ material CliffMat2
 				colour_op_ex modulate src_current src_diffuse 
 			}
 		}
+		pass
+		{
+			lighting off
+			scene_blend modulate
+			vertex_program_ref DepthShadowmap/ReceiverVP
+            {
+            }
+			fragment_program_ref DepthShadowmap/ReceiverFP
+            {
+            }
+			texture_unit
+			{
+				texture shadowdepthmap
+				tex_address_mode border
+				tex_border_colour 1.0 1.0 1.0 1.0
+			}
+		}
 	}
 }
-material CliffMat3
+material CliffMat3 : DepthShadowmap/Caster
 {
-	receive_shadows on
-	technique
+	technique default
 	{
+		scheme Default
 		pass
 		{
 			texture_unit
@@ -81,13 +116,30 @@ material CliffMat3
 				colour_op_ex modulate src_current src_diffuse 
 			}
 		}
+		pass
+		{
+			lighting off
+			scene_blend modulate
+			vertex_program_ref DepthShadowmap/ReceiverVP
+            {
+            }
+			fragment_program_ref DepthShadowmap/ReceiverFP
+            {
+            }
+			texture_unit
+			{
+				texture shadowdepthmap
+				tex_address_mode border
+				tex_border_colour 1.0 1.0 1.0 1.0
+			}
+		}
 	}
 }
-material CliffMat4
+material CliffMat4 : DepthShadowmap/Caster
 {
-	receive_shadows on
-	technique
+	technique default
 	{
+		scheme Default
 		pass
 		{
 			texture_unit
@@ -107,6 +159,23 @@ material CliffMat4
 			texture_unit
 			{
 				colour_op_ex modulate src_current src_diffuse 
+			}
+		}
+		pass
+		{
+			lighting off
+			scene_blend modulate
+			vertex_program_ref DepthShadowmap/ReceiverVP
+            {
+            }
+			fragment_program_ref DepthShadowmap/ReceiverFP
+            {
+            }
+			texture_unit
+			{
+				texture shadowdepthmap
+				tex_address_mode border
+				tex_border_colour 1.0 1.0 1.0 1.0
 			}
 		}
 	}

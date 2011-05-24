@@ -10,11 +10,12 @@ Terrain::Terrain()
 	mCollisionTools = new MOC::CollisionTools(Core::getSingleton().mSceneMgr);
 	mObjId = 0;
 	mPUId = 0;
+	mGridNode = NULL;
 }
 
 Terrain::~Terrain()
 {
-
+	destoryTerrian();
 }
 
 bool Terrain::createTerrain()
@@ -26,13 +27,22 @@ bool Terrain::createTerrain()
 
 	//创建灯光
 	Core::getSingleton().mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5f, 0.5f, 0.5f));
-	Core::getSingleton().mSceneMgr->setShadowTechnique(Ogre::SHADOWDETAILTYPE_STENCIL);
 	mLight = Core::getSingleton().mSceneMgr->createLight("TerrainLight");
-	mLight->setType(Ogre::Light::LightTypes::LT_DIRECTIONAL);
+	mLight->setType(Ogre::Light::LT_DIRECTIONAL);
 	mLight->setPosition(-500.0f,500.0f, 500.0f);
 	mLight->setDirection(1.0f, -1.0f, -1.0f);
-	mLight->setCastShadows(true);
 	mLight->setDiffuseColour(Ogre::ColourValue(1.0f, 1.0f,1.0f));
+	mLight->setCastShadows(true);
+
+	//设置深度图投影
+	Ogre::TexturePtr tex = Ogre::TextureManager::getSingleton().createManual("shadowdepthmap",
+		Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::TEX_TYPE_2D, 1024, 1024, 0, Ogre::PF_FLOAT32_R, Ogre::TU_RENDERTARGET);
+	mShadowDepthMapTarget = tex->getBuffer()->getRenderTarget();
+	Ogre::Viewport* vp = mShadowDepthMapTarget->addViewport(CameraContral::getSingleton().getShadowMapCamera());
+	vp->setOverlaysEnabled(false);
+	vp->setMaterialScheme("WriteDepthMap");
+	vp->setBackgroundColour(Ogre::ColourValue(1.0f,1.0f,1.0f));
+	mShadowDepthMapTarget->addListener(this);
 
 	//创建地面Mesh
 	mTerrainNode = Core::getSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode("TerrainNode");
@@ -150,10 +160,18 @@ bool Terrain::createTerrain()
 	mTerrainNode->setPosition(0,0,0);
 
 	//创建水面
+	tex = Ogre::TextureManager::getSingleton().createManual("reflection",
+		Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::TEX_TYPE_2D, 512, 512, 0, Ogre::PF_R8G8B8, Ogre::TU_RENDERTARGET);
+	mReflectionTarget = tex->getBuffer()->getRenderTarget();
+	mReflectionTarget->addViewport(Core::getSingleton().mCamera)->setOverlaysEnabled(false);
+	mReflectionTarget->addListener(this);
+
+	mWaterPlane = Ogre::Plane(Ogre::Vector3::UNIT_Y, WATERHEIGHT);
+
 	mWaterNode = Core::getSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode("WaterNode");
 	mWaterObject = Core::getSingleton().mSceneMgr->createManualObject("WaterObject");
 
-	mWaterObject->begin("OceanCg",Ogre::RenderOperation::OT_TRIANGLE_LIST);
+	mWaterObject->begin("ReflectionWater",Ogre::RenderOperation::OT_TRIANGLE_LIST);
 	startpos += TILESIZE/2;
 	for(int y = 0; y < terrainszie; y++)
 		for(int x = 0; x < terrainszie; x++)
@@ -163,21 +181,27 @@ bool Terrain::createTerrain()
 				mWaterObject->position(startpos + x * TILESIZE, 0.0f, startpos + y * TILESIZE);
 				mWaterObject->colour(1.0f,1.0f,1.0f);
 				mWaterObject->normal(0.0f,1.0f,0.0f);
+				mWaterObject->textureCoord(0.0f,0.0f);
 				mWaterObject->position(startpos + (x+1) * TILESIZE, 0.0f, startpos + (y+1) * TILESIZE);
 				mWaterObject->colour(1.0f,1.0f,1.0f);
 				mWaterObject->normal(0.0f,1.0f,0.0f);
+				mWaterObject->textureCoord(1.0f,1.0f);
 				mWaterObject->position(startpos + (x+1) * TILESIZE, 0.0f, startpos + y * TILESIZE);
 				mWaterObject->colour(1.0f,1.0f,1.0f);
 				mWaterObject->normal(0.0f,1.0f,0.0f);
+				mWaterObject->textureCoord(1.0f,0.0f);
 				mWaterObject->position(startpos + (x+1) * TILESIZE, 0.0f, startpos + (y+1) * TILESIZE);
 				mWaterObject->colour(1.0f,1.0f,1.0f);
 				mWaterObject->normal(0.0f,1.0f,0.0f);
+				mWaterObject->textureCoord(1.0f,1.0f);
 				mWaterObject->position(startpos + x * TILESIZE, 0.0f, startpos + y * TILESIZE);
 				mWaterObject->colour(1.0f,1.0f,1.0f);
 				mWaterObject->normal(0.0f,1.0f,0.0f);
+				mWaterObject->textureCoord(0.0f,0.0f);
 				mWaterObject->position(startpos + x * TILESIZE, 0.0f, startpos + (y+1) * TILESIZE);
 				mWaterObject->colour(1.0f,1.0f,1.0f);
 				mWaterObject->normal(0.0f,1.0f,0.0f);
+				mWaterObject->textureCoord(0.0f,1.0f);
 			}
 		}
 	mWaterObject->end();
@@ -185,16 +209,27 @@ bool Terrain::createTerrain()
 	mWaterNode->attachObject(mWaterObject);
 	mWaterNode->setPosition(0,WATERHEIGHT,0);
 
+
 	//设置摄像机移动范围
 	float minx = ( - (float)(terrainszie - 9) / 2.0f - 1.0f) * TILESIZE ;
 	CameraContral::getSingleton().setMoveRect(minx, minx);
+	CameraContral::getSingleton().resetCamera();
+
+	//深度投影测试
+// 	Ogre::MeshManager::getSingleton().createPlane("testplane", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+// 		mWaterPlane, 64, 64, 1, 1, true, 1, 1, 1, Ogre::Vector3::UNIT_Z);
+// 	Ogre::Entity* testent = Core::getSingleton().mSceneMgr->createEntity("testplaneent", "testplane");
+// 	testent->setMaterialName("DepthTest");
+// 	Ogre::SceneNode* testnode = Core::getSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
+// 	testnode->attachObject(testent);
+// 	testnode->setPosition(0.0f,10.0f,0.0f);
 
 	return true;
 }
 
 void Terrain::destoryTerrian()
 {
-	
+	Core::getSingleton().mSceneMgr->destroyLight(mLight);
 }
 
 void Terrain::getWorldCoords(int x, int y, float &wx, float &wy)
@@ -209,8 +244,7 @@ float Terrain::getHeight(float x, float y)
 	float height = PLANEHEIGHT;
 	int xx = 0,yy = 0;
 	int s = mMapData->getMapSize();
-	xx = x / TILESIZE + s /2.0f;
-	yy = y / TILESIZE + s / 2.0f;
+	calculateGrid(x,y,xx,yy);
 	switch (mMapData->getTerrainType(xx,yy))
 	{
 	case HighGround:
@@ -232,6 +266,38 @@ float Terrain::getHeight(float x, float y)
 		else
 			height = PLANEHEIGHT;
 		break;
+		/*
+		bool ishighground[8];
+		ishighground[0] = mMapData->getTerrainType(xx - 1,yy - 1) == HighGround;
+		ishighground[1] = mMapData->getTerrainType(xx,yy - 1) == HighGround;
+		ishighground[2] = mMapData->getTerrainType(xx + 1,yy - 1) == HighGround;
+		ishighground[3] = mMapData->getTerrainType(xx - 1,yy) == HighGround;
+		ishighground[4] = mMapData->getTerrainType(xx + 1,yy) == HighGround;
+		ishighground[5] = mMapData->getTerrainType(xx - 1,yy + 1) == HighGround;
+		ishighground[6] = mMapData->getTerrainType(xx,yy + 1) == HighGround;
+		ishighground[7] = mMapData->getTerrainType(xx + 1,yy + 1) == HighGround;
+		float dx,dy;
+		getWorldCoords(xx,yy,dx,dy);
+		dx = x - dx;
+		if(dx == 0.0f)
+			dx += 0.01f;
+		dy = y - dy;
+		float z[4];
+		z[0] = (ishighground[3] || ishighground[0] || ishighground[1])? HEIGHGROUNDHEIGHT:PLANEHEIGHT;
+		z[1] = (ishighground[1] || ishighground[2] || ishighground[4])? HEIGHGROUNDHEIGHT:PLANEHEIGHT;
+		z[2] = (ishighground[3] || ishighground[5] || ishighground[6])? HEIGHGROUNDHEIGHT:PLANEHEIGHT;
+		z[3] = (ishighground[5] || ishighground[6] || ishighground[7])? HEIGHGROUNDHEIGHT:PLANEHEIGHT;
+		if(z[0] != z[1])
+			height = z[0] + z[1] * dx /TILESIZE;
+		else if(z[0] != z[2])
+			height = z[0] + z[2] / dy;
+		else if(z[2] != z[3])
+			height = z[2] + z[3] / dx;
+		else if(z[1] != z[3])
+			height = z[1] + z[3] / dy;
+		else
+			height = PLANEHEIGHT;
+		*/
 	}
 	return height;
 }
@@ -718,6 +784,7 @@ void Terrain::calculateGrid( float x,float y,int& GX, int& GY )
 	GX=x1/TILESIZE;
 	GY=y1/TILESIZE;
 
+	/*
 	if(GX>=mMapData->getMapSize())
 	{
 		GX=mMapData->getMapSize()-1;
@@ -735,6 +802,7 @@ void Terrain::calculateGrid( float x,float y,int& GX, int& GY )
 	{
 		GY=0;
 	}
+	*/
 }
 
 int Terrain::createMapObj(int x, int y, std::string meshname)
@@ -791,5 +859,41 @@ void Terrain::deleteMapParticle(int index)
 		Core::getSingleton().mSceneMgr->destroySceneNode(ite->second->mTileNode);
 		delete ite->second;
 		mMapPUMap.erase(ite);
+	}
+}
+
+void Terrain::preRenderTargetUpdate(const Ogre::RenderTargetEvent& evt)
+{
+	mWaterNode->setVisible(false);
+	Core::getSingleton().mCamera->enableReflection(mWaterPlane);
+	if(mGridNode)
+		mGridNode->setVisible(false);
+	if(evt.source == mShadowDepthMapTarget)
+	{
+		std::map<int, stTilePUData*>::iterator ite;
+		for(ite = mMapPUMap.begin(); ite!= mMapPUMap.end(); ite++)
+		if(ite!=mMapPUMap.end())
+		{
+			ite->second->mTileNode->setVisible(false);
+		}
+		Ogre::GpuSharedParametersPtr sharedparams = Ogre::GpuProgramManager::getSingleton().getSharedParameters("ShadowSharedParamsName");
+		Ogre::Matrix4 cameraview= CameraContral::getSingleton().getShadowMapCamera()->getViewMatrix();
+		sharedparams->setNamedConstant("texView",cameraview);
+	}
+}
+void Terrain::postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt)
+{
+	mWaterNode->setVisible(true);
+	Core::getSingleton().mCamera->disableReflection();
+	if(mGridNode)
+		mGridNode->setVisible(true);
+	if(evt.source == mShadowDepthMapTarget)
+	{
+		std::map<int, stTilePUData*>::iterator ite;
+		for(ite = mMapPUMap.begin(); ite!= mMapPUMap.end(); ite++)
+			if(ite!=mMapPUMap.end())
+			{
+				ite->second->mTileNode->setVisible(true);
+			}
 	}
 }

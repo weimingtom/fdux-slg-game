@@ -1,0 +1,28 @@
+void casterVP(
+    float4 position            : POSITION,
+    out float4 outPos        : POSITION,
+    out float2 outDepth        : TEXCOORD0,
+ 
+    uniform float4x4 worldViewProj
+    )
+{
+    outPos = mul(worldViewProj, position);
+ 
+    outDepth.x = outPos.z;
+    outDepth.y = outPos.w;
+}
+ 
+void casterFP(
+    float2 depth            : TEXCOORD0,
+    out float4 result        : COLOR,
+	
+	//uniform float depthRange,
+	uniform float depthOffset
+	)
+ 
+{
+    float finalDepth = depth.x; // depthRange;
+	finalDepth += depthOffset;
+	
+    result = float4(finalDepth, finalDepth, finalDepth, 1);
+}

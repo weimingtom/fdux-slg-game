@@ -223,6 +223,14 @@
 	<MapObjType>
 		<City>
 			<Script type="String" value="City.lua"/>
+			<GroundModifier>
+				<Type type="Int" value="15"/>
+				<Passable type = "Int" value = "1"/>
+				<Covert type="Float" value="2.0"/>
+				<Defence type="Float" value="2.0"/>
+				<CavAp type="Float" value="1.0"/>
+				<InfAp type="Float" value="0.0"/>
+			</GroundModifier>
 		</City>
 	</MapObjType>
 	<FactionData>

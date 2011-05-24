@@ -6,6 +6,19 @@ CameraContral::CameraContral()
 {
 	mTerrain = Terrain::getSingletonPtr();
 	mCamera = Core::getSingleton().mCamera;
+	mShadowMapCamera = Core::getSingleton().mSceneMgr->createCamera("ShadowMapCamera");
+	mShadowMapCamera->setProjectionType(Ogre::PT_ORTHOGRAPHIC);
+	mShadowMapCamera->setOrthoWindow(128.0f,128.0f);
+	mShadowMapCamera->setFarClipDistance(500.0f);
+	mShadowMapCamera->setNearClipDistance(0.5f);
+	Ogre::GpuSharedParametersPtr sharedparams = Ogre::GpuProgramManager::getSingleton().getSharedParameters("ShadowSharedParamsName");
+	Ogre::Matrix4 PROJECTIONCLIPSPACE2DTOIMAGESPACE_PERSPECTIVE(
+		0.5,    0,    0,  0.5, 
+		0,   -0.5,    0,  0.5, 
+		0,      0,    1,    0,
+		0,      0,    0,    1);
+	Ogre::Matrix4 cameraproj= PROJECTIONCLIPSPACE2DTOIMAGESPACE_PERSPECTIVE * CameraContral::getSingleton().getShadowMapCamera()->getProjectionMatrixWithRSDepth();
+	sharedparams->setNamedConstant("texProj",cameraproj);
 	mMinX -= 0.0f;
 	mMinY -= 0.0f;
 }
@@ -64,15 +77,17 @@ void CameraContral::resetCamera()
 {
 	mX = 0.0f;
 	mY = 0.0f;
-	mHeight = 50.0f;
+	mHeight = 75.0f;
 	setCamera();
 }
 
 void CameraContral::setCamera()
 {
 	float height =mTerrain->getHeight(mX,mY);
-	float d = mHeight;//待定公式
+	float d = 0.6 * mHeight;//待定公式
 	mCamera->setPosition(mX + d, height +mHeight, mY +d);
 	mCamera->lookAt(mX,height, mY );
+	mShadowMapCamera->setPosition(mX - 65.0f, 50.0f, mY + 35.0f);
+	mShadowMapCamera->lookAt(mX - 15.0f, 0.0f, mY - 15.0f );
 }
 

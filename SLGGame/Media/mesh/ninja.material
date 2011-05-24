@@ -1,7 +1,9 @@
-material Examples/Ninja
+import DepthShadowmap/Caster from "Shadow.material"
+material Examples/Ninja : DepthShadowmap/Caster
 {
-	technique
+	technique default
 	{
+		scheme Default
 		pass
 		{
 		
