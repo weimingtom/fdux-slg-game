@@ -1,7 +1,9 @@
-material Stronghold
+import DepthShadowmap/CasterWithSkin from "Shadow.material"
+material Stronghold : DepthShadowmap/CasterWithSkin
 {
-	technique
+	technique default
 	{
+		scheme Default
 		pass
 		{
 		

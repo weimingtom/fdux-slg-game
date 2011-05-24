@@ -21,11 +21,14 @@ public:
 	void resetCamera();
 
 	void setMoveRect(float minx, float miny);
+
+	Ogre::Camera* getShadowMapCamera() {return mShadowMapCamera;}
 private:
 
 	void setCamera();
 
 	Ogre::Camera *mCamera;
+	Ogre::Camera *mShadowMapCamera;
 	Terrain *mTerrain;
 
 	float mHeight;

@@ -1,8 +1,9 @@
-material City1
+import DepthShadowmap/Caster from "Shadow.material"
+material City1 : DepthShadowmap/Caster
 {
-	receive_shadows on
-	technique
+	technique default
 	{
+		scheme Default
 		pass
 		{
 			ambient 0.500000 0.500000 0.500000 1.000000

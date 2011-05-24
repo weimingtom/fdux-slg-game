@@ -1,0 +1,52 @@
+material DepthShadowmap/Caster
+{
+    technique shadowcaster
+    {
+		scheme WriteDepthMap
+        pass 
+        {
+            vertex_program_ref DepthShadowmap/CasterVP
+            {
+            }
+            fragment_program_ref DepthShadowmap/CasterFP
+            {
+            }
+        }
+    }
+}
+
+
+material DepthShadowmap/CastNoShadow
+{
+    technique shadowcaster
+    {
+		scheme WriteDepthMap
+        pass 
+        {
+			scene_blend modulate
+			vertex_program_ref DepthShadowmap/CastNoShadowVP
+            {
+            }
+			fragment_program_ref DepthShadowmap/CastNoShadowFP
+            {
+            }
+        }
+    }
+}
+material DepthShadowmap/CasterWithSkin
+{
+    technique shadowcaster
+    {
+		scheme WriteDepthMap
+        pass 
+        {
+            vertex_program_ref DepthShadowmap/CasterWithSkinVP
+            {
+            }
+            fragment_program_ref DepthShadowmap/CasterFP
+            {
+            }
+        }
+    }
+}
+

@@ -1,8 +1,9 @@
-material BankMat1
+import DepthShadowmap/Caster from "Shadow.material"
+material BankMat1 : DepthShadowmap/Caster
 {
-	receive_shadows on
-	technique
+	technique default
 	{
+		scheme Default
 		pass
 		{
 			texture_unit
@@ -11,14 +12,31 @@ material BankMat1
 				texture GreenLand.tga
 			}
 		}
+		pass
+		{
+			lighting off
+			scene_blend modulate
+			vertex_program_ref DepthShadowmap/ReceiverVP
+            {
+            }
+			fragment_program_ref DepthShadowmap/ReceiverFP
+            {
+            }
+			texture_unit
+			{
+				texture shadowdepthmap
+				tex_address_mode border
+				tex_border_colour 1.0 1.0 1.0 1.0
+			}
+		}
 	}
 }
 
-material BankMat2
+material BankMat2 : DepthShadowmap/Caster
 {
-	receive_shadows on
-	technique
+	technique default
 	{
+		scheme Default
 		pass
 		{
 			texture_unit
@@ -27,14 +45,31 @@ material BankMat2
 				texture Desert.tga
 			}
 		}
+		pass
+		{
+			lighting off
+			scene_blend modulate
+			vertex_program_ref DepthShadowmap/ReceiverVP
+            {
+            }
+			fragment_program_ref DepthShadowmap/ReceiverFP
+            {
+            }
+			texture_unit
+			{
+				texture shadowdepthmap
+				tex_address_mode border
+				tex_border_colour 1.0 1.0 1.0 1.0
+			}
+		}
 	}
 }
 
-material BankMat3
+material BankMat3 : DepthShadowmap/Caster
 {
-	receive_shadows on
-	technique
+	technique default
 	{
+		scheme Default
 		pass
 		{
 			texture_unit
@@ -43,20 +78,54 @@ material BankMat3
 				texture Swamp.tga
 			}
 		}
+		pass
+		{
+			lighting off
+			scene_blend modulate
+			vertex_program_ref DepthShadowmap/ReceiverVP
+            {
+            }
+			fragment_program_ref DepthShadowmap/ReceiverFP
+            {
+            }
+			texture_unit
+			{
+				texture shadowdepthmap
+				tex_address_mode border
+				tex_border_colour 1.0 1.0 1.0 1.0
+			}
+		}
 	}
 }
 
-material BankMat4
+material BankMat4 : DepthShadowmap/Caster
 {
-	receive_shadows on
-	technique
+	technique default
 	{
+		scheme Default
 		pass
 		{
 			texture_unit
 			{
 				tex_coord_set 0
 				texture Snow.tga
+			}
+		}
+		pass
+		{
+			lighting off
+			scene_blend modulate
+			vertex_program_ref DepthShadowmap/ReceiverVP
+            {
+            }
+			fragment_program_ref DepthShadowmap/ReceiverFP
+            {
+            }
+			texture_unit
+			{
+				texture shadowdepthmap
+				tex_address_mode border
+				tex_border_colour 1.0 1.0 1.0 1.0
 			}
 		}
 	}

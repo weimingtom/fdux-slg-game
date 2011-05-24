@@ -35,7 +35,7 @@ static const float TERRAINTEXTILESIZE = 64.0f;
 static const Ogre::uint32 TERRAIN_MASK = 1 << 0;
 static const Ogre::uint32 GRID_MASK = 1 << 2;
 
-class Terrain:public IISingleton<Terrain>
+class Terrain:public IISingleton<Terrain>,public Ogre::RenderTargetListener
 {
 public:
 	Terrain();
@@ -64,6 +64,8 @@ public:
 	int createMapParticle(int x, int y,std::string particlename);
 	void deleteMapParticle(int index);
 
+	void preRenderTargetUpdate(const Ogre::RenderTargetEvent& evt);
+	void postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt);
 private:
 
 	MOC::CollisionTools* mCollisionTools;
@@ -101,4 +103,8 @@ private:
 
 	void createTile(int x, int y,float sx, float sy, float *posbuffer, float *uvbuffer, float *nombuffer);
 	std::string randMesh(int x, int y);
+
+	Ogre::Plane mWaterPlane;
+	Ogre::RenderTarget* mReflectionTarget;
+	Ogre::RenderTarget* mShadowDepthMapTarget;
 };

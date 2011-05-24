@@ -46,6 +46,7 @@ BattlePlayerState::BattlePlayerState()
 	mMoveTargetY = -1;
 	mSkillid = "none";
 	mTargetSquad = NULL;
+	mMeleeSkill = false;
 }
 BattlePlayerState::~BattlePlayerState()
 {
@@ -293,14 +294,16 @@ void BattlePlayerState::moveSquad()
 					MoveNode* node = new MoveNode;
 					node->x = xx;
 					node->y = yy;
+					node->mPrevApLeft = apleft;
 					node->mAPleft = apleft - apcost;
-					node->mDirectionToPrew = East;
+					node->mDirectionToPrev = East;
 					mMoveMap.insert(MapNodeType(xx + yy * mapsize, node));
 				}
  				else
 				{
+					ite->second->mPrevApLeft = apleft;
 					ite->second->mAPleft = apleft - apcost;
-					ite->second->mDirectionToPrew = East;
+					ite->second->mDirectionToPrev = East;
 				}
 			}
 			xx = x + 1;
@@ -318,14 +321,16 @@ void BattlePlayerState::moveSquad()
 					MoveNode* node = new MoveNode;
 					node->x = xx;
 					node->y = yy;
+					node->mPrevApLeft = apleft;
 					node->mAPleft = apleft - apcost;
-					node->mDirectionToPrew = West;
+					node->mDirectionToPrev = West;
 					mMoveMap.insert(MapNodeType(xx + yy * mapsize, node));
 				}
 				else
 				{
+					ite->second->mPrevApLeft = apleft;
 					ite->second->mAPleft = apleft - apcost;
-					ite->second->mDirectionToPrew = West;
+					ite->second->mDirectionToPrev = West;
 				}
 			}
 			xx = x;
@@ -343,14 +348,16 @@ void BattlePlayerState::moveSquad()
 					MoveNode* node = new MoveNode;
 					node->x = xx;
 					node->y = yy;
+					node->mPrevApLeft = apleft;
 					node->mAPleft = apleft - apcost;
-					node->mDirectionToPrew = South;
+					node->mDirectionToPrev = South;
 					mMoveMap.insert(MapNodeType(xx + yy * mapsize, node));
 				}
 				else
 				{
+					ite->second->mPrevApLeft = apleft;
 					ite->second->mAPleft = apleft - apcost;
-					ite->second->mDirectionToPrew = South;
+					ite->second->mDirectionToPrev = South;
 				}
 			}
 			xx = x;
@@ -368,14 +375,16 @@ void BattlePlayerState::moveSquad()
 					MoveNode* node = new MoveNode;
 					node->x = xx;
 					node->y = yy;
+					node->mPrevApLeft = apleft;
 					node->mAPleft = apleft - apcost;
-					node->mDirectionToPrew = North;
+					node->mDirectionToPrev = North;
 					mMoveMap.insert(MapNodeType(xx + yy * mapsize, node));
 				}
 				else
 				{
+					ite->second->mPrevApLeft = apleft;
 					ite->second->mAPleft = apleft - apcost;
-					ite->second->mDirectionToPrew = North;
+					ite->second->mDirectionToPrev = North;
 				}
 			}
 		}
@@ -409,7 +418,7 @@ bool BattlePlayerState::canPass(int x, int y, float &apcost)
 	ite = mMoveMap.find(x + y * mapsize);
 	if(ite != mMoveMap.end())
 	{
-		if(ite->second->mAPleft >= apcost)
+		if(ite->second->mPrevApLeft >= apcost)
 			return false;
 	}
 	else
@@ -508,7 +517,7 @@ void BattlePlayerState::createPath(int x,int y)
 			}
 			else
 			{
-				Direction d = ite->second->mDirectionToPrew;
+				Direction d = ite->second->mDirectionToPrev;
 				mMovePathList[n]->setPosition(xx,yy,d);
 				switch(d)
 				{
@@ -571,7 +580,7 @@ void BattlePlayerState::executeMove(int x, int y)
 		ite = mMoveMap.find(xx + yy * mapsize);
 		croodlistrev.push_back(xx);
 		croodlistrev.push_back(yy);
-		Direction d = ite->second->mDirectionToPrew;
+		Direction d = ite->second->mDirectionToPrev;
 		switch(d)
 		{
 		case North:
@@ -667,20 +676,30 @@ void BattlePlayerState::useSkill(std::string skillid)
 		}
 		return;
 	}
+	int minrange;
+	int maxrange; 
+	datalib->getData(std::string("StaticData/SkillData/")+ skillid + std::string("/MaxRange"),maxrange);
+	datalib->getData(std::string("StaticData/SkillData/")+ skillid + std::string("/MinRange"),minrange);
 	switch(skilltype)
 	{
 	case SKILLTYPE_TARGETENEMY:
 	case SKILLTYPE_TARGETFRIEND:
 	case SKILLTYPE_TARGETALL:
-		drawSkillMoveArea(skilltype, apcost);
+		if((minrange == 0 || minrange == 1)&& maxrange == 1)
+		{
+			drawSkillMoveArea(skilltype, apcost);
+			mMeleeSkill = true;
+		}
+		else
+		{
+			drawSkillArea(skilltype,minrange,maxrange);
+			mMeleeSkill = false;
+		}
 		break;
 	case SKILLTYPE_TARGETAREA:
 	case SKILLTYPE_TARGETLINE:
-		int minrange;
-		int maxrange; 
-		datalib->getData(std::string("StaticData/SkillData/")+ skillid + std::string("/MaxRange"),maxrange);
-		datalib->getData(std::string("StaticData/SkillData/")+ skillid + std::string("/MinRange"),minrange);
 		drawSkillArea(skilltype,minrange,maxrange);
+		mMeleeSkill = false;
 		break;
 	}
 	mGUICommand->setSquad(NULL);
@@ -741,14 +760,16 @@ void BattlePlayerState::drawSkillMoveArea(SkillType skilltype, float skillcost)
 					MoveNode* node = new MoveNode;
 					node->x = xx;
 					node->y = yy;
+					node->mPrevApLeft = apleft;
 					node->mAPleft = apleft - apcost;
-					node->mDirectionToPrew = East;
+					node->mDirectionToPrev = East;
 					mMoveMap.insert(MapNodeType(xx + yy * mapsize, node));
 				}
 				else
 				{
+					ite->second->mPrevApLeft = apleft;
 					ite->second->mAPleft = apleft - apcost;
-					ite->second->mDirectionToPrew = East;
+					ite->second->mDirectionToPrev = East;
 				}
 			}
 			xx = x + 1;
@@ -769,14 +790,16 @@ void BattlePlayerState::drawSkillMoveArea(SkillType skilltype, float skillcost)
 					MoveNode* node = new MoveNode;
 					node->x = xx;
 					node->y = yy;
+					node->mPrevApLeft = apleft;
 					node->mAPleft = apleft - apcost;
-					node->mDirectionToPrew = West;
+					node->mDirectionToPrev = West;
 					mMoveMap.insert(MapNodeType(xx + yy * mapsize, node));
 				}
 				else
 				{
+					ite->second->mPrevApLeft = apleft;
 					ite->second->mAPleft = apleft - apcost;
-					ite->second->mDirectionToPrew = West;
+					ite->second->mDirectionToPrev = West;
 				}
 			}
 			xx = x;
@@ -797,14 +820,16 @@ void BattlePlayerState::drawSkillMoveArea(SkillType skilltype, float skillcost)
 					MoveNode* node = new MoveNode;
 					node->x = xx;
 					node->y = yy;
+					node->mPrevApLeft = apleft;
 					node->mAPleft = apleft - apcost;
-					node->mDirectionToPrew = South;
+					node->mDirectionToPrev = South;
 					mMoveMap.insert(MapNodeType(xx + yy * mapsize, node));
 				}
 				else
 				{
+					ite->second->mPrevApLeft = apleft;
 					ite->second->mAPleft = apleft - apcost;
-					ite->second->mDirectionToPrew = South;
+					ite->second->mDirectionToPrev = South;
 				}
 			}
 			xx = x;
@@ -825,14 +850,16 @@ void BattlePlayerState::drawSkillMoveArea(SkillType skilltype, float skillcost)
 					MoveNode* node = new MoveNode;
 					node->x = xx;
 					node->y = yy;
+					node->mPrevApLeft = apleft;
 					node->mAPleft = apleft - apcost;
-					node->mDirectionToPrew = North;
+					node->mDirectionToPrev = North;
 					mMoveMap.insert(MapNodeType(xx + yy * mapsize, node));
 				}
 				else
 				{
+					ite->second->mPrevApLeft = apleft;
 					ite->second->mAPleft = apleft - apcost;
-					ite->second->mDirectionToPrew = North;
+					ite->second->mDirectionToPrev = North;
 				}
 			}
 		}
@@ -872,7 +899,7 @@ int BattlePlayerState::skillPass(int x, int y, float &apcost, SkillType skilltyp
 	ite = mMoveMap.find(x + y * mapsize);
 	if(ite != mMoveMap.end())
 	{
-		if(ite->second->mAPleft >= apleft)
+		if(ite->second->mPrevApLeft >= apcost)
 			return 0;
 	}
 	BattleSquad* blocksquad = BattleSquadManager::getSingleton().getBattleSquadAt(x,y,1,true);
@@ -913,35 +940,47 @@ void BattlePlayerState::useSkillAt(int x,int y)
 		squad = BattleSquadManager::getSingleton().getBattleSquadAt(x,y,1,true);
 		if(squad == NULL)
 			return;
-		executeSkillOn( x,  y, squad);
+		if(mMeleeSkill)
+			executeSkillOn( x,  y, squad);
+		else
+			executeSkillAt(x,y);
 		break;
 	case SKILLTYPE_TARGETENEMY:
 		squad = BattleSquadManager::getSingleton().getBattleSquadAt(x,y,1,true);
 		if(squad == NULL)
 			return;
 		if(BattleSquadManager::getSingleton().getTeamRelation(squad->getTeam()) > 0)
-			executeSkillOn( x,  y, squad);
+		{
+			if(mMeleeSkill)
+				executeSkillOn( x,  y, squad);
+			else
+				executeSkillAt(x,y);
+		}
 		break;
 	case SKILLTYPE_TARGETFRIEND:
 		squad = BattleSquadManager::getSingleton().getBattleSquadAt(x,y,1,true);
 		if(squad == NULL)
 			return;
 		if(BattleSquadManager::getSingleton().getTeamRelation(squad->getTeam()) == 0)
-			executeSkillOn(x, y, squad);
+		{
+			if(mMeleeSkill)
+				executeSkillOn( x,  y, squad);
+			else
+				executeSkillAt(x,y);
+		}
 		break;
 	default:
 		executeSkillAt(x, y);
 		break;
 	}
-	
-
 }
 
 void BattlePlayerState::drawSkillTargetArea(int x,int y)
 {
 	if(mSkillType == SKILLTYPE_TARGETALL || mSkillType == SKILLTYPE_TARGETENEMY || mSkillType == SKILLTYPE_TARGETFRIEND)
 	{
-		createPath(x,y);
+		if(mMeleeSkill)
+			createPath(x,y);
 	}
 }
 
@@ -964,7 +1003,7 @@ void BattlePlayerState::executeSkillOn(int x, int y, BattleSquad* squad)
 		ite = mMoveMap.find(xx + yy * mapsize);
 		croodlistrev.push_back(xx);
 		croodlistrev.push_back(yy);
-		Direction d = ite->second->mDirectionToPrew;
+		Direction d = ite->second->mDirectionToPrev;
 		switch(d)
 		{
 		case North:

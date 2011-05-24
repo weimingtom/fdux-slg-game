@@ -72,7 +72,8 @@ private:
 	{
 		int x;
 		int y;
-		Direction mDirectionToPrew;
+		Direction mDirectionToPrev;
+		float mPrevApLeft;
 		float mAPleft;
 	};
 	std::map<int, MoveNode*> mMoveMap;
@@ -113,6 +114,7 @@ private:
 	BattleSquad* mTargetSquad;
 	SkillType mSkillType;
 	int mSkillArea;
+	bool mMeleeSkill;
 	AreaGrap* mTargetAreaGrap;
 	void drawSkillMoveArea(SkillType skilltype, float skillcost);
 	void drawSkillArea(SkillType skilltype, int minrange, int maxrange);

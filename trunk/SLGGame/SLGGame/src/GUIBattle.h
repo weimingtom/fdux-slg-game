@@ -37,6 +37,8 @@ private:
 	void GridInputEvent(int x,int y);
 	
 	BattleState* mBattleState;
+
+	//MyGUI::Button* mButton;
 };
 
 class GUIBattleFactory:

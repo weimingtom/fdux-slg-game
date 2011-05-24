@@ -63,14 +63,17 @@ bool Core::initialize()
 		mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC);
 
 		mCamera = mSceneMgr->createCamera("PlayerCam");
-		mCamera->setPosition(Ogre::Vector3(0,50,382));
-		mCamera->lookAt(Ogre::Vector3(0,0,0));
+		mCamera->setPosition(Ogre::Vector3(50.0f,0.0f,50.0f));
+		mCamera->lookAt(Ogre::Vector3(0.0f,0.0f,0.0f));
 		mCamera->setNearClipDistance(0.5f);
 		mCamera->setFarClipDistance(500.0f);
 
 		Ogre::Viewport* vp = mWindow->addViewport(mCamera);
+		vp->setMaterialScheme("Default");
+		//vp->setMaterialScheme("WriteDepthMap");
 		mCamera->setAspectRatio(Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));
-
+		//mCamera->setProjectionType(Ogre::PT_ORTHOGRAPHIC);
+		//mCamera->setOrthoWindowWidth(Ogre::Real(vp->getActualWidth())/5);
 		initializeResource();
 
 		Ogre::ResourceGroupManager::getSingletonPtr()->initialiseAllResourceGroups();
@@ -81,7 +84,7 @@ bool Core::initialize()
 		mGUISystem=new GUISystem(mWindow,mSceneMgr);
 		mGUISystem->registerSceneFactory(StageScene,new GUIStageFactory());
 		mGUISystem->registerSceneFactory(MenuScene,new GUIMenuFactory());
-		mGUISystem->registerSceneFactory(PUDebugScene,new GUIPUDebugFactory());
+		//mGUISystem->registerSceneFactory(PUDebugScene,new GUIPUDebugFactory());
 		mGUISystem->registerSceneFactory(BattleScene,new GUIBattleFactory());
 		mGUISystem->registerSceneFactory(LoadingScene, new LoadSceneFactory());
 
@@ -93,6 +96,13 @@ bool Core::initialize()
 		mInputControl->setGUISystem(mGUISystem);
 
 		initializeOIS();
+
+		//初始化阴影
+		mSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_NONE);
+		//mSceneMgr->setShadowCasterRenderBackFaces(false);
+		//mSceneMgr->setShadowTextureSelfShadow(true);
+		//mSceneMgr->setShadowTextureCasterMaterial("DepthShadowmap/Caster");
+		//mSceneMgr->setShadowTexturePixelFormat(Ogre::PF_FLOAT32_R);
 
 		//初始化文字部分
 		mLuaSystem->registerCLib("AVGLib",AVGLib);
@@ -244,6 +254,7 @@ void Core::Uninitialize()
 
 	if (mSceneMgr)
 	{
+		mSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_NONE);
 		mSceneMgr->clearScene();
 		mSceneMgr->destroyAllCameras();
 		mSceneMgr = nullptr;

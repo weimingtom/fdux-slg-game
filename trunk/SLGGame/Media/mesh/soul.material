@@ -1,7 +1,9 @@
-material soul
+import DepthShadowmap/Caster from "Shadow.material"
+material soul : DepthShadowmap/Caster
 {
-	technique
+	technique default
 	{
+		scheme Default
 		pass
 		{
 			ambient 0.588235 0.588235 0.588235 

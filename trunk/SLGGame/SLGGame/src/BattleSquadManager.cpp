@@ -8,8 +8,11 @@
 
 #include "BattleSquad.h"
 
-#include "cutscenes.h"
 #include "LuaSystem.h"
+
+#include "cutscene.h"
+#include "DirectionCutScene.h"
+#include "SquadDeadCutScene.h"
 
 BattleSquadManager::BattleSquadManager()
 {
@@ -226,6 +229,9 @@ CutScene* BattleSquadManager::useSkillOn(BattleSquad* attacksquad, BattleSquad* 
 			datalib->setData(attacksquad->getPath() + std::string("/APSetup"),attacksquad->getActionPointCost(aptype) +2.0f);
 		else
 			datalib->setData(attacksquad->getPath() + std::string("/APBattle"),attacksquad->getActionPointCost(aptype) +2.0f);
+		int skillcooldown;
+		datalib->getData(skillinfopath + std::string("/CoolDown"),skillcooldown);
+		datalib->setData(skillpath + std::string("/CoolDown"),skillcooldown);
 	}
 	return mCutSceneQueue;
 }
@@ -237,6 +243,54 @@ CutScene* BattleSquadManager::useSkillAt(BattleSquad* attacksquad, int x, int y,
 
 bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad* defenesquad, int &atkdead, int &atkwound,int &defdead, int &defwound)
 {
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	int targetx, targety, casterx,castery;
+	attacksquad->getCrood(&casterx, &castery);
+	defenesquad->getCrood(&targetx, &targety);
+	if(!(casterx == targetx && castery == targety))
+	{
+		Direction d;
+		float k;
+		if(targety-castery == 0)
+			k = 2.0f;
+		else
+			k = abs(targetx -casterx)/ abs(targety - castery);
+		if( targety > castery && k <= 1.0f)
+			d = South;
+		else if( targety < castery && k <= 1.0f)
+			d = North;
+		else if( targetx > casterx )
+			d = East;
+		else
+			d = West;
+		if(attacksquad->getDirection() != d)
+		{
+			attacksquad->setDirection(d);
+			DirectionCutScene* dcutscene = new DirectionCutScene(attacksquad->getGrapId(), d);
+			setCutScene(dcutscene);
+		}
+	}
+	int asquadugb = attacksquad->getUnitGrapNum();
+	int dsquadugb = defenesquad->getUnitGrapNum();
+	int asquadunitnum, dsquadunitnum;
+	datalib->getData(attacksquad->getPath() + std::string("/UnitNumber"), asquadunitnum);
+	datalib->getData(defenesquad->getPath() + std::string("/UnitNumber"), dsquadunitnum);
+	asquadunitnum -= 5;
+	dsquadunitnum -= 10;
+	asquadunitnum = (asquadunitnum < 1)? 1:asquadunitnum;
+	dsquadunitnum = (dsquadunitnum < 1)? 1:dsquadunitnum;
+	datalib->setData(attacksquad->getPath() + std::string("/UnitNumber"), asquadunitnum);
+	datalib->setData(defenesquad->getPath() + std::string("/UnitNumber"), dsquadunitnum);
+	int asquaduga = attacksquad->getUnitGrapNum();
+	int dsquaduga = defenesquad->getUnitGrapNum();
+	if(dsquaduga < dsquadugb)
+	{
+		setCutScene(new SquadDeadCutScene(defenesquad->getGrapId(), dsquadugb - dsquaduga));
+	}
+	if(asquaduga < asquadugb)
+	{
+		setCutScene(new SquadDeadCutScene(attacksquad->getGrapId(), asquadugb - asquaduga));
+	}
 	return true;
 }
 

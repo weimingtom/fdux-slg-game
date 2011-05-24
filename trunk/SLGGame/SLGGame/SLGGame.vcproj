@@ -564,6 +564,14 @@
 						RelativePath=".\src\MoveCutScene.h"
 						>
 					</File>
+					<File
+						RelativePath=".\src\SquadDeadCutScene.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\SquadDeadCutScene.h"
+						>
+					</File>
 				</Filter>
 				<Filter
 					Name="Billboard"
