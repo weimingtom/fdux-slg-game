@@ -1,0 +1,27 @@
+import DepthShadowmap/CasterWithSkin from "Shadow.material"
+material LightInf : DepthShadowmap/CasterWithSkin
+{
+	technique default
+	{
+		scheme Default
+		pass
+		{
+			vertex_program_ref Crowd
+			{
+			
+			}
+		
+			ambient 0.588 0.588 0.588 
+			diffuse 0.588 0.588 0.588 
+			specular 0 0 0 10
+			emissive 0 0 0 
+
+			texture_unit 
+			{
+				texture LightInf.dds
+			}
+		}
+	}
+}
+
+

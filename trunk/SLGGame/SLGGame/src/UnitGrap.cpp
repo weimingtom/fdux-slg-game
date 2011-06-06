@@ -8,6 +8,7 @@
 #include <iostream>
 
 #define ALPHA_DELTA_TIME 100
+#define MOVE_KEYFRAME_TIME 1.5
 
 UnitGrap::UnitGrap(std::string unitmesh, std::string unitmat,std::string factiontex,Ogre::SceneNode* node):
 mNode(node),
@@ -17,30 +18,18 @@ mShield(NULL),
 mPUSystem(NULL),
 mPUSystemEnd(false),
 mIsCheckHeight(false),
-mFormationPosition(0),
 mAlpha(-1),
-mAlphaDeltaTime(0)
+mAlphaDeltaTime(0),
+mNodeAnimation(NULL),
+mNodeAnimationState(NULL),
+mFormationPosition(0),
+mOffsetX(0),
+mOffsetY(0)
 {
-	//std::string meshName;
-	//std::string matName;
-	//Ogre::Vector3 scale;
-	std::string initAnimation;
 
-	/*
-	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Unit/")+unitName+std::string("/MeshName"),meshName);
-	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Unit/")+unitName+std::string("/MatName"),matName);
-	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Unit/")+unitName+std::string("/Scale"),scale);
-	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Unit/")+unitName+std::string("/InitAnimation"),initAnimation);
-	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Unit/")+unitName+std::string("/LeftHandBone"),mLeftHandBoneName);
-	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Unit/")+unitName+std::string("/RightHandBone"),mRightHandBoneName);
-	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Unit/")+unitName+std::string("/WalkName"),mWalkName);
-	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Unit/")+unitName+std::string("/DeathName"),mDeathName);
-	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Unit/")+unitName+std::string("/RecoverName"),mRecoverName);
-	DataLibrary::getSingletonPtr()->getData(std::string("GameData/Unit/")+unitName+std::string("/RotationName"),mRotationName);
-	*/
-	initAnimation = "Ready1H";
+	mIdleName="Ready1H";
 	mLeftHandBoneName = "Bip01 L Hand";
-	mRightHandBoneName = "Bip01 R Finger1";
+	mRightHandBoneName = "Bip01 R Hand";
 	mWalkName = "Run1H";
 	mDeathName = "Death";
 	mRecoverName ="Recover";
@@ -54,8 +43,7 @@ mAlphaDeltaTime(0)
 	mNode->attachObject(mUnitEntity);
 
 	mAniBlender=new AnimationBlender(mUnitEntity);
-	mAniBlender->init(initAnimation);
-	//mNode->setScale(scale);
+	mAniBlender->init(mIdleName);
 }
 
 UnitGrap::~UnitGrap(void)
@@ -85,7 +73,7 @@ UnitGrap::~UnitGrap(void)
 	}
 
 	mNode->detachAllObjects();
-	mNode->getParentSceneNode()->removeAndDestroyChild(mNode->getName());
+	Core::getSingletonPtr()->mSceneMgr->destroySceneNode(mNode);
 	Core::getSingletonPtr()->mSceneMgr->destroyEntity(mUnitEntity);
 }
 
@@ -221,18 +209,69 @@ void UnitGrap::stopEffect()
 	mPUSystem->stop();
 }
 
+void UnitGrap::setMovePath( std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions)
+{
+	mNodeAnimation = Core::getSingletonPtr()->mSceneMgr->createAnimation(mNode->getName()+"_Ani", vectors.size()*MOVE_KEYFRAME_TIME);
+	mNodeAnimation->setInterpolationMode(Ogre::Animation::IM_LINEAR);
+	Ogre::NodeAnimationTrack* track = mNodeAnimation->createNodeTrack(1, mNode);
+
+	float timePosition=0;
+	Ogre::TransformKeyFrame* kf = track->createNodeKeyFrame(timePosition);
+	kf->setTranslate(mNode->getPosition());
+	kf->setRotation(mNode->getOrientation());
+
+	std::map<int,Ogre::Vector3>::iterator itr  =  vectors.begin();
+	for(  ;  itr !=  vectors.end();  ++itr )
+	{
+		timePosition+=MOVE_KEYFRAME_TIME;
+		kf = track->createNodeKeyFrame(timePosition);
+
+		kf->setTranslate(itr->second);//+Ogre::Vector3(mOffsetX,0,mOffsetY));
+
+		std::map<int,Ogre::Quaternion>::iterator itr1;
+		itr1 = quaternions.find(itr->first);
+
+		if( itr1 != quaternions.end() )
+		{
+			kf->setRotation(itr1->second);
+		}
+	}
+
+	mNodeAnimationState = Core::getSingletonPtr()->mSceneMgr->createAnimationState(mNode->getName()+"_Ani");
+
+	mIsCheckHeight=true;
+	mNodeAnimationState->setLoop(false);
+	mNodeAnimationState->setEnabled(true);
+	setAnimation(mWalkName,true,false);
+
+	mReturnInitAni=true;
+}
+
 void UnitGrap::setPosition( float x,float z )
 {
-	mNode->setPosition(x,0,z);
+	mNode->setPosition(x+mOffsetX,0,z+mOffsetY);
 	setHeight();
 }
 
 void UnitGrap::setHeight()
 {
-	Ogre::Vector3 lv=mNode->getPosition();
-	Ogre::Vector3 v=mNode->convertLocalToWorldPosition(lv);
-	lv.y=Terrain::getSingletonPtr()->getHeight(v.x,v.z);
-	mNode->setPosition(lv);
+	Ogre::Vector3 v=mNode->getPosition();
+	//Ogre::Vector3 v=mNode->convertLocalToWorldPosition(lv);
+	v.y=Terrain::getSingletonPtr()->getHeight(v.x,v.z);
+	mNode->setPosition(v);
+}
+
+void UnitGrap::setPositionOffset( float ox,float oy )
+{
+	Ogre::Vector3 v=mNode->getPosition();
+	v.x-=mOffsetX;
+	v.z-=mOffsetY;
+	v.x+=ox;
+	v.z+=oy;
+	mNode->setPosition(v.x,0,v.z);
+	setHeight();
+	mOffsetX=ox;
+	mOffsetY=oy;
 }
 
 void UnitGrap::setFadeInOut( bool isIn )
@@ -388,6 +427,15 @@ void UnitGrap::setAnimation( std::string name,bool loop,bool returnInit )
 	mReturnInitAni=returnInit;
 }
 
+void UnitGrap::stopTransform()
+{
+	Core::getSingletonPtr()->mSceneMgr->destroyAnimationState(mNode->getName()+"_Ani");
+	Core::getSingletonPtr()->mSceneMgr->destroyAnimation(mNode->getName()+"_Ani");
+	mNodeAnimation=NULL;
+	mNodeAnimationState=NULL;
+	mIsCheckHeight=false;
+}
+
 void UnitGrap::update( unsigned int deltaTime )
 {
 	mAniBlender->addTime(deltaTime/1000.0f);
@@ -396,6 +444,22 @@ void UnitGrap::update( unsigned int deltaTime )
 	{
 		mAniBlender->BackToInit();
 		mReturnInitAni=false;
+	}
+
+	if(mNodeAnimationState!=NULL)
+	{
+		if (mNodeAnimationState->getTimePosition() >= mNodeAnimationState->getLength())
+		{
+			stopTransform();
+			if (mReturnInitAni)
+			{
+				mAniBlender->BackToInit();
+			}
+		}
+		else
+		{
+			mNodeAnimationState->addTime(deltaTime/1000.0f);
+		}
 	}
 
 	if (mIsCheckHeight)

@@ -372,7 +372,7 @@ void BattleSquad::newTurn()
 	{
 		std::string skillpath = getPath() + std::string("/SkillTable/") + (*ite);
 		int cooldown;
-		bool re = datalib->getData(skillpath + std::string("/CoolDown"),cooldown);
+		bool re = datalib->getData(skillpath + std::string("/CoolDown"),cooldown,true);
 		if(re)
 		{
 			if(cooldown > 0)

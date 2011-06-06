@@ -14,8 +14,8 @@
 			</SkillTable>
 			<LeaderName type="String" value="TestLeaderName"/>
 			<LeaderPicture type="String" value="TestLeaderHead.jpg"/>
-			<LeaderMesh type="String" value="Stronghold.mesh"/>
-			<LeaderMat type="String" value="Stronghold"/>
+			<LeaderMesh type="String" value="LightInf.mesh"/>
+			<LeaderMat type="String" value="LightInf"/>
 			<UnitMesh type="String" value="Stronghold.mesh"/>
 			<UnitMat type="String" value="Stronghold"/>	
 			<UnitMaxNumber type="Int" value="50"/>				
