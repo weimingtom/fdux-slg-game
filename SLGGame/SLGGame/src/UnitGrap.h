@@ -3,6 +3,7 @@
 #include <ogre.h>
 #include <string>
 #include <vector>
+#include <map>
 
 #include <ParticleUniverseSystem.h>
 #include <ParticleUniverseSystemListener.h>
@@ -42,11 +43,17 @@ public:
 
 	void stopEffect();
 
+	void setMovePath(std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions);
+
 	void setPosition(float x,float z);
 
 	void setHeight();
 
+	void setPositionOffset(float ox,float oy);
+
 	void setAnimation(std::string name,bool loop,bool returnInit);
+
+	void stopTransform();
 
 	void setFadeInOut(bool isIn);
 
@@ -72,9 +79,15 @@ public:
 	std::string mDeathName;
 	std::string mRecoverName;
 	std::string mRotationName;
+	std::string mIdleName;
 	int mFormationPosition;
+	float mOffsetX;
+	float mOffsetY;
 
 	AnimationBlender* mAniBlender;//¶¯»­´úÀí
+	Ogre::Animation* mNodeAnimation;
+	Ogre::AnimationState* mNodeAnimationState;
+
 	ParticleUniverse::ParticleSystem* mPUSystem;
 	bool mPUSystemEnd;
 	bool mReturnInitAni;

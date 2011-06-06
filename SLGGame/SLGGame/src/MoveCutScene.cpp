@@ -9,8 +9,10 @@ MoveCutScene::MoveCutScene(unsigned int id,std::vector<Ogre::Vector2>& grids,Ogr
 {
 	std::map<int,Ogre::Vector3> vectors;
 	std::map<int,Ogre::Quaternion> quaternions;
+	std::map<int,Direction> directions;
 	Ogre::Vector2 current=currentGrid;
 	int index=0;
+	mSquadGraphics=SquadGrapManager::getSingletonPtr()->getSquad(id);
 
 	//路径点查找算法
 	for(std::vector<Ogre::Vector2>::iterator it=grids.begin();it!=grids.end();it++)
@@ -35,7 +37,7 @@ MoveCutScene::MoveCutScene(unsigned int id,std::vector<Ogre::Vector2>& grids,Ogr
 			Terrain::getSingletonPtr()->getWorldCoords(current.x,current.y,wx,wy);
 			//height=Terrain::getSingletonPtr()->getHeight(wx,wy);
 
-			Ogre::Vector3 v(wx+diffGrid.x*(TILESIZE/2),height,wy+diffGrid.y*(TILESIZE/2));
+			Ogre::Vector3 v(wx+diffGrid.x*(TILESIZE),height,wy+diffGrid.y*(TILESIZE));
 			vectors[index]=v;
 		}
 		
@@ -51,24 +53,26 @@ MoveCutScene::MoveCutScene(unsigned int id,std::vector<Ogre::Vector2>& grids,Ogr
 			q.FromAngleAxis(Ogre::Degree(0),Ogre::Vector3(0,1,0));
 			mDirection=South;
 		}
-		else if (diffGrid.x==1 && diffGrid.y==0)//东
-		{
-			q.FromAngleAxis(Ogre::Degree(90),Ogre::Vector3(0,1,0));
-			mDirection=West;
-		}
-		else if (diffGrid.x==-1 && diffGrid.y==0)//西
+		else if (diffGrid.x==-1 && diffGrid.y==0)//东
 		{
 			q.FromAngleAxis(Ogre::Degree(270),Ogre::Vector3(0,1,0));
+			mDirection=West;
+		}
+		else if (diffGrid.x==1 && diffGrid.y==0)//西
+		{
+			q.FromAngleAxis(Ogre::Degree(90),Ogre::Vector3(0,1,0));
 			mDirection=East;
 		}
+		
 		quaternions[index]=q;
+
+		directions[index]=mDirection;
 		
 		current=(*it);
 		index++;
 	}
 
-	mSquadGraphics=SquadGrapManager::getSingletonPtr()->getSquad(id);
-	mSquadGraphics->setMovePath(vectors,quaternions);
+	mSquadGraphics->setMovePath(vectors,quaternions,directions);
 
 }
 

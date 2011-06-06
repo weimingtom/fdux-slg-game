@@ -94,25 +94,25 @@ bool GUITerrainWindows::GridInputEvent( int x,int y )
 	std::string groundobj;
 	int gridid = x+mMapSize*y;
 	path = str(boost::format("GameData/BattleData/MapData/Map/M%1%/MapObjType")%Ogre::StringConverter::toString(gridid));
-	re = datalib->getData(path, groundobj);
+	re = datalib->getData(path, groundobj,true);
 	if(re)
 	{
 		path = str(boost::format("StaticData/MapObjType/%1%/Name")%groundobj);
 		re = datalib->getData(path, groundobj);
 		mGroundObjLabel->setCaption(groundobj);
+		float modifier;
+		modifier = MapDataManager::getSingleton().getDefModify(x,y,1);
+		mTerrainDefenceLabel->setCaption(Ogre::StringConverter::toString(modifier));
+		modifier = MapDataManager::getSingleton().getCovert(x,y,1);
+		mTerrainCovertLabel->setCaption(Ogre::StringConverter::toString(modifier));
+		modifier = MapDataManager::getSingleton().getCavApCost(x,y,1);
+		mTerrainCavApLabel->setCaption(Ogre::StringConverter::toString(modifier));
+		modifier = MapDataManager::getSingleton().getInfApCost(x,y,1);
+		mTerrainInfApLabel->setCaption(Ogre::StringConverter::toString(modifier));
 	}
 	else
 	{
 		mGroundObjLabel->setCaption("");
 	}
-	float modifier;
-	modifier = MapDataManager::getSingleton().getDefModify(x,y,1);
-	mTerrainDefenceLabel->setCaption(Ogre::StringConverter::toString(modifier));
-	modifier = MapDataManager::getSingleton().getCovert(x,y,1);
-	mTerrainCovertLabel->setCaption(Ogre::StringConverter::toString(modifier));
-	modifier = MapDataManager::getSingleton().getCavApCost(x,y,1);
-	mTerrainCavApLabel->setCaption(Ogre::StringConverter::toString(modifier));
-	modifier = MapDataManager::getSingleton().getInfApCost(x,y,1);
-	mTerrainInfApLabel->setCaption(Ogre::StringConverter::toString(modifier));
 	return false;
 }

@@ -17,7 +17,7 @@ CameraContral::CameraContral()
 		0,   -0.5,    0,  0.5, 
 		0,      0,    1,    0,
 		0,      0,    0,    1);
-	Ogre::Matrix4 cameraproj= PROJECTIONCLIPSPACE2DTOIMAGESPACE_PERSPECTIVE * CameraContral::getSingleton().getShadowMapCamera()->getProjectionMatrixWithRSDepth();
+	Ogre::Matrix4 cameraproj= PROJECTIONCLIPSPACE2DTOIMAGESPACE_PERSPECTIVE *mShadowMapCamera->getProjectionMatrixWithRSDepth();
 	sharedparams->setNamedConstant("texProj",cameraproj);
 	mMinX -= 0.0f;
 	mMinY -= 0.0f;

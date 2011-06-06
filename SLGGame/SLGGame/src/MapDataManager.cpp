@@ -63,7 +63,7 @@ bool MapDataManager::getPassable(int x, int y, int team)
 	maxpassable = (maxpassable > passable)? maxpassable:passable;
 	minpassable = (minpassable < passable)? minpassable:passable;
 	std::string groundobj;
-	re = datalib->getData(path + std::string("/MapObjType"), groundobj);
+	re = datalib->getData(path + std::string("/MapObjType"), groundobj,true);
 	if(re)
 	{
 		path = str(boost::format("StaticData/MapObjType/%1%/GroundModifier/Passable")%groundobj);
@@ -155,7 +155,7 @@ float MapDataManager::getDefModify(int x, int y, int team)
 	std::string path =  std::string("GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(x + y * mMapSize);
 	std::string groundobj;
 	float groundobjcost = 0.0f;
-	re = datalib->getData(path + std::string("/MapObjType"), groundobj);
+	re = datalib->getData(path + std::string("/MapObjType"), groundobj,true);
 	if(re)
 	{
 		path = str(boost::format("StaticData/MapObjType/%1%/GroundModifier/Defence")%groundobj);
