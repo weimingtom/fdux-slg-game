@@ -227,20 +227,28 @@ void SquadGraphics::setMovePath(std::map<int,Ogre::Vector3>& vectors,std::map<in
 		}
 	}
 
+	mNode->setPosition((vectors.end().operator --())->second);
+	mDirection=(directions.end().operator --())->second;
+
+	Ogre::Vector3 CommanderVector;
+	Ogre::Vector3 SoldierVector[4];
+
+	getFormationPosition(mFormation,mDirection,CommanderVector,SoldierVector);
+
 	std::map<int,Ogre::Vector3>* newVectors=getUnitMovePath(mCommanderUnit,vectors,directions,true);
 	mCommanderUnit->setMovePath(*newVectors,quaternions);
+	mCommanderUnit->mOffsetX=CommanderVector.x;
+	mCommanderUnit->mOffsetY=CommanderVector.z;
 	delete newVectors;
 
 	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 	{
 		newVectors=getUnitMovePath((*it),vectors,directions,false);
 		(*it)->setMovePath(*newVectors,quaternions);
+		(*it)->mOffsetX=SoldierVector[(*it)->mFormationPosition].x;
+		(*it)->mOffsetY=SoldierVector[(*it)->mFormationPosition].z;
 		delete newVectors;
 	}
-
-	mNode->setPosition((vectors.end().operator --())->second);
-	mDirection=(directions.end().operator --())->second;
-
 }
 
 std::map<int,Ogre::Vector3>* SquadGraphics::getUnitMovePath( UnitGrap* unit,std::map<int,Ogre::Vector3>& vectors,std::map<int,Direction>& directions,bool isCommander)
@@ -256,33 +264,6 @@ std::map<int,Ogre::Vector3>* SquadGraphics::getUnitMovePath( UnitGrap* unit,std:
 
 		if( itr1 != directions.end() )
 		{
-			//switch(itr1->second)
-			//{
-			//case North:
-			//	{
-			//		w1=-1;
-			//		w2=0;
-			//		break;
-			//	}
-			//case South:
-			//	{
-			//		w1=1;
-			//		w2=0;
-			//		break;
-			//	}
-			//case West:
-			//	{
-			//		w1=0;
-			//		w2=-1;
-			//		break;
-			//	}
-			//case East:
-			//	{
-			//		w1=0;
-			//		w2=1;
-			//		break;
-			//	}
-			//}
 			
 			Ogre::Vector3 dv;
 			Ogre::Vector3 v=vectors[itr->first];
