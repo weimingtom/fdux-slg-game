@@ -16,19 +16,15 @@ static int MeleeCombat(lua_State* L)
 	std::string defendsquad(luaL_checkstring(L, 2));
 	BattleSquad* attacker = BattleSquadManager::getSingleton().getBattleSquad(attacksquad);
 	BattleSquad* defender = BattleSquadManager::getSingleton().getBattleSquad(defendsquad);
-	int re = 0, atkdie = 0, atkwond = 0, defdie = 0,defwond = 0;
+	int re = 0;
 	if(attacker != NULL &&  defender!= NULL)
 	{
-		re =  BattleSquadManager::getSingleton().meleeAttackSquad(attacker, defender, atkdie, atkwond, defdie, defwond);
+		re =  BattleSquadManager::getSingleton().meleeAttackSquad(attacker, defender);
 	}
 	else
 		re = 0;
 	lua_pushnumber(L,re);
-	lua_pushnumber(L,atkdie);
-	lua_pushnumber(L,atkwond);
-	lua_pushnumber(L,defdie);
-	lua_pushnumber(L,defwond);
-	return 5;
+	return 1;
 }
 
 static const struct luaL_Reg SkillLib[] =

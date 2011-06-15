@@ -3,10 +3,16 @@ void casterVP(
     out float4 outPos        : POSITION,
     out float2 outDepth        : TEXCOORD0,
  
-    uniform float4x4 worldViewProj
+	uniform float4x4 world,
+    //uniform float4x4 worldViewProj,
+	uniform float4x4 viewProjectionMatrix
+	//uniform float4x4 texView,
+	//uniform float4x4 texProj
     )
 {
-    outPos = mul(worldViewProj, position);
+	float4 worldPos = mul(world, position);
+	//float4x4 texViewProj = mul(texProj, texView);
+    outPos = mul(viewProjectionMatrix, worldPos);
  
     outDepth.x = outPos.z;
     outDepth.y = outPos.w;

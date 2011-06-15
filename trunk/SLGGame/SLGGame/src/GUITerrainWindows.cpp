@@ -94,7 +94,7 @@ bool GUITerrainWindows::GridInputEvent( int x,int y )
 	std::string groundobj;
 	int gridid = x+mMapSize*y;
 	path = str(boost::format("GameData/BattleData/MapData/Map/M%1%/MapObjType")%Ogre::StringConverter::toString(gridid));
-	re = datalib->getData(path, groundobj,true);
+	re = datalib->getData(path, groundobj, true);
 	if(re)
 	{
 		path = str(boost::format("StaticData/MapObjType/%1%/Name")%groundobj);

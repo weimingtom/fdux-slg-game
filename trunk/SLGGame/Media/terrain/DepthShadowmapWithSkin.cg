@@ -10,6 +10,8 @@ void casterVP(
 	uniform float4x4 viewProjectionMatrix,
 	uniform float numBones,
 	uniform float3x4   worldMatrix3x4Array[80]
+	//uniform float4x4 texView,
+	//uniform float4x4 texProj
     )
 {
 	float4 blendPos = float4(0,0,0,0);
@@ -18,7 +20,7 @@ void casterVP(
 	{
 		blendPos += float4(mul(worldMatrix3x4Array[index*numBones+blendIdx[i]], position).xyz, 1.0) * blendWgt[i];
 	}
-	
+	//float4x4 texViewProj = mul(texProj, texView);
     outPos = mul(viewProjectionMatrix, blendPos);
  
     outDepth.x = outPos.z;

@@ -196,6 +196,11 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 		}
 		skillno++;
 	}
+	for(;skillno < 9; skillno++)
+	{
+		mSkill[skillno]->setVisible(false);
+		mSkill[skillno]->setEnabled(false);
+	}
 }
 
 void GUICommandWindows::setPlayerState(BattlePlayerState* playerstate)

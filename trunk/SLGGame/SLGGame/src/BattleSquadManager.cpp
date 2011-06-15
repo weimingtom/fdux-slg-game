@@ -70,7 +70,7 @@ BattleSquad* BattleSquadManager::getBattleSquad(std::string id)
 	BattleSquadIte ite;
 	for(ite = mSquadList.begin(); ite != mSquadList.end(); ite++)
 	{
-		if(id == (*ite)->getId())
+		if(id == (*ite)->getId() && (*ite)->IsEliminated() == false)
 			return (*ite);
 	}
 	for(ite = mDeployList.begin(); ite != mDeployList.end(); ite++)
@@ -87,6 +87,8 @@ BattleSquad* BattleSquadManager::getBattleSquadAt(int x, int y, int team, bool v
 	int faction = getTeamRelation(team);
 	for(ite = mSquadList.begin(); ite != mSquadList.end(); ite++)
 	{
+		if((*ite)->IsEliminated())
+			continue;
 		int xx,yy;
 		(*ite)->getCrood(&xx,&yy);
 		if(xx ==x && yy == y)
@@ -241,15 +243,16 @@ CutScene* BattleSquadManager::useSkillAt(BattleSquad* attacksquad, int x, int y,
 	return NULL;
 }
 
-bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad* defenesquad, int &atkdead, int &atkwound,int &defdead, int &defwound)
+bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad* defenesquad)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	//处理前置动画
+	Direction d;
 	int targetx, targety, casterx,castery;
 	attacksquad->getCrood(&casterx, &castery);
 	defenesquad->getCrood(&targetx, &targety);
 	if(!(casterx == targetx && castery == targety))
 	{
-		Direction d;
 		float k;
 		if(targety-castery == 0)
 			k = 2.0f;
@@ -270,26 +273,30 @@ bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad*
 			setCutScene(dcutscene);
 		}
 	}
-	int asquadugb = attacksquad->getUnitGrapNum();
-	int dsquadugb = defenesquad->getUnitGrapNum();
-	int asquadunitnum, dsquadunitnum;
-	datalib->getData(attacksquad->getPath() + std::string("/UnitNumber"), asquadunitnum);
-	datalib->getData(defenesquad->getPath() + std::string("/UnitNumber"), dsquadunitnum);
-	asquadunitnum -= 5;
-	dsquadunitnum -= 10;
-	asquadunitnum = (asquadunitnum < 1)? 1:asquadunitnum;
-	dsquadunitnum = (dsquadunitnum < 1)? 1:dsquadunitnum;
-	datalib->setData(attacksquad->getPath() + std::string("/UnitNumber"), asquadunitnum);
-	datalib->setData(defenesquad->getPath() + std::string("/UnitNumber"), dsquadunitnum);
-	int asquaduga = attacksquad->getUnitGrapNum();
-	int dsquaduga = defenesquad->getUnitGrapNum();
-	if(dsquaduga < dsquadugb)
+	float atkint = attacksquad->getAttr(ATTR_INITIATIVE, ATTRCALC_FULL,attacksquad->getDirection());
+	float defint = defenesquad->getAttr(ATTR_INITIATIVE, ATTRCALC_FULL,defenesquad->getDirection());
+	BattleSquad* squad = NULL;
+	if(atkint>=defint)
+		squad = attacksquad;
+	else
+		squad = defenesquad;
+	for(int n = 0; n < 2; n++)
 	{
-		setCutScene(new SquadDeadCutScene(defenesquad->getGrapId(), dsquadugb - dsquaduga));
-	}
-	if(asquaduga < asquadugb)
-	{
-		setCutScene(new SquadDeadCutScene(attacksquad->getGrapId(), asquadugb - asquaduga));
+		std::vector<int> atkrolls = squad->getAttackRolls(squad == defenesquad,d);
+		if(squad == attacksquad)
+			squad = defenesquad;
+		else
+			squad = attacksquad;
+		if(atkrolls.size() > 0)
+		{
+			int squadugb = squad->getUnitGrapNum();
+			squad->applyAttackRolls(false, d, atkrolls);
+			int squaduga = squad->getUnitGrapNum();
+			if(squaduga < squadugb)
+			{
+				setCutScene(new SquadDeadCutScene(squad->getGrapId(), squadugb - squaduga));
+			}
+		}
 	}
 	return true;
 }
@@ -306,5 +313,4 @@ void BattleSquadManager::setCutScene(CutScene* cutscene)
 		mLastCutScene->setNextScene(cutscene);
 		mLastCutScene = cutscene;
 	}
-
 }

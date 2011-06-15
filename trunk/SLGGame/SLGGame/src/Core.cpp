@@ -2,7 +2,7 @@
 
 #include "GUISystem.h"
 #include "GUIMenu.h"
-#include "GUIPUDebug.h"
+//#include "GUIPUDebug.h"
 #include "GUIStage.h"
 #include "LoadScene.h"
 #include "GUIBattle.h"
@@ -62,10 +62,12 @@ bool Core::initialize()
 
 		mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC);
 
+		Ogre::MovableObject::setDefaultQueryFlags(0);
+
 		mCamera = mSceneMgr->createCamera("PlayerCam");
 		mCamera->setPosition(Ogre::Vector3(50.0f,0.0f,50.0f));
 		mCamera->lookAt(Ogre::Vector3(0.0f,0.0f,0.0f));
-		mCamera->setNearClipDistance(0.5f);
+		mCamera->setNearClipDistance(5.0f);
 		mCamera->setFarClipDistance(500.0f);
 
 		Ogre::Viewport* vp = mWindow->addViewport(mCamera);
@@ -254,7 +256,7 @@ void Core::Uninitialize()
 
 	if (mSceneMgr)
 	{
-		mSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_NONE);
+		//mSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_NONE);
 		mSceneMgr->clearScene();
 		mSceneMgr->destroyAllCameras();
 		mSceneMgr = nullptr;
