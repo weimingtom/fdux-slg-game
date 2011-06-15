@@ -34,6 +34,8 @@ BattlePlayerState::BattlePlayerState()
 	mGUICommand = static_cast<GUICommandWindows *>(mGUIBattle->getSubWindow("CommandWindow"));
 	mGUICommand->setPlayerState(this);
 	mGUIMenu = static_cast<GUIMenuWindow *>(mGUIBattle->getSubWindow("Menu"));
+	mMouseX = 640;
+	mMouseY = 360;
 	newTurn();
 	mGUIState->setAllowNextTurn(true);
 
@@ -225,24 +227,32 @@ void BattlePlayerState::newTurn()
 
 void BattlePlayerState::reactiveState()
 {
-	if(mState == PLAYERCONTROL_CUTSCENE)
+	if(mSelectSquad->IsEliminated() == true)
 	{
-		mSquadWindow->setSquad(mSelectSquad);
-		if(mSelectSquad->getActionPoint() > 0.0f)
+		mSquadWindow->setSquad(NULL);
+		mGUICommand->setSquad(NULL);
+	}
+	else
+	{
+		if(mState == PLAYERCONTROL_CUTSCENE)
 		{
-			mGUICommand->setSquad(mSelectSquad);
+			mSquadWindow->setSquad(mSelectSquad);
+			if(mSelectSquad->getActionPoint() > 0.0f)
+			{
+				mGUICommand->setSquad(mSelectSquad);
+			}
+			mState = PLAYERCONTROL_CHOOSESKILL;
 		}
-		mState = PLAYERCONTROL_CHOOSESKILL;
+		mGUIState->setAllowNextTurn(true);
+		if(mMoveTargetX != -1)
+		{
+			if(mTargetSquad != NULL)
+				executeSkillOn(mMoveTargetX,mMoveTargetY, mTargetSquad);
+			else
+				executeMove(mMoveTargetX,mMoveTargetY);
+		}
+		mSquadWindow->setSquad(mSelectSquad);
 	}
-	mGUIState->setAllowNextTurn(true);
-	if(mMoveTargetX != -1)
-	{
-		if(mTargetSquad != NULL)
-			executeSkillOn(mMoveTargetX,mMoveTargetY, mTargetSquad);
-		else
-			executeMove(mMoveTargetX,mMoveTargetY);
-	}
-	mSquadWindow->setSquad(mSelectSquad);
 }
 
 void BattlePlayerState::moveSquad()

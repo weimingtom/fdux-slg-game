@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 #include "squaddefine.h"
 
@@ -43,12 +44,20 @@ public:
 	float getActionPointCost(int type);
 
 	SquadType getType();
+
+	std::vector<int> getAttackRolls(bool asdefender, Direction d);
+	void applyAttackRolls(bool rangedattack, Direction d, std::vector<int> attackrolls);
+
+	void OnDead();
+
+	bool IsEliminated() {return mIsEliminated;}
 private:
 	int mX;
 	int mY;
 	int mGrapId;
 	int mTeam;
 	std::string mId;
+	bool mIsEliminated;
 
 	float mCovert;
 	float mDetection;

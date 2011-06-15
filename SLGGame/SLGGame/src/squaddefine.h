@@ -100,3 +100,6 @@ const SkillType SKILLTYPE_TARGETLINE = 6;
 
 const int SKILLAPTYPE_SETUP = 0;
 const int SKILLAPTYPE_BATTLE = 1;
+
+const int ATKROLL = 20;
+const int DEFBOUSE = 15;

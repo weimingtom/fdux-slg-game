@@ -37,7 +37,7 @@ public:
 	CutScene* useSkillAt(BattleSquad* attacksquad, int x, int y, std::string skillid);
 
 	//½Å±¾µ÷ÓÃ
-	bool meleeAttackSquad(BattleSquad* attacksquad, BattleSquad* defenesquad, int &atkdead, int &atkwound,int &defdead, int &defwound);
+	bool meleeAttackSquad(BattleSquad* attacksquad, BattleSquad* defenesquad);
 	void setCutScene(CutScene* cutscene);
 private:
 	int mCurid;

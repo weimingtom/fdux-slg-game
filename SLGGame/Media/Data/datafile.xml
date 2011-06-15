@@ -4,7 +4,7 @@
 		<TestSquad>
 			<Type type="Int" value="0"/>
 			<SoilderId type="String" value="TestSoilder"/>
-			<HorseId type="String" value="HeavyHorse"/>
+			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="TestPWeapon"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="none"/>
@@ -16,10 +16,29 @@
 			<LeaderPicture type="String" value="TestLeaderHead.jpg"/>
 			<LeaderMesh type="String" value="LightInf.mesh"/>
 			<LeaderMat type="String" value="LightInf"/>
-			<UnitMesh type="String" value="Stronghold.mesh"/>
-			<UnitMat type="String" value="Stronghold"/>	
+			<UnitMesh type="String" value="LightInf.mesh"/>
+			<UnitMat type="String" value="LightInf"/>	
 			<UnitMaxNumber type="Int" value="50"/>				
 		</TestSquad>
+		<TestSquad2>
+			<Type type="Int" value="1"/>
+			<SoilderId type="String" value="TestSoilder2"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="none"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="none"/>
+			<SkillTable>
+				<MagicAttack type="Int" value="1"/>
+			</SkillTable>
+			<LeaderName type="String" value="TestLeaderName2"/>
+			<LeaderPicture type="String" value="TestLeaderHead.jpg"/>
+			<LeaderMesh type="String" value="LightInf.mesh"/>
+			<LeaderMat type="String" value="LightInf"/>
+			<UnitMesh type="String" value="Stronghold.mesh"/>
+			<UnitMat type="String" value="Stronghold"/>	
+			<UnitMaxNumber type="Int" value="20"/>				
+		</TestSquad2>
 	</SquadData>
 	<SoilderData>
 		<TestSoilder>
@@ -34,12 +53,32 @@
 				<Formation type="Float" value="0.01"/>
 				<Initiative type="Float" value="1.0"/>
 				<ActionPoint type="Float" value="10.0"/>				
-				<Detection type="Float" value="1.0"/>
-				<Covert type="Float" value="1.0"/>
+				<Detection type="Float" value="5.0"/>
+				<Covert type="Float" value="0.0"/>
 				<Injury type="Float" value="0.7"/>
 				<Conter type="Float" value="0.3"/>
 			</AttrModifer>
+			<Injury type="Int" value="1"/>
 		</TestSoilder>
+		<TestSoilder2>
+			<Type type="Int" value="1"/>
+			<Value type="Int" value="5"/>
+			<Script type="String" value="none"/>
+			<AttrModifer>
+				<Type type="Int" value="0"/>
+				<Attack type="Float" value="5.0"/>
+				<RangedAttack  type="Float" value="0.0"/>
+				<Defence type="Float" value="15.0"/>
+				<Formation type="Float" value="0.0"/>
+				<Initiative type="Float" value="0.0"/>
+				<ActionPoint type="Float" value="8.0"/>				
+				<Detection type="Float" value="5.0"/>
+				<Covert type="Float" value="0.0"/>
+				<Injury type="Float" value="0.5"/>
+				<Conter type="Float" value="0.3"/>
+			</AttrModifer>
+			<Injury type="Int" value="0"/>
+		</TestSoilder2>
 	</SoilderData>
 	<HorseData>
 		<HeavyHorse>
@@ -70,7 +109,7 @@
 			<AniGroup type="String" value="test"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
-				<Attack type="Float" value="1.0"/>
+				<Attack type="Float" value="3.0"/>
 				<RangedAttack  type="Float" value="0.0"/>
 				<Defence type="Float" value="1.0"/>
 				<Formation type="Float" value="0.0"/>
@@ -96,7 +135,7 @@
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="0.0"/>
 				<RangedAttack  type="Float" value="0.0"/>
-				<Defence type="Float" value="1.0"/>
+				<Defence type="Float" value="3.0"/>
 				<Formation type="Float" value="0.0"/>
 				<Initiative type="Float" value="0.0"/>
 				<ActionPoint type="Float" value="0.0"/>				
@@ -113,12 +152,23 @@
 			<MaxRange type="Int" value="1"/>
 			<MinRange type="Int" value="1"/>
 			<Area type="Int" value="1"/>
-			<APType type = "Int" value = "0"/>
+			<APType type = "Int" value = "1"/>
 			<APCost type="float" value="3.0"/>
 			<CoolDown type="Int" value="0"/>
 			<Value type="Int" value="0"/>
 			<Script type="String" value="attack.lua"/>
 		</Attack>
+		<MagicAttack>
+			<Type type="Int" value="2"/>
+			<MaxRange type="Int" value="3"/>
+			<MinRange type="Int" value="1"/>
+			<Area type="Int" value="1"/>
+			<APType type = "Int" value = "1"/>
+			<APCost type="float" value="4.0"/>
+			<CoolDown type="Int" value="1"/>
+			<Value type="Int" value="10"/>
+			<Script type="String" value="magicattack.lua"/>
+		</MagicAttack>
 	</SkillData>
 	<EffectData>
 		<TestEffect>

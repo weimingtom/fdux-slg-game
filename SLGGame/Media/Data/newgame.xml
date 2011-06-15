@@ -2,8 +2,8 @@
 <GameData>
 	<StoryData>
 		<ScriptData>
-			<ScriptName type="String" value=""/>
-			<ScriptLine type="String" value=""/>
+			<ScriptName type="String" value="Chapter1.lua"/>
+			<ScriptLine type="String" value="1"/>
 		</ScriptData>
 		<Statistics>
 		</Statistics>

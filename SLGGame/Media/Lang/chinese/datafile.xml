@@ -5,12 +5,20 @@
 			<Name type="String" value="测试小队"/>
 			<Describe type="String" value="废物小队"/>
 		</TestSquad>
+		<TestSquad2>
+			<Name type="String" value="测试小队2"/>
+			<Describe type="String" value="废物小队2"/>
+		</TestSquad2>
 	</SquadData>
 	<SoilderData>
 		<TestSoilder>
 			<Name type="String" value="测试兵源"/>
 			<Describe type="String" value="就是一群废物"/>
 		</TestSoilder>
+		<TestSoilder1>
+			<Name type="String" value="测试兵源2"/>
+			<Describe type="String" value="还是一群废物"/>
+		</TestSoilder1>
 	</SoilderData>
 	<HorseData>
 		<HeavyHorse>
@@ -39,6 +47,10 @@
 			<Name type="String" value="攻击"/>
 			<Describe type="String" value="小队对目标进行攻击"/>
 		</Attack>
+		<MagicAttack>
+			<Name type="String" value="魔法攻击"/>
+			<Describe type="String" value="小队对目标进行魔法攻击"/>
+		</MagicAttack>
 	</SkillData>
 	<EffectData>
 		<TestEffect>

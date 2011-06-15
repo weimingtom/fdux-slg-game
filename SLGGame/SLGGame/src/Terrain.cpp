@@ -32,7 +32,6 @@ bool Terrain::createTerrain()
 	mLight->setPosition(-500.0f,500.0f, 500.0f);
 	mLight->setDirection(1.0f, -1.0f, -1.0f);
 	mLight->setDiffuseColour(Ogre::ColourValue(1.0f, 1.0f,1.0f));
-	mLight->setCastShadows(true);
 
 	//设置深度图投影
 	Ogre::TexturePtr tex = Ogre::TextureManager::getSingleton().createManual("shadowdepthmap",
@@ -879,6 +878,8 @@ void Terrain::preRenderTargetUpdate(const Ogre::RenderTargetEvent& evt)
 		Ogre::GpuSharedParametersPtr sharedparams = Ogre::GpuProgramManager::getSingleton().getSharedParameters("ShadowSharedParamsName");
 		Ogre::Matrix4 cameraview= CameraContral::getSingleton().getShadowMapCamera()->getViewMatrix();
 		sharedparams->setNamedConstant("texView",cameraview);
+		Ogre::Vector3 shadowdir = CameraContral::getSingleton().getShadowMapCamera()->getDirection();
+		sharedparams->setNamedConstant("shadowDir",shadowdir);
 	}
 }
 void Terrain::postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt)

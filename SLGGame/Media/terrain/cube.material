@@ -1,8 +1,10 @@
-material CUBE_WHITE
+import DepthShadowmap/CastNoShadow from "Shadow.material"
+material CUBE_WHITE : DepthShadowmap/CastNoShadow
 {
 	receive_shadows off
-	technique
+	technique default
 	{
+		scheme Default
 		pass
 		{
 			scene_blend alpha_blend
@@ -15,11 +17,12 @@ material CUBE_WHITE
 	}
 }
 
-material CUBE_RED
+material CUBE_RED : DepthShadowmap/CastNoShadow
 {
 	receive_shadows off
-	technique
+	technique default
 	{
+		scheme Default
 		pass
 		{
 			scene_blend alpha_blend
@@ -32,11 +35,12 @@ material CUBE_RED
 	}
 }
 
-material CUBE_BLUE
+material CUBE_BLUE : DepthShadowmap/CastNoShadow
 {
 	receive_shadows off
-	technique
+	technique default
 	{
+		scheme Default
 		pass
 		{
 			scene_blend alpha_blend

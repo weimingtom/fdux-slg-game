@@ -4,11 +4,12 @@
 		<map1 type="String" value = "测试地图"/>
 		<mapinfo1 type="String" value = "测试地图"/>
 		<TestLeaderName type="String" value="废物"/>
+		<TestLeaderName2 type="String" value="废物2"/>
 		<PWeaponTypeOneHandSword type="String" value="单手剑"/>
-		<PWeaponTypeOneHandHeavy type="String" value="单手重武器"/>
+		<PWeaponTypeOneHandAxe type="String" value="单手斧"/>
 		<PWeaponTypeOneHandSpear type="String" value="短矛"/>
 		<PWeaponTypeTwoHandSword type="String" value="双手剑"/>
-		<PWeaponTypeTwoHandHeavy type="String" value="双手重武器"/>
+		<PWeaponTypeTwoHandAxe type="String" value="双手斧"/>
 		<PWeaponTypeTwoHandLong type="String" value="长柄武器"/>
 		<ArmorTypeHeavy type="String" value="重甲"/>
 		<ArmorTypeLight type="String" value="轻甲"/>

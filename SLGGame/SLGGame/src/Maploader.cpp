@@ -4,6 +4,7 @@
 #include "BattleSquad.h"
 #include "AVGSquadManager.h"
 #include "SquadGrapManager.h"
+#include "SquadGraphics.h"
 
 #include "MapDataManager.h"
 #include "Terrain.h"
@@ -331,7 +332,9 @@ void MapLoader::initBattleSquad(bool loadfrommap)
 				datalib->setData(datapath +std::string("/ActionPoint"), 0.0f, true );
 				datalib->setData(datapath +std::string("/WoundNum"), 0, true );
 				BattleSquad* battlesquad = new BattleSquad((*ite),battlesuqadmanager->mCurid,-1,0); 
-				suqadgrapmanager->createSquad((*ite), datapath, battlesuqadmanager->mCurid, -1, 0,North,Line,battlesquad->getUnitGrapNum());
+				SquadGraphics* squadgrap = suqadgrapmanager->createSquad((*ite), datapath, battlesuqadmanager->mCurid, -1, 0,North,Line,battlesquad->getUnitGrapNum());
+				squadgrap->setFormation(f,false);
+				squadgrap->setDirection(North,false);
 				battlesuqadmanager->mDeployList.push_back(battlesquad);
 				battlesuqadmanager->mCurid ++;
 			}
@@ -361,7 +364,9 @@ void MapLoader::creatSquadGrapAtPath(std::string path)
 			datalib->getData(datapath + "/Direction",d);
 			datalib->getData(datapath + "/Formation",f);
 			BattleSquad* battlesquad =  new BattleSquad((*ite),battlesuqadmanager->mCurid,x,y); 
-			suqadgrapmanager->createSquad((*ite), datapath, battlesuqadmanager->mCurid,x,y,d,f, battlesquad->getUnitGrapNum());
+			SquadGraphics* squadgrap  = suqadgrapmanager->createSquad((*ite), datapath, battlesuqadmanager->mCurid,x,y,d,f, battlesquad->getUnitGrapNum());
+			squadgrap->setFormation(f,false);
+			squadgrap->setDirection(d,false);
 			datalib->setData(datapath +std::string("/Grapid"),battlesuqadmanager->mCurid);
 			battlesuqadmanager->mSquadList.push_back(battlesquad);
 			battlesuqadmanager->mCurid ++;
