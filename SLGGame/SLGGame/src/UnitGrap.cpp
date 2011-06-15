@@ -16,6 +16,7 @@ mMainWeapon(NULL),
 mSecWeapon(NULL),
 mShield(NULL),
 mPUSystem(NULL),
+mPUNode(NULL),
 mPUSystemEnd(false),
 mIsCheckHeight(false),
 mAlpha(-1),
@@ -67,9 +68,7 @@ UnitGrap::~UnitGrap(void)
 	
 	if (mPUSystem!=NULL)
 	{
-		mNode->detachObject(mPUSystem);
-		Core::getSingletonPtr()->destroyPUSystem(mPUSystem);
-		mPUSystem=NULL;
+		stopEffect();
 	}
 
 	mNode->detachAllObjects();
@@ -175,18 +174,17 @@ void UnitGrap::createWeapon( std::string mesh, std::string mat,WeaponType type )
 	}
 }
 
-void UnitGrap::setEffect( std::string name )
+void UnitGrap::setEffect( std::string name,Ogre::Vector3 offect)
 {
 	if (mPUSystem!=NULL)
 	{
-		mNode->detachObject(mPUSystem);
-		Core::getSingletonPtr()->destroyPUSystem(mPUSystem);
-		mPUSystem=NULL;
+		stopEffect();
 	}
 
 	mPUSystem=Core::getSingletonPtr()->createPUSystem(mNode->getName()+"_PU",name);
 	mPUSystem->addParticleSystemListener(this);
-	mNode->attachObject(mPUSystem);
+	mPUNode=mNode->createChildSceneNode(mNode->getName()+"_PU_Node",offect);
+	mPUNode->attachObject(mPUSystem);
 	mPUSystem->prepare();
 	mPUSystem->start();
 }
@@ -207,6 +205,11 @@ void UnitGrap::handleParticleSystemEvent( ParticleUniverse::ParticleSystem *part
 void UnitGrap::stopEffect()
 {
 	mPUSystem->stop();
+	mPUNode->detachObject(mPUSystem);
+	mNode->removeAndDestroyChild(mPUNode->getName());
+	Core::getSingletonPtr()->destroyPUSystem(mPUSystem);
+	mPUSystem=NULL;
+	mPUNode=NULL;
 }
 
 void UnitGrap::setMovePath( std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions)

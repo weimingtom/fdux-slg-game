@@ -3,8 +3,12 @@
 #include "SquadGraphics.h"
 #include "DataLibrary.h"
 
+#include "Core.h"
+#include "BillboardManager.h"
+
 SquadGrapManager::SquadGrapManager(Ogre::SceneManager* sceneMgr):unitIndex(0)
 {
+	mBBManager=new BillboardManager(Core::getSingletonPtr()->mCamera);
 }
 
 SquadGrapManager::~SquadGrapManager(void)
@@ -14,6 +18,8 @@ SquadGrapManager::~SquadGrapManager(void)
 		delete (*it);
 	}
 	mUnitList.clear();
+
+	delete BillboardManager::getSingletonPtr();
 }
 
 SquadGraphics* SquadGrapManager::createSquad( std::string unitName,std::string datapath,unsigned int id,int x,int y,Direction d,Formation f,int soldierCount)
@@ -45,6 +51,8 @@ void SquadGrapManager::update(unsigned int deltaTime)
 	{
 		(*it)->update(deltaTime);
 	}
+
+	mBBManager->update();
 }
 
 SquadGraphics* SquadGrapManager::getSquad( unsigned int id )

@@ -37,7 +37,7 @@ public:
 
 	void setWeapon(WeaponType type,BoneType bone);
 
-	void setEffect(std::string name);
+	void setEffect(std::string name,Ogre::Vector3 offect=Ogre::Vector3::ZERO);
 
 	bool isEffectOver();
 
@@ -88,6 +88,7 @@ public:
 	Ogre::Animation* mNodeAnimation;
 	Ogre::AnimationState* mNodeAnimationState;
 
+	Ogre::SceneNode* mPUNode;
 	ParticleUniverse::ParticleSystem* mPUSystem;
 	bool mPUSystemEnd;
 	bool mReturnInitAni;

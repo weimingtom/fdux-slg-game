@@ -31,6 +31,7 @@ BattleDeployState::BattleDeployState()
 	//mSquadGrapManager=new SquadGrapManager(Core::getSingletonPtr()->mSceneMgr);
 	//SquadGraphics* s;//=mSquadGrapManager->createSquad("SinbadSquad",1,10,10,SquadGrapManager::North,SquadGrapManager::Loose);
 	//GUIPUDebug* puDebug=(GUIPUDebug*)GUISystem::getSingletonPtr()->createScene(PUDebugScene);
+
 	mGUIBattle=static_cast<GUIBattle *>(GUISystem::getSingletonPtr()->getScene(BattleScene));
 	//mGUIBattle->setBattleState(mMainState);
 	mDeployWindow = static_cast<GUIDeployWindows *>(mGUIBattle->getSubWindow("DeployWindow"));

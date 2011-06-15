@@ -1,58 +1,77 @@
 #include "BillboardManager.h"
 
+#include "GUIBillBoard.h"
+
+#include "GUISquadBillBoard.h"
+
 #include "Core.h"
 
-#define RTT_WIDTH 256.0
-#define WIDGET_WIDTH 128.0
-#define WIDGET_HEIGHT 64.0
-#define RTT_ROWS RTT_WIDTH/WIDGET_WIDTH
-#define RTT_COLUMNS RTT_WIDTH/WIDGET_HEIGHT
+#define MARGIN_WIDTH 30
+#define MARGIN_HEIGHT 50
 
-BillboardManager::BillboardManager(void):
-mIndex(0),mRow(0),mColumn(1)
+BillboardManager::BillboardManager(Ogre::Camera* camera):mCamera(camera)
 {
-	MyGUI::VectorWidgetPtr p=MyGUI::LayoutManager::getInstance().loadLayout("RTT.layout");
-	BaseWidget=static_cast<MyGUI::ImageBox*>(p.at(0));
-	Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().create("RTTMat", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-	Ogre::Technique* technique = material->createTechnique();
-	technique->createPass();
-	material->getTechnique(0)->getPass(0)->createTextureUnitState("RTTTexture1");
+	mWidth=Core::getSingletonPtr()->mWindow->getWidth();
+	mHeight=Core::getSingletonPtr()->mWindow->getHeight();
 }
 
 BillboardManager::~BillboardManager(void)
 {
 }
 
-Ogre::BillboardSet* BillboardManager::getBillboardSet()
+void BillboardManager::update()
 {
-	mIndex++;
-	if (mRow<RTT_COLUMNS)
+	Ogre::Matrix4 viewMatrix = mCamera->getViewMatrix();
+	Ogre::Matrix4 projectMatrix = mCamera->getProjectionMatrixWithRSDepth();
+	Ogre::Matrix4 eyeMatrix = (Ogre::Matrix4(0.5,0,0,0.5, 0,-0.5,0,0.5, 0,0,1,0, 0,0,0,1)*projectMatrix*viewMatrix);
+
+
+	for (std::vector<GUIBillBoard*>::iterator it=mBillBoards.begin();it!=mBillBoards.end();it++)
 	{
-		mRow++;
-	}
-	else
-	{
-		if(mColumn<RTT_COLUMNS)
+		Ogre::Vector4 v4((*it)->getPosition());
+		Ogre::Vector4 temp = eyeMatrix*v4;
+	
+		Ogre::Vector3 ScreenPos = Ogre::Vector3(temp.x/temp.w,temp.y/temp.w,temp.z/temp.w);
+
+		Ogre::Vector2 Pos(ScreenPos.x*mWidth,ScreenPos.y*mHeight);
+		
+		if(Pos.x<MARGIN_WIDTH || Pos.y<MARGIN_HEIGHT || Pos.x>mWidth-MARGIN_WIDTH || Pos.y>mHeight-MARGIN_HEIGHT)
 		{
-			mColumn++;
-			mRow=0;
+			if ((*it)->mInScreen)
+			{
+				(*it)->mInScreen=false;
+				(*it)->hideScene();
+			}
 		}
 		else
 		{
-			Ogre::LogManager::getSingletonPtr()->logMessage("RTTLayer is Full!",Ogre::LML_CRITICAL);
-			return NULL;
+			if (!(*it)->mInScreen)
+			{
+				(*it)->mInScreen=true;
+				(*it)->showScene("");
+			}
+
+			(*it)->update(Pos);
 		}
 	}
-	
-	MyGUI::Button* button=BaseWidget->createWidget<MyGUI::Button>("Button", MyGUI::IntCoord((mRow-1)*WIDGET_WIDTH, (mColumn-1)*WIDGET_HEIGHT,WIDGET_WIDTH,WIDGET_HEIGHT), MyGUI::Align::Left | MyGUI::Align::Top);
-	button->setCaption("Test"+Ogre::StringConverter::toString(mIndex));
-
-	Ogre::BillboardSet* BBSet = Core::getSingletonPtr()->mSceneMgr->createBillboardSet("BBSet_"+Ogre::StringConverter::toString(mIndex), 1);
-	BBSet->setMaterialName("RTTMat");
-	BBSet->setDefaultDimensions(8,4);
-	Ogre::Billboard* bb = BBSet->createBillboard(Ogre::Vector3(0,  20,  0));
-	
-	Ogre::FloatRect coords((mRow-1)*WIDGET_WIDTH/RTT_WIDTH,(mColumn-1)*WIDGET_WIDTH/RTT_WIDTH,mRow*WIDGET_WIDTH/RTT_WIDTH, mColumn*WIDGET_HEIGHT/RTT_WIDTH);
-	bb->setTexcoordRect(coords);
-	return BBSet;
 }
+
+void BillboardManager::addBillBoard(GUIBillBoard* billBoard )
+{
+	mBillBoards.push_back(billBoard);
+}
+
+void BillboardManager::destroyBillBoard( GUIBillBoard* billBoard )
+{
+	for (std::vector<GUIBillBoard*>::iterator it=mBillBoards.begin();it!=mBillBoards.end();it++)
+	{
+		if ((*it)==billBoard)
+		{
+			delete (*it);
+			mBillBoards.erase(it);
+			break;
+		}
+	}
+}
+
+
