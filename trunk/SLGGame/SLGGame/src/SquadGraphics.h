@@ -13,6 +13,7 @@
 
 class UnitGrap;
 class SquadGrapManager;
+class GUISquadBillBoard; 
 
 class SquadGraphics:public ParticleUniverse::ParticleSystemListener 
 {
@@ -85,12 +86,16 @@ private:
 	Ogre::SceneNode* mNode;
 	Ogre::SceneManager* mSceneMgr;
 
+	GUISquadBillBoard* mSquadBB;
+
 	std::string mSquadId;
 	std::string mLeaderMesh;
 	std::string mLeaderMat;
 	UnitGrap* mCommanderUnit;
 	std::string mSoilderMesh;
 	std::string mSoilderMat;
+	std::string mSoilderEffect;
+	Ogre::Vector3 mSoilderEffectOffect;
 	std::string mPWeaponMesh;
 	std::string mPWeaponMat;
 	std::string mSWeaponMesh;

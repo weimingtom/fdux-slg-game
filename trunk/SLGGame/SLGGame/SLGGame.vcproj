@@ -584,6 +584,18 @@
 						RelativePath=".\src\BillboardManager.h"
 						>
 					</File>
+					<File
+						RelativePath=".\src\GUIBillBoard.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\GUISquadBillBoard.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\GUISquadBillBoard.h"
+						>
+					</File>
 				</Filter>
 				<Filter
 					Name="Instancing"

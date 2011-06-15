@@ -63,6 +63,15 @@ bool AVGSquadManager::addSquad(std::string uid, std::string id, std::string path
 	datalib->setData(datadistpath + std::string("/UnitMesh"), tempstring, true);
 	re = datalib->getData(datasrcpath + std::string("/UnitMat"),tempstring);
 	datalib->setData(datadistpath + std::string("/UnitMat"), tempstring, true);
+
+//	re = datalib->getData(datasrcpath + std::string("/UnitEffect"),tempstring);
+//	datalib->setData(datadistpath + std::string("/UnitEffect"), tempstring, true);
+		re = datalib->getData(datasrcpath + std::string("/UnitEffect/EffectName"),tempstring);
+		datalib->setData(datadistpath + std::string("/UnitEffect/EffectName"), tempstring, true);
+		Ogre::Vector3 v;
+		re = datalib->getData(datasrcpath + std::string("/UnitEffect/EffectOffect"),v);
+		datalib->setData(datadistpath + std::string("/UnitEffect/EffectOffect"), v, true);
+
 	re = datalib->getData(datasrcpath + std::string("/UnitMaxNumber"),tempint);
 	datalib->setData(datadistpath + std::string("/UnitMaxNumber"), tempint, true);
 	datalib->setData(datadistpath + std::string("/UnitNumber"), tempint, true);

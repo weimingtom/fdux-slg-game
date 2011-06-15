@@ -9,6 +9,7 @@
 #include "UnitGrap.h"
 #include "AnimationBlender.h"
 #include "BillboardManager.h"
+#include "GUISquadBillBoard.h"
 
 #include "Terrain.h"
 
@@ -50,6 +51,9 @@ mDirection(direction)
 	datalib->getData(datapath + std::string("/LeaderMat"),mLeaderMat);
 	datalib->getData(datapath + std::string("/UnitMesh"),mSoilderMesh);
 	datalib->getData(datapath + std::string("/UnitMat"),mSoilderMat);
+	datalib->getData(datapath + std::string("/UnitEffect/EffectName"),mSoilderEffect);
+	datalib->getData(datapath + std::string("/UnitEffect/EffectOffect"),mSoilderEffectOffect);
+
 	std::string tempid;
 	datalib->getData(datapath + std::string("/PweaponId"),tempid);
 	if(tempid != "none")
@@ -110,8 +114,17 @@ mDirection(direction)
 	setDirection(direction,false);
 	setWeaponMode(SquadGraphics::MainWepon);
 	
+	//Camera* cam=mSceneMgr->getCamera("PlayerCam");
+	//Matrix4 viewMatrix = cam->getViewMatrix();
+	//Matrix4 projectMatrix = cam->getProjectionMatrix();
+	//Matrix4 eyeMatrix = (Matrix4(0.5,0,0,0.5, 0,-0.5,0,0.5, 0,0,1,0, 0,0,0,1)*(projectMatrix*viewMatrix));
+	//Vector4 temp = eyeMatrix*v4;
+	//Vector3 ScreenPos = Vector3(temp.x/temp.w,temp.y/temp.w,temp.z/temp.w);
 
-//	mNode->attachObject(BillboardManager::getSingletonPtr()->getBillboardSet());
+
+	//mNode->attachObject(BillboardManager::getSingletonPtr()->getBillboardSet());
+	mSquadBB=new GUISquadBillBoard(mCommanderUnit->mNode);
+	BillboardManager::getSingletonPtr()->addBillBoard(mSquadBB);
 
 }
 
@@ -138,6 +151,8 @@ SquadGraphics::~SquadGraphics(void)
 	
 	mNode->removeAndDestroyAllChildren();
 	mNode->getParentSceneNode()->removeAndDestroyChild(mNode->getName());
+
+	BillboardManager::getSingletonPtr()->destroyBillBoard(mSquadBB);
 }
 
 UnitGrap* SquadGraphics::createSoldier()
@@ -148,6 +163,11 @@ UnitGrap* SquadGraphics::createSoldier()
 	unit->createWeapon(mPWeaponMesh,mPWeaponMat,UnitGrap::MainWepon);
 	unit->createWeapon(mSWeaponMesh,mSWeaponMesh,UnitGrap::SecWepon);
 	unit->createWeapon(mShieldMesh,mShieldMat,UnitGrap::Shield);
+
+	if (mSoilderEffect!="none")
+	{
+		unit->setEffect(mSoilderEffect,mSoilderEffectOffect);
+	}
 
 	mSoldierUnits.push_back(unit);
 

@@ -6,8 +6,6 @@
 #include <stdlib.h>
 #include "Terrain.h"
 
-#include "BillboardManager.h"
-
 #include "BattleLoadState.h"
 #include "SquadGrapManager.h"
 
@@ -24,7 +22,6 @@ BattleState::~BattleState(void)
 void BattleState::initialize( std::string arg )
 {
 	srand((int)time(0));
-	new BillboardManager();
 
 	BattleLoadState* loadState = new BattleLoadState(arg);
 	PushState(loadState);

@@ -1,0 +1,43 @@
+system mp_flare_06
+{
+    keep_local                                  true
+    scale_velocity                              0.1
+    scale                                       0.1 0.1 0.1
+    category                                    MyGame
+    technique 
+    {
+        material                                mp_flare_02
+        renderer                                Billboard
+        {
+            render_queue_group                  51
+            billboard_rotation_type             vertex
+        }
+        emitter                                 Point 
+        {
+            emission_rate                       5
+            time_to_live                        100
+            velocity                            0
+            all_particle_dimensions             dyn_random
+            {
+                min                             90
+                max                             200
+            }
+            colour                              0.356863 0.356863 1 1
+            force_emission                      true
+        }
+        affector                                TextureRotator 
+        {
+            use_own_rotation                    true
+            rotation                            dyn_random
+            {
+                min                             -4
+                max                             4
+            }
+            rotation_speed                      dyn_random
+            {
+                min                             -3
+                max                             3
+            }
+        }
+    }
+}

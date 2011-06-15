@@ -8,6 +8,7 @@
 #include "iisingleton.hpp"
 
 class SquadGraphics;
+class BillboardManager;
 
 using namespace izayoi;
 
@@ -28,4 +29,5 @@ public:
 private:
 	std::vector<SquadGraphics*> mUnitList;
 	unsigned int unitIndex;
+	BillboardManager* mBBManager;
 };

@@ -16,8 +16,12 @@
 			<LeaderPicture type="String" value="TestLeaderHead.jpg"/>
 			<LeaderMesh type="String" value="LightInf.mesh"/>
 			<LeaderMat type="String" value="LightInf"/>
-			<UnitMesh type="String" value="LightInf.mesh"/>
-			<UnitMat type="String" value="LightInf"/>	
+			<UnitMesh type="String" value="HolySpirit.mesh"/>
+			<UnitMat type="String" value="HolySpirit"/>	
+			<UnitEffect>
+				<EffectName type="String" value="mp_flare_06"/>
+				<EffectOffect type="Vector3" value="0,3,0"/>
+			</UnitEffect>
 			<UnitMaxNumber type="Int" value="50"/>				
 		</TestSquad>
 		<TestSquad2>
@@ -37,6 +41,10 @@
 			<LeaderMat type="String" value="LightInf"/>
 			<UnitMesh type="String" value="Stronghold.mesh"/>
 			<UnitMat type="String" value="Stronghold"/>	
+			<UnitEffect>
+				<EffectName type="String" value="none"/>
+				<EffectOffect type="Vector3" value="0,3,0"/>
+			</UnitEffect>
 			<UnitMaxNumber type="Int" value="20"/>				
 		</TestSquad2>
 	</SquadData>

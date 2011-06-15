@@ -32,6 +32,7 @@ GUIBattle::GUIBattle(int Width,int Height):GUIScene("Battle.layout",Width,Height
 	assignWidget(window,"DeployWindow");
 	mSubWindows.push_back(new GUIDeployWindows(window,Width,Height));
 	//assignWidget(mButton,"ShadowMapTarget");
+
 }
 
 GUIBattle::~GUIBattle(void)
@@ -59,6 +60,8 @@ void GUIBattle::FrameEvent()
 	{
 		(*it)->FrameEvent();
 	}
+
+
 }
 
 void GUIBattle::SceneInputEvent( float x,float y )
