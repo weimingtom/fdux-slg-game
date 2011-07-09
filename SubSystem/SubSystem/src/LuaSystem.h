@@ -41,9 +41,10 @@ public:
 	void (*LuaBreakupFun)();//×èÈûº¯ÊýÖ¸Õë
 
 
-	std::string GetContext();
-	bool ExecuteFile(std::string filename, std::string context);
-	bool ExecuteFunction(std::string filename, std::string funcname, std::string context);
+	std::string getContext();
+	std::string getFileName();
+	//bool executeFile(std::string filename, std::string context);
+	bool executeFunction(std::string filename, std::string funcname, std::string context);
 
 private:
 	lua_State* L;
@@ -53,5 +54,6 @@ private:
 	LuaSystemListener* mListener;
 
 	std::vector<std::string> mContextStack;
+	std::vector<std::string> mFileNameStack;
 };
 

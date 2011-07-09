@@ -18,8 +18,10 @@ public:
 	bool equipEquipment(std::string path, EquipmentType type, std::string id);
 	bool learnSkill(std::string path,std::string id);
 	bool applyModifer(std::string path, std::string modifierpath, std::string &modifierid);
+	void removeModifier(std::string path,std::string modifierid);
 	bool applyModifer(std::string path, AttrModifier* modifier, std::string &modifierid);
-	bool applyEffect(std::string path, std::string id);
+	bool applyEffect(std::string path, std::string id, std::string &effectid);
+	void removeEffect(std::string path,std::string effectid);
 	bool getSquadAttr(std::string path, AttrType attrtype, AttrCalcType calctype, float &val);
 private:
 };

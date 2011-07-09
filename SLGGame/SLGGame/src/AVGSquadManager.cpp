@@ -66,11 +66,11 @@ bool AVGSquadManager::addSquad(std::string uid, std::string id, std::string path
 
 //	re = datalib->getData(datasrcpath + std::string("/UnitEffect"),tempstring);
 //	datalib->setData(datadistpath + std::string("/UnitEffect"), tempstring, true);
-		re = datalib->getData(datasrcpath + std::string("/UnitEffect/EffectName"),tempstring);
-		datalib->setData(datadistpath + std::string("/UnitEffect/EffectName"), tempstring, true);
-		Ogre::Vector3 v;
-		re = datalib->getData(datasrcpath + std::string("/UnitEffect/EffectOffect"),v);
-		datalib->setData(datadistpath + std::string("/UnitEffect/EffectOffect"), v, true);
+// 		re = datalib->getData(datasrcpath + std::string("/UnitEffect/EffectName"),tempstring);
+// 		datalib->setData(datadistpath + std::string("/UnitEffect/EffectName"), tempstring, true);
+// 		Ogre::Vector3 v;
+// 		re = datalib->getData(datasrcpath + std::string("/UnitEffect/EffectOffect"),v);
+// 		datalib->setData(datadistpath + std::string("/UnitEffect/EffectOffect"), v, true);
 
 	re = datalib->getData(datasrcpath + std::string("/UnitMaxNumber"),tempint);
 	datalib->setData(datadistpath + std::string("/UnitMaxNumber"), tempint, true);
@@ -146,7 +146,7 @@ bool AVGSquadManager::equipEquipment(std::string path, EquipmentType type, std::
 	}
 	
 	std::string mid;
-	applyModifer(path + std::string("/ModifierList"), srcpath + std::string("/") + id + std::string("/AttrModifer"), mid);
+	applyModifer(path, srcpath + std::string("/") + id + std::string("/AttrModifer"), mid);
 
 	std::string scrptpath;
 	datalib->getData(srcpath + std::string("/") + id + std::string("/Script"),scrptpath);
@@ -171,13 +171,15 @@ bool AVGSquadManager::learnSkill(std::string path,std::string id)
 		std::string skillcontext = path + std::string("/SkillTable/")+ id + std::string("/ScriptContext");
 		std::string skillscript;
 		datalib->getData(std::string("StaticData/SkillData/")+ id+ std::string("/Script"),skillscript);
-		LuaSystem::getSingleton().ExecuteFunction(skillscript ,"onlearn",skillcontext);
+		datalib->setData(skillcontext+ std::string("/skillcasterpath"),path);
+		LuaSystem::getSingleton().executeFunction(skillscript ,"onlearn",skillcontext);
 	}
 	return true;
 }
 bool AVGSquadManager::applyModifer(std::string path, std::string modifierpath, std::string &modifierid)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	path = path + std::string("/ModifierList");
 	std::vector<std::string> modifierlist = datalib->getChildList(path);
 	int x = 0;
 	modifierid = std::string("m") + Ogre::StringConverter::toString(x);
@@ -217,12 +219,75 @@ bool AVGSquadManager::applyModifer(std::string path, std::string modifierpath, s
 }
 bool AVGSquadManager::applyModifer(std::string path, AttrModifier* modifier, std::string &modifierid)
 {
+	if(modifier == NULL)
+		return false;
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	path = path + std::string("/ModifierList");
+	std::vector<std::string> modifierlist = datalib->getChildList(path);
+	int x = 0;
+	modifierid = std::string("m") + Ogre::StringConverter::toString(x);
+	std::vector<std::string>::iterator ite = std::find(modifierlist.begin(), modifierlist.end(),modifierid);
+	while(ite != modifierlist.end())
+	{
+		x = x + 1;
+		modifierid = std::string("m") + Ogre::StringConverter::toString(x);
+		ite = std::find(modifierlist.begin(), modifierlist.end(),modifierid);
+	}
+	path = path + std::string("/") + modifierid;
+	datalib->setData(path + std::string("/Type"), modifier->Type, true);
+	datalib->setData(path + std::string("/Attack"), modifier->Attack, true);
+	datalib->setData(path + std::string("/RangedAttack"), modifier->RangedAttack, true);
+	datalib->setData(path + std::string("/Defence"), modifier->Defence, true);
+	datalib->setData(path + std::string("/Formation"), modifier->Form, true);
+	datalib->setData(path + std::string("/Initiative"), modifier->Initiative, true);
+	datalib->setData(path + std::string("/ActionPoint"), modifier->ActionPoint, true);
+	datalib->setData(path + std::string("/Detection"), modifier->Detection, true);
+	datalib->setData(path + std::string("/Covert"), modifier->Covert, true);
+	datalib->setData(path + std::string("/Injury"), modifier->Injury, true);
+	datalib->setData(path + std::string("/Conter"), modifier->Conter, true);
 	return true;
 }
-bool AVGSquadManager::applyEffect(std::string path, std::string id)
+
+void AVGSquadManager::removeModifier(std::string path,std::string modifierid)
 {
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+}
+
+bool AVGSquadManager::applyEffect(std::string path, std::string id, std::string &effectid)
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	//判断是否存在该效果
+	std::string effectsrcpath = std::string("StaticData/EffectData/") + id;
+	int test;
+	if(!datalib->getData(effectsrcpath + std::string("/Type"),test,true))
+		return false;
+	datalib->getData(effectsrcpath + std::string("/Script"),effectsrcpath);
+	//生成效果路径
+	std::string effectpath = path + std::string("/EffectList");
+	std::vector<std::string> effectlist = datalib->getChildList(effectpath);
+	int x = 0;
+	effectid = std::string("e") + Ogre::StringConverter::toString(x);
+	std::vector<std::string>::iterator ite = std::find(effectlist.begin(), effectlist.end(),effectid);
+	while(ite != effectlist.end())
+	{
+		x = x + 1;
+		effectid = std::string("e") + Ogre::StringConverter::toString(x);
+		ite = std::find(effectlist.begin(), effectlist.end(),effectid);
+	}
+	effectpath = effectpath + std::string("/") + effectid;
+	//运行效果脚本
+	datalib->setData(effectpath,id);
+	std::string contextpath = effectpath + std::string("/ScriptContext");
+	datalib->setData(contextpath+ std::string("/affectsquadpath"),path);
+	LuaSystem::getSingleton().executeFunction(effectsrcpath ,"onaffect",contextpath);
 	return true;
 }
+
+void AVGSquadManager::removeEffect(std::string path,std::string effectid)
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+}
+
 
 bool AVGSquadManager::getSquadAttr(std::string path, AttrType attrtype, AttrCalcType calctype, float &val)
 {

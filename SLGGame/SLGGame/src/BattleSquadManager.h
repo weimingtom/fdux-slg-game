@@ -38,6 +38,13 @@ public:
 
 	//½Å±¾µ÷ÓÃ
 	bool meleeAttackSquad(BattleSquad* attacksquad, BattleSquad* defenesquad);
+	
+	bool dealMagicDamage(BattleSquad* attacksquad, BattleSquad* defenesquad, int attacktime, float atk);
+
+	bool dealRangedDamage(BattleSquad* attacksquad, BattleSquad* defenesquad);
+
+	void rangedAttackCutScene(BattleSquad* attacksquad, int x, int y, UnitType castunit , std::string casteffect, std::string castaction, std::string castsound, int missiletype, std::string missileres, std::string hiteffect,std::string hitsound);
+
 	void setCutScene(CutScene* cutscene);
 private:
 	int mCurid;

@@ -11,6 +11,7 @@
 
 #include "StringTable.h"
 #include "DataLibrary.h"
+#include "LuaSystem.h"
 
 MapLoader::MapLoader()
 {
@@ -365,6 +366,10 @@ void MapLoader::creatSquadGrapAtPath(std::string path)
 			datalib->getData(datapath + "/Formation",f);
 			BattleSquad* battlesquad =  new BattleSquad((*ite),battlesuqadmanager->mCurid,x,y); 
 			SquadGraphics* squadgrap  = suqadgrapmanager->createSquad((*ite), datapath, battlesuqadmanager->mCurid,x,y,d,f, battlesquad->getUnitGrapNum());
+			if(!battlesquad->viewbyTeam(0))
+			{
+				squadgrap->setVisible(false);
+			}
 			squadgrap->setFormation(f,false);
 			squadgrap->setDirection(d,false);
 			datalib->setData(datapath +std::string("/Grapid"),battlesuqadmanager->mCurid);
@@ -372,4 +377,15 @@ void MapLoader::creatSquadGrapAtPath(std::string path)
 			battlesuqadmanager->mCurid ++;
 		}
 	}
+}
+
+void MapLoader::initMapScript()
+{
+	DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/Ture",0);
+	DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/CurTeam",4);
+
+	//运行地图初始化脚本
+	std::string mapscript;
+	bool re = DataLibrary::getSingletonPtr()->getData("GameData/BattleData/MapData/MapScript",mapscript);
+	LuaSystem::getSingleton().executeFunction(mapscript, "initmap", "GameData/BattleData/MapData/MapScript/ScriptContext");
 }

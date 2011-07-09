@@ -21,9 +21,11 @@
 #include "timer.hpp"
 #include "MapDataManager.h"
 #include "Terrain.h"
+#include "TriggerManager.h"
 #include "CameraContral.h"
 #include "LuaSkill.h"
 #include "LuaScriptCommon.h"
+#include "LuaTrigger.h"
 
 #include <ParticleUniverseSystemManager.h> 
 
@@ -45,94 +47,97 @@ bool Core::initialize()
 	mDataLibrary->loadXmlData(DataLibrary::StaticData,"../media/lang/chinese/stringtable.xml",true);
 	new StringTable;
 
-	bool rtn=false;
-	mRoot = new Ogre::Root("Plugins.cfg","ogre.cfg","log.txt");
-	if(!mRoot->restoreConfig())
-	{
-		rtn=mRoot->showConfigDialog();
-	}
-	else
-	{
-		rtn=true;
-	}
-	if (rtn)
-	{
-		mWindow=mRoot->initialise(true, StringTable::getSingleton().getAnsiString("gamename"));
-		Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
-
-		mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC);
-
-		Ogre::MovableObject::setDefaultQueryFlags(0);
-
-		mCamera = mSceneMgr->createCamera("PlayerCam");
-		mCamera->setPosition(Ogre::Vector3(50.0f,0.0f,50.0f));
-		mCamera->lookAt(Ogre::Vector3(0.0f,0.0f,0.0f));
-		mCamera->setNearClipDistance(5.0f);
-		mCamera->setFarClipDistance(500.0f);
-
-		Ogre::Viewport* vp = mWindow->addViewport(mCamera);
-		vp->setMaterialScheme("Default");
-		//vp->setMaterialScheme("WriteDepthMap");
-		mCamera->setAspectRatio(Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));
-		//mCamera->setProjectionType(Ogre::PT_ORTHOGRAPHIC);
-		//mCamera->setOrthoWindowWidth(Ogre::Real(vp->getActualWidth())/5);
-		initializeResource();
-
-		Ogre::ResourceGroupManager::getSingletonPtr()->initialiseAllResourceGroups();
-
-		mDebugOverlay = Ogre::OverlayManager::getSingleton().getByName("Core/DebugOverlay");
-		mDebugOverlay->show();
-
-		mGUISystem=new GUISystem(mWindow,mSceneMgr);
-		mGUISystem->registerSceneFactory(StageScene,new GUIStageFactory());
-		mGUISystem->registerSceneFactory(MenuScene,new GUIMenuFactory());
-		//mGUISystem->registerSceneFactory(PUDebugScene,new GUIPUDebugFactory());
-		mGUISystem->registerSceneFactory(BattleScene,new GUIBattleFactory());
-		mGUISystem->registerSceneFactory(LoadingScene, new LoadSceneFactory());
-
-		mAudioSystem=new AudioSystem();
-
-		mAudioSystem->init();
-
-		mInputControl=new InputControl();
-		mInputControl->setGUISystem(mGUISystem);
-
-		initializeOIS();
-
-		//初始化阴影
-		mSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_NONE);
-		//mSceneMgr->setShadowCasterRenderBackFaces(false);
-		//mSceneMgr->setShadowTextureSelfShadow(true);
-		//mSceneMgr->setShadowTextureCasterMaterial("DepthShadowmap/Caster");
-		//mSceneMgr->setShadowTexturePixelFormat(Ogre::PF_FLOAT32_R);
-
-		//初始化文字部分
-		mLuaSystem->registerCLib("AVGLib",AVGLib);
-		new AVGSquadManager;
-
-		//初始化战斗部分
-		new BattleSquadManager;
-		new MapDataManager;
-		new SquadGrapManager(mSceneMgr);
-		new Terrain;
-		new CameraContral;
-		mLuaSystem->registerCLib("ScriptCommonLib",ScriptCommonLib);
-		mLuaSystem->registerCLib("SkillLib",SkillLib);
-
-
-		mStateManager=new StateManager();
-		mStateManager->changeState("logo",StateManager::Menu);
-
-
-
-		isRun=true;
-
-		return true;
-	}
-	else
-	{
+	mRoot = new Ogre::Root("Plugins.cfg","","log.txt");
+// 	if(!mRoot->restoreConfig())
+// 	{
+// 		rtn=mRoot->showConfigDialog();
+// 	}
+// 	else
+// 	{
+// 		rtn=true;
+// 	}
+	Ogre::RenderSystem *rSys = mRoot->getRenderSystemByName("Direct3D9 Rendering Subsystem");
+	if(!rSys)
 		return false;
-	}
+	
+	mRoot->setRenderSystem(rSys);
+
+	mRoot->initialise(false);
+
+	std::string title = StringTable::getSingleton().getAnsiString("gamename");
+
+	mWindow = mRoot->createRenderWindow(title,1280,720,false,0);
+
+	Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
+
+	mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC);
+
+	Ogre::MovableObject::setDefaultQueryFlags(0);
+
+	mCamera = mSceneMgr->createCamera("PlayerCam");
+	mCamera->setPosition(Ogre::Vector3(50.0f,0.0f,50.0f));
+	mCamera->lookAt(Ogre::Vector3(0.0f,0.0f,0.0f));
+	mCamera->setNearClipDistance(5.0f);
+	mCamera->setFarClipDistance(500.0f);
+
+	Ogre::Viewport* vp = mWindow->addViewport(mCamera);
+	vp->setMaterialScheme("Default");
+	//vp->setMaterialScheme("WriteDepthMap");
+	mCamera->setAspectRatio(Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));
+	//mCamera->setProjectionType(Ogre::PT_ORTHOGRAPHIC);
+	//mCamera->setOrthoWindowWidth(Ogre::Real(vp->getActualWidth())/5);
+	initializeResource();
+
+	Ogre::ResourceGroupManager::getSingletonPtr()->initialiseAllResourceGroups();
+
+	mDebugOverlay = Ogre::OverlayManager::getSingleton().getByName("Core/DebugOverlay");
+	mDebugOverlay->show();
+
+	mGUISystem=new GUISystem(mWindow,mSceneMgr);
+	mGUISystem->registerSceneFactory(StageScene,new GUIStageFactory());
+	mGUISystem->registerSceneFactory(MenuScene,new GUIMenuFactory());
+	//mGUISystem->registerSceneFactory(PUDebugScene,new GUIPUDebugFactory());
+	mGUISystem->registerSceneFactory(BattleScene,new GUIBattleFactory());
+	mGUISystem->registerSceneFactory(LoadingScene, new LoadSceneFactory());
+
+	mAudioSystem=new AudioSystem();
+
+	mAudioSystem->init();
+
+	mInputControl=new InputControl();
+	mInputControl->setGUISystem(mGUISystem);
+
+	initializeOIS();
+
+	//初始化阴影
+	mSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_NONE);
+	//mSceneMgr->setShadowCasterRenderBackFaces(false);
+	//mSceneMgr->setShadowTextureSelfShadow(true);
+	//mSceneMgr->setShadowTextureCasterMaterial("DepthShadowmap/Caster");
+	//mSceneMgr->setShadowTexturePixelFormat(Ogre::PF_FLOAT32_R);
+
+	//初始化文字部分
+	mLuaSystem->registerCLib("AVGLib",AVGLib);
+	new AVGSquadManager;
+
+	//初始化战斗部分
+	new BattleSquadManager;
+	new MapDataManager;
+	new SquadGrapManager(mSceneMgr);
+	new Terrain;
+	new TriggerManager;
+	new CameraContral;
+	mLuaSystem->registerCLib("TriggerLib",TriggerLib);
+	mLuaSystem->registerCLib("ScriptCommonLib",ScriptCommonLib);
+	mLuaSystem->registerCLib("SkillLib",SkillLib);
+
+
+	mStateManager=new StateManager();
+	mStateManager->changeState("logo",StateManager::Menu);
+
+	isRun=true;
+
+	return true;
 
 }
 

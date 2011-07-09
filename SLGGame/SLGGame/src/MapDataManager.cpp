@@ -46,7 +46,7 @@ TerrainType MapDataManager::getTerrainType(int x, int y)
 
 bool MapDataManager::getPassable(int x, int y, int team)
 {
-	if(x < 0 || x > mMapSize || y < 0 || y > mMapSize)
+	if(x < 0 || x >= mMapSize || y < 0 || y >= mMapSize)
 		return false;
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	int maxpassable;
@@ -115,7 +115,7 @@ float MapDataManager::getInfApCost(int x, int y, int team)
 	std::string path =  std::string("GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(x + y * mMapSize);
 	std::string groundobj;
 	float groundobjcost = 0.0f;
-	re = datalib->getData(path + std::string("/MapObjType"), groundobj);
+	re = datalib->getData(path + std::string("/MapObjType"), groundobj, true);
 	if(re)
 	{
 		path = str(boost::format("StaticData/MapObjType/%1%/GroundModifier/InfAp")%groundobj);
@@ -135,7 +135,7 @@ float MapDataManager::getCavApCost(int x, int y, int team)
 	std::string path =  std::string("GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(x + y * mMapSize);
 	std::string groundobj;
 	float groundobjcost = 0.0f;
-	re = datalib->getData(path + std::string("/MapObjType"), groundobj);
+	re = datalib->getData(path + std::string("/MapObjType"), groundobj, true);
 	if(re)
 	{
 		path = str(boost::format("StaticData/MapObjType/%1%/GroundModifier/CavAp")%groundobj);
@@ -176,11 +176,11 @@ float MapDataManager::getCovert(int x, int y, int team)
 	std::string path =  std::string("GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(x + y * mMapSize);
 	std::string groundobj;
 	float groundobjcost = 0.0f;
-	re = datalib->getData(path + std::string("/MapObjType"), groundobj);
+	re = datalib->getData(path + std::string("/MapObjType"), groundobj, true);
 	if(re)
 	{
 		path = str(boost::format("StaticData/MapObjType/%1%/GroundModifier/Covert")%groundobj);
 		re = datalib->getData(path, groundobjcost);
 	}
-	return groundcost + terraincost;
+	return groundcost + terraincost + groundobjcost;
 }

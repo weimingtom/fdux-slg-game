@@ -1,27 +1,29 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout" version="3.2.0">
-    <Widget type="Window" skin="WindowCS" position="0 0 200 145" layer="Main" name="GameState">
+    <Widget type="Window" skin="WindowCS" position="0 0 200 125" layer="Main" name="GameState">
         <Property key="Caption" value="Game State"/>
         <Property key="Visible" value="false"/>
-        <Widget type="TextBox" skin="TextBox" position="5 15 75 20">
+        <Property key="FontName" value="fireflysung"/>
+        <Property key="FontHeight" value="20"/>
+        <Widget type="TextBox" skin="TextBox" position="5 5 75 20">
             <Property key="Caption" value="Game Turn:"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="5 45 75 20">
+        <Widget type="TextBox" skin="TextBox" position="5 30 75 20">
             <Property key="Caption" value="CurTeam:"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="90 45 90 20" name="PlayerLabel">
+        <Widget type="TextBox" skin="TextBox" position="90 30 90 20" name="PlayerLabel">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="90 15 90 20" name="TurnLabel">
+        <Widget type="TextBox" skin="TextBox" position="90 5 90 20" name="TurnLabel">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="Button" skin="Button" position="5 75 175 30" name="NextTurnButton">
+        <Widget type="Button" skin="Button" position="5 55 175 30" name="NextTurnButton">
             <Property key="Caption" value="Next Turn"/>
         </Widget>
     </Widget>
@@ -116,13 +118,19 @@
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="70 60 60 20" name="TerrainDefenceLabel"/>
+        <Widget type="TextBox" skin="TextBox" position="70 60 60 20" name="TerrainDefenceLabel">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
         <Widget type="TextBox" skin="TextBox" position="5 85 60 20">
             <Property key="Caption" value="CavAp:"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="70 85 60 20" name="TerrainCavApLabel"/>
+        <Widget type="TextBox" skin="TextBox" position="70 85 60 20" name="TerrainCavApLabel">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
         <Widget type="TextBox" skin="TextBox" position="135 85 60 20">
             <Property key="Caption" value="InfAp:"/>
             <Property key="FontName" value="fireflysung"/>
@@ -158,17 +166,25 @@
             <Property key="FontHeight" value="20"/>
             <Property key="Caption" value="X="/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="70 10 60 20" name="TerrainGridX"/>
+        <Widget type="TextBox" skin="TextBox" position="70 10 60 20" name="TerrainGridX">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
         <Widget type="TextBox" skin="TextBox" position="135 10 60 20">
             <Property key="Caption" value="Y="/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="200 10 60 20" name="TerrainGridY"/>
+        <Widget type="TextBox" skin="TextBox" position="200 10 60 20" name="TerrainGridY">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
     </Widget>
     <Widget type="Window" skin="WindowCS" position="0 175 220 140" layer="Main" name="MissionWindow">
         <Property key="Caption" value="Mission"/>
         <Property key="Visible" value="false"/>
+        <Property key="FontName" value="fireflysung"/>
+        <Property key="FontHeight" value="20"/>
         <Widget type="ListBox" skin="ListBox" position="0 0 210 105" name="MissionList"/>
     </Widget>
     <Widget type="Window" skin="WindowCS" position="755 0 195 275" layer="Main" name="DeployWindow">
@@ -191,26 +207,39 @@
     <Widget type="Window" skin="WindowCS" position="445 165 120 190" layer="Popup" name="Menu">
         <Property key="Visible" value="false"/>
         <Property key="Caption" value="Menu"/>
+        <Property key="FontName" value="fireflysung"/>
+        <Property key="FontHeight" value="20"/>
         <Widget type="Button" skin="Button" position="0 0 110 30" name="MenuRestartButton">
             <Property key="Caption" value="Restart"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
         </Widget>
         <Widget type="Button" skin="Button" position="0 30 110 30" name="MenuSaveButton">
             <Property key="Caption" value="Save"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
         </Widget>
         <Widget type="Button" skin="Button" position="0 60 110 30" name="MenuLoadButton">
             <Property key="Caption" value="Load"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
         </Widget>
         <Widget type="Button" skin="Button" position="0 90 110 30" name="MenuOptionButton">
             <Property key="Caption" value="Option"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
         </Widget>
         <Widget type="Button" skin="Button" position="0 120 110 30" name="MenuExitButton">
             <Property key="Caption" value="Exit"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
         </Widget>
     </Widget>
     <Widget type="Window" skin="WindowCS" position="685 320 280 285" layer="Main" name="TargetWindow">
         <Property key="Caption" value="Target Info"/>
         <Property key="FontName" value="fireflysung"/>
         <Property key="Visible" value="false"/>
+        <Property key="FontHeight" value="20"/>
         <Widget type="ImageBox" skin="ImageBox" position="155 5 110 135" name="TargetImage"/>
         <Widget type="ImageBox" skin="ImageBox" position="115 5 40 30" name="TargetFactionImage"/>
         <Widget type="TextBox" skin="TextBox" position="5 10 105 20" name="TargetLeadName">
@@ -324,6 +353,20 @@
         <Widget type="Button" skin="Button" position="125 125 55 55" name="Skill9">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
+        </Widget>
+    </Widget>
+    <Widget type="Window" skin="WindowCS" position="225 175 205 140" layer="Main" name="LogWindow">
+        <Property key="FontName" value="fireflysung"/>
+        <Property key="FontHeight" value="20"/>
+        <Property key="Caption" value="LogWindow"/>
+        <Property key="Visible" value="false"/>
+        <Widget type="EditBox" skin="EditBoxStretch" position="0 0 195 105" name="LogBox">
+            <Property key="MultiLine" value="true"/>
+            <Property key="ReadOnly" value="true"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+            <Property key="VisibleVScroll" value="true"/>
+            <Property key="OverflowToTheLeft" value="true"/>
         </Widget>
     </Widget>
 </MyGUI>

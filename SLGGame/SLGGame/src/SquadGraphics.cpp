@@ -164,10 +164,10 @@ UnitGrap* SquadGraphics::createSoldier()
 	unit->createWeapon(mSWeaponMesh,mSWeaponMesh,UnitGrap::SecWepon);
 	unit->createWeapon(mShieldMesh,mShieldMat,UnitGrap::Shield);
 
-	if (mSoilderEffect!="none")
-	{
-		unit->setEffect(mSoilderEffect,mSoilderEffectOffect);
-	}
+// 	if (mSoilderEffect!="none")
+// 	{
+// 		unit->setEffect(mSoilderEffect,mSoilderEffectOffect);
+// 	}
 
 	mSoldierUnits.push_back(unit);
 
@@ -333,23 +333,23 @@ void SquadGraphics::stopTransform()
 	setCheckUnitHeight(false);
 }
 
-void SquadGraphics::setAnimation(std::string name,Object object,bool isLoop,bool returnInit)
+void SquadGraphics::setAnimation(std::string name,UnitType object,bool isLoop,bool returnInit)
 {
 	switch(object)
 	{
-	case Squad:
+	case UNITTYPE_ALL:
 		{
 
 		}
-	case Commander:
+	case UNITTYPE_LEADER:
 		{
 			mCommanderUnit->setAnimation(name,isLoop,returnInit);
-			if (object!=Squad)
+			if (object!=UNITTYPE_ALL)
 			{
 				break;
 			}
 		}
-	case Soldier:
+	case UNITTYPE_SOLIDER:
 		{
 			for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 			{
@@ -361,23 +361,23 @@ void SquadGraphics::setAnimation(std::string name,Object object,bool isLoop,bool
 }
 
 
-void SquadGraphics::setInitAnimation( Object object )
+void SquadGraphics::setInitAnimation( UnitType object )
 {
 	switch(object)
 	{
-	case Squad:
+	case UNITTYPE_ALL:
 		{
 
 		}
-	case Commander:
+	case UNITTYPE_LEADER:
 		{
 			mCommanderUnit->mAniBlender->BackToInit();
-			if (object!=Squad)
+			if (object!=UNITTYPE_ALL)
 			{
 				break;
 			}
 		}
-	case Soldier:
+	case UNITTYPE_SOLIDER:
 		{
 			for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 			{
@@ -389,9 +389,9 @@ void SquadGraphics::setInitAnimation( Object object )
 }
 
 
-bool SquadGraphics::isAnimationOver(Object object)
+bool SquadGraphics::isAnimationOver(UnitType object)
 {
-	if (object==Commander)
+	if (object==UNITTYPE_LEADER)
 	{
 		return mCommanderUnit->mAniBlender->complete;
 	}
@@ -409,11 +409,11 @@ bool SquadGraphics::isAnimationOver(Object object)
 }
 
 
-void SquadGraphics::setEffect( std::string name,Object object)
+void SquadGraphics::setEffect( std::string name,UnitType object)
 {
 	switch(object)
 	{
-	case Squad:
+	case UNITTYPE_ALL:
 		{
 			if (mPUSystem!=NULL)
 			{
@@ -429,12 +429,12 @@ void SquadGraphics::setEffect( std::string name,Object object)
 			mPUSystem->start();
 			break;
 		}
-	case Commander:
+	case UNITTYPE_LEADER:
 		{
 			mCommanderUnit->setEffect(name);
 			break;
 		}
-	case Soldier:
+	case UNITTYPE_SOLIDER:
 		{
 			for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 			{
@@ -630,21 +630,21 @@ void SquadGraphics::handleParticleSystemEvent( ParticleUniverse::ParticleSystem 
 	}
 }
 
-bool SquadGraphics::isEffectOver( Object object )
+bool SquadGraphics::isEffectOver( UnitType object )
 {
 	switch(object)
 	{
-	case Squad:
+	case UNITTYPE_ALL:
 		{
 			return mPUSystemEnd;
 			break;
 		}
-	case Commander:
+	case UNITTYPE_LEADER:
 		{
 			mCommanderUnit->isEffectOver();
 			break;
 		}
-	case Soldier:
+	case UNITTYPE_SOLIDER:
 		{
 			if (mSoldierUnits.size()!=0)
 			{
@@ -661,23 +661,23 @@ bool SquadGraphics::isEffectOver( Object object )
 	return true;
 }
 
-void SquadGraphics::stopEffect( Object object )
+void SquadGraphics::stopEffect( UnitType object )
 {
 	if (mPUSystem!=NULL)
 	{
 		switch(object)
 		{
-		case Squad:
+		case UNITTYPE_ALL:
 			{
 				mPUSystem->stop();
 				break;
 			}
-		case Commander:
+		case UNITTYPE_LEADER:
 			{
 				mCommanderUnit->stopEffect();
 				break;
 			}
-		case Soldier:
+		case UNITTYPE_SOLIDER:
 			{
 				for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 				{
@@ -1084,7 +1084,7 @@ void SquadGraphics::update( unsigned int deltaTime )
 			stopTransform();
 			if (mReturnInitAni)
 			{
-				setInitAnimation(Squad);
+				setInitAnimation(UNITTYPE_ALL);
 			}
 		}
 		else

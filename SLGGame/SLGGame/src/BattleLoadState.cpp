@@ -49,12 +49,14 @@ void BattleLoadState::update(unsigned int deltaTime)
 		mLoadScene->setText("Loading Unit");
 		break;
 	case LOADUNIT:
-		mMapLoader->initBattleSquad(true);
+		mMapLoader->initBattleSquad(mLoadFromMap);
 		mState = LOADGRID;
 		mLoadScene->setProgress(75);
 		mLoadScene->setText("Creating Grid");
 		break;
 	case LOADGRID:
+		if(mLoadFromMap)
+			mMapLoader->initMapScript();
 		Terrain::getSingleton().createGrid();
 		GUIBattle* guibattle=static_cast<GUIBattle *>(GUISystem::getSingleton().createScene(BattleScene));
 		BattleDeployState* deploystate = new BattleDeployState;

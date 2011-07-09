@@ -1,0 +1,15 @@
+import DepthShadowmap/Caster from "Shadow.material"
+material SceneObj : DepthShadowmap/Caster
+{
+	technique default
+	{
+		scheme Default
+		pass
+		{
+			texture_unit
+			{
+				texture jianzhu1.tif
+			}
+		}
+	}
+}

@@ -13,6 +13,7 @@
 #include "cutscene.h"
 #include "DirectionCutScene.h"
 #include "SquadDeadCutScene.h"
+#include "AnimationCutScene.h"
 
 BattleSquadManager::BattleSquadManager()
 {
@@ -217,8 +218,10 @@ CutScene* BattleSquadManager::useSkillOn(BattleSquad* attacksquad, BattleSquad* 
 	//设置脚本上下文
 	datalib->setData(skillpath + std::string("/ScriptContext/skillcast"),0);
 	datalib->setData(skillpath + std::string("/ScriptContext/skillcaster"),attacksquad->getId());
+	datalib->setData(skillpath + std::string("/ScriptContext/skillcasterpath"),attacksquad->getPath());
 	datalib->setData(skillpath + std::string("/ScriptContext/skilltarget"),targetsquad->getId());
-	re = LuaSystem::getSingleton().ExecuteFunction(skillscript, "useskill" , skillpath + std::string("/ScriptContext"));
+	datalib->setData(skillpath + std::string("/ScriptContext/skilltargetpath"),targetsquad->getPath());
+	re = LuaSystem::getSingleton().executeFunction(skillscript, "useskill" , skillpath + std::string("/ScriptContext"));
 	if(!re)
 		return NULL;
 	int skillcast;
@@ -246,7 +249,7 @@ CutScene* BattleSquadManager::useSkillAt(BattleSquad* attacksquad, int x, int y,
 bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad* defenesquad)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
-	//处理前置动画
+	//设置小队朝向
 	Direction d;
 	int targetx, targety, casterx,castery;
 	attacksquad->getCrood(&casterx, &castery);
@@ -282,7 +285,7 @@ bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad*
 		squad = defenesquad;
 	for(int n = 0; n < 2; n++)
 	{
-		std::vector<int> atkrolls = squad->getAttackRolls(squad == defenesquad,d);
+		std::vector<int> atkrolls = squad->getAttackRolls(false,squad == defenesquad,d);
 		if(squad == attacksquad)
 			squad = defenesquad;
 		else
@@ -313,4 +316,82 @@ void BattleSquadManager::setCutScene(CutScene* cutscene)
 		mLastCutScene->setNextScene(cutscene);
 		mLastCutScene = cutscene;
 	}
+}
+
+void BattleSquadManager::rangedAttackCutScene(BattleSquad* attacksquad, int x, int y, UnitType castunit , std::string casteffect, std::string castaction, std::string castsound, int missiletype, std::string missileres, std::string hiteffect,std::string hitsound)
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	//设置小队朝向
+	Direction d;
+	int casterx,castery;
+	attacksquad->getCrood(&casterx, &castery);
+	if(!(casterx == x && castery == y))
+	{
+		float k;
+		if(y-castery == 0)
+			k = 2.0f;
+		else
+			k = abs(x -casterx)/ abs(y - castery);
+		if( y > castery && k <= 1.0f)
+			d = South;
+		else if( y < castery && k <= 1.0f)
+			d = North;
+		else if( x > casterx )
+			d = East;
+		else
+			d = West;
+		if(attacksquad->getDirection() != d)
+		{
+			attacksquad->setDirection(d);
+			DirectionCutScene* dcutscene = new DirectionCutScene(attacksquad->getGrapId(), d);
+			setCutScene(dcutscene);
+		}
+	}
+	setCutScene(new AnimationCutScene(attacksquad->getGrapId(),castunit,castaction,castsound,casteffect,false, true));
+}
+
+bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* defenesquad, int attacktime, float atk)
+{
+	std::vector<int> attackrolls;
+	for(int n = 0; n < attacktime; n++)
+	{
+		int atkroll = rand()% ATKROLL;
+		if(atkroll == ATKROLL -1)
+			atkroll = 100;
+		else if(atkroll == 0)
+			atkroll = -100;
+		attackrolls.push_back(atk +atkroll);
+	}
+	if(attackrolls.size() > 0)
+	{
+		int squadugb = defenesquad->getUnitGrapNum();
+		Direction d = defenesquad->getDirection();
+		defenesquad->applyAttackRolls(true, d, attackrolls);
+		int squaduga = defenesquad->getUnitGrapNum();
+		if(squaduga < squadugb)
+		{
+			setCutScene(new SquadDeadCutScene(defenesquad->getGrapId(), squadugb - squaduga));
+		}
+		return true;
+	}
+	return false;
+}
+
+bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad* defenesquad)
+{
+	Direction d = attacksquad->getDirection();
+	std::vector<int> atkrolls = attacksquad->getAttackRolls(true,false,d);
+	if(atkrolls.size() > 0)
+	{
+		int squadugb = defenesquad->getUnitGrapNum();
+		d = defenesquad->getDirection();
+		defenesquad->applyAttackRolls(true, d, atkrolls);
+		int squaduga = defenesquad->getUnitGrapNum();
+		if(squaduga < squadugb)
+		{
+			setCutScene(new SquadDeadCutScene(defenesquad->getGrapId(), squadugb - squaduga));
+		}
+		return true;
+	}
+	return false;
 }
