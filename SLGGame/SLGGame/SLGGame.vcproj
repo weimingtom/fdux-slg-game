@@ -521,6 +521,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\src\CombatPositionCutScene.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\CombatPositionCutScene.h"
+						>
+					</File>
+					<File
 						RelativePath=".\src\CombineCutScene.cpp"
 						>
 					</File>
@@ -590,6 +598,14 @@
 					</File>
 					<File
 						RelativePath=".\src\SquadDeadCutScene.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\WeapenCutScene.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\WeapenCutScene.h"
 						>
 					</File>
 				</Filter>

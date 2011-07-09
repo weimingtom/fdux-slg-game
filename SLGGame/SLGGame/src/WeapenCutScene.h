@@ -1,25 +1,27 @@
 #pragma once
-
-#include <string>
-
 #include "cutscene.h"
 #include "squaddefine.h"
 
 class SquadGraphics;
 
-class EffectCutScene:public CutScene
+class WeapenCutScene :
+	public CutScene
 {
 public:
-	EffectCutScene(unsigned int id,UnitType object,std::string name);
-	~EffectCutScene(void);
+	enum WeaponType
+	{
+		MainWepon,
+		SceWepon
+	};
 
-protected:
+	WeapenCutScene(unsigned int id,WeaponType type);
+	virtual ~WeapenCutScene(void);
+
 	void startCutScence();
 	bool endCutScene();
 	void skipCutScene();
 	void updateCutScene(unsigned int deltaTime);
 
 	SquadGraphics* mSquadGraphics;
-	UnitType mObject;
-	std::string mName;
+	WeaponType mType;
 };

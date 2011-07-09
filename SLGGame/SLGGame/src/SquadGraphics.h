@@ -29,6 +29,9 @@ public:
 	};
 
 	void setMovePath(std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions,std::map<int,Direction>& directions);
+	void combatPosition(Direction d);
+	void idlePosition();
+	void changeUnitPosition(Direction d,Ogre::Vector3 offsetVector);
 	void setDirection(Direction d,bool isAnim);
 	Direction getDirection();
 	void setFormation(Formation f,bool isAnim);
@@ -100,6 +103,7 @@ private:
 	int mSoldierIndex;
 	Formation mFormation;
 	Direction mDirection;
+	Direction mIdleDirection;
 
 	enum DeathStep
 	{

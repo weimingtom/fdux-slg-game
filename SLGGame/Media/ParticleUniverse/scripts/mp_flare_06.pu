@@ -6,6 +6,7 @@ system mp_flare_06
     category                                    MyGame
     technique 
     {
+        visual_particle_quota                   10
         material                                mp_flare_02
         renderer                                Billboard
         {
@@ -23,7 +24,6 @@ system mp_flare_06
                 max                             200
             }
             colour                              0.356863 0.356863 1 1
-            force_emission                      true
         }
         affector                                TextureRotator 
         {

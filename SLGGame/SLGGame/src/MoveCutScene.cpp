@@ -1,15 +1,16 @@
 #include "MoveCutScene.h"
 
 #include "SquadGrapManager.h"
-#include "SquadGraphics.h"
 
 #include "Terrain.h"
 
 MoveCutScene::MoveCutScene(unsigned int id,std::vector<Ogre::Vector2>& grids,Ogre::Vector2& currentGrid)
 {
-	std::map<int,Ogre::Vector3> vectors;
-	std::map<int,Ogre::Quaternion> quaternions;
-	std::map<int,Direction> directions;
+
+	vectors.clear();
+	quaternions.clear();
+	directions.clear();
+	
 	Ogre::Vector2 current=currentGrid;
 	int index=0;
 	mSquadGraphics=SquadGrapManager::getSingletonPtr()->getSquad(id);
@@ -72,8 +73,6 @@ MoveCutScene::MoveCutScene(unsigned int id,std::vector<Ogre::Vector2>& grids,Ogr
 		index++;
 	}
 
-	mSquadGraphics->setMovePath(vectors,quaternions,directions);
-
 }
 
 MoveCutScene::~MoveCutScene(void)
@@ -95,4 +94,9 @@ void MoveCutScene::skipCutScene()
 void MoveCutScene::updateCutScene( unsigned int deltaTime )
 {
 
+}
+
+void MoveCutScene::startCutScence()
+{
+	mSquadGraphics->setMovePath(vectors,quaternions,directions);
 }
