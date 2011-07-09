@@ -63,7 +63,7 @@ enum GUISceneType
 };
 
 #define DefaultDialogVisibleTime 0.5//默认对话框渐出时间
-#define DefaultRoleNameVisibleTime 1//默认角色名渐变时间
+#define DefaultRoleNameVisibleTime 0.1//默认角色名渐变时间
 #define DefaultShowTextTime 0.1//默认打字效果速度
 #define DefaultCursorTime 0.01//默认光标闪烁频率
 #define LineCursorFileName "LineCursor.png"//默认行光标文件名
