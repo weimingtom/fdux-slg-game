@@ -30,9 +30,6 @@ public:
 
 	float getAttr(AttrType attrtype, AttrCalcType calctype, Direction direction);
 
-	bool applyModifier(AttrModifier* modifier,std::string &id);
-	bool clearModifier(std::string id);
-
 	int getUnitGrapNum();
 
 	void newTurn();
@@ -45,7 +42,7 @@ public:
 
 	SquadType getType();
 
-	std::vector<int> getAttackRolls(bool asdefender, Direction d);
+	std::vector<int> getAttackRolls(bool rangedattack,bool asdefender, Direction d);
 	void applyAttackRolls(bool rangedattack, Direction d, std::vector<int> attackrolls);
 
 	void OnDead();

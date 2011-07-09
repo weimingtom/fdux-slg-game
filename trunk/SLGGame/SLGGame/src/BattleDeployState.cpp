@@ -17,6 +17,7 @@
 #include "AreaGrap.h"
 #include "MapDataManager.h"
 #include "GUISquadWindows.h"
+#include "TriggerManager.h"
 
 BattleDeployState::BattleDeployState()
 {
@@ -82,14 +83,15 @@ void BattleDeployState::update(unsigned int deltaTime)
 	//mSquadGrapManager->update(deltaTime);
 
 	float dx = 0.0f,dy = 0.0f;
+	float dt = (float)deltaTime / 5.0f;
 	if(mMouseX < 20)
-		dx = -1.0f;
+		dx = -dt;
 	if(mMouseX > 1260)
-		dx = 1.0f;
+		dx = dt;
 	if(mMouseY < 20)
-		dy = -1.0f;
+		dy = -dt;
 	if(mMouseY > 680)
-		dy = 1.0f;
+		dy = dt;
 	mCameraContral->moveCamera(dx,dy);
 }
 
@@ -175,6 +177,7 @@ void BattleDeployState::deployConfirm()
 		mSquadManager->deployConfirm();
 		BattleControlState* controlstate = new BattleControlState(true);
 		mMainState->ChangeState(controlstate);
+		TriggerManager::getSingleton().finishdeploy();
 	}
 }
 

@@ -28,13 +28,6 @@ public:
 		SceWepon
 	};
 
-	enum Object
-	{
-		Commander,
-		Soldier,
-		Squad
-	};
-
 	void setMovePath(std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions,std::map<int,Direction>& directions);
 	void setDirection(Direction d,bool isAnim);
 	Direction getDirection();
@@ -42,13 +35,13 @@ public:
 	bool isTransformOver();
 	void stopTransform();
 
-	void setAnimation(std::string name,Object object,bool isLoop,bool returnInit);
-	bool isAnimationOver(Object object);
-	void setInitAnimation(Object object);
+	void setAnimation(std::string name,UnitType object,bool isLoop,bool returnInit);
+	bool isAnimationOver(UnitType object);
+	void setInitAnimation(UnitType object);
 
-	void setEffect(std::string name,Object object);
-	bool isEffectOver(Object object);
-	void stopEffect(Object object);
+	void setEffect(std::string name,UnitType object);
+	bool isEffectOver(UnitType object);
+	void stopEffect(UnitType object);
 
 	void setGrid(int x,int y);
 

@@ -36,7 +36,6 @@ BattlePlayerState::BattlePlayerState()
 	mGUIMenu = static_cast<GUIMenuWindow *>(mGUIBattle->getSubWindow("Menu"));
 	mMouseX = 640;
 	mMouseY = 360;
-	newTurn();
 	mGUIState->setAllowNextTurn(true);
 
 	mSelectSquad = NULL;
@@ -62,14 +61,15 @@ BattlePlayerState::~BattlePlayerState()
 void BattlePlayerState::update(unsigned int deltaTime)
 {
 	float dx = 0.0f,dy = 0.0f;
+	float dt = (float)deltaTime / 5.0f;
 	if(mMouseX < 20)
-		dx = -1.0f;
+		dx = -dt;
 	if(mMouseX > 1260)
-		dx = 1.0f;
+		dx = dt;
 	if(mMouseY < 20)
-		dy = -1.0f;
+		dy = -dt;
 	if(mMouseY > 680)
-		dy = 1.0f;
+		dy = dt;
 	mCameraContral->moveCamera(dx,dy);
 }
 
@@ -895,7 +895,63 @@ void BattlePlayerState::drawSkillMoveArea(SkillType skilltype, float skillcost)
 
 void BattlePlayerState::drawSkillArea(SkillType skilltype, int minrange, int maxrange)
 {
-
+	int x,y;
+	mSelectSquad->getCrood(&x,&y);
+	MapDataManager* mapdata = MapDataManager::getSingletonPtr();
+	BattleSquadManager* battlesquadmanager = BattleSquadManager::getSingletonPtr();
+	std::vector<int> skillcoordlist;
+	for( int xx = x - maxrange; xx <= x + maxrange; xx++ )
+	{
+		for( int yy = y - maxrange; yy <= y + maxrange; yy++)
+		{
+			int irange = abs(xx - x) + abs(yy - y);
+			if(irange <=  maxrange && irange >= minrange)
+			{
+				if(skilltype == SKILLTYPE_TARGETLINE)
+				{
+					if(xx == x && abs(yy - y) > 1)
+						continue;
+					if(yy == y && abs(xx - x) > 1)
+						continue;
+				}
+				if(!mapdata->getPassable(xx,yy,0))
+					continue;
+				BattleSquad* blocksquad = battlesquadmanager->getBattleSquadAt(xx,yy,1,true);
+				if(blocksquad == NULL)
+				{
+					skillcoordlist.push_back(xx);
+					skillcoordlist.push_back(yy);
+				}
+				else
+				{
+					int team = blocksquad->getTeam();
+					int relaction = battlesquadmanager->getTeamRelation(team);
+					switch(skilltype)
+					{
+					case SKILLTYPE_TARGETENEMY:
+						if(relaction > 0)
+						{
+							skillcoordlist.push_back(xx);
+							skillcoordlist.push_back(yy);
+						}
+						break;
+					case SKILLTYPE_TARGETFRIEND:
+						if(relaction == 0)
+						{
+							skillcoordlist.push_back(xx);
+							skillcoordlist.push_back(yy);
+						}
+						break;
+					default:
+						skillcoordlist.push_back(xx);
+						skillcoordlist.push_back(yy);
+						break;
+					}
+				}
+			}
+		}
+	}
+	mMoveAreaGrap = new AreaGrap(skillcoordlist,"CUBE_BLUE");
 }
 
 int BattlePlayerState::skillPass(int x, int y, float &apcost, SkillType skilltype, float skillcost)
@@ -996,7 +1052,44 @@ void BattlePlayerState::drawSkillTargetArea(int x,int y)
 
 void BattlePlayerState::executeSkillAt(int x, int y)
 {
-
+	CutScene* battlecutscene = NULL;
+	if(mSkillType == SKILLTYPE_TARGETLINE || mSkillType == SKILLTYPE_TARGETAREA)
+	{
+		battlecutscene = BattleSquadManager::getSingleton().useSkillAt(mSelectSquad,x,y, mSkillid);
+		mSkillid = "none";
+		mSkillType = SKILLTYPE_PASSIVE;
+		clearPathInfo();
+	}
+	else
+	{
+		BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquadAt(x ,y,1,true);
+		if(battlesquad)
+		{
+			battlecutscene = BattleSquadManager::getSingleton().useSkillOn(mSelectSquad,battlesquad, mSkillid);
+			mSkillid = "none";
+			mSkillType = SKILLTYPE_PASSIVE;
+			clearPathInfo();
+		}
+		else
+			return;
+	}
+	if(battlecutscene != NULL)
+	{
+		CutSceneDirector* cutscenedirector = new CutSceneDirector;
+		cutscenedirector->addCutScene(battlecutscene);
+		mState = PLAYERCONTROL_CUTSCENE;
+		mGUIState->setAllowNextTurn(false);
+		mMainState->PushState(cutscenedirector);
+	}
+	else
+	{
+		mSquadWindow->setSquad(mSelectSquad);
+		if(mSelectSquad->getActionPoint() > 0.0f)
+		{
+			mGUICommand->setSquad(mSelectSquad);
+		}
+		mState = PLAYERCONTROL_CHOOSESKILL;
+	}
 }
 
 void BattlePlayerState::executeSkillOn(int x, int y, BattleSquad* squad)

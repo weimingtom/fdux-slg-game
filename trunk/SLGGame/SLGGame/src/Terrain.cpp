@@ -35,7 +35,7 @@ bool Terrain::createTerrain()
 
 	//设置深度图投影
 	Ogre::TexturePtr tex = Ogre::TextureManager::getSingleton().createManual("shadowdepthmap",
-		Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::TEX_TYPE_2D, 1024, 1024, 0, Ogre::PF_FLOAT32_R, Ogre::TU_RENDERTARGET);
+		Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::TEX_TYPE_2D, 2048, 2048, 0, Ogre::PF_FLOAT32_R, Ogre::TU_RENDERTARGET);
 	mShadowDepthMapTarget = tex->getBuffer()->getRenderTarget();
 	Ogre::Viewport* vp = mShadowDepthMapTarget->addViewport(CameraContral::getSingleton().getShadowMapCamera());
 	vp->setOverlaysEnabled(false);

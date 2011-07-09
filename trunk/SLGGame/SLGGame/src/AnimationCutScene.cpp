@@ -3,33 +3,42 @@
 #include "SquadGrapManager.h"
 #include "SquadGraphics.h"
 
-AnimationCutScene::AnimationCutScene(unsigned int id,AnimationObject object,std::string name,bool isLoop,bool isBackToWait):CutScene(0),mIsBackeToWait(isBackToWait)
+AnimationCutScene::AnimationCutScene(unsigned int id,UnitType object,std::string name,std::string sound , std::string particle,bool isLoop,bool isBackToWait)
+:CutScene(0),mName(name),mSound(sound),mParticle(particle),mIsBackeToWait(isBackToWait)
 {
-	
 	mSquadGraphics=SquadGrapManager::getSingletonPtr()->getSquad(id);
-	
-	mSquadGraphics->setAnimation(name,(SquadGraphics::Object)object,isLoop,isBackToWait);
+	mIsLoop = isLoop;
 	mObject=object;
 }
 
 AnimationCutScene::~AnimationCutScene(void)
 {
-	if (mIsBackeToWait)
-	{
-		mSquadGraphics->setInitAnimation((SquadGraphics::Object)mObject);
-	}
+
+}
+
+void AnimationCutScene::startCutScence()
+{
+	mSquadGraphics->setAnimation(mName,mObject,mIsLoop,mIsBackeToWait);
 }
 
 bool AnimationCutScene::endCutScene()
 {
-	return mSquadGraphics->isAnimationOver((SquadGraphics::Object)mObject);
+	if(mSquadGraphics->isAnimationOver(mObject))
+	{
+		if (mIsBackeToWait)
+		{
+			mSquadGraphics->setInitAnimation(mObject);
+		}
+		return true;
+	}
+	return false;
 }
 
 void AnimationCutScene::skipCutScene()
 {
 	if (mIsBackeToWait)
 	{
-		mSquadGraphics->setInitAnimation((SquadGraphics::Object)mObject);
+		mSquadGraphics->setInitAnimation(mObject);
 	}
 }
 

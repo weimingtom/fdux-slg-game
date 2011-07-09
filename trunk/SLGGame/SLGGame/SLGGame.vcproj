@@ -365,6 +365,14 @@
 					RelativePath=".\src\Terrain.h"
 					>
 				</File>
+				<File
+					RelativePath=".\src\TriggerManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\TriggerManager.h"
+					>
+				</File>
 				<Filter
 					Name="SubBattleState"
 					>
@@ -469,6 +477,10 @@
 					RelativePath=".\src\LuaSkill.h"
 					>
 				</File>
+				<File
+					RelativePath=".\src\LuaTrigger.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="View"
@@ -562,6 +574,14 @@
 					</File>
 					<File
 						RelativePath=".\src\MoveCutScene.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\RangedCutScene.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\RangedCutScene.h"
 						>
 					</File>
 					<File

@@ -16,4 +16,5 @@ public:
 private:
 	GUIBattle* mGUIBattle;
 	GUIGameStateWindows* mGUIState;
+	bool mNewGame;
 };

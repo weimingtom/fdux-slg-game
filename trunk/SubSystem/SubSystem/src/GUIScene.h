@@ -121,9 +121,9 @@ protected:
 		}
 		else
 		{
-			if(mSetp-0.01>=0)
+			if(mSetp-0.01f>=0)
 			{
-				mSetp-=0.01;
+				mSetp-=0.01f;
 
 				mFadeWidget->setAlpha(mSetp);
 			}

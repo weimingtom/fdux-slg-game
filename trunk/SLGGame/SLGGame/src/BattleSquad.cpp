@@ -9,6 +9,7 @@
 #include "AVGSquadManager.h"
 #include "MapDataManager.h"
 #include "BattleSquadManager.h" 
+#include "TriggerManager.h"
 
 BattleSquad::BattleSquad(std::string id, int grapid ,int x, int y)
 :mId(id),mGrapId(grapid)
@@ -331,16 +332,6 @@ float BattleSquad::getAttr(AttrType attrtype, AttrCalcType calctype, Direction d
 	return attr;
 }
 
-bool BattleSquad::applyModifier(AttrModifier* modifier,std::string &id)
-{
-	return AVGSquadManager::getSingleton().applyModifer(getPath(), modifier, id);
-}
-
-bool BattleSquad::clearModifier(std::string id)
-{
-	return false;
-}
-
 int BattleSquad::getUnitGrapNum()
 {
 	SquadType squadtype;
@@ -366,7 +357,7 @@ void BattleSquad::newTurn()
 	datalib->setData(getPath() + std::string("/APSetup"),0.0f);
 	datalib->setData(getPath() + std::string("/APBattle"),0.0f);
 	//计算隐藏
-
+	
 	//计算技能
 	std::vector<std::string>::iterator ite;
 	std::vector<std::string> skilllist = datalib->getChildList(getPath() + std::string("/SkillTable"));
@@ -421,10 +412,14 @@ float BattleSquad::getActionPointCost(int type)
 	return apcost;
 }
 
-std::vector<int> BattleSquad::getAttackRolls(bool asdefender, Direction d)
+std::vector<int> BattleSquad::getAttackRolls(bool rangedattack,bool asdefender, Direction d)
 {
 	std::vector<int> attackrolls;
-	float atkf = getAttr(ATTR_ATTACK, ATTRCALC_FULL, d);
+	float atkf;
+	if(rangedattack)
+		atkf = getAttr(ATTR_RANGEDATTACK, ATTRCALC_FULL, d);
+	else
+		atkf = getAttr(ATTR_ATTACK, ATTRCALC_FULL, d);
 	int atk = floor(atkf + 0.5f);
 	int soildernum, woundnum, healthynum;
 	DataLibrary::getSingleton().getData(getPath() + std::string("/UnitNumber"),soildernum);
@@ -452,6 +447,8 @@ std::vector<int> BattleSquad::getAttackRolls(bool asdefender, Direction d)
 			int atkroll = rand()% ATKROLL;
 			if(atkroll == ATKROLL -1)
 				atkroll = 100;
+			else if(atkroll == 0)
+				atkroll = -100;
 			attackrolls.push_back(atk +atkroll);
 		}
 	}
@@ -487,6 +484,8 @@ void BattleSquad::applyAttackRolls(bool rangedattack, Direction d, std::vector<i
 			unit = 1;
 			if(soildernum == 0)
 			{
+				DataLibrary::getSingleton().setData(getPath() + std::string("/UnitNumber"),0);
+				DataLibrary::getSingleton().setData(getPath() + std::string("/WoundNum"),0);
 				OnDead();
 				break;
 			}
@@ -542,4 +541,6 @@ void BattleSquad::applyAttackRolls(bool rangedattack, Direction d, std::vector<i
 void BattleSquad::OnDead()
 {
 	mIsEliminated = true;
+	if(mIsEliminated)
+		TriggerManager::getSingleton().unitDead(this);
 }

@@ -3,11 +3,11 @@
 #include "SquadGrapManager.h"
 #include "SquadGraphics.h"
 
-EffectCutScene::EffectCutScene(unsigned int id,EffectObject object,std::string name):CutScene(0)
+EffectCutScene::EffectCutScene(unsigned int id,UnitType object,std::string name):CutScene(0)
 {
 	mSquadGraphics=SquadGrapManager::getSingletonPtr()->getSquad(id);
 
-	mSquadGraphics->setEffect(name,(SquadGraphics::Object)object);
+	mSquadGraphics->setEffect(name,object);
 	mObject=object;
 }
 
@@ -18,12 +18,12 @@ EffectCutScene::~EffectCutScene(void)
 
 bool EffectCutScene::endCutScene()
 {
-	return mSquadGraphics->isEffectOver((SquadGraphics::Object)mObject);
+	return mSquadGraphics->isEffectOver(mObject);
 }
 
 void EffectCutScene::skipCutScene()
 {
-	mSquadGraphics->stopEffect((SquadGraphics::Object)mObject);
+	mSquadGraphics->stopEffect(mObject);
 }
 
 void EffectCutScene::updateCutScene( unsigned int deltaTime )

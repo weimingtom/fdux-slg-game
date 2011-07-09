@@ -15,7 +15,7 @@ extern "C"
 		
 		StateManager::getSingletonPtr()->changeState(arg,StateManager::AVG);
 
-		return 1;
+		return 0;
 	}
 
 	static int BattleState1(lua_State* L)
@@ -24,7 +24,7 @@ extern "C"
 
 		StateManager::getSingletonPtr()->changeState(arg,StateManager::Battle);
 
-		return 1;
+		return 0;
 	}
 
 	static int SupplyState(lua_State* L)
@@ -33,7 +33,7 @@ extern "C"
 
 		StateManager::getSingletonPtr()->changeState(arg,StateManager::Supply);
 
-		return 1;
+		return 0;
 	}
 
 	static const struct luaL_Reg StateLib[] =

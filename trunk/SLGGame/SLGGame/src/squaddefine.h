@@ -88,6 +88,8 @@ const int MOVEEVENT_AMBUSHTEAM2 = 32;
 const int MOVEEVENT_AMBUSHTEAM3 = 64;
 const int MOVEEVENT_AMBUSHTEAM4 = 128;
 const int MOVEEVENT_MAPEVENT = 256;
+const int MOVEEVENT_CHARGE_DIR_1 = 512; //冲锋方向位1
+const int MOVEEVENT_CHARGE_DIR_2 = 1024; //冲锋方向位2
 
 typedef int SkillType;
 const SkillType SKILLTYPE_PASSIVE = 0;
@@ -103,3 +105,9 @@ const int SKILLAPTYPE_BATTLE = 1;
 
 const int ATKROLL = 20;
 const int DEFBOUSE = 15;
+
+
+typedef int UnitType;
+const UnitType UNITTYPE_ALL = 0;
+const UnitType UNITTYPE_LEADER = 1;
+const UnitType UNITTYPE_SOLIDER = 2;

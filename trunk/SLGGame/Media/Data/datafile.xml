@@ -16,12 +16,8 @@
 			<LeaderPicture type="String" value="TestLeaderHead.jpg"/>
 			<LeaderMesh type="String" value="LightInf.mesh"/>
 			<LeaderMat type="String" value="LightInf"/>
-			<UnitMesh type="String" value="HolySpirit.mesh"/>
-			<UnitMat type="String" value="HolySpirit"/>	
-			<UnitEffect>
-				<EffectName type="String" value="mp_flare_06"/>
-				<EffectOffect type="Vector3" value="0,3,0"/>
-			</UnitEffect>
+			<UnitMesh type="String" value="Stronghold.mesh"/>
+			<UnitMat type="String" value="Stronghold"/>	
 			<UnitMaxNumber type="Int" value="50"/>				
 		</TestSquad>
 		<TestSquad2>
@@ -34,19 +30,54 @@
 			<ArmorId type="String" value="none"/>
 			<SkillTable>
 				<MagicAttack type="Int" value="1"/>
+				<MagicEffect type="Int" value="1"/>
 			</SkillTable>
 			<LeaderName type="String" value="TestLeaderName2"/>
 			<LeaderPicture type="String" value="TestLeaderHead.jpg"/>
 			<LeaderMesh type="String" value="LightInf.mesh"/>
 			<LeaderMat type="String" value="LightInf"/>
-			<UnitMesh type="String" value="Stronghold.mesh"/>
-			<UnitMat type="String" value="Stronghold"/>	
-			<UnitEffect>
-				<EffectName type="String" value="none"/>
-				<EffectOffect type="Vector3" value="0,3,0"/>
-			</UnitEffect>
+			<UnitMesh type="String" value="HolySpirit.mesh"/>
+			<UnitMat type="String" value="HolySpirit"/>	
 			<UnitMaxNumber type="Int" value="20"/>				
 		</TestSquad2>
+		<LightInf1>
+			<Type type="Int" value="0"/>
+			<SoilderId type="String" value="TestSoilder"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="TestPWeapon"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="TestArmor"/>
+			<SkillTable>
+				<Attack type="Int" value="1"/>
+			</SkillTable>
+			<LeaderName type="String" value="TestLeaderName"/>
+			<LeaderPicture type="String" value="TestLeaderHead.jpg"/>
+			<LeaderMesh type="String" value="Stronghold.mesh"/>
+			<LeaderMat type="String" value="Stronghold"/>
+			<UnitMesh type="String" value="Stronghold.mesh"/>
+			<UnitMat type="String" value="Stronghold"/>	
+			<UnitMaxNumber type="Int" value="50"/>				
+		</LightInf1>
+		<HeavyInf1>
+			<Type type="Int" value="0"/>
+			<SoilderId type="String" value="TestSoilder"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="TestPWeapon"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="TestArmor"/>
+			<SkillTable>
+				<Attack type="Int" value="1"/>
+			</SkillTable>
+			<LeaderName type="String" value="TestLeaderName"/>
+			<LeaderPicture type="String" value="TestLeaderHead.jpg"/>
+			<LeaderMesh type="String" value="LightInf.mesh"/>
+			<LeaderMat type="String" value="LightInf"/>
+			<UnitMesh type="String" value="LightInf.mesh"/>
+			<UnitMat type="String" value="LightInf"/>	
+			<UnitMaxNumber type="Int" value="50"/>				
+		</HeavyInf1>
 	</SquadData>
 	<SoilderData>
 		<TestSoilder>
@@ -177,17 +208,28 @@
 			<Value type="Int" value="10"/>
 			<Script type="String" value="magicattack.lua"/>
 		</MagicAttack>
+		<MagicEffect>
+			<Type type="Int" value="0"/>
+			<MaxRange type="Int" value="0"/>
+			<MinRange type="Int" value="0"/>
+			<Area type="Int" value="0"/>
+			<APType type = "Int" value = "1"/>
+			<APCost type="float" value="0.0"/>
+			<CoolDown type="Int" value="0"/>
+			<Value type="Int" value="10"/>
+			<Script type="String" value="magiceffect.lua"/>		
+		</MagicEffect>
 	</SkillData>
 	<EffectData>
 		<TestEffect>
 			<Type type="Int" value="1"/>
-			<Script type="String" value="Effect1.lua"/>
+			<Icon type="String" value = "none"/>
+			<Script type="String" value="magiceffect.lua"/>
 		</TestEffect>		
 	</EffectData>
 	<GroundData>
 		<Ground1>
 			<GroundModifier>
-				<Type type="Int" value="15"/>
 				<Passable type = "Int" value = "1"/>
 				<Covert type="Float" value="0.0"/>
 				<Defence type="Float" value="0.0"/>
@@ -197,7 +239,6 @@
 		</Ground1>
 		<Ground0>
 			<GroundModifier>
-				<Type type="Int" value="15"/>
 				<Passable type = "Int" value = "1"/>
 				<Covert type="Float" value="0.0"/>
 				<Defence type="Float" value="0.0"/>
@@ -207,7 +248,6 @@
 		</Ground0>
 		<Ground2>
 			<GroundModifier>
-				<Type type="Int" value="15"/>
 				<Passable type = "Int" value = "1"/>
 				<Covert type="Float" value="0.0"/>
 				<Defence type="Float" value="-1.0"/>
@@ -217,7 +257,6 @@
 		</Ground2>
 		<Ground3>
 			<GroundModifier>
-				<Type type="Int" value="15"/>
 				<Passable type = "Int" value = "1"/>
 				<Covert type="Float" value="0.0"/>
 				<Defence type="Float" value="-1.0"/>
@@ -229,7 +268,6 @@
 	<TerrainData>
 		<Terrain1>
 			<GroundModifier>
-				<Type type="Int" value="15"/>
 				<Passable type = "Int" value = "1"/>
 				<Covert type="Float" value="0.0"/>
 				<Defence type="Float" value="0.0"/>
@@ -239,7 +277,6 @@
 		</Terrain1>
 		<Terrain2>
 			<GroundModifier>
-				<Type type="Int" value="15"/>
 				<Passable type = "Int" value = "1"/>
 				<Covert type="Float" value="0.0"/>
 				<Defence type="Float" value="0.0"/>
@@ -249,7 +286,6 @@
 		</Terrain2>
 		<Terrain0>
 			<GroundModifier>
-				<Type type="Int" value="15"/>
 				<Passable type = "Int" value = "0"/>
 				<Covert type="Float" value="0.0"/>
 				<Defence type="Float" value="0.0"/>
@@ -259,7 +295,6 @@
 		</Terrain0>
 		<Terrain3>
 			<GroundModifier>
-				<Type type="Int" value="15"/>
 				<Passable type = "Int" value = "0"/>
 				<Covert type="Float" value="0.0"/>
 				<Defence type="Float" value="0.0"/>
@@ -269,7 +304,6 @@
 		</Terrain3>
 		<Terrain4>
 			<GroundModifier>
-				<Type type="Int" value="15"/>
 				<Passable type = "Int" value = "1"/>
 				<Covert type="Float" value="0.0"/>
 				<Defence type="Float" value="-1.0"/>
@@ -282,7 +316,6 @@
 		<City>
 			<Script type="String" value="City.lua"/>
 			<GroundModifier>
-				<Type type="Int" value="15"/>
 				<Passable type = "Int" value = "1"/>
 				<Covert type="Float" value="2.0"/>
 				<Defence type="Float" value="2.0"/>
@@ -290,6 +323,16 @@
 				<InfAp type="Float" value="0.0"/>
 			</GroundModifier>
 		</City>
+		<Forest>
+			<Script type="String" value="none"/>
+			<GroundModifier>
+				<Passable type = "Int" value = "1"/>
+				<Covert type="Float" value="2.0"/>
+				<Defence type="Float" value="2.0"/>
+				<CavAp type="Float" value="1.0"/>
+				<InfAp type="Float" value="0.0"/>
+			</GroundModifier>
+		</Forest>
 	</MapObjType>
 	<FactionData>
 		<TestFaction>

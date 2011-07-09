@@ -35,10 +35,6 @@
 		<Opition type="String" value = "设置游戏"/>
 		<ExitGame type="String" value = "退出游戏"/>
 		
-		<GUINoSquadName type="String" value="无"/>
-		<GUINoSquadType type="String" value="无"/>
-		<GUINoSquadDescribe type="String" value="无"/>
-		
 		<NotDeploy type="String" value="未部署"/>
 		<DeployConfirm type="String" value="完成部署"/>
 		<DeployWindow type="String" value="部署窗口"/>

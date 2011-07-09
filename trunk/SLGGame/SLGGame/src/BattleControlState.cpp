@@ -7,20 +7,12 @@
 #include "BattleState.h"
 #include "BattlePlayerState.h"
 #include "GUIGameStateWindows.h"
+#include "TriggerManager.h"
 
 
 BattleControlState::BattleControlState(bool newgame)
+:mNewGame(newgame)
 {
-	if(newgame)
-	{
-		DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/Ture",0);
-		DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/CurTeam",4);
-
-		//运行地图初始化脚本
-		std::string mapscript;
-		bool re = DataLibrary::getSingletonPtr()->getData("GameData/BattleData/MapData/MapScript",mapscript);
-		LuaSystem::getSingleton().ExecuteFunction(mapscript, "initmap", "GameData/BattleData/MapData/MapScript/ScriptContext");
-	}
 	mGUIBattle = static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
 	mGUIState = static_cast<GUIGameStateWindows *>(mGUIBattle->getSubWindow("GameState"));
 	mGUIState->showScene("");
@@ -34,10 +26,17 @@ BattleControlState::~BattleControlState()
 void BattleControlState::update(unsigned int deltaTime)
 {
 	int turn,team;
-	bool re = DataLibrary::getSingletonPtr()->getData("GameData/BattleData/BattleState/Ture",turn);
-	re = DataLibrary::getSingletonPtr()->getData("GameData/BattleData/BattleState/CurTeam",team);
+	DataLibrary::getSingletonPtr()->getData("GameData/BattleData/BattleState/Ture",turn);
+	DataLibrary::getSingletonPtr()->getData("GameData/BattleData/BattleState/CurTeam",team);
+	if(!mNewGame)
+	{
+		BattlePlayerState* playerstate = new BattlePlayerState;
+		mMainState->PushState(playerstate);
+		mNewGame = true;
+		return;
+	}
 	//执行回合结束触发器
-
+	TriggerManager::getSingleton().turnEnd(turn,team);
 	//切换回合与玩家
 	team += 1;
 	bool nextteam = false;
@@ -49,6 +48,7 @@ void BattleControlState::update(unsigned int deltaTime)
 		case 1:
 			{
 				BattlePlayerState* playerstate = new BattlePlayerState;
+				playerstate->newTurn();
 				mMainState->PushState(playerstate);
 				turn = turn + 1;
 				nextteam = true;

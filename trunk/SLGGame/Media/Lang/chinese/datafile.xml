@@ -9,6 +9,14 @@
 			<Name type="String" value="测试小队2"/>
 			<Describe type="String" value="废物小队2"/>
 		</TestSquad2>
+		<LightInf1>
+			<Name type="String" value="测试小队"/>
+			<Describe type="String" value="废物小队"/>
+		</LightInf1>
+		<HeavyInf1>
+			<Name type="String" value="测试小队2"/>
+			<Describe type="String" value="废物小队2"/>
+		</HeavyInf1>
 	</SquadData>
 	<SoilderData>
 		<TestSoilder>
@@ -51,6 +59,10 @@
 			<Name type="String" value="魔法攻击"/>
 			<Describe type="String" value="小队对目标进行魔法攻击"/>
 		</MagicAttack>
+		<MagicEffect>
+			<Name type="String" value="魔法效果"/>
+			<Describe type="String" value="被动赋予魔法效果以及特效"/>
+		</MagicEffect>
 	</SkillData>
 	<EffectData>
 		<TestEffect>
@@ -103,6 +115,10 @@
 			<Name type="String" value="城市"/>
 			<Describe type="String" value="城市"/>
 		</City>
+		<Forest>
+			<Name type="String" value="森林"/>
+			<Describe type="String" value="森林"/>
+		</Forest>		
 	</MapObjType>
 	<FactionData>
 		<TestFaction>

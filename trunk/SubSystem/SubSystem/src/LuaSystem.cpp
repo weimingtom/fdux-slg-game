@@ -124,30 +124,38 @@ void LuaSystem::runScriptFromFile( const std::string& filename,int lineNum)
 }
 
 
-std::string LuaSystem::GetContext()
+std::string LuaSystem::getContext()
 {
 	return mContextStack.back();
 }
 
-bool LuaSystem::ExecuteFile(std::string filename, std::string context)
+std::string LuaSystem::getFileName()
+{
+	return mFileNameStack.back();
+}
+/*
+bool LuaSystem::executeFile(std::string filename, std::string context)
 {
 	if(context == "\0")
 		return false;
 	mContextStack.push_back(context);
+	mFileNameStack.push_back(filename);
 	Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(filename, "General", true);
 	int result;
 	result = luaL_loadstring(L,stream->getAsString().c_str());
 	if(!result)
 		result = lua_pcall(L,0 ,0, 0);
+	mFileNameStack.pop_back();
 	mContextStack.pop_back();
 	return !result;
 }
-
-bool LuaSystem::ExecuteFunction(std::string filename, std::string funcname, std::string context)
+*/
+bool LuaSystem::executeFunction(std::string filename, std::string funcname, std::string context)
 {
 	if(context == "\0")
 		return false;
 	mContextStack.push_back(context);
+	mFileNameStack.push_back(filename);
 	Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(filename, "General", true);
 	int result;
 	result = luaL_loadstring(L,stream->getAsString().c_str());
@@ -160,6 +168,7 @@ bool LuaSystem::ExecuteFunction(std::string filename, std::string funcname, std:
 			result = lua_pcall(L,0 ,0, 0);
 		}
 	}
+	mFileNameStack.pop_back();
 	mContextStack.pop_back();
 	return !result;
 }
