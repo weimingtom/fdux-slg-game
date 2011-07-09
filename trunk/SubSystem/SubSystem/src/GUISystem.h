@@ -17,7 +17,7 @@ using namespace izayoi;
 class GUIScene;
 class GUISceneFactory;
 
-class GUISystem:public IISingleton<GUISystem>
+class GUISystem:public IISingleton<GUISystem>,public OIS::KeyListener,public OIS::MouseListener
 {
 public:
 	GUISystem(Ogre::RenderWindow* window,Ogre::SceneManager* scene);

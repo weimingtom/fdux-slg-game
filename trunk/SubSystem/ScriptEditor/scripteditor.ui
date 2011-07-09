@@ -49,14 +49,25 @@
            <widget class="QTextEdit" name="scrEdit"/>
           </item>
           <item>
-           <widget class="QPushButton" name="ParseButton">
-            <property name="text">
-             <string>&gt;&gt;</string>
-            </property>
-           </widget>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <widget class="QPushButton" name="ClearButton">
+              <property name="text">
+               <string>清空左边</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="ParseButton">
+              <property name="text">
+               <string>转换</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout_3" stretch="10,0,4">
+           <layout class="QVBoxLayout" name="verticalLayout_3" stretch="10,0,0">
             <item>
              <widget class="QTextEdit" name="luaEdit"/>
             </item>

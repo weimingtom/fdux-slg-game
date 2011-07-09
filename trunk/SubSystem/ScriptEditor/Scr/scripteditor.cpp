@@ -20,6 +20,7 @@ ScriptEditor::ScriptEditor(QWidget *parent, Qt::WFlags flags)
 	this->connect(ui.ClearTextButton,SIGNAL(clicked(bool)),this,SLOT(ClearTextButton()));
 	this->connect(ui.RunButton,SIGNAL(clicked(bool)),this,SLOT(RunLuaScript()));
 	this->connect(ui.ParseButton,SIGNAL(clicked(bool)),this,SLOT(ParseScript()));
+	this->connect(ui.ClearButton,SIGNAL(clicked(bool)),this,SLOT(ClearScript()));
 
 	QSettings settings("config.ini", QSettings::IniFormat);
 	ui.DialogXEdit->setText(settings.value("DialogLeft").toString());
@@ -202,4 +203,9 @@ void ScriptEditor::ParseScript()
 	{
 		ui.luaEdit->append(lua);
 	}
+}
+
+void ScriptEditor::ClearScript()
+{
+	ui.scrEdit->setText("");
 }

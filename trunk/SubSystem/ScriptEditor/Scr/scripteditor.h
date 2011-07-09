@@ -36,6 +36,7 @@ public slots:
 	void ClearTextButton();
 	void RunLuaScript();
 	void ParseScript();
+	void ClearScript();
 private:
 	Ui::ScriptEditorClass ui;
 	GUIDialogAttribute mDialogAttribute;
