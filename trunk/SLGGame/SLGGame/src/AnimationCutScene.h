@@ -20,7 +20,7 @@ protected:
 	void skipCutScene();
 	void updateCutScene(unsigned int deltaTime);
 
-	bool mIsBackeToWait;
+	bool mIsBackToWait;
 	SquadGraphics* mSquadGraphics;
 	UnitType mObject;
 	std::string mName;

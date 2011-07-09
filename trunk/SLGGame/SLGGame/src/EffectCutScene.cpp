@@ -7,7 +7,7 @@ EffectCutScene::EffectCutScene(unsigned int id,UnitType object,std::string name)
 {
 	mSquadGraphics=SquadGrapManager::getSingletonPtr()->getSquad(id);
 
-	mSquadGraphics->setEffect(name,object);
+	mName=name;
 	mObject=object;
 }
 
@@ -29,4 +29,9 @@ void EffectCutScene::skipCutScene()
 void EffectCutScene::updateCutScene( unsigned int deltaTime )
 {
 
+}
+
+void EffectCutScene::startCutScence()
+{
+	mSquadGraphics->setEffect(mName,mObject);
 }

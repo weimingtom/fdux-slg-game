@@ -1,17 +1,15 @@
 #pragma once
 
-#include <string>
-
 #include "cutscene.h"
 #include "squaddefine.h"
 
 class SquadGraphics;
 
-class EffectCutScene:public CutScene
+class CombatPositionCutScene:public CutScene
 {
 public:
-	EffectCutScene(unsigned int id,UnitType object,std::string name);
-	~EffectCutScene(void);
+	CombatPositionCutScene(unsigned int id,Direction direction,bool isBack);
+	virtual ~CombatPositionCutScene(void);
 
 protected:
 	void startCutScence();
@@ -19,7 +17,7 @@ protected:
 	void skipCutScene();
 	void updateCutScene(unsigned int deltaTime);
 
+	bool mIsBack;
 	SquadGraphics* mSquadGraphics;
-	UnitType mObject;
-	std::string mName;
+	Direction mDirection;
 };

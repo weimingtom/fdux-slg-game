@@ -19,6 +19,7 @@ const Ogre::Vector3 LooseVector[5]={Ogre::Vector3(0,0,0),Ogre::Vector3(-3,0,3),O
 
 #define FORMATION_KEYFRAME_TIME 1
 #define RELIEF_MOVE_TIME 1
+#define COMBAT_POSITION 4
 
 SquadGraphics::SquadGraphics(std::string squadName,std::string datapath,Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index,int soldierCount):
 mSquadId(squadName),
@@ -1116,5 +1117,99 @@ void SquadGraphics::setVisible(bool visible)
 Direction SquadGraphics::getDirection()
 {
 	return mDirection;
+}
+
+void SquadGraphics::combatPosition(Direction d)
+{
+	mIdleDirection=mDirection;
+
+	Ogre::Vector3 offestVector;
+
+	switch(d)
+	{
+	case North:
+		{
+			offestVector=Ogre::Vector3(0,0,-COMBAT_POSITION);
+			break;
+		}
+	case South:
+		{
+			offestVector=Ogre::Vector3(0,0,COMBAT_POSITION);
+			break;
+		}
+	case West:
+		{
+			offestVector=Ogre::Vector3(-COMBAT_POSITION,0,0);
+			break;
+		}
+	case East:
+		{
+			offestVector=Ogre::Vector3(COMBAT_POSITION,0,0);
+			break;
+		}
+	}
+
+	changeUnitPosition(d,offestVector);
+
+}
+
+void SquadGraphics::idlePosition()
+{
+	mIdleDirection=mDirection;
+
+	changeUnitPosition(mIdleDirection,Ogre::Vector3(0,0,0));
+}
+
+void SquadGraphics::changeUnitPosition( Direction d,Ogre::Vector3 offsetVector )
+{
+	//取得位置
+	Ogre::Quaternion q;
+
+	switch(d)
+	{
+	case North:
+		{
+			q.FromAngleAxis(Ogre::Degree(180),Ogre::Vector3(0,1,0));
+			break;
+		}
+	case South:
+		{
+			q.FromAngleAxis(Ogre::Degree(360),Ogre::Vector3(0,1,0));
+			break;
+		}
+	case West:
+		{
+			q.FromAngleAxis(Ogre::Degree(270),Ogre::Vector3(0,1,0));
+			break;
+		}
+	case East:
+		{
+			q.FromAngleAxis(Ogre::Degree(90),Ogre::Vector3(0,1,0));
+			break;
+		}
+	}
+
+	Ogre::Vector3 commandVector;
+	Ogre::Vector3 soldierVector[4];
+	getFormationPosition(mFormation,d,commandVector,soldierVector);
+
+	std::map<int,Ogre::Vector3> commandVectors;
+	std::map<int,Ogre::Quaternion> quaternions;
+	commandVectors[0]=mNode->getPosition()+commandVector+offsetVector;
+	quaternions[0]=q;
+	mCommanderUnit->mOffsetX=commandVector.x;
+	mCommanderUnit->mOffsetY=commandVector.z;
+
+	//设置移动
+	mCommanderUnit->setMovePath(commandVectors,quaternions);
+
+	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+	{
+		std::map<int,Ogre::Vector3> vectors;
+		(*it)->mOffsetX=soldierVector[(*it)->mFormationPosition].x;
+		(*it)->mOffsetY=soldierVector[(*it)->mFormationPosition].z;
+		vectors[0]=mNode->getPosition()+soldierVector[(*it)->mFormationPosition]+offsetVector;
+		(*it)->setMovePath(vectors,quaternions);
+	}
 }
 
