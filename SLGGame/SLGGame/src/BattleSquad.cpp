@@ -10,6 +10,7 @@
 #include "MapDataManager.h"
 #include "BattleSquadManager.h" 
 #include "TriggerManager.h"
+#include "LuaSystem.h"
 
 BattleSquad::BattleSquad(std::string id, int grapid ,int x, int y)
 :mId(id),mGrapId(grapid)
@@ -105,7 +106,24 @@ BattleSquad::BattleSquad(std::string id, int grapid ,int x, int y)
 			}
 		}
 	}
+	else
+	{
+		//¶ÁÈ¡Òþ²Ø
+	}
 
+	re = DataLibrary::getSingleton().getData(getPath() + std::string("/AmbushPlayer"),view);
+	if(!re)
+	{
+		mAmbushFaction[0] = mAmbushFaction[1] = mAmbushFaction[2] = mAmbushFaction[3] = false;
+		DataLibrary::getSingleton().setData(getPath() + std::string("/AmbushPlayer"),0);
+		DataLibrary::getSingleton().setData(getPath() + std::string("/AmbushEnemy1"),0);
+		DataLibrary::getSingleton().setData(getPath() + std::string("/AmbushEnemy2"),0);
+		DataLibrary::getSingleton().setData(getPath() + std::string("/AmbushEnemy3"),0);
+	}
+	else
+	{
+		//¶ÁÈ¡Í»Ï®
+	}
 	mIsEliminated = false;
 }
 BattleSquad::~BattleSquad()
@@ -383,7 +401,55 @@ int BattleSquad::getTeam()
 
 bool BattleSquad::viewbyTeam(int team)
 {
-	return mViewbyFaction[team];
+	int faction = getTeamFaction(team);
+	return mViewbyFaction[faction];
+}
+
+void BattleSquad::setViewbyTeam(int team, bool view)
+{
+	int faction = getTeamFaction(team);
+	mViewbyFaction[faction] = view;
+	switch(faction)
+	{
+	case 0:
+		DataLibrary::getSingleton().setData(getPath() + std::string("/ViewbyPlayer"),view);
+		break;
+	case 1:
+		DataLibrary::getSingleton().setData(getPath() + std::string("/ViewbyEnemy1"),view);
+		break;
+	case 2:
+		DataLibrary::getSingleton().setData(getPath() + std::string("/ViewbyEnemy2"),view);
+		break;
+	case 3:
+		DataLibrary::getSingleton().setData(getPath() + std::string("/ViewbyEnemy3"),view);
+		break;
+	}
+
+}
+
+bool BattleSquad::ambushTeam(int team)
+{
+	int faction = getTeamFaction(team);
+	return mAmbushFaction[faction];
+}
+void BattleSquad::setAmbushTeam(int team, bool ambush)
+{
+	int faction = getTeamFaction(team);
+	switch(faction)
+	{
+	case 0:
+		DataLibrary::getSingleton().setData(getPath() + std::string("/AmbushPlayer"),ambush);
+		break;
+	case 1:
+		DataLibrary::getSingleton().setData(getPath() + std::string("/AmbushEnemy1"),ambush);
+		break;
+	case 2:
+		DataLibrary::getSingleton().setData(getPath() + std::string("/AmbushEnemy2"),ambush);
+		break;
+	case 3:
+		DataLibrary::getSingleton().setData(getPath() + std::string("/AmbushEnemy3"),ambush);
+		break;
+	}
 }
 
 float BattleSquad::getActionPoint()
@@ -538,9 +604,61 @@ void BattleSquad::applyAttackRolls(bool rangedattack, Direction d, std::vector<i
 	DataLibrary::getSingleton().setData(getPath() + std::string("/WoundNum"),tempwound);
 }
 
+#include "SquadStateCutScene.h"
 void BattleSquad::OnDead()
 {
 	mIsEliminated = true;
-	if(mIsEliminated)
-		TriggerManager::getSingleton().unitDead(this);
+	BattleSquadManager::getSingleton().setCutScene(new SquadStateCutScene(this,SQUAD_STATE_VISIBLE,"none",0));
+	TriggerManager::getSingleton().unitDead(this);
+}
+
+void BattleSquad::OnTurnEnd()
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	mAmbushFaction[0] = mAmbushFaction[1] = mAmbushFaction[2] = mAmbushFaction[3] = false;
+	DataLibrary::getSingleton().setData(getPath() + std::string("/AmbushPlayer"),0);
+	DataLibrary::getSingleton().setData(getPath() + std::string("/AmbushEnemy1"),0);
+	DataLibrary::getSingleton().setData(getPath() + std::string("/AmbushEnemy2"),0);
+	DataLibrary::getSingleton().setData(getPath() + std::string("/AmbushEnemy3"),0);
+	std::vector<std::string> triggerlist;
+	triggerlist = datalib->getChildList(getPath() + std::string("/Trigger"));
+	if(triggerlist.size()>0)
+	{
+		std::vector<std::string>::iterator ite;
+		for(ite = triggerlist.begin(); ite != triggerlist.end(); ite++)
+		{
+			std::string datapath = getPath() + std::string("/Trigger/") + (*ite);
+			int active;
+			datalib->getData(datapath ,active);
+			if(!active)
+				continue;
+			std::string type;
+			datalib->getData(datapath + std::string("/type"),type);
+			if(type != "TurnEnd")
+				continue;
+			std::string context,filename,funcname;
+			datalib->getData(datapath + std::string("/file"),filename);
+			datalib->getData(datapath + std::string("/func"),funcname);
+			datalib->getData(datapath + std::string("/context"),context);
+			LuaSystem::getSingleton().executeFunction(filename,funcname,context);
+		}
+	}
+}
+
+int BattleSquad::getTeamFaction(int team)
+{
+	std::string temppath,tempstr;
+	temppath = std::string("GameData/BattleData/Team/Team") + Ogre::StringConverter::toString(team) + std::string("/Relation");
+	DataLibrary::getSingleton().getData(temppath,tempstr);
+	if(tempstr == "alliance")
+		return 0;
+	else if(tempstr == "player")
+		return 0;
+	else if(tempstr == "enemy1")
+		return 1;
+	else if(tempstr == "enemy2")
+		return 2;
+	else if(tempstr == "enemy3")
+		return 3;
+	return 0;
 }

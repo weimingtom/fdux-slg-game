@@ -14,10 +14,13 @@
 #include "DirectionCutScene.h"
 #include "SquadDeadCutScene.h"
 #include "AnimationCutScene.h"
+#include "SquadStateCutScene.h"
 
 BattleSquadManager::BattleSquadManager()
 {
 	mCurid = 0;
+	mCutSceneQueue = NULL;
+	mLastCutScene = NULL;
 }
 BattleSquadManager::~BattleSquadManager()
 {
@@ -48,24 +51,6 @@ bool  BattleSquadManager::allDeployed()
 	return true;
 }
 
-int BattleSquadManager::getTeamRelation(int team)
-{
-	std::string temppath,tempstr;
-	temppath = std::string("GameData/BattleData/Team/Team") + Ogre::StringConverter::toString(team) + std::string("/Relation");
-	DataLibrary::getSingleton().getData(temppath,tempstr);
-	if(tempstr == "alliance")
-		return 0;
-	else if(tempstr == "player")
-		return 0;
-	else if(tempstr == "enemy1")
-		return 1;
-	else if(tempstr == "enemy2")
-		return 2;
-	else if(tempstr == "enemy3")
-		return 3;
-	return 0;
-}
-
 BattleSquad* BattleSquadManager::getBattleSquad(std::string id)
 {
 	BattleSquadIte ite;
@@ -85,7 +70,6 @@ BattleSquad* BattleSquadManager::getBattleSquad(std::string id)
 BattleSquad* BattleSquadManager::getBattleSquadAt(int x, int y, int team, bool visibleonly)
 {
 	BattleSquadManager::BattleSquadIte ite;
-	int faction = getTeamRelation(team);
 	for(ite = mSquadList.begin(); ite != mSquadList.end(); ite++)
 	{
 		if((*ite)->IsEliminated())
@@ -96,7 +80,7 @@ BattleSquad* BattleSquadManager::getBattleSquadAt(int x, int y, int team, bool v
 		{
 			if(!visibleonly)
 				return (*ite);
-			if((*ite)->viewbyTeam(faction))
+			if((*ite)->viewbyTeam(team))
 				return (*ite);
 			return NULL;
 		}
@@ -169,10 +153,48 @@ void BattleSquadManager::moveSquad(BattleSquad* squad,std::vector<int> pointlist
 		else
 			squad->setDirection(North);
 		//计算冲锋
-
-		//重新可视范围等
-
-
+		
+		//重新可视范围
+		BattleSquadManager::BattleSquadIte ite;
+		int team = squad->getTeam();
+		int faction =squad->getTeamFaction(team);
+		for(ite = mSquadList.begin(); ite != mSquadList.end(); ite++)
+		{
+			if((*ite)->getTeamFaction((*ite)->getTeam()) == faction)
+				continue;
+			int x1,y1;
+			(*ite)->getCrood(&x1,&y1);
+			if(!(*ite)->viewbyTeam(team))
+			{
+				int range = abs(x - x1) + abs(y - y1);
+				int ditectrange = (int)squad->getAttr(ATTR_DETECTION,ATTRCALC_FULL,squad->getDirection());
+				int covert = (int)(*ite)->getAttr(ATTR_COVERT,ATTRCALC_FULL,squad->getDirection());
+				if(range <= ditectrange - covert)
+				{
+					(*ite)->setViewbyTeam(team,true);
+					eventtype != MOVEEVENT_SPOT;
+					if(faction == 0)
+					{
+						setCutScene(new SquadStateCutScene((*ite),SQUAD_STATE_VISIBLE,"none",1));
+					}
+				}
+			}
+			if(!squad->viewbyTeam((*ite)->getTeam()))
+			{
+				int range = abs(x - x1) + abs(y - y1);
+				int covert = (int)squad->getAttr(ATTR_COVERT,ATTRCALC_FULL,squad->getDirection());
+				int ditectrange = (int)(*ite)->getAttr(ATTR_DETECTION,ATTRCALC_FULL,squad->getDirection());
+				if(range <= ditectrange - covert)
+				{
+					squad->setViewbyTeam((*ite)->getTeam(),true);
+					squad->setAmbushTeam((*ite)->getTeam(),true);
+					if(faction == 0)
+					{
+						setCutScene(new SquadStateCutScene(squad,SQUAD_STATE_VISIBLE,"none",1));
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -238,7 +260,7 @@ CutScene* BattleSquadManager::useSkillOn(BattleSquad* attacksquad, BattleSquad* 
 		datalib->getData(skillinfopath + std::string("/CoolDown"),skillcooldown);
 		datalib->setData(skillpath + std::string("/CoolDown"),skillcooldown);
 	}
-	return mCutSceneQueue;
+	return getCutScene();
 }
 
 CutScene* BattleSquadManager::useSkillAt(BattleSquad* attacksquad, int x, int y, std::string skillid)
@@ -318,7 +340,7 @@ void BattleSquadManager::setCutScene(CutScene* cutscene)
 	}
 }
 
-void BattleSquadManager::rangedAttackCutScene(BattleSquad* attacksquad, int x, int y, UnitType castunit , std::string casteffect, std::string castaction, std::string castsound, int missiletype, std::string missileres, std::string hiteffect,std::string hitsound)
+void BattleSquadManager::rangedAttackCutScene(BattleSquad* attacksquad, int x, int y, UnitType castunit , std::string castparticle, std::string castaction, std::string castsound, int missiletype, std::string missileres, std::string hitparticle,std::string hitsound)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	//设置小队朝向
@@ -347,7 +369,7 @@ void BattleSquadManager::rangedAttackCutScene(BattleSquad* attacksquad, int x, i
 			setCutScene(dcutscene);
 		}
 	}
-	setCutScene(new AnimationCutScene(attacksquad->getGrapId(),castunit,castaction,castsound,casteffect,false, true));
+	setCutScene(new AnimationCutScene(attacksquad->getGrapId(),castunit,castaction,castsound,castparticle,false, true));
 }
 
 bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* defenesquad, int attacktime, float atk)
@@ -394,4 +416,12 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 		return true;
 	}
 	return false;
+}
+
+CutScene* BattleSquadManager::getCutScene()
+{
+	CutScene* cutscene = mCutSceneQueue;
+	mCutSceneQueue = NULL;
+	mLastCutScene = NULL;
+	return cutscene;
 }

@@ -26,6 +26,8 @@ public:
 
 	void update(unsigned int deltaTime);
 
+	void setParticleVisible(bool visible);
+
 private:
 	std::vector<SquadGraphics*> mUnitList;
 	unsigned int unitIndex;

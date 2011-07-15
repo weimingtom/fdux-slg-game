@@ -67,3 +67,10 @@ SquadGraphics* SquadGrapManager::getSquad( unsigned int id )
 	return NULL;
 }
 
+void SquadGrapManager::setParticleVisible(bool visible)
+{
+	for (std::vector<SquadGraphics*>::iterator it=mUnitList.begin();it!=mUnitList.end();it++)
+	{
+		(*it)->setParticleVisible(visible);
+	}
+}

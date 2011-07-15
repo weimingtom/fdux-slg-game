@@ -2,7 +2,7 @@ function initmap()
 	trigerid = TriggerLib.AddTrigger("FinishDeploy","finishdeploy");
 	TriggerLib.ActiveTrigger(trigerid);
 	ScriptCommonLib.SetString("finishdeploytriger",trigerid);
-	ScriptCommonLib.PlayMusic("ra3up_sv_title_ost.mp3");
+	ScriptCommonLib.PlayMusic("battle1.wav");
 end
 
 function finishdeploy()

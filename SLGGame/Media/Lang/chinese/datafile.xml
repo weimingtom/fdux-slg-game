@@ -1,54 +1,82 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <StaticData>
 	<SquadData>
-		<TestSquad>
-			<Name type="String" value="测试小队"/>
-			<Describe type="String" value="废物小队"/>
-		</TestSquad>
-		<TestSquad2>
-			<Name type="String" value="测试小队2"/>
-			<Describe type="String" value="废物小队2"/>
-		</TestSquad2>
-		<LightInf1>
-			<Name type="String" value="测试小队"/>
-			<Describe type="String" value="废物小队"/>
-		</LightInf1>
-		<HeavyInf1>
-			<Name type="String" value="测试小队2"/>
-			<Describe type="String" value="废物小队2"/>
-		</HeavyInf1>
+		<CheetahSquad>
+			<Name type="String" value="齐塔重步兵队"/>
+			<Describe type="String" value="齐塔重步兵队"/>
+		</CheetahSquad>
+		<DandelionSquad>
+			<Name type="String" value="丹德来恩弓兵队"/>
+			<Describe type="String" value="丹德来恩弓兵队"/>
+		</DandelionSquad>
+		<Olivia>
+			<Name type="String" value="奥莉瓦"/>
+			<Describe type="String" value="奥莉瓦"/>
+		</Olivia>
+		<EtasiLightSpear>
+			<Name type="String" value="伊塔斯轻装长矛队"/>
+			<Describe type="String" value="伊塔斯轻装长矛队"/>
+		</EtasiLightSpear>
+		<EtasiHeavyInf>
+			<Name type="String" value="伊塔斯重步兵队"/>
+			<Describe type="String" value="伊塔斯重步兵队"/>
+		</EtasiHeavyInf>
 	</SquadData>
 	<SoilderData>
-		<TestSoilder>
-			<Name type="String" value="测试兵源"/>
-			<Describe type="String" value="就是一群废物"/>
-		</TestSoilder>
-		<TestSoilder1>
-			<Name type="String" value="测试兵源2"/>
-			<Describe type="String" value="还是一群废物"/>
-		</TestSoilder1>
+		<WingsSoilder>
+			<Name type="String" value="翼骑团战士"/>
+			<Describe type="String" value="翼骑团战士"/>
+		</WingsSoilder>
+		<EtasiSoilder>
+			<Name type="String" value="伊塔斯士兵"/>
+			<Describe type="String" value="伊塔斯士兵"/>
+		</EtasiSoilder>
 	</SoilderData>
 	<HorseData>
-		<HeavyHorse>
-			<Name type="String" value="重型战马"/>
-			<Describe type="String" value="重型战马"/>
-		</HeavyHorse>
 	</HorseData>
 	<PweaponData>
-		<TestPWeapon>
-			<Name type="String" value="测试主武器"/>
-			<Describe type="String" value="烂的掉渣的剑"/>
-		</TestPWeapon>
+		<HeavySword>
+			<Name type="String" value="重剑"/>
+			<Describe type="String" value="重剑"/>
+		</HeavySword>
+		<ShortSword>
+			<Name type="String" value="短剑"/>
+			<Describe type="String" value="短剑"/>
+		</ShortSword>
+		<Pike>
+			<Name type="String" value="长枪"/>
+			<Describe type="String" value="长枪"/>
+		</Pike>
 	</PweaponData>
 	<SweaponData>
+		<LongBow>
+			<Name type="String" value="长弓"/>
+			<Describe type="String" value="长弓"/>
+		</LongBow>
 	</SweaponData>
 	<ShieldData>
+		<KnightShield>
+			<Name type="String" value="骑士盾"/>
+			<Describe type="String" value="骑士盾"/>
+		</KnightShield>
+		<RoundShield>
+			<Name type="String" value="圆盾"/>
+			<Describe type="String" value="圆盾"/>
+		</RoundShield>
 	</ShieldData>
 	<ArmorData>
-		<TestArmor>
-			<Name type="String" value="测试盔甲"/>
-			<Describe type="String" value="烂的掉渣的盔甲"/>
-		</TestArmor>
+		<HeavyMail>
+			<Name type="String" value="重锁甲"/>
+			<Describe type="String" value="重锁甲"/>
+		</HeavyMail>
+		<LightMail>
+			<Name type="String" value="轻锁甲"/>
+			<Describe type="String" value="轻锁甲"/>
+		</LightMail>
+		<LeatherArmor>
+			<Name type="String" value="皮甲"/>
+			<Describe type="String" value="皮甲"/>
+		</LeatherArmor>
 	</ArmorData>
 	<SkillData>
 		<Attack>
@@ -59,16 +87,20 @@
 			<Name type="String" value="魔法攻击"/>
 			<Describe type="String" value="小队对目标进行魔法攻击"/>
 		</MagicAttack>
-		<MagicEffect>
-			<Name type="String" value="魔法效果"/>
-			<Describe type="String" value="被动赋予魔法效果以及特效"/>
-		</MagicEffect>
+		<MagicShield>
+			<Name type="String" value="魔法盾"/>
+			<Describe type="String" value="魔法盾"/>
+		</MagicShield>
 	</SkillData>
 	<EffectData>
 		<TestEffect>
-			<Name type="String" value="测试效果"/>
-			<Describe type="String" value="有什么效果"/>
+			<Name type="String" value="魔法单位"/>
+			<Describe type="String" value="魔法单位不容易受到干扰"/>
 		</TestEffect>
+		<MagicShield>
+			<Name type="String" value="魔法盾"/>
+			<Describe type="String" value="魔法盾"/>
+		</MagicShield>
 	</EffectData>
 	<GroundData>
 		<Ground1>
@@ -121,22 +153,14 @@
 		</Forest>		
 	</MapObjType>
 	<FactionData>
-		<TestFaction>
-			<Name type="String" value="测试阵营"/>
-			<Describe type="String" value="测试阵营"/>
-		</TestFaction>
-		<winsock>
-			<Name type="String" value="萎缩"/>
-			<Describe type="String" value="萎缩的阵营"/>
-		</winsock>
-		<linsummer>
-			<Name type="String" value="奸商"/>
-			<Describe type="String" value="奸商的阵营"/>
-		</linsummer>
-		<uncleA>
-			<Name type="String" value="笨蛋阵营"/>
-			<Describe type="String" value="笨蛋的阵营"/>
-		</uncleA>
+		<Wing>
+			<Name type="String" value="翼骑团"/>
+			<Describe type="String" value="翼骑团"/>
+		</Wing>
+		<Etasi>
+			<Name type="String" value="伊塔斯"/>
+			<Describe type="String" value="伊塔斯"/>
+		</Etasi>
 	</FactionData>
 	<CityData>
 		<TestCity>

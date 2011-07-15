@@ -46,6 +46,10 @@ mOffsetY(0)
 
 	mAniBlender=new AnimationBlender(mUnitEntity);
 	mAniBlender->init(mIdleName);
+
+	mParticleVisible = true;
+	mParticleNode = mNode->createChildSceneNode();
+	mParticleNode->setPosition(0.0f,3.0f,0.0f);
 }
 
 UnitGrap::~UnitGrap(void)
@@ -72,6 +76,7 @@ UnitGrap::~UnitGrap(void)
 		stopEffect();
 	}
 
+	Core::getSingletonPtr()->mSceneMgr->destroySceneNode(mParticleNode);
 	mNode->detachAllObjects();
 	Core::getSingletonPtr()->mSceneMgr->destroySceneNode(mNode);
 	Core::getSingletonPtr()->mSceneMgr->destroyEntity(mUnitEntity);
@@ -476,4 +481,49 @@ void UnitGrap::update( unsigned int deltaTime )
 	{
 		doFadeInOut(deltaTime);
 	}
+}
+
+bool UnitGrap::addParticle(std::string id,std::string name)
+{
+	PUMapIte ite;
+	ite = mPUMap.find(id);
+	if(ite != mPUMap.end())
+		return false;
+	ParticleUniverse::ParticleSystem* pu  = Core::getSingleton().createPUSystem(mParticleNode->getName()+ id, name);
+	mParticleNode->attachObject(pu);
+	pu->prepare();
+	pu->setVisible(mParticleVisible);
+	mPUMap.insert(PUMap::value_type(id,pu));
+	return true;
+}
+void UnitGrap::startParticle(std::string id)
+{
+	PUMapIte ite;
+	ite = mPUMap.find(id);
+	if(ite != mPUMap.end())
+		ite->second->start();
+}
+void UnitGrap::stopParticle(std::string id)
+{
+	PUMapIte ite;
+	ite = mPUMap.find(id);
+	if(ite != mPUMap.end())
+		ite->second->stop();
+}
+void UnitGrap::delParticle(std::string id)
+{
+	PUMapIte ite;
+	ite = mPUMap.find(id);
+	if(ite == mPUMap.end())
+		return;
+	ite->second->stop();
+	mParticleNode->detachObject(ite->second);
+	Core::getSingleton().destroyPUSystem(ite->second);
+	mPUMap.erase(ite);
+}
+
+void UnitGrap::setParticleVisible(bool visible)
+{
+	mParticleVisible = visible;
+	mParticleNode->setVisible(mParticleVisible);
 }

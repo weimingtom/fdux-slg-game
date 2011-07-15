@@ -20,6 +20,16 @@ static int SetInt(lua_State* L)
 	return 0;
 }
 
+static int GetInt(lua_State* L)
+{
+	std::string id(luaL_checkstring(L, 1));
+	std::string contextpath = LuaSystem::getSingleton().getContext();
+	int val;
+	DataLibrary::getSingleton().getData(contextpath + std::string("/")+ id, val);
+	lua_pushnumber(L,val);
+	return 1;
+}
+
 static int GetString(lua_State* L)
 {
 	std::string id(luaL_checkstring(L, 1));
@@ -64,6 +74,7 @@ static int PlayMusic(lua_State* L)
 static const struct luaL_Reg ScriptCommonLib[] =
 {
 	{"SetInt",SetInt},
+	{"GetInt",GetInt},
 	{"GetString",GetString},
 	{"SetString",SetString},
 	{"GetSquadCoord",GetSquadCoord},

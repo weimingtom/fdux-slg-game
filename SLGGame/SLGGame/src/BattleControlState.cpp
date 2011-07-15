@@ -5,7 +5,9 @@
 #include "GUIBattle.h"
 #include "GUISystem.h"
 #include "BattleState.h"
+#include "BattleSquad.h"
 #include "BattlePlayerState.h"
+#include "BattleSquadManager.h"
 #include "GUIGameStateWindows.h"
 #include "TriggerManager.h"
 
@@ -36,6 +38,12 @@ void BattleControlState::update(unsigned int deltaTime)
 		return;
 	}
 	//执行回合结束触发器
+	BattleSquadManager* battlesquadmanager = BattleSquadManager::getSingletonPtr();
+	for(int n = 0; n < battlesquadmanager->mSquadList.size(); n++)
+	{
+		if(battlesquadmanager->mSquadList[n]->getTeam() == team)
+			battlesquadmanager->mSquadList[n]->OnTurnEnd();
+	}
 	TriggerManager::getSingleton().turnEnd(turn,team);
 	//切换回合与玩家
 	team += 1;

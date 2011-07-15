@@ -177,7 +177,25 @@ bool LuaSystem::executeFunction(std::string filename, std::string funcname, std:
 		{
 			lua_getglobal(L, funcname.c_str());
 			result = lua_pcall(L,0 ,0, 0);
+			if(result)
+			{
+				const char* erro;
+				erro = lua_tostring(L,-1);
+				Ogre::LogManager::getSingletonPtr()->logMessage(erro,Ogre::LML_CRITICAL);
+			}
 		}
+		else
+		{
+			const char* erro;
+			erro = lua_tostring(L,-1);
+			Ogre::LogManager::getSingletonPtr()->logMessage(erro,Ogre::LML_CRITICAL);
+		}
+	}
+	else
+	{
+		const char* erro;
+		erro = lua_tostring(L,-1);
+		Ogre::LogManager::getSingletonPtr()->logMessage(erro,Ogre::LML_CRITICAL);
 	}
 	mFileNameStack.pop_back();
 	mContextStack.pop_back();

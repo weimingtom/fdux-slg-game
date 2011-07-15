@@ -26,7 +26,6 @@ public:
 
 	void deployConfirm();
 	bool allDeployed();
-	int getTeamRelation(int team);
 
 	BattleSquad* getBattleSquad(std::string id);
 	BattleSquad* getBattleSquadAt(int x, int y, int team, bool visibleonly);
@@ -43,9 +42,10 @@ public:
 
 	bool dealRangedDamage(BattleSquad* attacksquad, BattleSquad* defenesquad);
 
-	void rangedAttackCutScene(BattleSquad* attacksquad, int x, int y, UnitType castunit , std::string casteffect, std::string castaction, std::string castsound, int missiletype, std::string missileres, std::string hiteffect,std::string hitsound);
+	void rangedAttackCutScene(BattleSquad* attacksquad, int x, int y, UnitType castunit , std::string castparticle, std::string castaction, std::string castsound, int missiletype, std::string missileres, std::string hitparticle,std::string hitsound);
 
 	void setCutScene(CutScene* cutscene);
+	CutScene* getCutScene();
 private:
 	int mCurid;
 	CutScene* mCutSceneQueue;

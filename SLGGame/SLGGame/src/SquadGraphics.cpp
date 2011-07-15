@@ -46,8 +46,6 @@ mDirection(direction)
 	datalib->getData(datapath + std::string("/LeaderMat"),mLeaderMat);
 	datalib->getData(datapath + std::string("/UnitMesh"),mSoilderMesh);
 	datalib->getData(datapath + std::string("/UnitMat"),mSoilderMat);
-	datalib->getData(datapath + std::string("/UnitEffect/EffectName"),mSoilderEffect);
-	datalib->getData(datapath + std::string("/UnitEffect/EffectOffect"),mSoilderEffectOffect);
 	datalib->getData(datapath + std::string("/MoveSound"),mMoveSound);
 
 
@@ -116,6 +114,25 @@ mDirection(direction)
 	setFormation(f,false);
 	setDirection(direction,false);
 	setWeaponMode(SquadGraphics::MainWepon);
+
+	//读取现有效果
+	std::vector<std::string> particlelist = datalib->getChildList(datapath + std::string("/ParticleList"));
+	std::vector<std::string>::iterator ite;
+	for(ite = particlelist.begin(); ite != particlelist.end(); ite++)
+	{
+		UnitType unittype;
+		datalib->getData(datapath + std::string("/ParticleList/")+ (*ite) +std::string("/UnitType"),unittype);
+		datalib->getData(datapath + std::string("/ParticleList/")+ (*ite) +std::string("/Particle"),tempid);
+		addParticle((*ite),tempid,unittype);
+		startParticle((*ite));
+	}
+	
+	//Camera* cam=mSceneMgr->getCamera("PlayerCam");
+	//Matrix4 viewMatrix = cam->getViewMatrix();
+	//Matrix4 projectMatrix = cam->getProjectionMatrix();
+	//Matrix4 eyeMatrix = (Matrix4(0.5,0,0,0.5, 0,-0.5,0,0.5, 0,0,1,0, 0,0,0,1)*(projectMatrix*viewMatrix));
+	//Vector4 temp = eyeMatrix*v4;
+	//Vector3 ScreenPos = Vector3(temp.x/temp.w,temp.y/temp.w,temp.z/temp.w);
 
 }
 
@@ -268,7 +285,6 @@ std::map<int,Ogre::Vector3>* SquadGraphics::getUnitMovePath( UnitGrap* unit,std:
 {
 	std::map<int,Ogre::Vector3>* newVectors=new std::map<int,Ogre::Vector3>();
 	std::map<int,Ogre::Vector3>::iterator itr  =  vectors.begin();
-	float w1,w2=0;
 
 	for(  ;  itr !=  vectors.end();  ++itr )
 	{
@@ -1116,6 +1132,63 @@ Direction SquadGraphics::getDirection()
 	return mDirection;
 }
 
+void SquadGraphics::setParticleVisible(bool visible)
+{
+	mCommanderUnit->setParticleVisible(visible);
+	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+	{
+		(*it)->setParticleVisible(visible);
+	}
+}
+
+bool SquadGraphics::addParticle(std::string id,std::string name,UnitType object)
+{
+	bool re = false;
+	switch(object)
+	{
+	case UNITTYPE_ALL:
+		re |= mCommanderUnit->addParticle(id,name);
+		for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+		{
+			re |= (*it)->addParticle(id,name);
+		}
+		break;
+	case UNITTYPE_LEADER:
+		re |= mCommanderUnit->addParticle(id,name);
+		break;
+	case UNITTYPE_SOLIDER:
+		for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+		{
+			re |= (*it)->addParticle(id,name);
+		}
+		break;
+	}
+	return re;
+}
+void SquadGraphics::startParticle(std::string id)
+{
+	mCommanderUnit->startParticle(id);
+	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+	{
+		(*it)->startParticle(id);
+	}
+}
+void SquadGraphics::stopParticle(std::string id)
+{
+	mCommanderUnit->stopParticle(id);
+	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+	{
+		(*it)->stopParticle(id);
+	}
+}
+void SquadGraphics::delParticle(std::string id)
+{
+	mCommanderUnit->delParticle(id);
+	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+	{
+		(*it)->delParticle(id);
+	}
+}
 void SquadGraphics::combatPosition(Direction d)
 {
 	mIdleDirection=mDirection;

@@ -60,6 +60,12 @@ public:
 	void setWeaponMode(WeaponMode mode);
 
 	void setVisible(bool visible);
+	void setParticleVisible(bool visible);
+
+	bool addParticle(std::string id,std::string name,UnitType object);
+	void startParticle(std::string id);
+	void stopParticle(std::string id);
+	void delParticle(std::string id);
 
 private:
 	SquadGraphics(std::string squadName, std::string datapath, Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index,int soldierCount);
@@ -92,8 +98,6 @@ private:
 	UnitGrap* mCommanderUnit;
 	std::string mSoilderMesh;
 	std::string mSoilderMat;
-	std::string mSoilderEffect;
-	Ogre::Vector3 mSoilderEffectOffect;
 	std::string mPWeaponMesh;
 	std::string mPWeaponMat;
 	std::string mSWeaponMesh;
@@ -127,5 +131,4 @@ private:
 	Ogre::Animation* mNodeAnimation;
 	Ogre::AnimationState* mNodeAnimationState;
 	bool mReturnInitAni;
-
 };

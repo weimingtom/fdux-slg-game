@@ -92,4 +92,17 @@ public:
 	ParticleUniverse::ParticleSystem* mPUSystem;
 	bool mPUSystemEnd;
 	bool mReturnInitAni;
+
+	void setParticleVisible(bool visible);
+	bool mParticleVisible;
+
+	bool addParticle(std::string id,std::string name);
+	void startParticle(std::string id);
+	void stopParticle(std::string id);
+	void delParticle(std::string id);
+
+	Ogre::SceneNode* mParticleNode;
+	typedef std::map<std::string, ParticleUniverse::ParticleSystem*> PUMap;
+	PUMap mPUMap;
+	typedef std::map<std::string, ParticleUniverse::ParticleSystem*>::iterator PUMapIte;
 };

@@ -21,7 +21,7 @@
 	</Resource>
 	<Resource type="ResourceTrueTypeFont" name="fireflysung">
 		<Property key="Source" value="MSYHBD.ttf"/>
-		<Property key="Size" value="32"/>
+		<Property key="Size" value="24"/>
 		<Property key="Resolution" value="72"/>
 		<Property key="Antialias" value="false"/>
 		<Property key="SpaceWidth" value="16"/>

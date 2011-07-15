@@ -36,6 +36,10 @@ public:
 	int getTeam();
 
 	bool viewbyTeam(int team);
+	void setViewbyTeam(int team, bool view);
+
+	bool ambushTeam(int team);
+	void setAmbushTeam(int team, bool ambush);
 
 	float getActionPoint();
 	float getActionPointCost(int type);
@@ -46,8 +50,11 @@ public:
 	void applyAttackRolls(bool rangedattack, Direction d, std::vector<int> attackrolls);
 
 	void OnDead();
+	void OnTurnEnd();
 
 	bool IsEliminated() {return mIsEliminated;}
+
+	static int getTeamFaction(int team);
 private:
 	int mX;
 	int mY;
@@ -59,4 +66,5 @@ private:
 	float mCovert;
 	float mDetection;
 	bool mViewbyFaction[4];
+	bool mAmbushFaction[4];
 };
