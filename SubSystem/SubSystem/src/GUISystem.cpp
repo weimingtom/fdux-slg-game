@@ -49,13 +49,24 @@ GUISystem::~GUISystem(void)
 
 bool GUISystem::keyPressed( const OIS::KeyEvent &arg )
 {
+
+	for (std::vector<GUIScene*>::iterator it=mSceneList.begin();it!=mSceneList.end();it++)
+	{
+		(*it)->keyPressed(arg);
+	}
+	
 	//将OIS的消息注入到MyGUI中
 	return mGUI->injectKeyPress(MyGUI::KeyCode::Enum(arg.key), (MyGUI::Char)arg.text);
-	
 }
 
 bool GUISystem::keyReleased( const OIS::KeyEvent &arg )
 {
+
+	for (std::vector<GUIScene*>::iterator it=mSceneList.begin();it!=mSceneList.end();it++)
+	{
+		(*it)->keyReleased(arg);
+	}
+
 	return mGUI->injectKeyRelease(MyGUI::KeyCode::Enum(arg.key));
 }
 

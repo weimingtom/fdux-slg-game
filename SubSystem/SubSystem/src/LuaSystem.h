@@ -40,6 +40,8 @@ public:
 
 	void (*LuaBreakupFun)();//×èÈûº¯ÊıÖ¸Õë
 
+	void saveScriptRuntime();
+	void loadScripRuntime();
 
 	std::string getContext();
 	std::string getFileName();
@@ -50,6 +52,8 @@ private:
 	lua_State* L;
 
 	std::list<std::string> mScriptBuffer;
+	std::string mScriptName;
+	int mScriptLine;
 
 	LuaSystemListener* mListener;
 

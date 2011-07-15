@@ -42,9 +42,22 @@ public:
 		return StageScene;
 	}
 
+	bool mIsFastForward;
+
 private:
 
 	void eventMouseButtonClick(MyGUI::Widget* _sender);
+	void keyPressed(const OIS::KeyEvent &arg);
+	void keyReleased(const OIS::KeyEvent &arg);
+
+	void onSave(MyGUI::Widget* _sender);
+	void onLoad(MyGUI::Widget* _sender);
+	void onHide(MyGUI::Widget* _sender);
+	void onSystem(MyGUI::Widget* _sender);
+
+	void fastForward(bool value);
+
+	void UIInit();
 	
 	int mTextX;
 	int mTextY;
@@ -61,26 +74,37 @@ private:
 	MyGUI::ImageBox* mBackGroundGroup;
 	MyGUI::ImageBox* mBackGround;
 	MyGUI::ImageBox* mBackGroundUniversal;
+	std::string mBackGroundImageName;
 
 	MyGUI::ImageBox* mLeftLayerGroup;
 	MyGUI::ImageBox* mLeftLayer;
 	MyGUI::ImageBox* mLeftLayerUniversal;
+	std::string mLeftImageName;
 
 	MyGUI::ImageBox* mMidLayerGroup;
 	MyGUI::ImageBox* mMidLayer;
 	MyGUI::ImageBox* mMidLayerUniversal;
+	std::string mMidImageName;
 
 	MyGUI::ImageBox* mRightLayerGroup;
 	MyGUI::ImageBox* mRightLayer;
 	MyGUI::ImageBox* mRightUniversal;
+	std::string mRightImageName;
 
 	MyGUI::ImageBox* mTextBoxBG;
 	MyGUI::EditBox* mTextBox;
 	MyGUI::EditBox* mRoleName;
 	MyGUI::EditBox* mRoleNameUniversal;
 	MyGUI::ImageBox* mTextCursor;
+	bool mTextCursorType;
+	bool mTextBoxVisible;
 
 	MyGUI::ImageBox* mEffectLayer;
+
+	MyGUI::Button* mSaveButton;
+	MyGUI::Button* mLoadButton;
+	MyGUI::Button* mHideButton;
+	MyGUI::Button* mSystemButton;
 
 };
 
