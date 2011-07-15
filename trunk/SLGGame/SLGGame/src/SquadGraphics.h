@@ -14,6 +14,7 @@
 class UnitGrap;
 class SquadGrapManager;
 class GUISquadBillBoard; 
+class GUISquadValueBillBoard;
 
 class SquadGraphics:public ParticleUniverse::ParticleSystemListener 
 {
@@ -83,6 +84,7 @@ private:
 	Ogre::SceneManager* mSceneMgr;
 
 	GUISquadBillBoard* mSquadBB;
+	GUISquadValueBillBoard* mSquadValueBB;
 
 	std::string mSquadId;
 	std::string mLeaderMesh;
@@ -104,6 +106,7 @@ private:
 	Formation mFormation;
 	Direction mDirection;
 	Direction mIdleDirection;
+	std::string mMoveSound;
 
 	enum DeathStep
 	{

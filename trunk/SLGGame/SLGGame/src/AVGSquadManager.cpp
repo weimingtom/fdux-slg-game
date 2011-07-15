@@ -64,6 +64,9 @@ bool AVGSquadManager::addSquad(std::string uid, std::string id, std::string path
 	re = datalib->getData(datasrcpath + std::string("/UnitMat"),tempstring);
 	datalib->setData(datadistpath + std::string("/UnitMat"), tempstring, true);
 
+	datalib->getData(datasrcpath + std::string("/MoveSound"),tempstring);
+	datalib->setData(datadistpath + std::string("/MoveSound"), tempstring, true);
+
 //	re = datalib->getData(datasrcpath + std::string("/UnitEffect"),tempstring);
 //	datalib->setData(datadistpath + std::string("/UnitEffect"), tempstring, true);
 // 		re = datalib->getData(datasrcpath + std::string("/UnitEffect/EffectName"),tempstring);

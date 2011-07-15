@@ -9,6 +9,10 @@ GUIDeployWindows::GUIDeployWindows(MyGUI::Window* window,int Width,int Height)
 	assignWidget(mDeployList,"DeployList");
 	assignWidget(mConfirm,"DeployConfirm");
 	setAllowConfirm(false);
+	mDeployList->setColumnResizingPolicyAt(0,MyGUI::ResizingPolicy::Fixed);
+	mDeployList->setColumnResizingPolicyAt(1,MyGUI::ResizingPolicy::Fixed);
+	mDeployList->setColumnWidthAt(0,200);
+	mDeployList->setColumnWidthAt(1,90);
 
 	mWindow->setCaption(StringTable::getSingleton().getString("DeployWindow"));
 	mConfirm->setCaption(StringTable::getSingleton().getString("DeployConfirm"));

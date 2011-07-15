@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout" version="3.2.0">
+    <Widget type="Window" skin="SLGWindow" position="335 50 475 450"/>
+    <Widget type="Button" skin="SLGButton1" position="115 140 160 40">
+        <Property key="FontName" value="fireflysung"/>
+        <Property key="FontHeight" value="20"/>
+        <Property key="Caption" value="阿斯达"/>
+        <Property key="TextColour" value="1 1 1"/>
+    </Widget>
+    <Widget type="ProgressBar" skin="SLGProgressBar" position="240 530 400 50">
+        <Property key="Range" value="100"/>
+        <Property key="RangePosition" value="90"/>
+        <Property key="AutoTrack" value="false"/>
+        <Property key="FlowDirection" value="LeftToRight"/>
+    </Widget>
+</MyGUI>

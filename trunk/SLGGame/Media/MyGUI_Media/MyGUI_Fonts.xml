@@ -20,11 +20,11 @@
 		</Codes>
 	</Resource>
 	<Resource type="ResourceTrueTypeFont" name="fireflysung">
-		<Property key="Source" value="fireflysung.ttf"/>
+		<Property key="Source" value="MSYHBD.ttf"/>
 		<Property key="Size" value="32"/>
 		<Property key="Resolution" value="72"/>
 		<Property key="Antialias" value="false"/>
-		<Property key="SpaceWidth" value="4"/>
+		<Property key="SpaceWidth" value="16"/>
 		<Property key="TabWidth" value="8"/>
 		<Property key="CursorWidth" value="2"/>
 		<Property key="Distance" value="6"/>
@@ -2303,7 +2303,7 @@
 	</Resource>
 
 	<Resource type="ResourceTrueTypeFont" name="fireflysung.17">
-		<Property key="Source" value="fireflysung.ttf"/>
+		<Property key="Source" value="MSYHBD.ttf"/>
 		<Property key="Size" value="17"/>
 		<Property key="Resolution" value="72"/>
 		<Property key="Antialias" value="false"/>

@@ -10,6 +10,8 @@
 #include "AnimationBlender.h"
 #include "BillboardManager.h"
 #include "GUISquadBillBoard.h"
+#include "GUISquadValueBillBoard.h"
+#include "AudioSystem.h"
 
 #include "Terrain.h"
 
@@ -38,14 +40,6 @@ mDirection(direction)
 	mNode=mSceneMgr->getRootSceneNode()->createChildSceneNode(squadName+Ogre::StringConverter::toString(index));
 
 	//获取数据
-	//std::string mainWeaponName;
-	//std::string secWeaponName;
-	//std::string shieldName;
-
-	//DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/CommanderUnit"),mCommanderUnitName);
-	//DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/CommanderMainWeapon"),mainWeaponName);
-	//DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/CommanderSecWeapon"),secWeaponName);
-	//DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/CommanderShield"),shieldName);
 
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	datalib->getData(datapath + std::string("/LeaderMesh"),mLeaderMesh);
@@ -54,6 +48,8 @@ mDirection(direction)
 	datalib->getData(datapath + std::string("/UnitMat"),mSoilderMat);
 	datalib->getData(datapath + std::string("/UnitEffect/EffectName"),mSoilderEffect);
 	datalib->getData(datapath + std::string("/UnitEffect/EffectOffect"),mSoilderEffectOffect);
+	datalib->getData(datapath + std::string("/MoveSound"),mMoveSound);
+
 
 	std::string tempid;
 	datalib->getData(datapath + std::string("/PweaponId"),tempid);
@@ -100,32 +96,26 @@ mDirection(direction)
 	mCommanderUnit->createWeapon(mSWeaponMesh,mSWeaponMesh,UnitGrap::SecWepon);
 	mCommanderUnit->createWeapon(mShieldMesh,mShieldMat,UnitGrap::Shield);
 
-	//DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/SoldierUnit"),mSoldierUnitName);
-	//DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/SoldierMainWeapon"),mMainWeaponName);
-	//DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/SoldierSecWeapon"),mSecWeaponName);
-	//DataLibrary::getSingletonPtr()->getData(std::string("GameData/Squad/")+squadName+std::string("/SoldierShield"),mShieldName);
 	for (int i=0;i<soldierCount;i++)
 	{
 		createSoldier();
 	}
 	
+	//设置指示器
+	mSquadBB=new GUISquadBillBoard(mCommanderUnit->mNode);
+	std::string name;
+	datalib->getData(datapath + std::string("/Name"),name);
+	mSquadBB->setName(name);
+	BillboardManager::getSingletonPtr()->addBillBoard(mSquadBB);
+
+	mSquadValueBB=new GUISquadValueBillBoard(mCommanderUnit->mNode);
+	BillboardManager::getSingletonPtr()->addBillBoard(mSquadValueBB);
+
 	//设置参数
 	setGrid(grid.x,grid.y);
 	setFormation(f,false);
 	setDirection(direction,false);
 	setWeaponMode(SquadGraphics::MainWepon);
-	
-	//Camera* cam=mSceneMgr->getCamera("PlayerCam");
-	//Matrix4 viewMatrix = cam->getViewMatrix();
-	//Matrix4 projectMatrix = cam->getProjectionMatrix();
-	//Matrix4 eyeMatrix = (Matrix4(0.5,0,0,0.5, 0,-0.5,0,0.5, 0,0,1,0, 0,0,0,1)*(projectMatrix*viewMatrix));
-	//Vector4 temp = eyeMatrix*v4;
-	//Vector3 ScreenPos = Vector3(temp.x/temp.w,temp.y/temp.w,temp.z/temp.w);
-
-
-	//mNode->attachObject(BillboardManager::getSingletonPtr()->getBillboardSet());
-	mSquadBB=new GUISquadBillBoard(mCommanderUnit->mNode);
-	BillboardManager::getSingletonPtr()->addBillBoard(mSquadBB);
 
 }
 
@@ -270,6 +260,8 @@ void SquadGraphics::setMovePath(std::map<int,Ogre::Vector3>& vectors,std::map<in
 		(*it)->mOffsetY=SoldierVector[(*it)->mFormationPosition].z;
 		delete newVectors;
 	}
+
+	AudioSystem::getSingletonPtr()->playSample(mMoveSound,true);
 }
 
 std::map<int,Ogre::Vector3>* SquadGraphics::getUnitMovePath( UnitGrap* unit,std::map<int,Ogre::Vector3>& vectors,std::map<int,Direction>& directions,bool isCommander)
@@ -332,6 +324,7 @@ void SquadGraphics::stopTransform()
 	mNodeAnimation=NULL;
 	mNodeAnimationState=NULL;
 	setCheckUnitHeight(false);
+	AudioSystem::getSingletonPtr()->stopSample();
 }
 
 void SquadGraphics::setAnimation(std::string name,UnitType object,bool isLoop,bool returnInit)
@@ -532,6 +525,8 @@ void SquadGraphics::setFormation( Formation f,bool isAnim )
 	mFormation=f;
 	Ogre::Vector3 CommanderVector;
 	Ogre::Vector3 SoldierVector[4];
+
+	mSquadValueBB->setValue("+12",MyGUI::Colour::Blue);
 
 	getFormationPosition(f,mDirection,CommanderVector,SoldierVector);
 
@@ -1112,6 +1107,8 @@ void SquadGraphics::setVisible(bool visible)
 	{
 		(*it)->mNode->setVisible(visible);
 	}
+
+	mSquadBB->setVisible(visible);
 }
 
 Direction SquadGraphics::getDirection()

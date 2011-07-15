@@ -18,7 +18,8 @@
 			<LeaderMat type="String" value="LightInf"/>
 			<UnitMesh type="String" value="Stronghold.mesh"/>
 			<UnitMat type="String" value="Stronghold"/>	
-			<UnitMaxNumber type="Int" value="50"/>				
+			<UnitMaxNumber type="Int" value="50"/>
+			<MoveSound type="String" value="Move.mp3"/>			
 		</TestSquad>
 		<TestSquad2>
 			<Type type="Int" value="1"/>
@@ -38,7 +39,8 @@
 			<LeaderMat type="String" value="LightInf"/>
 			<UnitMesh type="String" value="HolySpirit.mesh"/>
 			<UnitMat type="String" value="HolySpirit"/>	
-			<UnitMaxNumber type="Int" value="20"/>				
+			<UnitMaxNumber type="Int" value="20"/>	
+			<MoveSound type="String" value="Move.mp3"/>				
 		</TestSquad2>
 		<LightInf1>
 			<Type type="Int" value="0"/>
