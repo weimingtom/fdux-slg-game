@@ -1,7 +1,7 @@
 #include "AudioSystem.h"
 
 #define BGM_PATH "..\\media\\bgm\\"
-#define SE_PATH "..\\media\\se\\"
+#define SE_PATH "..\\media\\sound\\"
 
 AudioSystem::AudioSystem(void):mVol(-1),mStream(0),mSample(0)
 {
@@ -70,7 +70,7 @@ bool AudioSystem::stopStream(int time)
 	}
 }
 
-bool AudioSystem::playSample( std::string name )
+bool AudioSystem::playSample( std::string name,bool isLoop)
 {
 	if (mSample!=0)//如果不等0的话,就要释放掉以前的音效
 	{
@@ -81,6 +81,10 @@ bool AudioSystem::playSample( std::string name )
 	path+=name;
 	mSample=BASS_SampleLoad(FALSE,path.c_str(),0,0,3,BASS_SAMPLE_OVER_POS);
 	HCHANNEL ch=BASS_SampleGetChannel(mSample,FALSE);
+	if (isLoop)
+	{
+		BASS_ChannelFlags(mSample, BASS_SAMPLE_LOOP, BASS_SAMPLE_LOOP);
+	}
 	return BASS_ChannelPlay(ch,FALSE);
 }
 
@@ -129,4 +133,14 @@ void AudioSystem::FrameUpdate()
 int AudioSystem::getErrorCode()
 {
 	return BASS_ErrorGetCode();
+}
+
+bool AudioSystem::stopSample()
+{
+	if (mSample!=0)
+	{
+		BASS_SampleFree(mSample);
+	}
+	mSample=0;
+	return true;
 }

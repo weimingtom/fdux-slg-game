@@ -32,6 +32,9 @@ public:
 
 	virtual GUISceneType getType()=0;
 
+	virtual void keyPressed(const OIS::KeyEvent &arg){};
+	virtual void keyReleased(const OIS::KeyEvent &arg){};
+
 	//当前定时器的工作
 	enum TimerWork
 	{

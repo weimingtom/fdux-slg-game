@@ -88,12 +88,32 @@ extern "C"
 		return 1;
 	}
 
-	static void ShowTextBreakup()//文本回调
+	static void ShowTextBreakup()//文本直接模式回调
 	{
 		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
 
 		if(stage->CheckMouseState())
 		{
+
+			if (stage->mTimerWork==GUIStage::PrinterWork)//还没显示完就按鼠标?
+			{
+				stage->showOtherText();
+				LuaSystem::getSingletonPtr()->LuaBreakupFun=NULL;
+			}
+		}
+		else if(stage->mTimerWork==GUIStage::NoneWork)//显示完了
+		{
+			LuaSystem::getSingletonPtr()->LuaBreakupFun=NULL;
+		}
+	}
+
+	static void ShowWaitTextBreakup()//文本等待模式回调
+	{
+		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+
+		if(stage->CheckMouseState())
+		{
+
 			if (stage->mTimerWork==GUIStage::PrinterWork)//还没显示完就按鼠标?
 			{
 				stage->showOtherText();
@@ -124,7 +144,7 @@ extern "C"
 	static void ClearTextBreakup()
 	{
 		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
-		if (stage->CheckMouseState())
+		if (stage->CheckMouseState() || stage->mIsFastForward)
 		{
 			stage->hideTextCursor();
 			stage->clearText();
@@ -225,15 +245,27 @@ extern "C"
 
 		delete []pwText;
 	
-		if (mode==1)//普通模式,等待打字效果结束后继续执行
-		{
-			LuaSystem::getSingletonPtr()->LuaBreakupFun=ShowImageBreakup;
-		}
-		else if (mode==2)//等待模式,等待用户点击鼠标
+		//mode=1 普通模式,等待打字效果结束后继续执行
+		//mode=2 等待模式,等待用户点击鼠标
+		
+		if(!stage->mIsFastForward)//如果不是快进模式
 		{
 			stage->setCheckMouseDown();
-			mIsShowTextOver=true;
-			LuaSystem::getSingletonPtr()->LuaBreakupFun=ShowTextBreakup;
+
+			if(mode==1)
+			{
+				LuaSystem::getSingletonPtr()->LuaBreakupFun=ShowTextBreakup;
+			}
+			else if (mode==2)
+			{
+				mIsShowTextOver=true;//等待时显示光标
+				LuaSystem::getSingletonPtr()->LuaBreakupFun=ShowWaitTextBreakup;
+			}
+
+		}
+		else
+		{
+			LuaSystem::getSingletonPtr()->LuaBreakupFun=ShowImageBreakup;
 		}
 
 		return 1;
@@ -320,7 +352,7 @@ extern "C"
 	static int SE(lua_State* L)
 	{
 		std::string name = std::string(luaL_checkstring(L, 1));
-		bool ret=AudioSystem::getSingletonPtr()->playSample(name);
+		bool ret=AudioSystem::getSingletonPtr()->playSample(name,false);
 
 		if (!ret)
 		{

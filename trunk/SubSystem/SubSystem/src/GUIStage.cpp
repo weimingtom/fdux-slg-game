@@ -1,10 +1,15 @@
 #include "GUIStage.h"
 
 #include "GUISystem.h"
+#include "LuaSystem.h"
 
 #include <ogre.h>
 
-GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),mCheckMouseDown(false),mIsMouseDown(false),mTextX(0),mTextY(0)
+#ifndef SCRIPT_EDITOR
+#include "DataLibrary.h"
+#endif
+
+GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),mCheckMouseDown(false),mIsMouseDown(false),mTextX(0),mTextY(0),mIsFastForward(false)
 {
 	assignWidget(mBackGroundGroup, "BackGroundGroup");
 	assignWidget(mBackGround, "BackGround");
@@ -30,26 +35,55 @@ GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),m
 
 	assignWidget(mEffectLayer, "EffectLayer");
 
-	mBackGroundGroup->setSize(width,height);//设置背景大小
-	mBackGround->setSize(width,height);
-	mBackGroundUniversal->setSize(width,height);
+	assignWidget(mSaveButton, "SaveButton");
+	assignWidget(mLoadButton, "LoadButton");
+	assignWidget(mHideButton,"HideButton");
+	assignWidget(mSystemButton,"SystemButton");
 
-	mLeftLayerGroup->setSize(width,height);//设置左大小
-	mMidLayerGroup->setSize(width,height);//设置中大小
-	mRightLayerGroup->setSize(width,height);//设置右大小
-
-	mTextBoxBG->setSize(width,height);//TextBoxBG
-	mEffectLayer->setSize(width,height);//EFLayer
 	mEffectLayer->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::eventMouseButtonClick);
+	mSaveButton->eventMouseButtonClick+=MyGUI::newDelegate(this, &GUIStage::onSave);
+	mLoadButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::onLoad);
+	mHideButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::onHide);
 }
 
 GUIStage::~GUIStage(void)
 {
+
+}
+
+void GUIStage::UIInit()
+{
+	mBackGroundGroup->setSize(mWidth,mHeigth);//设置背景大小
+	mBackGround->setSize(mWidth,mHeigth);
+	mBackGroundUniversal->setSize(mWidth,mHeigth);
+
+	mLeftLayerGroup->setSize(mWidth,mHeigth);//设置左大小
+	mMidLayerGroup->setSize(mWidth,mHeigth);//设置中大小
+	mRightLayerGroup->setSize(mWidth,mHeigth);//设置右大小
+
+	mTextBoxBG->setSize(mWidth,mHeigth);//TextBoxBG
+	mEffectLayer->setSize(mWidth,mHeigth);//EFLayer
+
+	mBackGround->setAlpha(1);
+	mBackGroundUniversal->setImageTexture("");
+	mLeftLayer->setAlpha(1);
+	mLeftLayerUniversal->setImageTexture("");
+	mMidLayer->setAlpha(1);
+	mMidLayerUniversal->setImageTexture("");
+	mRightLayer->setAlpha(1);
+	mRightUniversal->setImageTexture("");
+	mRoleName->setAlpha(1);
+	mRoleNameUniversal->setCaption("");
+	
+	hideTextCursor();
+#ifndef SCRIPT_EDITOR
+	LuaSystem::getSingletonPtr()->executeFunction("AVGInit.lua","AVGInit","1");//运行界面初始设定
+#endif
 }
 
 void GUIStage::showScene(std::string arg)
 {
-
+	UIInit();
 }
 
 void GUIStage::hideScene()
@@ -66,6 +100,27 @@ void GUIStage::eventMouseButtonClick(MyGUI::Widget* _sender)
 	}
 }
 
+void GUIStage::keyPressed(const OIS::KeyEvent &arg )
+{
+	if (arg.key==OIS::KC_LCONTROL)
+	{
+		fastForward(true);
+		
+	}
+}
+
+void GUIStage::keyReleased(const OIS::KeyEvent &arg )
+{
+	if (arg.key==OIS::KC_LCONTROL)
+	{
+		fastForward(false);
+	}
+}
+
+void GUIStage::fastForward( bool value )
+{
+	mIsFastForward=value;
+}
 
 void GUIStage::setCheckMouseDown()
 {
@@ -107,6 +162,7 @@ void GUIStage::setTextDialog( const GUIDialogAttribute& attribute )
 
 void GUIStage::setTextDialogVisible( bool visible )
 {
+	mTextBoxVisible=visible;
 	if (visible)
 	{
 		mSetp=0;
@@ -175,24 +231,28 @@ void GUIStage::showImage( std::string imageName,GUIImageLayer layer,float time,i
 		{
 			mScrLayer=mLeftLayer;
 			mUniversalLayer=mLeftLayerUniversal;
+			mLeftImageName=imageName;
 			break;
 		}
 	case MidLayer:
 		{
 			mScrLayer=mMidLayer;
 			mUniversalLayer=mMidLayerUniversal;
+			mMidImageName=imageName;
 			break;
 		}
 	case RightLayer:
 		{
 			mScrLayer=mRightLayer;
 			mUniversalLayer=mRightUniversal;
+			mRightImageName=imageName;
 			break;
 		}
 	case BackGroundLayer:
 		{
 			mScrLayer=mBackGround;
 			mUniversalLayer=mBackGroundUniversal;
+			mBackGroundImageName=imageName;
 			break;
 		}
 	case AllLayer://如果为清除所有的人物
@@ -297,7 +357,7 @@ void GUIStage::FrameEvent()
 {
 	if(mTickTime!=0)
 	{
-		if (mTimer.getMilliseconds()>=mTickTime)
+		if (mTimer.getMilliseconds()>=mTickTime || mIsFastForward)
 		{
 			//复位定时器
 			mTimer.reset();
@@ -432,6 +492,7 @@ void GUIStage::showTextCursor( bool isLine )
 	mTextCursor->setPosition(p.left-l,p.top-t);
 	mTextCursor->setVisible(true);
 	mTextCursor->setItemResource ("TextCursorImage");
+	mTextCursorType=isLine;
 
 	if(!isLine)
 	{
@@ -449,4 +510,116 @@ void GUIStage::showTextCursor( bool isLine )
 void GUIStage::hideTextCursor()
 {
 	mTextCursor->setVisible(false);
+}
+
+void GUIStage::onSave(MyGUI::Widget* _sender)
+{
+#ifndef SCRIPT_EDITOR
+	//写入场景数据
+	//记录图层
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/BackGroundName",mBackGroundImageName);
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/BackGroundPosition",Ogre::Vector3(mBackGround->getLeft(),mBackGround->getTop(),0));
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/BackGroundSize",Ogre::Vector3(mBackGround->getWidth(),mBackGround->getHeight(),0));
+
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/LeftName",mLeftImageName);
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/LeftPosition",Ogre::Vector3(mLeftLayer->getLeft(),mLeftLayer->getTop(),0));
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/LeftSize",Ogre::Vector3(mLeftLayer->getWidth(),mLeftLayer->getHeight(),0));
+
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/MidName",mMidImageName);
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/MidPosition",Ogre::Vector3(mMidLayer->getLeft(),mMidLayer->getTop(),0));
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/MidSize",Ogre::Vector3(mMidLayer->getWidth(),mMidLayer->getHeight(),0));
+
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/RightName",mRightImageName);
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/RightPosition",Ogre::Vector3(mRightLayer->getLeft(),mRightLayer->getTop(),0));
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/RightSize",Ogre::Vector3(mRightLayer->getWidth(),mRightLayer->getHeight(),0));
+
+	//记录文本
+	if (mTimerWork==PrinterWork)
+	{
+		DataLibrary::getSingletonPtr()->setData("GameData/StoryData/Text",mTextBox->getOnlyText()+mTextBuffer);
+	}
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/Text",mTextBox->getOnlyText());
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/RoleName",mRoleName->getOnlyText());
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/TextCursorType",mTextCursorType);
+	
+	//写入脚本名与位置
+	LuaSystem::getSingletonPtr()->saveScriptRuntime();
+#endif
+}
+
+void GUIStage::onLoad(MyGUI::Widget* _sender)
+{
+#ifndef SCRIPT_EDITOR
+	//读取场景数据
+	//读取图层
+	Ogre::Vector3 LayerPosition;
+	Ogre::Vector3 LayerSize;
+	std::string ImageName;
+
+	UIInit();
+
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/BackGroundName",ImageName);
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/BackGroundPosition",LayerPosition);
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/BackGroundSize",LayerSize);
+	mBackGroundImageName=ImageName;
+	mBackGround->setImageTexture(ImageName);
+	mBackGround->setPosition(LayerPosition.x,LayerPosition.y);
+	mBackGround->setSize(LayerSize.x,LayerSize.y);
+
+
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/LeftName",ImageName);
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/LeftPosition",LayerPosition);
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/LeftSize",LayerSize);
+	mLeftImageName=ImageName;
+	mLeftLayer->setImageTexture(ImageName);
+	mLeftLayer->setPosition(LayerPosition.x,LayerPosition.y);
+	mLeftLayer->setSize(LayerSize.x,LayerSize.y);
+
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/MidName",ImageName);
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/MidPosition",LayerPosition);
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/MidSize",LayerSize);
+	mMidImageName=ImageName;
+	mMidLayer->setImageTexture(ImageName);
+	mMidLayer->setPosition(LayerPosition.x,LayerPosition.y);
+	mMidLayer->setSize(LayerSize.x,LayerSize.y);
+
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/RightName",ImageName);
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/RightPosition",LayerPosition);
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/RightSize",LayerSize);
+	mRightImageName=ImageName;
+	mRightLayer->setImageTexture(ImageName);
+	mRightLayer->setPosition(LayerPosition.x,LayerPosition.y);
+	mRightLayer->setSize(LayerSize.x,LayerSize.y);
+
+	//设置文本
+	std::string text;
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/Text",text);
+	mTextBox->setCaption(text);
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/RoleName",text);
+	mRoleName->setCaption(text);
+	int type;
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/TextCursorType",type);
+	//showTextCursor(type);
+
+	//读取脚本名与位置
+	LuaSystem::getSingletonPtr()->loadScripRuntime();
+#endif
+}
+
+void GUIStage::onHide( MyGUI::Widget* _sender )
+{
+	if (mTextBoxVisible)
+	{
+		setTextDialogVisible(false);
+	}
+	else
+	{
+		setTextDialogVisible(true);
+	}
+	
+}
+
+void GUIStage::onSystem( MyGUI::Widget* _sender )
+{
+
 }

@@ -22,7 +22,9 @@ public:
 
 	bool stopStream(int time);
 
-	bool playSample(std::string name);
+	bool playSample(std::string name,bool isLoop);
+
+	bool stopSample();
 
 	int getErrorCode();
 

@@ -4,6 +4,10 @@
 
 #include "LuaFun.cpp"
 
+#ifndef SCRIPT_EDITOR
+#include "DataLibrary.h"
+#endif
+
 extern "C"
 {
 
@@ -45,6 +49,7 @@ std::string LuaSystem::luaCallString(const std::string Szcode)
 void LuaSystem::runScript( const std::string script )
 {
 	mScriptBuffer.clear();
+	LuaBreakupFun=NULL;
 
 	std::stringstream ss(script);
 	std::string sub_str;
@@ -86,6 +91,10 @@ void LuaSystem::onFrameUpdate()
 					mListener->onComplete();
 				}
 			}
+			else
+			{
+				mScriptLine++;
+			}
 		}
 		else//µ±±»×èÈûÊ±
 		{
@@ -107,6 +116,8 @@ void LuaSystem::registerCLib( const std::string libName,const luaL_Reg* lib )
 void LuaSystem::runScriptFromFile( const std::string& filename,int lineNum)
 {
 	mScriptBuffer.clear();
+	mScriptName=filename;
+	mScriptLine=lineNum;
 
 	Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(filename, "General", true);
 
@@ -171,4 +182,24 @@ bool LuaSystem::executeFunction(std::string filename, std::string funcname, std:
 	mFileNameStack.pop_back();
 	mContextStack.pop_back();
 	return !result;
+}
+
+void LuaSystem::saveScriptRuntime()
+{
+#ifndef SCRIPT_EDITOR
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/ScriptName",mScriptName);
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/ScriptLine",mScriptLine);
+	
+#endif
+}
+
+void LuaSystem::loadScripRuntime()
+{
+#ifndef SCRIPT_EDITOR
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/ScriptName",mScriptName);
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/ScriptLine",mScriptLine);
+	runScriptFromFile(mScriptName,mScriptLine);
+	LuaBreakupFun=NULL;
+	
+#endif
 }
