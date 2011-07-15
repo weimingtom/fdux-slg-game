@@ -4,6 +4,7 @@
 #include "AnimationBlender.h"
 #include "Terrain.h"
 #include "DataLibrary.h"
+#include "AudioSystem.h"
 
 #include <iostream>
 
@@ -437,6 +438,7 @@ void UnitGrap::stopTransform()
 	mNodeAnimation=NULL;
 	mNodeAnimationState=NULL;
 	mIsCheckHeight=false;
+	AudioSystem::getSingletonPtr()->stopSample();
 }
 
 void UnitGrap::update( unsigned int deltaTime )

@@ -14,11 +14,11 @@ public:
 
 	virtual void update(Ogre::Vector2 screen)=0;
 
+	virtual void setMarginalValue(float marginalTop,float marginalBottom,float marginalLeft,float marginalRight)=0;
+
 
 	//GUIScene中非必要函数
 	void FrameEvent(){}
 
 	GUISceneType getType(){return NoneScene;}
-
-	bool mInScreen;
 };

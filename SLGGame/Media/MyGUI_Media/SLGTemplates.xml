@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Resource" version="1.1">    
+    <Resource type="ResourceLayout" name="SLGWindow" version="3.2.0">
+    <Widget type="Widget" name="Root" skin="SLGWindowSkin" position="95 70 220 215">
+        <Widget type="Widget" skin="SLGWindowTopSkin" position="65 -1 90 62" align="HCenter Top"/>
+        <Widget type="Widget" skin="SLGWindowLeftSkin" position="10 83 26 48" align="Left VCenter"/>
+        <Widget type="Widget" skin="SLGwindowRightSkin" position="187 86 25 43" align="Right VCenter"/>
+    </Widget>
+       <Widget type="Window" skin="Window" position="15 75 68 49">
+            <Property key="Caption" value="Text"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="SLGButton1" version="3.2.0">
+        <Widget type="Button" skin="SLGButtonSkin1" position="20 25 29 26" name="Root">
+            <Property key="FontName" value="Default"/>
+            <Property key="TextColor" value="1 1 1"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Center"/>
+            <UserString key="LE_TargetWidgetType" value="Button"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="20 60 29 26"/>
+    </Resource>
+    <Resource type="ResourceLayout" name="SLGButton2" version="3.2.0">
+        <Widget type="Button" skin="SLGButtonSkin2" position="20 25 29 26" name="Root">
+            <Property key="FontName" value="Default"/>
+            <Property key="TextColor" value="1 1 1"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Center"/>
+            <UserString key="LE_TargetWidgetType" value="Button"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="20 60 29 26"/>
+    </Resource>
+    <Resource type="ResourceLayout" name="SLGButton3" version="3.2.0">
+        <Widget type="Button" skin="SLGButtonSkin3" position="20 25 29 26" name="Root">
+            <Property key="FontName" value="Default"/>
+            <Property key="TextColor" value="1 1 1"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Center"/>
+            <UserString key="LE_TargetWidgetType" value="Button"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="20 60 29 26"/>
+    </Resource>
+     <Resource type="ResourceLayout" name="SLGProgressBar" version="3.2.0">
+        <Widget type="Widget" skin="SLGProgressBarSkin" position="25 50 125 15" name="Root">
+            <Property key="MoveToClick" value="true"/>
+            <UserString key="LE_TargetWidgetType" value="ProgressBar"/>
+            <UserString key="TrackFill" value="true"/>
+            <UserString key="TrackSkin" value="SLGProgressBarTrackSkin"/>
+            <UserString key="TrackWidth" value="10"/>
+            <UserString key="TrackMin" value="1"/>
+            <Widget type="Widget" skin="PanelEmpty" position="60 0 5 50" align="HStretch Top" name="TrackPlace">
+                <Property key="NeedKey" value="false"/>
+                <Property key="InheritsPick" value="true"/>
+            </Widget>
+        </Widget>
+        <Widget type="ProgressBar" skin="ProgressBarFill" position="25 75 125 15">
+            <Property key="Range" value="100"/>
+            <Property key="RangePosition" value="50"/>
+            <Property key="Page" value="1"/>
+            <Property key="ViewPage" value="1"/>
+        </Widget>
+    </Resource>
+
+	<Resource type="ResourceLayout" name="SLGListItem" version="3.2.0">
+        <Widget type="Widget" skin="SLGListItemSkin" position="20 20 43 40" name="Root">
+            <Property key="FontName" value="Default"/>
+            <Property key="TextColor" value="1 1 1"/>
+            <Property key="FontHeight" value="18"/>
+            <Property key="TextAlign" value="HCenter VCenter"/>
+            <UserString key="LE_TargetWidgetType" value="Button"/>
+        </Widget>
+    </Resource>
+    
+    <Resource type="ResourceLayout" name="SLGList" version="3.2.0">
+        <Widget type="Widget" skin="SLGListSkin" position="0 0 55 55" name="Root">
+            <UserString key="LE_TargetWidgetType" value="MultiListBox"/>
+            <UserString key="SkinButton" value="MultiListButton"/>
+            <UserString key="SkinList" value="SLGSubListBox"/>
+            <Widget type="Widget" skin="PanelEmpty" position="20 60 47 26" align="Stretch" name="Client"/>
+            <!--<Widget type="Widget" skin="PanelEmpty" position="3 3 47 21" align="HStretch Top" name="HeaderPlace">
+                <Widget type="Widget" skin="MultiListButtonSkin" position="0 0 47 21" name="Empty"/>
+            </Widget>-->
+        </Widget>
+        <Widget type="MultiListBox" skin="MultiListBox" position="5 70 185 70">
+            <Property key="AddItem" value="test1test1"/>
+            <Widget type="MultiListItem" skin="" position="0 0 69 41">
+                <Property key="Caption" value="test1"/>
+            </Widget>
+            <Widget type="MultiListItem" skin="" position="69 0 69 41">
+                <Property key="Caption" value="test2"/>
+            </Widget>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="MultiListButton" version="3.2.0">
+        <Widget type="Button" skin="MultiListButtonSkin" position="20 25 45 21" name="Root">
+            <Property key="FontName" value="Default"/>
+            <Property key="TextAlign" value="Center"/>
+            <UserString key="LE_TargetWidgetType" value="Button"/>
+            <Widget type="ImageBox" skin="ImageBox" position="29 4 12 10" align="Right VCenter" name="Image">
+                <Property key="ImageResource" value="MultiListButtonImage"/>
+                <Property key="ImageGroup" value="Icons"/>
+                <Property key="ImageName" value="Down"/>
+            </Widget>
+        </Widget>
+        <Widget type="Button" skin="MultiListButton" position="20 60 65 21">
+            <Property key="Caption" value="test"/>
+        </Widget>
+    </Resource> 
+    <Resource type="ResourceLayout" name="SLGSubListBox" version="3.2.0">
+        <Widget type="Widget" skin="PanelEmpty" position="100 20 47 47" name="Root">
+            <UserString key="LE_TargetWidgetType" value="ListBox"/>
+            <UserString key="HeightLine" value="50"/>
+            <UserString key="SkinLine" value="SLGListItem"/>
+            <Widget type="Widget" skin="PanelEmpty" position="0 0 32 47" align="Stretch" name="Client"/>
+            <Widget type="ScrollBar" skin="ScrollBarV" position="32 0 15 47" align="Right VStretch" name="VScroll"/>
+        </Widget>
+        <Widget type="ListBox" skin="MultiSubListBox" position="100 70 55 60">
+            <Property key="AddItem" value="line1"/>
+            <Property key="AddItem" value="line2"/>
+            <Property key="AddItem" value="line3"/>
+        </Widget>
+    </Resource>
+    
+</MyGUI>

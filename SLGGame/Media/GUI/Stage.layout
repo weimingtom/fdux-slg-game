@@ -33,7 +33,19 @@
             <Property key="Visible" value="false"/>
         </Widget>
     </Widget>
-    <Widget type="ImageBox" skin="ImageBox" position="0 0 0 0" layer="Overlapped" name="EffectLayer">
+    <Widget type="ImageBox" skin="ImageBox" position="0 0 405 285" layer="Overlapped" name="EffectLayer">
         <Property key="Visible" value="true"/>
+        <Widget type="Button" skin="Button" position="0 0 85 25" name="SaveButton">
+            <Property key="Caption" value="Save"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="85 0 85 25" name="LoadButton">
+            <Property key="Caption" value="Load"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="170 0 90 25" name="HideButton">
+            <Property key="Caption" value="Hide"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="260 0 90 25" name="SystemButton">
+            <Property key="Caption" value="System"/>
+        </Widget>
     </Widget>
 </MyGUI>

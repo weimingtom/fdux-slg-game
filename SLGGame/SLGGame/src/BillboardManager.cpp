@@ -6,8 +6,8 @@
 
 #include "Core.h"
 
-#define MARGIN_WIDTH 30
-#define MARGIN_HEIGHT 50
+#define OFFEST_X 70
+#define OFFEST_Y 150
 
 BillboardManager::BillboardManager(Ogre::Camera* camera):mCamera(camera)
 {
@@ -35,23 +35,20 @@ void BillboardManager::update()
 
 		Ogre::Vector2 Pos(ScreenPos.x*mWidth,ScreenPos.y*mHeight);
 		
-		if(Pos.x<MARGIN_WIDTH || Pos.y<MARGIN_HEIGHT || Pos.x>mWidth-MARGIN_WIDTH || Pos.y>mHeight-MARGIN_HEIGHT)
+		Pos.x-=OFFEST_X;
+		Pos.y-=OFFEST_Y;
+
+		if(Pos.x>0 && Pos.y>0 && Pos.x<mWidth && Pos.y<mHeight)
 		{
-			if ((*it)->mInScreen)
-			{
-				(*it)->mInScreen=false;
-				(*it)->hideScene();
-			}
+			(*it)->showScene("");
+
+			(*it)->setMarginalValue(Pos.y,mHeight-Pos.y,Pos.x,mWidth-Pos.x);
+
+			(*it)->update(Pos);
 		}
 		else
 		{
-			if (!(*it)->mInScreen)
-			{
-				(*it)->mInScreen=true;
-				(*it)->showScene("");
-			}
-
-			(*it)->update(Pos);
+			(*it)->hideScene();
 		}
 	}
 }

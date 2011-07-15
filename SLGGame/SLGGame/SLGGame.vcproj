@@ -632,6 +632,14 @@
 						RelativePath=".\src\GUISquadBillBoard.h"
 						>
 					</File>
+					<File
+						RelativePath=".\src\GUISquadValueBillBoard.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\GUISquadValueBillBoard.h"
+						>
+					</File>
 				</Filter>
 				<Filter
 					Name="Instancing"

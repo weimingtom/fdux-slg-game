@@ -23,6 +23,7 @@ void AVGState::initialize( std::string arg )
 
 		//显示对话框
 		GUIStage* stageScene=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->createScene(StageScene));
+		stageScene->showScene("");
 
 		if (q.front()=="lua")//该文件重头读取
 		{
