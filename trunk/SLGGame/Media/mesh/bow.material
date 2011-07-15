@@ -1,5 +1,5 @@
 import DepthShadowmap/Caster from "Shadow.material"
-material soul : DepthShadowmap/Caster
+material Bow : DepthShadowmap/Caster
 {
 	technique default
 	{
@@ -8,10 +8,8 @@ material soul : DepthShadowmap/Caster
 		{
 			texture_unit 
 			{
-				texture soul.dds
+				texture bow.dds
 			}
 		}
 	}
 }
-
-

@@ -1,29 +1,49 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <StaticData>
 	<SquadData>
-		<TestSquad>
+		<CheetahSquad>
 			<Type type="Int" value="0"/>
-			<SoilderId type="String" value="TestSoilder"/>
+			<SoilderId type="String" value="WingsSoilder"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="TestPWeapon"/>
+			<PweaponId type="String" value="HeavySword"/>
 			<SweaponId type="String" value="none"/>
-			<ShieldId type="String" value="none"/>
-			<ArmorId type="String" value="TestArmor"/>
+			<ShieldId type="String" value="KnightShield"/>
+			<ArmorId type="String" value="HeavyMail"/>
 			<SkillTable>
 				<Attack type="Int" value="1"/>
 			</SkillTable>
-			<LeaderName type="String" value="TestLeaderName"/>
-			<LeaderPicture type="String" value="TestLeaderHead.jpg"/>
+			<LeaderName type="String" value="Cheetah"/>
+			<LeaderPicture type="String" value="Cheetah.jpg"/>
 			<LeaderMesh type="String" value="LightInf.mesh"/>
 			<LeaderMat type="String" value="LightInf"/>
-			<UnitMesh type="String" value="Stronghold.mesh"/>
-			<UnitMat type="String" value="Stronghold"/>	
+			<UnitMesh type="String" value="LightInf.mesh"/>
+			<UnitMat type="String" value="LightInf"/>	
 			<UnitMaxNumber type="Int" value="50"/>
-			<MoveSound type="String" value="Move.mp3"/>			
-		</TestSquad>
-		<TestSquad2>
+			<MoveSound type="String" value="Move.mp3"/>				
+		</CheetahSquad>
+		<DandelionSquad>
+			<Type type="Int" value="0"/>
+			<SoilderId type="String" value="WingsSoilder"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="ShortSword"/>
+			<SweaponId type="String" value="LongBow"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="LightMail"/>
+			<SkillTable>
+				<Attack type="Int" value="1"/>
+			</SkillTable>
+			<LeaderName type="String" value="Dandelion"/>
+			<LeaderPicture type="String" value="Dandelion.jpg"/>
+			<LeaderMesh type="String" value="LightInf.mesh"/>
+			<LeaderMat type="String" value="LightInf"/>
+			<UnitMesh type="String" value="LightInf.mesh"/>
+			<UnitMat type="String" value="LightInf"/>	
+			<UnitMaxNumber type="Int" value="50"/>	
+			<MoveSound type="String" value="Move.mp3"/>				
+		</DandelionSquad>
+		<Olivia>
 			<Type type="Int" value="1"/>
-			<SoilderId type="String" value="TestSoilder2"/>
+			<SoilderId type="String" value="HolySpirit"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="none"/>
 			<SweaponId type="String" value="none"/>
@@ -32,78 +52,81 @@
 			<SkillTable>
 				<MagicAttack type="Int" value="1"/>
 				<MagicEffect type="Int" value="1"/>
+				<MagicShield type="Int" value="1"/>
 			</SkillTable>
-			<LeaderName type="String" value="TestLeaderName2"/>
-			<LeaderPicture type="String" value="TestLeaderHead.jpg"/>
+			<LeaderName type="String" value="Olivia"/>
+			<LeaderPicture type="String" value="Olivia.jpg"/>
 			<LeaderMesh type="String" value="LightInf.mesh"/>
 			<LeaderMat type="String" value="LightInf"/>
 			<UnitMesh type="String" value="HolySpirit.mesh"/>
 			<UnitMat type="String" value="HolySpirit"/>	
-			<UnitMaxNumber type="Int" value="20"/>	
-			<MoveSound type="String" value="Move.mp3"/>				
-		</TestSquad2>
-		<LightInf1>
+			<UnitMaxNumber type="Int" value="20"/>		
+			<MoveSound type="String" value="Move.mp3"/>	
+		</Olivia>
+		<EtasiLightSpear>
 			<Type type="Int" value="0"/>
-			<SoilderId type="String" value="TestSoilder"/>
+			<SoilderId type="String" value="EtasiSoilder"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="TestPWeapon"/>
+			<PweaponId type="String" value="Pike"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="none"/>
-			<ArmorId type="String" value="TestArmor"/>
+			<ArmorId type="String" value="LeatherArmor"/>
 			<SkillTable>
 				<Attack type="Int" value="1"/>
 			</SkillTable>
-			<LeaderName type="String" value="TestLeaderName"/>
-			<LeaderPicture type="String" value="TestLeaderHead.jpg"/>
-			<LeaderMesh type="String" value="Stronghold.mesh"/>
-			<LeaderMat type="String" value="Stronghold"/>
-			<UnitMesh type="String" value="Stronghold.mesh"/>
-			<UnitMat type="String" value="Stronghold"/>	
-			<UnitMaxNumber type="Int" value="50"/>				
-		</LightInf1>
-		<HeavyInf1>
-			<Type type="Int" value="0"/>
-			<SoilderId type="String" value="TestSoilder"/>
-			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="TestPWeapon"/>
-			<SweaponId type="String" value="none"/>
-			<ShieldId type="String" value="none"/>
-			<ArmorId type="String" value="TestArmor"/>
-			<SkillTable>
-				<Attack type="Int" value="1"/>
-			</SkillTable>
-			<LeaderName type="String" value="TestLeaderName"/>
-			<LeaderPicture type="String" value="TestLeaderHead.jpg"/>
+			<LeaderName type="String" value="EtasiSquadLeader"/>
+			<LeaderPicture type="String" value="EtasiSquadLeader.jpg"/>
 			<LeaderMesh type="String" value="LightInf.mesh"/>
 			<LeaderMat type="String" value="LightInf"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>	
-			<UnitMaxNumber type="Int" value="50"/>				
-		</HeavyInf1>
+			<UnitMaxNumber type="Int" value="50"/>	
+			<MoveSound type="String" value="Move.mp3"/>	
+		</EtasiLightSpear>
+		<EtasiHeavyInf>
+			<Type type="Int" value="0"/>
+			<SoilderId type="String" value="EtasiSoilder"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="HeavySword"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="RoundShield"/>
+			<ArmorId type="String" value="HeavyMail"/>
+			<SkillTable>
+				<Attack type="Int" value="1"/>
+			</SkillTable>
+			<LeaderName type="String" value="EtasiSquadLeader"/>
+			<LeaderPicture type="String" value="EtasiSquadLeader.jpg"/>
+			<LeaderMesh type="String" value="LightInf.mesh"/>
+			<LeaderMat type="String" value="LightInf"/>
+			<UnitMesh type="String" value="LightInf.mesh"/>
+			<UnitMat type="String" value="LightInf"/>	
+			<UnitMaxNumber type="Int" value="50"/>	
+			<MoveSound type="String" value="Move.mp3"/>	
+		</EtasiHeavyInf>
 	</SquadData>
 	<SoilderData>
-		<TestSoilder>
+		<WingsSoilder>
 			<Type type="Int" value="1"/>
 			<Value type="Int" value="10"/>
 			<Script type="String" value="none"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
-				<Attack type="Float" value="1.0"/>
-				<RangedAttack  type="Float" value="1.0"/>
-				<Defence type="Float" value="1.0"/>
-				<Formation type="Float" value="0.01"/>
+				<Attack type="Float" value="3.0"/>
+				<RangedAttack  type="Float" value="3.0"/>
+				<Defence type="Float" value="3.0"/>
+				<Formation type="Float" value="0.02"/>
 				<Initiative type="Float" value="1.0"/>
 				<ActionPoint type="Float" value="10.0"/>				
 				<Detection type="Float" value="5.0"/>
 				<Covert type="Float" value="0.0"/>
 				<Injury type="Float" value="0.7"/>
-				<Conter type="Float" value="0.3"/>
+				<Conter type="Float" value="0.4"/>
 			</AttrModifer>
 			<Injury type="Int" value="1"/>
-		</TestSoilder>
-		<TestSoilder2>
+		</WingsSoilder>
+		<HolySpirit>
 			<Type type="Int" value="1"/>
-			<Value type="Int" value="5"/>
+			<Value type="Int" value="10"/>
 			<Script type="String" value="none"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
@@ -111,43 +134,45 @@
 				<RangedAttack  type="Float" value="0.0"/>
 				<Defence type="Float" value="15.0"/>
 				<Formation type="Float" value="0.0"/>
-				<Initiative type="Float" value="0.0"/>
+				<Initiative type="Float" value="1.0"/>
 				<ActionPoint type="Float" value="8.0"/>				
 				<Detection type="Float" value="5.0"/>
 				<Covert type="Float" value="0.0"/>
-				<Injury type="Float" value="0.5"/>
-				<Conter type="Float" value="0.3"/>
+				<Injury type="Float" value="0.0"/>
+				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
 			<Injury type="Int" value="0"/>
-		</TestSoilder2>
-	</SoilderData>
-	<HorseData>
-		<HeavyHorse>
+		</HolySpirit>
+		<EtasiSoilder>
+			<Type type="Int" value="1"/>
 			<Value type="Int" value="10"/>
 			<Script type="String" value="none"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
-				<Attack type="Float" value="1.0"/>
-				<RangedAttack  type="Float" value="-1.0"/>
-				<Defence type="Float" value="-1.0"/>
-				<Formation type="Float" value="0.01"/>
+				<Attack type="Float" value="2.0"/>
+				<RangedAttack  type="Float" value="0.0"/>
+				<Defence type="Float" value="1.0"/>
+				<Formation type="Float" value="0.00"/>
 				<Initiative type="Float" value="2.0"/>
-				<ActionPoint type="Float" value="2.0"/>				
-				<Detection type="Float" value="1.0"/>
-				<Covert type="Float" value="-1.0"/>
-				<Injury type="Float" value="0.0"/>
-				<Conter type="Float" value="0.0"/>
+				<ActionPoint type="Float" value="11.0"/>				
+				<Detection type="Float" value="6.0"/>
+				<Covert type="Float" value="0.0"/>
+				<Injury type="Float" value="0.6"/>
+				<Conter type="Float" value="0.3"/>
 			</AttrModifer>
-		</HeavyHorse>
+			<Injury type="Int" value="1"/>
+		</EtasiSoilder>
+	</SoilderData>
+	<HorseData>
 	</HorseData>
 	<PweaponData>
-		<TestPWeapon>
+		<HeavySword>
 			<Type type="Int" value="1"/>
 			<Value type="Int" value="10"/>
 			<Script type="String" value="none"/>
 			<Mesh type="String" value="soul.mesh"/>
 			<Mat type="String" value="soul"/>
-			<AniGroup type="String" value="test"/>
+			<AniGroup type="String" value="1H1"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="3.0"/>
@@ -161,22 +186,63 @@
 				<Injury type="Float" value="0.0"/>
 				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
-		</TestPWeapon>
-	</PweaponData>
-	<SweaponData>
-	</SweaponData>
-	<ShieldData>
-	</ShieldData>
-	<ArmorData>
-		<TestArmor>
+		</HeavySword>
+		<ShortSword>
 			<Type type="Int" value="1"/>
 			<Value type="Int" value="10"/>
 			<Script type="String" value="none"/>
+			<Mesh type="String" value="soul.mesh"/>
+			<Mat type="String" value="soul"/>
+			<AniGroup type="String" value="1H1"/>
+			<AttrModifer>
+				<Type type="Int" value="0"/>
+				<Attack type="Float" value="2.0"/>
+				<RangedAttack  type="Float" value="0.0"/>
+				<Defence type="Float" value="1.0"/>
+				<Formation type="Float" value="0.0"/>
+				<Initiative type="Float" value="4.0"/>
+				<ActionPoint type="Float" value="0.0"/>				
+				<Detection type="Float" value="0.0"/>
+				<Covert type="Float" value="0.0"/>
+				<Injury type="Float" value="0.0"/>
+				<Conter type="Float" value="0.0"/>
+			</AttrModifer>
+		</ShortSword>
+		<Pike>
+			<Type type="Int" value="5"/>
+			<Value type="Int" value="10"/>
+			<Script type="String" value="none"/>
+			<Mesh type="String" value="pike.mesh"/>
+			<Mat type="String" value="pike"/>
+			<AniGroup type="String" value="2HL2"/>
+			<AttrModifer>
+				<Type type="Int" value="0"/>
+				<Attack type="Float" value="1.0"/>
+				<RangedAttack  type="Float" value="0.0"/>
+				<Defence type="Float" value="-2.0"/>
+				<Formation type="Float" value="0.06"/>
+				<Initiative type="Float" value="8.0"/>
+				<ActionPoint type="Float" value="0.0"/>				
+				<Detection type="Float" value="0.0"/>
+				<Covert type="Float" value="0.0"/>
+				<Injury type="Float" value="0.0"/>
+				<Conter type="Float" value="0.0"/>
+			</AttrModifer>
+		</Pike>
+	</PweaponData>
+	<SweaponData>
+		<LongBow>
+			<Value type="Int" value="10"/>
+			<Script type="String" value="none"/>
+			<Mesh type="String" value="bow.mesh"/>
+			<Mat type="String" value="bow"/>
+			<Range type = "Int" value="3"/>
+			<AniGroup type="String" value="bow"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="0.0"/>
-				<RangedAttack  type="Float" value="0.0"/>
-				<Defence type="Float" value="3.0"/>
+				<RangedAttack  type="Float" value="5.0"/>
+				<Defence type="Float" value="0.0"/>
 				<Formation type="Float" value="0.0"/>
 				<Initiative type="Float" value="0.0"/>
 				<ActionPoint type="Float" value="0.0"/>				
@@ -185,7 +251,103 @@
 				<Injury type="Float" value="0.0"/>
 				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
-		</TestArmor>		
+		</LongBow>
+	</SweaponData>
+	<ShieldData>
+		<KnightShield>
+			<Value type="Int" value="10"/>
+			<Script type="String" value="none"/>
+			<Mesh type="String" value="LargeShield.mesh"/>
+			<Mat type="String" value="LargeShield"/>
+			<AttrModifer>
+				<Type type="Int" value="0"/>
+				<Attack type="Float" value="1.0"/>
+				<RangedAttack  type="Float" value="0.0"/>
+				<Defence type="Float" value="3.0"/>
+				<Formation type="Float" value="0.0"/>
+				<Initiative type="Float" value="0.0"/>
+				<ActionPoint type="Float" value="-1.0"/>
+				<Detection type="Float" value="0.0"/>
+				<Covert type="Float" value="0.0"/>
+				<Injury type="Float" value="0.0"/>
+				<Conter type="Float" value="-1.0"/>
+			</AttrModifer>
+		</KnightShield>
+		<RoundShield>
+			<Value type="Int" value="10"/>
+			<Script type="String" value="none"/>
+			<Mesh type="String" value="LargeShield.mesh"/>
+			<Mat type="String" value="LargeShield"/>
+			<AttrModifer>
+				<Type type="Int" value="0"/>
+				<Attack type="Float" value="2.0"/>
+				<RangedAttack  type="Float" value="0.0"/>
+				<Defence type="Float" value="2.0"/>
+				<Formation type="Float" value="0.0"/>
+				<Initiative type="Float" value="0.0"/>
+				<ActionPoint type="Float" value="0.0"/>
+				<Detection type="Float" value="0.0"/>
+				<Covert type="Float" value="0.0"/>
+				<Injury type="Float" value="0.0"/>
+				<Conter type="Float" value="0.0"/>
+			</AttrModifer>
+		</RoundShield>
+	</ShieldData>
+	<ArmorData>
+		<HeavyMail>
+			<Type type="Int" value="1"/>
+			<Value type="Int" value="10"/>
+			<Script type="String" value="none"/>
+			<AttrModifer>
+				<Type type="Int" value="0"/>
+				<Attack type="Float" value="0.0"/>
+				<RangedAttack  type="Float" value="0.0"/>
+				<Defence type="Float" value="4.0"/>
+				<Formation type="Float" value="0.0"/>
+				<Initiative type="Float" value="0.0"/>
+				<ActionPoint type="Float" value="-1.0"/>				
+				<Detection type="Float" value="0.0"/>
+				<Covert type="Float" value="0.0"/>
+				<Injury type="Float" value="0.0"/>
+				<Conter type="Float" value="0.0"/>
+			</AttrModifer>
+		</HeavyMail>
+		<LightMail>
+			<Type type="Int" value="0"/>
+			<Value type="Int" value="10"/>
+			<Script type="String" value="none"/>
+			<AttrModifer>
+				<Type type="Int" value="0"/>
+				<Attack type="Float" value="0.0"/>
+				<RangedAttack  type="Float" value="0.0"/>
+				<Defence type="Float" value="2.0"/>
+				<Formation type="Float" value="0.0"/>
+				<Initiative type="Float" value="0.0"/>
+				<ActionPoint type="Float" value="0.0"/>				
+				<Detection type="Float" value="0.0"/>
+				<Covert type="Float" value="0.0"/>
+				<Injury type="Float" value="0.0"/>
+				<Conter type="Float" value="0.0"/>
+			</AttrModifer>
+		</LightMail>		
+		<LeatherArmor>
+			<Type type="Int" value="0"/>
+			<Value type="Int" value="10"/>
+			<Script type="String" value="none"/>
+			<AttrModifer>
+				<Type type="Int" value="0"/>
+				<Attack type="Float" value="0.0"/>
+				<RangedAttack  type="Float" value="0.0"/>
+				<Defence type="Float" value="1.0"/>
+				<Formation type="Float" value="0.0"/>
+				<Initiative type="Float" value="0.0"/>
+				<ActionPoint type="Float" value="0.0"/>				
+				<Detection type="Float" value="0.0"/>
+				<Covert type="Float" value="0.0"/>
+				<Injury type="Float" value="0.0"/>
+				<Conter type="Float" value="1.0"/>
+			</AttrModifer>
+		</LeatherArmor>
 	</ArmorData>
 	<SkillData>
 		<Attack>
@@ -197,6 +359,7 @@
 			<APCost type="float" value="3.0"/>
 			<CoolDown type="Int" value="0"/>
 			<Value type="Int" value="0"/>
+			<Icon type="String" value = "none"/>
 			<Script type="String" value="attack.lua"/>
 		</Attack>
 		<MagicAttack>
@@ -208,6 +371,7 @@
 			<APCost type="float" value="4.0"/>
 			<CoolDown type="Int" value="1"/>
 			<Value type="Int" value="10"/>
+			<Icon type="String" value = "none"/>
 			<Script type="String" value="magicattack.lua"/>
 		</MagicAttack>
 		<MagicEffect>
@@ -219,8 +383,21 @@
 			<APCost type="float" value="0.0"/>
 			<CoolDown type="Int" value="0"/>
 			<Value type="Int" value="10"/>
+			<Icon type="String" value = "none"/>
 			<Script type="String" value="magiceffect.lua"/>		
 		</MagicEffect>
+		<MagicShield>
+			<Type type="Int" value="3"/>
+			<MaxRange type="Int" value="3"/>
+			<MinRange type="Int" value="1"/>
+			<Area type="Int" value="1"/>
+			<APType type = "Int" value = "1"/>
+			<APCost type="float" value="4.0"/>
+			<CoolDown type="Int" value="0"/>
+			<Value type="Int" value="10"/>
+			<Icon type="String" value = "none"/>
+			<Script type="String" value="magicshield.lua"/>		
+		</MagicShield>
 	</SkillData>
 	<EffectData>
 		<TestEffect>
@@ -228,6 +405,11 @@
 			<Icon type="String" value = "none"/>
 			<Script type="String" value="magiceffect.lua"/>
 		</TestEffect>		
+		<MagicShield>
+			<Type type="Int" value="1"/>
+			<Icon type="String" value = "magicshield.jpg"/>
+			<Script type="String" value="magicshield.lua"/>
+		</MagicShield>
 	</EffectData>
 	<GroundData>
 		<Ground1>
@@ -337,26 +519,16 @@
 		</Forest>
 	</MapObjType>
 	<FactionData>
-		<TestFaction>
-			<Picture type="String" value="TestFaction.jpg"/>
-			<LittlePicture type="String" value="TestFactionL.jpg"/>
-			<Texture type="String" value="TestFactionT.jpg"/>
-		</TestFaction>
-		<winsock>
-			<Picture type="String" value="winsockFaction.jpg"/>
-			<LittlePicture type="String" value="winsockFactionL.jpg"/>
-			<Texture type="String" value="winsockFactionT.jpg"/>
-		</winsock>
-		<linsummer>
-			<Picture type="String" value="linsummerFaction.jpg"/>
-			<LittlePicture type="String" value="linsummerFactionL.jpg"/>
-			<Texture type="String" value="linsummerFactionT.jpg"/>
-		</linsummer>
-		<uncleA>
-			<Picture type="String" value="uncleAFaction.jpg"/>
-			<LittlePicture type="String" value="uncleAFactionL.jpg"/>
-			<Texture type="String" value="uncleAFactionT.jpg"/>
-		</uncleA>
+		<Wing>
+			<Picture type="String" value="FactionWing.jpg"/>
+			<LittlePicture type="String" value="FactionWingL.jpg"/>
+			<Texture type="String" value="FactionWingT.jpg"/>
+		</Wing>
+		<Etasi>
+			<Picture type="String" value="FactionEtasi.jpg"/>
+			<LittlePicture type="String" value="FactionEtasiL.jpg"/>
+			<Texture type="String" value="FactionEtasiT.jpg"/>
+		</Etasi>
 	</FactionData>
 	<CityData>
 		<TestCity>

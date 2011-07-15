@@ -1,14 +1,11 @@
-material LargeShield
+import DepthShadowmap/Caster from "Shadow.material"
+material LargeShield : DepthShadowmap/Caster
 {
-	technique
+	technique default
 	{
+		scheme Default
 		pass
 		{
-			ambient 0.588235 0.588235 0.588235 
-			diffuse 0.588235 0.588235 0.588235 
-			specular 0 0 0 10
-			emissive 0 0 0 
-
 			texture_unit 
 			{
 				texture LargeShield.dds
@@ -16,5 +13,3 @@ material LargeShield
 		}
 	}
 }
-
-

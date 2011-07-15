@@ -26,5 +26,6 @@ protected:
 	std::string mName;
 	std::string mSound;
 	std::string mParticle;
+	std::string mParticleId;
 	bool mIsLoop;
 };

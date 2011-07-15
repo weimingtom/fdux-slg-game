@@ -30,7 +30,8 @@ std::string TriggerManager::addTrigger(std::string trigertype, std::string file 
 
 void TriggerManager::removeTrigger(std::string id)
 {
-
+	std::string particlepath = std::string("GameData/BattleData/Trigger/") + id;
+	DataLibrary::getSingleton().delNode(particlepath);
 }
 
 void TriggerManager::activeTrigger(std::string id)
@@ -63,7 +64,7 @@ void TriggerManager::unitDead(BattleSquad* squad)
 		{
 			std::string datapath = std::string("GameData/BattleData/Trigger/") + (*ite);
 			int active;
-			datalib->getData(datapath + std::string("/active"),active);
+			datalib->getData(datapath ,active);
 			if(!active)
 				continue;
 			std::string type;

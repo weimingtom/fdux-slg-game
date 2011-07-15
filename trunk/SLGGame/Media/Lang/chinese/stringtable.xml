@@ -1,10 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <StaticData>
 	<StringTable>
-		<map1 type="String" value = "测试地图"/>
-		<mapinfo1 type="String" value = "测试地图"/>
-		<TestLeaderName type="String" value="废物"/>
-		<TestLeaderName2 type="String" value="废物2"/>
+		<!--Map-->
+		<map1 type="String" value = "双河平原之战1"/>
+		<mapinfo1 type="String" value = "双河平原之战1"/>
+		
+		<!--LeaderName-->
+		<Cheetah type="String" value="齐塔"/>
+		<Dandelion type="String" value="丹德来恩"/>
+		<Olivia type="String" value="奥莉瓦" />
+		<EtasiSquadLeader type="String" value="伊塔斯指挥官"/>
+		
+		<!--EquapType-->
 		<PWeaponTypeOneHandSword type="String" value="单手剑"/>
 		<PWeaponTypeOneHandAxe type="String" value="单手斧"/>
 		<PWeaponTypeOneHandSpear type="String" value="短矛"/>

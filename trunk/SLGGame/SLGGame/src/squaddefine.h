@@ -8,6 +8,14 @@ const EquipmentType EQUIP_SHIELD = 3;
 const EquipmentType EQUIP_PWEAPON = 4;
 const EquipmentType EQUIP_SWEAPON = 5;
 
+typedef int PweaponType;
+const PweaponType EQUIP_PWEAPON_ONEHANDSWORD = 1;
+const PweaponType EQUIP_PWEAPON_LONG = 5;
+
+typedef int ArmorType;
+const ArmorType EQUIP_ARMOR_LIGHT = 0;
+const ArmorType EQUIP_ARMOR_HEAVY = 1;
+
 typedef int AttrModifierType;
 const AttrModifierType ATTRMODIFIER_BASE = 0;
 const AttrModifierType ATTRMODIFIER_MAGIC = 1;
@@ -83,13 +91,9 @@ const int MOVEEVENT_WRONG = 1;
 const int MOVEEVENT_CHARGE = 2;
 const int MOVEEVENT_SPOT = 4;
 const int MOVEEVENT_AMBUSH = 8;
-const int MOVEEVENT_AMBUSHTEAM1 = 16;
-const int MOVEEVENT_AMBUSHTEAM2 = 32;
-const int MOVEEVENT_AMBUSHTEAM3 = 64;
-const int MOVEEVENT_AMBUSHTEAM4 = 128;
-const int MOVEEVENT_MAPEVENT = 256;
-const int MOVEEVENT_CHARGE_DIR_1 = 512; //冲锋方向位1
-const int MOVEEVENT_CHARGE_DIR_2 = 1024; //冲锋方向位2
+const int MOVEEVENT_MAPEVENT = 16;
+const int MOVEEVENT_CHARGE_DIR_1 = 32; //冲锋方向位1
+const int MOVEEVENT_CHARGE_DIR_2 = 64; //冲锋方向位2
 
 typedef int SkillType;
 const SkillType SKILLTYPE_PASSIVE = 0;
@@ -104,7 +108,7 @@ const int SKILLAPTYPE_SETUP = 0;
 const int SKILLAPTYPE_BATTLE = 1;
 
 const int ATKROLL = 20;
-const int DEFBOUSE = 15;
+const int DEFBOUSE = 10;
 
 
 typedef int UnitType;

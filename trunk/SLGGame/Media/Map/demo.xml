@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <MapName>map1</MapName>
 <MapTeam>
-    <Team2 TeamType="enemy1" TeamFaction="linsummer" />
+    <Team2 TeamType="enemy1" TeamFaction="Etasi" />
     <Team3 TeamType="none" TeamFaction="none" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
@@ -105,10 +105,10 @@
 <MapSquad>
     <Team1 />
     <Team2>
-	    <Team2Squad_0 Type="LightInf1" GridX="6" GridY="6" Direction = "1" UnitNum = "50"/>
-        <Team2Squad_1 Type="LightInf1" GridX="5" GridY="10" Direction = "1" UnitNum = "50"/>
-		<Team2Squad_2 Type="HeavyInf1" GridX="7" GridY="7" Direction = "1" UnitNum = "50"/>
-        <Team2Squad_3 Type="LightInf1" GridX="11" GridY="10" Direction = "1" UnitNum = "50"/>
+	    <Team2Squad_0 Type="EtasiLightSpear" GridX="6" GridY="6" Direction = "1" UnitNum = "50"/>
+        <Team2Squad_1 Type="EtasiLightSpear" GridX="5" GridY="10" Direction = "1" UnitNum = "50"/>
+		<Team2Squad_2 Type="EtasiHeavyInf" GridX="7" GridY="7" Direction = "1" UnitNum = "50"/>
+        <Team2Squad_3 Type="EtasiLightSpear" GridX="11" GridY="10" Direction = "1" UnitNum = "50"/>
 	</Team2>
     <Team3 />
     <Team4 />

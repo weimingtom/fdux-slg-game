@@ -225,6 +225,7 @@ void BattlePlayerState::newTurn()
 	}
 }
 
+
 void BattlePlayerState::reactiveState()
 {
 	if(mSelectSquad->IsEliminated() == true)
@@ -642,7 +643,14 @@ void BattlePlayerState::executeMove(int x, int y)
 	}
 	MoveCutScene* movecutscene = new MoveCutScene(mSelectSquad->getGrapId(),movepath,Ogre::Vector2(startx,starty));
 	DirectionCutScene* dircutscene = new DirectionCutScene(mSelectSquad->getGrapId(),mSelectSquad->getDirection());
-	movecutscene->setNextScene(dircutscene);
+	CutScene* eventcutscene = BattleSquadManager::getSingleton().getCutScene();
+	if(eventcutscene)
+	{
+		movecutscene->setNextScene(eventcutscene);
+		eventcutscene->setNextScene(dircutscene);
+	}
+	else
+		movecutscene->setNextScene(dircutscene);
 	CutSceneDirector* cutscenedirector = new CutSceneDirector;
 	cutscenedirector->addCutScene(movecutscene);
 	clearPathInfo();
@@ -925,7 +933,7 @@ void BattlePlayerState::drawSkillArea(SkillType skilltype, int minrange, int max
 				else
 				{
 					int team = blocksquad->getTeam();
-					int relaction = battlesquadmanager->getTeamRelation(team);
+					int relaction = blocksquad->getTeamFaction(team);
 					switch(skilltype)
 					{
 					case SKILLTYPE_TARGETENEMY:
@@ -972,7 +980,7 @@ int BattlePlayerState::skillPass(int x, int y, float &apcost, SkillType skilltyp
 	if(blocksquad == NULL || apleft < skillcost)
 		return 0;
 	int team = blocksquad->getTeam();
-	int relaction = BattleSquadManager::getSingleton().getTeamRelation(team);
+	int relaction = blocksquad->getTeamFaction(team);
 	apcost = skillcost;
 	switch(skilltype)
 	{
@@ -1015,7 +1023,7 @@ void BattlePlayerState::useSkillAt(int x,int y)
 		squad = BattleSquadManager::getSingleton().getBattleSquadAt(x,y,1,true);
 		if(squad == NULL)
 			return;
-		if(BattleSquadManager::getSingleton().getTeamRelation(squad->getTeam()) > 0)
+		if(squad->getTeamFaction(squad->getTeam()) > 0)
 		{
 			if(mMeleeSkill)
 				executeSkillOn( x,  y, squad);
@@ -1027,7 +1035,7 @@ void BattlePlayerState::useSkillAt(int x,int y)
 		squad = BattleSquadManager::getSingleton().getBattleSquadAt(x,y,1,true);
 		if(squad == NULL)
 			return;
-		if(BattleSquadManager::getSingleton().getTeamRelation(squad->getTeam()) == 0)
+		if(squad->getTeamFaction(squad->getTeam()) == 0)
 		{
 			if(mMeleeSkill)
 				executeSkillOn( x,  y, squad);
@@ -1135,7 +1143,7 @@ void BattlePlayerState::executeSkillOn(int x, int y, BattleSquad* squad)
 		croodlist.push_back(yyy);
 	}
 	int stoppoint;
-	int evt;
+	int evt = 0;
 	std::vector<Ogre::Vector2> movepath;
 	BattleSquadManager::getSingleton().moveSquad(mSelectSquad, croodlist, stoppoint, evt);
 	int n;
@@ -1160,7 +1168,15 @@ void BattlePlayerState::executeSkillOn(int x, int y, BattleSquad* squad)
 	}
 	MoveCutScene* movecutscene = new MoveCutScene(mSelectSquad->getGrapId(),movepath,Ogre::Vector2(startx,starty));
 	DirectionCutScene* dircutscene = new DirectionCutScene(mSelectSquad->getGrapId(),mSelectSquad->getDirection());
-	movecutscene->setNextScene(dircutscene);
+	CutScene* evetcutscene = BattleSquadManager::getSingleton().getCutScene();
+	if(evetcutscene)
+	{
+		movecutscene->setNextScene(evetcutscene);
+		evetcutscene->setNextScene(dircutscene);
+	}
+	else
+		movecutscene->setNextScene(dircutscene);
+
 	if(stoppoint == n)
 	{
 		CutScene* battlecutscene = BattleSquadManager::getSingleton().useSkillOn(mSelectSquad,squad,mSkillid);

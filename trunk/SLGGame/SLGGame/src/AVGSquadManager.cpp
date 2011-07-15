@@ -3,6 +3,7 @@
 #include "DataLibrary.h"
 #include "StringTable.h"
 #include "LuaSystem.h"
+#include "boost/format.hpp"
 
 AVGSquadManager::AVGSquadManager()
 {
@@ -253,7 +254,8 @@ bool AVGSquadManager::applyModifer(std::string path, AttrModifier* modifier, std
 
 void AVGSquadManager::removeModifier(std::string path,std::string modifierid)
 {
-	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::string particlepath = path + std::string("/ModifierList/") + modifierid;
+	DataLibrary::getSingleton().delNode(particlepath);
 }
 
 bool AVGSquadManager::applyEffect(std::string path, std::string id, std::string &effectid)
@@ -282,6 +284,7 @@ bool AVGSquadManager::applyEffect(std::string path, std::string id, std::string 
 	datalib->setData(effectpath,id);
 	std::string contextpath = effectpath + std::string("/ScriptContext");
 	datalib->setData(contextpath+ std::string("/affectsquadpath"),path);
+	datalib->setData(contextpath+ std::string("/effectid"),effectid);
 	LuaSystem::getSingleton().executeFunction(effectsrcpath ,"onaffect",contextpath);
 	return true;
 }
@@ -289,6 +292,16 @@ bool AVGSquadManager::applyEffect(std::string path, std::string id, std::string 
 void AVGSquadManager::removeEffect(std::string path,std::string effectid)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::string effectpath = path + std::string("/EffectList/") + effectid;
+	std::string effect;
+	bool re = datalib->getData(effectpath,effect);
+	if(!re)
+		return;
+	std::string effectsrcpath = std::string("StaticData/EffectData/") + effect;
+	datalib->getData(effectsrcpath + std::string("/Script"),effectsrcpath);
+	std::string contextpath = effectpath + std::string("/ScriptContext");
+	LuaSystem::getSingleton().executeFunction(effectsrcpath ,"onremove",contextpath);
+	datalib->delNode(effectpath);
 }
 
 
@@ -399,4 +412,68 @@ bool AVGSquadManager::getSquadAttr(std::string path, AttrType attrtype, AttrCalc
 		break;
 	}
 	return true;
+}
+
+bool AVGSquadManager::applyParticle(std::string path,UnitType unittype, std::string particle, std::string &particleid)
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::string particlepath = path + std::string("/ParticleList");
+	std::vector<std::string> particlelist = datalib->getChildList(path);
+	int x = 0;
+	particleid = std::string("p") + Ogre::StringConverter::toString(x);
+	std::vector<std::string>::iterator ite = std::find(particlelist.begin(), particlelist.end(),particleid);
+	while(ite != particlelist.end())
+	{
+		x = x + 1;
+		particleid = std::string("m") + Ogre::StringConverter::toString(x);
+		ite = std::find(particlelist.begin(), particlelist.end(),particleid);
+	}
+	path = particlepath + std::string("/") + particleid;
+	datalib->setData(path + std::string("/UnitType"), unittype, true);
+	datalib->setData(path + std::string("/Particle"), particle, true);
+	return true;
+}
+void AVGSquadManager::removeParticle(std::string path,std::string particleid)
+{
+	std::string particlepath = path + std::string("/ParticleList/") + particleid;
+	DataLibrary::getSingleton().delNode(particlepath);
+}
+
+bool AVGSquadManager::addTrigger(std::string path,std::string trigertype, std::string file ,std::string func, std::string context, std::string &triggerid)
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	int newid = 0;
+	int test;
+	while(datalib->getData(str(boost::format("%1%/Trigger/T%2%")%path%newid),test,true))
+		newid++;
+	datalib->setData(str(boost::format("%1%/Trigger/T%2%")%path%newid),0);
+	datalib->setData(str(boost::format("%1%/Trigger/T%2%/type")%path%newid),trigertype);
+	datalib->setData(str(boost::format("%1%/Trigger/T%2%/file")%path%newid),file);
+	datalib->setData(str(boost::format("%1%/Trigger/T%2%/func")%path%newid),func);
+	datalib->setData(str(boost::format("%1%/Trigger/T%2%/context")%path%newid),context);
+	triggerid =  std::string("T") + Ogre::StringConverter::toString(newid);
+	return true;
+}
+void AVGSquadManager::removeTrigger(std::string path,std::string triggerid)
+{
+	std::string particlepath = path + std::string("/Trigger/") + triggerid;
+	DataLibrary::getSingleton().delNode(particlepath);
+}
+void AVGSquadManager::activeTrigger(std::string path,std::string triggerid)
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	int test;
+	if(datalib->getData(str(boost::format("%1%/Trigger/%2%")%path%triggerid),test,true))
+	{
+		datalib->setData(str(boost::format("%1%/Trigger/%2%")%path%triggerid),1);
+	}
+}
+void AVGSquadManager::disableTrigger(std::string path,std::string triggerid)
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	int test;
+	if(datalib->getData(str(boost::format("%1%/Trigger/%2%")%path%triggerid),test,true))
+	{
+		datalib->setData(str(boost::format("%1%/Trigger/%2%")%path%triggerid),0);
+	}
 }

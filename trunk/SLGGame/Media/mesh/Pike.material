@@ -1,15 +1,14 @@
 import DepthShadowmap/Caster from "Shadow.material"
-material Examples/Ninja : DepthShadowmap/Caster
+material pike : DepthShadowmap/Caster
 {
 	technique default
 	{
 		scheme Default
 		pass
 		{
-		
-			texture_unit
+			texture_unit 
 			{
-				texture nskingr.jpg
+				texture Pike.dds
 			}
 		}
 	}

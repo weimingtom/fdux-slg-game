@@ -39,6 +39,8 @@ void CutScene::skipall()
 
 bool CutScene::end()
 {
+	if(!mStarted)
+		return false;
 	if(mEnded)
 	{
 		if(mNextScene)
