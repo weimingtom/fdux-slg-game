@@ -32,6 +32,7 @@ ScriptEditor::ScriptEditor(QWidget *parent, Qt::WFlags flags)
 	ui.TextWidthEdit->setText(settings.value("TextWidth").toString());
 	ui.TextHeightEdit->setText(settings.value("TextHeight").toString());
 	ui.FontEdit->setText(settings.value("TextFont").toString());
+	ui.initEdit->setPlainText(settings.value("InitScript").toString());
 
 	ui.RoleNameXEdit->setText(settings.value("RoleNameLeft").toString());
 	ui.RoleNameYEdit->setText(settings.value("RoleNameTop").toString());
@@ -60,6 +61,7 @@ ScriptEditor::~ScriptEditor()
 	settings.setValue("TextWidth",ui.TextWidthEdit->text());
 	settings.setValue("TextHeight",ui.TextHeightEdit->text());
 	settings.setValue("TextFont",ui.FontEdit->text());
+	settings.setValue("InitScript",ui.initEdit->toPlainText());
 
 	settings.setValue("RoleNameLeft",ui.RoleNameXEdit->text());
 	settings.setValue("RoleNameTop",ui.RoleNameYEdit->text());
@@ -179,7 +181,8 @@ bool ScriptEditor::windowClosing( Ogre::RenderWindow *rw )
 
 void ScriptEditor::RunLuaScript()
 {
-	OgreCore::getSingletonPtr()->mLuaSystem->runScript(ui.luaEdit->toPlainText().toStdString());
+
+	OgreCore::getSingletonPtr()->mLuaSystem->runScript(ui.initEdit->toPlainText().toStdString()+ui.luaEdit->toPlainText().toStdString());
 }
 
 void ScriptEditor::onError( std::string error )

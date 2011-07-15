@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'scripteditor.ui'
 **
-** Created: Wed Jul 6 22:20:16 2011
+** Created: Fri Jul 15 15:36:58 2011
 **      by: Qt User Interface Compiler version 4.6.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -23,6 +23,7 @@
 #include <QtGui/QLineEdit>
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenuBar>
+#include <QtGui/QPlainTextEdit>
 #include <QtGui/QPushButton>
 #include <QtGui/QRadioButton>
 #include <QtGui/QStatusBar>
@@ -51,6 +52,9 @@ public:
     QPushButton *ClearButton;
     QPushButton *ParseButton;
     QVBoxLayout *verticalLayout_3;
+    QLabel *label_23;
+    QPlainTextEdit *initEdit;
+    QLabel *label_24;
     QTextEdit *luaEdit;
     QLabel *label_22;
     QTextEdit *retEdit;
@@ -127,7 +131,7 @@ public:
     {
         if (ScriptEditorClass->objectName().isEmpty())
             ScriptEditorClass->setObjectName(QString::fromUtf8("ScriptEditorClass"));
-        ScriptEditorClass->resize(930, 540);
+        ScriptEditorClass->resize(930, 652);
         centralWidget = new QWidget(ScriptEditorClass);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         gridLayout_3 = new QGridLayout(centralWidget);
@@ -185,6 +189,21 @@ public:
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setSpacing(6);
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
+        label_23 = new QLabel(tab_2);
+        label_23->setObjectName(QString::fromUtf8("label_23"));
+
+        verticalLayout_3->addWidget(label_23);
+
+        initEdit = new QPlainTextEdit(tab_2);
+        initEdit->setObjectName(QString::fromUtf8("initEdit"));
+
+        verticalLayout_3->addWidget(initEdit);
+
+        label_24 = new QLabel(tab_2);
+        label_24->setObjectName(QString::fromUtf8("label_24"));
+
+        verticalLayout_3->addWidget(label_24);
+
         luaEdit = new QTextEdit(tab_2);
         luaEdit->setObjectName(QString::fromUtf8("luaEdit"));
 
@@ -200,7 +219,10 @@ public:
 
         verticalLayout_3->addWidget(retEdit);
 
-        verticalLayout_3->setStretch(0, 10);
+        verticalLayout_3->setStretch(0, 1);
+        verticalLayout_3->setStretch(1, 1);
+        verticalLayout_3->setStretch(3, 10);
+        verticalLayout_3->setStretch(5, 1);
 
         horizontalLayout_2->addLayout(verticalLayout_3);
 
@@ -528,7 +550,7 @@ public:
 
         tabWidget->addTab(tab, QString());
 
-        gridLayout_3->addWidget(tabWidget, 0, 0, 1, 1);
+        gridLayout_3->addWidget(tabWidget, 1, 0, 1, 1);
 
         ScriptEditorClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(ScriptEditorClass);
@@ -557,6 +579,8 @@ public:
         label_21->setText(QApplication::translate("ScriptEditorClass", "LUA\344\273\243\347\240\201\347\252\227\345\217\243", 0, QApplication::UnicodeUTF8));
         ClearButton->setText(QApplication::translate("ScriptEditorClass", "\346\270\205\347\251\272\345\267\246\350\276\271", 0, QApplication::UnicodeUTF8));
         ParseButton->setText(QApplication::translate("ScriptEditorClass", "\350\275\254\346\215\242", 0, QApplication::UnicodeUTF8));
+        label_23->setText(QApplication::translate("ScriptEditorClass", "\345\210\235\345\247\213\345\214\226\346\256\265", 0, QApplication::UnicodeUTF8));
+        label_24->setText(QApplication::translate("ScriptEditorClass", "LUA\346\256\265", 0, QApplication::UnicodeUTF8));
         label_22->setText(QApplication::translate("ScriptEditorClass", "\350\276\223\345\207\272", 0, QApplication::UnicodeUTF8));
         RunButton->setText(QApplication::translate("ScriptEditorClass", "\350\277\220\350\241\214", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("ScriptEditorClass", "\350\204\232\346\234\254\347\274\226\350\276\221", 0, QApplication::UnicodeUTF8));

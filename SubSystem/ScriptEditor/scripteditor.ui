@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>930</width>
-    <height>540</height>
+    <height>652</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,7 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_3">
-    <item row="0" column="0">
+    <item row="1" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
        <number>0</number>
@@ -67,7 +67,24 @@
            </layout>
           </item>
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout_3" stretch="10,0,0">
+           <layout class="QVBoxLayout" name="verticalLayout_3" stretch="1,1,0,10,0,1">
+            <item>
+             <widget class="QLabel" name="label_23">
+              <property name="text">
+               <string>初始化段</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPlainTextEdit" name="initEdit"/>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_24">
+              <property name="text">
+               <string>LUA段</string>
+              </property>
+             </widget>
+            </item>
             <item>
              <widget class="QTextEdit" name="luaEdit"/>
             </item>
