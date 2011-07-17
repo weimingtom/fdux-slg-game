@@ -79,12 +79,17 @@ bool AudioSystem::playSample( std::string name,bool isLoop)
 		
 	std::string path=SE_PATH;
 	path+=name;
-	mSample=BASS_SampleLoad(FALSE,path.c_str(),0,0,3,BASS_SAMPLE_OVER_POS);
-	HCHANNEL ch=BASS_SampleGetChannel(mSample,FALSE);
+
 	if (isLoop)
 	{
-		BASS_ChannelFlags(mSample, BASS_SAMPLE_LOOP, BASS_SAMPLE_LOOP);
+		mSample=BASS_SampleLoad(FALSE,path.c_str(),0,0,3,BASS_SAMPLE_LOOP);
 	}
+	else
+	{
+		mSample=BASS_SampleLoad(FALSE,path.c_str(),0,0,3,BASS_SAMPLE_OVER_POS);
+	}
+	
+	HCHANNEL ch=BASS_SampleGetChannel(mSample,FALSE);
 	return BASS_ChannelPlay(ch,FALSE);
 }
 

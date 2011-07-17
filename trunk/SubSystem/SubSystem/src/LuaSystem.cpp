@@ -206,7 +206,7 @@ void LuaSystem::saveScriptRuntime()
 {
 #ifndef SCRIPT_EDITOR
 	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/ScriptName",mScriptName);
-	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/ScriptLine",mScriptLine);
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/ScriptLine",mScriptLine-1);
 	
 #endif
 }

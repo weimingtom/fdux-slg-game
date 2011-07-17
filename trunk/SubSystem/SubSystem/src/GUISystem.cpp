@@ -77,7 +77,8 @@ bool GUISystem::mouseMoved( const OIS::MouseEvent &arg )
 
 bool GUISystem::mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
 {
-	return mGUI->injectMousePress(arg.state.X.abs,arg.state.Y.abs, MyGUI::MouseButton::Enum(id));
+	bool r= mGUI->injectMousePress(arg.state.X.abs,arg.state.Y.abs, MyGUI::MouseButton::Enum(id));
+	return r;
 }
 
 bool GUISystem::mouseReleased( const OIS::MouseEvent &arg, OIS::MouseButtonID id )

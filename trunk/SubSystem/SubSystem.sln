@@ -8,10 +8,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ScriptEditor", "ScriptEdito
 		{FAEB5A90-8B8B-41BB-BEA5-CE8607604922} = {FAEB5A90-8B8B-41BB-BEA5-CE8607604922}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyGUIEngine", "..\MyGUI3.2\MyGUIEngine\MyGUIEngine.vcproj", "{48A711A6-6A9C-46A1-9576-0D2EA78EC9A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_ScrpitEditor|Win32 = Debug_ScrpitEditor|Win32
 		Debug|Win32 = Debug|Win32
+		MinSizeRel|Win32 = MinSizeRel|Win32
 		Release_ScriptEditor|Win32 = Release_ScriptEditor|Win32
 		Release|Win32 = Release|Win32
 		RelWithDebInfo|Win32 = RelWithDebInfo|Win32
@@ -21,6 +24,8 @@ Global
 		{FAEB5A90-8B8B-41BB-BEA5-CE8607604922}.Debug_ScrpitEditor|Win32.Build.0 = Debug_ScrpitEditor|Win32
 		{FAEB5A90-8B8B-41BB-BEA5-CE8607604922}.Debug|Win32.ActiveCfg = Debug|Win32
 		{FAEB5A90-8B8B-41BB-BEA5-CE8607604922}.Debug|Win32.Build.0 = Debug|Win32
+		{FAEB5A90-8B8B-41BB-BEA5-CE8607604922}.MinSizeRel|Win32.ActiveCfg = Release_ScriptEditor|Win32
+		{FAEB5A90-8B8B-41BB-BEA5-CE8607604922}.MinSizeRel|Win32.Build.0 = Release_ScriptEditor|Win32
 		{FAEB5A90-8B8B-41BB-BEA5-CE8607604922}.Release_ScriptEditor|Win32.ActiveCfg = Release_ScriptEditor|Win32
 		{FAEB5A90-8B8B-41BB-BEA5-CE8607604922}.Release_ScriptEditor|Win32.Build.0 = Release_ScriptEditor|Win32
 		{FAEB5A90-8B8B-41BB-BEA5-CE8607604922}.Release|Win32.ActiveCfg = Release|Win32
@@ -31,12 +36,26 @@ Global
 		{131BB5DD-A9DF-48DA-90DC-5436B76CE321}.Debug_ScrpitEditor|Win32.Build.0 = Debug_ScrpitEditor|Win32
 		{131BB5DD-A9DF-48DA-90DC-5436B76CE321}.Debug|Win32.ActiveCfg = Debug|Win32
 		{131BB5DD-A9DF-48DA-90DC-5436B76CE321}.Debug|Win32.Build.0 = Debug|Win32
+		{131BB5DD-A9DF-48DA-90DC-5436B76CE321}.MinSizeRel|Win32.ActiveCfg = Release_ScriptEditor|Win32
+		{131BB5DD-A9DF-48DA-90DC-5436B76CE321}.MinSizeRel|Win32.Build.0 = Release_ScriptEditor|Win32
 		{131BB5DD-A9DF-48DA-90DC-5436B76CE321}.Release_ScriptEditor|Win32.ActiveCfg = Release_ScriptEditor|Win32
 		{131BB5DD-A9DF-48DA-90DC-5436B76CE321}.Release_ScriptEditor|Win32.Build.0 = Release_ScriptEditor|Win32
 		{131BB5DD-A9DF-48DA-90DC-5436B76CE321}.Release|Win32.ActiveCfg = Release|Win32
 		{131BB5DD-A9DF-48DA-90DC-5436B76CE321}.Release|Win32.Build.0 = Release|Win32
 		{131BB5DD-A9DF-48DA-90DC-5436B76CE321}.RelWithDebInfo|Win32.ActiveCfg = Release|Win32
 		{131BB5DD-A9DF-48DA-90DC-5436B76CE321}.RelWithDebInfo|Win32.Build.0 = Release|Win32
+		{48A711A6-6A9C-46A1-9576-0D2EA78EC9A1}.Debug_ScrpitEditor|Win32.ActiveCfg = Debug|Win32
+		{48A711A6-6A9C-46A1-9576-0D2EA78EC9A1}.Debug_ScrpitEditor|Win32.Build.0 = Debug|Win32
+		{48A711A6-6A9C-46A1-9576-0D2EA78EC9A1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{48A711A6-6A9C-46A1-9576-0D2EA78EC9A1}.Debug|Win32.Build.0 = Debug|Win32
+		{48A711A6-6A9C-46A1-9576-0D2EA78EC9A1}.MinSizeRel|Win32.ActiveCfg = MinSizeRel|Win32
+		{48A711A6-6A9C-46A1-9576-0D2EA78EC9A1}.MinSizeRel|Win32.Build.0 = MinSizeRel|Win32
+		{48A711A6-6A9C-46A1-9576-0D2EA78EC9A1}.Release_ScriptEditor|Win32.ActiveCfg = Release|Win32
+		{48A711A6-6A9C-46A1-9576-0D2EA78EC9A1}.Release_ScriptEditor|Win32.Build.0 = Release|Win32
+		{48A711A6-6A9C-46A1-9576-0D2EA78EC9A1}.Release|Win32.ActiveCfg = Release|Win32
+		{48A711A6-6A9C-46A1-9576-0D2EA78EC9A1}.Release|Win32.Build.0 = Release|Win32
+		{48A711A6-6A9C-46A1-9576-0D2EA78EC9A1}.RelWithDebInfo|Win32.ActiveCfg = RelWithDebInfo|Win32
+		{48A711A6-6A9C-46A1-9576-0D2EA78EC9A1}.RelWithDebInfo|Win32.Build.0 = RelWithDebInfo|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

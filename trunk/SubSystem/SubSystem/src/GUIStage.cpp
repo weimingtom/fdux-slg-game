@@ -6,6 +6,7 @@
 #include <ogre.h>
 
 #ifndef SCRIPT_EDITOR
+#include "GUISLWindow.h"
 #include "DataLibrary.h"
 #endif
 
@@ -544,10 +545,40 @@ void GUIStage::onSave(MyGUI::Widget* _sender)
 	
 	//写入脚本名与位置
 	LuaSystem::getSingletonPtr()->saveScriptRuntime();
+
+	GUISLWindow* SLWindow= (GUISLWindow*)GUISystem::getSingletonPtr()->createScene(SLScene);
+	SLWindow->showScene("save");
 #endif
 }
 
 void GUIStage::onLoad(MyGUI::Widget* _sender)
+{
+#ifndef SCRIPT_EDITOR
+	GUISLWindow* SLWindow= (GUISLWindow*)GUISystem::getSingletonPtr()->createScene(SLScene);
+	SLWindow->setCallScene(this);
+	SLWindow->showScene("load");
+#endif
+}
+
+void GUIStage::onHide( MyGUI::Widget* _sender )
+{
+	if (mTextBoxVisible)
+	{
+		setTextDialogVisible(false);
+	}
+	else
+	{
+		setTextDialogVisible(true);
+	}
+	
+}
+
+void GUIStage::onSystem( MyGUI::Widget* _sender )
+{
+
+}
+
+void GUIStage::load()
 {
 #ifndef SCRIPT_EDITOR
 	//读取场景数据
@@ -592,6 +623,7 @@ void GUIStage::onLoad(MyGUI::Widget* _sender)
 	mRightLayer->setSize(LayerSize.x,LayerSize.y);
 
 	//设置文本
+	mTextBuffer.clear();
 	std::string text;
 	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/Text",text);
 	mTextBox->setCaption(text);
@@ -606,20 +638,10 @@ void GUIStage::onLoad(MyGUI::Widget* _sender)
 #endif
 }
 
-void GUIStage::onHide( MyGUI::Widget* _sender )
+void GUIStage::onOtherSceneNotify(std::string arg)
 {
-	if (mTextBoxVisible)
+	if(arg=="LoadComplete")
 	{
-		setTextDialogVisible(false);
+		load();
 	}
-	else
-	{
-		setTextDialogVisible(true);
-	}
-	
-}
-
-void GUIStage::onSystem( MyGUI::Widget* _sender )
-{
-
 }
