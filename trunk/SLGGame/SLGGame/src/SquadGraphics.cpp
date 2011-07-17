@@ -542,8 +542,6 @@ void SquadGraphics::setFormation( Formation f,bool isAnim )
 	Ogre::Vector3 CommanderVector;
 	Ogre::Vector3 SoldierVector[4];
 
-	mSquadValueBB->setValue("+12",MyGUI::Colour::Blue);
-
 	getFormationPosition(f,mDirection,CommanderVector,SoldierVector);
 
 	if (isAnim)

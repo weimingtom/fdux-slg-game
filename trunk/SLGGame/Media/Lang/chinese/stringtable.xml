@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <StaticData>
 	<StringTable>
 		<!--Map-->
@@ -26,9 +26,9 @@
 		<TerrainCanPass type="String" value="可通过"/>
 		<TerrainCantPass  type="String" value="不可通过"/>
 		
-		<FormationLine type="String" value="线"/>
-		<FormationCirc type="String" value="圆"/>
-		<FormationLoos type="String" value="散"/>
+		<FormationLine type="String" value="线型阵"/>
+		<FormationCirc type="String" value="圆型阵"/>
+		<FormationLoos type="String" value="散阵"/>
 		
 		<DirectionNorth type="String" value="北"/>
 		<DirectionSouth type="String" value="南"/>
@@ -41,10 +41,29 @@
 		<LoadGame type="String" value = "载入游戏"/>
 		<Opition type="String" value = "设置游戏"/>
 		<ExitGame type="String" value = "退出游戏"/>
+		<YesButton type="String" value = "确定"/>
+		<NoButton type="String" value = "取消"/>
+		<SaveCaption type="String" value = "保存游戏"/>
+		<LoadCaption type="String" value = "读取游戏"/>
+		<NoFile type="String" value="--空--" />
+		<LoadingTerrain type="String" value="读取地形.." />
+		<LoadingMapObject type="String" value="读取地图对象.." />
+		<LoadingUnit type="String" value="读取单位.." />
+		<CreatingGrid type="String" value="构建地形.." />
 		
+		<GameTurn type="String" value="回合数:"/>
+		<CurTeam type="String" value="当前队伍:"/>
+		<NextTurn type="String" value="下一回合"/>
 		<NotDeploy type="String" value="未部署"/>
 		<DeployConfirm type="String" value="完成部署"/>
 		<DeployWindow type="String" value="部署窗口"/>
+		
+		<Formation type="String" value="阵型:"/>
+		<Direction type="String" value="方向:"/>
+		<Move type="String" value="移动"/>
+		<FormationLineButton type="String" value="线型阵&#x0D;AP:%1%"/>
+		<FormationCircButton type="String" value="圆型阵&#x0D;AP:%1%"/>
+		<FormationLoosButton type="String" value="散阵&#x0D;AP:%1%"/>
 		
 		<GUITerrainWindow type="String" value="地形窗口"/>
 		<GUITerrainDefence type="String" value="防御加成"/>

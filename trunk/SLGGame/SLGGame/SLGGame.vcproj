@@ -725,6 +725,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\src\GUISLWindow.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\GUISLWindow.h"
+						>
+					</File>
+					<File
 						RelativePath=".\src\LoadScene.cpp"
 						>
 					</File>

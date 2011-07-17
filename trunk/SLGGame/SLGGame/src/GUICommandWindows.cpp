@@ -5,6 +5,7 @@
 
 #include "BattlePlayerState.h"
 #include "BattleSquad.h"
+#include "StringTable.h"
 
 GUICommandWindows::GUICommandWindows(MyGUI::Window* window,int Width,int Height):GUISubWindows(window,Width,Height),mWindow(window)
 {
@@ -27,7 +28,6 @@ GUICommandWindows::GUICommandWindows(MyGUI::Window* window,int Width,int Height)
 	mSkill[6]->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUICommandWindows::onSkill7);
 	mSkill[7]->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUICommandWindows::onSkill8);
 	mSkill[8]->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUICommandWindows::onSkill9);
-
 
 	setSquad(NULL);
 	mPlayerState = NULL;
@@ -104,17 +104,25 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 		for(int n =0; n <9; n++)
 		{
 			mSkill[n]->setVisible(false);
+			mSkill[n]->setImageResource("");
 			mSkillId[n] = "none";
 		}
 		hideScene();
 		return;
 	}
 	showScene("");
+
+	for(int n =0; n <9; n++)
+	{
+		mSkill[n]->setImageResource("");
+	}
+
 	//ÒÆ¶¯¼¼ÄÜ
 	float apleft = mSelectSquad->getActionPoint();
 	int skillno = 0;
 	mSkill[skillno]->setVisible(true);
-	mSkill[skillno]->setCaption("move");
+	mSkill[skillno]->setCaption(StringTable::getSingletonPtr()->getString("Move"));
+	mSkill[skillno]->setImageResource("Move");
 	mSkillId[skillno] = "move";
 	skillno++;
 	if(mSelectSquad->getType()==SQUAD_NORMAL)
@@ -125,7 +133,8 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 		if(f != Line)
 		{
 			mSkill[skillno]->setVisible(true);
-			mSkill[skillno]->setCaption(str(boost::format("Line\n%1%")%apcost));
+			mSkill[skillno]->setImageResource("Defence");
+			mSkill[skillno]->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("FormationLineButton"))%apcost));
 			if(apleft >= apcost)
 				mSkill[skillno]->setEnabled(true);
 			else
@@ -136,7 +145,8 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 		if(f != Circular)
 		{
 			mSkill[skillno]->setVisible(true);
-			mSkill[skillno]->setCaption(str(boost::format("Circular\n%1%")%apcost));
+			mSkill[skillno]->setImageResource("Defence");
+			mSkill[skillno]->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("FormationCircButton"))%apcost));
 			if(apleft >= apcost)
 				mSkill[skillno]->setEnabled(true);
 			else
@@ -147,7 +157,8 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 		if(f != Loose)
 		{
 			mSkill[skillno]->setVisible(true);
-			mSkill[skillno]->setCaption(str(boost::format("Loose\n%1%")%apcost));
+			mSkill[skillno]->setImageResource("Defence");
+			mSkill[skillno]->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("FormationLoosButton"))%apcost));
 			if(apleft >= apcost)
 				mSkill[skillno]->setEnabled(true);
 			else
@@ -185,7 +196,7 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 			float apcost;
 			datalib->getData(std::string("StaticData/SkillData/")+ (*ite)+ std::string("/APCost"),apcost);
 			apcost += mSelectSquad->getActionPointCost(aptype);
-			mSkill[skillno]->setCaption(str(boost::format("%1%\n%2%")%skillname%apcost));
+			mSkill[skillno]->setCaption(str(boost::format("%1%\nAP:%2%")%skillname%apcost));
 			if(apleft >= apcost)
 			{
 				mSkill[skillno]->setEnabled(true);

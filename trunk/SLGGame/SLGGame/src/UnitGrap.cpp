@@ -402,11 +402,11 @@ void UnitGrap::doFadeInOut(unsigned int deltaTime )
 			{
 				if( mAlpha <=0)
 				{
-					mSecWeapon->overFade(false);
+					mShield->overFade(false);
 				}
 				else
 				{
-					mSecWeapon->overFade(true);
+					mShield->overFade(true);
 				}
 			}
 		}

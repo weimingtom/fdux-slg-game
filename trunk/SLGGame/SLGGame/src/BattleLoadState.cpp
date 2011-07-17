@@ -9,6 +9,7 @@
 #include "DataLibrary.h"
 #include "GUIBattle.h"
 #include "MapLoader.h"
+#include "StringTable.h"
 
 #include "MapDataManager.h"
 
@@ -32,7 +33,7 @@ void BattleLoadState::update(unsigned int deltaTime)
 	{
 	case LOADSCENE:
 		mState = LOADTERRAIN;
-		mLoadScene->setText("Loading Terrain");
+		mLoadScene->setText(StringTable::getSingletonPtr()->getString("LoadingTerrain"));
 		break;
 	case LOADTERRAIN:
 		if(mLoadFromMap)
@@ -40,19 +41,19 @@ void BattleLoadState::update(unsigned int deltaTime)
 		Core::getSingleton().mRoot->renderOneFrame(0.0f);
 		mState = LOADOBJECT;
 		mLoadScene->setProgress(25);
-		mLoadScene->setText("Loading MapObject");
+		mLoadScene->setText(StringTable::getSingletonPtr()->getString("LoadingMapObject"));
 		break;
 	case LOADOBJECT:
 		mMapLoader->loadMapObj();
 		mState = LOADUNIT;
 		mLoadScene->setProgress(50);
-		mLoadScene->setText("Loading Unit");
+		mLoadScene->setText(StringTable::getSingletonPtr()->getString("LoadingUnit"));
 		break;
 	case LOADUNIT:
 		mMapLoader->initBattleSquad(mLoadFromMap);
 		mState = LOADGRID;
 		mLoadScene->setProgress(75);
-		mLoadScene->setText("Creating Grid");
+		mLoadScene->setText(StringTable::getSingletonPtr()->getString("CreatingGrid"));
 		break;
 	case LOADGRID:
 		if(mLoadFromMap)

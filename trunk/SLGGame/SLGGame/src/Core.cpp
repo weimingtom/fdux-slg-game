@@ -26,6 +26,7 @@
 #include "LuaSkill.h"
 #include "LuaScriptCommon.h"
 #include "LuaTrigger.h"
+#include "GUISLWindow.h"
 
 #include <ParticleUniverseSystemManager.h> 
 
@@ -99,6 +100,7 @@ bool Core::initialize()
 	//mGUISystem->registerSceneFactory(PUDebugScene,new GUIPUDebugFactory());
 	mGUISystem->registerSceneFactory(BattleScene,new GUIBattleFactory());
 	mGUISystem->registerSceneFactory(LoadingScene, new LoadSceneFactory());
+	mGUISystem->registerSceneFactory(SLScene, new GUISLWindowFactory());
 
 	mAudioSystem=new AudioSystem();
 

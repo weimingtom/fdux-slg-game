@@ -24,6 +24,12 @@ GUITargetWindows::GUITargetWindows(MyGUI::Window* window,int Width,int Height):G
 	assignWidget(mSquadDirection,"TargetDirection");
 	assignWidget(mSquadFormation,"TargetFormation");
 
+	MyGUI::TextBox* textBox;
+	assignWidget(textBox,"FormationLabel");
+	textBox->setCaption(StringTable::getSingleton().getString("Formation"));
+	assignWidget(textBox,"DirectionLabel");
+	textBox->setCaption(StringTable::getSingleton().getString("Direction"));
+
 	assignWidget(mSquadImage,"TargetImage");
 	assignWidget(mSquadFactionImage,"TargetFactionImage");
 
