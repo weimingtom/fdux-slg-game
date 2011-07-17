@@ -5,12 +5,12 @@
         <Property key="Visible" value="false"/>
         <Property key="FontName" value="fireflysung"/>
         <Property key="FontHeight" value="20"/>
-        <Widget type="TextBox" skin="TextBox" position="45 65 75 20">
+        <Widget type="TextBox" skin="TextBox" position="45 65 75 20" name="GameTurnLabel">
             <Property key="Caption" value="Game Turn:"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="45 90 75 20">
+        <Widget type="TextBox" skin="TextBox" position="45 90 75 20" name="CurTeamLabel">
             <Property key="Caption" value="CurTeam:"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
@@ -45,36 +45,56 @@
             <Property key="FontHeight" value="20"/>
         </Widget>
         <Widget type="ImageBox" skin="ImageBox" position="140 95 40 30" name="SquadFactionImage"/>
-        <Widget type="TextBox" skin="TextBox" position="190 300 10 20">
+        <Widget type="TextBox" skin="TextBox" position="195 45 15 20">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
             <Property key="Caption" value="X"/>
+            <Property key="Visible" value="false"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="210 300 25 20" name="SquadGridX">
+        <Widget type="TextBox" skin="TextBox" position="215 45 25 20" name="SquadGridX">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
+            <Property key="Visible" value="false"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="190 330 10 20">
+        <Widget type="TextBox" skin="TextBox" position="195 65 15 20">
             <Property key="Caption" value="Y"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
+            <Property key="Visible" value="false"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="210 330 25 20" name="SquadGridY">
+        <Widget type="TextBox" skin="TextBox" position="215 65 25 20" name="SquadGridY">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
+            <Property key="Visible" value="false"/>
         </Widget>
         <Widget type="TextBox" skin="TextBox" position="65 240 80 20" name="SquadPWeapon">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="ImageBox" skin="ImageBox" position="35 235 25 25"/>
-        <Widget type="ImageBox" skin="ImageBox" position="35 265 25 25"/>
+        <Widget type="ImageBox" skin="ImageBox" position="35 238 22 22">
+            <Property key="ImageResource" value="16"/>
+            <Property key="ImageGroup" value="Button"/>
+            <Property key="ImageName" value="normal"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="35 268 22 22">
+            <Property key="ImageResource" value="24"/>
+            <Property key="ImageGroup" value="Button"/>
+            <Property key="ImageName" value="normal"/>
+        </Widget>
         <Widget type="TextBox" skin="TextBox" position="65 270 80 20" name="SquadSWeapon">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="ImageBox" skin="ImageBox" position="35 295 25 25"/>
-        <Widget type="ImageBox" skin="ImageBox" position="35 325 25 25"/>
+        <Widget type="ImageBox" skin="ImageBox" position="35 299 22 22">
+            <Property key="ImageResource" value="3"/>
+            <Property key="ImageGroup" value="Button"/>
+            <Property key="ImageName" value="normal"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="35 329 22 22">
+            <Property key="ImageResource" value="15"/>
+            <Property key="ImageGroup" value="Button"/>
+            <Property key="ImageName" value="normal"/>
+        </Widget>
         <Widget type="TextBox" skin="TextBox" position="65 300 80 20" name="SquadShield">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
@@ -83,11 +103,11 @@
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="140 180 95 20" name="SquadUnitNum">
+        <Widget type="TextBox" skin="TextBox" position="170 180 65 20" name="SquadUnitNum">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="140 205 95 20" name="SquadAp">
+        <Widget type="TextBox" skin="TextBox" position="170 205 65 20" name="SquadAp">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
@@ -99,16 +119,44 @@
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="155 330 25 20" name="SquadDirection">
+        <Widget type="TextBox" skin="TextBox" position="195 330 40 20" name="SquadDirection">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="155 300 25 20" name="SquadFormation">
+        <Widget type="TextBox" skin="TextBox" position="195 300 40 20" name="SquadFormation">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="155 238 22 22">
+            <Property key="ImageResource" value="13"/>
+            <Property key="ImageGroup" value="Button"/>
+            <Property key="ImageName" value="normal"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="155 269 22 22">
+            <Property key="ImageGroup" value="Button"/>
+            <Property key="ImageName" value="normal"/>
+            <Property key="ImageResource" value="2"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="140 178 22 22">
+            <Property key="ImageGroup" value="Button"/>
+            <Property key="ImageName" value="normal"/>
+            <Property key="ImageResource" value="5"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="140 203 22 22">
+            <Property key="ImageGroup" value="Button"/>
+            <Property key="ImageName" value="normal"/>
+            <Property key="ImageResource" value="18"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="155 330 35 20" name="DirectionLabel">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="155 300 35 20" name="FormationLabel">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
     </Widget>
-    <Widget type="Window" skin="SLGMiniWindowSkin" position="405 0 274 145" layer="Main" name="Terrain">
+    <Widget type="Window" skin="SLGMiniWindowSkin" position="250 5 274 145" layer="Main" name="Terrain">
         <Property key="Caption" value="Terrain"/>
         <Property key="FontName" value="fireflysung"/>
         <Property key="FontHeight" value="20"/>
@@ -116,7 +164,7 @@
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="10 75 60 20">
+        <Widget type="TextBox" skin="TextBox" position="10 75 60 20" name="DefenceLabel">
             <Property key="Caption" value="Defence:"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
@@ -125,7 +173,7 @@
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="10 105 60 20">
+        <Widget type="TextBox" skin="TextBox" position="10 105 60 20" name="CavApLabel">
             <Property key="Caption" value="CavAp:"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
@@ -134,7 +182,7 @@
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="140 105 60 20">
+        <Widget type="TextBox" skin="TextBox" position="140 105 60 20" name="InfApLabel">
             <Property key="Caption" value="InfAp:"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
@@ -143,7 +191,7 @@
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="140 75 60 20">
+        <Widget type="TextBox" skin="TextBox" position="140 75 60 20" name="CovertLabel">
             <Property key="Caption" value="Covert:"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
@@ -190,7 +238,7 @@
         <Property key="FontHeight" value="20"/>
         <Widget type="ListBox" skin="ListBox" position="0 0 210 105" name="MissionList"/>
     </Widget>
-    <Widget type="Window" skin="SLGWindow" position="500 0 414 504" layer="Main" name="DeployWindow">
+    <Widget type="Window" skin="SLGWindow" position="600 0 414 504" layer="Main" name="DeployWindow">
         <Property key="Caption" value="DeployWindow"/>
         <Property key="FontName" value="fireflysung"/>
         <Property key="Visible" value="false"/>
@@ -242,7 +290,7 @@
             <Property key="FontHeight" value="20"/>
         </Widget>
     </Widget>
-    <Widget type="Window" skin="SLGSquedWindowSkin" position="250 335 275 395" layer="Main" name="TargetWindow">
+    <Widget type="Window" skin="SLGSquedWindowSkin" position="250 330 275 395" layer="Main" name="TargetWindow">
         <Property key="Caption" value="Target Info"/>
         <Property key="FontName" value="fireflysung"/>
         <Property key="Visible" value="false"/>
@@ -257,28 +305,48 @@
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="70 295 10 20">
+        <Widget type="TextBox" skin="TextBox" position="75 40 15 20">
             <Property key="Caption" value="X"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
+            <Property key="Visible" value="false"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="40 295 25 20" name="TargetGridX">
+        <Widget type="TextBox" skin="TextBox" position="45 40 25 20" name="TargetGridX">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
+            <Property key="Visible" value="false"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="70 325 10 20">
+        <Widget type="TextBox" skin="TextBox" position="75 60 15 20">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
             <Property key="Caption" value="Y"/>
+            <Property key="Visible" value="false"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="40 325 25 20" name="TargetGridY">
+        <Widget type="TextBox" skin="TextBox" position="45 60 25 20" name="TargetGridY">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
+            <Property key="Visible" value="false"/>
         </Widget>
-        <Widget type="ImageBox" skin="ImageBox" position="210 230 25 25"/>
-        <Widget type="ImageBox" skin="ImageBox" position="210 260 25 25"/>
-        <Widget type="ImageBox" skin="ImageBox" position="210 290 25 25"/>
-        <Widget type="ImageBox" skin="ImageBox" position="210 320 25 25"/>
+        <Widget type="ImageBox" skin="ImageBox" position="210 234 22 22">
+            <Property key="ImageResource" value="16"/>
+            <Property key="ImageGroup" value="Button"/>
+            <Property key="ImageName" value="normal"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="210 263 22 22">
+            <Property key="ImageResource" value="24"/>
+            <Property key="ImageGroup" value="Button"/>
+            <Property key="ImageName" value="normal"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="210 293 22 22">
+            <Property key="ImageResource" value="3"/>
+            <Property key="ImageGroup" value="Button"/>
+            <Property key="ImageName" value="normal"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="210 323 22 22">
+            <Property key="ImageResource" value="15"/>
+            <Property key="ImageGroup" value="Button"/>
+            <Property key="ImageName" value="normal"/>
+        </Widget>
         <Widget type="TextBox" skin="TextBox" position="125 235 80 20" name="TargetPWeapon">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
@@ -295,11 +363,11 @@
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="40 175 95 20" name="TargetUnitNum">
+        <Widget type="TextBox" skin="TextBox" position="40 175 65 20" name="TargetUnitNum">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="40 200 95 20" name="TargetAp">
+        <Widget type="TextBox" skin="TextBox" position="40 201 65 20" name="TargetAp">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
@@ -311,11 +379,39 @@
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="90 295 25 20" name="TargetDirection">
+        <Widget type="TextBox" skin="TextBox" position="80 325 40 20" name="TargetDirection">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="90 325 25 20" name="TargetFormation">
+        <Widget type="TextBox" skin="TextBox" position="80 295 40 20" name="TargetFormation">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="113 175 22 22">
+            <Property key="ImageResource" value="5"/>
+            <Property key="ImageGroup" value="Button"/>
+            <Property key="ImageName" value="normal"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="113 200 22 22">
+            <Property key="ImageResource" value="18"/>
+            <Property key="ImageGroup" value="Button"/>
+            <Property key="ImageName" value="normal"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="95 233 22 22">
+            <Property key="ImageResource" value="13"/>
+            <Property key="ImageGroup" value="Button"/>
+            <Property key="ImageName" value="normal"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="95 264 22 22">
+            <Property key="ImageResource" value="2"/>
+            <Property key="ImageGroup" value="Button"/>
+            <Property key="ImageName" value="normal"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="40 295 35 20" name="FormationLabel">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="40 325 35 20" name="DirectionLabel">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
@@ -325,41 +421,50 @@
         <Property key="Caption" value="Command"/>
         <Property key="FontHeight" value="20"/>
         <Property key="Visible" value="false"/>
-        <Widget type="Button" skin="Button" position="40 70 55 55" name="Skill1">
+        <Widget type="Button" skin="ButtonImage" position="40 70 55 55" name="Skill1">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
+            <Property key="ModeImage" value="true"/>
         </Widget>
-        <Widget type="Button" skin="Button" position="100 70 55 55" name="Skill2">
+        <Widget type="Button" skin="ButtonImage" position="100 70 55 55" name="Skill2">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
+            <Property key="ModeImage" value="true"/>
         </Widget>
-        <Widget type="Button" skin="Button" position="165 70 55 55" name="Skill3">
+        <Widget type="Button" skin="ButtonImage" position="165 70 55 55" name="Skill3">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
+            <Property key="ModeImage" value="true"/>
         </Widget>
-        <Widget type="Button" skin="Button" position="40 135 55 55" name="Skill4">
+        <Widget type="Button" skin="ButtonImage" position="40 135 55 55" name="Skill4">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
+            <Property key="ModeImage" value="true"/>
         </Widget>
-        <Widget type="Button" skin="Button" position="100 135 55 55" name="Skill5">
+        <Widget type="Button" skin="ButtonImage" position="100 135 55 55" name="Skill5">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
+            <Property key="ModeImage" value="true"/>
         </Widget>
-        <Widget type="Button" skin="Button" position="165 135 55 55" name="Skill6">
+        <Widget type="Button" skin="ButtonImage" position="165 135 55 55" name="Skill6">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
+            <Property key="ModeImage" value="true"/>
         </Widget>
-        <Widget type="Button" skin="Button" position="40 200 55 55" name="Skill7">
+        <Widget type="Button" skin="ButtonImage" position="40 200 55 55" name="Skill7">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
+            <Property key="ModeImage" value="true"/>
         </Widget>
-        <Widget type="Button" skin="Button" position="100 200 55 55" name="Skill8">
+        <Widget type="Button" skin="ButtonImage" position="100 200 55 55" name="Skill8">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
+            <Property key="ModeImage" value="true"/>
         </Widget>
-        <Widget type="Button" skin="Button" position="165 200 55 55" name="Skill9">
+        <Widget type="Button" skin="ButtonImage" position="165 200 55 55" name="Skill9">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
+            <Property key="ModeImage" value="true"/>
         </Widget>
     </Widget>
     <Widget type="Window" skin="WindowCS" position="235 190 204 140" layer="Main" name="LogWindow">

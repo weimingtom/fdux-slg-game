@@ -1,65 +1,72 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout" version="3.2.0">
-    <Widget type="Window" skin="SLGSLWindowSkin" position="0 0 535 565" name="SLWindow">
-        <Widget type="TextBox" skin="TextBox" position="225 125 70 35" name="SLCaption">
-            <Property key="TextColour" value="1 1 1"/>
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="Caption" value="SAVE"/>
-        </Widget>
-        <Widget type="Button" skin="SLGButton3" position="85 465 175 50" name="YesButton">
-            <Property key="Caption" value="Yes"/>
-            <Property key="TextColour" value="1 1 1"/>
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-        </Widget>
-        <Widget type="Button" skin="SLGButton3" position="270 465 175 50" name="NoButton">
-            <Property key="Caption" value="NO"/>
-            <Property key="TextColour" value="1 1 1"/>
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-        </Widget>
-        <Widget type="EditBox" skin="EditBox" position="120 420 310 30" name="FileNameEdit"/>
-        <Widget type="TextBox" skin="TextBox" position="70 180 375 25" name="SaveText1">
-            <Property key="Caption" value="SAVE1"/>
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-            <Property key="TextAlign" value="Center"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="70 210 375 25" name="SaveText2">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="Caption" value="SAVE2"/>
-            <Property key="FontHeight" value="20"/>
-            <Property key="TextAlign" value="Center"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="70 240 375 25" name="SaveText3">
-            <Property key="Caption" value="SAVE3"/>
-            <Property key="TextAlign" value="Center"/>
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="70 270 375 25" name="SaveText4">
-            <Property key="Caption" value="SAVE4"/>
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-            <Property key="TextAlign" value="Center"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="70 300 375 25" name="SaveText5">
-            <Property key="Caption" value="SAVE5"/>
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-            <Property key="TextAlign" value="Center"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="70 330 375 25" name="SaveText6">
-            <Property key="Caption" value="SAVE6"/>
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-            <Property key="TextAlign" value="Center"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="70 360 375 25" name="SaveText7">
-            <Property key="Caption" value="SAVE7"/>
-            <Property key="TextAlign" value="Center"/>
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
+    <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Popup" name="SLBG">
+        <Property key="ImageTexture" value="black.png"/>
+        <Widget type="Window" skin="SLGSLWindowSkin" position="372 77 535 565" align="Center" name="SLWindow">
+            <Widget type="TextBox" skin="TextBox" position="200 125 115 35" name="SLCaption">
+                <Property key="TextColour" value="1 1 1"/>
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="Caption" value="SAVE"/>
+                <Property key="TextAlign" value="Center"/>
+            </Widget>
+            <Widget type="Button" skin="SLGButton3" position="85 465 175 50" name="YesButton">
+                <Property key="Caption" value="Yes"/>
+                <Property key="TextColour" value="1 1 1"/>
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="Button" skin="SLGButton3" position="270 465 175 50" name="NoButton">
+                <Property key="Caption" value="NO"/>
+                <Property key="TextColour" value="1 1 1"/>
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="EditBox" skin="EditBox" position="120 420 310 30" name="FileNameEdit">
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="18"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="70 180 375 25" name="SaveText1">
+                <Property key="Caption" value="SAVE1"/>
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="20"/>
+                <Property key="TextAlign" value="Center"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="70 210 375 25" name="SaveText2">
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="Caption" value="SAVE2"/>
+                <Property key="FontHeight" value="20"/>
+                <Property key="TextAlign" value="Center"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="70 240 375 25" name="SaveText3">
+                <Property key="Caption" value="SAVE3"/>
+                <Property key="TextAlign" value="Center"/>
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="70 270 375 25" name="SaveText4">
+                <Property key="Caption" value="SAVE4"/>
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="20"/>
+                <Property key="TextAlign" value="Center"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="70 300 375 25" name="SaveText5">
+                <Property key="Caption" value="SAVE5"/>
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="20"/>
+                <Property key="TextAlign" value="Center"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="70 330 375 25" name="SaveText6">
+                <Property key="Caption" value="SAVE6"/>
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="20"/>
+                <Property key="TextAlign" value="Center"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="70 360 375 25" name="SaveText7">
+                <Property key="Caption" value="SAVE7"/>
+                <Property key="TextAlign" value="Center"/>
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="20"/>
+            </Widget>
         </Widget>
     </Widget>
 </MyGUI>

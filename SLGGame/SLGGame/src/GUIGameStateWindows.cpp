@@ -2,11 +2,21 @@
 
 #include "DataLibrary.h"
 
+#include "StringTable.h"
+
 GUIGameStateWindows::GUIGameStateWindows(MyGUI::Window* window,int Width,int Height):GUISubWindows(window,Width,Height),mWindow(window)
 {
 	assignWidget(mTurnLabel,"TurnLabel");
 	assignWidget(mPlayerLabel,"PlayerLabel");
 	assignWidget(mNextTurn,"NextTurnButton");
+	mNextTurn->setCaption(StringTable::getSingletonPtr()->getString("NextTurn"));
+
+	MyGUI::TextBox* textBox;
+	assignWidget(textBox,"GameTurnLabel");
+	textBox->setCaption(StringTable::getSingletonPtr()->getString("GameTurn"));
+	assignWidget(textBox,"CurTeamLabel");
+	textBox->setCaption(StringTable::getSingletonPtr()->getString("CurTeam"));
+
 	mNextTurn->setEnabled(false);
 	window->setPosition(0,0);
 

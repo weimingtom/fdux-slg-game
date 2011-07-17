@@ -19,6 +19,16 @@ GUITerrainWindows::GUITerrainWindows(MyGUI::Window* window,int Width,int Height)
 	assignWidget(mTerrainGridXLabel,"TerrainGridX");
 	assignWidget(mTerrainGridYLabel,"TerrainGridY");
 
+	MyGUI::TextBox* textBox;
+	assignWidget(textBox,"DefenceLabel");
+	textBox->setCaption(StringTable::getSingletonPtr()->getString("GUITerrainDefence"));
+	assignWidget(textBox,"CovertLabel");
+	textBox->setCaption(StringTable::getSingletonPtr()->getString("GUITerrainCovert"));
+	assignWidget(textBox,"CavApLabel");
+	textBox->setCaption(StringTable::getSingletonPtr()->getString("GUITerrainCavAp"));
+	assignWidget(textBox,"InfApLabel");
+	textBox->setCaption(StringTable::getSingletonPtr()->getString("GUITerrainInfAp"));
+
 	window->setPosition(Width-window->getWidth(),0);
 
 	DataLibrary::getSingletonPtr()->getData("GameData/BattleData/MapData/MapSize",mMapSize);
