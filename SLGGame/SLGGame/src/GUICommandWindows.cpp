@@ -5,6 +5,7 @@
 
 #include "BattlePlayerState.h"
 #include "BattleSquad.h"
+#include <algorithm>
 #include "StringTable.h"
 
 GUICommandWindows::GUICommandWindows(MyGUI::Window* window,int Width,int Height):GUISubWindows(window,Width,Height),mWindow(window)
@@ -195,8 +196,18 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 			datalib->getData(std::string("StaticData/SkillData/")+ (*ite)+ std::string("/APType"),aptype);
 			float apcost;
 			datalib->getData(std::string("StaticData/SkillData/")+ (*ite)+ std::string("/APCost"),apcost);
-			apcost += mSelectSquad->getActionPointCost(aptype);
-			mSkill[skillno]->setCaption(str(boost::format("%1%\nAP:%2%")%skillname%apcost));
+			if(aptype != SKILLAPTYPE_DEFENCE)
+			{
+				apcost += mSelectSquad->getActionPointCost(aptype);
+				mSkill[skillno]->setCaption(str(boost::format("%1%\nAP:%2%")%skillname%apcost));
+			}
+			else
+			{
+				float ap = apcost;
+				apcost = std::max(apcost,apleft);
+				mSkill[skillno]->setCaption(str(boost::format("%1%\nAP:%2%(%3%)")%skillname%apcost%ap));
+			}
+
 			if(apleft >= apcost)
 			{
 				mSkill[skillno]->setEnabled(true);

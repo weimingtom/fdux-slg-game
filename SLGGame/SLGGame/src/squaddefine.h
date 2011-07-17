@@ -12,6 +12,10 @@ typedef int PweaponType;
 const PweaponType EQUIP_PWEAPON_ONEHANDSWORD = 1;
 const PweaponType EQUIP_PWEAPON_LONG = 5;
 
+typedef int SweaponType;
+const PweaponType EQUIP_SWEAPON_BOW = 0;
+const PweaponType EQUIP_SWEAPON_XBOW = 1;
+
 typedef int ArmorType;
 const ArmorType EQUIP_ARMOR_LIGHT = 0;
 const ArmorType EQUIP_ARMOR_HEAVY = 1;
@@ -103,15 +107,17 @@ const SkillType SKILLTYPE_TARGETFRIEND = 3;
 const SkillType SKILLTYPE_TARGETALL = 4;
 const SkillType SKILLTYPE_TARGETAREA = 5;
 const SkillType SKILLTYPE_TARGETLINE = 6;
+const SkillType SKILLTYPE_RANGED = 7;
 
 const int SKILLAPTYPE_SETUP = 0;
 const int SKILLAPTYPE_BATTLE = 1;
+const int SKILLAPTYPE_DEFENCE = 2;
 
 const int ATKROLL = 20;
 const int DEFBOUSE = 10;
 
 
 typedef int UnitType;
-const UnitType UNITTYPE_ALL = 0;
+const UnitType UNITTYPE_ALL = 3;
 const UnitType UNITTYPE_LEADER = 1;
 const UnitType UNITTYPE_SOLIDER = 2;

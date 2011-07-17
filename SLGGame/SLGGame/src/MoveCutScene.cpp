@@ -4,6 +4,8 @@
 
 #include "Terrain.h"
 
+#include "CameraContral.h"
+
 MoveCutScene::MoveCutScene(unsigned int id,std::vector<Ogre::Vector2>& grids,Ogre::Vector2& currentGrid)
 {
 
@@ -93,6 +95,11 @@ void MoveCutScene::skipCutScene()
 
 void MoveCutScene::updateCutScene( unsigned int deltaTime )
 {
+	if(mSquadGraphics->getVisible())
+	{
+		Ogre::Vector3 pos = mSquadGraphics->getLeaderPosition();
+		CameraContral::getSingleton().moveCameraTo(pos.x,pos.z);
+	}
 
 }
 

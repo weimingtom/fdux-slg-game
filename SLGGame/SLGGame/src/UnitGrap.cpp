@@ -16,9 +16,9 @@ mNode(node),
 mMainWeapon(NULL),
 mSecWeapon(NULL),
 mShield(NULL),
-mPUSystem(NULL),
-mPUNode(NULL),
-mPUSystemEnd(false),
+//mPUSystem(NULL),
+//mPUNode(NULL),
+//mPUSystemEnd(false),
 mIsCheckHeight(false),
 mAlpha(-1),
 mAlphaDeltaTime(0),
@@ -33,9 +33,9 @@ mOffsetY(0)
 	mLeftHandBoneName = "Bip01 L Hand";
 	mRightHandBoneName = "Bip01 R Hand";
 	mWalkName = "Run1H";
+	mAttackName = "Attack1H1";
 	mDeathName = "Death";
 	mRecoverName ="Recover";
-	mRotationName = "JumpLoop";
 
 	mUnitEntity=Core::getSingletonPtr()->mSceneMgr->createEntity(unitmesh);
 	if (unitmat!="none")
@@ -71,11 +71,16 @@ UnitGrap::~UnitGrap(void)
 		delete mShield;
 	}
 	
-	if (mPUSystem!=NULL)
+// 	if (mPUSystem!=NULL)
+// 	{
+// 		stopEffect();
+// 	}
+	for(PUMapIte ite = mPUMap.begin();ite != mPUMap.end(); ite++)
 	{
-		stopEffect();
+		ite->second->stop();
+		mParticleNode->detachObject(ite->second);
+		Core::getSingleton().destroyPUSystem(ite->second);
 	}
-
 	Core::getSingletonPtr()->mSceneMgr->destroySceneNode(mParticleNode);
 	mNode->detachAllObjects();
 	Core::getSingletonPtr()->mSceneMgr->destroySceneNode(mNode);
@@ -141,6 +146,11 @@ void UnitGrap::setWeapon( WeaponType type,BoneType bone )
 			if (mSecWeapon!=NULL)
 			{
 				mSecWeapon->attachWeapon(mUnitEntity,boneName);
+				if(mMainWeapon!=NULL)
+				{	
+					if(mMainWeapon->getAttachBoneName() == mRightHandBoneName)
+						mMainWeapon->detachWeapon(mUnitEntity);
+				}
 			}
 			break;
 		}
@@ -153,6 +163,29 @@ void UnitGrap::setWeapon( WeaponType type,BoneType bone )
 			break;
 		}
 	}
+}
+
+void UnitGrap::setAniGroup(std::string anigroup)
+{
+	if(anigroup == "1H1")
+	{
+		mWalkName = std::string("Run1H");;
+		mAttackName = std::string("Attack1H1");
+		mIdleName = std::string("Ready1H");
+	}
+	else if(anigroup == "2HL2")
+	{
+		mWalkName = std::string("Run2HL");;
+		mAttackName = std::string("Attack2HL2");
+		mIdleName = std::string("Ready2HL");
+	}
+	else if(anigroup == "bow")
+	{
+		mWalkName = std::string("RunBow");;
+		mAttackName = std::string("AttackBow");
+		mIdleName = std::string("ReadyBow");
+	}
+	mAniBlender->init(mIdleName);
 }
 
 void UnitGrap::createWeapon( std::string mesh, std::string mat,WeaponType type )
@@ -180,43 +213,43 @@ void UnitGrap::createWeapon( std::string mesh, std::string mat,WeaponType type )
 	}
 }
 
-void UnitGrap::setEffect( std::string name,Ogre::Vector3 offect)
-{
-	if (mPUSystem!=NULL)
-	{
-		stopEffect();
-	}
-
-	mPUSystem=Core::getSingletonPtr()->createPUSystem(mNode->getName()+"_PU",name);
-	mPUSystem->addParticleSystemListener(this);
-	mPUNode=mNode->createChildSceneNode(mNode->getName()+"_PU_Node",offect);
-	mPUNode->attachObject(mPUSystem);
-	mPUSystem->prepare();
-	mPUSystem->start();
-}
-
-bool UnitGrap::isEffectOver()
-{
-	return mPUSystemEnd;
-}
-
-void UnitGrap::handleParticleSystemEvent( ParticleUniverse::ParticleSystem *particleSystem, ParticleUniverse::ParticleUniverseEvent &particleUniverseEvent )
-{
-	if (particleUniverseEvent.componentType==ParticleUniverse::CT_SYSTEM && particleUniverseEvent.eventType==ParticleUniverse::PU_EVT_NO_PARTICLES_LEFT)
-	{
-		mPUSystemEnd=true;
-	}
-}
-
-void UnitGrap::stopEffect()
-{
-	mPUSystem->stop();
-	mPUNode->detachObject(mPUSystem);
-	mNode->removeAndDestroyChild(mPUNode->getName());
-	Core::getSingletonPtr()->destroyPUSystem(mPUSystem);
-	mPUSystem=NULL;
-	mPUNode=NULL;
-}
+// void UnitGrap::setEffect( std::string name,Ogre::Vector3 offect)
+// {
+// 	if (mPUSystem!=NULL)
+// 	{
+// 		stopEffect();
+// 	}
+// 
+// 	mPUSystem=Core::getSingletonPtr()->createPUSystem(mNode->getName()+"_PU",name);
+// 	mPUSystem->addParticleSystemListener(this);
+// 	mPUNode=mNode->createChildSceneNode(mNode->getName()+"_PU_Node",offect);
+// 	mPUNode->attachObject(mPUSystem);
+// 	mPUSystem->prepare();
+// 	mPUSystem->start();
+// }
+// 
+// bool UnitGrap::isEffectOver()
+// {
+// 	return mPUSystemEnd;
+// }
+// 
+// void UnitGrap::handleParticleSystemEvent( ParticleUniverse::ParticleSystem *particleSystem, ParticleUniverse::ParticleUniverseEvent &particleUniverseEvent )
+// {
+// 	if (particleUniverseEvent.componentType==ParticleUniverse::CT_SYSTEM && particleUniverseEvent.eventType==ParticleUniverse::PU_EVT_NO_PARTICLES_LEFT)
+// 	{
+// 		mPUSystemEnd=true;
+// 	}
+// }
+// 
+// void UnitGrap::stopEffect()
+// {
+// 	mPUSystem->stop();
+// 	mPUNode->detachObject(mPUSystem);
+// 	mNode->removeAndDestroyChild(mPUNode->getName());
+// 	Core::getSingletonPtr()->destroyPUSystem(mPUSystem);
+// 	mPUSystem=NULL;
+// 	mPUNode=NULL;
+// }
 
 void UnitGrap::setMovePath( std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions)
 {
@@ -432,6 +465,12 @@ void UnitGrap::doFadeInOut(unsigned int deltaTime )
 
 void UnitGrap::setAnimation( std::string name,bool loop,bool returnInit )
 {
+	if(name == "Idle")
+		name = mIdleName;
+	else if(name == "Attack")
+		name = mAttackName;
+	else if(name == "Walk")
+		name == mWalkName;
 	mAniBlender->blend(name,AnimationBlender::BlendWhileAnimating,0.2,loop);
 	mReturnInitAni=returnInit;
 }

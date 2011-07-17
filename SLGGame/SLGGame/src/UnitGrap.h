@@ -13,7 +13,7 @@
 class AnimationBlender;
 
 //单位类,由单位组成小队
-class UnitGrap:public ParticleUniverse::ParticleSystemListener 
+class UnitGrap//:public ParticleUniverse::ParticleSystemListener 
 {
 public:
 	UnitGrap(std::string unitmesh, std::string unitmat,std::string factiontex,Ogre::SceneNode* node);
@@ -37,11 +37,13 @@ public:
 
 	void setWeapon(WeaponType type,BoneType bone);
 
-	void setEffect(std::string name,Ogre::Vector3 offect=Ogre::Vector3::ZERO);
+	void setAniGroup(std::string anigroup);
 
-	bool isEffectOver();
-
-	void stopEffect();
+// 	void setEffect(std::string name,Ogre::Vector3 offect=Ogre::Vector3::ZERO);
+// 
+// 	bool isEffectOver();
+// 
+// 	void stopEffect();
 
 	void setMovePath(std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions);
 
@@ -61,7 +63,7 @@ public:
 
 	void update(unsigned int deltaTime);
 
-	void handleParticleSystemEvent (ParticleUniverse::ParticleSystem *particleSystem, ParticleUniverse::ParticleUniverseEvent &particleUniverseEvent);
+//	void handleParticleSystemEvent (ParticleUniverse::ParticleSystem *particleSystem, ParticleUniverse::ParticleUniverseEvent &particleUniverseEvent);
 
 	Ogre::SceneNode* mNode;
 	Ogre::Entity* mUnitEntity;
@@ -76,9 +78,9 @@ public:
 	std::string mLeftHandBoneName;
 	std::string mRightHandBoneName;
 	std::string mWalkName;
+	std::string mAttackName;
 	std::string mDeathName;
 	std::string mRecoverName;
-	std::string mRotationName;
 	std::string mIdleName;
 	int mFormationPosition;
 	float mOffsetX;
@@ -88,9 +90,9 @@ public:
 	Ogre::Animation* mNodeAnimation;
 	Ogre::AnimationState* mNodeAnimationState;
 
-	Ogre::SceneNode* mPUNode;
-	ParticleUniverse::ParticleSystem* mPUSystem;
-	bool mPUSystemEnd;
+// 	Ogre::SceneNode* mPUNode;
+// 	ParticleUniverse::ParticleSystem* mPUSystem;
+// 	bool mPUSystemEnd;
 	bool mReturnInitAni;
 
 	void setParticleVisible(bool visible);

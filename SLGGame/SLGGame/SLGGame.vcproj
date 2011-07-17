@@ -409,6 +409,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\src\BattleMessageBoxState.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\BattleMessageBoxState.h"
+						>
+					</File>
+					<File
 						RelativePath=".\src\BattlePlayerState.cpp"
 						>
 					</File>

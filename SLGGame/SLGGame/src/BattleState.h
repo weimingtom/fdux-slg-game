@@ -23,10 +23,17 @@ public:
 	void PushState(SubBattleState* substate); //Ñ¹Èë×´Ì¬
 	void PopState(); //Ñ¹³ö×´Ì¬
 
+	void setNextState(int statetype, std::string arg);
+
 private:
 
 	std::vector<SubBattleState*> mSubStateStack; //Õ½¶·×´Ì¬¶ÑÕ»
 	typedef std::vector<SubBattleState*>::iterator SubStateIte;
 
 	SquadGrapManager* mSquadGrapManager;
+
+	bool mIsEnd;
+	bool mEndTrigger;
+	int mStateType;
+	std::string mArg;
 };

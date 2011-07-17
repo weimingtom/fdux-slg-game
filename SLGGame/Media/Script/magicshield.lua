@@ -10,7 +10,7 @@ end
 
 function onaffect()
 	squadpath = ScriptCommonLib.GetString("affectsquadpath");
-	id = SkillLib.ApplyParticle(squadpath,0,"mp_flare_06");
+	id = SkillLib.ApplyParticle(squadpath,3,"mp_flare_06");
 	ScriptCommonLib.SetString("Particleid",id);
 	id = SkillLib.ApplyModifier(squadpath,1,0.0,0.0,5.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0);
 	ScriptCommonLib.SetString("Modifierid",id);

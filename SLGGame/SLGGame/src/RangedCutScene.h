@@ -20,5 +20,6 @@ private:
 	Ogre::Vector3 mEndpoint;
 	Ogre::SceneNode* mNode;
 	ParticleUniverse::ParticleSystem* mParticle;
+	std::string mParticleId;
 	Ogre::Entity* mEntity;
 };

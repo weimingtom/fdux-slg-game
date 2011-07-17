@@ -25,6 +25,7 @@ const PlayerControlState  PLAYERCONTROL_CHOOSESKILL = 1;
 const PlayerControlState  PLAYERCONTROL_MOVE = 2;
 const PlayerControlState  PLAYERCONTROL_SKILL = 3;
 const PlayerControlState  PLAYERCONTROL_CUTSCENE = 4;
+const PlayerControlState  PLAYERCONTROL_MESSAGEBOX = 5;
 
 class BattlePlayerState:public SubBattleState, public InputListener
 {
@@ -48,6 +49,8 @@ public:
 	void useSkill(std::string skillid);
 
 	void newTurn();
+
+	void setMessageBoxReturn(bool re) {mMessageBoxReturn = re;}
 private:
 	GUIBattle* mGUIBattle;
 	GUISquadWindows* mSquadWindow;
@@ -55,7 +58,7 @@ private:
 	GUICommandWindows* mGUICommand;
 	GUIMenuWindow* mGUIMenu;
 
-	void clearPathInfo();
+	void clearPathInfo(bool clearnode);
 	void createPath(int x,int y);
 
 
@@ -123,4 +126,6 @@ private:
 	void drawSkillTargetArea(int x,int y);
 	void executeSkillAt(int x, int y);
 	void executeSkillOn(int x, int y, BattleSquad* squad);
+
+	bool mMessageBoxReturn;
 };

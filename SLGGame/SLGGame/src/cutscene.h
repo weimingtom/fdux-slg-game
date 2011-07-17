@@ -10,6 +10,7 @@ public:
 	void skip();  //跳过当前片断
 	void skipall(); //跳过所有片断
 	bool end(); //片断是否结束
+	bool endthis();
 	void update(unsigned int deltaTime);
 
 	void setNextScene(CutScene* next);

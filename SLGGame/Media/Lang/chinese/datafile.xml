@@ -81,21 +81,29 @@
 	<SkillData>
 		<Attack>
 			<Name type="String" value="攻击"/>
-			<Describe type="String" value="小队对目标进行攻击"/>
+			<Describe type="String" value="攻击"/>
 		</Attack>
 		<MagicAttack>
 			<Name type="String" value="魔法攻击"/>
-			<Describe type="String" value="小队对目标进行魔法攻击"/>
+			<Describe type="String" value="魔法攻击"/>
 		</MagicAttack>
 		<MagicShield>
 			<Name type="String" value="魔法盾"/>
 			<Describe type="String" value="魔法盾"/>
 		</MagicShield>
+		<RangedAttack>
+			<Name type="String" value="射击"/>
+			<Describe type="String" value="射击"/>
+		</RangedAttack>
+		<Defence>
+			<Name type="String" value="防御"/>
+			<Describe type="String" value="防御"/>
+		</Defence>
 	</SkillData>
 	<EffectData>
 		<TestEffect>
 			<Name type="String" value="魔法单位"/>
-			<Describe type="String" value="魔法单位不容易受到干扰"/>
+			<Describe type="String" value="魔法单位"/>
 		</TestEffect>
 		<MagicShield>
 			<Name type="String" value="魔法盾"/>

@@ -39,7 +39,9 @@ bool Terrain::createTerrain()
 		Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::TEX_TYPE_2D, 1024, 1024, 0, Ogre::PF_FLOAT32_R, Ogre::TU_RENDERTARGET);
 	mShadowDepthMapTarget = tex->getBuffer()->getRenderTarget();
 	Ogre::Viewport* vp = mShadowDepthMapTarget->addViewport(CameraContral::getSingleton().getShadowMapCamera());
+	vp->setSkiesEnabled(false);
 	vp->setOverlaysEnabled(false);
+	vp->setVisibilityMask(1);
 	vp->setMaterialScheme("WriteDepthMap");
 	vp->setBackgroundColour(Ogre::ColourValue(1.0f,1.0f,1.0f));
 	mShadowDepthMapTarget->addListener(this);
@@ -229,7 +231,62 @@ bool Terrain::createTerrain()
 
 void Terrain::destoryTerrian()
 {
-	Core::getSingleton().mSceneMgr->destroyLight(mLight);
+	Core* core = Core::getSingletonPtr();
+	core->mSceneMgr->destroyLight(mLight);
+
+	mShadowDepthMapTarget->removeAllListeners();
+	mShadowDepthMapTarget->removeAllViewports();
+	Ogre::ResourceGroupManager::getSingleton().deleteResource("shadowdepthmap");
+
+
+	mGridNode->detachObject(mGrid);
+	core->mSceneMgr->destroyManualObject(mGrid);
+	core->mSceneMgr->destroySceneNode(mGridNode);
+
+	//清除地表物件
+	std::map<int, stTilePUData*>::iterator puite;
+	for(puite = mMapPUMap.begin();  puite!=mMapPUMap.end(); puite++)
+	{
+		puite->second->mTileParticle->stop();
+		puite->second->mTileNode->detachObject(puite->second->mTileParticle);
+		core->destroyPUSystem(puite->second->mTileParticle);
+		core->mSceneMgr->destroySceneNode(puite->second->mTileNode);
+		delete puite->second;
+	}
+	mMapPUMap.clear();
+	
+	std::map<int, stTileEntityData*>::iterator entite;
+	for(entite = mMapObjMap.begin(); entite != mMapObjMap.end(); entite++)
+	{
+		entite->second->mTileNode->detachObject(entite->second->mTileEntity);
+		core->mSceneMgr->destroyEntity(entite->second->mTileEntity);
+		core->mSceneMgr->destroySceneNode(entite->second->mTileNode);
+		delete entite->second;
+	}
+	mMapObjMap.clear();
+
+	//清除水面
+	mReflectionTarget->removeAllListeners();
+	mReflectionTarget->removeAllViewports();
+	Ogre::ResourceGroupManager::getSingleton().deleteResource("reflection");
+	mWaterNode->detachObject(mWaterObject);
+	core->mSceneMgr->destroyManualObject(mWaterObject);
+	core->mSceneMgr->destroySceneNode(mWaterNode);
+
+	//清除地面
+	std::vector<stTileEntityData *>::iterator tileite;
+	for(tileite = mTileEntityVector.begin(); tileite!= mTileEntityVector.end(); tileite++)
+	{
+		(*tileite)->mTileNode->detachObject((*tileite)->mTileEntity);
+		core->mSceneMgr->destroyEntity((*tileite)->mTileEntity);
+		core->mSceneMgr->destroySceneNode((*tileite)->mTileNode);
+	}
+	
+	mTerrainNode->detachObject(mTerrainEntity);
+	core->mSceneMgr->destroyEntity(mTerrainEntity);
+	core->mSceneMgr->destroySceneNode(mTerrainNode);
+	Ogre::ResourceGroupManager::getSingleton().deleteResource("TerrianMesh");
+
 }
 
 void Terrain::getWorldCoords(int x, int y, float &wx, float &wy)
@@ -870,14 +927,14 @@ void Terrain::preRenderTargetUpdate(const Ogre::RenderTargetEvent& evt)
 		mGridNode->setVisible(false);
 	if(evt.source == mShadowDepthMapTarget)
 	{
-		std::map<int, stTilePUData*>::iterator ite;
-		for(ite = mMapPUMap.begin(); ite!= mMapPUMap.end(); ite++)
-		if(ite!=mMapPUMap.end())
-		{
-			ite->second->mTileNode->setVisible(false);
-		}
-		//隐藏单位粒子效果
-		SquadGrapManager::getSingleton().setParticleVisible(false);
+// 		std::map<int, stTilePUData*>::iterator ite;
+// 		for(ite = mMapPUMap.begin(); ite!= mMapPUMap.end(); ite++)
+// 		if(ite!=mMapPUMap.end())
+// 		{
+// 			ite->second->mTileNode->setVisible(false);
+// 		}
+// 		//隐藏单位粒子效果
+// 		SquadGrapManager::getSingleton().setParticleVisible(false);
 
 		Ogre::GpuSharedParametersPtr sharedparams = Ogre::GpuProgramManager::getSingleton().getSharedParameters("ShadowSharedParamsName");
 		Ogre::Matrix4 cameraview= CameraContral::getSingleton().getShadowMapCamera()->getViewMatrix();
@@ -892,15 +949,14 @@ void Terrain::postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt)
 	Core::getSingleton().mCamera->disableReflection();
 	if(mGridNode)
 		mGridNode->setVisible(true);
-	if(evt.source == mShadowDepthMapTarget)
-	{
-		std::map<int, stTilePUData*>::iterator ite;
-		for(ite = mMapPUMap.begin(); ite!= mMapPUMap.end(); ite++)
-			if(ite!=mMapPUMap.end())
-			{
-				ite->second->mTileNode->setVisible(true);
-			}
-		//显示单位粒子效果
-		SquadGrapManager::getSingleton().setParticleVisible(true);
-	}
+// 	if(evt.source == mShadowDepthMapTarget)
+// 	{
+// 		std::map<int, stTilePUData*>::iterator ite;
+// 		for(ite = mMapPUMap.begin(); ite!= mMapPUMap.end(); ite++)
+// 			if(ite!=mMapPUMap.end())
+// 			{
+// 				ite->second->mTileNode->setVisible(true);
+// 			}
+// 		SquadGrapManager::getSingleton().setParticleVisible(true);
+// 	}
 }

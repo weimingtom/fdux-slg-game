@@ -6,6 +6,7 @@ using namespace izayoi;
 #include <string>
 
 class BattleSquad;
+class BattleState;
 
 class TriggerManager: public IISingleton<TriggerManager>
 {
@@ -22,6 +23,9 @@ public:
 	void turnEnd(int turn, int team);
 	void unitDead(BattleSquad* squad);
 	void finishdeploy();
-private:
 
+	void setBattleState(BattleState* battlestate);
+	void changeState(int statetype, std::string arg);
+private:
+	BattleState* mBattleState;
 };

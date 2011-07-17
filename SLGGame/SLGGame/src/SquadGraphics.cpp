@@ -26,8 +26,8 @@ const Ogre::Vector3 LooseVector[5]={Ogre::Vector3(0,0,0),Ogre::Vector3(-3,0,3),O
 SquadGraphics::SquadGraphics(std::string squadName,std::string datapath,Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index,int soldierCount):
 mSquadId(squadName),
 mID(index),
-mPUSystem(NULL),
-mPUSystemEnd(false),
+// mPUSystem(NULL),
+// mPUSystemEnd(false),
 mNodeAnimation(NULL),
 mNodeAnimationState(NULL),
 mDeathUnit(NULL),
@@ -55,22 +55,30 @@ mDirection(direction)
 	{
 		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/Mesh"), mPWeaponMesh);
 		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/Mat"), mPWeaponMat);
+		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/AniGroup"), mPWeaponAniGroup);
 	}
 	else
 	{
 		mPWeaponMesh = "none";
 		mPWeaponMat = "none";
+		mPWeaponAniGroup = "1H1";
 	}
 	datalib->getData(datapath + std::string("/SweaponId"),tempid);
 	if(tempid != "none")
 	{
+		int sweapontype;
+		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/Type"), sweapontype);
+		mSWeaponBow = (sweapontype == EQUIP_SWEAPON_BOW);
 		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/Mesh"), mSWeaponMesh);
 		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/Mat"), mSWeaponMat);
+		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/AniGroup"), mSWeaponAniGroup);
 	}
 	else
 	{
+		mSWeaponBow = false;
 		mSWeaponMesh = "none";
 		mSWeaponMat = "none";
+		mSWeaponAniGroup = "bow";
 	}
 	datalib->getData(datapath + std::string("/ShieldId"),tempid);
 	if(tempid != "none")
@@ -113,7 +121,10 @@ mDirection(direction)
 	setGrid(grid.x,grid.y);
 	setFormation(f,false);
 	setDirection(direction,false);
-	setWeaponMode(SquadGraphics::MainWepon);
+	if(mSWeaponMesh == "none")
+		setWeaponMode(SquadGraphics::MainWepon);
+	else
+		setWeaponMode(SquadGraphics::SceWepon);
 
 	//读取现有效果
 	std::vector<std::string> particlelist = datalib->getChildList(datapath + std::string("/ParticleList"));
@@ -144,12 +155,12 @@ SquadGraphics::~SquadGraphics(void)
 		delete (*it);
 	}
 
-	if (mPUSystem!=NULL)
-	{
-		mNode->detachObject(mPUSystem);
-		Core::getSingletonPtr()->destroyPUSystem(mPUSystem);
-		mPUSystem=NULL;
-	}
+// 	if (mPUSystem!=NULL)
+// 	{
+// 		mNode->detachObject(mPUSystem);
+// 		Core::getSingletonPtr()->destroyPUSystem(mPUSystem);
+// 		mPUSystem=NULL;
+// 	}
 
 	if (mNodeAnimationState!=NULL)
 	{
@@ -419,41 +430,41 @@ bool SquadGraphics::isAnimationOver(UnitType object)
 }
 
 
-void SquadGraphics::setEffect( std::string name,UnitType object)
-{
-	switch(object)
-	{
-	case UNITTYPE_ALL:
-		{
-			if (mPUSystem!=NULL)
-			{
-				mNode->detachObject(mPUSystem);
-				Core::getSingletonPtr()->destroyPUSystem(mPUSystem);
-				mPUSystem=NULL;
-			}
-
-			mPUSystem=Core::getSingletonPtr()->createPUSystem(mNode->getName()+"_PU",name);
-			mPUSystem->addParticleSystemListener(this);
-			mPUSystem->prepare();
-			mNode->attachObject(mPUSystem);
-			mPUSystem->start();
-			break;
-		}
-	case UNITTYPE_LEADER:
-		{
-			mCommanderUnit->setEffect(name);
-			break;
-		}
-	case UNITTYPE_SOLIDER:
-		{
-			for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
-			{
-				(*it)->setEffect(name);
-			}
-			break;
-		}
-	}
-}
+// void SquadGraphics::setEffect( std::string name,UnitType object)
+// {
+// 	switch(object)
+// 	{
+// 	case UNITTYPE_ALL:
+// 		{
+// 			if (mPUSystem!=NULL)
+// 			{
+// 				mNode->detachObject(mPUSystem);
+// 				Core::getSingletonPtr()->destroyPUSystem(mPUSystem);
+// 				mPUSystem=NULL;
+// 			}
+// 
+// 			mPUSystem=Core::getSingletonPtr()->createPUSystem(mNode->getName()+"_PU",name);
+// 			mPUSystem->addParticleSystemListener(this);
+// 			mPUSystem->prepare();
+// 			mNode->attachObject(mPUSystem);
+// 			mPUSystem->start();
+// 			break;
+// 		}
+// 	case UNITTYPE_LEADER:
+// 		{
+// 			mCommanderUnit->setEffect(name);
+// 			break;
+// 		}
+// 	case UNITTYPE_SOLIDER:
+// 		{
+// 			for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+// 			{
+// 				(*it)->setEffect(name);
+// 			}
+// 			break;
+// 		}
+// 	}
+// }
 
 void SquadGraphics::getFormationPosition(Formation f,Direction d,Ogre::Vector3& CommanderVector,Ogre::Vector3 SoldierVector[])
 {
@@ -632,72 +643,72 @@ void SquadGraphics::setFormation( Formation f,bool isAnim )
 	}
 }
 
-void SquadGraphics::handleParticleSystemEvent( ParticleUniverse::ParticleSystem *particleSystem, ParticleUniverse::ParticleUniverseEvent &particleUniverseEvent )
-{
-	if (particleUniverseEvent.componentType==ParticleUniverse::CT_SYSTEM && particleUniverseEvent.eventType==ParticleUniverse::PU_EVT_NO_PARTICLES_LEFT)
-	{
-		mPUSystemEnd=true;
-	}
-}
-
-bool SquadGraphics::isEffectOver( UnitType object )
-{
-	switch(object)
-	{
-	case UNITTYPE_ALL:
-		{
-			return mPUSystemEnd;
-			break;
-		}
-	case UNITTYPE_LEADER:
-		{
-			mCommanderUnit->isEffectOver();
-			break;
-		}
-	case UNITTYPE_SOLIDER:
-		{
-			if (mSoldierUnits.size()!=0)
-			{
-				return mSoldierUnits.at(0)->isEffectOver();
-			}
-			else
-			{
-				return true;
-			}
-			break;
-		}
-	}
-
-	return true;
-}
-
-void SquadGraphics::stopEffect( UnitType object )
-{
-	if (mPUSystem!=NULL)
-	{
-		switch(object)
-		{
-		case UNITTYPE_ALL:
-			{
-				mPUSystem->stop();
-				break;
-			}
-		case UNITTYPE_LEADER:
-			{
-				mCommanderUnit->stopEffect();
-				break;
-			}
-		case UNITTYPE_SOLIDER:
-			{
-				for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
-				{
-					(*it)->stopEffect();
-				}
-				break;
-			}
-		}
-	}
-}
+// void SquadGraphics::handleParticleSystemEvent( ParticleUniverse::ParticleSystem *particleSystem, ParticleUniverse::ParticleUniverseEvent &particleUniverseEvent )
+// {
+// 	if (particleUniverseEvent.componentType==ParticleUniverse::CT_SYSTEM && particleUniverseEvent.eventType==ParticleUniverse::PU_EVT_NO_PARTICLES_LEFT)
+// 	{
+// 		mPUSystemEnd=true;
+// 	}
+// }
+// 
+// bool SquadGraphics::isEffectOver( UnitType object )
+// {
+// 	switch(object)
+// 	{
+// 	case UNITTYPE_ALL:
+// 		{
+// 			return mPUSystemEnd;
+// 			break;
+// 		}
+// 	case UNITTYPE_LEADER:
+// 		{
+// 			mCommanderUnit->isEffectOver();
+// 			break;
+// 		}
+// 	case UNITTYPE_SOLIDER:
+// 		{
+// 			if (mSoldierUnits.size()!=0)
+// 			{
+// 				return mSoldierUnits.at(0)->isEffectOver();
+// 			}
+// 			else
+// 			{
+// 				return true;
+// 			}
+// 			break;
+// 		}
+// 	}
+// 
+// 	return true;
+// }
+// 
+// void SquadGraphics::stopEffect( UnitType object )
+// {
+// 	if (mPUSystem!=NULL)
+// 	{
+// 		switch(object)
+// 		{
+// 		case UNITTYPE_ALL:
+// 			{
+// 				mPUSystem->stop();
+// 				break;
+// 			}
+// 		case UNITTYPE_LEADER:
+// 			{
+// 				mCommanderUnit->stopEffect();
+// 				break;
+// 			}
+// 		case UNITTYPE_SOLIDER:
+// 			{
+// 				for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+// 				{
+// 					(*it)->stopEffect();
+// 				}
+// 				break;
+// 			}
+// 		}
+// 	}
+// }
 
 void SquadGraphics::setGrid(int x,int y)
 {
@@ -806,21 +817,32 @@ void SquadGraphics::setCheckUnitHeight( bool enable )
 void SquadGraphics::setWeaponMode( WeaponMode mode )
 {
 	UnitGrap::WeaponType type;
+	UnitGrap::BoneType bonetype;
+	std::string anigroup;
 	if (mode==MainWepon)
 	{
 		type=UnitGrap::MainWepon;
+		anigroup = mPWeaponAniGroup;
+		bonetype = UnitGrap::RightHand;
 	}
 	else
 	{
 		type=UnitGrap::SecWepon;
+		anigroup = mSWeaponAniGroup;
+		if(mSWeaponBow)
+			bonetype = UnitGrap::LeftHand;
+		else
+			bonetype = UnitGrap::RightHand;
 	}
 
-	mCommanderUnit->setWeapon(type,UnitGrap::RightHand);
+	mCommanderUnit->setWeapon(type,bonetype);
 	mCommanderUnit->setWeapon(UnitGrap::Shield,UnitGrap::LeftHand);
+	mCommanderUnit->setAniGroup(anigroup);
 	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 	{
-		(*it)->setWeapon(type,UnitGrap::RightHand);
+		(*it)->setWeapon(type,bonetype);
 		(*it)->setWeapon(UnitGrap::Shield,UnitGrap::LeftHand);
+		(*it)->setAniGroup(anigroup);
 	}
 }
 
@@ -1123,6 +1145,8 @@ void SquadGraphics::setVisible(bool visible)
 	}
 
 	mSquadBB->setVisible(visible);
+
+	mVisibale = visible;
 }
 
 Direction SquadGraphics::getDirection()
@@ -1281,3 +1305,17 @@ void SquadGraphics::changeUnitPosition( Direction d,Ogre::Vector3 offsetVector )
 	}
 }
 
+Ogre::Vector3 SquadGraphics::getLeaderPosition()
+{
+	return mCommanderUnit->mNode->getPosition();
+}
+
+std::vector<Ogre::Vector3> SquadGraphics::getSoiderPosition()
+{
+	std::vector<Ogre::Vector3> posvec;
+	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+	{
+		posvec.push_back((*it)->mNode->getPosition());
+	}
+	return posvec;
+}

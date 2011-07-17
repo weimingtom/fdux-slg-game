@@ -3,27 +3,28 @@
 #include "SquadGrapManager.h"
 #include "SquadGraphics.h"
 
-EffectCutScene::EffectCutScene(unsigned int id,UnitType object,std::string name):CutScene(0)
+EffectCutScene::EffectCutScene(unsigned int id,UnitType object,std::string name,unsigned int lasttime):CutScene(lasttime)
 {
 	mSquadGraphics=SquadGrapManager::getSingletonPtr()->getSquad(id);
-
-	mName=name;
-	mObject=object;
+	static int n = 0;
+	mParticleId = std::string("EFFECT_PU") + Ogre::StringConverter::toString(n++);
+	mSquadGraphics->addParticle(mParticleId,name,object);
 }
 
 EffectCutScene::~EffectCutScene(void)
 {
-	skipCutScene();
+	mSquadGraphics->stopParticle(mParticleId);
+	mSquadGraphics->delParticle(mParticleId);
 }
 
 bool EffectCutScene::endCutScene()
 {
-	return mSquadGraphics->isEffectOver(mObject);
+	return false;
 }
 
 void EffectCutScene::skipCutScene()
 {
-	mSquadGraphics->stopEffect(mObject);
+	mSquadGraphics->stopParticle(mParticleId);
 }
 
 void EffectCutScene::updateCutScene( unsigned int deltaTime )
@@ -33,5 +34,5 @@ void EffectCutScene::updateCutScene( unsigned int deltaTime )
 
 void EffectCutScene::startCutScence()
 {
-	mSquadGraphics->setEffect(mName,mObject);
+	mSquadGraphics->startParticle(mParticleId);
 }
