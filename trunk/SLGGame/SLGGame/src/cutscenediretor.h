@@ -7,6 +7,7 @@
 
 
 class CutScene;
+class CameraContral;
 
 class CutSceneDirector:public SubBattleState, public InputListener
 {
@@ -30,4 +31,8 @@ private:
 	typedef std::map<int, CutScene*>::iterator CutSceneIte;
 	std::map<int, CutScene*> mCutScene;
 	int mId;
+
+	int mMouseX;
+	int mMouseY;
+	CameraContral* mCameraContral;
 };

@@ -9,7 +9,6 @@
 #include "AVGSquadManager.h"
 #include "MapDataManager.h"
 #include "BattleSquadManager.h" 
-#include "TriggerManager.h"
 #include "LuaSystem.h"
 
 BattleSquad::BattleSquad(std::string id, int grapid ,int x, int y)
@@ -470,10 +469,10 @@ SquadType BattleSquad::getType()
 
 float BattleSquad::getActionPointCost(int type)
 {
-	float apcost;
+	float apcost = 0;
 	if(type == SKILLAPTYPE_SETUP)
 		DataLibrary::getSingleton().getData(getPath() + std::string("/APSetup"),apcost);
-	else
+	else if(type == SKILLAPTYPE_BATTLE)
 		DataLibrary::getSingleton().getData(getPath() + std::string("/APBattle"),apcost);
 	return apcost;
 }
@@ -604,12 +603,9 @@ void BattleSquad::applyAttackRolls(bool rangedattack, Direction d, std::vector<i
 	DataLibrary::getSingleton().setData(getPath() + std::string("/WoundNum"),tempwound);
 }
 
-#include "SquadStateCutScene.h"
 void BattleSquad::OnDead()
 {
 	mIsEliminated = true;
-	BattleSquadManager::getSingleton().setCutScene(new SquadStateCutScene(this,SQUAD_STATE_VISIBLE,"none",0));
-	TriggerManager::getSingleton().unitDead(this);
 }
 
 void BattleSquad::OnTurnEnd()

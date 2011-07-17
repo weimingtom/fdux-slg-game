@@ -2,10 +2,14 @@
 #include "cutscene.h"
 
 #include "BattleState.h"
+#include "CameraContral.h"
 
 CutSceneDirector::CutSceneDirector()
 {
 	mId = 0;
+	mMouseX = 640;
+	mMouseY = 360;
+	mCameraContral = CameraContral::getSingletonPtr();
 }
 CutSceneDirector::~CutSceneDirector()
 {
@@ -40,6 +44,18 @@ void CutSceneDirector::skipCutScene(int id)
 
 void CutSceneDirector::update(unsigned int deltaTime)
 {
+	float dx = 0.0f,dy = 0.0f;
+	float dt = (float)deltaTime / 5.0f;
+	if(mMouseX < 20)
+		dx = -dt;
+	if(mMouseX > 1260)
+		dx = dt;
+	if(mMouseY < 20)
+		dy = -dt;
+	if(mMouseY > 680)
+		dy = dt;
+	mCameraContral->moveCamera(dx,dy);
+
 	CutSceneIte ite;
 	for(ite = mCutScene.begin(); ite != mCutScene.end();)
 	{
@@ -69,6 +85,8 @@ bool CutSceneDirector::keyReleased(const OIS::KeyEvent &arg)
 
 bool CutSceneDirector::mouseMoved(const OIS::MouseEvent &arg)
 {
+	mMouseX = arg.state.X.abs;
+	mMouseY = arg.state.Y.abs;
 	return false;
 }
 bool CutSceneDirector::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id)

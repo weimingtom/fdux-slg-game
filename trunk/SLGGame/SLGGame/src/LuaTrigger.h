@@ -82,6 +82,14 @@ static int DisableSquadTrigger(lua_State* L)
 	return 0;
 }
 
+static int ChangeState(lua_State* L)
+{
+	int statetype = luaL_checknumber(L,1);
+	std::string arg(luaL_checkstring(L,2));
+	TriggerManager::getSingleton().changeState(statetype,arg);
+	return 0;
+}
+
 
 static const struct luaL_Reg TriggerLib[] =
 {
@@ -93,5 +101,6 @@ static const struct luaL_Reg TriggerLib[] =
 	{"RemoveSquadTrigger",RemoveSquadTrigger},
 	{"ActiveSquadTrigger",ActiveSquadTrigger},
 	{"DisableSquadTrigger",DisableSquadTrigger},
+	{"ChangeState",ChangeState},
 	{NULL,NULL}
 };

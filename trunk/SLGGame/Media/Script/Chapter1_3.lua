@@ -30,7 +30,3 @@ GUI.Wait(5000);
 GUI.ShowText("bbb",1);
 GUI.ClearText();
 GUI.ShowRoleName("");
-AVGLib.AddSquad("maintestsquad","TestSquad");
-AVGLib.AddSquad("maintestsquad2","TestSquad2");
-AVGLib.SetPlayerFaction("TestFaction");
-StateLib.BattleState("demo.xml");

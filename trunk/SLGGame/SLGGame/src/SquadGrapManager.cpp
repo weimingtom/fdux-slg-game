@@ -13,13 +13,17 @@ SquadGrapManager::SquadGrapManager(Ogre::SceneManager* sceneMgr):unitIndex(0)
 
 SquadGrapManager::~SquadGrapManager(void)
 {
+	clear();
+	delete BillboardManager::getSingletonPtr();
+}
+
+void SquadGrapManager::clear()
+{
 	for (std::vector<SquadGraphics*>::iterator it=mUnitList.begin();it!=mUnitList.end();it++)
 	{
 		delete (*it);
 	}
 	mUnitList.clear();
-
-	delete BillboardManager::getSingletonPtr();
 }
 
 SquadGraphics* SquadGrapManager::createSquad( std::string unitName,std::string datapath,unsigned int id,int x,int y,Direction d,Formation f,int soldierCount)

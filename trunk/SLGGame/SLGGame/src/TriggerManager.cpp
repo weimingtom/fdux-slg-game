@@ -2,6 +2,7 @@
 
 #include "DataLibrary.h"
 #include "BattleSquad.h"
+#include "BattleState.h"
 #include "LuaSystem.h"
 #include "boost/format.hpp"
 
@@ -75,7 +76,7 @@ void TriggerManager::unitDead(BattleSquad* squad)
 			datalib->getData(datapath + std::string("/file"),filename);
 			datalib->getData(datapath + std::string("/func"),funcname);
 			datalib->getData(datapath + std::string("/context"),context);
-			datalib->setData(context + std::string("/skillcast"),squad->getSquadName());
+			datalib->setData(context + std::string("/squad"),squad->getSquadName());
 			LuaSystem::getSingleton().executeFunction(filename,funcname,context);
 		}
 	}
@@ -137,4 +138,14 @@ void TriggerManager::finishdeploy()
 			LuaSystem::getSingleton().executeFunction(filename,funcname,context);
 		}
 	}
+}
+
+void TriggerManager::setBattleState(BattleState* battlestate)
+{
+	mBattleState = battlestate;
+}
+void TriggerManager::changeState(int statetype, std::string arg)
+{
+	if(mBattleState)
+		mBattleState->setNextState(statetype,arg);
 }

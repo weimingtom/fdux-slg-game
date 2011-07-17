@@ -1,5 +1,8 @@
 #include "BattleSquadManager.h"
 
+#include <algorithm>
+#include <boost/format.hpp>
+
 #include "AVGSquadManager.h"
 #include "SquadGrapManager.h"
 #include "MapDataManager.h"
@@ -10,11 +13,22 @@
 
 #include "LuaSystem.h"
 
+#include "Terrain.h"
+
 #include "cutscene.h"
 #include "DirectionCutScene.h"
 #include "SquadDeadCutScene.h"
 #include "AnimationCutScene.h"
 #include "SquadStateCutScene.h"
+#include "RangedCutScene.h"
+#include "CombineCutScene.h"
+#include "WeapenCutScene.h"
+#include "CombatPositionCutScene.h"
+
+#include "SquadGrapManager.h"
+#include "SquadGraphics.h"
+
+#include "TriggerManager.h"
 
 BattleSquadManager::BattleSquadManager()
 {
@@ -24,7 +38,21 @@ BattleSquadManager::BattleSquadManager()
 }
 BattleSquadManager::~BattleSquadManager()
 {
+	clear();
+}
 
+void BattleSquadManager::clear()
+{
+	while(mDeployList.size() > 0)
+	{
+		delete mDeployList.back();
+		mDeployList.pop_back();
+	}
+	while(mSquadList.size() > 0)
+	{
+		delete mSquadList.back();
+		mSquadList.pop_back();
+	}
 }
 
 
@@ -49,6 +77,18 @@ bool  BattleSquadManager::allDeployed()
 			return false;
 	}
 	return true;
+}
+
+int BattleSquadManager::getTeamSquadLeft(int team)
+{
+	int n = 0;
+	BattleSquadIte ite;
+	for(ite = mSquadList.begin(); ite != mSquadList.end(); ite++)
+	{
+		if((*ite)->getTeam() == team && !(*ite)->IsEliminated())
+			n++;
+	}
+	return n;
 }
 
 BattleSquad* BattleSquadManager::getBattleSquad(std::string id)
@@ -102,6 +142,8 @@ void BattleSquadManager::moveSquad(BattleSquad* squad,std::vector<int> pointlist
 	MapDataManager* mapdata = MapDataManager::getSingletonPtr();
 	for(stopedpoint = 0; stopedpoint * 2 < pointlist.size();stopedpoint++)
 	{
+		if(eventtype &  MOVEEVENT_SPOT)
+			return;
 		//移动条件判断
 		int x = pointlist[stopedpoint*2];
 		int y = pointlist[stopedpoint*2 + 1];
@@ -172,7 +214,7 @@ void BattleSquadManager::moveSquad(BattleSquad* squad,std::vector<int> pointlist
 				if(range <= ditectrange - covert)
 				{
 					(*ite)->setViewbyTeam(team,true);
-					eventtype != MOVEEVENT_SPOT;
+					eventtype |= MOVEEVENT_SPOT;
 					if(faction == 0)
 					{
 						setCutScene(new SquadStateCutScene((*ite),SQUAD_STATE_VISIBLE,"none",1));
@@ -215,8 +257,11 @@ CutScene* BattleSquadManager::useSkillOn(BattleSquad* attacksquad, BattleSquad* 
 		return NULL;
 	float apcost;
 	datalib->getData(skillinfopath+ std::string("/APCost"),apcost);
-	apcost += attacksquad->getActionPointCost(aptype);
 	float apleft = attacksquad->getActionPoint();
+	if(aptype != SKILLAPTYPE_DEFENCE)
+		apcost += attacksquad->getActionPointCost(aptype);
+	else
+		apcost = std::max(apcost,apleft);
 	if(apleft < apcost)
 		return NULL;
 	SkillType skilltype;
@@ -227,6 +272,20 @@ CutScene* BattleSquadManager::useSkillOn(BattleSquad* attacksquad, BattleSquad* 
 	int maxrange; 
 	datalib->getData(skillinfopath + std::string("/MaxRange"),maxrange);
 	datalib->getData(skillinfopath + std::string("/MinRange"),minrange);
+	if(skilltype == SKILLTYPE_RANGED)
+	{
+		std::string sweaponpath = attacksquad->getPath();
+		std::string sweaponid("none");
+		datalib->getData(str(boost::format("%1%/SweaponId")%sweaponpath),sweaponid);
+		if(sweaponid == "none")
+			return NULL;
+		int maxrangew = 0,minrangew = 0;
+		sweaponpath = str(boost::format("StaticData/SweaponData/%1%/")%sweaponid);
+		datalib->getData(sweaponpath + std::string("MaxRange"),maxrangew);
+		datalib->getData(sweaponpath + std::string("MinRange"),minrangew);
+		maxrange += maxrangew;
+		minrange += minrangew;
+	}
 	int targetx, targety, casterx,castery;
 	attacksquad->getCrood(&casterx, &castery);
 	targetsquad->getCrood(&targetx, &targety);
@@ -272,7 +331,7 @@ bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad*
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	//设置小队朝向
-	Direction d;
+	Direction d,dd;
 	int targetx, targety, casterx,castery;
 	attacksquad->getCrood(&casterx, &castery);
 	defenesquad->getCrood(&targetx, &targety);
@@ -298,6 +357,13 @@ bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad*
 			setCutScene(dcutscene);
 		}
 	}
+	setCutScene(new WeapenCutScene(attacksquad->getGrapId(),WeapenCutScene::WeaponType::MainWepon));
+	//进入战斗位置
+	setCutScene(new CombatPositionCutScene(attacksquad->getGrapId(),d,false));
+	dd = defenesquad->getDirection();
+	Direction temp[4] = {South,North,East,West};
+	setCutScene(new DirectionCutScene(defenesquad->getGrapId(),temp[d]));
+	
 	float atkint = attacksquad->getAttr(ATTR_INITIATIVE, ATTRCALC_FULL,attacksquad->getDirection());
 	float defint = defenesquad->getAttr(ATTR_INITIATIVE, ATTRCALC_FULL,defenesquad->getDirection());
 	BattleSquad* squad = NULL;
@@ -307,6 +373,8 @@ bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad*
 		squad = defenesquad;
 	for(int n = 0; n < 2; n++)
 	{
+		//攻击动作
+		setCutScene(new AnimationCutScene(squad->getGrapId(),UNITTYPE_ALL,"Attack","none","none",false,true));
 		std::vector<int> atkrolls = squad->getAttackRolls(false,squad == defenesquad,d);
 		if(squad == attacksquad)
 			squad = defenesquad;
@@ -321,8 +389,18 @@ bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad*
 			{
 				setCutScene(new SquadDeadCutScene(squad->getGrapId(), squadugb - squaduga));
 			}
+			if(squad->IsEliminated())
+			{
+				setCutScene(new SquadStateCutScene(squad,SQUAD_STATE_VISIBLE,"none",0));
+				TriggerManager::getSingleton().unitDead(squad);
+			}
 		}
 	}
+	//退出战斗位置
+	if(!attacksquad->IsEliminated())
+		setCutScene(new CombatPositionCutScene(attacksquad->getGrapId(),d,true));
+	if(!defenesquad->IsEliminated())
+		setCutScene(new DirectionCutScene(defenesquad->getGrapId(),dd));
 	return true;
 }
 
@@ -370,6 +448,31 @@ void BattleSquadManager::rangedAttackCutScene(BattleSquad* attacksquad, int x, i
 		}
 	}
 	setCutScene(new AnimationCutScene(attacksquad->getGrapId(),castunit,castaction,castsound,castparticle,false, true));
+	CombineCutScene* ccs = new CombineCutScene;
+	float xx,yy;
+	Terrain::getSingleton().getWorldCoords(x,y,xx,yy);
+	SquadGraphics* squadgrap = SquadGrapManager::getSingleton().getSquad(attacksquad->getGrapId());
+	if(castunit & UNITTYPE_LEADER)
+	{
+		Ogre::Vector3 startpoint = squadgrap->getLeaderPosition();
+		Ogre::Vector3 endpoint = Ogre::Vector3(xx - TILESIZE/2.0f + (rand()%int(TILESIZE)),0.0f,yy - TILESIZE/2.0f + (rand()%int(TILESIZE)));
+		RangedCutScene* rangedcutscene = new RangedCutScene(startpoint,endpoint,missiletype,missileres);
+		ccs->addCutScene(rangedcutscene);
+	}
+	if(castunit & UNITTYPE_SOLIDER)
+	{
+		std::vector<Ogre::Vector3> posvec;
+		posvec = squadgrap->getSoiderPosition();
+		std::vector<Ogre::Vector3>::iterator ite;
+		for(ite = posvec.begin(); ite != posvec.end(); ite++)
+		{
+			Ogre::Vector3 startpoint = (*ite);
+			Ogre::Vector3 endpoint = Ogre::Vector3(xx - TILESIZE/2.0f + (rand()%int(TILESIZE)),0.0f,yy - TILESIZE/2.0f + (rand()%int(TILESIZE)));
+			RangedCutScene* rangedcutscene = new RangedCutScene(startpoint,endpoint,missiletype,missileres);
+			ccs->addCutScene(rangedcutscene);
+		}
+	}
+	setCutScene(ccs);
 }
 
 bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* defenesquad, int attacktime, float atk)
@@ -394,6 +497,11 @@ bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* 
 		{
 			setCutScene(new SquadDeadCutScene(defenesquad->getGrapId(), squadugb - squaduga));
 		}
+		if(defenesquad->IsEliminated())
+		{
+			setCutScene(new SquadStateCutScene(defenesquad,SQUAD_STATE_VISIBLE,"none",0));
+			TriggerManager::getSingleton().unitDead(defenesquad);
+		}
 		return true;
 	}
 	return false;
@@ -401,6 +509,10 @@ bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* 
 
 bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad* defenesquad)
 {
+	setCutScene(new WeapenCutScene(attacksquad->getGrapId(),WeapenCutScene::WeaponType::SceWepon));
+	int x = 0,y = 0;
+	defenesquad->getCrood(&x,&y);
+	rangedAttackCutScene(attacksquad,x,y,UNITTYPE_ALL,"none","Attack","none",1,"fireSystem","none","none");
 	Direction d = attacksquad->getDirection();
 	std::vector<int> atkrolls = attacksquad->getAttackRolls(true,false,d);
 	if(atkrolls.size() > 0)
@@ -412,6 +524,11 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 		if(squaduga < squadugb)
 		{
 			setCutScene(new SquadDeadCutScene(defenesquad->getGrapId(), squadugb - squaduga));
+		}
+		if(defenesquad->IsEliminated())
+		{
+			setCutScene(new SquadStateCutScene(defenesquad,SQUAD_STATE_VISIBLE,"none",0));
+			TriggerManager::getSingleton().unitDead(defenesquad);
 		}
 		return true;
 	}

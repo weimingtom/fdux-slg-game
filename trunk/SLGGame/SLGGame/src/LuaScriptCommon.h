@@ -63,6 +63,16 @@ static int GetSquadCoord(lua_State* L)
 	return 2;
 }
 
+static int GetTeamSquadLeft(lua_State* L)
+{
+	int team = luaL_checknumber(L,1);
+	int n = 0;
+	n = BattleSquadManager::getSingleton().getTeamSquadLeft(team);
+	lua_pushnumber(L,n);
+	return 1;
+}
+
+
 static int PlayMusic(lua_State* L)
 {
 	std::string music(luaL_checkstring(L, 1));
@@ -78,6 +88,7 @@ static const struct luaL_Reg ScriptCommonLib[] =
 	{"GetString",GetString},
 	{"SetString",SetString},
 	{"GetSquadCoord",GetSquadCoord},
+	{"GetTeamSquadLeft",GetTeamSquadLeft},
 	{"PlayMusic",PlayMusic},
 	{NULL,NULL}
 };

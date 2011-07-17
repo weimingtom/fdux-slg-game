@@ -17,7 +17,12 @@ function finishdeploy()
 end
 
 function unitdead()
-	
+	squad = ScriptCommonLib.GetString("squad");
+	if squad == Cheetah or squad == Dandelion or squad == Olivia then
+		TriggerLib.ChangeState(1,"Chapter1_4.lua");
+	elseif ScriptCommonLib.GetTeamSquadLeft(2) == 0 then
+		TriggerLib.ChangeState(1,"Chapter1_3.lua");
+	end
 end
 
 function turnend()

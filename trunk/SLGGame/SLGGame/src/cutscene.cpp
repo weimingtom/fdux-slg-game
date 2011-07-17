@@ -54,12 +54,16 @@ bool CutScene::end()
 		return mNextScene->end();
 	return true;
 }
-
+bool CutScene::endthis()
+{
+	if(mEnded)
+		return true;
+	return endCutScene();
+}
 void CutScene::update(unsigned int deltaTime)
 {
-	if(!endCutScene())
+	if(!endthis())
 	{
-
 		if(mLastTime > 0)
 		{
 			mPassedTime += deltaTime;

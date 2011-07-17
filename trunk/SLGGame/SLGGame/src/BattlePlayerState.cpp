@@ -1,5 +1,9 @@
 #include "BattlePlayerState.h"
 
+#include <algorithm>
+
+#include <boost/format.hpp>
+
 #include "GUISystem.h"
 #include "GUIBattle.h"
 #include "Core.h"
@@ -21,6 +25,7 @@
 #include "MapDataManager.h"
 #include "MoveCutScene.h"
 #include "DirectionCutScene.h"
+#include "BattleMessageBoxState.h"
 
 BattlePlayerState::BattlePlayerState()
 {
@@ -52,7 +57,7 @@ BattlePlayerState::BattlePlayerState()
 BattlePlayerState::~BattlePlayerState()
 {
 	Core::getSingleton().mInputControl->popListener();
-	clearPathInfo();
+	clearPathInfo(true);
 	mSquadWindow->setSquad(NULL);
 	mGUICommand->setSquad(NULL);
 	mGUIState->setAllowNextTurn(false);
@@ -146,7 +151,7 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 				if(x == GX && y == GY)
 				{
 					mGUICommand->setSquad(mSelectSquad);
-					clearPathInfo();
+					clearPathInfo(true);
 					mState = PLAYERCONTROL_CHOOSESKILL;
 				}
 				else
@@ -194,12 +199,12 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 			break;
 		case PLAYERCONTROL_MOVE:
 			mGUICommand->setSquad(mSelectSquad);
-			clearPathInfo();
+			clearPathInfo(true);
 			mState = PLAYERCONTROL_CHOOSESKILL;
 			break;
 		case PLAYERCONTROL_SKILL:
 			mGUICommand->setSquad(mSelectSquad);
-			clearPathInfo();
+			clearPathInfo(true);
 			mSkillid = "none";
 			mSkillType = SKILLTYPE_PASSIVE;
 			mSkillArea = 0;
@@ -233,26 +238,43 @@ void BattlePlayerState::reactiveState()
 		mSquadWindow->setSquad(NULL);
 		mGUICommand->setSquad(NULL);
 	}
+	else if(mState == PLAYERCONTROL_MESSAGEBOX)
+	{
+		mSquadWindow->setSquad(mSelectSquad);
+		if(mSelectSquad->getActionPoint() > 0.0f)
+		{
+			mGUICommand->setSquad(mSelectSquad);
+		}
+		mState = PLAYERCONTROL_CHOOSESKILL;
+
+		if(mMessageBoxReturn == true)
+		{
+			if(mMoveTargetX != -1)
+			{
+				mGUICommand->setSquad(NULL);
+				if(mTargetSquad != NULL)
+					executeSkillOn(mMoveTargetX,mMoveTargetY, mTargetSquad);
+				else
+					executeMove(mMoveTargetX,mMoveTargetY);
+			}
+		}
+	}
 	else
 	{
-		if(mState == PLAYERCONTROL_CUTSCENE)
+		mSquadWindow->setSquad(mSelectSquad);
+		if(mSelectSquad->getActionPoint() > 0.0f)
 		{
-			mSquadWindow->setSquad(mSelectSquad);
-			if(mSelectSquad->getActionPoint() > 0.0f)
-			{
-				mGUICommand->setSquad(mSelectSquad);
-			}
-			mState = PLAYERCONTROL_CHOOSESKILL;
+			mGUICommand->setSquad(mSelectSquad);
 		}
+		mState = PLAYERCONTROL_CHOOSESKILL;
+
 		mGUIState->setAllowNextTurn(true);
 		if(mMoveTargetX != -1)
 		{
-			if(mTargetSquad != NULL)
-				executeSkillOn(mMoveTargetX,mMoveTargetY, mTargetSquad);
-			else
-				executeMove(mMoveTargetX,mMoveTargetY);
+			mMessageBoxReturn = false;
+			mState = PLAYERCONTROL_MESSAGEBOX;
+			mMainState->PushState(new BattleMessageBoxState(this,std::string("Test")));
 		}
-		mSquadWindow->setSquad(mSelectSquad);
 	}
 }
 
@@ -475,14 +497,17 @@ void BattlePlayerState::changeFormation(Formation f)
 	}
 }
 
-void BattlePlayerState::clearPathInfo()
+void BattlePlayerState::clearPathInfo(bool clearnode)
 {
-	MapNodeIte movenodeite;
-	for(movenodeite = mMoveMap.begin(); movenodeite != mMoveMap.end(); movenodeite++)
-	{
-		delete movenodeite->second;
+	if(clearnode)
+	{	
+		MapNodeIte movenodeite;
+		for(movenodeite = mMoveMap.begin(); movenodeite != mMoveMap.end(); movenodeite++)
+		{
+			delete movenodeite->second;
+		}
+		mMoveMap.clear();
 	}
-	mMoveMap.clear();
 	for(int n = 0; n < mMovePathList.size(); n++)
 	{
 		delete mMovePathList[n];
@@ -620,7 +645,7 @@ void BattlePlayerState::executeMove(int x, int y)
 		croodlist.push_back(yyy);
 	}
 	int stoppoint;
-	int evt;
+	int evt = 0;
 	std::vector<Ogre::Vector2> movepath;
 	BattleSquadManager::getSingleton().moveSquad(mSelectSquad, croodlist, stoppoint, evt);
 	int n;
@@ -635,11 +660,13 @@ void BattlePlayerState::executeMove(int x, int y)
 	{
 		mMoveTargetX = x;
 		mMoveTargetY = y;
+		clearPathInfo(false);
 	}
 	else
 	{
 		mMoveTargetX = -1;
 		mMoveTargetY = -1;
+		clearPathInfo(true);
 	}
 	MoveCutScene* movecutscene = new MoveCutScene(mSelectSquad->getGrapId(),movepath,Ogre::Vector2(startx,starty));
 	DirectionCutScene* dircutscene = new DirectionCutScene(mSelectSquad->getGrapId(),mSelectSquad->getDirection());
@@ -653,7 +680,6 @@ void BattlePlayerState::executeMove(int x, int y)
 		movecutscene->setNextScene(dircutscene);
 	CutSceneDirector* cutscenedirector = new CutSceneDirector;
 	cutscenedirector->addCutScene(movecutscene);
-	clearPathInfo();
 	mState = PLAYERCONTROL_CUTSCENE;
 	mGUIState->setAllowNextTurn(false);
 	mMainState->PushState(cutscenedirector);
@@ -673,8 +699,11 @@ void BattlePlayerState::useSkill(std::string skillid)
 		return;
 	float apcost;
 	datalib->getData(std::string("StaticData/SkillData/")+ skillid+ std::string("/APCost"),apcost);
-	apcost += mSelectSquad->getActionPointCost(aptype);
 	float apleft = mSelectSquad->getActionPoint();
+	if(aptype != SKILLAPTYPE_DEFENCE)
+		apcost += mSelectSquad->getActionPointCost(aptype);
+	else
+		apcost = std::max(apcost,apleft);
 	if(apleft < apcost)
 		return;
 	SkillType skilltype;
@@ -691,6 +720,14 @@ void BattlePlayerState::useSkill(std::string skillid)
 			mState = PLAYERCONTROL_CUTSCENE;
 			mGUIState->setAllowNextTurn(false);
 			mMainState->PushState(cutscenedirector);
+		}
+		else
+		{
+			mSquadWindow->setSquad(mSelectSquad);
+			if(mSelectSquad->getActionPoint() > 0.0f)
+				mGUICommand->setSquad(mSelectSquad);
+			else
+				mGUICommand->setSquad(NULL);
 		}
 		return;
 	}
@@ -718,6 +755,20 @@ void BattlePlayerState::useSkill(std::string skillid)
 	case SKILLTYPE_TARGETLINE:
 		drawSkillArea(skilltype,minrange,maxrange);
 		mMeleeSkill = false;
+		break;
+	case SKILLTYPE_RANGED:
+		std::string path = mSelectSquad->getPath();
+		std::string sweaponid("none");
+		datalib->getData(str(boost::format("%1%/SweaponId")%path),sweaponid);
+		if(sweaponid == "none")
+			return;
+		int maxrangew = 0,minrangew = 0;
+		path = str(boost::format("StaticData/SweaponData/%1%/")%sweaponid);
+		datalib->getData(path + std::string("MaxRange"),maxrangew);
+		datalib->getData(path + std::string("MinRange"),minrangew);
+		maxrange += maxrangew;
+		minrange += minrangew;
+		drawSkillArea(skilltype,minrange,maxrange);
 		break;
 	}
 	mGUICommand->setSquad(NULL);
@@ -936,6 +987,7 @@ void BattlePlayerState::drawSkillArea(SkillType skilltype, int minrange, int max
 					int relaction = blocksquad->getTeamFaction(team);
 					switch(skilltype)
 					{
+					case SKILLTYPE_RANGED:
 					case SKILLTYPE_TARGETENEMY:
 						if(relaction > 0)
 						{
@@ -1010,6 +1062,9 @@ void BattlePlayerState::useSkillAt(int x,int y)
 	BattleSquad* squad =NULL;
 	switch(mSkillType)
 	{
+	case SKILLTYPE_TARGETSELF:
+		executeSkillAt(x,y);
+		break;
 	case SKILLTYPE_TARGETALL:
 		squad = BattleSquadManager::getSingleton().getBattleSquadAt(x,y,1,true);
 		if(squad == NULL)
@@ -1066,7 +1121,7 @@ void BattlePlayerState::executeSkillAt(int x, int y)
 		battlecutscene = BattleSquadManager::getSingleton().useSkillAt(mSelectSquad,x,y, mSkillid);
 		mSkillid = "none";
 		mSkillType = SKILLTYPE_PASSIVE;
-		clearPathInfo();
+		clearPathInfo(true);
 	}
 	else
 	{
@@ -1076,7 +1131,7 @@ void BattlePlayerState::executeSkillAt(int x, int y)
 			battlecutscene = BattleSquadManager::getSingleton().useSkillOn(mSelectSquad,battlesquad, mSkillid);
 			mSkillid = "none";
 			mSkillType = SKILLTYPE_PASSIVE;
-			clearPathInfo();
+			clearPathInfo(true);
 		}
 		else
 			return;
@@ -1159,12 +1214,14 @@ void BattlePlayerState::executeSkillOn(int x, int y, BattleSquad* squad)
 		mMoveTargetX = x;
 		mMoveTargetY = y;
 		mTargetSquad = squad;
+		clearPathInfo(false);
 	}
 	else
 	{
 		mMoveTargetX = -1;
 		mMoveTargetY = -1;
 		mTargetSquad = NULL;
+		clearPathInfo(true);
 	}
 	MoveCutScene* movecutscene = new MoveCutScene(mSelectSquad->getGrapId(),movepath,Ogre::Vector2(startx,starty));
 	DirectionCutScene* dircutscene = new DirectionCutScene(mSelectSquad->getGrapId(),mSelectSquad->getDirection());
@@ -1187,7 +1244,6 @@ void BattlePlayerState::executeSkillOn(int x, int y, BattleSquad* squad)
 	}
 	CutSceneDirector* cutscenedirector = new CutSceneDirector;
 	cutscenedirector->addCutScene(movecutscene);
-	clearPathInfo();
 	mState = PLAYERCONTROL_CUTSCENE;
 	mGUIState->setAllowNextTurn(false);
 	mMainState->PushState(cutscenedirector);

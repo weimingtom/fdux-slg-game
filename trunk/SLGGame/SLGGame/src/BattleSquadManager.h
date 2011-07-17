@@ -20,12 +20,16 @@ public:
 	BattleSquadManager();
 	~BattleSquadManager();
 
+	void clear();
+
 	typedef std::vector<BattleSquad*>::iterator BattleSquadIte;
 	std::vector<BattleSquad*> mSquadList;
 	std::vector<BattleSquad*> mDeployList;
 
 	void deployConfirm();
 	bool allDeployed();
+
+	int getTeamSquadLeft(int team);
 
 	BattleSquad* getBattleSquad(std::string id);
 	BattleSquad* getBattleSquadAt(int x, int y, int team, bool visibleonly);

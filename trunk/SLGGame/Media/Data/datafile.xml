@@ -11,6 +11,7 @@
 			<ArmorId type="String" value="HeavyMail"/>
 			<SkillTable>
 				<Attack type="Int" value="1"/>
+				<Defence type="Int" value="1" />
 			</SkillTable>
 			<LeaderName type="String" value="Cheetah"/>
 			<LeaderPicture type="String" value="Cheetah.jpg"/>
@@ -31,6 +32,7 @@
 			<ArmorId type="String" value="LightMail"/>
 			<SkillTable>
 				<Attack type="Int" value="1"/>
+				<RangedAttack type="Int" value="1"/>
 			</SkillTable>
 			<LeaderName type="String" value="Dandelion"/>
 			<LeaderPicture type="String" value="Dandelion.jpg"/>
@@ -156,7 +158,7 @@
 				<Initiative type="Float" value="2.0"/>
 				<ActionPoint type="Float" value="11.0"/>				
 				<Detection type="Float" value="6.0"/>
-				<Covert type="Float" value="0.0"/>
+				<Covert type="Float" value="-1.0"/>
 				<Injury type="Float" value="0.6"/>
 				<Conter type="Float" value="0.3"/>
 			</AttrModifer>
@@ -232,11 +234,13 @@
 	</PweaponData>
 	<SweaponData>
 		<LongBow>
+			<Type type="Int" value="0"/>
 			<Value type="Int" value="10"/>
 			<Script type="String" value="none"/>
 			<Mesh type="String" value="bow.mesh"/>
 			<Mat type="String" value="bow"/>
-			<Range type = "Int" value="3"/>
+			<MaxRange type = "Int" value="4"/>
+			<MinRange type = "Int" value="1"/>
 			<AniGroup type="String" value="bow"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
@@ -391,13 +395,37 @@
 			<MaxRange type="Int" value="3"/>
 			<MinRange type="Int" value="1"/>
 			<Area type="Int" value="1"/>
-			<APType type = "Int" value = "1"/>
+			<APType type = "Int" value = "0"/>
 			<APCost type="float" value="4.0"/>
 			<CoolDown type="Int" value="0"/>
 			<Value type="Int" value="10"/>
 			<Icon type="String" value = "none"/>
 			<Script type="String" value="magicshield.lua"/>		
 		</MagicShield>
+		<RangedAttack>
+			<Type type="Int" value="7"/>
+			<MaxRange type="Int" value="0"/>
+			<MinRange type="Int" value="0"/>
+			<Area type="Int" value="1"/>
+			<APType type = "Int" value = "1"/>
+			<APCost type="float" value="2.0"/>
+			<CoolDown type="Int" value="0"/>
+			<Value type="Int" value="10"/>
+			<Icon type="String" value = "none"/>
+			<Script type="String" value="rangedattack.lua"/>		
+		</RangedAttack>
+		<Defence>
+			<Type type="Int" value="1"/>
+			<MaxRange type="Int" value="0"/>
+			<MinRange type="Int" value="0"/>
+			<Area type="Int" value="1"/>
+			<APType type = "Int" value = "2"/>
+			<APCost type="float" value="2.0"/>
+			<CoolDown type="Int" value="0"/>
+			<Value type="Int" value="10"/>
+			<Icon type="String" value = "none"/>
+			<Script type="String" value="defence.lua"/>		
+		</Defence>
 	</SkillData>
 	<EffectData>
 		<TestEffect>
