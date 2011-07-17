@@ -37,6 +37,8 @@ public:
 
 	void waitTime( float time );
 
+	void onOtherSceneNotify(std::string arg);
+
 	GUISceneType getType()
 	{
 		return StageScene;
@@ -54,6 +56,8 @@ private:
 	void onLoad(MyGUI::Widget* _sender);
 	void onHide(MyGUI::Widget* _sender);
 	void onSystem(MyGUI::Widget* _sender);
+
+	void load();
 
 	void fastForward(bool value);
 

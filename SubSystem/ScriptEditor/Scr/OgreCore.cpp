@@ -47,7 +47,8 @@ bool OgreCore::setup()
 		
 		mGUISystem=new GUISystem(mWindow,mSceneMgr);
 		mGUISystem->registerSceneFactory(StageScene,new GUIStageFactory());
-		mGUISystem->createScene(StageScene);
+		GUIScene* stage=mGUISystem->createScene(StageScene);
+		stage->showScene("");
 
 		mLuaSystem=new LuaSystem();
 

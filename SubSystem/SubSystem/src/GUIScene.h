@@ -28,6 +28,9 @@ public:
 	virtual void showScene(std::string arg)=0;//显示场景
 	virtual void hideScene()=0;//隐藏场景
 
+	//当其他场景需要通知自己时
+	virtual void onOtherSceneNotify(std::string arg){};
+
 	virtual void FrameEvent()=0;//帧事件
 
 	virtual GUISceneType getType()=0;
