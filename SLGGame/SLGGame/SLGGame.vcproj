@@ -601,6 +601,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\src\ShowValueCutScene.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\ShowValueCutScene.h"
+						>
+					</File>
+					<File
 						RelativePath=".\src\SquadDeadCutScene.cpp"
 						>
 					</File>

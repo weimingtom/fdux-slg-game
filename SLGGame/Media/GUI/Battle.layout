@@ -416,7 +416,7 @@
             <Property key="FontHeight" value="20"/>
         </Widget>
     </Widget>
-    <Widget type="Window" skin="SLGCommandWindowSkin" position="710 75 254 270" layer="Main" name="CommandWindow">
+    <Widget type="Window" skin="SLGCommandWindowSkin" position="265 440 254 270" layer="Main" name="CommandWindow">
         <Property key="FontName" value="fireflysung"/>
         <Property key="Caption" value="Command"/>
         <Property key="FontHeight" value="20"/>
@@ -465,6 +465,11 @@
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
             <Property key="ModeImage" value="true"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="40 35 175 25" name="APLabel">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="24"/>
+            <Property key="TextAlign" value="Center"/>
         </Widget>
     </Widget>
     <Widget type="Window" skin="WindowCS" position="235 190 204 140" layer="Main" name="LogWindow">

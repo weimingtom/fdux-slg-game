@@ -12,6 +12,7 @@
 #include "BattleSquad.h"
 
 #include "LuaSystem.h"
+#include "StringTable.h"
 
 #include "Terrain.h"
 
@@ -24,6 +25,7 @@
 #include "CombineCutScene.h"
 #include "WeapenCutScene.h"
 #include "CombatPositionCutScene.h"
+#include "ShowValueCutScene.h"
 
 #include "SquadGrapManager.h"
 #include "SquadGraphics.h"
@@ -383,8 +385,10 @@ bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad*
 		if(atkrolls.size() > 0)
 		{
 			int squadugb = squad->getUnitGrapNum();
+			int squadRealNumB=squad->getUnitRealNum();
 			squad->applyAttackRolls(false, d, atkrolls);
 			int squaduga = squad->getUnitGrapNum();
+			int squadRealNumA=squad->getUnitRealNum();
 			if(squaduga < squadugb)
 			{
 				setCutScene(new SquadDeadCutScene(squad->getGrapId(), squadugb - squaduga));
@@ -393,6 +397,10 @@ bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad*
 			{
 				setCutScene(new SquadStateCutScene(squad,SQUAD_STATE_VISIBLE,"none",0));
 				TriggerManager::getSingleton().unitDead(squad);
+			}
+			else
+			{
+				setCutScene(new ShowValueCutScene(squad->getGrapId(),str(boost::format(StringTable::getSingletonPtr()->getString("BattleInfo"))%(squadRealNumB-squadRealNumA)),Ogre::ColourValue::Red));
 			}
 		}
 	}

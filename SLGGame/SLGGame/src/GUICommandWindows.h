@@ -36,6 +36,7 @@ public:
 private:
 	MyGUI::Window* mWindow;
 	MyGUI::Button* mSkill[9];
+	MyGUI::TextBox* mAPLabel;
 
 	void onSkill1(MyGUI::Widget* _sender);
 	void onSkill2(MyGUI::Widget* _sender);

@@ -68,6 +68,9 @@ public:
 	void stopParticle(std::string id);
 	void delParticle(std::string id);
 
+	void showValue(std::string value,Ogre::ColourValue c);
+	void stopShowValue();
+
 	Ogre::Vector3 getLeaderPosition(); 
 	std::vector<Ogre::Vector3> getSoiderPosition();
 

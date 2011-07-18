@@ -168,10 +168,10 @@ void GUITargetWindows::updateSquad()
 	if(inj == 1)
 	{
 		re = DataLibrary::getSingletonPtr()->getData(datapath+"/WoundNum",inj);
-		mSquadUnitNum->setCaption(Ogre::StringConverter::toString(y) + std::string("/") + Ogre::StringConverter::toString(inj) + std::string("/") +Ogre::StringConverter::toString(x));
+		mSquadUnitNum->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("SquadUnitNumSimple"))%y%inj%x));
 	}
 	else
-		mSquadUnitNum->setCaption(Ogre::StringConverter::toString(y) + std::string("/") + Ogre::StringConverter::toString(x));
+		mSquadUnitNum->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("SquadUnitNumNoInjSimple"))%y%x));
 	
 	re = DataLibrary::getSingletonPtr()->getData(datapath+"/ActionPoint",x);
 	mSquadAp->setCaption(Ogre::StringConverter::toString(x));

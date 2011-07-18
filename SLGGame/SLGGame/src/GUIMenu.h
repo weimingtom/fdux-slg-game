@@ -46,6 +46,7 @@ private:
 
 	MyGUI::Button* mNewGame;
 	MyGUI::Button* mLoad;
+	MyGUI::Button* mOpiton;
 	MyGUI::Button* mExit;
 
 };

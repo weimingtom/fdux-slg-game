@@ -16,6 +16,8 @@ public:
 
 	void setValue(std::string value,MyGUI::Colour c);
 
+	void stopShow();
+
 	void showScene(std::string arg);//ÏÔÊ¾³¡¾°
 
 	void hideScene();//Òþ²Ø³¡¾°

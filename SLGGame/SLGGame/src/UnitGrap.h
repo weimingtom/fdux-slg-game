@@ -45,7 +45,7 @@ public:
 // 
 // 	void stopEffect();
 
-	void setMovePath(std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions);
+	void setMovePath(std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions,float MoveSpeed=1.0);
 
 	void setPosition(float x,float z);
 
