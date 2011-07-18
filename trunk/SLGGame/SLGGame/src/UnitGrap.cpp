@@ -167,10 +167,10 @@ void UnitGrap::setWeapon( WeaponType type,BoneType bone )
 
 void UnitGrap::setAniGroup(std::string anigroup)
 {
-	if(anigroup == "1H1")
+	if(anigroup == "1H2")
 	{
 		mWalkName = std::string("Run1H");;
-		mAttackName = std::string("Attack1H1");
+		mAttackName = std::string("Attack1H2");
 		mIdleName = std::string("Ready1H");
 	}
 	else if(anigroup == "2HL2")
@@ -181,9 +181,9 @@ void UnitGrap::setAniGroup(std::string anigroup)
 	}
 	else if(anigroup == "bow")
 	{
-		mWalkName = std::string("RunBow");;
+		mWalkName = std::string("Run1H");;
 		mAttackName = std::string("AttackBow");
-		mIdleName = std::string("ReadyBow");
+		mIdleName = std::string("Ready1H");
 	}
 	mAniBlender->init(mIdleName);
 }

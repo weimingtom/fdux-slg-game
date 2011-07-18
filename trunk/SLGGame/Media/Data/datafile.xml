@@ -16,10 +16,10 @@
 			</SkillTable>
 			<LeaderName type="String" value="Cheetah"/>
 			<LeaderPicture type="String" value="Cheetah.jpg"/>
-			<LeaderMesh type="String" value="LightInf.mesh"/>
-			<LeaderMat type="String" value="LightInf"/>
-			<UnitMesh type="String" value="LightInf.mesh"/>
-			<UnitMat type="String" value="LightInf"/>
+			<LeaderMesh type="String" value="HeavyInfOf.mesh"/>
+			<LeaderMat type="String" value="HeavyInfOf"/>
+			<UnitMesh type="String" value="HeavyInf.mesh"/>
+			<UnitMat type="String" value="HeavyInf"/>
 			<UnitMaxNumber type="Int" value="50"/>
 			<MoveSound type="String" value="Move.mp3"/>
 		</CheetahSquad>
@@ -37,8 +37,8 @@
 			</SkillTable>
 			<LeaderName type="String" value="Dandelion"/>
 			<LeaderPicture type="String" value="Dandelion.jpg"/>
-			<LeaderMesh type="String" value="LightInf.mesh"/>
-			<LeaderMat type="String" value="LightInf"/>
+            <LeaderMesh value="LightInfOf.mesh" type="String" />
+            <LeaderMat value="LightInfOf" type="String" />
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
 			<UnitMaxNumber type="Int" value="50"/>
@@ -59,8 +59,8 @@
 			</SkillTable>
 			<LeaderName type="String" value="Olivia"/>
 			<LeaderPicture type="String" value="Olivia.jpg"/>
-			<LeaderMesh type="String" value="LightInf.mesh"/>
-			<LeaderMat type="String" value="LightInf"/>
+			<LeaderMesh type="String" value="Stronghold.mesh"/>
+			<LeaderMat type="String" value="Stronghold"/>
 			<UnitMesh type="String" value="HolySpirit.mesh"/>
 			<UnitMat type="String" value="HolySpirit"/>
 			<UnitMaxNumber type="Int" value="20"/>
@@ -79,8 +79,8 @@
 			</SkillTable>
 			<LeaderName type="String" value="EtasiSquadLeader"/>
 			<LeaderPicture type="String" value="EtasiSquadLeader.jpg"/>
-			<LeaderMesh type="String" value="LightInf.mesh"/>
-			<LeaderMat type="String" value="LightInf"/>
+            <LeaderMesh value="LightInfOf.mesh" type="String" />
+            <LeaderMat value="LightInfOf" type="String" />
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
 			<UnitMaxNumber type="Int" value="50"/>
@@ -99,10 +99,10 @@
 			</SkillTable>
 			<LeaderName type="String" value="EtasiSquadLeader"/>
 			<LeaderPicture type="String" value="EtasiSquadLeader.jpg"/>
-			<LeaderMesh type="String" value="LightInf.mesh"/>
-			<LeaderMat type="String" value="LightInf"/>
-			<UnitMesh type="String" value="LightInf.mesh"/>
-			<UnitMat type="String" value="LightInf"/>
+			<LeaderMesh type="String" value="HeavyInfOf.mesh"/>
+			<LeaderMat type="String" value="HeavyInfOf"/>
+			<UnitMesh type="String" value="HeavyInf.mesh"/>
+			<UnitMat type="String" value="HeavyInf"/>
 			<UnitMaxNumber type="Int" value="50"/>
 			<MoveSound type="String" value="Move.mp3"/>
 		</EtasiHeavyInf>
@@ -159,7 +159,7 @@
 				<Initiative type="Float" value="2.0"/>
 				<ActionPoint type="Float" value="11.0"/>
 				<Detection type="Float" value="6.0"/>
-				<Covert type="Float" value="-1.0"/>
+				<Covert type="Float" value="0.0"/>
 				<Injury type="Float" value="0.6"/>
 				<Conter type="Float" value="0.3"/>
 			</AttrModifer>
@@ -175,10 +175,10 @@
 			<Script type="String" value="none"/>
 			<Mesh type="String" value="soul.mesh"/>
 			<Mat type="String" value="soul"/>
-			<AniGroup type="String" value="1H1"/>
+			<AniGroup type="String" value="1H2"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
-				<Attack type="Float" value="3.0"/>
+				<Attack type="Float" value="4.0"/>
 				<RangedAttack type="Float" value="0.0"/>
 				<Defence type="Float" value="1.0"/>
 				<Formation type="Float" value="0.0"/>
@@ -196,10 +196,10 @@
 			<Script type="String" value="none"/>
 			<Mesh type="String" value="soul.mesh"/>
 			<Mat type="String" value="soul"/>
-			<AniGroup type="String" value="1H1"/>
+			<AniGroup type="String" value="1H2"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
-				<Attack type="Float" value="2.0"/>
+				<Attack type="Float" value="3.0"/>
 				<RangedAttack type="Float" value="0.0"/>
 				<Defence type="Float" value="1.0"/>
 				<Formation type="Float" value="0.0"/>
@@ -220,10 +220,10 @@
 			<AniGroup type="String" value="2HL2"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
-				<Attack type="Float" value="1.0"/>
+				<Attack type="Float" value="2.0"/>
 				<RangedAttack type="Float" value="0.0"/>
-				<Defence type="Float" value="-2.0"/>
-				<Formation type="Float" value="0.06"/>
+				<Defence type="Float" value="-1.0"/>
+				<Formation type="Float" value="0.1"/>
 				<Initiative type="Float" value="8.0"/>
 				<ActionPoint type="Float" value="0.0"/>
 				<Detection type="Float" value="0.0"/>
@@ -273,16 +273,16 @@
 				<Initiative type="Float" value="0.0"/>
 				<ActionPoint type="Float" value="-1.0"/>
 				<Detection type="Float" value="0.0"/>
-				<Covert type="Float" value="0.0"/>
+				<Covert type="Float" value="-1.0"/>
 				<Injury type="Float" value="0.0"/>
-				<Conter type="Float" value="-1.0"/>
+				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
 		</KnightShield>
 		<RoundShield>
 			<Value type="Int" value="10"/>
 			<Script type="String" value="none"/>
-			<Mesh type="String" value="LargeShield.mesh"/>
-			<Mat type="String" value="LargeShield"/>
+			<Mesh type="String" value="RoundShield.mesh"/>
+			<Mat type="String" value="RoundShield"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="2.0"/>
@@ -312,7 +312,7 @@
 				<Initiative type="Float" value="0.0"/>
 				<ActionPoint type="Float" value="-1.0"/>
 				<Detection type="Float" value="0.0"/>
-				<Covert type="Float" value="0.0"/>
+				<Covert type="Float" value="-1.0"/>
 				<Injury type="Float" value="0.0"/>
 				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
@@ -348,9 +348,9 @@
 				<Initiative type="Float" value="0.0"/>
 				<ActionPoint type="Float" value="0.0"/>
 				<Detection type="Float" value="0.0"/>
-				<Covert type="Float" value="0.0"/>
+				<Covert type="Float" value="1.0"/>
 				<Injury type="Float" value="0.0"/>
-				<Conter type="Float" value="1.0"/>
+				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
 		</LeatherArmor>
 	</ArmorData>
@@ -464,7 +464,7 @@
 				<Passable type="Int" value="1"/>
 				<Covert type="Float" value="0.0"/>
 				<Defence type="Float" value="-1.0"/>
-				<CavAp type="Float" value="3.5"/>
+				<CavAp type="Float" value="4.0"/>
 				<InfAp type="Float" value="3.0"/>
 			</GroundModifier>
 		</Ground2>
@@ -473,7 +473,7 @@
 				<Passable type="Int" value="1"/>
 				<Covert type="Float" value="0.0"/>
 				<Defence type="Float" value="-1.0"/>
-				<CavAp type="Float" value="3.5"/>
+				<CavAp type="Float" value="4.0"/>
 				<InfAp type="Float" value="3.0"/>
 			</GroundModifier>
 		</Ground3>
@@ -526,16 +526,16 @@
 		</Terrain4>
 	</TerrainData>
 	<MapObjType>
-		<City>
-			<Script type="String" value="City.lua"/>
+		<Camp>
+			<Script type="String" value="none"/>
 			<GroundModifier>
 				<Passable type="Int" value="1"/>
-				<Covert type="Float" value="2.0"/>
-				<Defence type="Float" value="2.0"/>
+				<Covert type="Float" value="1.0"/>
+				<Defence type="Float" value="3.0"/>
 				<CavAp type="Float" value="1.0"/>
 				<InfAp type="Float" value="0.0"/>
 			</GroundModifier>
-		</City>
+		</Camp>
 		<Forest>
 			<Script type="String" value="none"/>
 			<GroundModifier>

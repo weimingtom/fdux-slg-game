@@ -81,6 +81,18 @@ static int PlayMusic(lua_State* L)
 	return 0;
 }
 
+#include "CameraContral.h"
+#include "Terrain.h"
+static int SetCamera(lua_State* L)
+{
+	int x =  luaL_checknumber(L,1);
+	int y =  luaL_checknumber(L,2);
+	float xx,yy;
+	Terrain::getSingleton().getWorldCoords(x,y,xx,yy);
+	CameraContral::getSingleton().moveCameraTo(xx,yy);
+	return 0;
+}
+
 static const struct luaL_Reg ScriptCommonLib[] =
 {
 	{"SetInt",SetInt},
@@ -90,5 +102,6 @@ static const struct luaL_Reg ScriptCommonLib[] =
 	{"GetSquadCoord",GetSquadCoord},
 	{"GetTeamSquadLeft",GetTeamSquadLeft},
 	{"PlayMusic",PlayMusic},
+	{"SetCamera",SetCamera},
 	{NULL,NULL}
 };

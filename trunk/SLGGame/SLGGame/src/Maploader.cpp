@@ -332,8 +332,8 @@ void MapLoader::initBattleSquad(bool loadfrommap)
 				datalib->setData(datapath +std::string("/Formation"), f, true );
 				datalib->setData(datapath +std::string("/ActionPoint"), 0.0f, true );
 				datalib->setData(datapath +std::string("/WoundNum"), 0, true );
-				BattleSquad* battlesquad = new BattleSquad((*ite),battlesuqadmanager->mCurid,-1,0); 
-				SquadGraphics* squadgrap = suqadgrapmanager->createSquad((*ite), datapath, battlesuqadmanager->mCurid, -1, 0,North,Line,battlesquad->getUnitGrapNum());
+				BattleSquad* battlesquad = new BattleSquad((*ite),battlesuqadmanager->mCurid,-10,-10); 
+				SquadGraphics* squadgrap = suqadgrapmanager->createSquad((*ite), datapath, battlesuqadmanager->mCurid, -10, -10,North,Line,battlesquad->getUnitGrapNum());
 				squadgrap->setFormation(f,false);
 				squadgrap->setDirection(North,false);
 				battlesuqadmanager->mDeployList.push_back(battlesquad);

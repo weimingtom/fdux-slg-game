@@ -1,7 +1,7 @@
 import DepthShadowmap/CasterWithSkin from "Shadow.material"
 material HeavyInfOf : DepthShadowmap/CasterWithSkin
 {
-	technique
+	technique default
 	{
 		scheme Default
 		pass

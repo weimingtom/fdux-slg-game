@@ -670,14 +670,9 @@ void BattlePlayerState::executeMove(int x, int y)
 	}
 	MoveCutScene* movecutscene = new MoveCutScene(mSelectSquad->getGrapId(),movepath,Ogre::Vector2(startx,starty));
 	DirectionCutScene* dircutscene = new DirectionCutScene(mSelectSquad->getGrapId(),mSelectSquad->getDirection());
+	BattleSquadManager::getSingleton().setCutScene(dircutscene);
 	CutScene* eventcutscene = BattleSquadManager::getSingleton().getCutScene();
-	if(eventcutscene)
-	{
-		movecutscene->setNextScene(eventcutscene);
-		eventcutscene->setNextScene(dircutscene);
-	}
-	else
-		movecutscene->setNextScene(dircutscene);
+	movecutscene->setNextScene(eventcutscene);
 	CutSceneDirector* cutscenedirector = new CutSceneDirector;
 	cutscenedirector->addCutScene(movecutscene);
 	mState = PLAYERCONTROL_CUTSCENE;
@@ -1225,14 +1220,9 @@ void BattlePlayerState::executeSkillOn(int x, int y, BattleSquad* squad)
 	}
 	MoveCutScene* movecutscene = new MoveCutScene(mSelectSquad->getGrapId(),movepath,Ogre::Vector2(startx,starty));
 	DirectionCutScene* dircutscene = new DirectionCutScene(mSelectSquad->getGrapId(),mSelectSquad->getDirection());
+	BattleSquadManager::getSingleton().setCutScene(dircutscene);
 	CutScene* evetcutscene = BattleSquadManager::getSingleton().getCutScene();
-	if(evetcutscene)
-	{
-		movecutscene->setNextScene(evetcutscene);
-		evetcutscene->setNextScene(dircutscene);
-	}
-	else
-		movecutscene->setNextScene(dircutscene);
+	movecutscene->setNextScene(evetcutscene);
 
 	if(stoppoint == n)
 	{

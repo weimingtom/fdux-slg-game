@@ -6,9 +6,14 @@ material SceneObj : DepthShadowmap/Caster
 		scheme Default
 		pass
 		{
+			cull_hardware none
+			cull_software none
+			
+			scene_blend  alpha_blend
+			alpha_rejection greater_equal 128
 			texture_unit
 			{
-				texture jianzhu1.tif
+				texture SceneObj.dds
 			}
 		}
 	}
