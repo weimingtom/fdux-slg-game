@@ -835,13 +835,13 @@ void SquadGraphics::setWeaponMode( WeaponMode mode )
 			bonetype = UnitGrap::RightHand;
 	}
 
-	mCommanderUnit->setWeapon(type,bonetype);
 	mCommanderUnit->setWeapon(UnitGrap::Shield,UnitGrap::LeftHand);
+	mCommanderUnit->setWeapon(type,bonetype);
 	mCommanderUnit->setAniGroup(anigroup);
 	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 	{
-		(*it)->setWeapon(type,bonetype);
 		(*it)->setWeapon(UnitGrap::Shield,UnitGrap::LeftHand);
+		(*it)->setWeapon(type,bonetype);
 		(*it)->setAniGroup(anigroup);
 	}
 }
