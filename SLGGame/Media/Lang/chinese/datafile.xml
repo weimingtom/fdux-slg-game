@@ -151,10 +151,10 @@
 		</Terrain4>
 	</TerrainData>
 	<MapObjType>
-		<City>
-			<Name type="String" value="城市"/>
-			<Describe type="String" value="城市"/>
-		</City>
+		<Camp>
+			<Name type="String" value="营寨"/>
+			<Describe type="String" value="营寨"/>
+		</Camp>
 		<Forest>
 			<Name type="String" value="森林"/>
 			<Describe type="String" value="森林"/>

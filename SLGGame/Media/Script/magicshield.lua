@@ -12,7 +12,7 @@ function onaffect()
 	squadpath = ScriptCommonLib.GetString("affectsquadpath");
 	id = SkillLib.ApplyParticle(squadpath,3,"mp_flare_06");
 	ScriptCommonLib.SetString("Particleid",id);
-	id = SkillLib.ApplyModifier(squadpath,1,0.0,0.0,5.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0);
+	id = SkillLib.ApplyModifier(squadpath,1,0.0,0.0,3.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0);
 	ScriptCommonLib.SetString("Modifierid",id);
 	ScriptCommonLib.SetInt("LastTurn",0);
 	trigerid = TriggerLib.AddSquadTrigger(squadpath,"TurnEnd","onturnend");
@@ -34,7 +34,7 @@ function onturnend()
 	turn = ScriptCommonLib.GetInt("LastTurn");
 	turn = turn + 1;
 	ScriptCommonLib.SetInt("LastTurn",turn);
-	if turn == 4 then
+	if turn == 3 then
 		squadpath = ScriptCommonLib.GetString("affectsquadpath");
 		id = ScriptCommonLib.GetString("effectid");
 		SkillLib.RemoveEffect(squadpath, id);

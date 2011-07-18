@@ -22,9 +22,9 @@ Terrain::~Terrain()
 bool Terrain::createTerrain()
 {
 	mMapData = MapDataManager::getSingletonPtr();
-	int terrainszie = mMapData->getMapSize() + 9;
+	int terrainszie = mMapData->getMapSize() + 2 * MAPBOLDER + 1;
 
-	Core::getSingleton().mSceneMgr->setSkyBox(true, "SkyBox");
+	Core::getSingleton().mSceneMgr->setSkyBox(true, "SkyBox",200);
 
 	//创建灯光
 	Core::getSingleton().mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5f, 0.5f, 0.5f));
@@ -178,7 +178,7 @@ bool Terrain::createTerrain()
 	for(int y = 0; y < terrainszie; y++)
 		for(int x = 0; x < terrainszie; x++)
 		{
-			if(mMapData->getTerrainType(x -3, y -3 ) == Water)
+			if(mMapData->getTerrainType(x -MAPBOLDER, y -MAPBOLDER ) == Water)
 			{
 				mWaterObject->position(startpos + x * TILESIZE, 0.0f, startpos + y * TILESIZE);
 				mWaterObject->colour(1.0f,1.0f,1.0f);
@@ -213,7 +213,10 @@ bool Terrain::createTerrain()
 
 
 	//设置摄像机移动范围
-	float minx = ( - (float)(terrainszie - 9) / 2.0f - 1.0f) * TILESIZE ;
+	
+	float minx = 0.0f;// = ( - (float)(terrainszie - 2 * MAPBOLDER) / 2.0f - 1.0f) * TILESIZE ;
+	getWorldCoords(0,0,minx,minx);
+	minx -= TILESIZE/2;
 	CameraContral::getSingleton().setMoveRect(minx, minx);
 	CameraContral::getSingleton().resetCamera();
 
@@ -292,8 +295,8 @@ void Terrain::destoryTerrian()
 void Terrain::getWorldCoords(int x, int y, float &wx, float &wy)
 {
 	int s = mMapData->getMapSize();
-	wx = ((float)x - (float)s / 2.0f - 0.5f) * TILESIZE ;
-	wy = ((float)y - (float)s / 2.0f - 0.5f) * TILESIZE;
+	wx = ((float)x - (float)s / 2.0f + 0.5f) * TILESIZE ;
+	wy = ((float)y - (float)s / 2.0f + 0.5f) * TILESIZE;
 }
 
 float Terrain::getHeight(float x, float y)
@@ -363,10 +366,10 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 {
 	//确定地形块类型
 	TerrainType tt[VERTEX_QUAD];
-	tt[TOPLEFT] = mMapData->getTerrainType(x -4, y -4 );
-	tt[TOPRIGHT] = mMapData->getTerrainType(x -3 , y -4 );
-	tt[BOTTOMLEFT] = mMapData->getTerrainType(x -4 , y -3 );
-	tt[BOTTOMRIGHT] = mMapData->getTerrainType(x -3, y -3 );
+	tt[TOPLEFT] = mMapData->getTerrainType(x -MAPBOLDER -1 , y -MAPBOLDER -1);
+	tt[TOPRIGHT] = mMapData->getTerrainType(x -MAPBOLDER , y -MAPBOLDER -1 );
+	tt[BOTTOMLEFT] = mMapData->getTerrainType(x -MAPBOLDER  - 1, y -MAPBOLDER );
+	tt[BOTTOMRIGHT] = mMapData->getTerrainType(x -MAPBOLDER, y -MAPBOLDER );
 	int terrainindex[6] = {0,0,0,0,0,0};
 	terrainindex[tt[TOPLEFT]] += 2;
 	terrainindex[tt[TOPRIGHT]] += 1;
@@ -384,10 +387,10 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 
 	//确定地表贴图
 	GroundType gt[VERTEX_QUAD];
-	gt[TOPLEFT] = mMapData->getGroundType(x -4 , y -4);
-	gt[TOPRIGHT] = mMapData->getGroundType(x -3 , y -4 );
-	gt[BOTTOMLEFT] = mMapData->getGroundType(x -4 , y -3 );
-	gt[BOTTOMRIGHT] = mMapData->getGroundType(x -3, y -3 );
+	gt[TOPLEFT] = mMapData->getGroundType(x -MAPBOLDER -1 , y -MAPBOLDER -1);
+	gt[TOPRIGHT] = mMapData->getGroundType(x -MAPBOLDER , y -MAPBOLDER -1);
+	gt[BOTTOMLEFT] = mMapData->getGroundType(x -MAPBOLDER  - 1, y -MAPBOLDER  );
+	gt[BOTTOMRIGHT] = mMapData->getGroundType(x -MAPBOLDER, y -MAPBOLDER );
 	int groundindex[4] = {0,0,0,0};
 	groundindex[gt[TOPLEFT]] +=8;
 	groundindex[gt[TOPRIGHT]] += 4;
@@ -835,8 +838,8 @@ void Terrain::calculateGrid( float x,float y,int& GX, int& GY )
 	//x1-=2.5* TILESIZE;
 	//y1-=2.5* TILESIZE;
 	
-	float x1=x+mMapData->getMapSize() * TILESIZE / 2.0f+TILESIZE;
-	float y1=y+mMapData->getMapSize() * TILESIZE / 2.0f+TILESIZE;
+	float x1=x+mMapData->getMapSize() * TILESIZE / 2.0f;
+	float y1=y+mMapData->getMapSize() * TILESIZE / 2.0f;
 
 	GX=x1/TILESIZE;
 	GY=y1/TILESIZE;

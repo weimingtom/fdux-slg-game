@@ -1,7 +1,7 @@
 import DepthShadowmap/CasterWithSkin from "Shadow.material"
 material LightInfOf : DepthShadowmap/CasterWithSkin
 {
-	technique
+	technique default
 	{
 		scheme Default
 		pass

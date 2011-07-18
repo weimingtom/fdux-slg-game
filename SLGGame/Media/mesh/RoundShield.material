@@ -1,0 +1,15 @@
+import DepthShadowmap/Caster from "Shadow.material"
+material RoundShield : DepthShadowmap/Caster
+{
+	technique default
+	{
+		scheme Default
+		pass
+		{
+			texture_unit 
+			{
+				texture RoundShield.dds
+			}
+		}
+	}
+}

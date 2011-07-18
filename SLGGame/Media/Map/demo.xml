@@ -7,116 +7,97 @@
 </MapTeam>
 <MapScript>testscript.lua</MapScript>
 <MapInfo>mapinfo1</MapInfo>
-<MapSize>15</MapSize>
-<MapData>wglglglglglglglglglglglglglglgwgwgwglglgwgwgwgwglglglglgwgwglglgwgwgwgwglglgwgwgwgwgwgwglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglg</MapData>
+<MapSize>12</MapSize>
+<MapData>lglglglglglglglglglglglgwgwglglglgwgwgwgwglgwgwglgwgwgwgwgwglglgwgwgwglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglg</MapData>
 <MapObject>
-    <city_0 Type="City" GridX="7" GridY="7" Mesh="jianzhu1.mesh" />
-	<forest_0 Type="Forest" GridX="2" GridY="0" Mesh="forest.mesh" />
-    <forest_1 Type="Forest" GridX="3" GridY="0" Mesh="forest.mesh" />
-    <forest_2 Type="Forest" GridX="3" GridY="1" Mesh="forest.mesh" />
-    <forest_3 Type="Forest" GridX="4" GridY="0" Mesh="forest.mesh" />
-    <forest_4 Type="Forest" GridX="5" GridY="0" Mesh="forest.mesh" />
-    <forest_5 Type="Forest" GridX="6" GridY="0" Mesh="forest.mesh" />
-    <forest_6 Type="Forest" GridX="7" GridY="0" Mesh="forest.mesh" />
-    <forest_7 Type="Forest" GridX="8" GridY="0" Mesh="forest.mesh" />
-    <forest_8 Type="Forest" GridX="9" GridY="0" Mesh="forest.mesh" />
-    <forest_9 Type="Forest" GridX="10" GridY="1" Mesh="forest.mesh"  />
-    <forest_10 Type="Forest" GridX="10" GridY="0" Mesh="forest.mesh" />
-    <forest_11 Type="Forest" GridX="11" GridY="0" Mesh="forest.mesh"  />
-    <forest_12 Type="Forest" GridX="11" GridY="1" Mesh="forest.mesh"  />
-    <forest_13 Type="Forest" GridX="12" GridY="0" Mesh="forest.mesh" />
-    <forest_14 Type="Forest" GridX="13" GridY="0" Mesh="forest.mesh" />
-    <forest_15 Type="Forest" GridX="7" GridY="6" Mesh="forest.mesh" />
-    <forest_16 Type="Forest" GridX="7" GridY="5" Mesh="forest.mesh" />
-    <forest_17 Type="Forest" GridX="7" GridY="4" Mesh="forest.mesh" />
-    <forest_18 Type="Forest" GridX="6" GridY="7" Mesh="forest.mesh" />
-    <forest_19 Type="Forest" GridX="5" GridY="7" Mesh="forest.mesh" />
-    <forest_20 Type="Forest" GridX="4" GridY="7" Mesh="forest.mesh" />
-    <forest_21 Type="Forest" GridX="6" GridY="6" Mesh="forest.mesh" />
-    <forest_22 Type="Forest" GridX="5" GridY="6" Mesh="forest.mesh" />
-    <forest_23 Type="Forest" GridX="5" GridY="5" Mesh="forest.mesh" />
-    <forest_24 Type="Forest" GridX="6" GridY="4" Mesh="forest.mesh" />
-    <forest_25 Type="Forest" GridX="6" GridY="5" Mesh="forest.mesh"  />
-    <forest_26 Type="Forest" GridX="4" GridY="6" Mesh="forest.mesh" />
-	<city_2 Type="City" GridX="7" GridY="8" Mesh="jianzhu1.mesh" />
-    <forest_28 Type="Forest" GridX="7" GridY="9" Mesh="forest.mesh" />
-    <forest_29 Type="Forest" GridX="6" GridY="8" Mesh="forest.mesh" />
-    <forest_30 Type="Forest" GridX="5" GridY="8" Mesh="forest.mesh" />
-	<city_1 Type="City" GridX="8" GridY="7" Mesh="jianzhu1.mesh" />
-    <forest_32 Type="Forest" GridX="9" GridY="7" Mesh="forest.mesh" />
-    <forest_33 Type="Forest" GridX="10" GridY="7" Mesh="forest.mesh" />
-    <forest_34 Type="Forest" GridX="11" GridY="7" Mesh="forest.mesh" />
-    <forest_35 Type="Forest" GridX="12" GridY="7" Mesh="forest.mesh" />
-    <forest_36 Type="Forest" GridX="8" GridY="6" Mesh="forest.mesh" />
-    <forest_37 Type="Forest" GridX="9" GridY="6" Mesh="forest.mesh" />
-    <forest_38 Type="Forest" GridX="8" GridY="5" Mesh="forest.mesh" />
-    <forest_39 Type="Forest" GridX="10" GridY="5" Mesh="forest.mesh" />
-    <forest_40 Type="Forest" GridX="11" GridY="5" Mesh="forest.mesh" />
-    <forest_41 Type="Forest" GridX="10" GridY="6" Mesh="forest.mesh" />
-    <forest_42 Type="Forest" GridX="11" GridY="6" Mesh="forest.mesh" />
-    <forest_43 Type="Forest" GridX="12" GridY="8" Mesh="forest.mesh" />
-    <forest_44 Type="Forest" GridX="7" GridY="14" Mesh="forest.mesh" />
-    <forest_45 Type="Forest" GridX="8" GridY="14" Mesh="forest.mesh" />
-    <forest_46 Type="Forest" GridX="9" GridY="14" Mesh="forest.mesh" />
-    <forest_47 Type="Forest" GridX="9" GridY="13" Mesh="forest.mesh" />
-    <forest_48 Type="Forest" GridX="10" GridY="12" Mesh="forest.mesh" />
-    <forest_49 Type="Forest" GridX="9" GridY="11" Mesh="forest.mesh" />
-    <forest_50 Type="Forest" GridX="8" GridY="11" Mesh="forest.mesh" />
-    <forest_51 Type="Forest" GridX="8" GridY="10" Mesh="forest.mesh" />
+    <forest_0 Type="Forest" GridX="1" GridY="0" Mesh="forest.mesh" />
+    <forest_1 Type="Forest" GridX="2" GridY="0" Mesh="forest.mesh" />
+    <forest_2 Type="Forest" GridX="2" GridY="1" Mesh="forest.mesh" />
+    <forest_3 Type="Forest" GridX="3" GridY="1" Mesh="forest.mesh" />
+    <forest_4 Type="Forest" GridX="3" GridY="0" Mesh="forest.mesh" />
+    <forest_5 Type="Forest" GridX="4" GridY="0" Mesh="forest.mesh" />
+    <forest_6 Type="Forest" GridX="4" GridY="1" Mesh="forest.mesh" />
+    <forest_7 Type="Forest" GridX="5" GridY="0" Mesh="forest.mesh" />
+    <forest_8 Type="Forest" GridX="6" GridY="0" Mesh="forest.mesh" />
+    <forest_9 Type="Forest" GridX="7" GridY="0" Mesh="forest.mesh" />
+    <forest_10 Type="Forest" GridX="8" GridY="0" Mesh="forest.mesh" />
+    <forest_11 Type="Forest" GridX="9" GridY="0" Mesh="forest.mesh" />
+    <forest_12 Type="Forest" GridX="9" GridY="1" Mesh="forest.mesh" />
+    <forest_13 Type="Forest" GridX="10" GridY="0" Mesh="forest.mesh" />
+    <forest_14 Type="Forest" GridX="11" GridY="0" Mesh="forest.mesh" />
+    <forest_15 Type="Forest" GridX="5" GridY="3" Mesh="forest.mesh" />
+    <forest_16 Type="Forest" GridX="6" GridY="3" Mesh="forest.mesh" />
+    <forest_17 Type="Forest" GridX="7" GridY="3" Mesh="forest.mesh" />
+    <forest_18 Type="Forest" GridX="8" GridY="3" Mesh="forest.mesh" />
+    <forest_19 Type="Forest" GridX="9" GridY="3" Mesh="forest.mesh" />
+    <forest_20 Type="Forest" GridX="4" GridY="3" Mesh="forest.mesh" />
+    <forest_21 Type="Forest" GridX="3" GridY="4" Mesh="forest.mesh" />
+    <forest_22 Type="Forest" GridX="4" GridY="4" Mesh="forest.mesh" />
+    <forest_23 Type="Forest" GridX="4" GridY="5" Mesh="forest.mesh" />
+    <forest_24 Type="Forest" GridX="4" GridY="6" Mesh="forest.mesh" />
+    <forest_25 Type="Forest" GridX="5" GridY="7" Mesh="forest.mesh" />
+    <forest_26 Type="Forest" GridX="5" GridY="6" Mesh="forest.mesh" />
+    <forest_27 Type="Forest" GridX="5" GridY="5" Mesh="forest.mesh" />
+    <forest_28 Type="Forest" GridX="5" GridY="4" Mesh="forest.mesh" />
+    <forest_29 Type="Forest" GridX="6" GridY="4" Mesh="forest.mesh" />
+    <forest_30 Type="Forest" GridX="6" GridY="5" Mesh="forest.mesh" />
+    <forest_31 Type="Forest" GridX="7" GridY="4" Mesh="forest.mesh" />
+    <forest_32 Type="Forest" GridX="8" GridY="4" Mesh="forest.mesh" />
+    <forest_33 Type="Forest" GridX="9" GridY="4" Mesh="forest.mesh" />
+    <forest_34 Type="Forest" GridX="9" GridY="5" Mesh="forest.mesh" />
+    <forest_35 Type="Forest" GridX="8" GridY="5" Mesh="forest.mesh" />
+    <forest_36 Type="Forest" GridX="7" GridY="5" Mesh="forest.mesh" />
+    <forest_37 Type="Forest" GridX="6" GridY="6" Mesh="forest.mesh" />
+    <forest_38 Type="Forest" GridX="6" GridY="7" Mesh="forest.mesh" />
+    <forest_39 Type="Forest" GridX="7" GridY="7" Mesh="forest.mesh" />
+    <forest_40 Type="Forest" GridX="7" GridY="6" Mesh="forest.mesh" />
+    <forest_41 Type="Forest" GridX="8" GridY="6" Mesh="forest.mesh" />
+    <forest_42 Type="Forest" GridX="9" GridY="6" Mesh="forest.mesh" />
+    <forest_43 Type="Forest" GridX="10" GridY="5" Mesh="forest.mesh" />
+    <forest_44 Type="Forest" GridX="10" GridY="6" Mesh="forest.mesh" />
+    <forest_45 Type="Forest" GridX="6" GridY="8" Mesh="forest.mesh" />
+    <forest_46 Type="Forest" GridX="7" GridY="9" Mesh="forest.mesh" />
+    <forest_47 Type="Forest" GridX="7" GridY="8" Mesh="forest.mesh" />
+    <forest_48 Type="Forest" GridX="8" GridY="7" Mesh="forest.mesh" />
+    <forest_49 Type="Forest" GridX="9" GridY="7" Mesh="forest.mesh" />
+    <forest_50 Type="Forest" GridX="8" GridY="8" Mesh="forest.mesh" />
+    <forest_51 Type="Forest" GridX="9" GridY="8" Mesh="forest.mesh" />
     <forest_52 Type="Forest" GridX="8" GridY="9" Mesh="forest.mesh" />
-	<city_3 Type="City" GridX="8" GridY="8" Mesh="jianzhu1.mesh" />
-    <forest_54 Type="Forest" GridX="9" GridY="8" Mesh="forest.mesh" />
-    <forest_55 Type="Forest" GridX="10" GridY="8" Mesh="forest.mesh" />
-    <forest_56 Type="Forest" GridX="11" GridY="8" Mesh="forest.mesh" />
-    <forest_57 Type="Forest" GridX="13" GridY="9" Mesh="forest.mesh" />
-    <forest_58 Type="Forest" GridX="13" GridY="10" Mesh="forest.mesh" />
-    <forest_59 Type="Forest" GridX="14" GridY="10" Mesh="forest.mesh" />
-    <forest_60 Type="Forest" GridX="9" GridY="9" Mesh="forest.mesh" />
-    <forest_61 Type="Forest" GridX="10" GridY="9" Mesh="forest.mesh" />
-    <forest_62 Type="Forest" GridX="11" GridY="9" Mesh="forest.mesh" />
-    <forest_63 Type="Forest" GridX="12" GridY="9" Mesh="forest.mesh" />
-    <forest_64 Type="Forest" GridX="9" GridY="10" Mesh="forest.mesh" />
-    <forest_65 Type="Forest" GridX="10" GridY="10" Mesh="forest.mesh" />
-    <forest_66 Type="Forest" GridX="11" GridY="10" Mesh="forest.mesh" />
-    <forest_67 Type="Forest" GridX="12" GridY="10" Mesh="forest.mesh" />
-    <forest_68 Type="Forest" GridX="10" GridY="11" Mesh="forest.mesh"  />
-    <forest_69 Type="Forest" GridX="11" GridY="11" Mesh="forest.mesh" />
-    <forest_70 Type="Forest" GridX="12" GridY="11" Mesh="forest.mesh" />
-    <forest_71 Type="Forest" GridX="13" GridY="11" Mesh="forest.mesh" />
-    <forest_72 Type="Forest" GridX="14" GridY="11" Mesh="forest.mesh" />
-    <forest_73 Type="Forest" GridX="14" GridY="12" Mesh="forest.mesh" />
-    <forest_74 Type="Forest" GridX="13" GridY="12" Mesh="forest.mesh" />
-    <forest_75 Type="Forest" GridX="12" GridY="12" Mesh="forest.mesh" />
-    <forest_76 Type="Forest" GridX="11" GridY="12" Mesh="forest.mesh" />
-    <forest_77 Type="Forest" GridX="10" GridY="13" Mesh="forest.mesh" />
-    <forest_78 Type="Forest" GridX="11" GridY="13" Mesh="forest.mesh" />
-    <forest_79 Type="Forest" GridX="12" GridY="13" Mesh="forest.mesh" />
-    <forest_80 Type="Forest" GridX="13" GridY="13" Mesh="forest.mesh" />
-    <forest_81 Type="Forest" GridX="14" GridY="13" Mesh="forest.mesh" />
-    <forest_82 Type="Forest" GridX="14" GridY="14" Mesh="forest.mesh" />
-    <forest_83 Type="Forest" GridX="13" GridY="14" Mesh="forest.mesh" />
-    <forest_84 Type="Forest" GridX="12" GridY="14" Mesh="forest.mesh" />
-    <forest_85 Type="Forest" GridX="11" GridY="14" Mesh="forest.mesh" />
-    <forest_86 Type="Forest" GridX="10" GridY="14" Mesh="forest.mesh" />
+    <forest_53 Type="Forest" GridX="10" GridY="4" Mesh="forest.mesh" />
+    <forest_54 Type="Forest" GridX="10" GridY="3" Mesh="forest.mesh" />
+    <forest_55 Type="Forest" GridX="11" GridY="2" Mesh="forest.mesh" />
+    <forest_56 Type="Forest" GridX="11" GridY="3" Mesh="forest.mesh" />
+    <forest_57 Type="Forest" GridX="11" GridY="4" Mesh="forest.mesh" />
+    <forest_58 Type="Forest" GridX="11" GridY="5" Mesh="forest.mesh" />
+    <forest_59 Type="Forest" GridX="10" GridY="7" Mesh="forest.mesh" />
+    <forest_60 Type="Forest" GridX="11" GridY="7" Mesh="forest.mesh" />
+    <forest_61 Type="Forest" GridX="11" GridY="8" Mesh="forest.mesh" />
+    <forest_62 Type="Forest" GridX="11" GridY="6" Mesh="forest.mesh" />
+    <forest_63 Type="Forest" GridX="11" GridY="10" Mesh="forest.mesh" />
+    <forest_64 Type="Forest" GridX="10" GridY="11" Mesh="forest.mesh" />
+    <forest_65 Type="Forest" GridX="11" GridY="11" Mesh="forest.mesh" />
+    <forest_66 Type="Forest" GridX="6" GridY="9" Mesh="forest.mesh" />
+    <forest_67 Type="Forest" GridX="5" GridY="9" Mesh="forest.mesh" />
+    <forest_68 Type="Forest" GridX="6" GridY="10" Mesh="forest.mesh" />
+    <forest_69 Type="Forest" GridX="7" GridY="10" Mesh="forest.mesh" />
+	<camp_1 Type="Camp" GridX="7" GridY="2" Mesh="Camp1.mesh" />
 </MapObject>
-<MapEffect>
-    <mapeffect_0 Type="fireSystem" GridX="7" GridY="7" />
-</MapEffect>
+<MapEffect />
 <MapSquad>
     <Team1 />
     <Team2>
-	    <Team2Squad_0 Type="EtasiLightSpear" GridX="6" GridY="6" Direction = "1" UnitNum = "50"/>
-        <Team2Squad_1 Type="EtasiLightSpear" GridX="5" GridY="10" Direction = "1" UnitNum = "50"/>
-		<Team2Squad_2 Type="EtasiHeavyInf" GridX="7" GridY="7" Direction = "1" UnitNum = "50"/>
-        <Team2Squad_3 Type="EtasiLightSpear" GridX="11" GridY="10" Direction = "1" UnitNum = "50"/>
+	    <Team2Squad_0 Type="EtasiLightSpear" GridX="5" GridY="3" Direction = "1" UnitNum = "50"/>
+        <Team2Squad_1 Type="EtasiLightSpear" GridX="8" GridY="4" Direction = "1" UnitNum = "50"/>
+		<Team2Squad_2 Type="EtasiHeavyInf" GridX="7" GridY="2" Direction = "1" UnitNum = "50"/>
+        <Team2Squad_3 Type="EtasiLightSpear" GridX="6" GridY="6" Direction = "1" UnitNum = "50"/>
 	</Team2>
     <Team3 />
     <Team4 />
 </MapSquad>
 <MapArea>
     <DeployArea>
-        <c0 X="0" Y="4" />
-		<c1 X="0" Y="5" />
-        <c2 X="0" Y="6" />
+        <c0 X="0" Y="3" />
+		<c1 X="0" Y="4" />
+        <c2 X="0" Y="5" />
     </DeployArea>
 </MapArea>

@@ -505,6 +505,8 @@ std::vector<int> BattleSquad::getAttackRolls(bool rangedattack,bool asdefender, 
 		int atkroll = rand()% ATKROLL;
 		if(atkroll == ATKROLL -1)
 			atkroll = 100;
+		else if(atkroll == 0)
+			atkroll = -100;
 		attackrolls.push_back(atk + atkroll);
 	}
 	soildernum -= atknum;
