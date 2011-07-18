@@ -17,6 +17,7 @@ GUIMenu::GUIMenu(int width,int height):GUIScene("MainMenu.layout",width,height),
 
 	assignWidget(mNewGame,"New");
 	assignWidget(mLoad,"Load");
+	assignWidget(mOpiton,"Opiton");
 	assignWidget(mExit,"Exit");
 
 	mLogoImage->setSize(width,height);
@@ -27,6 +28,7 @@ GUIMenu::GUIMenu(int width,int height):GUIScene("MainMenu.layout",width,height),
 	mNewGame->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onNewGame);
 	mLoad->setCaption(StringTable::getSingleton().getString("LoadGame"));
 	mLoad->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onLoad);
+	mOpiton->setCaption(StringTable::getSingleton().getString("Opition"));
 	mExit->setCaption(StringTable::getSingleton().getString("ExitGame"));
 	mExit->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onExit);
 	setButtonLock(false);

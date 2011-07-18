@@ -251,9 +251,9 @@ void UnitGrap::createWeapon( std::string mesh, std::string mat,WeaponType type )
 // 	mPUNode=NULL;
 // }
 
-void UnitGrap::setMovePath( std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions)
+void UnitGrap::setMovePath( std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions,float MoveSpeed)
 {
-	mNodeAnimation = Core::getSingletonPtr()->mSceneMgr->createAnimation(mNode->getName()+"_Ani", vectors.size()*MOVE_KEYFRAME_TIME);
+	mNodeAnimation = Core::getSingletonPtr()->mSceneMgr->createAnimation(mNode->getName()+"_Ani", vectors.size()*MOVE_KEYFRAME_TIME*MoveSpeed);
 	mNodeAnimation->setInterpolationMode(Ogre::Animation::IM_LINEAR);
 	Ogre::NodeAnimationTrack* track = mNodeAnimation->createNodeTrack(1, mNode);
 
@@ -265,7 +265,7 @@ void UnitGrap::setMovePath( std::map<int,Ogre::Vector3>& vectors,std::map<int,Og
 	std::map<int,Ogre::Vector3>::iterator itr  =  vectors.begin();
 	for(  ;  itr !=  vectors.end();  ++itr )
 	{
-		timePosition+=MOVE_KEYFRAME_TIME;
+		timePosition+=MOVE_KEYFRAME_TIME*MoveSpeed;
 		kf = track->createNodeKeyFrame(timePosition);
 
 		kf->setTranslate(itr->second);//+Ogre::Vector3(mOffsetX,0,mOffsetY));

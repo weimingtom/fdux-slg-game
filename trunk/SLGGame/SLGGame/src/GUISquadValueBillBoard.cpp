@@ -32,9 +32,7 @@ void GUISquadValueBillBoard::update( Ogre::Vector2 screen )
 	}
 	else
 	{
-		mMoveY=0;
-		mStart=false;
-		mBText->setVisible(false);
+		stopShow();
 	}
 }
 
@@ -61,4 +59,12 @@ void GUISquadValueBillBoard::showScene( std::string arg )
 void GUISquadValueBillBoard::hideScene()
 {
 	mBText->setVisible(false);
+}
+
+void GUISquadValueBillBoard::stopShow()
+{
+	mMoveY=0;
+	mStart=false;
+	mBText->setVisible(false);
+	mBText->setCaption("");
 }

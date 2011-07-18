@@ -31,6 +31,7 @@ public:
 	float getAttr(AttrType attrtype, AttrCalcType calctype, Direction direction);
 
 	int getUnitGrapNum();
+	int getUnitRealNum();
 
 	void newTurn();
 	int getTeam();

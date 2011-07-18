@@ -349,12 +349,18 @@ float BattleSquad::getAttr(AttrType attrtype, AttrCalcType calctype, Direction d
 	return attr;
 }
 
+int BattleSquad::getUnitRealNum()
+{
+	int unitnum;
+	DataLibrary::getSingleton().getData(getPath() + std::string("/UnitNumber"),unitnum);
+	return unitnum;
+}
+
 int BattleSquad::getUnitGrapNum()
 {
 	SquadType squadtype;
 	DataLibrary::getSingleton().getData(getPath() + std::string("/Type"),squadtype);
-	int unitnum;
-	DataLibrary::getSingleton().getData(getPath() + std::string("/UnitNumber"),unitnum);
+	int unitnum=getUnitRealNum();
 	if(squadtype == SQUAD_NORMAL)
 	{
 		return (unitnum-1)/10; 
@@ -658,3 +664,5 @@ int BattleSquad::getTeamFaction(int team)
 		return 3;
 	return 0;
 }
+
+

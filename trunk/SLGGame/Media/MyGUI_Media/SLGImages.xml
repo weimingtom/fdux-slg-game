@@ -95,10 +95,16 @@
 	</Resource>
 	<Resource type="ResourceImageSet" name="None">
 		<Group name="Button" texture="SLGIcon.png" size="55 55">
+			<Index name="disabled">
+				<Frame point="282 412"/>
+			</Index>
 			<Index name="normal">
 				<Frame point="170 410"/>
 			</Index>
 			<Index name="highlighted">
+				<Frame point="227 410"/>
+			</Index>
+			<Index name="pushed">
 				<Frame point="227 410"/>
 			</Index>
 		</Group>

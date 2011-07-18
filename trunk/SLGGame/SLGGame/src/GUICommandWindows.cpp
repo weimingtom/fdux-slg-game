@@ -19,6 +19,7 @@ GUICommandWindows::GUICommandWindows(MyGUI::Window* window,int Width,int Height)
 	assignWidget(mSkill[6],"Skill7");
 	assignWidget(mSkill[7],"Skill8");
 	assignWidget(mSkill[8],"Skill9");
+	assignWidget(mAPLabel,"APLabel");
 
 	mSkill[0]->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUICommandWindows::onSkill1);
 	mSkill[1]->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUICommandWindows::onSkill2);
@@ -120,6 +121,7 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 
 	//ÒÆ¶¯¼¼ÄÜ
 	float apleft = mSelectSquad->getActionPoint();
+	mAPLabel->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("APLabel"))%(int)apleft));
 	int skillno = 0;
 	mSkill[skillno]->setVisible(true);
 	mSkill[skillno]->setCaption(StringTable::getSingletonPtr()->getString("Move"));
@@ -183,8 +185,18 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 		std::string skillpath = skilltablepath + std::string("/") + (*ite);
 		int cooldown;
 		std::string skillname;
+		std::string skillIcon;
 		datalib->getData(std::string("StaticData/SkillData/")+ (*ite)+ std::string("/Name"),skillname);
 		datalib->getData(skillpath + std::string("/CoolDown"),cooldown);
+		datalib->getData(std::string("StaticData/SkillData/")+ (*ite) + std::string("/Icon"),skillIcon);
+		if (skillIcon!="none")
+		{
+			mSkill[skillno]->setImageResource(skillIcon);
+		}
+		else
+		{
+			mSkill[skillno]->setImageResource("None");
+		}
 		if(cooldown > 0)
 		{
 			mSkill[skillno]->setEnabled(false);

@@ -8,8 +8,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SLGGame", "SLGGame\SLGGame.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SubSystem", "..\SubSystem\SubSystem\SubSystem.vcproj", "{FAEB5A90-8B8B-41BB-BEA5-CE8607604922}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TiCPP", "..\ticpp\TiCPP.vcproj", "{6E91B1C0-6285-4145-A6A3-915663869DE3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -24,10 +22,6 @@ Global
 		{FAEB5A90-8B8B-41BB-BEA5-CE8607604922}.Debug|Win32.Build.0 = Debug|Win32
 		{FAEB5A90-8B8B-41BB-BEA5-CE8607604922}.Release|Win32.ActiveCfg = Release|Win32
 		{FAEB5A90-8B8B-41BB-BEA5-CE8607604922}.Release|Win32.Build.0 = Release|Win32
-		{6E91B1C0-6285-4145-A6A3-915663869DE3}.Debug|Win32.ActiveCfg = Debug|Win32
-		{6E91B1C0-6285-4145-A6A3-915663869DE3}.Debug|Win32.Build.0 = Debug|Win32
-		{6E91B1C0-6285-4145-A6A3-915663869DE3}.Release|Win32.ActiveCfg = Release|Win32
-		{6E91B1C0-6285-4145-A6A3-915663869DE3}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

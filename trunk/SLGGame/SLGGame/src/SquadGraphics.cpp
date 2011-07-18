@@ -1293,7 +1293,7 @@ void SquadGraphics::changeUnitPosition( Direction d,Ogre::Vector3 offsetVector )
 	mCommanderUnit->mOffsetY=commandVector.z;
 
 	//ÉèÖÃÒÆ¶¯
-	mCommanderUnit->setMovePath(commandVectors,quaternions);
+	mCommanderUnit->setMovePath(commandVectors,quaternions,0.5);
 
 	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 	{
@@ -1301,7 +1301,7 @@ void SquadGraphics::changeUnitPosition( Direction d,Ogre::Vector3 offsetVector )
 		(*it)->mOffsetX=soldierVector[(*it)->mFormationPosition].x;
 		(*it)->mOffsetY=soldierVector[(*it)->mFormationPosition].z;
 		vectors[0]=mNode->getPosition()+soldierVector[(*it)->mFormationPosition]+offsetVector;
-		(*it)->setMovePath(vectors,quaternions);
+		(*it)->setMovePath(vectors,quaternions,0.5);
 	}
 }
 
@@ -1319,3 +1319,13 @@ std::vector<Ogre::Vector3> SquadGraphics::getSoiderPosition()
 	}
 	return posvec;
 }
+
+void SquadGraphics::showValue( std::string value,Ogre::ColourValue c )
+{
+	mSquadValueBB->setValue(value,MyGUI::Colour(c.r,c.g,c.b));
+}
+
+void SquadGraphics::stopShowValue()
+{
+	mSquadValueBB->stopShow();
+}	
