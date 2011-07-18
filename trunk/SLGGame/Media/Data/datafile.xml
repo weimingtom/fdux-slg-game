@@ -239,8 +239,8 @@
 			<Value type="Int" value="10"/>
 			<Script type="String" value="none"/>
 			<Mesh type="String" value="bow.mesh"/>
-			<Mat type="String" value="bow"/>
-			<MaxRange type="Int" value="4"/>
+			<Mat type="String" value="Bow"/>
+			<MaxRange type="Int" value="3"/>
 			<MinRange type="Int" value="1"/>
 			<AniGroup type="String" value="bow"/>
 			<AttrModifer>
