@@ -80,7 +80,22 @@ void BattlePlayerState::update(unsigned int deltaTime)
 
 bool BattlePlayerState::keyPressed(const OIS::KeyEvent &arg)
 {
-	return false;
+	if (arg.key==OIS::KC_ESCAPE)
+	{
+		if (mGUIMenu->getVisible())
+		{
+			mGUIMenu->hideScene();
+		}
+		else
+		{
+			mGUIMenu->showScene("");
+		}
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 bool BattlePlayerState::keyReleased(const OIS::KeyEvent &arg)

@@ -42,16 +42,17 @@ void AnimationCutScene::startCutScence()
 
 bool AnimationCutScene::endCutScene()
 {
+	//std::cout<<mSquadGraphics->mSName<<":"<<mSquadGraphics->isAnimationOver(mObject)<<std::endl;
 	if(mSquadGraphics->isAnimationOver(mObject))
 	{
 		if(mParticle != "none")
 		{
 			mSquadGraphics->stopParticle(mParticleId);
 		}
-		if (mIsBackToWait)
-		{
-			mSquadGraphics->setInitAnimation(mObject);
-		}
+		//if (mIsBackToWait)
+		//{
+		//	mSquadGraphics->setInitAnimation(mObject);
+		//}
 		return true;
 	}
 	return false;

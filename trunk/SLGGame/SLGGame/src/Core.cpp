@@ -66,8 +66,13 @@ bool Core::initialize()
 	mRoot->initialise(false);
 
 	std::string title = StringTable::getSingleton().getAnsiString("gamename");
+	
+	Ogre::NameValuePairList list;
 
-	mWindow = mRoot->createRenderWindow(title,1280,720,false,0);
+	list["outerDimensions"]="true";
+	list["border"]="fixed"; 
+
+	mWindow = mRoot->createRenderWindow(title,1280,720,false,&list);
 
 	Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
 
@@ -92,7 +97,7 @@ bool Core::initialize()
 	Ogre::ResourceGroupManager::getSingletonPtr()->initialiseAllResourceGroups();
 
 	mDebugOverlay = Ogre::OverlayManager::getSingleton().getByName("Core/DebugOverlay");
-	mDebugOverlay->show();
+	//mDebugOverlay->show();
 
 	mGUISystem=new GUISystem(mWindow,mSceneMgr);
 	mGUISystem->registerSceneFactory(StageScene,new GUIStageFactory());

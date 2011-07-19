@@ -71,8 +71,38 @@ void GUISquadBillBoard::setVisible( bool v )
 	mIsVisible=v;
 }
 
-void GUISquadBillBoard::setName( std::string name )
+void GUISquadBillBoard::setName( std::string name,MyGUI::Colour c)
 {
 	mBName->setCaption(name);
+	mBName->setTextColour(c);
+}
+
+
+void GUISquadBillBoard::setIcon( SquadType type )
+{
+	switch(type)
+	{
+	case SQUADTYPE_LightInf:
+		 {
+			mBIcon->setItemResource("LightInfIcon");
+			break;
+		 }
+	case SQUADTYPE_HeavyInf:
+		  {
+			  mBIcon->setItemResource("HeavyInfIcon");
+			  break;
+		  }
+	case SQUADTYPE_Saint:
+		  {
+			  mBIcon->setItemResource("SaintIcon");
+			  break;
+		  }
+	case SQUADTYPE_Bowman:
+		  {
+			  mBIcon->setItemResource("BowmanIcon");
+			  break;
+		  }
+	}
+
 }
 

@@ -121,3 +121,9 @@ typedef int UnitType;
 const UnitType UNITTYPE_ALL = 3;
 const UnitType UNITTYPE_LEADER = 1;
 const UnitType UNITTYPE_SOLIDER = 2;
+
+typedef int SquadType;
+const SquadType SQUADTYPE_LightInf=0;
+const SquadType SQUADTYPE_HeavyInf=1;
+const SquadType SQUADTYPE_Bowman=2;
+const SquadType SQUADTYPE_Saint=3;

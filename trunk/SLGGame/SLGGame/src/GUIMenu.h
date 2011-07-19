@@ -21,6 +21,7 @@ private:
 
 	void onNewGame(MyGUI::Widget* _sender);
 	void onLoad(MyGUI::Widget* _sender);
+	void onOpiton(MyGUI::Widget* _sender);
 	void onExit(MyGUI::Widget* _sender);
 
 	void setButtonLock(bool isLock);

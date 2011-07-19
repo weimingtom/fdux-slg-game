@@ -94,6 +94,8 @@ public:
 // 	ParticleUniverse::ParticleSystem* mPUSystem;
 // 	bool mPUSystemEnd;
 	bool mReturnInitAni;
+	bool mIsAnimationComplete;
+
 
 	void setParticleVisible(bool visible);
 	bool mParticleVisible;

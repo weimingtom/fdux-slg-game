@@ -3,12 +3,12 @@ function AVGInit()
 	mid=2;
 	right=3;
 	all=5;
-	GUI.SetTextBgRect(0,0,1280,700);
-	GUI.SetTextBgImage("3.png");
-	GUI.SetTextRect(30,530,700,200);
-	GUI.SetRoleNameRect(50,480,150,80);
-	GUI.SetUITextColor(1,1,1);
-	GUI.SetRoleNameColor(1,1,1);
+	GUI.SetTextBgRect(0,0,1280,720);
+	GUI.SetTextBgImage("TextBox.png");
+	GUI.SetTextRect(221,538,840,125);
+	GUI.SetRoleNameRect(235,496,150,80);
+	GUI.SetUITextColor(0,0,0);
+	GUI.SetRoleNameColor(0,0,0);
 	GUI.SetFont("fireflysung","fireflysung");
 	GUI.SetDialogAttribute();
 end;

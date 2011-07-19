@@ -110,8 +110,31 @@ mDirection(direction)
 	//ÉèÖÃÖ¸Ê¾Æ÷
 	mSquadBB=new GUISquadBillBoard(mCommanderUnit->mNode);
 	std::string name;
+	int type;
 	datalib->getData(datapath + std::string("/Name"),name);
-	mSquadBB->setName(name);
+	datalib->getData(datapath + std::string("/SquadType"),type);
+
+	datalib->getData(datapath + std::string("/TeamId"),tempid);
+	datalib->getData( std::string("GameData/BattleData/Team/") + tempid + std::string("/Relation"), tempid);
+	if (tempid=="player")
+	{
+		mSquadBB->setName(name,MyGUI::Colour::Blue);
+	}
+	else if (tempid=="enemy1" || tempid=="enemy2" ||tempid=="enemy3")
+	{
+		mSquadBB->setName(name,MyGUI::Colour::Red);
+	}
+	else if (tempid=="aliiance")
+	{
+		mSquadBB->setName(name,MyGUI::Colour::Green);
+	}
+	else
+	{
+		mSquadBB->setName(name,MyGUI::Colour::Black);
+	}
+
+	mSquadBB->setIcon(type);
+	mSName=name;
 	BillboardManager::getSingletonPtr()->addBillBoard(mSquadBB);
 
 	mSquadValueBB=new GUISquadValueBillBoard(mCommanderUnit->mNode);
@@ -172,6 +195,7 @@ SquadGraphics::~SquadGraphics(void)
 	mNode->getParentSceneNode()->removeAndDestroyChild(mNode->getName());
 
 	BillboardManager::getSingletonPtr()->destroyBillBoard(mSquadBB);
+	BillboardManager::getSingletonPtr()->destroyBillBoard(mSquadValueBB);
 }
 
 UnitGrap* SquadGraphics::createSoldier()
@@ -412,20 +436,31 @@ void SquadGraphics::setInitAnimation( UnitType object )
 
 bool SquadGraphics::isAnimationOver(UnitType object)
 {
+	bool isCommandEnd=mCommanderUnit->mIsAnimationComplete;
+	bool isSoldierEnd=true;
+	if (mSoldierUnits.size()!=0)
+	{
+		for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+		{
+			if (!(*it)->mIsAnimationComplete)
+			{
+				isSoldierEnd=false;
+				break;
+			}
+		}
+	}
+
 	if (object==UNITTYPE_LEADER)
 	{
-		return mCommanderUnit->mAniBlender->complete;
+		return isCommandEnd;
+	}
+	else if(object==UNITTYPE_SOLIDER) 
+	{
+		return isSoldierEnd;
 	}
 	else
 	{
-		if (mSoldierUnits.size()!=0)
-		{
-			return mSoldierUnits.at(0)->mAniBlender->complete;
-		}
-		else
-		{
-			return true;
-		}
+		return isCommandEnd && isSoldierEnd;
 	}
 }
 

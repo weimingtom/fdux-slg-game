@@ -29,6 +29,7 @@ GUIMenu::GUIMenu(int width,int height):GUIScene("MainMenu.layout",width,height),
 	mLoad->setCaption(StringTable::getSingleton().getString("LoadGame"));
 	mLoad->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onLoad);
 	mOpiton->setCaption(StringTable::getSingleton().getString("Opition"));
+	mOpiton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onOpiton);
 	mExit->setCaption(StringTable::getSingleton().getString("ExitGame"));
 	mExit->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onExit);
 	setButtonLock(false);
@@ -197,6 +198,7 @@ void GUIMenu::setButtonLock( bool isLock )
 {
 	mNewGame->setEnabled(isLock);
 	mLoad->setEnabled(isLock);
+	mOpiton->setEnabled(isLock);
 	mExit->setEnabled(isLock);
 }
 
@@ -212,5 +214,10 @@ void GUIMenu::onLoad( MyGUI::Widget* _sender )
 
 	mTimer.reset();
 	GUISystem::getSingletonPtr()->setFrameUpdateScene(MenuScene);
+}
+
+void GUIMenu::onOpiton( MyGUI::Widget* _sender )
+{
+
 }
 

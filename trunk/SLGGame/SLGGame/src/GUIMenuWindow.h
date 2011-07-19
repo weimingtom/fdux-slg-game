@@ -29,6 +29,8 @@ public:
 
 	void setAllowSave(bool allow) { mSaveButton->setEnabled(allow);}
 
+	bool getVisible();
+
 private:
 
 	void onRestart(MyGUI::Widget* _sender);

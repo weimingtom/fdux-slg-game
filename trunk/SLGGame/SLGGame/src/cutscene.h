@@ -4,7 +4,7 @@ class CutScene
 {
 public:
 	CutScene(unsigned int lasttime = 0);
-	~CutScene();
+	virtual ~CutScene();
 	
 	void start();
 	void skip();  //Ìø¹ýµ±Ç°Æ¬¶Ï

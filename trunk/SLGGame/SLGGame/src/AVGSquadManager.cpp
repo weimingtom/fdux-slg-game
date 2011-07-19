@@ -51,6 +51,10 @@ bool AVGSquadManager::addSquad(std::string uid, std::string id, std::string path
 	datalib->setData(datadistpath + std::string("/Describe"), tempstring, true);
 	re = datalib->getData(datasrcpath + std::string("/Type"),tempint);
 	datalib->setData(datadistpath + std::string("/Type"), tempint, true);
+
+	re = datalib->getData(datasrcpath + std::string("/SquadType"),tempint);
+	datalib->setData(datadistpath + std::string("/SquadType"), tempint, true);
+
 	re = datalib->getData(datasrcpath + std::string("/LeaderName"),tempstring);
 	tempstring = StringTable::getSingleton().getString(tempstring);
 	datalib->setData(datadistpath + std::string("/LeaderName"), tempstring, true);

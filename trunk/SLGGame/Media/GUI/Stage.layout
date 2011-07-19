@@ -33,19 +33,32 @@
             <Property key="Visible" value="false"/>
         </Widget>
     </Widget>
-    <Widget type="ImageBox" skin="ImageBox" position="0 0 405 285" layer="Overlapped" name="EffectLayer">
+    <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Overlapped" name="EffectLayer">
         <Property key="Visible" value="true"/>
-        <Widget type="Button" skin="Button" position="0 0 85 25" name="SaveButton">
+        <Widget type="Button" skin="SLGButton3" position="565 680 140 45" name="SaveButton">
             <Property key="Caption" value="Save"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="TextColour" value="1 1 1"/>
+            <Property key="FontHeight" value="24"/>
         </Widget>
-        <Widget type="Button" skin="Button" position="85 0 85 25" name="LoadButton">
+        <Widget type="Button" skin="SLGButton3" position="700 680 135 45" name="LoadButton">
             <Property key="Caption" value="Load"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="TextColour" value="1 1 1"/>
+            <Property key="FontHeight" value="24"/>
         </Widget>
-        <Widget type="Button" skin="Button" position="170 0 90 25" name="HideButton">
+        <Widget type="Button" skin="SLGButton3" position="830 680 140 45" name="HideButton">
             <Property key="Caption" value="Hide"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="24"/>
+            <Property key="TextColour" value="1 1 1"/>
         </Widget>
-        <Widget type="Button" skin="Button" position="260 0 90 25" name="SystemButton">
+        <Widget type="Button" skin="SLGButtonSkin3" position="965 680 140 45" name="SystemButton">
             <Property key="Caption" value="System"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="TextColour" value="1 1 1"/>
+            <Property key="FontHeight" value="24"/>
+            <Property key="TextAlign" value="Center"/>
         </Widget>
     </Widget>
 </MyGUI>
