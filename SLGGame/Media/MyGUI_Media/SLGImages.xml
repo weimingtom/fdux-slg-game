@@ -389,4 +389,32 @@
 			</Index>
 		</Group>
 	</Resource>
+		<Resource type="ResourceImageSet" name="LightInfIcon">
+		<Group name="Button" texture="SLGIcon.png" size="22 24">
+			<Index name="normal">
+				<Frame point="272 12"/>
+			</Index>
+		</Group>
+	</Resource>
+		<Resource type="ResourceImageSet" name="BowmanIcon">
+		<Group name="Button" texture="SLGIcon.png" size="22 24">
+			<Index name="normal">
+				<Frame point="300 12"/>
+			</Index>
+		</Group>
+	</Resource>
+			<Resource type="ResourceImageSet" name="HeavyInfIcon">
+		<Group name="Button" texture="SLGIcon.png" size="22 24">
+			<Index name="normal">
+				<Frame point="327 12"/>
+			</Index>
+		</Group>
+	</Resource>
+				<Resource type="ResourceImageSet" name="SaintIcon">
+		<Group name="Button" texture="SLGIcon.png" size="22 24">
+			<Index name="normal">
+				<Frame point="354 12"/>
+			</Index>
+		</Group>
+	</Resource>
 </MyGUI>

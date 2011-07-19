@@ -26,7 +26,8 @@ mNodeAnimation(NULL),
 mNodeAnimationState(NULL),
 mFormationPosition(0),
 mOffsetX(0),
-mOffsetY(0)
+mOffsetY(0),
+mIsAnimationComplete(true)
 {
 
 	mIdleName="Ready1H";
@@ -471,8 +472,9 @@ void UnitGrap::setAnimation( std::string name,bool loop,bool returnInit )
 		name = mAttackName;
 	else if(name == "Walk")
 		name == mWalkName;
-	mAniBlender->blend(name,AnimationBlender::BlendWhileAnimating,0.2,loop);
+	mAniBlender->blend(name,AnimationBlender::BlendSwitch,0.2,loop);
 	mReturnInitAni=returnInit;
+	mIsAnimationComplete=false;
 }
 
 void UnitGrap::stopTransform()
@@ -489,11 +491,17 @@ void UnitGrap::update( unsigned int deltaTime )
 {
 	mAniBlender->addTime(deltaTime/1000.0f);
 	
-	if (mReturnInitAni && mAniBlender->complete)
+	if ( !mIsAnimationComplete && mAniBlender->complete)
 	{
-		mAniBlender->BackToInit();
-		mReturnInitAni=false;
+		mIsAnimationComplete=true;
+		if (mReturnInitAni)
+		{
+			mAniBlender->BackToInit();
+			mReturnInitAni=false;
+		}
 	}
+
+
 
 	if(mNodeAnimationState!=NULL)
 	{

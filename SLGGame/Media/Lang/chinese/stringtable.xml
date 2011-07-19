@@ -50,6 +50,10 @@
 		<ExitGame type="String" value = "退出游戏"/>
 		<YesButton type="String" value = "确定"/>
 		<NoButton type="String" value = "取消"/>
+		<SaveButton type="String" value="保存"/>
+		<LoadButton type="String" value="读取"/>
+		<HideButton type="String" value="隐藏"/>
+		<SystemButton type="String" value="系统"/>
 		<SaveCaption type="String" value = "保存游戏"/>
 		<LoadCaption type="String" value = "读取游戏"/>
 		<NoFile type="String" value="--空--" />

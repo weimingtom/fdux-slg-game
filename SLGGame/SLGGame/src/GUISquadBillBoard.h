@@ -1,6 +1,8 @@
 #pragma once
 #include "guibillboard.h"
 
+#include "squaddefine.h"
+
 class GUISquadBillBoard :
 	public GUIBillBoard
 {
@@ -18,7 +20,9 @@ public:
 
 	void hideScene();//Òþ²Ø³¡¾°
 
-	void setName(std::string name);
+	void setName(std::string name,MyGUI::Colour c);
+
+	void setIcon(SquadType type);
 
 	void setVisible(bool v);
 

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout" version="3.2.0">
-    <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Overlapped" name="backgroundImage">
+    <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Main" name="backgroundImage">
         <Property key="ImageTexture" value="menubg.jpg"/>
         <Widget type="ProgressBar" skin="SLGProgressBar" position="345 585 650 60" name="loadProgress">
             <Property key="Range" value="100"/>

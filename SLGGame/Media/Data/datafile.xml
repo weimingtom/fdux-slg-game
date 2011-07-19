@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 编辑使用 XMLSpy v2006 U (http://www.altova.com) 由 any (any) -->
+
 <StaticData>
 	<SquadData>
 		<CheetahSquad>
 			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="1"/>
 			<SoilderId type="String" value="WingsSoilder"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="HeavySword"/>
@@ -25,6 +26,7 @@
 		</CheetahSquad>
 		<DandelionSquad>
 			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="2"/>
 			<SoilderId type="String" value="WingsSoilder"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="ShortSword"/>
@@ -46,6 +48,7 @@
 		</DandelionSquad>
 		<Olivia>
 			<Type type="Int" value="1"/>
+			<SquadType type="Int" value="3"/>
 			<SoilderId type="String" value="HolySpirit"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="none"/>
@@ -68,6 +71,7 @@
 		</Olivia>
 		<EtasiLightSpear>
 			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="0"/>
 			<SoilderId type="String" value="EtasiSoilder"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="Pike"/>
@@ -88,6 +92,7 @@
 		</EtasiLightSpear>
 		<EtasiHeavyInf>
 			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="1"/>
 			<SoilderId type="String" value="EtasiSoilder"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="HeavySword"/>

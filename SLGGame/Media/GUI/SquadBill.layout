@@ -3,11 +3,14 @@
     <Widget type="ImageBox" skin="ImageBox" position="0 0 183 36" layer="Modal" name="BImage">
         <Property key="ImageTexture" value="SquadBillboard.png"/>
         <Widget type="TextBox" skin="TextBox" position="36 7 140 20" name="BName">
-            <Property key="TextColour" value="0 0 0"/>
+            <Property key="TextColour" value="0 0 1"/>
             <Property key="Caption" value="sdfsdfsdfsdf"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="ImageBox" skin="ImageBox" position="0 0 32 32" name="BIcon"/>
+        <Widget type="ImageBox" skin="ImageBox" position="4 5 22 24" name="BIcon">
+            <Property key="ImageGroup" value="Button"/>
+            <Property key="ImageName" value="normal"/>
+        </Widget>
     </Widget>
 </MyGUI>

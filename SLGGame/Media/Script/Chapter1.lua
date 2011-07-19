@@ -1,7 +1,7 @@
 GUI.SetDialogVisible(1);
 GUI.ShowImage("bg1.jpg",4,1000);
 GUI.ShowRoleName("丘比");
-GUI.ShowText("和我进行契约,然后成为魔法少女吧!",2);
+GUI.ShowText("和我进行契约,然后成为魔法少女吧!和我进行契约,然后成为魔法少女吧!",2);
 GUI.ShowText("不成为魔法少女么?",1);
 GUI.ShowText("啊啊啊啊啊啊",2);
 GUI.ShowText("aaaaaaaaaaaaaaaaa",1);

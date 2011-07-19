@@ -74,6 +74,8 @@ public:
 	Ogre::Vector3 getLeaderPosition(); 
 	std::vector<Ogre::Vector3> getSoiderPosition();
 
+	std::string mSName;
+
 private:
 	SquadGraphics(std::string squadName, std::string datapath, Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index,int soldierCount);
 

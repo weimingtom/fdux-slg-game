@@ -259,7 +259,7 @@
             <Property key="FontHeight" value="20"/>
         </Widget>
     </Widget>
-    <Widget type="Window" skin="WindowCS" position="445 165 120 190" layer="Popup" name="Menu">
+    <Widget type="Window" skin="WindowCS" position="445 165 120 190" align="Center" layer="Info" name="Menu">
         <Property key="Visible" value="false"/>
         <Property key="Caption" value="Menu"/>
         <Property key="FontName" value="fireflysung"/>

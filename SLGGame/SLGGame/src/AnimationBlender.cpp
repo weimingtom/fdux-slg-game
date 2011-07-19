@@ -123,6 +123,10 @@ void AnimationBlender::addTime( Real time )
 					mTarget->addTime(time);
 			}
 		}
+	/*	if (mSource->getAnimationName()=="Attack1H1")
+		{
+			std::cout<<mSource->getAnimationName()<<":"<<mSource->getTimePosition()<<"/"<<mSource->getLength()<<std::endl;
+		}*/
 		if (mSource->getTimePosition() >= mSource->getLength())
 		{
 			complete = true;

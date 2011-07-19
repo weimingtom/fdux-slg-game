@@ -4,6 +4,7 @@
 #include "CameraContral.h"
 #include "InputListener.h"
 #include "Terrain.h"
+#include "Core.h"
 
 #include <iostream>
 
@@ -18,6 +19,19 @@ InputControl::~InputControl(void)
 
 bool InputControl::keyPressed( const OIS::KeyEvent &arg )
 {
+
+	if (arg.key==OIS::KC_F12)
+	{
+		if (Core::getSingletonPtr()->mDebugOverlay->isVisible())
+		{
+			Core::getSingletonPtr()->mDebugOverlay->hide();
+		}
+		else
+		{
+			Core::getSingletonPtr()->mDebugOverlay->show();
+		}
+	}
+
 	if (!mGUISystem->keyPressed(arg))
 	{
 		if(mLisenerStack.size() > 0)
@@ -35,12 +49,10 @@ bool InputControl::keyReleased( const OIS::KeyEvent &arg )
 
 bool InputControl::mouseMoved( const OIS::MouseEvent &arg )
 {
-	if (!mGUISystem->mouseMoved(arg))
+	mGUISystem->mouseMoved(arg);
+	if(mLisenerStack.size() > 0)
 	{
-		if(mLisenerStack.size() > 0)
-		{
-			mLisenerStack.back()->mouseMoved(arg);
-		}
+		mLisenerStack.back()->mouseMoved(arg);
 	}
 	return true;
 }

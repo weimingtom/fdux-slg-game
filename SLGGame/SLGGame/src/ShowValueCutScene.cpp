@@ -10,6 +10,7 @@ ShowValueCutScene::ShowValueCutScene(unsigned int id,std::string value,Ogre::Col
 
 ShowValueCutScene::~ShowValueCutScene(void)
 {
+	mSquadGraphics->stopShowValue();
 }
 
 void ShowValueCutScene::startCutScence()
