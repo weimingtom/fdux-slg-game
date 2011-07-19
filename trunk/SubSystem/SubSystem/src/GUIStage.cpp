@@ -8,6 +8,7 @@
 #ifndef SCRIPT_EDITOR
 #include "GUISLWindow.h"
 #include "DataLibrary.h"
+#include "StringTable.h"
 #endif
 
 GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),mCheckMouseDown(false),mIsMouseDown(false),mTextX(0),mTextY(0),mIsFastForward(false)
@@ -40,6 +41,11 @@ GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),m
 	assignWidget(mLoadButton, "LoadButton");
 	assignWidget(mHideButton,"HideButton");
 	assignWidget(mSystemButton,"SystemButton");
+
+	mSaveButton->setCaption(StringTable::getSingletonPtr()->getString("SaveButton"));
+	mLoadButton->setCaption(StringTable::getSingletonPtr()->getString("LoadButton"));
+	mHideButton->setCaption(StringTable::getSingletonPtr()->getString("HideButton"));
+	mSystemButton->setCaption(StringTable::getSingletonPtr()->getString("SystemButton"));
 
 	mEffectLayer->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::eventMouseButtonClick);
 	mSaveButton->eventMouseButtonClick+=MyGUI::newDelegate(this, &GUIStage::onSave);
