@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <GameData>
     <StoryData>
-        <BackGroundName value="bg1.jpg" type="String" />
+        <BackGroundName value="grasslands.png" type="String" />
         <BackGroundPosition value="0,0,0" type="Vector3" />
-        <BackGroundSize value="2560,1440,0" type="Vector3" />
-        <LeftName value="" type="String" />
-        <LeftPosition value="5,25,0" type="Vector3" />
-        <LeftSize value="275,480,0" type="Vector3" />
+        <BackGroundSize value="1280,800,0" type="Vector3" />
+        <LeftName value="Olivia_right_1.png" type="String" />
+        <LeftPosition value="-100,0,0" type="Vector3" />
+        <LeftSize value="640,720,0" type="Vector3" />
         <MidName value="" type="String" />
         <MidPosition value="295,25,0" type="Vector3" />
         <MidSize value="245,480,0" type="Vector3" />
-        <RightName value="" type="String" />
-        <RightPosition value="545,25,0" type="Vector3" />
-        <RightSize value="250,480,0" type="Vector3" />
-        <Text value="啊啊啊啊啊啊aaaaaaaaaaaaaaaaa&#x0A;bbbbbbb" type="String" />
-        <RoleName value="" type="String" />
+        <RightName value="Cheetah_left_1.png" type="String" />
+        <RightPosition value="700,0,0" type="Vector3" />
+        <RightSize value="640,720,0" type="Vector3" />
+        <Text value="其他人，准备突袭！" type="String" />
+        <RoleName value="齐塔" type="String" />
         <TextCursorType value="0" type="Int" />
         <ScriptName value="Chapter1.lua" type="String" />
-        <ScriptLine value="6" type="Int" />
-        <FileName value="NoName" type="String" />
+        <ScriptLine value="771" type="Int" />
+        <FileName value="button" type="String" />
     </StoryData>
 </GameData>

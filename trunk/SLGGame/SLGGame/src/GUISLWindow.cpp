@@ -32,8 +32,6 @@ GUISLWindow::GUISLWindow(int width,int height):GUIScene("SLWindow.layout",width,
 		mTextBox->eventMouseButtonClick+=MyGUI::newDelegate(this, &GUISLWindow::onSaveTextClick);
 		//检查文件名是否存在
 		WIN32_FIND_DATAA fd;
-		
-		//std::string a=std::string(std::string(SAVE_PATH)+std::string("\\save")+Ogre::StringConverter::toString(i+1)+".xml");
 
 		HANDLE hFind = ::FindFirstFileA((std::string(SAVE_PATH)+std::string("\\save")+Ogre::StringConverter::toString(i+1)+std::string(".xml")).c_str(), &fd);
 
@@ -70,7 +68,7 @@ void GUISLWindow::showScene( std::string arg )
 	}
 	else
 	{
-		mCaption->setCaption(StringTable::getSingletonPtr()->getString("SaveCaption"));
+		mCaption->setCaption(StringTable::getSingletonPtr()->getString("LoadCaption"));
 		isSave=false;
 	}
 
@@ -84,6 +82,8 @@ void GUISLWindow::showScene( std::string arg )
 
 	mTimerWork=FadeInOutWork;
 	mTickTime=DefaultDialogVisibleTime*1000/100;
+
+	buttonLock(false);
 
 	//开始帧更新
 	mTimer.reset();
@@ -102,6 +102,8 @@ void GUISLWindow::hideScene()
 
 	mTimerWork=FadeInOutWork;
 	mTickTime=DefaultDialogVisibleTime*1000/100;
+	
+	buttonLock(false);
 
 	//开始帧更新
 	mTimer.reset();
@@ -117,10 +119,21 @@ void GUISLWindow::FrameEvent()
 		FadeInOut();
 	}
 
-	if (mStartFade && mTimerWork==NoneWork && mSetpDirection==false)
+	if (mStartFade && mTimerWork==NoneWork)
 	{
-		mStartFade=false;
-		GUISystem::getSingletonPtr()->destoryScene(SLScene);
+		if (mSetpDirection==false)
+		{
+			mStartFade=false;
+			if(!isSave)
+			{
+				mCallScene->onOtherSceneNotify("LoadComplete");
+			}
+			GUISystem::getSingletonPtr()->destoryScene(SLScene);
+		}
+		else
+		{
+			buttonLock(true);
+		}
 	}
 	
 }
@@ -147,7 +160,7 @@ void GUISLWindow::onYes( MyGUI::Widget* _sender )
 		else
 		{
 			DataLibrary::getSingletonPtr()->loadXmlData(DataLibrary::GameData,std::string(SAVE_PATH)+std::string("\\save")+mOldText->getUserString("Num")+".xml",false);
-			mCallScene->onOtherSceneNotify("LoadComplete");
+			mCallScene->onOtherSceneNotify("LoadSelect");
 		}
 
 		hideScene();
@@ -177,4 +190,10 @@ void GUISLWindow::onSaveTextClick( MyGUI::Widget* _sender )
 void GUISLWindow::setCallScene( GUIScene* scene )
 {
 	mCallScene=scene;
+}
+
+void GUISLWindow::buttonLock( bool islock )
+{
+	mYesButton->setEnabled(islock);
+	mNoButton->setEnabled(islock);
 }

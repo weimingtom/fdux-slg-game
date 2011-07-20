@@ -45,6 +45,7 @@
 		<!--GUI-->
 		<gamename type="String" value = "忘却的战场"/>
 		<NewGame type="String" value = "开始游戏"/>
+		<Restart type="String" value ="继续"/>
 		<LoadGame type="String" value = "载入游戏"/>
 		<Opition type="String" value = "游戏设置"/>
 		<ExitGame type="String" value = "退出游戏"/>

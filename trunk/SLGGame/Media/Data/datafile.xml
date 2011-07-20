@@ -62,8 +62,8 @@
 			</SkillTable>
 			<LeaderName type="String" value="Olivia"/>
 			<LeaderPicture type="String" value="Olivia.jpg"/>
-			<LeaderMesh type="String" value="Stronghold.mesh"/>
-			<LeaderMat type="String" value="Stronghold"/>
+			<LeaderMesh type="String" value="Saint.mesh"/>
+			<LeaderMat type="String" value="none"/>
 			<UnitMesh type="String" value="HolySpirit.mesh"/>
 			<UnitMat type="String" value="HolySpirit"/>
 			<UnitMaxNumber type="Int" value="20"/>

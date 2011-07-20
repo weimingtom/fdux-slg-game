@@ -92,6 +92,7 @@ private:
 		{
 			mPathNode = Core::getSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
 			mPathEnt = Core::getSingleton().mSceneMgr->createEntity("MoveArrow.mesh");
+			mPathEnt->setMaterialName("MoveArrow");
 			mPathNode->attachObject(mPathEnt);
 			mPathNode->setVisible(false);
 		}

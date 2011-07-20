@@ -1,14 +1,21 @@
 #include "GUIMenuWindow.h"
 
+#include "StringTable.h"
+
 GUIMenuWindow::GUIMenuWindow(MyGUI::Window* window,int Width,int Height):GUISubWindows(window,Width,Height),mWindow(window)
 {
-	mWindow->setPosition(Width/2-mWindow->getWidth(),Height/2-mWindow->getHeight());
 
 	assignWidget(mRestartButton,"MenuRestartButton");
 	assignWidget(mSaveButton,"MenuSaveButton");
 	assignWidget(mLoadButton,"MenuLoadButton");
 	assignWidget(mOptionButton,"MenuOptionButton");
 	assignWidget(mExitButton,"MenuExitButton");
+
+	mRestartButton->setCaption(StringTable::getSingletonPtr()->getString("Restart"));
+	mSaveButton->setCaption(StringTable::getSingletonPtr()->getString("SaveButton"));
+	mLoadButton->setCaption(StringTable::getSingletonPtr()->getString("LoadButton"));
+	mOptionButton->setCaption(StringTable::getSingletonPtr()->getString("Opition"));
+	mExitButton->setCaption(StringTable::getSingletonPtr()->getString("ExitGame"));
 
 	mRestartButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenuWindow::onRestart);
 	mExitButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenuWindow::onExit);

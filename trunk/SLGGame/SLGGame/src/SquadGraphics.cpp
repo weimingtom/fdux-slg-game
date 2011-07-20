@@ -15,13 +15,13 @@
 
 #include "Terrain.h"
 
-const Ogre::Vector3 LineVector[5]={Ogre::Vector3(0,0,4),Ogre::Vector3(-4,0,4),Ogre::Vector3(4,0,4),Ogre::Vector3(2,0,-2),Ogre::Vector3(-2,0,-2)};
-const Ogre::Vector3 CircularVector[5]={Ogre::Vector3(0,0,3),Ogre::Vector3(-3,0,1),Ogre::Vector3(3,0,1),Ogre::Vector3(2,0,-2),Ogre::Vector3(-2,0,-2)};
-const Ogre::Vector3 LooseVector[5]={Ogre::Vector3(0,0,0),Ogre::Vector3(-3,0,3),Ogre::Vector3(3,0,3),Ogre::Vector3(3,0,-3),Ogre::Vector3(-3,0,-3)};
+const Ogre::Vector3 LineVector[5]={Ogre::Vector3(0,0,6),Ogre::Vector3(-6,0,6),Ogre::Vector3(6,0,6),Ogre::Vector3(3,0,-3),Ogre::Vector3(-3,0,-3)};
+const Ogre::Vector3 CircularVector[5]={Ogre::Vector3(0,0,5),Ogre::Vector3(-5,0,1),Ogre::Vector3(5,0,2),Ogre::Vector3(4,0,-4),Ogre::Vector3(-4,0,-4)};
+const Ogre::Vector3 LooseVector[5]={Ogre::Vector3(0,0,0),Ogre::Vector3(-5,0,5),Ogre::Vector3(5,0,5),Ogre::Vector3(5,0,-5),Ogre::Vector3(-5,0,-5)};
 
 #define FORMATION_KEYFRAME_TIME 1
 #define RELIEF_MOVE_TIME 1
-#define COMBAT_POSITION 4
+#define COMBAT_POSITION 5
 
 SquadGraphics::SquadGraphics(std::string squadName,std::string datapath,Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index,int soldierCount):
 mSquadId(squadName),

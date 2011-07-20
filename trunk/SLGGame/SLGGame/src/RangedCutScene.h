@@ -22,4 +22,6 @@ private:
 	ParticleUniverse::ParticleSystem* mParticle;
 	std::string mParticleId;
 	Ogre::Entity* mEntity;
+	Ogre::RibbonTrail* trail;
+	Ogre::SceneNode* rootNode;
 };

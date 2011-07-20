@@ -1,0 +1,53 @@
+import DepthShadowmap/CasterWithSkin from "Shadow.material"
+material Saint: DepthShadowmap/CasterWithSkin
+{
+	technique
+	{
+		scheme Default
+		pass
+		{
+		
+			vertex_program_ref Crowd
+			{
+			
+			}
+			ambient 0.588 0.588 0.588 
+			diffuse 0.588 0.588 0.588 
+			specular 0 0 0 10
+			emissive 0 0 0 
+
+			texture_unit 
+			{
+				texture Saint.dds
+			}
+		}
+	}
+}
+
+
+material Staves1: DepthShadowmap/CasterWithSkin
+{
+	technique
+	{
+	scheme Default
+		pass
+		{
+		
+					vertex_program_ref Crowd
+			{
+			
+			}
+			ambient 0.588235 0.588235 0.588235 
+			diffuse 0.588235 0.588235 0.588235 
+			specular 0 0 0 10
+			emissive 0 0 0 
+
+			texture_unit 
+			{
+				texture Staves1.dds
+			}
+		}
+	}
+}
+
+
