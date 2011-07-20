@@ -1,5 +1,7 @@
 #include "RangedCutScene.h"
 
+#include "Core.h"
+
 RangedCutScene::RangedCutScene(Ogre::Vector3 startpos, Ogre::Vector3 endpoint, int type, std::string resname)
 :mStartpoint(startpos),mEndpoint(endpoint)
 {
@@ -9,14 +11,50 @@ RangedCutScene::RangedCutScene(Ogre::Vector3 startpos, Ogre::Vector3 endpoint, i
 	mNode->setPosition(startpos);
 	mParticle = NULL;
 	mEntity= NULL;
+	rootNode=NULL;
+	trail=NULL;
 	if(resname == "none")
 		return;
 	switch(type)
 	{
 	case 0:
-		mEntity = Core::getSingleton().mSceneMgr->createEntity(resname);
-		mNode->attachObject(mEntity);
+		{
+
+		Ogre::NameValuePairList pairList;
+
+		pairList["numberOfChains"] = "1";
+
+		pairList["maxElements"] = "80";
+
+		trail = static_cast<Ogre::RibbonTrail*>(
+
+		Core::getSingletonPtr()->mSceneMgr->createMovableObject("RibbonTrail", &pairList));
+
+		rootNode=Core::getSingletonPtr()->mSceneMgr->getRootSceneNode()->createChildSceneNode();
+		rootNode->attachObject(trail);
+
+		trail->setMaterialName("Examples/LightRibbonTrail");
+
+		trail->setTrailLength(50);
+
+		trail->setInitialColour(0, 1.0, 1.0, 1.0,0.7);
+
+		trail->setColourChange(0, 0.5, 0.5, 0.5, 0.5);
+
+		trail->setInitialWidth(0, 1);
+		trail->setWidthChange(0,0.5);
+
+		trail->addNode(mNode);
+
+		
+		if (resname!="NoMesh")
+		{
+			mEntity = Core::getSingleton().mSceneMgr->createEntity(resname);
+			mNode->attachObject(mEntity);
+		}
+
 		break;
+		}
 	case 1:
 		static int n = 0;
 		mParticleId = std::string("Ranged_PU") + Ogre::StringConverter::toString(n++);
@@ -73,6 +111,16 @@ void RangedCutScene::clear()
 	if(mNode)
 	{
 		mNode->detachAllObjects();
+		if (rootNode)
+		{
+			Core::getSingletonPtr()->mSceneMgr->destroySceneNode(rootNode);
+		}
+		
+		if (trail)
+		{
+			Core::getSingletonPtr()->mSceneMgr->destroyRibbonTrail(trail);
+		}
+
 		if(mParticle != NULL )
 		{
 			mParticle->stop();

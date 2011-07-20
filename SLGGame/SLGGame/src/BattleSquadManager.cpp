@@ -376,7 +376,7 @@ bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad*
 	for(int n = 0; n < 2; n++)
 	{
 		//¹¥»÷¶¯×÷
-		setCutScene(new AnimationCutScene(squad->getGrapId(),UNITTYPE_ALL,"Attack","none","none",false,true));
+		setCutScene(new AnimationCutScene(squad->getGrapId(),UNITTYPE_ALL,"Attack","Attack.mp3","none",false,true));
 		std::vector<int> atkrolls = squad->getAttackRolls(false,squad == defenesquad,d);
 		if(squad == attacksquad)
 			squad = defenesquad;
@@ -520,7 +520,7 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 	setCutScene(new WeapenCutScene(attacksquad->getGrapId(),WeapenCutScene::WeaponType::SceWepon));
 	int x = 0,y = 0;
 	defenesquad->getCrood(&x,&y);
-	rangedAttackCutScene(attacksquad,x,y,UNITTYPE_ALL,"none","Attack","none",1,"fireSystem","none","none");
+	rangedAttackCutScene(attacksquad,x,y,UNITTYPE_ALL,"none","Attack","Ranged.mp3",0,"NoMesh","none","none");
 	Direction d = attacksquad->getDirection();
 	std::vector<int> atkrolls = attacksquad->getAttackRolls(true,false,d);
 	if(atkrolls.size() > 0)

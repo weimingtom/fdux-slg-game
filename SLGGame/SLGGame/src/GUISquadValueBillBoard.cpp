@@ -3,7 +3,7 @@
 #define OFFEST_X 70
 #define OFFEST_Y 150
 
-GUISquadValueBillBoard::GUISquadValueBillBoard(Ogre::SceneNode* node):GUIBillBoard("SquadValueBill.layout",150,35),mNode(node)
+GUISquadValueBillBoard::GUISquadValueBillBoard(Ogre::SceneNode* node):GUIBillBoard("SquadValueBill.layout",150,35),mNode(node),mDeltaTime(0)
 {
 	assignWidget(mBText,"BText");
 	mBText->setVisible(false);
@@ -18,12 +18,19 @@ Ogre::Vector3 GUISquadValueBillBoard::getPosition()
 	return mNode->getPosition();
 }
 
-void GUISquadValueBillBoard::update( Ogre::Vector2 screen )
+void GUISquadValueBillBoard::update( Ogre::Vector2 screen,unsigned int deltaTime)
 {
 	if(mMoveY<OFFEST_Y && mStart)
 	{
 		mBText->setPosition(screen.x+OFFEST_X/2,screen.y+OFFEST_Y-mMoveY);
-		mMoveY+=1;
+		
+		mDeltaTime+=deltaTime;
+		if (mDeltaTime>=10)
+		{
+			mMoveY+=1;
+			mDeltaTime=0;
+		}
+		
 		if (mMoveY>OFFEST_Y/2)
 		{
 			float a=(mMoveY-OFFEST_Y/2)/(float)(OFFEST_Y/2);

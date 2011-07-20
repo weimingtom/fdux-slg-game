@@ -19,7 +19,7 @@ BillboardManager::~BillboardManager(void)
 {
 }
 
-void BillboardManager::update()
+void BillboardManager::update(unsigned int deltaTime)
 {
 	Ogre::Matrix4 viewMatrix = mCamera->getViewMatrix();
 	Ogre::Matrix4 projectMatrix = mCamera->getProjectionMatrixWithRSDepth();
@@ -44,7 +44,7 @@ void BillboardManager::update()
 
 			(*it)->setMarginalValue(Pos.y,mHeight-Pos.y,Pos.x,mWidth-Pos.x);
 
-			(*it)->update(Pos);
+			(*it)->update(Pos,deltaTime);
 		}
 		else
 		{

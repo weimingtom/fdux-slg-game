@@ -259,35 +259,40 @@
             <Property key="FontHeight" value="20"/>
         </Widget>
     </Widget>
-    <Widget type="Window" skin="WindowCS" position="445 165 120 190" align="Center" layer="Info" name="Menu">
+    <Widget type="Window" skin="SLGWindow" position="510 160 210 315" align="Center" layer="Info" name="Menu">
         <Property key="Visible" value="false"/>
         <Property key="Caption" value="Menu"/>
         <Property key="FontName" value="fireflysung"/>
         <Property key="FontHeight" value="20"/>
-        <Widget type="Button" skin="Button" position="0 0 110 30" name="MenuRestartButton">
+        <Widget type="Button" skin="SLGButton3" position="35 60 140 45" name="MenuRestartButton">
             <Property key="Caption" value="Restart"/>
             <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
+            <Property key="FontHeight" value="24"/>
+            <Property key="TextColour" value="1 1 1"/>
         </Widget>
-        <Widget type="Button" skin="Button" position="0 30 110 30" name="MenuSaveButton">
+        <Widget type="Button" skin="SLGButton3" position="35 105 145 50" name="MenuSaveButton">
             <Property key="Caption" value="Save"/>
             <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
+            <Property key="FontHeight" value="24"/>
+            <Property key="TextColour" value="1 1 1"/>
         </Widget>
-        <Widget type="Button" skin="Button" position="0 60 110 30" name="MenuLoadButton">
+        <Widget type="Button" skin="SLGButton3" position="35 150 145 50" name="MenuLoadButton">
             <Property key="Caption" value="Load"/>
             <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
+            <Property key="FontHeight" value="24"/>
+            <Property key="TextColour" value="1 1 1"/>
         </Widget>
-        <Widget type="Button" skin="Button" position="0 90 110 30" name="MenuOptionButton">
+        <Widget type="Button" skin="SLGButton3" position="35 195 145 50" name="MenuOptionButton">
             <Property key="Caption" value="Option"/>
             <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
+            <Property key="FontHeight" value="24"/>
+            <Property key="TextColour" value="1 1 1"/>
         </Widget>
-        <Widget type="Button" skin="Button" position="0 120 110 30" name="MenuExitButton">
+        <Widget type="Button" skin="SLGButton3" position="35 240 145 50" name="MenuExitButton">
             <Property key="Caption" value="Exit"/>
             <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
+            <Property key="FontHeight" value="24"/>
+            <Property key="TextColour" value="1 1 1"/>
         </Widget>
     </Widget>
     <Widget type="Window" skin="SLGSquedWindowSkin" position="250 330 275 395" layer="Main" name="TargetWindow">

@@ -56,7 +56,7 @@ void SquadGrapManager::update(unsigned int deltaTime)
 		(*it)->update(deltaTime);
 	}
 
-	mBBManager->update();
+	mBBManager->update(deltaTime);
 }
 
 SquadGraphics* SquadGrapManager::getSquad( unsigned int id )

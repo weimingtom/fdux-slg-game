@@ -19,7 +19,7 @@ Ogre::Vector3 GUISquadBillBoard::getPosition()
 	return mNode->getPosition();
 }
 
-void GUISquadBillBoard::update( Ogre::Vector2 screen )
+void GUISquadBillBoard::update( Ogre::Vector2 screen,unsigned int deltaTime)
 {
 	mBImage->setPosition(screen.x,screen.y);
 }

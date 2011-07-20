@@ -12,7 +12,7 @@ public:
 
 	Ogre::Vector3 getPosition();
 
-	void update(Ogre::Vector2 screen);
+	void update(Ogre::Vector2 screen,unsigned int deltaTime);
 
 	void setMarginalValue(float marginalTop,float marginalBottom,float marginalLeft,float marginalRight);
 

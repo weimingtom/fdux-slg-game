@@ -23,6 +23,7 @@ private:
 	void onYes(MyGUI::Widget* _sender);
 	void onNo(MyGUI::Widget* _sender);
 	void onSaveTextClick(MyGUI::Widget* _sender);
+	void buttonLock(bool islock);
 
 	MyGUI::Button* mYesButton;
 	MyGUI::Button* mNoButton;

@@ -16,7 +16,7 @@ public:
 	BillboardManager(Ogre::Camera* camera);
 	~BillboardManager(void);
 
-	void update();
+	void update(unsigned int deltaTime);
 
 	void addBillBoard(GUIBillBoard* billBoard );
 

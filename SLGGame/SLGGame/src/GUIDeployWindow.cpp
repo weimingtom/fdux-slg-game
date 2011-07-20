@@ -17,7 +17,7 @@ GUIDeployWindows::GUIDeployWindows(MyGUI::Window* window,int Width,int Height)
 	mWindow->setCaption(StringTable::getSingleton().getString("DeployWindow"));
 	mConfirm->setCaption(StringTable::getSingleton().getString("DeployConfirm"));
 
-	mDeployList->eventListSelectAccept+= MyGUI::newDelegate(this, &GUIDeployWindows::onSelect);
+	mDeployList->eventListChangePosition  += MyGUI::newDelegate(this, &GUIDeployWindows::onSelect);
 	mConfirm->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIDeployWindows::onConfirm);
 }
 

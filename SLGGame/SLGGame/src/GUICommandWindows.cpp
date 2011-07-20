@@ -33,6 +33,8 @@ GUICommandWindows::GUICommandWindows(MyGUI::Window* window,int Width,int Height)
 
 	setSquad(NULL);
 	mPlayerState = NULL;
+
+	window->setPosition(mWindow->getLeft(),Height-window->getHeight()-5);
 }
 
 GUICommandWindows::~GUICommandWindows(void)
