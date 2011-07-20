@@ -239,7 +239,8 @@ void Terrain::destoryTerrian()
 
 	mShadowDepthMapTarget->removeAllListeners();
 	mShadowDepthMapTarget->removeAllViewports();
-	Ogre::ResourceGroupManager::getSingleton().deleteResource("shadowdepthmap");
+	//Ogre::ResourceGroupManager::getSingleton().deleteResource("shadowdepthmap");
+	Ogre::TextureManager::getSingleton().remove("shadowdepthmap");
 
 
 	mGridNode->detachObject(mGrid);
@@ -271,7 +272,8 @@ void Terrain::destoryTerrian()
 	//Çå³ýË®Ãæ
 	mReflectionTarget->removeAllListeners();
 	mReflectionTarget->removeAllViewports();
-	Ogre::ResourceGroupManager::getSingleton().deleteResource("reflection");
+	Ogre::TextureManager::getSingleton().remove("refraction");
+	//Ogre::ResourceGroupManager::getSingleton().deleteResource("reflection");
 	mWaterNode->detachObject(mWaterObject);
 	core->mSceneMgr->destroyManualObject(mWaterObject);
 	core->mSceneMgr->destroySceneNode(mWaterNode);
@@ -496,7 +498,7 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 	{
 		usemesh = true;
 		meshName = "Bank";
-		materialName = "Bank";
+		materialName = "Cliff";
 		meshindex = terrainindex[Water];
 	}
 	if(usemesh)
@@ -942,8 +944,8 @@ void Terrain::preRenderTargetUpdate(const Ogre::RenderTargetEvent& evt)
 		Ogre::GpuSharedParametersPtr sharedparams = Ogre::GpuProgramManager::getSingleton().getSharedParameters("ShadowSharedParamsName");
 		Ogre::Matrix4 cameraview= CameraContral::getSingleton().getShadowMapCamera()->getViewMatrix();
 		sharedparams->setNamedConstant("texView",cameraview);
-		Ogre::Vector3 shadowdir = CameraContral::getSingleton().getShadowMapCamera()->getDirection();
-		sharedparams->setNamedConstant("shadowDir",shadowdir);
+		//Ogre::Vector3 shadowdir = CameraContral::getSingleton().getShadowMapCamera()->getDirection();
+		//sharedparams->setNamedConstant("shadowDir",shadowdir);
 	}
 }
 void Terrain::postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt)

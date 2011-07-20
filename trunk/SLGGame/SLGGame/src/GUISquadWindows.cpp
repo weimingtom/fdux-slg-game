@@ -122,6 +122,11 @@ void GUISquadWindows::updateSquad()
 {
 	if(mSelectSquad ==NULL)
 		return;
+	if(mSelectSquad->IsEliminated())
+	{
+		setSquad(NULL);
+		return;
+	}
 	std::string tempstr,temppath;
 	std::string datapath = mSelectSquad->getPath();
 	bool re = DataLibrary::getSingletonPtr()->getData(datapath+"/LeaderPicture",tempstr);
@@ -174,9 +179,9 @@ void GUISquadWindows::updateSquad()
 
 	float tempfloat;
 	tempfloat = mSelectSquad->getAttr(ATTR_ATTACK,ATTRCALC_FULL,x);
-	mSquadAttack->setCaption(Ogre::StringConverter::toString(tempfloat));
+	mSquadAttack->setCaption(str(boost::format("%1$3.1f")%tempfloat));
 	tempfloat = mSelectSquad->getAttr(ATTR_DEFENCE,ATTRCALC_FULL,x);
-	mSquadDefence->setCaption(Ogre::StringConverter::toString(tempfloat));
+	mSquadDefence->setCaption(str(boost::format("%1$3.1f")%tempfloat));
 
 	re = DataLibrary::getSingletonPtr()->getData(datapath+"/UnitMaxNumber",x);
 	re = DataLibrary::getSingletonPtr()->getData(datapath+"/UnitNumber",y);

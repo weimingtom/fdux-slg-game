@@ -13,9 +13,9 @@ class MapDataManager;
 static const float PLANEHEIGHT = 0.0f;
 static const float TILESIZE = 24.0f;
 static const float HEIGHGROUNDHEIGHT = 10.0f;
-static const float WATERHEIGHT = -1.0f;
-static const float WATERDEEP = -2.0f;
-static int MAPBOLDER = 8;
+static const float WATERHEIGHT = -0.5f;
+static const float WATERDEEP = -3.0f;
+static int MAPBOLDER = 6;
 
 
 static const int VERTEX_POS_BINDING=0;//顶点位置绑定位置

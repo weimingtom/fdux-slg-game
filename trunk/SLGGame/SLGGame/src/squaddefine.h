@@ -53,6 +53,20 @@ struct AttrModifier
 	float	Covert;
 	float	Injury;
 	float	Conter;
+	AttrModifier()
+	{
+		Type = ATTRMODIFIER_BASE;
+		Attack = 0.0f;
+		RangedAttack = 0.0f;
+		Defence = 0.0f;
+		Form = 0.0f;
+		Initiative = 0.0f;
+		ActionPoint = 0.0f;
+		Detection = 0.0f;
+		Covert = 0.0f;
+		Injury = 0.0f;
+		Conter = 0.0f;
+	}
 };
 
 typedef int Direction;

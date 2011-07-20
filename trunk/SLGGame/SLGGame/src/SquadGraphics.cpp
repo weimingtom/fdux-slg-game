@@ -99,7 +99,7 @@ mDirection(direction)
 	//组建单位队伍与组建武器
 	mCommanderUnit=new UnitGrap(mLeaderMesh,mLeaderMat,mFactionTexture,mSceneMgr->getRootSceneNode()->createChildSceneNode(mNode->getName()+"_Commander"));
 	mCommanderUnit->createWeapon(mPWeaponMesh,mPWeaponMat,UnitGrap::MainWepon);
-	mCommanderUnit->createWeapon(mSWeaponMesh,mSWeaponMesh,UnitGrap::SecWepon);
+	mCommanderUnit->createWeapon(mSWeaponMesh,mSWeaponMat,UnitGrap::SecWepon);
 	mCommanderUnit->createWeapon(mShieldMesh,mShieldMat,UnitGrap::Shield);
 
 	for (int i=0;i<soldierCount;i++)
@@ -204,7 +204,7 @@ UnitGrap* SquadGraphics::createSoldier()
 	UnitGrap* unit=new UnitGrap(mSoilderMesh,mSoilderMat,mFactionTexture,mSceneMgr->getRootSceneNode()->createChildSceneNode(mNode->getName()+"_Soldier"+Ogre::StringConverter::toString(mSoldierIndex)));
 
 	unit->createWeapon(mPWeaponMesh,mPWeaponMat,UnitGrap::MainWepon);
-	unit->createWeapon(mSWeaponMesh,mSWeaponMesh,UnitGrap::SecWepon);
+	unit->createWeapon(mSWeaponMesh,mSWeaponMat,UnitGrap::SecWepon);
 	unit->createWeapon(mShieldMesh,mShieldMat,UnitGrap::Shield);
 
 // 	if (mSoilderEffect!="none")

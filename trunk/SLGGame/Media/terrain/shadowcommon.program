@@ -2,7 +2,7 @@ shared_params ShadowSharedParamsName
 {
 	shared_param_named texView matrix4x4
 	shared_param_named texProj matrix4x4
-	shared_param_named shadowDir float3
+	//shared_param_named shadowDir float3
 }
 
 vertex_program DepthShadowmap/ReceiverVP cg
@@ -29,7 +29,7 @@ fragment_program DepthShadowmap/ReceiverFP cg
     default_params
     {
 		//param_named depthRange float 500
-		param_named depthOffset float 0.001
+		param_named depthOffset float 0.005
     }
 }
 
@@ -57,7 +57,7 @@ fragment_program DepthShadowmap/CasterFP cg
     default_params
     {
 		//param_named depthRange float 500
-		param_named depthOffset float 0.001
+		param_named depthOffset float 0.005
     }
 }
 

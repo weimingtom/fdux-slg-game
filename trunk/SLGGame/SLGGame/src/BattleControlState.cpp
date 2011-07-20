@@ -7,6 +7,7 @@
 #include "BattleState.h"
 #include "BattleSquad.h"
 #include "BattlePlayerState.h"
+#include "BattleAIState.h"
 #include "BattleSquadManager.h"
 #include "GUIGameStateWindows.h"
 #include "TriggerManager.h"
@@ -34,6 +35,7 @@ void BattleControlState::update(unsigned int deltaTime)
 	{
 		BattlePlayerState* playerstate = new BattlePlayerState;
 		mMainState->PushState(playerstate);
+		mGUIState->update();
 		mNewGame = true;
 		return;
 	}
@@ -63,17 +65,31 @@ void BattleControlState::update(unsigned int deltaTime)
 			}
 			break;
 		case 2:
-			team += 1;
-			nextteam = false;
-			break;
 		case 3:
-			team += 1;
-			nextteam = false;
-			break;
 		case 4:
-			team += 1;
-			nextteam = false;
+			{
+				std::string teamstr;
+				std::string teampath = std::string("GameData/BattleData/Team/Team") + Ogre::StringConverter::toString(team) + std::string("/FactionId");
+				DataLibrary::getSingleton().getData(teampath,teamstr);
+				if(teamstr == "none")
+				{
+					team += 1;
+					nextteam = false;
+				}
+				else
+				{
+					BattleAIState* aistate = new BattleAIState(team);
+					aistate->newTurn();
+					mMainState->PushState(aistate);
+					nextteam = true;
+				}	
+			}
 			break;
+		default:
+			{
+				team = 1;
+				nextteam = false;
+			}
 		}
 	}
 	DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/Ture",turn);

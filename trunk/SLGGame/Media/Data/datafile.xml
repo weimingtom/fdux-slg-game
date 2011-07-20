@@ -74,9 +74,9 @@
 			<SquadType type="Int" value="0"/>
 			<SoilderId type="String" value="EtasiSoilder"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="Pike"/>
+			<PweaponId type="String" value="ShortSpear"/>
 			<SweaponId type="String" value="none"/>
-			<ShieldId type="String" value="none"/>
+			<ShieldId type="String" value="RoundShield"/>
 			<ArmorId type="String" value="LeatherArmor"/>
 			<SkillTable>
 				<Attack type="Int" value="1"/>
@@ -221,7 +221,7 @@
 			<Value type="Int" value="10"/>
 			<Script type="String" value="none"/>
 			<Mesh type="String" value="pike.mesh"/>
-			<Mat type="String" value="pike"/>
+			<Mat type="String" value="Pike"/>
 			<AniGroup type="String" value="2HL2"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
@@ -237,6 +237,27 @@
 				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
 		</Pike>
+		<ShortSpear>
+			<Type type="Int" value="5"/>
+			<Value type="Int" value="10"/>
+			<Script type="String" value="none"/>
+			<Mesh type="String" value="ShortSpear.mesh"/>
+			<Mat type="String" value="Pike"/>
+			<AniGroup type="String" value="1H2"/>
+			<AttrModifer>
+				<Type type="Int" value="0"/>
+				<Attack type="Float" value="2.0"/>
+				<RangedAttack type="Float" value="0.0"/>
+				<Defence type="Float" value="-1.0"/>
+				<Formation type="Float" value="0.1"/>
+				<Initiative type="Float" value="6.0"/>
+				<ActionPoint type="Float" value="0.0"/>
+				<Detection type="Float" value="0.0"/>
+				<Covert type="Float" value="0.0"/>
+				<Injury type="Float" value="0.0"/>
+				<Conter type="Float" value="0.0"/>
+			</AttrModifer>
+		</ShortSpear>
 	</PweaponData>
 	<SweaponData>
 		<LongBow>

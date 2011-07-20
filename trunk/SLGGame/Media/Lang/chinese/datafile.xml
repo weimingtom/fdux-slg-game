@@ -47,6 +47,10 @@
 			<Name type="String" value="长枪"/>
 			<Describe type="String" value="长枪"/>
 		</Pike>
+		<ShortSpear>
+			<Name type="String" value="短枪"/>
+			<Describe type="String" value="短枪"/>
+		</ShortSpear>
 	</PweaponData>
 	<SweaponData>
 		<LongBow>

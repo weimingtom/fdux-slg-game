@@ -377,6 +377,14 @@
 					Name="SubBattleState"
 					>
 					<File
+						RelativePath=".\src\BattleAIState.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\BattleAIState.h"
+						>
+					</File>
+					<File
 						RelativePath=".\src\BattleAvgState.cpp"
 						>
 					</File>
