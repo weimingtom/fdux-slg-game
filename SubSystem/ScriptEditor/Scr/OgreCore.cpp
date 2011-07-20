@@ -18,18 +18,27 @@ OgreCore::~OgreCore(void)
 bool OgreCore::setup()
 {
 	bool rtn=false;
-	mRoot = new Ogre::Root("Plugins.cfg","ogre.cfg","log.txt");
-	if(!mRoot->restoreConfig())
-	{
-		rtn=mRoot->showConfigDialog();
-	}
-	else
-	{
-		rtn=true;
-	}
-	if (rtn)
-	{
-		mWindow=mRoot->initialise(true, "RenderWindow");
+	mRoot = new Ogre::Root("Plugins.cfg","","log.txt");
+	//if(!mRoot->restoreConfig())
+	//{
+	//	rtn=mRoot->showConfigDialog();
+	//}
+	//else
+	//{
+	//	rtn=true;
+	//}
+		Ogre::RenderSystem *rSys = mRoot->getRenderSystemByName("Direct3D9 Rendering Subsystem");
+		if(!rSys)
+			return false;
+
+		mRoot->setRenderSystem(rSys);
+
+		mRoot->initialise(false);
+		Ogre::NameValuePairList list;
+		list["outerDimensions"]="true";
+		list["border"]="fixed"; 
+
+		mWindow = mRoot->createRenderWindow("Editor",1280,720,false,&list);
 
 		mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC);
 
@@ -59,11 +68,6 @@ bool OgreCore::setup()
 		initializeOIS();
 
 		return true;
-	}
-	else
-	{
-		return false;
-	}
 
 }
 

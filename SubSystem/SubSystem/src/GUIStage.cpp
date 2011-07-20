@@ -41,11 +41,12 @@ GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),m
 	assignWidget(mLoadButton, "LoadButton");
 	assignWidget(mHideButton,"HideButton");
 	assignWidget(mSystemButton,"SystemButton");
-
+#ifndef SCRIPT_EDITOR
 	mSaveButton->setCaption(StringTable::getSingletonPtr()->getString("SaveButton"));
 	mLoadButton->setCaption(StringTable::getSingletonPtr()->getString("LoadButton"));
 	mHideButton->setCaption(StringTable::getSingletonPtr()->getString("HideButton"));
 	mSystemButton->setCaption(StringTable::getSingletonPtr()->getString("SystemButton"));
+#endif
 
 	mEffectLayer->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::eventMouseButtonClick);
 	mSaveButton->eventMouseButtonClick+=MyGUI::newDelegate(this, &GUIStage::onSave);
@@ -351,7 +352,18 @@ void GUIStage::showOtherText()
 	mTimerWork=NoneWork;
 	GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);
 
-	mTextBox->addText(mTextBuffer);
+	while(!mTextBuffer.empty())
+	{
+		mTextBox->addText(mTextBuffer.substr(0,1));
+		if (mTextBox->getHScrollPosition()!=0)//自动换行
+		{
+			int length=mTextBox->getTextLength();
+			mTextBox->eraseText(length-1);
+			mTextBox->addText("\n");
+			mTextBox->addText(mTextBuffer.substr(0,1));
+		}
+		mTextBuffer.erase(mTextBuffer.begin());
+	}
 	mTextBuffer.clear();
 }
 
@@ -639,15 +651,24 @@ void GUIStage::load()
 	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/TextCursorType",type);
 	//showTextCursor(type);
 
-	//读取脚本名与位置
-	LuaSystem::getSingletonPtr()->loadScripRuntime();
+
 #endif
 }
 
 void GUIStage::onOtherSceneNotify(std::string arg)
 {
-	if(arg=="LoadComplete")
+	if(arg=="LoadSelect")
 	{
 		load();
 	}
+	else if(arg=="LoadComplete")
+	{
+		loadComplete();
+	}
+}
+
+void GUIStage::loadComplete()
+{
+	//读取脚本名与位置
+	LuaSystem::getSingletonPtr()->loadScripRuntime();
 }

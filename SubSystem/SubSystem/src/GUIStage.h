@@ -59,6 +59,8 @@ private:
 
 	void load();
 
+	void loadComplete();
+
 	void fastForward(bool value);
 
 	void UIInit();
