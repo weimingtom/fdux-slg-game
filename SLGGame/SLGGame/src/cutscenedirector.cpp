@@ -1,6 +1,8 @@
 #include "cutscenediretor.h"
 #include "cutscene.h"
 
+#include "Core.h"
+#include "InputControl.h"
 #include "BattleState.h"
 #include "CameraContral.h"
 
@@ -10,6 +12,7 @@ CutSceneDirector::CutSceneDirector()
 	mMouseX = 640;
 	mMouseY = 360;
 	mCameraContral = CameraContral::getSingletonPtr();
+	Core::getSingleton().mInputControl->pushListener(this);
 }
 CutSceneDirector::~CutSceneDirector()
 {
@@ -18,6 +21,7 @@ CutSceneDirector::~CutSceneDirector()
 	{
 		delete ite->second;
 	}
+	Core::getSingleton().mInputControl->popListener();
 }
 
 int CutSceneDirector::addCutScene(CutScene* cutscene)
@@ -91,6 +95,8 @@ bool CutSceneDirector::mouseMoved(const OIS::MouseEvent &arg)
 }
 bool CutSceneDirector::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
 {
+	if(id == OIS::MouseButtonID::MB_Left)
+		skipCutScene(0);
 	return false;
 }
 bool CutSceneDirector::mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id)

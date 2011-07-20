@@ -6,28 +6,24 @@ material CliffMat1 : DepthShadowmap/Caster
 		scheme Default
 		pass
 		{
+			lighting off
 			texture_unit
 			{
 				tex_coord_set 0
-				texture GreenLand.tga
-				colour_op alpha_blend
+				texture GreenLand.dds
 			}
 			texture_unit
 			{
 				tex_coord_set 1
-				texture Cliff.tga
+				texture Cliff.dds
 				tex_address_mode wrap
-				filtering trilinear
 				colour_op alpha_blend
-			}
-			texture_unit
-			{
-				colour_op_ex modulate src_current src_diffuse 
 			}
 		}
 		pass
 		{
 			lighting off
+			depth_bias 1
 			scene_blend modulate
 			vertex_program_ref DepthShadowmap/ReceiverVP
             {
@@ -52,28 +48,24 @@ material CliffMat2 : DepthShadowmap/Caster
 		scheme Default
 		pass
 		{
+			lighting off
 			texture_unit
 			{
 				tex_coord_set 0
-				texture Desert.tga
-				colour_op alpha_blend
+				texture Desert.dds
 			}
 			texture_unit
 			{
 				tex_coord_set 1
-				texture Cliff.tga
+				texture Cliff.dds
 				tex_address_mode wrap
-				filtering trilinear
 				colour_op alpha_blend
-			}
-			texture_unit
-			{
-				colour_op_ex modulate src_current src_diffuse 
 			}
 		}
 		pass
 		{
 			lighting off
+			depth_bias 1
 			scene_blend modulate
 			vertex_program_ref DepthShadowmap/ReceiverVP
             {
@@ -97,28 +89,24 @@ material CliffMat3 : DepthShadowmap/Caster
 		scheme Default
 		pass
 		{
+			lighting off
 			texture_unit
 			{
 				tex_coord_set 0
-				texture Swamp.tga
-				colour_op alpha_blend
+				texture Swamp.dds
 			}
 			texture_unit
 			{
 				tex_coord_set 1
-				texture Cliff.tga
+				texture Cliff.dds
 				tex_address_mode wrap
-				filtering trilinear
 				colour_op alpha_blend
-			}
-			texture_unit
-			{
-				colour_op_ex modulate src_current src_diffuse 
 			}
 		}
 		pass
 		{
 			lighting off
+			depth_bias 1
 			scene_blend modulate
 			vertex_program_ref DepthShadowmap/ReceiverVP
             {
@@ -142,28 +130,24 @@ material CliffMat4 : DepthShadowmap/Caster
 		scheme Default
 		pass
 		{
+			lighting off
 			texture_unit
 			{
 				tex_coord_set 0
-				texture Snow.tga
-				colour_op alpha_blend
+				texture Snow.dds
 			}
 			texture_unit
 			{
 				tex_coord_set 1
-				texture Cliff.tga
+				texture Cliff.dds
 				tex_address_mode wrap
-				filtering trilinear
 				colour_op alpha_blend
-			}
-			texture_unit
-			{
-				colour_op_ex modulate src_current src_diffuse 
 			}
 		}
 		pass
 		{
 			lighting off
+			depth_bias 1
 			scene_blend modulate
 			vertex_program_ref DepthShadowmap/ReceiverVP
             {

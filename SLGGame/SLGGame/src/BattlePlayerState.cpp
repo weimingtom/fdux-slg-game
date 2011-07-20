@@ -15,6 +15,7 @@
 #include "GUIGameStateWindows.h"
 #include "GUICommandWindows.h"
 #include "GUIMenuWindow.h"
+#include "GUITargetWindow.h"
 #include "Terrain.h"
 #include "SquadGraphics.h"
 #include "SquadGrapManager.h"
@@ -291,6 +292,8 @@ void BattlePlayerState::reactiveState()
 			mMainState->PushState(new BattleMessageBoxState(this,std::string("Test")));
 		}
 	}
+	GUITargetWindows* targetwindow = static_cast<GUITargetWindows *>(mGUIBattle->getSubWindow("TargetWindow"));
+	targetwindow->updateSquad();
 }
 
 void BattlePlayerState::moveSquad()

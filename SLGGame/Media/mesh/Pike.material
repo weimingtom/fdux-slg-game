@@ -1,5 +1,5 @@
 import DepthShadowmap/Caster from "Shadow.material"
-material pike : DepthShadowmap/Caster
+material Pike : DepthShadowmap/Caster
 {
 	technique default
 	{
