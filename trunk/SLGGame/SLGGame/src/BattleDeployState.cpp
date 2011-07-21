@@ -11,6 +11,7 @@
 #include "DataLibrary.h"
 #include "Terrain.h"
 #include "GUIPUDebug.h"
+#include "GUIMenuWindow.h"
 #include "GUIBattle.h"
 #include "BattleControlState.h"
 #include "GUIDeployWindow.h"
@@ -32,7 +33,7 @@ BattleDeployState::BattleDeployState()
 	//mSquadGrapManager=new SquadGrapManager(Core::getSingletonPtr()->mSceneMgr);
 	//SquadGraphics* s;//=mSquadGrapManager->createSquad("SinbadSquad",1,10,10,SquadGrapManager::North,SquadGrapManager::Loose);
 	//GUIPUDebug* puDebug=(GUIPUDebug*)GUISystem::getSingletonPtr()->createScene(PUDebugScene);
-
+	mMenuWindow=static_cast<GUIMenuWindow *>(GUISystem::getSingletonPtr()->createScene(MenuWindowsScene));
 	mGUIBattle=static_cast<GUIBattle *>(GUISystem::getSingletonPtr()->getScene(BattleScene));
 	//mGUIBattle->setBattleState(mMainState);
 	mDeployWindow = static_cast<GUIDeployWindows *>(mGUIBattle->getSubWindow("DeployWindow"));
@@ -97,8 +98,24 @@ void BattleDeployState::update(unsigned int deltaTime)
 
 bool BattleDeployState::keyPressed(const OIS::KeyEvent &arg)
 {
-	//mGUIBattle->KeyInputEvent(arg);
-	return false;
+	if (arg.key==OIS::KC_ESCAPE )
+	{
+		if (!mMenuWindow->getVisible())
+		{
+			mMenuWindow->setAllowSave(false);
+			mMenuWindow->showScene("");
+		}
+		else
+		{
+			mMenuWindow->hideScene();
+		}
+
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 bool BattleDeployState::keyReleased(const OIS::KeyEvent &arg)
 {
@@ -183,7 +200,10 @@ void BattleDeployState::deployConfirm()
 
 void BattleDeployState::selectIndex(int index)
 {
-	mSelectSquad = mSquadManager->mDeployList[index];
-	mSquadWindow->setSquad(mSelectSquad);
-	mSelectIndex = index;
+	if (index<mSquadManager->mDeployList.size())
+	{
+		mSelectSquad = mSquadManager->mDeployList[index];
+		mSquadWindow->setSquad(mSelectSquad);
+		mSelectIndex = index;
+	}
 }

@@ -6,6 +6,7 @@
 
 #include "LuaSystem.h"
 #include "LuaStateFun.h"
+#include "DataLibrary.h"
 
 StateManager::StateManager(void):mBaseState(NULL),mAffixationState(NULL)
 {
@@ -96,4 +97,25 @@ GameState* StateManager::CreateState( StateType type )
 	}
 
 	return state;
+}
+
+void StateManager::saveState( std::string file )
+{
+	DataLibrary::getSingletonPtr()->saveXmlData(DataLibrary::GameData,file);
+}
+
+void StateManager::loadState( std::string file )
+{
+	DataLibrary::getSingletonPtr()->loadXmlData(DataLibrary::GameData,file,false);
+	std::string state;
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/GameState",state);
+	if (state=="AVG")
+	{
+		LuaSystem::getSingletonPtr()->clearLuaSystem();
+		changeState("save.xml",AVG);
+	}
+	else if (state=="Battle")
+	{
+
+	}
 }

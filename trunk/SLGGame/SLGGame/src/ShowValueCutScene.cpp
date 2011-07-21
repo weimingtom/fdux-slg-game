@@ -3,7 +3,7 @@
 #include "SquadGraphics.h"
 #include "SquadGrapManager.h"
 
-ShowValueCutScene::ShowValueCutScene(unsigned int id,std::string value,Ogre::ColourValue c):mValue(value),mColor(c)
+ShowValueCutScene::ShowValueCutScene(unsigned int id,std::string value,Ogre::ColourValue c):CutScene(3000),mValue(value),mColor(c)
 {
 	mSquadGraphics=SquadGrapManager::getSingletonPtr()->getSquad(id);
 }
@@ -20,7 +20,7 @@ void ShowValueCutScene::startCutScence()
 
 bool ShowValueCutScene::endCutScene()
 {
-	return true;
+	return false;
 }
 
 void ShowValueCutScene::skipCutScene()

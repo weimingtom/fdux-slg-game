@@ -1,11 +1,11 @@
 #pragma once
-#include "guisubwindows.h"
+#include "guiscene.h"
 
 class GUIMenuWindow :
-	public GUISubWindows
+	public GUIScene
 {
 public:
-	GUIMenuWindow(MyGUI::Window* window,int Width,int Height);
+	GUIMenuWindow(int Width,int Height);
 	virtual ~GUIMenuWindow(void);
 
 	void showScene(std::string arg);
@@ -15,31 +15,41 @@ public:
 
 	GUISceneType getType()
 	{
-		return BattleScene;
-	}
-
-	bool GridInputEvent(int x,int y);
-
-	bool KeyInputEvent(const OIS::KeyEvent &arg);
-
-	std::string getName()
-	{
-		return "Menu";
+		return MenuWindowsScene;
 	}
 
 	void setAllowSave(bool allow) { mSaveButton->setEnabled(allow);}
 
 	bool getVisible();
 
+	void onOtherSceneNotify(std::string arg);
+
 private:
 
 	void onRestart(MyGUI::Widget* _sender);
+	void onSave(MyGUI::Widget* _sender);
+	void onLoad(MyGUI::Widget* _sender);
 	void onExit(MyGUI::Widget* _sender);
 
-	MyGUI::Window* mWindow;
+	MyGUI::ImageBox* mWindow;
 	MyGUI::Button* mRestartButton;
 	MyGUI::Button* mSaveButton;
 	MyGUI::Button* mLoadButton;
 	MyGUI::Button* mOptionButton;
 	MyGUI::Button* mExitButton;
+
+};
+
+class GUIMenuWindowFactory:
+	public GUISceneFactory
+{
+public:
+	GUIMenuWindowFactory(){}
+
+	~GUIMenuWindowFactory(){}
+
+	GUIScene* CreateScene(int Width,int Height)
+	{
+		return new GUIMenuWindow(Width, Height);
+	}
 };

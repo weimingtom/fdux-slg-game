@@ -39,7 +39,7 @@ BattlePlayerState::BattlePlayerState()
 	mGUIState = static_cast<GUIGameStateWindows *>(mGUIBattle->getSubWindow("GameState"));
 	mGUICommand = static_cast<GUICommandWindows *>(mGUIBattle->getSubWindow("CommandWindow"));
 	mGUICommand->setPlayerState(this);
-	mGUIMenu = static_cast<GUIMenuWindow *>(mGUIBattle->getSubWindow("Menu"));
+	mGUIMenu=static_cast<GUIMenuWindow *>(GUISystem::getSingleton().getScene(MenuWindowsScene));
 	mMouseX = 640;
 	mMouseY = 360;
 	mGUIState->setAllowNextTurn(true);
@@ -81,16 +81,18 @@ void BattlePlayerState::update(unsigned int deltaTime)
 
 bool BattlePlayerState::keyPressed(const OIS::KeyEvent &arg)
 {
-	if (arg.key==OIS::KC_ESCAPE)
+	if (arg.key==OIS::KC_ESCAPE )
 	{
-		if (mGUIMenu->getVisible())
+		if (!mGUIMenu->getVisible())
 		{
-			mGUIMenu->hideScene();
+			mGUIMenu->setAllowSave(true);
+			mGUIMenu->showScene("");
 		}
 		else
 		{
-			mGUIMenu->showScene("");
+			mGUIMenu->hideScene();
 		}
+		
 		return true;
 	}
 	else

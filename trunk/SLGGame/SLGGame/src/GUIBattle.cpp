@@ -5,7 +5,6 @@
 #include "GUISquadWindows.h"
 #include "GUIDeployWindow.h"
 #include "GUICommandWindows.h"
-#include "GUIMenuWindow.h"
 #include "GUITargetWindow.h"
 
 #include "Terrain.h"
@@ -17,8 +16,6 @@ GUIBattle::GUIBattle(int Width,int Height):GUIScene("Battle.layout",Width,Height
 {
 	MyGUI::Window* window;
 
-	assignWidget(window,"Menu");
-	mSubWindows.push_back(new GUIMenuWindow(window,Width,Height));
 	assignWidget(window,"Terrain");
 	mSubWindows.push_back(new GUITerrainWindows(window,Width,Height));
 	assignWidget(window,"TargetWindow");

@@ -27,7 +27,10 @@ void CutScene::start()
 
 void CutScene::skip()
 {
+	if (mEnded==true)
+		return;
 	skipCutScene();
+	mEnded=true;
 }
 
 void CutScene::skipall()
@@ -68,7 +71,7 @@ void CutScene::update(unsigned int deltaTime)
 		{
 			mPassedTime += deltaTime;
 			if(mPassedTime > mLastTime)
-				skipCutScene();
+				skip();
 			else
 				updateCutScene(deltaTime);
 		}

@@ -2,9 +2,13 @@
 
 #include "StringTable.h"
 
-GUIMenuWindow::GUIMenuWindow(MyGUI::Window* window,int Width,int Height):GUISubWindows(window,Width,Height),mWindow(window)
-{
+#include "StateManager.h"
+#include "LuaSystem.h"
+#include "GUISLWindow.h"
 
+GUIMenuWindow::GUIMenuWindow(int Width,int Height):GUIScene("SystemMenu.layout",Width,Height)
+{
+	assignWidget(mWindow,"BlackGround");
 	assignWidget(mRestartButton,"MenuRestartButton");
 	assignWidget(mSaveButton,"MenuSaveButton");
 	assignWidget(mLoadButton,"MenuLoadButton");
@@ -18,6 +22,8 @@ GUIMenuWindow::GUIMenuWindow(MyGUI::Window* window,int Width,int Height):GUISubW
 	mExitButton->setCaption(StringTable::getSingletonPtr()->getString("ExitGame"));
 
 	mRestartButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenuWindow::onRestart);
+	mSaveButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenuWindow::onSave);
+	mLoadButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenuWindow::onLoad);
 	mExitButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenuWindow::onExit);
 }
 
@@ -45,16 +51,6 @@ void GUIMenuWindow::FrameEvent()
 
 }
 
-bool GUIMenuWindow::GridInputEvent( int x,int y )
-{
-	return false;
-}
-
-bool GUIMenuWindow::KeyInputEvent( const OIS::KeyEvent &arg )
-{
-	return false;
-}
-
 void GUIMenuWindow::onRestart( MyGUI::Widget* _sender )
 {
 	hideScene();
@@ -62,5 +58,32 @@ void GUIMenuWindow::onRestart( MyGUI::Widget* _sender )
 
 void GUIMenuWindow::onExit( MyGUI::Widget* _sender )
 {
+	hideScene();
+	GUISystem::getSingletonPtr()->destoryScene(MenuWindowsScene);
+	LuaSystem::getSingletonPtr()->clearLuaSystem();
+	StateManager::getSingletonPtr()->changeState("",StateManager::Menu);
+}
 
+void GUIMenuWindow::onSave( MyGUI::Widget* _sender )
+{
+	GUISLWindow* SLWindow= (GUISLWindow*)GUISystem::getSingletonPtr()->createScene(SLScene);
+	mWindow->setVisible(false);
+	SLWindow->setCallScene(this);
+	SLWindow->showScene("save");
+}
+
+void GUIMenuWindow::onLoad( MyGUI::Widget* _sender )
+{
+	GUISLWindow* SLWindow= (GUISLWindow*)GUISystem::getSingletonPtr()->createScene(SLScene);
+	mWindow->setVisible(false);
+	SLWindow->setCallScene(this);
+	SLWindow->showScene("load");
+}
+
+void GUIMenuWindow::onOtherSceneNotify(std::string arg)
+{
+	if (arg=="Return")
+	{
+		mWindow->setVisible(true);
+	}
 }

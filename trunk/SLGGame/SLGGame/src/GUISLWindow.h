@@ -35,6 +35,7 @@ private:
 	bool mStartFade;
 	MyGUI::TextBox* mOldText;
 	bool isSave;
+	bool isOk;
 
 	GUIScene* mCallScene;
 };

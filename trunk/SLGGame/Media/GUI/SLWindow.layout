@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout" version="3.2.0">
-    <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Popup" name="SLBG">
+    <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Info" name="SLBG">
         <Property key="ImageTexture" value="black.png"/>
         <Widget type="Window" skin="SLGSLWindowSkin" position="372 77 535 565" align="Center" name="SLWindow">
             <Widget type="TextBox" skin="TextBox" position="200 125 115 35" name="SLCaption">

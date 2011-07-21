@@ -7,6 +7,7 @@ class CameraContral;
 
 class GUIBattle;
 class GUIDeployWindows;
+class GUIMenuWindow;
 class BattleSquad;
 class BattleSquadManager;
 class AreaGrap;
@@ -34,6 +35,7 @@ private:
 	GUIBattle* mGUIBattle;
 	GUIDeployWindows* mDeployWindow;
 	GUISquadWindows* mSquadWindow;
+	GUIMenuWindow* mMenuWindow;
 	BattleSquad* mSelectSquad;
 	int mSelectIndex;
 	BattleSquadManager* mSquadManager;
