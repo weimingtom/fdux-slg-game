@@ -29,7 +29,7 @@ fragment_program DepthShadowmap/ReceiverFP cg
     default_params
     {
 		//param_named depthRange float 500
-		param_named depthOffset float 0.005
+		param_named depthOffset float 0.001
     }
 }
 
@@ -57,7 +57,7 @@ fragment_program DepthShadowmap/CasterFP cg
     default_params
     {
 		//param_named depthRange float 500
-		param_named depthOffset float 0.005
+		param_named depthOffset float 0.001
     }
 }
 

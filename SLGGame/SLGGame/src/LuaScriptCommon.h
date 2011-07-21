@@ -93,6 +93,28 @@ static int SetCamera(lua_State* L)
 	return 0;
 }
 
+static int GetSquadIdFromPath(lua_State* L)
+{
+	std::string squadpath(luaL_checkstring(L, 1));
+	std::string::size_type i = squadpath.rfind('/');
+	std::string squad = squadpath.substr(i + 1,squadpath.size() - i -1);
+	lua_pushstring(L,squad.c_str());
+	return 1;
+}
+
+static int GetSquadApLeft(lua_State* L)
+{
+	std::string squad(luaL_checkstring(L, 1));
+	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
+	float ap = 0.0f;
+	if(battlesquad)
+	{
+		ap = battlesquad->getActionPoint();
+	}
+	lua_pushnumber(L,ap);
+	return 1;
+}
+
 static const struct luaL_Reg ScriptCommonLib[] =
 {
 	{"SetInt",SetInt},
@@ -103,5 +125,7 @@ static const struct luaL_Reg ScriptCommonLib[] =
 	{"GetTeamSquadLeft",GetTeamSquadLeft},
 	{"PlayMusic",PlayMusic},
 	{"SetCamera",SetCamera},
+	{"GetSquadIdFromPath",GetSquadIdFromPath},
+	{"GetSquadApLeft",GetSquadApLeft},
 	{NULL,NULL}
 };

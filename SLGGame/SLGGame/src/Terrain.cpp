@@ -245,7 +245,9 @@ void Terrain::destoryTerrian()
 
 	mGridNode->detachObject(mGrid);
 	core->mSceneMgr->destroyManualObject(mGrid);
+	mGrid = NULL;
 	core->mSceneMgr->destroySceneNode(mGridNode);
+	mGridNode = NULL;
 
 	//清除地表物件
 	std::map<int, stTilePUData*>::iterator puite;
@@ -276,7 +278,9 @@ void Terrain::destoryTerrian()
 	//Ogre::ResourceGroupManager::getSingleton().deleteResource("reflection");
 	mWaterNode->detachObject(mWaterObject);
 	core->mSceneMgr->destroyManualObject(mWaterObject);
+	mWaterObject = NULL;
 	core->mSceneMgr->destroySceneNode(mWaterNode);
+	mWaterNode = NULL;
 
 	//清除地面
 	std::vector<stTileEntityData *>::iterator tileite;
@@ -286,10 +290,13 @@ void Terrain::destoryTerrian()
 		core->mSceneMgr->destroyEntity((*tileite)->mTileEntity);
 		core->mSceneMgr->destroySceneNode((*tileite)->mTileNode);
 	}
+	mTileEntityVector.clear();
 	
 	mTerrainNode->detachObject(mTerrainEntity);
 	core->mSceneMgr->destroyEntity(mTerrainEntity);
+	mTerrainEntity = NULL;
 	core->mSceneMgr->destroySceneNode(mTerrainNode);
+	mTerrainNode = NULL;
 	Ogre::ResourceGroupManager::getSingleton().deleteResource("TerrianMesh");
 
 }
