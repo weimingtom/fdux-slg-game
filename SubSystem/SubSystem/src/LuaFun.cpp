@@ -373,6 +373,15 @@ extern "C"
 		return 1;
 	}
 
+	static int NextScene(lua_State* L)
+	{
+		std::string name = std::string(luaL_checkstring(L, 1));
+		
+		LuaSystem::getSingletonPtr()->runScriptFromFile(name,0);
+
+		return 1;
+	}
+
 	static const struct luaL_Reg GUILib[] =
 	{
 		{"Music",Music},
@@ -396,6 +405,8 @@ extern "C"
 		{"SetDialogAttribute",SetDialogAttribute},
 		{"SetDialogVisible",SetDialogVisible},
 		{"Wait",Wait},
+
+		{"NextScene",NextScene},
 
 		{NULL,NULL}
 	};

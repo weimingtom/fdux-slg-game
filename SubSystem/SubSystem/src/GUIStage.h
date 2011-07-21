@@ -61,6 +61,8 @@ private:
 
 	void loadComplete();
 
+	void returnScene();
+
 	void fastForward(bool value);
 
 	void UIInit();

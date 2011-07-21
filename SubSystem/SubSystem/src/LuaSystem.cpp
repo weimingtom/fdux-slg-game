@@ -206,7 +206,7 @@ void LuaSystem::saveScriptRuntime()
 {
 #ifndef SCRIPT_EDITOR
 	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/ScriptName",mScriptName);
-	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/ScriptLine",mScriptLine-1);
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/ScriptLine",mScriptLine);
 	
 #endif
 }
@@ -220,4 +220,12 @@ void LuaSystem::loadScripRuntime()
 	LuaBreakupFun=NULL;
 	
 #endif
+}
+
+void LuaSystem::clearLuaSystem()
+{
+	LuaBreakupFun=NULL;
+	mContextStack.clear();
+	mFileNameStack.clear();
+	mScriptBuffer.clear();
 }

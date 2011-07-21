@@ -26,6 +26,8 @@ public:
 	LuaSystem(void);
 	~LuaSystem(void);
 
+	void clearLuaSystem();
+
 	void onFrameUpdate();
 
 	void runScriptFromFile(const std::string& filename,int lineNum);
