@@ -7,6 +7,7 @@
 
 #ifndef SCRIPT_EDITOR
 #include "GUISLWindow.h"
+#include "GUIMenuWindow.h"
 #include "DataLibrary.h"
 #include "StringTable.h"
 #endif
@@ -52,6 +53,7 @@ GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),m
 	mSaveButton->eventMouseButtonClick+=MyGUI::newDelegate(this, &GUIStage::onSave);
 	mLoadButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::onLoad);
 	mHideButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::onHide);
+	mSystemButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::onSystem);
 }
 
 GUIStage::~GUIStage(void)
@@ -535,6 +537,7 @@ void GUIStage::onSave(MyGUI::Widget* _sender)
 {
 #ifndef SCRIPT_EDITOR
 	//写入场景数据
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/GameState","AVG");
 	//记录图层
 	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/BackGroundName",mBackGroundImageName);
 	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/BackGroundPosition",Ogre::Vector3(mBackGround->getLeft(),mBackGround->getTop(),0));
@@ -555,9 +558,29 @@ void GUIStage::onSave(MyGUI::Widget* _sender)
 	//记录文本
 	if (mTimerWork==PrinterWork)
 	{
-		DataLibrary::getSingletonPtr()->setData("GameData/StoryData/Text",mTextBox->getOnlyText()+mTextBuffer);
+		std::wstring text=mTextBuffer;
+		std::wstring temp=mTextBox->getCaption();
+		while(!text.empty())
+		{
+			mTextBox->addText(text.substr(0,1));
+			if (mTextBox->getHScrollPosition()!=0)//自动换行
+			{
+				int length=mTextBox->getTextLength();
+				mTextBox->eraseText(length-1);
+				mTextBox->addText("\n");
+				mTextBox->addText(text.substr(0,1));
+			}
+			text.erase(text.begin());
+		}
+
+		DataLibrary::getSingletonPtr()->setData("GameData/StoryData/Text",mTextBox->getOnlyText()+text);
+		mTextBox->getCaption();
 	}
-	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/Text",mTextBox->getOnlyText());
+	else
+	{
+		DataLibrary::getSingletonPtr()->setData("GameData/StoryData/Text",mTextBox->getOnlyText());
+	}
+
 	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/RoleName",mRoleName->getOnlyText());
 	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/TextCursorType",mTextCursorType);
 	
@@ -565,6 +588,7 @@ void GUIStage::onSave(MyGUI::Widget* _sender)
 	LuaSystem::getSingletonPtr()->saveScriptRuntime();
 
 	GUISLWindow* SLWindow= (GUISLWindow*)GUISystem::getSingletonPtr()->createScene(SLScene);
+	SLWindow->setCallScene(this);
 	SLWindow->showScene("save");
 #endif
 }
@@ -593,7 +617,10 @@ void GUIStage::onHide( MyGUI::Widget* _sender )
 
 void GUIStage::onSystem( MyGUI::Widget* _sender )
 {
-
+#ifndef SCRIPT_EDITOR
+	GUIMenuWindow* menuWindow =static_cast<GUIMenuWindow *>(GUISystem::getSingletonPtr()->createScene(MenuWindowsScene));
+	menuWindow->showScene("");
+#endif
 }
 
 void GUIStage::load()
@@ -651,6 +678,9 @@ void GUIStage::load()
 	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/TextCursorType",type);
 	//showTextCursor(type);
 
+	mTextBoxVisible=true;
+	mTextBoxBG->setVisible(true);
+	mTextBoxBG->setAlpha(1);
 
 #endif
 }
@@ -665,10 +695,39 @@ void GUIStage::onOtherSceneNotify(std::string arg)
 	{
 		loadComplete();
 	}
+	else if (arg=="Return")
+	{
+		returnScene();
+	}
 }
+
+
 
 void GUIStage::loadComplete()
 {
 	//读取脚本名与位置
 	LuaSystem::getSingletonPtr()->loadScripRuntime();
+	returnScene();
+
+}
+
+void GUIStage::returnScene()
+{
+	if (mTimerWork!=NoneWork)
+	{
+		if (mTimerWork==PrinterWork)
+		{
+			mTimer.reset();
+			GUISystem::getSingletonPtr()->setFrameUpdateScene(StageScene);
+			if (mTextCursor->getVisible())
+			{
+				hideTextCursor();
+			}
+		}
+		else
+		{
+			mTimerWork=NoneWork;
+		}
+
+	}
 }

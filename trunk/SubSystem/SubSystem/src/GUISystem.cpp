@@ -95,23 +95,26 @@ void GUISystem::registerSceneFactory( GUISceneType type,GUISceneFactory* factory
 
 GUIScene* GUISystem::createScene(GUISceneType type )
 {
-	GUIScene* scene=NULL;
+	GUIScene* scene=getScene(type);
 
-	std::map<GUISceneType,GUISceneFactory*>::iterator itr;
-	itr = mSceneFactorys.find(type);
+	if (scene==NULL)
+	{
+		std::map<GUISceneType,GUISceneFactory*>::iterator itr;
+		itr = mSceneFactorys.find(type);
 
-	if( itr != mSceneFactorys.end() )
-	{
-		scene=itr->second->CreateScene(mWindow->getWidth(),mWindow->getHeight());
-	}
-	else
-	{
-		return NULL;
-	}
+		if( itr != mSceneFactorys.end() )
+		{
+			scene=itr->second->CreateScene(mWindow->getWidth(),mWindow->getHeight());
+		}
+		else
+		{
+			return NULL;
+		}
 
-	if (scene!=NULL)
-	{
-		mSceneList.push_back(scene);
+		if (scene!=NULL)
+		{
+			mSceneList.push_back(scene);
+		}
 	}
 
 	return scene;
