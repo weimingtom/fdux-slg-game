@@ -379,7 +379,30 @@ void BattleSquad::newTurn()
 	datalib->setData(getPath() + std::string("/ActionPoint"),ap);
 	datalib->setData(getPath() + std::string("/APSetup"),0.0f);
 	datalib->setData(getPath() + std::string("/APBattle"),0.0f);
-	//计算隐藏
+	//触发回合开始
+	std::vector<std::string> triggerlist;
+	triggerlist = datalib->getChildList(getPath() + std::string("/Trigger"));
+	if(triggerlist.size()>0)
+	{
+		std::vector<std::string>::iterator ite;
+		for(ite = triggerlist.begin(); ite != triggerlist.end(); ite++)
+		{
+			std::string datapath = getPath() + std::string("/Trigger/") + (*ite);
+			int active;
+			datalib->getData(datapath ,active);
+			if(!active)
+				continue;
+			std::string type;
+			datalib->getData(datapath + std::string("/type"),type);
+			if(type != "TurnStart")
+				continue;
+			std::string context,filename,funcname;
+			datalib->getData(datapath + std::string("/file"),filename);
+			datalib->getData(datapath + std::string("/func"),funcname);
+			datalib->getData(datapath + std::string("/context"),context);
+			LuaSystem::getSingleton().executeFunction(filename,funcname,context);
+		}
+	}
 	
 	//计算技能
 	std::vector<std::string>::iterator ite;

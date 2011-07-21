@@ -27,15 +27,15 @@ void CutScene::start()
 
 void CutScene::skip()
 {
-	if (mEnded==true)
+	if(mEnded == true)
 		return;
 	skipCutScene();
-	mEnded=true;
+	mEnded = true;
 }
 
 void CutScene::skipall()
 {
-	skipCutScene();
+	skip();
 	if(mNextScene)
 		mNextScene->skipall();
 }

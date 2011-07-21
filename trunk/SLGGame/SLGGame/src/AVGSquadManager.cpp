@@ -274,9 +274,17 @@ bool AVGSquadManager::applyEffect(std::string path, std::string id, std::string 
 	//生成效果路径
 	std::string effectpath = path + std::string("/EffectList");
 	std::vector<std::string> effectlist = datalib->getChildList(effectpath);
+	std::vector<std::string>::iterator ite;
+	std::string oldeffectid;
+	for(ite = effectlist.begin(); ite != effectlist.end(); ite++)
+	{
+		datalib->getData(str(boost::format("%1%/%2%")%effectpath%(*ite)),oldeffectid);
+		if(oldeffectid == id)
+			removeEffect(path,(*ite));
+	}
 	int x = 0;
 	effectid = std::string("e") + Ogre::StringConverter::toString(x);
-	std::vector<std::string>::iterator ite = std::find(effectlist.begin(), effectlist.end(),effectid);
+	ite = std::find(effectlist.begin(), effectlist.end(),effectid);
 	while(ite != effectlist.end())
 	{
 		x = x + 1;

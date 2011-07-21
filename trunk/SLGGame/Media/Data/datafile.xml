@@ -465,6 +465,11 @@
 			<Icon type="String" value="magicshield.jpg"/>
 			<Script type="String" value="magicshield.lua"/>
 		</MagicShield>
+		<Defence>
+			<Type type="Int" value="1"/>
+			<Icon type="String" value="defence.jpg"/>
+			<Script type="String" value="defence.lua"/>
+		</Defence>
 	</EffectData>
 	<GroundData>
 		<Ground1>

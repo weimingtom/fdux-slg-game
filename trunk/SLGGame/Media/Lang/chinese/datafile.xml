@@ -113,6 +113,10 @@
 			<Name type="String" value="魔法盾"/>
 			<Describe type="String" value="魔法盾"/>
 		</MagicShield>
+		<Defence>
+			<Name type="String" value="防御"/>
+			<Describe type="String" value="防御"/>
+		</Defence>
 	</EffectData>
 	<GroundData>
 		<Ground1>
