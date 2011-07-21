@@ -3,6 +3,7 @@
 #include "LuaSystem.h"
 #include "GUIStage.h"
 #include "DataLibrary.h"
+#include "GUISLWindow.h"
 
 AVGState::AVGState(void)
 {
@@ -27,12 +28,12 @@ void AVGState::initialize( std::string arg )
 
 		if (q.front()=="lua")//该文件重头读取
 		{
-			//DataLibrary::getSingleton().loadXmlData(DataLibrary::GameData,"newgame.xml",true);
 			LuaSystem::getSingletonPtr()->runScriptFromFile(arg,0);
 		}
-		else if(q.front()=="sav")//从中间读取
+		else if(q.front()=="xml")//从中间读取
 		{
-
+			GUISLWindow* slWindow=static_cast<GUISLWindow*>(GUISystem::getSingletonPtr()->getScene(SLScene));
+			slWindow->setCallScene(stageScene);
 		}
 	}
 }

@@ -749,6 +749,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\src\GUIMenuWindow.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\GUIMenuWindow.h"
+						>
+					</File>
+					<File
 						RelativePath=".\src\GUISLWindow.cpp"
 						>
 					</File>
@@ -789,14 +797,6 @@
 						</File>
 						<File
 							RelativePath=".\src\GUIGameStateWindows.h"
-							>
-						</File>
-						<File
-							RelativePath=".\src\GUIMenuWindow.cpp"
-							>
-						</File>
-						<File
-							RelativePath=".\src\GUIMenuWindow.h"
 							>
 						</File>
 						<File

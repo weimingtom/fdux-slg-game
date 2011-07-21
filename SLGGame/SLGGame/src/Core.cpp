@@ -6,6 +6,7 @@
 #include "GUIStage.h"
 #include "LoadScene.h"
 #include "GUIBattle.h"
+#include "GUIMenuWindow.h"
 
 #include "LuaSystem.h"
 #include "AudioSystem.h"
@@ -97,7 +98,6 @@ bool Core::initialize()
 	Ogre::ResourceGroupManager::getSingletonPtr()->initialiseAllResourceGroups();
 
 	mDebugOverlay = Ogre::OverlayManager::getSingleton().getByName("Core/DebugOverlay");
-	//mDebugOverlay->show();
 
 	mGUISystem=new GUISystem(mWindow,mSceneMgr);
 	mGUISystem->registerSceneFactory(StageScene,new GUIStageFactory());
@@ -106,6 +106,7 @@ bool Core::initialize()
 	mGUISystem->registerSceneFactory(BattleScene,new GUIBattleFactory());
 	mGUISystem->registerSceneFactory(LoadingScene, new LoadSceneFactory());
 	mGUISystem->registerSceneFactory(SLScene, new GUISLWindowFactory());
+	mGUISystem->registerSceneFactory(MenuWindowsScene, new GUIMenuWindowFactory());
 
 	mAudioSystem=new AudioSystem();
 

@@ -36,6 +36,12 @@ public:
 	//帧更新
 	void StateUpdate(unsigned int deltaTime);
 
+	//文件保存处理
+	void saveState(std::string file);
+
+	//文件载入处理
+	void loadState(std::string file);
+
 private:
 	GameState* CreateState(StateType type);
 

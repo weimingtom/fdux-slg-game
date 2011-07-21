@@ -5,6 +5,7 @@
 
 #include "Core.h"
 #include "LuaSystem.h"
+#include "GUISLWindow.h"
 
 #include "StateManager.h"
 
@@ -109,7 +110,7 @@ void GUIMenu::FrameEvent()
 
 					if (mTimerWork==NoneWork)
 					{
-						StateManager::getSingletonPtr()->changeState("Chapter1.lua",StateManager::AVG);
+						StateManager::getSingletonPtr()->changeState("Chapter0.lua",StateManager::AVG);
 					}
 
 					break;
@@ -204,16 +205,9 @@ void GUIMenu::setButtonLock( bool isLock )
 
 void GUIMenu::onLoad( MyGUI::Widget* _sender )
 {
-	setButtonLock(false);
-
-	mMenuState=LoadMenuState;
-	mSetp=1;
-	mSetpDirection=false;//从无到有方向
-	mTimerWork=FadeInOutWork;
-	mTickTime=2*1000/100;
-
-	mTimer.reset();
-	GUISystem::getSingletonPtr()->setFrameUpdateScene(MenuScene);
+	GUISLWindow* SLWindow= (GUISLWindow*)GUISystem::getSingletonPtr()->createScene(SLScene);
+	SLWindow->setCallScene(this);
+	SLWindow->showScene("load");
 }
 
 void GUIMenu::onOpiton( MyGUI::Widget* _sender )

@@ -10,6 +10,7 @@
 #define SAVE_PATH "..\\save"
 
 #include "GUIStage.h"
+#include "StateManager.h"
 
 GUISLWindow::GUISLWindow(int width,int height):GUIScene("SLWindow.layout",width,height),mStartFade(false),mOldText(NULL)
 {
@@ -124,9 +125,13 @@ void GUISLWindow::FrameEvent()
 		if (mSetpDirection==false)
 		{
 			mStartFade=false;
-			if(!isSave)
+			if(!isSave && isOk)
 			{
 				mCallScene->onOtherSceneNotify("LoadComplete");
+			}
+			else
+			{
+				mCallScene->onOtherSceneNotify("Return");
 			}
 			GUISystem::getSingletonPtr()->destoryScene(SLScene);
 		}
@@ -155,20 +160,22 @@ void GUISLWindow::onYes( MyGUI::Widget* _sender )
 			}
 
 			DataLibrary::getSingletonPtr()->setData("GameData/StoryData/FileName",fileName);
-			DataLibrary::getSingletonPtr()->saveXmlData(DataLibrary::GameData,std::string(SAVE_PATH)+std::string("\\save")+mOldText->getUserString("Num")+".xml");
+			StateManager::getSingletonPtr()->saveState(std::string(SAVE_PATH)+std::string("\\save")+mOldText->getUserString("Num")+".xml");
 		}
 		else
 		{
-			DataLibrary::getSingletonPtr()->loadXmlData(DataLibrary::GameData,std::string(SAVE_PATH)+std::string("\\save")+mOldText->getUserString("Num")+".xml",false);
+			StateManager::getSingletonPtr()->loadState(std::string(SAVE_PATH)+std::string("\\save")+mOldText->getUserString("Num")+".xml");
 			mCallScene->onOtherSceneNotify("LoadSelect");
 		}
-
+		
+		isOk=true;
 		hideScene();
 	}
 }
 
 void GUISLWindow::onNo( MyGUI::Widget* _sender )
 {
+	isOk=false;
 	hideScene();
 }
 
