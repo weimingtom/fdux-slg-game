@@ -16,6 +16,8 @@
 #include "GUICommandWindows.h"
 #include "GUIMenuWindow.h"
 #include "GUITargetWindow.h"
+#include "GUIInfoWindow.h"
+#include "StringTable.h"
 #include "Terrain.h"
 #include "SquadGraphics.h"
 #include "SquadGrapManager.h"
@@ -33,6 +35,7 @@ BattlePlayerState::BattlePlayerState()
 	mSquadManager = BattleSquadManager::getSingletonPtr();
 	mCameraContral = CameraContral::getSingletonPtr();
 	mGUIBattle = static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
+	GUISystem::getSingletonPtr()->setFrameUpdateScene(BattleScene);
 	Core::getSingleton().mInputControl->pushListener(this);
 	mSquadWindow = static_cast<GUISquadWindows *>(mGUIBattle->getSubWindow("SquadWindow"));
 	mSquadWindow->setSquad(NULL);
@@ -241,6 +244,9 @@ bool BattlePlayerState::mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButt
 
 void BattlePlayerState::newTurn()
 {
+	GUIInfoWindow* infoWindow=(GUIInfoWindow*)mGUIBattle->getSubWindow("InfoWindow");
+	infoWindow->setCaption(StringTable::getSingletonPtr()->getString("PlayerTurn"),MyGUI::Colour::White);
+	infoWindow->showScene("");
 	for(int n = 0; n < mSquadManager->mSquadList.size(); n++)
 	{
 		if(mSquadManager->mSquadList[n]->getTeam() == 1)

@@ -16,7 +16,7 @@
 				<Defence type="Int" value="1"/>
 			</SkillTable>
 			<LeaderName type="String" value="Cheetah"/>
-			<LeaderPicture type="String" value="Cheetah.jpg"/>
+			<LeaderPicture type="String" value="Cheetah.png"/>
 			<LeaderMesh type="String" value="HeavyInfOf.mesh"/>
 			<LeaderMat type="String" value="HeavyInfOf"/>
 			<UnitMesh type="String" value="HeavyInf.mesh"/>
@@ -38,7 +38,7 @@
 				<RangedAttack type="Int" value="1"/>
 			</SkillTable>
 			<LeaderName type="String" value="Dandelion"/>
-			<LeaderPicture type="String" value="Dandelion.jpg"/>
+			<LeaderPicture type="String" value="Dandelion.png"/>
             <LeaderMesh value="LightInfOf.mesh" type="String" />
             <LeaderMat value="LightInfOf" type="String" />
 			<UnitMesh type="String" value="LightInf.mesh"/>
@@ -61,7 +61,7 @@
 				<MagicShield type="Int" value="1"/>
 			</SkillTable>
 			<LeaderName type="String" value="Olivia"/>
-			<LeaderPicture type="String" value="Olivia.jpg"/>
+			<LeaderPicture type="String" value="Olivia.png"/>
 			<LeaderMesh type="String" value="Saint.mesh"/>
 			<LeaderMat type="String" value="none"/>
 			<UnitMesh type="String" value="HolySpirit.mesh"/>
@@ -82,7 +82,7 @@
 				<Attack type="Int" value="1"/>
 			</SkillTable>
 			<LeaderName type="String" value="EtasiSquadLeader"/>
-			<LeaderPicture type="String" value="EtasiSquadLeader.jpg"/>
+			<LeaderPicture type="String" value="EtasiSquadLeader.png"/>
             <LeaderMesh value="LightInfOf.mesh" type="String" />
             <LeaderMat value="LightInfOf" type="String" />
 			<UnitMesh type="String" value="LightInf.mesh"/>
@@ -103,7 +103,7 @@
 				<Attack type="Int" value="1"/>
 			</SkillTable>
 			<LeaderName type="String" value="EtasiSquadLeader"/>
-			<LeaderPicture type="String" value="EtasiSquadLeader.jpg"/>
+			<LeaderPicture type="String" value="EtasiHeavyInf.png"/>
 			<LeaderMesh type="String" value="HeavyInfOf.mesh"/>
 			<LeaderMat type="String" value="HeavyInfOf"/>
 			<UnitMesh type="String" value="HeavyInf.mesh"/>

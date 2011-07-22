@@ -2,14 +2,14 @@
 <StaticData>
 	<StringTable>
 		<!--Map-->
-		<map1 type="String" value = "双河平原之战1"/>
-		<mapinfo1 type="String" value = "双河平原之战1"/>
+		<map1 type="String" value = "双河平原之战 前篇"/>
+		<mapinfo1 type="String" value = "  双河平原位于教廷和皇廷势力交界处，原属达克斯，五十年前被凡塔斯占领，其后凡塔斯和达克斯多次在这里交战。"/>
 		
 		<!--LeaderName-->
 		<Cheetah type="String" value="齐塔"/>
 		<Dandelion type="String" value="丹德来恩"/>
 		<Olivia type="String" value="奥莉瓦" />
-		<EtasiSquadLeader type="String" value="伊塔斯指挥官"/>
+		<EtasiSquadLeader type="String" value="达克斯指挥官"/>
 		
 		<!--EquapType-->
 		<PWeaponTypeOneHandSword type="String" value="单手剑"/>
@@ -35,12 +35,15 @@
 		<DirectionWest type="String" value="西"/>
 		<DirectionEast type="String" value="东"/>
 		
+		<PlayerTurn type="String" value="Player Turn"/>
 		<BattleInfo type="String" value="阵亡:%1%人"/>
+		<SquadDead type="String" value="被击溃!"/>
 		<SquadUnitNum type="String" value="编制%1%人,当前%2%人,受伤%3%人"/>
 		<SquadUnitNumSimple type="String" value="#00FF00%1%#FFFF00(%2%)#FFFFFF/#00FF00%3%"/>
 		<SquadUnitNumNoInj type="String" value="编制%1%人,当前%2%人"/>
 		<SquadUnitNumNoInjSimple type="String" value="#00FF00%1%#FFFFFF/#00FF00%2%"/>
 		<APLabel type="String" value="队伍AP值:%1%"/>
+		<IsContinueMove type="String" value="发现敌人,是否继续移动?"/>
 		
 		<!--GUI-->
 		<gamename type="String" value = "忘却的战场"/>
@@ -51,6 +54,8 @@
 		<ExitGame type="String" value = "退出游戏"/>
 		<YesButton type="String" value = "确定"/>
 		<NoButton type="String" value = "取消"/>
+		<Yes type="String" value="是"/>
+		<No type="String" value="否"/>
 		<SaveButton type="String" value="保存"/>
 		<LoadButton type="String" value="读取"/>
 		<HideButton type="String" value="隐藏"/>
@@ -62,6 +67,7 @@
 		<LoadingMapObject type="String" value="读取地图对象.." />
 		<LoadingUnit type="String" value="读取单位.." />
 		<CreatingGrid type="String" value="构建地形.." />
+		<Finish type="String" value="按任意键继续.." />
 		
 		<GameTurn type="String" value="回合数:"/>
 		<CurTeam type="String" value="当前队伍:"/>

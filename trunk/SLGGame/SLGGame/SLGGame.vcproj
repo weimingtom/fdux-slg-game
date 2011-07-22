@@ -757,6 +757,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\src\GUIMessageBox.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\GUIMessageBox.h"
+						>
+					</File>
+					<File
 						RelativePath=".\src\GUISLWindow.cpp"
 						>
 					</File>
@@ -797,6 +805,14 @@
 						</File>
 						<File
 							RelativePath=".\src\GUIGameStateWindows.h"
+							>
+						</File>
+						<File
+							RelativePath=".\src\GUIInfoWindow.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\src\GUIInfoWindow.h"
 							>
 						</File>
 						<File

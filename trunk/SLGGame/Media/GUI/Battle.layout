@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout" version="3.2.0">
     <Widget type="Window" skin="SLGWindow" position="0 0 265 185" layer="Main" name="GameState">
         <Property key="Caption" value="Game State"/>
@@ -156,7 +156,7 @@
             <Property key="FontHeight" value="20"/>
         </Widget>
     </Widget>
-    <Widget type="Window" skin="SLGMiniWindowSkin" position="250 5 274 145" layer="Main" name="Terrain">
+    <Widget type="Window" skin="SLGMiniWindowSkin" position="250 5 274 145" layer="Middle" name="Terrain">
         <Property key="Caption" value="Terrain"/>
         <Property key="FontName" value="fireflysung"/>
         <Property key="FontHeight" value="20"/>
@@ -238,7 +238,7 @@
         <Property key="FontHeight" value="20"/>
         <Widget type="ListBox" skin="ListBox" position="0 0 210 105" name="MissionList"/>
     </Widget>
-    <Widget type="Window" skin="SLGWindow" position="600 0 414 504" layer="Main" name="DeployWindow">
+    <Widget type="Window" skin="SLGWindow" position="875 210 414 504" layer="Popup" name="DeployWindow">
         <Property key="Caption" value="DeployWindow"/>
         <Property key="FontName" value="fireflysung"/>
         <Property key="Visible" value="false"/>
@@ -453,6 +453,15 @@
             <Property key="FontHeight" value="20"/>
             <Property key="VisibleVScroll" value="true"/>
             <Property key="OverflowToTheLeft" value="true"/>
+        </Widget>
+    </Widget>
+    <Widget type="Window" skin="SLGMiniWindowSkin" position="430 280 470 100" layer="Popup" name="InfoWindow">
+        <Property key="Visible" value="false"/>
+        <Widget type="TextBox" skin="TextBox" position="52 20 365 60" align="Center" name="Caption">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="TextAlign" value="Center"/>
+            <Property key="Caption" value="Player Turn"/>
+            <Property key="TextColour" value="0 0 1"/>
         </Widget>
     </Widget>
 </MyGUI>

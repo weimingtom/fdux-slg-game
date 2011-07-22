@@ -19,10 +19,14 @@ public:
 	{
 		return LoadingScene;
 	}
+	void setMapName(std::string text);
+	void setMapInfo(std::string info);
 private:
 	MyGUI::ImageBox* mBackgroundImage;
 	MyGUI::ProgressBar* mLoadProgress;
 	MyGUI::TextBox* mLoadText;
+	MyGUI::TextBox* mMapName;
+	MyGUI::EditBox* mMapInfo;
 };
 
 class LoadSceneFactory:

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <StaticData>
 	<SquadData>
 		<CheetahSquad>
@@ -14,12 +14,12 @@
 			<Describe type="String" value="奥莉瓦"/>
 		</Olivia>
 		<EtasiLightSpear>
-			<Name type="String" value="伊塔斯轻装长矛队"/>
-			<Describe type="String" value="伊塔斯轻装长矛队"/>
+			<Name type="String" value="达克斯轻装长矛队"/>
+			<Describe type="String" value="达克斯轻装长矛队"/>
 		</EtasiLightSpear>
 		<EtasiHeavyInf>
-			<Name type="String" value="伊塔斯重步兵队"/>
-			<Describe type="String" value="伊塔斯重步兵队"/>
+			<Name type="String" value="达克斯重步兵队"/>
+			<Describe type="String" value="达克斯重步兵队"/>
 		</EtasiHeavyInf>
 	</SquadData>
 	<SoilderData>
@@ -28,8 +28,8 @@
 			<Describe type="String" value="翼骑团战士"/>
 		</WingsSoilder>
 		<EtasiSoilder>
-			<Name type="String" value="伊塔斯士兵"/>
-			<Describe type="String" value="伊塔斯士兵"/>
+			<Name type="String" value="达克斯士兵"/>
+			<Describe type="String" value="达克斯士兵"/>
 		</EtasiSoilder>
 	</SoilderData>
 	<HorseData>
@@ -174,8 +174,8 @@
 			<Describe type="String" value="翼骑团"/>
 		</Wing>
 		<Etasi>
-			<Name type="String" value="伊塔斯"/>
-			<Describe type="String" value="伊塔斯"/>
+			<Name type="String" value="达克斯"/>
+			<Describe type="String" value="达克斯"/>
 		</Etasi>
 	</FactionData>
 	<CityData>

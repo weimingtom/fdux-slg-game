@@ -7,6 +7,7 @@
 </MapTeam>
 <MapScript>testscript.lua</MapScript>
 <MapInfo>mapinfo1</MapInfo>
+<MapLoadBG>map1.png</MapLoadBG>
 <MapSize>12</MapSize>
 <MapData>lglglglglglglglglglglglgwgwglglglgwgwgwgwglgwgwglgwgwgwgwgwglglgwgwgwglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglg</MapData>
 <MapObject>

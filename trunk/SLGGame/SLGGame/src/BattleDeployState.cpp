@@ -23,7 +23,7 @@
 BattleDeployState::BattleDeployState()
 {
 	mCameraContral = CameraContral::getSingletonPtr();
-	mCameraContral->resetCamera();
+	//mCameraContral->resetCamera();
 	Core::getSingleton().mInputControl->pushListener(this);
 	mMouseX = 640;
 	mMouseY = 320;
