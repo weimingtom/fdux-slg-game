@@ -184,7 +184,7 @@ void GUISLWindow::onSaveTextClick( MyGUI::Widget* _sender )
 	MyGUI::TextBox* text=(MyGUI::TextBox*)_sender;
 	if (mOldText!=text)
 	{
-		text->setTextColour(MyGUI::Colour::Blue);
+		text->setTextColour(MyGUI::Colour::Red);
 		mFileName->setCaption(text->getUserString("FileName"));
 		if (mOldText!=NULL)
 		{

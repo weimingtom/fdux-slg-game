@@ -4,6 +4,7 @@
 #include <string>
 
 class BattlePlayerState;
+class GUIMessageBox;
 
 class BattleMessageBoxState: public SubBattleState
 {
@@ -14,4 +15,5 @@ public:
 	virtual void update(unsigned int deltaTime);
 private:
 	BattlePlayerState* mPlayerState;
+	GUIMessageBox* mMessageBox;
 };

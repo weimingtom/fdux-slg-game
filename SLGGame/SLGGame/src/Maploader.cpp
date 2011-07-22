@@ -44,7 +44,12 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 
 	element = doc->FirstChildElement("MapInfo");
 	element->GetText(&str);
-	datalibrary->setData("GameData/BattleData/MapData/MapInfo", StringTable::getSingleton().getString(str));
+	datalibrary->setData("GameData/BattleData/MapData/MapInfo",str);
+	delete element;
+
+	element = doc->FirstChildElement("MapLoadBG");
+	element->GetText(&str);
+	datalibrary->setData("GameData/BattleData/MapData/MapLoadBG",str);
 	delete element;
 
 	//载入地图地形信息

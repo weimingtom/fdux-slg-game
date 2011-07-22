@@ -6,6 +6,7 @@
 #include "GUIDeployWindow.h"
 #include "GUICommandWindows.h"
 #include "GUITargetWindow.h"
+#include "GUIInfoWindow.h"
 
 #include "Terrain.h"
 
@@ -28,6 +29,8 @@ GUIBattle::GUIBattle(int Width,int Height):GUIScene("Battle.layout",Width,Height
 	mSubWindows.push_back(new GUIGameStateWindows(window,Width,Height));
 	assignWidget(window,"DeployWindow");
 	mSubWindows.push_back(new GUIDeployWindows(window,Width,Height));
+	assignWidget(window,"InfoWindow");
+	mSubWindows.push_back(new GUIInfoWindow(window,Width,Height));
 	//assignWidget(mButton,"ShadowMapTarget");
 
 }

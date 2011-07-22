@@ -27,7 +27,7 @@ void GUISquadValueBillBoard::update( Ogre::Vector2 screen,unsigned int deltaTime
 		mDeltaTime+=deltaTime;
 		if (mDeltaTime>=10)
 		{
-			mMoveY+=1;
+			mMoveY+=4;
 			mDeltaTime=0;
 		}
 		

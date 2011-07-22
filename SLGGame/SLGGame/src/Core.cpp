@@ -7,6 +7,7 @@
 #include "LoadScene.h"
 #include "GUIBattle.h"
 #include "GUIMenuWindow.h"
+#include "GUIMessageBox.h"
 
 #include "LuaSystem.h"
 #include "AudioSystem.h"
@@ -107,6 +108,7 @@ bool Core::initialize()
 	mGUISystem->registerSceneFactory(LoadingScene, new LoadSceneFactory());
 	mGUISystem->registerSceneFactory(SLScene, new GUISLWindowFactory());
 	mGUISystem->registerSceneFactory(MenuWindowsScene, new GUIMenuWindowFactory());
+	mGUISystem->registerSceneFactory(MessageBoxScene, new GUIMessageBoxFactory());
 
 	mAudioSystem=new AudioSystem();
 

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout" version="3.2.0">
+    <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Info" name="BG">
+        <Widget type="Window" skin="SLGWindow" position="320 225 535 205" name="Window">
+            <Widget type="Button" skin="SLGButton1" position="110 140 130 50" align="Left Bottom" name="Yes">
+                <Property key="TextColour" value="1 1 1"/>
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="20"/>
+                <Property key="Caption" value="Yes"/>
+            </Widget>
+            <Widget type="Button" skin="SLGButton1" position="300 145 150 40" align="Right Bottom" name="No">
+                <Property key="TextColour" value="1 1 1"/>
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="20"/>
+                <Property key="Caption" value="No"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="52 75 430 55" align="Center" name="Caption">
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="TextColour" value="1 1 1"/>
+                <Property key="FontHeight" value="24"/>
+                <Property key="Caption" value="asdasd"/>
+                <Property key="TextAlign" value="Center"/>
+            </Widget>
+        </Widget>
+    </Widget>
+</MyGUI>
