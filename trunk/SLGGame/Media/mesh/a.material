@@ -18,3 +18,24 @@ material Examples/LightRibbonTrail
 		}
 	}
 }
+
+material SelectSquadPlane
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend add
+			depth_write off
+
+			texture_unit
+			{
+				texture SelectSquad.dds
+				filtering none
+				rotate_anim -0.5
+				tex_address_mode clamp
+			}
+		}
+	}
+}

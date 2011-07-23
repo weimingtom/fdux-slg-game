@@ -21,7 +21,12 @@ public:
 	}
 	void setMapName(std::string text);
 	void setMapInfo(std::string info);
+
+	bool isStartCheck;
+	bool isClick;
 private:
+	void eventMouseButtonClick(MyGUI::Widget* _sender);
+
 	MyGUI::ImageBox* mBackgroundImage;
 	MyGUI::ProgressBar* mLoadProgress;
 	MyGUI::TextBox* mLoadText;

@@ -26,7 +26,7 @@ public:
 	bool keyReleased(const OIS::KeyEvent &arg){return false;}
 
 	bool mouseMoved(const OIS::MouseEvent &arg){return false;}
-	bool mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id);
+	bool mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id){return false;}
 	bool mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id){return false;}
 private:
 	MapLoader *mMapLoader;
