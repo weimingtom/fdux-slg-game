@@ -4,13 +4,13 @@ function useskill()
 	defenderpath = ScriptCommonLib.GetString("skilltargetpath");
 	id = SkillLib.ApplyEffect(defenderpath,"MagicShield");
 	ScriptCommonLib.SetString("Effectid",id);
-	SkillLib.Action(attacker,1,"mp_flare_06","Skill","none");
+	SkillLib.Action(attacker,1,"mp_seal_08","Skill","magicSkill1.mp3");
 	ScriptCommonLib.SetInt("skillcast",1);
 end
 
 function onaffect()
 	squadpath = ScriptCommonLib.GetString("affectsquadpath");
-	id = SkillLib.ApplyParticle(squadpath,3,"mp_flare_06");
+	id = SkillLib.ApplyParticle(squadpath,3,"mp_spell_effect_06");
 	ScriptCommonLib.SetString("Particleid",id);
 	id = SkillLib.ApplyModifier(squadpath,1,0.0,0.0,3.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0);
 	ScriptCommonLib.SetString("Modifierid",id);

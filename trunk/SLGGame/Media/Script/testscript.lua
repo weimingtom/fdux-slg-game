@@ -2,7 +2,7 @@ function initmap()
 	trigerid = TriggerLib.AddTrigger("FinishDeploy","finishdeploy");
 	TriggerLib.ActiveTrigger(trigerid);
 	ScriptCommonLib.SetString("finishdeploytriger",trigerid);
-	ScriptCommonLib.PlayMusic("battle1.wav");
+	ScriptCommonLib.PlayMusic("battle1.mp3");
 	ScriptCommonLib.SetCamera(0,4);
 end
 
@@ -22,7 +22,7 @@ function unitdead()
 	if squad == Cheetah or squad == Dandelion or squad == Olivia then
 		TriggerLib.ChangeState(1,"Chapter1_4.lua");
 	elseif ScriptCommonLib.GetTeamSquadLeft(2) == 0 then
-		TriggerLib.ChangeState(1,"Chapter1_3.lua");
+		TriggerLib.ChangeState(1,"Chapter2.lua");
 	end
 end
 

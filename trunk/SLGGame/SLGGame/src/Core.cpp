@@ -29,8 +29,12 @@
 #include "LuaScriptCommon.h"
 #include "LuaTrigger.h"
 #include "GUISLWindow.h"
+#include "Framerate.h"
 
 #include <ParticleUniverseSystemManager.h> 
+
+#include "resource.h"
+#include <windows.h>
 
 Core::Core(void):isRun(false)
 {
@@ -75,6 +79,10 @@ bool Core::initialize()
 	list["border"]="fixed"; 
 
 	mWindow = mRoot->createRenderWindow(title,1280,720,false,&list);
+
+	HWND   hwnd;
+	mWindow->getCustomAttribute("WINDOW", &hwnd);   
+	SendMessage(hwnd,WM_SETICON,ICON_SMALL,(LPARAM)LoadIcon(GetModuleHandle(NULL),MAKEINTRESOURCE(IDI_ICON1)));   
 
 	Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
 
@@ -144,6 +152,9 @@ bool Core::initialize()
 
 	mStateManager=new StateManager();
 	mStateManager->changeState("logo",StateManager::Menu);
+
+	mFramerate=new Framerate();
+	mFramerate->Init(60);
 
 	isRun=true;
 
@@ -254,6 +265,7 @@ void Core::run()
 	timer.reset();
 	while(isRun)
 	{
+		mFramerate->SetSpeedFactor();
 		timer.reset();
 		RenderingFrame(t);
 		t=timer.getMilliseconds();

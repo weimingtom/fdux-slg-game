@@ -36,11 +36,21 @@ extern "C"
 		return 0;
 	}
 
+	static int Menustate(lua_State* L)
+	{
+		std::string arg(luaL_checkstring(L, 1));
+
+		StateManager::getSingletonPtr()->changeState(arg,StateManager::Menu);
+
+		return 0;
+	}
+
 	static const struct luaL_Reg StateLib[] =
 	{
 		{"AvgState",AvgState},
 		{"BattleState",BattleState1},
 		{"SupplyState",SupplyState},
+		{"MenuState",Menustate},
 
 		{NULL,NULL}
 	};

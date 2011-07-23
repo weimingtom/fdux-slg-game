@@ -370,10 +370,24 @@ bool SquadGraphics::isTransformOver()
 
 void SquadGraphics::stopTransform()
 {
-	mSceneMgr->destroyAnimationState(mNode->getName()+"_Ani");
-	mSceneMgr->destroyAnimation(mNode->getName()+"_Ani");
-	mNodeAnimation=NULL;
-	mNodeAnimationState=NULL;
+	if (mNodeAnimation!=NULL)
+	{
+		mSceneMgr->destroyAnimationState(mNode->getName()+"_Ani");
+		mNodeAnimationState=NULL;
+		
+	}
+	
+	if (mNodeAnimation!=NULL)
+	{
+		mSceneMgr->destroyAnimation(mNode->getName()+"_Ani");
+		mNodeAnimation=NULL;
+	}
+
+	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+	{
+		(*it)->stopTransform();
+	}
+	mCommanderUnit->stopTransform();
 	setCheckUnitHeight(false);
 	AudioSystem::getSingletonPtr()->stopSample();
 }

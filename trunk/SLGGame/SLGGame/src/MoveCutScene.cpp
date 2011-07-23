@@ -32,7 +32,8 @@ MoveCutScene::MoveCutScene(unsigned int id,std::vector<Ogre::Vector2>& grids,Ogr
 			//height=Terrain::getSingletonPtr()->getHeight(wx,wy);
 
 			Ogre::Vector3 v(wx,height,wy);
-			mEndPosition=v;
+			mEndPosition.x=(*it).x;
+			mEndPosition.y=(*it).y;
 			vectors[index]=v;
 		}
 		else

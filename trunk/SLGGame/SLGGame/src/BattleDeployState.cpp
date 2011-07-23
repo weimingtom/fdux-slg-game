@@ -104,6 +104,7 @@ bool BattleDeployState::keyPressed(const OIS::KeyEvent &arg)
 		{
 			mMenuWindow->setAllowSave(false);
 			mMenuWindow->showScene("");
+			
 		}
 		else
 		{

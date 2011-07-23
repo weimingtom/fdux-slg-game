@@ -1,7 +1,9 @@
 #include "GUIInfoWindow.h"
 
 #define TICKTIME 5
-#define WAITTIME 500
+#define WAITTIME 1000
+
+#include "Framerate.h"
 
 GUIInfoWindow::GUIInfoWindow(MyGUI::Window* window,int Width,int Height):GUISubWindows(window,Width,Height)
 {
@@ -40,21 +42,23 @@ void GUIInfoWindow::FrameEvent()
 		mTimer.reset();
 		if (!isWait)
 		{
-			if (mTickTime>=TICKTIME)
-			{
-				mTickTime=0;
+	//		if (mTickTime>=TICKTIME)
+		//	{
+			//	mTickTime=0;
 				if (mSetpDirection)
 				{
-					mSetp+=0.05;
+					mSetp+=0.03*Framerate::getSingletonPtr()->speedfactor;
 					if (mSetp>=1)
 					{
 						mSetpDirection=false;
 						isWait=true;
+						mSetp=1;
+						mTickTime=0;
 					}
 				}
 				else
 				{
-					mSetp-=0.05;
+					mSetp-=0.03*Framerate::getSingletonPtr()->speedfactor;
 					if (mSetp<=0)
 					{
 						mWindow->setVisible(false);
@@ -63,7 +67,7 @@ void GUIInfoWindow::FrameEvent()
 					}
 				}
 				mWindow->setAlpha(mSetp);
-			}
+			//}
 		}
 		else
 		{

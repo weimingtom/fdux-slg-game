@@ -12,6 +12,7 @@
 #include "StateManager.h"
 #include "TriggerManager.h"
 #include "GUISystem.h"
+#include "AudioSystem.h"
 
 BattleState::BattleState(void)
 {
@@ -87,17 +88,8 @@ void BattleState::uninitialize()
 	BattleSquadManager::getSingleton().clear();
 	SquadGrapManager::getSingleton().clear();
 	DataLibrary::getSingleton().delNode(std::string("GameData/BattleData"));
-	/*
-	if(mTerrain != NULL)
-	{
-		
-		mTerrain->destoryTerrian();
-		//delete mTerrain;
-		//mTerrain = NULL;
-	}
-	*/
-
-	//GUISystem::getSingletonPtr()->destoryScene(PUDebugScene);
+	AudioSystem::getSingletonPtr()->stopSample();
+	AudioSystem::getSingletonPtr()->stopStream(1000);
 }
 
 void BattleState::update(unsigned int deltaTime)
