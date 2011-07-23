@@ -73,6 +73,7 @@ BattlePlayerState::~BattlePlayerState()
 	mSquadWindow->setSquad(NULL);
 	mGUICommand->setSquad(NULL);
 	mGUIState->setAllowNextTurn(false);
+	planeNode->setVisible(false);
 }
 
 void BattlePlayerState::update(unsigned int deltaTime)

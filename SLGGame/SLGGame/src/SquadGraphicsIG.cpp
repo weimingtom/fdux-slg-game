@@ -480,6 +480,12 @@ void SquadGraphicsIG::setGrid(int x,int y)
 	Terrain::getSingletonPtr()->getWorldCoords(x,y,wx,wy);
 	
 	mNode->setPosition(wx,0,wy);
+	for (std::vector<UnitGrapIG*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+	{
+		(*it)->setPosition(wx,wy);
+	}
+	mCommanderUnit->setPosition(wx,wy);
+
 }
 
 void SquadGraphicsIG::setScale( Ogre::Vector3 scale,bool isAnim )

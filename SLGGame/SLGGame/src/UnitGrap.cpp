@@ -479,11 +479,25 @@ void UnitGrap::setAnimation( std::string name,bool loop,bool returnInit )
 
 void UnitGrap::stopTransform()
 {
-	Core::getSingletonPtr()->mSceneMgr->destroyAnimationState(mNode->getName()+"_Ani");
-	Core::getSingletonPtr()->mSceneMgr->destroyAnimation(mNode->getName()+"_Ani");
-	mNodeAnimation=NULL;
-	mNodeAnimationState=NULL;
+	if (mNodeAnimationState!=NULL)
+	{
+
+		Core::getSingletonPtr()->mSceneMgr->destroyAnimationState(mNode->getName()+"_Ani");
+		mNodeAnimationState=NULL;
+	}
+	
+	if (mNodeAnimation!=NULL)
+	{
+		Core::getSingletonPtr()->mSceneMgr->destroyAnimation(mNode->getName()+"_Ani");
+		mNodeAnimation=NULL;
+	}
+	
 	mIsCheckHeight=false;
+	if (mReturnInitAni)
+	{
+		mAniBlender->BackToInit();
+		mReturnInitAni=false;
+	}
 	AudioSystem::getSingletonPtr()->stopSample();
 }
 
@@ -508,10 +522,6 @@ void UnitGrap::update( unsigned int deltaTime )
 		if (mNodeAnimationState->getTimePosition() >= mNodeAnimationState->getLength())
 		{
 			stopTransform();
-			if (mReturnInitAni)
-			{
-				mAniBlender->BackToInit();
-			}
 		}
 		else
 		{

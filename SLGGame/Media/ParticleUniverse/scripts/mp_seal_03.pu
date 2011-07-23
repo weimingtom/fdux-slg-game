@@ -1,0 +1,84 @@
+system mp_seal_03
+{
+    keep_local                                  true
+    scale_velocity                              0.1
+    scale                                       0.1 0.1 0.1
+    category                                    MyGame
+    technique 
+    {
+    		position 0 -20 0
+        visual_particle_quota                   3
+        material                                mp_seal_03_1x2
+        default_particle_width                  400
+        default_particle_height                 400
+        renderer                                Billboard
+        {
+            texture_coords_columns              2
+            billboard_type                      perpendicular_self
+            billboard_rotation_type             vertex
+            common_direction                    0 1 0
+            common_up_vector                    0 0 1
+        }
+        emitter                                 Point 
+        {
+            emission_rate                       15
+            angle                               0
+            time_to_live                        2
+            velocity                            0.0001
+            duration                            0.3
+            colour                              0.956863 1 0.141176 1
+        }
+        affector                                Colour 
+        {
+            time_colour                         0    0 0 0 1
+            time_colour                         0.5  1 1 1 1
+            time_colour                         1    0 0 0 1
+            colour_operation                    multiply
+        }
+        observer                                OnClear 
+        {
+            handler                             DoStopSystem 
+            {
+            }
+        }
+    }
+    technique 
+    {
+    		position 0 -20 0
+        visual_particle_quota                   3
+        material                                mp_seal_03_1x2
+        default_particle_width                  400
+        default_particle_height                 400
+        renderer                                Billboard
+        {
+            texture_coords_columns              2
+            billboard_type                      perpendicular_self
+            billboard_rotation_type             vertex
+            common_direction                    0 1 0
+            common_up_vector                    0 0 1
+        }
+        emitter                                 Point 
+        {
+            emission_rate                       3
+            angle                               0
+            time_to_live                        2
+            velocity                            0.0001
+            duration                            0.3
+            texture_coords                      1
+            colour                              0.956863 1 0.141176 1
+            force_emission                      true
+        }
+        affector                                Colour 
+        {
+            time_colour                         0    0 0 0 1
+            time_colour                         0.5  1 1 1 1
+            time_colour                         1    0 0 0 1
+            colour_operation                    multiply
+        }
+        affector                                TextureRotator 
+        {
+            use_own_rotation                    true
+            rotation_speed                      1
+        }
+    }
+}

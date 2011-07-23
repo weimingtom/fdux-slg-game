@@ -21,6 +21,8 @@ class DataLibrary;
 
 class InputControl;
 
+class Framerate;
+
 //游戏核心类,处理游戏初始化以及结束,存放了各个系统的指针
 class Core:public IISingleton<Core>,public Ogre::WindowEventListener
 {
@@ -56,6 +58,7 @@ public:
 	//游戏管理器
 	StateManager* mStateManager;
 	DataLibrary* mDataLibrary;
+	Framerate* mFramerate;
 	
 	//系统初始化
 	bool initialize();

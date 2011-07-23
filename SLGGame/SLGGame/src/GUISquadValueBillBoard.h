@@ -1,6 +1,8 @@
 #pragma once
 #include "guibillboard.h"
 
+class Framerate;
+
 class GUISquadValueBillBoard :
 	public GUIBillBoard
 {
@@ -24,7 +26,8 @@ public:
 private:
 	Ogre::SceneNode* mNode;
 	MyGUI::TextBox* mBText;
-	int mMoveY;
+	float mMoveY;
 	bool mStart;
 	unsigned int mDeltaTime;
+	Framerate* mFramerate;
 };

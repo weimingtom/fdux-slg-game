@@ -1,5 +1,7 @@
 #include "GUISquadValueBillBoard.h"
 
+#include "Framerate.h"
+
 #define OFFEST_X 70
 #define OFFEST_Y 150
 
@@ -7,6 +9,7 @@ GUISquadValueBillBoard::GUISquadValueBillBoard(Ogre::SceneNode* node):GUIBillBoa
 {
 	assignWidget(mBText,"BText");
 	mBText->setVisible(false);
+	mFramerate=Framerate::getSingletonPtr();
 }
 
 GUISquadValueBillBoard::~GUISquadValueBillBoard(void)
@@ -24,12 +27,12 @@ void GUISquadValueBillBoard::update( Ogre::Vector2 screen,unsigned int deltaTime
 	{
 		mBText->setPosition(screen.x+OFFEST_X/2,screen.y+OFFEST_Y-mMoveY);
 		
-		mDeltaTime+=deltaTime;
-		if (mDeltaTime>=10)
-		{
-			mMoveY+=4;
-			mDeltaTime=0;
-		}
+		//mDeltaTime+=deltaTime;
+		//if (mDeltaTime>=10)
+		//{
+			mMoveY+=1*mFramerate->speedfactor;
+		//	mDeltaTime=0;
+		//}
 		
 		if (mMoveY>OFFEST_Y/2)
 		{
