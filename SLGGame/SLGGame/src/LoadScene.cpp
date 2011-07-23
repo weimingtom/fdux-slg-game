@@ -2,7 +2,7 @@
 
 #include "StringTable.h"
 
-LoadScene::LoadScene(int width,int height,std::string filename, std::string text):GUIScene("Loadling.layout",width,height)
+LoadScene::LoadScene(int width,int height,std::string filename, std::string text):GUIScene("Loadling.layout",width,height),isStartCheck(false),isClick(false)
 {
 	assignWidget(mBackgroundImage,"backgroundImage");
 	assignWidget(mLoadProgress,"loadProgress");
@@ -12,6 +12,7 @@ LoadScene::LoadScene(int width,int height,std::string filename, std::string text
 
 	mBackgroundImage->setSize(width,height);
 	mBackgroundImage->setImageTexture(filename);
+	mBackgroundImage->eventMouseButtonClick+=MyGUI::newDelegate(this, &LoadScene::eventMouseButtonClick);
 	mLoadText->setCaption(text);
 }
 LoadScene::~LoadScene()
@@ -77,4 +78,12 @@ void LoadScene::hideScene()
 void LoadScene::FrameEvent()
 {
 
+}
+
+void LoadScene::eventMouseButtonClick( MyGUI::Widget* _sender )
+{
+	if (isStartCheck)
+	{
+		isClick=true;
+	}
 }

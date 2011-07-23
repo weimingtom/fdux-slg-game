@@ -61,6 +61,12 @@ private:
 	void clearPathInfo(bool clearnode);
 	void createPath(int x,int y);
 
+	void createSelectPlane();
+	void setSelectPlanePosition(int GX,int GY,float height);
+	void setSelectPlanePosition(float height);
+	void hideSelectPlane();
+
+	Ogre::SceneNode* planeNode;
 
 	int mMouseX;
 	int mMouseY;

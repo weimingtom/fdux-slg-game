@@ -78,10 +78,11 @@ void BattleLoadState::update(unsigned int deltaTime)
 			mState=LOADFINISH;
 			mLoadScene->setProgress(100);
 			mLoadScene->setText(StringTable::getSingletonPtr()->getString("Finish"));
+			mLoadScene->isStartCheck=true;
 			break;
 		}
 	case LOADFINISH:
-		if (mIsPressKey)
+		if (mIsPressKey || mLoadScene->isClick)
 		{
 			Core::getSingleton().mInputControl->popListener();
 			BattleDeployState* deploystate = new BattleDeployState;
@@ -101,11 +102,3 @@ bool BattleLoadState::keyPressed( const OIS::KeyEvent &arg )
 	}
 }
 
-bool BattleLoadState::mousePressed( const OIS::MouseEvent &arg, OIS::MouseButtonID id )
-{
-	if (mState==LOADFINISH)
-	{
-		mIsPressKey=true;
-		return false;
-	}
-}
