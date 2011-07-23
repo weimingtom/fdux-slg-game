@@ -112,6 +112,7 @@ const int MOVEEVENT_AMBUSH = 8;
 const int MOVEEVENT_MAPEVENT = 16;
 const int MOVEEVENT_CHARGE_DIR_1 = 32; //冲锋方向位1
 const int MOVEEVENT_CHARGE_DIR_2 = 64; //冲锋方向位2
+const int MOVEEVENT_SPOTBYPLAYER = 128;
 
 typedef int SkillType;
 const SkillType SKILLTYPE_PASSIVE = 0;

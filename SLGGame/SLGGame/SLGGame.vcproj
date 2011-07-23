@@ -601,6 +601,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\src\MapPUCutScene.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\MapPUCutScene.h"
+						>
+					</File>
+					<File
 						RelativePath=".\src\MoveCutScene.cpp"
 						>
 					</File>
@@ -854,22 +862,6 @@
 					</Filter>
 				</Filter>
 			</Filter>
-		</Filter>
-		<Filter
-			Name="Res"
-			>
-			<File
-				RelativePath="..\Demo.ico"
-				>
-			</File>
-			<File
-				RelativePath=".\rc.rc"
-				>
-			</File>
-			<File
-				RelativePath=".\resource.h"
-				>
-			</File>
 		</Filter>
 	</Files>
 	<Globals>

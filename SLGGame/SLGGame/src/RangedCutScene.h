@@ -18,6 +18,8 @@ private:
 
 	Ogre::Vector3 mStartpoint;
 	Ogre::Vector3 mEndpoint;
+	Ogre::SimpleSpline mSpline;
+	Ogre::Vector3 mLastPoint;
 	Ogre::SceneNode* mNode;
 	ParticleUniverse::ParticleSystem* mParticle;
 	std::string mParticleId;

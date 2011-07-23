@@ -82,6 +82,7 @@ void BattleState::uninitialize()
 {
 	GUISystem::getSingleton().destoryScene(BattleScene);
 	TriggerManager::getSingleton().setBattleState(NULL);
+	mIsEnd = true;
 	if(mSubStateStack.size()>0)
 		PopState();
 	Terrain::getSingleton().destoryTerrian();

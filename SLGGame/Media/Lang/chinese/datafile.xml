@@ -103,6 +103,10 @@
 			<Name type="String" value="防御"/>
 			<Describe type="String" value="防御"/>
 		</Defence>
+		<Rest>
+			<Name type="String" value="休整"/>
+			<Describe type="String" value="休整"/>
+		</Rest>		
 	</SkillData>
 	<EffectData>
 		<TestEffect>

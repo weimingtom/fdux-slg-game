@@ -80,6 +80,8 @@
 			<ArmorId type="String" value="LeatherArmor"/>
 			<SkillTable>
 				<Attack type="Int" value="1"/>
+				<Defence type="Int" value="1"/>
+				<Rest type="Int" value="1"/>
 			</SkillTable>
 			<LeaderName type="String" value="EtasiSquadLeader"/>
 			<LeaderPicture type="String" value="EtasiSquadLeader.png"/>
@@ -101,6 +103,8 @@
 			<ArmorId type="String" value="HeavyMail"/>
 			<SkillTable>
 				<Attack type="Int" value="1"/>
+				<Defence type="Int" value="1"/>
+				<Rest type="Int" value="1"/>
 			</SkillTable>
 			<LeaderName type="String" value="EtasiSquadLeader"/>
 			<LeaderPicture type="String" value="EtasiHeavyInf.png"/>
@@ -374,7 +378,7 @@
 				<Initiative type="Float" value="0.0"/>
 				<ActionPoint type="Float" value="0.0"/>
 				<Detection type="Float" value="0.0"/>
-				<Covert type="Float" value="1.0"/>
+				<Covert type="Float" value="0.0"/>
 				<Injury type="Float" value="0.0"/>
 				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
@@ -453,6 +457,18 @@
 			<Icon type="String" value="Recrew"/>
 			<Script type="String" value="defence.lua"/>
 		</Defence>
+		<Rest>
+			<Type type="Int" value="1"/>
+			<MaxRange type="Int" value="0"/>
+			<MinRange type="Int" value="0"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="2"/>
+			<APCost type="float" value="2.0"/>
+			<CoolDown type="Int" value="0"/>
+			<Value type="Int" value="10"/>
+			<Icon type="String" value="Recrew"/>
+			<Script type="String" value="rest.lua"/>
+		</Rest>
 	</SkillData>
 	<EffectData>
 		<TestEffect>

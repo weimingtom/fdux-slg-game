@@ -368,6 +368,13 @@ void BattlePlayerState::reactiveState()
 					executeMove(mMoveTargetX,mMoveTargetY);
 			}
 		}
+		else
+		{
+			clearPathInfo(true);
+			mMoveTargetX = -1;
+			mMoveTargetY = -1;
+			mTargetSquad = NULL;
+		}
 	}
 	else
 	{

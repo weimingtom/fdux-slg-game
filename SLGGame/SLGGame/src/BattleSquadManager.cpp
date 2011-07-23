@@ -26,6 +26,7 @@
 #include "WeapenCutScene.h"
 #include "CombatPositionCutScene.h"
 #include "ShowValueCutScene.h"
+#include "MapPuCutScene.h"
 
 #include "SquadGrapManager.h"
 #include "SquadGraphics.h"
@@ -144,7 +145,7 @@ void BattleSquadManager::moveSquad(BattleSquad* squad,std::vector<int> pointlist
 	MapDataManager* mapdata = MapDataManager::getSingletonPtr();
 	for(stopedpoint = 0; stopedpoint * 2 < pointlist.size();stopedpoint++)
 	{
-		if(eventtype &  MOVEEVENT_SPOT)
+		if((eventtype &  MOVEEVENT_SPOT) || (eventtype & MOVEEVENT_SPOTBYPLAYER))
 			return;
 		//ÒÆ¶¯Ìõ¼þÅÐ¶Ï
 		int x = pointlist[stopedpoint*2];
@@ -234,6 +235,7 @@ void BattleSquadManager::moveSquad(BattleSquad* squad,std::vector<int> pointlist
 					squad->setAmbushTeam((*ite)->getTeam(),true);
 					if(faction == 0)
 					{
+						eventtype |= MOVEEVENT_SPOTBYPLAYER;
 						setCutScene(new SquadStateCutScene(squad,SQUAD_STATE_VISIBLE,"none",1));
 					}
 				}
@@ -405,7 +407,6 @@ bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad*
 			if(squad->IsEliminated())
 			{
 				setCutScene(new SquadStateCutScene(squad,SQUAD_STATE_VISIBLE,"none",0));
-				setCutScene(new ShowValueCutScene(squad->getGrapId(),StringTable::getSingletonPtr()->getString("SquadDead"),Ogre::ColourValue::Red));
 				TriggerManager::getSingleton().unitDead(squad);
 			}
 			else
@@ -479,6 +480,8 @@ void BattleSquadManager::rangedAttackCutScene(BattleSquad* attacksquad, int x, i
 		Ogre::Vector3 endpoint = Ogre::Vector3(xx - TILESIZE/2.0f + (rand()%int(TILESIZE)),0.0f,yy - TILESIZE/2.0f + (rand()%int(TILESIZE)));
 		RangedCutScene* rangedcutscene = new RangedCutScene(startpoint,endpoint,missiletype,missileres);
 		ccs->addCutScene(rangedcutscene);
+		if(hitparticle != "none")
+			rangedcutscene->setNextScene(new MapPUCutScene(endpoint,1.0f,hitparticle,hitsound));
 	}
 	if(castunit & UNITTYPE_SOLIDER)
 	{
@@ -492,6 +495,8 @@ void BattleSquadManager::rangedAttackCutScene(BattleSquad* attacksquad, int x, i
 			Ogre::Vector3 endpoint = Ogre::Vector3(xx - TILESIZE/2.0f + (rand()%int(TILESIZE)),0.0f,yy - TILESIZE/2.0f + (rand()%int(TILESIZE)));
 			RangedCutScene* rangedcutscene = new RangedCutScene(startpoint,endpoint,missiletype,missileres);
 			ccs->addCutScene(rangedcutscene);
+			if(hitparticle != "none")
+				rangedcutscene->setNextScene(new MapPUCutScene(endpoint,1.0f,hitparticle,hitsound));
 		}
 	}
 	setCutScene(ccs);
@@ -524,7 +529,6 @@ bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* 
 		if(defenesquad->IsEliminated())
 		{
 			setCutScene(new SquadStateCutScene(defenesquad,SQUAD_STATE_VISIBLE,"none",0));
-			setCutScene(new ShowValueCutScene(defenesquad->getGrapId(),StringTable::getSingletonPtr()->getString("SquadDead"),Ogre::ColourValue::Red));
 			TriggerManager::getSingleton().unitDead(defenesquad);
 		}
 		else
@@ -557,7 +561,6 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 		if(defenesquad->IsEliminated())
 		{
 			setCutScene(new SquadStateCutScene(defenesquad,SQUAD_STATE_VISIBLE,"none",0));
-			setCutScene(new ShowValueCutScene(defenesquad->getGrapId(),StringTable::getSingletonPtr()->getString("SquadDead"),Ogre::ColourValue::Red));
 			TriggerManager::getSingleton().unitDead(defenesquad);
 		}
 		else

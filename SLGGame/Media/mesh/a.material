@@ -1,7 +1,9 @@
-material Examples/LightRibbonTrail
+import DepthShadowmap/CastNoShadow from "Shadow.material"
+material Examples/LightRibbonTrail : DepthShadowmap/CastNoShadow
 {
-	technique
+	technique default
 	{
+		scheme Default
 		pass
 		{
 			lighting off
@@ -19,10 +21,11 @@ material Examples/LightRibbonTrail
 	}
 }
 
-material SelectSquadPlane
+material SelectSquadPlane : DepthShadowmap/CastNoShadow
 {
-	technique
+	technique default
 	{
+		scheme Default
 		pass
 		{
 			lighting off
