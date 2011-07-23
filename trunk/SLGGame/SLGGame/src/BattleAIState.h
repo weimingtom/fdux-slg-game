@@ -20,6 +20,7 @@ public:
 	typedef std::vector<BattleSquad*>::iterator SquadIte;
 
 	bool addSquad(BattleSquad* squad);
+	bool IsInGroup(BattleSquad* squad);
 
 	bool updateSquad();
 
@@ -57,6 +58,7 @@ private:
 	typedef std::map<unsigned short,SquadGroup*>::iterator SquadGroupIte;
 	SquadGroupMap mMySquadGroup;
 	SquadGroupMap mEnemySquadGroup;
+	unsigned short mEnmeySquadGroupId;
 	void clearSquadGroup();
 	void updateSquadGroup();
 
@@ -86,8 +88,13 @@ private:
 	bool executeStrategy();
 	void updateMission();
 	void assignMission();
+	bool executeGroupAI();
+	bool executeSquadAI(unsigned int missionid);
 
 	//¸¨Öúº¯Êý
 	Direction getDirection(int sx, int sy, int x, int y);
 	bool getAssigedMission(bool isenemy,unsigned short id);
+	inline int getDistance(int x1, int y1, int x2, int y2);
+	unsigned short getMissionStrength(unsigned short id);
+	unsigned short getBlockSquadNum(int x1, int y1, int x2, int y2, bool ignore = false,unsigned short ignoreid = 0);
 };

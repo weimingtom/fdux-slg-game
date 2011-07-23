@@ -9,6 +9,14 @@ RangedCutScene::RangedCutScene(Ogre::Vector3 startpos, Ogre::Vector3 endpoint, i
 	mNode->setVisible(false);
 	mNode->setDirection(startpos - endpoint);
 	mNode->setPosition(startpos);
+	mLastTime = (startpos - endpoint).length() * 30;
+	mLastPoint = startpos;
+	mSpline.addPoint(startpos);
+	Ogre::Vector3 midpoint = (startpos + endpoint) / 2;
+	midpoint.y += (startpos - endpoint).length() / 4;
+	mSpline.addPoint(midpoint);
+	mSpline.addPoint(endpoint);
+
 	mParticle = NULL;
 	mEntity= NULL;
 	rootNode=NULL;
@@ -96,14 +104,18 @@ void RangedCutScene::skipCutScene()
 
 void RangedCutScene::updateCutScene(unsigned int deltaTime)
 {
-	Ogre::Vector3 vec = mEndpoint - mStartpoint;
-	vec.normalise();
-	vec = vec * deltaTime / 25.0f;
-	mNode->translate(vec);
-	Ogre::Vector3 vec1 = mEndpoint - mNode->getPosition();
-	float dot = vec1.dotProduct(vec);
-	if(dot <0.0f)
-		mNode->setPosition(mEndpoint);
+// 	Ogre::Vector3 vec = mEndpoint - mStartpoint;
+// 	vec.normalise();
+// 	vec = vec * deltaTime / 25.0f;
+// 	mNode->translate(vec);
+// 	Ogre::Vector3 vec1 = mEndpoint - mNode->getPosition();
+// 	float dot = vec1.dotProduct(vec);
+// 	if(dot <0.0f)
+// 		mNode->setPosition(mEndpoint);
+	Ogre::Vector3 newpos = mSpline.interpolate((float)mPassedTime/mLastTime );
+	mNode->setPosition(newpos);
+	mNode->setDirection(newpos - mLastPoint);
+	mLastPoint = newpos;
 }
 
 void RangedCutScene::clear()

@@ -46,6 +46,17 @@ bool SquadGroup::addSquad(BattleSquad* squad)
 	 return added;
 }
 
+bool SquadGroup::IsInGroup(BattleSquad* squad)
+{
+	SquadIte ite = mSquadList.begin();
+	for(ite = mSquadList.begin(); ite != mSquadList.end(); ite++)
+	{
+		if((*ite) == squad)
+			return true;
+	}
+	return false;
+}
+
 bool SquadGroup::updateSquad()
 {
 	SquadIte ite = mSquadList.begin();
@@ -165,7 +176,7 @@ void BattleAIState::update(unsigned int deltaTime)
 void BattleAIState::newTurn()
 {
 	unsigned short mySquadGroupId = 0;
-	unsigned short enemySquadGroupId = 0;
+	mEnmeySquadGroupId = 0;
 	for(int n = 0; n < mSquadManager->mSquadList.size(); n++)
 	{
 		if(mSquadManager->mSquadList[n]->getTeam() == mTeam)
@@ -210,7 +221,7 @@ void BattleAIState::newTurn()
 			if(!added)
 			{
 				SquadGroup* squadgroup = new SquadGroup((*ite));
-				mEnemySquadGroup.insert(SquadGroupMap::value_type(++enemySquadGroupId,squadgroup));
+				mEnemySquadGroup.insert(SquadGroupMap::value_type(++mEnmeySquadGroupId,squadgroup));
 			}
 		}
 	}
@@ -250,18 +261,82 @@ void BattleAIState::updateSquadGroup()
 			ite = mEnemySquadGroup.erase(ite);
 		}
 	}
+	//寻找未加入的小队
+	SquadIte sqdite;
+	for(sqdite = mSquadManager->mSquadList.begin(); sqdite != mSquadManager->mSquadList.end(); sqdite++)
+	{
+		if((*sqdite)->IsEliminated())
+			continue;
+		if((*sqdite)->getTeam() == mTeam)
+			continue;
+		else if(BattleSquad::getTeamFaction(mTeam) != BattleSquad::getTeamFaction((*sqdite)->getTeam()) && (*sqdite)->viewbyTeam(mTeam) == true)
+		{
+			bool added = false;
+			SquadGroupIte sgite;
+			for(sgite = mEnemySquadGroup.begin();sgite!= mEnemySquadGroup.end();sgite++)
+			{
+				if(sgite->second->IsInGroup((*sqdite)))
+				{
+					added = true;
+					break;
+				}
+			}
+			if(!added)
+			{
+				for(sgite = mEnemySquadGroup.begin();sgite!= mEnemySquadGroup.end();sgite++)
+				{
+					if(sgite->second->addSquad((*sqdite)))
+					{
+						added = true;
+						break;
+					}
+				}
+				if(!added)
+				{
+					SquadGroup* squadgroup = new SquadGroup((*sqdite));
+					mEnemySquadGroup.insert(SquadGroupMap::value_type(++mEnmeySquadGroupId,squadgroup));
+				}
+			}
+		}
+	}
 }
 
 bool BattleAIState::executeStrategy()
 {
 	updateMission();
 	assignMission();
-	return false;
+	return executeGroupAI();
 }
 
 void BattleAIState::updateMission()
 {
 	//删除被删除的小队组相关的任务
+	MissionIte missionite;
+	for(missionite= mMissionMap.begin(); missionite != mMissionMap.end();)
+	{
+		SquadGroupIte squadgroupite;
+		squadgroupite = mEnemySquadGroup.find(missionite->second->mParaList[0]);
+		if(squadgroupite == mEnemySquadGroup.end())
+		{
+			delete missionite->second;
+			missionite = mMissionMap.erase(missionite);
+			continue;
+		}
+		if(missionite->second->mMisstionType == MISSION_ASSIST )
+		{
+			squadgroupite = mMySquadGroup.find(missionite->second->mParaList[2]);
+			if(squadgroupite == mMySquadGroup.end())
+			{
+				delete missionite->second;
+				missionite = mMissionMap.erase(missionite);
+				continue;
+			}
+		}
+		missionite ++;
+	}
+	
+	
+	//规划新的任务
 	SquadGroupIte ite;
 	for(ite= mEnemySquadGroup.begin(); ite != mEnemySquadGroup.end();ite++)
 	{
@@ -383,7 +458,88 @@ void BattleAIState::updateMission()
 
 void BattleAIState::assignMission()
 {
+	SquadGroupIte ite;
+	for(ite= mMySquadGroup.begin(); ite != mMySquadGroup.end();ite++)
+	{
+		if(getAssigedMission(false,ite->first))
+			continue;
+		std::map<unsigned short,unsigned short> interestmap;
+		MissionIte missionite;
+		for(missionite= mMissionMap.begin(); missionite != mMissionMap.end(); missionite ++)
+		{
+			if(missionite->second->mMisstionType == MISSION_ASSIST && missionite->second->mParaList[2] == ite->first)
+			{
+				interestmap.clear();
+				interestmap.insert(std::map<unsigned short,unsigned short>::value_type(missionite->first,100));
+				break;
+			}
+			unsigned short interest = 50;
+			SquadGroupIte tempsgite;
+			int my,mx;
+			ite->second->getMidPoint(mx,my);
+			int missionx,missiony;
+			switch(missionite->second->mMisstionType)
+			{
+			case MISSION_ASSIST:
+				tempsgite = mMySquadGroup.find(missionite->second->mParaList[2]);
+				if(tempsgite == mMySquadGroup.end())
+					break;
+				tempsgite->second->getMidPoint(missionx,missiony);
+				interest -= getDistance(mx,my,missionx,missiony);
+				interest -= getBlockSquadNum(mx,my,missionx,missiony,true, missionite->second->mParaList[0]);
+				interest += 3 * (missionite->second->mParaList[1]  - getMissionStrength(missionite->first));
+				interestmap.insert(std::map<unsigned short,unsigned short>::value_type(missionite->first,interest));
+				break;
+			case MISSION_RALLY:
+				interest -= getDistance(mx,my,missionite->second->mParaList[2],missionite->second->mParaList[3]);
+				interest -= getBlockSquadNum(mx,my,missionite->second->mParaList[2],missionite->second->mParaList[3],true, missionite->second->mParaList[0]);
+				interest += 3 * (missionite->second->mParaList[1]  - getMissionStrength(missionite->first));
+				interestmap.insert(std::map<unsigned short,unsigned short>::value_type(missionite->first,interest));
+				break;
+			case MISSION_ATTACK:
+				tempsgite = mEnemySquadGroup.find(missionite->second->mParaList[0]);
+				if(tempsgite == mEnemySquadGroup.end())
+					break;
+				tempsgite->second->getMidPoint(missionx,missiony);
+				interest -= getDistance(mx,my,missionx,missiony);
+				interest -= getBlockSquadNum(mx,my,missionx,missiony,true, missionite->second->mParaList[0]);
+				interest += 3 * (missionite->second->mParaList[1]  - getMissionStrength(missionite->first));
+				interestmap.insert(std::map<unsigned short,unsigned short>::value_type(missionite->first,interest));
+				break;
+			case MISSION_ASSAULT:
+				tempsgite = mEnemySquadGroup.find(missionite->second->mParaList[0]);
+				if(tempsgite == mEnemySquadGroup.end())
+					break;
+				tempsgite->second->getMidPoint(missionx,missiony);
+				interest -= getDistance(mx,my,missionx,missiony);
+				interest -= getBlockSquadNum(mx,my,missionx,missiony,true, missionite->second->mParaList[0]);
+				interest += 3 * (missionite->second->mParaList[1]  - getMissionStrength(missionite->first));
+				interest -= 2 * (int)abs((int)tempsgite->second->getGroupSize() - (int)ite->second->getGroupSize());
+				interestmap.insert(std::map<unsigned short,unsigned short>::value_type(missionite->first,interest));
+				break;
+			}
 
+		}
+		unsigned short mostinterest;
+		unsigned short mostinterestid;
+		if(interestmap.size() > 0)
+		{
+			std::map<unsigned short,unsigned short>::iterator intite = interestmap.begin();
+			mostinterest = intite->second;
+			mostinterestid = intite->first;
+			for(;intite != interestmap.end(); intite++)
+			{
+				if(mostinterest < intite->second)
+				{
+					mostinterest = intite->second;
+					mostinterestid = intite->first;
+				}
+			}
+			missionite = mMissionMap.find(mostinterestid);
+			if(missionite != mMissionMap.end())
+				missionite->second->mAssigedGroup.push_back(ite->first);
+		}
+	}
 }
 
 Direction BattleAIState::getDirection(int sx, int sy, int x, int y)
@@ -423,5 +579,67 @@ bool BattleAIState::getAssigedMission(bool isenemy,unsigned short id)
 			}
 		}
 	}
+	return false;
+}
+
+int BattleAIState::getDistance(int x1, int y1, int x2, int y2)
+{
+	return abs(x1 - x2) + abs(y1 - y2);
+}
+
+unsigned short BattleAIState::getMissionStrength(unsigned short id)
+{
+	MissionIte ite;
+	ite = mMissionMap.find(id);
+	if(ite == mMissionMap.end())
+		return 0;
+	unsigned short s = 0;
+	SquadGroupIte sqdite;
+	for(int n = 0; n < ite->second->mAssigedGroup.size(); n++)
+	{
+		sqdite = mMySquadGroup.find(ite->second->mAssigedGroup[n]);
+		if(sqdite == mMySquadGroup.end())
+			continue;
+		s += sqdite->second->getGroupSize();
+	}
+	return s;
+}
+
+unsigned short BattleAIState::getBlockSquadNum(int x1, int y1, int x2, int y2, bool ignore,unsigned short ignoreid )
+{
+	unsigned short squadnum = 0;
+	Ogre::Vector2 vec(x2 - x1, y2 - y1);
+	SquadGroupIte ite;
+	for(ite= mEnemySquadGroup.begin(); ite != mEnemySquadGroup.end();ite++)
+	{
+		if(ignore && ignoreid == ite->first)
+			continue;
+		int x,y;
+		ite->second->getMidPoint(x,y);
+		Ogre::Vector2 vec2(x - x1, y - y1);
+		if(vec2.length() > vec.length())
+			continue;
+		Ogre::Vector2 vec3 = vec;
+		vec3.normalise();
+		vec2.normalise();
+		if(vec2.dotProduct(vec3)  > 0.5f)
+			squadnum += ite->second->getGroupSize();
+	}
+	return squadnum;
+}
+
+bool BattleAIState::executeGroupAI()
+{
+	SquadGroupIte mygraoupite;
+	for(mygraoupite = mMySquadGroup.begin(); mygraoupite != mMySquadGroup.end(); mygraoupite++)
+	{
+		SquadVector squadvec = mygraoupite->second->getSquadList();
+	}
+	return false;
+}
+
+bool BattleAIState::executeSquadAI(unsigned int missionid)
+{
+
 	return false;
 }
