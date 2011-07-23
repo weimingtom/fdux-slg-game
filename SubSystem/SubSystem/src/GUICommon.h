@@ -61,7 +61,8 @@ enum GUISceneType
 	LoadingScene,
 	BattleScene,
 	SLScene,
-	MenuWindowsScene
+	MenuWindowsScene,
+	MessageBoxScene
 };
 
 #define DefaultDialogVisibleTime 0.5//默认对话框渐出时间
