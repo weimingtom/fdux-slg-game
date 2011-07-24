@@ -1,4 +1,3 @@
-GUI.SetDialogVisible(0);
 GUI.ShowImage("cp1.png",4,1000);
 GUI.Wait(1000);
 GUI.SetDialogVisible(1);

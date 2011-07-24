@@ -44,7 +44,9 @@
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="ImageBox" skin="ImageBox" position="140 95 40 30" name="SquadFactionImage"/>
+        <Widget type="ImageBox" skin="ImageBox" position="40 165 40 60" name="SquadFactionImage">
+            <Property key="Alpha" value="0.5"/>
+        </Widget>
         <Widget type="TextBox" skin="TextBox" position="195 45 15 20">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
@@ -265,7 +267,9 @@
         <Property key="Visible" value="false"/>
         <Property key="FontHeight" value="20"/>
         <Widget type="ImageBox" skin="ImageBox" position="140 90 96 128" name="TargetImage"/>
-        <Widget type="ImageBox" skin="ImageBox" position="95 90 40 30" name="TargetFactionImage"/>
+        <Widget type="ImageBox" skin="ImageBox" position="140 160 40 60" name="TargetFactionImage">
+            <Property key="Alpha" value="0.5"/>
+        </Widget>
         <Widget type="TextBox" skin="TextBox" position="40 125 95 20" name="TargetLeadName">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>

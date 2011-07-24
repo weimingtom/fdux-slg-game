@@ -597,12 +597,12 @@
 	<FactionData>
 		<Wing>
 			<Picture type="String" value="FactionWing.jpg"/>
-			<LittlePicture type="String" value="FactionWingL.jpg"/>
+			<LittlePicture type="String" value="FactionWingL.png"/>
 			<Texture type="String" value="FactionWingT.jpg"/>
 		</Wing>
 		<Etasi>
 			<Picture type="String" value="FactionEtasi.jpg"/>
-			<LittlePicture type="String" value="FactionEtasiL.jpg"/>
+			<LittlePicture type="String" value="FactionEtasiL.png"/>
 			<Texture type="String" value="FactionEtasiT.jpg"/>
 		</Etasi>
 	</FactionData>
