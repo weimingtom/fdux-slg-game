@@ -36,6 +36,8 @@ void AVGState::initialize( std::string arg )
 			slWindow->setCallScene(stageScene);
 		}
 	}
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/GameState",std::string("AVG"));
+	DataLibrary::getSingleton().delNode(std::string("GameData/BattleData"));
 }
 
 void AVGState::uninitialize()

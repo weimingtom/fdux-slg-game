@@ -108,6 +108,15 @@ BattleSquad::BattleSquad(std::string id, int grapid ,int x, int y)
 	else
 	{
 		//¶ÁÈ¡Òþ²Ø
+		int view = 0;
+		DataLibrary::getSingleton().getData(getPath() + std::string("/ViewbyPlayer"),view);
+		mViewbyFaction[0] = (view == 1);
+		DataLibrary::getSingleton().getData(getPath() + std::string("/ViewbyEnemy1"),view);
+		mViewbyFaction[1] = (view == 1);
+		DataLibrary::getSingleton().getData(getPath() + std::string("/ViewbyEnemy2"),view);
+		mViewbyFaction[2] = (view == 1);
+		DataLibrary::getSingleton().getData(getPath() + std::string("/ViewbyEnemy3"),view);
+		mViewbyFaction[3] = (view == 1);
 	}
 
 	re = DataLibrary::getSingleton().getData(getPath() + std::string("/AmbushPlayer"),view);
@@ -122,6 +131,15 @@ BattleSquad::BattleSquad(std::string id, int grapid ,int x, int y)
 	else
 	{
 		//¶ÁÈ¡Í»Ï®
+		int ambush = 0;
+		DataLibrary::getSingleton().getData(getPath() + std::string("/AmbushPlayer"),ambush);
+		mAmbushFaction[0] = (ambush == 1);
+		DataLibrary::getSingleton().getData(getPath() + std::string("/AmbushEnemy1"),ambush);
+		mAmbushFaction[1] = (ambush == 1);
+		DataLibrary::getSingleton().getData(getPath() + std::string("/AmbushEnemy2"),ambush);
+		mAmbushFaction[2] = (ambush == 1);
+		DataLibrary::getSingleton().getData(getPath() + std::string("/AmbushEnemy3"),ambush);
+		mAmbushFaction[3] = (ambush == 1);
 	}
 	mIsEliminated = false;
 }

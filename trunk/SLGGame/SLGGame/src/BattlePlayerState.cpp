@@ -47,7 +47,7 @@ BattlePlayerState::BattlePlayerState()
 	mGUIState = static_cast<GUIGameStateWindows *>(mGUIBattle->getSubWindow("GameState"));
 	mGUICommand = static_cast<GUICommandWindows *>(mGUIBattle->getSubWindow("CommandWindow"));
 	mGUICommand->setPlayerState(this);
-	mGUIMenu=static_cast<GUIMenuWindow *>(GUISystem::getSingleton().getScene(MenuWindowsScene));
+	mGUIMenu=static_cast<GUIMenuWindow *>(GUISystem::getSingleton().createScene(MenuWindowsScene));
 	mMouseX = 640;
 	mMouseY = 360;
 	mGUIState->setAllowNextTurn(true);

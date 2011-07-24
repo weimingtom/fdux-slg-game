@@ -5,6 +5,7 @@
 
 #include "BattleState.h"
 #include "BattleDeployState.h"
+#include "BattleControlState.h"
 #include "LoadScene.h"
 #include "BattleSquadManager.h"
 #include "DataLibrary.h"
@@ -19,7 +20,10 @@ BattleLoadState::BattleLoadState( std::string arg)
 {
 	Core::getSingleton().mInputControl->pushListener(this);
 	mState = LOADSCENE;
-	mLoadFromMap =true;
+	if(arg == "save.xml")
+		mLoadFromMap =false;
+	else
+		mLoadFromMap =true;
 	mMapFile = arg;
 	mLoadScene = static_cast<LoadScene*>(GUISystem::getSingleton().createScene(LoadingScene));
 	mMapLoader = new MapLoader;
@@ -40,6 +44,17 @@ void BattleLoadState::update(unsigned int deltaTime)
 		if(mLoadFromMap)
 		{
 			mMapLoader->loadMapFormFile(mMapFile);
+			std::string temp;
+			DataLibrary::getSingletonPtr()->getData("GameData/BattleData/MapData/MapLoadBG",temp);
+			mLoadScene->setBackGround(temp);
+			DataLibrary::getSingletonPtr()->getData("GameData/BattleData/MapData/MapName",temp);
+			mLoadScene->setMapName(temp);
+			DataLibrary::getSingletonPtr()->getData("GameData/BattleData/MapData/MapInfo",temp);
+			mLoadScene->setMapInfo(temp);
+		}
+		else
+		{
+			mMapLoader->loadMapFormSave();
 			std::string temp;
 			DataLibrary::getSingletonPtr()->getData("GameData/BattleData/MapData/MapLoadBG",temp);
 			mLoadScene->setBackGround(temp);
@@ -85,9 +100,17 @@ void BattleLoadState::update(unsigned int deltaTime)
 		if (mIsPressKey || mLoadScene->isClick)
 		{
 			Core::getSingleton().mInputControl->popListener();
-			BattleDeployState* deploystate = new BattleDeployState;
 			GUISystem::getSingletonPtr()->destoryScene(LoadingScene);
-			mMainState->ChangeState(deploystate);
+			if(mLoadFromMap)
+			{
+				BattleDeployState* deploystate = new BattleDeployState;
+				mMainState->ChangeState(deploystate);
+			}
+			else
+			{
+				BattleControlState* controlstate = new BattleControlState(false);
+				mMainState->ChangeState(controlstate);
+			}
 		}
 		break;
 	}

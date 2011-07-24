@@ -45,6 +45,42 @@ bool Terrain::createTerrain()
 	vp->setMaterialScheme("WriteDepthMap");
 	vp->setBackgroundColour(Ogre::ColourValue(1.0f,1.0f,1.0f));
 	mShadowDepthMapTarget->addListener(this);
+	//弱爆了……
+	Ogre::MaterialPtr mat;
+	mat = Ogre::MaterialManager::getSingleton().getByName("TerrainTile");
+	Ogre::Technique* tech = mat->getTechnique("default");
+	Ogre::Pass* pass = tech->getPass(1);
+	Ogre::TextureUnitState* tu =  pass->getTextureUnitState(0);
+	tu->setTextureName(tex->getName());
+
+	mat = Ogre::MaterialManager::getSingleton().getByName("TerrainTile");
+	tech = mat->getTechnique("default");
+	pass = tech->getPass(1);
+	tu =  pass->getTextureUnitState(0);
+	tu->setTextureName(tex->getName());
+	mat = Ogre::MaterialManager::getSingleton().getByName("CliffMat1");
+	tech = mat->getTechnique("default");
+	pass = tech->getPass(1);
+	tu =  pass->getTextureUnitState(0);
+	tu->setTextureName(tex->getName());
+	mat = Ogre::MaterialManager::getSingleton().getByName("CliffMat2");
+	tech = mat->getTechnique("default");
+	pass = tech->getPass(1);
+	tu =  pass->getTextureUnitState(0);
+	tu->setTextureName(tex->getName());
+	mat = Ogre::MaterialManager::getSingleton().getByName("CliffMat3");
+	tech = mat->getTechnique("default");
+	pass = tech->getPass(1);
+	tu =  pass->getTextureUnitState(0);
+	tu->setTextureName(tex->getName());
+	mat = Ogre::MaterialManager::getSingleton().getByName("CliffMat4");
+	tech = mat->getTechnique("default");
+	pass = tech->getPass(1);
+	tu =  pass->getTextureUnitState(0);
+	tu->setTextureName(tex->getName());
+
+	
+
 
 	//创建地面Mesh
 	mTerrainNode = Core::getSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode("TerrainNode");
@@ -167,6 +203,11 @@ bool Terrain::createTerrain()
 	mReflectionTarget = tex->getBuffer()->getRenderTarget();
 	mReflectionTarget->addViewport(Core::getSingleton().mCamera)->setOverlaysEnabled(false);
 	mReflectionTarget->addListener(this);
+	mat = Ogre::MaterialManager::getSingleton().getByName("ReflectionWater");
+	tech = mat->getTechnique(0);
+	pass = tech->getPass(0);
+	tu =  pass->getTextureUnitState(1);
+	tu->setTextureName(tex->getName());
 
 	mWaterPlane = Ogre::Plane(Ogre::Vector3::UNIT_Y, WATERHEIGHT);
 
@@ -237,11 +278,6 @@ void Terrain::destoryTerrian()
 	Core* core = Core::getSingletonPtr();
 	core->mSceneMgr->destroyLight(mLight);
 
-	mShadowDepthMapTarget->removeAllListeners();
-	mShadowDepthMapTarget->removeAllViewports();
-	//Ogre::ResourceGroupManager::getSingleton().deleteResource("shadowdepthmap");
-	Ogre::TextureManager::getSingleton().remove("shadowdepthmap");
-
 
 	mGridNode->detachObject(mGrid);
 	core->mSceneMgr->destroyManualObject(mGrid);
@@ -272,10 +308,6 @@ void Terrain::destoryTerrian()
 	mMapObjMap.clear();
 
 	//清除水面
-	mReflectionTarget->removeAllListeners();
-	mReflectionTarget->removeAllViewports();
-	Ogre::TextureManager::getSingleton().remove("refraction");
-	//Ogre::ResourceGroupManager::getSingleton().deleteResource("reflection");
 	mWaterNode->detachObject(mWaterObject);
 	core->mSceneMgr->destroyManualObject(mWaterObject);
 	mWaterObject = NULL;
@@ -298,6 +330,19 @@ void Terrain::destoryTerrian()
 	core->mSceneMgr->destroySceneNode(mTerrainNode);
 	mTerrainNode = NULL;
 	Ogre::ResourceGroupManager::getSingleton().deleteResource("TerrianMesh");
+
+	//Ogre::RenderSystem *rSys = Core::getSingleton().mRoot->getRenderSystemByName("Direct3D9 Rendering Subsystem");
+	mReflectionTarget->removeAllListeners();
+	mReflectionTarget->removeAllViewports();
+	//Ogre::ResourceGroupManager::getSingleton().deleteResource("reflection");
+	//rSys->destroyRenderTarget(mReflectionTarget->getName());
+	Ogre::TextureManager::getSingleton().remove("reflection");
+
+	mShadowDepthMapTarget->removeAllListeners();
+	mShadowDepthMapTarget->removeAllViewports();
+	//rSys->destroyRenderTarget(mShadowDepthMapTarget->getName());
+	//Ogre::ResourceGroupManager::getSingleton().deleteResource("shadowdepthmap");
+	Ogre::TextureManager::getSingleton().remove("shadowdepthmap");
 
 }
 
