@@ -106,12 +106,12 @@ void AudioSystem::FrameUpdate()
 			{
 				if (mVol<=100)
 				{
-					BASS_SetConfig(BASS_CONFIG_GVOL_STREAM,mVol*100);
+					BASS_SetConfig(BASS_CONFIG_GVOL_STREAM,mVol*40);
 					mVol++;
 				}
 				else
 				{
-					BASS_SetConfig(BASS_CONFIG_GVOL_STREAM,100*100);
+					BASS_SetConfig(BASS_CONFIG_GVOL_STREAM,100*40);
 					mVol=-1;
 				}
 			}
@@ -119,7 +119,7 @@ void AudioSystem::FrameUpdate()
 			{
 				if (mVol>=0)
 				{
-					BASS_SetConfig(BASS_CONFIG_GVOL_STREAM,mVol*100);
+					BASS_SetConfig(BASS_CONFIG_GVOL_STREAM,mVol*40);
 					mVol--;
 				}
 				else

@@ -100,6 +100,10 @@ extern "C"
 				stage->showOtherText();
 				LuaSystem::getSingletonPtr()->LuaBreakupFun=NULL;
 			}
+			else if (stage->mTimerWork==GUIStage::NoneWork)
+			{
+				LuaSystem::getSingletonPtr()->LuaBreakupFun=NULL;
+			}
 		}
 		else if(stage->mTimerWork==GUIStage::NoneWork)//отй╬мЙак
 		{
