@@ -863,6 +863,18 @@
 				</Filter>
 			</Filter>
 		</Filter>
+		<Filter
+			Name="Res"
+			>
+			<File
+				RelativePath=".\src\rc.rc"
+				>
+			</File>
+			<File
+				RelativePath=".\src\resource.h"
+				>
+			</File>
+		</Filter>
 	</Files>
 	<Globals>
 	</Globals>

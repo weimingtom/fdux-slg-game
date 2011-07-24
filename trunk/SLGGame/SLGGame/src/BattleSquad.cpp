@@ -690,4 +690,3 @@ int BattleSquad::getTeamFaction(int team)
 	return 0;
 }
 
-

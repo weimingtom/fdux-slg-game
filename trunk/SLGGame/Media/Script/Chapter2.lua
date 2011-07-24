@@ -1,3 +1,5 @@
+GUI.ShowImage("cp2.png",4,1000);
+GUI.Wait(1000);
 GUI.SetDialogVisible(1);
 GUI.ShowImage("forest_day.png",4,1000);
 GUI.ShowImage("aide_left_1.png",left,1);
@@ -491,3 +493,4 @@ GUI.ClearText();
 GUI.ShowRoleName("");
 GUI.ShowImage("",all,1);
 GUI.ShowImage("",4,1000);
+GUI.NextScene("Chapter3.lua");

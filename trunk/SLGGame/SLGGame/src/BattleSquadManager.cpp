@@ -407,6 +407,7 @@ bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad*
 			if(squad->IsEliminated())
 			{
 				setCutScene(new SquadStateCutScene(squad,SQUAD_STATE_VISIBLE,"none",0));
+				setCutScene(new ShowValueCutScene(squad->getGrapId(),StringTable::getSingletonPtr()->getString("SquadDead"),Ogre::ColourValue::Red));
 				TriggerManager::getSingleton().unitDead(squad);
 			}
 			else
@@ -529,6 +530,7 @@ bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* 
 		if(defenesquad->IsEliminated())
 		{
 			setCutScene(new SquadStateCutScene(defenesquad,SQUAD_STATE_VISIBLE,"none",0));
+			setCutScene(new ShowValueCutScene(defenesquad->getGrapId(),StringTable::getSingletonPtr()->getString("SquadDead"),Ogre::ColourValue::Red));
 			TriggerManager::getSingleton().unitDead(defenesquad);
 		}
 		else
@@ -561,6 +563,7 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 		if(defenesquad->IsEliminated())
 		{
 			setCutScene(new SquadStateCutScene(defenesquad,SQUAD_STATE_VISIBLE,"none",0));
+			setCutScene(new ShowValueCutScene(defenesquad->getGrapId(),StringTable::getSingletonPtr()->getString("SquadDead"),Ogre::ColourValue::Red));
 			TriggerManager::getSingleton().unitDead(defenesquad);
 		}
 		else
