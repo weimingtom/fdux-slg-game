@@ -58,7 +58,13 @@ GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),m
 
 GUIStage::~GUIStage(void)
 {
-
+#ifndef SCRIPT_EDITOR
+	GUISLWindow* SLWindow= (GUISLWindow*)GUISystem::getSingletonPtr()->getScene(SLScene);
+	if (SLWindow!=NULL)
+	{
+		SLWindow->setCallScene(SLWindow);
+	}
+#endif
 }
 
 void GUIStage::UIInit()
@@ -194,6 +200,7 @@ void GUIStage::setTextDialogVisible( bool visible )
 	//开始帧更新
 	mTimer.reset();
 	GUISystem::getSingletonPtr()->setFrameUpdateScene(StageScene);
+	buttonLock(false);
 }
 
 void GUIStage::waitTime( float time )
@@ -699,6 +706,10 @@ void GUIStage::onOtherSceneNotify(std::string arg)
 	{
 		returnScene();
 	}
+	else if(arg=="FadeOver")
+	{
+		buttonLock(true);
+	}
 }
 
 
@@ -730,4 +741,12 @@ void GUIStage::returnScene()
 		}
 
 	}
+}
+
+void GUIStage::buttonLock( bool lock )
+{
+	mSaveButton->setEnabled(lock);
+	mLoadButton->setEnabled(lock);
+	mHideButton->setEnabled(lock);
+	mSystemButton->setEnabled(lock);
 }

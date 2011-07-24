@@ -3,6 +3,10 @@
 #define BGM_PATH "..\\media\\bgm\\"
 #define SE_PATH "..\\media\\sound\\"
 
+#ifndef SCRIPT_EDITOR
+#include "Framerate.h"
+#endif
+
 AudioSystem::AudioSystem(void):mVol(-1),mStream(0),mSample(0)
 {
 
@@ -58,7 +62,7 @@ bool AudioSystem::stopStream(int time)
 {
 	if (mStream!=0)
 	{
-		mVol=100;
+		mVol=1000;
 		mInOut=false;
 		mTickTime=time/100;//每次减少音量的间隔
 		mTimer.reset();
@@ -104,10 +108,10 @@ void AudioSystem::FrameUpdate()
 
 			if (mInOut)
 			{
-				if (mVol<=100)
+				if (mVol<=1000)
 				{
-					BASS_SetConfig(BASS_CONFIG_GVOL_STREAM,mVol*40);
-					mVol++;
+					BASS_SetConfig(BASS_CONFIG_GVOL_STREAM,mVol*4);
+					mVol+=10*Framerate::getSingletonPtr()->speedfactor;
 				}
 				else
 				{
@@ -119,8 +123,8 @@ void AudioSystem::FrameUpdate()
 			{
 				if (mVol>=0)
 				{
-					BASS_SetConfig(BASS_CONFIG_GVOL_STREAM,mVol*40);
-					mVol--;
+					BASS_SetConfig(BASS_CONFIG_GVOL_STREAM,mVol*4);
+					mVol-=10*Framerate::getSingletonPtr()->speedfactor;
 				}
 				else
 				{
