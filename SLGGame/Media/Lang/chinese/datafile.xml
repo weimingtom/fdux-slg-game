@@ -92,8 +92,8 @@
 			<Describe type="String" value="魔法攻击"/>
 		</MagicAttack>
 		<MagicShield>
-			<Name type="String" value="魔法盾"/>
-			<Describe type="String" value="魔法盾"/>
+			<Name type="String" value="圣灵护盾"/>
+			<Describe type="String" value="圣灵护盾"/>
 		</MagicShield>
 		<RangedAttack>
 			<Name type="String" value="射击"/>
@@ -106,7 +106,27 @@
 		<Rest>
 			<Name type="String" value="休整"/>
 			<Describe type="String" value="休整"/>
-		</Rest>		
+		</Rest>	
+		<Heal>
+			<Name type="String" value="生命赐福"/>
+			<Describe type="String" value="生命赐福"/>
+		</Heal>	
+		<Zeal>
+			<Name type="String" value="热忱"/>
+			<Describe type="String" value="热忱"/>
+		</Zeal>
+		<Confess>
+			<Name type="String" value="忏悔"/>
+			<Describe type="String" value="忏悔"/>
+		</Confess>
+		<Break>
+			<Name type="String" value="破阵"/>
+			<Describe type="String" value="破阵"/>
+		</Break>
+		<SuppressAttack>
+			<Name type="String" value="压制射击"/>
+			<Describe type="String" value="压制射击"/>
+		</SuppressAttack>
 	</SkillData>
 	<EffectData>
 		<TestEffect>
@@ -121,6 +141,14 @@
 			<Name type="String" value="防御"/>
 			<Describe type="String" value="防御"/>
 		</Defence>
+		<Zeal>
+			<Name type="String" value="热忱"/>
+			<Describe type="String" value="热忱"/>
+		</Zeal>
+		<Suppressed>
+			<Name type="String" value="被压制"/>
+			<Describe type="String" value="被压制"/>
+		</Suppressed>
 	</EffectData>
 	<GroundData>
 		<Ground1>
@@ -170,7 +198,11 @@
 		<Forest>
 			<Name type="String" value="森林"/>
 			<Describe type="String" value="森林"/>
-		</Forest>		
+		</Forest>
+		<ForestLow>
+			<Name type="String" value="森林"/>
+			<Describe type="String" value="森林"/>		
+		</ForestLow>		
 	</MapObjType>
 	<FactionData>
 		<Wing>

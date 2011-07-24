@@ -182,6 +182,83 @@ static int Action(lua_State* L)
 	return 0;
 }
 
+static int GetSquadApLeft(lua_State* L)
+{
+	std::string squad(luaL_checkstring(L, 1));
+	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
+	float ap = 0.0f;
+	if(battlesquad)
+	{
+		ap = battlesquad->getActionPoint();
+	}
+	lua_pushnumber(L,ap);
+	return 1;
+}
+
+static int SetSquadApLeft(lua_State* L)
+{
+	std::string squad(luaL_checkstring(L, 1));
+	float ap = luaL_checknumber(L,2);
+	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
+	if(battlesquad)
+	{
+		DataLibrary::getSingleton().setData(battlesquad->getPath() + "/ActionPoint",ap);
+	}
+	return 0;
+}
+
+static int GetWoundNum(lua_State* L)
+{
+	std::string squad(luaL_checkstring(L, 1));
+	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
+	int wn = 0;
+	if(battlesquad)
+	{
+		DataLibrary::getSingleton().getData(battlesquad->getPath() + "/WoundNum",wn);
+	}
+	lua_pushnumber(L,wn);
+	return 1;
+}
+
+
+static int SetWoundNum(lua_State* L)
+{
+	std::string squad(luaL_checkstring(L, 1));
+	int wn = luaL_checknumber(L,2);
+	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
+	if(battlesquad)
+	{
+		DataLibrary::getSingleton().setData(battlesquad->getPath() + "/WoundNum",wn);
+	}
+	return 0;
+}
+
+static int GetUnitNum(lua_State* L)
+{
+	std::string squad(luaL_checkstring(L, 1));
+	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
+	int un = 0;
+	if(battlesquad)
+	{
+		un = battlesquad->getUnitRealNum();
+	}
+	lua_pushnumber(L,un);
+	return 1;
+}
+
+#include "FormationCutScence.h"
+static int ChangeFormation(lua_State* L)
+{
+	std::string squad(luaL_checkstring(L, 1));
+	int f = luaL_checknumber(L,2);
+	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
+	if(battlesquad)
+	{
+		battlesquad->setFormation(f);
+		BattleSquadManager::getSingleton().setCutScene(new FormationCutScene(battlesquad->getGrapId(),f));
+	}
+	return 0;
+}
 
 static const struct luaL_Reg SkillLib[] =
 {
@@ -196,5 +273,11 @@ static const struct luaL_Reg SkillLib[] =
 	{"ApplyModifier",ApplyModifier},
 	{"RemoveModifier",RemoveModifier},
 	{"Action",Action},
+	{"GetSquadApLeft",GetSquadApLeft},
+	{"SetSquadApLeft",SetSquadApLeft},
+	{"GetWoundNum",	GetWoundNum},
+	{"SetWoundNum",	SetWoundNum},
+	{"GetUnitNum",GetUnitNum},
+	{"ChangeFormation",ChangeFormation},
 	{NULL,NULL}
 };

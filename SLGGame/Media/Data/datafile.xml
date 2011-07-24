@@ -14,6 +14,7 @@
 			<SkillTable>
 				<Attack type="Int" value="1"/>
 				<Defence type="Int" value="1"/>
+				<Break  type="Int" value="1"/>
 			</SkillTable>
 			<LeaderName type="String" value="Cheetah"/>
 			<LeaderPicture type="String" value="Cheetah.png"/>
@@ -36,6 +37,7 @@
 			<SkillTable>
 				<Attack type="Int" value="1"/>
 				<RangedAttack type="Int" value="1"/>
+				<SuppressAttack type="Int" value="1"/>
 			</SkillTable>
 			<LeaderName type="String" value="Dandelion"/>
 			<LeaderPicture type="String" value="Dandelion.png"/>
@@ -56,9 +58,11 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="none"/>
 			<SkillTable>
-				<MagicAttack type="Int" value="1"/>
 				<MagicEffect type="Int" value="1"/>
 				<MagicShield type="Int" value="1"/>
+				<Heal type="Int" value="1"/>
+				<Zeal type="Int" value="1"/>
+				<Confess type="Int" value="1"/>
 			</SkillTable>
 			<LeaderName type="String" value="Olivia"/>
 			<LeaderPicture type="String" value="Olivia.png"/>
@@ -131,8 +135,8 @@
 				<ActionPoint type="Float" value="10.0"/>
 				<Detection type="Float" value="5.0"/>
 				<Covert type="Float" value="0.0"/>
-				<Injury type="Float" value="0.7"/>
-				<Conter type="Float" value="0.4"/>
+				<Injury type="Float" value="0.8"/>
+				<Conter type="Float" value="0.5"/>
 			</AttrModifer>
 			<Injury type="Int" value="1"/>
 		</WingsSoilder>
@@ -144,7 +148,7 @@
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="5.0"/>
 				<RangedAttack type="Float" value="0.0"/>
-				<Defence type="Float" value="15.0"/>
+				<Defence type="Float" value="20.0"/>
 				<Formation type="Float" value="0.0"/>
 				<Initiative type="Float" value="1.0"/>
 				<ActionPoint type="Float" value="8.0"/>
@@ -161,7 +165,7 @@
 			<Script type="String" value="none"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
-				<Attack type="Float" value="2.0"/>
+				<Attack type="Float" value="1.0"/>
 				<RangedAttack type="Float" value="0.0"/>
 				<Defence type="Float" value="1.0"/>
 				<Formation type="Float" value="0.00"/>
@@ -298,7 +302,7 @@
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="1.0"/>
 				<RangedAttack type="Float" value="0.0"/>
-				<Defence type="Float" value="3.0"/>
+				<Defence type="Float" value="4.0"/>
 				<Formation type="Float" value="0.0"/>
 				<Initiative type="Float" value="0.0"/>
 				<ActionPoint type="Float" value="-1.0"/>
@@ -427,7 +431,7 @@
 			<MinRange type="Int" value="1"/>
 			<Area type="Int" value="1"/>
 			<APType type="Int" value="0"/>
-			<APCost type="float" value="4.0"/>
+			<APCost type="float" value="3.0"/>
 			<CoolDown type="Int" value="0"/>
 			<Value type="Int" value="10"/>
 			<Icon type="String" value="none"/>
@@ -439,7 +443,7 @@
 			<MinRange type="Int" value="0"/>
 			<Area type="Int" value="1"/>
 			<APType type="Int" value="1"/>
-			<APCost type="float" value="2.0"/>
+			<APCost type="float" value="3.0"/>
 			<CoolDown type="Int" value="0"/>
 			<Value type="Int" value="10"/>
 			<Icon type="String" value="none"/>
@@ -469,6 +473,66 @@
 			<Icon type="String" value="Recrew"/>
 			<Script type="String" value="rest.lua"/>
 		</Rest>
+		<Heal>
+			<Type type="Int" value="3"/>
+			<MaxRange type="Int" value="3"/>
+			<MinRange type="Int" value="1"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="0"/>
+			<APCost type="float" value="3.0"/>
+			<CoolDown type="Int" value="0"/>
+			<Value type="Int" value="10"/>
+			<Icon type="String" value="Recrew"/>
+			<Script type="String" value="heal.lua"/>
+		</Heal>
+		<Zeal>
+			<Type type="Int" value="3"/>
+			<MaxRange type="Int" value="3"/>
+			<MinRange type="Int" value="1"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="0"/>
+			<APCost type="float" value="4.0"/>
+			<CoolDown type="Int" value="2"/>
+			<Value type="Int" value="10"/>
+			<Icon type="String" value="none"/>
+			<Script type="String" value="zeal.lua"/>
+		</Zeal>
+		<Confess>
+			<Type type="Int" value="2"/>
+			<MaxRange type="Int" value="3"/>
+			<MinRange type="Int" value="1"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="1"/>
+			<APCost type="float" value="3.0"/>
+			<CoolDown type="Int" value="1"/>
+			<Value type="Int" value="10"/>
+			<Icon type="String" value="none"/>
+			<Script type="String" value="confess.lua"/>
+		</Confess>
+		<Break>
+			<Type type="Int" value="2"/>
+			<MaxRange type="Int" value="1"/>
+			<MinRange type="Int" value="1"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="1"/>
+			<APCost type="float" value="5.0"/>
+			<CoolDown type="Int" value="1"/>
+			<Value type="Int" value="0"/>
+			<Icon type="String" value="AttackIcon"/>
+			<Script type="String" value="break.lua"/>
+		</Break>
+		<SuppressAttack>
+			<Type type="Int" value="7"/>
+			<MaxRange type="Int" value="0"/>
+			<MinRange type="Int" value="0"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="1"/>
+			<APCost type="float" value="4.0"/>
+			<CoolDown type="Int" value="1"/>
+			<Value type="Int" value="10"/>
+			<Icon type="String" value="none"/>
+			<Script type="String" value="suppressattack.lua"/>
+		</SuppressAttack>
 	</SkillData>
 	<EffectData>
 		<TestEffect>
@@ -486,6 +550,16 @@
 			<Icon type="String" value="defence.jpg"/>
 			<Script type="String" value="defence.lua"/>
 		</Defence>
+		<Zeal>
+			<Type type="Int" value="1"/>
+			<Icon type="String" value="zeal.jpg"/>
+			<Script type="String" value="zeal.lua"/>
+		</Zeal>
+		<Suppressed>
+			<Type type="Int" value="1"/>
+			<Icon type="String" value="suppressattack.jpg"/>
+			<Script type="String" value="suppressattack.lua"/>
+		</Suppressed>
 	</EffectData>
 	<GroundData>
 		<Ground1>
@@ -593,6 +667,16 @@
 				<InfAp type="Float" value="0.0"/>
 			</GroundModifier>
 		</Forest>
+		<ForestLow>
+			<Script type="String" value="none"/>
+			<GroundModifier>
+				<Passable type="Int" value="1"/>
+				<Covert type="Float" value="1.0"/>
+				<Defence type="Float" value="1.0"/>
+				<CavAp type="Float" value="1.0"/>
+				<InfAp type="Float" value="0.0"/>
+			</GroundModifier>
+		</ForestLow>
 	</MapObjType>
 	<FactionData>
 		<Wing>
