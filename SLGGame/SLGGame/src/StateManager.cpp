@@ -116,6 +116,7 @@ void StateManager::loadState( std::string file )
 	}
 	else if (state=="Battle")
 	{
+		LuaSystem::getSingletonPtr()->clearLuaSystem();
 		changeState("save.xml",Battle);
 	}
 }

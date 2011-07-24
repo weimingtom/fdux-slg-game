@@ -38,6 +38,11 @@ GUIMenu::GUIMenu(int width,int height):GUIScene("MainMenu.layout",width,height),
 
 GUIMenu::~GUIMenu(void)
 {
+	GUISLWindow* SLWindow= (GUISLWindow*)GUISystem::getSingletonPtr()->getScene(SLScene);
+	if (SLWindow!=NULL)
+	{
+		SLWindow->setCallScene(SLWindow);
+	}
 }
 
 void GUIMenu::showScene( std::string arg )
@@ -110,7 +115,7 @@ void GUIMenu::FrameEvent()
 
 					if (mTimerWork==NoneWork)
 					{
-						StateManager::getSingletonPtr()->changeState("Chapter0.lua",StateManager::AVG);
+						StateManager::getSingletonPtr()->changeState("Chapter1.lua",StateManager::AVG);
 					}
 
 					break;
