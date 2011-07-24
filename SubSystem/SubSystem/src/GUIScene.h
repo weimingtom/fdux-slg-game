@@ -123,6 +123,7 @@ protected:
 				mTickTime=0;
 				mTimerWork=NoneWork;
 				GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);
+				onOtherSceneNotify("FadeOver");
 			}
 		}
 		else
@@ -142,6 +143,7 @@ protected:
 				mTickTime=0;
 				mTimerWork=NoneWork;
 				GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);
+				onOtherSceneNotify("FadeOver");
 			}
 
 		}

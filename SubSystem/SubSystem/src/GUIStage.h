@@ -66,6 +66,8 @@ private:
 	void fastForward(bool value);
 
 	void UIInit();
+
+	void buttonLock(bool lock);
 	
 	int mTextX;
 	int mTextY;
