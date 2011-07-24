@@ -89,12 +89,48 @@ private:
 	void updateMission();
 	void assignMission();
 	bool executeGroupAI();
-	bool executeSquadAI(unsigned int missionid);
+	bool executeSquadAI(BattleSquad* squad, unsigned int missionid);
 
 	//¸¨Öúº¯Êý
 	Direction getDirection(int sx, int sy, int x, int y);
 	bool getAssigedMission(bool isenemy,unsigned short id);
 	inline int getDistance(int x1, int y1, int x2, int y2);
 	unsigned short getMissionStrength(unsigned short id);
-	unsigned short getBlockSquadNum(int x1, int y1, int x2, int y2, bool ignore = false,unsigned short ignoreid = 0);
+	unsigned short getMission(unsigned short groupid);
+	unsigned short getBlockSquadNum(int x1, int y1, int x2, int y2, unsigned short ignoreid = 0);
+	float getSkillAPCost(BattleSquad* squad, std::string skillname);
+
+	//ÒÆ¶¯µã
+	struct MoveNode
+	{
+		int x;
+		int y;
+		Direction mDirectionToPrev;
+		float mPrevApLeft;
+		float mAPleft;
+		unsigned short mInterest;
+		MoveNode()
+		{
+			x = -1;
+			y = -1;
+			mDirectionToPrev = 0;
+			mPrevApLeft = 0.0f;
+			mAPleft = 0.0f;
+			mInterest = 100;
+		}
+	};
+	std::map<int, MoveNode*> mMoveMap;
+	typedef std::map<int, MoveNode*>::value_type MapNodeType;
+	typedef std::map<int, MoveNode*>::iterator MapNodeIte;
+	void createMoveArea(BattleSquad* squad);
+	bool canPass(BattleSquad* squad,int x, int y, float &apcost);
+	void clearMoveArea();
+
+	void calcAwayFromSquad(BattleSquad* squad, unsigned short ignoreid = 0 );
+	void calcClosetoMissionPoint(BattleSquad* squad, unsigned int missionid);
+	void calcAPointLeft(BattleSquad* squad);
+	void calcBattlePos(BattleSquad* squad, unsigned squadgroupid);
+
+	SquadVector getAroundSquad(BattleSquad* squad);
+
 };

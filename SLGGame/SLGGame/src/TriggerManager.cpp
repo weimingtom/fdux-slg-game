@@ -76,7 +76,7 @@ void TriggerManager::unitDead(BattleSquad* squad)
 			datalib->getData(datapath + std::string("/file"),filename);
 			datalib->getData(datapath + std::string("/func"),funcname);
 			datalib->getData(datapath + std::string("/context"),context);
-			datalib->setData(context + std::string("/squad"),squad->getSquadName());
+			datalib->setData(context + std::string("/squad"),squad->getId());
 			LuaSystem::getSingleton().executeFunction(filename,funcname,context);
 		}
 	}

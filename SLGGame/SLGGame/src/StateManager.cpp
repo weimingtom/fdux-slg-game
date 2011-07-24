@@ -116,6 +116,6 @@ void StateManager::loadState( std::string file )
 	}
 	else if (state=="Battle")
 	{
-
+		changeState("save.xml",Battle);
 	}
 }

@@ -19,7 +19,7 @@ end
 
 function unitdead()
 	squad = ScriptCommonLib.GetString("squad");
-	if squad == Cheetah or squad == Dandelion or squad == Olivia then
+	if squad == "Cheetah" or squad == "Dandelion" or squad == "Olivia" then
 		TriggerLib.ChangeState(1,"GameOver.lua");
 	elseif ScriptCommonLib.GetTeamSquadLeft(2) == 0 then
 		TriggerLib.ChangeState(1,"Chapter2.lua");

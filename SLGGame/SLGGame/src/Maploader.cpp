@@ -263,7 +263,11 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 }
 bool MapLoader::loadMapFormSave()
 {
-	return false;
+	int mapsize;
+	DataLibrary::getSingleton().getData("GameData/BattleData/MapData/MapSize", mapsize);
+	MapDataManager::getSingleton().mMapSize = mapsize;
+	Terrain::getSingleton().createTerrain();
+	return true;
 }
 
 void MapLoader::loadMapObj()

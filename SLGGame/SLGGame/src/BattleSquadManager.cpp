@@ -233,7 +233,7 @@ void BattleSquadManager::moveSquad(BattleSquad* squad,std::vector<int> pointlist
 				{
 					squad->setViewbyTeam((*ite)->getTeam(),true);
 					squad->setAmbushTeam((*ite)->getTeam(),true);
-					if(faction == 0)
+					if(faction != 0)
 					{
 						eventtype |= MOVEEVENT_SPOTBYPLAYER;
 						setCutScene(new SquadStateCutScene(squad,SQUAD_STATE_VISIBLE,"none",1));
@@ -296,8 +296,8 @@ CutScene* BattleSquadManager::useSkillOn(BattleSquad* attacksquad, BattleSquad* 
 	int dist = abs(casterx - targetx) + abs(castery - targety);
 	if(dist > maxrange || dist < minrange)
 		return NULL;
-	mCutSceneQueue = NULL;
-	mLastCutScene = NULL;
+	//mCutSceneQueue = NULL;
+	//mLastCutScene = NULL;
 	std::string skillscript;
 	datalib->getData(skillinfopath + std::string("/Script"),skillscript);
 	//设置脚本上下文
@@ -428,6 +428,8 @@ bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad*
 
 void BattleSquadManager::setCutScene(CutScene* cutscene)
 {
+	if(cutscene == NULL)
+		return;
 	if(mCutSceneQueue == NULL)
 	{
 		mCutSceneQueue = cutscene;
