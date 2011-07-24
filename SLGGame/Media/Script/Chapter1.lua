@@ -1,3 +1,7 @@
+GUI.SetDialogVisible(0);
+GUI.ShowImage("cp1.png",4,1000);
+GUI.Wait(1000);
+GUI.SetDialogVisible(1);
 GUI.ShowImage("grasslands.png",4,1000);
 GUI.ShowText("青绿色的河水，被鲜血染红的绷带，以及一灰一白的两位少女。",2);
 GUI.ShowText("四者映在一起，有一种如处画中的奇妙美感。",1);

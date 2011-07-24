@@ -335,10 +335,13 @@ void BattlePlayerState::newTurn()
 	for(int n = 0; n < mSquadManager->mSquadList.size(); n++)
 	{
 		if(mSquadManager->mSquadList[n]->getTeam() == 1)
+		{
 			mSquadManager->mSquadList[n]->newTurn();
+			SquadGraphics* squadGrap=SquadGrapManager::getSingletonPtr()->getSquad(mSquadManager->mSquadList[n]->getGrapId());
+			squadGrap->setSquadBillBoardState(true);
+		}
 	}
 }
-
 
 void BattlePlayerState::reactiveState()
 {
@@ -383,6 +386,11 @@ void BattlePlayerState::reactiveState()
 		if(mSelectSquad->getActionPoint() > 0.0f)
 		{
 			mGUICommand->setSquad(mSelectSquad);
+		}
+		else
+		{
+			SquadGraphics* squadGrap=SquadGrapManager::getSingletonPtr()->getSquad(mSelectSquad->getGrapId());
+			squadGrap->setSquadBillBoardState(false);
 		}
 		mState = PLAYERCONTROL_CHOOSESKILL;
 

@@ -1,3 +1,7 @@
+GUI.SetDialogVisible(0);
+GUI.ShowImage("cp5.png",4,1000);
+GUI.Wait(1000);
+GUI.SetDialogVisible(1);
 GUI.ShowImage("abbey_day.png",4,1000);
 GUI.ShowImage("Cheetah_right_1.png",right,1);
 GUI.ShowImage("Olivia_left_1.png",left,1);
@@ -405,6 +409,11 @@ GUI.ClearText();
 GUI.ShowRoleName("");
 GUI.ShowImage("",all,1);
 GUI.ShowImage("",4,1000);
+GUI.SetDialogVisible(0);
+	
+GUI.ShowImage("end.png",4,2000);
+GUI.ShowText("To Be Continued",1);
+GUI.ShowText(" ",2);
 
 StateLib.MenuState("");
 	

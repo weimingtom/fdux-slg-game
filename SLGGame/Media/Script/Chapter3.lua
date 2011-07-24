@@ -1,3 +1,7 @@
+GUI.SetDialogVisible(0);
+GUI.ShowImage("cp3.png",4,1000);
+GUI.Wait(1000);
+GUI.SetDialogVisible(1);
 GUI.ShowImage("forest_night.png",4,1000);
 GUI.ShowImage("Cossa_left_1.png",left,1);
 GUI.ShowRoleName("柯萨");
@@ -213,7 +217,7 @@ GUI.ShowText("……",1);
 GUI.ClearText();
 GUI.ShowRoleName("");
 GUI.ShowImage("Dandelion_right_1.png",right,1);
-GUI.ShowImage("Cheetah_left_Weapon_1.png",left,1);
+GUI.ShowImage("Cheetah_left_1.png",left,1);
 GUI.ShowRoleName("丹德");
 GUI.ShowText("喂，齐塔，对女孩子不要这么冷淡嘛！",2);
 GUI.ShowText("你让人家怎么跟你发展关系啊！ ",1);

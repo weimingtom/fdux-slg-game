@@ -14,12 +14,12 @@
         <RightName value="Cheetah_right_1.png" type="String" />
         <RightPosition value="700,0,0" type="Vector3" />
         <RightSize value="640,720,0" type="Vector3" />
-        <Text value="从时间上来看，团长大人那边也应该救出被围困的凡塔斯公爵了。" type="String" />
+        <Text value="" type="String" />
         <RoleName value="副官休斯" type="String" />
         <TextCursorType value="0" type="Int" />
-        <ScriptName value="Chapter2.lua" type="String" />
-        <ScriptLine value="14" type="Int" />
-        <FileName value="123" type="String" />
+        <ScriptName value="Chapter4.lua" type="String" />
+        <ScriptLine value="164" type="Int" />
+        <FileName value="220" type="String" />
         <SquadData>
             <EnableSquad>
                 <Cheetah>
@@ -33,7 +33,7 @@
                     <LeaderMat value="HeavyInfOf" type="String" />
                     <UnitMesh value="HeavyInf.mesh" type="String" />
                     <UnitMat value="HeavyInf" type="String" />
-                    <MoveSound value="Move.mp3" type="String" />
+                    <MoveSound value="HeavyInf.mp3" type="String" />
                     <UnitMaxNumber value="50" type="Int" />
                     <UnitNumber value="50" type="Int" />
                     <ModifierList>
@@ -120,7 +120,7 @@
                     <LeaderMat value="LightInfOf" type="String" />
                     <UnitMesh value="LightInf.mesh" type="String" />
                     <UnitMat value="LightInf" type="String" />
-                    <MoveSound value="Move.mp3" type="String" />
+                    <MoveSound value="BowMan.mp3" type="String" />
                     <UnitMaxNumber value="50" type="Int" />
                     <UnitNumber value="50" type="Int" />
                     <ModifierList>
@@ -207,7 +207,7 @@
                     <LeaderMat value="none" type="String" />
                     <UnitMesh value="HolySpirit.mesh" type="String" />
                     <UnitMat value="HolySpirit" type="String" />
-                    <MoveSound value="Move.mp3" type="String" />
+                    <MoveSound value="Olivia.mp3" type="String" />
                     <UnitMaxNumber value="20" type="Int" />
                     <UnitNumber value="20" type="Int" />
                     <ModifierList>

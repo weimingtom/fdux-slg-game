@@ -2,23 +2,23 @@
 <GameData>
     <StoryData>
         <GameState value="AVG" type="String" />
-        <BackGroundName value="forest_day.png" type="String" />
+        <BackGroundName value="abbey_day.png" type="String" />
         <BackGroundPosition value="0,0,0" type="Vector3" />
         <BackGroundSize value="1280,720,0" type="Vector3" />
-        <LeftName value="Cheetah_right_1.png" type="String" />
+        <LeftName value="Olivia_left_1.png" type="String" />
         <LeftPosition value="-100,0,0" type="Vector3" />
         <LeftSize value="640,720,0" type="Vector3" />
         <MidName value="" type="String" />
         <MidPosition value="295,25,0" type="Vector3" />
         <MidSize value="245,480,0" type="Vector3" />
-        <RightName value="Olivia_right_Weapon_1.png" type="String" />
+        <RightName value="sister_right_1.png" type="String" />
         <RightPosition value="700,0,0" type="Vector3" />
         <RightSize value="640,720,0" type="Vector3" />
-        <Text value="全体起盾！在右方的大树后列密集阵，准备抵挡冲锋！" type="String" />
-        <RoleName value="齐塔" type="String" />
+        <Text value="那么再见了，修女！下次我过来的时候，应该就不是圣法师学徒了。" type="String" />
+        <RoleName value="奥莉瓦" type="String" />
         <TextCursorType value="0" type="Int" />
-        <ScriptName value="Chapter2.lua" type="String" />
-        <ScriptLine value="489" type="Int" />
+        <ScriptName value="Chapter5.lua" type="String" />
+        <ScriptLine value="398" type="Int" />
         <FileName value="321" type="String" />
         <SquadData>
             <EnableSquad>
@@ -33,7 +33,7 @@
                     <LeaderMat value="HeavyInfOf" type="String" />
                     <UnitMesh value="HeavyInf.mesh" type="String" />
                     <UnitMat value="HeavyInf" type="String" />
-                    <MoveSound value="Move.mp3" type="String" />
+                    <MoveSound value="HeavyInf.mp3" type="String" />
                     <UnitMaxNumber value="50" type="Int" />
                     <UnitNumber value="50" type="Int" />
                     <ModifierList>
@@ -120,7 +120,7 @@
                     <LeaderMat value="LightInfOf" type="String" />
                     <UnitMesh value="LightInf.mesh" type="String" />
                     <UnitMat value="LightInf" type="String" />
-                    <MoveSound value="Move.mp3" type="String" />
+                    <MoveSound value="BowMan.mp3" type="String" />
                     <UnitMaxNumber value="50" type="Int" />
                     <UnitNumber value="50" type="Int" />
                     <ModifierList>
@@ -207,7 +207,7 @@
                     <LeaderMat value="none" type="String" />
                     <UnitMesh value="HolySpirit.mesh" type="String" />
                     <UnitMat value="HolySpirit" type="String" />
-                    <MoveSound value="Move.mp3" type="String" />
+                    <MoveSound value="Olivia.mp3" type="String" />
                     <UnitMaxNumber value="20" type="Int" />
                     <UnitNumber value="20" type="Int" />
                     <ModifierList>

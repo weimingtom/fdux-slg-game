@@ -45,7 +45,8 @@ RangedCutScene::RangedCutScene(Ogre::Vector3 startpos, Ogre::Vector3 endpoint, i
 
 		trail->setTrailLength(50);
 
-		trail->setInitialColour(0, 1.0, 1.0, 1.0,0.7);
+		trail->setInitialColour(0, 1.0, 1.0, 1.0,0.3);
+		//trail->set
 
 		trail->setColourChange(0, 0.5, 0.5, 0.5, 0.5);
 

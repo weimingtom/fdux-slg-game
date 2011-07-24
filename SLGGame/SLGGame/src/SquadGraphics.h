@@ -70,6 +70,7 @@ public:
 
 	void showValue(std::string value,Ogre::ColourValue c);
 	void stopShowValue();
+	void setSquadBillBoardState(bool hasAp);
 
 	Ogre::Vector3 getLeaderPosition(); 
 	std::vector<Ogre::Vector3> getSoiderPosition();

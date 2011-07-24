@@ -119,14 +119,20 @@ mDirection(direction)
 	if (tempid=="player")
 	{
 		mSquadBB->setName(name,MyGUI::Colour::Blue);
+		mSquadBB->mHasApColor=MyGUI::Colour::Blue;
+		mSquadBB->mNoneApColor=MyGUI::Colour(0,0,0.5);
 	}
 	else if (tempid=="enemy1" || tempid=="enemy2" ||tempid=="enemy3")
 	{
 		mSquadBB->setName(name,MyGUI::Colour::Red);
+		mSquadBB->mHasApColor=MyGUI::Colour::Red;
+		mSquadBB->mNoneApColor=MyGUI::Colour(0.5,0,0);
 	}
 	else if (tempid=="aliiance")
 	{
 		mSquadBB->setName(name,MyGUI::Colour::Green);
+		mSquadBB->mHasApColor=MyGUI::Colour::Green;
+		mSquadBB->mNoneApColor=MyGUI::Colour(0,0.5,0);
 	}
 	else
 	{
@@ -160,14 +166,6 @@ mDirection(direction)
 		addParticle((*ite),tempid,unittype);
 		startParticle((*ite));
 	}
-	
-	//Camera* cam=mSceneMgr->getCamera("PlayerCam");
-	//Matrix4 viewMatrix = cam->getViewMatrix();
-	//Matrix4 projectMatrix = cam->getProjectionMatrix();
-	//Matrix4 eyeMatrix = (Matrix4(0.5,0,0,0.5, 0,-0.5,0,0.5, 0,0,1,0, 0,0,0,1)*(projectMatrix*viewMatrix));
-	//Vector4 temp = eyeMatrix*v4;
-	//Vector3 ScreenPos = Vector3(temp.x/temp.w,temp.y/temp.w,temp.z/temp.w);
-
 }
 
 SquadGraphics::~SquadGraphics(void)
@@ -198,6 +196,18 @@ SquadGraphics::~SquadGraphics(void)
 	BillboardManager::getSingletonPtr()->destroyBillBoard(mSquadValueBB);
 }
 
+void SquadGraphics::setSquadBillBoardState( bool hasAp )
+{
+	if (hasAp)
+	{
+		mSquadBB->changeColor(mSquadBB->mHasApColor);
+	}
+	else
+	{
+		mSquadBB->changeColor(mSquadBB->mNoneApColor);
+	}
+}
+
 UnitGrap* SquadGraphics::createSoldier()
 {
 	mSoldierIndex++;
@@ -207,11 +217,6 @@ UnitGrap* SquadGraphics::createSoldier()
 	unit->createWeapon(mSWeaponMesh,mSWeaponMat,UnitGrap::SecWepon);
 	unit->createWeapon(mShieldMesh,mShieldMat,UnitGrap::Shield);
 
-// 	if (mSoilderEffect!="none")
-// 	{
-// 		unit->setEffect(mSoilderEffect,mSoilderEffectOffect);
-// 	}
-
 	mSoldierUnits.push_back(unit);
 
 	return unit;
@@ -219,44 +224,6 @@ UnitGrap* SquadGraphics::createSoldier()
 
 void SquadGraphics::setMovePath(std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions,std::map<int,Direction>& directions)
 {
-	/*mNodeAnimation = mSceneMgr->createAnimation(mNode->getName()+"_Ani", vectors.size()*MOVE_KEYFRAME_TIME);
-	mNodeAnimation->setInterpolationMode(Ogre::Animation::IM_LINEAR);
-	Ogre::NodeAnimationTrack* track = mNodeAnimation->createNodeTrack(1, mNode);
-	
-	float timePosition=0;
-	Ogre::TransformKeyFrame* kf = track->createNodeKeyFrame(timePosition);
-	kf->setTranslate(mNode->getPosition());
-	kf->setRotation(mNode->getOrientation());
-
-	std::map<int,Ogre::Vector3>::iterator itr  =  vectors.begin();
-	for(  ;  itr !=  vectors.end();  ++itr )
-	{
-		timePosition+=MOVE_KEYFRAME_TIME;
-		kf = track->createNodeKeyFrame(timePosition);
-
-		kf->setTranslate(itr->second);
-
-		std::map<int,Ogre::Quaternion>::iterator itr1;
-		itr1 = quaternions.find(itr->first);
-
-		if( itr1 != quaternions.end() )
-		{
-			kf->setRotation(itr1->second);
-		}
-	}
-	
-	mNodeAnimationState = mSceneMgr->createAnimationState(mNode->getName()+"_Ani");
-
-	setCheckUnitHeight(true);
-	mNodeAnimationState->setLoop(false);
-	mNodeAnimationState->setEnabled(true);
-
-	mCommanderUnit->setAnimation(mCommanderUnit->mWalkName,true,false);
-	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
-	{
-		(*it)->setAnimation((*it)->mWalkName,true,false);
-	}
-	mReturnInitAni=true;*/
 	
 	if (vectors.size()==0)
 	{

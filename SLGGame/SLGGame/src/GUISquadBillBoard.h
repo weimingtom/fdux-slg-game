@@ -26,6 +26,11 @@ public:
 
 	void setVisible(bool v);
 
+	void changeColor(MyGUI::Colour c);
+
+	MyGUI::Colour mHasApColor;
+	MyGUI::Colour mNoneApColor;
+
 private:
 	Ogre::SceneNode* mNode;
 

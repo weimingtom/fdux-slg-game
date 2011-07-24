@@ -22,7 +22,7 @@
 			<UnitMesh type="String" value="HeavyInf.mesh"/>
 			<UnitMat type="String" value="HeavyInf"/>
 			<UnitMaxNumber type="Int" value="50"/>
-			<MoveSound type="String" value="Move.mp3"/>
+			<MoveSound type="String" value="HeavyInf.mp3"/>
 		</CheetahSquad>
 		<DandelionSquad>
 			<Type type="Int" value="0"/>
@@ -44,7 +44,7 @@
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
 			<UnitMaxNumber type="Int" value="50"/>
-			<MoveSound type="String" value="Move.mp3"/>
+			<MoveSound type="String" value="BowMan.mp3"/>
 		</DandelionSquad>
 		<Olivia>
 			<Type type="Int" value="1"/>
@@ -67,7 +67,7 @@
 			<UnitMesh type="String" value="HolySpirit.mesh"/>
 			<UnitMat type="String" value="HolySpirit"/>
 			<UnitMaxNumber type="Int" value="20"/>
-			<MoveSound type="String" value="Move.mp3"/>
+			<MoveSound type="String" value="Olivia.mp3"/>
 		</Olivia>
 		<EtasiLightSpear>
 			<Type type="Int" value="0"/>
@@ -90,7 +90,7 @@
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
 			<UnitMaxNumber type="Int" value="50"/>
-			<MoveSound type="String" value="Move.mp3"/>
+			<MoveSound type="String" value="LightInf.mp3"/>
 		</EtasiLightSpear>
 		<EtasiHeavyInf>
 			<Type type="Int" value="0"/>
@@ -113,7 +113,7 @@
 			<UnitMesh type="String" value="HeavyInf.mesh"/>
 			<UnitMat type="String" value="HeavyInf"/>
 			<UnitMaxNumber type="Int" value="50"/>
-			<MoveSound type="String" value="Move.mp3"/>
+			<MoveSound type="String" value="HeavyInf.mp3"/>
 		</EtasiHeavyInf>
 	</SquadData>
 	<SoilderData>

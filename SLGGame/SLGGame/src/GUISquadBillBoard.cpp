@@ -106,3 +106,8 @@ void GUISquadBillBoard::setIcon( SquadType type )
 
 }
 
+void GUISquadBillBoard::changeColor(MyGUI::Colour c)
+{
+	mBName->setTextColour(c);
+}
+
