@@ -102,16 +102,12 @@ static int GetSquadIdFromPath(lua_State* L)
 	return 1;
 }
 
-static int GetSquadApLeft(lua_State* L)
+static int GetRand(lua_State* L)
 {
-	std::string squad(luaL_checkstring(L, 1));
-	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
-	float ap = 0.0f;
-	if(battlesquad)
-	{
-		ap = battlesquad->getActionPoint();
-	}
-	lua_pushnumber(L,ap);
+	int min = luaL_checknumber(L,1);
+	int max = luaL_checknumber(L,2);
+	int re = min + (rand() % (max- min));
+	lua_pushnumber(L,re);
 	return 1;
 }
 
@@ -126,6 +122,6 @@ static const struct luaL_Reg ScriptCommonLib[] =
 	{"PlayMusic",PlayMusic},
 	{"SetCamera",SetCamera},
 	{"GetSquadIdFromPath",GetSquadIdFromPath},
-	{"GetSquadApLeft",GetSquadApLeft},
+	{"GetRand",GetRand},
 	{NULL,NULL}
 };

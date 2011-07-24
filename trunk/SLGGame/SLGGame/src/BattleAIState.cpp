@@ -83,11 +83,11 @@ bool SquadGroup::updateSquad()
 		yy += y;
 		ite++;
 	}
-	if(mSquadList.size()>0)
-		return true;
+	if(mSquadList.size() == 0)
+		return false;
 	mMidX = xx / mSquadList.size();
 	mMidY = yy / mSquadList.size();
-	return false;
+	return true;
 }
 
 unsigned int SquadGroup::getGroupSize()
@@ -449,18 +449,29 @@ void BattleAIState::updateMission()
 				rallyx += myx;
 				rallyy += myy;
 			}
-			rallyx /= (*mostgroup).size();
-			rallyy /= (*mostgroup).size();
-			Ogre::Vector2 vec(rallyx - midx, rallyy - midy);
-			vec.normalise();
-			vec = vec * 4;
-			Mission* newmission = new Mission;
-			newmission->mMisstionType = MISSION_RALLY;
-			newmission->mParaList[0] = ite->first;
-			newmission->mParaList[1] = groupsize + 1;
-			newmission->mParaList[2] = midx + vec.x;
-			newmission->mParaList[3] = midy + vec.y;
-			mMissionMap.insert(MissionMap::value_type(mMissionId++,newmission));
+			if((*mostgroup).size() == 0)
+			{
+				Mission* newmission = new Mission;
+				newmission->mMisstionType = MISSION_ATTACK;
+				newmission->mParaList[0] = ite->first;
+				newmission->mParaList[1] = groupsize + 2;
+				mMissionMap.insert(MissionMap::value_type(mMissionId++,newmission));
+			}
+			else
+			{
+				rallyx /= (*mostgroup).size();
+				rallyy /= (*mostgroup).size();
+				Ogre::Vector2 vec(rallyx - midx, rallyy - midy);
+				vec.normalise();
+				vec = vec * 4;
+				Mission* newmission = new Mission;
+				newmission->mMisstionType = MISSION_RALLY;
+				newmission->mParaList[0] = ite->first;
+				newmission->mParaList[1] = groupsize + 1;
+				newmission->mParaList[2] = midx + vec.x;
+				newmission->mParaList[3] = midy + vec.y;
+				mMissionMap.insert(MissionMap::value_type(mMissionId++,newmission));
+			}
 		}
 	}
 }
@@ -1102,12 +1113,12 @@ void BattleAIState::calcAwayFromSquad(BattleSquad* squad, unsigned short ignorei
 		SquadGroupIte groupite;
 		for(groupite = mEnemySquadGroup.begin(); groupite != mEnemySquadGroup.end(); groupite++)
 		{
-			if(groupite->first != ignoreid || groupite->second->getGroupSize() < 2)
+			if(groupite->first == ignoreid || groupite->second->getGroupSize() < 2)
 				continue;
 			int x,y;
 			groupite->second->getMidPoint(x,y);
 			int dist = getDistance(nodeite->second->x,nodeite->second->y,x,y);
-			if(dist < 3)
+			if(dist < 4)
 				nodeite->second->mInterest -= dist;
 		}
 	}

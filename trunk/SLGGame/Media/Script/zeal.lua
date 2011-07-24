@@ -1,42 +1,40 @@
 function useskill()
-	skillcaster  = ScriptCommonLib.GetString("skillcaster");
-	skillcasterpath = ScriptCommonLib.GetString("skillcasterpath");
-	id = SkillLib.ApplyEffect(skillcasterpath,"Defence");
-	ScriptCommonLib.SetString("Effectid",id);
+	attacker  = ScriptCommonLib.GetString("skillcaster");
+	defender  = ScriptCommonLib.GetString("skilltarget");
+	defenderpath = ScriptCommonLib.GetString("skilltargetpath");
+	apleft = SkillLib.GetSquadApLeft(defender);
+	apleft = apleft + 5;
+	SkillLib.SetSquadApLeft(defender,apleft);
+	SkillLib.ApplyEffect(defenderpath,"Zeal");
+	SkillLib.Action(attacker,1,"mp_seal_08","Skill","magicSkill1.mp3");
 	ScriptCommonLib.SetInt("skillcast",1);
 end
 
 function onaffect()
 	squadpath = ScriptCommonLib.GetString("affectsquadpath");
-	squad = ScriptCommonLib.GetSquadIdFromPath(squadpath);
-	apleft = SkillLib.GetSquadApLeft(squad);
-	if apleft > 4 then
-		apleft = 4;
-	end
-	id = SkillLib.ApplyModifier(squadpath,2,0.0,0.0,apleft,0.0,0.0,0.0,0.0,0.0,0.0,0.0);
+	id = SkillLib.ApplyModifier(squadpath,1,0.0,0.0,0.0,0.0,0.0,3.0,0.0,0.0,0.0,0.0);
 	ScriptCommonLib.SetString("Modifierid",id);
 	ScriptCommonLib.SetInt("LastTurn",0);
-	trigerid = TriggerLib.AddSquadTrigger(squadpath,"TurnStart","onturnstart");
+	trigerid = TriggerLib.AddSquadTrigger(squadpath,"TurnEnd","onturnend");
 	TriggerLib.ActiveSquadTrigger(squadpath,trigerid);
-	ScriptCommonLib.SetString("TurnStartTrigger",trigerid);
+	ScriptCommonLib.SetString("TurnEndTrigger",trigerid);
 end
 
 function onremove()
 	squadpath = ScriptCommonLib.GetString("affectsquadpath");
 	id = ScriptCommonLib.GetString("Modifierid");
 	SkillLib.RemoveModifier(squadpath,id);
-	id = ScriptCommonLib.GetString("TurnStartTrigger");
+	id = ScriptCommonLib.GetString("TurnEndTrigger");
 	TriggerLib.RemoveSquadTrigger(squadpath,id);
 end
 
-function onturnstart()
+function onturnend()
 	turn = ScriptCommonLib.GetInt("LastTurn");
 	turn = turn + 1;
 	ScriptCommonLib.SetInt("LastTurn",turn);
-	if turn == 1 then
+	if turn == 2 then
 		squadpath = ScriptCommonLib.GetString("affectsquadpath");
 		id = ScriptCommonLib.GetString("effectid");
 		SkillLib.RemoveEffect(squadpath, id);
 	end
 end
-

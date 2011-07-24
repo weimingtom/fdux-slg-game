@@ -578,10 +578,13 @@ void BattleSquad::applyAttackRolls(bool rangedattack, Direction d, std::vector<i
 		deff = getAttr(ATTR_DEFENCE, ATTRCALC_FULL, d);
 	int def = floor(deff + 0.5f);
 	int wounddef = def * getAttr(ATTR_INJURY, ATTRCALC_FULL, d);
-	int soildernum, woundnum, healthynum, wound;
+	int soildernum, woundnum, healthynum;
 	DataLibrary::getSingleton().getData(getPath() + std::string("/UnitNumber"),soildernum);
 	DataLibrary::getSingleton().getData(getPath() + std::string("/WoundNum"),woundnum);
-	DataLibrary::getSingleton().getData(getPath() + std::string("/Injury"),wound);
+	std::string soilderid;
+	int inj;
+	DataLibrary::getSingleton().getData(getPath() + std::string("/SoilderId"),soilderid);
+	DataLibrary::getSingleton().getData(std::string("StaticData/SoilderData/") + soilderid + std::string("/Injury"),inj);
 	healthynum = soildernum - woundnum;
 	int atknum = 0;
 	int unit = 1;
@@ -609,7 +612,7 @@ void BattleSquad::applyAttackRolls(bool rangedattack, Direction d, std::vector<i
 			if(attackrolls[atknum] > def + DEFBOUSE)
 			{
 				atknum++;
-				if(wound != 0)
+				if(inj != 0)
 				{
 					if((atknum< attackrolls.size()) && (attackrolls[atknum] > def + DEFBOUSE))
 					{
