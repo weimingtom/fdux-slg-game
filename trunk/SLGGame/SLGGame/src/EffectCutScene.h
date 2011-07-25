@@ -10,7 +10,7 @@ class SquadGraphics;
 class EffectCutScene:public CutScene
 {
 public:
-	EffectCutScene(unsigned int id,UnitType object,std::string name,unsigned int lasttime);
+	EffectCutScene(unsigned int id,UnitType object,std::string name,std::string sound,unsigned int lasttime);
 	~EffectCutScene(void);
 
 protected:
@@ -21,4 +21,5 @@ protected:
 
 	SquadGraphics* mSquadGraphics;
 	std::string mParticleId;
+	std::string mSound;
 };

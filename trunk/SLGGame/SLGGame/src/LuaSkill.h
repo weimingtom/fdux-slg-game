@@ -260,6 +260,20 @@ static int ChangeFormation(lua_State* L)
 	return 0;
 }
 
+#include "EffectCutScene.h"
+static int SquadParticle(lua_State* L)
+{
+	std::string squad(luaL_checkstring(L, 1));
+	int castunit = luaL_checknumber(L, 2);
+	std::string particle(luaL_checkstring(L, 3));
+	std::string sound(luaL_checkstring(L, 4));
+	int time  = luaL_checknumber(L, 5);
+	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
+	EffectCutScene* ecs = new EffectCutScene(battlesquad->getGrapId(),castunit,particle,sound,time);
+	BattleSquadManager::getSingleton().setCutScene(ecs);
+	return 0;
+}
+
 static const struct luaL_Reg SkillLib[] =
 {
 	{"MeleeCombat",MeleeCombat},
@@ -279,5 +293,6 @@ static const struct luaL_Reg SkillLib[] =
 	{"SetWoundNum",	SetWoundNum},
 	{"GetUnitNum",GetUnitNum},
 	{"ChangeFormation",ChangeFormation},
+	{"SquadParticle",SquadParticle},
 	{NULL,NULL}
 };
