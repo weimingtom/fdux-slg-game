@@ -614,10 +614,13 @@ void BattleSquad::applyAttackRolls(bool rangedattack, Direction d, std::vector<i
 				atknum++;
 				if(inj != 0)
 				{
-					if((atknum< attackrolls.size()) && (attackrolls[atknum] > def + DEFBOUSE))
+					if(atknum< attackrolls.size())
 					{
+						if (attackrolls[atknum] <= def + DEFBOUSE)
+						{
+							tempwound++;
+						}
 						atknum++;
-						tempwound++;
 					}
 				}
 			}
@@ -651,6 +654,8 @@ void BattleSquad::applyAttackRolls(bool rangedattack, Direction d, std::vector<i
 		tempwound += woundnum - (unit - healthynum - 1);
 	}
 	soildernum = tempwound + temphealth;
+	if(soildernum == 0)
+		OnDead();
 	DataLibrary::getSingleton().setData(getPath() + std::string("/UnitNumber"),soildernum);
 	DataLibrary::getSingleton().setData(getPath() + std::string("/WoundNum"),tempwound);
 }

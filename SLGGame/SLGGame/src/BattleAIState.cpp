@@ -744,7 +744,7 @@ bool BattleAIState::executeSquadAI(BattleSquad* squad,unsigned int missionid)
 	mMoveMap.insert(MapNodeType(myx + mapsize * myy,startnode));
 	bool action = false;
 	//计算移动点移动偏好
-	if(wondnum > std::min(10,unitnum/2) && unitnum > 10)
+	if(wondnum > std::min(15,unitnum/2) && unitnum > 10)
 	{
 		//避战休息
 		calcAwayFromSquad(squad);
@@ -884,7 +884,7 @@ bool BattleAIState::executeSquadAI(BattleSquad* squad,unsigned int missionid)
 			SquadVector vec = getAroundSquad(squad);
 			if(vec.size() == 0 || squad->getActionPoint() <= getSkillAPCost(squad,"Attack"))
 			{
-				if(wondnum > std::min(10,unitnum/2) && unitnum > 10)
+				if(wondnum > std::min(15,unitnum/2) && unitnum > 10)
 					catscene = mSquadManager->useSkillOn(squad,squad,"Rest");
 				else
 					catscene = mSquadManager->useSkillOn(squad,squad,"Defence");
