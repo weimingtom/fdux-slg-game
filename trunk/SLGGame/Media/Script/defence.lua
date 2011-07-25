@@ -10,8 +10,8 @@ function onaffect()
 	squadpath = ScriptCommonLib.GetString("affectsquadpath");
 	squad = ScriptCommonLib.GetSquadIdFromPath(squadpath);
 	apleft = SkillLib.GetSquadApLeft(squad);
-	if apleft > 4 then
-		apleft = 4;
+	if apleft > 3 then
+		apleft = 3;
 	end
 	id = SkillLib.ApplyModifier(squadpath,2,0.0,0.0,apleft,0.0,0.0,0.0,0.0,0.0,0.0,0.0);
 	ScriptCommonLib.SetString("Modifierid",id);
