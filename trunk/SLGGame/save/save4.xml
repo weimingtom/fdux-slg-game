@@ -14,11 +14,11 @@
         <RightName value="sister_right_1.png" type="String" />
         <RightPosition value="700,0,0" type="Vector3" />
         <RightSize value="640,720,0" type="Vector3" />
-        <Text value="那么再见了，修女！下次我过来的时候，应该就不是圣法师学徒了。" type="String" />
+        <Text value="" type="String" />
         <RoleName value="奥莉瓦" type="String" />
         <TextCursorType value="0" type="Int" />
-        <ScriptName value="Chapter5.lua" type="String" />
-        <ScriptLine value="398" type="Int" />
+        <ScriptName value="Chapter3.lua" type="String" />
+        <ScriptLine value="15" type="Int" />
         <FileName value="321" type="String" />
         <SquadData>
             <EnableSquad>

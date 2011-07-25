@@ -8,10 +8,11 @@
 #include "GUISLWindow.h"
 
 #include "StateManager.h"
+#include "AudioSystem.h"
 
 #include <iostream>
 
-GUIMenu::GUIMenu(int width,int height):GUIScene("MainMenu.layout",width,height),mMenuState(NoneState)
+GUIMenu::GUIMenu(int width,int height):GUIScene("MainMenu.layout",width,height),mMenuState(NoneState),SLWindow(NULL)
 {
 	assignWidget(mLogoImage,"LogoImage");
 	assignWidget(mMenuImage,"BackGround");
@@ -38,11 +39,11 @@ GUIMenu::GUIMenu(int width,int height):GUIScene("MainMenu.layout",width,height),
 
 GUIMenu::~GUIMenu(void)
 {
-	GUISLWindow* SLWindow= (GUISLWindow*)GUISystem::getSingletonPtr()->getScene(SLScene);
 	if (SLWindow!=NULL)
 	{
 		SLWindow->setCallScene(SLWindow);
 	}
+	AudioSystem::getSingletonPtr()->stopStream(500);
 }
 
 void GUIMenu::showScene( std::string arg )
@@ -62,6 +63,7 @@ void GUIMenu::showScene( std::string arg )
 		mMenuImage->setVisible(true);
 		mLogoImage->setVisible(false);
 		mFadeWidget=mMenuImage;
+		AudioSystem::getSingletonPtr()->playStream("op.mp3",true,0);
 	}
 	
 	mSetp=0;
@@ -210,7 +212,7 @@ void GUIMenu::setButtonLock( bool isLock )
 
 void GUIMenu::onLoad( MyGUI::Widget* _sender )
 {
-	GUISLWindow* SLWindow= (GUISLWindow*)GUISystem::getSingletonPtr()->createScene(SLScene);
+	SLWindow= (GUISLWindow*)GUISystem::getSingletonPtr()->createScene(SLScene);
 	SLWindow->setCallScene(this);
 	SLWindow->showScene("load");
 }

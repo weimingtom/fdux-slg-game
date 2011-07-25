@@ -61,7 +61,7 @@ public:
 	Framerate* mFramerate;
 	
 	//系统初始化
-	bool initialize();
+	bool initialize(bool isFullScene);
 	//系统启动
 	void run();
 	//系统停止

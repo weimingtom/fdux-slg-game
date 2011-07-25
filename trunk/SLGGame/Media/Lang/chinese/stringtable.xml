@@ -5,7 +5,8 @@
 		<map1 type="String" value = "双河平原之战 前篇"/>
 		<mapinfo1 type="String" value = "双河平原位于教廷和皇廷势力交界处，原属达克斯，五十年前被凡塔斯占领，其后凡塔斯和达克斯多次在这里交战。"/>
 		<map2 type="String" value = "双河平原之战 后篇"/>
-		<mapinfo2 type="String" value = "自己去填写。"/>
+		<mapinfo2 type="String" value = "圣法师是教廷所属的特殊战斗单位。在战场上，圣法师不仅能提高己方战斗力，其忏悔技能还可使敌方人员陷入低战斗力状态，以此提高我军杀敌效率。
+"/>
 		
 		<!--LeaderName-->
 		<Cheetah type="String" value="齐塔"/>
