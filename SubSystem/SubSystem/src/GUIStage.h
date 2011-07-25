@@ -2,6 +2,8 @@
 
 #include "GUIScene.h"
 
+class GUISLWindow;
+
 class GUIStage:public GUIScene
 {
 public:
@@ -68,12 +70,16 @@ private:
 	void UIInit();
 
 	void buttonLock(bool lock);
+
+	bool isCanFastForward();
 	
 	int mTextX;
 	int mTextY;
 
 	bool mCheckMouseDown;
 	bool mIsMouseDown;
+
+	GUISLWindow* SLWindow;
 
 	std::wstring mTextBuffer;//ÎÄ±¾»º³å
 

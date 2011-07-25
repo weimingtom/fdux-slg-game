@@ -7,7 +7,7 @@
 #include "Framerate.h"
 #endif
 
-AudioSystem::AudioSystem(void):mVol(-1),mStream(0),mSample(0)
+AudioSystem::AudioSystem(void):mVol(-1),mStream(0),mSample(0),mStreamName("none")
 {
 
 }
@@ -49,6 +49,7 @@ bool AudioSystem::playStream( std::string name,bool isLoop,int time)
 		mInOut=true;
 		mTickTime=time/100;//每次增加音量的间隔
 		mTimer.reset();
+		mStreamName=name;
 
 		return true;
 	}
@@ -66,6 +67,7 @@ bool AudioSystem::stopStream(int time)
 		mInOut=false;
 		mTickTime=time/100;//每次减少音量的间隔
 		mTimer.reset();
+		mStreamName="none";
 		return true;
 	}
 	else

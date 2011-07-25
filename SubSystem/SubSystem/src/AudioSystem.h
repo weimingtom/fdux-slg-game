@@ -29,6 +29,8 @@ public:
 	int getErrorCode();
 
 	void FrameUpdate();
+
+	std::string mStreamName;
 private:
 	MyGUI::Timer mTimer;
 	HSTREAM mStream;//ÒôÆµÁ÷
