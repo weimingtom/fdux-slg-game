@@ -3,6 +3,8 @@
 #include "GUISystem.h"
 #include "LuaSystem.h"
 
+#include "AudioSystem.h"
+
 #include <ogre.h>
 
 #ifndef SCRIPT_EDITOR
@@ -12,7 +14,7 @@
 #include "StringTable.h"
 #endif
 
-GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),mCheckMouseDown(false),mIsMouseDown(false),mTextX(0),mTextY(0),mIsFastForward(false)
+GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),mCheckMouseDown(false),mIsMouseDown(false),mTextX(0),mTextY(0),mIsFastForward(false),SLWindow(NULL)
 {
 	assignWidget(mBackGroundGroup, "BackGroundGroup");
 	assignWidget(mBackGround, "BackGround");
@@ -59,7 +61,6 @@ GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),m
 GUIStage::~GUIStage(void)
 {
 #ifndef SCRIPT_EDITOR
-	GUISLWindow* SLWindow= (GUISLWindow*)GUISystem::getSingletonPtr()->getScene(SLScene);
 	if (SLWindow!=NULL)
 	{
 		SLWindow->setCallScene(SLWindow);
@@ -385,7 +386,7 @@ void GUIStage::FrameEvent()
 {
 	if(mTickTime!=0)
 	{
-		if (mTimer.getMilliseconds()>=mTickTime || mIsFastForward)
+		if (mTimer.getMilliseconds()>=mTickTime || (mIsFastForward && isCanFastForward()))
 		{
 			//复位定时器
 			mTimer.reset();
@@ -580,8 +581,8 @@ void GUIStage::onSave(MyGUI::Widget* _sender)
 			text.erase(text.begin());
 		}
 
-		DataLibrary::getSingletonPtr()->setData("GameData/StoryData/Text",mTextBox->getOnlyText()+text);
-		mTextBox->getCaption();
+		DataLibrary::getSingletonPtr()->setData("GameData/StoryData/Text",mTextBox->getOnlyText());
+		mTextBox->setCaption(temp);
 	}
 	else
 	{
@@ -594,7 +595,10 @@ void GUIStage::onSave(MyGUI::Widget* _sender)
 	//写入脚本名与位置
 	LuaSystem::getSingletonPtr()->saveScriptRuntime();
 
-	GUISLWindow* SLWindow= (GUISLWindow*)GUISystem::getSingletonPtr()->createScene(SLScene);
+	//写入音乐
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/MusicName",AudioSystem::getSingletonPtr()->mStreamName);
+
+	SLWindow= (GUISLWindow*)GUISystem::getSingletonPtr()->createScene(SLScene);
 	SLWindow->setCallScene(this);
 	SLWindow->showScene("save");
 #endif
@@ -603,7 +607,7 @@ void GUIStage::onSave(MyGUI::Widget* _sender)
 void GUIStage::onLoad(MyGUI::Widget* _sender)
 {
 #ifndef SCRIPT_EDITOR
-	GUISLWindow* SLWindow= (GUISLWindow*)GUISystem::getSingletonPtr()->createScene(SLScene);
+	SLWindow= (GUISLWindow*)GUISystem::getSingletonPtr()->createScene(SLScene);
 	SLWindow->setCallScene(this);
 	SLWindow->showScene("load");
 #endif
@@ -689,6 +693,14 @@ void GUIStage::load()
 	mTextBoxBG->setVisible(true);
 	mTextBoxBG->setAlpha(1);
 
+	//读取音乐
+	
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/MusicName",text);
+	if (text!="none")
+	{
+		AudioSystem::getSingletonPtr()->playStream(text,true,1000);
+	}
+
 #endif
 }
 
@@ -701,10 +713,12 @@ void GUIStage::onOtherSceneNotify(std::string arg)
 	else if(arg=="LoadComplete")
 	{
 		loadComplete();
+		SLWindow=NULL;
 	}
 	else if (arg=="Return")
 	{
 		returnScene();
+		SLWindow=NULL;
 	}
 	else if(arg=="FadeOver")
 	{
@@ -749,4 +763,18 @@ void GUIStage::buttonLock( bool lock )
 	mLoadButton->setEnabled(lock);
 	mHideButton->setEnabled(lock);
 	mSystemButton->setEnabled(lock);
+}
+
+bool GUIStage::isCanFastForward()
+{
+	if (mTimerWork==FadeInOutWork)
+	{
+		return false;
+	}
+	else if (SLWindow!=NULL)
+	{
+		return false;
+	}
+
+	return true;
 }
