@@ -130,7 +130,7 @@
 				<Attack type="Float" value="3.0"/>
 				<RangedAttack type="Float" value="3.0"/>
 				<Defence type="Float" value="3.0"/>
-				<Formation type="Float" value="0.02"/>
+				<Formation type="Float" value="0.06"/>
 				<Initiative type="Float" value="1.0"/>
 				<ActionPoint type="Float" value="10.0"/>
 				<Detection type="Float" value="5.0"/>
@@ -256,7 +256,7 @@
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="2.0"/>
 				<RangedAttack type="Float" value="0.0"/>
-				<Defence type="Float" value="-1.0"/>
+				<Defence type="Float" value="-2.0"/>
 				<Formation type="Float" value="0.1"/>
 				<Initiative type="Float" value="6.0"/>
 				<ActionPoint type="Float" value="0.0"/>
@@ -280,7 +280,7 @@
 			<AttrModifer>
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="0.0"/>
-				<RangedAttack type="Float" value="5.0"/>
+				<RangedAttack type="Float" value="6.0"/>
 				<Defence type="Float" value="0.0"/>
 				<Formation type="Float" value="0.0"/>
 				<Initiative type="Float" value="0.0"/>
