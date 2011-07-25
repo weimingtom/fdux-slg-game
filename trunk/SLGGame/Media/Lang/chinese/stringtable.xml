@@ -4,6 +4,8 @@
 		<!--Map-->
 		<map1 type="String" value = "双河平原之战 前篇"/>
 		<mapinfo1 type="String" value = "双河平原位于教廷和皇廷势力交界处，原属达克斯，五十年前被凡塔斯占领，其后凡塔斯和达克斯多次在这里交战。"/>
+		<map2 type="String" value = "双河平原之战 后篇"/>
+		<mapinfo2 type="String" value = "自己去填写。"/>
 		
 		<!--LeaderName-->
 		<Cheetah type="String" value="齐塔"/>

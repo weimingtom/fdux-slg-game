@@ -99,7 +99,7 @@ const float FORMBONSE_LOOS_FRONT = 0.0f;
 const float FORMBONSE_LOOS_SIDE = 0.0f;
 const float FORMBONSE_LOOS_BACK = 0.0f;
 
-const float RANGEDDEFENCEBONUS = 10.0f;
+const float RANGEDDEFENCEBONUS = 5.0f;
 
 typedef int SquadType;
 const SquadType SQUAD_NORMAL = 0;

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<MapName>map1</MapName>
+<MapName>map2</MapName>
 <MapTeam>
     <Team2 TeamType="enemy1" TeamFaction="Etasi" />
     <Team3 TeamType="none" TeamFaction="none" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
-<MapScript>testscript.lua</MapScript>
-<MapInfo>mapinfo1</MapInfo>
+<MapScript>mapscript1.lua</MapScript>
+<MapInfo>mapinfo2</MapInfo>
 <MapLoadBG>map1.png</MapLoadBG>
 <MapSize>12</MapSize>
 <MapData>lglglglglglglglglglglglgwgwglglglgwgwgwgwglgwgwglgwgwgwgwgwglglgwgwgwglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglglg</MapData>
@@ -74,18 +74,21 @@
 <MapSquad>
     <Team1 />
     <Team2>
-	    <Team2Squad_0 Type="EtasiLightSpear" GridX="5" GridY="3" Direction = "1" UnitNum = "50"/>
-		<Team2Squad_2 Type="EtasiHeavyInf" GridX="7" GridY="2" Direction = "1" UnitNum = "50"/>
-        <Team2Squad_3 Type="EtasiLightSpear" GridX="6" GridY="6" Direction = "1" UnitNum = "50"/>
+	    <Team2Squad_0 Type="EtasiLightSpear" GridX="11" GridY="3" Direction = "1" UnitNum = "50"/>
+        <Team2Squad_1 Type="EtasiHeavyInf" GridX="11" GridY="4" Direction = "1" UnitNum = "50"/>
+		<Team2Squad_2 Type="EtasiLightSpear" GridX="11" GridY="2" Direction = "1" UnitNum = "50"/>
+		<Team2Squad_3 Type="EtasiLightSpear" GridX="2" GridY="8" Direction = "1" UnitNum = "50"/>
+        <Team2Squad_4 Type="EtasiHeavyInf" GridX="2" GridY="9" Direction = "1" UnitNum = "50"/>
+		<Team2Squad_5 Type="EtasiLightSpear" GridX="3" GridY="9" Direction = "1" UnitNum = "50"/>
 	</Team2>
     <Team3 />
     <Team4 />
 </MapSquad>
 <MapArea>
     <DeployArea>
-		<c0 X="0" Y="4" />
-        <c1 X="0" Y="5" />
-		<c2 X="1" Y="4" />
-        <c3 X="1" Y="5" />
+		<c0 X="6" Y="2" />
+        <c1 X="6" Y="3" />
+		<c2 X="7" Y="2" />
+        <c3 X="7" Y="3" />
     </DeployArea>
 </MapArea>

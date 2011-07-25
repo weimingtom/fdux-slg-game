@@ -76,7 +76,7 @@ static int GetTeamSquadLeft(lua_State* L)
 static int PlayMusic(lua_State* L)
 {
 	std::string music(luaL_checkstring(L, 1));
-	DataLibrary::getSingleton().setData("GameData/BattleData/BackGroundMusic/", music);
+	DataLibrary::getSingleton().setData("GameData/StoryData/MusicName", music);
 	AudioSystem::getSingleton().playStream(music,true,5);
 	return 0;
 }

@@ -608,6 +608,5 @@ GUI.SetDialogVisible(0);
 
 AVGLib.AddSquad("Cheetah","CheetahSquad");
 AVGLib.AddSquad("Dandelion","DandelionSquad");
-AVGLib.AddSquad("Olivia","Olivia");
 AVGLib.SetPlayerFaction("Wing");
 StateLib.BattleState("demo.xml");

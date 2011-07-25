@@ -33,7 +33,7 @@
                     <LeaderMat value="HeavyInfOf" type="String" />
                     <UnitMesh value="HeavyInf.mesh" type="String" />
                     <UnitMat value="HeavyInf" type="String" />
-                    <MoveSound value="Move.mp3" type="String" />
+                    <MoveSound value="HeavyInf.mp3" type="String" />
                     <UnitMaxNumber value="50" type="Int" />
                     <UnitNumber value="50" type="Int" />
                     <ModifierList>
@@ -42,13 +42,13 @@
                             <Attack value="3" type="Float" />
                             <RangedAttack value="3" type="Float" />
                             <Defence value="3" type="Float" />
-                            <Formation value="0.02" type="Float" />
+                            <Formation value="0.06" type="Float" />
                             <Initiative value="1" type="Float" />
                             <ActionPoint value="10" type="Float" />
                             <Detection value="5" type="Float" />
                             <Covert value="0" type="Float" />
-                            <Injury value="0.7" type="Float" />
-                            <Conter value="0.4" type="Float" />
+                            <Injury value="0.8" type="Float" />
+                            <Conter value="0.5" type="Float" />
                         </m0>
                         <m1>
                             <Type value="0" type="Int" />
@@ -80,7 +80,7 @@
                             <Type value="0" type="Int" />
                             <Attack value="1" type="Float" />
                             <RangedAttack value="0" type="Float" />
-                            <Defence value="3" type="Float" />
+                            <Defence value="4" type="Float" />
                             <Formation value="0" type="Float" />
                             <Initiative value="0" type="Float" />
                             <ActionPoint value="-1" type="Float" />
@@ -107,6 +107,7 @@
                     <SkillTable>
                         <Attack value="0" type="Int" />
                         <Defence value="0" type="Int" />
+                        <Break value="0" type="Int" />
                     </SkillTable>
                 </Cheetah>
                 <Dandelion>
@@ -120,7 +121,7 @@
                     <LeaderMat value="LightInfOf" type="String" />
                     <UnitMesh value="LightInf.mesh" type="String" />
                     <UnitMat value="LightInf" type="String" />
-                    <MoveSound value="Move.mp3" type="String" />
+                    <MoveSound value="BowMan.mp3" type="String" />
                     <UnitMaxNumber value="50" type="Int" />
                     <UnitNumber value="50" type="Int" />
                     <ModifierList>
@@ -129,13 +130,13 @@
                             <Attack value="3" type="Float" />
                             <RangedAttack value="3" type="Float" />
                             <Defence value="3" type="Float" />
-                            <Formation value="0.02" type="Float" />
+                            <Formation value="0.06" type="Float" />
                             <Initiative value="1" type="Float" />
                             <ActionPoint value="10" type="Float" />
                             <Detection value="5" type="Float" />
                             <Covert value="0" type="Float" />
-                            <Injury value="0.7" type="Float" />
-                            <Conter value="0.4" type="Float" />
+                            <Injury value="0.8" type="Float" />
+                            <Conter value="0.5" type="Float" />
                         </m0>
                         <m1>
                             <Type value="0" type="Int" />
@@ -153,7 +154,7 @@
                         <m2>
                             <Type value="0" type="Int" />
                             <Attack value="0" type="Float" />
-                            <RangedAttack value="5" type="Float" />
+                            <RangedAttack value="6" type="Float" />
                             <Defence value="0" type="Float" />
                             <Formation value="0" type="Float" />
                             <Initiative value="0" type="Float" />
@@ -194,6 +195,7 @@
                     <SkillTable>
                         <Attack value="0" type="Int" />
                         <RangedAttack value="0" type="Int" />
+                        <SuppressAttack value="0" type="Int" />
                     </SkillTable>
                 </Dandelion>
                 <Olivia>
@@ -207,7 +209,7 @@
                     <LeaderMat value="none" type="String" />
                     <UnitMesh value="HolySpirit.mesh" type="String" />
                     <UnitMat value="HolySpirit" type="String" />
-                    <MoveSound value="Move.mp3" type="String" />
+                    <MoveSound value="Olivia.mp3" type="String" />
                     <UnitMaxNumber value="20" type="Int" />
                     <UnitNumber value="20" type="Int" />
                     <ModifierList>
@@ -215,7 +217,7 @@
                             <Type value="0" type="Int" />
                             <Attack value="5" type="Float" />
                             <RangedAttack value="0" type="Float" />
-                            <Defence value="15" type="Float" />
+                            <Defence value="20" type="Float" />
                             <Formation value="0" type="Float" />
                             <Initiative value="1" type="Float" />
                             <ActionPoint value="8" type="Float" />
@@ -247,7 +249,6 @@
                     <ArmorId value="none" type="String" />
                     <ShieldId value="none" type="String" />
                     <SkillTable>
-                        <MagicAttack value="0" type="Int" />
                         <MagicEffect value="0" type="Int">
                             <ScriptContext>
                                 <skillcasterpath value="GameData/StoryData/SquadData/EnableSquad/Olivia" type="String" />
@@ -255,6 +256,9 @@
                             </ScriptContext>
                         </MagicEffect>
                         <MagicShield value="0" type="Int" />
+                        <Heal value="0" type="Int" />
+                        <Zeal value="0" type="Int" />
+                        <Confess value="0" type="Int" />
                     </SkillTable>
                     <EffectList>
                         <e0 value="TestEffect" type="String">
@@ -276,6 +280,7 @@
             </EnableSquad>
         </SquadData>
         <Faction value="Wing" type="String" />
+        <MusicName value="battle1.mp3" type="String" />
     </StoryData>
     <BattleData>
         <MapData>
@@ -285,8 +290,8 @@
                     <finishdeploytriger value="T0" type="String" />
                     <unitdeadtriger value="T1" type="String" />
                     <turnendtriger value="T2" type="String" />
-                    <trun value="3" type="Int" />
-                    <team value="2" type="Int" />
+                    <trun value="0" type="Int" />
+                    <team value="4" type="Int" />
                 </ScriptContext>
             </MapScript>
             <MapInfo value="mapinfo1" type="String" />
@@ -507,7 +512,7 @@
                 <M40>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
+                    <MapObjType value="ForestLow" type="String">
                         <MapObjModuleId value="forest_20" type="String" />
                     </MapObjType>
                 </M40>
@@ -521,14 +526,14 @@
                 <M42>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
+                    <MapObjType value="ForestLow" type="String">
                         <MapObjModuleId value="forest_16" type="String" />
                     </MapObjType>
                 </M42>
                 <M43>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
+                    <MapObjType value="ForestLow" type="String">
                         <MapObjModuleId value="forest_17" type="String" />
                     </MapObjType>
                 </M43>
@@ -575,14 +580,14 @@
                 <M51>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
+                    <MapObjType value="ForestLow" type="String">
                         <MapObjModuleId value="forest_21" type="String" />
                     </MapObjType>
                 </M51>
                 <M52>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
+                    <MapObjType value="ForestLow" type="String">
                         <MapObjModuleId value="forest_22" type="String" />
                     </MapObjType>
                 </M52>
@@ -654,7 +659,7 @@
                 <M64>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
+                    <MapObjType value="ForestLow" type="String">
                         <MapObjModuleId value="forest_23" type="String" />
                     </MapObjType>
                 </M64>
@@ -733,7 +738,7 @@
                 <M77>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
+                    <MapObjType value="ForestLow" type="String">
                         <MapObjModuleId value="forest_26" type="String" />
                     </MapObjType>
                 </M77>
@@ -747,7 +752,7 @@
                 <M79>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
+                    <MapObjType value="ForestLow" type="String">
                         <MapObjModuleId value="forest_40" type="String" />
                     </MapObjType>
                 </M79>
@@ -802,7 +807,7 @@
                 <M89>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
+                    <MapObjType value="ForestLow" type="String">
                         <MapObjModuleId value="forest_25" type="String" />
                     </MapObjType>
                 </M89>
@@ -816,7 +821,7 @@
                 <M91>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
+                    <MapObjType value="ForestLow" type="String">
                         <MapObjModuleId value="forest_39" type="String" />
                     </MapObjType>
                 </M91>
@@ -896,7 +901,7 @@
                 <M105>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
+                    <MapObjType value="ForestLow" type="String">
                         <MapObjModuleId value="forest_51" type="String" />
                     </MapObjType>
                 </M105>
@@ -934,14 +939,14 @@
                 <M113>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
+                    <MapObjType value="ForestLow" type="String">
                         <MapObjModuleId value="forest_67" type="String" />
                     </MapObjType>
                 </M113>
                 <M114>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
+                    <MapObjType value="ForestLow" type="String">
                         <MapObjModuleId value="forest_66" type="String" />
                     </MapObjType>
                 </M114>
@@ -955,7 +960,7 @@
                 <M116>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
+                    <MapObjType value="ForestLow" type="String">
                         <MapObjModuleId value="forest_52" type="String" />
                     </MapObjType>
                 </M116>
@@ -998,14 +1003,14 @@
                 <M126>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
+                    <MapObjType value="ForestLow" type="String">
                         <MapObjModuleId value="forest_68" type="String" />
                     </MapObjType>
                 </M126>
                 <M127>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
+                    <MapObjType value="ForestLow" type="String">
                         <MapObjModuleId value="forest_69" type="String" />
                     </MapObjType>
                 </M127>
@@ -1024,7 +1029,7 @@
                 <M131>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
+                    <MapObjType value="ForestLow" type="String">
                         <MapObjModuleId value="forest_63" type="String" />
                     </MapObjType>
                 </M131>
@@ -1071,14 +1076,14 @@
                 <M142>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
+                    <MapObjType value="ForestLow" type="String">
                         <MapObjModuleId value="forest_64" type="String" />
                     </MapObjType>
                 </M142>
                 <M143>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
+                    <MapObjType value="ForestLow" type="String">
                         <MapObjModuleId value="forest_65" type="String" />
                     </MapObjType>
                 </M143>
@@ -1088,427 +1093,427 @@
                     <GridX value="1" type="Int" />
                     <GridY value="0" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="1" type="Int" />
+                    <Index value="72" type="Int" />
                 </forest_0>
                 <forest_1>
                     <GridX value="2" type="Int" />
                     <GridY value="0" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="2" type="Int" />
+                    <Index value="73" type="Int" />
                 </forest_1>
                 <forest_2>
                     <GridX value="2" type="Int" />
                     <GridY value="1" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="3" type="Int" />
+                    <Index value="74" type="Int" />
                 </forest_2>
                 <forest_3>
                     <GridX value="3" type="Int" />
                     <GridY value="1" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="4" type="Int" />
+                    <Index value="75" type="Int" />
                 </forest_3>
                 <forest_4>
                     <GridX value="3" type="Int" />
                     <GridY value="0" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="5" type="Int" />
+                    <Index value="76" type="Int" />
                 </forest_4>
                 <forest_5>
                     <GridX value="4" type="Int" />
                     <GridY value="0" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="6" type="Int" />
+                    <Index value="77" type="Int" />
                 </forest_5>
                 <forest_6>
                     <GridX value="4" type="Int" />
                     <GridY value="1" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="7" type="Int" />
+                    <Index value="78" type="Int" />
                 </forest_6>
                 <forest_7>
                     <GridX value="5" type="Int" />
                     <GridY value="0" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="8" type="Int" />
+                    <Index value="79" type="Int" />
                 </forest_7>
                 <forest_8>
                     <GridX value="6" type="Int" />
                     <GridY value="0" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="9" type="Int" />
+                    <Index value="80" type="Int" />
                 </forest_8>
                 <forest_9>
                     <GridX value="7" type="Int" />
                     <GridY value="0" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="10" type="Int" />
+                    <Index value="81" type="Int" />
                 </forest_9>
                 <forest_10>
                     <GridX value="8" type="Int" />
                     <GridY value="0" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="11" type="Int" />
+                    <Index value="82" type="Int" />
                 </forest_10>
                 <forest_11>
                     <GridX value="9" type="Int" />
                     <GridY value="0" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="12" type="Int" />
+                    <Index value="83" type="Int" />
                 </forest_11>
                 <forest_12>
                     <GridX value="9" type="Int" />
                     <GridY value="1" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="13" type="Int" />
+                    <Index value="84" type="Int" />
                 </forest_12>
                 <forest_13>
                     <GridX value="10" type="Int" />
                     <GridY value="0" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="14" type="Int" />
+                    <Index value="85" type="Int" />
                 </forest_13>
                 <forest_14>
                     <GridX value="11" type="Int" />
                     <GridY value="0" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="15" type="Int" />
+                    <Index value="86" type="Int" />
                 </forest_14>
                 <forest_15>
                     <GridX value="5" type="Int" />
                     <GridY value="3" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="16" type="Int" />
+                    <Index value="87" type="Int" />
                 </forest_15>
                 <forest_16>
                     <GridX value="6" type="Int" />
                     <GridY value="3" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="17" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
+                    <Index value="88" type="Int" />
                 </forest_16>
                 <forest_17>
                     <GridX value="7" type="Int" />
                     <GridY value="3" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="18" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
+                    <Index value="89" type="Int" />
                 </forest_17>
                 <forest_18>
                     <GridX value="8" type="Int" />
                     <GridY value="3" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="19" type="Int" />
+                    <Index value="90" type="Int" />
                 </forest_18>
                 <forest_19>
                     <GridX value="9" type="Int" />
                     <GridY value="3" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="20" type="Int" />
+                    <Index value="91" type="Int" />
                 </forest_19>
                 <forest_20>
                     <GridX value="4" type="Int" />
                     <GridY value="3" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="21" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
+                    <Index value="92" type="Int" />
                 </forest_20>
                 <forest_21>
                     <GridX value="3" type="Int" />
                     <GridY value="4" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="22" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
+                    <Index value="93" type="Int" />
                 </forest_21>
                 <forest_22>
                     <GridX value="4" type="Int" />
                     <GridY value="4" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="23" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
+                    <Index value="94" type="Int" />
                 </forest_22>
                 <forest_23>
                     <GridX value="4" type="Int" />
                     <GridY value="5" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="24" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
+                    <Index value="95" type="Int" />
                 </forest_23>
                 <forest_24>
                     <GridX value="4" type="Int" />
                     <GridY value="6" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="25" type="Int" />
+                    <Index value="96" type="Int" />
                 </forest_24>
                 <forest_25>
                     <GridX value="5" type="Int" />
                     <GridY value="7" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="26" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
+                    <Index value="97" type="Int" />
                 </forest_25>
                 <forest_26>
                     <GridX value="5" type="Int" />
                     <GridY value="6" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="27" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
+                    <Index value="98" type="Int" />
                 </forest_26>
                 <forest_27>
                     <GridX value="5" type="Int" />
                     <GridY value="5" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="28" type="Int" />
+                    <Index value="99" type="Int" />
                 </forest_27>
                 <forest_28>
                     <GridX value="5" type="Int" />
                     <GridY value="4" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="29" type="Int" />
+                    <Index value="100" type="Int" />
                 </forest_28>
                 <forest_29>
                     <GridX value="6" type="Int" />
                     <GridY value="4" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="30" type="Int" />
+                    <Index value="101" type="Int" />
                 </forest_29>
                 <forest_30>
                     <GridX value="6" type="Int" />
                     <GridY value="5" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="31" type="Int" />
+                    <Index value="102" type="Int" />
                 </forest_30>
                 <forest_31>
                     <GridX value="7" type="Int" />
                     <GridY value="4" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="32" type="Int" />
+                    <Index value="103" type="Int" />
                 </forest_31>
                 <forest_32>
                     <GridX value="8" type="Int" />
                     <GridY value="4" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="33" type="Int" />
+                    <Index value="104" type="Int" />
                 </forest_32>
                 <forest_33>
                     <GridX value="9" type="Int" />
                     <GridY value="4" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="34" type="Int" />
+                    <Index value="105" type="Int" />
                 </forest_33>
                 <forest_34>
                     <GridX value="9" type="Int" />
                     <GridY value="5" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="35" type="Int" />
+                    <Index value="106" type="Int" />
                 </forest_34>
                 <forest_35>
                     <GridX value="8" type="Int" />
                     <GridY value="5" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="36" type="Int" />
+                    <Index value="107" type="Int" />
                 </forest_35>
                 <forest_36>
                     <GridX value="7" type="Int" />
                     <GridY value="5" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="37" type="Int" />
+                    <Index value="108" type="Int" />
                 </forest_36>
                 <forest_37>
                     <GridX value="6" type="Int" />
                     <GridY value="6" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="38" type="Int" />
+                    <Index value="109" type="Int" />
                 </forest_37>
                 <forest_38>
                     <GridX value="6" type="Int" />
                     <GridY value="7" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="39" type="Int" />
+                    <Index value="110" type="Int" />
                 </forest_38>
                 <forest_39>
                     <GridX value="7" type="Int" />
                     <GridY value="7" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="40" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
+                    <Index value="111" type="Int" />
                 </forest_39>
                 <forest_40>
                     <GridX value="7" type="Int" />
                     <GridY value="6" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="41" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
+                    <Index value="112" type="Int" />
                 </forest_40>
                 <forest_41>
                     <GridX value="8" type="Int" />
                     <GridY value="6" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="42" type="Int" />
+                    <Index value="113" type="Int" />
                 </forest_41>
                 <forest_42>
                     <GridX value="9" type="Int" />
                     <GridY value="6" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="43" type="Int" />
+                    <Index value="114" type="Int" />
                 </forest_42>
                 <forest_43>
                     <GridX value="10" type="Int" />
                     <GridY value="5" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="44" type="Int" />
+                    <Index value="115" type="Int" />
                 </forest_43>
                 <forest_44>
                     <GridX value="10" type="Int" />
                     <GridY value="6" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="45" type="Int" />
+                    <Index value="116" type="Int" />
                 </forest_44>
                 <forest_45>
                     <GridX value="6" type="Int" />
                     <GridY value="8" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="46" type="Int" />
+                    <Index value="117" type="Int" />
                 </forest_45>
                 <forest_46>
                     <GridX value="7" type="Int" />
                     <GridY value="9" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="47" type="Int" />
+                    <Index value="118" type="Int" />
                 </forest_46>
                 <forest_47>
                     <GridX value="7" type="Int" />
                     <GridY value="8" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="48" type="Int" />
+                    <Index value="119" type="Int" />
                 </forest_47>
                 <forest_48>
                     <GridX value="8" type="Int" />
                     <GridY value="7" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="49" type="Int" />
+                    <Index value="120" type="Int" />
                 </forest_48>
                 <forest_49>
                     <GridX value="9" type="Int" />
                     <GridY value="7" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="50" type="Int" />
+                    <Index value="121" type="Int" />
                 </forest_49>
                 <forest_50>
                     <GridX value="8" type="Int" />
                     <GridY value="8" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="51" type="Int" />
+                    <Index value="122" type="Int" />
                 </forest_50>
                 <forest_51>
                     <GridX value="9" type="Int" />
                     <GridY value="8" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="52" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
+                    <Index value="123" type="Int" />
                 </forest_51>
                 <forest_52>
                     <GridX value="8" type="Int" />
                     <GridY value="9" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="53" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
+                    <Index value="124" type="Int" />
                 </forest_52>
                 <forest_53>
                     <GridX value="10" type="Int" />
                     <GridY value="4" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="54" type="Int" />
+                    <Index value="125" type="Int" />
                 </forest_53>
                 <forest_54>
                     <GridX value="10" type="Int" />
                     <GridY value="3" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="55" type="Int" />
+                    <Index value="126" type="Int" />
                 </forest_54>
                 <forest_55>
                     <GridX value="11" type="Int" />
                     <GridY value="2" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="56" type="Int" />
+                    <Index value="127" type="Int" />
                 </forest_55>
                 <forest_56>
                     <GridX value="11" type="Int" />
                     <GridY value="3" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="57" type="Int" />
+                    <Index value="128" type="Int" />
                 </forest_56>
                 <forest_57>
                     <GridX value="11" type="Int" />
                     <GridY value="4" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="58" type="Int" />
+                    <Index value="129" type="Int" />
                 </forest_57>
                 <forest_58>
                     <GridX value="11" type="Int" />
                     <GridY value="5" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="59" type="Int" />
+                    <Index value="130" type="Int" />
                 </forest_58>
                 <forest_59>
                     <GridX value="10" type="Int" />
                     <GridY value="7" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="60" type="Int" />
+                    <Index value="131" type="Int" />
                 </forest_59>
                 <forest_60>
                     <GridX value="11" type="Int" />
                     <GridY value="7" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="61" type="Int" />
+                    <Index value="132" type="Int" />
                 </forest_60>
                 <forest_61>
                     <GridX value="11" type="Int" />
                     <GridY value="8" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="62" type="Int" />
+                    <Index value="133" type="Int" />
                 </forest_61>
                 <forest_62>
                     <GridX value="11" type="Int" />
                     <GridY value="6" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="63" type="Int" />
+                    <Index value="134" type="Int" />
                 </forest_62>
                 <forest_63>
                     <GridX value="11" type="Int" />
                     <GridY value="10" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="64" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
+                    <Index value="135" type="Int" />
                 </forest_63>
                 <forest_64>
                     <GridX value="10" type="Int" />
                     <GridY value="11" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="65" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
+                    <Index value="136" type="Int" />
                 </forest_64>
                 <forest_65>
                     <GridX value="11" type="Int" />
                     <GridY value="11" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="66" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
+                    <Index value="137" type="Int" />
                 </forest_65>
                 <forest_66>
                     <GridX value="6" type="Int" />
                     <GridY value="9" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="67" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
+                    <Index value="138" type="Int" />
                 </forest_66>
                 <forest_67>
                     <GridX value="5" type="Int" />
                     <GridY value="9" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="68" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
+                    <Index value="139" type="Int" />
                 </forest_67>
                 <forest_68>
                     <GridX value="6" type="Int" />
                     <GridY value="10" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="69" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
+                    <Index value="140" type="Int" />
                 </forest_68>
                 <forest_69>
                     <GridX value="7" type="Int" />
                     <GridY value="10" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="70" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
+                    <Index value="141" type="Int" />
                 </forest_69>
                 <camp_1>
                     <GridX value="7" type="Int" />
                     <GridY value="2" type="Int" />
                     <Mesh value="Camp1.mesh" type="String" />
-                    <Index value="71" type="Int" />
+                    <Index value="142" type="Int" />
                 </camp_1>
             </MapObjModleInfo>
             <Area>
@@ -1558,13 +1563,13 @@
                 <LeaderMat value="LightInfOf" type="String" />
                 <UnitMesh value="LightInf.mesh" type="String" />
                 <UnitMat value="LightInf" type="String" />
-                <MoveSound value="Move.mp3" type="String" />
+                <MoveSound value="LightInf.mp3" type="String" />
                 <UnitMaxNumber value="50" type="Int" />
-                <UnitNumber value="6" type="Int" />
+                <UnitNumber value="50" type="Int" />
                 <ModifierList>
                     <m0>
                         <Type value="0" type="Int" />
-                        <Attack value="2" type="Float" />
+                        <Attack value="1" type="Float" />
                         <RangedAttack value="0" type="Float" />
                         <Defence value="1" type="Float" />
                         <Formation value="0" type="Float" />
@@ -1579,7 +1584,7 @@
                         <Type value="0" type="Int" />
                         <Attack value="2" type="Float" />
                         <RangedAttack value="0" type="Float" />
-                        <Defence value="-1" type="Float" />
+                        <Defence value="-2" type="Float" />
                         <Formation value="0.1" type="Float" />
                         <Initiative value="6" type="Float" />
                         <ActionPoint value="0" type="Float" />
@@ -1630,40 +1635,19 @@
                     <Modifierid value="m3" type="String" />
                 </ShieldId>
                 <SkillTable>
-                    <Attack value="0" type="Int">
-                        <CoolDown value="0" type="Int" />
-                        <ScriptContext>
-                            <skillcast value="1" type="Int" />
-                            <skillcaster value="Team2Squad_0" type="String" />
-                            <skillcasterpath value="GameData/BattleData/SquadList/Team2Squad_0" type="String" />
-                            <skilltarget value="Dandelion" type="String" />
-                            <skilltargetpath value="GameData/BattleData/SquadList/Dandelion" type="String" />
-                        </ScriptContext>
-                    </Attack>
-                    <Defence value="0" type="Int">
-                        <CoolDown value="0" type="Int" />
-                        <ScriptContext>
-                            <skillcast value="1" type="Int" />
-                            <skillcaster value="Team2Squad_0" type="String" />
-                            <skillcasterpath value="GameData/BattleData/SquadList/Team2Squad_0" type="String" />
-                            <skilltarget value="Team2Squad_0" type="String" />
-                            <skilltargetpath value="GameData/BattleData/SquadList/Team2Squad_0" type="String" />
-                            <Effectid value="e0" type="String" />
-                        </ScriptContext>
-                    </Defence>
-                    <Rest value="0" type="Int">
-                        <CoolDown value="0" type="Int" />
-                    </Rest>
+                    <Attack value="0" type="Int" />
+                    <Defence value="0" type="Int" />
+                    <Rest value="0" type="Int" />
                 </SkillTable>
-                <GridX value="0" type="Int" />
-                <GridY value="4" type="Int" />
-                <WoundNum value="4" type="Int" />
-                <Direction value="0" type="Int" />
+                <GridX value="5" type="Int" />
+                <GridY value="3" type="Int" />
+                <WoundNum value="0" type="Int" />
+                <Direction value="1" type="Int" />
                 <Formation value="0" type="Int" />
                 <TeamId value="Team2" type="String" />
                 <CreateType value="1" type="Int" />
-                <ActionPoint value="1" type="Float" />
-                <ViewbyPlayer value="1" type="Int" />
+                <ActionPoint value="0" type="Float" />
+                <ViewbyPlayer value="0" type="Int" />
                 <ViewbyEnemy1 value="1" type="Int" />
                 <ViewbyEnemy2 value="0" type="Int" />
                 <ViewbyEnemy3 value="0" type="Int" />
@@ -1671,11 +1655,7 @@
                 <AmbushEnemy1 value="0" type="Int" />
                 <AmbushEnemy2 value="0" type="Int" />
                 <AmbushEnemy3 value="0" type="Int" />
-                <Grapid value="0" type="Int" />
-                <APSetup value="0" type="Float" />
-                <APBattle value="4" type="Float" />
-                <EffectList />
-                <Trigger />
+                <Grapid value="7" type="Int" />
             </Team2Squad_0>
             <Team2Squad_1>
                 <Name value="达克斯轻装长矛队" type="String" />
@@ -1688,13 +1668,13 @@
                 <LeaderMat value="LightInfOf" type="String" />
                 <UnitMesh value="LightInf.mesh" type="String" />
                 <UnitMat value="LightInf" type="String" />
-                <MoveSound value="Move.mp3" type="String" />
+                <MoveSound value="LightInf.mp3" type="String" />
                 <UnitMaxNumber value="50" type="Int" />
-                <UnitNumber value="21" type="Int" />
+                <UnitNumber value="50" type="Int" />
                 <ModifierList>
                     <m0>
                         <Type value="0" type="Int" />
-                        <Attack value="2" type="Float" />
+                        <Attack value="1" type="Float" />
                         <RangedAttack value="0" type="Float" />
                         <Defence value="1" type="Float" />
                         <Formation value="0" type="Float" />
@@ -1709,7 +1689,7 @@
                         <Type value="0" type="Int" />
                         <Attack value="2" type="Float" />
                         <RangedAttack value="0" type="Float" />
-                        <Defence value="-1" type="Float" />
+                        <Defence value="-2" type="Float" />
                         <Formation value="0.1" type="Float" />
                         <Initiative value="6" type="Float" />
                         <ActionPoint value="0" type="Float" />
@@ -1760,47 +1740,19 @@
                     <Modifierid value="m3" type="String" />
                 </ShieldId>
                 <SkillTable>
-                    <Attack value="0" type="Int">
-                        <CoolDown value="0" type="Int" />
-                        <ScriptContext>
-                            <skillcast value="1" type="Int" />
-                            <skillcaster value="Team2Squad_1" type="String" />
-                            <skillcasterpath value="GameData/BattleData/SquadList/Team2Squad_1" type="String" />
-                            <skilltarget value="Cheetah" type="String" />
-                            <skilltargetpath value="GameData/BattleData/SquadList/Cheetah" type="String" />
-                        </ScriptContext>
-                    </Attack>
-                    <Defence value="0" type="Int">
-                        <CoolDown value="0" type="Int" />
-                        <ScriptContext>
-                            <skillcast value="1" type="Int" />
-                            <skillcaster value="Team2Squad_1" type="String" />
-                            <skillcasterpath value="GameData/BattleData/SquadList/Team2Squad_1" type="String" />
-                            <skilltarget value="Team2Squad_1" type="String" />
-                            <skilltargetpath value="GameData/BattleData/SquadList/Team2Squad_1" type="String" />
-                            <Effectid value="e0" type="String" />
-                        </ScriptContext>
-                    </Defence>
-                    <Rest value="0" type="Int">
-                        <CoolDown value="0" type="Int" />
-                        <ScriptContext>
-                            <skillcast value="1" type="Int" />
-                            <skillcaster value="Team2Squad_1" type="String" />
-                            <skillcasterpath value="GameData/BattleData/SquadList/Team2Squad_1" type="String" />
-                            <skilltarget value="Team2Squad_1" type="String" />
-                            <skilltargetpath value="GameData/BattleData/SquadList/Team2Squad_1" type="String" />
-                        </ScriptContext>
-                    </Rest>
+                    <Attack value="0" type="Int" />
+                    <Defence value="0" type="Int" />
+                    <Rest value="0" type="Int" />
                 </SkillTable>
-                <GridX value="2" type="Int" />
-                <GridY value="3" type="Int" />
-                <WoundNum value="18" type="Int" />
-                <Direction value="2" type="Int" />
+                <GridX value="8" type="Int" />
+                <GridY value="4" type="Int" />
+                <WoundNum value="0" type="Int" />
+                <Direction value="1" type="Int" />
                 <Formation value="0" type="Int" />
                 <TeamId value="Team2" type="String" />
                 <CreateType value="1" type="Int" />
                 <ActionPoint value="0" type="Float" />
-                <ViewbyPlayer value="1" type="Int" />
+                <ViewbyPlayer value="0" type="Int" />
                 <ViewbyEnemy1 value="1" type="Int" />
                 <ViewbyEnemy2 value="0" type="Int" />
                 <ViewbyEnemy3 value="0" type="Int" />
@@ -1808,11 +1760,7 @@
                 <AmbushEnemy1 value="0" type="Int" />
                 <AmbushEnemy2 value="0" type="Int" />
                 <AmbushEnemy3 value="0" type="Int" />
-                <Grapid value="1" type="Int" />
-                <APSetup value="0" type="Float" />
-                <APBattle value="2" type="Float" />
-                <EffectList />
-                <Trigger />
+                <Grapid value="8" type="Int" />
             </Team2Squad_1>
             <Team2Squad_2>
                 <Name value="达克斯重步兵队" type="String" />
@@ -1825,13 +1773,13 @@
                 <LeaderMat value="HeavyInfOf" type="String" />
                 <UnitMesh value="HeavyInf.mesh" type="String" />
                 <UnitMat value="HeavyInf" type="String" />
-                <MoveSound value="Move.mp3" type="String" />
+                <MoveSound value="HeavyInf.mp3" type="String" />
                 <UnitMaxNumber value="50" type="Int" />
                 <UnitNumber value="50" type="Int" />
                 <ModifierList>
                     <m0>
                         <Type value="0" type="Int" />
-                        <Attack value="2" type="Float" />
+                        <Attack value="1" type="Float" />
                         <RangedAttack value="0" type="Float" />
                         <Defence value="1" type="Float" />
                         <Formation value="0" type="Float" />
@@ -1881,19 +1829,6 @@
                         <Injury value="0" type="Float" />
                         <Conter value="0" type="Float" />
                     </m3>
-                    <m4>
-                        <Type value="1" type="Int" />
-                        <Attack value="0" type="Float" />
-                        <RangedAttack value="0" type="Float" />
-                        <Defence value="2" type="Float" />
-                        <Formation value="0" type="Float" />
-                        <Initiative value="0" type="Float" />
-                        <ActionPoint value="0" type="Float" />
-                        <Detection value="0" type="Float" />
-                        <Covert value="0" type="Float" />
-                        <Injury value="0" type="Float" />
-                        <Conter value="0" type="Float" />
-                    </m4>
                 </ModifierList>
                 <SoilderId value="EtasiSoilder" type="String">
                     <Modifierid value="m0" type="String" />
@@ -1910,28 +1845,14 @@
                     <Modifierid value="m3" type="String" />
                 </ShieldId>
                 <SkillTable>
-                    <Attack value="0" type="Int">
-                        <CoolDown value="0" type="Int" />
-                    </Attack>
-                    <Defence value="0" type="Int">
-                        <CoolDown value="0" type="Int" />
-                        <ScriptContext>
-                            <skillcast value="1" type="Int" />
-                            <skillcaster value="Team2Squad_2" type="String" />
-                            <skillcasterpath value="GameData/BattleData/SquadList/Team2Squad_2" type="String" />
-                            <skilltarget value="Team2Squad_2" type="String" />
-                            <skilltargetpath value="GameData/BattleData/SquadList/Team2Squad_2" type="String" />
-                            <Effectid value="e0" type="String" />
-                        </ScriptContext>
-                    </Defence>
-                    <Rest value="0" type="Int">
-                        <CoolDown value="0" type="Int" />
-                    </Rest>
+                    <Attack value="0" type="Int" />
+                    <Defence value="0" type="Int" />
+                    <Rest value="0" type="Int" />
                 </SkillTable>
-                <GridX value="3" type="Int" />
-                <GridY value="3" type="Int" />
+                <GridX value="7" type="Int" />
+                <GridY value="2" type="Int" />
                 <WoundNum value="0" type="Int" />
-                <Direction value="2" type="Int" />
+                <Direction value="1" type="Int" />
                 <Formation value="0" type="Int" />
                 <TeamId value="Team2" type="String" />
                 <CreateType value="1" type="Int" />
@@ -1944,28 +1865,7 @@
                 <AmbushEnemy1 value="0" type="Int" />
                 <AmbushEnemy2 value="0" type="Int" />
                 <AmbushEnemy3 value="0" type="Int" />
-                <Grapid value="2" type="Int" />
-                <APSetup value="0" type="Float" />
-                <APBattle value="2" type="Float" />
-                <EffectList>
-                    <e0 value="Defence" type="String">
-                        <ScriptContext>
-                            <affectsquadpath value="GameData/BattleData/SquadList/Team2Squad_2" type="String" />
-                            <effectid value="e0" type="String" />
-                            <Modifierid value="m4" type="String" />
-                            <LastTurn value="0" type="Int" />
-                            <TurnStartTrigger value="T0" type="String" />
-                        </ScriptContext>
-                    </e0>
-                </EffectList>
-                <Trigger>
-                    <T0 value="1" type="Int">
-                        <type value="TurnStart" type="String" />
-                        <file value="defence.lua" type="String" />
-                        <func value="onturnstart" type="String" />
-                        <context value="GameData/BattleData/SquadList/Team2Squad_2/EffectList/e0/ScriptContext" type="String" />
-                    </T0>
-                </Trigger>
+                <Grapid value="9" type="Int" />
             </Team2Squad_2>
             <Team2Squad_3>
                 <Name value="达克斯轻装长矛队" type="String" />
@@ -1978,13 +1878,13 @@
                 <LeaderMat value="LightInfOf" type="String" />
                 <UnitMesh value="LightInf.mesh" type="String" />
                 <UnitMat value="LightInf" type="String" />
-                <MoveSound value="Move.mp3" type="String" />
+                <MoveSound value="LightInf.mp3" type="String" />
                 <UnitMaxNumber value="50" type="Int" />
-                <UnitNumber value="47" type="Int" />
+                <UnitNumber value="50" type="Int" />
                 <ModifierList>
                     <m0>
                         <Type value="0" type="Int" />
-                        <Attack value="2" type="Float" />
+                        <Attack value="1" type="Float" />
                         <RangedAttack value="0" type="Float" />
                         <Defence value="1" type="Float" />
                         <Formation value="0" type="Float" />
@@ -1999,7 +1899,7 @@
                         <Type value="0" type="Int" />
                         <Attack value="2" type="Float" />
                         <RangedAttack value="0" type="Float" />
-                        <Defence value="-1" type="Float" />
+                        <Defence value="-2" type="Float" />
                         <Formation value="0.1" type="Float" />
                         <Initiative value="6" type="Float" />
                         <ActionPoint value="0" type="Float" />
@@ -2034,19 +1934,6 @@
                         <Injury value="0" type="Float" />
                         <Conter value="0" type="Float" />
                     </m3>
-                    <m4>
-                        <Type value="1" type="Int" />
-                        <Attack value="0" type="Float" />
-                        <RangedAttack value="0" type="Float" />
-                        <Defence value="2" type="Float" />
-                        <Formation value="0" type="Float" />
-                        <Initiative value="0" type="Float" />
-                        <ActionPoint value="0" type="Float" />
-                        <Detection value="0" type="Float" />
-                        <Covert value="0" type="Float" />
-                        <Injury value="0" type="Float" />
-                        <Conter value="0" type="Float" />
-                    </m4>
                 </ModifierList>
                 <SoilderId value="EtasiSoilder" type="String">
                     <Modifierid value="m0" type="String" />
@@ -2063,40 +1950,19 @@
                     <Modifierid value="m3" type="String" />
                 </ShieldId>
                 <SkillTable>
-                    <Attack value="0" type="Int">
-                        <CoolDown value="0" type="Int" />
-                        <ScriptContext>
-                            <skillcast value="1" type="Int" />
-                            <skillcaster value="Team2Squad_3" type="String" />
-                            <skillcasterpath value="GameData/BattleData/SquadList/Team2Squad_3" type="String" />
-                            <skilltarget value="Cheetah" type="String" />
-                            <skilltargetpath value="GameData/BattleData/SquadList/Cheetah" type="String" />
-                        </ScriptContext>
-                    </Attack>
-                    <Defence value="0" type="Int">
-                        <CoolDown value="0" type="Int" />
-                        <ScriptContext>
-                            <skillcast value="1" type="Int" />
-                            <skillcaster value="Team2Squad_3" type="String" />
-                            <skillcasterpath value="GameData/BattleData/SquadList/Team2Squad_3" type="String" />
-                            <skilltarget value="Team2Squad_3" type="String" />
-                            <skilltargetpath value="GameData/BattleData/SquadList/Team2Squad_3" type="String" />
-                            <Effectid value="e0" type="String" />
-                        </ScriptContext>
-                    </Defence>
-                    <Rest value="0" type="Int">
-                        <CoolDown value="0" type="Int" />
-                    </Rest>
+                    <Attack value="0" type="Int" />
+                    <Defence value="0" type="Int" />
+                    <Rest value="0" type="Int" />
                 </SkillTable>
-                <GridX value="1" type="Int" />
-                <GridY value="4" type="Int" />
+                <GridX value="6" type="Int" />
+                <GridY value="6" type="Int" />
                 <WoundNum value="0" type="Int" />
-                <Direction value="0" type="Int" />
+                <Direction value="1" type="Int" />
                 <Formation value="0" type="Int" />
                 <TeamId value="Team2" type="String" />
                 <CreateType value="1" type="Int" />
                 <ActionPoint value="0" type="Float" />
-                <ViewbyPlayer value="1" type="Int" />
+                <ViewbyPlayer value="0" type="Int" />
                 <ViewbyEnemy1 value="1" type="Int" />
                 <ViewbyEnemy2 value="0" type="Int" />
                 <ViewbyEnemy3 value="0" type="Int" />
@@ -2104,28 +1970,7 @@
                 <AmbushEnemy1 value="0" type="Int" />
                 <AmbushEnemy2 value="0" type="Int" />
                 <AmbushEnemy3 value="0" type="Int" />
-                <Grapid value="3" type="Int" />
-                <APSetup value="0" type="Float" />
-                <APBattle value="2" type="Float" />
-                <EffectList>
-                    <e0 value="Defence" type="String">
-                        <ScriptContext>
-                            <affectsquadpath value="GameData/BattleData/SquadList/Team2Squad_3" type="String" />
-                            <effectid value="e0" type="String" />
-                            <Modifierid value="m4" type="String" />
-                            <LastTurn value="0" type="Int" />
-                            <TurnStartTrigger value="T0" type="String" />
-                        </ScriptContext>
-                    </e0>
-                </EffectList>
-                <Trigger>
-                    <T0 value="1" type="Int">
-                        <type value="TurnStart" type="String" />
-                        <file value="defence.lua" type="String" />
-                        <func value="onturnstart" type="String" />
-                        <context value="GameData/BattleData/SquadList/Team2Squad_3/EffectList/e0/ScriptContext" type="String" />
-                    </T0>
-                </Trigger>
+                <Grapid value="10" type="Int" />
             </Team2Squad_3>
             <Cheetah>
                 <Name value="齐塔重步兵队" type="String" />
@@ -2138,22 +1983,22 @@
                 <LeaderMat value="HeavyInfOf" type="String" />
                 <UnitMesh value="HeavyInf.mesh" type="String" />
                 <UnitMat value="HeavyInf" type="String" />
-                <MoveSound value="Move.mp3" type="String" />
+                <MoveSound value="HeavyInf.mp3" type="String" />
                 <UnitMaxNumber value="50" type="Int" />
-                <UnitNumber value="23" type="Int" />
+                <UnitNumber value="50" type="Int" />
                 <ModifierList>
                     <m0>
                         <Type value="0" type="Int" />
                         <Attack value="3" type="Float" />
                         <RangedAttack value="3" type="Float" />
                         <Defence value="3" type="Float" />
-                        <Formation value="0.02" type="Float" />
+                        <Formation value="0.06" type="Float" />
                         <Initiative value="1" type="Float" />
                         <ActionPoint value="10" type="Float" />
                         <Detection value="5" type="Float" />
                         <Covert value="0" type="Float" />
-                        <Injury value="0.7" type="Float" />
-                        <Conter value="0.4" type="Float" />
+                        <Injury value="0.8" type="Float" />
+                        <Conter value="0.5" type="Float" />
                     </m0>
                     <m1>
                         <Type value="0" type="Int" />
@@ -2185,7 +2030,7 @@
                         <Type value="0" type="Int" />
                         <Attack value="1" type="Float" />
                         <RangedAttack value="0" type="Float" />
-                        <Defence value="3" type="Float" />
+                        <Defence value="4" type="Float" />
                         <Formation value="0" type="Float" />
                         <Initiative value="0" type="Float" />
                         <ActionPoint value="-1" type="Float" />
@@ -2194,19 +2039,6 @@
                         <Injury value="0" type="Float" />
                         <Conter value="0" type="Float" />
                     </m3>
-                    <m4>
-                        <Type value="1" type="Int" />
-                        <Attack value="0" type="Float" />
-                        <RangedAttack value="0" type="Float" />
-                        <Defence value="3" type="Float" />
-                        <Formation value="0" type="Float" />
-                        <Initiative value="0" type="Float" />
-                        <ActionPoint value="0" type="Float" />
-                        <Detection value="0" type="Float" />
-                        <Covert value="0" type="Float" />
-                        <Injury value="0" type="Float" />
-                        <Conter value="0" type="Float" />
-                    </m4>
                 </ModifierList>
                 <SoilderId value="WingsSoilder" type="String">
                     <Modifierid value="m0" type="String" />
@@ -2225,27 +2057,23 @@
                 <SkillTable>
                     <Attack value="0" type="Int">
                         <CoolDown value="0" type="Int" />
-                        <ScriptContext>
-                            <skillcast value="1" type="Int" />
-                            <skillcaster value="Cheetah" type="String" />
-                            <skillcasterpath value="GameData/BattleData/SquadList/Cheetah" type="String" />
-                            <skilltarget value="Team2Squad_1" type="String" />
-                            <skilltargetpath value="GameData/BattleData/SquadList/Team2Squad_1" type="String" />
-                        </ScriptContext>
                     </Attack>
                     <Defence value="0" type="Int">
                         <CoolDown value="0" type="Int" />
                     </Defence>
+                    <Break value="0" type="Int">
+                        <CoolDown value="0" type="Int" />
+                    </Break>
                 </SkillTable>
                 <TeamId value="Team1" type="String" />
-                <Grapid value="4" type="Int" />
+                <Grapid value="11" type="Int" />
                 <CreateType value="0" type="Int" />
                 <Direction value="3" type="Int" />
                 <Formation value="0" type="Int" />
                 <ActionPoint value="8" type="Float" />
-                <WoundNum value="7" type="Int" />
-                <GridX value="1" type="Int" />
-                <GridY value="3" type="Int" />
+                <WoundNum value="0" type="Int" />
+                <GridX value="0" type="Int" />
+                <GridY value="5" type="Int" />
                 <ViewbyPlayer value="1" type="Int" />
                 <ViewbyEnemy1 value="1" type="Int" />
                 <ViewbyEnemy2 value="1" type="Int" />
@@ -2256,32 +2084,6 @@
                 <AmbushEnemy3 value="0" type="Int" />
                 <APSetup value="0" type="Float" />
                 <APBattle value="0" type="Float" />
-                <EffectList>
-                    <e0 value="MagicShield" type="String">
-                        <ScriptContext>
-                            <affectsquadpath value="GameData/BattleData/SquadList/Cheetah" type="String" />
-                            <effectid value="e0" type="String" />
-                            <Particleid value="p0" type="String" />
-                            <Modifierid value="m4" type="String" />
-                            <LastTurn value="2" type="Int" />
-                            <TurnEndTrigger value="T0" type="String" />
-                        </ScriptContext>
-                    </e0>
-                </EffectList>
-                <ParticleList>
-                    <p0>
-                        <UnitType value="3" type="Int" />
-                        <Particle value="mp_spell_effect_06" type="String" />
-                    </p0>
-                </ParticleList>
-                <Trigger>
-                    <T0 value="1" type="Int">
-                        <type value="TurnEnd" type="String" />
-                        <file value="magicshield.lua" type="String" />
-                        <func value="onturnend" type="String" />
-                        <context value="GameData/BattleData/SquadList/Cheetah/EffectList/e0/ScriptContext" type="String" />
-                    </T0>
-                </Trigger>
             </Cheetah>
             <Dandelion>
                 <Name value="丹德来恩弓兵队" type="String" />
@@ -2294,22 +2096,22 @@
                 <LeaderMat value="LightInfOf" type="String" />
                 <UnitMesh value="LightInf.mesh" type="String" />
                 <UnitMat value="LightInf" type="String" />
-                <MoveSound value="Move.mp3" type="String" />
+                <MoveSound value="BowMan.mp3" type="String" />
                 <UnitMaxNumber value="50" type="Int" />
-                <UnitNumber value="44" type="Int" />
+                <UnitNumber value="50" type="Int" />
                 <ModifierList>
                     <m0>
                         <Type value="0" type="Int" />
                         <Attack value="3" type="Float" />
                         <RangedAttack value="3" type="Float" />
                         <Defence value="3" type="Float" />
-                        <Formation value="0.02" type="Float" />
+                        <Formation value="0.06" type="Float" />
                         <Initiative value="1" type="Float" />
                         <ActionPoint value="10" type="Float" />
                         <Detection value="5" type="Float" />
                         <Covert value="0" type="Float" />
-                        <Injury value="0.7" type="Float" />
-                        <Conter value="0.4" type="Float" />
+                        <Injury value="0.8" type="Float" />
+                        <Conter value="0.5" type="Float" />
                     </m0>
                     <m1>
                         <Type value="0" type="Int" />
@@ -2327,7 +2129,7 @@
                     <m2>
                         <Type value="0" type="Int" />
                         <Attack value="0" type="Float" />
-                        <RangedAttack value="5" type="Float" />
+                        <RangedAttack value="6" type="Float" />
                         <Defence value="0" type="Float" />
                         <Formation value="0" type="Float" />
                         <Initiative value="0" type="Float" />
@@ -2371,24 +2173,20 @@
                     </Attack>
                     <RangedAttack value="0" type="Int">
                         <CoolDown value="0" type="Int" />
-                        <ScriptContext>
-                            <skillcast value="1" type="Int" />
-                            <skillcaster value="Dandelion" type="String" />
-                            <skillcasterpath value="GameData/BattleData/SquadList/Dandelion" type="String" />
-                            <skilltarget value="Team2Squad_1" type="String" />
-                            <skilltargetpath value="GameData/BattleData/SquadList/Team2Squad_1" type="String" />
-                        </ScriptContext>
                     </RangedAttack>
+                    <SuppressAttack value="0" type="Int">
+                        <CoolDown value="0" type="Int" />
+                    </SuppressAttack>
                 </SkillTable>
                 <TeamId value="Team1" type="String" />
-                <Grapid value="5" type="Int" />
+                <Grapid value="12" type="Int" />
                 <CreateType value="0" type="Int" />
                 <Direction value="3" type="Int" />
-                <Formation value="1" type="Int" />
+                <Formation value="0" type="Int" />
                 <ActionPoint value="10" type="Float" />
-                <WoundNum value="4" type="Int" />
+                <WoundNum value="0" type="Int" />
                 <GridX value="0" type="Int" />
-                <GridY value="3" type="Int" />
+                <GridY value="4" type="Int" />
                 <ViewbyPlayer value="1" type="Int" />
                 <ViewbyEnemy1 value="1" type="Int" />
                 <ViewbyEnemy2 value="1" type="Int" />
@@ -2411,7 +2209,7 @@
                 <LeaderMat value="none" type="String" />
                 <UnitMesh value="HolySpirit.mesh" type="String" />
                 <UnitMat value="HolySpirit" type="String" />
-                <MoveSound value="Move.mp3" type="String" />
+                <MoveSound value="Olivia.mp3" type="String" />
                 <UnitMaxNumber value="20" type="Int" />
                 <UnitNumber value="20" type="Int" />
                 <ModifierList>
@@ -2419,7 +2217,7 @@
                         <Type value="0" type="Int" />
                         <Attack value="5" type="Float" />
                         <RangedAttack value="0" type="Float" />
-                        <Defence value="15" type="Float" />
+                        <Defence value="20" type="Float" />
                         <Formation value="0" type="Float" />
                         <Initiative value="1" type="Float" />
                         <ActionPoint value="8" type="Float" />
@@ -2451,16 +2249,6 @@
                 <ArmorId value="none" type="String" />
                 <ShieldId value="none" type="String" />
                 <SkillTable>
-                    <MagicAttack value="0" type="Int">
-                        <CoolDown value="0" type="Int" />
-                        <ScriptContext>
-                            <skillcast value="1" type="Int" />
-                            <skillcaster value="Olivia" type="String" />
-                            <skillcasterpath value="GameData/BattleData/SquadList/Olivia" type="String" />
-                            <skilltarget value="Team2Squad_1" type="String" />
-                            <skilltargetpath value="GameData/BattleData/SquadList/Team2Squad_1" type="String" />
-                        </ScriptContext>
-                    </MagicAttack>
                     <MagicEffect value="0" type="Int">
                         <ScriptContext>
                             <skillcasterpath value="GameData/StoryData/SquadData/EnableSquad/Olivia" type="String" />
@@ -2470,15 +2258,16 @@
                     </MagicEffect>
                     <MagicShield value="0" type="Int">
                         <CoolDown value="0" type="Int" />
-                        <ScriptContext>
-                            <skillcast value="1" type="Int" />
-                            <skillcaster value="Olivia" type="String" />
-                            <skillcasterpath value="GameData/BattleData/SquadList/Olivia" type="String" />
-                            <skilltarget value="Cheetah" type="String" />
-                            <skilltargetpath value="GameData/BattleData/SquadList/Cheetah" type="String" />
-                            <Effectid value="e0" type="String" />
-                        </ScriptContext>
                     </MagicShield>
+                    <Heal value="0" type="Int">
+                        <CoolDown value="0" type="Int" />
+                    </Heal>
+                    <Zeal value="0" type="Int">
+                        <CoolDown value="0" type="Int" />
+                    </Zeal>
+                    <Confess value="0" type="Int">
+                        <CoolDown value="0" type="Int" />
+                    </Confess>
                 </SkillTable>
                 <EffectList>
                     <e0 value="TestEffect" type="String">
@@ -2497,14 +2286,14 @@
                     </p0>
                 </ParticleList>
                 <TeamId value="Team1" type="String" />
-                <Grapid value="6" type="Int" />
+                <Grapid value="13" type="Int" />
                 <CreateType value="0" type="Int" />
                 <Direction value="3" type="Int" />
                 <Formation value="2" type="Int" />
                 <ActionPoint value="8" type="Float" />
                 <WoundNum value="0" type="Int" />
                 <GridX value="0" type="Int" />
-                <GridY value="2" type="Int" />
+                <GridY value="3" type="Int" />
                 <ViewbyPlayer value="1" type="Int" />
                 <ViewbyEnemy1 value="1" type="Int" />
                 <ViewbyEnemy2 value="1" type="Int" />
@@ -2518,7 +2307,7 @@
             </Olivia>
         </SquadList>
         <BattleState>
-            <Ture value="4" type="Int" />
+            <Ture value="1" type="Int" />
             <CurTeam value="1" type="Int" />
         </BattleState>
         <Trigger>
@@ -2541,8 +2330,5 @@
                 <context value="GameData/BattleData/MapData/MapScript/ScriptContext" type="String" />
             </T2>
         </Trigger>
-        <BackGroundMusic>
-            < value="battle1.mp3" type="String" />
-        </BackGroundMusic>
     </BattleData>
 </GameData>

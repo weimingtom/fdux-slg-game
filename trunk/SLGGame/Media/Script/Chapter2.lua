@@ -493,4 +493,7 @@ GUI.ClearText();
 GUI.ShowRoleName("");
 GUI.ShowImage("",all,1);
 GUI.ShowImage("",4,1000);
-GUI.NextScene("Chapter3.lua");
+GUI.SetDialogVisible(0);
+
+AVGLib.AddSquad("Olivia","Olivia");
+StateLib.BattleState("demo1.xml");
