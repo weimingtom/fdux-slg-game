@@ -6,7 +6,7 @@ function useskill()
 	apleft = apleft + 5;
 	SkillLib.SetSquadApLeft(defender,apleft);
 	SkillLib.ApplyEffect(defenderpath,"Zeal");
-	SkillLib.Action(attacker,1,"mp_seal_08","Skill","magicSkill1.mp3");
+	SkillLib.Action(attacker,1,"mp_seal_02","Skill","magicSkill1.mp3");
 	ScriptCommonLib.SetInt("skillcast",1);
 end
 
@@ -18,6 +18,8 @@ function onaffect()
 	trigerid = TriggerLib.AddSquadTrigger(squadpath,"TurnEnd","onturnend");
 	TriggerLib.ActiveSquadTrigger(squadpath,trigerid);
 	ScriptCommonLib.SetString("TurnEndTrigger",trigerid);
+	id = SkillLib.ApplyParticle(squadpath,3,"mp_diabolique");
+	ScriptCommonLib.SetString("Particleid",id);
 end
 
 function onremove()
@@ -26,6 +28,8 @@ function onremove()
 	SkillLib.RemoveModifier(squadpath,id);
 	id = ScriptCommonLib.GetString("TurnEndTrigger");
 	TriggerLib.RemoveSquadTrigger(squadpath,id);
+	id = ScriptCommonLib.GetString("Particleid");
+	SkillLib.RemoveParticle(squadpath,id);
 end
 
 function onturnend()

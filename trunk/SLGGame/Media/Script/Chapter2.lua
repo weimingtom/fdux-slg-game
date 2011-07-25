@@ -1,7 +1,7 @@
 GUI.ShowImage("cp2.png",4,1000);
 GUI.Wait(1000);
-GUI.SetDialogVisible(1);
 GUI.ShowImage("forest_day.png",4,1000);
+GUI.SetDialogVisible(1);
 GUI.ShowImage("aide_left_1.png",left,1);
 GUI.ShowImage("Cheetah_right_1.png",right,1);
 GUI.ShowRoleName("¸±¹ÙÐÝË¹");
