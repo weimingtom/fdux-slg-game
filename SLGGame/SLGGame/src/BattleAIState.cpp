@@ -714,7 +714,28 @@ bool BattleAIState::executeGroupAI()
 bool BattleAIState::executeSquadAI(BattleSquad* squad,unsigned int missionid)
 {
 	if(squad->getActionPoint() < 2.0f)
-		return false;
+	{
+		MissionIte missionite = mMissionMap.find(missionid);
+		if(missionite == mMissionMap.end())
+			return false;
+		SquadGroupIte sgite = mEnemySquadGroup.find(missionite->second->mParaList[0]);
+		if(sgite == mEnemySquadGroup.end())
+			return false;
+		int x1,y1,x2,y2;
+		squad->getCrood(&x1,&y1);
+		BattleSquad* squad1 = sgite->second->GetNearestFrom(x1,y1);
+		squad1->getCrood(&x2,&y2);
+		Direction d1 = squad->getDirection();
+		Direction d2 = getDirection(x1,y1,x2,y2);
+		if(d1 == d2)
+			return false;
+		squad->setDirection(d2);
+		CutSceneDirector* cutscenedirector = new CutSceneDirector;
+		DirectionCutScene* directioncutscene = new DirectionCutScene(squad->getGrapId(), d2);
+		cutscenedirector->addCutScene(directioncutscene);
+		mMainState->PushState(cutscenedirector);
+		return true;
+	}
 	int wondnum = 0;
 	int unitnum = squad->getUnitRealNum();
 	DataLibrary::getSingleton().getData(squad->getPath() + std::string("/WoundNum"),wondnum);

@@ -12,6 +12,7 @@
 #include "StringTable.h"
 #include "DataLibrary.h"
 #include "LuaSystem.h"
+#include "AudioSystem.h"
 
 MapLoader::MapLoader()
 {
@@ -267,6 +268,9 @@ bool MapLoader::loadMapFormSave()
 	DataLibrary::getSingleton().getData("GameData/BattleData/MapData/MapSize", mapsize);
 	MapDataManager::getSingleton().mMapSize = mapsize;
 	Terrain::getSingleton().createTerrain();
+	std::string music;
+	DataLibrary::getSingleton().getData("GameData/StoryData/MusicName", music);
+	AudioSystem::getSingleton().playStream(music,true,5);
 	return true;
 }
 
