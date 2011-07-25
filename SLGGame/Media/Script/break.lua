@@ -3,7 +3,7 @@ function useskill()
 	defender  = ScriptCommonLib.GetString("skilltarget");
 	attackerpath = ScriptCommonLib.GetString("skillcasterpath");
 	unitnum1 = SkillLib.GetUnitNum(defender);
-	id = SkillLib.ApplyModifier(attackerpath,2,3.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0);
+	id = SkillLib.ApplyModifier(attackerpath,2,2.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0);
 	re = SkillLib.MeleeCombat(attacker,defender);
 	SkillLib.RemoveModifier(attackerpath,id);
 	if re>0 then

@@ -32,7 +32,7 @@
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="ShortSword"/>
 			<SweaponId type="String" value="LongBow"/>
-			<ShieldId type="String" value="none"/>
+			<ShieldId type="String" value="RoundShield"/>
 			<ArmorId type="String" value="LightMail"/>
 			<SkillTable>
 				<Attack type="Int" value="1"/>
@@ -168,7 +168,7 @@
 				<Attack type="Float" value="1.0"/>
 				<RangedAttack type="Float" value="0.0"/>
 				<Defence type="Float" value="1.0"/>
-				<Formation type="Float" value="0.00"/>
+				<Formation type="Float" value="0.02"/>
 				<Initiative type="Float" value="2.0"/>
 				<ActionPoint type="Float" value="11.0"/>
 				<Detection type="Float" value="6.0"/>
@@ -191,7 +191,7 @@
 			<AniGroup type="String" value="1H2"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
-				<Attack type="Float" value="4.0"/>
+				<Attack type="Float" value="5.0"/>
 				<RangedAttack type="Float" value="0.0"/>
 				<Defence type="Float" value="1.0"/>
 				<Formation type="Float" value="0.0"/>
@@ -341,12 +341,12 @@
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="0.0"/>
 				<RangedAttack type="Float" value="0.0"/>
-				<Defence type="Float" value="4.0"/>
+				<Defence type="Float" value="3.0"/>
 				<Formation type="Float" value="0.0"/>
 				<Initiative type="Float" value="0.0"/>
-				<ActionPoint type="Float" value="-1.0"/>
+				<ActionPoint type="Float" value="0.0"/>
 				<Detection type="Float" value="0.0"/>
-				<Covert type="Float" value="-1.0"/>
+				<Covert type="Float" value="0.0"/>
 				<Injury type="Float" value="0.0"/>
 				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
