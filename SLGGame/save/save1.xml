@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <GameData>
     <StoryData>
-        <BackGroundName value="library.png" type="String" />
+        <GameState value="AVG" type="String" />
+        <BackGroundName value="grasslands.png" type="String" />
         <BackGroundPosition value="0,0,0" type="Vector3" />
         <BackGroundSize value="1280,720,0" type="Vector3" />
-        <LeftName value="" type="String" />
-        <LeftPosition value="5,25,0" type="Vector3" />
-        <LeftSize value="275,480,0" type="Vector3" />
+        <LeftName value="Cheetah_left_1.png" type="String" />
+        <LeftPosition value="-100,0,0" type="Vector3" />
+        <LeftSize value="640,720,0" type="Vector3" />
         <MidName value="" type="String" />
         <MidPosition value="295,25,0" type="Vector3" />
         <MidSize value="245,480,0" type="Vector3" />
-        <RightName value="" type="String" />
-        <RightPosition value="545,25,0" type="Vector3" />
-        <RightSize value="250,480,0" type="Vector3" />
-        <Text value="然后，少女露出了惊讶的表情。" type="String" />
-        <RoleName value="" type="String" />
+        <RightName value="scout_right_1.png" type="String" />
+        <RightPosition value="700,0,0" type="Vector3" />
+        <RightSize value="640,720,0" type="Vector3" />
+        <Text value="其他人，准备突袭！" type="String" />
+        <RoleName value="齐塔" type="String" />
         <TextCursorType value="0" type="Int" />
-        <ScriptName value="Chapter0.lua" type="String" />
-        <ScriptLine value="174" type="Int" />
+        <ScriptName value="Chapter1.lua" type="String" />
+        <ScriptLine value="599" type="Int" />
+        <MusicName value="fight.mp3" type="String" />
         <FileName value="1234" type="String" />
     </StoryData>
 </GameData>

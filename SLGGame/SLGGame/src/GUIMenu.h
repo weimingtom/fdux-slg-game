@@ -1,6 +1,8 @@
 #pragma once
 #include "GUIScene.h"
 
+class GUISLWindow;
+
 class GUIMenu :
 	public GUIScene
 {
@@ -49,6 +51,8 @@ private:
 	MyGUI::Button* mLoad;
 	MyGUI::Button* mOpiton;
 	MyGUI::Button* mExit;
+
+	GUISLWindow* SLWindow;
 
 };
 

@@ -44,7 +44,7 @@ Core::~Core(void)
 {
 }
 
-bool Core::initialize()
+bool Core::initialize(bool isFullScene)
 {
 	//初始化数据文件
 	mLuaSystem=new LuaSystem();
@@ -78,7 +78,7 @@ bool Core::initialize()
 	list["outerDimensions"]="true";
 	list["border"]="fixed"; 
 
-	mWindow = mRoot->createRenderWindow(title,1280,720,false,&list);
+	mWindow = mRoot->createRenderWindow(title,1280,720,isFullScene,&list);
 
 	HWND   hwnd;
 	mWindow->getCustomAttribute("WINDOW", &hwnd);   

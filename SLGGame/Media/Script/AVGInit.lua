@@ -6,7 +6,7 @@ function AVGInit()
 	GUI.SetTextBgRect(0,0,1280,720);
 	GUI.SetTextBgImage("TextBox.png");
 	GUI.SetTextRect(221,538,840,125);
-	GUI.SetRoleNameRect(235,496,150,80);
+	GUI.SetRoleNameRect(235,496,300,80);
 	GUI.SetUITextColor(0,0,0);
 	GUI.SetRoleNameColor(0,0,0);
 	GUI.SetFont("fireflysung","fireflysung");
