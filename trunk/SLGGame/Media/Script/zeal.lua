@@ -3,7 +3,7 @@ function useskill()
 	defender  = ScriptCommonLib.GetString("skilltarget");
 	defenderpath = ScriptCommonLib.GetString("skilltargetpath");
 	apleft = SkillLib.GetSquadApLeft(defender);
-	apleft = apleft + 5;
+	apleft = apleft + 4;
 	SkillLib.SetSquadApLeft(defender,apleft);
 	SkillLib.ApplyEffect(defenderpath,"Zeal");
 	SkillLib.Action(attacker,1,"mp_seal_02","Skill","magicSkill1.mp3");
@@ -13,7 +13,7 @@ end
 
 function onaffect()
 	squadpath = ScriptCommonLib.GetString("affectsquadpath");
-	id = SkillLib.ApplyModifier(squadpath,1,0.0,0.0,0.0,0.0,0.0,3.0,0.0,0.0,0.0,0.0);
+	id = SkillLib.ApplyModifier(squadpath,1,0.0,0.0,0.0,0.0,0.0,2.0,0.0,0.0,0.0,0.0);
 	ScriptCommonLib.SetString("Modifierid",id);
 	ScriptCommonLib.SetInt("LastTurn",0);
 	trigerid = TriggerLib.AddSquadTrigger(squadpath,"TurnEnd","onturnend");

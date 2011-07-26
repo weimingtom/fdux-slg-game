@@ -388,16 +388,25 @@ bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad*
 			setCutScene(new AnimationCutScene(squad->getGrapId(),UNITTYPE_ALL,"Attack","attack.mp3","none",false,true));
 		else
 			setCutScene(new AnimationCutScene(squad->getGrapId(),UNITTYPE_SOLIDER,"Attack","attack.mp3","none",false,true));
-		std::vector<int> atkrolls = squad->getAttackRolls(false,squad == defenesquad,d);
+		std::vector<int> atkrolls;
 		if(squad == attacksquad)
+		{
+			atkrolls = squad->getAttackRolls(false,squad == defenesquad,d);
 			squad = defenesquad;
+		}
 		else
+		{
+			atkrolls = squad->getAttackRolls(false,squad == defenesquad,temp[d]);
 			squad = attacksquad;
+		}
 		if(atkrolls.size() > 0)
 		{
 			int squadugb = squad->getUnitGrapNum();
 			int squadRealNumB=squad->getUnitRealNum();
-			squad->applyAttackRolls(false, d, atkrolls);
+			if(squad == attacksquad)
+				squad->applyAttackRolls(false, d, atkrolls);
+			else
+				squad->applyAttackRolls(false, temp[d], atkrolls);
 			int squaduga = squad->getUnitGrapNum();
 			int squadRealNumA=squad->getUnitRealNum();
 			if(squaduga < squadugb)

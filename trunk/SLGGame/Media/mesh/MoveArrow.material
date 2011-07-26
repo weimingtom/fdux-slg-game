@@ -1,3 +1,4 @@
+import DepthShadowmap/CastNoShadow from "Shadow.material"
 material MoveArrow : DepthShadowmap/CastNoShadow
 {
 	receive_shadows off

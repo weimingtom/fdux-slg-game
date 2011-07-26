@@ -284,12 +284,24 @@ void GUICommandWindows::onSkill9(MyGUI::Widget* _sender)
 void GUICommandWindows::useSkill(int n)
 {
 	if(mSkillId[n] == "move")
+	{
 		mPlayerState->moveSquad();
+		return;
+	}
 	if(mSkillId[n] == "line")
+	{
 		mPlayerState->changeFormation(Line);
+		return;
+	}
 	if(mSkillId[n] == "circular")
+	{
 		mPlayerState->changeFormation(Circular);
+		return;
+	}
 	if(mSkillId[n] == "loose")
+	{
 		mPlayerState->changeFormation(Loose);
+		return;
+	}
 	mPlayerState->useSkill(mSkillId[n]);
 }
