@@ -346,7 +346,7 @@
 				<Initiative type="Float" value="0.0"/>
 				<ActionPoint type="Float" value="0.0"/>
 				<Detection type="Float" value="0.0"/>
-				<Covert type="Float" value="0.0"/>
+				<Covert type="Float" value="-1.0"/>
 				<Injury type="Float" value="0.0"/>
 				<Conter type="Float" value="0.0"/>
 			</AttrModifer>

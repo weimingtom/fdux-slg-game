@@ -286,20 +286,6 @@ float BattleSquad::getAttr(AttrType attrtype, AttrCalcType calctype, Direction d
 			switch(formation)
 			{
 			case Line:
-				form *= FORMBONSE_LINE_BACK;
-				break;
-			case Circular:
-				form *= FORMBONSE_CIRC_BACK;
-				break;
-			case Loose:
-				form *= FORMBONSE_LOOS_BACK;
-				break;
-			}
-			break;
-		case 2:
-			switch(formation)
-			{
-			case Line:
 				form *= FORMBONSE_LINE_SIDE;
 				break;
 			case Circular:
@@ -307,6 +293,20 @@ float BattleSquad::getAttr(AttrType attrtype, AttrCalcType calctype, Direction d
 				break;
 			case Loose:
 				form *= FORMBONSE_LOOS_SIDE;
+				break;
+			}
+			break;
+		case 2:
+			switch(formation)
+			{
+			case Line:
+				form *= FORMBONSE_LINE_BACK;
+				break;
+			case Circular:
+				form *= FORMBONSE_CIRC_BACK;
+				break;
+			case Loose:
+				form *= FORMBONSE_LOOS_BACK;
 				break;
 			}
 			break;

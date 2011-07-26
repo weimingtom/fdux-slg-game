@@ -2,7 +2,6 @@ shared_params ShadowSharedParamsName
 {
 	shared_param_named texView matrix4x4
 	shared_param_named texProj matrix4x4
-	//shared_param_named shadowDir float3
 }
 
 vertex_program DepthShadowmap/ReceiverVP cg
@@ -14,7 +13,6 @@ vertex_program DepthShadowmap/ReceiverVP cg
     default_params
     {
 		param_named_auto world world_matrix
-		param_named_auto worldIT inverse_transpose_world_matrix   
         param_named_auto worldViewProj worldviewproj_matrix
 		shared_params_ref ShadowSharedParamsName
     }
@@ -42,9 +40,7 @@ vertex_program DepthShadowmap/CasterVP cg
     default_params
     {
 		param_named_auto world world_matrix
-        //param_named_auto worldViewProj worldviewproj_matrix
 		param_named_auto viewProjectionMatrix viewproj_matrix
-		//shared_params_ref ShadowSharedParamsName
     }
 }
  
@@ -56,7 +52,6 @@ fragment_program DepthShadowmap/CasterFP cg
  
     default_params
     {
-		//param_named depthRange float 500
 		param_named depthOffset float 0.001
     }
 }
@@ -93,6 +88,5 @@ vertex_program DepthShadowmap/CasterWithSkinVP cg
 		param_named_auto viewProjectionMatrix viewproj_matrix
 		param_named_auto numBones custom 0
 		param_named_auto worldMatrix3x4Array world_matrix_array_3x4
-		//shared_params_ref ShadowSharedParamsName
     }
 }

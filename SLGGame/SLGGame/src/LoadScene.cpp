@@ -35,7 +35,7 @@ void LoadScene::setText(std::string text)
 
 void LoadScene::setMapName(std::string text)
 {
-	mMapName->setCaption(StringTable::getSingletonPtr()->getString(text));
+	mMapName->setCaption(text);
 }
 
 void LoadScene::setMapInfo( std::string info )
