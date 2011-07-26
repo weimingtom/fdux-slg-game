@@ -77,7 +77,7 @@ static int PlayMusic(lua_State* L)
 {
 	std::string music(luaL_checkstring(L, 1));
 	DataLibrary::getSingleton().setData("GameData/StoryData/MusicName", music);
-	AudioSystem::getSingleton().playStream(music,true,5);
+	AudioSystem::getSingleton().playStream(music,true,2000);
 	return 0;
 }
 

@@ -270,7 +270,7 @@ bool MapLoader::loadMapFormSave()
 	Terrain::getSingleton().createTerrain();
 	std::string music;
 	DataLibrary::getSingleton().getData("GameData/StoryData/MusicName", music);
-	AudioSystem::getSingleton().playStream(music,true,5);
+	AudioSystem::getSingleton().playStream(music,true,2000);
 	return true;
 }
 
