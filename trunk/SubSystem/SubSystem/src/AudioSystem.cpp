@@ -45,9 +45,17 @@ bool AudioSystem::playStream( std::string name,bool isLoop,int time)
 			BASS_ChannelFlags(mStream, BASS_SAMPLE_LOOP, BASS_SAMPLE_LOOP);
 		}
 		 
-		mVol=0;
+		if (time!=0)
+		{
+			mVol=0;
+			mTickTime=time/1000;//每次增加音量的间隔
+		}
+		else
+		{
+			mVol=1001;
+			mTickTime=0;
+		}
 		mInOut=true;
-		mTickTime=time/100;//每次增加音量的间隔
 		mTimer.reset();
 		mStreamName=name;
 
@@ -65,7 +73,7 @@ bool AudioSystem::stopStream(int time)
 	{
 		mVol=1000;
 		mInOut=false;
-		mTickTime=time/100;//每次减少音量的间隔
+		mTickTime=time/1000;//每次减少音量的间隔
 		mTimer.reset();
 		mStreamName="none";
 		return true;
@@ -112,12 +120,12 @@ void AudioSystem::FrameUpdate()
 			{
 				if (mVol<=1000)
 				{
-					BASS_SetConfig(BASS_CONFIG_GVOL_STREAM,mVol*4);
+					BASS_SetConfig(BASS_CONFIG_GVOL_STREAM,mVol*5);
 					mVol+=10*Framerate::getSingletonPtr()->speedfactor;
 				}
 				else
 				{
-					BASS_SetConfig(BASS_CONFIG_GVOL_STREAM,100*40);
+					BASS_SetConfig(BASS_CONFIG_GVOL_STREAM,100*50);
 					mVol=-1;
 				}
 			}
@@ -125,7 +133,7 @@ void AudioSystem::FrameUpdate()
 			{
 				if (mVol>=0)
 				{
-					BASS_SetConfig(BASS_CONFIG_GVOL_STREAM,mVol*4);
+					BASS_SetConfig(BASS_CONFIG_GVOL_STREAM,mVol*5);
 					mVol-=10*Framerate::getSingletonPtr()->speedfactor;
 				}
 				else
