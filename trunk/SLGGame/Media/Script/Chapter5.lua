@@ -245,6 +245,7 @@ GUI.ShowText("¶÷£¬ºÃµÄ¡£",1);
 GUI.ClearText();
 GUI.ShowRoleName("");
 GUI.ShowImage("",all,1);
+GUI.CM(1000);
 GUI.ShowImage("black.png",4,1000);
 GUI.Music("normal.mp3",2000);
 GUI.ShowImage("abbey_day.png",4,3000);

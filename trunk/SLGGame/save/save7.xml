@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameData>
+    <StoryData>
+        <GameState value="AVG" type="String" />
+        <BackGroundName value="grasslands.png" type="String" />
+        <BackGroundPosition value="0,0,0" type="Vector3" />
+        <BackGroundSize value="1280,720,0" type="Vector3" />
+        <LeftName value="Olivia_left_1.png" type="String" />
+        <LeftPosition value="-100,0,0" type="Vector3" />
+        <LeftSize value="640,720,0" type="Vector3" />
+        <MidName value="" type="String" />
+        <MidPosition value="295,25,0" type="Vector3" />
+        <MidSize value="245,480,0" type="Vector3" />
+        <RightName value="" type="String" />
+        <RightPosition value="545,25,0" type="Vector3" />
+        <RightSize value="250,480,0" type="Vector3" />
+        <Text value="就这样抱怨着，奥莉瓦一下又一下地使劲搓洗着手中的绷带，" type="String" />
+        <RoleName value="" type="String" />
+        <TextCursorType value="1" type="Int" />
+        <ScriptName value="Chapter1.lua" type="String" />
+        <ScriptLine value="186" type="Int" />
+        <MusicName value="grasslands.mp3" type="String" />
+        <FileName value="122" type="String" />
+    </StoryData>
+</GameData>

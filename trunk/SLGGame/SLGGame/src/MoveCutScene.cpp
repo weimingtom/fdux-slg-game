@@ -80,6 +80,9 @@ MoveCutScene::MoveCutScene(unsigned int id,std::vector<Ogre::Vector2>& grids,Ogr
 
 MoveCutScene::~MoveCutScene(void)
 {
+	//mSquadGraphics->stopTransform();
+	//mSquadGraphics->setGrid(mEndPosition.x,mEndPosition.y);
+	//mSquadGraphics->setDirection(mDirection,false);
 }
 
 bool MoveCutScene::endCutScene()
