@@ -14,6 +14,8 @@
 #include "MapDataManager.h"
 #include "MoveCutScene.h"
 #include "DirectionCutScene.h"
+
+#include <boost/format.hpp>
 //SquadGroup-----------------------
 SquadGroup::SquadGroup(BattleSquad* squad)
 {
@@ -380,6 +382,7 @@ void BattleAIState::updateMission()
 			newmission->mParaList[0] = ite->first;
 			newmission->mParaList[1] = groupsize + 2;
 			mMissionMap.insert(MissionMap::value_type(mMissionId++,newmission));
+			Ogre::LogManager::getSingletonPtr()->logMessage(str(boost::format("AI:Mission%1%,Attack,%2%,%3%")%(mMissionId-1)%newmission->mParaList[0]%newmission->mParaList[1]),Ogre::LML_NORMAL);
 		}
 		else if(nearsquadgroup.size() > 0)
 		{
@@ -391,6 +394,7 @@ void BattleAIState::updateMission()
 				newmission->mParaList[1] = groupsize;
 				newmission->mParaList[0] = ite->first;
 				mMissionMap.insert(MissionMap::value_type(mMissionId++,newmission));
+				Ogre::LogManager::getSingletonPtr()->logMessage(str(boost::format("AI:Mission%1%,Assist,%2%,%3%,%4%")%(mMissionId-1)%newmission->mParaList[0]%newmission->mParaList[1]%newmission->mParaList[2]),Ogre::LML_NORMAL);
 			}
 		}
 		else if(groupsize <= lowestsize)
@@ -400,6 +404,7 @@ void BattleAIState::updateMission()
 			newmission->mParaList[0] = ite->first;
 			newmission->mParaList[1] = groupsize;
 			mMissionMap.insert(MissionMap::value_type(mMissionId++,newmission));
+			Ogre::LogManager::getSingletonPtr()->logMessage(str(boost::format("AI:Mission%1%,Assault,%2%")%(mMissionId-1)%newmission->mParaList[0]),Ogre::LML_NORMAL);
 		}
 		else
 		{
@@ -456,6 +461,7 @@ void BattleAIState::updateMission()
 				newmission->mParaList[0] = ite->first;
 				newmission->mParaList[1] = groupsize + 2;
 				mMissionMap.insert(MissionMap::value_type(mMissionId++,newmission));
+				Ogre::LogManager::getSingletonPtr()->logMessage(str(boost::format("AI:Mission%1%,Attack,%2%,%3%")%(mMissionId-1)%newmission->mParaList[0]%newmission->mParaList[1]),Ogre::LML_NORMAL);
 			}
 			else
 			{
@@ -471,6 +477,7 @@ void BattleAIState::updateMission()
 				newmission->mParaList[2] = midx + vec.x;
 				newmission->mParaList[3] = midy + vec.y;
 				mMissionMap.insert(MissionMap::value_type(mMissionId++,newmission));
+				Ogre::LogManager::getSingletonPtr()->logMessage(str(boost::format("AI:Mission%1%,Rally,%2%,%3%,%4%,%5%")%(mMissionId-1)%newmission->mParaList[0]%newmission->mParaList[1]%newmission->mParaList[2]%newmission->mParaList[3]),Ogre::LML_NORMAL);
 			}
 		}
 	}
@@ -588,7 +595,7 @@ bool BattleAIState::getAssigedMission(bool isenemy,unsigned short id)
 	MissionIte ite;
 	for(ite= mMissionMap.begin(); ite != mMissionMap.end(); ite ++)
 	{
-		if(isenemy && ite->second->mParaList[1] == id)
+		if(isenemy && ite->second->mParaList[0] == id)
 			return true;
 		else
 		{
@@ -729,6 +736,7 @@ bool BattleAIState::executeSquadAI(BattleSquad* squad,unsigned int missionid)
 		Direction d2 = getDirection(x1,y1,x2,y2);
 		if(d1 == d2)
 			return false;
+		Ogre::LogManager::getSingletonPtr()->logMessage(str(boost::format("AI:%1%,ChangeDirection,%2%")%squad->getId()%d2),Ogre::LML_NORMAL);
 		squad->setDirection(d2);
 		CutSceneDirector* cutscenedirector = new CutSceneDirector;
 		DirectionCutScene* directioncutscene = new DirectionCutScene(squad->getGrapId(), d2);
@@ -742,6 +750,7 @@ bool BattleAIState::executeSquadAI(BattleSquad* squad,unsigned int missionid)
 	if(squad->getFormation() != Line && squad->getActionPoint() >= getSkillAPCost(squad, "line"))
 	{
 		//ÇÐ»»ÕóÐÎ
+		Ogre::LogManager::getSingletonPtr()->logMessage(str(boost::format("AI:%1%,ChangeFormation,%2%")%squad->getId()%Line),Ogre::LML_NORMAL);
 		float apcost = getSkillAPCost(squad, "line");
 		float apleft = squad->getActionPoint();
 		DataLibrary::getSingleton().setData(squad->getPath() + std::string("/ActionPoint"),apleft);
@@ -861,11 +870,13 @@ bool BattleAIState::executeSquadAI(BattleSquad* squad,unsigned int missionid)
 		int evt = 0;
 		std::vector<Ogre::Vector2> movepath;
 		BattleSquadManager::getSingleton().moveSquad(squad, croodlist, stoppoint, evt);
+		Ogre::LogManager::getSingletonPtr()->logMessage(str(boost::format("AI:%1%,Move,%2%,%3%")%squad->getId()%myx%myy),Ogre::LML_NORMAL);
 		int n;
 		for(n = 0; n *2 < croodlist.size(); n++)
 		{
 			if(stoppoint > n)
 			{
+				Ogre::LogManager::getSingletonPtr()->logMessage(str(boost::format("AI:%1%,%2%")%croodlist[n*2]%croodlist[n*2+1]),Ogre::LML_NORMAL);
 				movepath.push_back(Ogre::Vector2(croodlist[n*2],croodlist[n*2+1]));
 			}
 		}
@@ -906,9 +917,15 @@ bool BattleAIState::executeSquadAI(BattleSquad* squad,unsigned int missionid)
 			if(vec.size() == 0 || squad->getActionPoint() <= getSkillAPCost(squad,"Attack"))
 			{
 				if(wondnum > std::min(15,unitnum/2) && unitnum > 10)
+				{
+					Ogre::LogManager::getSingletonPtr()->logMessage(str(boost::format("AI:%1%,Rest")%squad->getId()),Ogre::LML_NORMAL);
 					catscene = mSquadManager->useSkillOn(squad,squad,"Rest");
+				}
 				else
+				{
+					Ogre::LogManager::getSingletonPtr()->logMessage(str(boost::format("AI:%1%,Defence")%squad->getId()),Ogre::LML_NORMAL);
 					catscene = mSquadManager->useSkillOn(squad,squad,"Defence");
+				}
 			}
 			else
 			{
@@ -919,6 +936,7 @@ bool BattleAIState::executeSquadAI(BattleSquad* squad,unsigned int missionid)
 					if(attack->getUnitRealNum() > (*sqdite)->getUnitRealNum())
 						attack = (*sqdite);
 				}
+				Ogre::LogManager::getSingletonPtr()->logMessage(str(boost::format("AI:%1%,Attack,%2%")%squad->getId()%attack->getId()),Ogre::LML_NORMAL);
 				catscene = mSquadManager->useSkillOn(squad,attack,"Attack");
 			}
 			
