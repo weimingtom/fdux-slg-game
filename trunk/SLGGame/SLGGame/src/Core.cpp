@@ -204,6 +204,7 @@ void Core::initializeResource()
 
 void Core::initializeOIS()
 {
+	ShowCursor(0);
 	OIS::ParamList pl;	
 	size_t windowHnd = 0;
 	std::ostringstream windowHndStr;
@@ -213,9 +214,9 @@ void Core::initializeOIS()
 	pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
 
 	//Default mode is foreground exclusive..but, we want to show mouse - so nonexclusive
-	pl.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_FOREGROUND" )));
-	//pl.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_NONEXCLUSIVE;")));
-	pl.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_EXCLUSIVE")));//无鼠标模式
+	pl.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_FOREGROUND")));
+	pl.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_NONEXCLUSIVE")));
+	//pl.insert(std::make_pair(std::string("w32_mouse"), std::string("DISCL_EXCLUSIVE")));//无鼠标模式
 
 	mInputManager = OIS::InputManager::createInputSystem( pl );
 

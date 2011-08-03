@@ -18,7 +18,7 @@ GUIMenuWindow::GUIMenuWindow(int Width,int Height):GUIScene("SystemMenu.layout",
 	mRestartButton->setCaption(StringTable::getSingletonPtr()->getString("Restart"));
 	mSaveButton->setCaption(StringTable::getSingletonPtr()->getString("SaveButton"));
 	mLoadButton->setCaption(StringTable::getSingletonPtr()->getString("LoadButton"));
-	mOptionButton->setCaption(StringTable::getSingletonPtr()->getString("Opition"));
+	mOptionButton->setCaption(StringTable::getSingletonPtr()->getString("OpitionButton"));
 	mExitButton->setCaption(StringTable::getSingletonPtr()->getString("ExitGame"));
 
 	mRestartButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenuWindow::onRestart);
