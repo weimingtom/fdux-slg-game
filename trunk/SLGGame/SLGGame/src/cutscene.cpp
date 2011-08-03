@@ -1,5 +1,8 @@
 #include "cutscene.h"
 
+#include "Core.h"
+#include <boost/format.hpp>
+
 CutScene::CutScene(unsigned int lasttime)
 {
 	mLastTime = lasttime;
@@ -21,6 +24,7 @@ void CutScene::start()
 {
 	if(mStarted)
 		return;
+	Ogre::LogManager::getSingletonPtr()->logMessage(std::string("CutScene:Start"),Ogre::LML_NORMAL);
 	startCutScence();
 	mStarted = true;
 }
@@ -52,6 +56,7 @@ bool CutScene::end()
 	}
 	if(!endCutScene())
 		return false;
+	Ogre::LogManager::getSingletonPtr()->logMessage(std::string("CutScene:End"),Ogre::LML_NORMAL);
 	mEnded = true;
 	if(mNextScene)
 		return mNextScene->end();
@@ -61,7 +66,12 @@ bool CutScene::endthis()
 {
 	if(mEnded)
 		return true;
-	return endCutScene();
+	if(endCutScene())
+	{
+		Ogre::LogManager::getSingletonPtr()->logMessage(std::string("CutScene:EndThis"),Ogre::LML_NORMAL);
+		return true;
+	}
+	return false;
 }
 void CutScene::update(unsigned int deltaTime)
 {

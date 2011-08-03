@@ -46,7 +46,7 @@ material ReflectionWater
 				texture waves2.dds
 				// min / mag filtering, no mip
 				filtering linear linear none
-				tex_address_mode warp
+				tex_address_mode wrap
 			}
 			// Reflection
 			texture_unit
@@ -58,7 +58,7 @@ material ReflectionWater
 			texture_unit
 			{
 				texture Water02.jpg
-				tex_address_mode warp
+				tex_address_mode wrap
 			}
 		}
 	}
