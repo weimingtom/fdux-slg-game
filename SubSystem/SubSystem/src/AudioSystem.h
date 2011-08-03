@@ -4,7 +4,7 @@
 
 #include "GUICommon.h"
 
-#include <bass.h>
+#include <libzplay.h>
 
 #include <MyGUI.h>
 
@@ -26,16 +26,21 @@ public:
 
 	bool stopSample();
 
-	int getErrorCode();
+	std::string getError(bool isStreamError);
 
 	void FrameUpdate();
 
 	std::string mStreamName;
 private:
-	MyGUI::Timer mTimer;
-	HSTREAM mStream;//音频流
-	HSAMPLE mSample;//音效
-	int mVol;
-	bool mInOut;//渐入还是渐出,true为in,false为out
-	int mTickTime;//定时器单次时间
+	libZPlay::ZPlay* mStreamPlayer;
+	libZPlay::ZPlay* mSamplePlayer;
+	//MyGUI::Timer mTimer;
+	//HSTREAM mStream;//音频流
+	//HSAMPLE mSample;//音效
+	//int mVol;
+	//bool mInOut;//渐入还是渐出,true为in,false为out
+	//int mTickTime;//定时器单次时间
+	//std::string mNextMusic;
+	//int mNextTime;
+	//bool mNextLoop;
 };

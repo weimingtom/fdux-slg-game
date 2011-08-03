@@ -65,6 +65,7 @@ GUIStage::~GUIStage(void)
 	{
 		SLWindow->setCallScene(SLWindow);
 	}
+	AudioSystem::getSingletonPtr()->stopStream(1000);
 #endif
 }
 
@@ -122,7 +123,14 @@ void GUIStage::keyPressed(const OIS::KeyEvent &arg )
 	if (arg.key==OIS::KC_LCONTROL)
 	{
 		fastForward(true);
-		
+	}
+	else if(arg.key==OIS::KC_SPACE || arg.key==OIS::KC_RETURN)
+	{
+		if (mCheckMouseDown)
+		{
+			mIsMouseDown=true;
+			mCheckMouseDown=false;
+		}
 	}
 }
 

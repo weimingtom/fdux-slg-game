@@ -348,7 +348,7 @@ extern "C"
 
 		if (!ret)
 		{
-			luaL_error(L, "play music fail:%s,BASS error code:%d", name.c_str(),AudioSystem::getSingletonPtr()->getErrorCode());
+			luaL_error(L, "play music fail:%s,error:%s", name.c_str(),AudioSystem::getSingletonPtr()->getError(true).c_str());
 		}
 		return 1;
 	}
@@ -360,7 +360,7 @@ extern "C"
 
 		if (!ret)
 		{
-			luaL_error(L, "play se fail:%s,BASS error code:%d", name.c_str(),AudioSystem::getSingletonPtr()->getErrorCode());
+			luaL_error(L, "play se fail:%s,error:%s", name.c_str(),AudioSystem::getSingletonPtr()->getError(false).c_str());
 		}
 		return 1;
 	}
