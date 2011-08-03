@@ -278,6 +278,9 @@ void BattleAIState::updateSquadGroup()
 	{
 		if((*sqdite)->IsEliminated())
 			continue;
+		int xxx = 0,yyy = 0;
+		(*sqdite)->getCrood(&xxx,&yyy);
+		Ogre::LogManager::getSingletonPtr()->logMessage(str(boost::format("AI:SquadPos,%1%,%2%,%3%")%(*sqdite)->getId()%xxx%yyy),Ogre::LML_NORMAL);
 		if((*sqdite)->getTeam() == mTeam)
 			continue;
 		if(BattleSquad::getTeamFaction(mTeam) != BattleSquad::getTeamFaction((*sqdite)->getTeam()) && (*sqdite)->viewbyTeam(mTeam) == true)
