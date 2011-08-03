@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/Launcher">
+        <file>Resources/Demo.png</file>
+    </qresource>
+</RCC>
