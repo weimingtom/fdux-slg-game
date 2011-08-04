@@ -36,6 +36,7 @@ public:
 	void setDirection(Direction d,bool isAnim);
 	Direction getDirection();
 	void setFormation(Formation f,bool isAnim);
+	bool isFormationOrDirectionOver();
 	bool isTransformOver();
 	void stopTransform();
 

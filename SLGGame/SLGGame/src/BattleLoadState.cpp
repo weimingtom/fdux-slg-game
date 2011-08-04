@@ -120,7 +120,11 @@ bool BattleLoadState::keyPressed( const OIS::KeyEvent &arg )
 {
 	if (mState==LOADFINISH)
 	{
-		mIsPressKey=true;
+		if (GUISystem::getSingletonPtr()->getScene(SLScene)==NULL)
+		{
+			mIsPressKey=true;
+		}
+		
 		return false;
 	}
 }

@@ -21,7 +21,7 @@ void FormationCutScene::startCutScence()
 
 bool FormationCutScene::endCutScene()
 {
-	return time > 150;
+	return mSquadGraphics->isFormationOrDirectionOver();
 }
 
 void FormationCutScene::skipCutScene()
