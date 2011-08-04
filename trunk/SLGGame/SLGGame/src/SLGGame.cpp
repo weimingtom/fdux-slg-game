@@ -1,7 +1,30 @@
 #include "Core.h"
-//#pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" )
+
+#ifdef NDEBUG
+	#include "CrashRpt.h"
+	#include <tchar.h>
+	#pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" )
+#endif
+
 int main(int argc,char* argv[])
 {
+	#ifdef NDEBUG
+		CR_INSTALL_INFO info;
+		memset(&info, 0, sizeof(CR_INSTALL_INFO));
+		info.cb = sizeof(CR_INSTALL_INFO);             // Size of the structure
+		info.pszAppName = _T("忘却的战场"); // App name
+		info.pszAppVersion = _T("1.0.1");              // App version
+		info.pszEmailSubject = _T("忘却的战场 1.0.1 错误报告"); // Email subject
+		info.pszEmailTo = _T("393441320@qq.com");      // Email recipient address
+
+		// Install crash handlers
+		int nInstResult = crInstall(&info);            
+		assert(nInstResult==0);
+
+		crAddFile2(L"log.txt",L"log.txt",L"Ogre",CR_AF_TAKE_ORIGINAL_FILE);
+		crAddFile2(L"MyGUI.log",L"MyGUI.log",L"Mygui",CR_AF_TAKE_ORIGINAL_FILE);
+	#endif
+
 	bool isFullScene=false;
 	if (argc==1)
 	{
@@ -21,6 +44,12 @@ int main(int argc,char* argv[])
 		return -1;
 	}
 	root.run();
+
+	#ifdef NDEBUG
+		int nUninstRes = crUninstall(); // Uninstall exception handlers
+		assert(nUninstRes==0);
+		nUninstRes;
+	#endif
 
 	return 0;
 }

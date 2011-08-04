@@ -659,6 +659,18 @@ void SquadGraphics::setFormation( Formation f,bool isAnim )
 	}
 }
 
+bool SquadGraphics::isFormationOrDirectionOver()
+{
+	if (mNodeAnimationState!=NULL)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
 // void SquadGraphics::handleParticleSystemEvent( ParticleUniverse::ParticleSystem *particleSystem, ParticleUniverse::ParticleUniverseEvent &particleUniverseEvent )
 // {
 // 	if (particleUniverseEvent.componentType==ParticleUniverse::CT_SYSTEM && particleUniverseEvent.eventType==ParticleUniverse::PU_EVT_NO_PARTICLES_LEFT)
