@@ -44,10 +44,10 @@ bool AudioSystem::playStream( std::string name,bool isLoop,int time)
 		mStreamPlayer->GetStreamInfo(&info);
 
 		TStreamTime startTime;
-		startTime.ms=0;
+		mStreamPlayer->GetPosition(&startTime);
 		TStreamTime endTime;
 		endTime=info.Length;
-		if (mStreamPlayer->PlayLoop(tfMillisecond, &startTime, tfMillisecond, &endTime ,99999, 1)==0)
+		if (mStreamPlayer->PlayLoop(tfMillisecond, &startTime, tfMillisecond, &endTime ,9999, 1)==0)
 		{
 			return false;
 		}
@@ -88,6 +88,13 @@ bool AudioSystem::playSample( std::string name,bool isLoop)
 	std::string path=SE_PATH;
 	path+=name;
 
+	TStreamStatus s;
+	mSamplePlayer->GetStatus(&s);
+	if (s.fPlay==1)
+	{
+		mSamplePlayer->Stop();
+	}
+
 	if (mSamplePlayer->OpenFile(path.c_str(),TStreamFormat::sfAutodetect)==0)
 	{
 		return false;
@@ -102,7 +109,7 @@ bool AudioSystem::playSample( std::string name,bool isLoop)
 		startTime.ms=0;
 		TStreamTime endTime;
 		endTime=info.Length;
-		if (mSamplePlayer->PlayLoop(tfMillisecond, &startTime, tfMillisecond, &endTime ,99999, 1)==0)
+		if (mSamplePlayer->PlayLoop(tfMillisecond, &startTime, tfMillisecond, &endTime ,3, 1)==0)
 		{
 			return false;
 		}
@@ -126,7 +133,12 @@ bool AudioSystem::playSample( std::string name,bool isLoop)
 
 void AudioSystem::FrameUpdate()
 {
-
+	TStreamStatus s;
+	mStreamPlayer->GetStatus(&s);
+	if (s.nLoop!=0 && s.fPlay==0)
+	{
+		mStreamPlayer->Play();
+	}
 }
 
 std::string AudioSystem::getError(bool isStreamError)
