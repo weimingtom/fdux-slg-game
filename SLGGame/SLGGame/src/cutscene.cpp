@@ -7,7 +7,7 @@ CutScene::CutScene(unsigned int lasttime)
 {
 	mLastTime = lasttime;
 	mStarted = false;
-	mEnded = false;;
+	mEnded = false;
 	mNextScene = 0;
 	mPassedTime = 0;
 }
@@ -75,7 +75,7 @@ bool CutScene::endthis()
 }
 void CutScene::update(unsigned int deltaTime)
 {
-	if(!endthis())
+	if(!mEnded)
 	{
 		if(mLastTime > 0)
 		{
