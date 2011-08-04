@@ -232,7 +232,7 @@ void BattleAIState::newTurn()
 			if(!added)
 			{
 				SquadGroup* squadgroup = new SquadGroup((*ite));
-				mEnemySquadGroup.insert(SquadGroupMap::value_type(++mEnmeySquadGroupId,squadgroup));
+				mEnemySquadGroup.insert(SquadGroupMap::value_type(mEnmeySquadGroupId++,squadgroup));
 			}
 		}
 	}
@@ -308,7 +308,7 @@ void BattleAIState::updateSquadGroup()
 				if(!added)
 				{
 					SquadGroup* squadgroup = new SquadGroup((*sqdite));
-					mEnemySquadGroup.insert(SquadGroupMap::value_type(++mEnmeySquadGroupId,squadgroup));
+					mEnemySquadGroup.insert(SquadGroupMap::value_type(mEnmeySquadGroupId++,squadgroup));
 				}
 			}
 		}
@@ -723,6 +723,7 @@ bool BattleAIState::executeGroupAI()
 
 bool BattleAIState::executeSquadAI(BattleSquad* squad,unsigned int missionid)
 {
+	Ogre::LogManager::getSingletonPtr()->logMessage(str(boost::format("AI:%1%,APLeft,%2%")%squad->getId()%squad->getActionPoint()),Ogre::LML_NORMAL);
 	if(squad->getActionPoint() < 2.0f)
 	{
 		MissionIte missionite = mMissionMap.find(missionid);
