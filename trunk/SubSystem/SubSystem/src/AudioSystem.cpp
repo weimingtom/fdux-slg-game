@@ -3,11 +3,11 @@
 #define BGM_PATH "..\\media\\bgm\\"
 #define SE_PATH "..\\media\\sound\\"
 
-using namespace libZPlay;
-
 #ifndef SCRIPT_EDITOR
 #include "Framerate.h"
 #endif
+
+using namespace audiere;
 
 AudioSystem::AudioSystem(void):mStreamName("none")//:mVol(-1),mStream(0),mSample(0),mStreamName("none"),mNextMusic("none"),mNextTime(0),mNextLoop(true)
 {
@@ -16,14 +16,15 @@ AudioSystem::AudioSystem(void):mStreamName("none")//:mVol(-1),mStream(0),mSample
 
 AudioSystem::~AudioSystem(void)
 {
-	mStreamPlayer->Release();
-	mSamplePlayer->Release();
+
 }
 
 bool AudioSystem::init()
 {
-	mStreamPlayer = CreateZPlay();
-	mSamplePlayer=CreateZPlay();
+	mDevice=OpenDevice();
+	if (!mDevice) {
+		return false;
+	}
 	return true;
 }
 
@@ -33,54 +34,17 @@ bool AudioSystem::playStream( std::string name,bool isLoop,int time)
 	path+=name;
 	mStreamName=name;
 
-	if (mStreamPlayer->OpenFile(path.c_str(),TStreamFormat::sfAutodetect)==0)
-	{
-		return false;
-	}
-
-	if (isLoop)
-	{
-		TStreamInfo info;
-		mStreamPlayer->GetStreamInfo(&info);
-
-		TStreamTime startTime;
-		mStreamPlayer->GetPosition(&startTime);
-		TStreamTime endTime;
-		endTime=info.Length;
-		if (mStreamPlayer->PlayLoop(tfMillisecond, &startTime, tfMillisecond, &endTime ,9999, 1)==0)
-		{
-			return false;
-		}
-	}
-	else
-	{
-		if(mStreamPlayer->Play()==0)
-		{
-			return false;
-		}
-	}
-
-	if (time!=0)
-	{
-		TStreamTime start;
-		TStreamTime end;
-		mStreamPlayer->GetPosition(&start);
-		end.ms = start.ms + time;
-
-		mStreamPlayer->SlideVolume(tfMillisecond, &start, 0,0, tfMillisecond, &end, 100,100);
-	}
+	mStream=OpenSound(mDevice, path.c_str(), true);
+	mStream->setRepeat(isLoop);
+	mStream->play();
 
 	return true;
 }
 
 bool AudioSystem::stopStream(int time)
 {
-	TStreamTime start;
-	TStreamTime end;
-	mStreamPlayer->GetPosition(&start);
-	end.ms = start.ms + time;
-
-	return mStreamPlayer->SlideVolume(tfMillisecond, &start, 100,100, tfMillisecond, &end, 0,0);
+	mStream->stop();
+	return true;
 }
 
 bool AudioSystem::playSample( std::string name,bool isLoop)
@@ -88,72 +52,25 @@ bool AudioSystem::playSample( std::string name,bool isLoop)
 	std::string path=SE_PATH;
 	path+=name;
 
-	TStreamStatus s;
-	mSamplePlayer->GetStatus(&s);
-	if (s.fPlay==1)
-	{
-		mSamplePlayer->Stop();
-	}
+	mSample=OpenSound(mDevice, path.c_str(), false);
+	mSample->setRepeat(isLoop);
+	mSample->play();
 
-	if (mSamplePlayer->OpenFile(path.c_str(),TStreamFormat::sfAutodetect)==0)
-	{
-		return false;
-	}
-
-	if (isLoop)
-	{
-		TStreamInfo info;
-		mSamplePlayer->GetStreamInfo(&info);
-
-		TStreamTime startTime;
-		startTime.ms=0;
-		TStreamTime endTime;
-		endTime=info.Length;
-		if (mSamplePlayer->PlayLoop(tfMillisecond, &startTime, tfMillisecond, &endTime ,3, 1)==0)
-		{
-			return false;
-		}
-		else
-		{
-			return true;
-		}
-	}
-	else
-	{
-		if(mSamplePlayer->Play()==0)
-		{
-			return false;
-		}
-		else
-		{
-			return true;
-		}
-	}
+	return true;
 }
 
 void AudioSystem::FrameUpdate()
 {
-	TStreamStatus s;
-	mStreamPlayer->GetStatus(&s);
-	if (s.nLoop!=0 && s.fPlay==0)
-	{
-		mStreamPlayer->Play();
-	}
+
 }
 
 std::string AudioSystem::getError(bool isStreamError)
 {
-	if (isStreamError)
-	{
-		return std::string(mStreamPlayer->GetError());
-	}
-	else
-	{
-		return std::string(mSamplePlayer->GetError());
-	}
+	return "";
 }
 
 bool AudioSystem::stopSample()
 {
-	return mSamplePlayer->Stop();
+	mSample->stop();
+	return true;
 }

@@ -4,7 +4,7 @@
 
 #include "GUICommon.h"
 
-#include <libzplay.h>
+#include <audiere.h>
 
 #include <MyGUI.h>
 
@@ -32,8 +32,9 @@ public:
 
 	std::string mStreamName;
 private:
-	libZPlay::ZPlay* mStreamPlayer;
-	libZPlay::ZPlay* mSamplePlayer;
+	audiere::AudioDevicePtr mDevice;
+	audiere::OutputStreamPtr mStream;
+	audiere::OutputStreamPtr mSample;
 	//MyGUI::Timer mTimer;
 	//HSTREAM mStream;//“Ù∆µ¡˜
 	//HSAMPLE mSample;//“Ù–ß
