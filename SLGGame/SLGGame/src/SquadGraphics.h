@@ -6,6 +6,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 #include "squaddefine.h"
 
@@ -52,7 +53,7 @@ public:
 
 	void setScale(Ogre::Vector3 scale,bool isAnim);
 
-	void setDeath();
+	void setDeath(int num);
 	void setRecover(int num);
 	bool isDeathOver();
 	bool isRecoverOver();
@@ -133,8 +134,7 @@ private:
 		moveUnit,
 		resetAni
 	};
-	UnitGrap* mDeathUnit;
-	UnitGrap* mReliefUnit;
+	std::map<UnitGrap*,UnitGrap*> mDeathUnits;
 	std::string mReliefAniName;
 	bool mReliefAniLoop;
 	DeathStep mDeathStep;

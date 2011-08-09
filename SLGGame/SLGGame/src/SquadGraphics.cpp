@@ -1,6 +1,7 @@
 #include "SquadGraphics.h"
 
 #include <stdlib.h>
+#include <set>
 #include <time.h>
 
 #include "Core.h"
@@ -30,8 +31,6 @@ mID(index),
 // mPUSystemEnd(false),
 mNodeAnimation(NULL),
 mNodeAnimationState(NULL),
-mDeathUnit(NULL),
-mReliefUnit(NULL),
 mSoldierIndex(0),
 mFormation(f),
 mDirection(direction)
@@ -337,16 +336,16 @@ bool SquadGraphics::isTransformOver()
 
 void SquadGraphics::stopTransform()
 {
-	if (mNodeAnimation!=NULL)
+	if (mNodeAnimationState!=NULL)
 	{
-		mSceneMgr->destroyAnimationState(mNode->getName()+"_Ani");
+		mSceneMgr->destroyAnimationState(mNodeAnimationState->getAnimationName());
 		mNodeAnimationState=NULL;
 		
 	}
 	
 	if (mNodeAnimation!=NULL)
 	{
-		mSceneMgr->destroyAnimation(mNode->getName()+"_Ani");
+		mSceneMgr->destroyAnimation(mNodeAnimation->getName());
 		mNodeAnimation=NULL;
 	}
 
@@ -874,63 +873,94 @@ void SquadGraphics::setWeaponMode( WeaponMode mode )
 	}
 }
 
-void SquadGraphics::setDeath()
+void SquadGraphics::setDeath(int num)
 {
 	if (mSoldierUnits.size()!=0)//还有士兵?
 	{
 		//随机选择
-		int i;
-		if (mSoldierUnits.size()!=1)
+		if (mSoldierUnits.size()!=num)
 		{
-			i=rand()%(mSoldierUnits.size()-1);
+			std::set<int> s;
+			while(1)
+			{
+				int r = rand()%(mSoldierUnits.size()-1);
+				s.insert(r);
+				if(s.size() == num)
+				{
+					break;
+				}
+			}
+			
+			UnitGrap* reliefUnit=NULL;
+			for (std::set<int>::iterator it=s.begin();it!=s.end();it++)
+			{
+				reliefUnit=NULL;
+				if (mSoldierUnits.at((*it))->mFormationPosition<2)//如果是前排?
+				{
+					int findF;//确定士兵队伍里面还有没有替补?
+					if (mSoldierUnits.at((*it))->mFormationPosition==0)
+					{
+						if (s.find(3)==s.end())
+						{
+							findF=3;
+						}
+						else
+						{
+							findF=-1;
+						}
+					}
+					else
+					{						
+						if (s.find(3)==s.end())
+						{
+							findF=2;
+						}
+						else
+						{
+							findF=-1;
+						}
+					}
+					
+					for (std::vector<UnitGrap*>::iterator itt=mSoldierUnits.begin();itt!=mSoldierUnits.end();itt++)
+					{
+						if ((*itt)->mFormationPosition==findF)
+						{
+							reliefUnit=(*itt);
+						}
+					}
+
+					if (reliefUnit!=NULL)//如果找到了替补队员
+					{
+						reliefUnit->mFormationPosition=mSoldierUnits.at((*it))->mFormationPosition;
+						reliefUnit->mOffsetX=mSoldierUnits.at((*it))->mOffsetX;
+						reliefUnit->mOffsetY=mSoldierUnits.at((*it))->mOffsetY;
+					}
+				}
+
+				mDeathUnits[mSoldierUnits.at((*it))]=reliefUnit;
+			}
+
 		}
 		else
 		{
-			i=0;
-		}
-
-		mDeathUnit=mSoldierUnits.at(i);
-
-		mReliefUnit=NULL;
-
-		if (mDeathUnit->mFormationPosition<2)//如果是前排?
-		{
-			int findF;//确定士兵队伍里面还有没有替补?
-			if (i==0)
-			{
-				findF=3;
-			}
-			else
-			{
-				findF=2;
-			}
-			
 			for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 			{
-				if ((*it)->mFormationPosition==findF)
-				{
-					mReliefUnit=(*it);
-				}
+				mDeathUnits[(*it)]=NULL;
 			}
-
-			if (mReliefUnit!=NULL)//如果找到了替补队员
-			{
-				mReliefUnit->mFormationPosition=mDeathUnit->mFormationPosition;
-				mReliefUnit->mOffsetX=mDeathUnit->mOffsetX;
-				mReliefUnit->mOffsetY=mDeathUnit->mOffsetY;
-			}
-
 		}
 
 	}
 	else
 	{
-		mDeathUnit=mCommanderUnit;
-		mReliefUnit=NULL;
+		mDeathUnits[mCommanderUnit]=NULL;
 	}
 
-	//执行死亡动画
-	mDeathUnit->setAnimation(mDeathUnit->mDeathName,false,false);
+	for (std::map<UnitGrap*,UnitGrap*>::iterator it=mDeathUnits.begin();it!=mDeathUnits.end();it++)
+	{
+		//执行死亡动画
+		it->first->setAnimation(it->first->mDeathName,false,false);
+	}
+
 	mDeathStep=playAni;
 
 }
@@ -942,56 +972,64 @@ void SquadGraphics::doDeathStep()
 	case playAni:
 		{
 			//等待死亡动画结束
-			if (mDeathUnit->mAniBlender->complete)
-			{
-				mDeathStep=changeMat;
-				mDeathUnit->setFadeInOut(false);
-			}
-
-			break;
-		}
-	case changeMat:
-		{
-			if (mReliefUnit!=NULL)//需要替补?
+			if (mDeathUnits.begin()->first->mAniBlender->complete)
 			{
 				mDeathStep=moveUnit;
 			}
-			else
-			{
-				mDeathStep=resetAni;//终止
-			}
+
 			break;
 		}
+	//case changeMat://废弃
+	//	{
+	//		if (mReliefUnit!=NULL)//需要替补?
+	//		{
+	//			mDeathStep=moveUnit;
+	//		}
+	//		else
+	//		{
+	//			mDeathStep=resetAni;//终止
+	//		}
+	//		break;
+	//	}
 	case moveUnit:
 		{
-			mReliefAniName=mReliefUnit->mAniBlender->getSource()->getAnimationName();
-			mReliefAniLoop=mReliefUnit->mAniBlender->getSource()->getLoop();
-			
-			//设置节点动画
-			mNodeAnimation = mSceneMgr->createAnimation(mNode->getName()+"_Ani", RELIEF_MOVE_TIME);
-			mNodeAnimation->setInterpolationMode(Ogre::Animation::IM_LINEAR);
-			Ogre::NodeAnimationTrack* track = mNodeAnimation->createNodeTrack(1, mReliefUnit->mNode);
+			int i=0;
+			for (std::map<UnitGrap*,UnitGrap*>::iterator it=mDeathUnits.begin();it!=mDeathUnits.end();it++)
+			{
+				if (it->second!=NULL)
+				{
+					mReliefAniName=it->second->mAniBlender->getSource()->getAnimationName();
+					mReliefAniLoop=it->second->mAniBlender->getSource()->getLoop();
+					
+					//设置节点动画
+					mNodeAnimation = mSceneMgr->createAnimation(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i), RELIEF_MOVE_TIME);
+					mNodeAnimation->setInterpolationMode(Ogre::Animation::IM_LINEAR);
+					Ogre::NodeAnimationTrack* track = mNodeAnimation->createNodeTrack(1, it->second->mNode);
 
-			Ogre::TransformKeyFrame* kf = track->createNodeKeyFrame(0);
-			kf->setTranslate( mReliefUnit->mNode->getPosition());
-			kf->setRotation( mReliefUnit->mNode->getOrientation());
-			kf->setScale(mReliefUnit->mNode->getScale());
+					Ogre::TransformKeyFrame* kf = track->createNodeKeyFrame(0);
+					kf->setTranslate( it->second->mNode->getPosition());
+					kf->setRotation( it->second->mNode->getOrientation());
+					kf->setScale(it->second->mNode->getScale());
 
-			kf = track->createNodeKeyFrame(RELIEF_MOVE_TIME);
-			kf->setTranslate(mDeathUnit->mNode->getPosition());
-			kf->setRotation(mReliefUnit->mNode->getOrientation());
-			kf->setScale( mReliefUnit->mNode->getScale());
+					kf = track->createNodeKeyFrame(RELIEF_MOVE_TIME);
+					kf->setTranslate(it->first->mNode->getPosition());
+					kf->setRotation(it->second->mNode->getOrientation());
+					kf->setScale( it->second->mNode->getScale());
 
-			mNodeAnimationState = mSceneMgr->createAnimationState(mNode->getName()+"_Ani");
+					mNodeAnimationState = mSceneMgr->createAnimationState(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i));
 
-			//setCheckUnitHeight(true);
-			mNodeAnimationState->setLoop(false);
-			mNodeAnimationState->setEnabled(true);
+					//setCheckUnitHeight(true);
+					mNodeAnimationState->setLoop(false);
+					mNodeAnimationState->setEnabled(true);
 
-			mReturnInitAni=false;
+					mReturnInitAni=false;
 
-			//设置跑步动画
-			mReliefUnit->setAnimation(mReliefUnit->mWalkName,true,false);
+					//设置跑步动画
+					it->second->setAnimation(it->second->mWalkName,true,false);
+					i++;
+				}
+
+			}
 			
 			mDeathStep=resetAni;
 
@@ -1001,33 +1039,42 @@ void SquadGraphics::doDeathStep()
 		{
 			if (mNodeAnimation==NULL)
 			{
-				if(mReliefUnit!=NULL)
+				int i=0;
+				for (std::map<UnitGrap*,UnitGrap*>::iterator it=mDeathUnits.begin();it!=mDeathUnits.end();it++)
 				{
-					//回复原来动画
-					mReliefUnit->setAnimation(mReliefAniName,mReliefAniLoop,false);
-					mReliefUnit=NULL;
-				}
-				
-				if (mDeathUnit->mAlpha==-1)
-				{
-					//移除单位
-					for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+					if(it->second!=NULL)
 					{
-						if ((*it)==mDeathUnit)
+						//回复原来动画
+						it->second->setAnimation(mReliefAniName,mReliefAniLoop,false);
+					}
+					
+					//移除单位
+					for (std::vector<UnitGrap*>::iterator itt=mSoldierUnits.begin();itt!=mSoldierUnits.end();itt++)
+					{
+						if ((*itt)==it->first)
 						{
-							mSoldierUnits.erase(it);
+							mSoldierUnits.erase(itt);
 							break;
 						}
 					}
 
-					if (mDeathUnit==mCommanderUnit)
+					if (it->first==mCommanderUnit)
 					{
 						mCommanderUnit=NULL;
 					}
 
-					delete mDeathUnit;
-					mDeathUnit=NULL;
+					delete it->first;
+					if(mSceneMgr->hasAnimation(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i)))
+					{
+						mSceneMgr->destroyAnimation(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i));
+						mSceneMgr->destroyAnimationState(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i));
+					}
+					i++;
 				}
+
+				mDeathUnits.clear();
+				
+				
 			}
 			break;
 		}
@@ -1036,32 +1083,47 @@ void SquadGraphics::doDeathStep()
 
 void SquadGraphics::stopDeath()
 {
-	if (mReliefUnit!=NULL)
+	stopTransform();
+
+	int i=0;
+
+	for (std::map<UnitGrap*,UnitGrap*>::iterator it=mDeathUnits.begin();it!=mDeathUnits.end();it++)
 	{
-		if (mNodeAnimation!=NULL)
+		if (it->second!=NULL)
 		{
-			stopTransform();
+			it->second->mNode->setPosition(it->first->mNode->getPosition());
 		}
 
-		mReliefUnit->mNode->setPosition(mDeathUnit->mNode->getPosition());
-	}
-
-	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
-	{
-		if ((*it)==mDeathUnit)
+		//移除单位
+		for (std::vector<UnitGrap*>::iterator itt=mSoldierUnits.begin();itt!=mSoldierUnits.end();itt++)
 		{
-			mSoldierUnits.erase(it);
-			break;
+			if ((*itt)==it->first)
+			{
+				mSoldierUnits.erase(itt);
+				break;
+			}
 		}
+
+		if (it->first==mCommanderUnit)
+		{
+			mCommanderUnit=NULL;
+		}
+
+		delete it->first;
+		if(mSceneMgr->hasAnimation(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i)))
+		{
+			mSceneMgr->destroyAnimation(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i));
+			mSceneMgr->destroyAnimationState(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i));
+		}
+		i++;
 	}
 
-	delete mDeathUnit;
-	mDeathUnit=NULL;
+	mDeathUnits.clear();
 }
 
 bool SquadGraphics::isDeathOver()
 {
-	if (mDeathUnit!=NULL)
+	if (mDeathUnits.size()!=0)
 	{
 		return false;
 	}
@@ -1132,7 +1194,7 @@ void SquadGraphics::setRecover(int num)
 
 void SquadGraphics::update( unsigned int deltaTime )
 {
-	if (mDeathUnit!=NULL)
+	if (mDeathUnits.size()!=0)
 	{
 		doDeathStep();
 	}

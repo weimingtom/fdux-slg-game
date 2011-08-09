@@ -142,7 +142,7 @@ void GUIPUDebug::onDeath( MyGUI::Widget* _sender )
 	if(Ogre::StringConverter::parseInt(mSquadID->getOnlyText())!=0)
 	{
 
-		SquadGrapManager::getSingletonPtr()->getSquad(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()))->setDeath();
+		SquadGrapManager::getSingletonPtr()->getSquad(Ogre::StringConverter::parseInt(mSquadID->getOnlyText()))->setDeath(1);
 	}
 }
 

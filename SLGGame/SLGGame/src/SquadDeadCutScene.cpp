@@ -6,7 +6,6 @@ SquadDeadCutScene::SquadDeadCutScene(unsigned int squadgpid,int deadnum)
 {
 	mSquad=SquadGrapManager::getSingletonPtr()->getSquad(squadgpid);
 	mDeadNum = deadnum;
-	mCurNum = -1;
 }
 SquadDeadCutScene::~SquadDeadCutScene()
 {
@@ -14,24 +13,17 @@ SquadDeadCutScene::~SquadDeadCutScene()
 }
 void SquadDeadCutScene::startCutScence()
 {
-
+	mSquad->setDeath(mDeadNum);
 }
 bool SquadDeadCutScene::endCutScene()
 {
-	return mCurNum == mDeadNum;
+	return mSquad->isDeathOver();
 }
 void SquadDeadCutScene::skipCutScene()
 {
-
+	mSquad->stopDeath();
 }
 void SquadDeadCutScene::updateCutScene(unsigned int deltaTime)
 {
-	if(mSquad->isDeathOver())
-	{
-		mCurNum++;
-		if(mCurNum < mDeadNum)
-		{
-			mSquad->setDeath();
-		}
-	}
+
 }

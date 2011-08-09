@@ -22,6 +22,7 @@ MoveCutScene::MoveCutScene(unsigned int id,std::vector<Ogre::Vector2>& grids,Ogr
 	{
 		//取得当前位置与目标格的差值
 		Ogre::Vector2 diffGrid=(*it)-current;
+		Ogre::Vector3 position;
 		
 		//确定位置
 		float wx=0,wy=0,height=0;
@@ -34,7 +35,8 @@ MoveCutScene::MoveCutScene(unsigned int id,std::vector<Ogre::Vector2>& grids,Ogr
 			Ogre::Vector3 v(wx,height,wy);
 			mEndPosition.x=(*it).x;
 			mEndPosition.y=(*it).y;
-			vectors[index]=v;
+			position=v;
+			
 		}
 		else
 		{
@@ -42,7 +44,7 @@ MoveCutScene::MoveCutScene(unsigned int id,std::vector<Ogre::Vector2>& grids,Ogr
 			//height=Terrain::getSingletonPtr()->getHeight(wx,wy);
 
 			Ogre::Vector3 v(wx+diffGrid.x*(TILESIZE),height,wy+diffGrid.y*(TILESIZE));
-			vectors[index]=v;
+			position=v;
 		}
 		
 		//确定方向
@@ -68,11 +70,16 @@ MoveCutScene::MoveCutScene(unsigned int id,std::vector<Ogre::Vector2>& grids,Ogr
 			mDirection=East;
 		}
 		
+
+		//记录位置
 		quaternions[index]=q;
+		
+		vectors[index]=position;
 
 		directions[index]=mDirection;
 		
 		current=(*it);
+
 		index++;
 	}
 

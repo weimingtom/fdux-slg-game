@@ -16,5 +16,4 @@ private:
 
 	SquadGraphics* mSquad;
 	int mDeadNum;
-	int mCurNum;
 };
