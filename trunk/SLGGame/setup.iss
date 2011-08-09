@@ -37,15 +37,15 @@ Source: "F:\C++\SLGGame\Demo\*"; DestDir: "{app}"; Flags: ignoreversion recurses
 ; 注意: 不要在任何共享系统文件上使用“Flags: ignoreversion”
 
 [Icons]
-Name: {group}\{#MyAppName}; Filename: {app}\Release\{#MyAppExeName}; WorkingDir: {app}\Release;
+Name: {group}\{#MyAppName}启动器; Filename: {app}\Release\Launcher.exe; WorkingDir: {app}\Release; 
+Name: {group}\{#MyAppName}; Filename: {app}\Release\{#MyAppExeName}; WorkingDir: {app}\Release; 
 Name: {group}\{#MyAppName}(全屏模式); Filename: "{app}\Release\{#MyAppExeName}";Parameters:"-FullScene"; WorkingDir: {app}\Release;
 Name: {group}\游戏手册; Filename: {app}\游戏手册.doc; WorkingDir: {app}; 
 Name: {group}\ReadMe; Filename: {app}\readme不看木小JJ.txt; WorkingDir: {app}\; 
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
-Name: {userdesktop}\{#MyAppName}; Filename: {app}\Release\{#MyAppExeName}; WorkingDir: {app}\Release;
-Name: {userdesktop}\{#MyAppName}(全屏模式); Filename: "{app}\Release\{#MyAppExeName}";Parameters:"-FullScene"; WorkingDir: {app}\Release;
+Name: {userdesktop}\{#MyAppName}; Filename: {app}\Release\Launcher.exe; WorkingDir: {app}\Release; 
 
 [Run]
 Filename: {app}\readme不看木小JJ.txt; Description: "查看显示自述文件"; Flags: postinstall skipifsilent shellexec;
 Filename: {app}\Support\vcredist_x86.exe; Description: "安装VC运行库"; Flags: nowait postinstall skipifsilent; 
-Filename: {app}\Support\DirectX\DXSETUP.exe; Description: "安装DirectX9运行库"; Flags: nowait postinstall skipifsilent; 
+Filename: {app}\Support\DirectX\DXSETUP.exe; Description: "安装DirectX9运行库"; Flags: nowait postinstall skipifsilent;
