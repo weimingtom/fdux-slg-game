@@ -1,0 +1,1020 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1245</width>
+    <height>701</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>场景编辑器</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout_8">
+    <property name="margin">
+     <number>2</number>
+    </property>
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>编辑窗口</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <property name="margin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="IIRenderWindow" name="graphicsView">
+          <property name="minimumSize">
+           <size>
+            <width>640</width>
+            <height>480</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="textEdit"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>地图数据</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_15">
+        <item>
+         <layout class="QFormLayout" name="formLayout">
+          <property name="fieldGrowthPolicy">
+           <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>地图名称</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="mapName"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>队伍1</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <layout class="QHBoxLayout" name="horizontalLayout_12">
+            <item>
+             <widget class="QComboBox" name="team1Relation">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="team1Faction">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>队伍2</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <layout class="QHBoxLayout" name="horizontalLayout_13">
+            <item>
+             <widget class="QComboBox" name="team2Relation"/>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="team2Faction"/>
+            </item>
+           </layout>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>队伍3</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <layout class="QHBoxLayout" name="horizontalLayout_14">
+            <item>
+             <widget class="QComboBox" name="team3Relation"/>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="team3Faction"/>
+            </item>
+           </layout>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string>队伍4</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <layout class="QHBoxLayout" name="horizontalLayout_15">
+            <item>
+             <widget class="QComboBox" name="team4Relation"/>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="team4Faction"/>
+            </item>
+           </layout>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_9">
+            <property name="text">
+             <string>地图脚本</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QLineEdit" name="mapScript"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>地图描述</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="mapInfo"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>数据编辑</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>模组选择</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="modBox"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="addMod">
+            <property name="text">
+             <string>添加模组</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>语言选择</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="langBox"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="addLang">
+            <property name="text">
+             <string>添加语言</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QTabWidget" name="dataTab">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="soldierTab">
+           <attribute name="title">
+            <string>兵源/马匹</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
+              <item>
+               <widget class="QPushButton" name="addSoldier">
+                <property name="text">
+                 <string>新增兵源</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="delSoldier">
+                <property name="text">
+                 <string>删除兵员</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QTableView" name="soldierTableView">
+              <property name="selectionMode">
+               <enum>QAbstractItemView::SingleSelection</enum>
+              </property>
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectRows</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
+              <item>
+               <widget class="QPushButton" name="addHorse">
+                <property name="text">
+                 <string>新增马匹</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="delHorse">
+                <property name="text">
+                 <string>删除马匹</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QTableView" name="horseTableView"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="weaponTab">
+           <attribute name="title">
+            <string>主武器/次武器</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_9">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <widget class="QPushButton" name="addPWeapon">
+                <property name="text">
+                 <string>新增主武器</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="delPWeapon">
+                <property name="text">
+                 <string>删除主武器</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QTableView" name="pweaponTableView"/>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QPushButton" name="addSWeapon">
+                <property name="text">
+                 <string>新增次武器</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="delSWeapon">
+                <property name="text">
+                 <string>删除次武器</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QTableView" name="sweaponTableView"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="armorTab">
+           <attribute name="title">
+            <string>盔甲/盾牌</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_10">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
+              <item>
+               <widget class="QPushButton" name="addArmor">
+                <property name="text">
+                 <string>新增盔甲</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="delArmor">
+                <property name="text">
+                 <string>删除盔甲</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QTableView" name="armorTableView"/>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_8">
+              <item>
+               <widget class="QPushButton" name="addShield">
+                <property name="text">
+                 <string>新增盾牌</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="delShield">
+                <property name="text">
+                 <string>删除盾牌</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QTableView" name="shieldTableView"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="skillTab">
+           <attribute name="title">
+            <string>效果/技能</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_11">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_10">
+              <item>
+               <widget class="QPushButton" name="addEffect">
+                <property name="text">
+                 <string>新增效果</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="delEffect">
+                <property name="text">
+                 <string>删除效果</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QTableView" name="effectTableView"/>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_11">
+              <item>
+               <widget class="QPushButton" name="addSkill">
+                <property name="text">
+                 <string>新增技能</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="delSkill">
+                <property name="text">
+                 <string>删除技能</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QTableView" name="skillTableView"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="squadTab">
+           <attribute name="title">
+            <string>小队</string>
+           </attribute>
+           <layout class="QHBoxLayout" name="horizontalLayout_9">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_12">
+              <item>
+               <widget class="QListView" name="squadListView"/>
+              </item>
+              <item>
+               <widget class="QPushButton" name="addSquad">
+                <property name="text">
+                 <string>增加小队</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="delSquad">
+                <property name="text">
+                 <string>删除小队</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTableView" name="squadTableView"/>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_13">
+              <item>
+               <widget class="QTableView" name="squadEquipTableView"/>
+              </item>
+              <item>
+               <widget class="QTableView" name="squadSkillTableView"/>
+              </item>
+              <item>
+               <widget class="QPushButton" name="addSquadSkill">
+                <property name="text">
+                 <string>增加技能</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="delSquadSkill">
+                <property name="text">
+                 <string>删除技能</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="stringTab">
+           <attribute name="title">
+            <string>字符串表</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_14">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <item>
+               <widget class="QPushButton" name="addString">
+                <property name="text">
+                 <string>增加字符串</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="delString">
+                <property name="text">
+                 <string>删除字符串</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QTableView" name="stringTableView"/>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>战斗模拟</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1245</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>实体</string>
+    </property>
+    <addaction name="Open_action"/>
+    <addaction name="Save_action"/>
+   </widget>
+   <widget class="QMenu" name="menuDix">
+    <property name="title">
+     <string>地形</string>
+    </property>
+    <addaction name="NewTerrain_action"/>
+    <addaction name="LoadTerrain_action"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>摄像机</string>
+    </property>
+    <widget class="QMenu" name="menu_3">
+     <property name="title">
+      <string>显示模式</string>
+     </property>
+     <addaction name="PM_POINTS_action"/>
+     <addaction name="PM_WIREFRAME_action"/>
+     <addaction name="PM_SOLID_action"/>
+    </widget>
+    <addaction name="menu_3"/>
+   </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>地图</string>
+    </property>
+    <addaction name="saveMap"/>
+    <addaction name="loadMap"/>
+   </widget>
+   <addaction name="menu_4"/>
+   <addaction name="menu"/>
+   <addaction name="menuDix"/>
+   <addaction name="menu_2"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="NewTerrain_action"/>
+   <addaction name="LoadTerrain_action"/>
+   <addaction name="separator"/>
+   <addaction name="Move_action"/>
+   <addaction name="Rotate_action"/>
+   <addaction name="Scale_action"/>
+   <addaction name="separator"/>
+   <addaction name="MoveLock_action"/>
+   <addaction name="ScaleLock_action"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QDockWidget" name="dockWidget">
+   <property name="floating">
+    <bool>false</bool>
+   </property>
+   <property name="features">
+    <set>QDockWidget::AllDockWidgetFeatures</set>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::AllDockWidgetAreas</set>
+   </property>
+   <property name="windowTitle">
+    <string>场景对象管理</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <property name="margin">
+      <number>2</number>
+     </property>
+     <item>
+      <widget class="QToolBar" name="toolBar">
+       <property name="windowTitle">
+        <string>toolBar</string>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonIconOnly</enum>
+       </property>
+       <addaction name="NewObjectGroup_action"/>
+       <addaction name="RemoveObjectGroup_action"/>
+       <addaction name="separator"/>
+       <addaction name="RemovObject_action"/>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTreeView" name="treeView_2"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dockWidget_3">
+   <property name="minimumSize">
+    <size>
+     <width>328</width>
+     <height>200</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>524287</width>
+     <height>200</height>
+    </size>
+   </property>
+   <property name="windowTitle">
+    <string>地形工具箱</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_3">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>9</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QCheckBox" name="checkBox">
+       <property name="text">
+        <string>启用地形编辑</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>地表:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QListWidget" name="listWidget">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dockWidget_2">
+   <property name="windowTitle">
+    <string>实体总汇</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_2">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="margin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QToolBar" name="toolBar5">
+       <property name="windowTitle">
+        <string>toolBar</string>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonIconOnly</enum>
+       </property>
+       <addaction name="AddEntity_action"/>
+       <addaction name="RemovEntity_action"/>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTreeView" name="treeView">
+       <property name="dragEnabled">
+        <bool>false</bool>
+       </property>
+       <property name="dragDropMode">
+        <enum>QAbstractItemView::NoDragDrop</enum>
+       </property>
+       <property name="defaultDropAction">
+        <enum>Qt::IgnoreAction</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dockWidget_4">
+   <property name="windowTitle">
+    <string>属性</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_4">
+    <layout class="QVBoxLayout" name="verticalLayout_4">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>9</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QTableWidget" name="tableWidget">
+       <attribute name="horizontalHeaderVisible">
+        <bool>true</bool>
+       </attribute>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>120</number>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dockWidget_5">
+   <property name="windowTitle">
+    <string>区域列表</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_5">
+    <layout class="QVBoxLayout" name="verticalLayout_16">
+     <item>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="addArea">
+         <property name="text">
+          <string>添加区域</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="delArea">
+         <property name="text">
+          <string>删除区域</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QPushButton" name="addCoord">
+         <property name="text">
+          <string>添加坐标</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="delCoord">
+         <property name="text">
+          <string>删除坐标</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QPushButton" name="cancelArea">
+         <property name="text">
+          <string>取消选择</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QListView" name="areaListView"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <action name="AddEntity_action">
+   <property name="icon">
+    <iconset resource="../warchess.qrc">
+     <normaloff>:/WarChess/Resources/edit_add.png</normaloff>:/WarChess/Resources/edit_add.png</iconset>
+   </property>
+   <property name="text">
+    <string>添加实体</string>
+   </property>
+  </action>
+  <action name="RemovEntity_action">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../warchess.qrc">
+     <normaloff>:/WarChess/Resources/edit_remove.png</normaloff>:/WarChess/Resources/edit_remove.png</iconset>
+   </property>
+   <property name="text">
+    <string>移除实体</string>
+   </property>
+  </action>
+  <action name="Open_action">
+   <property name="icon">
+    <iconset resource="../warchess.qrc">
+     <normaloff>:/WarChess/Resources/fileopen (2).png</normaloff>:/WarChess/Resources/fileopen (2).png</iconset>
+   </property>
+   <property name="text">
+    <string>加载实体文件</string>
+   </property>
+  </action>
+  <action name="Save_action">
+   <property name="icon">
+    <iconset resource="../warchess.qrc">
+     <normaloff>:/WarChess/Resources/linguist-filesave (1).png</normaloff>:/WarChess/Resources/linguist-filesave (1).png</iconset>
+   </property>
+   <property name="text">
+    <string>保存实体文件</string>
+   </property>
+  </action>
+  <action name="LoadTerrain_action">
+   <property name="icon">
+    <iconset resource="../warchess.qrc">
+     <normaloff>:/WarChess/Resources/textanchor.png</normaloff>:/WarChess/Resources/textanchor.png</iconset>
+   </property>
+   <property name="text">
+    <string>加载地形</string>
+   </property>
+  </action>
+  <action name="NewTerrain_action">
+   <property name="icon">
+    <iconset resource="../warchess.qrc">
+     <normaloff>:/WarChess/Resources/desktop-32.png</normaloff>:/WarChess/Resources/desktop-32.png</iconset>
+   </property>
+   <property name="text">
+    <string>新建地形</string>
+   </property>
+  </action>
+  <action name="PM_POINTS_action">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>点</string>
+   </property>
+  </action>
+  <action name="PM_WIREFRAME_action">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>网格</string>
+   </property>
+  </action>
+  <action name="PM_SOLID_action">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>面</string>
+   </property>
+  </action>
+  <action name="NewObjectGroup_action">
+   <property name="icon">
+    <iconset resource="../warchess.qrc">
+     <normaloff>:/WarChess/Resources/addGroup.png</normaloff>:/WarChess/Resources/addGroup.png</iconset>
+   </property>
+   <property name="text">
+    <string>新建组</string>
+   </property>
+  </action>
+  <action name="RemoveObjectGroup_action">
+   <property name="icon">
+    <iconset resource="../warchess.qrc">
+     <normaloff>:/WarChess/Resources/removeGroup.png</normaloff>:/WarChess/Resources/removeGroup.png</iconset>
+   </property>
+   <property name="text">
+    <string>移除组</string>
+   </property>
+  </action>
+  <action name="RemovObject_action">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../warchess.qrc">
+     <normaloff>:/WarChess/Resources/edit_remove.png</normaloff>:/WarChess/Resources/edit_remove.png</iconset>
+   </property>
+   <property name="text">
+    <string>移除实体</string>
+   </property>
+  </action>
+  <action name="Move_action">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../warchess.qrc">
+     <normaloff>:/WarChess/Resources/sizeall.png</normaloff>:/WarChess/Resources/sizeall.png</iconset>
+   </property>
+   <property name="text">
+    <string>Move</string>
+   </property>
+  </action>
+  <action name="Rotate_action">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../warchess.qrc">
+     <normaloff>:/WarChess/Resources/refresh-32.png</normaloff>:/WarChess/Resources/refresh-32.png</iconset>
+   </property>
+   <property name="text">
+    <string>rotate</string>
+   </property>
+  </action>
+  <action name="Scale_action">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../warchess.qrc">
+     <normaloff>:/WarChess/Resources/adjustsize.png</normaloff>:/WarChess/Resources/adjustsize.png</iconset>
+   </property>
+   <property name="text">
+    <string>Scale</string>
+   </property>
+  </action>
+  <action name="MoveLock_action">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../warchess.qrc">
+     <normaloff>:/WarChess/Resources/sizeall-lock.png</normaloff>:/WarChess/Resources/sizeall-lock.png</iconset>
+   </property>
+   <property name="text">
+    <string>moveLock</string>
+   </property>
+  </action>
+  <action name="ScaleLock_action">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../warchess.qrc">
+     <normaloff>:/WarChess/Resources/adjustsize-lock.png</normaloff>:/WarChess/Resources/adjustsize-lock.png</iconset>
+   </property>
+   <property name="text">
+    <string>scaleLock</string>
+   </property>
+  </action>
+  <action name="saveMap">
+   <property name="text">
+    <string>保存 </string>
+   </property>
+  </action>
+  <action name="loadMap">
+   <property name="text">
+    <string>载入</string>
+   </property>
+  </action>
+  <action name="editMap">
+   <property name="text">
+    <string>地图信息</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>IIRenderWindow</class>
+   <extends>QGraphicsView</extends>
+   <header location="global">../scr/framework/renderwindow.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../warchess.qrc"/>
+ </resources>
+ <connections/>
+</ui>

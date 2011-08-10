@@ -1,0 +1,59 @@
+material ArrowX
+{
+	technique
+	{
+		pass
+		{
+                  polygon_mode solid
+                  polygon_mode_overrideable false
+                  cull_hardware none
+                  cull_software none
+                  depth_check off
+		
+			ambient 0 0 0
+			diffuse 0.2 0.2 0.2 1
+      specular 0 0 0 1
+      emissive 0.8 0 0 
+		}
+	}
+}
+
+material ArrowY
+{
+	technique
+	{
+		pass
+		{
+                  polygon_mode solid
+                  polygon_mode_overrideable false
+                  cull_hardware none
+                  cull_software none
+                  depth_check off
+		
+			ambient 0 0 0
+			diffuse 0.2 0.2 0.2 1
+      specular 0 0 0 1
+      emissive 0 0.8 0 
+		}
+	}
+}
+
+material ArrowZ
+{
+	technique
+	{
+		pass
+		{
+                  polygon_mode solid
+                  polygon_mode_overrideable false
+                  cull_hardware none
+                  cull_software none
+                  depth_check off
+		
+			ambient 0 0 0
+			diffuse 0.2 0.2 0.2 1
+      specular 0 0 0 1
+      emissive 0 0 0.8 
+		}
+	}
+}

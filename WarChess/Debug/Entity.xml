@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="GB2312"?>
+<Root>
+ <GroupList>
+  <Group name="地表物件"/>
+  <Group name="地表特效"/>
+  <Group name="势力1单位"/>
+  <Group name="势力2单位"/>
+  <Group name="势力3单位"/>
+  <Group name="势力4单位"/>
+ </GroupList>
+ <EntityList>
+  <Entity entity="knot.mesh" mat="knot" group="地表物件" type="none" name="knot"/>
+  <Entity entity="athene.mesh" mat="1" group="地表物件" type="none" name="athene"/>
+  <Entity entity="cube.mesh" mat="CUBE_WHITE" group="地表特效" type="none" name="mapeffect"/>
+  <Entity entity="flagred.mesh" mat="FlagRed" group="势力1单位" type="none" name="Team1Squad"/>
+  <Entity entity="flagred.mesh" mat="FlagBlue" group="势力2单位" type="none" name="Team2Squad"/>
+  <Entity entity="flagred.mesh" mat="FlagGreen" group="势力3单位" type="none" name="Team3Squad"/>
+  <Entity entity="flagred.mesh" mat="FlagYellow" group="势力4单位" type="none" name="Team4Squad"/>
+ </EntityList>
+</Root>

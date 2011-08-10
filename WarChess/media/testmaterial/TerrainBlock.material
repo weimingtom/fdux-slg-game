@@ -1,0 +1,38 @@
+material TerrainBlock
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				tex_coord_set 0
+				colour_op alpha_blend
+				texture GreenLand.tga
+			}
+			texture_unit
+			{
+				tex_coord_set 1
+				colour_op alpha_blend
+				texture Desert.tga
+			}
+			texture_unit
+			{
+				tex_coord_set 2
+				colour_op alpha_blend
+				texture Swamp.tga
+			}
+			texture_unit
+			{
+				tex_coord_set 3
+				colour_op alpha_blend
+				texture Snow.tga
+			}
+			texture_unit
+			{
+				colour_op_ex modulate src_current src_diffuse 
+			}
+		}
+	}
+}
