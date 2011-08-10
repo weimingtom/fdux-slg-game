@@ -1,0 +1,113 @@
+material CliffMat1
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				tex_coord_set 0
+				texture GreenLand.tga
+				colour_op alpha_blend
+			}
+			texture_unit
+			{
+				tex_coord_set 1
+				texture Cliff.tga
+				tex_address_mode wrap
+				filtering trilinear
+				colour_op alpha_blend
+			}
+			texture_unit
+			{
+				colour_op_ex modulate src_current src_diffuse 
+			}
+		}
+	}
+}
+
+material CliffMat2
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				tex_coord_set 0
+				texture Desert.tga
+				colour_op alpha_blend
+			}
+			texture_unit
+			{
+				tex_coord_set 1
+				texture Cliff.tga
+				tex_address_mode wrap
+				filtering trilinear
+				colour_op alpha_blend
+			}
+			texture_unit
+			{
+				colour_op_ex modulate src_current src_diffuse 
+			}
+		}
+	}
+}
+material CliffMat3
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				tex_coord_set 0
+				texture Swamp.tga
+				colour_op alpha_blend
+			}
+			texture_unit
+			{
+				tex_coord_set 1
+				texture Cliff.tga
+				tex_address_mode wrap
+				filtering trilinear
+				colour_op alpha_blend
+			}
+			texture_unit
+			{
+				colour_op_ex modulate src_current src_diffuse 
+			}
+		}
+	}
+}
+material CliffMat4
+{
+	receive_shadows on
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				tex_coord_set 0
+				texture Snow.tga
+				colour_op alpha_blend
+			}
+			texture_unit
+			{
+				tex_coord_set 1
+				texture Cliff.tga
+				tex_address_mode wrap
+				filtering trilinear
+				colour_op alpha_blend
+			}
+			texture_unit
+			{
+				colour_op_ex modulate src_current src_diffuse 
+			}
+		}
+	}
+}
