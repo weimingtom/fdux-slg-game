@@ -13,6 +13,12 @@ ArmorManager::~ArmorManager()
 
 }
 
+// 载入盔甲数据
+// 先检索../Mod/modName/data/armor.xml
+// 如果文件不存在且editorMode为真，则检索../Mod/common/data/armor.xml
+// 如果editorMode为假，则创建../Mod/modName/data/armor.xml
+// 函数永远返回真
+
 bool ArmorManager::LoadMod(std::wstring modName, std::wstring langName, bool editorMode)
 {
 	mModPath = L".\\..\\Mod\\" + modName + L"\\";
@@ -57,6 +63,10 @@ bool ArmorManager::LoadMod(std::wstring modName, std::wstring langName, bool edi
 
 	return true;
 }
+
+// 载入盔甲字符串
+// 先检索../Mod/modName/Lang/langName/armor.xml
+// 如果文件不存在，则创建../Mod/modName/Lang/langName/armor.xml
 
 bool ArmorManager::LoadLang(std::wstring langName)
 {
