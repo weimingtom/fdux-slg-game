@@ -1,4 +1,4 @@
-#include "armormanager.h"
+ï»¿#include "armormanager.h"
 #include "conversion.h"
 #include "SquadEquip.h"
 #include <Windows.h>
@@ -13,11 +13,11 @@ ArmorManager::~ArmorManager()
 
 }
 
-// ÔØÈë¿ø¼×Êý¾Ý
-// ÏÈ¼ìË÷../Mod/modName/data/armor.xml
-// Èç¹ûÎÄ¼þ²»´æÔÚÇÒeditorModeÎªÕæ£¬Ôò¼ìË÷../Mod/common/data/armor.xml
-// Èç¹ûeditorModeÎª¼Ù£¬Ôò´´½¨../Mod/modName/data/armor.xml
-// º¯ÊýÓÀÔ¶·µ»ØÕæ
+// è½½å…¥ç›”ç”²æ•°æ®
+// å…ˆæ£€ç´¢../Mod/modName/data/armor.xml
+// å¦‚æžœæ–‡ä»¶ä¸å­˜åœ¨ä¸”editorModeä¸ºçœŸï¼Œåˆ™æ£€ç´¢../Mod/common/data/armor.xml
+// å¦‚æžœeditorModeä¸ºå‡ï¼Œåˆ™åˆ›å»º../Mod/modName/data/armor.xml
+// å‡½æ•°æ°¸è¿œè¿”å›žçœŸ
 
 bool ArmorManager::LoadMod(std::wstring modName, std::wstring langName, bool editorMode)
 {
@@ -64,9 +64,9 @@ bool ArmorManager::LoadMod(std::wstring modName, std::wstring langName, bool edi
 	return true;
 }
 
-// ÔØÈë¿ø¼××Ö·û´®
-// ÏÈ¼ìË÷../Mod/modName/Lang/langName/armor.xml
-// Èç¹ûÎÄ¼þ²»´æÔÚ£¬Ôò´´½¨../Mod/modName/Lang/langName/armor.xml
+// è½½å…¥ç›”ç”²å­—ç¬¦ä¸²
+// å…ˆæ£€ç´¢../Mod/modName/Lang/langName/armor.xml
+// å¦‚æžœæ–‡ä»¶ä¸å­˜åœ¨ï¼Œåˆ™åˆ›å»º../Mod/modName/Lang/langName/armor.xml
 
 bool ArmorManager::LoadLang(std::wstring langName)
 {
@@ -145,6 +145,8 @@ bool ArmorManager::SaveLang()
 	return true;
 }
 
+// è¿”å›žç›”ç”²æ€»æ•°
+
 int ArmorManager::GetNum()
 {
 	ticpp::Element *element = mDataFile.FirstChildElement("Armor");
@@ -164,8 +166,11 @@ int ArmorManager::GetNum()
 	return 0;
 }
 
+// æ·»åŠ ä¸€ä»¶ç›”ç”²
+
 void ArmorManager::AddArmor()
 {
+	// newarmoråŽçš„æ•°å­—ä»Ž0å¼€å§‹ï¼Œåªè¦æ‰¾åˆ°åŒåçš„ç›”ç”²ï¼Œå°±å°†æ•°å­—+1
 	char newid[20];
 	int n = 0;
 	sprintf_s(newid,20,"newarmor%d",n);
@@ -356,7 +361,7 @@ bool ArmorManager::SetID(std::wstring oldid, std::wstring id)
 	std::string tempid;
 	UnicodeToUTF8(id,tempid);
 	ticpp::Element *element = mDataFile.FirstChildElement("Armor");
-	//ÅÐ¶ÏÊÇ·ñ´æÔÚÖØ¸´id
+	//åˆ¤æ–­æ˜¯å¦å­˜åœ¨é‡å¤id
 	if(element->FirstChildElement(tempid,false) == NULL)
 	{
 		ticpp::Element *dataelement = element->FirstChildElement(tempoldid);
