@@ -38,19 +38,6 @@ public:
 	virtual void keyPressed(const OIS::KeyEvent &arg){};
 	virtual void keyReleased(const OIS::KeyEvent &arg){};
 
-	//当前定时器的工作
-	enum TimerWork
-	{
-		NoneWork,
-		PrinterWork,//打字机效果
-		UniversalWork,//过渡效果
-		FadeInOutWork,//对话框显隐
-		WaitWork,//等待
-		RoleNameWork,//名字渐变
-		ClearAllRoleWork//清除所有的角色图片
-	};
-	TimerWork mTimerWork;
-
 	int mWidth;
 	int mHeigth;
 
@@ -101,53 +88,51 @@ protected:
 	MyGUI::Widget* mContainerWidget;
 	std::string mLayoutName;
 
-	MyGUI::Timer mTimer;//定时器
-	float mTickTime;//单次触发时间
-	float mSetp;//渐变步
-	bool mSetpDirection;//渐变步的方向,true为正方向
-	MyGUI::Widget* mFadeWidget;
-
-	void FadeInOut()//渐变
+	void FadeIn(float time,MyGUI::Widget* fadeWidget)//渐变,以毫秒计算
 	{
-		if (mSetpDirection)//判定渐变步方向
-		{
-			if(mSetp+0.01f<=1.0)
-			{
-				mSetp+=0.01f;
+		MyGUI::ControllerItem* item = MyGUI::ControllerManager::getInstance().createItem(MyGUI::ControllerFadeAlpha::getClassTypeName());
+		MyGUI::ControllerFadeAlpha* mFadeInController = item->castType<MyGUI::ControllerFadeAlpha>();
+		
+		fadeWidget->setAlpha(0);
+		fadeWidget->setVisible(true);
 
-				mFadeWidget->setAlpha(mSetp);
-			}
-			else
-			{
-				//停止帧更新
-				mTickTime=0;
-				mTimerWork=NoneWork;
-				GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);
-				onOtherSceneNotify("FadeOver");
-			}
-		}
-		else
-		{
-			if(mSetp-0.01f>=0)
-			{
-				mSetp-=0.01f;
+		mFadeInController->setAlpha(1);
+		mFadeInController->setCoef(1/(time/1000));
+		mFadeInController->setEnabled(true);
 
-				mFadeWidget->setAlpha(mSetp);
-			}
-			else
-			{
+		mFadeInController->eventPostAction+=MyGUI::newDelegate(this, &GUIScene::EventFadeInPostAction);
 
-				mFadeWidget->setVisible(false);
+		MyGUI::ControllerManager::getInstance().addItem(fadeWidget,mFadeInController); 
 
-				//停止帧更新
-				mTickTime=0;
-				mTimerWork=NoneWork;
-				GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);
-				onOtherSceneNotify("FadeOver");
-			}
-
-		}
 	}
+
+	void EventFadeInPostAction(MyGUI::Widget* _sender)
+	{
+		onOtherSceneNotify("FadeInOver");
+	}
+
+	void FadeOut(float time,MyGUI::Widget* fadeWidget)
+	{
+		MyGUI::ControllerItem* item = MyGUI::ControllerManager::getInstance().createItem(MyGUI::ControllerFadeAlpha::getClassTypeName());
+		MyGUI::ControllerFadeAlpha* mFadeOutController = item->castType<MyGUI::ControllerFadeAlpha>();
+
+		fadeWidget->setAlpha(1);
+		fadeWidget->setVisible(true);
+
+		mFadeOutController->setAlpha(0);
+		mFadeOutController->setCoef(1/(time/1000));
+		mFadeOutController->setEnabled(true);
+
+		mFadeOutController->eventPostAction+=MyGUI::newDelegate(this, &GUIScene::EventFadeOutPostAction);
+
+		MyGUI::ControllerManager::getInstance().addItem(fadeWidget,mFadeOutController); 
+	}
+
+	void EventFadeOutPostAction(MyGUI::Widget* _sender)
+	{
+		onOtherSceneNotify("FadeOutOver");
+	}
+
 };
 
 class GUISceneFactory

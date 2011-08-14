@@ -5,6 +5,9 @@
 #include "LuaSystem.h"
 #include "AudioSystem.h"
 
+#define DefaultShowTextTime 0.1//默认打字效果速度
+#define DefaultCursorTime 0.01//默认光标闪烁频率
+
 extern "C"
 {
 
@@ -181,6 +184,7 @@ extern "C"
 		mImageAttribute.MidLayerY=luaL_checkint(L, 4);
 		mImageAttribute.RightLayerX=luaL_checkint(L, 5);
 		mImageAttribute.RightLayerY=luaL_checkint(L, 6);
+		mImageAttribute.FadeTime=luaL_checkint(L, 7);
 
 		return 1;
 	}
@@ -189,7 +193,7 @@ extern "C"
 	{
 		const char* imageName = luaL_checkstring(L, 1);
 		int imageLayer =luaL_checkint(L, 2);
-		float time =(float)luaL_checkint(L, 3);//此处是总时间,要换成单次时间
+		float time =(float)luaL_checkint(L, 3);
 		
 		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
 
@@ -220,6 +224,45 @@ extern "C"
 
 		stage->showImage(imageName,(GUIImageLayer)imageLayer,time,left,top);
 		
+		LuaSystem::getSingletonPtr()->LuaBreakupFun=ShowImageBreakup;
+
+		return 1;
+	}
+
+	static int ShowRole(lua_State* L)//显示图片
+	{
+		const char* imageName = luaL_checkstring(L, 1);
+		int imageLayer =luaL_checkint(L, 2);
+
+		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+
+		unsigned int left=0;
+		unsigned int top=0;
+
+		switch((GUIImageLayer)imageLayer)
+		{
+		case LeftLayer:
+			{
+				left=mImageAttribute.LeftLayerX;
+				top=mImageAttribute.LeftLayerY;
+				break;
+			}
+		case MidLayer:
+			{
+				left=mImageAttribute.MidLayerX;
+				top=mImageAttribute.MidLayerY;
+				break;
+			}
+		case RightLayer:
+			{
+				left=mImageAttribute.RightLayerX;
+				top=mImageAttribute.RightLayerY;
+				break;
+			}
+		}
+
+		stage->showImage(imageName,(GUIImageLayer)imageLayer,mImageAttribute.FadeTime,left,top);
+
 		LuaSystem::getSingletonPtr()->LuaBreakupFun=ShowImageBreakup;
 
 		return 1;
@@ -394,6 +437,7 @@ extern "C"
 
 		{"ShowImageSetting",ShowImageSetting},
 		{"ShowImage",ShowImage},
+		{"ShowRole",ShowRole},
 		{"ShowText",ShowText},
 		{"SetText",SetText},
 		{"ShowRoleName",ShowRoleName},
