@@ -14,6 +14,11 @@
 #include "StringTable.h"
 #endif
 
+#define DefaultDialogVisibleTime 500//默认对话框渐出时间
+#define DefaultRoleNameVisibleTime 100//默认角色名渐变时间
+#define LineCursorFileName "LineCursor.png"//默认行光标文件名
+#define PageCursorFileName "PageCursor.png"//默认换页光标文件名
+
 GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),mCheckMouseDown(false),mIsMouseDown(false),mTextX(0),mTextY(0),mIsFastForward(false),SLWindow(NULL)
 {
 	assignWidget(mBackGroundGroup, "BackGroundGroup");
@@ -38,7 +43,9 @@ GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),m
 	assignWidget(mRoleNameUniversal, "RoleNameUniversal");
 	assignWidget(mTextCursor, "TextCursor");
 
+	assignWidget(mEffectLayerGroup, "EffectLayerGroup");
 	assignWidget(mEffectLayer, "EffectLayer");
+	assignWidget(mEffectLayerUniversal, "EffectLayerUniversal");
 
 	assignWidget(mSaveButton, "SaveButton");
 	assignWidget(mLoadButton, "LoadButton");
@@ -56,6 +63,7 @@ GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),m
 	mLoadButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::onLoad);
 	mHideButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::onHide);
 	mSystemButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::onSystem);
+
 }
 
 GUIStage::~GUIStage(void)
@@ -78,9 +86,11 @@ void GUIStage::UIInit()
 	mLeftLayerGroup->setSize(mWidth,mHeigth);//设置左大小
 	mMidLayerGroup->setSize(mWidth,mHeigth);//设置中大小
 	mRightLayerGroup->setSize(mWidth,mHeigth);//设置右大小
+	mEffectLayerGroup->setSize(mWidth,mHeigth);
 
 	mTextBoxBG->setSize(mWidth,mHeigth);//TextBoxBG
 	mEffectLayer->setSize(mWidth,mHeigth);//EFLayer
+	mEffectLayerUniversal->setSize(mWidth,mHeigth);//EFLayer
 
 	mBackGround->setAlpha(1);
 	mBackGroundUniversal->setImageTexture("");
@@ -188,27 +198,18 @@ void GUIStage::setTextDialog( const GUIDialogAttribute& attribute )
 void GUIStage::setTextDialogVisible( bool visible )
 {
 	mTextBoxVisible=visible;
+
 	if (visible)
 	{
-		mSetp=0;
-		mSetpDirection=true;
+		FadeIn(DefaultDialogVisibleTime,mTextBoxBG);
 	}
 	else
 	{
-		mSetp=1;
-		mSetpDirection=false;
+		FadeOut(DefaultDialogVisibleTime,mTextBoxBG);
 	}
 
-	mTextBoxBG->setAlpha(mSetp);
-	mTextBoxBG->setVisible(true);
-	mFadeWidget=mTextBoxBG;
-
 	mTimerWork=FadeInOutWork;
-	mTickTime=DefaultDialogVisibleTime*1000/100;
 
-	//开始帧更新
-	mTimer.reset();
-	GUISystem::getSingletonPtr()->setFrameUpdateScene(StageScene);
 	buttonLock(false);
 }
 
@@ -251,7 +252,7 @@ void GUIStage::showImage( std::string imageName,GUIImageLayer layer,float time,i
 	case EffectsLayer:
 		{
 			mScrLayer=mEffectLayer;
-			mUniversalLayer=NULL;
+			mUniversalLayer=mEffectLayerUniversal;
 		}
 	case LeftLayer:
 		{
@@ -283,13 +284,12 @@ void GUIStage::showImage( std::string imageName,GUIImageLayer layer,float time,i
 		}
 	case AllLayer://如果为清除所有的人物
 		{
-			mSetp=1;
 			mTimerWork=ClearAllRoleWork;
-			mTickTime=time/100;
+			
+			FadeOut(time,mLeftLayer);
+			FadeOut(time,mMidLayer);
+			FadeOut(time,mRightLayer);
 
-			//开始帧更新
-			mTimer.reset();
-			GUISystem::getSingletonPtr()->setFrameUpdateScene(StageScene);
 			return;
 		}
 	}
@@ -327,18 +327,16 @@ void GUIStage::showImage( std::string imageName,GUIImageLayer layer,float time,i
 
 		if (time!=0)//如果要使用渐变进入
 		{
-			mUniversalLayer->setAlpha(0);
 			mUniversalLayer->setImageTexture(imageName);
-			mUniversalLayer->setVisible(true);
 
-			mSetp=0;
 			mTimerWork=UniversalWork;
-			mTickTime=time/100;
 			mTextureName=imageName;
 
-			//开始帧更新
-			mTimer.reset();
-			GUISystem::getSingletonPtr()->setFrameUpdateScene(StageScene);
+			mScrLayer->setAlpha(1);
+			mUniversalLayer->setAlpha(0);
+			
+			FadeOut(time,mScrLayer);
+			FadeIn(time,mUniversalLayer);
 		}
 		else
 		{
@@ -350,17 +348,14 @@ void GUIStage::showImage( std::string imageName,GUIImageLayer layer,float time,i
 
 void GUIStage::showRoleName( std::wstring text )
 {
-	mRoleNameUniversal->setAlpha(0);
 	mRoleNameUniversal->setCaption(text);
-	mRoleNameUniversal->setVisible(true);
+	mRoleNameUniversal->setAlpha(0);
+	mRoleName->setAlpha(1);
 
-	mSetp=0;
 	mTimerWork=RoleNameWork;
-	mTickTime=DefaultRoleNameVisibleTime*1000/100;
 
-	//开始帧更新
-	mTimer.reset();
-	GUISystem::getSingletonPtr()->setFrameUpdateScene(StageScene);
+	FadeIn(DefaultRoleNameVisibleTime,mRoleNameUniversal);
+	FadeOut(DefaultRoleNameVisibleTime,mRoleName);
 }
 
 void GUIStage::showOtherText()
@@ -424,36 +419,6 @@ void GUIStage::FrameEvent()
 					}
 					break;
 				}
-			case UniversalWork:
-				{
-					if(mSetp+0.01<=1.0)
-					{
-
-						mScrLayer->setAlpha(1.0-mSetp);
-						mUniversalLayer->setAlpha(mSetp);
-
-						mSetp+=0.01;
-					}
-					else
-					{
-						mScrLayer->setImageTexture(mTextureName);
-						mScrLayer->setAlpha(1.0);
-						mUniversalLayer->setVisible(false);
-
-						//停止帧更新
-						mTickTime=0;
-						mTimerWork=NoneWork;
-						GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);
-					}
-
-					break;
-				}
-				case FadeInOutWork:
-					{
-						FadeInOut();//调用基类的淡入淡出程序
-
-						break;
-					}
 				case WaitWork:
 					{
 						//停止帧更新
@@ -462,57 +427,6 @@ void GUIStage::FrameEvent()
 						GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);
 
 						break;
-					}
-				case RoleNameWork:
-					{
-						if(mSetp+0.01<=1.0)
-						{
-							mRoleName->setAlpha(1.0-mSetp);
-							mRoleNameUniversal->setAlpha(mSetp);
-
-							mSetp+=0.01;
-						}
-						else
-						{
-							std::string s=mRoleNameUniversal->getCaption();
-							mRoleNameUniversal->setVisible(false);
-							mRoleName->setCaption(s);
-							mRoleName->setAlpha(1);
-
-							//停止帧更新
-							mTickTime=0;
-							mTimerWork=NoneWork;
-							GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);
-						}
-
-						break;
-					}
-				case ClearAllRoleWork:
-					{
-						if(mSetp-0.01>=0)
-						{
-							mSetp-=0.01;
-
-							mLeftLayer->setAlpha(mSetp);
-							mMidLayer->setAlpha(mSetp);
-							mRightLayer->setAlpha(mSetp);
-
-						}
-						else
-						{
-							
-							mLeftLayer->setImageTexture("");
-							mLeftLayer->setAlpha(1.0);
-							mMidLayer->setImageTexture("");
-							mMidLayer->setAlpha(1.0);
-							mRightLayer->setImageTexture("");
-							mRightLayer->setAlpha(1.0);
-
-							//停止帧更新
-							mTickTime=0;
-							mTimerWork=NoneWork;
-							GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);
-						}
 					}
 			}
 		}
@@ -728,9 +642,56 @@ void GUIStage::onOtherSceneNotify(std::string arg)
 		returnScene();
 		SLWindow=NULL;
 	}
-	else if(arg=="FadeOver")
+	else if(arg=="FadeInOver")
 	{
-		buttonLock(true);
+		switch(mTimerWork)
+		{
+		case FadeInOutWork:
+			{
+				buttonLock(true);
+				mTimerWork=NoneWork;
+				break;
+			}
+		}
+
+	}
+	else if(arg=="FadeOutOver")
+	{
+		switch(mTimerWork)
+		{
+		case ClearAllRoleWork:
+			{
+				mLeftLayer->setImageTexture("");
+				mLeftLayer->setAlpha(1.0);
+				mMidLayer->setImageTexture("");
+				mMidLayer->setAlpha(1.0);
+				mRightLayer->setImageTexture("");
+				mRightLayer->setAlpha(1.0);
+				break;
+			}
+		case FadeInOutWork:
+			{
+				buttonLock(true);
+				break;
+			}
+		case RoleNameWork:
+			{
+				std::string s=mRoleNameUniversal->getCaption();
+				mRoleName->setCaption(s);
+				mRoleName->setAlpha(1);
+				mRoleNameUniversal->setAlpha(0);
+				break;
+			}
+		case UniversalWork:
+			{
+				mScrLayer->setImageTexture(mTextureName);
+				mScrLayer->setAlpha(1);
+				mUniversalLayer->setAlpha(0);
+				break;
+			}
+		}
+
+		mTimerWork=NoneWork;
 	}
 }
 
@@ -776,6 +737,10 @@ void GUIStage::buttonLock( bool lock )
 bool GUIStage::isCanFastForward()
 {
 	if (mTimerWork==FadeInOutWork)
+	{
+		return false;
+	}
+	if (!mTextBoxVisible)
 	{
 		return false;
 	}

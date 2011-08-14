@@ -48,7 +48,23 @@ public:
 
 	bool mIsFastForward;
 
+	//当前定时器的工作
+	enum TimerWork
+	{
+		NoneWork,
+		PrinterWork,//打字机效果
+		UniversalWork,//过渡效果
+		FadeInOutWork,//对话框显隐
+		WaitWork,//等待
+		RoleNameWork,//名字渐变
+		ClearAllRoleWork//清除所有的角色图片
+	};
+	TimerWork mTimerWork;
+
 private:
+
+	MyGUI::Timer mTimer;//定时器
+	float mTickTime;//单次触发时间
 
 	void eventMouseButtonClick(MyGUI::Widget* _sender);
 	void keyPressed(const OIS::KeyEvent &arg);
@@ -72,7 +88,7 @@ private:
 	void buttonLock(bool lock);
 
 	bool isCanFastForward();
-	
+
 	int mTextX;
 	int mTextY;
 
@@ -115,7 +131,9 @@ private:
 	bool mTextCursorType;
 	bool mTextBoxVisible;
 
+	MyGUI::ImageBox* mEffectLayerGroup;
 	MyGUI::ImageBox* mEffectLayer;
+	MyGUI::ImageBox* mEffectLayerUniversal;
 
 	MyGUI::Button* mSaveButton;
 	MyGUI::Button* mLoadButton;
