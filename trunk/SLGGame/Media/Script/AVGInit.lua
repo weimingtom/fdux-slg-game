@@ -10,6 +10,6 @@ function AVGInit()
 	GUI.SetUITextColor(0,0,0);
 	GUI.SetRoleNameColor(0,0,0);
 	GUI.SetFont("fireflysung","fireflysung");
-	GUI.ShowImageSetting(-100,0,300,0,700,0);
+	GUI.ShowImageSetting(-100,0,300,0,700,0,500);
 	GUI.SetDialogAttribute();
 end;
