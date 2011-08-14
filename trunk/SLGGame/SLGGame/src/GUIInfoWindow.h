@@ -26,9 +26,11 @@ public:
 	}
 
 	void setCaption(std::string text,MyGUI::Colour c);
+	void onOtherSceneNotify(std::string arg);
 private:
 	MyGUI::Window* mWindow;
 	MyGUI::TextBox* mCaption;
+	MyGUI::Timer mTimer;//¶¨Ê±Æ÷
 	bool isStart;
 	bool isWait;
 };

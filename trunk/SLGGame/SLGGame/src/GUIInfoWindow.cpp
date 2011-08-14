@@ -1,6 +1,6 @@
 #include "GUIInfoWindow.h"
 
-#define TICKTIME 5
+#define FADETIME 500
 #define WAITTIME 1000
 
 #include "Framerate.h"
@@ -9,9 +9,6 @@ GUIInfoWindow::GUIInfoWindow(MyGUI::Window* window,int Width,int Height):GUISubW
 {
 	mWindow=window;
 	assignWidget(mCaption,"Caption");
-	isStart=false;
-	mSetpDirection=true;
-	mTickTime=0;
 }
 
 GUIInfoWindow::~GUIInfoWindow(void)
@@ -22,11 +19,8 @@ void GUIInfoWindow::showScene( std::string arg )
 {
 	mWindow->setAlpha(0);
 	mWindow->setVisible(true);
-	mSetp=0;
-	mSetpDirection=true;
-	mTickTime=0;
-	isStart=true;
 	isWait=false;
+	FadeIn(FADETIME,mWindow);
 }
 
 void GUIInfoWindow::hideScene()
@@ -34,47 +28,27 @@ void GUIInfoWindow::hideScene()
 	mWindow->setVisible(false);
 }
 
+void GUIInfoWindow::onOtherSceneNotify(std::string arg)
+{
+	if (arg=="FadeInOver")
+	{
+		isWait=true;
+		mTimer.reset();
+	}
+	else if(arg=="FadeOutOver")
+	{
+		mWindow->setVisible(false);
+	}
+}
+
 void GUIInfoWindow::FrameEvent()
 {
-	if (isStart)
+	if (isWait)
 	{
-		mTickTime+=mTimer.getMilliseconds();
-		mTimer.reset();
-		if (!isWait)
+		if (mTimer.getMilliseconds()>=WAITTIME)
 		{
-	//		if (mTickTime>=TICKTIME)
-		//	{
-			//	mTickTime=0;
-				if (mSetpDirection)
-				{
-					mSetp+=0.03*Framerate::getSingletonPtr()->speedfactor;
-					if (mSetp>=1)
-					{
-						mSetpDirection=false;
-						isWait=true;
-						mSetp=1;
-						mTickTime=0;
-					}
-				}
-				else
-				{
-					mSetp-=0.03*Framerate::getSingletonPtr()->speedfactor;
-					if (mSetp<=0)
-					{
-						mWindow->setVisible(false);
-						mSetp=0;
-						isStart=false;
-					}
-				}
-				mWindow->setAlpha(mSetp);
-			//}
-		}
-		else
-		{
-			if (mTickTime>=WAITTIME)
-			{
-				isWait=false;
-			}
+			isWait=false;
+			FadeOut(FADETIME,mWindow);
 		}
 	}
 }

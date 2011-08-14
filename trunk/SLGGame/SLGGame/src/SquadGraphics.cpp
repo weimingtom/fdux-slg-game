@@ -1184,7 +1184,6 @@ void SquadGraphics::setRecover(int num)
 			getFormationPosition(mFormation,mDirection,CommanderVector,SoldierVector);
 			unit->setPositionOffset(SoldierVector[unit->mFormationPosition].x,SoldierVector[unit->mFormationPosition].z);
 
-			unit->setFadeInOut(true);
 			unit->setAnimation(unit->mRecoverName,false,true);
 
 		}
