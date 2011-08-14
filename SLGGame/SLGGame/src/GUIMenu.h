@@ -27,7 +27,7 @@ private:
 	void onExit(MyGUI::Widget* _sender);
 
 	void setButtonLock(bool isLock);
-
+	void onOtherSceneNotify(std::string arg);
 	enum MenuStateEnum
 	{
 		NoneState,
@@ -53,6 +53,9 @@ private:
 	MyGUI::Button* mExit;
 
 	GUISLWindow* SLWindow;
+
+	MyGUI::Timer mTimer;//定时器
+	float mTickTime;//单次触发时间
 
 };
 

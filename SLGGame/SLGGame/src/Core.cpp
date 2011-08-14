@@ -52,6 +52,7 @@ bool Core::initialize(bool isFullScene)
 	mDataLibrary->loadXmlData(DataLibrary::StaticData,"../media/data/datafile.xml",true);
 	mDataLibrary->loadXmlData(DataLibrary::StaticData,"../media/lang/chinese/datafile.xml",true);
 	mDataLibrary->loadXmlData(DataLibrary::StaticData,"../media/lang/chinese/stringtable.xml",true);
+	mDataLibrary->loadXmlData(DataLibrary::SystemConfig,"../save/Config.xml",true);
 	new StringTable;
 
 	mRoot = new Ogre::Root("Plugins.cfg","","log.txt");
@@ -129,10 +130,6 @@ bool Core::initialize(bool isFullScene)
 
 	//初始化阴影
 	mSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_NONE);
-	//mSceneMgr->setShadowCasterRenderBackFaces(false);
-	//mSceneMgr->setShadowTextureSelfShadow(true);
-	//mSceneMgr->setShadowTextureCasterMaterial("DepthShadowmap/Caster");
-	//mSceneMgr->setShadowTexturePixelFormat(Ogre::PF_FLOAT32_R);
 
 	//初始化文字部分
 	mLuaSystem->registerCLib("AVGLib",AVGLib);

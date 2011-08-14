@@ -20,8 +20,8 @@ mShield(NULL),
 //mPUNode(NULL),
 //mPUSystemEnd(false),
 mIsCheckHeight(false),
-mAlpha(-1),
-mAlphaDeltaTime(0),
+//mAlpha(-1),
+//mAlphaDeltaTime(0),
 mNodeAnimation(NULL),
 mNodeAnimationState(NULL),
 mFormationPosition(0),
@@ -72,10 +72,6 @@ UnitGrap::~UnitGrap(void)
 		delete mShield;
 	}
 	
-// 	if (mPUSystem!=NULL)
-// 	{
-// 		stopEffect();
-// 	}
 	for(PUMapIte ite = mPUMap.begin();ite != mPUMap.end(); ite++)
 	{
 		ite->second->stop();
@@ -214,44 +210,6 @@ void UnitGrap::createWeapon( std::string mesh, std::string mat,WeaponType type )
 	}
 }
 
-// void UnitGrap::setEffect( std::string name,Ogre::Vector3 offect)
-// {
-// 	if (mPUSystem!=NULL)
-// 	{
-// 		stopEffect();
-// 	}
-// 
-// 	mPUSystem=Core::getSingletonPtr()->createPUSystem(mNode->getName()+"_PU",name);
-// 	mPUSystem->addParticleSystemListener(this);
-// 	mPUNode=mNode->createChildSceneNode(mNode->getName()+"_PU_Node",offect);
-// 	mPUNode->attachObject(mPUSystem);
-// 	mPUSystem->prepare();
-// 	mPUSystem->start();
-// }
-// 
-// bool UnitGrap::isEffectOver()
-// {
-// 	return mPUSystemEnd;
-// }
-// 
-// void UnitGrap::handleParticleSystemEvent( ParticleUniverse::ParticleSystem *particleSystem, ParticleUniverse::ParticleUniverseEvent &particleUniverseEvent )
-// {
-// 	if (particleUniverseEvent.componentType==ParticleUniverse::CT_SYSTEM && particleUniverseEvent.eventType==ParticleUniverse::PU_EVT_NO_PARTICLES_LEFT)
-// 	{
-// 		mPUSystemEnd=true;
-// 	}
-// }
-// 
-// void UnitGrap::stopEffect()
-// {
-// 	mPUSystem->stop();
-// 	mPUNode->detachObject(mPUSystem);
-// 	mNode->removeAndDestroyChild(mPUNode->getName());
-// 	Core::getSingletonPtr()->destroyPUSystem(mPUSystem);
-// 	mPUSystem=NULL;
-// 	mPUNode=NULL;
-// }
-
 void UnitGrap::setMovePath( std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions,float MoveSpeed)
 {
 	mNodeAnimation = Core::getSingletonPtr()->mSceneMgr->createAnimation(mNode->getName()+"_Ani", vectors.size()*MOVE_KEYFRAME_TIME*MoveSpeed);
@@ -315,153 +273,6 @@ void UnitGrap::setPositionOffset( float ox,float oy )
 	setHeight();
 	mOffsetX=ox;
 	mOffsetY=oy;
-}
-
-void UnitGrap::setFadeInOut( bool isIn )
-{
-	//¿½±´²ÄÖÊ
-	Ogre::Pass *pass=NULL;
-	for(int i = 0; i < mUnitEntity->getNumSubEntities(); ++i)
-	{
-		Ogre::MaterialPtr p;
-		if (Ogre::MaterialManager::getSingletonPtr()->resourceExists(mUnitEntity->getSubEntity(i)->getMaterial()->getName()+"_Copy"))
-		{
-			p=Ogre::MaterialManager::getSingletonPtr()->getByName(mUnitEntity->getSubEntity(i)->getMaterial()->getName()+"_Copy");
-		}
-		else
-		{
-			p=mUnitEntity->getSubEntity(i)->getMaterial()->clone(mUnitEntity->getSubEntity(i)->getMaterial()->getName()+"_Copy");
-		}
-
-		pass = p->getTechnique(0)->getPass(0);
-		pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA); 
-		pass->setDepthCheckEnabled(true); 
-		pass->setDepthWriteEnabled(false);
-		mUnitEntity->getSubEntity(i)->setMaterial(p);
-	}
-
-	if (mMainWeapon!=NULL)
-	{
-		mMainWeapon->startFade();
-	}
-
-	if (mSecWeapon!=NULL)
-	{
-		mSecWeapon->startFade();
-	}
-	
-	if (mShield!=NULL)
-	{
-		mShield->startFade();
-	}
-
-	if (isIn)
-	{
-		mAlpha=0;
-		mFadeInOut=true;
-	}
-	else
-	{
-		mAlpha=1;
-		mFadeInOut=false;
-	}
-
-	pass->setDiffuse(pass->getDiffuse().r, pass->getDiffuse().g, pass->getDiffuse().b, mAlpha); 
-}
-
-void UnitGrap::doFadeInOut(unsigned int deltaTime )
-{
-	mAlphaDeltaTime+=deltaTime;
-	if (mAlphaDeltaTime>=ALPHA_DELTA_TIME)
-	{
-		mAlphaDeltaTime=0;
-		
-		if (mFadeInOut)
-		{
-			mAlpha+=0.1;
-		}
-		else
-		{
-			mAlpha-=0.1;
-		}
-	
-		for(int i = 0; i < mUnitEntity->getNumSubEntities(); ++i)
-		{
-			if (mAlpha>=1 || mAlpha <=0)
-			{
-				std::string n = mUnitEntity->getSubEntity(i)->getMaterial()->getName();
-				n.replace(n.find("_Copy"),5,"");
-				mUnitEntity->getSubEntity(i)->setMaterialName(n);
-				Ogre::MaterialManager::getSingletonPtr()->remove(mUnitEntity->getSubEntity(i)->getMaterial()->getName()+"_Copy");
-				if( mAlpha <=0)
-				{
-					mUnitEntity->setVisible(false);
-				}
-			}
-			else
-			{
-				Ogre::Pass *pass = mUnitEntity->getSubEntity(i)->getMaterial()->getTechnique(0)->getPass(0);
-				pass->setDiffuse(pass->getDiffuse().r, pass->getDiffuse().g, pass->getDiffuse().b, mAlpha); 
-			}
-		}
-
-		if (mAlpha>=1 || mAlpha <=0)
-		{
-			mAlpha=-1;
-			if (mMainWeapon!=NULL)
-			{
-				if( mAlpha <=0)
-				{
-					mMainWeapon->overFade(false);
-				}
-				else
-				{
-					mMainWeapon->overFade(true);
-				}
-			}
-
-			if (mSecWeapon!=NULL)
-			{
-				if( mAlpha <=0)
-				{
-					mSecWeapon->overFade(false);
-				}
-				else
-				{
-					mSecWeapon->overFade(true);
-				}
-			}
-
-			if (mShield!=NULL)
-			{
-				if( mAlpha <=0)
-				{
-					mShield->overFade(false);
-				}
-				else
-				{
-					mShield->overFade(true);
-				}
-			}
-		}
-		else
-		{
-			if (mMainWeapon!=NULL)
-			{
-				mMainWeapon->doFade(mAlpha);
-			}
-
-			if (mSecWeapon!=NULL)
-			{
-				mSecWeapon->doFade(mAlpha);
-			}
-
-			if (mShield!=NULL)
-			{
-				mShield->doFade(mAlpha);
-			}
-		}
-	}
 }
 
 void UnitGrap::setAnimation( std::string name,bool loop,bool returnInit )
@@ -534,10 +345,6 @@ void UnitGrap::update( unsigned int deltaTime )
 		setHeight();
 	}
 
-	if(mAlpha!=-1)
-	{
-		doFadeInOut(deltaTime);
-	}
 }
 
 bool UnitGrap::addParticle(std::string id,std::string name)

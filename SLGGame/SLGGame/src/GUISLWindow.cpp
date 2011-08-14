@@ -3,6 +3,7 @@
 #include "StringTable.h"
 
 #include <windows.h>
+#include <fstream>
 
 #include "DataLibrary.h"
 
@@ -11,6 +12,10 @@
 
 #include "GUIStage.h"
 #include "StateManager.h"
+
+#include <boost/format.hpp>
+
+#define DialogVisibleTime 500
 
 GUISLWindow::GUISLWindow(int width,int height):GUIScene("SLWindow.layout",width,height),mStartFade(false),mOldText(NULL)
 {
@@ -32,15 +37,15 @@ GUISLWindow::GUISLWindow(int width,int height):GUIScene("SLWindow.layout",width,
 		mTextBox->setUserString("Num",Ogre::StringConverter::toString(i+1));
 		mTextBox->eventMouseButtonClick+=MyGUI::newDelegate(this, &GUISLWindow::onSaveTextClick);
 		//检查文件名是否存在
+
 		WIN32_FIND_DATAA fd;
 
 		HANDLE hFind = ::FindFirstFileA((std::string(SAVE_PATH)+std::string("\\save")+Ogre::StringConverter::toString(i+1)+std::string(".xml")).c_str(), &fd);
 
 		if(hFind != INVALID_HANDLE_VALUE)
 		{
-			DataLibrary::getSingletonPtr()->loadXmlData(DataLibrary::SystemConfig,std::string(SAVE_PATH)+std::string("\\save")+Ogre::StringConverter::toString(i+1)+".xml",false);
 			std::string name;
-			DataLibrary::getSingletonPtr()->getData("SystemConfig/StoryData/FileName",name);
+			DataLibrary::getSingletonPtr()->getData(str(boost::format("SystemConfig/Save/Save%1%")%(i+1)),name);
 			mTextBox->setCaption(name);
 			mTextBox->setUserString("FileName",name);
 		}
@@ -73,73 +78,43 @@ void GUISLWindow::showScene( std::string arg )
 		isSave=false;
 	}
 
-	mSetp=0;
-	mSetpDirection=true;
-
-	mBG->setAlpha(mSetp);
+	mBG->setAlpha(0);
 	mBG->setVisible(true);
-	mFadeWidget=mBG;
-	mStartFade=true;
-
-	mTimerWork=FadeInOutWork;
-	mTickTime=DefaultDialogVisibleTime*1000/100;
+	FadeIn(DialogVisibleTime,mBG);	
 
 	buttonLock(false);
-
-	//开始帧更新
-	mTimer.reset();
-	GUISystem::getSingletonPtr()->setFrameUpdateScene(SLScene);
 }
 
 void GUISLWindow::hideScene()
 {
-	mSetp=1;
-	mSetpDirection=false;
-
-	mBG->setAlpha(mSetp);
-	mBG->setVisible(true);
-	mFadeWidget=mBG;
-	mStartFade=true;
-
-	mTimerWork=FadeInOutWork;
-	mTickTime=DefaultDialogVisibleTime*1000/100;
+	FadeOut(DialogVisibleTime,mBG);
 	
 	buttonLock(false);
+}
 
-	//开始帧更新
-	mTimer.reset();
-	GUISystem::getSingletonPtr()->setFrameUpdateScene(SLScene);
+void GUISLWindow::onOtherSceneNotify(std::string arg)
+{
+	if (arg=="FadeInOver")
+	{
+		buttonLock(true);
+	}
+	else if (arg=="FadeOutOver")
+	{
+		mStartFade=false;
+		if(!isSave && isOk)
+		{
+			mCallScene->onOtherSceneNotify("LoadComplete");
+		}
+		else
+		{
+			mCallScene->onOtherSceneNotify("Return");
+		}
+		GUISystem::getSingletonPtr()->destoryScene(SLScene);
+	}
 }
 
 void GUISLWindow::FrameEvent()
 {
-	if (mTimer.getMilliseconds()>=mTickTime)
-	{
-		//复位定时器
-		mTimer.reset();
-		FadeInOut();
-	}
-
-	if (mStartFade && mTimerWork==NoneWork)
-	{
-		if (mSetpDirection==false)
-		{
-			mStartFade=false;
-			if(!isSave && isOk)
-			{
-				mCallScene->onOtherSceneNotify("LoadComplete");
-			}
-			else
-			{
-				mCallScene->onOtherSceneNotify("Return");
-			}
-			GUISystem::getSingletonPtr()->destoryScene(SLScene);
-		}
-		else
-		{
-			buttonLock(true);
-		}
-	}
 	
 }
 
@@ -158,8 +133,14 @@ void GUISLWindow::onYes( MyGUI::Widget* _sender )
 			{
 				fileName=mFileName->getCaption();
 			}
+			
+			//加入时间戳
+			SYSTEMTIME systm;
+			GetLocalTime(&systm);
+			std::string timeString=str(boost::format(" %1%-%2%-%3% %4%:%5%:%6%")%systm.wYear%systm.wMonth%systm.wDay%systm.wHour%systm.wMinute%systm.wSecond);
 
-			DataLibrary::getSingletonPtr()->setData("GameData/StoryData/FileName",fileName);
+			DataLibrary::getSingletonPtr()->setData(str(boost::format("SystemConfig/Save/Save%1%")%mOldText->getUserString("Num")),fileName+timeString);
+			DataLibrary::getSingletonPtr()->saveXmlData(DataLibrary::SystemConfig,std::string(SAVE_PATH)+std::string("\\Config.xml"));
 			StateManager::getSingletonPtr()->saveState(std::string(SAVE_PATH)+std::string("\\save")+mOldText->getUserString("Num")+".xml");
 		}
 		else

@@ -39,12 +39,6 @@ public:
 
 	void setAniGroup(std::string anigroup);
 
-// 	void setEffect(std::string name,Ogre::Vector3 offect=Ogre::Vector3::ZERO);
-// 
-// 	bool isEffectOver();
-// 
-// 	void stopEffect();
-
 	void setMovePath(std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions,float MoveSpeed=1.0);
 
 	void setPosition(float x,float z);
@@ -57,20 +51,11 @@ public:
 
 	void stopTransform();
 
-	void setFadeInOut(bool isIn);
-
-	void doFadeInOut(unsigned int deltaTime);
-
 	void update(unsigned int deltaTime);
-
-//	void handleParticleSystemEvent (ParticleUniverse::ParticleSystem *particleSystem, ParticleUniverse::ParticleUniverseEvent &particleUniverseEvent);
 
 	Ogre::SceneNode* mNode;
 	Ogre::Entity* mUnitEntity;
 	bool mIsCheckHeight;
-	float mAlpha;
-	unsigned int mAlphaDeltaTime;
-	bool mFadeInOut;
 
 	WeaponGrap* mMainWeapon;
 	WeaponGrap* mSecWeapon;
@@ -90,9 +75,6 @@ public:
 	Ogre::Animation* mNodeAnimation;
 	Ogre::AnimationState* mNodeAnimationState;
 
-// 	Ogre::SceneNode* mPUNode;
-// 	ParticleUniverse::ParticleSystem* mPUSystem;
-// 	bool mPUSystemEnd;
 	bool mReturnInitAni;
 	bool mIsAnimationComplete;
 

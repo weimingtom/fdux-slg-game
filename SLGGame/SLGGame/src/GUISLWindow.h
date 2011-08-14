@@ -24,7 +24,7 @@ private:
 	void onNo(MyGUI::Widget* _sender);
 	void onSaveTextClick(MyGUI::Widget* _sender);
 	void buttonLock(bool islock);
-
+	void onOtherSceneNotify(std::string arg);
 	MyGUI::Button* mYesButton;
 	MyGUI::Button* mNoButton;
 	MyGUI::TextBox* mCaption;

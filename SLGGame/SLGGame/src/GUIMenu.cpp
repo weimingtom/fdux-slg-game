@@ -12,6 +12,9 @@
 
 #include <iostream>
 
+#define FadeTime 1500
+#define WaitTime 2000
+
 GUIMenu::GUIMenu(int width,int height):GUIScene("MainMenu.layout",width,height),mMenuState(NoneState),SLWindow(NULL)
 {
 	assignWidget(mLogoImage,"LogoImage");
@@ -39,10 +42,10 @@ GUIMenu::GUIMenu(int width,int height):GUIScene("MainMenu.layout",width,height),
 
 GUIMenu::~GUIMenu(void)
 {
-	if (SLWindow!=NULL)
-	{
-		SLWindow->setCallScene(SLWindow);
-	}
+	//if (SLWindow!=NULL)
+	//{
+	//	SLWindow->setCallScene(SLWindow);
+	//}
 	AudioSystem::getSingletonPtr()->stopStream(500);
 }
 
@@ -54,7 +57,7 @@ void GUIMenu::showScene( std::string arg )
 		mMenuImage->setVisible(false);
 		mLogoImage->setAlpha(0);
 		mLogoImage->setVisible(true);
-		mFadeWidget=mLogoImage;
+		FadeIn(FadeTime,mLogoImage);
 	} 
 	else
 	{
@@ -62,22 +65,59 @@ void GUIMenu::showScene( std::string arg )
 		mMenuImage->setAlpha(0);
 		mMenuImage->setVisible(true);
 		mLogoImage->setVisible(false);
-		mFadeWidget=mMenuImage;
+		FadeIn(FadeTime,mMenuImage);
 		AudioSystem::getSingletonPtr()->playStream("op.mp3",true,0);
 	}
 	
-	mSetp=0;
-	mSetpDirection=true;//从无到有方向
-	mTimerWork=FadeInOutWork;
-	mTickTime=2*1000/100;
-
-	mTimer.reset();
-	GUISystem::getSingletonPtr()->setFrameUpdateScene(MenuScene);
 }
 
 void GUIMenu::hideScene()
 {
 
+}
+
+void GUIMenu::onOtherSceneNotify(std::string arg)
+{
+	if (arg=="FadeInOver")
+	{
+		switch(mMenuState)
+		{
+		case LogoState:
+			 {
+				mMenuState=WaitState;
+				mTickTime=WaitTime;
+				mTimer.reset();
+				GUISystem::getSingletonPtr()->setFrameUpdateScene(MenuScene);
+				break;
+			 }
+		case  MainMenuState:
+			  {
+				  setButtonLock(true);
+				  break;
+			  }
+		}
+	}
+	else if (arg=="FadeOutOver")
+	{
+		switch(mMenuState)
+		{
+		case LogoState:
+			 {
+				showScene("");
+				break;
+			 }
+		case NewState:
+			 {
+				 StateManager::getSingletonPtr()->changeState("Chapter1.lua",StateManager::AVG);
+				 break;
+			 }
+		case ExitState:
+			  {
+				  Core::getSingletonPtr()->stop();
+				  break;
+			  }
+		}
+	}
 }
 
 void GUIMenu::FrameEvent()
@@ -91,81 +131,13 @@ void GUIMenu::FrameEvent()
 
 			switch(mMenuState)
 			{
-			case LogoState:
-				{
-					FadeInOut();
-
-					if (mTimerWork==NoneWork)
-					{
-						if (mSetpDirection)
-						{
-							mMenuState=WaitState;
-							mTickTime=3000;
-							GUISystem::getSingletonPtr()->setFrameUpdateScene(MenuScene);
-						}
-						else
-						{
-							showScene("");//开始显示主菜单
-						}
-					}
-
-					break;
-				}
-			case NewState:
-				{
-					FadeInOut();
-
-					if (mTimerWork==NoneWork)
-					{
-						StateManager::getSingletonPtr()->changeState("Chapter1.lua",StateManager::AVG);
-					}
-
-					break;
-				}
-			case LoadMenuState:
-				{
-					FadeInOut();
-
-					if (mTimerWork==NoneWork)
-					{
-						StateManager::getSingletonPtr()->changeState("demo.xml",StateManager::Battle);
-					}
-
-					break;
-				}
-			case MainMenuState:
-				{
-					FadeInOut();
-
-					if (mTimerWork==NoneWork)
-					{
-						setButtonLock(true);
-					}
-
-					break;
-				}
-			case ExitState:
-				{
-					FadeInOut();
-
-					if (mTimerWork==NoneWork)
-					{
-						Core::getSingletonPtr()->stop();
-					}
-
-					break;
-				}
 			case WaitState:
 				{
 					mMenuState=LogoState;
 					
-					mSetp=1;
-					mSetpDirection=false;//从无到有方向
-					mTimerWork=FadeInOutWork;
-					mTickTime=2*1000/100;
+					FadeOut(FadeTime,mLogoImage);
 
-					mTimer.reset();
-					GUISystem::getSingletonPtr()->setFrameUpdateScene(MenuScene);
+					GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);
 					
 					break;
 				}
@@ -179,13 +151,8 @@ void GUIMenu::onNewGame( MyGUI::Widget* _sender )
 	setButtonLock(false);
 
 	mMenuState=NewState;
-	mSetp=1;
-	mSetpDirection=false;//从无到有方向
-	mTimerWork=FadeInOutWork;
-	mTickTime=2*1000/100;
-
-	mTimer.reset();
-	GUISystem::getSingletonPtr()->setFrameUpdateScene(MenuScene);
+	
+	FadeOut(FadeTime,mMenuImage);
 }
 
 void GUIMenu::onExit( MyGUI::Widget* _sender )
@@ -193,13 +160,8 @@ void GUIMenu::onExit( MyGUI::Widget* _sender )
 	setButtonLock(false);
 
 	mMenuState=ExitState;
-	mSetp=1;
-	mSetpDirection=false;//从无到有方向
-	mTimerWork=FadeInOutWork;
-	mTickTime=2*1000/100;
 
-	mTimer.reset();
-	GUISystem::getSingletonPtr()->setFrameUpdateScene(MenuScene);
+	FadeOut(FadeTime,mMenuImage);
 }
 
 void GUIMenu::setButtonLock( bool isLock )
