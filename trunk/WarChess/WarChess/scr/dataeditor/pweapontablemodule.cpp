@@ -58,11 +58,11 @@ QVariant PWeaponTableModule::data(const QModelIndex &index, int role /* = Qt::Di
 	case 10:
 		return QString::number(PWEAPONMANAGER()->GetAttr(id,ATTR_COVERT));
 	case 11:
-		return QString::fromStdWString(PWEAPONMANAGER()->GetModuleName(id));
+		return QString::fromStdWString(PWEAPONMANAGER()->GetMeshName(id));
 	case 12:
-		return QString::fromStdWString(PWEAPONMANAGER()->GetIdleAnimName(id));
+		return QString::fromStdWString(PWEAPONMANAGER()->GetMatName(id));
 	case 13:
-		return QString::fromStdWString(PWEAPONMANAGER()->GetActAnimName(id));
+		return QString::fromStdWString(PWEAPONMANAGER()->GetAniGroup(id));
 	case 14:
 		return QString::fromStdWString(PWEAPONMANAGER()->GetScriptName(id));
 	default:
@@ -103,9 +103,9 @@ QVariant PWeaponTableModule::headerData(int section, Qt::Orientation orientation
 		case 11:
 			return QString("模型名称");
 		case 12:
-			return QString("持有动作名称");
+			return QString("材质名称");
 		case 13:
-			return QString("攻击动作名称");
+			return QString("动画组名称");
 		case 14:
 			return QString("脚本名称");
 		default:
@@ -171,11 +171,11 @@ bool PWeaponTableModule::setData(const QModelIndex &index, const QVariant &qvalu
 		case 10:
 			return PWEAPONMANAGER()->SetAttr(id,ATTR_COVERT,qvalue.toInt());
 		case 11:
-			return PWEAPONMANAGER()->SetModuleName(id,qvalue.toString().toStdWString());
+			return PWEAPONMANAGER()->SetMeshName(id,qvalue.toString().toStdWString());
 		case 12:
-			return PWEAPONMANAGER()->SetIdleAnimName(id,qvalue.toString().toStdWString());
+			return PWEAPONMANAGER()->SetMatName(id,qvalue.toString().toStdWString());
 		case 13:
-			return PWEAPONMANAGER()->SetActAnimName(id,qvalue.toString().toStdWString());
+			return PWEAPONMANAGER()->SetAniGroup(id,qvalue.toString().toStdWString());
 		case 14:
 			return PWEAPONMANAGER()->SetScriptName(id,qvalue.toString().toStdWString());
 		default:

@@ -20,7 +20,7 @@
 //				<Conter type="Float" value="0.0"/>
 //			</AttrModifer>
 //		</[ArmorName]>
-
+//
 // 盔甲字符串格式：
 // <ArmorData>
 //		<[ArmorName]>
@@ -336,6 +336,8 @@ void ArmorManager::AddArmor()
 	//SaveLang();
 }
 
+// 删除一件盔甲
+
 void ArmorManager::DelArmor(std::wstring id)
 {
 	std::string tempid;
@@ -359,6 +361,8 @@ void ArmorManager::DelArmor(std::wstring id)
 	//SaveLang();
 }
 
+// 返回盔甲ID
+
 std::wstring ArmorManager::GetID(int index)
 {
 	int n = 0;
@@ -377,6 +381,8 @@ std::wstring ArmorManager::GetID(int index)
 	UTF8ToUnicode(id,tempid);
 	return tempid;
 }
+
+// 返回盔甲名称
 
 std::wstring ArmorManager::GetName(std::wstring id)
 {
@@ -415,6 +421,8 @@ std::wstring ArmorManager::GetName(std::wstring id)
 	return tempname;
 }
 
+// 返回盔甲描述
+
 std::wstring ArmorManager::GetDescription(std::wstring id)
 {
 	std::string tempid;
@@ -452,6 +460,8 @@ std::wstring ArmorManager::GetDescription(std::wstring id)
 	return tempdescription;
 }
 
+// 返回盔甲脚本文件名
+
 std::wstring ArmorManager::GetScriptName(std::wstring id)
 {
 	std::string tempid;
@@ -467,6 +477,8 @@ std::wstring ArmorManager::GetScriptName(std::wstring id)
 	UTF8ToUnicode(script,tempscript);
 	return tempscript;
 }
+
+// 返回盔甲属性
 
 int ArmorManager::GetAttr(std::wstring id, BasicAttr attrType)
 {
@@ -532,6 +544,8 @@ int ArmorManager::GetAttr(std::wstring id, BasicAttr attrType)
 	return attr;
 }
 
+// 返回盔甲类型
+
 int ArmorManager::GetArmorType(std::wstring id)
 {
 	std::string tempid;
@@ -546,6 +560,7 @@ int ArmorManager::GetArmorType(std::wstring id)
 	return atypeint;
 }
 
+// 返回盔甲价值
 
 int ArmorManager::GetValue(std::wstring id)
 {
@@ -560,6 +575,8 @@ int ArmorManager::GetValue(std::wstring id)
 	tempElement->GetAttribute("value", &ivalue);
 	return ivalue;
 }
+
+// 设定盔甲ID
 
 bool ArmorManager::SetID(std::wstring oldid, std::wstring id)
 {
@@ -605,6 +622,8 @@ bool ArmorManager::SetID(std::wstring oldid, std::wstring id)
 	return false;
 }
 
+// 设定盔甲名称
+
 bool ArmorManager::SetName(std::wstring id, std::wstring name)
 {
 	std::string tempid;
@@ -619,6 +638,8 @@ bool ArmorManager::SetName(std::wstring id, std::wstring name)
 	langelement->SetAttribute("value",tempname);
 	return true;
 }
+
+// 设定盔甲描述
 
 bool ArmorManager::SetDescription(std::wstring id, std::wstring descripition)
 {
@@ -635,6 +656,8 @@ bool ArmorManager::SetDescription(std::wstring id, std::wstring descripition)
 	return true;
 }
 
+// 设定盔甲脚本文件名
+
 bool ArmorManager::SetScriptName(std::wstring id, std::wstring script)
 {
 	std::string tempid;
@@ -649,6 +672,8 @@ bool ArmorManager::SetScriptName(std::wstring id, std::wstring script)
 	dataelement->SetAttribute("value", tempscript);
 	return true;
 }
+
+// 设定盔甲属性
 
 bool ArmorManager::SetAttr(std::wstring id, BasicAttr attrType, int attr)
 {
@@ -713,6 +738,8 @@ bool ArmorManager::SetAttr(std::wstring id, BasicAttr attrType, int attr)
 	return true;
 }
 
+// 设定盔甲类型
+
 bool ArmorManager::SetArmorType(std::wstring id, int type)
 {
 	std::string tempid;
@@ -725,6 +752,8 @@ bool ArmorManager::SetArmorType(std::wstring id, int type)
 	dataelement->SetAttribute("value", type);
 	return true;
 }
+
+// 设定盔甲价值
 
 bool ArmorManager::SetValue(std::wstring id, int ivalue)
 {
