@@ -4,7 +4,7 @@
 
 #define SHILEDMANAGER() DataManager::getSingleton().mShieldManager
 
-const int ShieldTableColumnCount = 12; 
+const int ShieldTableColumnCount = 13; 
 
 ShieldTableModule::ShieldTableModule(QObject *parent)
 : QAbstractTableModel(parent)
@@ -56,8 +56,10 @@ QVariant ShieldTableModule::data(const QModelIndex &index, int role /* = Qt::Dis
 	case 9:
 		return QString::number(SHILEDMANAGER()->GetAttr(id,ATTR_COVERT));
 	case 10:
-		return QString::fromStdWString(SHILEDMANAGER()->GetModuleName(id));
+		return QString::fromStdWString(SHILEDMANAGER()->GetMeshName(id));
 	case 11:
+		return QString::fromStdWString(SHILEDMANAGER()->GetMatName(id));
+	case 12:
 		return QString::fromStdWString(SHILEDMANAGER()->GetScriptName(id));
 	default:
 		return QVariant();
@@ -95,6 +97,8 @@ QVariant ShieldTableModule::headerData(int section, Qt::Orientation orientation,
 		case 10:
 			return QString("模型名称");
 		case 11:
+			return QString("材质名称");
+		case 12:
 			return QString("脚本名称");
 		default:
 			return QVariant();
@@ -157,8 +161,10 @@ bool ShieldTableModule::setData(const QModelIndex &index, const QVariant &qvalue
 		case 9:
 			return SHILEDMANAGER()->SetAttr(id,ATTR_COVERT,qvalue.toInt());
 		case 10:
-			return SHILEDMANAGER()->SetModuleName(id,qvalue.toString().toStdWString());
+			return SHILEDMANAGER()->SetMeshName(id,qvalue.toString().toStdWString());
 		case 11:
+			return SHILEDMANAGER()->SetMatName(id,qvalue.toString().toStdWString());
+		case 12:
 			return SHILEDMANAGER()->SetScriptName(id,qvalue.toString().toStdWString());
 		default:
 			return false;

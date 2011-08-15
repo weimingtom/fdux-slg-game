@@ -4,7 +4,7 @@
 
 #define SOLDIERMANAGER() DataManager::getSingleton().mSoldierManager
 
-const int SoldierTableColumnCount = 15; 
+const int SoldierTableColumnCount = 16; 
 
 SoldierTableModule::SoldierTableModule(QObject *parent)
 	: QAbstractTableModel(parent)
@@ -65,6 +65,8 @@ QVariant SoldierTableModule::data(const QModelIndex &index, int role /* = Qt::Di
 		return QString::number(SOLDIERMANAGER()->GetAttr(id,ATTR_COUNTER));
 	case 14:
 		return QString::fromStdWString(SOLDIERMANAGER()->GetScriptName(id));
+	case 15:
+		return QString::number(SOLDIERMANAGER()->GetInjury(id));
 	default:
 		return QVariant();
 	}
@@ -108,6 +110,8 @@ QVariant SoldierTableModule::headerData(int section, Qt::Orientation orientation
 			return QString("反击系数(*0.01)");
 		case 14:
 			return QString("脚本名称");
+		case 15:
+			return QString("是否会受伤");
 		default:
 			return QVariant();
 		}
@@ -178,6 +182,8 @@ bool SoldierTableModule::setData(const QModelIndex &index, const QVariant &qvalu
 			return SOLDIERMANAGER()->SetAttr(id,ATTR_COUNTER,qvalue.toInt());
 		case 14:
 			return SOLDIERMANAGER()->SetScriptName(id,qvalue.toString().toStdWString());
+		case 15:
+			return SOLDIERMANAGER()->SetInjury(id,qvalue.toInt());
 		default:
 			return false;
 		}

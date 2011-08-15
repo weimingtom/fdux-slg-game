@@ -24,7 +24,9 @@ public:
 	std::wstring GetDescription (std::wstring id);
 	int GetAttr(std::wstring id,BasicAttr attrType);
 	std::wstring GetScriptName(std::wstring id);
-	std::wstring GetModuleName(std::wstring id);
+	//std::wstring GetModuleName(std::wstring id); refactor to GetMeshName(std::wstring id)
+	std::wstring GetMeshName(std::wstring id);
+	std::wstring GetMatName(std::wstring id);
 	int GetValue(std::wstring id);
 
 	void AddShield();
@@ -35,7 +37,9 @@ public:
 	bool SetDescription(std::wstring id, std::wstring descripition);
 	bool SetAttr(std::wstring id, BasicAttr attrType, int attr);
 	bool SetScriptName(std::wstring id, std::wstring script);
-	bool SetModuleName(std::wstring id, std::wstring modulename);
+	//bool SetModuleName(std::wstring id, std::wstring modulename); refactor to SetMeshName(std::wstring id, std::wstring meshname)
+	bool SetMeshName(std::wstring id, std::wstring meshname);
+	bool SetMatName(std::wstring id, std::wstring matname);
 	bool SetValue(std::wstring id, int ivalue);
 
 private:
