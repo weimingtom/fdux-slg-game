@@ -24,6 +24,7 @@ public:
 	std::wstring GetScriptName(std::wstring id);
 	std::wstring GetDescription (std::wstring id);
 	int GetValue(std::wstring id);
+	int GetInjury(std::wstring id);
 
 	void AddSoldier(); //创建新的兵源
 	void DelSoldier(std::wstring id);
@@ -34,6 +35,7 @@ public:
 	bool SetAttr(std::wstring id, BasicAttr attrType, int attr);
 	bool SetScriptName(std::wstring id, std::wstring script);
 	bool SetValue(std::wstring id, int ivalue);
+	bool SetInjury(std::wstring id, int injury);
 private:
 	
 	std::wstring mModPath;

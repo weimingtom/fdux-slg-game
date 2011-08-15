@@ -4,7 +4,7 @@
 
 #define SWEAPONMANAGER() DataManager::getSingleton().mSWeaponManager
 
-const int SWeaponTableColumnCount = 14; 
+const int SWeaponTableColumnCount = 15; 
 
 SWeaponTableModule::SWeaponTableModule(QObject *parent)
 : QAbstractTableModel(parent)
@@ -48,20 +48,22 @@ QVariant SWeaponTableModule::data(const QModelIndex &index, int role /* = Qt::Di
 	case 5:
 		return QString::number(SWEAPONMANAGER()->GetAttr(id,ATTR_RANGEDATTACK));
 	case 6:
-		return QString::number(SWEAPONMANAGER()->GetRange(id));
+		return QString::number(SWEAPONMANAGER()->GetMaxRange(id));
 	case 7:
-		return QString::number(SWEAPONMANAGER()->GetAttr(id,ATTR_DEFENSE));
+		return QString::number(SWEAPONMANAGER()->GetMinRange(id));
 	case 8:
-		return QString::number(SWEAPONMANAGER()->GetAttr(id,ATTR_ACTIONPOINT));
+		return QString::number(SWEAPONMANAGER()->GetAttr(id,ATTR_DEFENSE));
 	case 9:
-		return QString::number(SWEAPONMANAGER()->GetAttr(id,ATTR_COVERT));
+		return QString::number(SWEAPONMANAGER()->GetAttr(id,ATTR_ACTIONPOINT));
 	case 10:
-		return QString::fromStdWString(SWEAPONMANAGER()->GetModuleName(id));
+		return QString::number(SWEAPONMANAGER()->GetAttr(id,ATTR_COVERT));
 	case 11:
-		return QString::fromStdWString(SWEAPONMANAGER()->GetIdleAnimName(id));
+		return QString::fromStdWString(SWEAPONMANAGER()->GetMeshName(id));
 	case 12:
-		return QString::fromStdWString(SWEAPONMANAGER()->GetActAnimName(id));
+		return QString::fromStdWString(SWEAPONMANAGER()->GetMatName(id));
 	case 13:
+		return QString::fromStdWString(SWEAPONMANAGER()->GetAniGroup(id));
+	case 14:
 		return QString::fromStdWString(SWEAPONMANAGER()->GetScriptName(id));
 	default:
 		return QVariant();
@@ -89,20 +91,22 @@ QVariant SWeaponTableModule::headerData(int section, Qt::Orientation orientation
 		case 5:
 			return QString("远程攻击值");
 		case 6:
-			return QString("射程");
+			return QString("最大射程");
 		case 7:
-			return QString("防御值");
+			return QString("最小射程");
 		case 8:
-			return QString("行动值");
+			return QString("防御值");
 		case 9:
-			return QString("隐蔽值");
+			return QString("行动值");
 		case 10:
-			return QString("模型名称");
+			return QString("隐蔽值");
 		case 11:
-			return QString("持有动作名称");
+			return QString("模型名称");
 		case 12:
-			return QString("攻击动作名称");
+			return QString("材质名称");
 		case 13:
+			return QString("动画组名称");
+		case 14:
 			return QString("脚本名称");
 		default:
 			return QVariant();
@@ -157,20 +161,22 @@ bool SWeaponTableModule::setData(const QModelIndex &index, const QVariant &qvalu
 		case 5:
 			return SWEAPONMANAGER()->SetAttr(id,ATTR_RANGEDATTACK,qvalue.toInt());
 		case 6:
-			return SWEAPONMANAGER()->SetRange(id,qvalue.toInt());
+			return SWEAPONMANAGER()->SetMaxRange(id,qvalue.toInt());
 		case 7:
-			return SWEAPONMANAGER()->SetAttr(id,ATTR_DEFENSE,qvalue.toInt());
+			return SWEAPONMANAGER()->SetMinRange(id,qvalue.toInt());
 		case 8:
-			return SWEAPONMANAGER()->SetAttr(id,ATTR_ACTIONPOINT,qvalue.toInt());
+			return SWEAPONMANAGER()->SetAttr(id,ATTR_DEFENSE,qvalue.toInt());
 		case 9:
-			return SWEAPONMANAGER()->SetAttr(id,ATTR_COVERT,qvalue.toInt());
+			return SWEAPONMANAGER()->SetAttr(id,ATTR_ACTIONPOINT,qvalue.toInt());
 		case 10:
-			return SWEAPONMANAGER()->SetModuleName(id,qvalue.toString().toStdWString());
+			return SWEAPONMANAGER()->SetAttr(id,ATTR_COVERT,qvalue.toInt());
 		case 11:
-			return SWEAPONMANAGER()->SetIdleAnimName(id,qvalue.toString().toStdWString());
+			return SWEAPONMANAGER()->SetMeshName(id,qvalue.toString().toStdWString());
 		case 12:
-			return SWEAPONMANAGER()->SetActAnimName(id,qvalue.toString().toStdWString());
+			return SWEAPONMANAGER()->SetMatName(id,qvalue.toString().toStdWString());
 		case 13:
+			return SWEAPONMANAGER()->SetAniGroup(id,qvalue.toString().toStdWString());
+		case 14:
 			return SWEAPONMANAGER()->SetScriptName(id,qvalue.toString().toStdWString());
 		default:
 			return false;
