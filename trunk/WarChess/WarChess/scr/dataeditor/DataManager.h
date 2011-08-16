@@ -16,6 +16,8 @@ class ShieldManager;
 class SquadManager;
 class StringTable;
 
+class XMLManager;
+
 class DataManager:public IISingleton<DataManager>
 {
 public:
@@ -42,6 +44,8 @@ public:
 	ArmorManager* mArmorManager;
 	ShieldManager* mShieldManager;
 	StringTable* mStringTable;
+
+	XMLManager* xmlManager_;
 
 private:
 	bool CreatModDir(std::wstring dirName); //检查一个文件夹是否存在，不存在则创建

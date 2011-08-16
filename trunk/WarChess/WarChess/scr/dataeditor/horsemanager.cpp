@@ -21,7 +21,7 @@ bool HorseManager::LoadMod(std::wstring modName, std::wstring langName, bool edi
 	mModPath = L".\\..\\Mod\\" + modName + L"\\";
 
 	std::wstring tempPath;
-	tempPath = mModPath + L"data\\horse.xml";
+	tempPath = mModPath + L"data\\datafile.xml";
 
 	UnicodeToANSI(tempPath, mDataPath);
 
@@ -38,7 +38,7 @@ bool HorseManager::LoadMod(std::wstring modName, std::wstring langName, bool edi
 	else if(!editorMode)
 	{
 		mModPath = L".\\..\\Mod\\common\\";
-		tempPath = mModPath + L"data\\horse.xml";
+		tempPath = mModPath + L"data\\datafile.xml";
 		UnicodeToANSI(tempPath, mDataPath);
 		hFind = FindFirstFile(tempPath.c_str(),&findFileData);
 		if (hFind != INVALID_HANDLE_VALUE)
@@ -64,7 +64,7 @@ bool HorseManager::LoadMod(std::wstring modName, std::wstring langName, bool edi
 bool HorseManager::LoadLang(std::wstring langName)
 {
 	std::wstring tempPath;
-	tempPath = mModPath + L"Lang\\" + langName + L"\\horse.xml";
+	tempPath = mModPath + L"Lang\\" + langName + L"\\datafile.xml";
 
 	UnicodeToANSI(tempPath, mLangPath);
 
@@ -88,20 +88,24 @@ bool HorseManager::LoadLang(std::wstring langName)
 bool HorseManager::CreateDataFile()
 {
 	mDataFile.Clear();
-	ticpp::Declaration * decl = new ticpp::Declaration( "1.0", "utf-8", "" );
-	ticpp::Element * element = new ticpp::Element( "HorseData" );
-	mDataFile.LinkEndChild(decl);
-	mDataFile.LinkEndChild(element);
+	ticpp::Declaration * dataFileDecl = new ticpp::Declaration( "1.0", "utf-8", "" );
+	ticpp::Element * staticDataElement = new ticpp::Element("StaticData");
+	ticpp::Element * horseDataElement = new ticpp::Element("HorseData");
+	staticDataElement->LinkEndChild(horseDataElement);
+	mDataFile.LinkEndChild(dataFileDecl);
+	mDataFile.LinkEndChild(staticDataElement);
 	return true;
 }
 
 bool HorseManager::CreateLangFile()
 {
 	mLangFile.Clear();
-	ticpp::Declaration * decl = new ticpp::Declaration( "1.0", "utf-8", "" );
-	ticpp::Element * element = new ticpp::Element( "HorseData" );
-	mLangFile.LinkEndChild(decl);
-	mLangFile.LinkEndChild(element);
+	ticpp::Declaration * dataFileDecl = new ticpp::Declaration( "1.0", "utf-8", "" );
+	ticpp::Element * staticDataElement = new ticpp::Element("StaticData");
+	ticpp::Element * horseDataElement = new ticpp::Element("HorseData");
+	staticDataElement->LinkEndChild(horseDataElement);
+	mLangFile.LinkEndChild(dataFileDecl);
+	mLangFile.LinkEndChild(staticDataElement);
 	return true;
 }
 
@@ -109,13 +113,13 @@ bool HorseManager::SaveData()
 {
 	if(mDataPath.size()> 0)
 	{
-		ticpp::Element *element = mDataFile.FirstChildElement("HorseData");
+		ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("HorseData");
 		if(element)
 		{
 			if(!element->NoChildren())
 				mDataFile.SaveFile(mDataPath.c_str());
-			else
-				DeleteFileA(mDataPath.c_str());
+			//else
+				//DeleteFileA(mDataPath.c_str());
 		}
 
 	}
@@ -126,13 +130,13 @@ bool HorseManager::SaveLang()
 {
 	if(mLangPath.size() > 0)
 	{
-		ticpp::Element *element = mLangFile.FirstChildElement("HorseData");
+		ticpp::Element *element = mLangFile.FirstChildElement("StaticData")->FirstChildElement("HorseData");
 		if(element)
 		{
 			if(!element->NoChildren())
 				mLangFile.SaveFile(mLangPath.c_str());
-			else
-				DeleteFileA(mLangPath.c_str());
+			//else
+				//DeleteFileA(mLangPath.c_str());
 		}
 	}
 	return true;
@@ -140,7 +144,7 @@ bool HorseManager::SaveLang()
 
 int HorseManager::GetNum()
 {
-	ticpp::Element *element = mDataFile.FirstChildElement("HorseData");
+	ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("HorseData");
 	if(element)
 	{
 		if(element->NoChildren())
@@ -162,7 +166,7 @@ void HorseManager::AddHorse()
 	char newid[20];
 	int n = 0;
 	sprintf_s(newid,20,"newhorse%d",n);
-	ticpp::Element *rootelement = mDataFile.FirstChildElement("HorseData");
+	ticpp::Element *rootelement = mDataFile.FirstChildElement("StaticData")->FirstChildElement("HorseData");
 	while(rootelement->FirstChildElement(newid,false))
 	{
 		n = n + 1;
@@ -235,7 +239,7 @@ void HorseManager::AddHorse()
 
 	rootelement->LinkEndChild(element);
 
-	ticpp::Element *langrootelement = mLangFile.FirstChildElement("HorseData");
+	ticpp::Element *langrootelement = mLangFile.FirstChildElement("StaticData")->FirstChildElement("HorseData");
 	ticpp::Element *langelement = langrootelement->FirstChildElement(newid,false);
 	if(langelement == NULL)
 	{
@@ -258,13 +262,13 @@ void HorseManager::DelHorse(std::wstring id)
 {
 	std::string tempid;
 	UnicodeToUTF8(id,tempid);
-	ticpp::Element *dataelement = mDataFile.FirstChildElement("HorseData");
+	ticpp::Element *dataelement = mDataFile.FirstChildElement("StaticData")->FirstChildElement("HorseData");
 	ticpp::Node *datachildelement = dataelement->FirstChildElement(tempid,false);
 	if(datachildelement)
 	{
 		dataelement->RemoveChild(datachildelement);
 	}
-	ticpp::Element *langelement = mLangFile.FirstChildElement("HorseData");
+	ticpp::Element *langelement = mLangFile.FirstChildElement("StaticData")->FirstChildElement("HorseData");
 	ticpp::Node *langchildelement = langelement->FirstChildElement(tempid,false);
 	if(langchildelement)
 	{
@@ -276,7 +280,7 @@ std::wstring HorseManager::GetID(int index)
 {
 	int n = 0;
 	std::string id;
-	ticpp::Element *element = mDataFile.FirstChildElement("HorseData");
+	ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("HorseData");
 	ticpp::Iterator<ticpp::Element> child;
 	child = child.begin(element);
 	while(n < index  )
@@ -294,7 +298,7 @@ std::wstring HorseManager::GetName(std::wstring id)
 {
 	std::string tempid;
 	UnicodeToUTF8(id,tempid);
-	ticpp::Element *element = mLangFile.FirstChildElement("HorseData");
+	ticpp::Element *element = mLangFile.FirstChildElement("StaticData")->FirstChildElement("HorseData");
 	ticpp::Element *langelement = element->FirstChildElement(tempid,false);
 	if(langelement == NULL)
 	{
@@ -323,7 +327,7 @@ std::wstring HorseManager::GetDescription(std::wstring id)
 {
 	std::string tempid;
 	UnicodeToUTF8(id,tempid);
-	ticpp::Element *element = mLangFile.FirstChildElement("HorseData");
+	ticpp::Element *element = mLangFile.FirstChildElement("StaticData")->FirstChildElement("HorseData");
 	ticpp::Element *langelement = element->FirstChildElement(tempid,false);
 	if(langelement == NULL)
 	{
@@ -352,7 +356,7 @@ std::wstring HorseManager::GetScriptName(std::wstring id)
 {
 	std::string tempid;
 	UnicodeToUTF8(id,tempid);
-	ticpp::Element *element = mDataFile.FirstChildElement("HorseData");
+	ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("HorseData");
 	ticpp::Element *dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("Script", false);
 	std::string script;
 	script = dataelement->GetAttribute("value");
@@ -365,7 +369,7 @@ int HorseManager::GetAttr(std::wstring id, BasicAttr attrType)
 {
 	std::string tempid;
 	UnicodeToUTF8(id,tempid);
-	ticpp::Element *element = mDataFile.FirstChildElement("HorseData");
+	ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("HorseData");
 	ticpp::Element *dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("AttrModifer", false);
 	ticpp::Element * tempElement;
 	int attr = 0;
@@ -428,7 +432,7 @@ int HorseManager::GetValue(std::wstring id)
 {
 	std::string tempid;
 	UnicodeToUTF8(id,tempid);
-	ticpp::Element *element = mDataFile.FirstChildElement("HorseData");
+	ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("HorseData");
 	ticpp::Element *dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("Value", false);
 	int ivalue = 0;
 	dataelement->GetAttribute("value",&ivalue);
@@ -441,13 +445,13 @@ bool HorseManager::SetID(std::wstring oldid, std::wstring id)
 	UnicodeToUTF8(oldid,tempoldid);
 	std::string tempid;
 	UnicodeToUTF8(id,tempid);
-	ticpp::Element *element = mDataFile.FirstChildElement("HorseData");
+	ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("HorseData");
 	//ÅÐ¶ÏÊÇ·ñ´æÔÚÖØ¸´id
 	if(element->FirstChildElement(tempid,false) == NULL)
 	{
 		ticpp::Element *dataelement = element->FirstChildElement(tempoldid);
 		dataelement->SetValue(tempid);
-		ticpp::Element *langelement = mLangFile.FirstChildElement("HorseData");
+		ticpp::Element *langelement = mLangFile.FirstChildElement("StaticData")->FirstChildElement("HorseData");
 		ticpp::Element *langchildelement = langelement->FirstChildElement(tempoldid,false);
 		if(langchildelement == NULL)
 		{
@@ -477,7 +481,7 @@ bool HorseManager::SetName(std::wstring id, std::wstring name)
 	UnicodeToUTF8(id,tempid);
 	std::string tempname;
 	UnicodeToUTF8(name,tempname);
-	ticpp::Element *element = mLangFile.FirstChildElement("HorseData");
+	ticpp::Element *element = mLangFile.FirstChildElement("StaticData")->FirstChildElement("HorseData");
 	ticpp::Element *langelement = element->FirstChildElement(tempid, false)->FirstChildElement("Name", false);
 	langelement->SetAttribute("value",tempname);
 	return true;
@@ -489,7 +493,7 @@ bool HorseManager::SetDescription(std::wstring id, std::wstring descripition)
 	UnicodeToUTF8(id,tempid);
 	std::string tempdescripition;
 	UnicodeToUTF8(descripition,tempdescripition);
-	ticpp::Element *element = mLangFile.FirstChildElement("HorseData");
+	ticpp::Element *element = mLangFile.FirstChildElement("StaticData")->FirstChildElement("HorseData");
 	ticpp::Element *langelement = element->FirstChildElement(tempid, false)->FirstChildElement("Describe", false);
 	langelement->SetAttribute("value", tempdescripition);
 	return true;
@@ -501,7 +505,7 @@ bool HorseManager::SetScriptName(std::wstring id, std::wstring script)
 	UnicodeToUTF8(id,tempid);
 	std::string tempscript;
 	UnicodeToUTF8(script,tempscript);
-	ticpp::Element *element = mDataFile.FirstChildElement("HorseData");
+	ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("HorseData");
 	ticpp::Element *dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("Script", false);
 	dataelement->SetAttribute("value",tempscript);
 	return true;
@@ -511,7 +515,7 @@ bool HorseManager::SetAttr(std::wstring id, BasicAttr attrType, int attr)
 {
 	std::string tempid;
 	UnicodeToUTF8(id,tempid);
-	ticpp::Element *element = mDataFile.FirstChildElement("HorseData");
+	ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("HorseData");
 	ticpp::Element *dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("AttrModifer", false);
 	ticpp::Element * tempElement;
 	switch(attrType)
@@ -573,7 +577,7 @@ bool HorseManager::SetValue(std::wstring id, int ivalue)
 {
 	std::string tempid;
 	UnicodeToUTF8(id,tempid);
-	ticpp::Element *element = mDataFile.FirstChildElement("HorseData");
+	ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("HorseData");
 	ticpp::Element *dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("Value", false);
 	dataelement->SetAttribute("value",ivalue);
 	return true;

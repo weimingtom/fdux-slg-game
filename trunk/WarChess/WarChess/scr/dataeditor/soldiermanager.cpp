@@ -168,6 +168,7 @@ bool SoldierManager::SaveLang()
 
 int SoldierManager::GetNum()
 {
+	/*
 	ticpp::Element *element = mDataFile.FirstChildElement("SoldierData");
 	if(element)
 	{
@@ -182,6 +183,7 @@ int SoldierManager::GetNum()
 			return num;
 		}
 	}
+	*/
 	return 0;
 }
 

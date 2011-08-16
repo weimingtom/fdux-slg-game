@@ -51,7 +51,7 @@ bool PWeaponManager::LoadMod(std::wstring modName, std::wstring langName, bool e
 	mModPath = L".\\..\\Mod\\" + modName + L"\\";
 
 	std::wstring tempPath;
-	tempPath = mModPath + L"data\\primaryweapon.xml";
+	tempPath = mModPath + L"data\\datafile.xml";
 
 	UnicodeToANSI(tempPath, mDataPath);
 
@@ -68,7 +68,7 @@ bool PWeaponManager::LoadMod(std::wstring modName, std::wstring langName, bool e
 	else if(!editorMode)
 	{
 		mModPath = L".\\..\\Mod\\common\\";
-		tempPath = mModPath + L"data\\primaryweapon.xml";
+		tempPath = mModPath + L"data\\datafile.xml";
 		UnicodeToANSI(tempPath, mDataPath);
 		hFind = FindFirstFile(tempPath.c_str(),&findFileData);
 		if (hFind != INVALID_HANDLE_VALUE)
@@ -94,7 +94,7 @@ bool PWeaponManager::LoadMod(std::wstring modName, std::wstring langName, bool e
 bool PWeaponManager::LoadLang(std::wstring langName)
 {
 	std::wstring tempPath;
-	tempPath = mModPath + L"Lang\\" + langName + L"\\primaryweapon.xml";
+	tempPath = mModPath + L"Lang\\" + langName + L"\\datafile.xml";
 
 	UnicodeToANSI(tempPath, mLangPath);
 
@@ -142,7 +142,7 @@ bool PWeaponManager::SaveData()
 	if(mDataPath.size()> 0)
 	{
 		//ticpp::Element *element = mDataFile.FirstChildElement("PrimaryWeapon");
-		ticpp::Element * element = mDataFile.FirstChildElement("PweaponData");
+		ticpp::Element * element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 		if(element)
 		{
 			if(!element->NoChildren())
@@ -160,7 +160,7 @@ bool PWeaponManager::SaveLang()
 	if(mLangPath.size() > 0)
 	{
 		//ticpp::Element *element = mLangFile.FirstChildElement("PrimaryWeapon");
-		ticpp::Element * element = mLangFile.FirstChildElement("PweaponData");
+		ticpp::Element * element = mLangFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 		if(element)
 		{
 			if(!element->NoChildren())
@@ -175,7 +175,7 @@ bool PWeaponManager::SaveLang()
 int PWeaponManager::GetNum()
 {
 	//ticpp::Element *element = mDataFile.FirstChildElement("PrimaryWeapon");
-	ticpp::Element * element = mDataFile.FirstChildElement("PweaponData");
+	ticpp::Element * element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	if(element)
 	{
 		if(element->NoChildren())
@@ -198,7 +198,7 @@ void PWeaponManager::AddPWeapon()
 	int n = 0;
 	sprintf_s(newid,20,"newprimaryweapon%d",n);
 	//ticpp::Element *rootelement = mDataFile.FirstChildElement("PrimaryWeapon");
-	ticpp::Element *rootelement = mDataFile.FirstChildElement("PweaponData");
+	ticpp::Element *rootelement = mDataFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	while(rootelement->FirstChildElement(newid,false))
 	{
 		n = n + 1;
@@ -298,7 +298,7 @@ void PWeaponManager::AddPWeapon()
 	rootelement->LinkEndChild(element);
 
 	//ticpp::Element *langrootelement = mLangFile.FirstChildElement("PrimaryWeapon");
-	ticpp::Element *langrootelement = mLangFile.FirstChildElement("PweaponData");
+	ticpp::Element *langrootelement = mLangFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	ticpp::Element *langelement = langrootelement->FirstChildElement(newid,false);
 	if(langelement == NULL)
 	{
@@ -328,14 +328,14 @@ void PWeaponManager::DelPWeapon(std::wstring id)
 	std::string tempid;
 	UnicodeToUTF8(id,tempid);
 	//ticpp::Element *dataelement = mDataFile.FirstChildElement("PrimaryWeapon");
-	ticpp::Element *dataelement = mDataFile.FirstChildElement("PweaponData");
+	ticpp::Element *dataelement = mDataFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	ticpp::Node *datachildelement = dataelement->FirstChildElement(tempid,false);
 	if(datachildelement)
 	{
 		dataelement->RemoveChild(datachildelement);
 	}
 	//ticpp::Element *langelement = mLangFile.FirstChildElement("PrimaryWeapon");
-	ticpp::Element *langelement = mLangFile.FirstChildElement("PweaponData");
+	ticpp::Element *langelement = mLangFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	ticpp::Node *langchildelement = langelement->FirstChildElement(tempid,false);
 	if(langchildelement)
 	{
@@ -348,7 +348,7 @@ std::wstring PWeaponManager::GetID(int index)
 	int n = 0;
 	std::string id;
 	//ticpp::Element *element = mDataFile.FirstChildElement("PrimaryWeapon");
-	ticpp::Element *element = mDataFile.FirstChildElement("PweaponData");
+	ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	ticpp::Iterator<ticpp::Element> child;
 	child = child.begin(element);
 	while(n < index  )
@@ -367,7 +367,7 @@ std::wstring PWeaponManager::GetName(std::wstring id)
 	std::string tempid;
 	UnicodeToUTF8(id,tempid);
 	//ticpp::Element *element = mLangFile.FirstChildElement("PrimaryWeapon");
-	ticpp::Element * element = mLangFile.FirstChildElement("PweaponData");
+	ticpp::Element * element = mLangFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	ticpp::Element *langelement = element->FirstChildElement(tempid,false);
 	if(langelement == NULL)
 	{
@@ -404,7 +404,7 @@ std::wstring PWeaponManager::GetDescription(std::wstring id)
 	std::string tempid;
 	UnicodeToUTF8(id,tempid);
 	//ticpp::Element *element = mLangFile.FirstChildElement("PrimaryWeapon");
-	ticpp::Element * element = mLangFile.FirstChildElement("PweaponData");
+	ticpp::Element * element = mLangFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	ticpp::Element *langelement = element->FirstChildElement(tempid,false);
 	if(langelement == NULL)
 	{
@@ -441,7 +441,7 @@ std::wstring PWeaponManager::GetScriptName(std::wstring id)
 	std::string tempid;
 	UnicodeToUTF8(id,tempid);
 	//ticpp::Element *element = mDataFile.FirstChildElement("PrimaryWeapon");
-	ticpp::Element * element = mDataFile.FirstChildElement("PweaponData");
+	ticpp::Element * element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	ticpp::Element * dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("Script", false);
 	std::string script;
 	script = dataelement->GetAttribute("value");
@@ -456,7 +456,7 @@ int PWeaponManager::GetAttr(std::wstring id, BasicAttr attrType)
 	UnicodeToUTF8(id,tempid);
 	//ticpp::Element *element = mDataFile.FirstChildElement("PrimaryWeapon");
 	//ticpp::Element *dataelement = element->FirstChildElement(tempid);
-	ticpp::Element * element = mDataFile.FirstChildElement("PweaponData");
+	ticpp::Element * element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	ticpp::Element * dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("AttrModifer", false);
 	ticpp::Element * tempElement;
 	int attr = 0;
@@ -521,7 +521,7 @@ int PWeaponManager::GetPWeaponType(std::wstring id)
 	UnicodeToUTF8(id,tempid);
 	//ticpp::Element *element = mDataFile.FirstChildElement("PrimaryWeapon");
 	//ticpp::Element *dataelement = element->FirstChildElement(tempid);
-	ticpp::Element * element = mDataFile.FirstChildElement("PweaponData");
+	ticpp::Element * element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	ticpp::Element * dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("Type", false);
 	int pwtypeint = 0;
 	dataelement->GetAttribute("value", &pwtypeint, false);
@@ -532,7 +532,7 @@ std::wstring PWeaponManager::GetMeshName(std::wstring id)
 {
 	std::string tempid;
 	UnicodeToUTF8(id,tempid);
-	ticpp::Element *element = mDataFile.FirstChildElement("PweaponData");
+	ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	ticpp::Element *dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("Mesh", false);
 	std::string mesh;
 	mesh = dataelement->GetAttribute("value");
@@ -545,7 +545,7 @@ std::wstring PWeaponManager::GetMatName(std::wstring id)
 {
 	std::string tempid;
 	UnicodeToUTF8(id,tempid);
-	ticpp::Element *element = mDataFile.FirstChildElement("PweaponData");
+	ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	ticpp::Element *dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("Mat", false);
 	std::string mat;
 	mat = dataelement->GetAttribute("value");
@@ -558,7 +558,7 @@ std::wstring PWeaponManager::GetAniGroup(std::wstring id)
 {
 	std::string tempid;
 	UnicodeToUTF8(id,tempid);
-	ticpp::Element *element = mDataFile.FirstChildElement("PweaponData");
+	ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	ticpp::Element *dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("AniGroup", false);
 	std::string aniGroup;
 	aniGroup = dataelement->GetAttribute("value");
@@ -571,7 +571,7 @@ int PWeaponManager::GetValue(std::wstring id)
 {
 	std::string tempid;
 	UnicodeToUTF8(id,tempid);
-	ticpp::Element *element = mDataFile.FirstChildElement("PweaponData");
+	ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	ticpp::Element *dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("Value", false);
 	int ivalue = 0;
 	dataelement->GetAttribute("value", &ivalue, false);
@@ -584,13 +584,13 @@ bool PWeaponManager::SetID(std::wstring oldid, std::wstring id)
 	UnicodeToUTF8(oldid,tempoldid);
 	std::string tempid;
 	UnicodeToUTF8(id,tempid);
-	ticpp::Element *element = mDataFile.FirstChildElement("PweaponData");
+	ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	//ÅÐ¶ÏÊÇ·ñ´æÔÚÖØ¸´id
 	if(element->FirstChildElement(tempid,false) == NULL)
 	{
 		ticpp::Element *dataelement = element->FirstChildElement(tempoldid);
 		dataelement->SetValue(tempid);
-		ticpp::Element *langelement = mLangFile.FirstChildElement("PweaponData");
+		ticpp::Element *langelement = mLangFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 		ticpp::Element *langchildelement = langelement->FirstChildElement(tempoldid,false);
 		if(langchildelement == NULL)
 		{
@@ -624,7 +624,7 @@ bool PWeaponManager::SetName(std::wstring id, std::wstring name)
 	UnicodeToUTF8(id,tempid);
 	std::string tempname;
 	UnicodeToUTF8(name,tempname);
-	ticpp::Element *element = mLangFile.FirstChildElement("PweaponData");
+	ticpp::Element *element = mLangFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	ticpp::Element *langelement = element->FirstChildElement(tempid, false)->FirstChildElement("Name", false);
 	langelement->SetAttribute("value",tempname);
 	return true;
@@ -636,7 +636,7 @@ bool PWeaponManager::SetDescription(std::wstring id, std::wstring descripition)
 	UnicodeToUTF8(id,tempid);
 	std::string tempdescripition;
 	UnicodeToUTF8(descripition,tempdescripition);
-	ticpp::Element *element = mLangFile.FirstChildElement("PweaponData");
+	ticpp::Element *element = mLangFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	ticpp::Element *langelement = element->FirstChildElement(tempid, false)->FirstChildElement("Describe", false);
 	langelement->SetAttribute("value", tempdescripition);
 	return true;
@@ -648,7 +648,7 @@ bool PWeaponManager::SetScriptName(std::wstring id, std::wstring script)
 	UnicodeToUTF8(id,tempid);
 	std::string tempscript;
 	UnicodeToUTF8(script,tempscript);
-	ticpp::Element *element = mDataFile.FirstChildElement("PweaponData");
+	ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	ticpp::Element *dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("Script", false);
 	dataelement->SetAttribute("value",tempscript);
 	return true;
@@ -658,7 +658,7 @@ bool PWeaponManager::SetAttr(std::wstring id, BasicAttr attrType, int attr)
 {
 	std::string tempid;
 	UnicodeToUTF8(id,tempid);
-	ticpp::Element *element = mDataFile.FirstChildElement("PweaponData");
+	ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	ticpp::Element *dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("AttrModifer", false);
 	ticpp::Element * tempElement;
 	switch(attrType)
@@ -722,7 +722,7 @@ bool PWeaponManager::SetMeshName(std::wstring id, std::wstring meshname)
 	UnicodeToUTF8(id,tempid);
 	std::string tempmeshname;
 	UnicodeToUTF8(meshname,tempmeshname);
-	ticpp::Element *element = mDataFile.FirstChildElement("PweaponData");
+	ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	ticpp::Element *dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("Mesh", false);
 	dataelement->SetAttribute("value",tempmeshname);
 	return true;
@@ -734,7 +734,7 @@ bool PWeaponManager::SetMatName(std::wstring id, std::wstring matname)
 	UnicodeToUTF8(id,tempid);
 	std::string tempmatname;
 	UnicodeToUTF8(matname,tempmatname);
-	ticpp::Element *element = mDataFile.FirstChildElement("PweaponData");
+	ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	ticpp::Element *dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("Mat", false);
 	dataelement->SetAttribute("value",tempmatname);
 	return true;
@@ -746,7 +746,7 @@ bool PWeaponManager::SetAniGroup(std::wstring id, std::wstring anigroup)
 	UnicodeToUTF8(id,tempid);
 	std::string tempanigroup;
 	UnicodeToUTF8(anigroup,tempanigroup);
-	ticpp::Element *element = mDataFile.FirstChildElement("PweaponData");
+	ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	ticpp::Element *dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("AniGroup", false);
 	dataelement->SetAttribute("value",tempanigroup);
 	return true;
@@ -756,7 +756,7 @@ bool PWeaponManager::SetPWeaponType(std::wstring id, int type)
 {
 	std::string tempid;
 	UnicodeToUTF8(id,tempid);
-	ticpp::Element *element = mDataFile.FirstChildElement("PweaponData");
+	ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	ticpp::Element *dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("Type", false);
 	dataelement->SetAttribute("value",type);
 	return true;
@@ -766,7 +766,7 @@ bool PWeaponManager::SetValue(std::wstring id, int ivalue)
 {
 	std::string tempid;
 	UnicodeToUTF8(id,tempid);
-	ticpp::Element *element = mDataFile.FirstChildElement("PweaponData");
+	ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("PweaponData");
 	ticpp::Element *dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("Value", false);
 	dataelement->SetAttribute("value",ivalue);
 	return true;

@@ -6,6 +6,7 @@
 #include "armormanager.h"
 #include "shieldmanager.h"
 #include "stringtable.h"
+#include "XMLManager.h"
 
 #include <Windows.h>
 #include <string.h>
@@ -14,13 +15,15 @@
 DataManager::DataManager(bool editormode)
 {
 	mEditorMode = editormode;
-	mStringTable = new StringTable();
-	mSoldierManager = new SoldierManager();
-	mHorseManager = new HorseManager();
-	mPWeaponManager = new PWeaponManager();
-	mSWeaponManager = new SWeaponManager();
+	//mStringTable = new StringTable();
+	//mSoldierManager = new SoldierManager();
+	//mHorseManager = new HorseManager();
+	//mPWeaponManager = new PWeaponManager();
+	//mSWeaponManager = new SWeaponManager();
 	mArmorManager = new ArmorManager();
-	mShieldManager = new ShieldManager();
+	//mShieldManager = new ShieldManager();
+
+	xmlManager_ = new XMLManager();
 	
 	WIN32_FIND_DATA findFileData;
 	HANDLE hFind = INVALID_HANDLE_VALUE;
@@ -210,44 +213,66 @@ void DataManager::SwitchEditorMode(bool editormode)
 
 void DataManager::SaveData()
 {
-	mSoldierManager->SaveData();
-	mHorseManager->SaveData();
-	mPWeaponManager->SaveData();
-	mSWeaponManager->SaveData();
-	mArmorManager->SaveData();
-	mShieldManager->SaveData();
-	SaveLang();
+	//mSoldierManager->SaveData();
+	//mHorseManager->SaveData();
+	//mPWeaponManager->SaveData();
+	//mSWeaponManager->SaveData();
+	//mArmorManager->SaveData();
+	//mShieldManager->SaveData();
+	//SaveLang();
+
+	//SaveData();
+	//SaveLang();
+	//SaveStringTable();
+
+	xmlManager_->SaveData();
+	xmlManager_->SaveLang();
+	xmlManager_->SaveStringTable();
 }
 
 void DataManager::SaveLang()
 {
-	mStringTable->SaveLang();
-	mSoldierManager->SaveLang();
-	mHorseManager->SaveLang();
-	mPWeaponManager->SaveLang();
-	mSWeaponManager->SaveLang();
-	mArmorManager->SaveLang();
-	mShieldManager->SaveLang();
+	//mStringTable->SaveLang();
+	//mSoldierManager->SaveLang();
+	//mHorseManager->SaveLang();
+	//mPWeaponManager->SaveLang();
+	//mSWeaponManager->SaveLang();
+	//mArmorManager->SaveLang();
+	//mShieldManager->SaveLang();
+
+	//SaveLang();
+	//SaveStringTable();
+
+	xmlManager_->SaveLang();
+	xmlManager_->SaveStringTable();
 }
 
 void DataManager::LoadData()
 {
-	mSoldierManager->LoadMod(*mCurMod,*mCurLang,mEditorMode);
-	mHorseManager->LoadMod(*mCurMod,*mCurLang,mEditorMode);
-	mPWeaponManager->LoadMod(*mCurMod,*mCurLang,mEditorMode);
-	mSWeaponManager->LoadMod(*mCurMod,*mCurLang,mEditorMode);
-	mArmorManager->LoadMod(*mCurMod,*mCurLang,mEditorMode);
-	mShieldManager->LoadMod(*mCurMod,*mCurLang,mEditorMode);
-	mStringTable->LoadLang(*mCurLang,mEditorMode);
+	//mSoldierManager->LoadMod(*mCurMod,*mCurLang,mEditorMode);
+	//mHorseManager->LoadMod(*mCurMod,*mCurLang,mEditorMode);
+	//mPWeaponManager->LoadMod(*mCurMod,*mCurLang,mEditorMode);
+	//mSWeaponManager->LoadMod(*mCurMod,*mCurLang,mEditorMode);
+	//mArmorManager->LoadMod(*mCurMod,*mCurLang,mEditorMode);
+	//mShieldManager->LoadMod(*mCurMod,*mCurLang,mEditorMode);
+	//mStringTable->LoadLang(*mCurLang,mEditorMode);
+
+	//LoadData(*mCurMod, *mCurLang, mEditorMode);
+
+	xmlManager_->LoadMod(*mCurMod, *mCurLang, mEditorMode);
 }
 
 void DataManager::LoadLang()
 {
-	mStringTable->LoadLang(*mCurLang,mEditorMode);
-	mSoldierManager->LoadLang(*mCurLang);
-	mHorseManager->LoadLang(*mCurLang);
-	mPWeaponManager->LoadLang(*mCurLang);
-	mSWeaponManager->LoadLang(*mCurLang);
-	mArmorManager->LoadLang(*mCurLang);
-	mShieldManager->LoadLang(*mCurLang);
+	//mStringTable->LoadLang(*mCurLang,mEditorMode);
+	//mSoldierManager->LoadLang(*mCurLang);
+	//mHorseManager->LoadLang(*mCurLang);
+	//mPWeaponManager->LoadLang(*mCurLang);
+	//mSWeaponManager->LoadLang(*mCurLang);
+	//mArmorManager->LoadLang(*mCurLang);
+	//mShieldManager->LoadLang(*mCurLang);
+
+	//LoadLang(*mCurMod, *mCurLang, mEditorMode);
+
+	xmlManager_->LoadLang(*mCurMod, *mCurLang, mEditorMode);
 }
