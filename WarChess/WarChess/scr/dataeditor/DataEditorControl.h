@@ -31,21 +31,21 @@ public:
 	QComboBox *mModBox;
 	QComboBox *mLangBox;
 	
-	QTableView *mSoldierTableView;
-	QTableView *mHorseTableView;
-	QTableView *mPWeaponTableView;
-	QTableView *mSWeaponTableView;
+	//QTableView *mSoldierTableView;
+	//QTableView *mHorseTableView;
+	//QTableView *mPWeaponTableView;
+	//QTableView *mSWeaponTableView;
 	QTableView *mArmorTableView;
-	QTableView *mShieldTableView;
-	QTableView *mStringTableView;
+	//QTableView *mShieldTableView;
+	//QTableView *mStringTableView;
 
-	SoldierTableModule *mSoldierTableModule;
-	HorseTableModule *mHorseTableModule;
-	PWeaponTableModule *mPWeaponTableModule;
-	SWeaponTableModule *mSWeaponTableModule;
+	//SoldierTableModule *mSoldierTableModule;
+	//HorseTableModule *mHorseTableModule;
+	//PWeaponTableModule *mPWeaponTableModule;
+	//SWeaponTableModule *mSWeaponTableModule;
 	ArmorTableModule *mArmorTableModule;
-	ShieldTableModule *mShieldTableModule;
-	StringTableModule *mStringTableModule;
+	//ShieldTableModule *mShieldTableModule;
+	//StringTableModule *mStringTableModule;
 
 	//接收界面消息
 public slots:

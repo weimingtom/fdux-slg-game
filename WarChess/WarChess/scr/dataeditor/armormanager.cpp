@@ -29,34 +29,36 @@
 //		</[ArmorName]>
 
 #include "armormanager.h"
+#include "DataManager.h"
+#include "XMLManager.h"
 #include "conversion.h"
 #include "SquadEquip.h"
 #include <Windows.h>
 
+#define DATAFILE() DataManager::getSingleton().xmlManager_
+
 ArmorManager::ArmorManager()
 {
-
 }
 
 ArmorManager::~ArmorManager()
 {
-
 }
 
 // 载入盔甲数据
-// 先检索../Mod/modName/data/armor.xml
-// 如果文件不存在且editorMode为真，则检索../Mod/common/data/armor.xml
-// 如果editorMode为假，则创建../Mod/modName/data/armor.xml
+// 先检索../Mod/modName/data/datafile.xml
+// 如果文件不存在且editorMode为真，则检索../Mod/common/data/datafile.xml
+// 如果editorMode为假，则创建../Mod/modName/data/datafile.xml
 // 函数永远返回真
-
-bool ArmorManager::LoadMod(std::wstring modName, std::wstring langName, bool editorMode)
+/*
+bool ArmorManager::LoadMod(std::wstring _modName, std::wstring _langName, bool _editorMode)
 {
-	mModPath = L".\\..\\Mod\\" + modName + L"\\";
+	modPath_ = L".\\..\\Mod\\" + _modName + L"\\";
 
 	std::wstring tempPath;
-	tempPath = mModPath + L"data\\armor.xml";
+	tempPath = modPath_ + L"data\\datafile.xml";
 
-	UnicodeToANSI(tempPath, mDataPath);
+	UnicodeToANSI(tempPath, dataPath_);
 
 	WIN32_FIND_DATA findFileData;
 	HANDLE hFind = INVALID_HANDLE_VALUE;
@@ -65,18 +67,18 @@ bool ArmorManager::LoadMod(std::wstring modName, std::wstring langName, bool edi
 	hFind = FindFirstFile(tempPath.c_str(),&findFileData);
 	if (hFind != INVALID_HANDLE_VALUE)
 	{
-		mDataFile.LoadFile(mDataPath.c_str(),TIXML_ENCODING_UTF8);
+		dataFile_.LoadFile(dataPath_.c_str(),TIXML_ENCODING_UTF8);
 		FindClose(hFind);
 	}
-	else if(!editorMode)
+	else if(!_editorMode)
 	{
-		mModPath = L".\\..\\Mod\\common\\";
-		tempPath = mModPath + L"data\\armor.xml";
-		UnicodeToANSI(tempPath, mDataPath);
+		modPath_ = L".\\..\\Mod\\common\\";
+		tempPath = modPath_ + L"data\\datafile.xml";
+		UnicodeToANSI(tempPath, dataPath_);
 		hFind = FindFirstFile(tempPath.c_str(),&findFileData);
 		if (hFind != INVALID_HANDLE_VALUE)
 		{
-			mDataFile.LoadFile(mDataPath.c_str(),TIXML_ENCODING_UTF8);
+			dataFile_.LoadFile(dataPath_.c_str(),TIXML_ENCODING_UTF8);
 			FindClose(hFind);
 		}
 		else
@@ -89,7 +91,7 @@ bool ArmorManager::LoadMod(std::wstring modName, std::wstring langName, bool edi
 		CreateDataFile();
 	}
 
-	LoadLang(langName);
+	LoadLang(_langName);
 
 	return true;
 }
@@ -98,12 +100,12 @@ bool ArmorManager::LoadMod(std::wstring modName, std::wstring langName, bool edi
 // 先检索../Mod/modName/Lang/langName/armor.xml
 // 如果文件不存在，则创建../Mod/modName/Lang/langName/armor.xml
 
-bool ArmorManager::LoadLang(std::wstring langName)
+bool ArmorManager::LoadLang(std::wstring _langName)
 {
 	std::wstring tempPath;
-	tempPath = mModPath + L"Lang\\" + langName + L"\\armor.xml";
+	tempPath = modPath_ + L"Lang\\" + _langName + L"\\datafile.xml";
 
-	UnicodeToANSI(tempPath, mLangPath);
+	UnicodeToANSI(tempPath, langPath_);
 
 	WIN32_FIND_DATA findFileData;
 	HANDLE hFind = INVALID_HANDLE_VALUE;
@@ -112,7 +114,7 @@ bool ArmorManager::LoadLang(std::wstring langName)
 	hFind = FindFirstFile(tempPath.c_str(),&findFileData);
 	if (hFind != INVALID_HANDLE_VALUE)
 	{
-		mLangFile.LoadFile(mLangPath.c_str(),TIXML_ENCODING_UTF8);
+		langFile_.LoadFile(langPath_.c_str(),TIXML_ENCODING_UTF8);
 		FindClose(hFind);
 	}
 	else
@@ -126,12 +128,13 @@ bool ArmorManager::LoadLang(std::wstring langName)
 
 bool ArmorManager::CreateDataFile()
 {
-	mDataFile.Clear();
-	ticpp::Declaration * decl = new ticpp::Declaration( "1.0", "utf-8", "" );
-	//ticpp::Element * element = new ticpp::Element( "Armor" );
-	ticpp::Element * element = new ticpp::Element("ArmorData");
-	mDataFile.LinkEndChild(decl);
-	mDataFile.LinkEndChild(element);
+	dataFile_.Clear();
+	ticpp::Declaration * dataFileDecl = new ticpp::Declaration( "1.0", "utf-8", "" );
+	ticpp::Element * staticDataElement = new ticpp::Element("StaticData");
+	ticpp::Element * armorDataElement = new ticpp::Element("ArmorData");
+	staticDataElement->LinkEndChild(armorDataElement);
+	dataFile_.LinkEndChild(dataFileDecl);
+	dataFile_.LinkEndChild(staticDataElement);
 
 	//SaveData();
 	return true;
@@ -141,12 +144,13 @@ bool ArmorManager::CreateDataFile()
 
 bool ArmorManager::CreateLangFile()
 {
-	mLangFile.Clear();
-	ticpp::Declaration * decl = new ticpp::Declaration( "1.0", "utf-8", "" );
-	//ticpp::Element * element = new ticpp::Element( "Armor" );
-	ticpp::Element * element = new ticpp::Element("ArmorData");
-	mLangFile.LinkEndChild(decl);
-	mLangFile.LinkEndChild(element);
+	langFile_.Clear();
+	ticpp::Declaration * dataFileDecl = new ticpp::Declaration( "1.0", "utf-8", "" );
+	ticpp::Element * staticDataElement = new ticpp::Element("StaticData");
+	ticpp::Element * armorDataElement = new ticpp::Element("ArmorData");
+	staticDataElement->LinkEndChild(armorDataElement);
+	langFile_.LinkEndChild(dataFileDecl);
+	langFile_.LinkEndChild(staticDataElement);
 
 	//SaveLang();
 	return true;
@@ -156,16 +160,15 @@ bool ArmorManager::CreateLangFile()
 
 bool ArmorManager::SaveData()
 {
-	if(mDataPath.size()> 0)
+	if(dataPath_.size()> 0)
 	{
-		//ticpp::Element *element = mDataFile.FirstChildElement("Armor");
-		ticpp::Element * element = mDataFile.FirstChildElement("ArmorData");
+		ticpp::Element * element = dataFile_.FirstChildElement("StaticData")->FirstChildElement("ArmorData");
 		if(element)
 		{
 			if(!element->NoChildren())
-				mDataFile.SaveFile(mDataPath.c_str());
-			else
-				DeleteFileA(mDataPath.c_str());
+				dataFile_.SaveFile(dataPath_.c_str());
+			//else
+				//DeleteFileA(dataPath_.c_str());
 		}
 
 	}
@@ -176,87 +179,57 @@ bool ArmorManager::SaveData()
 
 bool ArmorManager::SaveLang()
 {
-	if(mLangPath.size() > 0)
+	if(langPath_.size() > 0)
 	{
-		//ticpp::Element *element = mLangFile.FirstChildElement("Armor");
-		ticpp::Element * element = mLangFile.FirstChildElement("ArmorData");
+		ticpp::Element * element = langFile_.FirstChildElement("StaticData")->FirstChildElement("ArmorData");
 		if(element)
 		{
 			if(!element->NoChildren())
-				mLangFile.SaveFile(mLangPath.c_str());
-			else
-				DeleteFileA(mLangPath.c_str());
+				langFile_.SaveFile(langPath_.c_str());
+			//else
+				//DeleteFileA(langPath_.c_str());
 		}
 	}
 	return true;
 }
-
+*/
 // 返回盔甲总数
 
 int ArmorManager::GetNum()
 {
-	//ticpp::Element *element = mDataFile.FirstChildElement("Armor");
-	ticpp::Element * element = mDataFile.FirstChildElement("ArmorData");
-	if(element)
-	{
-		if(element->NoChildren())
-			return 0;
-		else
-		{
-			int num = 0;
-			ticpp::Iterator<ticpp::Element> child;
-			for(child = child.begin(element); child != child.end(); child++)
-				num++;
-			return num;
-		}
-	}
-	return 0;
+	return DATAFILE()->CountData("ArmorData");
 }
 
 // 添加一件盔甲
 
 void ArmorManager::AddArmor()
 {
-	// newarmor后的数字从0开始，只要找到同名的盔甲，就将数字+1
 	char newid[20];
 	int n = 0;
-	sprintf_s(newid,20,"newarmor%d",n);
-	//ticpp::Element *rootelement = mDataFile.FirstChildElement("Armor");
-	ticpp::Element * rootelement = mDataFile.FirstChildElement("ArmorData");
-	while(rootelement->FirstChildElement(newid,false))
+	sprintf_s(newid, 20, "newarmor%d", n);
+	while(DATAFILE()->GetData("ArmorData", newid) != NULL)
 	{
 		n = n + 1;
-		sprintf_s(newid,20,"newarmor%d",n);
+		sprintf_s(newid,20,"newhorse%d",n);
 	}
-	ticpp::Element *element = new ticpp::Element(newid);
-	/*
-	element->SetAttribute("Attack",0);
-	element->SetAttribute("RangedAttack",0);
-	element->SetAttribute("Defence",0);
-	element->SetAttribute("Formation",0);
-	element->SetAttribute("Initiative",0);
-	element->SetAttribute("ActionPoint",0);
-	element->SetAttribute("Covert",0);
-	element->SetAttribute("Script","");
-	element->SetAttribute("ArmorType",ARMOR_NONE);
-	element->SetAttribute("Value",0);
-    */
+	
+	ticpp::Element *newArmorElement = new ticpp::Element(newid);
 
-	ticpp::Element * typeElement = new ticpp::Element("Type");
-	ticpp::Element * valueElement = new ticpp::Element("Value");
-	ticpp::Element * scriptElement = new ticpp::Element("Script");
-	ticpp::Element * attrElement = new ticpp::Element("AttrModifer");
-	ticpp::Element * attrTypeElement = new ticpp::Element("Type");
-	ticpp::Element * attrAttackElement = new ticpp::Element("Attack");
-	ticpp::Element * attrRangedElement = new ticpp::Element("RangedAttack");
-	ticpp::Element * attrDefenceElement = new ticpp::Element("Defence");
-	ticpp::Element * attrFormationElement = new ticpp::Element("Formation");
-	ticpp::Element * attrInitiativeElement = new ticpp::Element("Initiative");
-	ticpp::Element * attrActionElement = new ticpp::Element("ActionPoint");
-	ticpp::Element * attrDetectionElement = new ticpp::Element("Detection");
-	ticpp::Element * attrCovertElement = new ticpp::Element("Covert");
-	ticpp::Element * attrInjuryElement = new ticpp::Element("Injury");
-	ticpp::Element * attrConterElement = new ticpp::Element("Conter");
+	ticpp::Element *typeElement = new ticpp::Element("Type");
+	ticpp::Element *valueElement = new ticpp::Element("Value");
+	ticpp::Element *scriptElement = new ticpp::Element("Script");
+	ticpp::Element *attrElement = new ticpp::Element("AttrModifer");
+	ticpp::Element *attrTypeElement = new ticpp::Element("Type");
+	ticpp::Element *attrAttackElement = new ticpp::Element("Attack");
+	ticpp::Element *attrRangedElement = new ticpp::Element("RangedAttack");
+	ticpp::Element *attrDefenceElement = new ticpp::Element("Defence");
+	ticpp::Element *attrFormationElement = new ticpp::Element("Formation");
+	ticpp::Element *attrInitiativeElement = new ticpp::Element("Initiative");
+	ticpp::Element *attrActionElement = new ticpp::Element("ActionPoint");
+	ticpp::Element *attrDetectionElement = new ticpp::Element("Detection");
+	ticpp::Element *attrCovertElement = new ticpp::Element("Covert");
+	ticpp::Element *attrInjuryElement = new ticpp::Element("Injury");
+	ticpp::Element *attrConterElement = new ticpp::Element("Conter");
 
 	typeElement->SetAttribute("type", "Int");
 	typeElement->SetAttribute("value", "0");
@@ -300,242 +273,141 @@ void ArmorManager::AddArmor()
 	attrElement->LinkEndChild(attrInjuryElement);
 	attrElement->LinkEndChild(attrConterElement);
 
-	element->LinkEndChild(typeElement);
-	element->LinkEndChild(valueElement);
-	element->LinkEndChild(scriptElement);
-	element->LinkEndChild(attrElement);
+	newArmorElement->LinkEndChild(typeElement);
+	newArmorElement->LinkEndChild(valueElement);
+	newArmorElement->LinkEndChild(scriptElement);
+	newArmorElement->LinkEndChild(attrElement);
 
-	rootelement->LinkEndChild(element);
+	DATAFILE()->AddData("ArmorData", newArmorElement);
 
-	//ticpp::Element *langrootelement = mLangFile.FirstChildElement("Armor");
-	ticpp::Element * langrootelement = mLangFile.FirstChildElement("ArmorData");
-	ticpp::Element *langelement = langrootelement->FirstChildElement(newid,false);
-	if(langelement == NULL)
-	{
-		langelement = new ticpp::Element(newid);
-		/*
-		langelement->SetAttribute("Name",newid);
-		langelement->SetText("Please add a description.");
-		*/
+	ticpp::Element *newArmorLangElement = new ticpp::Element(newid);
 
-		ticpp::Element * nameElement = new ticpp::Element("Name");
-		ticpp::Element * describeElement = new ticpp::Element("Describe");
+	ticpp::Element *nameElement = new ticpp::Element("Name");
+	ticpp::Element *describeElement = new ticpp::Element("Describe");
 
-		nameElement->SetAttribute("type", "String");
-		nameElement->SetAttribute("value", "none");
-		describeElement->SetAttribute("type", "String");
-		describeElement->SetAttribute("value", "none");
+	nameElement->SetAttribute("type", "String");
+	nameElement->SetAttribute("value", "none");
+	describeElement->SetAttribute("type", "String");
+	describeElement->SetAttribute("value", "none");
 
-		langelement->LinkEndChild(nameElement);
-		langelement->LinkEndChild(describeElement);
+	newArmorLangElement->LinkEndChild(nameElement);
+	newArmorLangElement->LinkEndChild(describeElement);
 
-		langrootelement->LinkEndChild(langelement);
-	}
-
-	//SaveData();
-	//SaveLang();
+	DATAFILE()->AddLang("ArmorData", newArmorLangElement);
 }
 
 // 删除一件盔甲
 
-void ArmorManager::DelArmor(std::wstring id)
+void ArmorManager::DelArmor(std::wstring _id)
 {
 	std::string tempid;
-	UnicodeToUTF8(id,tempid);
-	//ticpp::Element *dataelement = mDataFile.FirstChildElement("Armor");
-	ticpp::Element * dataelement = mDataFile.FirstChildElement("ArmorData");
-	ticpp::Node *datachildelement = dataelement->FirstChildElement(tempid,false);
-	if(datachildelement)
-	{
-		dataelement->RemoveChild(datachildelement);
-	}
-	//ticpp::Element *langelement = mLangFile.FirstChildElement("Armor");
-	ticpp::Element * langelement = mLangFile.FirstChildElement("ArmorData");
-	ticpp::Node *langchildelement = langelement->FirstChildElement(tempid,false);
-	if(langchildelement)
-	{
-		langelement->RemoveChild(langchildelement);
-	}
-
-	//SaveData();
-	//SaveLang();
+	UnicodeToUTF8(_id, tempid);
+	DATAFILE()->RemoveData("ArmorData", tempid);
+	DATAFILE()->RemoveLang("ArmorData", tempid);
 }
 
 // 返回盔甲ID
 
-std::wstring ArmorManager::GetID(int index)
-{
-	int n = 0;
-	std::string id;
-	//ticpp::Element *element = mDataFile.FirstChildElement("Armor");
-	ticpp::Element * element = mDataFile.FirstChildElement("ArmorData");
-	ticpp::Iterator<ticpp::Element> child;
-	child = child.begin(element);
-	while(n < index  )
-	{
-		child++;
-		n++;
-	}
-	child->GetValue(&id);
-	std::wstring tempid;
-	UTF8ToUnicode(id,tempid);
-	return tempid;
+std::wstring ArmorManager::GetID(int _index)
+{	
+	return DATAFILE()->GetDataID("ArmorData", _index);
 }
 
 // 返回盔甲名称
 
-std::wstring ArmorManager::GetName(std::wstring id)
+std::wstring ArmorManager::GetName(std::wstring _id)
 {
 	std::string tempid;
-	UnicodeToUTF8(id,tempid);
-	//ticpp::Element *element = mLangFile.FirstChildElement("Armor");
-	ticpp::Element * element = mLangFile.FirstChildElement("ArmorData");
-	ticpp::Element *langelement = element->FirstChildElement(tempid,false);
-	if(langelement == NULL)
-	{
-		langelement = new ticpp::Element(tempid);
-		/*
-		langelement->SetAttribute("Name",tempid);
-		langelement->SetText("Please add a description.");
-		*/
-
-		ticpp::Element * nameElement = new ticpp::Element("Name");
-		ticpp::Element * describeElement = new ticpp::Element("Describe");
-
-		nameElement->SetAttribute("type", "String");
-		nameElement->SetAttribute("value", "none");
-		describeElement->SetAttribute("type", "String");
-		describeElement->SetAttribute("value", "none");
-
-		langelement->LinkEndChild(nameElement);
-		langelement->LinkEndChild(describeElement);
-
-		element->LinkEndChild(langelement);
-	}
-	std::string name;
-	//name = langelement->GetAttribute("Name");
-	ticpp::Element * nameElement = langelement->FirstChildElement("Name", false);
-	name = nameElement->GetAttribute("value");
-	std::wstring tempname;
-	UTF8ToUnicode(name,tempname);
-	return tempname;
+	UnicodeToUTF8(_id, tempid);
+	ticpp::Element *armorElement = DATAFILE()->GetLang("ArmorData", tempid);
+	ticpp::Element *nameElement = armorElement->FirstChildElement("Name", false);
+	std::string tempName;
+	tempName = nameElement->GetAttribute("value");
+	std::wstring name;
+	UTF8ToUnicode(tempName, name);
+	return name;
 }
 
 // 返回盔甲描述
 
-std::wstring ArmorManager::GetDescription(std::wstring id)
+std::wstring ArmorManager::GetDescription(std::wstring _id)
 {
 	std::string tempid;
-	UnicodeToUTF8(id,tempid);
-	//ticpp::Element *element = mLangFile.FirstChildElement("Armor");
-	ticpp::Element * element = mLangFile.FirstChildElement("ArmorData");
-	ticpp::Element *langelement = element->FirstChildElement(tempid,false);
-	if(langelement == NULL)
-	{
-		langelement = new ticpp::Element(tempid);
-		/*
-		langelement->SetAttribute("Name",tempid);
-		langelement->SetText("Please add a description.");
-		*/
-
-		ticpp::Element * nameElement = new ticpp::Element("Name");
-		ticpp::Element * describeElement = new ticpp::Element("Describe");
-
-		nameElement->SetAttribute("type", "String");
-		nameElement->SetAttribute("value", "none");
-		describeElement->SetAttribute("type", "String");
-		describeElement->SetAttribute("value", "none");
-
-		langelement->LinkEndChild(nameElement);
-		langelement->LinkEndChild(describeElement);
-
-		element->LinkEndChild(langelement);
-	}
-	std::string description;
-	//description = langelement->GetText();
-	ticpp::Element * describeElement = langelement->FirstChildElement("Describe", false);
-	description = describeElement->GetAttribute("value");
-	std::wstring tempdescription;
-	UTF8ToUnicode(description,tempdescription);
-	return tempdescription;
+	UnicodeToUTF8(_id, tempid);
+	ticpp::Element *armorElement = DATAFILE()->GetLang("ArmorData", tempid);
+	ticpp::Element *nameElement = armorElement->FirstChildElement("Describe", false);
+	std::string tempDescription;
+	tempDescription = nameElement->GetAttribute("value");
+	std::wstring description;
+	UTF8ToUnicode(tempDescription, description);
+	return description;
 }
 
 // 返回盔甲脚本文件名
 
-std::wstring ArmorManager::GetScriptName(std::wstring id)
+std::wstring ArmorManager::GetScriptName(std::wstring _id)
 {
 	std::string tempid;
-	UnicodeToUTF8(id,tempid);
-	//ticpp::Element *element = mDataFile.FirstChildElement("Armor");
-	ticpp::Element * element = mDataFile.FirstChildElement("ArmorData");
-	ticpp::Element *dataelement = element->FirstChildElement(tempid, false);
-	std::string script;
-	//script = dataelement->GetAttribute("Script");
-	ticpp::Element * scriptElement = dataelement->FirstChildElement("Script", false);
-	script = scriptElement->GetAttribute("value");
-	std::wstring tempscript;
-	UTF8ToUnicode(script,tempscript);
-	return tempscript;
+	UnicodeToUTF8(_id, tempid);
+	ticpp::Element *armorElement = DATAFILE()->GetData("ArmorData", tempid);
+	ticpp::Element *scriptElement = armorElement->FirstChildElement("Script", false);
+	std::string tempScript;
+	tempScript = scriptElement->GetAttribute("value");
+	std::wstring script;
+	UTF8ToUnicode(tempScript, script);
+	return script;
 }
 
 // 返回盔甲属性
 
-int ArmorManager::GetAttr(std::wstring id, BasicAttr attrType)
+int ArmorManager::GetAttr(std::wstring _id, BasicAttr _attrType)
 {
 	std::string tempid;
-	UnicodeToUTF8(id,tempid);
-	//ticpp::Element *element = mDataFile.FirstChildElement("Armor");
-	ticpp::Element * element = mDataFile.FirstChildElement("ArmorData");
-	ticpp::Element *dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("AttrModifer", false);
-	ticpp::Element * tempElement;
+	UnicodeToUTF8(_id, tempid);
+	ticpp::Element *armorElement = DATAFILE()->GetData("ArmorData", tempid);
+	ticpp::Element *attrElement = armorElement->FirstChildElement("AttrModifer", false);
+	ticpp::Element *tempElement;
 	int attr = 0;
-	switch(attrType)
+	switch(_attrType)
 	{
 	case ATTR_ATTACK:
-		//dataelement->GetAttribute("Attack",&attr);
-		tempElement = dataelement->FirstChildElement("Attack", false);
+		tempElement = attrElement->FirstChildElement("Attack", false);
 		tempElement->GetAttribute("value", &attr, false);
 		break;
 	case ATTR_RANGEDATTACK:
-		//dataelement->GetAttribute("RangedAttack",&attr);
-		tempElement = dataelement->FirstChildElement("RangedAttack", false);
+		tempElement = attrElement->FirstChildElement("RangedAttack", false);
 		tempElement->GetAttribute("value", &attr, false);
 		break;
 	case ATTR_DEFENSE:
-		//dataelement->GetAttribute("Defence",&attr);
-		tempElement = dataelement->FirstChildElement("Defence", false);
+		tempElement = attrElement->FirstChildElement("Defence", false);
 		tempElement->GetAttribute("value", &attr, false);
 		break;
 	case ATTR_FORMATION:
-		//dataelement->GetAttribute("Formation",&attr);
-		tempElement = dataelement->FirstChildElement("Formation", false);
+		tempElement = attrElement->FirstChildElement("Formation", false);
 		tempElement->GetAttribute("value", &attr, false);
 		break;
 	case ATTR_INITIATIVE:
-		//dataelement->GetAttribute("Initiative",&attr);
-		tempElement = dataelement->FirstChildElement("Initiative", false);
+		tempElement = attrElement->FirstChildElement("Initiative", false);
 		tempElement->GetAttribute("value", &attr, false);
 		break;
 	case ATTR_ACTIONPOINT:
-		//dataelement->GetAttribute("ActionPoint",&attr);
-		tempElement = dataelement->FirstChildElement("ActionPoint", false);
+		tempElement = attrElement->FirstChildElement("ActionPoint", false);
 		tempElement->GetAttribute("value", &attr, false);
 		break;
 	case ATTR_DETECTION:
-		tempElement = dataelement->FirstChildElement("Detection", false);
+		tempElement = attrElement->FirstChildElement("Detection", false);
 		tempElement->GetAttribute("value", &attr, false);
 		break;
 	case ATTR_COVERT:
-		//dataelement->GetAttribute("Covert",&attr);
-		tempElement = dataelement->FirstChildElement("Covert", false);
+		tempElement = attrElement->FirstChildElement("Covert", false);
 		tempElement->GetAttribute("value", &attr, false);
 		break;
 	case ATTR_INJURY:
-		tempElement = dataelement->FirstChildElement("Injury", false);
+		tempElement = attrElement->FirstChildElement("Injury", false);
 		tempElement->GetAttribute("value", &attr, false);
 		break;
 	case ATTR_COUNTER:
-		tempElement = dataelement->FirstChildElement("Conter", false);
+		tempElement = attrElement->FirstChildElement("Conter", false);
 		tempElement->GetAttribute("value", &attr, false);
 		break;
 	default:
@@ -546,224 +418,127 @@ int ArmorManager::GetAttr(std::wstring id, BasicAttr attrType)
 
 // 返回盔甲类型
 
-int ArmorManager::GetArmorType(std::wstring id)
+int ArmorManager::GetArmorType(std::wstring _id)
 {
 	std::string tempid;
-	UnicodeToUTF8(id,tempid);
-	//ticpp::Element *element = mDataFile.FirstChildElement("Armor");
-	ticpp::Element * element = mDataFile.FirstChildElement("ArmorData");
-	ticpp::Element *dataelement = element->FirstChildElement(tempid, false);
-	int atypeint = 0;
-	//dataelement->GetAttribute("ArmorType",&atypeint);
-	ticpp::Element * tempElement = dataelement->FirstChildElement("Type", false);
-	tempElement->GetAttribute("value", &atypeint);
-	return atypeint;
+	UnicodeToUTF8(_id, tempid);
+	ticpp::Element *armorElement = DATAFILE()->GetData("ArmorData", tempid);
+	ticpp::Element *typeElement = armorElement->FirstChildElement("Type", false);
+	int type;
+	typeElement->GetAttribute("value", &type, false);
+	return type;
 }
 
 // 返回盔甲价值
 
-int ArmorManager::GetValue(std::wstring id)
+int ArmorManager::GetValue(std::wstring _id)
 {
 	std::string tempid;
-	UnicodeToUTF8(id,tempid);
-	//ticpp::Element *element = mDataFile.FirstChildElement("Armor");
-	ticpp::Element * element = mDataFile.FirstChildElement("ArmorData");
-	ticpp::Element *dataelement = element->FirstChildElement(tempid, false);
-	int ivalue = 0;
-	//dataelement->GetAttribute("Value",&ivalue);
-	ticpp::Element * tempElement = dataelement->FirstChildElement("Value", false);
-	tempElement->GetAttribute("value", &ivalue);
-	return ivalue;
+	UnicodeToUTF8(_id, tempid);
+	ticpp::Element *armorElement = DATAFILE()->GetData("ArmorData", tempid);
+	ticpp::Element *valueElement = armorElement->FirstChildElement("Value", false);
+	int value;
+	valueElement->GetAttribute("value", &value, false);
+	return value;
 }
 
 // 设定盔甲ID
 
-bool ArmorManager::SetID(std::wstring oldid, std::wstring id)
+bool ArmorManager::SetID(std::wstring _oldid, std::wstring _id)
 {
 	std::string tempoldid;
-	UnicodeToUTF8(oldid,tempoldid);
+	UnicodeToUTF8(_oldid,tempoldid);
 	std::string tempid;
-	UnicodeToUTF8(id,tempid);
-	//ticpp::Element *element = mDataFile.FirstChildElement("Armor");
-	ticpp::Element * element = mDataFile.FirstChildElement("ArmorData");
-	//判断是否存在重复id
-	if(element->FirstChildElement(tempid,false) == NULL)
+	UnicodeToUTF8(_id,tempid);
+	ticpp::Element * element = DATAFILE()->GetData("ArmorData", tempid);
+	if (element == NULL)
 	{
-		ticpp::Element *dataelement = element->FirstChildElement(tempoldid, false);
-		dataelement->SetValue(tempid);
-		//ticpp::Element *langelement = mLangFile.FirstChildElement("Armor");
-		ticpp::Element * langelement = mLangFile.FirstChildElement("ArmorData");
-		ticpp::Element *langchildelement = langelement->FirstChildElement(tempoldid,false);
-		if(langchildelement == NULL)
-		{
-			langchildelement = new ticpp::Element(tempid);
-			/*
-			langchildelement->SetAttribute("Name",tempid);
-			langchildelement->SetText("Please add a description.");
-			*/
-
-			ticpp::Element * nameElement = new ticpp::Element("Name");
-			ticpp::Element * describeElement = new ticpp::Element("Describe");
-
-			nameElement->SetAttribute("type", "String");
-			nameElement->SetAttribute("value", "none");
-			describeElement->SetAttribute("type", "String");
-			describeElement->SetAttribute("value", "none");
-
-			langchildelement->LinkEndChild(nameElement);
-			langchildelement->LinkEndChild(describeElement);
-
-			langelement->LinkEndChild(langchildelement);
-		}
-		else
-			langchildelement->SetValue(tempid);
-		return true;
+		DATAFILE()->SetDataID("ArmorData", tempoldid, tempid);
+		DATAFILE()->SetLangID("ArmorData", tempoldid, tempid);
 	}
 	return false;
 }
 
 // 设定盔甲名称
 
-bool ArmorManager::SetName(std::wstring id, std::wstring name)
+bool ArmorManager::SetName(std::wstring _id, std::wstring _name)
 {
 	std::string tempid;
-	UnicodeToUTF8(id,tempid);
+	UnicodeToUTF8(_id, tempid);
 	std::string tempname;
-	UnicodeToUTF8(name,tempname);
-	//ticpp::Element *element = mLangFile.FirstChildElement("Armor");
-	//ticpp::Element *langelement = element->FirstChildElement(tempid);
-	//langelement->SetAttribute("Name", tempname);
-	ticpp::Element * element = mLangFile.FirstChildElement("ArmorData");
-	ticpp::Element *langelement = element->FirstChildElement(tempid, false)->FirstChildElement("Name", false);
-	langelement->SetAttribute("value",tempname);
-	return true;
+	UnicodeToUTF8(_name, tempname);
+	return DATAFILE()->SetLang("ArmorData", tempid, "Name", tempname);
 }
 
 // 设定盔甲描述
 
-bool ArmorManager::SetDescription(std::wstring id, std::wstring descripition)
+bool ArmorManager::SetDescription(std::wstring _id, std::wstring _description)
 {
 	std::string tempid;
-	UnicodeToUTF8(id,tempid);
-	std::string tempdescripition;
-	UnicodeToUTF8(descripition,tempdescripition);
-	//ticpp::Element *element = mLangFile.FirstChildElement("Armor");
-	//ticpp::Element *langelement = element->FirstChildElement(tempid);
-	//langelement->SetText(tempdescripition);
-	ticpp::Element * element = mLangFile.FirstChildElement("ArmorData");
-	ticpp::Element * langelement = element->FirstChildElement(tempid, false)->FirstChildElement("Describe", false);
-	langelement->SetAttribute("value", tempdescripition);
-	return true;
+	UnicodeToUTF8(_id, tempid);
+	std::string tempdescription;
+	UnicodeToUTF8(_description, tempdescription);
+	return DATAFILE()->SetLang("ArmorData", tempid, "Describe", tempdescription);
 }
 
 // 设定盔甲脚本文件名
 
-bool ArmorManager::SetScriptName(std::wstring id, std::wstring script)
+bool ArmorManager::SetScriptName(std::wstring _id, std::wstring _script)
 {
 	std::string tempid;
-	UnicodeToUTF8(id,tempid);
+	UnicodeToUTF8(_id,tempid);
 	std::string tempscript;
-	UnicodeToUTF8(script,tempscript);
-	//ticpp::Element *element = mDataFile.FirstChildElement("Armor");
-	//ticpp::Element *dataelement = element->FirstChildElement(tempid);
-	//dataelement->SetAttribute("Script",tempscript);
-	ticpp::Element * element = mDataFile.FirstChildElement("ArmorData");
-	ticpp::Element * dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("Script", false);
-	dataelement->SetAttribute("value", tempscript);
-	return true;
+	UnicodeToUTF8(_script,tempscript);
+	return DATAFILE()->SetDataStr("ArmorData", tempid, "Script", tempscript);
 }
 
 // 设定盔甲属性
 
-bool ArmorManager::SetAttr(std::wstring id, BasicAttr attrType, int attr)
+bool ArmorManager::SetAttr(std::wstring _id, BasicAttr _attrType, int _attr)
 {
 	std::string tempid;
-	UnicodeToUTF8(id,tempid);
-	//ticpp::Element *element = mDataFile.FirstChildElement("Armor");
-	ticpp::Element * element = mDataFile.FirstChildElement("ArmorData");
-	ticpp::Element *dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("AttrModifer", false);
-	ticpp::Element * tempElement;
-	switch(attrType)
+	UnicodeToUTF8(_id,tempid);
+	switch(_attrType)
 	{
 	case ATTR_ATTACK:
-		//dataelement->SetAttribute("Attack",attr);
-		tempElement = dataelement->FirstChildElement("Attack", false);
-		tempElement->SetAttribute("value", attr);
-		break;
+		return DATAFILE()->SetDataAttr("ArmorData", tempid, "AttrModifer", "Attack", _attr);
 	case ATTR_RANGEDATTACK:
-		//dataelement->SetAttribute("RangedAttack",attr);
-		tempElement = dataelement->FirstChildElement("RangedAttack", false);
-		tempElement->SetAttribute("value", attr);
-		break;
+		return DATAFILE()->SetDataAttr("ArmorData", tempid, "AttrModifer", "RangedAttack", _attr);
 	case ATTR_DEFENSE:
-		//dataelement->SetAttribute("Defence",attr);
-		tempElement = dataelement->FirstChildElement("Defence", false);
-		tempElement->SetAttribute("value", attr);
-		break;
+		return DATAFILE()->SetDataAttr("ArmorData", tempid, "AttrModifer", "Defence", _attr);
 	case ATTR_FORMATION:
-		//dataelement->SetAttribute("Formation",attr);
-		tempElement = dataelement->FirstChildElement("Formation", false);
-		tempElement->SetAttribute("value", attr);
-		break;
+		return DATAFILE()->SetDataAttr("ArmorData", tempid, "AttrModifer", "Formation", _attr);
 	case ATTR_INITIATIVE:
-		//dataelement->SetAttribute("Initiative",attr);
-		tempElement = dataelement->FirstChildElement("Initiative", false);
-		tempElement->SetAttribute("value", attr);
-		break;
+		return DATAFILE()->SetDataAttr("ArmorData", tempid, "AttrModifer", "Initiative", _attr);
 	case ATTR_ACTIONPOINT:
-		//dataelement->SetAttribute("ActionPoint",attr);
-		tempElement = dataelement->FirstChildElement("ActionPoint", false);
-		tempElement->SetAttribute("value", attr);
-		break;
+		return DATAFILE()->SetDataAttr("ArmorData", tempid, "AttrModifer", "ActionPoint", _attr);
 	case ATTR_DETECTION:
-		tempElement = dataelement->FirstChildElement("Detection", false);
-		tempElement->SetAttribute("value", attr);
-		break;
+		return DATAFILE()->SetDataAttr("ArmorData", tempid, "AttrModifer", "Detection", _attr);
 	case ATTR_COVERT:
-		//dataelement->SetAttribute("Covert",attr);
-		tempElement = dataelement->FirstChildElement("Covert", false);
-		tempElement->SetAttribute("value", attr);
-		break;
+		return DATAFILE()->SetDataAttr("ArmorData", tempid, "AttrModifer", "Covert", _attr);
 	case ATTR_INJURY:
-		tempElement = dataelement->FirstChildElement("Injury", false);
-		tempElement->SetAttribute("value", attr);
-		break;
+		return DATAFILE()->SetDataAttr("ArmorData", tempid, "AttrModifer", "Injury", _attr);
 	case ATTR_COUNTER:
-		tempElement = dataelement->FirstChildElement("Conter", false);
-		tempElement->SetAttribute("value", attr);
-		break;
+		return DATAFILE()->SetDataAttr("ArmorData", tempid, "AttrModifer", "Conter", _attr);
 	default:
 		return false;
 	}
-	return true;
 }
 
 // 设定盔甲类型
 
-bool ArmorManager::SetArmorType(std::wstring id, int type)
+bool ArmorManager::SetArmorType(std::wstring _id, int _type)
 {
 	std::string tempid;
-	UnicodeToUTF8(id,tempid);
-	//ticpp::Element *element = mDataFile.FirstChildElement("Armor");
-	//ticpp::Element *dataelement = element->FirstChildElement(tempid);
-	//dataelement->SetAttribute("ArmorType",type);
-	ticpp::Element * element = mDataFile.FirstChildElement("ArmorData");
-	ticpp::Element * dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("Type", false);
-	dataelement->SetAttribute("value", type);
-	return true;
+	UnicodeToUTF8(_id, tempid);
+	return DATAFILE()->SetDataInt("ArmorData", tempid, "Type", _type);
 }
 
 // 设定盔甲价值
 
-bool ArmorManager::SetValue(std::wstring id, int ivalue)
+bool ArmorManager::SetValue(std::wstring _id, int _value)
 {
 	std::string tempid;
-	UnicodeToUTF8(id,tempid);
-	//ticpp::Element *element = mDataFile.FirstChildElement("Armor");
-	//ticpp::Element *dataelement = element->FirstChildElement(tempid);
-	//dataelement->SetAttribute("Value",ivalue);
-	ticpp::Element * element = mDataFile.FirstChildElement("ArmorData");
-	ticpp::Element * dataelement = element->FirstChildElement(tempid, false)->FirstChildElement("Value", false);
-	dataelement->SetAttribute("value", ivalue);
-	return true;
+	UnicodeToUTF8(_id, tempid);
+	return DATAFILE()->SetDataInt("ArmorData", tempid, "Value", _value);
 }

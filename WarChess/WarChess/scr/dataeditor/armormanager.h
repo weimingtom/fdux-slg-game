@@ -11,13 +11,12 @@ public:
 	ArmorManager();
 	~ArmorManager();
 
-	bool LoadMod(std::wstring modName,std::wstring langName, bool editorMode);
-	bool LoadLang(std::wstring langName);
-
+	//bool LoadMod(std::wstring modName,std::wstring langName, bool editorMode);
+	//bool LoadLang(std::wstring langName);
 
 	//编辑器用函数
-	bool SaveData();
-	bool SaveLang();
+	//bool SaveData();
+	//bool SaveLang();
 
 	int GetNum(); //获取总数
 	std::wstring GetID(int index);
@@ -41,13 +40,13 @@ public:
 
 private:
 
-	std::wstring mModPath;
-	std::string mDataPath;
-	std::string mLangPath;
+	//std::wstring modPath_;
+	//std::string dataPath_;
+	//std::string langPath_;
 
-	ticpp::Document mDataFile;
-	ticpp::Document mLangFile;
+	//ticpp::Document dataFile_;
+	//ticpp::Document langFile_;
 
-	bool CreateDataFile();
-	bool CreateLangFile();
+	//bool CreateDataFile();
+	//bool CreateLangFile();
 };
