@@ -17,7 +17,7 @@
 
 #define DialogVisibleTime 500
 
-GUISLWindow::GUISLWindow(int width,int height):GUIScene("SLWindow.layout",width,height),mStartFade(false),mOldText(NULL)
+GUISLWindow::GUISLWindow(int width,int height):GUIScene("SLWindow.layout",width,height),mStartFade(false),mOldText(NULL),isOk(true)
 {
 	assignWidget(mYesButton,"YesButton");
 	assignWidget(mNoButton,"NoButton");

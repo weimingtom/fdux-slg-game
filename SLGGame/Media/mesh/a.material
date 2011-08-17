@@ -1,5 +1,5 @@
 import DepthShadowmap/CastNoShadow from "Shadow.material"
-material Examples/LightRibbonTrail : DepthShadowmap/CastNoShadow
+material Examples/LightRibbonTrail
 {
 	technique default
 	{

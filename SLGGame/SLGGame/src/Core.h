@@ -80,6 +80,8 @@ private:
 
 	void updateStats(void);
 
+	bool testHardwareSupport();
+
 	bool isRun;
 
 	

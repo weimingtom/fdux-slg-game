@@ -43,15 +43,15 @@ RangedCutScene::RangedCutScene(Ogre::Vector3 startpos, Ogre::Vector3 endpoint, i
 
 		trail->setMaterialName("Examples/LightRibbonTrail");
 
-		trail->setTrailLength(50);
+		trail->setTrailLength(20);
 
-		trail->setInitialColour(0, 1.0, 1.0, 1.0,0.3);
+		trail->setInitialColour(0, 1.0, 1.0, 1.0,0.1);
 		//trail->set
 
-		trail->setColourChange(0, 0.5, 0.5, 0.5, 0.5);
+		trail->setColourChange(0, 1, 1,1, 0.5);
 
 		trail->setInitialWidth(0, 1);
-		trail->setWidthChange(0,0.5);
+		trail->setWidthChange(0,1.7);
 
 		trail->addNode(mNode);
 

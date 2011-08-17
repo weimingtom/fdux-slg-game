@@ -517,7 +517,7 @@ void SquadGraphics::getFormationPosition(Formation f,Direction d,Ogre::Vector3& 
 		}
 	}
 
-	int w1,w2;
+	float w1,w2;
 	switch(d)
 	{
 	case North:
@@ -526,10 +526,22 @@ void SquadGraphics::getFormationPosition(Formation f,Direction d,Ogre::Vector3& 
 			w2=0;
 			break;
 		}
+	case NorthEast:
+		{
+			w1=-0.707106;//cos -135
+			w2=-0.707106;//sin -135
+			break;
+		}
 	case South:
 		{
 			w1=1;
 			w2=0;
+			break;
+		}
+	case SouthWest:
+		{
+			w1=0.707106;
+			w2=0.707106;
 			break;
 		}
 	case West:
@@ -538,10 +550,22 @@ void SquadGraphics::getFormationPosition(Formation f,Direction d,Ogre::Vector3& 
 			w2=1;
 			break;
 		}
+	case WestNorth:
+		{
+			w1=-0.707106;
+			w2=0.707106;
+			break;
+		}
 	case East:
 		{
 			w1=0;
 			w2=-1;
+			break;
+		}
+	case EastSouth:
+		{
+			w1=0.707106;
+			w2=-0.707106;
 			break;
 		}
 	}
@@ -763,6 +787,11 @@ void SquadGraphics::setDirection( Direction d,bool isAnim )
 	Ogre::Vector3 CommanderVector;
 	Ogre::Vector3 SoldierVector[4];
 
+	if(d==North)
+	{
+		d==NorthEast;
+	}
+
 	getFormationPosition(mFormation,d,CommanderVector,SoldierVector);
 
 	Ogre::Quaternion q;
@@ -911,7 +940,7 @@ void SquadGraphics::setDeath(int num)
 					}
 					else
 					{						
-						if (s.find(3)==s.end())
+						if (s.find(2)==s.end())
 						{
 							findF=2;
 						}
@@ -936,6 +965,8 @@ void SquadGraphics::setDeath(int num)
 						reliefUnit->mOffsetY=mSoldierUnits.at((*it))->mOffsetY;
 					}
 				}
+				
+				
 
 				mDeathUnits[mSoldierUnits.at((*it))]=reliefUnit;
 			}
