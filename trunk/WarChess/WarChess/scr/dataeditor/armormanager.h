@@ -11,13 +11,6 @@ public:
 	ArmorManager();
 	~ArmorManager();
 
-	//bool LoadMod(std::wstring modName,std::wstring langName, bool editorMode);
-	//bool LoadLang(std::wstring langName);
-
-	//编辑器用函数
-	//bool SaveData();
-	//bool SaveLang();
-
 	int GetNum(); //获取总数
 	std::wstring GetID(int index);
 	std::wstring GetName(std::wstring id);
@@ -37,16 +30,4 @@ public:
 	bool SetScriptName(std::wstring id, std::wstring script);
 	bool SetArmorType(std::wstring id, int type);
 	bool SetValue(std::wstring id, int ivalue);
-
-private:
-
-	//std::wstring modPath_;
-	//std::string dataPath_;
-	//std::string langPath_;
-
-	//ticpp::Document dataFile_;
-	//ticpp::Document langFile_;
-
-	//bool CreateDataFile();
-	//bool CreateLangFile();
 };

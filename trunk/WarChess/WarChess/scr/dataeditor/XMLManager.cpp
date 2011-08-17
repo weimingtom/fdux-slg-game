@@ -82,7 +82,7 @@ bool XMLManager::LoadLang(std::wstring _modName, std::wstring _langName, bool _e
 
 bool XMLManager::LoadStringTable(std::wstring _modName, std::wstring _langName, bool _editorMode)
 {
-	std::wstring tempPath = L".\\..\\Mod\\" + _modName + L"Lang\\" + _langName + L"\\stringtable.xml";
+	std::wstring tempPath = L".\\..\\Mod\\" + _modName + L"\\Lang\\" + _langName + L"\\stringtable.xml";
 	UnicodeToANSI(tempPath, stringTablePath_);
 
 	WIN32_FIND_DATA findFileData;
@@ -265,7 +265,7 @@ std::wstring XMLManager::GetLangID(std::string _parent, int _index)
 
 std::wstring XMLManager::GetStringTableID(int _index)
 {
-	ticpp::Element *parentElement = dataFile_.FirstChildElement("StaticData", false)->FirstChildElement("StringTable", false);
+	ticpp::Element *parentElement = stringTableFile_.FirstChildElement("StaticData", false)->FirstChildElement("StringTable", false);
 	ticpp::Iterator<ticpp::Element> child;
 	child = child.begin(parentElement);
 	int n = 0;
@@ -338,6 +338,14 @@ bool XMLManager::SetLangID(std::string _parent, std::string _child, std::string 
 {
 	langFile_.FirstChildElement("StaticData", false)->FirstChildElement(_parent, false)
 		->FirstChildElement(_child, false)
+		->SetValue(_id);
+	return true;
+}
+
+bool XMLManager::SetStringTableID(std::string _key, std::string _id)
+{
+	stringTableFile_.FirstChildElement("StaticData", false)->FirstChildElement("StringTable", false)
+		->FirstChildElement(_key, false)
 		->SetValue(_id);
 	return true;
 }

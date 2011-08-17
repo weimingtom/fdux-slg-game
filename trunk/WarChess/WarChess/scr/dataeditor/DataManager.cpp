@@ -15,13 +15,13 @@
 DataManager::DataManager(bool editormode)
 {
 	mEditorMode = editormode;
-	//mStringTable = new StringTable();
-	//mSoldierManager = new SoldierManager();
+	mStringTable = new StringTable();
+	mSoldierManager = new SoldierManager();
 	mHorseManager = new HorseManager();
-	//mPWeaponManager = new PWeaponManager();
-	//mSWeaponManager = new SWeaponManager();
+	mPWeaponManager = new PWeaponManager();
+	mSWeaponManager = new SWeaponManager();
 	mArmorManager = new ArmorManager();
-	//mShieldManager = new ShieldManager();
+	mShieldManager = new ShieldManager();
 
 	xmlManager_ = new XMLManager();
 	

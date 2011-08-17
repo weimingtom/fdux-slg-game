@@ -17,133 +17,7 @@ HorseManager::~HorseManager()
 {
 
 }
-/*
-bool HorseManager::LoadMod(std::wstring modName, std::wstring langName, bool editorMode)
-{
-	mModPath = L".\\..\\Mod\\" + modName + L"\\";
 
-	std::wstring tempPath;
-	tempPath = mModPath + L"data\\datafile.xml";
-
-	UnicodeToANSI(tempPath, mDataPath);
-
-	WIN32_FIND_DATA findFileData;
-	HANDLE hFind = INVALID_HANDLE_VALUE;
-	memset(&findFileData,0,sizeof(findFileData));
-
-	hFind = FindFirstFile(tempPath.c_str(),&findFileData);
-	if (hFind != INVALID_HANDLE_VALUE)
-	{
-		mDataFile.LoadFile(mDataPath.c_str(),TIXML_ENCODING_UTF8);
-		FindClose(hFind);
-	}
-	else if(!editorMode)
-	{
-		mModPath = L".\\..\\Mod\\common\\";
-		tempPath = mModPath + L"data\\datafile.xml";
-		UnicodeToANSI(tempPath, mDataPath);
-		hFind = FindFirstFile(tempPath.c_str(),&findFileData);
-		if (hFind != INVALID_HANDLE_VALUE)
-		{
-			mDataFile.LoadFile(mDataPath.c_str(),TIXML_ENCODING_UTF8);
-			FindClose(hFind);
-		}
-		else
-		{
-			CreateDataFile();
-		}
-	}
-	else
-	{
-		CreateDataFile();
-	}
-
-	LoadLang(langName);
-
-	return true;
-}
-
-bool HorseManager::LoadLang(std::wstring langName)
-{
-	std::wstring tempPath;
-	tempPath = mModPath + L"Lang\\" + langName + L"\\datafile.xml";
-
-	UnicodeToANSI(tempPath, mLangPath);
-
-	WIN32_FIND_DATA findFileData;
-	HANDLE hFind = INVALID_HANDLE_VALUE;
-	memset(&findFileData,0,sizeof(findFileData));
-
-	hFind = FindFirstFile(tempPath.c_str(),&findFileData);
-	if (hFind != INVALID_HANDLE_VALUE)
-	{
-		mLangFile.LoadFile(mLangPath.c_str(),TIXML_ENCODING_UTF8);
-		FindClose(hFind);
-	}
-	else
-	{
-		CreateLangFile();
-	}
-	return true;
-}
-
-bool HorseManager::CreateDataFile()
-{
-	mDataFile.Clear();
-	ticpp::Declaration * dataFileDecl = new ticpp::Declaration( "1.0", "utf-8", "" );
-	ticpp::Element * staticDataElement = new ticpp::Element("StaticData");
-	ticpp::Element * horseDataElement = new ticpp::Element("HorseData");
-	staticDataElement->LinkEndChild(horseDataElement);
-	mDataFile.LinkEndChild(dataFileDecl);
-	mDataFile.LinkEndChild(staticDataElement);
-	return true;
-}
-
-bool HorseManager::CreateLangFile()
-{
-	mLangFile.Clear();
-	ticpp::Declaration * dataFileDecl = new ticpp::Declaration( "1.0", "utf-8", "" );
-	ticpp::Element * staticDataElement = new ticpp::Element("StaticData");
-	ticpp::Element * horseDataElement = new ticpp::Element("HorseData");
-	staticDataElement->LinkEndChild(horseDataElement);
-	mLangFile.LinkEndChild(dataFileDecl);
-	mLangFile.LinkEndChild(staticDataElement);
-	return true;
-}
-
-bool HorseManager::SaveData()
-{
-	if(mDataPath.size()> 0)
-	{
-		ticpp::Element *element = mDataFile.FirstChildElement("StaticData")->FirstChildElement("HorseData");
-		if(element)
-		{
-			if(!element->NoChildren())
-				mDataFile.SaveFile(mDataPath.c_str());
-			//else
-				//DeleteFileA(mDataPath.c_str());
-		}
-
-	}
-	return true;
-}
-
-bool HorseManager::SaveLang()
-{
-	if(mLangPath.size() > 0)
-	{
-		ticpp::Element *element = mLangFile.FirstChildElement("StaticData")->FirstChildElement("HorseData");
-		if(element)
-		{
-			if(!element->NoChildren())
-				mLangFile.SaveFile(mLangPath.c_str());
-			//else
-				//DeleteFileA(mLangPath.c_str());
-		}
-	}
-	return true;
-}
-*/
 int HorseManager::GetNum()
 {
 	return DATAFILE()->CountData("HorseData");
@@ -260,8 +134,8 @@ std::wstring HorseManager::GetName(std::wstring _id)
 {
 	std::string tempid;
 	UnicodeToUTF8(_id, tempid);
-	ticpp::Element *armorElement = DATAFILE()->GetLang("HorseData", tempid);
-	ticpp::Element *nameElement = armorElement->FirstChildElement("Name", false);
+	ticpp::Element *horseElement = DATAFILE()->GetLang("HorseData", tempid);
+	ticpp::Element *nameElement = horseElement->FirstChildElement("Name", false);
 	std::string tempName;
 	tempName = nameElement->GetAttribute("value");
 	std::wstring name;
@@ -273,8 +147,8 @@ std::wstring HorseManager::GetDescription(std::wstring _id)
 {
 	std::string tempid;
 	UnicodeToUTF8(_id, tempid);
-	ticpp::Element *armorElement = DATAFILE()->GetLang("HorseData", tempid);
-	ticpp::Element *nameElement = armorElement->FirstChildElement("Describe", false);
+	ticpp::Element *horseElement = DATAFILE()->GetLang("HorseData", tempid);
+	ticpp::Element *nameElement = horseElement->FirstChildElement("Describe", false);
 	std::string tempName;
 	tempName = nameElement->GetAttribute("value");
 	std::wstring name;
@@ -286,8 +160,8 @@ std::wstring HorseManager::GetScriptName(std::wstring _id)
 {
 	std::string tempid;
 	UnicodeToUTF8(_id, tempid);
-	ticpp::Element *armorElement = DATAFILE()->GetData("HorseData", tempid);
-	ticpp::Element *scriptElement = armorElement->FirstChildElement("Script", false);
+	ticpp::Element *horseElement = DATAFILE()->GetData("HorseData", tempid);
+	ticpp::Element *scriptElement = horseElement->FirstChildElement("Script", false);
 	std::string tempScript;
 	tempScript = scriptElement->GetAttribute("value");
 	std::wstring script;
@@ -299,8 +173,8 @@ int HorseManager::GetAttr(std::wstring _id, BasicAttr _attrType)
 {
 	std::string tempid;
 	UnicodeToUTF8(_id, tempid);
-	ticpp::Element *armorElement = DATAFILE()->GetData("HorseData", tempid);
-	ticpp::Element *attrElement = armorElement->FirstChildElement("AttrModifer", false);
+	ticpp::Element *horseElement = DATAFILE()->GetData("HorseData", tempid);
+	ticpp::Element *attrElement = horseElement->FirstChildElement("AttrModifer", false);
 	ticpp::Element *tempElement;
 	int attr = 0;
 	switch(_attrType)
@@ -355,8 +229,8 @@ int HorseManager::GetValue(std::wstring _id)
 {
 	std::string tempid;
 	UnicodeToUTF8(_id, tempid);
-	ticpp::Element *armorElement = DATAFILE()->GetData("HorseData", tempid);
-	ticpp::Element *valueElement = armorElement->FirstChildElement("Value", false);
+	ticpp::Element *horseElement = DATAFILE()->GetData("HorseData", tempid);
+	ticpp::Element *valueElement = horseElement->FirstChildElement("Value", false);
 	int value;
 	valueElement->GetAttribute("value", &value, false);
 	return value;
