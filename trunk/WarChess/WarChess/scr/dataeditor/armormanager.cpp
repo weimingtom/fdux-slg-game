@@ -35,8 +35,6 @@
 #include "SquadEquip.h"
 #include <Windows.h>
 
-#define DATAFILE() DataManager::getSingleton().xmlManager_
-
 ArmorManager::ArmorManager()
 {
 }

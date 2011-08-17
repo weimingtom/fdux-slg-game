@@ -30,9 +30,9 @@ DataEditorControl::DataEditorControl(Ui::MainWindow *ui)
 	//mSoldierTableView = ui->soldierTableView;
 	//mSoldierTableView->setModel(mSoldierTableModule);
 
-	//mHorseTableModule = new HorseTableModule(this);
-	//mHorseTableView = ui->horseTableView;
-	//mHorseTableView->setModel(mHorseTableModule);
+	mHorseTableModule = new HorseTableModule(this);
+	mHorseTableView = ui->horseTableView;
+	mHorseTableView->setModel(mHorseTableModule);
 
 	//mPWeaponTableModule = new PWeaponTableModule(this);
 	//mPWeaponTableView = ui->pweaponTableView;
@@ -63,8 +63,8 @@ DataEditorControl::DataEditorControl(Ui::MainWindow *ui)
 	connect(ui->addLang,SIGNAL(clicked()),this,SLOT(AddLang()));
 	//connect(ui->addSoldier,SIGNAL(clicked()),this,SLOT(AddSoldier()));
 	//connect(ui->delSoldier,SIGNAL(clicked()),this,SLOT(DelSoldier()));
-	//connect(ui->addHorse,SIGNAL(clicked()),this,SLOT(AddHorse()));
-	//connect(ui->delHorse,SIGNAL(clicked()),this,SLOT(DelHorse()));
+	connect(ui->addHorse,SIGNAL(clicked()),this,SLOT(AddHorse()));
+	connect(ui->delHorse,SIGNAL(clicked()),this,SLOT(DelHorse()));
 	//connect(ui->addPWeapon,SIGNAL(clicked()),this,SLOT(AddPWeapon()));
 	//connect(ui->delPWeapon,SIGNAL(clicked()),this,SLOT(DelPWeapon()));
 	//connect(ui->addSWeapon,SIGNAL(clicked()),this,SLOT(AddSWeapon()));
@@ -117,7 +117,7 @@ void DataEditorControl::ModBoxChanged(const QString & text)
 	RefreshLangList();
 	//mStringTableModule->ModChanged();
 	//mSoldierTableModule->ModChanged();
-	//mHorseTableModule->ModChanged();
+	mHorseTableModule->ModChanged();
 	//mPWeaponTableModule->ModChanged();
 	//mSWeaponTableModule->ModChanged();
 	mArmorTableModule->ModChanged();
@@ -129,7 +129,7 @@ void DataEditorControl::LangBoxChanged(const QString & text)
 	DataManager::getSingleton().ChangeLang(text.toStdWString());
 	//mStringTableModule->ModChanged();
 	//mSoldierTableModule->ModChanged();
-	//mHorseTableModule->ModChanged();
+	mHorseTableModule->ModChanged();
 	//mPWeaponTableModule->ModChanged();
 	//mSWeaponTableModule->ModChanged();
 	mArmorTableModule->ModChanged();
@@ -150,14 +150,14 @@ void DataEditorControl::DelSoldier()
 
 void DataEditorControl::AddHorse()
 {
-	//mHorseTableModule->insertRow();
+	mHorseTableModule->insertRow();
 }
 
 void DataEditorControl::DelHorse()
 {
-	//QModelIndexList indexlist = mHorseTableView->selectionModel()->selectedIndexes();
-	//if (indexlist.size() > 0)
-	//	mHorseTableModule->removeRow(indexlist.begin()->row());
+	QModelIndexList indexlist = mHorseTableView->selectionModel()->selectedIndexes();
+	if (indexlist.size() > 0)
+		mHorseTableModule->removeRow(indexlist.begin()->row());
 }
 
 void DataEditorControl::AddMod()

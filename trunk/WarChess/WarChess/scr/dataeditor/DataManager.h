@@ -7,6 +7,8 @@
 #include "iisingleton.hpp"
 using namespace izayoi;
 
+#define DATAFILE() DataManager::getSingleton().xmlManager_
+
 class SoldierManager;
 class HorseManager;
 class PWeaponManager;
