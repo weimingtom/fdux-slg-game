@@ -38,6 +38,7 @@ public:
 
 	bool SetDataID(std::string _parent, std::string _child, std::string _id);
 	bool SetLangID(std::string _parent, std::string _child, std::string _id);
+	bool SetStringTableID(std::string _key, std::string _id);
 
 	int CountData(std::string _parent);
 	int CountLang(std::string _parent);

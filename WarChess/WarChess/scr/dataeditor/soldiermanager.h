@@ -10,13 +10,6 @@ public:
 	SoldierManager();
 	~SoldierManager();
 
-	bool LoadMod(std::wstring modName,std::wstring langName, bool editorMode);
-	bool LoadLang(std::wstring langName);
-
-	//编辑器用函数
-	bool SaveData();
-	bool SaveLang();
-
 	int GetNum(); //获取总数
 	std::wstring GetID(int index);
 	int GetAttr(std::wstring id,BasicAttr attrType);
@@ -36,15 +29,4 @@ public:
 	bool SetScriptName(std::wstring id, std::wstring script);
 	bool SetValue(std::wstring id, int ivalue);
 	bool SetInjury(std::wstring id, int injury);
-private:
-	
-	std::wstring mModPath;
-	std::string mDataPath;
-	std::string mLangPath;
-
-	ticpp::Document mDataFile;
-	ticpp::Document mLangFile;
-
-	bool CreateDataFile();
-	bool CreateLangFile();
 };
