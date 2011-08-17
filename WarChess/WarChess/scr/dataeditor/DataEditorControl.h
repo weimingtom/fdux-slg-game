@@ -32,7 +32,7 @@ public:
 	QComboBox *mLangBox;
 	
 	//QTableView *mSoldierTableView;
-	//QTableView *mHorseTableView;
+	QTableView *mHorseTableView;
 	//QTableView *mPWeaponTableView;
 	//QTableView *mSWeaponTableView;
 	QTableView *mArmorTableView;
@@ -40,7 +40,7 @@ public:
 	//QTableView *mStringTableView;
 
 	//SoldierTableModule *mSoldierTableModule;
-	//HorseTableModule *mHorseTableModule;
+	HorseTableModule *mHorseTableModule;
 	//PWeaponTableModule *mPWeaponTableModule;
 	//SWeaponTableModule *mSWeaponTableModule;
 	ArmorTableModule *mArmorTableModule;

@@ -17,7 +17,7 @@ DataManager::DataManager(bool editormode)
 	mEditorMode = editormode;
 	//mStringTable = new StringTable();
 	//mSoldierManager = new SoldierManager();
-	//mHorseManager = new HorseManager();
+	mHorseManager = new HorseManager();
 	//mPWeaponManager = new PWeaponManager();
 	//mSWeaponManager = new SWeaponManager();
 	mArmorManager = new ArmorManager();
@@ -221,10 +221,6 @@ void DataManager::SaveData()
 	//mShieldManager->SaveData();
 	//SaveLang();
 
-	//SaveData();
-	//SaveLang();
-	//SaveStringTable();
-
 	xmlManager_->SaveData();
 	xmlManager_->SaveLang();
 	xmlManager_->SaveStringTable();
@@ -240,9 +236,6 @@ void DataManager::SaveLang()
 	//mArmorManager->SaveLang();
 	//mShieldManager->SaveLang();
 
-	//SaveLang();
-	//SaveStringTable();
-
 	xmlManager_->SaveLang();
 	xmlManager_->SaveStringTable();
 }
@@ -257,8 +250,6 @@ void DataManager::LoadData()
 	//mShieldManager->LoadMod(*mCurMod,*mCurLang,mEditorMode);
 	//mStringTable->LoadLang(*mCurLang,mEditorMode);
 
-	//LoadData(*mCurMod, *mCurLang, mEditorMode);
-
 	xmlManager_->LoadMod(*mCurMod, *mCurLang, mEditorMode);
 }
 
@@ -271,8 +262,6 @@ void DataManager::LoadLang()
 	//mSWeaponManager->LoadLang(*mCurLang);
 	//mArmorManager->LoadLang(*mCurLang);
 	//mShieldManager->LoadLang(*mCurLang);
-
-	//LoadLang(*mCurMod, *mCurLang, mEditorMode);
 
 	xmlManager_->LoadLang(*mCurMod, *mCurLang, mEditorMode);
 }

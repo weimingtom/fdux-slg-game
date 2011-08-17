@@ -242,7 +242,7 @@ ticpp::Element* XMLManager::GetStringTable(std::string _key)
 
 std::wstring XMLManager::GetDataID(std::string _parent, int _index)
 {	
-	ticpp::Element *parentElement = dataFile_.FirstChildElement("StaticData", false)->FirstChildElement("ArmorData", false);
+	ticpp::Element *parentElement = dataFile_.FirstChildElement("StaticData", false)->FirstChildElement(_parent, false);
 	ticpp::Iterator<ticpp::Element> child;
 	child = child.begin(parentElement);
 	int n = 0;
