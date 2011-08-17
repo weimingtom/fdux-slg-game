@@ -9,7 +9,7 @@
 
 using namespace audiere;
 
-AudioSystem::AudioSystem(void):mStreamName("none")//:mVol(-1),mStream(0),mSample(0),mStreamName("none"),mNextMusic("none"),mNextTime(0),mNextLoop(true)
+AudioSystem::AudioSystem(void):mStreamName("none"),mStream(NULL),mSample(NULL)//:mVol(-1),mStream(0),mSample(0),mStreamName("none"),mNextMusic("none"),mNextTime(0),mNextLoop(true)
 {
 
 }
@@ -43,7 +43,10 @@ bool AudioSystem::playStream( std::string name,bool isLoop,int time)
 
 bool AudioSystem::stopStream(int time)
 {
-	mStream->stop();
+	if (mStream!=NULL)
+	{
+		mStream->stop();
+	}
 	return true;
 }
 
@@ -71,6 +74,9 @@ std::string AudioSystem::getError(bool isStreamError)
 
 bool AudioSystem::stopSample()
 {
-	mSample->stop();
+	if (mSample!=NULL)
+	{
+		mSample->stop();
+	}
 	return true;
 }
