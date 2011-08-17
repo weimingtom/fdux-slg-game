@@ -81,6 +81,11 @@ bool Core::initialize(bool isFullScene)
 
 	mWindow = mRoot->createRenderWindow(title,1280,720,isFullScene,&list);
 
+	if(!testHardwareSupport())
+	{
+		return false;
+	}
+
 	HWND   hwnd;
 	mWindow->getCustomAttribute("WINDOW", &hwnd);   
 	SendMessage(hwnd,WM_SETICON,ICON_SMALL,(LPARAM)LoadIcon(GetModuleHandle(NULL),MAKEINTRESOURCE(IDI_ICON1)));   
@@ -157,6 +162,36 @@ bool Core::initialize(bool isFullScene)
 
 	return true;
 
+}
+
+bool Core::testHardwareSupport()
+{
+	const Ogre::RenderSystemCapabilities* caps=mRoot->getRenderSystem()->getCapabilities();
+	if (!caps->hasCapability(Ogre::RSC_VERTEX_PROGRAM) || !caps->hasCapability(Ogre::RSC_FRAGMENT_PROGRAM))
+	{
+		MessageBoxA(NULL, StringTable::getSingleton().getAnsiString("NotSupportGPUPrograms").c_str(),StringTable::getSingleton().getAnsiString("gamename").c_str(), MB_OK | MB_ICONERROR | MB_TASKMODAL);
+		return false;
+	}
+
+	if (!Ogre::GpuProgramManager::getSingleton().isSyntaxSupported("arbfp1") &&
+		!Ogre::GpuProgramManager::getSingleton().isSyntaxSupported("ps_2_0") &&
+		!Ogre::GpuProgramManager::getSingleton().isSyntaxSupported("vs_2_0"))
+	{
+		MessageBoxA(NULL, StringTable::getSingleton().getAnsiString("NotSupportSM2_0").c_str(),StringTable::getSingleton().getAnsiString("gamename").c_str(), MB_OK | MB_ICONERROR | MB_TASKMODAL);
+		return false;
+	}
+
+	Ogre::TexturePtr ptrTexture = Ogre::TextureManager::getSingleton().createManual("TestBigSize", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::TEX_TYPE_2D, 4096,4096, 0, Ogre::PF_R8G8B8, Ogre::TU_RENDERTARGET);
+
+	if (ptrTexture->getWidth()!=4096)//如果不支持至少4096的贴图,那么将报错
+	{
+		MessageBoxA(NULL, StringTable::getSingleton().getAnsiString("NotSupportBigTexture").c_str(),StringTable::getSingleton().getAnsiString("gamename").c_str(), MB_OK | MB_ICONERROR | MB_TASKMODAL);
+		return false;
+	}
+
+	Ogre::TextureManager::getSingleton().remove("TestBigSize");
+
+	return true;
 }
 
 void Core::initializeResource()

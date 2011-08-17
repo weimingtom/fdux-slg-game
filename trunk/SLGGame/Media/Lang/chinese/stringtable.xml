@@ -50,6 +50,9 @@
 		
 		<!--GUI-->
 		<gamename type="String" value = "忘却的战场"/>
+		<NotSupportGPUPrograms type="String" value = "抱歉,你的显卡不支持Shader程序,无法运行."/>
+		<NotSupportSM2_0 type="String" value = "抱歉,你的显卡不支持Shader model2.0,无法运行."/>
+		<NotSupportBigTexture type="String" value = "抱歉,你的显卡不支持大尺寸的纹理,无法运行."/>
 		<NewGame type="String" value = "开始游戏"/>
 		<Restart type="String" value ="继续"/>
 		<LoadGame type="String" value = "载入游戏"/>

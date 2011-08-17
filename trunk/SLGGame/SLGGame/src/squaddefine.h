@@ -74,6 +74,10 @@ const Direction North = 0;
 const Direction South = 1;
 const Direction West = 2;
 const Direction East = 3;
+const Direction NorthEast=4;
+const Direction EastSouth=5;
+const Direction SouthWest=6;
+const Direction WestNorth=7;
 
 typedef int  Formation;
 const Formation Line = 0;
