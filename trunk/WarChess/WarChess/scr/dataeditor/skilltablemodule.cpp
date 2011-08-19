@@ -49,7 +49,7 @@ QVariant SkillTableModule::data(const QModelIndex &index, int role /* = Qt::Disp
 	case 7:
 		return QString::number(DATAMANAGER().GetInt(SKILL_TAG, id, APTYPE_TAG));
 	case 8:
-		return QString::number(DATAMANAGER().GetInt(SKILL_TAG, id, APCOST_TAG));
+		return QString::number(DATAMANAGER().GetFloat(SKILL_TAG, id, APCOST_TAG));
 	case 9:
 		return QString::number(DATAMANAGER().GetInt(SKILL_TAG, id, COOLDOWN_TAG));
 	case 10:
@@ -150,7 +150,7 @@ bool SkillTableModule::setData(const QModelIndex &index, const QVariant &qvalue,
 		case 7:
 			return DATAMANAGER().SetInt(SKILL_TAG, id, APTYPE_TAG, qvalue.toInt());
 		case 8:
-			return DATAMANAGER().SetInt(SKILL_TAG, id, APCOST_TAG, qvalue.toInt());
+			return DATAMANAGER().SetFloat(SKILL_TAG, id, APCOST_TAG, qvalue.toFloat());
 		case 9:
 			return DATAMANAGER().SetInt(SKILL_TAG, id, COOLDOWN_TAG, qvalue.toInt());
 		case 10:

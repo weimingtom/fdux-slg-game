@@ -1000,6 +1000,19 @@ int DataManager::GetInt(std::string _parent, std::wstring _id, std::string _tag)
 	return data;
 }
 
+float DataManager::GetFloat(std::string _parent, std::wstring _id, std::string _tag)
+{
+	std::string tempid;
+	UnicodeToUTF8(_id, tempid);
+	ticpp::Element *rootElement = xmlManager_->GetData(_parent, tempid);
+	if (rootElement == NULL) return 0;
+	ticpp::Element *dataElement = rootElement->FirstChildElement(_tag, false);
+	if (dataElement == NULL) return 0;
+	float data = 0;
+	dataElement->GetAttribute("value", &data, false);
+	return data;
+}
+
 float DataManager::GetAttribute(std::string _parent, std::wstring _id, BasicAttr _attrType)
 {
 	std::string tempid;
@@ -1114,6 +1127,13 @@ bool DataManager::SetInt(std::string _parent, std::wstring _id, std::string _tag
 	std::string tempid;
 	UnicodeToUTF8(_id, tempid);
 	return xmlManager_->SetDataInt(_parent, tempid, _tag, _value);
+}
+
+bool DataManager::SetFloat(std::string _parent, std::wstring _id, std::string _tag, float _value)
+{
+	std::string tempid;
+	UnicodeToUTF8(_id, tempid);
+	return xmlManager_->SetDataFloat(_parent, tempid, _tag, _value);
 }
 
 bool DataManager::SetAttribute(std::string _parent, std::wstring _id, BasicAttr _attrType, float _attr)
