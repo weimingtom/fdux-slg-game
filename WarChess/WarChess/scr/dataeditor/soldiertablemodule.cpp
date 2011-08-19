@@ -2,7 +2,7 @@
 #include "DataManager.h"
 #include "soldiermanager.h"
 
-#define SOLDIERMANAGER() DataManager::getSingleton().mSoldierManager
+//#define SOLDIERMANAGER() DataManager::getSingleton().mSoldierManager
 
 const int SoldierTableColumnCount = 16; 
 
@@ -24,7 +24,7 @@ int SoldierTableModule::columnCount(const QModelIndex &parent /* = QModelIndex *
 
 int SoldierTableModule::rowCount(const QModelIndex &parent /* = QModelIndex */) const
 {
-	return SOLDIERMANAGER()->GetNum();
+	return DATAMANAGER().GetCount(SOLDIER_TAG);
 }
 
 QVariant SoldierTableModule::data(const QModelIndex &index, int role /* = Qt::DisplayRole */) const
@@ -32,41 +32,41 @@ QVariant SoldierTableModule::data(const QModelIndex &index, int role /* = Qt::Di
 	if(!index.isValid() || role != Qt::DisplayRole)
 		return QVariant();
 
-	std::wstring id = SOLDIERMANAGER()->GetID(index.row());
+	std::wstring id = DATAMANAGER().GetID(SOLDIER_TAG, index.row());
 	switch(index.column())
 	{
 	case 0:
 		return QString::fromStdWString(id);
 	case 1:
-		return QString::fromStdWString(SOLDIERMANAGER()->GetName(id));
+		return QString::fromStdWString(DATAMANAGER().GetLangStr(SOLDIER_TAG, id, NAME_TAG));
 	case 2:
-		return QString::fromStdWString(SOLDIERMANAGER()->GetDescription(id));
+		return QString::fromStdWString(DATAMANAGER().GetLangStr(SOLDIER_TAG, id, DESCRIPTION_TAG));
 	case 3:
-		return QString::number(SOLDIERMANAGER()->GetValue(id));
+		return QString::number(DATAMANAGER().GetInt(SOLDIER_TAG, id, VALUE_TAG));
 	case 4:
-		return QString::number(SOLDIERMANAGER()->GetAttr(id,ATTR_ATTACK));
+		return QString::number(DATAMANAGER().GetAttribute(SOLDIER_TAG, id, ATTR_ATTACK));
 	case 5:
-		return QString::number(SOLDIERMANAGER()->GetAttr(id,ATTR_RANGEDATTACK));
+		return QString::number(DATAMANAGER().GetAttribute(SOLDIER_TAG, id, ATTR_RANGEDATTACK));
 	case 6:
-		return QString::number(SOLDIERMANAGER()->GetAttr(id,ATTR_DEFENSE));
+		return QString::number(DATAMANAGER().GetAttribute(SOLDIER_TAG, id, ATTR_DEFENSE));
 	case 7:
-		return QString::number(SOLDIERMANAGER()->GetAttr(id,ATTR_FORMATION));
+		return QString::number(DATAMANAGER().GetAttribute(SOLDIER_TAG, id, ATTR_FORMATION));
 	case 8:
-		return QString::number(SOLDIERMANAGER()->GetAttr(id,ATTR_INITIATIVE));
+		return QString::number(DATAMANAGER().GetAttribute(SOLDIER_TAG, id, ATTR_INITIATIVE));
 	case 9:
-		return QString::number(SOLDIERMANAGER()->GetAttr(id,ATTR_ACTIONPOINT));
+		return QString::number(DATAMANAGER().GetAttribute(SOLDIER_TAG, id, ATTR_ACTIONPOINT));
 	case 10:
-		return QString::number(SOLDIERMANAGER()->GetAttr(id,ATTR_DETECTION));
+		return QString::number(DATAMANAGER().GetAttribute(SOLDIER_TAG, id, ATTR_DETECTION));
 	case 11:
-		return QString::number(SOLDIERMANAGER()->GetAttr(id,ATTR_COVERT));
+		return QString::number(DATAMANAGER().GetAttribute(SOLDIER_TAG, id, ATTR_COVERT));
 	case 12:
-		return QString::number(SOLDIERMANAGER()->GetAttr(id,ATTR_INJURY));
+		return QString::number(DATAMANAGER().GetAttribute(SOLDIER_TAG, id, ATTR_INJURY));
 	case 13:
-		return QString::number(SOLDIERMANAGER()->GetAttr(id,ATTR_COUNTER));
+		return QString::number(DATAMANAGER().GetAttribute(SOLDIER_TAG, id, ATTR_COUNTER));
 	case 14:
-		return QString::fromStdWString(SOLDIERMANAGER()->GetScriptName(id));
+		return QString::fromStdWString(DATAMANAGER().GetDataStr(SOLDIER_TAG, id, SCRIPT_TAG));
 	case 15:
-		return QString::number(SOLDIERMANAGER()->GetInjury(id));
+		return QString::number(DATAMANAGER().GetInt(SOLDIER_TAG, id, INJURY_TAG));
 	default:
 		return QVariant();
 	}
@@ -122,8 +122,8 @@ QVariant SoldierTableModule::headerData(int section, Qt::Orientation orientation
 
 bool SoldierTableModule::insertRow(int row, const QModelIndex & parent /* = QModelIndex */)
 {
-	beginInsertRows(parent, SOLDIERMANAGER()->GetNum(),SOLDIERMANAGER()->GetNum());
-	SOLDIERMANAGER()->AddSoldier();
+	beginInsertRows(parent, DATAMANAGER().GetCount(SOLDIER_TAG), DATAMANAGER().GetCount(SOLDIER_TAG));
+	DATAMANAGER().AddSoldier();
 	endInsertRows();
 	return true;
 }
@@ -131,8 +131,8 @@ bool SoldierTableModule::insertRow(int row, const QModelIndex & parent /* = QMod
 bool SoldierTableModule::removeRow(int row, const QModelIndex & parent /* = QModelIndex */)
 {
 	beginRemoveRows(parent, row, row);
-	std::wstring id = SOLDIERMANAGER()->GetID(row);
-	SOLDIERMANAGER()->DelSoldier(id);
+	std::wstring id = DATAMANAGER().GetID(SOLDIER_TAG, row);
+	DATAMANAGER().RemoveData(SOLDIER_TAG, id);
 	endRemoveRows();
 	return true;
 }
@@ -149,41 +149,41 @@ bool SoldierTableModule::setData(const QModelIndex &index, const QVariant &qvalu
 {
 	if (index.isValid() && role == Qt::EditRole) 
 	{
-		std::wstring id = SOLDIERMANAGER()->GetID(index.row());
+		std::wstring id = DATAMANAGER().GetID(SOLDIER_TAG, index.row());
 		switch(index.column())
 		{
 		case 0:
-			return SOLDIERMANAGER()->SetID(id, qvalue.toString().toStdWString());
+			return DATAMANAGER().SetID(SOLDIER_TAG, id, qvalue.toString().toStdWString());
 		case 1:
-			return SOLDIERMANAGER()->SetName(id, qvalue.toString().toStdWString());
+			return DATAMANAGER().SetLangStr(SOLDIER_TAG, id, NAME_TAG, qvalue.toString().toStdWString());
 		case 2:
-			return SOLDIERMANAGER()->SetDescription(id, qvalue.toString().toStdWString());
+			return DATAMANAGER().SetLangStr(SOLDIER_TAG, id, DESCRIPTION_TAG, qvalue.toString().toStdWString());
 		case 3:
-			return SOLDIERMANAGER()->SetValue(id,qvalue.toInt());
+			return DATAMANAGER().SetInt(SOLDIER_TAG, id, VALUE_TAG, qvalue.toInt());
 		case 4:
-			return SOLDIERMANAGER()->SetAttr(id,ATTR_ATTACK,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(SOLDIER_TAG, id, ATTR_ATTACK, qvalue.toInt());
 		case 5:
-			return SOLDIERMANAGER()->SetAttr(id,ATTR_RANGEDATTACK,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(SOLDIER_TAG, id, ATTR_RANGEDATTACK, qvalue.toInt());
 		case 6:
-			return SOLDIERMANAGER()->SetAttr(id,ATTR_DEFENSE,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(SOLDIER_TAG, id, ATTR_DEFENSE, qvalue.toInt());
 		case 7:
-			return SOLDIERMANAGER()->SetAttr(id,ATTR_FORMATION,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(SOLDIER_TAG, id, ATTR_FORMATION, qvalue.toInt());
 		case 8:
-			return SOLDIERMANAGER()->SetAttr(id,ATTR_INITIATIVE,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(SOLDIER_TAG, id, ATTR_INITIATIVE, qvalue.toInt());
 		case 9:
-			return SOLDIERMANAGER()->SetAttr(id,ATTR_ACTIONPOINT,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(SOLDIER_TAG, id, ATTR_ACTIONPOINT, qvalue.toInt());
 		case 10:
-			return SOLDIERMANAGER()->SetAttr(id,ATTR_DETECTION,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(SOLDIER_TAG, id, ATTR_DETECTION, qvalue.toInt());
 		case 11:
-			return SOLDIERMANAGER()->SetAttr(id,ATTR_COVERT,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(SOLDIER_TAG, id, ATTR_COVERT, qvalue.toInt());
 		case 12:
-			return SOLDIERMANAGER()->SetAttr(id,ATTR_INJURY,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(SOLDIER_TAG, id, ATTR_INJURY, qvalue.toInt());
 		case 13:
-			return SOLDIERMANAGER()->SetAttr(id,ATTR_COUNTER,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(SOLDIER_TAG, id, ATTR_COUNTER, qvalue.toInt());
 		case 14:
-			return SOLDIERMANAGER()->SetScriptName(id,qvalue.toString().toStdWString());
+			return DATAMANAGER().SetDataStr(SOLDIER_TAG, id, SCRIPT_TAG, qvalue.toString().toStdWString());
 		case 15:
-			return SOLDIERMANAGER()->SetInjury(id,qvalue.toInt());
+			return DATAMANAGER().SetInt(SOLDIER_TAG, id, INJURY_TAG, qvalue.toInt());
 		default:
 			return false;
 		}

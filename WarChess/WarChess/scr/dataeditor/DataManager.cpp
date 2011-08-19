@@ -6,6 +6,7 @@
 #include "armormanager.h"
 #include "shieldmanager.h"
 #include "stringtable.h"
+#include "Conversion.h"
 #include "XMLManager.h"
 
 #include <Windows.h>
@@ -15,13 +16,13 @@
 DataManager::DataManager(bool editormode)
 {
 	mEditorMode = editormode;
-	mStringTable = new StringTable();
-	mSoldierManager = new SoldierManager();
-	mHorseManager = new HorseManager();
-	mPWeaponManager = new PWeaponManager();
-	mSWeaponManager = new SWeaponManager();
-	mArmorManager = new ArmorManager();
-	mShieldManager = new ShieldManager();
+	//mStringTable = new StringTable();
+	//mSoldierManager = new SoldierManager();
+	//mHorseManager = new HorseManager();
+	//mPWeaponManager = new PWeaponManager();
+	//mSWeaponManager = new SWeaponManager();
+	//mArmorManager = new ArmorManager();
+	//mShieldManager = new ShieldManager();
 
 	xmlManager_ = new XMLManager();
 	
@@ -213,14 +214,6 @@ void DataManager::SwitchEditorMode(bool editormode)
 
 void DataManager::SaveData()
 {
-	//mSoldierManager->SaveData();
-	//mHorseManager->SaveData();
-	//mPWeaponManager->SaveData();
-	//mSWeaponManager->SaveData();
-	//mArmorManager->SaveData();
-	//mShieldManager->SaveData();
-	//SaveLang();
-
 	xmlManager_->SaveData();
 	xmlManager_->SaveLang();
 	xmlManager_->SaveStringTable();
@@ -228,40 +221,884 @@ void DataManager::SaveData()
 
 void DataManager::SaveLang()
 {
-	//mStringTable->SaveLang();
-	//mSoldierManager->SaveLang();
-	//mHorseManager->SaveLang();
-	//mPWeaponManager->SaveLang();
-	//mSWeaponManager->SaveLang();
-	//mArmorManager->SaveLang();
-	//mShieldManager->SaveLang();
-
 	xmlManager_->SaveLang();
 	xmlManager_->SaveStringTable();
 }
 
 void DataManager::LoadData()
 {
-	//mSoldierManager->LoadMod(*mCurMod,*mCurLang,mEditorMode);
-	//mHorseManager->LoadMod(*mCurMod,*mCurLang,mEditorMode);
-	//mPWeaponManager->LoadMod(*mCurMod,*mCurLang,mEditorMode);
-	//mSWeaponManager->LoadMod(*mCurMod,*mCurLang,mEditorMode);
-	//mArmorManager->LoadMod(*mCurMod,*mCurLang,mEditorMode);
-	//mShieldManager->LoadMod(*mCurMod,*mCurLang,mEditorMode);
-	//mStringTable->LoadLang(*mCurLang,mEditorMode);
-
 	xmlManager_->LoadMod(*mCurMod, *mCurLang, mEditorMode);
 }
 
 void DataManager::LoadLang()
 {
-	//mStringTable->LoadLang(*mCurLang,mEditorMode);
-	//mSoldierManager->LoadLang(*mCurLang);
-	//mHorseManager->LoadLang(*mCurLang);
-	//mPWeaponManager->LoadLang(*mCurLang);
-	//mSWeaponManager->LoadLang(*mCurLang);
-	//mArmorManager->LoadLang(*mCurLang);
-	//mShieldManager->LoadLang(*mCurLang);
-
 	xmlManager_->LoadLang(*mCurMod, *mCurLang, mEditorMode);
+}
+
+void DataManager::AddArmor()
+{
+	char newid[20];
+	int n = 0;
+	sprintf_s(newid, 20, "newarmor%d", n);
+	while(xmlManager_->GetData("ArmorData", newid) != NULL)
+	{
+		n = n + 1;
+		sprintf_s(newid,20,"newhorse%d",n);
+	}
+	
+	ticpp::Element *newArmorElement = new ticpp::Element(newid);
+
+	ticpp::Element *typeElement = new ticpp::Element("Type");
+	ticpp::Element *valueElement = new ticpp::Element("Value");
+	ticpp::Element *scriptElement = new ticpp::Element("Script");
+	ticpp::Element *attrElement = new ticpp::Element("AttrModifer");
+	ticpp::Element *attrTypeElement = new ticpp::Element("Type");
+	ticpp::Element *attrAttackElement = new ticpp::Element("Attack");
+	ticpp::Element *attrRangedElement = new ticpp::Element("RangedAttack");
+	ticpp::Element *attrDefenceElement = new ticpp::Element("Defence");
+	ticpp::Element *attrFormationElement = new ticpp::Element("Formation");
+	ticpp::Element *attrInitiativeElement = new ticpp::Element("Initiative");
+	ticpp::Element *attrActionElement = new ticpp::Element("ActionPoint");
+	ticpp::Element *attrDetectionElement = new ticpp::Element("Detection");
+	ticpp::Element *attrCovertElement = new ticpp::Element("Covert");
+	ticpp::Element *attrInjuryElement = new ticpp::Element("Injury");
+	ticpp::Element *attrConterElement = new ticpp::Element("Conter");
+
+	typeElement->SetAttribute("type", "Int");
+	typeElement->SetAttribute("value", "0");
+	valueElement->SetAttribute("type", "Int");
+	valueElement->SetAttribute("value", "0");
+	scriptElement->SetAttribute("type", "String");
+	scriptElement->SetAttribute("value", "none");
+
+	attrTypeElement->SetAttribute("type", "Int");
+	attrTypeElement->SetAttribute("value", "0");
+	attrAttackElement->SetAttribute("type", "Float");
+	attrAttackElement->SetAttribute("value", "0.0");
+	attrRangedElement->SetAttribute("type", "Float");
+	attrRangedElement->SetAttribute("value", "0.0");
+	attrDefenceElement->SetAttribute("type", "Float");
+	attrDefenceElement->SetAttribute("value", "0.0");
+	attrFormationElement->SetAttribute("type", "Float");
+	attrFormationElement->SetAttribute("value", "0.0");
+	attrInitiativeElement->SetAttribute("type", "Float");
+	attrInitiativeElement->SetAttribute("value", "0.0");
+	attrActionElement->SetAttribute("type", "Float");
+	attrActionElement->SetAttribute("value", "0.0");
+	attrDetectionElement->SetAttribute("type", "Float");
+	attrDetectionElement->SetAttribute("value", "0.0");
+	attrCovertElement->SetAttribute("type", "Float");
+	attrCovertElement->SetAttribute("value", "0.0");
+	attrInjuryElement->SetAttribute("type", "Float");
+	attrInjuryElement->SetAttribute("value", "0.0");
+	attrConterElement->SetAttribute("type", "Float");
+	attrConterElement->SetAttribute("value", "0.0");
+
+	attrElement->LinkEndChild(attrTypeElement);
+	attrElement->LinkEndChild(attrAttackElement);
+	attrElement->LinkEndChild(attrRangedElement);
+	attrElement->LinkEndChild(attrDefenceElement);
+	attrElement->LinkEndChild(attrFormationElement);
+	attrElement->LinkEndChild(attrInitiativeElement);
+	attrElement->LinkEndChild(attrActionElement);
+	attrElement->LinkEndChild(attrDetectionElement);
+	attrElement->LinkEndChild(attrCovertElement);
+	attrElement->LinkEndChild(attrInjuryElement);
+	attrElement->LinkEndChild(attrConterElement);
+
+	newArmorElement->LinkEndChild(typeElement);
+	newArmorElement->LinkEndChild(valueElement);
+	newArmorElement->LinkEndChild(scriptElement);
+	newArmorElement->LinkEndChild(attrElement);
+
+	xmlManager_->AddData("ArmorData", newArmorElement);
+
+	ticpp::Element *newArmorLangElement = new ticpp::Element(newid);
+
+	ticpp::Element *nameElement = new ticpp::Element("Name");
+	ticpp::Element *describeElement = new ticpp::Element("Describe");
+
+	nameElement->SetAttribute("type", "String");
+	nameElement->SetAttribute("value", "none");
+	describeElement->SetAttribute("type", "String");
+	describeElement->SetAttribute("value", "none");
+
+	newArmorLangElement->LinkEndChild(nameElement);
+	newArmorLangElement->LinkEndChild(describeElement);
+
+	xmlManager_->AddLang("ArmorData", newArmorLangElement);
+}
+
+void DataManager::AddHorse()
+{
+	char newid[20];
+	int n = 0;
+	sprintf_s(newid,20,"newhorse%d",n);
+	while(xmlManager_->GetData("HorseData", newid) != NULL)
+	{
+		n = n + 1;
+		sprintf_s(newid,20,"newhorse%d",n);
+	}
+
+	ticpp::Element *newHorseElement = new ticpp::Element(newid);
+
+	ticpp::Element * typeElement = new ticpp::Element("Type");
+	ticpp::Element * valueElement = new ticpp::Element("Value");
+	ticpp::Element * scriptElement = new ticpp::Element("Script");
+	ticpp::Element * attrElement = new ticpp::Element("AttrModifer");
+	ticpp::Element * attrTypeElement = new ticpp::Element("Type");
+	ticpp::Element * attrAttackElement = new ticpp::Element("Attack");
+	ticpp::Element * attrRangedElement = new ticpp::Element("RangedAttack");
+	ticpp::Element * attrDefenceElement = new ticpp::Element("Defence");
+	ticpp::Element * attrFormationElement = new ticpp::Element("Formation");
+	ticpp::Element * attrInitiativeElement = new ticpp::Element("Initiative");
+	ticpp::Element * attrActionElement = new ticpp::Element("ActionPoint");
+	ticpp::Element * attrDetectionElement = new ticpp::Element("Detection");
+	ticpp::Element * attrCovertElement = new ticpp::Element("Covert");
+	ticpp::Element * attrInjuryElement = new ticpp::Element("Injury");
+	ticpp::Element * attrConterElement = new ticpp::Element("Conter");
+
+	typeElement->SetAttribute("type", "Int");
+	typeElement->SetAttribute("value", "0");
+	valueElement->SetAttribute("type", "Int");
+	valueElement->SetAttribute("value", "0");
+	scriptElement->SetAttribute("type", "String");
+	scriptElement->SetAttribute("value", "none");
+
+	attrTypeElement->SetAttribute("type", "Int");
+	attrTypeElement->SetAttribute("value", "0");
+	attrAttackElement->SetAttribute("type", "Float");
+	attrAttackElement->SetAttribute("value", "0.0");
+	attrRangedElement->SetAttribute("type", "Float");
+	attrRangedElement->SetAttribute("value", "0.0");
+	attrDefenceElement->SetAttribute("type", "Float");
+	attrDefenceElement->SetAttribute("value", "0.0");
+	attrFormationElement->SetAttribute("type", "Float");
+	attrFormationElement->SetAttribute("value", "0.0");
+	attrInitiativeElement->SetAttribute("type", "Float");
+	attrInitiativeElement->SetAttribute("value", "0.0");
+	attrActionElement->SetAttribute("type", "Float");
+	attrActionElement->SetAttribute("value", "0.0");
+	attrDetectionElement->SetAttribute("type", "Float");
+	attrDetectionElement->SetAttribute("value", "0.0");
+	attrCovertElement->SetAttribute("type", "Float");
+	attrCovertElement->SetAttribute("value", "0.0");
+	attrInjuryElement->SetAttribute("type", "Float");
+	attrInjuryElement->SetAttribute("value", "0.0");
+	attrConterElement->SetAttribute("type", "Float");
+	attrConterElement->SetAttribute("value", "0.0");
+
+	attrElement->LinkEndChild(attrTypeElement);
+	attrElement->LinkEndChild(attrAttackElement);
+	attrElement->LinkEndChild(attrRangedElement);
+	attrElement->LinkEndChild(attrDefenceElement);
+	attrElement->LinkEndChild(attrFormationElement);
+	attrElement->LinkEndChild(attrInitiativeElement);
+	attrElement->LinkEndChild(attrActionElement);
+	attrElement->LinkEndChild(attrDetectionElement);
+	attrElement->LinkEndChild(attrCovertElement);
+	attrElement->LinkEndChild(attrInjuryElement);
+	attrElement->LinkEndChild(attrConterElement);
+
+	newHorseElement->LinkEndChild(typeElement);
+	newHorseElement->LinkEndChild(valueElement);
+	newHorseElement->LinkEndChild(scriptElement);
+	newHorseElement->LinkEndChild(attrElement);
+
+	xmlManager_->AddData("HorseData", newHorseElement);
+
+	ticpp::Element *newHorseLangElement = new ticpp::Element(newid);
+
+	ticpp::Element *nameElement = new ticpp::Element("Name");
+	ticpp::Element *describeElement = new ticpp::Element("Describe");
+
+	nameElement->SetAttribute("type", "String");
+	nameElement->SetAttribute("value", "none");
+	describeElement->SetAttribute("type", "String");
+	describeElement->SetAttribute("value", "none");
+
+	newHorseLangElement->LinkEndChild(nameElement);
+	newHorseLangElement->LinkEndChild(describeElement);
+
+	xmlManager_->AddLang("HorseData", newHorseLangElement);
+}
+
+void DataManager::AddPrimaryWeapon()
+{
+	char newid[20];
+	int n = 0;
+	sprintf_s(newid, 20, "newpweapon%d", n);
+	while(xmlManager_->GetData("PweaponData", newid) != NULL)
+	{
+		n = n + 1;
+		sprintf_s(newid,20,"newpweapon%d",n);
+	}
+	
+	ticpp::Element *newPWeaponElement = new ticpp::Element(newid);
+	
+	ticpp::Element * typeElement = new ticpp::Element("Type");
+	ticpp::Element * valueElement = new ticpp::Element("Value");
+	ticpp::Element * scriptElement = new ticpp::Element("Script");
+	ticpp::Element * meshElement = new ticpp::Element("Mesh");
+	ticpp::Element * matElement = new ticpp::Element("Mat");
+	ticpp::Element * aniElement = new ticpp::Element("AniGroup");
+	ticpp::Element * attrElement = new ticpp::Element("AttrModifer");
+	ticpp::Element * attrTypeElement = new ticpp::Element("Type");
+	ticpp::Element * attrAttackElement = new ticpp::Element("Attack");
+	ticpp::Element * attrRangedElement = new ticpp::Element("RangedAttack");
+	ticpp::Element * attrDefenceElement = new ticpp::Element("Defence");
+	ticpp::Element * attrFormationElement = new ticpp::Element("Formation");
+	ticpp::Element * attrInitiativeElement = new ticpp::Element("Initiative");
+	ticpp::Element * attrActionElement = new ticpp::Element("ActionPoint");
+	ticpp::Element * attrDetectionElement = new ticpp::Element("Detection");
+	ticpp::Element * attrCovertElement = new ticpp::Element("Covert");
+	ticpp::Element * attrInjuryElement = new ticpp::Element("Injury");
+	ticpp::Element * attrConterElement = new ticpp::Element("Conter");
+
+	typeElement->SetAttribute("type", "Int");
+	typeElement->SetAttribute("value", "0");
+	valueElement->SetAttribute("type", "Int");
+	valueElement->SetAttribute("value", "0");
+	scriptElement->SetAttribute("type", "String");
+	scriptElement->SetAttribute("value", "none");
+	meshElement->SetAttribute("type", "String");
+	meshElement->SetAttribute("value", "none");
+    matElement->SetAttribute("type", "String");
+	matElement->SetAttribute("value", "none");
+	aniElement->SetAttribute("type", "String");
+	aniElement->SetAttribute("value", "none");
+
+	attrTypeElement->SetAttribute("type", "Int");
+	attrTypeElement->SetAttribute("value", "0");
+	attrAttackElement->SetAttribute("type", "Float");
+	attrAttackElement->SetAttribute("value", "0.0");
+	attrRangedElement->SetAttribute("type", "Float");
+	attrRangedElement->SetAttribute("value", "0.0");
+	attrDefenceElement->SetAttribute("type", "Float");
+	attrDefenceElement->SetAttribute("value", "0.0");
+	attrFormationElement->SetAttribute("type", "Float");
+	attrFormationElement->SetAttribute("value", "0.0");
+	attrInitiativeElement->SetAttribute("type", "Float");
+	attrInitiativeElement->SetAttribute("value", "0.0");
+	attrActionElement->SetAttribute("type", "Float");
+	attrActionElement->SetAttribute("value", "0.0");
+	attrDetectionElement->SetAttribute("type", "Float");
+	attrDetectionElement->SetAttribute("value", "0.0");
+	attrCovertElement->SetAttribute("type", "Float");
+	attrCovertElement->SetAttribute("value", "0.0");
+	attrInjuryElement->SetAttribute("type", "Float");
+	attrInjuryElement->SetAttribute("value", "0.0");
+	attrConterElement->SetAttribute("type", "Float");
+	attrConterElement->SetAttribute("value", "0.0");
+
+	attrElement->LinkEndChild(attrTypeElement);
+	attrElement->LinkEndChild(attrAttackElement);
+	attrElement->LinkEndChild(attrRangedElement);
+	attrElement->LinkEndChild(attrDefenceElement);
+	attrElement->LinkEndChild(attrFormationElement);
+	attrElement->LinkEndChild(attrInitiativeElement);
+	attrElement->LinkEndChild(attrActionElement);
+	attrElement->LinkEndChild(attrDetectionElement);
+	attrElement->LinkEndChild(attrCovertElement);
+	attrElement->LinkEndChild(attrInjuryElement);
+	attrElement->LinkEndChild(attrConterElement);
+
+	newPWeaponElement->LinkEndChild(typeElement);
+	newPWeaponElement->LinkEndChild(valueElement);
+	newPWeaponElement->LinkEndChild(scriptElement);
+	newPWeaponElement->LinkEndChild(meshElement);
+	newPWeaponElement->LinkEndChild(matElement);
+	newPWeaponElement->LinkEndChild(aniElement);
+	newPWeaponElement->LinkEndChild(attrElement);
+
+	xmlManager_->AddData("PweaponData", newPWeaponElement);
+
+	ticpp::Element *newPWeaponLangElement = new ticpp::Element(newid);
+
+	ticpp::Element *nameElement = new ticpp::Element("Name");
+	ticpp::Element *describeElement = new ticpp::Element("Describe");
+
+	nameElement->SetAttribute("type", "String");
+	nameElement->SetAttribute("value", "none");
+	describeElement->SetAttribute("type", "String");
+	describeElement->SetAttribute("value", "none");
+
+	newPWeaponLangElement->LinkEndChild(nameElement);
+	newPWeaponLangElement->LinkEndChild(describeElement);
+
+	xmlManager_->AddLang("PweaponData", newPWeaponLangElement);
+}
+
+void DataManager::AddSecondaryWeapon()
+{
+	char newid[20];
+	int n = 0;
+	sprintf_s(newid, 20, "newsweapon%d", n);
+	while(xmlManager_->GetData("SweaponData", newid) != NULL)
+	{
+		n = n + 1;
+		sprintf_s(newid,20,"newsweapon%d",n);
+	}
+	
+	ticpp::Element *newSWeaponElement = new ticpp::Element(newid);
+
+	ticpp::Element * typeElement = new ticpp::Element("Type");
+	ticpp::Element * valueElement = new ticpp::Element("Value");
+	ticpp::Element * scriptElement = new ticpp::Element("Script");
+	ticpp::Element * meshElement = new ticpp::Element("Mesh");
+	ticpp::Element * matElement = new ticpp::Element("Mat");
+	ticpp::Element * maxRangeElement = new ticpp::Element("MaxRange");
+	ticpp::Element * minRangeElement = new ticpp::Element("MinRange");
+	ticpp::Element * aniElement = new ticpp::Element("AniGroup");
+	ticpp::Element * attrElement = new ticpp::Element("AttrModifer");
+	ticpp::Element * attrTypeElement = new ticpp::Element("Type");
+	ticpp::Element * attrAttackElement = new ticpp::Element("Attack");
+	ticpp::Element * attrRangedElement = new ticpp::Element("RangedAttack");
+	ticpp::Element * attrDefenceElement = new ticpp::Element("Defence");
+	ticpp::Element * attrFormationElement = new ticpp::Element("Formation");
+	ticpp::Element * attrInitiativeElement = new ticpp::Element("Initiative");
+	ticpp::Element * attrActionElement = new ticpp::Element("ActionPoint");
+	ticpp::Element * attrDetectionElement = new ticpp::Element("Detection");
+	ticpp::Element * attrCovertElement = new ticpp::Element("Covert");
+	ticpp::Element * attrInjuryElement = new ticpp::Element("Injury");
+	ticpp::Element * attrConterElement = new ticpp::Element("Conter");
+
+	typeElement->SetAttribute("type", "Int");
+	typeElement->SetAttribute("value", "0");
+	valueElement->SetAttribute("type", "Int");
+	valueElement->SetAttribute("value", "0");
+	scriptElement->SetAttribute("type", "String");
+	scriptElement->SetAttribute("value", "none");
+	meshElement->SetAttribute("type", "String");
+	meshElement->SetAttribute("value", "none");
+    matElement->SetAttribute("type", "String");
+	matElement->SetAttribute("value", "none");
+	maxRangeElement->SetAttribute("type", "Int");
+	maxRangeElement->SetAttribute("value", "0");
+	minRangeElement->SetAttribute("type", "Int");
+	minRangeElement->SetAttribute("value", "0");
+	aniElement->SetAttribute("type", "String");
+	aniElement->SetAttribute("value", "none");
+
+	attrTypeElement->SetAttribute("type", "Int");
+	attrTypeElement->SetAttribute("value", "0");
+	attrAttackElement->SetAttribute("type", "Float");
+	attrAttackElement->SetAttribute("value", "0.0");
+	attrRangedElement->SetAttribute("type", "Float");
+	attrRangedElement->SetAttribute("value", "0.0");
+	attrDefenceElement->SetAttribute("type", "Float");
+	attrDefenceElement->SetAttribute("value", "0.0");
+	attrFormationElement->SetAttribute("type", "Float");
+	attrFormationElement->SetAttribute("value", "0.0");
+	attrInitiativeElement->SetAttribute("type", "Float");
+	attrInitiativeElement->SetAttribute("value", "0.0");
+	attrActionElement->SetAttribute("type", "Float");
+	attrActionElement->SetAttribute("value", "0.0");
+	attrDetectionElement->SetAttribute("type", "Float");
+	attrDetectionElement->SetAttribute("value", "0.0");
+	attrCovertElement->SetAttribute("type", "Float");
+	attrCovertElement->SetAttribute("value", "0.0");
+	attrInjuryElement->SetAttribute("type", "Float");
+	attrInjuryElement->SetAttribute("value", "0.0");
+	attrConterElement->SetAttribute("type", "Float");
+	attrConterElement->SetAttribute("value", "0.0");
+
+	attrElement->LinkEndChild(attrTypeElement);
+	attrElement->LinkEndChild(attrAttackElement);
+	attrElement->LinkEndChild(attrRangedElement);
+	attrElement->LinkEndChild(attrDefenceElement);
+	attrElement->LinkEndChild(attrFormationElement);
+	attrElement->LinkEndChild(attrInitiativeElement);
+	attrElement->LinkEndChild(attrActionElement);
+	attrElement->LinkEndChild(attrDetectionElement);
+	attrElement->LinkEndChild(attrCovertElement);
+	attrElement->LinkEndChild(attrInjuryElement);
+	attrElement->LinkEndChild(attrConterElement);
+
+	newSWeaponElement->LinkEndChild(typeElement);
+	newSWeaponElement->LinkEndChild(valueElement);
+	newSWeaponElement->LinkEndChild(scriptElement);
+	newSWeaponElement->LinkEndChild(meshElement);
+	newSWeaponElement->LinkEndChild(matElement);
+	newSWeaponElement->LinkEndChild(maxRangeElement);
+	newSWeaponElement->LinkEndChild(minRangeElement);
+	newSWeaponElement->LinkEndChild(aniElement);
+	newSWeaponElement->LinkEndChild(attrElement);
+
+	xmlManager_->AddData("SweaponData", newSWeaponElement);
+
+	ticpp::Element *newSWeaponLangElement = new ticpp::Element(newid);
+
+	ticpp::Element *nameElement = new ticpp::Element("Name");
+	ticpp::Element *describeElement = new ticpp::Element("Describe");
+
+	nameElement->SetAttribute("type", "String");
+	nameElement->SetAttribute("value", "none");
+	describeElement->SetAttribute("type", "String");
+	describeElement->SetAttribute("value", "none");
+
+	newSWeaponLangElement->LinkEndChild(nameElement);
+	newSWeaponLangElement->LinkEndChild(describeElement);
+
+	xmlManager_->AddLang("SweaponData", newSWeaponLangElement);
+}
+
+void DataManager::AddShield()
+{
+	char newid[20];
+	int n = 0;
+	sprintf_s(newid, 20, "newshield%d", n);
+	while(xmlManager_->GetData("ShieldData", newid) != NULL)
+	{
+		n = n + 1;
+		sprintf_s(newid,20,"newshield%d",n);
+	}
+	
+	ticpp::Element *newShieldElement = new ticpp::Element(newid);
+
+	ticpp::Element * valueElement = new ticpp::Element("Value");
+	ticpp::Element * scriptElement = new ticpp::Element("Script");
+	ticpp::Element * meshElement = new ticpp::Element("Mesh");
+	ticpp::Element * matElement = new ticpp::Element("Mat");
+	ticpp::Element * attrElement = new ticpp::Element("AttrModifer");
+	ticpp::Element * attrTypeElement = new ticpp::Element("Type");
+	ticpp::Element * attrAttackElement = new ticpp::Element("Attack");
+	ticpp::Element * attrRangedElement = new ticpp::Element("RangedAttack");
+	ticpp::Element * attrDefenceElement = new ticpp::Element("Defence");
+	ticpp::Element * attrFormationElement = new ticpp::Element("Formation");
+	ticpp::Element * attrInitiativeElement = new ticpp::Element("Initiative");
+	ticpp::Element * attrActionElement = new ticpp::Element("ActionPoint");
+	ticpp::Element * attrDetectionElement = new ticpp::Element("Detection");
+	ticpp::Element * attrCovertElement = new ticpp::Element("Covert");
+	ticpp::Element * attrInjuryElement = new ticpp::Element("Injury");
+	ticpp::Element * attrConterElement = new ticpp::Element("Conter");
+
+	valueElement->SetAttribute("type", "Int");
+	valueElement->SetAttribute("value", "0");
+	scriptElement->SetAttribute("type", "String");
+	scriptElement->SetAttribute("value", "none");
+	meshElement->SetAttribute("type", "String");
+	meshElement->SetAttribute("value", "none");
+    matElement->SetAttribute("type", "String");
+	matElement->SetAttribute("value", "none");
+
+	attrTypeElement->SetAttribute("type", "Int");
+	attrTypeElement->SetAttribute("value", "0");
+	attrAttackElement->SetAttribute("type", "Float");
+	attrAttackElement->SetAttribute("value", "0.0");
+	attrRangedElement->SetAttribute("type", "Float");
+	attrRangedElement->SetAttribute("value", "0.0");
+	attrDefenceElement->SetAttribute("type", "Float");
+	attrDefenceElement->SetAttribute("value", "0.0");
+	attrFormationElement->SetAttribute("type", "Float");
+	attrFormationElement->SetAttribute("value", "0.0");
+	attrInitiativeElement->SetAttribute("type", "Float");
+	attrInitiativeElement->SetAttribute("value", "0.0");
+	attrActionElement->SetAttribute("type", "Float");
+	attrActionElement->SetAttribute("value", "0.0");
+	attrDetectionElement->SetAttribute("type", "Float");
+	attrDetectionElement->SetAttribute("value", "0.0");
+	attrCovertElement->SetAttribute("type", "Float");
+	attrCovertElement->SetAttribute("value", "0.0");
+	attrInjuryElement->SetAttribute("type", "Float");
+	attrInjuryElement->SetAttribute("value", "0.0");
+	attrConterElement->SetAttribute("type", "Float");
+	attrConterElement->SetAttribute("value", "0.0");
+
+	attrElement->LinkEndChild(attrTypeElement);
+	attrElement->LinkEndChild(attrAttackElement);
+	attrElement->LinkEndChild(attrRangedElement);
+	attrElement->LinkEndChild(attrDefenceElement);
+	attrElement->LinkEndChild(attrFormationElement);
+	attrElement->LinkEndChild(attrInitiativeElement);
+	attrElement->LinkEndChild(attrActionElement);
+	attrElement->LinkEndChild(attrDetectionElement);
+	attrElement->LinkEndChild(attrCovertElement);
+	attrElement->LinkEndChild(attrInjuryElement);
+	attrElement->LinkEndChild(attrConterElement);
+
+	newShieldElement->LinkEndChild(valueElement);
+	newShieldElement->LinkEndChild(scriptElement);
+	newShieldElement->LinkEndChild(meshElement);
+	newShieldElement->LinkEndChild(matElement);
+	newShieldElement->LinkEndChild(attrElement);
+
+	xmlManager_->AddData("ShieldData", newShieldElement);
+
+	ticpp::Element *newShieldLangElement = new ticpp::Element(newid);
+
+	ticpp::Element *nameElement = new ticpp::Element("Name");
+	ticpp::Element *describeElement = new ticpp::Element("Describe");
+
+	nameElement->SetAttribute("type", "String");
+	nameElement->SetAttribute("value", "none");
+	describeElement->SetAttribute("type", "String");
+	describeElement->SetAttribute("value", "none");
+
+	newShieldLangElement->LinkEndChild(nameElement);
+	newShieldLangElement->LinkEndChild(describeElement);
+
+	xmlManager_->AddLang("ShieldData", newShieldLangElement);
+}
+
+void DataManager::AddSoldier()
+{
+	char newid[20];
+	int n = 0;
+	sprintf_s(newid, 20, "newsoldier%d", n);
+	while(xmlManager_->GetData("SoilderData", newid) != NULL)
+	{
+		n = n + 1;
+		sprintf_s(newid,20,"newsoldier%d",n);
+	}
+	
+	ticpp::Element *newSoldierElement = new ticpp::Element(newid);
+
+	ticpp::Element * typeElement = new ticpp::Element("Type");
+	ticpp::Element * valueElement = new ticpp::Element("Value");
+	ticpp::Element * scriptElement = new ticpp::Element("Script");
+	ticpp::Element * attrElement = new ticpp::Element("AttrModifer");
+	ticpp::Element * attrTypeElement = new ticpp::Element("Type");
+	ticpp::Element * attrAttackElement = new ticpp::Element("Attack");
+	ticpp::Element * attrRangedElement = new ticpp::Element("RangedAttack");
+	ticpp::Element * attrDefenceElement = new ticpp::Element("Defence");
+	ticpp::Element * attrFormationElement = new ticpp::Element("Formation");
+	ticpp::Element * attrInitiativeElement = new ticpp::Element("Initiative");
+	ticpp::Element * attrActionElement = new ticpp::Element("ActionPoint");
+	ticpp::Element * attrDetectionElement = new ticpp::Element("Detection");
+	ticpp::Element * attrCovertElement = new ticpp::Element("Covert");
+	ticpp::Element * attrInjuryElement = new ticpp::Element("Injury");
+	ticpp::Element * attrConterElement = new ticpp::Element("Conter");
+	ticpp::Element * injuryElement = new ticpp::Element("Injury");
+
+	typeElement->SetAttribute("type", "Int");
+	typeElement->SetAttribute("value", "0");
+	valueElement->SetAttribute("type", "Int");
+	valueElement->SetAttribute("value", "0");
+	scriptElement->SetAttribute("type", "String");
+	scriptElement->SetAttribute("value", "none");
+	injuryElement->SetAttribute("type", "Int");
+	injuryElement->SetAttribute("value", "0");
+
+	attrTypeElement->SetAttribute("type", "Int");
+	attrTypeElement->SetAttribute("value", "0");
+	attrAttackElement->SetAttribute("type", "Float");
+	attrAttackElement->SetAttribute("value", "0.0");
+	attrRangedElement->SetAttribute("type", "Float");
+	attrRangedElement->SetAttribute("value", "0.0");
+	attrDefenceElement->SetAttribute("type", "Float");
+	attrDefenceElement->SetAttribute("value", "0.0");
+	attrFormationElement->SetAttribute("type", "Float");
+	attrFormationElement->SetAttribute("value", "0.0");
+	attrInitiativeElement->SetAttribute("type", "Float");
+	attrInitiativeElement->SetAttribute("value", "0.0");
+	attrActionElement->SetAttribute("type", "Float");
+	attrActionElement->SetAttribute("value", "0.0");
+	attrDetectionElement->SetAttribute("type", "Float");
+	attrDetectionElement->SetAttribute("value", "0.0");
+	attrCovertElement->SetAttribute("type", "Float");
+	attrCovertElement->SetAttribute("value", "0.0");
+	attrInjuryElement->SetAttribute("type", "Float");
+	attrInjuryElement->SetAttribute("value", "0.0");
+	attrConterElement->SetAttribute("type", "Float");
+	attrConterElement->SetAttribute("value", "0.0");
+
+	attrElement->LinkEndChild(attrTypeElement);
+	attrElement->LinkEndChild(attrAttackElement);
+	attrElement->LinkEndChild(attrRangedElement);
+	attrElement->LinkEndChild(attrDefenceElement);
+	attrElement->LinkEndChild(attrFormationElement);
+	attrElement->LinkEndChild(attrInitiativeElement);
+	attrElement->LinkEndChild(attrActionElement);
+	attrElement->LinkEndChild(attrDetectionElement);
+	attrElement->LinkEndChild(attrCovertElement);
+	attrElement->LinkEndChild(attrInjuryElement);
+	attrElement->LinkEndChild(attrConterElement);
+
+	newSoldierElement->LinkEndChild(typeElement);
+	newSoldierElement->LinkEndChild(valueElement);
+	newSoldierElement->LinkEndChild(scriptElement);
+	newSoldierElement->LinkEndChild(attrElement);
+	newSoldierElement->LinkEndChild(injuryElement);
+
+	xmlManager_->AddData("SoilderData", newSoldierElement);
+
+	ticpp::Element *newSoldierLangElement = new ticpp::Element(newid);
+
+	ticpp::Element *nameElement = new ticpp::Element("Name");
+	ticpp::Element *describeElement = new ticpp::Element("Describe");
+
+	nameElement->SetAttribute("type", "String");
+	nameElement->SetAttribute("value", "none");
+	describeElement->SetAttribute("type", "String");
+	describeElement->SetAttribute("value", "none");
+
+	newSoldierLangElement->LinkEndChild(nameElement);
+	newSoldierLangElement->LinkEndChild(describeElement);
+
+	xmlManager_->AddLang("SoilderData", newSoldierLangElement);
+}
+
+void DataManager::AddString()
+{
+	char newid[20];
+	int n = 0;
+	sprintf_s(newid,20,"newstringkey%d",n);
+	while(xmlManager_->GetStringTable(newid) != NULL)
+	{
+		n = n + 1;
+		sprintf_s(newid,20,"newstringkey%d",n);
+	}
+
+	ticpp::Element *newStringElement = new ticpp::Element(newid);
+	newStringElement->SetAttribute("type", "String");
+	newStringElement->SetAttribute("value", "String");
+	xmlManager_->AddStringTable(newStringElement);
+}
+
+void DataManager::RemoveData(std::string _parent, std::wstring _id)
+{
+	std::string tempid;
+	UnicodeToUTF8(_id, tempid);
+	xmlManager_->RemoveData(_parent, tempid);
+	xmlManager_->RemoveLang(_parent, tempid);
+}
+
+void DataManager::RemoveStrTable(std::wstring _key)
+{
+	std::string tempkey;
+	UnicodeToUTF8(_key,tempkey);
+	xmlManager_->RemoveStringTable(tempkey);
+}
+
+int DataManager::GetCount(std::string _parent)
+{
+	return xmlManager_->CountData(_parent);
+}
+
+int DataManager::GetStrTableCount()
+{
+	return xmlManager_->CountStringTable();
+}
+
+int DataManager::GetInt(std::string _parent, std::wstring _id, std::string _tag)
+{
+	std::string tempid;
+	UnicodeToUTF8(_id, tempid);
+	ticpp::Element *rootElement = xmlManager_->GetData(_parent, tempid);
+	if (rootElement == NULL) return 0;
+	ticpp::Element *dataElement = rootElement->FirstChildElement(_tag, false);
+	if (dataElement == NULL) return 0;
+	int data = 0;
+	dataElement->GetAttribute("value", &data, false);
+	return data;
+}
+
+int DataManager::GetAttribute(std::string _parent, std::wstring _id, BasicAttr _attrType)
+{
+	std::string tempid;
+	UnicodeToUTF8(_id, tempid);
+	ticpp::Element *element = xmlManager_->GetData(_parent, tempid);
+	if (element == NULL) return 0;
+	ticpp::Element *attrElement = element->FirstChildElement("AttrModifer", false);
+	if (attrElement == NULL) return 0;
+	ticpp::Element *tempElement;
+	int attr = 0;
+	switch(_attrType)
+	{
+	case ATTR_ATTACK:
+		tempElement = attrElement->FirstChildElement("Attack", false);
+		break;
+	case ATTR_RANGEDATTACK:
+		tempElement = attrElement->FirstChildElement("RangedAttack", false);
+		break;
+	case ATTR_DEFENSE:
+		tempElement = attrElement->FirstChildElement("Defence", false);
+		break;
+	case ATTR_FORMATION:
+		tempElement = attrElement->FirstChildElement("Formation", false);
+		break;
+	case ATTR_INITIATIVE:
+		tempElement = attrElement->FirstChildElement("Initiative", false);
+		break;
+	case ATTR_ACTIONPOINT:
+		tempElement = attrElement->FirstChildElement("ActionPoint", false);
+		break;
+	case ATTR_DETECTION:
+		tempElement = attrElement->FirstChildElement("Detection", false);
+		break;
+	case ATTR_COVERT:
+		tempElement = attrElement->FirstChildElement("Covert", false);
+		break;
+	case ATTR_INJURY:
+		tempElement = attrElement->FirstChildElement("Injury", false);
+		break;
+	case ATTR_COUNTER:
+		tempElement = attrElement->FirstChildElement("Conter", false);
+		break;
+	default:
+		return attr;
+	}
+	if (tempElement == NULL) return 0;
+	tempElement->GetAttribute("value", &attr, false);
+	return attr;
+}
+
+std::wstring DataManager::GetID(std::string _parent, int _index)
+{
+	return xmlManager_->GetDataID(_parent, _index);
+}
+
+std::wstring DataManager::GetStrTableID(int _index)
+{
+	return xmlManager_->GetStringTableID(_index);
+}
+
+std::wstring DataManager::GetLangStr(std::string _parent, std::wstring _id, std::string _tag)
+{
+	std::wstring emptyStr;
+	UTF8ToUnicode("", emptyStr);
+	std::string tempid;
+	UnicodeToUTF8(_id, tempid);
+	ticpp::Element *rootElement = xmlManager_->GetLang(_parent, tempid);
+	if (rootElement == NULL) return emptyStr;
+	ticpp::Element *dataElement = rootElement->FirstChildElement(_tag, false);
+	if (dataElement == NULL) return emptyStr;
+	std::string tempData;
+	dataElement->GetAttribute("value", &tempData, false);
+	std::wstring data;
+	UTF8ToUnicode(tempData, data);
+	return data;
+}
+
+std::wstring DataManager::GetDataStr(std::string _parent, std::wstring _id, std::string _tag)
+{
+	std::wstring emptyStr;
+	UTF8ToUnicode("", emptyStr);
+	std::string tempid;
+	UnicodeToUTF8(_id, tempid);
+	ticpp::Element *rootElement = xmlManager_->GetData(_parent, tempid);
+	if (rootElement == NULL) return emptyStr;
+	ticpp::Element *dataElement = rootElement->FirstChildElement(_tag, false);
+	if (dataElement == NULL) return emptyStr;
+	std::string tempData;
+	dataElement->GetAttribute("value", &tempData, false);
+	std::wstring data;
+	UTF8ToUnicode(tempData, data);
+	return data;
+}
+
+std::wstring DataManager::GetStrTable(std::wstring _key)
+{
+	std::wstring emptyStr;
+	UTF8ToUnicode("", emptyStr);
+	std::string tempkey;
+	UnicodeToUTF8(_key, tempkey);
+	ticpp::Element *stringElement = xmlManager_->GetStringTable(tempkey);
+	if (stringElement == NULL) return emptyStr;
+	std::string tempString;
+	tempString = stringElement->GetAttribute("value");
+	std::wstring stringValue;
+	UTF8ToUnicode(tempString, stringValue);
+	return stringValue;
+}
+
+bool DataManager::SetInt(std::string _parent, std::wstring _id, std::string _tag, int _value)
+{
+	std::string tempid;
+	UnicodeToUTF8(_id, tempid);
+	return xmlManager_->SetDataInt(_parent, tempid, _tag, _value);
+}
+
+bool DataManager::SetAttribute(std::string _parent, std::wstring _id, BasicAttr _attrType, int _attr)
+{
+	std::string tempid;
+	UnicodeToUTF8(_id,tempid);
+	switch(_attrType)
+	{
+	case ATTR_ATTACK:
+		return xmlManager_->SetDataAttr(_parent, tempid, "AttrModifer", "Attack", _attr);
+	case ATTR_RANGEDATTACK:
+		return xmlManager_->SetDataAttr(_parent, tempid, "AttrModifer", "RangedAttack", _attr);
+	case ATTR_DEFENSE:
+		return xmlManager_->SetDataAttr(_parent, tempid, "AttrModifer", "Defence", _attr);
+	case ATTR_FORMATION:
+		return xmlManager_->SetDataAttr(_parent, tempid, "AttrModifer", "Formation", _attr);
+	case ATTR_INITIATIVE:
+		return xmlManager_->SetDataAttr(_parent, tempid, "AttrModifer", "Initiative", _attr);
+	case ATTR_ACTIONPOINT:
+		return xmlManager_->SetDataAttr(_parent, tempid, "AttrModifer", "ActionPoint", _attr);
+	case ATTR_DETECTION:
+		return xmlManager_->SetDataAttr(_parent, tempid, "AttrModifer", "Detection", _attr);
+	case ATTR_COVERT:
+		return xmlManager_->SetDataAttr(_parent, tempid, "AttrModifer", "Covert", _attr);
+	case ATTR_INJURY:
+		return xmlManager_->SetDataAttr(_parent, tempid, "AttrModifer", "Injury", _attr);
+	case ATTR_COUNTER:
+		return xmlManager_->SetDataAttr(_parent, tempid, "AttrModifer", "Conter", _attr);
+	default:
+		return false;
+	}
+}
+
+bool DataManager::SetID(std::string _parent, std::wstring _oldID, std::wstring _newID)
+{
+	std::string tempoldid;
+	UnicodeToUTF8(_oldID,tempoldid);
+	std::string tempid;
+	UnicodeToUTF8(_newID,tempid);
+	ticpp::Element *element = xmlManager_->GetData(_parent, tempoldid);
+	if (element == NULL) return false;
+	element = xmlManager_->GetData(_parent, tempid);
+	if (element == NULL)
+	{
+		xmlManager_->SetDataID(_parent, tempoldid, tempid);
+		xmlManager_->SetLangID(_parent, tempoldid, tempid);
+		return true;
+	}
+	return false;
+}
+
+bool DataManager::SetStrTableID(std::wstring _oldKey, std::wstring _newKey)
+{
+	std::string tempoldkey;
+	UnicodeToUTF8(_oldKey,tempoldkey);
+	std::string tempnewkey;
+	UnicodeToUTF8(_newKey,tempnewkey);
+	ticpp::Element *element = xmlManager_->GetStringTable(tempoldkey);
+	if (element == NULL) return false;
+	element = xmlManager_->GetStringTable(tempnewkey);
+	if (element == NULL)
+	{
+		xmlManager_->SetStringTableID(tempoldkey, tempnewkey);
+		return true;
+	}
+	return false;
+}
+
+bool DataManager::SetLangStr(std::string _parent, std::wstring _id, std::string _tag, std::wstring _value)
+{
+	std::string tempid;
+	UnicodeToUTF8(_id, tempid);
+	std::string tempvalue;
+	UnicodeToUTF8(_value, tempvalue);
+	return xmlManager_->SetLang(_parent, tempid, _tag, tempvalue);
+}
+
+bool DataManager::SetDataStr(std::string _parent, std::wstring _id, std::string _tag, std::wstring _value)
+{
+	std::string tempid;
+	UnicodeToUTF8(_id,tempid);
+	std::string tempvalue;
+	UnicodeToUTF8(_value,tempvalue);
+	return xmlManager_->SetDataStr(_parent, tempid, _tag, tempvalue);
+}
+
+bool DataManager::SetStrTable(std::wstring _key, std::wstring _value)
+{
+	std::string tempkey;
+	UnicodeToUTF8(_key, tempkey);
+	std::string tempvalue;
+	UnicodeToUTF8(_value, tempvalue);
+	return xmlManager_->SetStringTable(tempkey, tempvalue);
 }

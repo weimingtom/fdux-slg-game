@@ -2,9 +2,9 @@
 #include "DataManager.h"
 #include "horsemanager.h"
 
-#define HORSEMANAGER() DataManager::getSingleton().mHorseManager
+//#define HORSEMANAGER() DataManager::getSingleton().mHorseManager
 
-const int HorseTableColumnCount = 13; 
+const int HorseTableColumnCount = 13;
 
 HorseTableModule::HorseTableModule(QObject *parent)
 : QAbstractTableModel(parent)
@@ -24,7 +24,7 @@ int HorseTableModule::columnCount(const QModelIndex &parent /* = QModelIndex */)
 
 int HorseTableModule::rowCount(const QModelIndex &parent /* = QModelIndex */) const
 {
-	return HORSEMANAGER()->GetNum();
+	return DATAMANAGER().GetCount(HORSE_TAG);
 }
 
 QVariant HorseTableModule::data(const QModelIndex &index, int role /* = Qt::DisplayRole */) const
@@ -32,35 +32,35 @@ QVariant HorseTableModule::data(const QModelIndex &index, int role /* = Qt::Disp
 	if(!index.isValid() || role != Qt::DisplayRole)
 		return QVariant();
 
-	std::wstring id = HORSEMANAGER()->GetID(index.row());
+	std::wstring id = DATAMANAGER().GetID(HORSE_TAG, index.row());
 	switch(index.column())
 	{
 	case 0:
 		return QString::fromStdWString(id);
 	case 1:
-		return QString::fromStdWString(HORSEMANAGER()->GetName(id));
+		return QString::fromStdWString(DATAMANAGER().GetLangStr(HORSE_TAG, id, NAME_TAG));
 	case 2:
-		return QString::fromStdWString(HORSEMANAGER()->GetDescription(id));
+		return QString::fromStdWString(DATAMANAGER().GetLangStr(HORSE_TAG, id, DESCRIPTION_TAG));
 	case 3:
-		return QString::number(HORSEMANAGER()->GetValue(id));
+		return QString::number(DATAMANAGER().GetInt(HORSE_TAG, id, VALUE_TAG));
 	case 4:
-		return QString::number(HORSEMANAGER()->GetAttr(id,ATTR_ATTACK));
+		return QString::number(DATAMANAGER().GetAttribute(HORSE_TAG, id, ATTR_ATTACK));
 	case 5:
-		return QString::number(HORSEMANAGER()->GetAttr(id,ATTR_RANGEDATTACK));
+		return QString::number(DATAMANAGER().GetAttribute(HORSE_TAG, id, ATTR_RANGEDATTACK));
 	case 6:
-		return QString::number(HORSEMANAGER()->GetAttr(id,ATTR_DEFENSE));
+		return QString::number(DATAMANAGER().GetAttribute(HORSE_TAG, id, ATTR_DEFENSE));
 	case 7:
-		return QString::number(HORSEMANAGER()->GetAttr(id,ATTR_FORMATION));
+		return QString::number(DATAMANAGER().GetAttribute(HORSE_TAG, id, ATTR_FORMATION));
 	case 8:
-		return QString::number(HORSEMANAGER()->GetAttr(id,ATTR_INITIATIVE));
+		return QString::number(DATAMANAGER().GetAttribute(HORSE_TAG, id, ATTR_INITIATIVE));
 	case 9:
-		return QString::number(HORSEMANAGER()->GetAttr(id,ATTR_ACTIONPOINT));
+		return QString::number(DATAMANAGER().GetAttribute(HORSE_TAG, id, ATTR_ACTIONPOINT));
 	case 10:
-		return QString::number(HORSEMANAGER()->GetAttr(id,ATTR_DETECTION));
+		return QString::number(DATAMANAGER().GetAttribute(HORSE_TAG, id, ATTR_DETECTION));
 	case 11:
-		return QString::number(HORSEMANAGER()->GetAttr(id,ATTR_COVERT));
+		return QString::number(DATAMANAGER().GetAttribute(HORSE_TAG, id, ATTR_COVERT));
 	case 12:
-		return QString::fromStdWString(HORSEMANAGER()->GetScriptName(id));
+		return QString::fromStdWString(DATAMANAGER().GetDataStr(HORSE_TAG, id, SCRIPT_TAG));
 	default:
 		return QVariant();
 	}
@@ -110,8 +110,8 @@ QVariant HorseTableModule::headerData(int section, Qt::Orientation orientation, 
 
 bool HorseTableModule::insertRow(int row, const QModelIndex & parent /* = QModelIndex */)
 {
-	beginInsertRows(parent, HORSEMANAGER()->GetNum(),HORSEMANAGER()->GetNum());
-	HORSEMANAGER()->AddHorse();
+	beginInsertRows(parent, DATAMANAGER().GetCount(HORSE_TAG),DATAMANAGER().GetCount(HORSE_TAG));
+	DATAMANAGER().AddHorse();
 	endInsertRows();
 	return true;
 }
@@ -119,8 +119,8 @@ bool HorseTableModule::insertRow(int row, const QModelIndex & parent /* = QModel
 bool HorseTableModule::removeRow(int row, const QModelIndex & parent /* = QModelIndex */)
 {
 	beginRemoveRows(parent, row, row);
-	std::wstring id = HORSEMANAGER()->GetID(row);
-	HORSEMANAGER()->DelHorse(id);
+	std::wstring id = DATAMANAGER().GetID(HORSE_TAG, row);
+	DATAMANAGER().RemoveData(HORSE_TAG, id);
 	endRemoveRows();
 	return true;
 }
@@ -137,35 +137,35 @@ bool HorseTableModule::setData(const QModelIndex &index, const QVariant &qvalue,
 {
 	if (index.isValid() && role == Qt::EditRole) 
 	{
-		std::wstring id = HORSEMANAGER()->GetID(index.row());
+		std::wstring id = DATAMANAGER().GetID(HORSE_TAG, index.row());
 		switch(index.column())
 		{
 		case 0:
-			return HORSEMANAGER()->SetID(id, qvalue.toString().toStdWString());
+			return DATAMANAGER().SetID(HORSE_TAG, id, qvalue.toString().toStdWString());
 		case 1:
-			return HORSEMANAGER()->SetName(id, qvalue.toString().toStdWString());
+			return DATAMANAGER().SetLangStr(HORSE_TAG, id, NAME_TAG, qvalue.toString().toStdWString());
 		case 2:
-			return HORSEMANAGER()->SetDescription(id, qvalue.toString().toStdWString());
+			return DATAMANAGER().SetLangStr(HORSE_TAG, id, DESCRIPTION_TAG, qvalue.toString().toStdWString());
 		case 3:
-			return HORSEMANAGER()->SetValue(id,qvalue.toInt());
+			return DATAMANAGER().SetInt(HORSE_TAG, id, VALUE_TAG, qvalue.toInt());
 		case 4:
-			return HORSEMANAGER()->SetAttr(id,ATTR_ATTACK,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(HORSE_TAG, id, ATTR_ATTACK, qvalue.toInt());
 		case 5:
-			return HORSEMANAGER()->SetAttr(id,ATTR_RANGEDATTACK,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(HORSE_TAG, id, ATTR_RANGEDATTACK, qvalue.toInt());
 		case 6:
-			return HORSEMANAGER()->SetAttr(id,ATTR_DEFENSE,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(HORSE_TAG, id, ATTR_DEFENSE, qvalue.toInt());
 		case 7:
-			return HORSEMANAGER()->SetAttr(id,ATTR_FORMATION,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(HORSE_TAG, id, ATTR_FORMATION, qvalue.toInt());
 		case 8:
-			return HORSEMANAGER()->SetAttr(id,ATTR_INITIATIVE,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(HORSE_TAG, id, ATTR_INITIATIVE, qvalue.toInt());
 		case 9:
-			return HORSEMANAGER()->SetAttr(id,ATTR_ACTIONPOINT,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(HORSE_TAG, id, ATTR_ACTIONPOINT, qvalue.toInt());
 		case 10:
-			return HORSEMANAGER()->SetAttr(id,ATTR_DETECTION,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(HORSE_TAG, id, ATTR_DETECTION, qvalue.toInt());
 		case 11:
-			return HORSEMANAGER()->SetAttr(id,ATTR_COVERT,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(HORSE_TAG, id, ATTR_COVERT, qvalue.toInt());
 		case 12:
-			return HORSEMANAGER()->SetScriptName(id,qvalue.toString().toStdWString());
+			return DATAMANAGER().SetDataStr(HORSE_TAG, id, SCRIPT_TAG, qvalue.toString().toStdWString());
 		default:
 			return false;
 		}
