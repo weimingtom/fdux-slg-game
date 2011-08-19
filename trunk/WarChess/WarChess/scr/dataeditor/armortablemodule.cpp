@@ -2,9 +2,9 @@
 #include "DataManager.h"
 #include "armormanager.h"
 
-#define ARMORMANAGER() DataManager::getSingleton().mArmorManager
+//#define ARMORMANAGER() DataManager::getSingleton().mArmorManager
 
-const int ArmorTableColumnCount = 13; 
+const int ArmorTableColumnCount = 13;
 
 ArmorTableModule::ArmorTableModule(QObject *parent)
 : QAbstractTableModel(parent)
@@ -24,7 +24,7 @@ int ArmorTableModule::columnCount(const QModelIndex &parent /* = QModelIndex */)
 
 int ArmorTableModule::rowCount(const QModelIndex &parent /* = QModelIndex */) const
 {
-	return ARMORMANAGER()->GetNum();
+	return DATAMANAGER().GetCount(ARMOR_TAG);
 }
 
 QVariant ArmorTableModule::data(const QModelIndex &index, int role /* = Qt::DisplayRole */) const
@@ -32,35 +32,35 @@ QVariant ArmorTableModule::data(const QModelIndex &index, int role /* = Qt::Disp
 	if(!index.isValid() || role != Qt::DisplayRole)
 		return QVariant();
 
-	std::wstring id = ARMORMANAGER()->GetID(index.row());
+	std::wstring id = DATAMANAGER().GetID(ARMOR_TAG, index.row());
 	switch(index.column())
 	{
 	case 0:
 		return QString::fromStdWString(id);
 	case 1:
-		return QString::fromStdWString(ARMORMANAGER()->GetName(id));
+		return QString::fromStdWString(DATAMANAGER().GetLangStr(ARMOR_TAG, id, NAME_TAG));
 	case 2:
-		return QString::fromStdWString(ARMORMANAGER()->GetDescription(id));
+		return QString::fromStdWString(DATAMANAGER().GetLangStr(ARMOR_TAG, id, DESCRIPTION_TAG));
 	case 3:
-		return QString::number(ARMORMANAGER()->GetValue(id));
+		return QString::number(DATAMANAGER().GetInt(ARMOR_TAG, id, VALUE_TAG));
 	case 4:
-		return QString::number(ARMORMANAGER()->GetArmorType(id));
+		return QString::number(DATAMANAGER().GetInt(ARMOR_TAG, id, TYPE_TAG));
 	case 5:
-		return QString::number(ARMORMANAGER()->GetAttr(id,ATTR_ATTACK));
+		return QString::number(DATAMANAGER().GetAttribute(ARMOR_TAG, id, ATTR_ATTACK));
 	case 6:
-		return QString::number(ARMORMANAGER()->GetAttr(id,ATTR_RANGEDATTACK));
+		return QString::number(DATAMANAGER().GetAttribute(ARMOR_TAG, id, ATTR_RANGEDATTACK));
 	case 7:
-		return QString::number(ARMORMANAGER()->GetAttr(id,ATTR_DEFENSE));
+		return QString::number(DATAMANAGER().GetAttribute(ARMOR_TAG, id, ATTR_DEFENSE));
 	case 8:
-		return QString::number(ARMORMANAGER()->GetAttr(id,ATTR_FORMATION));
+		return QString::number(DATAMANAGER().GetAttribute(ARMOR_TAG, id, ATTR_FORMATION));
 	case 9:
-		return QString::number(ARMORMANAGER()->GetAttr(id,ATTR_INITIATIVE));
+		return QString::number(DATAMANAGER().GetAttribute(ARMOR_TAG, id, ATTR_INITIATIVE));
 	case 10:
-		return QString::number(ARMORMANAGER()->GetAttr(id,ATTR_ACTIONPOINT));
+		return QString::number(DATAMANAGER().GetAttribute(ARMOR_TAG, id, ATTR_ACTIONPOINT));
 	case 11:
-		return QString::number(ARMORMANAGER()->GetAttr(id,ATTR_COVERT));
+		return QString::number(DATAMANAGER().GetAttribute(ARMOR_TAG, id, ATTR_COVERT));
 	case 12:
-		return QString::fromStdWString(ARMORMANAGER()->GetScriptName(id));
+		return QString::fromStdWString(DATAMANAGER().GetDataStr(ARMOR_TAG, id, SCRIPT_TAG));
 	default:
 		return QVariant();
 	}
@@ -110,8 +110,8 @@ QVariant ArmorTableModule::headerData(int section, Qt::Orientation orientation, 
 
 bool ArmorTableModule::insertRow(int row, const QModelIndex & parent /* = QModelIndex */)
 {
-	beginInsertRows(parent, ARMORMANAGER()->GetNum(),ARMORMANAGER()->GetNum());
-	ARMORMANAGER()->AddArmor();
+	beginInsertRows(parent, DATAMANAGER().GetCount(ARMOR_TAG), DATAMANAGER().GetCount(ARMOR_TAG));
+	DATAMANAGER().AddArmor();
 	endInsertRows();
 	return true;
 }
@@ -119,8 +119,8 @@ bool ArmorTableModule::insertRow(int row, const QModelIndex & parent /* = QModel
 bool ArmorTableModule::removeRow(int row, const QModelIndex & parent /* = QModelIndex */)
 {
 	beginRemoveRows(parent, row, row);
-	std::wstring id = ARMORMANAGER()->GetID(row);
-	ARMORMANAGER()->DelArmor(id);
+	std::wstring id = DATAMANAGER().GetID(ARMOR_TAG, row);
+	DATAMANAGER().RemoveData(ARMOR_TAG, id);
 	endRemoveRows();
 	return true;
 }
@@ -137,35 +137,35 @@ bool ArmorTableModule::setData(const QModelIndex &index, const QVariant &qvalue,
 {
 	if (index.isValid() && role == Qt::EditRole) 
 	{
-		std::wstring id = ARMORMANAGER()->GetID(index.row());
+		std::wstring id = DATAMANAGER().GetID(ARMOR_TAG, index.row());
 		switch(index.column())
 		{
 		case 0:
-			return ARMORMANAGER()->SetID(id, qvalue.toString().toStdWString());
+			return DATAMANAGER().SetID(ARMOR_TAG, id, qvalue.toString().toStdWString());
 		case 1:
-			return ARMORMANAGER()->SetName(id, qvalue.toString().toStdWString());
+			return DATAMANAGER().SetLangStr(ARMOR_TAG, id, NAME_TAG, qvalue.toString().toStdWString());
 		case 2:
-			return ARMORMANAGER()->SetDescription(id, qvalue.toString().toStdWString());
+			return DATAMANAGER().SetLangStr(ARMOR_TAG, id, DESCRIPTION_TAG, qvalue.toString().toStdWString());
 		case 3:
-			return ARMORMANAGER()->SetValue(id,qvalue.toInt());
+			return DATAMANAGER().SetInt(ARMOR_TAG, id, VALUE_TAG, qvalue.toInt());
 		case 4:
-			return ARMORMANAGER()->SetArmorType(id,qvalue.toInt());
+			return DATAMANAGER().SetInt(ARMOR_TAG, id, VALUE_TAG, qvalue.toInt());
 		case 5:
-			return ARMORMANAGER()->SetAttr(id,ATTR_ATTACK,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(ARMOR_TAG, id, ATTR_ATTACK, qvalue.toInt());
 		case 6:
-			return ARMORMANAGER()->SetAttr(id,ATTR_RANGEDATTACK,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(ARMOR_TAG, id, ATTR_RANGEDATTACK, qvalue.toInt());
 		case 7:
-			return ARMORMANAGER()->SetAttr(id,ATTR_DEFENSE,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(ARMOR_TAG, id, ATTR_DEFENSE, qvalue.toInt());
 		case 8:
-			return ARMORMANAGER()->SetAttr(id,ATTR_FORMATION,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(ARMOR_TAG, id, ATTR_FORMATION, qvalue.toInt());
 		case 9:
-			return ARMORMANAGER()->SetAttr(id,ATTR_INITIATIVE,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(ARMOR_TAG, id, ATTR_INITIATIVE, qvalue.toInt());
 		case 10:
-			return ARMORMANAGER()->SetAttr(id,ATTR_ACTIONPOINT,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(ARMOR_TAG, id, ATTR_ACTIONPOINT, qvalue.toInt());
 		case 11:
-			return ARMORMANAGER()->SetAttr(id,ATTR_COVERT,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(ARMOR_TAG, id, ATTR_COVERT, qvalue.toInt());
 		case 12:
-			return ARMORMANAGER()->SetScriptName(id,qvalue.toString().toStdWString());
+			return DATAMANAGER().SetDataStr(ARMOR_TAG, id, SCRIPT_TAG, qvalue.toString().toStdWString());
 		default:
 			return false;
 		}

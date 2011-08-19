@@ -2,7 +2,7 @@
 #include "DataManager.h"
 #include "shieldmanager.h"
 
-#define SHILEDMANAGER() DataManager::getSingleton().mShieldManager
+//#define SHILEDMANAGER() DataManager::getSingleton().mShieldManager
 
 const int ShieldTableColumnCount = 13; 
 
@@ -24,7 +24,7 @@ int ShieldTableModule::columnCount(const QModelIndex &parent /* = QModelIndex */
 
 int ShieldTableModule::rowCount(const QModelIndex &parent /* = QModelIndex */) const
 {
-	return SHILEDMANAGER()->GetNum();
+	return DATAMANAGER().GetCount(SHIELD_TAG);
 }
 
 QVariant ShieldTableModule::data(const QModelIndex &index, int role /* = Qt::DisplayRole */) const
@@ -32,35 +32,35 @@ QVariant ShieldTableModule::data(const QModelIndex &index, int role /* = Qt::Dis
 	if(!index.isValid() || role != Qt::DisplayRole)
 		return QVariant();
 
-	std::wstring id = SHILEDMANAGER()->GetID(index.row());
+	std::wstring id = DATAMANAGER().GetID(SHIELD_TAG, index.row());
 	switch(index.column())
 	{
 	case 0:
 		return QString::fromStdWString(id);
 	case 1:
-		return QString::fromStdWString(SHILEDMANAGER()->GetName(id));
+		return QString::fromStdWString(DATAMANAGER().GetLangStr(SHIELD_TAG, id, NAME_TAG));
 	case 2:
-		return QString::fromStdWString(SHILEDMANAGER()->GetDescription(id));
+		return QString::fromStdWString(DATAMANAGER().GetLangStr(SHIELD_TAG, id, DESCRIPTION_TAG));
 	case 3:
-		return QString::number(SHILEDMANAGER()->GetValue(id));
+		return QString::number(DATAMANAGER().GetInt(SHIELD_TAG, id, VALUE_TAG));
 	case 4:
-		return QString::number(SHILEDMANAGER()->GetAttr(id,ATTR_ATTACK));
+		return QString::number(DATAMANAGER().GetAttribute(SHIELD_TAG, id, ATTR_ATTACK));
 	case 5:
-		return QString::number(SHILEDMANAGER()->GetAttr(id,ATTR_DEFENSE));
+		return QString::number(DATAMANAGER().GetAttribute(SHIELD_TAG, id, ATTR_DEFENSE));
 	case 6:
-		return QString::number(SHILEDMANAGER()->GetAttr(id,ATTR_FORMATION));
+		return QString::number(DATAMANAGER().GetAttribute(SHIELD_TAG, id, ATTR_FORMATION));
 	case 7:
-		return QString::number(SHILEDMANAGER()->GetAttr(id,ATTR_INITIATIVE));
+		return QString::number(DATAMANAGER().GetAttribute(SHIELD_TAG, id, ATTR_INITIATIVE));
 	case 8:
-		return QString::number(SHILEDMANAGER()->GetAttr(id,ATTR_ACTIONPOINT));
+		return QString::number(DATAMANAGER().GetAttribute(SHIELD_TAG, id, ATTR_ACTIONPOINT));
 	case 9:
-		return QString::number(SHILEDMANAGER()->GetAttr(id,ATTR_COVERT));
+		return QString::number(DATAMANAGER().GetAttribute(SHIELD_TAG, id, ATTR_COVERT));
 	case 10:
-		return QString::fromStdWString(SHILEDMANAGER()->GetMeshName(id));
+		return QString::fromStdWString(DATAMANAGER().GetDataStr(SHIELD_TAG, id, MESH_TAG));
 	case 11:
-		return QString::fromStdWString(SHILEDMANAGER()->GetMatName(id));
+		return QString::fromStdWString(DATAMANAGER().GetDataStr(SHIELD_TAG, id, MAT_TAG));
 	case 12:
-		return QString::fromStdWString(SHILEDMANAGER()->GetScriptName(id));
+		return QString::fromStdWString(DATAMANAGER().GetDataStr(SHIELD_TAG, id, SCRIPT_TAG));
 	default:
 		return QVariant();
 	}
@@ -110,8 +110,8 @@ QVariant ShieldTableModule::headerData(int section, Qt::Orientation orientation,
 
 bool ShieldTableModule::insertRow(int row, const QModelIndex & parent /* = QModelIndex */)
 {
-	beginInsertRows(parent, SHILEDMANAGER()->GetNum(),SHILEDMANAGER()->GetNum());
-	SHILEDMANAGER()->AddShield();
+	beginInsertRows(parent, DATAMANAGER().GetCount(SHIELD_TAG),DATAMANAGER().GetCount(SHIELD_TAG));
+	DATAMANAGER().AddShield();
 	endInsertRows();
 	return true;
 }
@@ -119,8 +119,8 @@ bool ShieldTableModule::insertRow(int row, const QModelIndex & parent /* = QMode
 bool ShieldTableModule::removeRow(int row, const QModelIndex & parent /* = QModelIndex */)
 {
 	beginRemoveRows(parent, row, row);
-	std::wstring id = SHILEDMANAGER()->GetID(row);
-	SHILEDMANAGER()->DelShield(id);
+	std::wstring id = DATAMANAGER().GetID(SHIELD_TAG, row);
+	DATAMANAGER().RemoveData(SHIELD_TAG, id);
 	endRemoveRows();
 	return true;
 }
@@ -137,35 +137,35 @@ bool ShieldTableModule::setData(const QModelIndex &index, const QVariant &qvalue
 {
 	if (index.isValid() && role == Qt::EditRole) 
 	{
-		std::wstring id = SHILEDMANAGER()->GetID(index.row());
+		std::wstring id = DATAMANAGER().GetID(SHIELD_TAG, index.row());
 		switch(index.column())
 		{
 		case 0:
-			return SHILEDMANAGER()->SetID(id, qvalue.toString().toStdWString());
+			return DATAMANAGER().SetID(SHIELD_TAG, id, qvalue.toString().toStdWString());
 		case 1:
-			return SHILEDMANAGER()->SetName(id, qvalue.toString().toStdWString());
+			return DATAMANAGER().SetLangStr(SHIELD_TAG, id, NAME_TAG, qvalue.toString().toStdWString());
 		case 2:
-			return SHILEDMANAGER()->SetDescription(id, qvalue.toString().toStdWString());
+			return DATAMANAGER().SetLangStr(SHIELD_TAG, id, DESCRIPTION_TAG, qvalue.toString().toStdWString());
 		case 3:
-			return SHILEDMANAGER()->SetValue(id,qvalue.toInt());
+			return DATAMANAGER().SetInt(SHIELD_TAG, id, VALUE_TAG, qvalue.toInt());
 		case 4:
-			return SHILEDMANAGER()->SetAttr(id,ATTR_ATTACK,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(SHIELD_TAG, id, ATTR_ATTACK, qvalue.toInt());
 		case 5:
-			return SHILEDMANAGER()->SetAttr(id,ATTR_DEFENSE,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(SHIELD_TAG, id, ATTR_DEFENSE, qvalue.toInt());
 		case 6:
-			return SHILEDMANAGER()->SetAttr(id,ATTR_FORMATION,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(SHIELD_TAG, id, ATTR_FORMATION, qvalue.toInt());
 		case 7:
-			return SHILEDMANAGER()->SetAttr(id,ATTR_INITIATIVE,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(SHIELD_TAG, id, ATTR_INITIATIVE, qvalue.toInt());
 		case 8:
-			return SHILEDMANAGER()->SetAttr(id,ATTR_ACTIONPOINT,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(SHIELD_TAG, id, ATTR_ACTIONPOINT, qvalue.toInt());
 		case 9:
-			return SHILEDMANAGER()->SetAttr(id,ATTR_COVERT,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(SHIELD_TAG, id, ATTR_COVERT, qvalue.toInt());
 		case 10:
-			return SHILEDMANAGER()->SetMeshName(id,qvalue.toString().toStdWString());
+			return DATAMANAGER().SetDataStr(SHIELD_TAG, id, MESH_TAG, qvalue.toString().toStdWString());
 		case 11:
-			return SHILEDMANAGER()->SetMatName(id,qvalue.toString().toStdWString());
+			return DATAMANAGER().SetDataStr(SHIELD_TAG, id, MAT_TAG, qvalue.toString().toStdWString());
 		case 12:
-			return SHILEDMANAGER()->SetScriptName(id,qvalue.toString().toStdWString());
+			return DATAMANAGER().SetDataStr(SHIELD_TAG, id, SCRIPT_TAG, qvalue.toString().toStdWString());
 		default:
 			return false;
 		}

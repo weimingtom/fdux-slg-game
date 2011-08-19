@@ -22,7 +22,7 @@ int StringTableModule::columnCount(const QModelIndex &parent /* = QModelIndex */
 
 int StringTableModule::rowCount(const QModelIndex &parent /* = QModelIndex */) const
 {
-	return DataManager::getSingleton().mStringTable->GetNum();
+	return DATAMANAGER().GetStrTableCount();
 }
 
 QVariant StringTableModule::data(const QModelIndex &index, int role /* = Qt::DisplayRole */) const
@@ -30,13 +30,13 @@ QVariant StringTableModule::data(const QModelIndex &index, int role /* = Qt::Dis
 	if(!index.isValid() || role != Qt::DisplayRole)
 		return QVariant();
 
-	std::wstring key = DataManager::getSingleton().mStringTable->GetKey(index.row());
+	std::wstring key = DATAMANAGER().GetStrTableID(index.row());
 	switch(index.column())
 	{
 	case 0:
 		return QString::fromStdWString(key);
 	case 1:
-		return QString::fromStdWString(DataManager::getSingleton().mStringTable->GetString(key));
+		return QString::fromStdWString(DATAMANAGER().GetStrTable(key));
 	default:
 		return QVariant();
 	}
@@ -64,8 +64,8 @@ QVariant StringTableModule::headerData(int section, Qt::Orientation orientation,
 
 bool StringTableModule::insertRow(int row, const QModelIndex & parent /* = QModelIndex */)
 {
-	beginInsertRows(parent, DataManager::getSingleton().mStringTable->GetNum(),DataManager::getSingleton().mStringTable->GetNum());
-	DataManager::getSingleton().mStringTable->AddString();
+	beginInsertRows(parent, DATAMANAGER().GetStrTableCount(), DATAMANAGER().GetStrTableCount());
+	DATAMANAGER().AddString();
 	endInsertRows();
 	return true;
 }
@@ -73,8 +73,8 @@ bool StringTableModule::insertRow(int row, const QModelIndex & parent /* = QMode
 bool StringTableModule::removeRow(int row, const QModelIndex & parent /* = QModelIndex */)
 {
 	beginRemoveRows(parent, row, row);
-	std::wstring key = DataManager::getSingleton().mStringTable->GetKey(row);
-	DataManager::getSingleton().mStringTable->DelString(key);
+	std::wstring key = DATAMANAGER().GetStrTableID(row);
+	DATAMANAGER().RemoveStrTable(key);
 	endRemoveRows();
 	return true;
 }
@@ -91,13 +91,13 @@ bool StringTableModule::setData(const QModelIndex &index, const QVariant &qvalue
 {
 	if (index.isValid() && role == Qt::EditRole) 
 	{
-		std::wstring key= DataManager::getSingleton().mStringTable->GetKey(index.row());
+		std::wstring key= DATAMANAGER().GetStrTableID(index.row());
 		switch(index.column())
 		{
 		case 0:
-			return DataManager::getSingleton().mStringTable->SetKey(key, qvalue.toString().toStdWString());
+			return DATAMANAGER().SetStrTableID(key, qvalue.toString().toStdWString());
 		case 1:
-			return DataManager::getSingleton().mStringTable->SetString(key, qvalue.toString().toStdWString());
+			return DATAMANAGER().SetStrTable(key, qvalue.toString().toStdWString());
 		default:
 			return false;
 		}
