@@ -299,7 +299,16 @@ bool XMLManager::SetDataInt(std::string _parent, std::string _child, std::string
 	return true;
 }
 
-bool XMLManager::SetDataAttr(std::string _parent, std::string _child, std::string _tag, std::string _attr, int _value)
+bool XMLManager::SetDataFloat(std::string _parent, std::string _child, std::string _tag, float _value)
+{
+	dataFile_.FirstChildElement("StaticData", false)->FirstChildElement(_parent, false)
+		->FirstChildElement(_child, false)
+		->FirstChildElement(_tag, false)
+		->SetAttribute("value", _value);
+	return true;
+}
+
+bool XMLManager::SetDataAttr(std::string _parent, std::string _child, std::string _tag, std::string _attr, float _value)
 {
 	dataFile_.FirstChildElement("StaticData", false)->FirstChildElement(_parent, false)
 		->FirstChildElement(_child, false)

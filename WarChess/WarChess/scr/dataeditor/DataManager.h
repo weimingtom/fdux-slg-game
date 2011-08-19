@@ -50,6 +50,7 @@ public:
 	int GetCount(std::string _parent);
 	int GetStrTableCount();
 	int GetInt(std::string _parent, std::wstring _id, std::string _tag);
+	float GetFloat(std::string _parent, std::wstring _id, std::string _tag);
 	float GetAttribute(std::string _parent, std::wstring _id, BasicAttr _attrType);
 
 	std::wstring GetID(std::string _parent, int _index);
@@ -59,6 +60,7 @@ public:
 	std::wstring GetStrTable(std::wstring _key);
 
 	bool SetInt(std::string _parent, std::wstring _id, std::string _tag, int _value);
+	bool SetFloat(std::string _parent, std::wstring _id, std::string _tag, float _value);
 	bool SetAttribute(std::string _parent, std::wstring _id, BasicAttr _attrType, float _attr);
 
 	bool SetID(std::string _parent, std::wstring _oldID, std::wstring _newID);

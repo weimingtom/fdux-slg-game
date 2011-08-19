@@ -31,7 +31,8 @@ public:
 
 	bool SetDataStr(std::string _parent, std::string _child, std::string _tag, std::string _value);
 	bool SetDataInt(std::string _parent, std::string _child, std::string _tag, int _value);
-	bool SetDataAttr(std::string _parent, std::string _child, std::string _tag, std::string _attr, int _value);
+	bool SetDataFloat(std::string _parent, std::string _child, std::string _tag, float _value);
+	bool SetDataAttr(std::string _parent, std::string _child, std::string _tag, std::string _attr, float _value);
 
 	bool SetLang(std::string _parent, std::string _child, std::string _tag, std::string _value);
 	bool SetStringTable(std::string _key, std::string _value);
