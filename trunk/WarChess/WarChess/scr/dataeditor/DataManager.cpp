@@ -1,11 +1,4 @@
 #include "DataManager.h"
-#include "soldiermanager.h"
-#include "horsemanager.h"
-#include "pweaponmanager.h"
-#include "sweaponmanager.h"
-#include "armormanager.h"
-#include "shieldmanager.h"
-#include "stringtable.h"
 #include "Conversion.h"
 #include "XMLManager.h"
 
@@ -16,13 +9,6 @@
 DataManager::DataManager(bool editormode)
 {
 	mEditorMode = editormode;
-	//mStringTable = new StringTable();
-	//mSoldierManager = new SoldierManager();
-	//mHorseManager = new HorseManager();
-	//mPWeaponManager = new PWeaponManager();
-	//mSWeaponManager = new SWeaponManager();
-	//mArmorManager = new ArmorManager();
-	//mShieldManager = new ShieldManager();
 
 	xmlManager_ = new XMLManager();
 	
@@ -243,7 +229,7 @@ void DataManager::AddArmor()
 	while(xmlManager_->GetData("ArmorData", newid) != NULL)
 	{
 		n = n + 1;
-		sprintf_s(newid,20,"newhorse%d",n);
+		sprintf_s(newid,20,"newarmor%d",n);
 	}
 	
 	ticpp::Element *newArmorElement = new ticpp::Element(newid);
@@ -839,6 +825,126 @@ void DataManager::AddSoldier()
 	xmlManager_->AddLang("SoilderData", newSoldierLangElement);
 }
 
+void DataManager::AddSkill()
+{
+	char newid[20];
+	int n = 0;
+	sprintf_s(newid, 20, "newskill%d", n);
+	while(xmlManager_->GetData("SkillData", newid) != NULL)
+	{
+		n = n + 1;
+		sprintf_s(newid,20,"newskill%d",n);
+	}
+	
+	ticpp::Element *newSkillElement = new ticpp::Element(newid);
+
+	ticpp::Element *typeElement = new ticpp::Element("Type");
+	ticpp::Element *maxRangeElement = new ticpp::Element("MaxRange");
+	ticpp::Element *minRangeElement = new ticpp::Element("MinRange");
+	ticpp::Element *areaElement = new ticpp::Element("Area");
+	ticpp::Element *aptypeElement = new ticpp::Element("APType");
+	ticpp::Element *apcostElement = new ticpp::Element("APCost");
+	ticpp::Element *cooldownElement = new ticpp::Element("CoolDown");
+	ticpp::Element *valueElement = new ticpp::Element("Value");
+	ticpp::Element *iconElement = new ticpp::Element("Icon");
+	ticpp::Element *scriptElement = new ticpp::Element("Script");
+
+	typeElement->SetAttribute("type", "Int");
+	typeElement->SetAttribute("value", "2");
+	maxRangeElement->SetAttribute("type", "Int");
+	maxRangeElement->SetAttribute("value", "0");
+	minRangeElement->SetAttribute("type", "Int");
+	minRangeElement->SetAttribute("value", "0");
+	areaElement->SetAttribute("type", "Int");
+	areaElement->SetAttribute("value", "0");
+	aptypeElement->SetAttribute("type", "Int");
+	aptypeElement->SetAttribute("value", "0");
+	apcostElement->SetAttribute("type", "float");
+	apcostElement->SetAttribute("value", "0.0");
+	cooldownElement->SetAttribute("type", "Int");
+	cooldownElement->SetAttribute("value", "0");
+	valueElement->SetAttribute("type", "Int");
+	valueElement->SetAttribute("value", "0");
+	iconElement->SetAttribute("type", "String");
+	iconElement->SetAttribute("value", "none");
+	scriptElement->SetAttribute("type", "String");
+	scriptElement->SetAttribute("value", "none");
+
+	newSkillElement->LinkEndChild(typeElement);
+	newSkillElement->LinkEndChild(maxRangeElement);
+	newSkillElement->LinkEndChild(minRangeElement);
+	newSkillElement->LinkEndChild(areaElement);
+	newSkillElement->LinkEndChild(aptypeElement);
+	newSkillElement->LinkEndChild(apcostElement);
+	newSkillElement->LinkEndChild(cooldownElement);
+	newSkillElement->LinkEndChild(valueElement);
+	newSkillElement->LinkEndChild(iconElement);
+	newSkillElement->LinkEndChild(scriptElement);
+
+	xmlManager_->AddData("SkillData", newSkillElement);
+
+	ticpp::Element *newSkillLangElement = new ticpp::Element(newid);
+
+	ticpp::Element *nameElement = new ticpp::Element("Name");
+	ticpp::Element *describeElement = new ticpp::Element("Describe");
+
+	nameElement->SetAttribute("type", "String");
+	nameElement->SetAttribute("value", "none");
+	describeElement->SetAttribute("type", "String");
+	describeElement->SetAttribute("value", "none");
+
+	newSkillLangElement->LinkEndChild(nameElement);
+	newSkillLangElement->LinkEndChild(describeElement);
+
+	xmlManager_->AddLang("SkillData", newSkillLangElement);
+}
+
+void DataManager::AddEffect()
+{
+	char newid[20];
+	int n = 0;
+	sprintf_s(newid, 20, "neweffect%d", n);
+	while(xmlManager_->GetData("EffectData", newid) != NULL)
+	{
+		n = n + 1;
+		sprintf_s(newid,20,"neweffect%d",n);
+	}
+	
+	ticpp::Element *newEffectElement = new ticpp::Element(newid);
+
+	ticpp::Element *typeElement = new ticpp::Element("Type");
+	ticpp::Element *iconElement = new ticpp::Element("Icon");
+	ticpp::Element *scriptElement = new ticpp::Element("Script");
+
+	typeElement->SetAttribute("type", "Int");
+	typeElement->SetAttribute("value", "1");
+	iconElement->SetAttribute("type", "String");
+	iconElement->SetAttribute("value", "none");
+	scriptElement->SetAttribute("type", "String");
+	scriptElement->SetAttribute("value", "none");
+
+	newEffectElement->LinkEndChild(typeElement);
+	newEffectElement->LinkEndChild(iconElement);
+	newEffectElement->LinkEndChild(scriptElement);
+
+	xmlManager_->AddData("EffectData", newEffectElement);
+
+	ticpp::Element *newEffectLangElement = new ticpp::Element(newid);
+
+	ticpp::Element *nameElement = new ticpp::Element("Name");
+	ticpp::Element *describeElement = new ticpp::Element("Describe");
+
+	nameElement->SetAttribute("type", "String");
+	nameElement->SetAttribute("value", "none");
+	describeElement->SetAttribute("type", "String");
+	describeElement->SetAttribute("value", "none");
+
+	newEffectLangElement->LinkEndChild(nameElement);
+	newEffectLangElement->LinkEndChild(describeElement);
+
+	xmlManager_->AddLang("EffectData", newEffectLangElement);
+}
+
 void DataManager::AddString()
 {
 	char newid[20];
@@ -894,7 +1000,7 @@ int DataManager::GetInt(std::string _parent, std::wstring _id, std::string _tag)
 	return data;
 }
 
-int DataManager::GetAttribute(std::string _parent, std::wstring _id, BasicAttr _attrType)
+float DataManager::GetAttribute(std::string _parent, std::wstring _id, BasicAttr _attrType)
 {
 	std::string tempid;
 	UnicodeToUTF8(_id, tempid);
@@ -903,7 +1009,7 @@ int DataManager::GetAttribute(std::string _parent, std::wstring _id, BasicAttr _
 	ticpp::Element *attrElement = element->FirstChildElement("AttrModifer", false);
 	if (attrElement == NULL) return 0;
 	ticpp::Element *tempElement;
-	int attr = 0;
+	float attr = 0;
 	switch(_attrType)
 	{
 	case ATTR_ATTACK:
@@ -1010,7 +1116,7 @@ bool DataManager::SetInt(std::string _parent, std::wstring _id, std::string _tag
 	return xmlManager_->SetDataInt(_parent, tempid, _tag, _value);
 }
 
-bool DataManager::SetAttribute(std::string _parent, std::wstring _id, BasicAttr _attrType, int _attr)
+bool DataManager::SetAttribute(std::string _parent, std::wstring _id, BasicAttr _attrType, float _attr)
 {
 	std::string tempid;
 	UnicodeToUTF8(_id,tempid);

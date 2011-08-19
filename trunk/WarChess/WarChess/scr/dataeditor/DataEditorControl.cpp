@@ -8,18 +8,11 @@
 #include "sweapontablemodule.h"
 #include "armortablemodule.h"
 #include "shieldtablemodule.h"
+#include "skilltablemodule.h"
+#include "effecttablemodule.h"
 #include "stringtablemodule.h"
 
 #include "DataManager.h"
-#include "soldiermanager.h"
-#include "horsemanager.h"
-#include "pweaponmanager.h"
-#include "sweaponmanager.h"
-#include "armormanager.h"
-#include "shieldmanager.h"
-#include "stringtable.h"
-
-
 
 #define SAFEDEL(a) if(!a) { delete a; a = NULL;}
 
@@ -50,6 +43,14 @@ DataEditorControl::DataEditorControl(Ui::MainWindow *ui)
 	mShieldTableView = ui->shieldTableView;
 	mShieldTableView->setModel(mShieldTableModule);
 
+	mSkillTableModule = new SkillTableModule(this);
+	mSkillTableView = ui->skillTableView;
+	mSkillTableView->setModel(mSkillTableModule);
+
+	mEffectTableModule = new EffectTableModule(this);
+	mEffectTableView = ui->effectTableView;
+	mEffectTableView->setModel(mEffectTableModule);
+
 	mStringTableModule = new StringTableModule(this);
 	mStringTableView = ui->stringTableView;
 	mStringTableView->setModel(mStringTableModule);
@@ -73,6 +74,10 @@ DataEditorControl::DataEditorControl(Ui::MainWindow *ui)
 	connect(ui->delArmor,SIGNAL(clicked()),this,SLOT(DelArmor()));
 	connect(ui->addShield,SIGNAL(clicked()),this,SLOT(AddShield()));
 	connect(ui->delShield,SIGNAL(clicked()),this,SLOT(DelShield()));
+	connect(ui->addSkill,SIGNAL(clicked()),this,SLOT(AddSkill()));
+	connect(ui->delSkill,SIGNAL(clicked()),this,SLOT(DelSkill()));
+	connect(ui->addEffect,SIGNAL(clicked()),this,SLOT(AddEffect()));
+	connect(ui->delEffect,SIGNAL(clicked()),this,SLOT(DelEffect()));
 	connect(ui->addString,SIGNAL(clicked()),this,SLOT(AddString()));
 	connect(ui->delString,SIGNAL(clicked()),this,SLOT(DelString()));	
 }
@@ -122,6 +127,8 @@ void DataEditorControl::ModBoxChanged(const QString & text)
 	mSWeaponTableModule->ModChanged();
 	mArmorTableModule->ModChanged();
 	mShieldTableModule->ModChanged();
+	mEffectTableModule->ModChanged();
+	mSkillTableModule->ModChanged();
 }
 
 void DataEditorControl::LangBoxChanged(const QString & text)
@@ -134,6 +141,8 @@ void DataEditorControl::LangBoxChanged(const QString & text)
 	mSWeaponTableModule->ModChanged();
 	mArmorTableModule->ModChanged();
 	mShieldTableModule->ModChanged();
+	mEffectTableModule->ModChanged();
+	mSkillTableModule->ModChanged();
 }
 
 void DataEditorControl::AddSoldier()
@@ -232,6 +241,30 @@ void DataEditorControl::DelShield()
 	QModelIndexList indexlist = mShieldTableView->selectionModel()->selectedIndexes();
 	if (indexlist.size() > 0)
 		mShieldTableModule->removeRow(indexlist.begin()->row());
+}
+
+void DataEditorControl::AddSkill()
+{
+	mSkillTableModule->insertRow();
+}
+
+void DataEditorControl::DelSkill()
+{
+	QModelIndexList indexlist = mSkillTableView->selectionModel()->selectedIndexes();
+	if (indexlist.size() > 0)
+		mSkillTableModule->removeRow(indexlist.begin()->row());
+}
+
+void DataEditorControl::AddEffect()
+{
+	mEffectTableModule->insertRow();
+}
+
+void DataEditorControl::DelEffect()
+{
+	QModelIndexList indexlist = mEffectTableView->selectionModel()->selectedIndexes();
+	if (indexlist.size() > 0)
+		mEffectTableModule->removeRow(indexlist.begin()->row());
 }
 
 void DataEditorControl::AddString()

@@ -11,15 +11,6 @@ using namespace izayoi;
 
 #define DATAMANAGER() DataManager::getSingleton()
 
-//class SoldierManager;
-//class HorseManager;
-//class PWeaponManager;
-//class SWeaponManager;
-//class ArmorManager;
-//class ShieldManager;
-//class SquadManager;
-//class StringTable;
-
 class XMLManager;
 
 class DataManager:public IISingleton<DataManager>
@@ -41,14 +32,6 @@ public:
 
 	void SwitchEditorMode(bool editormode);
 
-	//SoldierManager* mSoldierManager;
-	//HorseManager* mHorseManager;
-	//PWeaponManager* mPWeaponManager;
-	//SWeaponManager* mSWeaponManager;
-	//ArmorManager* mArmorManager;
-	//ShieldManager* mShieldManager;
-	//StringTable* mStringTable;
-
 	XMLManager* xmlManager_;
 
 	void AddArmor();
@@ -57,6 +40,8 @@ public:
 	void AddSecondaryWeapon();
 	void AddShield();
 	void AddSoldier();
+	void AddSkill();
+	void AddEffect();
 	void AddString();
 
 	void RemoveData(std::string _parent, std::wstring _id);
@@ -65,7 +50,7 @@ public:
 	int GetCount(std::string _parent);
 	int GetStrTableCount();
 	int GetInt(std::string _parent, std::wstring _id, std::string _tag);
-	int GetAttribute(std::string _parent, std::wstring _id, BasicAttr _attrType);
+	float GetAttribute(std::string _parent, std::wstring _id, BasicAttr _attrType);
 
 	std::wstring GetID(std::string _parent, int _index);
 	std::wstring GetStrTableID(int _index);
@@ -74,7 +59,7 @@ public:
 	std::wstring GetStrTable(std::wstring _key);
 
 	bool SetInt(std::string _parent, std::wstring _id, std::string _tag, int _value);
-	bool SetAttribute(std::string _parent, std::wstring _id, BasicAttr _attrType, int _attr);
+	bool SetAttribute(std::string _parent, std::wstring _id, BasicAttr _attrType, float _attr);
 
 	bool SetID(std::string _parent, std::wstring _oldID, std::wstring _newID);
 	bool SetStrTableID(std::wstring _oldKey, std::wstring _newKey);

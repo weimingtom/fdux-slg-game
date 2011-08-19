@@ -1,8 +1,5 @@
 #include "pweapontablemodule.h"
 #include "DataManager.h"
-#include "pweaponmanager.h"
-
-//#define PWEAPONMANAGER() DataManager::getSingleton().mPWeaponManager
 
 const int PWeaponTableColumnCount = 15; 
 
@@ -159,17 +156,17 @@ bool PWeaponTableModule::setData(const QModelIndex &index, const QVariant &qvalu
 		case 4:
 			return DATAMANAGER().SetInt(PWEAPON_TAG, id, TYPE_TAG, qvalue.toInt());
 		case 5:
-			return DATAMANAGER().SetAttribute(PWEAPON_TAG, id, ATTR_ATTACK, qvalue.toInt());
+			return DATAMANAGER().SetAttribute(PWEAPON_TAG, id, ATTR_ATTACK, qvalue.toFloat());
 		case 6:
-			return DATAMANAGER().SetAttribute(PWEAPON_TAG, id, ATTR_DEFENSE, qvalue.toInt());
+			return DATAMANAGER().SetAttribute(PWEAPON_TAG, id, ATTR_DEFENSE, qvalue.toFloat());
 		case 7:
-			return DATAMANAGER().SetAttribute(PWEAPON_TAG, id, ATTR_FORMATION, qvalue.toInt());
+			return DATAMANAGER().SetAttribute(PWEAPON_TAG, id, ATTR_FORMATION, qvalue.toFloat());
 		case 8:
-			return DATAMANAGER().SetAttribute(PWEAPON_TAG, id, ATTR_INITIATIVE, qvalue.toInt());
+			return DATAMANAGER().SetAttribute(PWEAPON_TAG, id, ATTR_INITIATIVE, qvalue.toFloat());
 		case 9:
-			return DATAMANAGER().SetAttribute(PWEAPON_TAG, id, ATTR_ACTIONPOINT,qvalue.toInt());
+			return DATAMANAGER().SetAttribute(PWEAPON_TAG, id, ATTR_ACTIONPOINT,qvalue.toFloat());
 		case 10:
-			return DATAMANAGER().SetAttribute(PWEAPON_TAG, id, ATTR_COVERT, qvalue.toInt());
+			return DATAMANAGER().SetAttribute(PWEAPON_TAG, id, ATTR_COVERT, qvalue.toFloat());
 		case 11:
 			return DATAMANAGER().SetDataStr(PWEAPON_TAG, id, MESH_TAG, qvalue.toString().toStdWString());
 		case 12:
