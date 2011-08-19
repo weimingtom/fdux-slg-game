@@ -1,8 +1,5 @@
 #include "shieldtablemodule.h"
 #include "DataManager.h"
-#include "shieldmanager.h"
-
-//#define SHILEDMANAGER() DataManager::getSingleton().mShieldManager
 
 const int ShieldTableColumnCount = 13; 
 
@@ -149,17 +146,17 @@ bool ShieldTableModule::setData(const QModelIndex &index, const QVariant &qvalue
 		case 3:
 			return DATAMANAGER().SetInt(SHIELD_TAG, id, VALUE_TAG, qvalue.toInt());
 		case 4:
-			return DATAMANAGER().SetAttribute(SHIELD_TAG, id, ATTR_ATTACK, qvalue.toInt());
+			return DATAMANAGER().SetAttribute(SHIELD_TAG, id, ATTR_ATTACK, qvalue.toFloat());
 		case 5:
-			return DATAMANAGER().SetAttribute(SHIELD_TAG, id, ATTR_DEFENSE, qvalue.toInt());
+			return DATAMANAGER().SetAttribute(SHIELD_TAG, id, ATTR_DEFENSE, qvalue.toFloat());
 		case 6:
-			return DATAMANAGER().SetAttribute(SHIELD_TAG, id, ATTR_FORMATION, qvalue.toInt());
+			return DATAMANAGER().SetAttribute(SHIELD_TAG, id, ATTR_FORMATION, qvalue.toFloat());
 		case 7:
-			return DATAMANAGER().SetAttribute(SHIELD_TAG, id, ATTR_INITIATIVE, qvalue.toInt());
+			return DATAMANAGER().SetAttribute(SHIELD_TAG, id, ATTR_INITIATIVE, qvalue.toFloat());
 		case 8:
-			return DATAMANAGER().SetAttribute(SHIELD_TAG, id, ATTR_ACTIONPOINT, qvalue.toInt());
+			return DATAMANAGER().SetAttribute(SHIELD_TAG, id, ATTR_ACTIONPOINT, qvalue.toFloat());
 		case 9:
-			return DATAMANAGER().SetAttribute(SHIELD_TAG, id, ATTR_COVERT, qvalue.toInt());
+			return DATAMANAGER().SetAttribute(SHIELD_TAG, id, ATTR_COVERT, qvalue.toFloat());
 		case 10:
 			return DATAMANAGER().SetDataStr(SHIELD_TAG, id, MESH_TAG, qvalue.toString().toStdWString());
 		case 11:

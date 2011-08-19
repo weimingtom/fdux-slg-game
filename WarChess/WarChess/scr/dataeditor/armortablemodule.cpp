@@ -1,8 +1,5 @@
 #include "armortablemodule.h"
 #include "DataManager.h"
-#include "armormanager.h"
-
-//#define ARMORMANAGER() DataManager::getSingleton().mArmorManager
 
 const int ArmorTableColumnCount = 13;
 
@@ -149,21 +146,21 @@ bool ArmorTableModule::setData(const QModelIndex &index, const QVariant &qvalue,
 		case 3:
 			return DATAMANAGER().SetInt(ARMOR_TAG, id, VALUE_TAG, qvalue.toInt());
 		case 4:
-			return DATAMANAGER().SetInt(ARMOR_TAG, id, VALUE_TAG, qvalue.toInt());
+			return DATAMANAGER().SetInt(ARMOR_TAG, id, TYPE_TAG, qvalue.toInt());
 		case 5:
-			return DATAMANAGER().SetAttribute(ARMOR_TAG, id, ATTR_ATTACK, qvalue.toInt());
+			return DATAMANAGER().SetAttribute(ARMOR_TAG, id, ATTR_ATTACK, qvalue.toFloat());
 		case 6:
-			return DATAMANAGER().SetAttribute(ARMOR_TAG, id, ATTR_RANGEDATTACK, qvalue.toInt());
+			return DATAMANAGER().SetAttribute(ARMOR_TAG, id, ATTR_RANGEDATTACK, qvalue.toFloat());
 		case 7:
-			return DATAMANAGER().SetAttribute(ARMOR_TAG, id, ATTR_DEFENSE, qvalue.toInt());
+			return DATAMANAGER().SetAttribute(ARMOR_TAG, id, ATTR_DEFENSE, qvalue.toFloat());
 		case 8:
-			return DATAMANAGER().SetAttribute(ARMOR_TAG, id, ATTR_FORMATION, qvalue.toInt());
+			return DATAMANAGER().SetAttribute(ARMOR_TAG, id, ATTR_FORMATION, qvalue.toFloat());
 		case 9:
-			return DATAMANAGER().SetAttribute(ARMOR_TAG, id, ATTR_INITIATIVE, qvalue.toInt());
+			return DATAMANAGER().SetAttribute(ARMOR_TAG, id, ATTR_INITIATIVE, qvalue.toFloat());
 		case 10:
-			return DATAMANAGER().SetAttribute(ARMOR_TAG, id, ATTR_ACTIONPOINT, qvalue.toInt());
+			return DATAMANAGER().SetAttribute(ARMOR_TAG, id, ATTR_ACTIONPOINT, qvalue.toFloat());
 		case 11:
-			return DATAMANAGER().SetAttribute(ARMOR_TAG, id, ATTR_COVERT, qvalue.toInt());
+			return DATAMANAGER().SetAttribute(ARMOR_TAG, id, ATTR_COVERT, qvalue.toFloat());
 		case 12:
 			return DATAMANAGER().SetDataStr(ARMOR_TAG, id, SCRIPT_TAG, qvalue.toString().toStdWString());
 		default:
