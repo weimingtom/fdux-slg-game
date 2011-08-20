@@ -212,7 +212,7 @@
         <item>
          <widget class="QTabWidget" name="dataTab">
           <property name="currentIndex">
-           <number>0</number>
+           <number>4</number>
           </property>
           <widget class="QWidget" name="soldierTab">
            <attribute name="title">
@@ -421,16 +421,13 @@
            <attribute name="title">
             <string>小队</string>
            </attribute>
-           <layout class="QHBoxLayout" name="horizontalLayout_9">
+           <layout class="QVBoxLayout" name="verticalLayout_12">
             <item>
-             <layout class="QVBoxLayout" name="verticalLayout_12">
-              <item>
-               <widget class="QListView" name="squadListView"/>
-              </item>
+             <layout class="QHBoxLayout" name="horizontalLayout_16" stretch="0,0">
               <item>
                <widget class="QPushButton" name="addSquad">
                 <property name="text">
-                 <string>增加小队</string>
+                 <string>新增小队</string>
                 </property>
                </widget>
               </item>
@@ -441,34 +438,31 @@
                 </property>
                </widget>
               </item>
-              <item>
-               <widget class="QTableView" name="squadTableView"/>
-              </item>
              </layout>
             </item>
             <item>
-             <layout class="QVBoxLayout" name="verticalLayout_13">
-              <item>
-               <widget class="QTableView" name="squadEquipTableView"/>
-              </item>
-              <item>
-               <widget class="QTableView" name="squadSkillTableView"/>
-              </item>
+             <widget class="QTableView" name="squadTableView"/>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_17">
               <item>
                <widget class="QPushButton" name="addSquadSkill">
                 <property name="text">
-                 <string>增加技能</string>
+                 <string>新增小队技能</string>
                 </property>
                </widget>
               </item>
               <item>
                <widget class="QPushButton" name="delSquadSkill">
                 <property name="text">
-                 <string>删除技能</string>
+                 <string>删除小队技能</string>
                 </property>
                </widget>
               </item>
              </layout>
+            </item>
+            <item>
+             <widget class="QTableView" name="squadSkillTableView"/>
             </item>
            </layout>
           </widget>

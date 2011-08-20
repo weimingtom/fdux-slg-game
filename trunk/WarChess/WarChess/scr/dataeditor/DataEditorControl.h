@@ -15,6 +15,7 @@ class ArmorTableModule;
 class ShieldTableModule;
 class SkillTableModule;
 class EffectTableModule;
+class SquadTableModule;
 class StringTableModule;
 
 class QTableView;
@@ -41,6 +42,7 @@ public:
 	QTableView *mShieldTableView;
 	QTableView *mSkillTableView;
 	QTableView *mEffectTableView;
+	QTableView *mSquadTableView;
 	QTableView *mStringTableView;
 
 	SoldierTableModule *mSoldierTableModule;
@@ -51,6 +53,7 @@ public:
 	ShieldTableModule *mShieldTableModule;
 	SkillTableModule *mSkillTableModule;
 	EffectTableModule *mEffectTableModule;
+	SquadTableModule *mSquadTableModule;
 	StringTableModule *mStringTableModule;
 
 	//接收界面消息
@@ -75,6 +78,8 @@ public slots:
 	void DelSkill();
 	void AddEffect();
 	void DelEffect();
+	void AddSquad();
+	void DelSquad();
 	void AddString();
 	void DelString();
 };

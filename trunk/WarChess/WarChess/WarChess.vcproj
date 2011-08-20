@@ -997,6 +997,18 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\GeneratedFiles\Release\moc_squadtablemodule.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
 					RelativePath=".\GeneratedFiles\Release\moc_stringtablemodule.cpp"
 					>
 					<FileConfiguration
@@ -1304,6 +1316,18 @@
 				</File>
 				<File
 					RelativePath=".\GeneratedFiles\Debug\moc_soldiertablemodule.cpp"
+					>
+					<FileConfiguration
+						Name="Release|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\GeneratedFiles\Debug\moc_squadtablemodule.cpp"
 					>
 					<FileConfiguration
 						Name="Release|Win32"
@@ -2241,6 +2265,36 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\scr\dataeditor\squadtablemodule.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\scr\dataeditor\squadtablemodule.h"
+				>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Moc&apos;ing $(InputFileName)..."
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;  &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_THREAD_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT_DLL &quot;-I$(OGRE_HOME)\include\OGRE\Terrain&quot; &quot;-I$(OGRE_HOME)\boost_1_44&quot; &quot;-I$(OGRE_HOME)\include\OGRE&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\qtmain&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\scr\FrameWork&quot; &quot;-I$(QTDIR)\include\QtXml&quot; &quot;-I.\scr&quot; &quot;-I$(SolutionDir)\lib\lua\include&quot; &quot;-I$(SolutionDir)\lib\ticpp\include&quot; &quot;-I.\scr\dataeditor&quot;&#x0D;&#x0A;"
+						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
+						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCustomBuildTool"
+						Description="Moc&apos;ing $(InputFileName)..."
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;  &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_THREAD_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT_DLL &quot;-I$(OGRE_HOME)\include\OGRE\Terrain&quot; &quot;-I$(OGRE_HOME)\boost_1_42&quot; &quot;-I$(OGRE_HOME)\boost_1_44&quot; &quot;-I$(OGRE_HOME)\include\OGRE&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\qtmain&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\scr\FrameWork&quot; &quot;-I$(QTDIR)\include\QtXml&quot; &quot;-I.\scr&quot; &quot;-I$(SolutionDir)\lib\lua\include&quot; &quot;-I$(SolutionDir)\lib\ticpp\include&quot; &quot;-I.\scr\dataeditor&quot;&#x0D;&#x0A;"
+						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
+						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath=".\scr\dataeditor\stringtablemodule.cpp"
 				>
 			</File>
@@ -2359,6 +2413,10 @@
 			<Filter
 				Name="BattleSysterm"
 				>
+				<File
+					RelativePath=".\scr\dataeditor\DataTag.h"
+					>
+				</File>
 				<File
 					RelativePath=".\scr\dataeditor\Modifier.h"
 					>

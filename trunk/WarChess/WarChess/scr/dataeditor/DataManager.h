@@ -42,6 +42,7 @@ public:
 	void AddSoldier();
 	void AddSkill();
 	void AddEffect();
+	void AddSquad();
 	void AddString();
 
 	void RemoveData(std::string _parent, std::wstring _id);

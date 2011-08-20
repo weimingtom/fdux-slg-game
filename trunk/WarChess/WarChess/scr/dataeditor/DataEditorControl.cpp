@@ -10,6 +10,7 @@
 #include "shieldtablemodule.h"
 #include "skilltablemodule.h"
 #include "effecttablemodule.h"
+#include "squadtablemodule.h"
 #include "stringtablemodule.h"
 
 #include "DataManager.h"
@@ -51,6 +52,10 @@ DataEditorControl::DataEditorControl(Ui::MainWindow *ui)
 	mEffectTableView = ui->effectTableView;
 	mEffectTableView->setModel(mEffectTableModule);
 
+	mSquadTableModule = new SquadTableModule(this);
+	mSquadTableView = ui->squadTableView;
+	mSquadTableView->setModel(mSquadTableModule);
+
 	mStringTableModule = new StringTableModule(this);
 	mStringTableView = ui->stringTableView;
 	mStringTableView->setModel(mStringTableModule);
@@ -78,6 +83,8 @@ DataEditorControl::DataEditorControl(Ui::MainWindow *ui)
 	connect(ui->delSkill,SIGNAL(clicked()),this,SLOT(DelSkill()));
 	connect(ui->addEffect,SIGNAL(clicked()),this,SLOT(AddEffect()));
 	connect(ui->delEffect,SIGNAL(clicked()),this,SLOT(DelEffect()));
+	connect(ui->addSquad,SIGNAL(clicked()),this,SLOT(AddSquad()));
+	connect(ui->delSquad,SIGNAL(clicked()),this,SLOT(DelSquad()));
 	connect(ui->addString,SIGNAL(clicked()),this,SLOT(AddString()));
 	connect(ui->delString,SIGNAL(clicked()),this,SLOT(DelString()));	
 }
@@ -265,6 +272,18 @@ void DataEditorControl::DelEffect()
 	QModelIndexList indexlist = mEffectTableView->selectionModel()->selectedIndexes();
 	if (indexlist.size() > 0)
 		mEffectTableModule->removeRow(indexlist.begin()->row());
+}
+
+void DataEditorControl::AddSquad()
+{
+	mSquadTableModule->insertRow();
+}
+
+void DataEditorControl::DelSquad()
+{
+	QModelIndexList indexlist = mSquadTableView->selectionModel()->selectedIndexes();
+	if (indexlist.size() > 0)
+		mSquadTableModule->removeRow(indexlist.begin()->row());
 }
 
 void DataEditorControl::AddString()
