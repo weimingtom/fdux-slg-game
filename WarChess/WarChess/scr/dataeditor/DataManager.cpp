@@ -945,6 +945,10 @@ void DataManager::AddEffect()
 	xmlManager_->AddLang("EffectData", newEffectLangElement);
 }
 
+void DataManager::AddSquad()
+{
+}
+
 void DataManager::AddString()
 {
 	char newid[20];
