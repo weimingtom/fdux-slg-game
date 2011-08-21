@@ -1,5 +1,6 @@
 #include "ui_mainwindow.h"
 #include <QInputDialog>
+#include <QMessageBox>
 
 #include "DataEditorControl.h"
 #include "soldiertablemodule.h"
@@ -11,6 +12,7 @@
 #include "skilltablemodule.h"
 #include "effecttablemodule.h"
 #include "squadtablemodule.h"
+#include "squadskilltablemodule.h"
 #include "stringtablemodule.h"
 
 #include "DataManager.h"
@@ -56,6 +58,10 @@ DataEditorControl::DataEditorControl(Ui::MainWindow *ui)
 	mSquadTableView = ui->squadTableView;
 	mSquadTableView->setModel(mSquadTableModule);
 
+	mSquadSkillTableModule = new SquadSkillTableModule(this);
+	mSquadSkillTableView = ui->squadSkillTableView;
+	mSquadSkillTableView->setModel(mSquadSkillTableModule);
+
 	mStringTableModule = new StringTableModule(this);
 	mStringTableView = ui->stringTableView;
 	mStringTableView->setModel(mStringTableModule);
@@ -85,8 +91,12 @@ DataEditorControl::DataEditorControl(Ui::MainWindow *ui)
 	connect(ui->delEffect,SIGNAL(clicked()),this,SLOT(DelEffect()));
 	connect(ui->addSquad,SIGNAL(clicked()),this,SLOT(AddSquad()));
 	connect(ui->delSquad,SIGNAL(clicked()),this,SLOT(DelSquad()));
+	connect(ui->addSquadSkill,SIGNAL(clicked()),this,SLOT(AddSquadSkill()));
+	connect(ui->delSquadSkill,SIGNAL(clicked()),this,SLOT(DelSquadSkill()));
 	connect(ui->addString,SIGNAL(clicked()),this,SLOT(AddString()));
-	connect(ui->delString,SIGNAL(clicked()),this,SLOT(DelString()));	
+	connect(ui->delString,SIGNAL(clicked()),this,SLOT(DelString()));
+
+	connect(ui->squadTableView,SIGNAL(clicked(const QModelIndex &)),this,SLOT(SelectSquad(const QModelIndex &)));
 }
 
 DataEditorControl::~DataEditorControl()
@@ -136,6 +146,8 @@ void DataEditorControl::ModBoxChanged(const QString & text)
 	mShieldTableModule->ModChanged();
 	mEffectTableModule->ModChanged();
 	mSkillTableModule->ModChanged();
+	mSquadTableModule->ModChanged();
+	mSquadSkillTableModule->ModChanged();
 }
 
 void DataEditorControl::LangBoxChanged(const QString & text)
@@ -150,6 +162,8 @@ void DataEditorControl::LangBoxChanged(const QString & text)
 	mShieldTableModule->ModChanged();
 	mEffectTableModule->ModChanged();
 	mSkillTableModule->ModChanged();
+	mSquadTableModule->ModChanged();
+	mSquadSkillTableModule->ModChanged();
 }
 
 void DataEditorControl::AddSoldier()
@@ -286,6 +300,20 @@ void DataEditorControl::DelSquad()
 		mSquadTableModule->removeRow(indexlist.begin()->row());
 }
 
+void DataEditorControl::AddSquadSkill()
+{
+	QModelIndexList indexlist = mSquadSkillTableView->selectionModel()->selectedIndexes();
+	if (indexlist.size() > 0)
+		mSquadSkillTableModule->markRow(indexlist.begin()->row());
+}
+
+void DataEditorControl::DelSquadSkill()
+{
+	QModelIndexList indexlist = mSquadSkillTableView->selectionModel()->selectedIndexes();
+	if (indexlist.size() > 0)
+		mSquadSkillTableModule->unmarkRow(indexlist.begin()->row());
+}
+
 void DataEditorControl::AddString()
 {
 	mStringTableModule->insertRow();
@@ -296,4 +324,9 @@ void DataEditorControl::DelString()
 	QModelIndexList indexlist = mStringTableView->selectionModel()->selectedIndexes();
 	if (indexlist.size() > 0)
 		mStringTableModule->removeRow(indexlist.begin()->row());
+}
+
+void DataEditorControl::SelectSquad(QModelIndex _index)
+{
+	mSquadSkillTableModule->SquadSelected(_index.row());
 }
