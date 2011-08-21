@@ -448,14 +448,14 @@
               <item>
                <widget class="QPushButton" name="addSquadSkill">
                 <property name="text">
-                 <string>新增小队技能</string>
+                 <string>设为小队技能</string>
                 </property>
                </widget>
               </item>
               <item>
                <widget class="QPushButton" name="delSquadSkill">
                 <property name="text">
-                 <string>删除小队技能</string>
+                 <string>解除小队技能</string>
                 </property>
                </widget>
               </item>

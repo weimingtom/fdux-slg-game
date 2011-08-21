@@ -947,6 +947,122 @@ void DataManager::AddEffect()
 
 void DataManager::AddSquad()
 {
+	char newid[20];
+	int n = 0;
+	sprintf_s(newid, 20, "newsquad%d", n);
+	while(xmlManager_->GetData("SquadData", newid) != NULL)
+	{
+		n = n + 1;
+		sprintf_s(newid,20,"newsquad%d",n);
+	}
+
+	ticpp::Element *newSquadElement = new ticpp::Element(newid);
+
+	ticpp::Element *typeElement = new ticpp::Element("Type");
+	ticpp::Element *squadTypeElement = new ticpp::Element("SquadType");
+	ticpp::Element *soldierIdElement = new ticpp::Element("SoilderId");
+	ticpp::Element *horseIdElement = new ticpp::Element("HorseId");
+	ticpp::Element *pweaponIdElement = new ticpp::Element("PweaponId");
+	ticpp::Element *sweaponIdElement = new ticpp::Element("SweaponId");
+	ticpp::Element *shieldIdElement = new ticpp::Element("ShieldId");
+	ticpp::Element *armorIdElement = new ticpp::Element("ArmorId");
+	ticpp::Element *skillTableElement = new ticpp::Element("SkillTable");
+	ticpp::Element *leaderNameElement = new ticpp::Element("LeaderName");
+	ticpp::Element *leaderPicElement = new ticpp::Element("LeaderPicture");
+	ticpp::Element *leaderMeshElement = new ticpp::Element("LeaderMesh");
+	ticpp::Element *leaderMatElement = new ticpp::Element("LeaderMat");
+	ticpp::Element *unitMeshElement = new ticpp::Element("UnitMesh");
+	ticpp::Element *unitMatElement = new ticpp::Element("UnitMat");
+	ticpp::Element *unitMaxNumElement = new ticpp::Element("UnitMaxNumber");
+	ticpp::Element *moveSoundElement = new ticpp::Element("MoveSound");
+
+	typeElement->SetAttribute("type", "Int");
+	typeElement->SetAttribute("value", "0");
+	squadTypeElement->SetAttribute("type", "Int");
+	squadTypeElement->SetAttribute("value", "0");
+	soldierIdElement->SetAttribute("type", "String");
+	soldierIdElement->SetAttribute("value", "none");
+	horseIdElement->SetAttribute("type", "String");
+	horseIdElement->SetAttribute("value", "none");
+	pweaponIdElement->SetAttribute("type", "String");
+	pweaponIdElement->SetAttribute("value", "none");
+	sweaponIdElement->SetAttribute("type", "String");
+	sweaponIdElement->SetAttribute("value", "none");
+	shieldIdElement->SetAttribute("type", "String");
+	shieldIdElement->SetAttribute("value", "none");
+	armorIdElement->SetAttribute("type", "String");
+	armorIdElement->SetAttribute("value", "none");
+	leaderNameElement->SetAttribute("type", "String");
+	leaderNameElement->SetAttribute("value", "none");
+	leaderPicElement->SetAttribute("type", "String");
+	leaderPicElement->SetAttribute("value", "none");
+	leaderMeshElement->SetAttribute("type", "String");
+	leaderMeshElement->SetAttribute("value", "none");
+	leaderMatElement->SetAttribute("type", "String");
+	leaderMatElement->SetAttribute("value", "none");
+	unitMeshElement->SetAttribute("type", "String");
+	unitMeshElement->SetAttribute("value", "none");
+	unitMatElement->SetAttribute("type", "String");
+	unitMatElement->SetAttribute("value", "none");
+	unitMaxNumElement->SetAttribute("type", "String");
+	unitMaxNumElement->SetAttribute("value", "none");
+	moveSoundElement->SetAttribute("type", "String");
+	moveSoundElement->SetAttribute("value", "none");
+
+	newSquadElement->LinkEndChild(typeElement);
+	newSquadElement->LinkEndChild(squadTypeElement);
+	newSquadElement->LinkEndChild(soldierIdElement);
+	newSquadElement->LinkEndChild(horseIdElement);
+	newSquadElement->LinkEndChild(pweaponIdElement);
+	newSquadElement->LinkEndChild(sweaponIdElement);
+	newSquadElement->LinkEndChild(shieldIdElement);
+	newSquadElement->LinkEndChild(armorIdElement);
+	newSquadElement->LinkEndChild(skillTableElement);
+	newSquadElement->LinkEndChild(leaderNameElement);
+	newSquadElement->LinkEndChild(leaderPicElement);
+	newSquadElement->LinkEndChild(leaderMeshElement);
+	newSquadElement->LinkEndChild(leaderMatElement);
+	newSquadElement->LinkEndChild(unitMeshElement);
+	newSquadElement->LinkEndChild(unitMatElement);
+	newSquadElement->LinkEndChild(unitMaxNumElement);
+	newSquadElement->LinkEndChild(moveSoundElement);
+
+	xmlManager_->AddData("SquadData", newSquadElement);
+
+	ticpp::Element *newSquadLangElement = new ticpp::Element(newid);
+
+	ticpp::Element *nameElement = new ticpp::Element("Name");
+	ticpp::Element *describeElement = new ticpp::Element("Describe");
+
+	nameElement->SetAttribute("type", "String");
+	nameElement->SetAttribute("value", "none");
+	describeElement->SetAttribute("type", "String");
+	describeElement->SetAttribute("value", "none");
+
+	newSquadLangElement->LinkEndChild(nameElement);
+	newSquadLangElement->LinkEndChild(describeElement);
+
+	xmlManager_->AddLang("SquadData", newSquadLangElement);
+}
+
+void DataManager::AddSquadSkill(std::wstring _squadId, std::wstring _skillId)
+{
+	std::string squadId;
+	std::string skillId;
+	UnicodeToUTF8(_squadId, squadId);
+	UnicodeToUTF8(_skillId, skillId);
+	ticpp::Element *rootElement = xmlManager_->GetData("SquadData", squadId);
+	if (rootElement != NULL)
+	{
+		ticpp::Element *dataElement = rootElement->FirstChildElement("SkillTable", false);
+		if (dataElement != NULL && dataElement->FirstChildElement(skillId, false) == NULL)
+		{
+			ticpp::Element *childElement = new ticpp::Element(skillId);
+			childElement->SetAttribute("type", "Int");
+			childElement->SetAttribute("value", "1");
+			dataElement->LinkEndChild(childElement);
+		}
+	}
 }
 
 void DataManager::AddString()
@@ -972,6 +1088,24 @@ void DataManager::RemoveData(std::string _parent, std::wstring _id)
 	UnicodeToUTF8(_id, tempid);
 	xmlManager_->RemoveData(_parent, tempid);
 	xmlManager_->RemoveLang(_parent, tempid);
+}
+
+void DataManager::RemoveSquadSkill(std::wstring _squadId, std::wstring _skillId)
+{
+	std::string squadId;
+	std::string skillId;
+	UnicodeToUTF8(_squadId, squadId);
+	UnicodeToUTF8(_skillId, skillId);
+	ticpp::Element *rootElement = xmlManager_->GetData("SquadData", squadId);
+	if (rootElement != NULL)
+	{
+		ticpp::Element *dataElement = rootElement->FirstChildElement("SkillTable", false);
+		if (dataElement != NULL)
+		{
+			ticpp::Element *childElement = dataElement->FirstChildElement(skillId, false);
+			if (childElement != NULL) dataElement->RemoveChild(childElement);
+		}
+	}
 }
 
 void DataManager::RemoveStrTable(std::wstring _key)
@@ -1002,6 +1136,20 @@ int DataManager::GetInt(std::string _parent, std::wstring _id, std::string _tag)
 	int data = 0;
 	dataElement->GetAttribute("value", &data, false);
 	return data;
+}
+
+int DataManager::GetIsSquadSkill(std::wstring _squadId, std::wstring _skillId)
+{
+	std::string squadId;
+	std::string skillId;
+	UnicodeToUTF8(_squadId, squadId);
+	UnicodeToUTF8(_skillId, skillId);
+	ticpp::Element *rootElement = xmlManager_->GetData("SquadData", squadId);
+	if (rootElement == NULL) return 0;
+	ticpp::Element *dataElement = rootElement->FirstChildElement("SkillTable", false);
+	if (dataElement == NULL) return 0;
+	if (dataElement->FirstChildElement(skillId, false) != NULL) return 1;
+	return 0;
 }
 
 float DataManager::GetFloat(std::string _parent, std::wstring _id, std::string _tag)
@@ -1131,6 +1279,13 @@ bool DataManager::SetInt(std::string _parent, std::wstring _id, std::string _tag
 	std::string tempid;
 	UnicodeToUTF8(_id, tempid);
 	return xmlManager_->SetDataInt(_parent, tempid, _tag, _value);
+}
+
+bool DataManager::SetIsSquadSkill(std::wstring _squadId, std::wstring _skillId, int _value)
+{
+	if (_value == 0) RemoveSquadSkill(_squadId, _skillId);
+	else AddSquadSkill(_squadId, _skillId);
+	return true;
 }
 
 bool DataManager::SetFloat(std::string _parent, std::wstring _id, std::string _tag, float _value)

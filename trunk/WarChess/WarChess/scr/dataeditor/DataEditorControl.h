@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QObject>
+#include <QModelIndex>
 
 namespace Ui
 {
@@ -16,6 +17,7 @@ class ShieldTableModule;
 class SkillTableModule;
 class EffectTableModule;
 class SquadTableModule;
+class SquadSkillTableModule;
 class StringTableModule;
 
 class QTableView;
@@ -43,6 +45,7 @@ public:
 	QTableView *mSkillTableView;
 	QTableView *mEffectTableView;
 	QTableView *mSquadTableView;
+	QTableView *mSquadSkillTableView;
 	QTableView *mStringTableView;
 
 	SoldierTableModule *mSoldierTableModule;
@@ -54,6 +57,7 @@ public:
 	SkillTableModule *mSkillTableModule;
 	EffectTableModule *mEffectTableModule;
 	SquadTableModule *mSquadTableModule;
+	SquadSkillTableModule *mSquadSkillTableModule;
 	StringTableModule *mStringTableModule;
 
 	//接收界面消息
@@ -80,6 +84,9 @@ public slots:
 	void DelEffect();
 	void AddSquad();
 	void DelSquad();
+	void AddSquadSkill();
+	void DelSquadSkill();
 	void AddString();
 	void DelString();
+	void SelectSquad(QModelIndex _index);
 };

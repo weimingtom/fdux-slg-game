@@ -9,6 +9,7 @@ const std::string SOLDIER_TAG = "SoilderData";
 const std::string SKILL_TAG = "SkillData";
 const std::string EFFECT_TAG = "EffectData";
 const std::string SQUAD_TAG = "SquadData";
+const std::string SQUADSKILL_TAG = "SkillTable";
 
 const std::string NAME_TAG = "Name";
 const std::string DESCRIPTION_TAG = "Describe";

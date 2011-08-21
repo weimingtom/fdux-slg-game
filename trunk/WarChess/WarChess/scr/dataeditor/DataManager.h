@@ -43,14 +43,17 @@ public:
 	void AddSkill();
 	void AddEffect();
 	void AddSquad();
+	void AddSquadSkill(std::wstring _squadId, std::wstring _skillId);
 	void AddString();
 
 	void RemoveData(std::string _parent, std::wstring _id);
+	void RemoveSquadSkill(std::wstring _squadId, std::wstring _skillId);
 	void RemoveStrTable(std::wstring _key);
 
 	int GetCount(std::string _parent);
 	int GetStrTableCount();
 	int GetInt(std::string _parent, std::wstring _id, std::string _tag);
+	int GetIsSquadSkill(std::wstring _squadId, std::wstring _skillId);
 	float GetFloat(std::string _parent, std::wstring _id, std::string _tag);
 	float GetAttribute(std::string _parent, std::wstring _id, BasicAttr _attrType);
 
@@ -61,6 +64,7 @@ public:
 	std::wstring GetStrTable(std::wstring _key);
 
 	bool SetInt(std::string _parent, std::wstring _id, std::string _tag, int _value);
+	bool SetIsSquadSkill(std::wstring _squadId, std::wstring _skillId, int _value);
 	bool SetFloat(std::string _parent, std::wstring _id, std::string _tag, float _value);
 	bool SetAttribute(std::string _parent, std::wstring _id, BasicAttr _attrType, float _attr);
 

@@ -23,7 +23,6 @@ public:
 
 	void ModChanged() {reset();}
 private:
-
 };
 
 #endif // SQUADTABLEMODULE_H
