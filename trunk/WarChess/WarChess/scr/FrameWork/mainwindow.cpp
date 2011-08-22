@@ -15,9 +15,11 @@
 #include "ObjectData.h"
 #include <Windows.h>
 
+#include "Common.h"
 #include "AreaManager.h"
 #include "Area.h"
 #include "RampManager.h"
+#include "TerrainEditor.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -188,6 +190,87 @@ void MainWindow::LoadMap()
 	ui->mapInfo->setText(QString::fromStdString(element->GetText()));
 	element = element->NextSiblingElement("MapLoadBG");
 	ui->mapBG->setText(QString::fromStdString(element->GetText()));
+	element = element->NextSiblingElement("MapSize");
+	int gridSize = QString::fromStdString(element->GetText()).toInt();
+	TerrainSystem *terrain = IIRoot::getSingleton().mTerrain;
+	terrain->initTerrain(gridSize, 16);
+	TerrainEditor *editor = terrain->addEditor(GroundID,SecGrid);
+	editor->setEditorMode(PutMode);
+	element = element->NextSiblingElement("MapData");
+	QString mapData = QString::fromStdString(element->GetText());
+	for (int z = 0; z < gridSize; z++)
+	{
+		for (int x = 0; x < gridSize; x++)
+		{
+			int index = (z * gridSize + x) * 2;
+			char prefix = mapData.at(index).toAscii();
+			char suffix = mapData.at(index + 1).toAscii();
+			std::string type;
+			if (prefix == 'l')
+			{
+				if (suffix == 'g')
+				{
+					type = "GreenLand";
+				}
+				else if (suffix == 'd')
+				{
+					type = "Desert";
+				}
+				else if (suffix == 'w')
+				{
+					type = "Swamp";
+				}
+				else if (suffix == 's')
+				{
+					type = "Snow";
+				}
+			}
+			else if (prefix == 'h')
+			{
+				if (suffix == 'g')
+				{
+					type = "HighGroundGreen";
+				}
+				else if (suffix == 'd')
+				{
+					type = "HighGroundDesert";
+				}
+				else if (suffix == 'w')
+				{
+					type = "HighGroundSwamp";
+				}
+				else if (suffix == 's')
+				{
+					type = "HighGroundSnow";
+				}
+			}
+			else if (prefix == 'w')
+			{
+				if (suffix == 'g')
+				{
+					type = "WaterGreen";
+				}
+				else if (suffix == 'd')
+				{
+					type = "WaterDesert";
+				}
+				else if (suffix == 'w')
+				{
+					type = "WaterSwamp";
+				}
+				else if (suffix == 's')
+				{
+					type = "WaterSnow";
+				}
+			}
+			else if (prefix == 'r')
+			{
+				type = "Ramp";
+			}
+			editor->setEditorType(type);
+			editor->setGrid(x, z);
+		}
+	}
 }
 
 void MainWindow::SaveMap()
