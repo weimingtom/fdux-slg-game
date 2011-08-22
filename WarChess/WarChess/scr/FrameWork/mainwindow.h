@@ -52,6 +52,7 @@ private:
 	DataEditorControl* dataEditorControl;
 
 public slots:
+	void LoadMap();
 	void SaveMap();
 };
 
