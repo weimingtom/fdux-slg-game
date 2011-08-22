@@ -13,6 +13,7 @@
 #include <ticpp.h>
 #include "conversion.h"
 #include "ObjectData.h"
+#include <Windows.h>
 
 #include "AreaManager.h"
 #include "Area.h"
@@ -117,6 +118,7 @@ void MainWindow::initValue()
 	this->connect(ui->addCoord,SIGNAL(clicked()),mAreaControl,SLOT(AddCoord()) );
 	this->connect(ui->delCoord,SIGNAL(clicked()),mAreaControl,SLOT(DelCoord()) );
 
+	this->connect(ui->loadMap,SIGNAL(triggered(bool)),this,SLOT(LoadMap()));
 	this->connect(ui->saveMap,SIGNAL(triggered(bool)),this,SLOT(SaveMap()));
 }
 
@@ -136,12 +138,67 @@ QStatusBar* MainWindow::getBar()
     return ui->statusBar;
 }
 
+void MainWindow::LoadMap()
+{
+	bool dialogOK;
+	QString dialogText = QInputDialog::getText(this,
+										tr("请输入地图文件名"),
+										tr("地图文件名:"),
+										QLineEdit::Normal,
+										QString(),
+										&dialogOK);
+	//QMessageBox::information(NULL,
+	//						tr("debug"),
+	//						text);
+
+	if (!dialogOK || dialogText.isEmpty()) return;
+
+	std::wstring mapPath16 = dialogText.toStdWString();
+	std::string mapPath8;
+	UnicodeToANSI(mapPath16, mapPath8);
+
+	WIN32_FIND_DATA findFileData;
+	memset(&findFileData,0,sizeof(findFileData));
+
+	ticpp::Document doc;
+	doc.Clear();
+	HANDLE hFind = FindFirstFile(mapPath16.c_str(),&findFileData);
+	if (hFind != INVALID_HANDLE_VALUE)
+	{
+		doc.LoadFile(mapPath8.c_str(),TIXML_ENCODING_UTF8);
+		FindClose(hFind);
+	}
+	if (doc.NoChildren()) return;
+
+	ticpp::Element *element = doc.FirstChildElement("MapName");
+	ui->mapName->setText(QString::fromStdString(element->GetText()));
+	element = element->NextSiblingElement("MapTeam");
+	ticpp::Element *subElement = element->FirstChildElement("Team2");
+	ui->team2Relation->setCurrentIndex(ui->team2Relation->findText(QString::fromStdString(subElement->GetAttribute("TeamType"))));
+	ui->team2Faction->setText(QString::fromStdString(subElement->GetAttribute("TeamFaction")));
+	subElement = subElement->NextSiblingElement("Team3");
+	ui->team3Relation->setCurrentIndex(ui->team3Relation->findText(QString::fromStdString(subElement->GetAttribute("TeamType"))));
+	ui->team3Faction->setText(QString::fromStdString(subElement->GetAttribute("TeamFaction")));
+	subElement = subElement->NextSiblingElement("Team4");
+	ui->team4Relation->setCurrentIndex(ui->team4Relation->findText(QString::fromStdString(subElement->GetAttribute("TeamType"))));
+	ui->team4Faction->setText(QString::fromStdString(subElement->GetAttribute("TeamFaction")));
+	element = element->NextSiblingElement("MapScript");
+	ui->mapScript->setText(QString::fromStdString(element->GetText()));
+	element = element->NextSiblingElement("MapInfo");
+	ui->mapInfo->setText(QString::fromStdString(element->GetText()));
+	element = element->NextSiblingElement("MapLoadBG");
+	ui->mapBG->setText(QString::fromStdString(element->GetText()));
+}
+
 void MainWindow::SaveMap()
 {
 	bool ok;
-	QString text = QInputDialog::getText(this, tr("请输入地图文件名"),
-		tr("地图文件名:"), QLineEdit::Normal,
-		QString(), &ok);
+	QString text = QInputDialog::getText(this,
+										tr("请输入地图文件名"),
+										tr("地图文件名:"),
+										QLineEdit::Normal,
+										QString(),
+										&ok);
 	if (ok && !text.isEmpty())
 	{
 		ticpp::Document* doc = new ticpp::Document(text.toStdString());
@@ -171,6 +228,9 @@ void MainWindow::SaveMap()
 		doc->LinkEndChild(element);
 		element = new ticpp::Element( "MapInfo" );
 		element->SetText(ui->mapInfo->toPlainText().toStdString());
+		doc->LinkEndChild(element);
+		element = new ticpp::Element("MapLoadBG");
+		element->SetText(ui->mapBG->text().toStdString());
 		doc->LinkEndChild(element);
 		//地图地形信息
 		TerrainSystem* terrain = IIRoot::getSingleton().mTerrain;
