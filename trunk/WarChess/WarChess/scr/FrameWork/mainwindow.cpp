@@ -271,6 +271,106 @@ void MainWindow::LoadMap()
 			editor->setGrid(x, z);
 		}
 	}
+	element = element->NextSiblingElement("MapObject");
+	if (!element->NoChildren())
+	{
+		subElement = element->FirstChildElement(false);
+		while(subElement != NULL)
+		{		
+			int gridX = 0;
+			int gridY = 0;
+			subElement->GetAttribute("GridX", &gridX, false);
+			subElement->GetAttribute("GridY", &gridY, false);
+			std::string tempStr;
+			subElement->GetValue(&tempStr);
+			QString objectName = QString::fromStdString(tempStr);
+			QString groupName = QString::fromStdString("地表物件");
+			QString typeName = QString::fromStdString(subElement->GetAttribute("Type"));
+			QString meshName = QString::fromStdString(subElement->GetAttribute("Mesh"));
+			Ogre::Vector2 position2f = terrain->getRealXY(gridX, gridY, SecGrid);
+			Ogre::Vector3* position3f = new Ogre::Vector3(position2f.x, terrain->getHeight(gridX, gridY), position2f.y);
+			
+			Ogre::SceneNode* node=IIRoot::getSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
+			node->setPosition(*position3f);
+			Ogre::Entity* entity=IIRoot::getSingleton().mSceneMgr->createEntity(meshName.toLocal8Bit().data());
+			entity->setQueryFlags(DEFAULT_QUERY_MARK);
+			node->attachObject(entity);
+			objectControl->addObject(objectName,groupName,typeName,node,entity);
+
+			subElement = static_cast<ticpp::Element*>(element->IterateChildren(subElement));
+		}
+	}
+	element = element->NextSiblingElement("MapEffect");
+	if (!element->NoChildren())
+	{
+		subElement = element->FirstChildElement(false);
+		while(subElement != NULL)
+		{		
+			int gridX = 0;
+			int gridY = 0;
+			subElement->GetAttribute("GridX", &gridX, false);
+			subElement->GetAttribute("GridY", &gridY, false);
+			std::string tempStr;
+			subElement->GetValue(&tempStr);
+			QString objectName = QString::fromStdString(tempStr);
+			QString groupName = QString::fromStdString("地表特效");
+			QString typeName = QString::fromStdString(subElement->GetAttribute("Type"));
+			QString meshName = "Cube.mesh";
+			Ogre::Vector2 position2f = terrain->getRealXY(gridX, gridY, SecGrid);
+			Ogre::Vector3* position3f = new Ogre::Vector3(position2f.x, terrain->getHeight(gridX, gridY), position2f.y);
+			
+			Ogre::SceneNode* node=IIRoot::getSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
+			node->setPosition(*position3f);
+			Ogre::Entity* entity=IIRoot::getSingleton().mSceneMgr->createEntity(meshName.toLocal8Bit().data());
+			entity->setQueryFlags(DEFAULT_QUERY_MARK);
+			node->attachObject(entity);
+			objectControl->addObject(objectName,groupName,typeName,node,entity);
+
+			subElement = static_cast<ticpp::Element*>(element->IterateChildren(subElement));
+		}
+	}
+	element = element->NextSiblingElement("MapSquad");
+	if (!element->NoChildren())
+	{
+		for(int i = 1; i < 5; i++)
+		{
+			char groupname[20];
+			sprintf_s(groupname,20,"Team%d",i);
+			ticpp::Element* teamElement = element->FirstChildElement(groupname, false);
+			subElement = teamElement->FirstChildElement(false);
+			sprintf_s(groupname,20,"势力%d单位",i);			
+			while(subElement != NULL)
+			{		
+				int gridX = 0;
+				int gridY = 0;
+				subElement->GetAttribute("GridX", &gridX, false);
+				subElement->GetAttribute("GridY", &gridY, false);
+				std::string tempStr;
+				subElement->GetValue(&tempStr);
+				QString objectName = QString::fromStdString(tempStr);
+				QString groupName = QString::fromStdString(groupname);
+				QString typeName = QString::fromStdString(subElement->GetAttribute("Type"));
+				QString meshName = "FlagRed.mesh";
+				QString matName;
+				if (i == 1) matName = "FlagRed";
+				else if (i == 2) matName = "FlagBlue";
+				else if (i == 3) matName = "FlagGreen";
+				else matName = "FlagYellow";
+				Ogre::Vector2 position2f = terrain->getRealXY(gridX, gridY, SecGrid);
+				Ogre::Vector3* position3f = new Ogre::Vector3(position2f.x, terrain->getHeight(gridX, gridY), position2f.y);
+				
+				Ogre::SceneNode* node=IIRoot::getSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
+				node->setPosition(*position3f);
+				Ogre::Entity* entity=IIRoot::getSingleton().mSceneMgr->createEntity(meshName.toLocal8Bit().data());
+				entity->setQueryFlags(DEFAULT_QUERY_MARK);
+				entity->setMaterialName(matName.toLocal8Bit().data());
+				node->attachObject(entity);
+				objectControl->addObject(objectName,groupName,typeName,node,entity);
+
+				subElement = static_cast<ticpp::Element*>(teamElement->IterateChildren(subElement));
+			}
+		}
+	}
 }
 
 void MainWindow::SaveMap()
