@@ -371,6 +371,28 @@ void MainWindow::LoadMap()
 			}
 		}
 	}
+	element = element->NextSiblingElement("MapArea");
+	QListView* areaView = ui->areaListView;
+	subElement = element->FirstChildElement(false);
+	while(subElement != NULL)
+	{
+		std::string areaName;
+		subElement->GetValue(&areaName);
+		Area* area = new Area(areaName);
+		int x;
+		int y;
+		ticpp::Element* coodElement = subElement->FirstChildElement(false);
+		while(coodElement != NULL)
+		{
+			coodElement->GetAttribute("X", &x, false);
+			coodElement->GetAttribute("Y", &y, false);
+			area->addCoord(x, y);
+			coodElement = static_cast<ticpp::Element*>(subElement->IterateChildren(coodElement));
+		}
+		AreaManager::getSingleton().mAreaList.push_back(area);
+		subElement = static_cast<ticpp::Element*>(element->IterateChildren(subElement));
+	}
+	areaView->reset();
 }
 
 void MainWindow::SaveMap()
@@ -552,7 +574,7 @@ void MainWindow::SaveMap()
 				ticpp::Element* subsubelement;
 				for(int d = 0; d < pointlist.size(); d += 2)
 				{
-					subsubelement = new ticpp::Element(Ogre::StringConverter::toString(d/2));
+					subsubelement = new ticpp::Element('c' + Ogre::StringConverter::toString(d/2));
 					subsubelement->SetAttribute("X",pointlist[d] );
 					subsubelement->SetAttribute("Y",pointlist[d+1] );
 					subelement->LinkEndChild(subsubelement);
