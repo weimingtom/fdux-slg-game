@@ -4,6 +4,8 @@
 #include "EntityData.h"
 #include "IIRoot.h"
 
+#include <QMap>
+
 class ObjectData:public EntityData
 {
 public:
@@ -26,4 +28,5 @@ public:
 	int GridX;
 	int GridY;
 
+	QMap<QString, QString> map;
 };
