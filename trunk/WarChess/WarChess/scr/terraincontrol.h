@@ -68,6 +68,7 @@ private:
 	QComboBox* mTeam4Relation;
 	QLineEdit* mMapScript;
 	QTextEdit* mMapInfo;
+	QLineEdit* mMapBG;
 
 	bool mEnable;
 };
