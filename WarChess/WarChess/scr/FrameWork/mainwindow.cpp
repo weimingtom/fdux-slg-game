@@ -295,7 +295,8 @@ void MainWindow::LoadMap()
 			Ogre::Entity* entity=IIRoot::getSingleton().mSceneMgr->createEntity(meshName.toLocal8Bit().data());
 			entity->setQueryFlags(DEFAULT_QUERY_MARK);
 			node->attachObject(entity);
-			objectControl->addObject(objectName,groupName,typeName,node,entity);
+			QMap<QString, QString> map;
+			objectControl->addObject(objectName,groupName,typeName,node,entity,map);
 
 			subElement = static_cast<ticpp::Element*>(element->IterateChildren(subElement));
 		}
@@ -324,7 +325,8 @@ void MainWindow::LoadMap()
 			Ogre::Entity* entity=IIRoot::getSingleton().mSceneMgr->createEntity(meshName.toLocal8Bit().data());
 			entity->setQueryFlags(DEFAULT_QUERY_MARK);
 			node->attachObject(entity);
-			objectControl->addObject(objectName,groupName,typeName,node,entity);
+			QMap<QString, QString> map;
+			objectControl->addObject(objectName,groupName,typeName,node,entity,map);
 
 			subElement = static_cast<ticpp::Element*>(element->IterateChildren(subElement));
 		}
@@ -343,8 +345,14 @@ void MainWindow::LoadMap()
 			{		
 				int gridX = 0;
 				int gridY = 0;
+				std::string direction;
+				std::string unitnum;
+				std::string morale;
 				subElement->GetAttribute("GridX", &gridX, false);
 				subElement->GetAttribute("GridY", &gridY, false);
+				direction = subElement->GetAttribute("Direction");
+				unitnum = subElement->GetAttribute("UnitNum");
+				morale = subElement->GetAttribute("Morale");
 				std::string tempStr;
 				subElement->GetValue(&tempStr);
 				QString objectName = QString::fromStdString(tempStr);
@@ -365,7 +373,12 @@ void MainWindow::LoadMap()
 				entity->setQueryFlags(DEFAULT_QUERY_MARK);
 				entity->setMaterialName(matName.toLocal8Bit().data());
 				node->attachObject(entity);
-				objectControl->addObject(objectName,groupName,typeName,node,entity);
+
+				QMap<QString, QString> map;
+				map["direction"] = QString::fromStdString(direction);
+				map["numunit"] = QString::fromStdString(unitnum);
+				map["morale"] = QString::fromStdString(morale);
+				objectControl->addObject(objectName,groupName,typeName,node,entity,map);				
 
 				subElement = static_cast<ticpp::Element*>(teamElement->IterateChildren(subElement));
 			}
@@ -554,6 +567,9 @@ void MainWindow::SaveMap()
 					subsubelement->SetAttribute("Type",data->EntityType.toStdString() );
 					subsubelement->SetAttribute("GridX",data->GridX );
 					subsubelement->SetAttribute("GridY",data->GridY );
+					subsubelement->SetAttribute("Direction", data->map.value("direction").toStdString());
+					subsubelement->SetAttribute("UnitNum", data->map.value("numunit").toStdString());
+					subsubelement->SetAttribute("Morale", data->map.value("morale").toStdString());
 					subelement->LinkEndChild(subsubelement);
 				}
 			}

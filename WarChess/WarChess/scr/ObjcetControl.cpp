@@ -79,7 +79,7 @@ ObjcetControl::~ObjcetControl()
 	delete mObjectModel;
 }
 
-void ObjcetControl::addObject( QString name,QString groupName,QString entityType,Ogre::SceneNode* objcetNode,Ogre::Entity* objectEntity)
+void ObjcetControl::addObject( QString name,QString groupName,QString entityType,Ogre::SceneNode* objcetNode,Ogre::Entity* objectEntity,const QMap<QString, QString>& attrMap)
 {
 	EntityTreeItem* groupItem=mObjectModel->getRootItem()->findItem(groupName);//得到组节点
 	if (groupItem!=NULL)
@@ -115,6 +115,19 @@ void ObjcetControl::addObject( QString name,QString groupName,QString entityType
 		objectData->mNode=objcetNode;
 		objectData->mEntity=objectEntity;
 		objectData->EntityType = entityType;
+		objectData->GroupName = groupName;
+		if (groupName.startsWith(QString::fromStdString("势力")) && attrMap.isEmpty())
+		{
+			objectData->map["direction"] = "1";
+			objectData->map["numunit"] = "0";
+			objectData->map["morale"] = "0";
+		}
+		if (groupName.startsWith(QString::fromStdString("势力")) && !attrMap.isEmpty())
+		{
+			objectData->map["direction"] = attrMap.value("direction");
+			objectData->map["numunit"] = attrMap.value("numunit");
+			objectData->map["morale"] = attrMap.value("morale");
+		}
 
 		int GX,GY;
 		IIRoot::getSingletonPtr()->mTerrain->calculateGrid(objcetNode->getPosition().x,objcetNode->getPosition().z,&GX,&GY);
@@ -688,6 +701,19 @@ void ObjcetControl::setAttribute()
 		map["ScaleY#float"]=QString().setNum(s.y);
 		map["ScaleZ#float"]=QString().setNum(s.z);
 
+		if (mSelectObject->map.contains("direction"))
+		{
+			map["Direction#string"] = mSelectObject->map.value("direction");
+		}
+		if (mSelectObject->map.contains("numunit"))
+		{
+			map["NumUnit#string"] = mSelectObject->map.value("numunit");
+		}
+		if (mSelectObject->map.contains("morale"))
+		{
+			map["Morale#string"] = mSelectObject->map.value("morale");
+		}
+
 		mAttribute->setAttribute(map);
 	}
 	else
@@ -801,6 +827,18 @@ void ObjcetControl::attributeChangle( QString name,QString value )
 		else if (name == "Type")
 		{
 			mSelectObject->EntityType = value;
+		}
+		else if (name == "Direction")
+		{
+			mSelectObject->map["direction"] = value;
+		}
+		else if (name == "NumUnit")
+		{
+			mSelectObject->map["numunit"] = value;
+		}
+		else if (name == "Morale")
+		{
+			mSelectObject->map["morale"] = value;
 		}
 	}
 }

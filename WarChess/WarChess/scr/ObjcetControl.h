@@ -24,7 +24,7 @@ public:
 	ObjcetControl(QTreeView* treeView,AttributeControl* attribute);
 	~ObjcetControl();
 
-	void addObject(QString name,QString groupName,QString entityType,Ogre::SceneNode* objcetNode,Ogre::Entity* objectEntity);//添加一个场景对象到场景中,仅允许从实体中创造
+	void addObject(QString name,QString groupName,QString entityType,Ogre::SceneNode* objcetNode,Ogre::Entity* objectEntity, const QMap<QString, QString>& attrMap);//添加一个场景对象到场景中,仅允许从实体中创造
 
 	QAction* mMoveAction;
 	QAction* mRotateAction;

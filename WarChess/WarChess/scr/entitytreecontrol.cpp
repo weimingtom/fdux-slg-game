@@ -325,7 +325,8 @@ void EntityTreeControl::mousePress( QMouseEvent * event )
 			entity->setMaterialName(mEntityItemData->MatName.toLocal8Bit().data());
 			node->attachObject(entity);
 			//3.将信息提交到ObjctControl
-			mObjectControl->addObject(mEntityItemData->name,mEntityItemData->GroupName,mEntityItemData->EntityType,node,entity);
+			QMap<QString, QString> map;
+			mObjectControl->addObject(mEntityItemData->name,mEntityItemData->GroupName,mEntityItemData->EntityType,node,entity,map);
 
 		}
 		else if (event->button()==Qt::MouseButton::RightButton)
