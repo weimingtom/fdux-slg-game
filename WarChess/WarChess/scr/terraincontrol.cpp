@@ -20,7 +20,7 @@ mTerrainList(ui->listWidget),mTerrainSystem(IIRoot::getSingletonPtr()->mTerrain)
 	mTeam4Relation = ui->team4Relation;
 	mMapScript = ui->mapScript;
 	mMapInfo = ui->mapInfo;
-	
+	mMapBG = ui->mapBG;
 }
 
 TerrainControl::~TerrainControl()
@@ -58,6 +58,7 @@ void TerrainControl::initMapInfo()
 	mTeam4Relation->setCurrentIndex(0);
 	mMapScript->setText("none");
 	mMapInfo->setText("none");
+	mMapBG->setText("none");
 }
 
 void TerrainControl::createEditor()
