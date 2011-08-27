@@ -859,7 +859,7 @@ void GUIStage::load()
 	//¶ÁÈ¡ÒôÀÖ
 	
 	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/MusicName",text);
-	if (text!="none" || text!="")
+	if (text!="none" && text!="")
 	{
 		AudioSystem::getSingletonPtr()->playStream(text,true,1000);
 	}

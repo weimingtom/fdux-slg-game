@@ -1213,7 +1213,7 @@ void BattleAIState::calcAPointLeft(BattleSquad* squad)
 	for(nodeite = mMoveMap.begin(); nodeite != mMoveMap.end(); nodeite++)
 	{
 		if(nodeite->second->mAPleft < 4.0f)
-			nodeite->second->mInterest -= (4.0f - nodeite->second->mAPleft) ;
+			nodeite->second->mInterest -= 2 * (4.0f - nodeite->second->mAPleft) ;
 	}
 }
 void BattleAIState::calcBattlePos(BattleSquad* squad, unsigned squadgroupid)
