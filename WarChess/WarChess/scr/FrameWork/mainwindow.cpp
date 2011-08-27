@@ -148,6 +148,8 @@ void MainWindow::LoadMap()
 
 	if (dialogText.isEmpty()) return;
 
+	//IIRoot::getSingleton().mSceneMgr->destroyAllEntities();
+
 	std::wstring mapPath16 = dialogText.toStdWString();
 	std::string mapPath8;
 	UnicodeToANSI(mapPath16, mapPath8);
@@ -399,6 +401,15 @@ void MainWindow::LoadMap()
 		subElement = static_cast<ticpp::Element*>(element->IterateChildren(subElement));
 	}
 	areaView->reset();
+
+	std::vector<std::string> typelist;
+	typelist = editor->getEditorTypeList();
+	for (std::vector<std::string>::iterator it=typelist.begin();it!=typelist.end();it++)
+	{
+		QListWidgetItem* item=new QListWidgetItem(QString((*it).c_str()));
+		item->setData(Qt::UserRole,(int)GroundID);
+		ui->listWidget->addItem(item);
+	}
 }
 
 void MainWindow::SaveMap()

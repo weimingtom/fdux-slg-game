@@ -87,8 +87,8 @@ void ObjcetControl::addObject( QString name,QString groupName,QString entityType
 		//这里传入的是实体的名称,由于场景可能有多个来自于同一个实体的对象,所以名字要特殊处理
 		QVector<EntityTreeItem*> result;
 		QVector<EntityTreeItem*>::Iterator it;
-		QString objectName=name;
-		mObjectModel->getRootItem()->findItemAsSimpleName(name,&result);//先从列表中查找具有相同部分的项
+		QString objectName = name.indexOf('_') == -1 ? name : name.split('_').at(0);
+		mObjectModel->getRootItem()->findItemAsSimpleName(objectName,&result);//先从列表中查找具有相同部分的项
 		
 		if (result.size()!=0)
 		{
