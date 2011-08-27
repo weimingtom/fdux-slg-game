@@ -429,6 +429,14 @@ extern "C"
 		return 1;
 	}
 
+	static int AutoSave(lua_State* L)
+	{
+		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+		stage->saveData(true);
+
+		return 1;
+	}
+
 	static const struct luaL_Reg GUILib[] =
 	{
 		{"Music",Music},
@@ -455,6 +463,7 @@ extern "C"
 		{"Wait",Wait},
 
 		{"NextScene",NextScene},
+		{"AutoSave",AutoSave},
 
 		{NULL,NULL}
 	};

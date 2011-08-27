@@ -12,12 +12,15 @@
 #include "GUIMenuWindow.h"
 #include "DataLibrary.h"
 #include "StringTable.h"
+#include <boost/format.hpp>
 #endif
 
 #define DefaultDialogVisibleTime 500//默认对话框渐出时间
 #define DefaultRoleNameVisibleTime 100//默认角色名渐变时间
 #define LineCursorFileName "LineCursor.png"//默认行光标文件名
 #define PageCursorFileName "PageCursor.png"//默认换页光标文件名
+
+#define SAVE_PATH "..\\save"
 
 GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),mCheckMouseDown(false),mIsMouseDown(false),mTextX(0),mTextY(0),mIsFastForward(false),SLWindow(NULL)
 {
@@ -47,23 +50,30 @@ GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),m
 	assignWidget(mEffectLayer, "EffectLayer");
 	assignWidget(mEffectLayerUniversal, "EffectLayerUniversal");
 
+	assignWidget(mHistoryBox, "HistoryBox");
+	assignWidget(mHistoryBoxExit, "HistoryBoxExit");
+
 	assignWidget(mSaveButton, "SaveButton");
 	assignWidget(mLoadButton, "LoadButton");
 	assignWidget(mHideButton,"HideButton");
 	assignWidget(mSystemButton,"SystemButton");
+	assignWidget(mHistoryButton,"HistoryButton");
+
 #ifndef SCRIPT_EDITOR
 	mSaveButton->setCaption(StringTable::getSingletonPtr()->getString("SaveButton"));
 	mLoadButton->setCaption(StringTable::getSingletonPtr()->getString("LoadButton"));
 	mHideButton->setCaption(StringTable::getSingletonPtr()->getString("HideButton"));
 	mSystemButton->setCaption(StringTable::getSingletonPtr()->getString("SystemButton"));
+	mHistoryButton->setCaption(StringTable::getSingletonPtr()->getString("HistoryButton"));
 #endif
 
 	mEffectLayer->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::eventMouseButtonClick);
+	mHistoryBoxExit->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::eventHistoryBoxExit);
 	mSaveButton->eventMouseButtonClick+=MyGUI::newDelegate(this, &GUIStage::onSave);
 	mLoadButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::onLoad);
 	mHideButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::onHide);
 	mSystemButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::onSystem);
-
+	mHistoryButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::onHistory);
 }
 
 GUIStage::~GUIStage(void)
@@ -121,26 +131,23 @@ void GUIStage::hideScene()
 
 void GUIStage::eventMouseButtonClick(MyGUI::Widget* _sender)
 {
-	if (mCheckMouseDown)
-	{
-		mIsMouseDown=true;
-		mCheckMouseDown=false;
-	}
+	getMouseState();
+}
+
+void GUIStage::eventHistoryBoxExit(MyGUI::Widget* _sender)
+{
+	setHistoryBoxVisible(false);
 }
 
 void GUIStage::keyPressed(const OIS::KeyEvent &arg )
 {
-	if (arg.key==OIS::KC_LCONTROL)
+	if (arg.key==OIS::KC_LCONTROL && (!mHistoryBox->getVisible()))
 	{
-		fastForward(true);
+		mIsFastForward=true;
 	}
 	else if(arg.key==OIS::KC_SPACE || arg.key==OIS::KC_RETURN)
 	{
-		if (mCheckMouseDown)
-		{
-			mIsMouseDown=true;
-			mCheckMouseDown=false;
-		}
+		getMouseState();
 	}
 }
 
@@ -148,13 +155,17 @@ void GUIStage::keyReleased(const OIS::KeyEvent &arg )
 {
 	if (arg.key==OIS::KC_LCONTROL)
 	{
-		fastForward(false);
+		mIsFastForward=false;
 	}
 }
 
-void GUIStage::fastForward( bool value )
+void GUIStage::getMouseState() 
 {
-	mIsFastForward=value;
+	if (mCheckMouseDown && (!mHistoryBox->getVisible()))
+	{
+		mIsMouseDown=true;
+		mCheckMouseDown=false;
+	}
 }
 
 void GUIStage::setCheckMouseDown()
@@ -165,7 +176,14 @@ void GUIStage::setCheckMouseDown()
 
 bool GUIStage::CheckMouseState()
 {
-	return mIsMouseDown;
+	if (mIsFastForward)
+	{
+		return true;
+	}
+	else
+	{
+		return mIsMouseDown;
+	}
 }
 
 
@@ -182,6 +200,9 @@ void GUIStage::setTextDialog( const GUIDialogAttribute& attribute )
 	mTextBox->setSize(attribute.TextWidth,attribute.TextHeight);
 	mTextBox->setTextColour(MyGUI::Colour(attribute.TextRed,attribute.TextGreen,attribute.TextBlue));
 	mTextBox->setFontName(attribute.TextFont);
+
+	mHistoryBox->setTextColour(MyGUI::Colour::White);
+	mHistoryBox->setFontName(attribute.TextFont);
 
 	mRoleName->setPosition(attribute.RoleNameLeft,attribute.RoleNameTop);
 	mRoleName->setSize(attribute.RoleNameWidth,attribute.RoleNameHeight);
@@ -213,6 +234,54 @@ void GUIStage::setTextDialogVisible( bool visible )
 	buttonLock(false);
 }
 
+void GUIStage::setHistoryBoxVisible( bool visible )
+{
+	if (visible)
+	{
+		mEffectLayerGroup->setVisible(false);
+	}
+	else
+	{
+		mEffectLayerGroup->setVisible(true);
+	}
+
+	mHistoryBox->setVisible(visible);
+	mHistoryBoxExit->setVisible(visible);
+	setTextDialogVisible(!visible);
+}
+
+void GUIStage::addToHistoryBox(std::wstring text)
+{
+	if(!mCurrentRoleName.empty())
+	{
+		mHistoryBox->addText(std::wstring(L"#FF0000")+mCurrentRoleName+std::wstring(L"#FFFFFF : "));
+		mCurrentRoleName.clear();
+	}
+
+	MyGUI::IntPoint p=mHistoryBox->getTextCursorPos();
+
+	int lineTextNum=(mHistoryBox->getWidth()-p.left-30)/25;
+
+	if (lineTextNum>text.length())
+	{
+		mHistoryBox->addText(text);
+	}
+	else
+	{
+		mHistoryBox->addText(text.substr(0,lineTextNum));
+		text.erase(0,lineTextNum);
+
+		lineTextNum=(mHistoryBox->getWidth()-30)/25;
+
+		for (int i=0;i<=(text.length()/lineTextNum);i++)
+		{
+			mHistoryBox->addText("\n");
+			mHistoryBox->addText(text.substr(0,lineTextNum));
+			text.erase(0,lineTextNum);
+		}
+	}
+}
+
 void GUIStage::waitTime( float time )
 {
 	mTimerWork=WaitWork;
@@ -225,6 +294,8 @@ void GUIStage::waitTime( float time )
 
 void GUIStage::showText( std::wstring text,float delay)
 {
+	addToHistoryBox(text);
+
 	if(delay==0)
 	{
 		mTextBox->addText(text);
@@ -240,6 +311,29 @@ void GUIStage::showText( std::wstring text,float delay)
 		mTimer.reset();
 		GUISystem::getSingletonPtr()->setFrameUpdateScene(StageScene);
 	}
+}
+
+void GUIStage::showOtherText()
+{
+	//停止帧更新
+	mTickTime=0;
+	mTimerWork=NoneWork;
+	GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);
+
+	while(!mTextBuffer.empty())
+	{
+		std::wstring subString=mTextBuffer.substr(0,1);
+		mTextBox->addText(subString);
+		if (mTextBox->getHScrollPosition()!=0)//自动换行
+		{
+			int length=mTextBox->getTextLength();
+			mTextBox->eraseText(length-1);
+			mTextBox->addText("\n");
+			mTextBox->addText(subString);
+		}
+		mTextBuffer.erase(mTextBuffer.begin());
+	}
+	mTextBuffer.clear();
 }
 
 void GUIStage::showImage( std::string imageName,GUIImageLayer layer,float time,int left,int top)
@@ -337,6 +431,7 @@ void GUIStage::showImage( std::string imageName,GUIImageLayer layer,float time,i
 			
 			FadeOut(time,mScrLayer);
 			FadeIn(time,mUniversalLayer);
+			GUISystem::getSingletonPtr()->setFrameUpdateScene(StageScene);
 		}
 		else
 		{
@@ -348,6 +443,7 @@ void GUIStage::showImage( std::string imageName,GUIImageLayer layer,float time,i
 
 void GUIStage::showRoleName( std::wstring text )
 {
+	mCurrentRoleName=text;
 	mRoleNameUniversal->setCaption(text);
 	mRoleNameUniversal->setAlpha(0);
 	mRoleName->setAlpha(1);
@@ -356,40 +452,89 @@ void GUIStage::showRoleName( std::wstring text )
 
 	FadeIn(DefaultRoleNameVisibleTime,mRoleNameUniversal);
 	FadeOut(DefaultRoleNameVisibleTime,mRoleName);
-}
-
-void GUIStage::showOtherText()
-{
-	//停止帧更新
-	mTickTime=0;
-	mTimerWork=NoneWork;
-	GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);
-
-	while(!mTextBuffer.empty())
-	{
-		mTextBox->addText(mTextBuffer.substr(0,1));
-		if (mTextBox->getHScrollPosition()!=0)//自动换行
-		{
-			int length=mTextBox->getTextLength();
-			mTextBox->eraseText(length-1);
-			mTextBox->addText("\n");
-			mTextBox->addText(mTextBuffer.substr(0,1));
-		}
-		mTextBuffer.erase(mTextBuffer.begin());
-	}
-	mTextBuffer.clear();
+	GUISystem::getSingletonPtr()->setFrameUpdateScene(StageScene);
 }
 
 void GUIStage::clearText()
 {
 	mTextBox->setCaption("");
+	addToHistoryBox(L"\n");
+}
+
+bool GUIStage::isCanFastForward()
+{
+	if (mTimerWork==FadeInOutWork)
+	{
+		return false;
+	}
+	if (!mTextBoxVisible)
+	{
+		return false;
+	}
+	else if (SLWindow!=NULL)
+	{
+		return false;
+	}
+	else if(mHistoryBox->getVisible())
+	{
+		return false;
+	}
+
+	return true;
+}
+
+void GUIStage::fastForward()
+{
+	if (!isCanFastForward())
+	{
+		mIsFastForward=false;
+		return;
+	}
+
+	switch(mTimerWork)
+	{
+	case PrinterWork:
+		{
+			showOtherText();
+			break;
+		}
+	case UniversalWork:
+		{
+			StopFadeOut(mScrLayer);
+			StopFadeIn(mUniversalLayer);
+			break;
+		}
+	case WaitWork:
+		{
+			mTickTime=1;
+			break;
+		}
+	case RoleNameWork:
+		{
+			StopFadeOut(mRoleName);
+			StopFadeIn(mRoleNameUniversal);
+			break;
+		}
+	case ClearAllRoleWork:
+		{
+			StopFadeOut(mLeftLayer);
+			StopFadeOut(mMidLayer);
+			StopFadeOut(mRightLayer);
+			break;
+		}
+	}
 }
 
 void GUIStage::FrameEvent()
 {
+	if (mIsFastForward)
+	{
+		fastForward();
+	}
+
 	if(mTickTime!=0)
 	{
-		if (mTimer.getMilliseconds()>=mTickTime || (mIsFastForward && isCanFastForward()))
+		if (mTimer.getMilliseconds()>=mTickTime )
 		{
 			//复位定时器
 			mTimer.reset();
@@ -433,6 +578,78 @@ void GUIStage::FrameEvent()
 	}
 }
 
+void GUIStage::onOtherSceneNotify(std::string arg)
+{
+	if(arg=="LoadSelect")
+	{
+		load();
+	}
+	else if(arg=="LoadComplete")
+	{
+		loadComplete();
+		SLWindow=NULL;
+	}
+	else if (arg=="Return")
+	{
+		returnScene();
+		SLWindow=NULL;
+	}
+	else if(arg=="FadeInOver")
+	{
+		switch(mTimerWork)
+		{
+		case FadeInOutWork:
+			{
+				buttonLock(true);
+				mTimerWork=NoneWork;
+				break;
+			}
+		}
+
+	}
+	else if(arg=="FadeOutOver")
+	{
+		switch(mTimerWork)
+		{
+		case ClearAllRoleWork:
+			{
+				mLeftLayer->setImageTexture("");
+				mLeftLayer->setAlpha(1.0);
+				mMidLayer->setImageTexture("");
+				mMidLayer->setAlpha(1.0);
+				mRightLayer->setImageTexture("");
+				mRightLayer->setAlpha(1.0);
+				break;
+			}
+		case FadeInOutWork:
+			{
+				buttonLock(true);
+				break;
+			}
+		case RoleNameWork:
+			{
+				std::string s=mRoleNameUniversal->getCaption();
+				mRoleName->setCaption(s);
+				mRoleName->setAlpha(1);
+				mRoleNameUniversal->setAlpha(0);
+				break;
+			}
+		case UniversalWork:
+			{
+				mScrLayer->setImageTexture(mTextureName);
+				mScrLayer->setAlpha(1);
+				mUniversalLayer->setAlpha(0);
+				break;
+			}
+		}
+
+		mTimerWork=NoneWork;
+		GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);
+	}
+}
+
+
+
 void GUIStage::showTextCursor( bool isLine )
 {
 	MyGUI::IntPoint p=mTextBox->getTextCursorPos();
@@ -463,7 +680,7 @@ void GUIStage::hideTextCursor()
 	mTextCursor->setVisible(false);
 }
 
-void GUIStage::onSave(MyGUI::Widget* _sender)
+void GUIStage::saveData(bool isAutoSave)
 {
 #ifndef SCRIPT_EDITOR
 	//写入场景数据
@@ -513,12 +730,31 @@ void GUIStage::onSave(MyGUI::Widget* _sender)
 
 	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/RoleName",mRoleName->getOnlyText());
 	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/TextCursorType",mTextCursorType);
-	
+
 	//写入脚本名与位置
 	LuaSystem::getSingletonPtr()->saveScriptRuntime();
 
 	//写入音乐
 	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/MusicName",AudioSystem::getSingletonPtr()->mStreamName);
+
+	if (isAutoSave)
+	{
+		//加入时间戳
+		SYSTEMTIME systm;
+		GetLocalTime(&systm);
+		std::string timeString=str(boost::format(" %1%-%2%-%3% %4%:%5%:%6%")%systm.wYear%systm.wMonth%systm.wDay%systm.wHour%systm.wMinute%systm.wSecond);
+
+		DataLibrary::getSingletonPtr()->setData("SystemConfig/Save/Save1",std::string("AutoSave")+timeString);
+		DataLibrary::getSingletonPtr()->saveXmlData(DataLibrary::SystemConfig,std::string(SAVE_PATH)+std::string("\\Config.xml"));
+		DataLibrary::getSingletonPtr()->saveXmlData(DataLibrary::GameData,std::string(SAVE_PATH)+std::string("\\save1.xml"));
+	}
+#endif
+}
+
+void GUIStage::onSave(MyGUI::Widget* _sender)
+{
+#ifndef SCRIPT_EDITOR
+	saveData(false);
 
 	SLWindow= (GUISLWindow*)GUISystem::getSingletonPtr()->createScene(SLScene);
 	SLWindow->setCallScene(this);
@@ -546,6 +782,11 @@ void GUIStage::onHide( MyGUI::Widget* _sender )
 		setTextDialogVisible(true);
 	}
 	
+}
+
+void GUIStage::onHistory( MyGUI::Widget* _sender )
+{
+	setHistoryBoxVisible(true);
 }
 
 void GUIStage::onSystem( MyGUI::Widget* _sender )
@@ -618,84 +859,13 @@ void GUIStage::load()
 	//读取音乐
 	
 	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/MusicName",text);
-	if (text!="none")
+	if (text!="none" || text!="")
 	{
 		AudioSystem::getSingletonPtr()->playStream(text,true,1000);
 	}
 
 #endif
 }
-
-void GUIStage::onOtherSceneNotify(std::string arg)
-{
-	if(arg=="LoadSelect")
-	{
-		load();
-	}
-	else if(arg=="LoadComplete")
-	{
-		loadComplete();
-		SLWindow=NULL;
-	}
-	else if (arg=="Return")
-	{
-		returnScene();
-		SLWindow=NULL;
-	}
-	else if(arg=="FadeInOver")
-	{
-		switch(mTimerWork)
-		{
-		case FadeInOutWork:
-			{
-				buttonLock(true);
-				mTimerWork=NoneWork;
-				break;
-			}
-		}
-
-	}
-	else if(arg=="FadeOutOver")
-	{
-		switch(mTimerWork)
-		{
-		case ClearAllRoleWork:
-			{
-				mLeftLayer->setImageTexture("");
-				mLeftLayer->setAlpha(1.0);
-				mMidLayer->setImageTexture("");
-				mMidLayer->setAlpha(1.0);
-				mRightLayer->setImageTexture("");
-				mRightLayer->setAlpha(1.0);
-				break;
-			}
-		case FadeInOutWork:
-			{
-				buttonLock(true);
-				break;
-			}
-		case RoleNameWork:
-			{
-				std::string s=mRoleNameUniversal->getCaption();
-				mRoleName->setCaption(s);
-				mRoleName->setAlpha(1);
-				mRoleNameUniversal->setAlpha(0);
-				break;
-			}
-		case UniversalWork:
-			{
-				mScrLayer->setImageTexture(mTextureName);
-				mScrLayer->setAlpha(1);
-				mUniversalLayer->setAlpha(0);
-				break;
-			}
-		}
-
-		mTimerWork=NoneWork;
-	}
-}
-
-
 
 void GUIStage::loadComplete()
 {
@@ -732,22 +902,7 @@ void GUIStage::buttonLock( bool lock )
 	mLoadButton->setEnabled(lock);
 	mHideButton->setEnabled(lock);
 	mSystemButton->setEnabled(lock);
+	mHistoryButton->setEnabled(lock);
 }
 
-bool GUIStage::isCanFastForward()
-{
-	if (mTimerWork==FadeInOutWork)
-	{
-		return false;
-	}
-	if (!mTextBoxVisible)
-	{
-		return false;
-	}
-	else if (SLWindow!=NULL)
-	{
-		return false;
-	}
 
-	return true;
-}

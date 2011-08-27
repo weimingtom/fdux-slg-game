@@ -41,6 +41,10 @@ public:
 
 	void onOtherSceneNotify(std::string arg);
 
+	void saveData(bool isAutoSave);
+
+	void setHistoryBoxVisible(bool visible);
+
 	GUISceneType getType()
 	{
 		return StageScene;
@@ -67,6 +71,8 @@ private:
 	float mTickTime;//单次触发时间
 
 	void eventMouseButtonClick(MyGUI::Widget* _sender);
+	void eventHistoryBoxExit(MyGUI::Widget* _sender);
+	void getMouseState();
 	void keyPressed(const OIS::KeyEvent &arg);
 	void keyReleased(const OIS::KeyEvent &arg);
 
@@ -74,6 +80,7 @@ private:
 	void onLoad(MyGUI::Widget* _sender);
 	void onHide(MyGUI::Widget* _sender);
 	void onSystem(MyGUI::Widget* _sender);
+	void onHistory( MyGUI::Widget* _sender );
 
 	void load();
 
@@ -81,13 +88,15 @@ private:
 
 	void returnScene();
 
-	void fastForward(bool value);
+	void fastForward();
 
 	void UIInit();
 
 	void buttonLock(bool lock);
 
 	bool isCanFastForward();
+
+	void addToHistoryBox(std::wstring text);
 
 	int mTextX;
 	int mTextY;
@@ -131,6 +140,10 @@ private:
 	bool mTextCursorType;
 	bool mTextBoxVisible;
 
+	MyGUI::EditBox* mHistoryBox;
+	MyGUI::ImageBox* mHistoryBoxExit;
+	std::wstring mCurrentRoleName;
+
 	MyGUI::ImageBox* mEffectLayerGroup;
 	MyGUI::ImageBox* mEffectLayer;
 	MyGUI::ImageBox* mEffectLayerUniversal;
@@ -139,6 +152,7 @@ private:
 	MyGUI::Button* mLoadButton;
 	MyGUI::Button* mHideButton;
 	MyGUI::Button* mSystemButton;
+	MyGUI::Button* mHistoryButton;
 
 };
 
