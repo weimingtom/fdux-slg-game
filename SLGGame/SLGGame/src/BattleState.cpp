@@ -51,7 +51,7 @@ void BattleState::uninitialize()
 	Terrain::getSingleton().destoryTerrian();
 	BattleSquadManager::getSingleton().clear();
 	SquadGrapManager::getSingleton().clear();
-	DataLibrary::getSingleton().delNode(std::string("GameData/StoryData"));
+	//DataLibrary::getSingleton().delNode(std::string("GameData/StoryData"));
 	DataLibrary::getSingleton().delNode(std::string("GameData/BattleData"));
 	AudioSystem::getSingletonPtr()->stopSample();
 	AudioSystem::getSingletonPtr()->stopStream(1000);

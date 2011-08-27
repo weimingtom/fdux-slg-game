@@ -106,6 +106,13 @@ void StateManager::saveState( std::string file )
 
 void StateManager::loadState( std::string file )
 {
+	DataLibrary::getSingleton().delNode(std::string("GameData/StoryData"));
+	if(mBaseState)
+	{
+		mBaseState->uninitialize();
+		delete mBaseState;
+		mBaseState = NULL;
+	}
 	DataLibrary::getSingletonPtr()->loadXmlData(DataLibrary::GameData,file,false);
 	std::string state;
 	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/GameState",state);
