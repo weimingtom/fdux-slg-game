@@ -26,6 +26,8 @@ bool Terrain::createTerrain()
 
 	Core::getSingleton().mSceneMgr->setSkyBox(true, "SkyBox",200);
 
+
+
 	//´´½¨µÆ¹â
 	Core::getSingleton().mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5f, 0.5f, 0.5f));
 	mLight = Core::getSingleton().mSceneMgr->createLight("TerrainLight");

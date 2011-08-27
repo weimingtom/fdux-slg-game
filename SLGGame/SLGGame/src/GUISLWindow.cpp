@@ -17,7 +17,7 @@
 
 #define DialogVisibleTime 500
 
-GUISLWindow::GUISLWindow(int width,int height):GUIScene("SLWindow.layout",width,height),mStartFade(false),mOldText(NULL),isOk(true)
+GUISLWindow::GUISLWindow(int width,int height):GUIScene("SLWindow.layout",width,height),mStartFade(false),mOldText(NULL),isOk(true),mCallScene(NULL)
 {
 	assignWidget(mYesButton,"YesButton");
 	assignWidget(mNoButton,"NoButton");
@@ -70,6 +70,10 @@ void GUISLWindow::showScene( std::string arg )
 	if (arg=="save")
 	{
 		mCaption->setCaption(StringTable::getSingletonPtr()->getString("SaveCaption"));
+		MyGUI::TextBox* mTextBox;
+		assignWidget(mTextBox,"SaveText1");
+		mTextBox->setEnabled(false);
+		mTextBox->setTextColour(MyGUI::Colour(0.5,0.5,0.5));
 		isSave=true;
 	}
 	else
@@ -101,7 +105,7 @@ void GUISLWindow::onOtherSceneNotify(std::string arg)
 	else if (arg=="FadeOutOver")
 	{
 		mStartFade=false;
-		if(!isSave && isOk)
+		if(!isSave && isOk && mCallScene!=NULL)
 		{
 			mCallScene->onOtherSceneNotify("LoadComplete");
 		}
@@ -146,7 +150,10 @@ void GUISLWindow::onYes( MyGUI::Widget* _sender )
 		else
 		{
 			StateManager::getSingletonPtr()->loadState(std::string(SAVE_PATH)+std::string("\\save")+mOldText->getUserString("Num")+".xml");
-			mCallScene->onOtherSceneNotify("LoadSelect");
+			if (mCallScene!=NULL)
+			{
+				mCallScene->onOtherSceneNotify("LoadSelect");
+			}
 		}
 		
 		isOk=true;

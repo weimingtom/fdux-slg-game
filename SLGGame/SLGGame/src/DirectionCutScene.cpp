@@ -15,7 +15,7 @@ DirectionCutScene::~DirectionCutScene(void)
 
 void DirectionCutScene::startCutScence()
 {	
-	mSquadGraphics->setDirection(mDirection,false);
+	mSquadGraphics->setDirection(mDirection,true);
 }
 
 

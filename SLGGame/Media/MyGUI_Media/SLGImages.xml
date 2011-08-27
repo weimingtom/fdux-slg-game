@@ -389,6 +389,13 @@
 			</Index>
 		</Group>
 	</Resource>
+	<Resource type="ResourceImageSet" name="36">
+		<Group name="Button" texture="SLGIcon.png" size="22 50">
+			<Index name="normal">
+				<Frame point="388 3"/>
+			</Index>
+		</Group>
+	</Resource>
 		<Resource type="ResourceImageSet" name="LightInfIcon">
 		<Group name="Button" texture="SLGIcon.png" size="22 24">
 			<Index name="normal">

@@ -67,6 +67,7 @@
 		<LoadButton type="String" value="读取"/>
 		<HideButton type="String" value="隐藏"/>
 		<SystemButton type="String" value="系统"/>
+		<HistoryButton type="String" value="历史"/>
 		<SaveCaption type="String" value = "保存游戏"/>
 		<LoadCaption type="String" value = "读取游戏"/>
 		<NoFile type="String" value="--空--" />

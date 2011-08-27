@@ -185,4 +185,18 @@
             <State name="pushed" colour="1 1 1" shift="0"/>
         </BasisSkin>
     </Resource>
+    <Resource type="ResourceSkin" name="SLGScrollBarVSkin" size="10 100" texture="MyGUI_UISkins.png">
+        <BasisSkin type="TileRect" offset="0 0 10 100" align="HCenter VStretch">
+            <State name="normal" offset="417 674 10 100">
+                <Property key="TileSize" value="10 100"/>
+                <Property key="TileH" value="false"/>
+                <Property key="TileV" value="true"/>
+            </State>
+        </BasisSkin>
+    </Resource>
+    <Resource type="ResourceSkin" name="SLGScrollTrackVSkin" size="23 32" texture="MyGUI_UISkins.png">
+        <BasisSkin type="SubSkin" offset="0 0 23 32" align="HStretch VCenter">
+            <State name="normal" offset="444 700 23 32"/>
+        </BasisSkin>
+    </Resource>
 </MyGUI>

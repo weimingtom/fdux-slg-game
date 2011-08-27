@@ -691,34 +691,6 @@
 					</File>
 				</Filter>
 				<Filter
-					Name="Instancing"
-					>
-					<File
-						RelativePath=".\src\SquadGraphicsIG.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\src\SquadGraphicsIG.h"
-						>
-					</File>
-					<File
-						RelativePath=".\src\UnitGrapIG.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\src\UnitGrapIG.h"
-						>
-					</File>
-					<File
-						RelativePath=".\src\WeaponGrapIG.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\src\WeaponGrapIG.h"
-						>
-					</File>
-				</Filter>
-				<Filter
 					Name="Entity"
 					>
 					<File
