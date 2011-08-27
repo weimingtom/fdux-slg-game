@@ -27,8 +27,7 @@ const Ogre::Vector3 LooseVector[5]={Ogre::Vector3(0,0,0),Ogre::Vector3(-5,0,5),O
 SquadGraphics::SquadGraphics(std::string squadName,std::string datapath,Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index,int soldierCount):
 mSquadId(squadName),
 mID(index),
-// mPUSystem(NULL),
-// mPUSystemEnd(false),
+mNextDirection(-1),
 mNodeAnimation(NULL),
 mNodeAnimationState(NULL),
 mSoldierIndex(0),
@@ -782,83 +781,135 @@ void SquadGraphics::setScale( Ogre::Vector3 scale,bool isAnim )
 
 void SquadGraphics::setDirection( Direction d,bool isAnim )
 {
+	if (d==mDirection)
+	{
+		return;
+	}
+	
+	if (isAnim)
+	{
+		switch(d)//计算转180度的情况
+		{
+		case North:
+			{
+				if (mDirection==South)
+				{
+					mNextDirection=West;
+				}
+				break;
+			}
+		case South:
+			{
+				if (mDirection==North)
+				{
+					mNextDirection=East;
+				}
+				break;
+			}
+		case West:
+			{
+				if (mDirection==East)
+				{
+					mNextDirection=North;
+				}
+				break;
+			}
+		case East:
+			{
+				if (mDirection==West)
+				{
+					mNextDirection=South;
+				}
+				break;
+			}
+		}
+	}
+
 	mDirection=d;
 
-	Ogre::Vector3 CommanderVector;
-	Ogre::Vector3 SoldierVector[4];
-
-	if(d==North)
+	if (isAnim)
 	{
-		d==NorthEast;
+		//设置移动
+		if (mNextDirection!=-1)
+		{
+			changeUnitPosition(mNextDirection,Ogre::Vector3(0,0,0));
+			mNextDirection=mDirection;
+		}
+		else
+		{
+			changeUnitPosition(mDirection,Ogre::Vector3(0,0,0));
+		}
+		
+
+		//	mNodeAnimation = mSceneMgr->createAnimation(mNode->getName()+"_Ani", 2);
+		//	mNodeAnimation->setInterpolationMode(Ogre::Animation::IM_LINEAR);
+		//	Ogre::NodeAnimationTrack* track = mNodeAnimation->createNodeTrack(1, mNode);
+
+		//	Ogre::TransformKeyFrame* kf = track->createNodeKeyFrame(0);
+		//	kf->setTranslate(mNode->getPosition());
+		//	kf->setRotation(mNode->getOrientation());
+
+		//	kf = track->createNodeKeyFrame(2);
+		//	kf->setTranslate(mNode->getPosition());
+		//	kf->setRotation(q);
+
+		//	mNodeAnimationState = mSceneMgr->createAnimationState(mNode->getName()+"_Ani");
+		//	
+		//	setCheckUnitHeight(true);
+		//	mNodeAnimationState->setLoop(false);
+		//	mNodeAnimationState->setEnabled(true);
+
+		//	mCommanderUnit->setAnimation(mCommanderUnit->mRotationName,true,false);
+		//	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+		//	{
+		//		(*it)->setAnimation((*it)->mRotationName,true,false);
+		//	}
+		//	mReturnInitAni=true;
+	}
+	else
+	{
+		Ogre::Vector3 CommanderVector;
+		Ogre::Vector3 SoldierVector[4];
+
+		getFormationPosition(mFormation,d,CommanderVector,SoldierVector);
+
+		Ogre::Quaternion q;
+
+		switch(d)
+		{
+		case North:
+			{
+				q.FromAngleAxis(Ogre::Degree(180),Ogre::Vector3(0,1,0));
+				break;
+			}
+		case South:
+			{
+				q.FromAngleAxis(Ogre::Degree(360),Ogre::Vector3(0,1,0));
+				break;
+			}
+		case West:
+			{
+				q.FromAngleAxis(Ogre::Degree(270),Ogre::Vector3(0,1,0));
+				break;
+			}
+		case East:
+			{
+				q.FromAngleAxis(Ogre::Degree(90),Ogre::Vector3(0,1,0));
+				break;
+			}
+		}
+		//x'=xcos-ysin y'=ycos+xsin
+
+		mCommanderUnit->setPositionOffset(CommanderVector.x,CommanderVector.z);
+		mCommanderUnit->mNode->setOrientation(q);
+
+		for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+		{
+			(*it)->setPositionOffset(SoldierVector[(*it)->mFormationPosition].x,SoldierVector[(*it)->mFormationPosition].z);
+			(*it)->mNode->setOrientation(q);
+		}
 	}
 
-	getFormationPosition(mFormation,d,CommanderVector,SoldierVector);
-
-	Ogre::Quaternion q;
-
-	switch(d)
-	{
-	case North:
-		{
-			q.FromAngleAxis(Ogre::Degree(180),Ogre::Vector3(0,1,0));
-			break;
-		}
-	case South:
-		{
-			q.FromAngleAxis(Ogre::Degree(360),Ogre::Vector3(0,1,0));
-			break;
-		}
-	case West:
-		{
-			q.FromAngleAxis(Ogre::Degree(270),Ogre::Vector3(0,1,0));
-			break;
-		}
-	case East:
-		{
-			q.FromAngleAxis(Ogre::Degree(90),Ogre::Vector3(0,1,0));
-			break;
-		}
-	}
-	//x'=xcos-ysin y'=ycos+xsin
-	mCommanderUnit->setPositionOffset(CommanderVector.x,CommanderVector.z);
-	mCommanderUnit->mNode->setOrientation(q);
-	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
-	{
-		(*it)->setPositionOffset(SoldierVector[(*it)->mFormationPosition].x,SoldierVector[(*it)->mFormationPosition].z);
-		(*it)->mNode->setOrientation(q);
-	}
-
-	//if (isAnim)
-	//{
-	//	mNodeAnimation = mSceneMgr->createAnimation(mNode->getName()+"_Ani", 2);
-	//	mNodeAnimation->setInterpolationMode(Ogre::Animation::IM_LINEAR);
-	//	Ogre::NodeAnimationTrack* track = mNodeAnimation->createNodeTrack(1, mNode);
-
-	//	Ogre::TransformKeyFrame* kf = track->createNodeKeyFrame(0);
-	//	kf->setTranslate(mNode->getPosition());
-	//	kf->setRotation(mNode->getOrientation());
-
-	//	kf = track->createNodeKeyFrame(2);
-	//	kf->setTranslate(mNode->getPosition());
-	//	kf->setRotation(q);
-
-	//	mNodeAnimationState = mSceneMgr->createAnimationState(mNode->getName()+"_Ani");
-	//	
-	//	setCheckUnitHeight(true);
-	//	mNodeAnimationState->setLoop(false);
-	//	mNodeAnimationState->setEnabled(true);
-
-	//	mCommanderUnit->setAnimation(mCommanderUnit->mRotationName,true,false);
-	//	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
-	//	{
-	//		(*it)->setAnimation((*it)->mRotationName,true,false);
-	//	}
-	//	mReturnInitAni=true;
-	//}
-	//else
-	//{
-	//	mNode->setOrientation(q);
-	//}
 }
 
 void SquadGraphics::setCheckUnitHeight( bool enable )
@@ -1229,6 +1280,12 @@ void SquadGraphics::update( unsigned int deltaTime )
 		doDeathStep();
 	}
 	
+	if (mNextDirection!=-1 && isTransformOver())
+	{
+		changeUnitPosition(mNextDirection,Ogre::Vector3(0,0,0));
+		mNextDirection=-1;
+	}
+
 	if (mNodeAnimationState!=NULL)
 	{
 		if (mNodeAnimationState->getTimePosition() >= mNodeAnimationState->getLength())

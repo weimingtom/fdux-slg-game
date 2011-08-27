@@ -125,6 +125,7 @@ private:
 	Formation mFormation;
 	Direction mDirection;
 	Direction mIdleDirection;
+	Direction mNextDirection;
 	std::string mMoveSound;
 
 	enum DeathStep

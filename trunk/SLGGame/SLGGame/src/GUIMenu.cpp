@@ -42,10 +42,10 @@ GUIMenu::GUIMenu(int width,int height):GUIScene("MainMenu.layout",width,height),
 
 GUIMenu::~GUIMenu(void)
 {
-	//if (SLWindow!=NULL)
-	//{
-	//	SLWindow->setCallScene(SLWindow);
-	//}
+	if (SLWindow!=NULL)
+	{
+		SLWindow->setCallScene(SLWindow);
+	}
 	AudioSystem::getSingletonPtr()->stopStream(500);
 }
 

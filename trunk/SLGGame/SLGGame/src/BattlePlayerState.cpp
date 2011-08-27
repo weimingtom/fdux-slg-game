@@ -291,7 +291,7 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 				mSelectSquad->setDirection(d);
 				int grapid = mSelectSquad->getGrapId();
 				SquadGraphics* squadgrap = SquadGrapManager::getSingleton().getSquad(grapid);
-				squadgrap->setDirection(d,false);
+				squadgrap->setDirection(d,true);
 				mSquadWindow->setSquad(mSelectSquad);
 			}
 			break;

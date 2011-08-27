@@ -120,5 +120,44 @@
             <Property key="AddItem" value="line3"/>
         </Widget>
     </Resource>
-    
+    <Resource type="ResourceLayout" name="SLGScrollBarV" version="3.2.0">
+        <Widget type="Widget" skin="SLGScrollBarVSkin" position="25 50 25 125" name="Root">
+            <Property key="VerticalAlignment" value="true"/>
+            <UserString key="LE_TargetWidgetType" value="ScrollBar"/>
+            <Widget type="Widget" skin="PanelEmpty" position="0 14 25 99" align="Left VStretch" name="TrackPlace">
+                <Property key="NeedKey" value="false"/>
+                <Property key="InheritsPick" value="true"/>
+                <Widget type="Button" skin="SLGScrollTrackVSkin" position="1 25 24 34" align="Left Top" name="Track">
+                    <UserString key="MinTrackSize" value="34"/>
+                </Widget>
+                <Widget type="Widget" skin="PanelEmpty" position="0 0 15 25" name="FirstPart"/>
+                <Widget type="Widget" skin="PanelEmpty" position="0 44 15 55" name="SecondPart"/>
+            </Widget>
+           <!-- <Widget type="Button" skin="ButtonUpSkin" position="1 2 14 11" align="Left Top" name="Start"/>
+            <Widget type="Button" skin="ButtonDownSkin" position="1 113 14 11" align="Left Bottom" name="End"/>-->
+        </Widget>
+        <Widget type="ScrollBar" skin="ScrollBarV" position="50 50 15 125">
+            <Property key="Range" value="100"/>
+            <Property key="RangePosition" value="0"/>
+            <Property key="Page" value="1"/>
+            <Property key="ViewPage" value="1"/>
+        </Widget>
+    </Resource>
+    <Resource type="ResourceLayout" name="SLGEditBoxStretch" version="3.2.0">
+        <Widget type="Widget" skin="SLGMiniWindowSkin" position="25 10 55 55" name="Root">
+            <Property key="MultiLine" value="true"/>
+            <UserString key="LE_TargetWidgetType" value="EditBox"/>
+            <Widget type="TextBox" skin="EditClientSkin" position="12 12 5 20" align="Stretch" name="Client">
+                <Property key="TextAlign" value="Default"/>
+                <Property key="TextColour" value="1 1 1"/>
+                <Property key="FontName" value="Default"/>
+                <Property key="Pointer" value="beam"/>
+            </Widget>
+            <Widget type="ScrollBar" skin="ScrollBarH" position="2 36 34 15" align="HStretch Bottom" name="HScroll"/>
+            <Widget type="ScrollBar" skin="SLGScrollBarV" position="25 12 25 15" align="Right VStretch" name="VScroll"/>
+        </Widget>
+        <Widget type="EditBox" skin="EditBoxStretch" position="20 105 146 146">
+            <Property key="Caption" value="test test test test test test test\ntest test test test test test test\ntest test test test test test test\ntest test test test test test test\ntest test test test test test test\ntest test test test test test test\ntest test test test test test test\ntest test test test test test test\ntest test test test test test test\ntest test test test test test test\ntest test test test test test test\ntest test test test test test test"/>
+        </Widget>
+    </Resource>
 </MyGUI>

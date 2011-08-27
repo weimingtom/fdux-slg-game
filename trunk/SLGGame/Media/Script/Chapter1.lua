@@ -4,7 +4,8 @@ GUI.ShowImage("black.png",4,1000);
 GUI.Music("grasslands.mp3",2000);
 GUI.ShowImage("grasslands.png",4,3000);
 GUI.SetDialogVisible(1);
-	
+
+GUI.AutoSave();	
 GUI.ShowText("青绿色的河水，被鲜血染红的绷带，以及一灰一白的两位少女。",2);
 GUI.ShowText("四者映在一起，有一种如处画中的奇妙美感。",1);
 GUI.ClearText();
@@ -595,6 +596,7 @@ GUI.ShowRoleName("斥候");
 GUI.ShowText("是！",1);
 GUI.ClearText();
 GUI.ShowRoleName("");
+GUI.AutoSave();
 GUI.ShowRoleName("齐塔");
 GUI.ShowText("其他人，准备突袭！",1);
 GUI.ClearText();
@@ -602,7 +604,7 @@ GUI.ShowRoleName("");
 GUI.ShowImage("",all,1000);
 GUI.CM(2000);
 GUI.SetDialogVisible(0);
-
+	
 AVGLib.AddSquad("Cheetah","CheetahSquad");
 AVGLib.AddSquad("Dandelion","DandelionSquad");
 AVGLib.SetPlayerFaction("Wing");
