@@ -33,12 +33,8 @@
             <Property key="Visible" value="false"/>
         </Widget>
     </Widget>
-    <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" layer="Overlapped" name="EffectLayerGroup">
-        <Property key="Visible" value="true"/>
-        <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" name="EffectLayer"/>
-        <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" name="EffectLayerUniversal">
-            <Property key="Visible" value="false"/>
-        </Widget>
+    <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" layer="Overlapped" name="InputGroup">
+        <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" name="InputLayer"/>
         <Widget type="Button" skin="SLGButton3" position="695 680 135 45" name="HistoryButton">
             <Property key="Caption" value="History"/>
             <Property key="TextColour" value="1 1 1"/>
@@ -69,6 +65,13 @@
             <Property key="TextColour" value="1 1 1"/>
             <Property key="FontHeight" value="24"/>
             <Property key="TextAlign" value="Center"/>
+        </Widget>
+    </Widget>
+    <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" layer="Overlapped" name="EffectLayerGroup">
+        <Property key="Visible" value="false"/>
+        <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" name="EffectLayer"/>
+        <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" name="EffectLayerUniversal">
+            <Property key="Visible" value="false"/>
         </Widget>
     </Widget>
     <Widget type="EditBox" skin="SLGEditBoxStretch" position="0 0 1280 720" layer="Overlapped" name="HistoryBox">

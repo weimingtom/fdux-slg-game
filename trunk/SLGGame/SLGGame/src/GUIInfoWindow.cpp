@@ -5,7 +5,7 @@
 
 #include "Framerate.h"
 
-GUIInfoWindow::GUIInfoWindow(MyGUI::Window* window,int Width,int Height):GUISubWindows(window,Width,Height)
+GUIInfoWindow::GUIInfoWindow(MyGUI::Window* window,int Width,int Height):GUISubWindows(window,Width,Height),isWait(false)
 {
 	mWindow=window;
 	assignWidget(mCaption,"Caption");

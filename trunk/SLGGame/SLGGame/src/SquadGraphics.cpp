@@ -1272,6 +1272,10 @@ void SquadGraphics::setRecover(int num)
 	}
 }
 
+bool SquadGraphics::isDirectionOver()
+{
+	return mNextDirection==-1 && isTransformOver();
+}
 
 void SquadGraphics::update( unsigned int deltaTime )
 {

@@ -7,6 +7,7 @@
 #include "GUICommandWindows.h"
 #include "GUITargetWindow.h"
 #include "GUIInfoWindow.h"
+#include "GUITipsWindow.h"
 
 #include "Terrain.h"
 
@@ -17,6 +18,8 @@ GUIBattle::GUIBattle(int Width,int Height):GUIScene("Battle.layout",Width,Height
 {
 	MyGUI::Window* window;
 
+	assignWidget(window,"TipsWindow");
+	mSubWindows.push_back(new GUITipsWindow(window,Width,Height));
 	assignWidget(window,"Terrain");
 	mSubWindows.push_back(new GUITerrainWindows(window,Width,Height));
 	assignWidget(window,"TargetWindow");
@@ -50,7 +53,11 @@ void GUIBattle::showScene( std::string arg )
 
 void GUIBattle::hideScene()
 {
-
+	std::list<GUISubWindows*>::iterator it;
+	for (it=mSubWindows.begin();it!=mSubWindows.end();it++)
+	{
+		delete (*it);
+	}
 }
 
 void GUIBattle::FrameEvent()
@@ -81,38 +88,6 @@ void GUIBattle::SceneInputEvent( float x,float y )
 		GridInputEvent(GX,GY);
 		//std::cout<<GX<<","<<GY<<std::endl;
 	}
-	/*
-	MOC::CollisionTools collisontool(Core::getSingleton().mSceneMgr);
-	Ogre::Vector2 mRenderWindowSize(Core::getSingletonPtr()->mWindow->getWidth(),Core::getSingletonPtr()->mWindow->getHeight());
-	// 检查边界条件
-	if  (x < 0 || x > mRenderWindowSize.x || y < 0 || y > mRenderWindowSize.y)
-		return;
-
-	//执行射线运算,获取与网格的交点
-	Ogre::Ray ray = Core::getSingletonPtr()->mCamera->getCameraToViewportRay(x / mRenderWindowSize.x, y / mRenderWindowSize.y);
-
-	Ogre::Vector3 point;
-	Ogre::ulong target;
-	float d;
-	if(collisontool.raycast(ray,point,target,d,TERRAIN_MASK))
-	{
-		Ogre::Matrix4 PROJECTIONCLIPSPACE2DTOIMAGESPACE_PERSPECTIVE(
-			0.5,    0,    0,  0.5, 
-			0,   -0.5,    0,  0.5, 
-			0,      0,    1,    0,
-			0,      0,    0,    1);
-
-		Ogre::Vector4 vector4(point.x,point.y,point.z,1);
-		Ogre::Matrix4 cameraview= CameraContral::getSingleton().getShadowMapCamera()->getViewMatrix();
-		Ogre::Matrix4 cameraproj= CameraContral::getSingleton().getShadowMapCamera()->getProjectionMatrixWithRSDepth();
-		cameraview = PROJECTIONCLIPSPACE2DTOIMAGESPACE_PERSPECTIVE * cameraproj * cameraview;
-		vector4 = cameraview * vector4;
-		//vector4 = vector4 * cameraproj;
-		vector4.x /= vector4.w;
-		vector4.y /= vector4.w;
-		mButton->setPosition(vector4.x * 512 + 5,vector4.y * 512 + 5);
-	}
-	*/
 }
 
 void GUIBattle::GridInputEvent( int x,int y )

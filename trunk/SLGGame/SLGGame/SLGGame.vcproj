@@ -832,6 +832,14 @@
 							RelativePath=".\src\GUITerrainWindows.h"
 							>
 						</File>
+						<File
+							RelativePath=".\src\GUITipsWindow.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\src\GUITipsWindow.h"
+							>
+						</File>
 					</Filter>
 				</Filter>
 			</Filter>

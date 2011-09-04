@@ -21,7 +21,7 @@ void DirectionCutScene::startCutScence()
 
 bool DirectionCutScene::endCutScene()
 {
-	return mSquadGraphics->isTransformOver();
+	return mSquadGraphics->isDirectionOver();
 }
 
 void DirectionCutScene::skipCutScene()

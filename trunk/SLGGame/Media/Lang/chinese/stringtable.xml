@@ -97,5 +97,8 @@
 		<GUITerrainCavAp type="String" value="骑兵消耗"/>
 		<GUITerrainInfAp type="String" value="步兵消耗"/>
 		
+		<!--GUITips-->
+		<Tips_SquadLeadName type="String" value="队伍名称队伍名称队伍名称队伍名称队伍名啊队伍名称队伍名称队伍名称队伍名称队伍名啊队伍名称队伍名称队伍名称队伍名称队伍名啊"/>
+		
 	</StringTable>
 </StaticData>
