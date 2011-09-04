@@ -229,6 +229,38 @@ extern "C"
 		return 1;
 	}
 
+	static int ShockImage (lua_State* L)//Õð¶¯Í¼Æ¬
+	{
+		int imageLayer =luaL_checkint(L,1);
+		int durationTime =luaL_checkint(L, 2);
+		float amplitudeX =(float)luaL_checknumber(L, 3);
+		float amplitudeY =(float)luaL_checknumber(L, 4);
+
+		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+
+		stage->shockImage((GUIImageLayer)imageLayer,durationTime/1000.0,amplitudeX,amplitudeY);
+
+		LuaSystem::getSingletonPtr()->LuaBreakupFun=ShowImageBreakup;
+
+		return 1;
+	}
+
+	static int MoveImage (lua_State* L)//ÒÆ¶¯Í¼Æ¬
+	{
+		int imageLayer =luaL_checkint(L, 1);
+		float time =(float)luaL_checkint(L, 2);
+		int left =luaL_checkint(L, 3);
+		int top =luaL_checkint(L, 4);
+
+		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+
+		stage->moveImage((GUIImageLayer)imageLayer,time,left,top);
+
+		LuaSystem::getSingletonPtr()->LuaBreakupFun=ShowImageBreakup;
+
+		return 1;
+	}
+
 	static int ShowRole(lua_State* L)//ÏÔÊ¾Í¼Æ¬
 	{
 		const char* imageName = luaL_checkstring(L, 1);
@@ -445,6 +477,8 @@ extern "C"
 
 		{"ShowImageSetting",ShowImageSetting},
 		{"ShowImage",ShowImage},
+		{"ShockImage",ShockImage},
+		{"MoveImage",MoveImage},
 		{"ShowRole",ShowRole},
 		{"ShowText",ShowText},
 		{"SetText",SetText},
