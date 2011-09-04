@@ -36,6 +36,7 @@ public:
 	void changeUnitPosition(Direction d,Ogre::Vector3 offsetVector);
 	void setDirection(Direction d,bool isAnim);
 	Direction getDirection();
+	bool isDirectionOver();
 	void setFormation(Formation f,bool isAnim);
 	bool isFormationOrDirectionOver();
 	bool isTransformOver();
@@ -95,7 +96,6 @@ private:
 	void getFormationPosition(Formation f,Direction d,Ogre::Vector3& CommanderVector,Ogre::Vector3 SoldierVector[]);
 
 	std::map<int,Ogre::Vector3>* getUnitMovePath(UnitGrap* unit,std::map<int,Ogre::Vector3>& vectors,std::map<int,Direction>& directions,bool isCommander);
-
 	unsigned int mID;
 
 	Ogre::SceneNode* mNode;

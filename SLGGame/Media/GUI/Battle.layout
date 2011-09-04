@@ -39,6 +39,7 @@
         <Widget type="TextBox" skin="TextBox" position="140 130 95 20" name="SquadLeadName">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
+            <Property key="NeedToolTip" value="true"/>
         </Widget>
         <Widget type="TextBox" skin="TextBox" position="140 155 95 20" name="SquadType">
             <Property key="FontName" value="fireflysung"/>
@@ -158,7 +159,7 @@
             <Property key="FontHeight" value="20"/>
         </Widget>
     </Widget>
-    <Widget type="Window" skin="SLGMiniWindowSkin" position="250 5 274 145" layer="Middle" name="Terrain">
+    <Widget type="Window" skin="SLGMiniWindowSkin" position="250 5 274 145" layer="Main" name="Terrain">
         <Property key="Caption" value="Terrain"/>
         <Property key="FontName" value="fireflysung"/>
         <Property key="FontHeight" value="20"/>
@@ -466,6 +467,19 @@
             <Property key="TextAlign" value="Center"/>
             <Property key="Caption" value="Player Turn"/>
             <Property key="TextColour" value="0 0 1"/>
+        </Widget>
+    </Widget>
+    <Widget type="Window" skin="SLGMiniWindowSkin" position="550 5 245 105" layer="ToolTip" name="TipsWindow">
+        <Property key="Visible" value="false"/>
+        <Widget type="EditBox" skin="TextBox" position="15 17 215 70" align="HStretch VStretch" name="TipsTextBox">
+            <Property key="Static" value="true"/>
+            <Property key="MultiLine" value="true"/>
+            <Property key="VisibleVScroll" value="true"/>
+            <Property key="VisibleHScroll" value="true"/>
+            <Property key="TextColour" value="1 1 1"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="TextAlign" value="HCenter Top"/>
+            <Property key="FontHeight" value="20"/>
         </Widget>
     </Widget>
 </MyGUI>
