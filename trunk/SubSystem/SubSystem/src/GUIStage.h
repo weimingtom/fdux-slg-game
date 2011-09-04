@@ -18,6 +18,10 @@ public:
 
 	void showImage( std::string imageName,GUIImageLayer layer,float time,int left,int top);//在图层上显示图片
 
+	void shockImage(GUIImageLayer layer,float durationTime,float amplitudeX,float amplitudeY);//震动图片
+
+	void moveImage(GUIImageLayer layer,float time,int left,int top);
+
 	void showText( std::wstring text,float delay);//显示文字
 
 	void clearText();//清空文本
@@ -61,7 +65,9 @@ public:
 		FadeInOutWork,//对话框显隐
 		WaitWork,//等待
 		RoleNameWork,//名字渐变
-		ClearAllRoleWork//清除所有的角色图片
+		ClearAllRoleWork,//清除所有的角色图片
+		MoveWork,//移动图片
+		ShockWork//震动图片
 	};
 	TimerWork mTimerWork;
 
@@ -148,11 +154,25 @@ private:
 	MyGUI::ImageBox* mEffectLayer;
 	MyGUI::ImageBox* mEffectLayerUniversal;
 
+	MyGUI::ImageBox* mInputGroup;
+	MyGUI::ImageBox* mInputLayer;
 	MyGUI::Button* mSaveButton;
 	MyGUI::Button* mLoadButton;
 	MyGUI::Button* mHideButton;
 	MyGUI::Button* mSystemButton;
 	MyGUI::Button* mHistoryButton;
+
+	struct ShockParam
+	{
+		int mImageX;
+		int mImageY;
+		float mDurationTime;//持续时间
+		float mAge;//当前时间
+		float mAmplitudeX;//振幅
+		float mAmplitudeY;//频率
+	};
+	
+	ShockParam mShockParam;
 
 };
 

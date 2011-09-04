@@ -53,6 +53,8 @@ GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),m
 	assignWidget(mHistoryBox, "HistoryBox");
 	assignWidget(mHistoryBoxExit, "HistoryBoxExit");
 
+	assignWidget(mInputGroup, "InputGroup");
+	assignWidget(mInputLayer, "InputLayer");
 	assignWidget(mSaveButton, "SaveButton");
 	assignWidget(mLoadButton, "LoadButton");
 	assignWidget(mHideButton,"HideButton");
@@ -67,7 +69,7 @@ GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),m
 	mHistoryButton->setCaption(StringTable::getSingletonPtr()->getString("HistoryButton"));
 #endif
 
-	mEffectLayer->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::eventMouseButtonClick);
+	mInputLayer->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::eventMouseButtonClick);
 	mHistoryBoxExit->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::eventHistoryBoxExit);
 	mSaveButton->eventMouseButtonClick+=MyGUI::newDelegate(this, &GUIStage::onSave);
 	mLoadButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::onLoad);
@@ -97,6 +99,9 @@ void GUIStage::UIInit()
 	mMidLayerGroup->setSize(mWidth,mHeigth);//设置中大小
 	mRightLayerGroup->setSize(mWidth,mHeigth);//设置右大小
 	mEffectLayerGroup->setSize(mWidth,mHeigth);
+
+	mInputGroup->setSize(mWidth,mHeigth);
+	mInputLayer->setSize(mWidth,mHeigth);
 
 	mTextBoxBG->setSize(mWidth,mHeigth);//TextBoxBG
 	mEffectLayer->setSize(mWidth,mHeigth);//EFLayer
@@ -238,11 +243,11 @@ void GUIStage::setHistoryBoxVisible( bool visible )
 {
 	if (visible)
 	{
-		mEffectLayerGroup->setVisible(false);
+		mInputGroup->setVisible(false);
 	}
 	else
 	{
-		mEffectLayerGroup->setVisible(true);
+		mInputGroup->setVisible(true);
 	}
 
 	mHistoryBox->setVisible(visible);
@@ -320,19 +325,42 @@ void GUIStage::showOtherText()
 	mTimerWork=NoneWork;
 	GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);
 
-	while(!mTextBuffer.empty())
+	MyGUI::IntPoint p=mTextBox->getTextCursorPos();
+
+	int lineTextNum=(mTextBox->getWidth()-p.left+mTextBox->getLeft())/25;
+
+	if (lineTextNum>mTextBuffer.length())
 	{
-		std::wstring subString=mTextBuffer.substr(0,1);
-		mTextBox->addText(subString);
-		if (mTextBox->getHScrollPosition()!=0)//自动换行
-		{
-			int length=mTextBox->getTextLength();
-			mTextBox->eraseText(length-1);
-			mTextBox->addText("\n");
-			mTextBox->addText(subString);
-		}
-		mTextBuffer.erase(mTextBuffer.begin());
+		mTextBox->addText(mTextBuffer);
 	}
+	else
+	{
+		mTextBox->addText(mTextBuffer.substr(0,lineTextNum));
+		mTextBuffer.erase(0,lineTextNum);
+
+		lineTextNum=(mTextBox->getWidth())/25;
+
+		for (int i=0;i<=(mTextBuffer.length()/lineTextNum);i++)
+		{
+			mTextBox->addText("\n");
+			mTextBox->addText(mTextBuffer.substr(0,lineTextNum));
+			mTextBuffer.erase(0,lineTextNum);
+		}
+	}
+
+	//while(!mTextBuffer.empty())
+	//{
+	//	std::wstring subString=mTextBuffer.substr(0,1);
+	//	mTextBox->addText(subString);
+	//	if (mTextBox->getHScrollPosition()!=0)//自动换行
+	//	{
+	//		int length=mTextBox->getTextLength();
+	//		mTextBox->eraseText(length-1);
+	//		mTextBox->addText("\n");
+	//		mTextBox->addText(subString);
+	//	}
+	//	mTextBuffer.erase(mTextBuffer.begin());
+	//}
 	mTextBuffer.clear();
 }
 
@@ -345,6 +373,7 @@ void GUIStage::showImage( std::string imageName,GUIImageLayer layer,float time,i
 	{
 	case EffectsLayer:
 		{
+			mEffectLayerGroup->setVisible(true);
 			mScrLayer=mEffectLayer;
 			mUniversalLayer=mEffectLayerUniversal;
 		}
@@ -441,6 +470,88 @@ void GUIStage::showImage( std::string imageName,GUIImageLayer layer,float time,i
 	}
 }
 
+void GUIStage::moveImage(GUIImageLayer layer,float time,int left,int top)
+{
+	switch(layer)
+	{
+	case LeftLayer:
+		{
+			mScrLayer=mLeftLayer;
+			mUniversalLayer=mLeftLayerUniversal;
+			break;
+		}
+	case MidLayer:
+		{
+			mScrLayer=mMidLayer;
+			mUniversalLayer=mMidLayerUniversal;
+			break;
+		}
+	case RightLayer:
+		{
+			mScrLayer=mRightLayer;
+			mUniversalLayer=mRightUniversal;
+			break;
+		}
+	case BackGroundLayer:
+		{
+			mScrLayer=mBackGround;
+			mUniversalLayer=mBackGroundUniversal;
+			break;
+		}
+	}
+
+	mTimerWork=MoveWork;
+	mUniversalLayer->setPosition(left,top);
+	mUniversalLayer->setVisible(false);
+	MoveTo(left,top,time,mScrLayer);
+	GUISystem::getSingletonPtr()->setFrameUpdateScene(StageScene);
+
+}
+
+void GUIStage::shockImage(GUIImageLayer layer,float durationTime,float amplitudeX,float amplitudeY)
+{
+	switch(layer)
+	{
+	case LeftLayer:
+		{
+			mScrLayer=mLeftLayer;
+			mUniversalLayer=mLeftLayerUniversal;
+			break;
+		}
+	case MidLayer:
+		{
+			mScrLayer=mMidLayer;
+			mUniversalLayer=mMidLayerUniversal;
+			break;
+		}
+	case RightLayer:
+		{
+			mScrLayer=mRightLayer;
+			mUniversalLayer=mRightUniversal;
+			break;
+		}
+	case BackGroundLayer:
+		{
+			mScrLayer=mBackGround;
+			mUniversalLayer=mBackGroundUniversal;
+			break;
+		}
+	}
+
+	mUniversalLayer->setVisible(false);
+	mShockParam.mImageX=mScrLayer->getLeft();
+	mShockParam.mImageY=mScrLayer->getTop();
+	mShockParam.mAge=0;
+	mShockParam.mDurationTime=durationTime;
+	mShockParam.mAmplitudeX=amplitudeX;
+	mShockParam.mAmplitudeY=amplitudeY;
+
+	mTimerWork=ShockWork;
+	mTickTime=1;
+	GUISystem::getSingletonPtr()->setFrameUpdateScene(StageScene);
+
+}
+
 void GUIStage::showRoleName( std::wstring text )
 {
 	mCurrentRoleName=text;
@@ -498,6 +609,16 @@ void GUIStage::fastForward()
 			showOtherText();
 			break;
 		}
+	case MoveWork:
+		{
+			StopMoveTo(mScrLayer);
+			break;
+		}
+	case ShockWork:
+		{
+			mShockParam.mAge =mShockParam.mDurationTime+1;
+			break;
+		}
 	case UniversalWork:
 		{
 			StopFadeOut(mScrLayer);
@@ -536,12 +657,9 @@ void GUIStage::FrameEvent()
 	{
 		if (mTimer.getMilliseconds()>=mTickTime )
 		{
-			//复位定时器
-			mTimer.reset();
-
 			switch(mTimerWork)
 			{
-			case PrinterWork:
+				case PrinterWork:
 				{
 					if (!mTextBuffer.empty())
 					{
@@ -573,7 +691,43 @@ void GUIStage::FrameEvent()
 
 						break;
 					}
+				case ShockWork:
+					{
+						// 记录当前累计震动时间
+						mShockParam.mAge += mTimer.getMilliseconds() / 1000.0;
+
+						// 若超时则归位
+						if(mShockParam.mAge >mShockParam.mDurationTime)
+						{
+							mScrLayer->setPosition(mShockParam.mImageX,mShockParam.mImageY);
+							mUniversalLayer->setVisible(true);
+							//停止帧更新
+							mTickTime=0;
+							mTimerWork=NoneWork;
+							GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);
+						}
+						else
+						{
+							// 按照公式求偏移量
+							
+							int x,y=0;
+
+							if (mShockParam.mAmplitudeX!=0)
+								x=int(((float)rand())/RAND_MAX * mShockParam.mAmplitudeX - mShockParam.mAmplitudeX);
+
+							if (mShockParam.mAmplitudeY!=0)
+								y= int(((float)rand())/RAND_MAX * mShockParam.mAmplitudeY - mShockParam.mAmplitudeY);
+
+							// 进行偏移产生震动效果
+							mScrLayer->setPosition(mShockParam.mImageX+x,mShockParam.mImageY+y);
+						}
+
+						break;
+					}
 			}
+
+			//复位定时器
+			mTimer.reset();
 		}
 	}
 }
@@ -639,9 +793,21 @@ void GUIStage::onOtherSceneNotify(std::string arg)
 				mScrLayer->setImageTexture(mTextureName);
 				mScrLayer->setAlpha(1);
 				mUniversalLayer->setAlpha(0);
+				if (mEffectLayerGroup->getVisible())
+				{
+					mEffectLayerGroup->setVisible(false);
+				}
 				break;
 			}
 		}
+
+		mTimerWork=NoneWork;
+		GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);
+	}
+	else if(arg=="MoveToOver")
+	{
+		mScrLayer->setPosition(mUniversalLayer->getPosition());
+		mUniversalLayer->setVisible(true);
 
 		mTimerWork=NoneWork;
 		GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);

@@ -84,6 +84,12 @@ protected:
 
 	void StopFadeOut(MyGUI::Widget* fadeWidget);
 
+	void MoveTo(int left,int top,float time,MyGUI::Widget* moveWidget)/*¶¯»­ÒÆ¶¯¿Ø¼þ */;
+
+	void EventMoveToPostAction(MyGUI::Widget* _sender);
+
+	void StopMoveTo(MyGUI::Widget* moveWidget);
+
 	MyGUI::VectorWidgetPtr mWidgetList;
 	MyGUI::Widget* mContainerWidget;
 	std::string mLayoutName;

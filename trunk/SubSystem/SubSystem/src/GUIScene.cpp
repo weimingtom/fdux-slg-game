@@ -11,11 +11,11 @@ GUIScene::GUIScene(MyGUI::Widget* containerWidget,int Width,int Height):mContain
 
 GUIScene::~GUIScene( void )
 {
-		if (mContainerWidget==NULL)
-		{
-			MyGUI::LayoutManager::getInstance().unloadLayout(mWidgetList);
-			mWidgetList.clear();
-		}
+	if (mContainerWidget==NULL)
+	{
+		MyGUI::LayoutManager::getInstance().unloadLayout(mWidgetList);
+		mWidgetList.clear();
+	}
 }
 
 void GUIScene::FadeIn(float time,MyGUI::Widget* fadeWidget)//渐变,以毫秒计算
@@ -73,4 +73,30 @@ void GUIScene::StopFadeOut(MyGUI::Widget* fadeWidget)
 {
 	MyGUI::ControllerManager::getInstance().removeItem(fadeWidget); 
 	onOtherSceneNotify("FadeOutOver");
+}
+
+void GUIScene::MoveTo(int left,int top,float time,MyGUI::Widget* moveWidget)//渐变,以毫秒计算
+{
+	MyGUI::ControllerItem* item = MyGUI::ControllerManager::getInstance().createItem(MyGUI::ControllerPosition::getClassTypeName());
+	MyGUI::ControllerPosition* controller = item->castType<MyGUI::ControllerPosition>();
+
+	controller->setPosition(MyGUI::IntPoint(left,top));
+	controller->setTime(time/1000.0);
+	controller->setAction(MyGUI::newDelegate(MyGUI::action::inertionalMoveFunction));
+
+	controller->eventPostAction+=MyGUI::newDelegate(this, &GUIScene::EventMoveToPostAction);
+
+	MyGUI::ControllerManager::getInstance().addItem(moveWidget,controller); 
+
+}
+
+void GUIScene::EventMoveToPostAction(MyGUI::Widget* _sender)
+{
+	onOtherSceneNotify("MoveToOver");
+}
+
+void GUIScene::StopMoveTo(MyGUI::Widget* moveWidget)
+{
+	MyGUI::ControllerManager::getInstance().removeItem(moveWidget); 
+	onOtherSceneNotify("MoveToOver");
 }
