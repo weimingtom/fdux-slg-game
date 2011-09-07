@@ -22,7 +22,7 @@
 
 #define SAVE_PATH "..\\save"
 
-GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),mCheckMouseDown(false),mIsMouseDown(false),mTextX(0),mTextY(0),mIsFastForward(false),SLWindow(NULL)
+GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),mCheckMouseDown(false),mIsMouseDown(false),mTextX(0),mTextY(0),mIsFastForward(false),SLWindow(NULL),mIsAuto(false)
 {
 	assignWidget(mBackGroundGroup, "BackGroundGroup");
 	assignWidget(mBackGround, "BackGround");
@@ -60,6 +60,7 @@ GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),m
 	assignWidget(mHideButton,"HideButton");
 	assignWidget(mSystemButton,"SystemButton");
 	assignWidget(mHistoryButton,"HistoryButton");
+	assignWidget(mAutoButton,"AutoButton");
 
 #ifndef SCRIPT_EDITOR
 	mSaveButton->setCaption(StringTable::getSingletonPtr()->getString("SaveButton"));
@@ -67,6 +68,7 @@ GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),m
 	mHideButton->setCaption(StringTable::getSingletonPtr()->getString("HideButton"));
 	mSystemButton->setCaption(StringTable::getSingletonPtr()->getString("SystemButton"));
 	mHistoryButton->setCaption(StringTable::getSingletonPtr()->getString("HistoryButton"));
+	mAutoButton->setCaption(StringTable::getSingletonPtr()->getString("AutoButton"));
 #endif
 
 	mInputLayer->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::eventMouseButtonClick);
@@ -76,6 +78,9 @@ GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),m
 	mHideButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::onHide);
 	mSystemButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::onSystem);
 	mHistoryButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::onHistory);
+	mAutoButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::onAuto);
+
+	changeShowTextOptionTime();
 }
 
 GUIStage::~GUIStage(void)
@@ -181,7 +186,7 @@ void GUIStage::setCheckMouseDown()
 
 bool GUIStage::CheckMouseState()
 {
-	if (mIsFastForward)
+	if (mIsFastForward||isCanAuto())
 	{
 		return true;
 	}
@@ -297,6 +302,15 @@ void GUIStage::waitTime( float time )
 	GUISystem::getSingletonPtr()->setFrameUpdateScene(StageScene);
 }
 
+void GUIStage::changeShowTextOptionTime()
+{
+#ifndef SCRIPT_EDITOR
+	int TextSpeed;
+	DataLibrary::getSingletonPtr()->getData("SystemConfig/TextSpeed",TextSpeed);
+	mShowTextOptionTime=50.0/TextSpeed;
+#endif
+}
+
 void GUIStage::showText( std::wstring text,float delay)
 {
 	addToHistoryBox(text);
@@ -310,7 +324,7 @@ void GUIStage::showText( std::wstring text,float delay)
 		//如果是打字效果,那么启动打字定时器
 		mTextBuffer=text;
 		mTimerWork=PrinterWork;
-		mTickTime=delay*1000;
+		mTickTime=delay*1000*mShowTextOptionTime;
 
 		//开始帧更新
 		mTimer.reset();
@@ -578,7 +592,33 @@ bool GUIStage::isCanFastForward()
 	{
 		return false;
 	}
-	if (!mTextBoxVisible)
+	else if (!mTextBoxVisible)
+	{
+		return false;
+	}
+	else if (SLWindow!=NULL)
+	{
+		return false;
+	}
+	else if(mHistoryBox->getVisible())
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool GUIStage::isCanAuto()
+{
+	if (!mIsAuto)
+	{
+		return false;
+	}
+	else if (mTimerWork!=NoneWork)
+	{
+		return false;
+	}
+	else if (!mTextBoxVisible)
 	{
 		return false;
 	}
@@ -955,6 +995,11 @@ void GUIStage::onHistory( MyGUI::Widget* _sender )
 	setHistoryBoxVisible(true);
 }
 
+void GUIStage::onAuto( MyGUI::Widget* _sender )
+{
+	mIsAuto=!mIsAuto;
+}
+
 void GUIStage::onSystem( MyGUI::Widget* _sender )
 {
 #ifndef SCRIPT_EDITOR
@@ -1069,6 +1114,7 @@ void GUIStage::buttonLock( bool lock )
 	mHideButton->setEnabled(lock);
 	mSystemButton->setEnabled(lock);
 	mHistoryButton->setEnabled(lock);
+	mAutoButton->setEnabled(lock);
 }
 
 

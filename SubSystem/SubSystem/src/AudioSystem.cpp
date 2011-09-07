@@ -1,4 +1,5 @@
 #include "AudioSystem.h"
+#include "DataLibrary.h"
 
 #define BGM_PATH "..\\media\\bgm\\"
 #define SE_PATH "..\\media\\sound\\"
@@ -22,10 +23,33 @@ AudioSystem::~AudioSystem(void)
 bool AudioSystem::init()
 {
 	mDevice=OpenDevice();
+	changeVolume();
 	if (!mDevice) {
 		return false;
 	}
 	return true;
+}
+
+void AudioSystem::changeVolume()
+{
+#ifndef SCRIPT_EDITOR
+	int MusicVolume,SEVolume;
+	DataLibrary::getSingletonPtr()->getData("SystemConfig/MusicVolume",MusicVolume);
+	DataLibrary::getSingletonPtr()->getData("SystemConfig/SEVolume",SEVolume);
+	
+	mStreamVol=MusicVolume/100.0;
+	mSampleVol=SEVolume/100.0;
+
+	if (mStream!=NULL)
+	{
+		mStream->setVolume(mStreamVol);
+	}
+	if (mSample!=NULL)
+	{
+		mSample->setVolume(mSampleVol);
+	}
+
+#endif
 }
 
 bool AudioSystem::playStream( std::string name,bool isLoop,int time)
@@ -36,6 +60,7 @@ bool AudioSystem::playStream( std::string name,bool isLoop,int time)
 
 	mStream=OpenSound(mDevice, path.c_str(), true);
 	mStream->setRepeat(isLoop);
+	mStream->setVolume(mStreamVol);
 	mStream->play();
 
 	return true;
@@ -57,6 +82,7 @@ bool AudioSystem::playSample( std::string name,bool isLoop)
 
 	mSample=OpenSound(mDevice, path.c_str(), false);
 	mSample->setRepeat(isLoop);
+	mSample->setVolume(mSampleVol);
 	mSample->play();
 
 	return true;

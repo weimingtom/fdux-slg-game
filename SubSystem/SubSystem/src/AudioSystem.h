@@ -18,6 +18,8 @@ public:
 
 	bool init();
 
+	void changeVolume();
+
 	bool playStream(std::string name,bool isLoop,int time);
 
 	bool stopStream(int time);
@@ -35,6 +37,8 @@ private:
 	audiere::AudioDevicePtr mDevice;
 	audiere::OutputStreamPtr mStream;
 	audiere::OutputStreamPtr mSample;
+	float mStreamVol;
+	float mSampleVol;
 	//MyGUI::Timer mTimer;
 	//HSTREAM mStream;//“Ù∆µ¡˜
 	//HSAMPLE mSample;//“Ù–ß

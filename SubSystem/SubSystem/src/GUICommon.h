@@ -63,5 +63,6 @@ enum GUISceneType
 	BattleScene,
 	SLScene,
 	MenuWindowsScene,
-	MessageBoxScene
+	MessageBoxScene,
+	OptionWindowScene
 };

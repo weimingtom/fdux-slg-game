@@ -24,6 +24,8 @@ public:
 
 	void showText( std::wstring text,float delay);//显示文字
 
+	void changeShowTextOptionTime();
+
 	void clearText();//清空文本
 
 	void showOtherText();//在打字状态下,直接显示余下的文本
@@ -87,6 +89,7 @@ private:
 	void onHide(MyGUI::Widget* _sender);
 	void onSystem(MyGUI::Widget* _sender);
 	void onHistory( MyGUI::Widget* _sender );
+	void onAuto( MyGUI::Widget* _sender );
 
 	void load();
 
@@ -101,6 +104,7 @@ private:
 	void buttonLock(bool lock);
 
 	bool isCanFastForward();
+	bool isCanAuto();
 
 	void addToHistoryBox(std::wstring text);
 
@@ -109,9 +113,11 @@ private:
 
 	bool mCheckMouseDown;
 	bool mIsMouseDown;
+	bool mIsAuto;
 
 	GUISLWindow* SLWindow;
 
+	float mShowTextOptionTime;//用户调节显示文本时间
 	std::wstring mTextBuffer;//文本缓冲
 
 	MyGUI::ImageBox* mUniversalLayer;//当前使用的渐变层
@@ -161,6 +167,7 @@ private:
 	MyGUI::Button* mHideButton;
 	MyGUI::Button* mSystemButton;
 	MyGUI::Button* mHistoryButton;
+	MyGUI::Button* mAutoButton;
 
 	struct ShockParam
 	{
