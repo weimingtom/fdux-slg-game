@@ -20,4 +20,8 @@
     <Widget type="EditBox" skin="SLGEditBoxStretch" position="105 320 335 160">
         <Property key="Caption" value="ssss\nss\ns\ns\ns\ns\ns\ns\nss\n"/>
     </Widget>
+    <Widget type="ScrollBar" skin="SLGScrollBarH" position="105 65 495 30">
+        <Property key="Range" value="100"/>
+        <Property key="RangePosition" value="0"/>
+    </Widget>
 </MyGUI>

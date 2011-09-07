@@ -5,6 +5,7 @@
 #include "StateManager.h"
 #include "LuaSystem.h"
 #include "GUISLWindow.h"
+#include "GUIOptionWindow.h"
 
 GUIMenuWindow::GUIMenuWindow(int Width,int Height):GUIScene("SystemMenu.layout",Width,Height)
 {
@@ -24,6 +25,7 @@ GUIMenuWindow::GUIMenuWindow(int Width,int Height):GUIScene("SystemMenu.layout",
 	mRestartButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenuWindow::onRestart);
 	mSaveButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenuWindow::onSave);
 	mLoadButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenuWindow::onLoad);
+	mOptionButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenuWindow::onOption);
 	mExitButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenuWindow::onExit);
 }
 
@@ -78,6 +80,12 @@ void GUIMenuWindow::onLoad( MyGUI::Widget* _sender )
 	mWindow->setVisible(false);
 	SLWindow->setCallScene(this);
 	SLWindow->showScene("load");
+}
+
+void GUIMenuWindow::onOption( MyGUI::Widget* _sender )
+{
+	GUIOptionWindow* OptionWindow= (GUIOptionWindow*)GUISystem::getSingletonPtr()->createScene(OptionWindowScene);
+	OptionWindow->showScene("");
 }
 
 void GUIMenuWindow::onOtherSceneNotify(std::string arg)

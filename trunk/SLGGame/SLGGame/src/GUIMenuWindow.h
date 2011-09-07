@@ -30,6 +30,7 @@ private:
 	void onSave(MyGUI::Widget* _sender);
 	void onLoad(MyGUI::Widget* _sender);
 	void onExit(MyGUI::Widget* _sender);
+	void onOption( MyGUI::Widget* _sender );
 
 	MyGUI::ImageBox* mWindow;
 	MyGUI::Button* mRestartButton;

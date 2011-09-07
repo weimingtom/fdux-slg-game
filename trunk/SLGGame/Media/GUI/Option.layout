@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout" version="3.2.0">
+    <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Popup" name="SLBG">
+        <Widget type="Window" skin="SLGWindow" position="430 200 420 320" align="Center" name="OptionWindow">
+            <Widget type="TextBox" skin="TextBox" position="145 75 150 30" name="OptionCaption">
+                <Property key="Caption" value="OptionCaption"/>
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="30"/>
+                <Property key="TextAlign" value="Center"/>
+            </Widget>
+            <Widget type="ScrollBar" skin="SLGScrollBarH" position="160 120 225 25" name="MusicScrollBar">
+                <Property key="Range" value="100"/>
+                <Property key="RangePosition" value="50"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="40 160 110 25" name="SEVolume">
+                <Property key="Caption" value="SEVolume"/>
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="24"/>
+            </Widget>
+            <Widget type="ScrollBar" skin="SLGScrollBarH" position="160 160 225 25" name="SeScrollBar">
+                <Property key="Range" value="100"/>
+                <Property key="RangePosition" value="50"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="40 200 110 25" name="TextSpeed">
+                <Property key="Caption" value="TextSpeed"/>
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="24"/>
+            </Widget>
+            <Widget type="ScrollBar" skin="SLGScrollBarH" position="160 200 225 25" name="TextSpeedScrollBar">
+                <Property key="Range" value="100"/>
+                <Property key="RangePosition" value="50"/>
+            </Widget>
+            <Widget type="Button" skin="SLGButtonSkin1" position="75 250 135 35" name="YesButton">
+                <Property key="Caption" value="Yes"/>
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="24"/>
+                <Property key="TextAlign" value="Center"/>
+            </Widget>
+            <Widget type="Button" skin="SLGButton1" position="225 250 150 35" name="NoButton">
+                <Property key="Caption" value="No"/>
+                <Property key="TextAlign" value="Center"/>
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="24"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="40 120 110 25" name="MusicVolume">
+                <Property key="Caption" value="MusicVolume"/>
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="24"/>
+            </Widget>
+        </Widget>
+    </Widget>
+</MyGUI>

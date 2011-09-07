@@ -56,8 +56,11 @@
 		<NewGame type="String" value = "开始游戏"/>
 		<Restart type="String" value ="继续"/>
 		<LoadGame type="String" value = "载入游戏"/>
-		<Opition type="String" value = "游戏设置(未开放)"/>
+		<Opition type="String" value = "游戏设置"/>
 		<OpitionButton type="String" value = "游戏设置"/>
+		<MusicVolume type="String" value = "音乐音量"/>
+		<SEVolume type="String" value = "音效音量"/>
+		<TextSpeed type="String" value = "文字显示速度"/>
 		<ExitGame type="String" value = "退出游戏"/>
 		<YesButton type="String" value = "确定"/>
 		<NoButton type="String" value = "取消"/>
@@ -68,6 +71,7 @@
 		<HideButton type="String" value="隐藏"/>
 		<SystemButton type="String" value="系统"/>
 		<HistoryButton type="String" value="历史"/>
+		<AutoButton type="String" value="自动"/>
 		<SaveCaption type="String" value = "保存游戏"/>
 		<LoadCaption type="String" value = "读取游戏"/>
 		<NoFile type="String" value="--空--" />

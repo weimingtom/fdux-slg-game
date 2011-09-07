@@ -8,6 +8,7 @@
 #include "GUIBattle.h"
 #include "GUIMenuWindow.h"
 #include "GUIMessageBox.h"
+#include "GUIOptionWindow.h"
 
 #include "LuaSystem.h"
 #include "AudioSystem.h"
@@ -123,6 +124,7 @@ bool Core::initialize(bool isFullScene)
 	mGUISystem->registerSceneFactory(SLScene, new GUISLWindowFactory());
 	mGUISystem->registerSceneFactory(MenuWindowsScene, new GUIMenuWindowFactory());
 	mGUISystem->registerSceneFactory(MessageBoxScene, new GUIMessageBoxFactory());
+	mGUISystem->registerSceneFactory(OptionWindowScene, new GUIOptionWindowFactory());
 
 	mAudioSystem=new AudioSystem();
 
