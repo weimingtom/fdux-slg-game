@@ -30,7 +30,7 @@
                 <Property key="FontName" value="fireflysung"/>
                 <Property key="FontHeight" value="24"/>
                 <Property key="TextColour" value="1 1 1"/>
-                <Property key="Enabled" value="false"/>
+                <Property key="Enabled" value="true"/>
             </Widget>
             <Widget type="Button" skin="SLGButton3" position="35 240 145 50" name="MenuExitButton">
                 <Property key="Caption" value="Exit"/>

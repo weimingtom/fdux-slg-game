@@ -41,13 +41,13 @@
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="24"/>
         </Widget>
-        <Widget type="Button" skin="SLGButton3" position="420 680 140 45" name="SaveButton">
+        <Widget type="Button" skin="SLGButton3" position="295 680 140 45" name="SaveButton">
             <Property key="Caption" value="Save"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="TextColour" value="1 1 1"/>
             <Property key="FontHeight" value="24"/>
         </Widget>
-        <Widget type="Button" skin="SLGButton3" position="560 680 135 45" name="LoadButton">
+        <Widget type="Button" skin="SLGButton3" position="430 680 135 45" name="LoadButton">
             <Property key="Caption" value="Load"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="TextColour" value="1 1 1"/>
@@ -65,6 +65,12 @@
             <Property key="TextColour" value="1 1 1"/>
             <Property key="FontHeight" value="24"/>
             <Property key="TextAlign" value="Center"/>
+        </Widget>
+        <Widget type="Button" skin="SLGButton3" position="565 680 130 45" name="AutoButton">
+            <Property key="Caption" value="Auto"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="TextColour" value="1 1 1"/>
+            <Property key="FontHeight" value="24"/>
         </Widget>
     </Widget>
     <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" layer="Overlapped" name="EffectLayerGroup">

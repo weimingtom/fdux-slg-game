@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Resource" version="1.1">
     <Resource type="ResourceSkin" name="SLGWindowSkin" size="134 152" texture="MyGUI_UISkins.png">
         <BasisSkin type="SubSkin" offset="0 0 56 75" align="Left Top">
@@ -199,4 +199,20 @@
             <State name="normal" offset="444 700 23 32"/>
         </BasisSkin>
     </Resource>
+    
+    <Resource type="ResourceSkin" name="SLGScrollBarHSkin" size="100 7" texture="MyGUI_UISkins.png">
+        <BasisSkin type="TileRect" offset="0 0 100 7" align="HStretch VCenter">
+            <State name="normal" offset="394 564 100 7">
+                <Property key="TileSize" value="100 7"/>
+                <Property key="TileH" value="true"/>
+                <Property key="TileV" value="false"/>
+            </State>
+        </BasisSkin>
+    </Resource>
+    <Resource type="ResourceSkin" name="SLGScrollTrackHSkin" size="32 23" texture="MyGUI_UISkins.png">
+        <BasisSkin type="SubSkin" offset="0 0 32 23" align="HCenter VStretch">
+            <State name="normal" offset="420 523 32 23"/>
+        </BasisSkin>
+    </Resource>
+    
 </MyGUI>

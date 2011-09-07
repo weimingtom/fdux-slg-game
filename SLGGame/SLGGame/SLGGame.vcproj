@@ -754,6 +754,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\src\GUIOptionWindow.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\GUIOptionWindow.h"
+						>
+					</File>
+					<File
 						RelativePath=".\src\GUISLWindow.cpp"
 						>
 					</File>

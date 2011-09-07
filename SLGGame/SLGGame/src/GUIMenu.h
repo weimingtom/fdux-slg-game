@@ -2,6 +2,7 @@
 #include "GUIScene.h"
 
 class GUISLWindow;
+class GUIOptionWindow;
 
 class GUIMenu :
 	public GUIScene
@@ -53,6 +54,7 @@ private:
 	MyGUI::Button* mExit;
 
 	GUISLWindow* SLWindow;
+	GUIOptionWindow* mOptionWindow;
 
 	MyGUI::Timer mTimer;//定时器
 	float mTickTime;//单次触发时间

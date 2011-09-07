@@ -6,6 +6,7 @@
 #include "Core.h"
 #include "LuaSystem.h"
 #include "GUISLWindow.h"
+#include "GUIOptionWindow.h"
 
 #include "StateManager.h"
 #include "AudioSystem.h"
@@ -15,7 +16,7 @@
 #define FadeTime 1500
 #define WaitTime 2000
 
-GUIMenu::GUIMenu(int width,int height):GUIScene("MainMenu.layout",width,height),mMenuState(NoneState),SLWindow(NULL)
+GUIMenu::GUIMenu(int width,int height):GUIScene("MainMenu.layout",width,height),mMenuState(NoneState),SLWindow(NULL),mOptionWindow(NULL)
 {
 	assignWidget(mLogoImage,"LogoImage");
 	assignWidget(mMenuImage,"BackGround");
@@ -182,6 +183,7 @@ void GUIMenu::onLoad( MyGUI::Widget* _sender )
 
 void GUIMenu::onOpiton( MyGUI::Widget* _sender )
 {
-
+	mOptionWindow= (GUIOptionWindow*)GUISystem::getSingletonPtr()->createScene(OptionWindowScene);
+	mOptionWindow->showScene("");
 }
 
