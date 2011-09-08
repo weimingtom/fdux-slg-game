@@ -48,6 +48,8 @@ public:
 
 	void rangedAttackCutScene(BattleSquad* attacksquad, int x, int y, UnitType castunit , std::string castparticle, std::string castaction, std::string castsound, int missiletype, std::string missileres, std::string hitparticle,std::string hitsound);
 
+	void spreadModifyMorale(BattleSquad* squad, int val);
+
 	void setCutScene(CutScene* cutscene);
 	CutScene* getCutScene();
 private:

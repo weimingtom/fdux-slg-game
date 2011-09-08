@@ -188,6 +188,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\CommonFunction.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\CommonFunction.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\Conversion.cpp"
 				>
 			</File>

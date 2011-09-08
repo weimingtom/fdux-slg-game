@@ -10,6 +10,7 @@
 #include "DataLibrary.h"
 
 #include "BattleSquad.h"
+#include "CommonFunction.h"
 
 #include "LuaSystem.h"
 #include "StringTable.h"
@@ -339,21 +340,9 @@ bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad*
 	int targetx, targety, casterx,castery;
 	attacksquad->getCrood(&casterx, &castery);
 	defenesquad->getCrood(&targetx, &targety);
-	if(!(casterx == targetx && castery == targety))
+	if(casterx != targetx || castery != targety)
 	{
-		float k;
-		if(targety-castery == 0)
-			k = 2.0f;
-		else
-			k = abs(targetx -casterx)/ abs(targety - castery);
-		if( targety > castery && k <= 1.0f)
-			d = South;
-		else if( targety < castery && k <= 1.0f)
-			d = North;
-		else if( targetx > casterx )
-			d = East;
-		else
-			d = West;
+		d = GetDirection(casterx,castery,targetx,targety);
 		if(attacksquad->getDirection() != d)
 		{
 			attacksquad->setDirection(d);
@@ -388,27 +377,50 @@ bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad*
 			setCutScene(new AnimationCutScene(squad->getGrapId(),UNITTYPE_ALL,"Attack","attack.mp3","none",false,true));
 		else
 			setCutScene(new AnimationCutScene(squad->getGrapId(),UNITTYPE_SOLIDER,"Attack","attack.mp3","none",false,true));
-		std::vector<int> atkrolls;
+		AttackInfo atkinfo;
+		int morale = 0;
 		if(squad == attacksquad)
 		{
-			atkrolls = squad->getAttackRolls(false,squad == defenesquad,d);
+			atkinfo = squad->getAttackRolls(false,false,d);
+			if(attacksquad->getUnitRealNum() * 2 > defenesquad->getUnitRealNum())
+				defenesquad->modifyMorale(-2);
+			switch(defenesquad->getFormation())
+			{
+			case Line:
+				if(GetSide(dd,temp[d]) == 1)
+				{
+					morale -= 4;
+				}
+				else if(GetSide(dd,temp[d]) == 2)
+				{
+					morale -= 8;
+				}
+				break;
+			case Loose:
+				morale -= 4;
+				break;
+			}
 			squad = defenesquad;
 		}
 		else
 		{
-			atkrolls = squad->getAttackRolls(false,squad == defenesquad,temp[d]);
+			atkinfo = squad->getAttackRolls(false,true,temp[d]);
+			if(defenesquad->getUnitRealNum() * 2 > attacksquad->getUnitRealNum())
+				attacksquad->modifyMorale(-2);
 			squad = attacksquad;
 		}
-		if(atkrolls.size() > 0)
+		if(atkinfo.AtkTime > 0)
 		{
 			int squadugb = squad->getUnitGrapNum();
 			int squadRealNumB=squad->getUnitRealNum();
 			if(squad == attacksquad)
-				squad->applyAttackRolls(false, d, atkrolls);
+				squad->applyAttackRolls(false, d, atkinfo);
 			else
-				squad->applyAttackRolls(false, temp[d], atkrolls);
+				squad->applyAttackRolls(false, temp[d], atkinfo);
 			int squaduga = squad->getUnitGrapNum();
 			int squadRealNumA=squad->getUnitRealNum();
+			morale -= DEADTOMORALE[(squadRealNumB - squadRealNumA) / 5];
+			spreadModifyMorale(squad,morale);
 			if(squaduga < squadugb)
 			{
 				setCutScene(new SquadDeadCutScene(squad->getGrapId(), squadugb - squaduga));
@@ -458,21 +470,9 @@ void BattleSquadManager::rangedAttackCutScene(BattleSquad* attacksquad, int x, i
 	Direction d;
 	int casterx,castery;
 	attacksquad->getCrood(&casterx, &castery);
-	if(!(casterx == x && castery == y))
+	if(casterx != x || castery != y)
 	{
-		float k;
-		if(y-castery == 0)
-			k = 2.0f;
-		else
-			k = abs(x -casterx)/ abs(y - castery);
-		if( y > castery && k <= 1.0f)
-			d = South;
-		else if( y < castery && k <= 1.0f)
-			d = North;
-		else if( x > casterx )
-			d = East;
-		else
-			d = West;
+		d = GetDirection(casterx,castery,x,y);
 		if(attacksquad->getDirection() != d)
 		{
 			attacksquad->setDirection(d);
@@ -516,24 +516,21 @@ void BattleSquadManager::rangedAttackCutScene(BattleSquad* attacksquad, int x, i
 
 bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* defenesquad, int attacktime, float atk)
 {
-	std::vector<int> attackrolls;
-	for(int n = 0; n < attacktime; n++)
-	{
-		int atkroll = rand()% ATKROLL;
-		if(atkroll == ATKROLL -1)
-			atkroll = 100;
-		else if(atkroll == 0)
-			atkroll = -100;
-		attackrolls.push_back(atk +atkroll);
-	}
-	if(attackrolls.size() > 0)
+	AttackInfo atkinfo;
+	atkinfo.Atk = atk;
+	atkinfo.AtkTime = attacktime;
+	atkinfo.Fluctuate = 10;
+	if(attacktime > 0)
 	{
 		int squadRealNumB=defenesquad->getUnitRealNum();
+		if(attacktime * 2 > squadRealNumB)
+			defenesquad->modifyMorale(-4);
 		int squadugb = defenesquad->getUnitGrapNum();
 		Direction d = defenesquad->getDirection();
-		defenesquad->applyAttackRolls(true, d, attackrolls);
+		defenesquad->applyAttackRolls(true, d, atkinfo);
 		int squaduga = defenesquad->getUnitGrapNum();
 		int squadRealNumA=defenesquad->getUnitRealNum();
+		spreadModifyMorale(defenesquad, -DEADTOMORALE[(squadRealNumB - squadRealNumA) / 5]) ;
 		if(squaduga < squadugb)
 		{
 			setCutScene(new SquadDeadCutScene(defenesquad->getGrapId(), squadugb - squaduga));
@@ -558,15 +555,18 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 	defenesquad->getCrood(&x,&y);
 	rangedAttackCutScene(attacksquad,x,y,UNITTYPE_ALL,"none","Attack","Ranged.mp3",0,"NoMesh","none","none");
 	Direction d = attacksquad->getDirection();
-	std::vector<int> atkrolls = attacksquad->getAttackRolls(true,false,d);
-	if(atkrolls.size() > 0)
+	AttackInfo atkinfo = attacksquad->getAttackRolls(true,false,d);
+	if(atkinfo.AtkTime > 0)
 	{
 		int squadRealNumB=defenesquad->getUnitRealNum();
+		if(atkinfo.AtkTime * 2 > squadRealNumB)
+			defenesquad->modifyMorale(-4);
 		int squadugb = defenesquad->getUnitGrapNum();
 		d = defenesquad->getDirection();
-		defenesquad->applyAttackRolls(true, d, atkrolls);
+		defenesquad->applyAttackRolls(true, d, atkinfo);
 		int squadRealNumA=defenesquad->getUnitRealNum();
 		int squaduga = defenesquad->getUnitGrapNum();
+		spreadModifyMorale(defenesquad, -DEADTOMORALE[(squadRealNumB - squadRealNumA) / 5]) ;
 		if(squaduga < squadugb)
 		{
 			setCutScene(new SquadDeadCutScene(defenesquad->getGrapId(), squadugb - squaduga));
@@ -582,6 +582,34 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 		return true;
 	}
 	return false;
+}
+
+void BattleSquadManager::spreadModifyMorale(BattleSquad* squad, int val)
+{
+	if(squad == NULL)
+		return;
+	std::vector<BattleSquad*> squadlist;
+	BattleSquadIte ite;
+	int x1,y1,x2,y2;
+	int faction = squad->getTeamFaction(squad->getTeam());
+	squad->getCrood(&x1,&y1);
+	for(ite = mSquadList.begin(); ite != mSquadList.end(); ite++)
+	{
+		if(squad == (*ite))
+			continue;
+		if((*ite)->getTeamFaction((*ite)->getTeam()) != faction)
+			continue;
+		(*ite)->getCrood(&x2,&y2);
+		if(GetDistance(x1,y1,x2,y2) > 2)
+			continue;
+		squadlist.push_back((*ite));
+	}
+	int morale = floor(((float)val / (2 + squadlist.size())+ 0.5f));
+	squad->modifyMorale( 2 * morale);
+	for(ite = squadlist.begin(); ite != squadlist.end(); ite++)
+	{
+		(*ite)->modifyMorale(morale);
+	}
 }
 
 CutScene* BattleSquadManager::getCutScene()

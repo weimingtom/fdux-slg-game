@@ -10,6 +10,8 @@
 #include "MapDataManager.h"
 #include "BattleSquadManager.h" 
 #include "LuaSystem.h"
+#include "TriggerManager.h"
+#include "CommonFunction.h"
 
 BattleSquad::BattleSquad(std::string id, int grapid ,int x, int y)
 :mId(id),mGrapId(grapid)
@@ -141,7 +143,10 @@ BattleSquad::BattleSquad(std::string id, int grapid ,int x, int y)
 		DataLibrary::getSingleton().getData(getPath() + std::string("/AmbushEnemy3"),ambush);
 		mAmbushFaction[3] = (ambush == 1);
 	}
-	mIsEliminated = false;
+	if(getUnitRealNum() > 0)
+		mIsEliminated = false;
+	else
+		mIsEliminated = true;
 }
 BattleSquad::~BattleSquad()
 {
@@ -235,37 +240,7 @@ float BattleSquad::getAttr(AttrType attrtype, AttrCalcType calctype, Direction d
 		form *= unitnum;
 		mydirection = getDirection();
 		formation = getFormation();
-		side = 0;
-		if(direction != mydirection)
-		{
-			switch(direction)
-			{
-			case North:
-				if(mydirection != South)
-					side = 1;
-				else
-					side = 2;
-				break;
-			case South:
-				if(mydirection != North)
-					side = 1;
-				else
-					side = 2;
-				break;
-			case West:
-				if(mydirection != East)
-					side = 1;
-				else
-					side = 2;
-				break;
-			case East:
-				if(mydirection != West)
-					side = 1;
-				else
-					side = 2;
-				break;
-			}
-		}
+		side = GetSide(mydirection,direction);
 		switch(side)
 		{
 		case 0:
@@ -312,6 +287,7 @@ float BattleSquad::getAttr(AttrType attrtype, AttrCalcType calctype, Direction d
 			break;
 		}
 		attr = attr + form;
+		attr *= getMoraleBonse();
 		if(attrtype==ATTR_DEFENCE)
 		{
 			trrainmodi = MapDataManager::getSingleton().getDefModify(mX,mY,mTeam);
@@ -332,16 +308,17 @@ float BattleSquad::getAttr(AttrType attrtype, AttrCalcType calctype, Direction d
 		switch(formation)
 		{
 		case Line:
-			form *= FORMBONSE_LINE_FRONT;
+			form *= FORMBONSE_LINE_RANGED;
 			break;
 		case Circular:
-			form *= FORMBONSE_CIRC_FRONT;
+			form *= FORMBONSE_CIRC_RANGED;
 			break;
 		case Loose:
-			form *= FORMBONSE_LOOS_FRONT;
+			form *= FORMBONSE_LOOS_RANGED;
 			break;
 		}
 		attr = attr + RANGEDDEFENCEBONUS - form;
+		attr *= getMoraleBonse();
 		trrainmodi = MapDataManager::getSingleton().getDefModify(mX,mY,mTeam);
 		if(trrainmodi < 0.0f)
 		{
@@ -367,6 +344,26 @@ float BattleSquad::getAttr(AttrType attrtype, AttrCalcType calctype, Direction d
 	return attr;
 }
 
+float BattleSquad::getMoraleBonse()
+{
+	int morale = 0;
+	DataLibrary::getSingleton().getData(getPath() + std::string("/Morale"),morale);
+	return 0.6f +  0.006f * morale;
+}
+
+void BattleSquad::modifyMorale(int m)
+{
+	int morale = 0;
+	DataLibrary::getSingleton().getData(getPath() + std::string("/Morale"),morale);
+	float moralequotiety = getAttr(ATTR_INJURY, ATTRCALC_FULL, North);
+	moralequotiety *= m;
+	m = floor(moralequotiety + 0.5f);
+	morale += m;
+	morale = (morale > 100)? 100: morale;
+	morale = (morale < 0)? 0: morale;
+	DataLibrary::getSingleton().setData(getPath() + std::string("/Morale"),morale);
+}
+
 int BattleSquad::getUnitRealNum()
 {
 	int unitnum;
@@ -379,7 +376,9 @@ int BattleSquad::getUnitGrapNum()
 	SquadType squadtype;
 	DataLibrary::getSingleton().getData(getPath() + std::string("/Type"),squadtype);
 	int unitnum=getUnitRealNum();
-	if(squadtype == SQUAD_NORMAL)
+	if(unitnum == 0)
+		return 0;
+	else if(squadtype == SQUAD_NORMAL)
 	{
 		return (unitnum-1)/10; 
 	}
@@ -398,29 +397,31 @@ void BattleSquad::newTurn()
 	datalib->setData(getPath() + std::string("/APSetup"),0.0f);
 	datalib->setData(getPath() + std::string("/APBattle"),0.0f);
 	//触发回合开始
-	std::vector<std::string> triggerlist;
-	triggerlist = datalib->getChildList(getPath() + std::string("/Trigger"));
-	if(triggerlist.size()>0)
-	{
-		std::vector<std::string>::iterator ite;
-		for(ite = triggerlist.begin(); ite != triggerlist.end(); ite++)
-		{
-			std::string datapath = getPath() + std::string("/Trigger/") + (*ite);
-			int active;
-			datalib->getData(datapath ,active);
-			if(!active)
-				continue;
-			std::string type;
-			datalib->getData(datapath + std::string("/type"),type);
-			if(type != "TurnStart")
-				continue;
-			std::string context,filename,funcname;
-			datalib->getData(datapath + std::string("/file"),filename);
-			datalib->getData(datapath + std::string("/func"),funcname);
-			datalib->getData(datapath + std::string("/context"),context);
-			LuaSystem::getSingleton().executeFunction(filename,funcname,context);
-		}
-	}
+// 	std::vector<std::string> triggerlist;
+// 	triggerlist = datalib->getChildList(getPath() + std::string("/Trigger"));
+// 	if(triggerlist.size()>0)
+// 	{
+// 		std::vector<std::string>::iterator ite;
+// 		for(ite = triggerlist.begin(); ite != triggerlist.end(); ite++)
+// 		{
+// 			std::string datapath = getPath() + std::string("/Trigger/") + (*ite);
+// 			int active;
+// 			datalib->getData(datapath ,active);
+// 			if(!active)
+// 				continue;
+// 			std::string type;
+// 			datalib->getData(datapath + std::string("/type"),type);
+// 			if(type != "TurnStart")
+// 				continue;
+// 			std::string context,filename,funcname;
+// 			datalib->getData(datapath + std::string("/file"),filename);
+// 			datalib->getData(datapath + std::string("/func"),funcname);
+// 			datalib->getData(datapath + std::string("/context"),context);
+// 			LuaSystem::getSingleton().executeFunction(filename,funcname,context);
+// 		}
+// 	}
+	TriggerContext* trigger = new TriggerContext("TurnStart");
+	TriggerManager::getSingleton().Trigger(getPath(),trigger);
 	
 	//计算技能
 	std::vector<std::string>::iterator ite;
@@ -524,52 +525,59 @@ float BattleSquad::getActionPointCost(int type)
 	return apcost;
 }
 
-std::vector<int> BattleSquad::getAttackRolls(bool rangedattack,bool asdefender, Direction d)
+AttackInfo BattleSquad::getAttackRolls(bool rangedattack,bool asdefender, Direction d)
 {
-	std::vector<int> attackrolls;
+	AttackInfo attackinfo;
 	float atkf;
 	if(rangedattack)
 		atkf = getAttr(ATTR_RANGEDATTACK, ATTRCALC_FULL, d);
 	else
 		atkf = getAttr(ATTR_ATTACK, ATTRCALC_FULL, d);
 	int atk = floor(atkf + 0.5f);
-	int soildernum, woundnum, healthynum;
-	DataLibrary::getSingleton().getData(getPath() + std::string("/UnitNumber"),soildernum);
-	DataLibrary::getSingleton().getData(getPath() + std::string("/WoundNum"),woundnum);
-	healthynum = soildernum - woundnum;
-	if(asdefender)
-		soildernum *= getAttr(ATTR_CONTER,ATTRCALC_FULL, d);
-	int atknum = std::min(healthynum , soildernum);
-	int n = 0;
-	for(n = 0; n < atknum; n++)
-	{
-		int atkroll = rand()% ATKROLL;
-		if(atkroll == ATKROLL -1)
-			atkroll = 100;
-		else if(atkroll == 0)
-			atkroll = -100;
-		attackrolls.push_back(atk + atkroll);
-	}
-	soildernum -= atknum;
-	healthynum -= atknum;
-	if(soildernum > 0)
-	{
-		atknum = std::min(woundnum , soildernum);
-		atk *= getAttr(ATTR_INJURY,ATTRCALC_FULL, d);
-		for(n = 0; n < atknum; n++)
-		{
-			int atkroll = rand()% ATKROLL;
-			if(atkroll == ATKROLL -1)
-				atkroll = 100;
-			else if(atkroll == 0)
-				atkroll = -100;
-			attackrolls.push_back(atk +atkroll);
-		}
-	}
-	return attackrolls;
+ 	int soildernum;
+ 	DataLibrary::getSingleton().getData(getPath() + std::string("/UnitNumber"),soildernum);
+// 	DataLibrary::getSingleton().getData(getPath() + std::string("/WoundNum"),woundnum);
+// 	healthynum = soildernum - woundnum;
+ 	if(asdefender)
+ 		soildernum *= getAttr(ATTR_CONTER,ATTRCALC_FULL, d);
+	std::string soilderid;
+	int fluctuate;
+	DataLibrary::getSingleton().getData(getPath() + std::string("/SoilderId"),soilderid);
+	DataLibrary::getSingleton().getData(std::string("StaticData/SoilderData/") + soilderid + std::string("/Fluctuate"),fluctuate);
+// 	int atknum = std::min(healthynum , soildernum);
+// 	int n = 0;
+// 	for(n = 0; n < atknum; n++)
+// 	{
+// 		int atkroll = rand()% ATKROLL;
+// 		if(atkroll == ATKROLL -1)
+// 			atkroll = 100;
+// 		else if(atkroll == 0)
+// 			atkroll = -100;
+// 		attackrolls.push_back(atk + atkroll);
+// 	}
+// 	soildernum -= atknum;
+// 	healthynum -= atknum;
+// 	if(soildernum > 0)
+// 	{
+// 		atknum = std::min(woundnum , soildernum);
+// 		atk *= getAttr(ATTR_INJURY,ATTRCALC_FULL, d);
+// 		for(n = 0; n < atknum; n++)
+// 		{
+// 			int atkroll = rand()% ATKROLL;
+// 			if(atkroll == ATKROLL -1)
+// 				atkroll = 100;
+// 			else if(atkroll == 0)
+// 				atkroll = -100;
+// 			attackrolls.push_back(atk +atkroll);
+// 		}
+// 	}
+	attackinfo.AtkTime = soildernum;
+	attackinfo.Atk = atkf;
+	attackinfo.Fluctuate = fluctuate;
+	return attackinfo;
 }
 
-void BattleSquad::applyAttackRolls(bool rangedattack, Direction d, std::vector<int> attackrolls)
+void BattleSquad::applyAttackRolls(bool rangedattack, Direction d, AttackInfo &attackinfo)
 {
 	float deff;
 	if(rangedattack)
@@ -577,92 +585,109 @@ void BattleSquad::applyAttackRolls(bool rangedattack, Direction d, std::vector<i
 	else
 		deff = getAttr(ATTR_DEFENCE, ATTRCALC_FULL, d);
 	int def = floor(deff + 0.5f);
-	int wounddef = def * getAttr(ATTR_INJURY, ATTRCALC_FULL, d);
-	int soildernum, woundnum, healthynum;
+	//int wounddef = def * getAttr(ATTR_INJURY, ATTRCALC_FULL, d);
+	int soildernum;
 	DataLibrary::getSingleton().getData(getPath() + std::string("/UnitNumber"),soildernum);
-	DataLibrary::getSingleton().getData(getPath() + std::string("/WoundNum"),woundnum);
-	std::string soilderid;
-	int inj;
-	DataLibrary::getSingleton().getData(getPath() + std::string("/SoilderId"),soilderid);
-	DataLibrary::getSingleton().getData(std::string("StaticData/SoilderData/") + soilderid + std::string("/Injury"),inj);
-	healthynum = soildernum - woundnum;
-	int atknum = 0;
-	int unit = 1;
-	int temphealth = 0, tempwound = 0;
-	while(atknum < attackrolls.size())
+// 	DataLibrary::getSingleton().getData(getPath() + std::string("/WoundNum"),woundnum);
+// 	std::string soilderid;
+// 	int inj;
+// 	DataLibrary::getSingleton().getData(getPath() + std::string("/SoilderId"),soilderid);
+// 	DataLibrary::getSingleton().getData(std::string("StaticData/SoilderData/") + soilderid + std::string("/Injury"),inj);
+// 	healthynum = soildernum - woundnum;
+// 	int atknum = 0;
+// 	int unit = 1;
+// 	int temphealth = 0, tempwound = 0;
+// 	while(atknum < attackrolls.size())
+// 	{
+// 		if(unit > soildernum)
+// 		{
+// 			healthynum = temphealth;
+// 			woundnum = tempwound;
+// 			temphealth = 0;
+// 			tempwound = 0;
+// 			soildernum = healthynum + woundnum;
+// 			unit = 1;
+// 			if(soildernum == 0)
+// 			{
+// 				DataLibrary::getSingleton().setData(getPath() + std::string("/UnitNumber"),0);
+// 				DataLibrary::getSingleton().setData(getPath() + std::string("/WoundNum"),0);
+// 				OnDead();
+// 				break;
+// 			}
+// 		}
+// 		if(unit < healthynum)
+// 		{
+// 			if(attackrolls[atknum] > def + DEFBOUSE)
+// 			{
+// 				atknum++;
+// 				if(inj != 0)
+// 				{
+// 					if(atknum< attackrolls.size())
+// 					{
+// 						if (attackrolls[atknum] <= def + DEFBOUSE)
+// 						{
+// 							tempwound++;
+// 						}
+// 						atknum++;
+// 					}
+// 				}
+// 			}
+// 			else
+// 			{
+// 				atknum++;
+// 				temphealth++;
+// 			}
+// 		}
+// 		else
+// 		{
+// 			if(attackrolls[atknum] > wounddef + DEFBOUSE)
+// 			{
+// 				atknum++;
+// 			}
+// 			else
+// 			{
+// 				atknum++;
+// 				tempwound++;
+// 			}
+// 		}
+// 		unit++;
+// 	}
+// 	if(unit < healthynum)
+// 	{
+// 		temphealth += healthynum - unit + 1;
+// 		tempwound += woundnum;
+// 	}
+// 	else
+// 	{
+// 		tempwound += woundnum - (unit - healthynum - 1);
+// 	}
+// 	soildernum = tempwound + temphealth;
+	int atk = floor(attackinfo.Atk + 0.5f);
+	float perc = (float)((atk - def) + ATKROLL - DEFBOUSE) / ATKROLL;
+	perc = (perc < 0.0f)? 0.0f:perc;
+	perc = (perc > 1.0f)? 1.0f:perc;
+	float killf = perc * attackinfo.AtkTime;
+	killf += killf * (rand() % (attackinfo.Fluctuate * 2 + 1) - attackinfo.Fluctuate) / 100.0f;
+	int kill = floor(killf + 0.5f);
+	if(kill == 0)
 	{
-		if(unit > soildernum)
-		{
-			healthynum = temphealth;
-			woundnum = tempwound;
-			temphealth = 0;
-			tempwound = 0;
-			soildernum = healthynum + woundnum;
-			unit = 1;
-			if(soildernum == 0)
-			{
-				DataLibrary::getSingleton().setData(getPath() + std::string("/UnitNumber"),0);
-				DataLibrary::getSingleton().setData(getPath() + std::string("/WoundNum"),0);
-				OnDead();
-				break;
-			}
-		}
-		if(unit < healthynum)
-		{
-			if(attackrolls[atknum] > def + DEFBOUSE)
-			{
-				atknum++;
-				if(inj != 0)
-				{
-					if(atknum< attackrolls.size())
-					{
-						if (attackrolls[atknum] <= def + DEFBOUSE)
-						{
-							tempwound++;
-						}
-						atknum++;
-					}
-				}
-			}
-			else
-			{
-				atknum++;
-				temphealth++;
-			}
-		}
-		else
-		{
-			if(attackrolls[atknum] > wounddef + DEFBOUSE)
-			{
-				atknum++;
-			}
-			else
-			{
-				atknum++;
-				tempwound++;
-			}
-		}
-		unit++;
+		if(rand() % 100 < attackinfo.Fluctuate)
+			kill = 1;
 	}
-	if(unit < healthynum)
-	{
-		temphealth += healthynum - unit + 1;
-		tempwound += woundnum;
-	}
-	else
-	{
-		tempwound += woundnum - (unit - healthynum - 1);
-	}
-	soildernum = tempwound + temphealth;
-	if(soildernum == 0)
-		OnDead();
+	soildernum -= kill;
+	soildernum  = (soildernum < 0)? 0: soildernum;
 	DataLibrary::getSingleton().setData(getPath() + std::string("/UnitNumber"),soildernum);
-	DataLibrary::getSingleton().setData(getPath() + std::string("/WoundNum"),tempwound);
+	if(soildernum == 0)
+		OnEliminated();
+	//DataLibrary::getSingleton().setData(getPath() + std::string("/WoundNum"),tempwound);
 }
 
-void BattleSquad::OnDead()
+void BattleSquad::OnEliminated()
 {
-	mIsEliminated = true;
+	TriggerContext* trigger = new TriggerContext("OnEliminated");
+	TriggerManager::getSingleton().Trigger(getPath(),trigger);
+	if(getUnitRealNum() == 0)
+		mIsEliminated = true;
 }
 
 void BattleSquad::OnTurnEnd()
@@ -673,29 +698,31 @@ void BattleSquad::OnTurnEnd()
 	DataLibrary::getSingleton().setData(getPath() + std::string("/AmbushEnemy1"),0);
 	DataLibrary::getSingleton().setData(getPath() + std::string("/AmbushEnemy2"),0);
 	DataLibrary::getSingleton().setData(getPath() + std::string("/AmbushEnemy3"),0);
-	std::vector<std::string> triggerlist;
-	triggerlist = datalib->getChildList(getPath() + std::string("/Trigger"));
-	if(triggerlist.size()>0)
-	{
-		std::vector<std::string>::iterator ite;
-		for(ite = triggerlist.begin(); ite != triggerlist.end(); ite++)
-		{
-			std::string datapath = getPath() + std::string("/Trigger/") + (*ite);
-			int active;
-			datalib->getData(datapath ,active);
-			if(!active)
-				continue;
-			std::string type;
-			datalib->getData(datapath + std::string("/type"),type);
-			if(type != "TurnEnd")
-				continue;
-			std::string context,filename,funcname;
-			datalib->getData(datapath + std::string("/file"),filename);
-			datalib->getData(datapath + std::string("/func"),funcname);
-			datalib->getData(datapath + std::string("/context"),context);
-			LuaSystem::getSingleton().executeFunction(filename,funcname,context);
-		}
-	}
+// 	std::vector<std::string> triggerlist;
+// 	triggerlist = datalib->getChildList(getPath() + std::string("/Trigger"));
+// 	if(triggerlist.size()>0)
+// 	{
+// 		std::vector<std::string>::iterator ite;
+// 		for(ite = triggerlist.begin(); ite != triggerlist.end(); ite++)
+// 		{
+// 			std::string datapath = getPath() + std::string("/Trigger/") + (*ite);
+// 			int active;
+// 			datalib->getData(datapath ,active);
+// 			if(!active)
+// 				continue;
+// 			std::string type;
+// 			datalib->getData(datapath + std::string("/type"),type);
+// 			if(type != "TurnEnd")
+// 				continue;
+// 			std::string context,filename,funcname;
+// 			datalib->getData(datapath + std::string("/file"),filename);
+// 			datalib->getData(datapath + std::string("/func"),funcname);
+// 			datalib->getData(datapath + std::string("/context"),context);
+// 			LuaSystem::getSingleton().executeFunction(filename,funcname,context);
+// 		}
+// 	}
+	TriggerContext* trigger = new TriggerContext("TurnEnd");
+	TriggerManager::getSingleton().Trigger(getPath(),trigger);
 }
 
 int BattleSquad::getTeamFaction(int team)

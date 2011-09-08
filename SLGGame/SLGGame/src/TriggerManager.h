@@ -3,10 +3,27 @@
 #include "iisingleton.hpp"
 using namespace izayoi;
 
+#include <map>
 #include <string>
 
 class BattleSquad;
 class BattleState;
+
+class TriggerContext
+{
+public:
+	TriggerContext(std::string type);
+	~TriggerContext();
+	void SetContext(std::string key, std::string val);
+	void SetContext(std::string key, int val);
+	void SetContext(std::string key, float val);
+private:
+	std::string m_TriggerType;
+	std::map<std::string, std::string> m_ContextMapS;
+	std::map<std::string, int> m_ContextMapI;
+	std::map<std::string, float> m_ContextMapF;
+	friend class TriggerManager;
+};
 
 class TriggerManager: public IISingleton<TriggerManager>
 {
@@ -26,6 +43,8 @@ public:
 
 	void setBattleState(BattleState* battlestate);
 	void changeState(int statetype, std::string arg);
+
+	void Trigger(std::string path, TriggerContext* triggercontext);
 private:
 	BattleState* mBattleState;
 };

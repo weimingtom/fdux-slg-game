@@ -167,16 +167,14 @@ void GUITargetWindows::updateSquad()
 
 	re = DataLibrary::getSingletonPtr()->getData(datapath+"/UnitMaxNumber",x);
 	re = DataLibrary::getSingletonPtr()->getData(datapath+"/UnitNumber",y);
-	int inj;
+	int morale;
 	re = DataLibrary::getSingletonPtr()->getData(datapath+"/SoilderId",tempstr);
-	re = DataLibrary::getSingletonPtr()->getData(std::string("StaticData/SoilderData/") + tempstr + std::string("/Injury"),inj);
-	if(inj == 1)
+	re = DataLibrary::getSingletonPtr()->getData(std::string("StaticData/SoilderData/") + tempstr + std::string("/Morale"),morale);
+	if(morale == 1)
 	{
-		re = DataLibrary::getSingletonPtr()->getData(datapath+"/WoundNum",inj);
-		mSquadUnitNum->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("SquadUnitNumSimple"))%y%inj%x));
+		re = DataLibrary::getSingletonPtr()->getData(datapath+"/Morale",morale);
 	}
-	else
-		mSquadUnitNum->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("SquadUnitNumNoInjSimple"))%y%x));
+	mSquadUnitNum->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("SquadUnitNumNoInjSimple"))%y%x));
 	
 	re = DataLibrary::getSingletonPtr()->getData(datapath+"/ActionPoint",x);
 	mSquadAp->setCaption(Ogre::StringConverter::toString(x));

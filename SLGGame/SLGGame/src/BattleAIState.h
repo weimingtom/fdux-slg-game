@@ -92,9 +92,7 @@ private:
 	bool executeSquadAI(BattleSquad* squad, unsigned int missionid);
 
 	//¸¨Öúº¯Êý
-	Direction getDirection(int sx, int sy, int x, int y);
 	bool getAssigedMission(bool isenemy,unsigned short id);
-	inline int getDistance(int x1, int y1, int x2, int y2);
 	unsigned short getMissionStrength(unsigned short id);
 	unsigned short getMission(unsigned short groupid);
 	unsigned short getBlockSquadNum(int x1, int y1, int x2, int y2, unsigned short ignoreid = 0);
