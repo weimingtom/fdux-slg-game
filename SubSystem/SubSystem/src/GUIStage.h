@@ -105,6 +105,7 @@ private:
 
 	bool isCanFastForward();
 	bool isCanAuto();
+	bool isCanClick();
 
 	void addToHistoryBox(std::wstring text);
 
@@ -155,6 +156,8 @@ private:
 	MyGUI::EditBox* mHistoryBox;
 	MyGUI::ImageBox* mHistoryBoxExit;
 	std::wstring mCurrentRoleName;
+	std::wstring mHistoryText;
+	int mLeftOffect;
 
 	MyGUI::ImageBox* mEffectLayerGroup;
 	MyGUI::ImageBox* mEffectLayer;

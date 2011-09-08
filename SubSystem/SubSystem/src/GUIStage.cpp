@@ -22,7 +22,9 @@
 
 #define SAVE_PATH "..\\save"
 
-GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),mCheckMouseDown(false),mIsMouseDown(false),mTextX(0),mTextY(0),mIsFastForward(false),SLWindow(NULL),mIsAuto(false)
+#include "timer.hpp"
+
+GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),mCheckMouseDown(false),mIsMouseDown(false),mTextX(0),mTextY(0),mIsFastForward(false),SLWindow(NULL),mIsAuto(false),mLeftOffect(0)
 {
 	assignWidget(mBackGroundGroup, "BackGroundGroup");
 	assignWidget(mBackGround, "BackGround");
@@ -151,7 +153,7 @@ void GUIStage::eventHistoryBoxExit(MyGUI::Widget* _sender)
 
 void GUIStage::keyPressed(const OIS::KeyEvent &arg )
 {
-	if (arg.key==OIS::KC_LCONTROL && (!mHistoryBox->getVisible()))
+	if (arg.key==OIS::KC_LCONTROL)
 	{
 		mIsFastForward=true;
 	}
@@ -171,7 +173,7 @@ void GUIStage::keyReleased(const OIS::KeyEvent &arg )
 
 void GUIStage::getMouseState() 
 {
-	if (mCheckMouseDown && (!mHistoryBox->getVisible()))
+	if (mCheckMouseDown && isCanClick())
 	{
 		mIsMouseDown=true;
 		mCheckMouseDown=false;
@@ -249,6 +251,8 @@ void GUIStage::setHistoryBoxVisible( bool visible )
 	if (visible)
 	{
 		mInputGroup->setVisible(false);
+		mHistoryBox->addText(mHistoryText);
+		mHistoryText.clear();
 	}
 	else
 	{
@@ -262,33 +266,51 @@ void GUIStage::setHistoryBoxVisible( bool visible )
 
 void GUIStage::addToHistoryBox(std::wstring text)
 {
+	int RoleNameLength=0;
 	if(!mCurrentRoleName.empty())
 	{
-		mHistoryBox->addText(std::wstring(L"#FF0000")+mCurrentRoleName+std::wstring(L"#FFFFFF : "));
+		//mHistoryBox->addText();
+		
+		mHistoryText+=std::wstring(L"#FF0000")+mCurrentRoleName+std::wstring(L"#FFFFFF : ");
+		RoleNameLength=mCurrentRoleName.length()+3;
 		mCurrentRoleName.clear();
 	}
 
-	MyGUI::IntPoint p=mHistoryBox->getTextCursorPos();
+	//MyGUI::IntPoint p=mHistoryBox->getTextCursorPos();
 
-	int lineTextNum=(mHistoryBox->getWidth()-p.left-30)/25;
+	int lineTextNum=(mHistoryBox->getWidth()-mLeftOffect-30)/25;
 
 	if (lineTextNum>text.length())
 	{
-		mHistoryBox->addText(text);
+		mHistoryText+=text;
+		if (text!=L"\n")
+		{
+			mLeftOffect+=(RoleNameLength+text.length())*25;
+		}
+		else
+		{
+			mLeftOffect=0;
+		}
 	}
 	else
 	{
-		mHistoryBox->addText(text.substr(0,lineTextNum));
-		text.erase(0,lineTextNum);
+		int offset;
+		text.insert(lineTextNum-RoleNameLength,L"\n");
+		offset=lineTextNum-RoleNameLength;
 
 		lineTextNum=(mHistoryBox->getWidth()-30)/25;
 
-		for (int i=0;i<=(text.length()/lineTextNum);i++)
+		int j=(text.length()-offset)/lineTextNum;
+
+		for (int i=0;i<j;i++)
 		{
-			mHistoryBox->addText("\n");
-			mHistoryBox->addText(text.substr(0,lineTextNum));
-			text.erase(0,lineTextNum);
+			offset+=lineTextNum;
+			text.insert(offset,L"\n");
 		}
+
+		mLeftOffect=text.length()-offset;
+
+		mHistoryText+=text;
 	}
 }
 
@@ -313,7 +335,10 @@ void GUIStage::changeShowTextOptionTime()
 
 void GUIStage::showText( std::wstring text,float delay)
 {
+	Timer t;
+	t.reset();
 	addToHistoryBox(text);
+	std::cout<<"addToHistoryBox:"<<t.getMilliseconds()<<std::endl;
 
 	if(delay==0)
 	{
@@ -592,6 +617,10 @@ bool GUIStage::isCanFastForward()
 	{
 		return false;
 	}
+	else if(mHistoryBox->getVisible())
+	{
+		return false;
+	}
 	else if (!mTextBoxVisible)
 	{
 		return false;
@@ -632,6 +661,11 @@ bool GUIStage::isCanAuto()
 	}
 
 	return true;
+}
+
+bool GUIStage::isCanClick()
+{
+	return isCanFastForward();
 }
 
 void GUIStage::fastForward()
