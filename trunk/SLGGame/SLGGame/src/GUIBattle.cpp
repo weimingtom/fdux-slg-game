@@ -40,6 +40,7 @@ GUIBattle::GUIBattle(int Width,int Height):GUIScene("Battle.layout",Width,Height
 
 GUIBattle::~GUIBattle(void)
 {
+	hideScene();
 }
 
 void GUIBattle::showScene( std::string arg )

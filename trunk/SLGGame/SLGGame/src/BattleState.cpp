@@ -43,7 +43,6 @@ void BattleState::initialize( std::string arg )
 
 void BattleState::uninitialize()
 {
-	GUISystem::getSingleton().destoryScene(BattleScene);
 	TriggerManager::getSingleton().setBattleState(NULL);
 	mIsEnd = true;
 	if(mSubStateStack.size()>0)
@@ -51,10 +50,10 @@ void BattleState::uninitialize()
 	Terrain::getSingleton().destoryTerrian();
 	BattleSquadManager::getSingleton().clear();
 	SquadGrapManager::getSingleton().clear();
-	//DataLibrary::getSingleton().delNode(std::string("GameData/StoryData"));
 	DataLibrary::getSingleton().delNode(std::string("GameData/BattleData"));
 	AudioSystem::getSingletonPtr()->stopSample();
 	AudioSystem::getSingletonPtr()->stopStream(1000);
+	GUISystem::getSingleton().destoryScene(BattleScene);
 	//DataLibrary::getSingletonPtr()->setData("GameData/StoryData/GameState",std::string("AVG"));
 	//Core::getSingleton().mRoot->renderOneFrame(0.0f);
 }

@@ -70,8 +70,10 @@ BattlePlayerState::~BattlePlayerState()
 {
 	Core::getSingleton().mInputControl->popListener();
 	clearPathInfo(true);
-	mSquadWindow->setSquad(NULL);
-	mGUICommand->setSquad(NULL);
+	if(mSquadWindow!=NULL)
+		mSquadWindow->setSquad(NULL);
+	if(mGUICommand!=NULL)
+		mGUICommand->setSquad(NULL);
 	mGUIState->setAllowNextTurn(false);
 	planeNode->setVisible(false);
 }
@@ -268,31 +270,33 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 		switch(mState)
 		{
 		case PLAYERCONTROL_CHOOSESKILL:
-			int GX,GY;
-			Terrain::getSingletonPtr()->coordinateToGrid(arg.state.X.abs,arg.state.Y.abs,GX,GY);
-			int x,y;
-			mSelectSquad->getCrood(&x,&y);
-			if(x != -1 && !(x == GX && y == GY))
 			{
-				Direction d;
-				float k;
-				if(GY-y == 0)
-					k = 2.0f;
-				else
-					k = abs(GX -x)/ abs(GY - y);
-				if( GY > y && k <= 1.0f)
-					d = South;
-				else if( GY < y && k <= 1.0f)
-					d = North;
-				else if( GX > x )
-					d = East;
-				else
-					d = West;
-				mSelectSquad->setDirection(d);
+				int GX,GY;
+				Terrain::getSingletonPtr()->coordinateToGrid(arg.state.X.abs,arg.state.Y.abs,GX,GY);
+				int x,y;
+				mSelectSquad->getCrood(&x,&y);
 				int grapid = mSelectSquad->getGrapId();
 				SquadGraphics* squadgrap = SquadGrapManager::getSingleton().getSquad(grapid);
-				squadgrap->setDirection(d,true);
-				mSquadWindow->setSquad(mSelectSquad);
+				if(x != -1 && !(x == GX && y == GY) && squadgrap->isDirectionOver())
+				{
+					Direction d;
+					float k;
+					if(GY-y == 0)
+						k = 2.0f;
+					else
+						k = abs(GX -x)/ abs(GY - y);
+					if( GY > y && k <= 1.0f)
+						d = South;
+					else if( GY < y && k <= 1.0f)
+						d = North;
+					else if( GX > x )
+						d = East;
+					else
+						d = West;
+					mSelectSquad->setDirection(d);
+					squadgrap->setDirection(d,true);
+					mSquadWindow->setSquad(mSelectSquad);
+				}
 			}
 			break;
 		case PLAYERCONTROL_MOVE:
