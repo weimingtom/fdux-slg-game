@@ -146,9 +146,10 @@ void GUISquadWindows::updateSquad()
 	re = DataLibrary::getSingletonPtr()->getData(datapath+"/Name",tempstr);
 	mSquadTypeName->setCaption(tempstr);
 	int x,y;
-	mSelectSquad->getCrood(&x,&y);
+	//mSelectSquad->getCrood(&x,&y);
+	DataLibrary::getSingletonPtr()->getData(datapath+"/Morale",x);
 	mSquadGridX->setCaption(Ogre::StringConverter::toString(x));
-	mSquadGridY->setCaption(Ogre::StringConverter::toString(y));
+	//mSquadGridY->setCaption(Ogre::StringConverter::toString(y));
 
 	x = mSelectSquad->getDirection();
 	switch(x)

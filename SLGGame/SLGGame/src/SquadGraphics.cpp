@@ -780,14 +780,14 @@ void SquadGraphics::setScale( Ogre::Vector3 scale,bool isAnim )
 }
 
 void SquadGraphics::setDirection( Direction d,bool isAnim )
-{
-	if (d==mDirection)
-	{
-		return;
-	}
-	
+{	
 	if (isAnim)
 	{
+		if (d==mDirection)
+		{
+			return;
+		}
+
 		switch(d)//计算转180度的情况
 		{
 		case North:

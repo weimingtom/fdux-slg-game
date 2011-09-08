@@ -57,7 +57,7 @@
         <Widget type="TextBox" skin="TextBox" position="215 45 25 20" name="SquadGridX">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
-            <Property key="Visible" value="false"/>
+            <Property key="Visible" value="true"/>
         </Widget>
         <Widget type="TextBox" skin="TextBox" position="195 65 15 20">
             <Property key="Caption" value="Y"/>
@@ -288,7 +288,7 @@
         <Widget type="TextBox" skin="TextBox" position="45 40 25 20" name="TargetGridX">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
-            <Property key="Visible" value="false"/>
+            <Property key="Visible" value="true"/>
         </Widget>
         <Widget type="TextBox" skin="TextBox" position="75 60 15 20">
             <Property key="FontName" value="fireflysung"/>

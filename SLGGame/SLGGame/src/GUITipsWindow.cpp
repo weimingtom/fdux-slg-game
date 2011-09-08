@@ -20,7 +20,7 @@ GUITipsWindow::~GUITipsWindow()
 
 bool GUITipsWindow::GridInputEvent( int x,int y )
 {
-	return true;
+	return false;
 }
 
 void GUITipsWindow::showScene( std::string arg )
