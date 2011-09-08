@@ -100,5 +100,7 @@ void CutScene::update(unsigned int deltaTime)
 
 void CutScene::setNextScene(CutScene* next)
 {
+	if(mNextScene)
+		delete mNextScene;
 	mNextScene = next;
 }

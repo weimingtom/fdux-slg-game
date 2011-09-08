@@ -14,6 +14,7 @@
 #include "MapDataManager.h"
 #include "MoveCutScene.h"
 #include "DirectionCutScene.h"
+#include "CommonFunction.h"
 
 #include <boost/format.hpp>
 //SquadGroup-----------------------
@@ -421,7 +422,7 @@ void BattleAIState::updateMission()
 					continue;
 				int mymidx,mymidy;
 				mysquadite->second->getMidPoint(mymidx,mymidy);
-				Direction d = getDirection(midx,midy,mymidx,mymidy);
+				Direction d = GetDirection(midx,midy,mymidx,mymidy);
 				switch(d)
 				{
 				case South:
@@ -515,13 +516,13 @@ void BattleAIState::assignMission()
 				if(tempsgite == mMySquadGroup.end())
 					break;
 				tempsgite->second->getMidPoint(missionx,missiony);
-				interest -= getDistance(mx,my,missionx,missiony);
+				interest -= GetDistance(mx,my,missionx,missiony);
 				interest -= getBlockSquadNum(mx,my,missionx,missiony,missionite->second->mParaList[0]);
 				interest += 3 * (missionite->second->mParaList[1]  - getMissionStrength(missionite->first));
 				interestmap.insert(std::map<unsigned short,unsigned short>::value_type(missionite->first,interest));
 				break;
 			case MISSION_RALLY:
-				interest -= getDistance(mx,my,missionite->second->mParaList[2],missionite->second->mParaList[3]);
+				interest -= GetDistance(mx,my,missionite->second->mParaList[2],missionite->second->mParaList[3]);
 				interest -= getBlockSquadNum(mx,my,missionite->second->mParaList[2],missionite->second->mParaList[3], 0);
 				interest += 3 * (missionite->second->mParaList[1]  - getMissionStrength(missionite->first));
 				interestmap.insert(std::map<unsigned short,unsigned short>::value_type(missionite->first,interest));
@@ -531,7 +532,7 @@ void BattleAIState::assignMission()
 				if(tempsgite == mEnemySquadGroup.end())
 					break;
 				tempsgite->second->getMidPoint(missionx,missiony);
-				interest -= getDistance(mx,my,missionx,missiony);
+				interest -= GetDistance(mx,my,missionx,missiony);
 				interest -= getBlockSquadNum(mx,my,missionx,missiony, missionite->second->mParaList[0]);
 				interest += 3 * (missionite->second->mParaList[1]  - getMissionStrength(missionite->first));
 				interestmap.insert(std::map<unsigned short,unsigned short>::value_type(missionite->first,interest));
@@ -541,7 +542,7 @@ void BattleAIState::assignMission()
 				if(tempsgite == mEnemySquadGroup.end())
 					break;
 				tempsgite->second->getMidPoint(missionx,missiony);
-				interest -= getDistance(mx,my,missionx,missiony);
+				interest -= GetDistance(mx,my,missionx,missiony);
 				interest -= getBlockSquadNum(mx,my,missionx,missiony, missionite->second->mParaList[0]);
 				interest += 3 * (missionite->second->mParaList[1]  - getMissionStrength(missionite->first));
 				interest -= 2 * (int)abs((int)tempsgite->second->getGroupSize() - (int)ite->second->getGroupSize());
@@ -572,27 +573,6 @@ void BattleAIState::assignMission()
 	}
 }
 
-Direction BattleAIState::getDirection(int sx, int sy, int x, int y)
-{
-	Direction d = North;
-	if(!(sx == x && sy == y))
-	{
-		float k;
-		if(y-sy == 0)
-			k = 2.0f;
-		else
-			k = abs(x -sx)/ abs(y - sy);
-		if( y > sy && k <= 1.0f)
-			d = South;
-		else if( y < sy && k <= 1.0f)
-			d = North;
-		else if( x > sx )
-			d = East;
-		else
-			d = West;
-	}
-	return d;
-}
 bool BattleAIState::getAssigedMission(bool isenemy,unsigned short id)
 {
 	MissionIte ite;
@@ -612,10 +592,6 @@ bool BattleAIState::getAssigedMission(bool isenemy,unsigned short id)
 	return false;
 }
 
-int BattleAIState::getDistance(int x1, int y1, int x2, int y2)
-{
-	return abs(x1 - x2) + abs(y1 - y2);
-}
 
 unsigned short BattleAIState::getMissionStrength(unsigned short id)
 {
@@ -737,7 +713,7 @@ bool BattleAIState::executeSquadAI(BattleSquad* squad,unsigned int missionid)
 		BattleSquad* squad1 = sgite->second->GetNearestFrom(x1,y1);
 		squad1->getCrood(&x2,&y2);
 		Direction d1 = squad->getDirection();
-		Direction d2 = getDirection(x1,y1,x2,y2);
+		Direction d2 = GetDirection(x1,y1,x2,y2);
 		if(d1 == d2)
 			return false;
 		Ogre::LogManager::getSingletonPtr()->logMessage(str(boost::format("AI:%1%,ChangeDirection,%2%")%squad->getId()%d2),Ogre::LML_NORMAL);
@@ -748,9 +724,9 @@ bool BattleAIState::executeSquadAI(BattleSquad* squad,unsigned int missionid)
 		mMainState->PushState(cutscenedirector);
 		return true;
 	}
-	int wondnum = 0;
+	int morale = 0;
 	int unitnum = squad->getUnitRealNum();
-	DataLibrary::getSingleton().getData(squad->getPath() + std::string("/WoundNum"),wondnum);
+	DataLibrary::getSingleton().getData(squad->getPath() + std::string("/Morale"),morale);
 	if(squad->getFormation() != Line && squad->getActionPoint() >= getSkillAPCost(squad, "line"))
 	{
 		//切换阵形
@@ -778,7 +754,7 @@ bool BattleAIState::executeSquadAI(BattleSquad* squad,unsigned int missionid)
 	mMoveMap.insert(MapNodeType(myx + mapsize * myy,startnode));
 	bool action = false;
 	//计算移动点移动偏好
-	if(wondnum > std::min(15,unitnum/2) && unitnum > 10)
+	if(morale < 40)
 	{
 		//避战休息
 		calcAwayFromSquad(squad);
@@ -920,7 +896,7 @@ bool BattleAIState::executeSquadAI(BattleSquad* squad,unsigned int missionid)
 			SquadVector vec = getAroundSquad(squad);
 			if(vec.size() == 0 || squad->getActionPoint() <= getSkillAPCost(squad,"Attack"))
 			{
-				if(wondnum > std::min(15,unitnum/2) && unitnum > 10)
+				if(morale < 40)
 				{
 					Ogre::LogManager::getSingletonPtr()->logMessage(str(boost::format("AI:%1%,Rest")%squad->getId()),Ogre::LML_NORMAL);
 					catscene = mSquadManager->useSkillOn(squad,squad,"Rest");
@@ -1160,7 +1136,7 @@ void BattleAIState::calcAwayFromSquad(BattleSquad* squad, unsigned short ignorei
 				continue;
 			int x,y;
 			groupite->second->getMidPoint(x,y);
-			int dist = getDistance(nodeite->second->x,nodeite->second->y,x,y);
+			int dist = GetDistance(nodeite->second->x,nodeite->second->y,x,y);
 			if(dist < 4)
 				nodeite->second->mInterest -= dist;
 		}
@@ -1196,11 +1172,11 @@ void BattleAIState::calcClosetoMissionPoint(BattleSquad* squad, unsigned int mis
 		missiony = missionite->second->mParaList[3];
 		break;
 	}
-	int distomission = getDistance(myposx,myposy,missionx,missiony);
+	int distomission = GetDistance(myposx,myposy,missionx,missiony);
 	MapNodeIte nodeite;
 	for(nodeite = mMoveMap.begin(); nodeite != mMoveMap.end(); nodeite++)
 	{
-		int dist = getDistance(nodeite->second->x,nodeite->second->y,missionx,missiony);
+		int dist = GetDistance(nodeite->second->x,nodeite->second->y,missionx,missiony);
 		if(distomission - dist >= 0)
 			nodeite->second->mInterest += (distomission - dist) * 2;
 		else
@@ -1230,7 +1206,7 @@ void BattleAIState::calcBattlePos(BattleSquad* squad, unsigned squadgroupid)
 			{
 				int dist,x,y;
 				(*sqdite)->getCrood(&x,&y);
-				dist = getDistance(x,y,nodeite->second->x,nodeite->second->y);
+				dist = GetDistance(x,y,nodeite->second->x,nodeite->second->y);
 				if(dist > 1)
 					continue;
 				if(groupite->first == squadgroupid)
@@ -1242,27 +1218,27 @@ void BattleAIState::calcBattlePos(BattleSquad* squad, unsigned squadgroupid)
 					{
 					case North:
 						p[0] = 2;
-						p[1] = 4;
-						p[2] = 6;
-						p[3] = 4;
+						p[1] = 3;
+						p[2] = 4;
+						p[3] = 3;
 						break;
 					case South:
-						p[0] = 6;
-						p[1] = 4;
+						p[0] = 4;
+						p[1] = 3;
 						p[2] = 2;
-						p[3] = 4;
+						p[3] = 3;
 						break;
 					case West:
-						p[0] = 4;
-						p[1] = 6;
-						p[2] = 4;
+						p[0] = 3;
+						p[1] = 4;
+						p[2] = 3;
 						p[3] = 2;
 						break;
 					case East:
-						p[0] = 4;
+						p[0] = 3;
 						p[1] = 2;
-						p[2] = 4;
-						p[3] = 6;
+						p[2] = 3;
+						p[3] = 4;
 						break;
 					}
 					if(nodeite->second->x > x)
@@ -1295,7 +1271,7 @@ BattleAIState::SquadVector BattleAIState::getAroundSquad(BattleSquad* squad)
 			continue;
 		int x,y;
 		(*sqdite)->getCrood(&x,&y);
-		if(getDistance(myx,myy,x,y) == 1)
+		if(GetDistance(myx,myy,x,y) == 1)
 			vec.push_back((*sqdite));
 	}
 	return vec;

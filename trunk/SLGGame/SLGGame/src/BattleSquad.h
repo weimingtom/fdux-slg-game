@@ -30,6 +30,9 @@ public:
 
 	float getAttr(AttrType attrtype, AttrCalcType calctype, Direction direction);
 
+	float getMoraleBonse();
+	void modifyMorale(int m);
+
 	int getUnitGrapNum();
 	int getUnitRealNum();
 
@@ -47,10 +50,10 @@ public:
 
 	SquadType getType();
 
-	std::vector<int> getAttackRolls(bool rangedattack,bool asdefender, Direction d);
-	void applyAttackRolls(bool rangedattack, Direction d, std::vector<int> attackrolls);
+	AttackInfo getAttackRolls(bool rangedattack,bool asdefender, Direction d);
+	void applyAttackRolls(bool rangedattack, Direction d, AttackInfo &attackinfo);
 
-	void OnDead();
+	void OnEliminated();
 	void OnTurnEnd();
 
 	bool IsEliminated() {return mIsEliminated;}

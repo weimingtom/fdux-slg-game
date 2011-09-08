@@ -207,6 +207,7 @@ static int SetSquadApLeft(lua_State* L)
 	return 0;
 }
 
+/*
 static int GetWoundNum(lua_State* L)
 {
 	std::string squad(luaL_checkstring(L, 1));
@@ -232,7 +233,7 @@ static int SetWoundNum(lua_State* L)
 	}
 	return 0;
 }
-
+*/
 static int GetUnitNum(lua_State* L)
 {
 	std::string squad(luaL_checkstring(L, 1));
@@ -274,6 +275,19 @@ static int SquadParticle(lua_State* L)
 	return 0;
 }
 
+static int SetMorale(lua_State* L)
+{
+	std::string squad(luaL_checkstring(L, 1));
+	int morale = luaL_checknumber(L, 2);
+	int	spread = luaL_checknumber(L, 3);
+	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
+	if(spread == 1)
+		battlesquad->modifyMorale(morale);
+	else
+		BattleSquadManager::getSingleton().spreadModifyMorale(battlesquad,morale);
+	return 0;
+}
+
 static const struct luaL_Reg SkillLib[] =
 {
 	{"MeleeCombat",MeleeCombat},
@@ -289,10 +303,11 @@ static const struct luaL_Reg SkillLib[] =
 	{"Action",Action},
 	{"GetSquadApLeft",GetSquadApLeft},
 	{"SetSquadApLeft",SetSquadApLeft},
-	{"GetWoundNum",	GetWoundNum},
-	{"SetWoundNum",	SetWoundNum},
+// 	{"GetWoundNum",	GetWoundNum},
+// 	{"SetWoundNum",	SetWoundNum},
 	{"GetUnitNum",GetUnitNum},
 	{"ChangeFormation",ChangeFormation},
 	{"SquadParticle",SquadParticle},
+	{"SetMorale",SetMorale},
 	{NULL,NULL}
 };

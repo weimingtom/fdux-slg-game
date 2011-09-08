@@ -83,6 +83,8 @@ bool AVGSquadManager::addSquad(std::string uid, std::string id, std::string path
 	re = datalib->getData(datasrcpath + std::string("/UnitMaxNumber"),tempint);
 	datalib->setData(datadistpath + std::string("/UnitMaxNumber"), tempint, true);
 	datalib->setData(datadistpath + std::string("/UnitNumber"), tempint, true);
+
+	datalib->setData(datadistpath + std::string("/Morale"), 67, true);
 	
 	//×°±¸
 	re = datalib->getData(datasrcpath + std::string("/SoilderId"),tempstring);

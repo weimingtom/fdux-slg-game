@@ -138,7 +138,8 @@
 				<Injury type="Float" value="0.8"/>
 				<Conter type="Float" value="0.5"/>
 			</AttrModifer>
-			<Injury type="Int" value="1"/>
+			<Morale type="Int" value="1" />
+			<Fluctuate type="Int" value="10" />
 		</WingsSoilder>
 		<HolySpirit>
 			<Type type="Int" value="1"/>
@@ -157,7 +158,8 @@
 				<Injury type="Float" value="0.0"/>
 				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
-			<Injury type="Int" value="0"/>
+			<Morale type="Int" value="0" />
+			<Fluctuate type="Int" value="10" />
 		</HolySpirit>
 		<EtasiSoilder>
 			<Type type="Int" value="1"/>
@@ -173,10 +175,11 @@
 				<ActionPoint type="Float" value="11.0"/>
 				<Detection type="Float" value="6.0"/>
 				<Covert type="Float" value="0.0"/>
-				<Injury type="Float" value="0.6"/>
+				<Injury type="Float" value="1.0"/>
 				<Conter type="Float" value="0.3"/>
 			</AttrModifer>
-			<Injury type="Int" value="1"/>
+			<Morale type="Int" value="1" />
+			<Fluctuate type="Int" value="20" />
 		</EtasiSoilder>
 	</SoilderData>
 	<HorseData>

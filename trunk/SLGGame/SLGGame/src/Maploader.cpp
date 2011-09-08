@@ -379,7 +379,7 @@ void MapLoader::creatSquadGrapAtPath(std::string path)
 			datalib->getData(datapath + "/Formation",f);
 			BattleSquad* battlesquad =  new BattleSquad((*ite),battlesuqadmanager->mCurid,x,y); 
 			SquadGraphics* squadgrap  = suqadgrapmanager->createSquad((*ite), datapath, battlesuqadmanager->mCurid,x,y,d,f, battlesquad->getUnitGrapNum());
-			if(!battlesquad->viewbyTeam(1))
+			if(!battlesquad->viewbyTeam(1) || battlesquad->IsEliminated())
 			{
 				squadgrap->setVisible(false);
 			}

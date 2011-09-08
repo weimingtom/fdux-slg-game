@@ -96,14 +96,17 @@ const AttrCalcType ATTRCALC_RESISTLEFT = 3;
 const float FORMBONSE_LINE_FRONT = 1.0f;
 const float FORMBONSE_LINE_SIDE = 0.4f;
 const float FORMBONSE_LINE_BACK = 0.0f;
+const float FORMBONSE_LINE_RANGED = 1.0f;
 const float FORMBONSE_CIRC_FRONT = 0.6f;
 const float FORMBONSE_CIRC_SIDE = 0.6f;
 const float FORMBONSE_CIRC_BACK = 0.6f;
+const float FORMBONSE_CIRC_RANGED = 2.0f;
 const float FORMBONSE_LOOS_FRONT = 0.0f;
 const float FORMBONSE_LOOS_SIDE = 0.0f;
 const float FORMBONSE_LOOS_BACK = 0.0f;
+const float FORMBONSE_LOOS_RANGED = 0.0f;
 
-const float RANGEDDEFENCEBONUS = 5.0f;
+const float RANGEDDEFENCEBONUS = 10.0f;
 
 typedef int SquadType;
 const SquadType SQUAD_NORMAL = 0;
@@ -133,7 +136,7 @@ const int SKILLAPTYPE_BATTLE = 1;
 const int SKILLAPTYPE_DEFENCE = 2;
 
 const int ATKROLL = 20;
-const int DEFBOUSE = 10;
+const int DEFBOUSE = 15;
 
 
 typedef int UnitType;
@@ -146,3 +149,18 @@ const SquadType SQUADTYPE_LightInf=0;
 const SquadType SQUADTYPE_HeavyInf=1;
 const SquadType SQUADTYPE_Bowman=2;
 const SquadType SQUADTYPE_Saint=3;
+
+struct AttackInfo
+{
+	int AtkTime;
+	float Atk;
+	int Fluctuate;
+	AttackInfo()
+	{
+		AtkTime = 0;
+		Atk = 0.0f;
+		Fluctuate = 0;
+	}
+};
+
+const int DEADTOMORALE[10] = {0,2,6,12,20,30,42,50,50,50}; 
