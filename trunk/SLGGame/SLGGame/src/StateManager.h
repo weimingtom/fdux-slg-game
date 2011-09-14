@@ -32,6 +32,9 @@ public:
 	
 	//移除附加状态
 	void removeAffixationState();
+
+	//存在附加状态?
+	bool hasAffixationState();
 	
 	//帧更新
 	void StateUpdate(unsigned int deltaTime);

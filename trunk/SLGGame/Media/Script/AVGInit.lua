@@ -13,3 +13,19 @@ function AVGInit()
 	GUI.ShowImageSetting(-100,0,300,0,700,0,500);
 	GUI.SetDialogAttribute();
 end;
+
+function StoryInit()
+	left=1;
+	mid=2;
+	right=3;
+	all=5;
+	GUI.SetTextBgRect(200,200,349,146);
+	GUI.SetTextBgImage("BattleTextBox.png");
+	GUI.SetTextRect(0,0,349,146);
+	GUI.SetRoleNameRect(0,0,40,50);
+	GUI.SetUITextColor(0,0,0);
+	GUI.SetRoleNameColor(0,0,0);
+	GUI.SetFont("fireflysung","fireflysung");
+	GUI.ShowImageSetting(-100,0,300,0,700,0,500);
+	GUI.SetDialogAttribute();
+end;
