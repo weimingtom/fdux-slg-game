@@ -10,9 +10,10 @@ function onaffect()
 	squadpath = ScriptCommonLib.GetString("affectsquadpath");
 	squad = ScriptCommonLib.GetSquadIdFromPath(squadpath);
 	apleft = SkillLib.GetSquadApLeft(squad);
-	if apleft > 3 then
-		apleft = 3;
+	if apleft > 6 then
+		apleft = 6;
 	end
+	apleft = apleft / 2;
 	id = SkillLib.ApplyModifier(squadpath,2,0.0,0.0,apleft,0.0,0.0,0.0,0.0,0.0,0.0,0.0);
 	ScriptCommonLib.SetString("Modifierid",id);
 	ScriptCommonLib.SetInt("LastTurn",0);

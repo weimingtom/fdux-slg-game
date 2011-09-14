@@ -11,6 +11,8 @@
 #include "BattleSquadManager.h"
 #include "GUIGameStateWindows.h"
 #include "TriggerManager.h"
+#include "cutscene.h"
+#include "cutscenediretor.h"
 
 
 BattleControlState::BattleControlState(bool newgame)
@@ -96,4 +98,11 @@ void BattleControlState::update(unsigned int deltaTime)
 	DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/CurTeam",team);
 	mGUIState->update();
 	DataLibrary::getSingleton().saveXmlData(DataLibrary::GameData,"test.xml");
+	CutScene* cutscene = battlesquadmanager->getCutScene();
+	if(cutscene != NULL)
+	{
+		CutSceneDirector* csd= new CutSceneDirector();
+		csd->addCutScene(cutscene);
+		mMainState->PushState(csd);
+	}
 }

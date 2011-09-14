@@ -29,6 +29,9 @@ end
 function turnend()
 	turn = ScriptCommonLib.GetInt("trun");
 	team = ScriptCommonLib.GetInt("team");
+	if team == 1 and turn == 4 then
+		ScriptCommonLib.Story("battlestory1.lua");
+	end
 	--if team == 1 then
 	--	ScriptCommonLib.PlayMusic("battle4.mp3");
 	--elseif team == 2 then

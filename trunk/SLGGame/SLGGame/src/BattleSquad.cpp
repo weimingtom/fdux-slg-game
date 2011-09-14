@@ -536,6 +536,7 @@ AttackInfo BattleSquad::getAttackRolls(bool rangedattack,bool asdefender, Direct
 	int atk = floor(atkf + 0.5f);
  	int soildernum;
  	DataLibrary::getSingleton().getData(getPath() + std::string("/UnitNumber"),soildernum);
+	soildernum = floor((-0.010907f) * soildernum * soildernum  + 1.37256f * soildernum+ 8.638347f + 0.5f);
 // 	DataLibrary::getSingleton().getData(getPath() + std::string("/WoundNum"),woundnum);
 // 	healthynum = soildernum - woundnum;
  	if(asdefender)
