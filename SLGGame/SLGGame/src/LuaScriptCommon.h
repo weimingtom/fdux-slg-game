@@ -111,6 +111,15 @@ static int GetRand(lua_State* L)
 	return 1;
 }
 
+#include "StoryCutScene.h"
+static int Story(lua_State* L)
+{
+	std::string script(luaL_checkstring(L, 1));
+	StoryCutScene* scs = new StoryCutScene(script);
+	BattleSquadManager::getSingleton().setCutScene(scs);
+	return 0;
+}
+
 static const struct luaL_Reg ScriptCommonLib[] =
 {
 	{"SetInt",SetInt},
@@ -123,5 +132,6 @@ static const struct luaL_Reg ScriptCommonLib[] =
 	{"SetCamera",SetCamera},
 	{"GetSquadIdFromPath",GetSquadIdFromPath},
 	{"GetRand",GetRand},
+	{"Story",Story},
 	{NULL,NULL}
 };
