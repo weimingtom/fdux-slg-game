@@ -99,7 +99,7 @@ private:
 
 	void fastForward();
 
-	void UIInit();
+	void UIInit(std::string arg);
 
 	void buttonLock(bool lock);
 

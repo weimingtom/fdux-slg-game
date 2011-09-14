@@ -96,7 +96,7 @@ GUIStage::~GUIStage(void)
 #endif
 }
 
-void GUIStage::UIInit()
+void GUIStage::UIInit(std::string arg)
 {
 	mBackGroundGroup->setSize(mWidth,mHeigth);//设置背景大小
 	mBackGround->setSize(mWidth,mHeigth);
@@ -127,13 +127,13 @@ void GUIStage::UIInit()
 	
 	hideTextCursor();
 #ifndef SCRIPT_EDITOR
-	LuaSystem::getSingletonPtr()->executeFunction("AVGInit.lua","AVGInit","1");//运行界面初始设定
+	LuaSystem::getSingletonPtr()->executeFunction("AVGInit.lua",arg,"1");//运行界面初始设定
 #endif
 }
 
 void GUIStage::showScene(std::string arg)
 {
-	UIInit();
+	UIInit(arg);
 }
 
 void GUIStage::hideScene()
@@ -1051,7 +1051,7 @@ void GUIStage::load()
 	Ogre::Vector3 LayerSize;
 	std::string ImageName;
 
-	UIInit();
+	UIInit("AVGInit");
 
 	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/BackGroundName",ImageName);
 	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/BackGroundPosition",LayerPosition);
