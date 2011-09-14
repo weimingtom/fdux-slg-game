@@ -61,6 +61,11 @@ void StateManager::removeAffixationState()
 	}
 }
 
+bool StateManager::hasAffixationState()
+{
+	return mAffixationState!=NULL;
+}
+
 void StateManager::StateUpdate(unsigned int deltaTime)
 {
 	if(mAffixationState!=NULL)

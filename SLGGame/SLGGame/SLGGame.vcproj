@@ -658,6 +658,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\src\StoryCutScene.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\StoryCutScene.h"
+						>
+					</File>
+					<File
 						RelativePath=".\src\WeapenCutScene.cpp"
 						>
 					</File>

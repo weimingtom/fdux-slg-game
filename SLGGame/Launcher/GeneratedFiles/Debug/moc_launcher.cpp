@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'launcher.h'
 **
-** Created: Wed Aug 3 22:17:57 2011
+** Created: Wed Sep 14 12:13:53 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.6.3)
 **
 ** WARNING! All changes made in this file will be lost!

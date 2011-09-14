@@ -18,13 +18,14 @@ void AVGState::initialize( std::string arg )
 	std::queue<std::string> q;
 	split(arg,'.',q);
 
+	//显示对话框
+	GUIStage* stageScene=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->createScene(StageScene));
+
 	if (q.size()==2)
 	{
 		q.pop();
 
-		//显示对话框
-		GUIStage* stageScene=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->createScene(StageScene));
-		stageScene->showScene("");
+		stageScene->showScene("AVGInit");
 
 		if (q.front()=="lua")//该文件重头读取
 		{
@@ -35,9 +36,19 @@ void AVGState::initialize( std::string arg )
 			GUISLWindow* slWindow=static_cast<GUISLWindow*>(GUISystem::getSingletonPtr()->getScene(SLScene));
 			slWindow->setCallScene(stageScene);
 		}
+
+		DataLibrary::getSingletonPtr()->setData("GameData/StoryData/GameState",std::string("AVG"));
+		DataLibrary::getSingleton().delNode(std::string("GameData/BattleData"));
 	}
-	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/GameState",std::string("AVG"));
-	DataLibrary::getSingleton().delNode(std::string("GameData/BattleData"));
+	else if(q.size()==3)//战斗中的对话
+	{
+		std::string fileName=q.front();
+		q.pop();
+		q.pop();
+
+		stageScene->showScene(q.front());
+		LuaSystem::getSingletonPtr()->runScriptFromFile(fileName+".lua",0);
+	}
 }
 
 void AVGState::uninitialize()
