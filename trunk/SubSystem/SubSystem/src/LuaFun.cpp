@@ -4,6 +4,7 @@
 #include "GUIStage.h"
 #include "LuaSystem.h"
 #include "AudioSystem.h"
+#include "StateManager.h"
 
 #define DefaultShowTextTime 0.1//默认打字效果速度
 #define DefaultCursorTime 0.01//默认光标闪烁频率
@@ -469,6 +470,13 @@ extern "C"
 		return 1;
 	}
 
+	static int StoryOver(lua_State* L)
+	{
+		StateManager::getSingletonPtr()->removeAffixationState();
+		
+		return 1;
+	}
+
 	static const struct luaL_Reg GUILib[] =
 	{
 		{"Music",Music},
@@ -498,6 +506,7 @@ extern "C"
 
 		{"NextScene",NextScene},
 		{"AutoSave",AutoSave},
+		{"StoryOver",StoryOver},
 
 		{NULL,NULL}
 	};
