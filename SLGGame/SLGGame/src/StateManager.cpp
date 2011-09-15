@@ -72,10 +72,8 @@ void StateManager::StateUpdate(unsigned int deltaTime)
 	{
 		mAffixationState->update(deltaTime);
 	}
-	else
-	{
-		mBaseState->update(deltaTime);
-	}
+
+	mBaseState->update(deltaTime);
 }
 
 GameState* StateManager::CreateState( StateType type )
