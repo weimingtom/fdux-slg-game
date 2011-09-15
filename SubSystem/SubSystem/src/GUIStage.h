@@ -34,6 +34,7 @@ public:
 
 	void setTextDialog(const GUIDialogAttribute& attribute);//设置对话框
 	void setTextDialogVisible(bool visible);
+	void setButtonLock(bool visible);
 
 	void setCheckMouseDown();//检查鼠标是否按下
 
@@ -152,6 +153,8 @@ private:
 	MyGUI::ImageBox* mTextCursor;
 	bool mTextCursorType;
 	bool mTextBoxVisible;
+	bool mIsCanShowTextBox;
+	bool mIsCanShowButton;
 
 	MyGUI::EditBox* mHistoryBox;
 	MyGUI::ImageBox* mHistoryBoxExit;

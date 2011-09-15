@@ -24,7 +24,7 @@
 
 #include "timer.hpp"
 
-GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),mCheckMouseDown(false),mIsMouseDown(false),mTextX(0),mTextY(0),mIsFastForward(false),SLWindow(NULL),mIsAuto(false),mLeftOffect(0)
+GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),mCheckMouseDown(false),mIsMouseDown(false),mTextX(0),mTextY(0),mIsFastForward(false),SLWindow(NULL),mIsAuto(false),mLeftOffect(0),mIsCanShowTextBox(false),mIsCanShowButton(true)
 {
 	assignWidget(mBackGroundGroup, "BackGroundGroup");
 	assignWidget(mBackGround, "BackGround");
@@ -92,7 +92,7 @@ GUIStage::~GUIStage(void)
 	{
 		SLWindow->setCallScene(SLWindow);
 	}
-	AudioSystem::getSingletonPtr()->stopStream(1000);
+	//AudioSystem::getSingletonPtr()->stopStream(1000);
 #endif
 }
 
@@ -178,6 +178,12 @@ void GUIStage::getMouseState()
 		mIsMouseDown=true;
 		mCheckMouseDown=false;
 	}
+
+	if(!mTextBoxVisible && mIsCanShowTextBox)
+	{
+		setTextDialogVisible(true);
+		mIsCanShowTextBox=false;
+	}
 }
 
 void GUIStage::setCheckMouseDown()
@@ -242,8 +248,16 @@ void GUIStage::setTextDialogVisible( bool visible )
 	}
 
 	mTimerWork=FadeInOutWork;
-
-	buttonLock(false);
+	
+	if (visible)
+	{
+		buttonLock(mIsCanShowButton);
+	}
+	else
+	{
+		buttonLock(false);
+	}
+	
 }
 
 void GUIStage::setHistoryBoxVisible( bool visible )
@@ -366,7 +380,7 @@ void GUIStage::showOtherText()
 
 	MyGUI::IntPoint p=mTextBox->getTextCursorPos();
 
-	int lineTextNum=(mTextBox->getWidth()-p.left+mTextBox->getLeft())/25;
+	int lineTextNum=(mTextBox->getWidth()-p.left+mTextBox->getLeft()+mTextBoxBG->getLeft())/25;
 
 	if (lineTextNum>mTextBuffer.length())
 	{
@@ -828,7 +842,7 @@ void GUIStage::onOtherSceneNotify(std::string arg)
 		{
 		case FadeInOutWork:
 			{
-				buttonLock(true);
+				//buttonLock(true);
 				mTimerWork=NoneWork;
 				break;
 			}
@@ -851,7 +865,7 @@ void GUIStage::onOtherSceneNotify(std::string arg)
 			}
 		case FadeInOutWork:
 			{
-				buttonLock(true);
+				//buttonLock(true);
 				break;
 			}
 		case RoleNameWork:
@@ -1013,15 +1027,8 @@ void GUIStage::onLoad(MyGUI::Widget* _sender)
 
 void GUIStage::onHide( MyGUI::Widget* _sender )
 {
-	if (mTextBoxVisible)
-	{
-		setTextDialogVisible(false);
-	}
-	else
-	{
-		setTextDialogVisible(true);
-	}
-	
+	setTextDialogVisible(false);	
+	mIsCanShowTextBox=true;
 }
 
 void GUIStage::onHistory( MyGUI::Widget* _sender )
@@ -1098,6 +1105,7 @@ void GUIStage::load()
 	//showTextCursor(type);
 
 	mTextBoxVisible=true;
+	buttonLock(true);
 	mTextBoxBG->setVisible(true);
 	mTextBoxBG->setAlpha(1);
 
@@ -1143,12 +1151,17 @@ void GUIStage::returnScene()
 
 void GUIStage::buttonLock( bool lock )
 {
-	mSaveButton->setEnabled(lock);
-	mLoadButton->setEnabled(lock);
-	mHideButton->setEnabled(lock);
-	mSystemButton->setEnabled(lock);
-	mHistoryButton->setEnabled(lock);
-	mAutoButton->setEnabled(lock);
+	mSaveButton->setVisible(lock);
+	mLoadButton->setVisible(lock);
+	mHideButton->setVisible(lock);
+	mSystemButton->setVisible(lock);
+	mHistoryButton->setVisible(lock);
+	mAutoButton->setVisible(lock);
+}
+
+void GUIStage::setButtonLock( bool visible )
+{
+	mIsCanShowButton=visible;
 }
 
 
