@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'launcher.ui'
 **
-** Created: Wed Sep 14 12:13:50 2011
+** Created: Thu Sep 15 01:12:43 2011
 **      by: Qt User Interface Compiler version 4.6.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!

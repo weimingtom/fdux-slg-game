@@ -1,3 +1,4 @@
+GUI.ButtonLock();
 GUI.SetDialogVisible(1);
 GUI.ShowRoleName("少年");
 GUI.ShowText("厚重的木门发出悠扬的吱呀声，然后门外的月光毫不客气的侵入了这个沉溺在黑暗中的房间。",1);

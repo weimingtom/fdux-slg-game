@@ -40,24 +40,28 @@
             <Property key="TextColour" value="1 1 1"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="24"/>
+            <Property key="Visible" value="false"/>
         </Widget>
         <Widget type="Button" skin="SLGButton3" position="295 680 140 45" name="SaveButton">
             <Property key="Caption" value="Save"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="TextColour" value="1 1 1"/>
             <Property key="FontHeight" value="24"/>
+            <Property key="Visible" value="false"/>
         </Widget>
         <Widget type="Button" skin="SLGButton3" position="430 680 135 45" name="LoadButton">
             <Property key="Caption" value="Load"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="TextColour" value="1 1 1"/>
             <Property key="FontHeight" value="24"/>
+            <Property key="Visible" value="false"/>
         </Widget>
         <Widget type="Button" skin="SLGButton3" position="830 680 140 45" name="HideButton">
             <Property key="Caption" value="Hide"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="24"/>
             <Property key="TextColour" value="1 1 1"/>
+            <Property key="Visible" value="false"/>
         </Widget>
         <Widget type="Button" skin="SLGButtonSkin3" position="965 680 140 45" name="SystemButton">
             <Property key="Caption" value="System"/>
@@ -65,12 +69,14 @@
             <Property key="TextColour" value="1 1 1"/>
             <Property key="FontHeight" value="24"/>
             <Property key="TextAlign" value="Center"/>
+            <Property key="Visible" value="false"/>
         </Widget>
         <Widget type="Button" skin="SLGButton3" position="565 680 130 45" name="AutoButton">
             <Property key="Caption" value="Auto"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="TextColour" value="1 1 1"/>
             <Property key="FontHeight" value="24"/>
+            <Property key="Visible" value="false"/>
         </Widget>
     </Widget>
     <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" layer="Overlapped" name="EffectLayerGroup">
