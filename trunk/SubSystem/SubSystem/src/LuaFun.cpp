@@ -477,6 +477,14 @@ extern "C"
 		return 1;
 	}
 
+	static int ButtonLock(lua_State* L)
+	{
+		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+		stage->setButtonLock(false);
+
+		return 1;
+	}
+
 	static const struct luaL_Reg GUILib[] =
 	{
 		{"Music",Music},
@@ -506,6 +514,7 @@ extern "C"
 
 		{"NextScene",NextScene},
 		{"AutoSave",AutoSave},
+		{"ButtonLock",ButtonLock},
 		{"StoryOver",StoryOver},
 
 		{NULL,NULL}
