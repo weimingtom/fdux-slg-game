@@ -31,9 +31,9 @@ public:
 	};
 
 	void setMovePath(std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions,std::map<int,Direction>& directions);
-	void combatPosition(Direction d);
-	void idlePosition();
-	void changeUnitPosition(Direction d,Ogre::Vector3 offsetVector);
+	void combatPosition(Direction d,bool isAnim);
+	void idlePosition(bool isAnim);
+	void changeUnitPosition(Direction d,Ogre::Vector3 offsetVector,bool isAnim);
 	void setDirection(Direction d,bool isAnim);
 	Direction getDirection();
 	bool isDirectionOver();

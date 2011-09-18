@@ -212,6 +212,7 @@ void UnitGrap::createWeapon( std::string mesh, std::string mat,WeaponType type )
 
 void UnitGrap::setMovePath( std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions,float MoveSpeed)
 {
+	std::cout<<mNode->getName()+"_Ani"<<" Created"<<std::endl;
 	mNodeAnimation = Core::getSingletonPtr()->mSceneMgr->createAnimation(mNode->getName()+"_Ani", vectors.size()*MOVE_KEYFRAME_TIME*MoveSpeed);
 	mNodeAnimation->setInterpolationMode(Ogre::Animation::IM_LINEAR);
 	Ogre::NodeAnimationTrack* track = mNodeAnimation->createNodeTrack(1, mNode);
@@ -299,6 +300,8 @@ void UnitGrap::stopTransform()
 	
 	if (mNodeAnimation!=NULL)
 	{
+		std::cout<<mNode->getName()+"_Ani"<<" Deleted"<<std::endl;
+
 		Core::getSingletonPtr()->mSceneMgr->destroyAnimation(mNode->getName()+"_Ani");
 		mNodeAnimation=NULL;
 	}

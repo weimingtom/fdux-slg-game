@@ -47,7 +47,7 @@ GUISLWindow::GUISLWindow(int width,int height):GUIScene("SLWindow.layout",width,
 			std::string name;
 			DataLibrary::getSingletonPtr()->getData(str(boost::format("SystemConfig/Save/Save%1%")%(i+1)),name);
 			mTextBox->setCaption(name);
-			mTextBox->setUserString("FileName",name);
+			mTextBox->setUserString("FileName",Ogre::StringUtil::split(name," ").front());
 		}
 		else
 		{

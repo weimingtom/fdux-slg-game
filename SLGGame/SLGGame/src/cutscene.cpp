@@ -22,7 +22,7 @@ CutScene::~CutScene()
 
 void CutScene::start()
 {
-	if(mStarted)
+	if(mStarted || mEnded)
 		return;
 	Ogre::LogManager::getSingletonPtr()->logMessage(std::string("CutScene:Start"),Ogre::LML_NORMAL);
 	startCutScence();
@@ -46,14 +46,14 @@ void CutScene::skipall()
 
 bool CutScene::end()
 {
-	if(!mStarted)
-		return false;
 	if(mEnded)
 	{
 		if(mNextScene)
 			return mNextScene->end();
 		return true;
 	}
+	if(!mStarted)
+		return false;
 	if(!endCutScene())
 		return false;
 	Ogre::LogManager::getSingletonPtr()->logMessage(std::string("CutScene:End"),Ogre::LML_NORMAL);

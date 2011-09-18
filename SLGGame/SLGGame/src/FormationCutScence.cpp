@@ -26,6 +26,8 @@ bool FormationCutScene::endCutScene()
 
 void FormationCutScene::skipCutScene()
 {
+	mSquadGraphics->stopTransform();
+
 	mSquadGraphics->setFormation(mForm,false);
 }
 

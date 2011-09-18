@@ -21,6 +21,8 @@ bool SquadDeadCutScene::endCutScene()
 }
 void SquadDeadCutScene::skipCutScene()
 {
+	if(!mStarted)
+		mSquad->setDeath(mDeadNum);
 	mSquad->stopDeath();
 }
 void SquadDeadCutScene::updateCutScene(unsigned int deltaTime)
