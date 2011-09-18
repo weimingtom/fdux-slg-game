@@ -7,6 +7,7 @@
 #include "BattleSquad.h"
 #include <algorithm>
 #include "StringTable.h"
+#include "GUITipsWindow.h"
 
 GUICommandWindows::GUICommandWindows(MyGUI::Window* window,int Width,int Height):GUISubWindows(window,Width,Height),mWindow(window)
 {
@@ -126,7 +127,11 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 	mAPLabel->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("APLabel"))%(int)apleft));
 	int skillno = 0;
 	mSkill[skillno]->setVisible(true);
+
 	mSkill[skillno]->setCaption(StringTable::getSingletonPtr()->getString("Move"));
+	mSkill[skillno]->setUserString("Tips",StringTable::getSingletonPtr()->getString("Tips_Move"));
+	mSkill[skillno]->eventToolTip= MyGUI::newDelegate(GUITipsWindow::getSingletonPtr(), &GUITipsWindow::eventToolTip);
+
 	mSkill[skillno]->setImageResource("Move");
 	mSkillId[skillno] = "move";
 	skillno++;
@@ -140,6 +145,8 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 			mSkill[skillno]->setVisible(true);
 			mSkill[skillno]->setImageResource("Defence");
 			mSkill[skillno]->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("FormationLineButton"))%apcost));
+			mSkill[skillno]->setUserString("Tips",StringTable::getSingletonPtr()->getString("Tips_FormationLineButton"));
+			mSkill[skillno]->eventToolTip= MyGUI::newDelegate(GUITipsWindow::getSingletonPtr(), &GUITipsWindow::eventToolTip);
 			if(apleft >= apcost)
 				mSkill[skillno]->setEnabled(true);
 			else
@@ -152,6 +159,8 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 			mSkill[skillno]->setVisible(true);
 			mSkill[skillno]->setImageResource("Defence");
 			mSkill[skillno]->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("FormationCircButton"))%apcost));
+			mSkill[skillno]->setUserString("Tips",StringTable::getSingletonPtr()->getString("Tips_FormationCircButton"));
+			mSkill[skillno]->eventToolTip= MyGUI::newDelegate(GUITipsWindow::getSingletonPtr(), &GUITipsWindow::eventToolTip);
 			if(apleft >= apcost)
 				mSkill[skillno]->setEnabled(true);
 			else
@@ -164,6 +173,8 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 			mSkill[skillno]->setVisible(true);
 			mSkill[skillno]->setImageResource("Defence");
 			mSkill[skillno]->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("FormationLoosButton"))%apcost));
+			mSkill[skillno]->setUserString("Tips",StringTable::getSingletonPtr()->getString("Tips_FormationLoosButton"));
+			mSkill[skillno]->eventToolTip= MyGUI::newDelegate(GUITipsWindow::getSingletonPtr(), &GUITipsWindow::eventToolTip);
 			if(apleft >= apcost)
 				mSkill[skillno]->setEnabled(true);
 			else
@@ -187,8 +198,14 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 		std::string skillpath = skilltablepath + std::string("/") + (*ite);
 		int cooldown;
 		std::string skillname;
+		std::string skillTips;
 		std::string skillIcon;
 		datalib->getData(std::string("StaticData/SkillData/")+ (*ite)+ std::string("/Name"),skillname);
+
+		datalib->getData(std::string("StaticData/SkillData/")+ (*ite)+ std::string("/Describe"),skillTips);
+		mSkill[skillno]->setUserString("Tips",skillTips);
+		mSkill[skillno]->eventToolTip= MyGUI::newDelegate(GUITipsWindow::getSingletonPtr(), &GUITipsWindow::eventToolTip);
+
 		datalib->getData(skillpath + std::string("/CoolDown"),cooldown);
 		datalib->getData(std::string("StaticData/SkillData/")+ (*ite) + std::string("/Icon"),skillIcon);
 		if (skillIcon!="none")

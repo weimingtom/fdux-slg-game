@@ -832,12 +832,12 @@ void SquadGraphics::setDirection( Direction d,bool isAnim )
 		//设置移动
 		if (mNextDirection!=-1)
 		{
-			changeUnitPosition(mNextDirection,Ogre::Vector3(0,0,0));
+			changeUnitPosition(mNextDirection,Ogre::Vector3(0,0,0),true);
 			mNextDirection=mDirection;
 		}
 		else
 		{
-			changeUnitPosition(mDirection,Ogre::Vector3(0,0,0));
+			changeUnitPosition(mDirection,Ogre::Vector3(0,0,0),true);
 		}
 		
 
@@ -1286,7 +1286,7 @@ void SquadGraphics::update( unsigned int deltaTime )
 	
 	if (mNextDirection!=-1 && isTransformOver())
 	{
-		changeUnitPosition(mNextDirection,Ogre::Vector3(0,0,0));
+		changeUnitPosition(mNextDirection,Ogre::Vector3(0,0,0),true);
 		mNextDirection=-1;
 	}
 
@@ -1392,7 +1392,7 @@ void SquadGraphics::delParticle(std::string id)
 		(*it)->delParticle(id);
 	}
 }
-void SquadGraphics::combatPosition(Direction d)
+void SquadGraphics::combatPosition(Direction d,bool isAnim)
 {
 	mIdleDirection=mDirection;
 
@@ -1422,18 +1422,18 @@ void SquadGraphics::combatPosition(Direction d)
 		}
 	}
 
-	changeUnitPosition(d,offestVector);
+	changeUnitPosition(d,offestVector,isAnim);
 
 }
 
-void SquadGraphics::idlePosition()
+void SquadGraphics::idlePosition(bool isAnim)
 {
 	mIdleDirection=mDirection;
 
-	changeUnitPosition(mIdleDirection,Ogre::Vector3(0,0,0));
+	changeUnitPosition(mIdleDirection,Ogre::Vector3(0,0,0),isAnim);
 }
 
-void SquadGraphics::changeUnitPosition( Direction d,Ogre::Vector3 offsetVector )
+void SquadGraphics::changeUnitPosition( Direction d,Ogre::Vector3 offsetVector,bool isAnim)
 {
 	//取得位置
 	Ogre::Quaternion q;
@@ -1473,17 +1473,37 @@ void SquadGraphics::changeUnitPosition( Direction d,Ogre::Vector3 offsetVector )
 	mCommanderUnit->mOffsetX=commandVector.x;
 	mCommanderUnit->mOffsetY=commandVector.z;
 
-	//设置移动
-	mCommanderUnit->setMovePath(commandVectors,quaternions,0.5);
-
-	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+	if (isAnim)
 	{
-		std::map<int,Ogre::Vector3> vectors;
-		(*it)->mOffsetX=soldierVector[(*it)->mFormationPosition].x;
-		(*it)->mOffsetY=soldierVector[(*it)->mFormationPosition].z;
-		vectors[0]=mNode->getPosition()+soldierVector[(*it)->mFormationPosition]+offsetVector;
-		(*it)->setMovePath(vectors,quaternions,0.5);
+		//设置移动
+		mCommanderUnit->setMovePath(commandVectors,quaternions,0.5);
+
+		for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+		{
+			std::map<int,Ogre::Vector3> vectors;
+			(*it)->mOffsetX=soldierVector[(*it)->mFormationPosition].x;
+			(*it)->mOffsetY=soldierVector[(*it)->mFormationPosition].z;
+			vectors[0]=mNode->getPosition()+soldierVector[(*it)->mFormationPosition]+offsetVector;
+			(*it)->setMovePath(vectors,quaternions,0.5);
+		}
 	}
+	else
+	{
+		mCommanderUnit->mNode->setPosition(commandVectors[0]);
+		mCommanderUnit->mNode->setOrientation(q);
+
+		for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+		{
+			Ogre::Vector3 sVector;
+			(*it)->mOffsetX=soldierVector[(*it)->mFormationPosition].x;
+			(*it)->mOffsetY=soldierVector[(*it)->mFormationPosition].z;
+			sVector=mNode->getPosition()+soldierVector[(*it)->mFormationPosition]+offsetVector;
+
+			(*it)->mNode->setPosition(sVector);
+			(*it)->mNode->setOrientation(q);
+		}
+	}
+
 }
 
 Ogre::Vector3 SquadGraphics::getLeaderPosition()

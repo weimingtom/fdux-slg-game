@@ -94,6 +94,10 @@
 		<FormationLineButton type="String" value="线型阵&#x0D;AP:%1%"/>
 		<FormationCircButton type="String" value="圆型阵&#x0D;AP:%1%"/>
 		<FormationLoosButton type="String" value="散阵&#x0D;AP:%1%"/>
+		<Tips_Move type="String" value="移动"/>
+		<Tips_FormationLineButton type="String" value="线型阵线型阵线型阵线型阵线型阵"/>
+		<Tips_FormationCircButton type="String" value="圆型阵圆型阵圆型阵圆型阵圆型阵"/>
+		<Tips_FormationLoosButton type="String" value="散阵散阵散阵散阵散阵散阵散阵散"/>
 		
 		<GUITerrainWindow type="String" value="地形窗口"/>
 		<GUITerrainDefence type="String" value="防御加成"/>

@@ -19,7 +19,16 @@ bool CombatPositionCutScene::endCutScene()
 
 void CombatPositionCutScene::skipCutScene()
 {
+	 mSquadGraphics->stopTransform();
 
+	if (!mIsBack)
+	{
+		mSquadGraphics->combatPosition(mDirection,false);
+	}
+	else
+	{
+		mSquadGraphics->idlePosition(false);
+	}
 }
 
 void CombatPositionCutScene::updateCutScene( unsigned int deltaTime )
@@ -31,10 +40,10 @@ void CombatPositionCutScene::startCutScence()
 {
 	if (!mIsBack)
 	{
-		mSquadGraphics->combatPosition(mDirection);
+		mSquadGraphics->combatPosition(mDirection,true);
 	}
 	else
 	{
-		mSquadGraphics->idlePosition();
+		mSquadGraphics->idlePosition(true);
 	}
 }

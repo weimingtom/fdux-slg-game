@@ -60,6 +60,8 @@ bool AnimationCutScene::endCutScene()
 
 void AnimationCutScene::skipCutScene()
 {
+	mSquadGraphics->stopTransform();
+
 	if(mParticle != "none")
 	{
 		mSquadGraphics->stopParticle(mParticleId);

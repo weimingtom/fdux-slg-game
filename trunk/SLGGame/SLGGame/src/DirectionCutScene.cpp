@@ -26,6 +26,8 @@ bool DirectionCutScene::endCutScene()
 
 void DirectionCutScene::skipCutScene()
 {
+	mSquadGraphics->stopTransform();
+
 	mSquadGraphics->setDirection(mDirection,false);
 }
 

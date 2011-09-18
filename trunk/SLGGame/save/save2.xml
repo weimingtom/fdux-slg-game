@@ -16,7 +16,7 @@
         <RightSize value="640,720,0" type="Vector3" />
         <Text value="" type="String" />
         <RoleName value="" type="String" />
-        <TextCursorType value="0" type="Int" />
+        <TextCursorType value="205" type="Int" />
         <ScriptName value="Chapter1.lua" type="String" />
         <ScriptLine value="599" type="Int" />
         <MusicName value="battle1.mp3" type="String" />
@@ -227,8 +227,8 @@
                     <finishdeploytriger value="T0" type="String" />
                     <unitdeadtriger value="T1" type="String" />
                     <turnendtriger value="T2" type="String" />
-                    <team value="2" type="Int" />
-                    <trun value="1" type="Int" />
+                    <team value="4" type="Int" />
+                    <trun value="0" type="Int" />
                 </ScriptContext>
             </MapScript>
             <MapInfo value="mapinfo1" type="String" />
@@ -1389,8 +1389,8 @@
                 <UnitMat value="LightInf" type="String" />
                 <MoveSound value="LightInf.mp3" type="String" />
                 <UnitMaxNumber value="50" type="Int" />
-                <UnitNumber value="46" type="Int" />
-                <Morale value="65" type="Int" />
+                <UnitNumber value="50" type="Int" />
+                <Morale value="67" type="Int" />
                 <ModifierList>
                     <m0>
                         <Type value="0" type="Int" />
@@ -1444,19 +1444,6 @@
                         <Injury value="0" type="Float" />
                         <Conter value="0" type="Float" />
                     </m3>
-                    <m4>
-                        <Type value="2" type="Int" />
-                        <Attack value="0" type="Float" />
-                        <RangedAttack value="0" type="Float" />
-                        <Defence value="1.5" type="Float" />
-                        <Formation value="0" type="Float" />
-                        <Initiative value="0" type="Float" />
-                        <ActionPoint value="0" type="Float" />
-                        <Detection value="0" type="Float" />
-                        <Covert value="0" type="Float" />
-                        <Injury value="0" type="Float" />
-                        <Conter value="0" type="Float" />
-                    </m4>
                 </ModifierList>
                 <SoilderId value="EtasiSoilder" type="String">
                     <Modifierid value="m0" type="String" />
@@ -1473,35 +1460,14 @@
                     <Modifierid value="m3" type="String" />
                 </ShieldId>
                 <SkillTable>
-                    <Attack value="0" type="Int">
-                        <CoolDown value="0" type="Int" />
-                        <ScriptContext>
-                            <skillcast value="1" type="Int" />
-                            <skillcaster value="Team2Squad_0" type="String" />
-                            <skillcasterpath value="GameData/BattleData/SquadList/Team2Squad_0" type="String" />
-                            <skilltarget value="Dandelion" type="String" />
-                            <skilltargetpath value="GameData/BattleData/SquadList/Dandelion" type="String" />
-                        </ScriptContext>
-                    </Attack>
-                    <Defence value="0" type="Int">
-                        <CoolDown value="0" type="Int" />
-                        <ScriptContext>
-                            <skillcast value="1" type="Int" />
-                            <skillcaster value="Team2Squad_0" type="String" />
-                            <skillcasterpath value="GameData/BattleData/SquadList/Team2Squad_0" type="String" />
-                            <skilltarget value="Team2Squad_0" type="String" />
-                            <skilltargetpath value="GameData/BattleData/SquadList/Team2Squad_0" type="String" />
-                            <Effectid value="e0" type="String" />
-                        </ScriptContext>
-                    </Defence>
-                    <Rest value="0" type="Int">
-                        <CoolDown value="0" type="Int" />
-                    </Rest>
+                    <Attack value="0" type="Int" />
+                    <Defence value="0" type="Int" />
+                    <Rest value="0" type="Int" />
                 </SkillTable>
                 <GridX value="5" type="Int" />
                 <GridY value="3" type="Int" />
                 <WoundNum value="0" type="Int" />
-                <Direction value="2" type="Int" />
+                <Direction value="1" type="Int" />
                 <Formation value="0" type="Int" />
                 <TeamId value="Team2" type="String" />
                 <CreateType value="1" type="Int" />
@@ -1515,27 +1481,6 @@
                 <AmbushEnemy2 value="0" type="Int" />
                 <AmbushEnemy3 value="0" type="Int" />
                 <Grapid value="0" type="Int" />
-                <APSetup value="0" type="Float" />
-                <APBattle value="2" type="Float" />
-                <EffectList>
-                    <e0 value="Defence" type="String">
-                        <ScriptContext>
-                            <affectsquadpath value="GameData/BattleData/SquadList/Team2Squad_0" type="String" />
-                            <effectid value="e0" type="String" />
-                            <Modifierid value="m4" type="String" />
-                            <LastTurn value="0" type="Int" />
-                            <TurnStartTrigger value="T0" type="String" />
-                        </ScriptContext>
-                    </e0>
-                </EffectList>
-                <Trigger>
-                    <T0 value="1" type="Int">
-                        <type value="TurnStart" type="String" />
-                        <file value="defence.lua" type="String" />
-                        <func value="onturnstart" type="String" />
-                        <context value="GameData/BattleData/SquadList/Team2Squad_0/EffectList/e0/ScriptContext" type="String" />
-                    </T0>
-                </Trigger>
             </Team2Squad_0>
             <Team2Squad_2>
                 <Name value="达克斯重步兵队" type="String" />
@@ -1605,19 +1550,6 @@
                         <Injury value="0" type="Float" />
                         <Conter value="0" type="Float" />
                     </m3>
-                    <m4>
-                        <Type value="2" type="Int" />
-                        <Attack value="0" type="Float" />
-                        <RangedAttack value="0" type="Float" />
-                        <Defence value="3" type="Float" />
-                        <Formation value="0" type="Float" />
-                        <Initiative value="0" type="Float" />
-                        <ActionPoint value="0" type="Float" />
-                        <Detection value="0" type="Float" />
-                        <Covert value="0" type="Float" />
-                        <Injury value="0" type="Float" />
-                        <Conter value="0" type="Float" />
-                    </m4>
                 </ModifierList>
                 <SoilderId value="EtasiSoilder" type="String">
                     <Modifierid value="m0" type="String" />
@@ -1634,28 +1566,14 @@
                     <Modifierid value="m3" type="String" />
                 </ShieldId>
                 <SkillTable>
-                    <Attack value="0" type="Int">
-                        <CoolDown value="0" type="Int" />
-                    </Attack>
-                    <Defence value="0" type="Int">
-                        <CoolDown value="0" type="Int" />
-                        <ScriptContext>
-                            <skillcast value="1" type="Int" />
-                            <skillcaster value="Team2Squad_2" type="String" />
-                            <skillcasterpath value="GameData/BattleData/SquadList/Team2Squad_2" type="String" />
-                            <skilltarget value="Team2Squad_2" type="String" />
-                            <skilltargetpath value="GameData/BattleData/SquadList/Team2Squad_2" type="String" />
-                            <Effectid value="e0" type="String" />
-                        </ScriptContext>
-                    </Defence>
-                    <Rest value="0" type="Int">
-                        <CoolDown value="0" type="Int" />
-                    </Rest>
+                    <Attack value="0" type="Int" />
+                    <Defence value="0" type="Int" />
+                    <Rest value="0" type="Int" />
                 </SkillTable>
-                <GridX value="6" type="Int" />
-                <GridY value="3" type="Int" />
+                <GridX value="7" type="Int" />
+                <GridY value="2" type="Int" />
                 <WoundNum value="0" type="Int" />
-                <Direction value="2" type="Int" />
+                <Direction value="1" type="Int" />
                 <Formation value="0" type="Int" />
                 <TeamId value="Team2" type="String" />
                 <CreateType value="1" type="Int" />
@@ -1669,27 +1587,6 @@
                 <AmbushEnemy2 value="0" type="Int" />
                 <AmbushEnemy3 value="0" type="Int" />
                 <Grapid value="1" type="Int" />
-                <APSetup value="0" type="Float" />
-                <APBattle value="2" type="Float" />
-                <EffectList>
-                    <e0 value="Defence" type="String">
-                        <ScriptContext>
-                            <affectsquadpath value="GameData/BattleData/SquadList/Team2Squad_2" type="String" />
-                            <effectid value="e0" type="String" />
-                            <Modifierid value="m4" type="String" />
-                            <LastTurn value="0" type="Int" />
-                            <TurnStartTrigger value="T0" type="String" />
-                        </ScriptContext>
-                    </e0>
-                </EffectList>
-                <Trigger>
-                    <T0 value="1" type="Int">
-                        <type value="TurnStart" type="String" />
-                        <file value="defence.lua" type="String" />
-                        <func value="onturnstart" type="String" />
-                        <context value="GameData/BattleData/SquadList/Team2Squad_2/EffectList/e0/ScriptContext" type="String" />
-                    </T0>
-                </Trigger>
             </Team2Squad_2>
             <Team2Squad_3>
                 <Name value="达克斯轻装长矛队" type="String" />
@@ -1759,19 +1656,6 @@
                         <Injury value="0" type="Float" />
                         <Conter value="0" type="Float" />
                     </m3>
-                    <m4>
-                        <Type value="2" type="Int" />
-                        <Attack value="0" type="Float" />
-                        <RangedAttack value="0" type="Float" />
-                        <Defence value="1.5" type="Float" />
-                        <Formation value="0" type="Float" />
-                        <Initiative value="0" type="Float" />
-                        <ActionPoint value="0" type="Float" />
-                        <Detection value="0" type="Float" />
-                        <Covert value="0" type="Float" />
-                        <Injury value="0" type="Float" />
-                        <Conter value="0" type="Float" />
-                    </m4>
                 </ModifierList>
                 <SoilderId value="EtasiSoilder" type="String">
                     <Modifierid value="m0" type="String" />
@@ -1788,33 +1672,19 @@
                     <Modifierid value="m3" type="String" />
                 </ShieldId>
                 <SkillTable>
-                    <Attack value="0" type="Int">
-                        <CoolDown value="0" type="Int" />
-                    </Attack>
-                    <Defence value="0" type="Int">
-                        <CoolDown value="0" type="Int" />
-                        <ScriptContext>
-                            <skillcast value="1" type="Int" />
-                            <skillcaster value="Team2Squad_3" type="String" />
-                            <skillcasterpath value="GameData/BattleData/SquadList/Team2Squad_3" type="String" />
-                            <skilltarget value="Team2Squad_3" type="String" />
-                            <skilltargetpath value="GameData/BattleData/SquadList/Team2Squad_3" type="String" />
-                            <Effectid value="e0" type="String" />
-                        </ScriptContext>
-                    </Defence>
-                    <Rest value="0" type="Int">
-                        <CoolDown value="0" type="Int" />
-                    </Rest>
+                    <Attack value="0" type="Int" />
+                    <Defence value="0" type="Int" />
+                    <Rest value="0" type="Int" />
                 </SkillTable>
-                <GridX value="4" type="Int" />
-                <GridY value="4" type="Int" />
+                <GridX value="6" type="Int" />
+                <GridY value="6" type="Int" />
                 <WoundNum value="0" type="Int" />
-                <Direction value="0" type="Int" />
+                <Direction value="1" type="Int" />
                 <Formation value="0" type="Int" />
                 <TeamId value="Team2" type="String" />
                 <CreateType value="1" type="Int" />
                 <ActionPoint value="0" type="Float" />
-                <ViewbyPlayer value="1" type="Int" />
+                <ViewbyPlayer value="0" type="Int" />
                 <ViewbyEnemy1 value="1" type="Int" />
                 <ViewbyEnemy2 value="0" type="Int" />
                 <ViewbyEnemy3 value="0" type="Int" />
@@ -1823,27 +1693,6 @@
                 <AmbushEnemy2 value="0" type="Int" />
                 <AmbushEnemy3 value="0" type="Int" />
                 <Grapid value="2" type="Int" />
-                <APSetup value="0" type="Float" />
-                <APBattle value="2" type="Float" />
-                <EffectList>
-                    <e0 value="Defence" type="String">
-                        <ScriptContext>
-                            <affectsquadpath value="GameData/BattleData/SquadList/Team2Squad_3" type="String" />
-                            <effectid value="e0" type="String" />
-                            <Modifierid value="m4" type="String" />
-                            <LastTurn value="0" type="Int" />
-                            <TurnStartTrigger value="T0" type="String" />
-                        </ScriptContext>
-                    </e0>
-                </EffectList>
-                <Trigger>
-                    <T0 value="1" type="Int">
-                        <type value="TurnStart" type="String" />
-                        <file value="defence.lua" type="String" />
-                        <func value="onturnstart" type="String" />
-                        <context value="GameData/BattleData/SquadList/Team2Squad_3/EffectList/e0/ScriptContext" type="String" />
-                    </T0>
-                </Trigger>
             </Team2Squad_3>
             <Cheetah>
                 <Name value="齐塔重步兵队" type="String" />
@@ -1859,7 +1708,7 @@
                 <MoveSound value="HeavyInf.mp3" type="String" />
                 <UnitMaxNumber value="50" type="Int" />
                 <UnitNumber value="50" type="Int" />
-                <Morale value="59" type="Int" />
+                <Morale value="67" type="Int" />
                 <ModifierList>
                     <m0>
                         <Type value="0" type="Int" />
@@ -1944,10 +1793,10 @@
                 <CreateType value="0" type="Int" />
                 <Direction value="3" type="Int" />
                 <Formation value="0" type="Int" />
-                <ActionPoint value="9" type="Float" />
+                <ActionPoint value="3" type="Float" />
                 <WoundNum value="0" type="Int" />
-                <GridX value="5" type="Int" />
-                <GridY value="4" type="Int" />
+                <GridX value="3" type="Int" />
+                <GridY value="3" type="Int" />
                 <ViewbyPlayer value="1" type="Int" />
                 <ViewbyEnemy1 value="1" type="Int" />
                 <ViewbyEnemy2 value="1" type="Int" />
@@ -1972,8 +1821,8 @@
                 <UnitMat value="LightInf" type="String" />
                 <MoveSound value="BowMan.mp3" type="String" />
                 <UnitMaxNumber value="50" type="Int" />
-                <UnitNumber value="18" type="Int" />
-                <Morale value="47" type="Int" />
+                <UnitNumber value="50" type="Int" />
+                <Morale value="67" type="Int" />
                 <ModifierList>
                     <m0>
                         <Type value="0" type="Int" />
@@ -2071,11 +1920,11 @@
                 <TeamId value="Team1" type="String" />
                 <Grapid value="4" type="Int" />
                 <CreateType value="0" type="Int" />
-                <Direction value="0" type="Int" />
+                <Direction value="1" type="Int" />
                 <Formation value="0" type="Int" />
-                <ActionPoint value="10" type="Float" />
+                <ActionPoint value="4" type="Float" />
                 <WoundNum value="0" type="Int" />
-                <GridX value="4" type="Int" />
+                <GridX value="2" type="Int" />
                 <GridY value="3" type="Int" />
                 <ViewbyPlayer value="1" type="Int" />
                 <ViewbyEnemy1 value="1" type="Int" />
@@ -2090,7 +1939,7 @@
             </Dandelion>
         </SquadList>
         <BattleState>
-            <Ture value="2" type="Int" />
+            <Ture value="1" type="Int" />
             <CurTeam value="1" type="Int" />
         </BattleState>
         <Trigger>

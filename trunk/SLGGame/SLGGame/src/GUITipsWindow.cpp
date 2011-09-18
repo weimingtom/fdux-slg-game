@@ -46,7 +46,10 @@ void GUITipsWindow::setTips(std::string text)
 
 	if(textlength<=LINE_TEXT_NUM)
 	{
-		mWindow->setSize(textlength*(FONT_SIZE-4),FONT_SIZE*3);
+		if (textlength<=2)
+			textlength=4;
+		mWindow->setSize(textlength*(FONT_SIZE+4),FONT_SIZE*3);
+		mTipsTextBox->setCaption(s);
 	}
 	else
 	{
@@ -82,7 +85,15 @@ void GUITipsWindow::eventToolTip( MyGUI::Widget* _sender, const MyGUI::ToolTipIn
 {
 	if (_info.type==MyGUI::ToolTipInfo::Show)
 	{
-		setTips(mStringTable->getString(std::string("Tips_")+_sender->getName()));
+		if (_sender->getUserString("Tips")!="")
+		{
+			setTips(_sender->getUserString("Tips"));
+		}
+		else
+		{
+			setTips(mStringTable->getString(std::string("Tips_")+_sender->getName()));
+		}
+		
 		mWindow->setVisible(true);
 		setTipsWindowPosition(_info.point.left+20,_info.point.top);
 	}
