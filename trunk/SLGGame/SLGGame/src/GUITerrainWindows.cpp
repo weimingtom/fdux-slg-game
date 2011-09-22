@@ -97,7 +97,9 @@ bool GUITerrainWindows::GridInputEvent( int x,int y )
 	mTerrainTypeLabel->setCaption(terrainname);
 	
 	std::string groundname;
-	path = str(boost::format("StaticData/GroundData/Ground%1%/Name")%Ogre::StringConverter::toString(groundtype));
+	re = datalib->getData(str(boost::format("GameData/BattleData/MapData/Ground/G%1%")%groundtype),groundname);
+	path = str(boost::format("StaticData/GroundData/%1%/Name")%groundname);
+	//path = str(boost::format("StaticData/GroundData/Ground%1%/Name")%Ogre::StringConverter::toString(groundtype));
 	re = datalib->getData(path, groundname);
 	mGroundTypeLabel->setCaption(groundname);
 

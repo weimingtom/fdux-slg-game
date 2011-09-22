@@ -15,6 +15,7 @@ public:
 	~AVGSquadManager();
 
 	bool addSquad(std::string uid, std::string id, std::string path);
+	void modifyMorale(std::string id, int morale);
 
 	bool equipEquipment(std::string path, EquipmentType type, std::string id);
 

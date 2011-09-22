@@ -664,9 +664,7 @@ void BattleSquad::applyAttackRolls(bool rangedattack, Direction d, AttackInfo &a
 // 	}
 // 	soildernum = tempwound + temphealth;
 	int atk = floor(attackinfo.Atk + 0.5f);
-	float perc = (float)((atk - def) + ATKROLL - DEFBOUSE) / ATKROLL;
-	perc = (perc < 0.0f)? 0.0f:perc;
-	perc = (perc > 1.0f)? 1.0f:perc;
+	float perc = AtkDefToPerc(atk,def);
 	float killf = perc * attackinfo.AtkTime;
 	killf += killf * (rand() % (attackinfo.Fluctuate * 2 + 1) - attackinfo.Fluctuate) / 100.0f;
 	int kill = floor(killf + 0.5f);

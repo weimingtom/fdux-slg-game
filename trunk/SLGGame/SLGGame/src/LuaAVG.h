@@ -27,9 +27,18 @@ static int SetPlayerFaction(lua_State* L)
 	return 0;
 }
 
+static int ModifyMorale(lua_State* L)
+{
+	std::string squaduid(luaL_checkstring(L, 1));
+	int morale = luaL_checknumber(L, 2);
+	AVGSquadManager::getSingleton().modifyMorale(squaduid,morale);
+	return 0;
+}
+
 static const struct luaL_Reg AVGLib[] =
 {
 	{"AddSquad",AddSquad},
 	{"SetPlayerFaction",SetPlayerFaction},
+	{"ModifyMorale",ModifyMorale},
 	{NULL,NULL}
 };

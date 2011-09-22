@@ -1,14 +1,19 @@
 function useskill()
 	attacker  = ScriptCommonLib.GetString("skillcaster");
-	defender  = ScriptCommonLib.GetString("skilltarget");
-	defenderpath = ScriptCommonLib.GetString("skilltargetpath");
-	apleft = SkillLib.GetSquadApLeft(defender);
-	apleft = apleft + 4;
-	SkillLib.SetSquadApLeft(defender,apleft);
-	SkillLib.ApplyEffect(defenderpath,"Zeal");
-	SkillLib.Action(attacker,1,"mp_seal_02","Skill","magicSkill1.mp3");
-	SkillLib.SquadParticle(defender,3,"mp_diabolique","none",3000);
-	ScriptCommonLib.SetInt("skillcast",1);
+	unitnum = SkillLib.GetUnitNum(attacker);
+	if unitnum > 3 then
+		unitnum = unitnum - 2;
+		SkillLib.SetUnitNum(attacker, unitnum);
+		defender  = ScriptCommonLib.GetString("skilltarget");
+		defenderpath = ScriptCommonLib.GetString("skilltargetpath");
+		apleft = SkillLib.GetSquadApLeft(defender);
+		apleft = apleft + 4;
+		SkillLib.SetSquadApLeft(defender,apleft);
+		SkillLib.ApplyEffect(defenderpath,"Zeal");
+		SkillLib.Action(attacker,1,"mp_seal_02","Skill","magicSkill1.mp3");
+		SkillLib.SquadParticle(defender,3,"mp_diabolique","none",3000);
+		ScriptCommonLib.SetInt("skillcast",1);
+	end
 end
 
 function onaffect()

@@ -3,6 +3,7 @@
 #include "DataLibrary.h"
 #include "StringTable.h"
 #include "boost/format.hpp"
+#include <math.h>
 
 #include "BattleSquad.h"
 #include "BattleSquadManager.h"
@@ -162,9 +163,9 @@ void GUITargetWindows::updateSquad()
 
 	float tempfloat;
 	tempfloat = mSelectSquad->getAttr(ATTR_ATTACK,ATTRCALC_FULL,x);
-	mSquadAttack->setCaption(str(boost::format("%1$3.1f")%tempfloat));
+	mSquadAttack->setCaption(str(boost::format("%1%")%floor(tempfloat+0.5f)));
 	tempfloat = mSelectSquad->getAttr(ATTR_DEFENCE,ATTRCALC_FULL,x);
-	mSquadDefence->setCaption(str(boost::format("%1$3.1f")%tempfloat));
+	mSquadDefence->setCaption(str(boost::format("%1%")%floor(tempfloat+0.5f)));
 
 	re = DataLibrary::getSingletonPtr()->getData(datapath+"/UnitMaxNumber",x);
 	re = DataLibrary::getSingletonPtr()->getData(datapath+"/UnitNumber",y);

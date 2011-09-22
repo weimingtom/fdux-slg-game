@@ -110,6 +110,31 @@ bool AVGSquadManager::addSquad(std::string uid, std::string id, std::string path
 	return true;
 }
 
+void AVGSquadManager::modifyMorale(std::string id, int morale)
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	bool all  = false;
+	if(id == "none")
+		all = true;
+	std::vector<std::string> activesquadlist = datalib->getChildList("GameData/StoryData/SquadData/EnableSquad");
+	std::vector<std::string>::iterator ite;
+	float moralemodi = 1.0f;
+	int morale1 = 0;
+	std::string path;
+	for(ite = activesquadlist.begin(); ite != activesquadlist.end(); ite++)
+	{
+		if(all || id == (*ite))
+		{
+			path = str(boost::format("GameData/StoryData/SquadData/EnableSquad/%1%")%(*ite));
+			moralemodi = getSquadAttr(path,ATTR_INJURY,ATTRCALC_FULL,moralemodi);
+			path = path + "/Morale";
+			datalib->getData(path,morale1);
+			morale1 += floor(moralemodi * morale + 0.5f);
+			datalib->setData(path,morale1);
+		}
+	}
+}
+
 bool AVGSquadManager::equipEquipment(std::string path, EquipmentType type, std::string id)
 		{
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();

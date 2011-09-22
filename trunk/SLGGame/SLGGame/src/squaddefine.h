@@ -106,7 +106,7 @@ const float FORMBONSE_LOOS_SIDE = 0.0f;
 const float FORMBONSE_LOOS_BACK = 0.0f;
 const float FORMBONSE_LOOS_RANGED = 0.0f;
 
-const float RANGEDDEFENCEBONUS = 10.0f;
+const float RANGEDDEFENCEBONUS = 7.0f;
 
 typedef int SquadType;
 const SquadType SQUAD_NORMAL = 0;
@@ -135,10 +135,6 @@ const int SKILLAPTYPE_SETUP = 0;
 const int SKILLAPTYPE_BATTLE = 1;
 const int SKILLAPTYPE_DEFENCE = 2;
 
-const int ATKROLL = 20;
-const int DEFBOUSE = 15;
-
-
 typedef int UnitType;
 const UnitType UNITTYPE_ALL = 3;
 const UnitType UNITTYPE_LEADER = 1;
@@ -162,5 +158,3 @@ struct AttackInfo
 		Fluctuate = 0;
 	}
 };
-
-const int DEADTOMORALE[10] = {0,2,6,12,20,30,42,50,50,50}; 

@@ -55,7 +55,9 @@ bool MapDataManager::getPassable(int x, int y, int team)
 	int id;
 	std::string path = std::string("GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(x + y * mMapSize);
 	bool re = datalib->getData(path + std::string("/GroundType"), id);
-	re = datalib->getData(std::string("StaticData/GroundData/Ground") + Ogre::StringConverter::toString(id) + std::string("/GroundModifier/Passable"), passable);
+	std::string ground;
+	datalib->getData(str(boost::format("GameData/BattleData/MapData/Ground/G%1%")%id),ground);
+	re = datalib->getData(str(boost::format("StaticData/GroundData/%1%/GroundModifier/Passable")%ground), passable);
 	maxpassable = passable;
 	minpassable = passable;
 	re = datalib->getData(path + std::string("/TerrainType"), id);
@@ -109,7 +111,9 @@ float MapDataManager::getInfApCost(int x, int y, int team)
 	GroundType g = getGroundType(x,y);
 	float terraincost;
 	float groundcost;
-	bool re = DataLibrary::getSingleton().getData(std::string("StaticData/GroundData/Ground") + Ogre::StringConverter::toString(g) + std::string("/GroundModifier/InfAp"), groundcost);
+	std::string ground;
+	DataLibrary::getSingleton().getData(str(boost::format("GameData/BattleData/MapData/Ground/G%1%")%g),ground);
+	bool re = DataLibrary::getSingleton().getData(str(boost::format("StaticData/GroundData/%1%/GroundModifier/InfAp")%ground), groundcost);
 	re = DataLibrary::getSingleton().getData(std::string("StaticData/TerrainData/Terrain") + Ogre::StringConverter::toString(t) + std::string("/GroundModifier/InfAp"), terraincost);
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	std::string path =  std::string("GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(x + y * mMapSize);
@@ -129,7 +133,9 @@ float MapDataManager::getCavApCost(int x, int y, int team)
 	GroundType g = getGroundType(x,y);
 	float terraincost;
 	float groundcost;
-	bool re = DataLibrary::getSingleton().getData(std::string("StaticData/GroundData/Ground") + Ogre::StringConverter::toString(g) + std::string("/GroundModifier/CavAp"), groundcost);
+	std::string ground;
+	DataLibrary::getSingleton().getData(str(boost::format("GameData/BattleData/MapData/Ground/G%1%")%g),ground);
+	bool re = DataLibrary::getSingleton().getData(str(boost::format("StaticData/GroundData/%1%/GroundModifier/CavAp")%ground), groundcost);
 	re = DataLibrary::getSingleton().getData(std::string("StaticData/TerrainData/Terrain") + Ogre::StringConverter::toString(t) + std::string("/GroundModifier/CavAp"), terraincost);
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	std::string path =  std::string("GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(x + y * mMapSize);
@@ -149,7 +155,9 @@ float MapDataManager::getDefModify(int x, int y, int team)
 	GroundType g = getGroundType(x,y);
 	float terraincost;
 	float groundcost;
-	bool re = DataLibrary::getSingleton().getData(std::string("StaticData/GroundData/Ground") + Ogre::StringConverter::toString(g) + std::string("/GroundModifier/Defence"), groundcost);
+	std::string ground;
+	DataLibrary::getSingleton().getData(str(boost::format("GameData/BattleData/MapData/Ground/G%1%")%g),ground);
+	bool re = DataLibrary::getSingleton().getData(str(boost::format("StaticData/GroundData/%1%/GroundModifier/Defence")%ground), groundcost);
 	re = DataLibrary::getSingleton().getData(std::string("StaticData/TerrainData/Terrain") + Ogre::StringConverter::toString(t) + std::string("/GroundModifier/Defence"), terraincost);
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	std::string path =  std::string("GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(x + y * mMapSize);
@@ -170,7 +178,9 @@ float MapDataManager::getCovert(int x, int y, int team)
 	GroundType g = getGroundType(x,y);
 	float terraincost;
 	float groundcost;
-	bool re = DataLibrary::getSingleton().getData(std::string("StaticData/GroundData/Ground") + Ogre::StringConverter::toString(g) + std::string("/GroundModifier/Covert"), groundcost);
+	std::string ground;
+	DataLibrary::getSingleton().getData(str(boost::format("GameData/BattleData/MapData/Ground/G%1%")%g),ground);
+	bool re = DataLibrary::getSingleton().getData(str(boost::format("StaticData/GroundData/%1%/GroundModifier/Covert")%ground), groundcost);
 	re = DataLibrary::getSingleton().getData(std::string("StaticData/TerrainData/Terrain") + Ogre::StringConverter::toString(t) + std::string("/GroundModifier/Covert"), terraincost);
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	std::string path =  std::string("GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(x + y * mMapSize);

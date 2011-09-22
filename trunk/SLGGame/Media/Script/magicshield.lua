@@ -1,18 +1,23 @@
 function useskill()
 	attacker  = ScriptCommonLib.GetString("skillcaster");
-	defender  = ScriptCommonLib.GetString("skilltarget");
-	defenderpath = ScriptCommonLib.GetString("skilltargetpath");
-	id = SkillLib.ApplyEffect(defenderpath,"MagicShield");
-	ScriptCommonLib.SetString("Effectid",id);
-	SkillLib.Action(attacker,1,"mp_seal_08","Skill","magicSkill1.mp3");
-	ScriptCommonLib.SetInt("skillcast",1);
+	unitnum = SkillLib.GetUnitNum(attacker);
+	if unitnum > 3 then
+		unitnum = unitnum - 2;
+		SkillLib.SetUnitNum(attacker, unitnum);
+		defender  = ScriptCommonLib.GetString("skilltarget");
+		defenderpath = ScriptCommonLib.GetString("skilltargetpath");
+		id = SkillLib.ApplyEffect(defenderpath,"MagicShield");
+		ScriptCommonLib.SetString("Effectid",id);
+		SkillLib.Action(attacker,1,"mp_seal_08","Skill","magicSkill1.mp3");
+		ScriptCommonLib.SetInt("skillcast",1);
+	end
 end
 
 function onaffect()
 	squadpath = ScriptCommonLib.GetString("affectsquadpath");
 	id = SkillLib.ApplyParticle(squadpath,3,"mp_spell_effect_06");
 	ScriptCommonLib.SetString("Particleid",id);
-	id = SkillLib.ApplyModifier(squadpath,1,0.0,0.0,3.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0);
+	id = SkillLib.ApplyModifier(squadpath,1,0.0,0.0,2.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0);
 	ScriptCommonLib.SetString("Modifierid",id);
 	ScriptCommonLib.SetInt("LastTurn",0);
 	trigerid = TriggerLib.AddSquadTrigger(squadpath,"TurnEnd","onturnend");

@@ -754,7 +754,7 @@ bool BattleAIState::executeSquadAI(BattleSquad* squad,unsigned int missionid)
 	mMoveMap.insert(MapNodeType(myx + mapsize * myy,startnode));
 	bool action = false;
 	//计算移动点移动偏好
-	if(morale < 40)
+	if(morale < 35)
 	{
 		//避战休息
 		calcAwayFromSquad(squad);
@@ -896,7 +896,7 @@ bool BattleAIState::executeSquadAI(BattleSquad* squad,unsigned int missionid)
 			SquadVector vec = getAroundSquad(squad);
 			if(vec.size() == 0 || squad->getActionPoint() <= getSkillAPCost(squad,"Attack"))
 			{
-				if(morale < 40)
+				if(morale < 35)
 				{
 					Ogre::LogManager::getSingletonPtr()->logMessage(str(boost::format("AI:%1%,Rest")%squad->getId()),Ogre::LML_NORMAL);
 					catscene = mSquadManager->useSkillOn(squad,squad,"Rest");
@@ -911,10 +911,17 @@ bool BattleAIState::executeSquadAI(BattleSquad* squad,unsigned int missionid)
 			{
 				SquadIte sqdite = vec.begin();
 				BattleSquad* attack = (*sqdite);
+				int xx,yy;
+				attack->getCrood(&xx,&yy);
+				float def = attack->getAttr(ATTR_DEFENCE,ATTRCALC_FULL,GetDirection(xx,yy,myx,myy));
 				for(; sqdite != vec.end(); sqdite++)
 				{
-					if(attack->getUnitRealNum() > (*sqdite)->getUnitRealNum())
+					(*sqdite)->getCrood(&xx,&yy);
+					if((*sqdite)->getAttr(ATTR_DEFENCE,ATTRCALC_FULL,GetDirection(xx,yy,myx,myy))<def)
+					{
 						attack = (*sqdite);
+						def = attack->getAttr(ATTR_DEFENCE,ATTRCALC_FULL,GetDirection(xx,yy,myx,myy));
+					}
 				}
 				Ogre::LogManager::getSingletonPtr()->logMessage(str(boost::format("AI:%1%,Attack,%2%")%squad->getId()%attack->getId()),Ogre::LML_NORMAL);
 				catscene = mSquadManager->useSkillOn(squad,attack,"Attack");

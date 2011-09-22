@@ -127,12 +127,12 @@
 			<Script type="String" value="none"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
-				<Attack type="Float" value="3.0"/>
-				<RangedAttack type="Float" value="3.0"/>
-				<Defence type="Float" value="3.0"/>
+				<Attack type="Float" value="2.0"/>
+				<RangedAttack type="Float" value="2.0"/>
+				<Defence type="Float" value="2.0"/>
 				<Formation type="Float" value="0.06"/>
 				<Initiative type="Float" value="1.0"/>
-				<ActionPoint type="Float" value="10.0"/>
+				<ActionPoint type="Float" value="9.0"/>
 				<Detection type="Float" value="5.0"/>
 				<Covert type="Float" value="0.0"/>
 				<Injury type="Float" value="0.8"/>
@@ -149,7 +149,7 @@
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="5.0"/>
 				<RangedAttack type="Float" value="0.0"/>
-				<Defence type="Float" value="18.0"/>
+				<Defence type="Float" value="15.0"/>
 				<Formation type="Float" value="0.0"/>
 				<Initiative type="Float" value="1.0"/>
 				<ActionPoint type="Float" value="8.0"/>
@@ -170,13 +170,13 @@
 				<Attack type="Float" value="1.0"/>
 				<RangedAttack type="Float" value="0.0"/>
 				<Defence type="Float" value="1.0"/>
-				<Formation type="Float" value="0.02"/>
+				<Formation type="Float" value="0.04"/>
 				<Initiative type="Float" value="2.0"/>
-				<ActionPoint type="Float" value="11.0"/>
+				<ActionPoint type="Float" value="10.0"/>
 				<Detection type="Float" value="6.0"/>
 				<Covert type="Float" value="0.0"/>
 				<Injury type="Float" value="1.0"/>
-				<Conter type="Float" value="0.3"/>
+				<Conter type="Float" value="0.4"/>
 			</AttrModifer>
 			<Morale type="Int" value="1" />
 			<Fluctuate type="Int" value="20" />
@@ -227,27 +227,6 @@
 				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
 		</ShortSword>
-		<Pike>
-			<Type type="Int" value="5"/>
-			<Value type="Int" value="10"/>
-			<Script type="String" value="none"/>
-			<Mesh type="String" value="pike.mesh"/>
-			<Mat type="String" value="Pike"/>
-			<AniGroup type="String" value="2HL2"/>
-			<AttrModifer>
-				<Type type="Int" value="0"/>
-				<Attack type="Float" value="2.0"/>
-				<RangedAttack type="Float" value="0.0"/>
-				<Defence type="Float" value="-1.0"/>
-				<Formation type="Float" value="0.1"/>
-				<Initiative type="Float" value="8.0"/>
-				<ActionPoint type="Float" value="0.0"/>
-				<Detection type="Float" value="0.0"/>
-				<Covert type="Float" value="0.0"/>
-				<Injury type="Float" value="0.0"/>
-				<Conter type="Float" value="0.0"/>
-			</AttrModifer>
-		</Pike>
 		<ShortSpear>
 			<Type type="Int" value="5"/>
 			<Value type="Int" value="10"/>
@@ -259,8 +238,8 @@
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="2.0"/>
 				<RangedAttack type="Float" value="0.0"/>
-				<Defence type="Float" value="-2.0"/>
-				<Formation type="Float" value="0.1"/>
+				<Defence type="Float" value="-1.0"/>
+				<Formation type="Float" value="0.08"/>
 				<Initiative type="Float" value="6.0"/>
 				<ActionPoint type="Float" value="0.0"/>
 				<Detection type="Float" value="0.0"/>
@@ -347,7 +326,7 @@
 				<Defence type="Float" value="3.0"/>
 				<Formation type="Float" value="0.0"/>
 				<Initiative type="Float" value="0.0"/>
-				<ActionPoint type="Float" value="0.0"/>
+				<ActionPoint type="Float" value="-1.0"/>
 				<Detection type="Float" value="0.0"/>
 				<Covert type="Float" value="-1.0"/>
 				<Injury type="Float" value="0.0"/>
@@ -430,7 +409,7 @@
 		</MagicEffect>
 		<MagicShield>
 			<Type type="Int" value="3"/>
-			<MaxRange type="Int" value="3"/>
+			<MaxRange type="Int" value="2"/>
 			<MinRange type="Int" value="1"/>
 			<Area type="Int" value="1"/>
 			<APType type="Int" value="0"/>
@@ -478,7 +457,7 @@
 		</Rest>
 		<Heal>
 			<Type type="Int" value="3"/>
-			<MaxRange type="Int" value="3"/>
+			<MaxRange type="Int" value="2"/>
 			<MinRange type="Int" value="1"/>
 			<Area type="Int" value="1"/>
 			<APType type="Int" value="0"/>
@@ -490,7 +469,7 @@
 		</Heal>
 		<Zeal>
 			<Type type="Int" value="3"/>
-			<MaxRange type="Int" value="3"/>
+			<MaxRange type="Int" value="2"/>
 			<MinRange type="Int" value="1"/>
 			<Area type="Int" value="1"/>
 			<APType type="Int" value="0"/>
@@ -565,7 +544,7 @@
 		</Suppressed>
 	</EffectData>
 	<GroundData>
-		<Ground1>
+		<Grass>
 			<GroundModifier>
 				<Passable type="Int" value="1"/>
 				<Covert type="Float" value="0.0"/>
@@ -573,8 +552,8 @@
 				<CavAp type="Float" value="2.0"/>
 				<InfAp type="Float" value="2.0"/>
 			</GroundModifier>
-		</Ground1>
-		<Ground0>
+		</Grass>
+		<Soil>
 			<GroundModifier>
 				<Passable type="Int" value="1"/>
 				<Covert type="Float" value="0.0"/>
@@ -582,25 +561,16 @@
 				<CavAp type="Float" value="2.0"/>
 				<InfAp type="Float" value="2.0"/>
 			</GroundModifier>
-		</Ground0>
-		<Ground2>
+		</Soil>
+		<Road>
 			<GroundModifier>
 				<Passable type="Int" value="1"/>
 				<Covert type="Float" value="0.0"/>
-				<Defence type="Float" value="-1.0"/>
-				<CavAp type="Float" value="4.0"/>
-				<InfAp type="Float" value="3.0"/>
+				<Defence type="Float" value="0.0"/>
+				<CavAp type="Float" value="2.0"/>
+				<InfAp type="Float" value="2.0"/>
 			</GroundModifier>
-		</Ground2>
-		<Ground3>
-			<GroundModifier>
-				<Passable type="Int" value="1"/>
-				<Covert type="Float" value="0.0"/>
-				<Defence type="Float" value="-1.0"/>
-				<CavAp type="Float" value="4.0"/>
-				<InfAp type="Float" value="3.0"/>
-			</GroundModifier>
-		</Ground3>
+		</Road>
 	</GroundData>
 	<TerrainData>
 		<Terrain1>
@@ -667,7 +637,7 @@
 				<Covert type="Float" value="2.0"/>
 				<Defence type="Float" value="2.0"/>
 				<CavAp type="Float" value="1.0"/>
-				<InfAp type="Float" value="0.0"/>
+				<InfAp type="Float" value="1.0"/>
 			</GroundModifier>
 		</Forest>
 		<ForestLow>

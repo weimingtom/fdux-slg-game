@@ -1,0 +1,24 @@
+vertex_program BorderVP cg
+{
+    source Border.cg
+    entry_point BorderVP
+    profiles arbvp1 vs_2_0
+ 
+    default_params
+    {
+		param_named_auto world world_matrix
+        param_named_auto worldViewProj worldviewproj_matrix
+    }
+}
+ 
+fragment_program BorderFP cg
+{
+    source Border.cg
+    entry_point BorderFP
+    profiles arbfp1 ps_2_0 fp20
+ 
+    default_params
+    {
+		param_named border float 144.0
+    }
+}

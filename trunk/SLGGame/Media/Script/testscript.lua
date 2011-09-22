@@ -19,9 +19,10 @@ end
 
 function unitdead()
 	squad = ScriptCommonLib.GetString("squad");
-	if squad == "Cheetah" or squad == "Dandelion" or squad == "Olivia" then
+	if squad == "Cheetah" or squad == "Dandelion" then
 		TriggerLib.ChangeState(1,"GameOver.lua");
 	elseif ScriptCommonLib.GetTeamSquadLeft(2) == 0 then
+		ScriptCommonLib.CopySquadData();
 		TriggerLib.ChangeState(1,"Chapter2.lua");
 	end
 end
@@ -29,7 +30,7 @@ end
 function turnend()
 	turn = ScriptCommonLib.GetInt("trun");
 	team = ScriptCommonLib.GetInt("team");
-	if team == 1 then
+	if team == 1 and turn == 2 then
 		ScriptCommonLib.Story("battlestory1.lua");
 	end
 	--if team == 1 then

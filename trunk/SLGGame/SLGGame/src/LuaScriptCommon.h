@@ -120,6 +120,32 @@ static int Story(lua_State* L)
 	return 0;
 }
 
+#include <boost/format.hpp>
+static int CopySquadData(lua_State* L)
+{
+	BattleSquadManager::BattleSquadIte ite;
+	BattleSquadManager* bsm = BattleSquadManager::getSingletonPtr();
+	std::string path;
+	int num = 0;
+	for(ite = bsm->mSquadList.begin(); ite != bsm->mSquadList.end(); ite++)
+	{
+		if((*ite)->getTeam() != 1)
+			continue;
+		path = str(boost::format("GameData/StoryData/SquadData/EnableSquad/%1%/UnitNumber")%(*ite)->getId());
+		DataLibrary* datalib = DataLibrary::getSingletonPtr();
+		if(datalib->getData(path,num,true))
+		{
+			num = (*ite)->getUnitRealNum() + 0.5f * (num -  (*ite)->getUnitRealNum());
+			datalib->setData(path,num);
+			path = str(boost::format("%1%/Morale")%(*ite)->getPath());
+			datalib->getData(path,num);
+			path = str(boost::format("GameData/StoryData/SquadData/EnableSquad/%1%/Morale")%(*ite)->getId());
+			datalib->setData(path,num);
+		}
+	}
+	return 0;
+}
+
 static const struct luaL_Reg ScriptCommonLib[] =
 {
 	{"SetInt",SetInt},
@@ -133,5 +159,6 @@ static const struct luaL_Reg ScriptCommonLib[] =
 	{"GetSquadIdFromPath",GetSquadIdFromPath},
 	{"GetRand",GetRand},
 	{"Story",Story},
+	{"CopySquadData",CopySquadData},
 	{NULL,NULL}
 };
