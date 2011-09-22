@@ -5,8 +5,8 @@
 using namespace izayoi;
 
 typedef int GroundType;
-static const int	GreenLand = 1;
-static const int	Desert = 0;
+static const int	GreenLand = 0;
+static const int	Desert = 1;
 static const int	Swamp = 2;
 static const int	Snow = 3;
 

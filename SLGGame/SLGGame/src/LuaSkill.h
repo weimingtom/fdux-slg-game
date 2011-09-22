@@ -247,6 +247,31 @@ static int GetUnitNum(lua_State* L)
 	return 1;
 }
 
+#include "SquadDeadCutScene.h"
+#include "SquadRecoverCutScene.h"
+static int SetUnitNum(lua_State* L)
+{
+	std::string squad(luaL_checkstring(L, 1));
+	int num = luaL_checknumber(L,2);
+	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
+	int unb = 0, una = 0;
+	if(battlesquad)
+	{
+		unb = battlesquad->getUnitGrapNum();
+		DataLibrary::getSingleton().setData(battlesquad->getPath() + std::string("/UnitNumber"),num);
+		una = battlesquad->getUnitGrapNum();
+		if(una < unb)
+		{
+			BattleSquadManager::getSingleton().setCutScene(new SquadDeadCutScene(battlesquad->getGrapId(), unb - una));
+		}
+		else if(una > unb)
+		{
+			BattleSquadManager::getSingleton().setCutScene(new SquadRecoverCutScene(battlesquad->getGrapId(), una - unb));
+		}
+	}
+	return 0;
+}
+
 #include "FormationCutScence.h"
 static int ChangeFormation(lua_State* L)
 {
@@ -306,6 +331,7 @@ static const struct luaL_Reg SkillLib[] =
 // 	{"GetWoundNum",	GetWoundNum},
 // 	{"SetWoundNum",	SetWoundNum},
 	{"GetUnitNum",GetUnitNum},
+	{"SetUnitNum",SetUnitNum},
 	{"ChangeFormation",ChangeFormation},
 	{"SquadParticle",SquadParticle},
 	{"SetMorale",SetMorale},

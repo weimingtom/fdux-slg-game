@@ -151,22 +151,18 @@
 		</Suppressed>
 	</EffectData>
 	<GroundData>
-		<Ground1>
-			<Name type="String" value="绿地"/>
-			<Describe type="String" value="绿地"/>
-		</Ground1>
-		<Ground0>
+		<Grass>
+			<Name type="String" value="草地"/>
+			<Describe type="String" value="草地"/>
+		</Grass>
+		<Soil>
 			<Name type="String" value="荒地"/>
 			<Describe type="String" value="荒地"/>
-		</Ground0>
-		<Ground2>
-			<Name type="String" value="沼泽"/>
-			<Describe type="String" value="沼泽"/>
-		</Ground2>
-		<Ground3>
-			<Name type="String" value="雪地"/>
-			<Describe type="String" value="雪地"/>
-		</Ground3>
+		</Soil>
+		<Road>
+			<Name type="String" value="道路"/>
+			<Describe type="String" value="道路"/>
+		</Road>
 	</GroundData>
 	<TerrainData>
 		<Terrain1>

@@ -13,6 +13,7 @@
 #include "DataLibrary.h"
 #include "LuaSystem.h"
 #include "AudioSystem.h"
+#include "boost/format.hpp"
 
 MapLoader::MapLoader()
 {
@@ -31,26 +32,26 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 	std::string path = ".\\..\\Media\\Map\\" + mapname;
 	ticpp::Document *doc = new ticpp::Document();
 	doc->LoadFile(path,TIXML_ENCODING_UTF8);
-	std::string str;
+	std::string str1;
 	//载入地图名字，介绍和脚本名
 	ticpp::Element *element = doc->FirstChildElement("MapName");
-	element->GetText(&str);
-	datalibrary->setData("GameData/BattleData/MapData/MapName", StringTable::getSingleton().getString(str));
+	element->GetText(&str1);
+	datalibrary->setData("GameData/BattleData/MapData/MapName", StringTable::getSingleton().getString(str1));
 	delete element;
 
 	element = doc->FirstChildElement("MapScript");
-	element->GetText(&str);
-	datalibrary->setData("GameData/BattleData/MapData/MapScript", str);
+	element->GetText(&str1);
+	datalibrary->setData("GameData/BattleData/MapData/MapScript", str1);
 	delete element;
 
 	element = doc->FirstChildElement("MapInfo");
-	element->GetText(&str);
-	datalibrary->setData("GameData/BattleData/MapData/MapInfo",str);
+	element->GetText(&str1);
+	datalibrary->setData("GameData/BattleData/MapData/MapInfo",str1);
 	delete element;
 
 	element = doc->FirstChildElement("MapLoadBG");
-	element->GetText(&str);
-	datalibrary->setData("GameData/BattleData/MapData/MapLoadBG",str);
+	element->GetText(&str1);
+	datalibrary->setData("GameData/BattleData/MapData/MapLoadBG",str1);
 	delete element;
 
 	//载入地图地形信息
@@ -60,8 +61,24 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 	datalibrary->setData("GameData/BattleData/MapData/MapSize", mapsize);
 	delete element;
 
+	element= doc->FirstChildElement("MapGround");
+	ticpp::Iterator<ticpp::Element> child;
+	std::string datapath;
+	for(child = child.begin(element); child != child.end(); child++)
+	{
+		std::string layer,type,texture;
+		child->GetValue(&layer);
+		child->GetAttribute("Type",&type);
+		child->GetAttribute("Texture",&texture);
+		datapath = str(boost::format("GameData/BattleData/MapData/Ground/%1%")%layer);
+		datalibrary->setData(datapath, type);
+		datapath = str(boost::format("GameData/BattleData/MapData/Ground/%1%Tex")%layer);
+		datalibrary->setData(datapath, texture);
+	}
+	delete element;
+
 	element = doc->FirstChildElement("MapData");
-	element->GetText(&str);
+	element->GetText(&str1);
 	for(int y = 0; y < mapsize; y++)
 	{
 		for(int x = 0; x < mapsize; x++)
@@ -70,7 +87,7 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 			char datapathtemp[64];
 			sprintf_s(datapathtemp, 64, "GameData/BattleData/MapData/Map/M%d", index);
 			std::string datapath = datapathtemp;
-			if(str[index * 2] == 'l')
+			if(str1[index * 2] == 'l')
 			{
 				bool iscliff = false;
 				for(int i = y - 1; i < y + 2; i ++)
@@ -82,7 +99,7 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 						int v = (j<0)?0:j;
 						v = (v >= mapsize)?mapsize-1:v;
 						int tempindex = u * mapsize + v;
-						if(str[tempindex * 2] == 'h' )
+						if(str1[tempindex * 2] == 'h' )
 						{	
 							iscliff = true;
 						}
@@ -93,32 +110,32 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 				else
 					datalibrary->setData(datapath + "/TerrainType", LowGround);
 			}
-			else if(str[index * 2] == 'w')
+			else if(str1[index * 2] == 'w')
 			{
 				datalibrary->setData(datapath + "/TerrainType", Water);
 			}
-			else if(str[index * 2] == 'h')
+			else if(str1[index * 2] == 'h')
 			{
 				datalibrary->setData(datapath + "/TerrainType", HighGround);
 			}
-			else if(str[index * 2] == 'r')
+			else if(str1[index * 2] == 'r')
 			{
 				datalibrary->setData(datapath + "/TerrainType", Ramp);
 			}
 
-			if(str[index * 2+1] == 'g')
+			if(str1[index * 2+1] == 'g')
 			{
 				datalibrary->setData(datapath + "/GroundType", GreenLand);
 			}
-			else if(str[index * 2+1] == 'd')
+			else if(str1[index * 2+1] == 'd')
 			{
 				datalibrary->setData(datapath + "/GroundType", Desert);
 			}
-			else if(str[index * 2+1] == 'w')
+			else if(str1[index * 2+1] == 'w')
 			{
 				datalibrary->setData(datapath + "/GroundType", Swamp);
 			}
-			else if(str[index * 2+1] == 's')
+			else if(str1[index * 2+1] == 's')
 			{
 				datalibrary->setData(datapath + "/GroundType", Snow);
 			}
@@ -127,11 +144,9 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 	delete element;
 
 	element = doc->FirstChildElement("MapObject");
-	ticpp::Iterator<ticpp::Element> child;
 	for(child = child.begin(element); child != child.end(); child++)
 	{
 		std::string objname;
-		std::string datapath;
 		child->GetValue(&objname);
 		datapath = std::string("GameData/BattleData/MapData/MapObjModleInfo/") + objname;
 		int objx,objy;
@@ -154,7 +169,6 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 	for(child = child.begin(element); child != child.end(); child++)
 	{
 		std::string particlename;
-		std::string datapath;
 		child->GetValue(&particlename);
 		datapath = std::string("GameData/BattleData/MapData/MapParticleInfo/") + particlename;
 		int particlex,particley;
@@ -175,7 +189,6 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 	for(child = child.begin(element); child != child.end(); child++)
 	{
 		std::string areaname;
-		std::string datapath;
 		child->GetValue(&areaname);
 		datapath = std::string("GameData/BattleData/MapData/Area/") + areaname;
 		ticpp::Iterator<ticpp::Element> childchild;
@@ -221,7 +234,6 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 	for(child = child.begin(element); child != child.end(); child++)
 	{
 		std::string teamid;
-		std::string datapath;
 		child->GetValue(&teamid);
 		datapath = std::string("GameData/BattleData/SquadList");
 		ticpp::Iterator<ticpp::Element> childchild;
@@ -234,11 +246,13 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 			int y;
 			Direction d;
 			int unitnum;
+			int morale;
 			childchild->GetAttribute("Type",&squadtype);
 			childchild->GetAttribute("GridX",&x);
 			childchild->GetAttribute("GridY",&y);
 			childchild->GetAttribute("UnitNum",&unitnum);
 			childchild->GetAttribute("Direction",&d);
+			childchild->GetAttribute("Morale", &morale);
 			AVGSquadManager::getSingleton().addSquad(squadid,squadtype, datapath);
 			int type;
 			Formation f;
@@ -250,12 +264,12 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/GridX"), x, true );
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/GridY"), y, true );
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/UnitNumber"), unitnum, true );
-			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/WoundNum"), 0, true );
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/Direction"), d, true );
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/Formation"), f, true );
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/TeamId"), teamid, true );
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/CreateType"), MapSquad, true );
 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/ActionPoint"), 0.0f, true );
+			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/Morale"), morale, true );
 		}
 	}
 	delete element;
@@ -344,7 +358,6 @@ void MapLoader::initBattleSquad(bool loadfrommap)
 				datalib->setData(datapath +std::string("/Direction"), North, true );
 				datalib->setData(datapath +std::string("/Formation"), f, true );
 				datalib->setData(datapath +std::string("/ActionPoint"), 0.0f, true );
-				datalib->setData(datapath +std::string("/WoundNum"), 0, true );
 				BattleSquad* battlesquad = new BattleSquad((*ite),battlesuqadmanager->mCurid,-10,-10); 
 				SquadGraphics* squadgrap = suqadgrapmanager->createSquad((*ite), datapath, battlesuqadmanager->mCurid, -10, -10,North,Line,battlesquad->getUnitGrapNum());
 				squadgrap->setFormation(f,false);

@@ -317,9 +317,9 @@ CutScene* BattleSquadManager::useSkillOn(BattleSquad* attacksquad, BattleSquad* 
 		//¼¼ÄÜÏûºÄ
 		datalib->setData(attacksquad->getPath() + std::string("/ActionPoint"),apleft - apcost);
 		if(aptype == SKILLAPTYPE_SETUP)
-			datalib->setData(attacksquad->getPath() + std::string("/APSetup"),attacksquad->getActionPointCost(aptype) +2.0f);
+			datalib->setData(attacksquad->getPath() + std::string("/APSetup"),attacksquad->getActionPointCost(aptype) +1.0f);
 		else
-			datalib->setData(attacksquad->getPath() + std::string("/APBattle"),attacksquad->getActionPointCost(aptype) +2.0f);
+			datalib->setData(attacksquad->getPath() + std::string("/APBattle"),attacksquad->getActionPointCost(aptype) +1.0f);
 		int skillcooldown;
 		datalib->getData(skillinfopath + std::string("/CoolDown"),skillcooldown);
 		datalib->setData(skillpath + std::string("/CoolDown"),skillcooldown);
@@ -419,7 +419,7 @@ bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad*
 				squad->applyAttackRolls(false, temp[d], atkinfo);
 			int squaduga = squad->getUnitGrapNum();
 			int squadRealNumA=squad->getUnitRealNum();
-			morale -= DEADTOMORALE[(squadRealNumB - squadRealNumA) / 5];
+			morale -= DeathToMorale(squadRealNumB - squadRealNumA);
 			spreadModifyMorale(squad,morale);
 			if(squaduga < squadugb)
 			{
@@ -530,7 +530,7 @@ bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* 
 		defenesquad->applyAttackRolls(true, d, atkinfo);
 		int squaduga = defenesquad->getUnitGrapNum();
 		int squadRealNumA=defenesquad->getUnitRealNum();
-		spreadModifyMorale(defenesquad, -DEADTOMORALE[(squadRealNumB - squadRealNumA) / 5]) ;
+		spreadModifyMorale(defenesquad, -DeathToMorale(squadRealNumB - squadRealNumA)) ;
 		if(squaduga < squadugb)
 		{
 			setCutScene(new SquadDeadCutScene(defenesquad->getGrapId(), squadugb - squaduga));
@@ -566,7 +566,7 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 		defenesquad->applyAttackRolls(true, d, atkinfo);
 		int squadRealNumA=defenesquad->getUnitRealNum();
 		int squaduga = defenesquad->getUnitGrapNum();
-		spreadModifyMorale(defenesquad, -DEADTOMORALE[(squadRealNumB - squadRealNumA) / 5]) ;
+		spreadModifyMorale(defenesquad, -DeathToMorale(squadRealNumB - squadRealNumA)) ;
 		if(squaduga < squadugb)
 		{
 			setCutScene(new SquadDeadCutScene(defenesquad->getGrapId(), squadugb - squaduga));

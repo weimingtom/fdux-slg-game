@@ -13,8 +13,8 @@ class MapDataManager;
 static const float PLANEHEIGHT = 0.0f;
 static const float TILESIZE = 24.0f;
 static const float HEIGHGROUNDHEIGHT = 10.0f;
-static const float WATERHEIGHT = -0.5f;
-static const float WATERDEEP = -3.0f;
+static const float WATERHEIGHT = -3.0f;
+static const float WATERDEEP = -5.0f;
 static int MAPBOLDER = 6;
 
 

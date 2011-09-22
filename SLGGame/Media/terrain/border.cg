@@ -1,0 +1,46 @@
+void BorderVP(
+			float4	position		: POSITION,
+			float4	normal			: NORMAL,
+ 
+			out float4 outPos		: POSITION,
+			out float4 worldPos		: TEXCOORD0,
+			
+			uniform float4x4 world,
+			uniform float4x4 worldViewProj
+			)
+{
+	position.y = 0;
+    worldPos = mul(world, position);
+    outPos = mul(worldViewProj, position);
+}
+
+void BorderFP(
+			float4 position		: POSITION,
+			float4 wordpos		: TEXCOORD0,
+		
+			uniform float border,
+		
+			out float4 result        : COLOR)
+{
+	float a1 = 0;
+	float a2 = 0;
+	if(wordpos.x > border)
+	{
+		a1 = (wordpos.x - border)/24;
+	}
+	else if(wordpos.x < -border)
+	{
+		a1 = (-border - wordpos.x)/24;
+	}
+	if(wordpos.z > border)
+	{
+		a2 = (wordpos.z - border)/24;
+	}
+	else if(wordpos.z < -border)
+	{
+		a2 = (-border - wordpos.z)/24;
+	}
+	a1 = a1 + a2;
+	if(a1 > 0.8) { a1 = 0.8; }
+	result = float4(1,1,1,a1);
+}

@@ -22,6 +22,7 @@ function unitdead()
 	if squad == "Cheetah" or squad == "Dandelion" or squad == "Olivia" then
 		TriggerLib.ChangeState(1,"GameOver.lua");
 	elseif ScriptCommonLib.GetTeamSquadLeft(2) == 0 then
+		ScriptCommonLib.CopySquadData();
 		TriggerLib.ChangeState(1,"Chapter3.lua");
 	end
 end

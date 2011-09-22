@@ -3,6 +3,7 @@
 #include "MapDataManager.h"
 #include "SquadGrapManager.h"
 #include "CameraContral.h"
+#include "DataLibrary.h"
 
 #include <iostream>
 
@@ -22,6 +23,7 @@ Terrain::~Terrain()
 bool Terrain::createTerrain()
 {
 	mMapData = MapDataManager::getSingletonPtr();
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	int terrainszie = mMapData->getMapSize() + 2 * MAPBOLDER + 1;
 
 	Core::getSingleton().mSceneMgr->setSkyBox(true, "SkyBox",200);
@@ -54,35 +56,65 @@ bool Terrain::createTerrain()
 	Ogre::Pass* pass = tech->getPass(1);
 	Ogre::TextureUnitState* tu =  pass->getTextureUnitState(0);
 	tu->setTextureName(tex->getName());
-
-	mat = Ogre::MaterialManager::getSingleton().getByName("TerrainTile");
-	tech = mat->getTechnique("default");
-	pass = tech->getPass(1);
+	pass = tech->getPass(0);
 	tu =  pass->getTextureUnitState(0);
-	tu->setTextureName(tex->getName());
+	std::string texname;
+	datalib->getData("GameData/BattleData/MapData/Ground/G0Tex",texname);
+	tu->setTextureName(texname);
+	tu =  pass->getTextureUnitState(1);
+	datalib->getData("GameData/BattleData/MapData/Ground/G1Tex",texname);
+	tu->setTextureName(texname);
+	tu =  pass->getTextureUnitState(2);
+	datalib->getData("GameData/BattleData/MapData/Ground/G2Tex",texname);
+	tu->setTextureName(texname);
+	tu =  pass->getTextureUnitState(3);
+	datalib->getData("GameData/BattleData/MapData/Ground/G3Tex",texname);
+	tu->setTextureName(texname);
+
+// 	mat = Ogre::MaterialManager::getSingleton().getByName("TerrainTile");
+// 	tech = mat->getTechnique("default");
+// 	pass = tech->getPass(1);
+// 	tu =  pass->getTextureUnitState(0);
+// 	tu->setTextureName(tex->getName());
 	mat = Ogre::MaterialManager::getSingleton().getByName("CliffMat1");
 	tech = mat->getTechnique("default");
 	pass = tech->getPass(1);
 	tu =  pass->getTextureUnitState(0);
 	tu->setTextureName(tex->getName());
+	pass = tech->getPass(0);
+	tu =  pass->getTextureUnitState(0);
+	datalib->getData("GameData/BattleData/MapData/Ground/G0Tex",texname);
+	tu->setTextureName(texname);
+
 	mat = Ogre::MaterialManager::getSingleton().getByName("CliffMat2");
 	tech = mat->getTechnique("default");
 	pass = tech->getPass(1);
 	tu =  pass->getTextureUnitState(0);
 	tu->setTextureName(tex->getName());
+	pass = tech->getPass(0);
+	tu =  pass->getTextureUnitState(0);
+	datalib->getData("GameData/BattleData/MapData/Ground/G1Tex",texname);
+	tu->setTextureName(texname);
+
 	mat = Ogre::MaterialManager::getSingleton().getByName("CliffMat3");
 	tech = mat->getTechnique("default");
 	pass = tech->getPass(1);
 	tu =  pass->getTextureUnitState(0);
 	tu->setTextureName(tex->getName());
+	pass = tech->getPass(0);
+	tu =  pass->getTextureUnitState(0);
+	datalib->getData("GameData/BattleData/MapData/Ground/G2Tex",texname);
+	tu->setTextureName(texname);
+
 	mat = Ogre::MaterialManager::getSingleton().getByName("CliffMat4");
 	tech = mat->getTechnique("default");
 	pass = tech->getPass(1);
 	tu =  pass->getTextureUnitState(0);
 	tu->setTextureName(tex->getName());
-
-	
-
+	pass = tech->getPass(0);
+	tu =  pass->getTextureUnitState(0);
+	datalib->getData("GameData/BattleData/MapData/Ground/G3Tex",texname);
+	tu->setTextureName(texname);
 
 	//创建地面Mesh
 	mTerrainNode = Core::getSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode("TerrainNode");
@@ -523,7 +555,7 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 		float u,v;
 		u = (groundindex[n] % 4) * TERRAINTEXTILESIZE / TERRAINTEXSIZE;
 		v = (groundindex[n] / 4) * TERRAINTEXTILESIZE / TERRAINTEXSIZE;
-		float d = 1.0f / TERRAINTEXTILESIZE;
+		float d = 1.0f / TERRAINTEXSIZE;
 		*uvbuffer = u;
 		*(uvbuffer + 1) = v + d;
 		*(uvbuffer + 8) = u + TERRAINTEXTILESIZE / TERRAINTEXSIZE - d;
@@ -557,7 +589,7 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 	}
 	if(usemesh)
 	{
-		switch(mMapData->getGroundType(x -4 , y -4))
+		switch(mMapData->getGroundType(x -MAPBOLDER -1 , y -MAPBOLDER -1))
 		{
 		case GreenLand:
 			materialName =  materialName + "Mat1";

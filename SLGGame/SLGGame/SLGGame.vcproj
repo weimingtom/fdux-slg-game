@@ -650,6 +650,14 @@
 						>
 					</File>
 					<File
+						RelativePath=".\src\SquadRecovercutscene.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\SquadRecovercutscene.h"
+						>
+					</File>
+					<File
 						RelativePath=".\src\SquadStateCutScene.cpp"
 						>
 					</File>

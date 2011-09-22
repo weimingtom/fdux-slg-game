@@ -21,7 +21,7 @@ material TerrainTile : DepthShadowmap/Caster
 			texture_unit
 			{
 				tex_coord_set 2 
-				texture Swamp.dds  
+				texture Swamp.dds 		
 				colour_op alpha_blend
 			}
 			texture_unit
@@ -48,6 +48,19 @@ material TerrainTile : DepthShadowmap/Caster
 				tex_address_mode border
 				tex_border_colour 1.0 1.0 1.0 1.0
 			}
+		}
+		pass
+		{
+			lighting off
+			depth_check off
+			depth_write off
+			scene_blend alpha_blend 
+			vertex_program_ref BorderVP
+            {
+            }
+			fragment_program_ref BorderFP
+            {
+            }
 		}
 	}
 }
