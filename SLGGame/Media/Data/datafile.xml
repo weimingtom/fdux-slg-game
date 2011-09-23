@@ -63,6 +63,7 @@
 				<Heal type="Int" value="1"/>
 				<Zeal type="Int" value="1"/>
 				<Confess type="Int" value="1"/>
+				<Pray type="Int" value="1" />
 			</SkillTable>
 			<LeaderName type="String" value="Olivia"/>
 			<LeaderPicture type="String" value="Olivia.png"/>
@@ -149,7 +150,7 @@
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="5.0"/>
 				<RangedAttack type="Float" value="0.0"/>
-				<Defence type="Float" value="15.0"/>
+				<Defence type="Float" value="13.0"/>
 				<Formation type="Float" value="0.0"/>
 				<Initiative type="Float" value="1.0"/>
 				<ActionPoint type="Float" value="8.0"/>
@@ -515,6 +516,18 @@
 			<Icon type="String" value="none"/>
 			<Script type="String" value="suppressattack.lua"/>
 		</SuppressAttack>
+		<Pray>
+			<Type type="Int" value="1"/>
+			<MaxRange type="Int" value="0"/>
+			<MinRange type="Int" value="0"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="2"/>
+			<APCost type="float" value="2.0"/>
+			<CoolDown type="Int" value="0"/>
+			<Value type="Int" value="10"/>
+			<Icon type="String" value="Recrew"/>
+			<Script type="String" value="pray.lua"/>
+		</Pray>
 	</SkillData>
 	<EffectData>
 		<TestEffect>
