@@ -247,6 +247,19 @@ static int GetUnitNum(lua_State* L)
 	return 1;
 }
 
+static int GetUnitMaxNum(lua_State* L)
+{
+	std::string squad(luaL_checkstring(L, 1));
+	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
+	int un = 0;
+	if(battlesquad)
+	{
+		DataLibrary::getSingleton().getData(battlesquad->getPath() + "/UnitMaxNumber",un);
+	}
+	lua_pushnumber(L,un);
+	return 1;
+}
+
 #include "SquadDeadCutScene.h"
 #include "SquadRecoverCutScene.h"
 static int SetUnitNum(lua_State* L)
@@ -332,6 +345,7 @@ static const struct luaL_Reg SkillLib[] =
 // 	{"SetWoundNum",	SetWoundNum},
 	{"GetUnitNum",GetUnitNum},
 	{"SetUnitNum",SetUnitNum},
+	{"GetUnitMaxNum",GetUnitMaxNum},
 	{"ChangeFormation",ChangeFormation},
 	{"SquadParticle",SquadParticle},
 	{"SetMorale",SetMorale},

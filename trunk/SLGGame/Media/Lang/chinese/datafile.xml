@@ -127,6 +127,10 @@
 			<Name type="String" value="压制射击"/>
 			<Describe type="String" value="压制射击"/>
 		</SuppressAttack>
+		<Pray>
+			<Name type="String" value="祷告"/>
+			<Describe type="String" value="祷告"/>
+		</Pray>
 	</SkillData>
 	<EffectData>
 		<TestEffect>
