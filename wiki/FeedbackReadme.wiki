@@ -1,0 +1,10 @@
+#summary 编译运行feedback项目时的注意事项
+
+= 注意事项 =
+
+  * 编译feedback项目时需要mysql connector/c++库(目前使用1.1.0版本)
+  * 下载mysql connector/c++库时，选择mysql-connector-c++-noinstall-1.1.0-win32.zip，或mysql-connector-c++-noinstall-1.1.0-win64.zip，msi格式的安装包缺少sqlstring.h文件
+
+  * 编译feedback项目时需要boost库(与游戏项目使用相同版本)
+
+  * 运行feedback需要的dll可以在[http://code.google.com/p/fdux-slg-game/downloads/detail?name=feedback_dll.zip&can=2&q= 这里]下载
