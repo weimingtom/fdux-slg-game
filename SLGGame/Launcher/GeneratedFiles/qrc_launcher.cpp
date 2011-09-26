@@ -1,8 +1,8 @@
 /****************************************************************************
 ** Resource object code
 **
-** Created: Thu Sep 15 01:12:44 2011
-**      by: The Resource Compiler for Qt version 4.6.3
+** Created: Mon Sep 26 10:38:27 2011
+**      by: The Resource Compiler for Qt version 4.7.3
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -10,7 +10,7 @@
 #include <QtCore/qglobal.h>
 
 static const unsigned char qt_resource_data[] = {
-  // F:/C++/SLGGame/Launcher/Resources/Demo.png
+  // D:/programming/C++/fdux-slg-game/SLGGame/Launcher/Resources/Demo.png
   0x0,0x0,0xa,0xbd,
   0x89,
   0x50,0x4e,0x47,0xd,0xa,0x1a,0xa,0x0,0x0,0x0,0xd,0x49,0x48,0x44,0x52,0x0,
