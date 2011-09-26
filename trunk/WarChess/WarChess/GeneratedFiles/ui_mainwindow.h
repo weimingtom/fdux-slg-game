@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Fri Mar 25 13:34:50 2011
-**      by: Qt User Interface Compiler version 4.6.3
+** Created: Mon Aug 22 01:21:50 2011
+**      by: Qt User Interface Compiler version 4.7.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -95,6 +95,8 @@ public:
     QLineEdit *team4Faction;
     QLabel *label_9;
     QLineEdit *mapScript;
+    QLabel *label_11;
+    QLineEdit *mapBG;
     QLabel *label_10;
     QTextEdit *mapInfo;
     QWidget *tab_2;
@@ -148,17 +150,15 @@ public:
     QPushButton *delSkill;
     QTableView *skillTableView;
     QWidget *squadTab;
-    QHBoxLayout *horizontalLayout_9;
     QVBoxLayout *verticalLayout_12;
-    QListView *squadListView;
+    QHBoxLayout *horizontalLayout_16;
     QPushButton *addSquad;
     QPushButton *delSquad;
     QTableView *squadTableView;
-    QVBoxLayout *verticalLayout_13;
-    QTableView *squadEquipTableView;
-    QTableView *squadSkillTableView;
+    QHBoxLayout *horizontalLayout_17;
     QPushButton *addSquadSkill;
     QPushButton *delSquadSkill;
+    QTableView *squadSkillTableView;
     QWidget *stringTab;
     QVBoxLayout *verticalLayout_14;
     QHBoxLayout *horizontalLayout_5;
@@ -445,6 +445,16 @@ public:
 
         formLayout->setWidget(5, QFormLayout::FieldRole, mapScript);
 
+        label_11 = new QLabel(tab_4);
+        label_11->setObjectName(QString::fromUtf8("label_11"));
+
+        formLayout->setWidget(6, QFormLayout::LabelRole, label_11);
+
+        mapBG = new QLineEdit(tab_4);
+        mapBG->setObjectName(QString::fromUtf8("mapBG"));
+
+        formLayout->setWidget(6, QFormLayout::FieldRole, mapBG);
+
 
         verticalLayout_15->addLayout(formLayout);
 
@@ -527,8 +537,8 @@ public:
 
         soldierTableView = new QTableView(soldierTab);
         soldierTableView->setObjectName(QString::fromUtf8("soldierTableView"));
-        soldierTableView->setSelectionMode(QAbstractItemView::SingleSelection);
-        soldierTableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+        soldierTableView->setSelectionMode(QAbstractItemView::ExtendedSelection);
+        soldierTableView->setSelectionBehavior(QAbstractItemView::SelectItems);
 
         verticalLayout_7->addWidget(soldierTableView);
 
@@ -703,61 +713,51 @@ public:
         dataTab->addTab(skillTab, QString());
         squadTab = new QWidget();
         squadTab->setObjectName(QString::fromUtf8("squadTab"));
-        horizontalLayout_9 = new QHBoxLayout(squadTab);
-        horizontalLayout_9->setSpacing(6);
-        horizontalLayout_9->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_9->setObjectName(QString::fromUtf8("horizontalLayout_9"));
-        verticalLayout_12 = new QVBoxLayout();
+        verticalLayout_12 = new QVBoxLayout(squadTab);
         verticalLayout_12->setSpacing(6);
+        verticalLayout_12->setContentsMargins(11, 11, 11, 11);
         verticalLayout_12->setObjectName(QString::fromUtf8("verticalLayout_12"));
-        squadListView = new QListView(squadTab);
-        squadListView->setObjectName(QString::fromUtf8("squadListView"));
-
-        verticalLayout_12->addWidget(squadListView);
-
+        horizontalLayout_16 = new QHBoxLayout();
+        horizontalLayout_16->setSpacing(6);
+        horizontalLayout_16->setObjectName(QString::fromUtf8("horizontalLayout_16"));
         addSquad = new QPushButton(squadTab);
         addSquad->setObjectName(QString::fromUtf8("addSquad"));
 
-        verticalLayout_12->addWidget(addSquad);
+        horizontalLayout_16->addWidget(addSquad);
 
         delSquad = new QPushButton(squadTab);
         delSquad->setObjectName(QString::fromUtf8("delSquad"));
 
-        verticalLayout_12->addWidget(delSquad);
+        horizontalLayout_16->addWidget(delSquad);
+
+
+        verticalLayout_12->addLayout(horizontalLayout_16);
 
         squadTableView = new QTableView(squadTab);
         squadTableView->setObjectName(QString::fromUtf8("squadTableView"));
 
         verticalLayout_12->addWidget(squadTableView);
 
-
-        horizontalLayout_9->addLayout(verticalLayout_12);
-
-        verticalLayout_13 = new QVBoxLayout();
-        verticalLayout_13->setSpacing(6);
-        verticalLayout_13->setObjectName(QString::fromUtf8("verticalLayout_13"));
-        squadEquipTableView = new QTableView(squadTab);
-        squadEquipTableView->setObjectName(QString::fromUtf8("squadEquipTableView"));
-
-        verticalLayout_13->addWidget(squadEquipTableView);
-
-        squadSkillTableView = new QTableView(squadTab);
-        squadSkillTableView->setObjectName(QString::fromUtf8("squadSkillTableView"));
-
-        verticalLayout_13->addWidget(squadSkillTableView);
-
+        horizontalLayout_17 = new QHBoxLayout();
+        horizontalLayout_17->setSpacing(6);
+        horizontalLayout_17->setObjectName(QString::fromUtf8("horizontalLayout_17"));
         addSquadSkill = new QPushButton(squadTab);
         addSquadSkill->setObjectName(QString::fromUtf8("addSquadSkill"));
 
-        verticalLayout_13->addWidget(addSquadSkill);
+        horizontalLayout_17->addWidget(addSquadSkill);
 
         delSquadSkill = new QPushButton(squadTab);
         delSquadSkill->setObjectName(QString::fromUtf8("delSquadSkill"));
 
-        verticalLayout_13->addWidget(delSquadSkill);
+        horizontalLayout_17->addWidget(delSquadSkill);
 
 
-        horizontalLayout_9->addLayout(verticalLayout_13);
+        verticalLayout_12->addLayout(horizontalLayout_17);
+
+        squadSkillTableView = new QTableView(squadTab);
+        squadSkillTableView->setObjectName(QString::fromUtf8("squadSkillTableView"));
+
+        verticalLayout_12->addWidget(squadSkillTableView);
 
         dataTab->addTab(squadTab, QString());
         stringTab = new QWidget();
@@ -995,7 +995,7 @@ public:
         retranslateUi(MainWindow);
 
         tabWidget->setCurrentIndex(1);
-        dataTab->setCurrentIndex(0);
+        dataTab->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1031,6 +1031,7 @@ public:
         label_7->setText(QApplication::translate("MainWindow", "\351\230\237\344\274\2153", 0, QApplication::UnicodeUTF8));
         label_8->setText(QApplication::translate("MainWindow", "\351\230\237\344\274\2154", 0, QApplication::UnicodeUTF8));
         label_9->setText(QApplication::translate("MainWindow", "\345\234\260\345\233\276\350\204\232\346\234\254", 0, QApplication::UnicodeUTF8));
+        label_11->setText(QApplication::translate("MainWindow", "\345\234\260\345\233\276\350\203\214\346\231\257", 0, QApplication::UnicodeUTF8));
         label_10->setText(QApplication::translate("MainWindow", "\345\234\260\345\233\276\346\217\217\350\277\260", 0, QApplication::UnicodeUTF8));
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("MainWindow", "\345\234\260\345\233\276\346\225\260\346\215\256", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("MainWindow", "\346\250\241\347\273\204\351\200\211\346\213\251", 0, QApplication::UnicodeUTF8));
@@ -1057,10 +1058,10 @@ public:
         addSkill->setText(QApplication::translate("MainWindow", "\346\226\260\345\242\236\346\212\200\350\203\275", 0, QApplication::UnicodeUTF8));
         delSkill->setText(QApplication::translate("MainWindow", "\345\210\240\351\231\244\346\212\200\350\203\275", 0, QApplication::UnicodeUTF8));
         dataTab->setTabText(dataTab->indexOf(skillTab), QApplication::translate("MainWindow", "\346\225\210\346\236\234/\346\212\200\350\203\275", 0, QApplication::UnicodeUTF8));
-        addSquad->setText(QApplication::translate("MainWindow", "\345\242\236\345\212\240\345\260\217\351\230\237", 0, QApplication::UnicodeUTF8));
+        addSquad->setText(QApplication::translate("MainWindow", "\346\226\260\345\242\236\345\260\217\351\230\237", 0, QApplication::UnicodeUTF8));
         delSquad->setText(QApplication::translate("MainWindow", "\345\210\240\351\231\244\345\260\217\351\230\237", 0, QApplication::UnicodeUTF8));
-        addSquadSkill->setText(QApplication::translate("MainWindow", "\345\242\236\345\212\240\346\212\200\350\203\275", 0, QApplication::UnicodeUTF8));
-        delSquadSkill->setText(QApplication::translate("MainWindow", "\345\210\240\351\231\244\346\212\200\350\203\275", 0, QApplication::UnicodeUTF8));
+        addSquadSkill->setText(QApplication::translate("MainWindow", "\350\256\276\344\270\272\345\260\217\351\230\237\346\212\200\350\203\275", 0, QApplication::UnicodeUTF8));
+        delSquadSkill->setText(QApplication::translate("MainWindow", "\350\247\243\351\231\244\345\260\217\351\230\237\346\212\200\350\203\275", 0, QApplication::UnicodeUTF8));
         dataTab->setTabText(dataTab->indexOf(squadTab), QApplication::translate("MainWindow", "\345\260\217\351\230\237", 0, QApplication::UnicodeUTF8));
         addString->setText(QApplication::translate("MainWindow", "\345\242\236\345\212\240\345\255\227\347\254\246\344\270\262", 0, QApplication::UnicodeUTF8));
         delString->setText(QApplication::translate("MainWindow", "\345\210\240\351\231\244\345\255\227\347\254\246\344\270\262", 0, QApplication::UnicodeUTF8));

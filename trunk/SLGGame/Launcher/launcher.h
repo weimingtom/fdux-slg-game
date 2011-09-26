@@ -26,6 +26,7 @@ public slots:
 	void readMe();
 	void setupDirectx();
 	void visitWebSite();
+	void sendFeedback();
 };
 
 #endif // LAUNCHER_H
