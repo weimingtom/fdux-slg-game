@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'launcher.h'
 **
-** Created: Mon Sep 26 10:38:25 2011
+** Created: Mon Sep 26 11:14:37 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.3)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_Launcher[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -37,6 +37,7 @@ static const uint qt_meta_data_Launcher[] = {
       58,    9,    9,    9, 0x0a,
       67,    9,    9,    9, 0x0a,
       82,    9,    9,    9, 0x0a,
+      97,    9,    9,    9, 0x0a,
 
        0        // eod
 };
@@ -44,7 +45,7 @@ static const uint qt_meta_data_Launcher[] = {
 static const char qt_meta_stringdata_Launcher[] = {
     "Launcher\0\0windowRunGame()\0fullSceneRunGame()\0"
     "gameManual()\0readMe()\0setupDirectx()\0"
-    "visitWebSite()\0"
+    "visitWebSite()\0sendFeedback()\0"
 };
 
 const QMetaObject Launcher::staticMetaObject = {
@@ -82,9 +83,10 @@ int Launcher::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 3: readMe(); break;
         case 4: setupDirectx(); break;
         case 5: visitWebSite(); break;
+        case 6: sendFeedback(); break;
         default: ;
         }
-        _id -= 6;
+        _id -= 7;
     }
     return _id;
 }

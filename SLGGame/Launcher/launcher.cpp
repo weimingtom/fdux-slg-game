@@ -12,7 +12,7 @@ Launcher::Launcher(QWidget *parent, Qt::WFlags flags)
 	this->connect(ui.commandLinkButton_4,SIGNAL(clicked(bool)),this,SLOT(readMe()));
 	this->connect(ui.commandLinkButton_5,SIGNAL(clicked(bool)),this,SLOT(setupDirectx()));
 	this->connect(ui.commandLinkButton_6,SIGNAL(clicked(bool)),this,SLOT(visitWebSite()));
-
+	this->connect(ui.commandLinkButton_7,SIGNAL(clicked(bool)),this,SLOT(sendFeedback()));
 }
 
 Launcher::~Launcher()
@@ -61,4 +61,9 @@ void Launcher::setupDirectx()
 void Launcher::visitWebSite()
 {
 	ShellExecute(NULL, L"open",L"http://fdux.xoom.it/ ", NULL, NULL, SW_SHOWNORMAL);  
+}
+
+void Launcher::sendFeedback()
+{
+	WinExec("Feedback.exe",SW_NORMAL);
 }

@@ -6,19 +6,22 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>379</width>
-    <height>340</height>
+    <width>616</width>
+    <height>351</height>
    </rect>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::NoContextMenu</enum>
   </property>
   <property name="windowTitle">
    <string>Feedback</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>20</y>
+      <x>280</x>
+      <y>30</y>
       <width>321</width>
       <height>301</height>
      </rect>
@@ -28,11 +31,19 @@
       <widget class="QLabel" name="label">
        <property name="font">
         <font>
-         <family>黑体</family>
-         <pointsize>16</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
+         <family>微软雅黑</family>
+         <pointsize>12</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel{
+	font: 75 12pt &quot;微软雅黑&quot;;
+	
+	color: rgb(255, 255, 255);
+}</string>
        </property>
        <property name="text">
         <string>反馈内容</string>
@@ -44,6 +55,16 @@
      </item>
      <item>
       <widget class="QPlainTextEdit" name="plainTextEdit">
+       <property name="autoFillBackground">
+        <bool>true</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPlainTextEdit{
+	font: 75 12pt &quot;微软雅黑&quot;;
+	
+	color: rgb(0, 0, 0);
+}</string>
+       </property>
        <property name="plainText">
         <string>abc</string>
        </property>
@@ -51,13 +72,27 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButton">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="font">
         <font>
-         <family>黑体</family>
-         <pointsize>16</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
+         <family>微软雅黑</family>
+         <pointsize>12</pointsize>
+         <weight>9</weight>
+         <italic>false</italic>
+         <bold>false</bold>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	font: 75 12pt &quot;微软雅黑&quot;;
+	
+	color: rgb(0, 0, 0);
+}</string>
        </property>
        <property name="text">
         <string>提交</string>

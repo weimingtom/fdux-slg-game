@@ -6,11 +6,7 @@
 
 #include <QMessageBox>
 #include <QPlainTextEdit>
-
-#include "mysql_connection.h"
-#include <cppconn/driver.h>
-#include <cppconn/exception.h>
-#include <cppconn/statement.h>
+#include <QResizeEvent>
 
 class Feedback : public QMainWindow
 {
@@ -20,15 +16,15 @@ public:
 	Feedback(QWidget *parent = 0, Qt::WFlags flags = 0);
 	~Feedback();
 
+private:
+	void resizeEvent(QResizeEvent *event);
+
 public slots:
 	void SendFeedback();
 
 private:
 	Ui::FeedbackClass ui;
-
-	sql::Driver *driver;
-	sql::Connection *con;
-	sql::Statement *stmt;
+	QPixmap bgimage;
 };
 
 #endif // FEEDBACK_H

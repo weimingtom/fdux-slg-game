@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'entitydialog.ui'
 **
-** Created: Fri Mar 25 17:07:34 2011
-**      by: Qt User Interface Compiler version 4.6.3
+** Created: Sun Aug 21 13:36:12 2011
+**      by: Qt User Interface Compiler version 4.7.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
