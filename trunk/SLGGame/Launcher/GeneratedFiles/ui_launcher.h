@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'launcher.ui'
 **
-** Created: Thu Sep 15 01:12:43 2011
-**      by: Qt User Interface Compiler version 4.6.3
+** Created: Mon Sep 26 10:38:20 2011
+**      by: Qt User Interface Compiler version 4.7.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -33,6 +33,7 @@ public:
     QCommandLinkButton *commandLinkButton_2;
     QCommandLinkButton *commandLinkButton_3;
     QCommandLinkButton *commandLinkButton_4;
+    QCommandLinkButton *commandLinkButton_7;
     QCommandLinkButton *commandLinkButton_5;
     QCommandLinkButton *commandLinkButton_6;
     QLabel *label;
@@ -58,7 +59,7 @@ public:
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         verticalLayoutWidget = new QWidget(centralWidget);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(490, 60, 181, 271));
+        verticalLayoutWidget->setGeometry(QRect(490, 60, 181, 325));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
@@ -104,6 +105,16 @@ public:
 
         verticalLayout->addWidget(commandLinkButton_4);
 
+        commandLinkButton_7 = new QCommandLinkButton(verticalLayoutWidget);
+        commandLinkButton_7->setObjectName(QString::fromUtf8("commandLinkButton_7"));
+        commandLinkButton_7->setStyleSheet(QString::fromUtf8("QCommandLinkButton{\n"
+"	font: 75 12pt \"\345\276\256\350\275\257\351\233\205\351\273\221\";\n"
+"	\n"
+"	color: rgb(255, 255, 255);\n"
+"}"));
+
+        verticalLayout->addWidget(commandLinkButton_7);
+
         commandLinkButton_5 = new QCommandLinkButton(verticalLayoutWidget);
         commandLinkButton_5->setObjectName(QString::fromUtf8("commandLinkButton_5"));
         commandLinkButton_5->setStyleSheet(QString::fromUtf8("QCommandLinkButton{\n"
@@ -141,6 +152,7 @@ public:
         commandLinkButton_2->setText(QApplication::translate("LauncherClass", "\345\205\250\345\261\217\346\250\241\345\274\217\350\277\220\350\241\214\346\270\270\346\210\217", 0, QApplication::UnicodeUTF8));
         commandLinkButton_3->setText(QApplication::translate("LauncherClass", "\346\270\270\346\210\217\346\211\213\345\206\214", 0, QApplication::UnicodeUTF8));
         commandLinkButton_4->setText(QApplication::translate("LauncherClass", "\350\207\252\350\277\260\346\226\207\346\241\243", 0, QApplication::UnicodeUTF8));
+        commandLinkButton_7->setText(QApplication::translate("LauncherClass", "\346\204\217\350\247\201\345\217\215\351\246\210", 0, QApplication::UnicodeUTF8));
         commandLinkButton_5->setText(QApplication::translate("LauncherClass", "\345\256\211\350\243\205Directx9.0C", 0, QApplication::UnicodeUTF8));
         commandLinkButton_6->setText(QApplication::translate("LauncherClass", "\345\271\273\347\210\265\345\256\230\346\226\271\347\275\221\347\253\231", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("LauncherClass", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
