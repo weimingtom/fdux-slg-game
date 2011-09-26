@@ -6,6 +6,7 @@
 	ProjectGUID="{F489F29A-FDC7-4C32-A099-DAE188980041}"
 	RootNamespace="SLGGame"
 	Keyword="Win32Proj"
+	AssemblyReferenceSearchPaths="&quot;c:\OgreSDK&quot;"
 	TargetFrameworkVersion="196613"
 	>
 	<Platforms>
@@ -888,6 +889,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath=".\ClassDiagram1.cd"
+			>
+		</File>
 		<File
 			RelativePath="..\Demo.ico"
 			>
