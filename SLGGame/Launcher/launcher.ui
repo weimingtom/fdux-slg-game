@@ -73,7 +73,7 @@
       <x>490</x>
       <y>60</y>
       <width>181</width>
-      <height>271</height>
+      <height>325</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -130,6 +130,20 @@
        </property>
        <property name="text">
         <string>自述文档</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCommandLinkButton" name="commandLinkButton_7">
+       <property name="styleSheet">
+        <string notr="true">QCommandLinkButton{
+	font: 75 12pt &quot;微软雅黑&quot;;
+	
+	color: rgb(255, 255, 255);
+}</string>
+       </property>
+       <property name="text">
+        <string>意见反馈</string>
        </property>
       </widget>
      </item>
