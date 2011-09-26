@@ -10,6 +10,24 @@
     <height>351</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>616</width>
+    <height>351</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>616</width>
+    <height>351</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>微软雅黑</family>
+    <pointsize>12</pointsize>
+   </font>
+  </property>
   <property name="contextMenuPolicy">
    <enum>Qt::NoContextMenu</enum>
   </property>
@@ -63,10 +81,14 @@
 	font: 75 12pt &quot;微软雅黑&quot;;
 	
 	color: rgb(0, 0, 0);
+    background-color: rgba(255, 255, 255, 40%);
 }</string>
        </property>
        <property name="plainText">
-        <string>abc</string>
+        <string/>
+       </property>
+       <property name="backgroundVisible">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -92,6 +114,7 @@
 	font: 75 12pt &quot;微软雅黑&quot;;
 	
 	color: rgb(0, 0, 0);
+    background-color: rgba(255, 255, 255, 60%)
 }</string>
        </property>
        <property name="text">
