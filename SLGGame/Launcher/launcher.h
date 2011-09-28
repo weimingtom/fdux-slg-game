@@ -6,6 +6,16 @@
 
 #include <QResizeEvent>
 
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkRequest>
+#include <QtNetwork/QNetworkReply>
+
+#include <QUrl>
+#include <QByteArray>
+#include <QDate>
+#include <QFile>
+#include <QMessageBox>
+
 class Launcher : public QMainWindow
 {
 	Q_OBJECT
@@ -18,6 +28,8 @@ private:
 	Ui::LauncherClass ui;
 	QPixmap bgimage;
 	void resizeEvent(QResizeEvent *event);
+	void firstRunCheck();
+	void releaseNetworkResource();
 
 public slots:
 	void windowRunGame();
@@ -27,6 +39,14 @@ public slots:
 	void setupDirectx();
 	void visitWebSite();
 	void sendFeedback();
+
+	void sendCountFinished(QNetworkReply *reply);
+
+private:
+	QUrl *params;
+	QByteArray *data;
+	QNetworkAccessManager *manager;
+	QNetworkRequest *request;
 };
 
 #endif // LAUNCHER_H
