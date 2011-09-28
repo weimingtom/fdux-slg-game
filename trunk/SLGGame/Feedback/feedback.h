@@ -6,6 +6,7 @@
 
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkRequest>
+#include <QtNetwork/QNetworkReply>
 
 #include <QUrl>
 #include <QByteArray>
@@ -25,13 +26,21 @@ public:
 
 private:
 	void resizeEvent(QResizeEvent *event);
+	void releaseNetworkResource();
 
 public slots:
 	void SendFeedback();
 
+	void sendFeedbackFinished(QNetworkReply *reply);
+
 private:
 	Ui::FeedbackClass ui;
 	QPixmap bgimage;
+
+	QUrl *params;
+	QByteArray *data;
+	QNetworkAccessManager *manager;
+	QNetworkRequest *request;
 };
 
 #endif // FEEDBACK_H
