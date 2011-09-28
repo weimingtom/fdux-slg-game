@@ -4,6 +4,13 @@
 #include <QtGui/QMainWindow>
 #include "ui_feedback.h"
 
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkRequest>
+
+#include <QUrl>
+#include <QByteArray>
+#include <QDate>
+
 #include <QMessageBox>
 #include <QPlainTextEdit>
 #include <QResizeEvent>
