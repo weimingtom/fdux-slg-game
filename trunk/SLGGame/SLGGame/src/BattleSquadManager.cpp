@@ -28,6 +28,7 @@
 #include "CombatPositionCutScene.h"
 #include "ShowValueCutScene.h"
 #include "MapPuCutScene.h"
+#include "DefenseCutScene.h"
 
 #include "SquadGrapManager.h"
 #include "SquadGraphics.h"
@@ -358,7 +359,7 @@ bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad*
 	setCutScene(new WeapenCutScene(attacksquad->getGrapId(),WeapenCutScene::WeaponType::MainWepon));
 	setCutScene(new WeapenCutScene(defenesquad->getGrapId(),WeapenCutScene::WeaponType::MainWepon));
 	//进入战斗位置
-	setCutScene(new CombatPositionCutScene(attacksquad->getGrapId(),d,false));
+	//setCutScene(new CombatPositionCutScene(attacksquad->getGrapId(),d,false));
 	dd = defenesquad->getDirection();
 	Direction temp[4] = {South,North,East,West};
 	setCutScene(new DirectionCutScene(defenesquad->getGrapId(),temp[d]));
@@ -370,6 +371,9 @@ bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad*
 		squad = attacksquad;
 	else
 		squad = defenesquad;
+
+	CombineCutScene* showValueCutScenes=new CombineCutScene();
+
 	for(int n = 0; n < 2; n++)
 	{
 		//攻击动作
@@ -421,25 +425,32 @@ bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad*
 			int squadRealNumA=squad->getUnitRealNum();
 			morale -= DeathToMorale(squadRealNumB - squadRealNumA);
 			spreadModifyMorale(squad,morale);
-			if(squaduga < squadugb)
+			if(squaduga <= squadugb)
 			{
-				setCutScene(new SquadDeadCutScene(squad->getGrapId(), squadugb - squaduga));
+				//setCutScene(new SquadDeadCutScene(squad->getGrapId(), squadugb - squaduga));
+				if(squad == attacksquad)
+					setCutScene(new DefenseCutScene(defenesquad->getGrapId(),squad->getGrapId(), squadugb - squaduga));
+				else
+					setCutScene(new DefenseCutScene(attacksquad->getGrapId(),squad->getGrapId(), squadugb - squaduga));
 			}
 			if(squad->IsEliminated())
 			{
 				setCutScene(new SquadStateCutScene(squad,SQUAD_STATE_VISIBLE,"none",0));
-				setCutScene(new ShowValueCutScene(squad->getGrapId(),StringTable::getSingletonPtr()->getString("SquadDead"),Ogre::ColourValue::Red));
+				showValueCutScenes->addCutScene(new ShowValueCutScene(squad->getGrapId(),StringTable::getSingletonPtr()->getString("SquadDead"),Ogre::ColourValue::Red));
 				TriggerManager::getSingleton().unitDead(squad);
 			}
 			else
 			{
-				setCutScene(new ShowValueCutScene(squad->getGrapId(),str(boost::format(StringTable::getSingletonPtr()->getString("BattleInfo"))%(squadRealNumB-squadRealNumA)),Ogre::ColourValue::Red));
+				showValueCutScenes->addCutScene(new ShowValueCutScene(squad->getGrapId(),str(boost::format(StringTable::getSingletonPtr()->getString("BattleInfo"))%(squadRealNumB-squadRealNumA)),Ogre::ColourValue::Red));
 			}
 		}
 	}
+
+	setCutScene(showValueCutScenes);
+
 	//退出战斗位置
 	if(!attacksquad->IsEliminated())
-		setCutScene(new CombatPositionCutScene(attacksquad->getGrapId(),d,true));
+		//setCutScene(new CombatPositionCutScene(attacksquad->getGrapId(),d,true));
 	if(!defenesquad->IsEliminated())
 		setCutScene(new DirectionCutScene(defenesquad->getGrapId(),dd));
 

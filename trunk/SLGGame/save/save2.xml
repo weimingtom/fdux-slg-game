@@ -40,12 +40,12 @@
                     <ModifierList>
                         <m0>
                             <Type value="0" type="Int" />
-                            <Attack value="3" type="Float" />
-                            <RangedAttack value="3" type="Float" />
-                            <Defence value="3" type="Float" />
+                            <Attack value="2" type="Float" />
+                            <RangedAttack value="2" type="Float" />
+                            <Defence value="2" type="Float" />
                             <Formation value="0.06" type="Float" />
                             <Initiative value="1" type="Float" />
-                            <ActionPoint value="10" type="Float" />
+                            <ActionPoint value="9" type="Float" />
                             <Detection value="5" type="Float" />
                             <Covert value="0" type="Float" />
                             <Injury value="0.8" type="Float" />
@@ -71,7 +71,7 @@
                             <Defence value="3" type="Float" />
                             <Formation value="0" type="Float" />
                             <Initiative value="0" type="Float" />
-                            <ActionPoint value="0" type="Float" />
+                            <ActionPoint value="-1" type="Float" />
                             <Detection value="0" type="Float" />
                             <Covert value="-1" type="Float" />
                             <Injury value="0" type="Float" />
@@ -129,12 +129,12 @@
                     <ModifierList>
                         <m0>
                             <Type value="0" type="Int" />
-                            <Attack value="3" type="Float" />
-                            <RangedAttack value="3" type="Float" />
-                            <Defence value="3" type="Float" />
+                            <Attack value="2" type="Float" />
+                            <RangedAttack value="2" type="Float" />
+                            <Defence value="2" type="Float" />
                             <Formation value="0.06" type="Float" />
                             <Initiative value="1" type="Float" />
-                            <ActionPoint value="10" type="Float" />
+                            <ActionPoint value="9" type="Float" />
                             <Detection value="5" type="Float" />
                             <Covert value="0" type="Float" />
                             <Injury value="0.8" type="Float" />
@@ -227,1133 +227,906 @@
                     <finishdeploytriger value="T0" type="String" />
                     <unitdeadtriger value="T1" type="String" />
                     <turnendtriger value="T2" type="String" />
-                    <team value="4" type="Int" />
-                    <trun value="0" type="Int" />
+                    <team value="2" type="Int" />
+                    <trun value="1" type="Int" />
                 </ScriptContext>
             </MapScript>
             <MapInfo value="mapinfo1" type="String" />
             <MapLoadBG value="map1.png" type="String" />
             <MapSize value="12" type="Int" />
+            <Ground>
+                <G0 value="Grass" type="String" />
+                <G0Tex value="Grass1.dds" type="String" />
+                <G1 value="Grass" type="String" />
+                <G1Tex value="Grass5.dds" type="String" />
+                <G2 value="Soil" type="String" />
+                <G2Tex value="Soil.dds" type="String" />
+                <G3 value="Road" type="String" />
+                <G3Tex value="road.dds" type="String" />
+            </Ground>
             <Map>
                 <M0>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M0>
                 <M1>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_0" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M1>
                 <M2>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_1" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M2>
                 <M3>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_4" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M3>
                 <M4>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_5" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M4>
                 <M5>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_7" type="String" />
+                    <GroundType value="0" type="Int" />
+                    <MapObjType value="ForestLow" type="String">
+                        <MapObjModuleId value="forestlow_16" type="String" />
                     </MapObjType>
                 </M5>
                 <M6>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                     <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_8" type="String" />
+                        <MapObjModuleId value="forest_1" type="String" />
                     </MapObjType>
                 </M6>
                 <M7>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_9" type="String" />
+                    <GroundType value="0" type="Int" />
+                    <MapObjType value="ForestLow" type="String">
+                        <MapObjModuleId value="forestlow_3" type="String" />
                     </MapObjType>
                 </M7>
                 <M8>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_10" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M8>
                 <M9>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_11" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M9>
                 <M10>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_13" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M10>
                 <M11>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_14" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M11>
                 <M12>
-                    <TerrainType value="0" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <TerrainType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M12>
                 <M13>
-                    <TerrainType value="0" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <TerrainType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M13>
                 <M14>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_2" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M14>
                 <M15>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_3" type="String" />
+                    <GroundType value="0" type="Int" />
+                    <MapObjType value="ForestLow" type="String">
+                        <MapObjModuleId value="forestlow_1" type="String" />
                     </MapObjType>
                 </M15>
                 <M16>
-                    <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_6" type="String" />
-                    </MapObjType>
+                    <TerrainType value="0" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M16>
                 <M17>
                     <TerrainType value="0" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M17>
                 <M18>
                     <TerrainType value="0" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M18>
                 <M19>
                     <TerrainType value="0" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M19>
                 <M20>
                     <TerrainType value="0" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M20>
                 <M21>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_12" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M21>
                 <M22>
-                    <TerrainType value="0" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <TerrainType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M22>
                 <M23>
-                    <TerrainType value="0" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <TerrainType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M23>
                 <M24>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M24>
                 <M25>
                     <TerrainType value="0" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M25>
                 <M26>
                     <TerrainType value="0" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M26>
                 <M27>
                     <TerrainType value="0" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M27>
                 <M28>
                     <TerrainType value="0" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M28>
                 <M29>
-                    <TerrainType value="0" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <TerrainType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
+                    <MapObjType value="Forest" type="String">
+                        <MapObjModuleId value="forest_5" type="String" />
+                    </MapObjType>
                 </M29>
                 <M30>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
+                    <MapObjType value="Forest" type="String">
+                        <MapObjModuleId value="forest_6" type="String" />
+                    </MapObjType>
                 </M30>
                 <M31>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Camp" type="String">
-                        <MapObjModuleId value="camp_1" type="String" />
+                    <GroundType value="0" type="Int" />
+                    <MapObjType value="Forest" type="String">
+                        <MapObjModuleId value="forest_15" type="String" />
                     </MapObjType>
                 </M31>
                 <M32>
                     <TerrainType value="0" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M32>
                 <M33>
                     <TerrainType value="0" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M33>
                 <M34>
                     <TerrainType value="0" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M34>
                 <M35>
-                    <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <TerrainType value="0" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M35>
                 <M36>
-                    <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <TerrainType value="0" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M36>
                 <M37>
-                    <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <TerrainType value="0" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M37>
                 <M38>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M38>
                 <M39>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
+                    <MapObjType value="ForestLow" type="String">
+                        <MapObjModuleId value="forestlow_4" type="String" />
+                    </MapObjType>
                 </M39>
                 <M40>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="ForestLow" type="String">
-                        <MapObjModuleId value="forest_20" type="String" />
+                    <GroundType value="0" type="Int" />
+                    <MapObjType value="Forest" type="String">
+                        <MapObjModuleId value="forest_3" type="String" />
                     </MapObjType>
                 </M40>
                 <M41>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                     <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_15" type="String" />
+                        <MapObjModuleId value="forest_4" type="String" />
                     </MapObjType>
                 </M41>
                 <M42>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="ForestLow" type="String">
-                        <MapObjModuleId value="forest_16" type="String" />
+                    <GroundType value="2" type="Int" />
+                    <MapObjType value="Camp" type="String">
+                        <MapObjModuleId value="camp_1" type="String" />
                     </MapObjType>
                 </M42>
                 <M43>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="ForestLow" type="String">
-                        <MapObjModuleId value="forest_17" type="String" />
+                    <GroundType value="0" type="Int" />
+                    <MapObjType value="Forest" type="String">
+                        <MapObjModuleId value="forest_8" type="String" />
                     </MapObjType>
                 </M43>
                 <M44>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_18" type="String" />
+                    <GroundType value="0" type="Int" />
+                    <MapObjType value="ForestLow" type="String">
+                        <MapObjModuleId value="forestlow_6" type="String" />
                     </MapObjType>
                 </M44>
                 <M45>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="ForestLow" type="String">
-                        <MapObjModuleId value="forest_19" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M45>
                 <M46>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M46>
                 <M47>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M47>
                 <M48>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M48>
                 <M49>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M49>
                 <M50>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M50>
                 <M51>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="ForestLow" type="String">
-                        <MapObjModuleId value="forest_21" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M51>
                 <M52>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                     <MapObjType value="ForestLow" type="String">
-                        <MapObjModuleId value="forest_22" type="String" />
+                        <MapObjModuleId value="forestlow_5" type="String" />
                     </MapObjType>
                 </M52>
                 <M53>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_28" type="String" />
-                    </MapObjType>
+                    <GroundType value="2" type="Int" />
                 </M53>
                 <M54>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_29" type="String" />
-                    </MapObjType>
+                    <GroundType value="2" type="Int" />
                 </M54>
                 <M55>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
                     <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_31" type="String" />
+                        <MapObjModuleId value="forest_9" type="String" />
                     </MapObjType>
                 </M55>
                 <M56>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
                     <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_32" type="String" />
+                        <MapObjModuleId value="forest_10" type="String" />
                     </MapObjType>
                 </M56>
                 <M57>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
+                    <MapObjType value="ForestLow" type="String">
+                        <MapObjModuleId value="forestlow_7" type="String" />
+                    </MapObjType>
                 </M57>
                 <M58>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="3" type="Int" />
                 </M58>
                 <M59>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="3" type="Int" />
                 </M59>
                 <M60>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M60>
                 <M61>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M61>
                 <M62>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="3" type="Int" />
                 </M62>
                 <M63>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="3" type="Int" />
                 </M63>
                 <M64>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="ForestLow" type="String">
-                        <MapObjModuleId value="forest_23" type="String" />
-                    </MapObjType>
+                    <GroundType value="3" type="Int" />
                 </M64>
                 <M65>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_27" type="String" />
-                    </MapObjType>
+                    <GroundType value="3" type="Int" />
                 </M65>
                 <M66>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_30" type="String" />
-                    </MapObjType>
+                    <GroundType value="3" type="Int" />
                 </M66>
                 <M67>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_36" type="String" />
-                    </MapObjType>
+                    <GroundType value="3" type="Int" />
                 </M67>
                 <M68>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_35" type="String" />
-                    </MapObjType>
+                    <GroundType value="3" type="Int" />
                 </M68>
                 <M69>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="ForestLow" type="String">
-                        <MapObjModuleId value="forest_34" type="String" />
-                    </MapObjType>
+                    <GroundType value="3" type="Int" />
                 </M69>
                 <M70>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="3" type="Int" />
                 </M70>
                 <M71>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M71>
                 <M72>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="3" type="Int" />
                 </M72>
                 <M73>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="3" type="Int" />
                 </M73>
                 <M74>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="3" type="Int" />
                 </M74>
                 <M75>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
+                    <MapObjType value="ForestLow" type="String">
+                        <MapObjModuleId value="forestlow_8" type="String" />
+                    </MapObjType>
                 </M75>
                 <M76>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
                     <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_24" type="String" />
+                        <MapObjModuleId value="forest_18" type="String" />
                     </MapObjType>
                 </M76>
                 <M77>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
-                    <MapObjType value="ForestLow" type="String">
-                        <MapObjModuleId value="forest_26" type="String" />
+                    <MapObjType value="Forest" type="String">
+                        <MapObjModuleId value="forest_11" type="String" />
                     </MapObjType>
                 </M77>
                 <M78>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_37" type="String" />
-                    </MapObjType>
+                    <GroundType value="3" type="Int" />
                 </M78>
                 <M79>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
-                    <MapObjType value="ForestLow" type="String">
-                        <MapObjModuleId value="forest_40" type="String" />
+                    <MapObjType value="Forest" type="String">
+                        <MapObjModuleId value="forest_14" type="String" />
                     </MapObjType>
                 </M79>
                 <M80>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_41" type="String" />
+                    <GroundType value="0" type="Int" />
+                    <MapObjType value="ForestLow" type="String">
+                        <MapObjModuleId value="forestlow_14" type="String" />
                     </MapObjType>
                 </M80>
                 <M81>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_42" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M81>
                 <M82>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="ForestLow" type="String">
-                        <MapObjModuleId value="forest_44" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M82>
                 <M83>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M83>
                 <M84>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M84>
                 <M85>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M85>
                 <M86>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M86>
                 <M87>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M87>
                 <M88>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
+                    <MapObjType value="ForestLow" type="String">
+                        <MapObjModuleId value="forestlow_10" type="String" />
+                    </MapObjType>
                 </M88>
                 <M89>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
+                    <MapObjType value="Forest" type="String">
+                        <MapObjModuleId value="forest_12" type="String" />
+                    </MapObjType>
                 </M89>
                 <M90>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="3" type="Int" />
                 </M90>
                 <M91>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
-                    <MapObjType value="ForestLow" type="String">
-                        <MapObjModuleId value="forest_39" type="String" />
+                    <MapObjType value="Forest" type="String">
+                        <MapObjModuleId value="forest_17" type="String" />
                     </MapObjType>
                 </M91>
                 <M92>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_48" type="String" />
+                    <GroundType value="0" type="Int" />
+                    <MapObjType value="ForestLow" type="String">
+                        <MapObjModuleId value="forestlow_13" type="String" />
                     </MapObjType>
                 </M92>
                 <M93>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_49" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M93>
                 <M94>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="ForestLow" type="String">
-                        <MapObjModuleId value="forest_59" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M94>
                 <M95>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M95>
                 <M96>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M96>
                 <M97>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M97>
                 <M98>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M98>
                 <M99>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
+                    <MapObjType value="ForestLow" type="String">
+                        <MapObjModuleId value="forestlow_11" type="String" />
+                    </MapObjType>
                 </M99>
                 <M100>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
+                    <MapObjType value="Forest" type="String">
+                        <MapObjModuleId value="forest_16" type="String" />
+                    </MapObjType>
                 </M100>
                 <M101>
                     <TerrainType value="1" type="Int" />
                     <GroundType value="1" type="Int" />
+                    <MapObjType value="Forest" type="String">
+                        <MapObjModuleId value="forest_13" type="String" />
+                    </MapObjType>
                 </M101>
                 <M102>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_45" type="String" />
-                    </MapObjType>
+                    <GroundType value="3" type="Int" />
                 </M102>
                 <M103>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_47" type="String" />
+                    <GroundType value="0" type="Int" />
+                    <MapObjType value="ForestLow" type="String">
+                        <MapObjModuleId value="forestlow_12" type="String" />
                     </MapObjType>
                 </M103>
                 <M104>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_50" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M104>
                 <M105>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="ForestLow" type="String">
-                        <MapObjModuleId value="forest_51" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M105>
                 <M106>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M106>
                 <M107>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M107>
                 <M108>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M108>
                 <M109>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M109>
                 <M110>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M110>
                 <M111>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
+                    <MapObjType value="ForestLow" type="String">
+                        <MapObjModuleId value="forestlow_15" type="String" />
+                    </MapObjType>
                 </M111>
                 <M112>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="3" type="Int" />
                 </M112>
                 <M113>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="ForestLow" type="String">
-                        <MapObjModuleId value="forest_67" type="String" />
-                    </MapObjType>
+                    <GroundType value="3" type="Int" />
                 </M113>
                 <M114>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_66" type="String" />
-                    </MapObjType>
+                    <GroundType value="3" type="Int" />
                 </M114>
                 <M115>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_46" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M115>
                 <M116>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="ForestLow" type="String">
-                        <MapObjModuleId value="forest_52" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M116>
                 <M117>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M117>
                 <M118>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M118>
                 <M119>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M119>
                 <M120>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M120>
                 <M121>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M121>
                 <M122>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M122>
                 <M123>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="3" type="Int" />
                 </M123>
                 <M124>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="3" type="Int" />
                 </M124>
                 <M125>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M125>
                 <M126>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="ForestLow" type="String">
-                        <MapObjModuleId value="forest_68" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M126>
                 <M127>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="ForestLow" type="String">
-                        <MapObjModuleId value="forest_69" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M127>
                 <M128>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M128>
                 <M129>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M129>
                 <M130>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M130>
                 <M131>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="ForestLow" type="String">
-                        <MapObjModuleId value="forest_63" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M131>
                 <M132>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M132>
                 <M133>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M133>
                 <M134>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M134>
                 <M135>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="3" type="Int" />
                 </M135>
                 <M136>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M136>
                 <M137>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M137>
                 <M138>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M138>
                 <M139>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M139>
                 <M140>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M140>
                 <M141>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
+                    <GroundType value="0" type="Int" />
                 </M141>
                 <M142>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="ForestLow" type="String">
-                        <MapObjModuleId value="forest_64" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M142>
                 <M143>
                     <TerrainType value="1" type="Int" />
-                    <GroundType value="1" type="Int" />
-                    <MapObjType value="Forest" type="String">
-                        <MapObjModuleId value="forest_65" type="String" />
-                    </MapObjType>
+                    <GroundType value="0" type="Int" />
                 </M143>
             </Map>
             <MapObjModleInfo>
-                <forest_0>
-                    <GridX value="1" type="Int" />
-                    <GridY value="0" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
+                <camp_1>
+                    <GridX value="6" type="Int" />
+                    <GridY value="3" type="Int" />
+                    <Mesh value="Camp1.mesh" type="String" />
                     <Index value="1" type="Int" />
-                </forest_0>
+                </camp_1>
                 <forest_1>
-                    <GridX value="2" type="Int" />
+                    <GridX value="6" type="Int" />
                     <GridY value="0" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
                     <Index value="2" type="Int" />
                 </forest_1>
-                <forest_2>
-                    <GridX value="2" type="Int" />
-                    <GridY value="1" type="Int" />
+                <forest_3>
+                    <GridX value="4" type="Int" />
+                    <GridY value="3" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
                     <Index value="3" type="Int" />
-                </forest_2>
-                <forest_3>
-                    <GridX value="3" type="Int" />
-                    <GridY value="1" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="4" type="Int" />
                 </forest_3>
                 <forest_4>
-                    <GridX value="3" type="Int" />
-                    <GridY value="0" type="Int" />
+                    <GridX value="5" type="Int" />
+                    <GridY value="3" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="5" type="Int" />
+                    <Index value="4" type="Int" />
                 </forest_4>
                 <forest_5>
-                    <GridX value="4" type="Int" />
-                    <GridY value="0" type="Int" />
+                    <GridX value="5" type="Int" />
+                    <GridY value="2" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="6" type="Int" />
+                    <Index value="5" type="Int" />
                 </forest_5>
                 <forest_6>
-                    <GridX value="4" type="Int" />
-                    <GridY value="1" type="Int" />
+                    <GridX value="6" type="Int" />
+                    <GridY value="2" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="7" type="Int" />
+                    <Index value="6" type="Int" />
                 </forest_6>
                 <forest_7>
-                    <GridX value="5" type="Int" />
-                    <GridY value="0" type="Int" />
+                    <GridX value="7" type="Int" />
+                    <GridY value="2" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="8" type="Int" />
+                    <Index value="7" type="Int" />
                 </forest_7>
                 <forest_8>
-                    <GridX value="6" type="Int" />
-                    <GridY value="0" type="Int" />
+                    <GridX value="7" type="Int" />
+                    <GridY value="3" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="9" type="Int" />
+                    <Index value="8" type="Int" />
                 </forest_8>
                 <forest_9>
                     <GridX value="7" type="Int" />
-                    <GridY value="0" type="Int" />
+                    <GridY value="4" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="10" type="Int" />
+                    <Index value="9" type="Int" />
                 </forest_9>
                 <forest_10>
                     <GridX value="8" type="Int" />
-                    <GridY value="0" type="Int" />
+                    <GridY value="4" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="11" type="Int" />
+                    <Index value="10" type="Int" />
                 </forest_10>
                 <forest_11>
-                    <GridX value="9" type="Int" />
-                    <GridY value="0" type="Int" />
+                    <GridX value="5" type="Int" />
+                    <GridY value="6" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="12" type="Int" />
+                    <Index value="11" type="Int" />
                 </forest_11>
                 <forest_12>
-                    <GridX value="9" type="Int" />
-                    <GridY value="1" type="Int" />
+                    <GridX value="5" type="Int" />
+                    <GridY value="7" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="13" type="Int" />
+                    <Index value="12" type="Int" />
                 </forest_12>
                 <forest_13>
-                    <GridX value="10" type="Int" />
-                    <GridY value="0" type="Int" />
+                    <GridX value="5" type="Int" />
+                    <GridY value="8" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="14" type="Int" />
+                    <Index value="13" type="Int" />
                 </forest_13>
                 <forest_14>
-                    <GridX value="11" type="Int" />
-                    <GridY value="0" type="Int" />
+                    <GridX value="7" type="Int" />
+                    <GridY value="6" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="15" type="Int" />
+                    <Index value="14" type="Int" />
                 </forest_14>
                 <forest_15>
-                    <GridX value="5" type="Int" />
-                    <GridY value="3" type="Int" />
+                    <GridX value="7" type="Int" />
+                    <GridY value="2" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="16" type="Int" />
+                    <Index value="15" type="Int" />
                 </forest_15>
                 <forest_16>
-                    <GridX value="6" type="Int" />
-                    <GridY value="3" type="Int" />
-                    <Mesh value="forest3.mesh" type="String" />
-                    <Index value="17" type="Int" />
+                    <GridX value="4" type="Int" />
+                    <GridY value="8" type="Int" />
+                    <Mesh value="forest.mesh" type="String" />
+                    <Index value="16" type="Int" />
                 </forest_16>
                 <forest_17>
                     <GridX value="7" type="Int" />
-                    <GridY value="3" type="Int" />
-                    <Mesh value="forest3.mesh" type="String" />
-                    <Index value="18" type="Int" />
+                    <GridY value="7" type="Int" />
+                    <Mesh value="forest.mesh" type="String" />
+                    <Index value="17" type="Int" />
                 </forest_17>
                 <forest_18>
-                    <GridX value="8" type="Int" />
-                    <GridY value="3" type="Int" />
+                    <GridX value="4" type="Int" />
+                    <GridY value="6" type="Int" />
                     <Mesh value="forest.mesh" type="String" />
-                    <Index value="19" type="Int" />
+                    <Index value="18" type="Int" />
                 </forest_18>
-                <forest_19>
-                    <GridX value="9" type="Int" />
-                    <GridY value="3" type="Int" />
+                <forestlow_1>
+                    <GridX value="3" type="Int" />
+                    <GridY value="1" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
+                    <Index value="19" type="Int" />
+                </forestlow_1>
+                <forestlow_3>
+                    <GridX value="7" type="Int" />
+                    <GridY value="0" type="Int" />
                     <Mesh value="forest3.mesh" type="String" />
                     <Index value="20" type="Int" />
-                </forest_19>
-                <forest_20>
-                    <GridX value="4" type="Int" />
+                </forestlow_3>
+                <forestlow_4>
+                    <GridX value="3" type="Int" />
                     <GridY value="3" type="Int" />
                     <Mesh value="forest3.mesh" type="String" />
                     <Index value="21" type="Int" />
-                </forest_20>
-                <forest_21>
-                    <GridX value="3" type="Int" />
+                </forestlow_4>
+                <forestlow_5>
+                    <GridX value="4" type="Int" />
                     <GridY value="4" type="Int" />
                     <Mesh value="forest3.mesh" type="String" />
                     <Index value="22" type="Int" />
-                </forest_21>
-                <forest_22>
-                    <GridX value="4" type="Int" />
-                    <GridY value="4" type="Int" />
+                </forestlow_5>
+                <forestlow_6>
+                    <GridX value="8" type="Int" />
+                    <GridY value="3" type="Int" />
                     <Mesh value="forest3.mesh" type="String" />
                     <Index value="23" type="Int" />
-                </forest_22>
-                <forest_23>
-                    <GridX value="4" type="Int" />
-                    <GridY value="5" type="Int" />
+                </forestlow_6>
+                <forestlow_7>
+                    <GridX value="9" type="Int" />
+                    <GridY value="4" type="Int" />
                     <Mesh value="forest3.mesh" type="String" />
                     <Index value="24" type="Int" />
-                </forest_23>
-                <forest_24>
-                    <GridX value="4" type="Int" />
+                </forestlow_7>
+                <forestlow_8>
+                    <GridX value="3" type="Int" />
                     <GridY value="6" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
+                    <Mesh value="forest3.mesh" type="String" />
                     <Index value="25" type="Int" />
-                </forest_24>
-                <forest_26>
-                    <GridX value="5" type="Int" />
-                    <GridY value="6" type="Int" />
+                </forestlow_8>
+                <forestlow_10>
+                    <GridX value="4" type="Int" />
+                    <GridY value="7" type="Int" />
                     <Mesh value="forest3.mesh" type="String" />
                     <Index value="26" type="Int" />
-                </forest_26>
-                <forest_27>
-                    <GridX value="5" type="Int" />
-                    <GridY value="5" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
+                </forestlow_10>
+                <forestlow_11>
+                    <GridX value="3" type="Int" />
+                    <GridY value="8" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
                     <Index value="27" type="Int" />
-                </forest_27>
-                <forest_28>
-                    <GridX value="5" type="Int" />
-                    <GridY value="4" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
+                </forestlow_11>
+                <forestlow_12>
+                    <GridX value="7" type="Int" />
+                    <GridY value="8" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
                     <Index value="28" type="Int" />
-                </forest_28>
-                <forest_29>
-                    <GridX value="6" type="Int" />
-                    <GridY value="4" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
+                </forestlow_12>
+                <forestlow_13>
+                    <GridX value="8" type="Int" />
+                    <GridY value="7" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
                     <Index value="29" type="Int" />
-                </forest_29>
-                <forest_30>
-                    <GridX value="6" type="Int" />
-                    <GridY value="5" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
+                </forestlow_13>
+                <forestlow_14>
+                    <GridX value="8" type="Int" />
+                    <GridY value="6" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
                     <Index value="30" type="Int" />
-                </forest_30>
-                <forest_31>
-                    <GridX value="7" type="Int" />
-                    <GridY value="4" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
+                </forestlow_14>
+                <forestlow_15>
+                    <GridX value="3" type="Int" />
+                    <GridY value="9" type="Int" />
+                    <Mesh value="forest3.mesh" type="String" />
                     <Index value="31" type="Int" />
-                </forest_31>
-                <forest_32>
-                    <GridX value="8" type="Int" />
-                    <GridY value="4" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="32" type="Int" />
-                </forest_32>
-                <forest_34>
-                    <GridX value="9" type="Int" />
-                    <GridY value="5" type="Int" />
-                    <Mesh value="forest3.mesh" type="String" />
-                    <Index value="33" type="Int" />
-                </forest_34>
-                <forest_35>
-                    <GridX value="8" type="Int" />
-                    <GridY value="5" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="34" type="Int" />
-                </forest_35>
-                <forest_36>
-                    <GridX value="7" type="Int" />
-                    <GridY value="5" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="35" type="Int" />
-                </forest_36>
-                <forest_37>
-                    <GridX value="6" type="Int" />
-                    <GridY value="6" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="36" type="Int" />
-                </forest_37>
-                <forest_39>
-                    <GridX value="7" type="Int" />
-                    <GridY value="7" type="Int" />
-                    <Mesh value="forest3.mesh" type="String" />
-                    <Index value="37" type="Int" />
-                </forest_39>
-                <forest_40>
-                    <GridX value="7" type="Int" />
-                    <GridY value="6" type="Int" />
-                    <Mesh value="forest3.mesh" type="String" />
-                    <Index value="38" type="Int" />
-                </forest_40>
-                <forest_41>
-                    <GridX value="8" type="Int" />
-                    <GridY value="6" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="39" type="Int" />
-                </forest_41>
-                <forest_42>
-                    <GridX value="9" type="Int" />
-                    <GridY value="6" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="40" type="Int" />
-                </forest_42>
-                <forest_44>
-                    <GridX value="10" type="Int" />
-                    <GridY value="6" type="Int" />
-                    <Mesh value="forest3.mesh" type="String" />
-                    <Index value="41" type="Int" />
-                </forest_44>
-                <forest_45>
-                    <GridX value="6" type="Int" />
-                    <GridY value="8" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="42" type="Int" />
-                </forest_45>
-                <forest_46>
-                    <GridX value="7" type="Int" />
-                    <GridY value="9" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="43" type="Int" />
-                </forest_46>
-                <forest_47>
-                    <GridX value="7" type="Int" />
-                    <GridY value="8" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="44" type="Int" />
-                </forest_47>
-                <forest_48>
-                    <GridX value="8" type="Int" />
-                    <GridY value="7" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="45" type="Int" />
-                </forest_48>
-                <forest_49>
-                    <GridX value="9" type="Int" />
-                    <GridY value="7" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="46" type="Int" />
-                </forest_49>
-                <forest_50>
-                    <GridX value="8" type="Int" />
-                    <GridY value="8" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="47" type="Int" />
-                </forest_50>
-                <forest_51>
-                    <GridX value="9" type="Int" />
-                    <GridY value="8" type="Int" />
-                    <Mesh value="forest3.mesh" type="String" />
-                    <Index value="48" type="Int" />
-                </forest_51>
-                <forest_52>
-                    <GridX value="8" type="Int" />
-                    <GridY value="9" type="Int" />
-                    <Mesh value="forest3.mesh" type="String" />
-                    <Index value="49" type="Int" />
-                </forest_52>
-                <forest_59>
-                    <GridX value="10" type="Int" />
-                    <GridY value="7" type="Int" />
-                    <Mesh value="forest3.mesh" type="String" />
-                    <Index value="50" type="Int" />
-                </forest_59>
-                <forest_63>
-                    <GridX value="11" type="Int" />
-                    <GridY value="10" type="Int" />
-                    <Mesh value="forest3.mesh" type="String" />
-                    <Index value="51" type="Int" />
-                </forest_63>
-                <forest_64>
-                    <GridX value="10" type="Int" />
-                    <GridY value="11" type="Int" />
-                    <Mesh value="forest3.mesh" type="String" />
-                    <Index value="52" type="Int" />
-                </forest_64>
-                <forest_65>
-                    <GridX value="11" type="Int" />
-                    <GridY value="11" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="53" type="Int" />
-                </forest_65>
-                <forest_66>
-                    <GridX value="6" type="Int" />
-                    <GridY value="9" type="Int" />
-                    <Mesh value="forest.mesh" type="String" />
-                    <Index value="54" type="Int" />
-                </forest_66>
-                <forest_67>
+                </forestlow_15>
+                <forestlow_16>
                     <GridX value="5" type="Int" />
-                    <GridY value="9" type="Int" />
+                    <GridY value="0" type="Int" />
                     <Mesh value="forest3.mesh" type="String" />
-                    <Index value="55" type="Int" />
-                </forest_67>
-                <forest_68>
-                    <GridX value="6" type="Int" />
-                    <GridY value="10" type="Int" />
-                    <Mesh value="forest3.mesh" type="String" />
-                    <Index value="56" type="Int" />
-                </forest_68>
-                <forest_69>
-                    <GridX value="7" type="Int" />
-                    <GridY value="10" type="Int" />
-                    <Mesh value="forest3.mesh" type="String" />
-                    <Index value="57" type="Int" />
-                </forest_69>
-                <camp_1>
-                    <GridX value="7" type="Int" />
-                    <GridY value="2" type="Int" />
-                    <Mesh value="Camp1.mesh" type="String" />
-                    <Index value="58" type="Int" />
-                </camp_1>
+                    <Index value="32" type="Int" />
+                </forestlow_16>
             </MapObjModleInfo>
             <Area>
                 <DeployArea>
                     <CoordList>
                         <c0>
                             <X value="0" type="Int" />
-                            <Y value="4" type="Int" />
+                            <Y value="5" type="Int" />
                         </c0>
                         <c1>
                             <X value="0" type="Int" />
-                            <Y value="5" type="Int" />
+                            <Y value="6" type="Int" />
                         </c1>
                         <c2>
                             <X value="1" type="Int" />
-                            <Y value="4" type="Int" />
+                            <Y value="5" type="Int" />
                         </c2>
                         <c3>
                             <X value="1" type="Int" />
-                            <Y value="5" type="Int" />
+                            <Y value="6" type="Int" />
                         </c3>
                     </CoordList>
                 </DeployArea>
@@ -1397,20 +1170,20 @@
                         <Attack value="1" type="Float" />
                         <RangedAttack value="0" type="Float" />
                         <Defence value="1" type="Float" />
-                        <Formation value="0.02" type="Float" />
+                        <Formation value="0.04" type="Float" />
                         <Initiative value="2" type="Float" />
-                        <ActionPoint value="11" type="Float" />
+                        <ActionPoint value="10" type="Float" />
                         <Detection value="6" type="Float" />
                         <Covert value="0" type="Float" />
                         <Injury value="1" type="Float" />
-                        <Conter value="0.3" type="Float" />
+                        <Conter value="0.4" type="Float" />
                     </m0>
                     <m1>
                         <Type value="0" type="Int" />
                         <Attack value="2" type="Float" />
                         <RangedAttack value="0" type="Float" />
-                        <Defence value="-2" type="Float" />
-                        <Formation value="0.1" type="Float" />
+                        <Defence value="-1" type="Float" />
+                        <Formation value="0.08" type="Float" />
                         <Initiative value="6" type="Float" />
                         <ActionPoint value="0" type="Float" />
                         <Detection value="0" type="Float" />
@@ -1444,6 +1217,19 @@
                         <Injury value="0" type="Float" />
                         <Conter value="0" type="Float" />
                     </m3>
+                    <m4>
+                        <Type value="2" type="Int" />
+                        <Attack value="0" type="Float" />
+                        <RangedAttack value="0" type="Float" />
+                        <Defence value="1" type="Float" />
+                        <Formation value="0" type="Float" />
+                        <Initiative value="0" type="Float" />
+                        <ActionPoint value="0" type="Float" />
+                        <Detection value="0" type="Float" />
+                        <Covert value="0" type="Float" />
+                        <Injury value="0" type="Float" />
+                        <Conter value="0" type="Float" />
+                    </m4>
                 </ModifierList>
                 <SoilderId value="EtasiSoilder" type="String">
                     <Modifierid value="m0" type="String" />
@@ -1460,27 +1246,61 @@
                     <Modifierid value="m3" type="String" />
                 </ShieldId>
                 <SkillTable>
-                    <Attack value="0" type="Int" />
-                    <Defence value="0" type="Int" />
-                    <Rest value="0" type="Int" />
+                    <Attack value="0" type="Int">
+                        <CoolDown value="0" type="Int" />
+                    </Attack>
+                    <Defence value="0" type="Int">
+                        <CoolDown value="0" type="Int" />
+                        <ScriptContext>
+                            <skillcast value="1" type="Int" />
+                            <skillcaster value="Team2Squad_0" type="String" />
+                            <skillcasterpath value="GameData/BattleData/SquadList/Team2Squad_0" type="String" />
+                            <skilltarget value="Team2Squad_0" type="String" />
+                            <skilltargetpath value="GameData/BattleData/SquadList/Team2Squad_0" type="String" />
+                            <Effectid value="e0" type="String" />
+                        </ScriptContext>
+                    </Defence>
+                    <Rest value="0" type="Int">
+                        <CoolDown value="0" type="Int" />
+                    </Rest>
                 </SkillTable>
-                <GridX value="5" type="Int" />
-                <GridY value="3" type="Int" />
-                <WoundNum value="0" type="Int" />
-                <Direction value="1" type="Int" />
+                <GridX value="2" type="Int" />
+                <GridY value="5" type="Int" />
+                <Direction value="2" type="Int" />
                 <Formation value="0" type="Int" />
                 <TeamId value="Team2" type="String" />
                 <CreateType value="1" type="Int" />
                 <ActionPoint value="0" type="Float" />
                 <ViewbyPlayer value="1" type="Int" />
                 <ViewbyEnemy1 value="1" type="Int" />
-                <ViewbyEnemy2 value="0" type="Int" />
-                <ViewbyEnemy3 value="0" type="Int" />
+                <ViewbyEnemy2 value="1" type="Int" />
+                <ViewbyEnemy3 value="1" type="Int" />
                 <AmbushPlayer value="0" type="Int" />
                 <AmbushEnemy1 value="0" type="Int" />
                 <AmbushEnemy2 value="0" type="Int" />
                 <AmbushEnemy3 value="0" type="Int" />
                 <Grapid value="0" type="Int" />
+                <APSetup value="0" type="Float" />
+                <APBattle value="1" type="Float" />
+                <EffectList>
+                    <e0 value="Defence" type="String">
+                        <ScriptContext>
+                            <affectsquadpath value="GameData/BattleData/SquadList/Team2Squad_0" type="String" />
+                            <effectid value="e0" type="String" />
+                            <Modifierid value="m4" type="String" />
+                            <LastTurn value="0" type="Int" />
+                            <TurnStartTrigger value="T0" type="String" />
+                        </ScriptContext>
+                    </e0>
+                </EffectList>
+                <Trigger>
+                    <T0 value="1" type="Int">
+                        <type value="TurnStart" type="String" />
+                        <file value="defence.lua" type="String" />
+                        <func value="onturnstart" type="String" />
+                        <context value="GameData/BattleData/SquadList/Team2Squad_0/EffectList/e0/ScriptContext" type="String" />
+                    </T0>
+                </Trigger>
             </Team2Squad_0>
             <Team2Squad_2>
                 <Name value="达克斯重步兵队" type="String" />
@@ -1503,13 +1323,13 @@
                         <Attack value="1" type="Float" />
                         <RangedAttack value="0" type="Float" />
                         <Defence value="1" type="Float" />
-                        <Formation value="0.02" type="Float" />
+                        <Formation value="0.04" type="Float" />
                         <Initiative value="2" type="Float" />
-                        <ActionPoint value="11" type="Float" />
+                        <ActionPoint value="10" type="Float" />
                         <Detection value="6" type="Float" />
                         <Covert value="0" type="Float" />
                         <Injury value="1" type="Float" />
-                        <Conter value="0.3" type="Float" />
+                        <Conter value="0.4" type="Float" />
                     </m0>
                     <m1>
                         <Type value="0" type="Int" />
@@ -1531,7 +1351,7 @@
                         <Defence value="3" type="Float" />
                         <Formation value="0" type="Float" />
                         <Initiative value="0" type="Float" />
-                        <ActionPoint value="0" type="Float" />
+                        <ActionPoint value="-1" type="Float" />
                         <Detection value="0" type="Float" />
                         <Covert value="-1" type="Float" />
                         <Injury value="0" type="Float" />
@@ -1550,6 +1370,19 @@
                         <Injury value="0" type="Float" />
                         <Conter value="0" type="Float" />
                     </m3>
+                    <m4>
+                        <Type value="2" type="Int" />
+                        <Attack value="0" type="Float" />
+                        <RangedAttack value="0" type="Float" />
+                        <Defence value="1.5" type="Float" />
+                        <Formation value="0" type="Float" />
+                        <Initiative value="0" type="Float" />
+                        <ActionPoint value="0" type="Float" />
+                        <Detection value="0" type="Float" />
+                        <Covert value="0" type="Float" />
+                        <Injury value="0" type="Float" />
+                        <Conter value="0" type="Float" />
+                    </m4>
                 </ModifierList>
                 <SoilderId value="EtasiSoilder" type="String">
                     <Modifierid value="m0" type="String" />
@@ -1566,14 +1399,27 @@
                     <Modifierid value="m3" type="String" />
                 </ShieldId>
                 <SkillTable>
-                    <Attack value="0" type="Int" />
-                    <Defence value="0" type="Int" />
-                    <Rest value="0" type="Int" />
+                    <Attack value="0" type="Int">
+                        <CoolDown value="0" type="Int" />
+                    </Attack>
+                    <Defence value="0" type="Int">
+                        <CoolDown value="0" type="Int" />
+                        <ScriptContext>
+                            <skillcast value="1" type="Int" />
+                            <skillcaster value="Team2Squad_2" type="String" />
+                            <skillcasterpath value="GameData/BattleData/SquadList/Team2Squad_2" type="String" />
+                            <skilltarget value="Team2Squad_2" type="String" />
+                            <skilltargetpath value="GameData/BattleData/SquadList/Team2Squad_2" type="String" />
+                            <Effectid value="e0" type="String" />
+                        </ScriptContext>
+                    </Defence>
+                    <Rest value="0" type="Int">
+                        <CoolDown value="0" type="Int" />
+                    </Rest>
                 </SkillTable>
-                <GridX value="7" type="Int" />
-                <GridY value="2" type="Int" />
-                <WoundNum value="0" type="Int" />
-                <Direction value="1" type="Int" />
+                <GridX value="4" type="Int" />
+                <GridY value="4" type="Int" />
+                <Direction value="2" type="Int" />
                 <Formation value="0" type="Int" />
                 <TeamId value="Team2" type="String" />
                 <CreateType value="1" type="Int" />
@@ -1587,6 +1433,27 @@
                 <AmbushEnemy2 value="0" type="Int" />
                 <AmbushEnemy3 value="0" type="Int" />
                 <Grapid value="1" type="Int" />
+                <APSetup value="0" type="Float" />
+                <APBattle value="1" type="Float" />
+                <EffectList>
+                    <e0 value="Defence" type="String">
+                        <ScriptContext>
+                            <affectsquadpath value="GameData/BattleData/SquadList/Team2Squad_2" type="String" />
+                            <effectid value="e0" type="String" />
+                            <Modifierid value="m4" type="String" />
+                            <LastTurn value="0" type="Int" />
+                            <TurnStartTrigger value="T0" type="String" />
+                        </ScriptContext>
+                    </e0>
+                </EffectList>
+                <Trigger>
+                    <T0 value="1" type="Int">
+                        <type value="TurnStart" type="String" />
+                        <file value="defence.lua" type="String" />
+                        <func value="onturnstart" type="String" />
+                        <context value="GameData/BattleData/SquadList/Team2Squad_2/EffectList/e0/ScriptContext" type="String" />
+                    </T0>
+                </Trigger>
             </Team2Squad_2>
             <Team2Squad_3>
                 <Name value="达克斯轻装长矛队" type="String" />
@@ -1609,20 +1476,20 @@
                         <Attack value="1" type="Float" />
                         <RangedAttack value="0" type="Float" />
                         <Defence value="1" type="Float" />
-                        <Formation value="0.02" type="Float" />
+                        <Formation value="0.04" type="Float" />
                         <Initiative value="2" type="Float" />
-                        <ActionPoint value="11" type="Float" />
+                        <ActionPoint value="10" type="Float" />
                         <Detection value="6" type="Float" />
                         <Covert value="0" type="Float" />
                         <Injury value="1" type="Float" />
-                        <Conter value="0.3" type="Float" />
+                        <Conter value="0.4" type="Float" />
                     </m0>
                     <m1>
                         <Type value="0" type="Int" />
                         <Attack value="2" type="Float" />
                         <RangedAttack value="0" type="Float" />
-                        <Defence value="-2" type="Float" />
-                        <Formation value="0.1" type="Float" />
+                        <Defence value="-1" type="Float" />
+                        <Formation value="0.08" type="Float" />
                         <Initiative value="6" type="Float" />
                         <ActionPoint value="0" type="Float" />
                         <Detection value="0" type="Float" />
@@ -1656,6 +1523,19 @@
                         <Injury value="0" type="Float" />
                         <Conter value="0" type="Float" />
                     </m3>
+                    <m4>
+                        <Type value="2" type="Int" />
+                        <Attack value="0" type="Float" />
+                        <RangedAttack value="0" type="Float" />
+                        <Defence value="1.5" type="Float" />
+                        <Formation value="0" type="Float" />
+                        <Initiative value="0" type="Float" />
+                        <ActionPoint value="0" type="Float" />
+                        <Detection value="0" type="Float" />
+                        <Covert value="0" type="Float" />
+                        <Injury value="0" type="Float" />
+                        <Conter value="0" type="Float" />
+                    </m4>
                 </ModifierList>
                 <SoilderId value="EtasiSoilder" type="String">
                     <Modifierid value="m0" type="String" />
@@ -1672,19 +1552,32 @@
                     <Modifierid value="m3" type="String" />
                 </ShieldId>
                 <SkillTable>
-                    <Attack value="0" type="Int" />
-                    <Defence value="0" type="Int" />
-                    <Rest value="0" type="Int" />
+                    <Attack value="0" type="Int">
+                        <CoolDown value="0" type="Int" />
+                    </Attack>
+                    <Defence value="0" type="Int">
+                        <CoolDown value="0" type="Int" />
+                        <ScriptContext>
+                            <skillcast value="1" type="Int" />
+                            <skillcaster value="Team2Squad_3" type="String" />
+                            <skillcasterpath value="GameData/BattleData/SquadList/Team2Squad_3" type="String" />
+                            <skilltarget value="Team2Squad_3" type="String" />
+                            <skilltargetpath value="GameData/BattleData/SquadList/Team2Squad_3" type="String" />
+                            <Effectid value="e0" type="String" />
+                        </ScriptContext>
+                    </Defence>
+                    <Rest value="0" type="Int">
+                        <CoolDown value="0" type="Int" />
+                    </Rest>
                 </SkillTable>
-                <GridX value="6" type="Int" />
+                <GridX value="2" type="Int" />
                 <GridY value="6" type="Int" />
-                <WoundNum value="0" type="Int" />
-                <Direction value="1" type="Int" />
+                <Direction value="2" type="Int" />
                 <Formation value="0" type="Int" />
                 <TeamId value="Team2" type="String" />
                 <CreateType value="1" type="Int" />
                 <ActionPoint value="0" type="Float" />
-                <ViewbyPlayer value="0" type="Int" />
+                <ViewbyPlayer value="1" type="Int" />
                 <ViewbyEnemy1 value="1" type="Int" />
                 <ViewbyEnemy2 value="0" type="Int" />
                 <ViewbyEnemy3 value="0" type="Int" />
@@ -1693,6 +1586,27 @@
                 <AmbushEnemy2 value="0" type="Int" />
                 <AmbushEnemy3 value="0" type="Int" />
                 <Grapid value="2" type="Int" />
+                <APSetup value="0" type="Float" />
+                <APBattle value="1" type="Float" />
+                <EffectList>
+                    <e0 value="Defence" type="String">
+                        <ScriptContext>
+                            <affectsquadpath value="GameData/BattleData/SquadList/Team2Squad_3" type="String" />
+                            <effectid value="e0" type="String" />
+                            <Modifierid value="m4" type="String" />
+                            <LastTurn value="0" type="Int" />
+                            <TurnStartTrigger value="T0" type="String" />
+                        </ScriptContext>
+                    </e0>
+                </EffectList>
+                <Trigger>
+                    <T0 value="1" type="Int">
+                        <type value="TurnStart" type="String" />
+                        <file value="defence.lua" type="String" />
+                        <func value="onturnstart" type="String" />
+                        <context value="GameData/BattleData/SquadList/Team2Squad_3/EffectList/e0/ScriptContext" type="String" />
+                    </T0>
+                </Trigger>
             </Team2Squad_3>
             <Cheetah>
                 <Name value="齐塔重步兵队" type="String" />
@@ -1712,12 +1626,12 @@
                 <ModifierList>
                     <m0>
                         <Type value="0" type="Int" />
-                        <Attack value="3" type="Float" />
-                        <RangedAttack value="3" type="Float" />
-                        <Defence value="3" type="Float" />
+                        <Attack value="2" type="Float" />
+                        <RangedAttack value="2" type="Float" />
+                        <Defence value="2" type="Float" />
                         <Formation value="0.06" type="Float" />
                         <Initiative value="1" type="Float" />
-                        <ActionPoint value="10" type="Float" />
+                        <ActionPoint value="9" type="Float" />
                         <Detection value="5" type="Float" />
                         <Covert value="0" type="Float" />
                         <Injury value="0.8" type="Float" />
@@ -1743,7 +1657,7 @@
                         <Defence value="3" type="Float" />
                         <Formation value="0" type="Float" />
                         <Initiative value="0" type="Float" />
-                        <ActionPoint value="0" type="Float" />
+                        <ActionPoint value="-1" type="Float" />
                         <Detection value="0" type="Float" />
                         <Covert value="-1" type="Float" />
                         <Injury value="0" type="Float" />
@@ -1791,12 +1705,11 @@
                 <TeamId value="Team1" type="String" />
                 <Grapid value="3" type="Int" />
                 <CreateType value="0" type="Int" />
-                <Direction value="3" type="Int" />
+                <Direction value="0" type="Int" />
                 <Formation value="0" type="Int" />
-                <ActionPoint value="3" type="Float" />
-                <WoundNum value="0" type="Int" />
-                <GridX value="3" type="Int" />
-                <GridY value="3" type="Int" />
+                <ActionPoint value="7" type="Float" />
+                <GridX value="1" type="Int" />
+                <GridY value="5" type="Int" />
                 <ViewbyPlayer value="1" type="Int" />
                 <ViewbyEnemy1 value="1" type="Int" />
                 <ViewbyEnemy2 value="1" type="Int" />
@@ -1826,12 +1739,12 @@
                 <ModifierList>
                     <m0>
                         <Type value="0" type="Int" />
-                        <Attack value="3" type="Float" />
-                        <RangedAttack value="3" type="Float" />
-                        <Defence value="3" type="Float" />
+                        <Attack value="2" type="Float" />
+                        <RangedAttack value="2" type="Float" />
+                        <Defence value="2" type="Float" />
                         <Formation value="0.06" type="Float" />
                         <Initiative value="1" type="Float" />
-                        <ActionPoint value="10" type="Float" />
+                        <ActionPoint value="9" type="Float" />
                         <Detection value="5" type="Float" />
                         <Covert value="0" type="Float" />
                         <Injury value="0.8" type="Float" />
@@ -1920,12 +1833,11 @@
                 <TeamId value="Team1" type="String" />
                 <Grapid value="4" type="Int" />
                 <CreateType value="0" type="Int" />
-                <Direction value="1" type="Int" />
+                <Direction value="0" type="Int" />
                 <Formation value="0" type="Int" />
-                <ActionPoint value="4" type="Float" />
-                <WoundNum value="0" type="Int" />
-                <GridX value="2" type="Int" />
-                <GridY value="3" type="Int" />
+                <ActionPoint value="9" type="Float" />
+                <GridX value="1" type="Int" />
+                <GridY value="6" type="Int" />
                 <ViewbyPlayer value="1" type="Int" />
                 <ViewbyEnemy1 value="1" type="Int" />
                 <ViewbyEnemy2 value="1" type="Int" />
@@ -1939,7 +1851,7 @@
             </Dandelion>
         </SquadList>
         <BattleState>
-            <Ture value="1" type="Int" />
+            <Ture value="2" type="Int" />
             <CurTeam value="1" type="Int" />
         </BattleState>
         <Trigger>

@@ -162,6 +162,68 @@ void UnitGrap::setWeapon( WeaponType type,BoneType bone )
 	}
 }
 
+void UnitGrap::playWeaponParticle( WeaponType type,std::string name )
+{
+	switch(type)
+	{
+	case MainWepon:
+		{
+			if (mMainWeapon!=NULL)
+			{
+				mMainWeapon->playParticleUniverse(name);
+			}
+			break;
+		}
+	case SecWepon:
+		{
+			if (mSecWeapon!=NULL)
+			{
+				mSecWeapon->playParticleUniverse(name);
+			}
+			break;
+		}
+	case Shield:
+		{
+			if (mShield!=NULL)
+			{
+				mShield->playParticleUniverse(name);
+			}
+			break;
+		}
+	}
+}
+
+void UnitGrap::stopWeaponParticle( WeaponType type)
+{
+	switch(type)
+	{
+	case MainWepon:
+		{
+			if (mMainWeapon!=NULL)
+			{
+				mMainWeapon->stopParticleUniverse();
+			}
+			break;
+		}
+	case SecWepon:
+		{
+			if (mSecWeapon!=NULL)
+			{
+				mSecWeapon->stopParticleUniverse();
+			}
+			break;
+		}
+	case Shield:
+		{
+			if (mShield!=NULL)
+			{
+				mShield->stopParticleUniverse();
+			}
+			break;
+		}
+	}
+}
+
 void UnitGrap::setAniGroup(std::string anigroup)
 {
 	if(anigroup == "1H2")
@@ -185,7 +247,7 @@ void UnitGrap::setAniGroup(std::string anigroup)
 	mAniBlender->init(mIdleName);
 }
 
-void UnitGrap::createWeapon( std::string mesh, std::string mat,WeaponType type )
+void UnitGrap::createWeapon( std::string mesh, std::string mat,std::string weaponPU,Ogre::Vector3 PUVector,WeaponType type )
 {
 	if (mesh!="none")
 	{
@@ -193,17 +255,17 @@ void UnitGrap::createWeapon( std::string mesh, std::string mat,WeaponType type )
 		{
 		case MainWepon:
 			{
-				mMainWeapon=new WeaponGrap(mesh,mat);
+				mMainWeapon=new WeaponGrap(mesh,mat,weaponPU,PUVector);
 				break;
 			}
 		case SecWepon:
 			{
-				mSecWeapon=new WeaponGrap(mesh,mat);
+				mSecWeapon=new WeaponGrap(mesh,mat,weaponPU,PUVector);
 				break;
 			}
 		case Shield:
 			{
-				mShield=new WeaponGrap(mesh,mat);
+				mShield=new WeaponGrap(mesh,mat,weaponPU,PUVector);
 				break;
 			}
 		}
@@ -363,12 +425,20 @@ bool UnitGrap::addParticle(std::string id,std::string name)
 	mPUMap.insert(PUMap::value_type(id,pu));
 	return true;
 }
-void UnitGrap::startParticle(std::string id)
+void UnitGrap::startParticle(std::string id,bool isTriggerEvent)
 {
 	PUMapIte ite;
 	ite = mPUMap.find(id);
 	if(ite != mPUMap.end())
+	{
+		if (isTriggerEvent)
+		{
+			mIsPUEnd=false;
+			ite->second->addParticleSystemListener(this);		
+		}
+		
 		ite->second->start();
+	}
 }
 void UnitGrap::stopParticle(std::string id)
 {
@@ -393,4 +463,12 @@ void UnitGrap::setParticleVisible(bool visible)
 {
 	mParticleVisible = visible;
 	mParticleNode->setVisible(mParticleVisible);
+}
+
+void UnitGrap::handleParticleSystemEvent( ParticleUniverse::ParticleSystem *particleSystem, ParticleUniverse::ParticleUniverseEvent &particleUniverseEvent )
+{
+	if (particleUniverseEvent.eventType=ParticleUniverse::PU_EVT_SYSTEM_STOPPED)
+	{
+		mIsPUEnd=true;
+	}
 }

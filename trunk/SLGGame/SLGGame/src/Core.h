@@ -42,6 +42,7 @@ public:
 	//粒子系统
 	ParticleUniverse::ParticleSystem* createPUSystem(std::string name,std::string script);
 	void destroyPUSystem(ParticleUniverse::ParticleSystem* pu);
+	void destroyAllPUSystem();
 	std::vector<ParticleUniverse::ParticleSystem*> mPUSystems;
 
 	//OIS系统指针

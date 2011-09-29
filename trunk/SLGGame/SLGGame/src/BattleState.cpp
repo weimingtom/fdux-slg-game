@@ -54,6 +54,7 @@ void BattleState::uninitialize()
 	AudioSystem::getSingletonPtr()->stopSample();
 	AudioSystem::getSingletonPtr()->stopStream(1000);
 	GUISystem::getSingleton().destoryScene(BattleScene);
+	Core::getSingletonPtr()->destroyAllPUSystem();
 	//DataLibrary::getSingletonPtr()->setData("GameData/StoryData/GameState",std::string("AVG"));
 	//Core::getSingleton().mRoot->renderOneFrame(0.0f);
 }

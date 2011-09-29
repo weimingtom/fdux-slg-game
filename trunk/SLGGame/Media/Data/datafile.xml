@@ -192,6 +192,8 @@
 			<Script type="String" value="none"/>
 			<Mesh type="String" value="soul.mesh"/>
 			<Mat type="String" value="soul"/>
+			<PU type="String" value="none"/>
+			<PUVector type="Vector3" value="0,0,0"/>
 			<AniGroup type="String" value="1H2"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
@@ -213,6 +215,8 @@
 			<Script type="String" value="none"/>
 			<Mesh type="String" value="soul.mesh"/>
 			<Mat type="String" value="soul"/>
+			<PU type="String" value="none"/>
+			<PUVector type="Vector3" value="0,0,0"/>
 			<AniGroup type="String" value="1H2"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
@@ -234,6 +238,8 @@
 			<Script type="String" value="none"/>
 			<Mesh type="String" value="ShortSpear.mesh"/>
 			<Mat type="String" value="Pike"/>
+			<PU type="String" value="none"/>
+			<PUVector type="Vector3" value="0,0,0"/>			
 			<AniGroup type="String" value="1H2"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
@@ -257,6 +263,8 @@
 			<Script type="String" value="none"/>
 			<Mesh type="String" value="bow.mesh"/>
 			<Mat type="String" value="Bow"/>
+			<PU type="String" value="none"/>
+			<PUVector type="Vector3" value="0,0,0"/>			
 			<MaxRange type="Int" value="3"/>
 			<MinRange type="Int" value="1"/>
 			<AniGroup type="String" value="bow"/>
@@ -281,6 +289,8 @@
 			<Script type="String" value="none"/>
 			<Mesh type="String" value="LargeShield.mesh"/>
 			<Mat type="String" value="LargeShield"/>
+			<PU type="String" value="none"/>
+			<PUVector type="Vector3" value="0,0,0"/>		
 			<AttrModifer>
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="1.0"/>
@@ -300,6 +310,8 @@
 			<Script type="String" value="none"/>
 			<Mesh type="String" value="RoundShield.mesh"/>
 			<Mat type="String" value="RoundShield"/>
+			<PU type="String" value="none"/>
+			<PUVector type="Vector3" value="0,0,0"/>			
 			<AttrModifer>
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="2.0"/>

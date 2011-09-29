@@ -53,6 +53,8 @@ mDirection(direction)
 	{
 		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/Mesh"), mPWeaponMesh);
 		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/Mat"), mPWeaponMat);
+		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/PU"), mPWeaponPU);
+		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/PUVector"), mPWeaponPUVector);
 		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/AniGroup"), mPWeaponAniGroup);
 	}
 	else
@@ -60,6 +62,7 @@ mDirection(direction)
 		mPWeaponMesh = "none";
 		mPWeaponMat = "none";
 		mPWeaponAniGroup = "1H1";
+		mPWeaponPU="none";
 	}
 	datalib->getData(datapath + std::string("/SweaponId"),tempid);
 	if(tempid != "none")
@@ -69,6 +72,8 @@ mDirection(direction)
 		mSWeaponBow = (sweapontype == EQUIP_SWEAPON_BOW);
 		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/Mesh"), mSWeaponMesh);
 		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/Mat"), mSWeaponMat);
+		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/PU"), mSWeaponPU);
+		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/PUVector"), mSWeaponPUVector);
 		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/AniGroup"), mSWeaponAniGroup);
 	}
 	else
@@ -77,17 +82,21 @@ mDirection(direction)
 		mSWeaponMesh = "none";
 		mSWeaponMat = "none";
 		mSWeaponAniGroup = "bow";
+		mSWeaponPU="none";
 	}
 	datalib->getData(datapath + std::string("/ShieldId"),tempid);
 	if(tempid != "none")
 	{
 		datalib->getData( std::string("StaticData/ShieldData/") + tempid + std::string("/Mesh"), mShieldMesh);
 		datalib->getData( std::string("StaticData/ShieldData/") + tempid + std::string("/Mat"), mShieldMat);
+		datalib->getData( std::string("StaticData/ShieldData/") + tempid + std::string("/PU"), mShieldPU);
+		datalib->getData( std::string("StaticData/ShieldData/") + tempid + std::string("/PUVector"), mShieldVector);
 	}
 	else
 	{
 		mShieldMesh = "none";
 		mShieldMat = "none";
+		mShieldPU="none";
 	}
 	datalib->getData(datapath + std::string("/TeamId"),tempid);
 	datalib->getData( std::string("GameData/BattleData/Team/") + tempid + std::string("/FactionId"), tempid);
@@ -96,9 +105,9 @@ mDirection(direction)
 
 	//组建单位队伍与组建武器
 	mCommanderUnit=new UnitGrap(mLeaderMesh,mLeaderMat,mFactionTexture,mSceneMgr->getRootSceneNode()->createChildSceneNode(mNode->getName()+"_Commander"));
-	mCommanderUnit->createWeapon(mPWeaponMesh,mPWeaponMat,UnitGrap::MainWepon);
-	mCommanderUnit->createWeapon(mSWeaponMesh,mSWeaponMat,UnitGrap::SecWepon);
-	mCommanderUnit->createWeapon(mShieldMesh,mShieldMat,UnitGrap::Shield);
+	mCommanderUnit->createWeapon(mPWeaponMesh,mPWeaponMat,mPWeaponPU,mPWeaponPUVector,UnitGrap::MainWepon);
+	mCommanderUnit->createWeapon(mSWeaponMesh,mSWeaponMat,mSWeaponPU,mSWeaponPUVector,UnitGrap::SecWepon);
+	mCommanderUnit->createWeapon(mShieldMesh,mShieldMat,mShieldPU,mSWeaponPUVector,UnitGrap::Shield);
 
 	for (int i=0;i<soldierCount;i++)
 	{
@@ -211,9 +220,9 @@ UnitGrap* SquadGraphics::createSoldier()
 	mSoldierIndex++;
 	UnitGrap* unit=new UnitGrap(mSoilderMesh,mSoilderMat,mFactionTexture,mSceneMgr->getRootSceneNode()->createChildSceneNode(mNode->getName()+"_Soldier"+Ogre::StringConverter::toString(mSoldierIndex)));
 
-	unit->createWeapon(mPWeaponMesh,mPWeaponMat,UnitGrap::MainWepon);
-	unit->createWeapon(mSWeaponMesh,mSWeaponMat,UnitGrap::SecWepon);
-	unit->createWeapon(mShieldMesh,mShieldMat,UnitGrap::Shield);
+	unit->createWeapon(mPWeaponMesh,mPWeaponMat,mPWeaponPU,mPWeaponPUVector,UnitGrap::MainWepon);
+	unit->createWeapon(mSWeaponMesh,mSWeaponMat,mSWeaponPU,mSWeaponPUVector,UnitGrap::SecWepon);
+	unit->createWeapon(mShieldMesh,mShieldMat,mShieldPU,mShieldVector,UnitGrap::Shield);
 
 	mSoldierUnits.push_back(unit);
 
@@ -1041,6 +1050,17 @@ void SquadGraphics::setDeath(int num)
 	{
 		//执行死亡动画
 		it->first->setAnimation(it->first->mDeathName,false,false);
+
+		//移除单位
+		for (std::vector<UnitGrap*>::iterator itt=mSoldierUnits.begin();itt!=mSoldierUnits.end();itt++)
+		{
+			if ((*itt)==it->first)
+			{
+				mSoldierUnits.erase(itt);
+				break;
+			}
+		}
+
 	}
 
 	mDeathStep=playAni;
@@ -1128,16 +1148,6 @@ void SquadGraphics::doDeathStep()
 					{
 						//回复原来动画
 						it->second->setAnimation(mReliefAniName,mReliefAniLoop,false);
-					}
-					
-					//移除单位
-					for (std::vector<UnitGrap*>::iterator itt=mSoldierUnits.begin();itt!=mSoldierUnits.end();itt++)
-					{
-						if ((*itt)==it->first)
-						{
-							mSoldierUnits.erase(itt);
-							break;
-						}
 					}
 
 					if (it->first==mCommanderUnit)
@@ -1313,6 +1323,11 @@ void SquadGraphics::update( unsigned int deltaTime )
 	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 	{
 		(*it)->update(deltaTime);
+	}
+
+	for (std::map<UnitGrap*,UnitGrap*>::iterator itt=mDeathUnits.begin();itt!=mDeathUnits.end();itt++)
+	{
+		itt->first->update(deltaTime);
 	}
 }
 
@@ -1530,3 +1545,91 @@ void SquadGraphics::stopShowValue()
 {
 	mSquadValueBB->stopShow();
 }	
+
+void SquadGraphics::defenseAction( SquadGraphics* enemy,bool isMove )
+{
+	//检查进攻方人数,选出防御方合适的人数进行动作
+
+	std::vector<UnitGrap*> defenseUnit;
+
+	defenseUnit.push_back(mCommanderUnit);
+
+	if (enemy->mSoldierUnits.size()+1<mSoldierUnits.size()+1)//如果进攻方数量小于防御方,则需要选择,否则不用
+	{
+
+		if (enemy->mSoldierUnits.size()+1<=3)//从前排选出
+		{
+			if(enemy->mSoldierUnits.size()!=0)//只剩指挥官?
+			{
+				int i=0;
+				for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+				{
+					if (i!=enemy->mSoldierUnits.size())
+					{
+						if ((*it)->mFormationPosition<2)
+						{
+							defenseUnit.push_back((*it));
+							i++;
+						}
+					}
+					else
+					{
+						break;
+					}
+				}
+			}
+		}
+		else
+		{
+			int i=0;
+			for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+			{
+				if (i!=enemy->mSoldierUnits.size())
+				{
+					defenseUnit.push_back((*it));
+					i++;
+				}
+				else
+				{
+					break;
+				}
+			}
+		}
+	}
+	else
+	{
+		for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+		{
+			defenseUnit.push_back((*it));
+		}
+	}
+
+	//执行动作
+
+	for (std::vector<UnitGrap*>::iterator it=defenseUnit.begin();it!=defenseUnit.end();it++)
+	{
+		//设置火花粒子
+
+		(*it)->playWeaponParticle(UnitGrap::Shield,"mp_metal_hit");
+		
+		//设置自身粒子
+
+		(*it)->addParticle("9999","Hit/mp_hit_01");
+		(*it)->startParticle("9999",true);
+	}
+}
+
+bool SquadGraphics::isDefenseActionOver()
+{
+	if (mCommanderUnit->mIsPUEnd)
+	{
+		mCommanderUnit->mIsPUEnd=false;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+
