@@ -13,7 +13,7 @@
 class AnimationBlender;
 
 //单位类,由单位组成小队
-class UnitGrap//:public ParticleUniverse::ParticleSystemListener 
+class UnitGrap:public ParticleUniverse::ParticleSystemListener 
 {
 public:
 	UnitGrap(std::string unitmesh, std::string unitmat,std::string factiontex,Ogre::SceneNode* node);
@@ -33,9 +33,13 @@ public:
 		RightHand
 	};
 
-	void createWeapon(std::string mesh, std::string mat,WeaponType type);
+	void createWeapon(std::string mesh, std::string mat,std::string weaponPU,Ogre::Vector3 PUVector,WeaponType type);
 
 	void setWeapon(WeaponType type,BoneType bone);
+
+	void playWeaponParticle( WeaponType type,std::string name );
+
+	void stopWeaponParticle( WeaponType type);
 
 	void setAniGroup(std::string anigroup);
 
@@ -83,9 +87,11 @@ public:
 	bool mParticleVisible;
 
 	bool addParticle(std::string id,std::string name);
-	void startParticle(std::string id);
+	void startParticle(std::string id,bool isTriggerEvent=false);
 	void stopParticle(std::string id);
 	void delParticle(std::string id);
+	void handleParticleSystemEvent( ParticleUniverse::ParticleSystem *particleSystem, ParticleUniverse::ParticleUniverseEvent &particleUniverseEvent );
+	bool mIsPUEnd;
 
 	Ogre::SceneNode* mParticleNode;
 	typedef std::map<std::string, ParticleUniverse::ParticleSystem*> PUMap;

@@ -17,7 +17,7 @@ class SquadGrapManager;
 class GUISquadBillBoard; 
 class GUISquadValueBillBoard;
 
-class SquadGraphics//:public ParticleUniverse::ParticleSystemListener 
+class SquadGraphics 
 {
 public:
 	friend SquadGrapManager;//仅限定单位管理器可以构造单位
@@ -46,10 +46,6 @@ public:
 	bool isAnimationOver(UnitType object);
 	void setInitAnimation(UnitType object);
 
-// 	void setEffect(std::string name,UnitType object);
-// 	bool isEffectOver(UnitType object);
-// 	void stopEffect(UnitType object);
-
 	void setGrid(int x,int y);
 
 	void setScale(Ogre::Vector3 scale,bool isAnim);
@@ -61,6 +57,9 @@ public:
 	void stopDeath();
 
 	void setWeaponMode(WeaponMode mode);
+
+	void defenseAction(SquadGraphics* enemy,bool isMove);
+	bool isDefenseActionOver();
 
 	void setVisible(bool visible);
 	bool getVisible() {return mVisibale;}
@@ -84,8 +83,6 @@ private:
 	SquadGraphics(std::string squadName, std::string datapath, Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index,int soldierCount);
 
 	void update(unsigned int deltaTime);
-
-	//void handleParticleSystemEvent (ParticleUniverse::ParticleSystem *particleSystem, ParticleUniverse::ParticleUniverseEvent &particleUniverseEvent);
 
 	void setCheckUnitHeight(bool enable);
 
@@ -113,12 +110,18 @@ private:
 	std::string mPWeaponMesh;
 	std::string mPWeaponMat;
 	std::string mPWeaponAniGroup;
+	std::string mPWeaponPU;
+	Ogre::Vector3 mPWeaponPUVector;
 	std::string mSWeaponMesh;
 	std::string mSWeaponMat;
+	std::string mSWeaponPU;
+	Ogre::Vector3 mSWeaponPUVector;
 	std::string mSWeaponAniGroup;
 	bool mSWeaponBow;
 	std::string mShieldMesh;
 	std::string mShieldMat;
+	std::string mShieldPU;
+	Ogre::Vector3 mShieldVector;
 	std::string mFactionTexture;
 	std::vector<UnitGrap*> mSoldierUnits;
 	int mSoldierIndex;

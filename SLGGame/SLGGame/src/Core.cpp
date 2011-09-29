@@ -371,6 +371,16 @@ void Core::destroyPUSystem( ParticleUniverse::ParticleSystem* pu )
 	 ParticleUniverse::ParticleSystemManager::getSingletonPtr()->destroyParticleSystem(pu,mSceneMgr);
 }
 
+void Core::destroyAllPUSystem()
+{
+	for (std::vector<ParticleUniverse::ParticleSystem*>::iterator it=mPUSystems.begin();it!=mPUSystems.end();it++)
+	{
+		ParticleUniverse::ParticleSystemManager::getSingletonPtr()->destroyParticleSystem((*it),mSceneMgr);
+	}
+
+	mPUSystems.clear();
+}
+
 void Core::updateStats(void)
 {
 	static Ogre::String currFps = "Current FPS: ";

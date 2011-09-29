@@ -30,6 +30,7 @@ bool MapPUCutScene::endCutScene()
 void MapPUCutScene::skipCutScene()
 {
 	mParticle->stop();
+	Core::getSingleton().destroyPUSystem(mParticle);
 }
 void MapPUCutScene::updateCutScene(unsigned int deltaTime)
 {
