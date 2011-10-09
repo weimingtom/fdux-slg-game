@@ -1,0 +1,329 @@
+15:30:10: Creating resource group General
+15:30:10: Creating resource group Internal
+15:30:10: Creating resource group Autodetect
+15:30:10: SceneManagerFactory for type 'DefaultSceneManager' registered.
+15:30:10: Registering ResourceManager for type Material
+15:30:10: Registering ResourceManager for type Mesh
+15:30:10: Registering ResourceManager for type Skeleton
+15:30:10: MovableObjectFactory for type 'ParticleSystem' registered.
+15:30:10: OverlayElementFactory for type Panel registered.
+15:30:10: OverlayElementFactory for type BorderPanel registered.
+15:30:10: OverlayElementFactory for type TextArea registered.
+15:30:10: Registering ResourceManager for type Font
+15:30:10: ArchiveFactory for archive type FileSystem registered.
+15:30:10: ArchiveFactory for archive type Zip registered.
+15:30:10: DDS codec registering
+15:30:10: FreeImage version: 3.13.1
+15:30:10: This program uses FreeImage, a free, open source image library supporting all common bitmap formats. See http://freeimage.sourceforge.net for details
+15:30:10: Supported formats: bmp,ico,jpg,jif,jpeg,jpe,jng,koa,iff,lbm,mng,pbm,pbm,pcd,pcx,pgm,pgm,png,ppm,ppm,ras,tga,targa,tif,tiff,wap,wbmp,wbm,psd,cut,xbm,xpm,gif,hdr,g3,sgi,exr,j2k,j2c,jp2,pfm,pct,pict,pic,bay,bmq,cr2,crw,cs1,dc2,dcr,dng,erf,fff,hdr,k25,kdc,mdc,mos,mrw,nef,orf,pef,pxn,raf,raw,rdc,sr2,srf,arw,3fr,cine,ia,kc2,mef,nrw,qtk,rw2,sti,drf,dsc,ptx,cap,iiq,rwz
+15:30:10: Registering ResourceManager for type HighLevelGpuProgram
+15:30:10: Registering ResourceManager for type Compositor
+15:30:10: MovableObjectFactory for type 'Entity' registered.
+15:30:10: MovableObjectFactory for type 'Light' registered.
+15:30:10: MovableObjectFactory for type 'BillboardSet' registered.
+15:30:10: MovableObjectFactory for type 'ManualObject' registered.
+15:30:10: MovableObjectFactory for type 'BillboardChain' registered.
+15:30:10: MovableObjectFactory for type 'RibbonTrail' registered.
+15:30:10: Loading library .\RenderSystem_Direct3D9_d
+15:30:10: Installing plugin: D3D9 RenderSystem
+15:30:10: D3D9 : Direct3D9 Rendering Subsystem created.
+15:30:11: D3D9: Driver Detection Starts
+15:30:11: D3D9: Driver Detection Ends
+15:30:11: Plugin successfully installed
+15:30:11: Loading library .\RenderSystem_GL_d
+15:30:12: Installing plugin: GL RenderSystem
+15:30:12: OpenGL Rendering Subsystem created.
+15:30:12: Plugin successfully installed
+15:30:12: Loading library .\Plugin_CgProgramManager_d
+15:30:13: Installing plugin: Cg Program Manager
+15:30:13: Plugin successfully installed
+15:30:13: *-*-* OGRE Initialising
+15:30:13: *-*-* Version 1.7.2 (Cthugha)
+15:30:13: D3D9 : RenderSystem Option: Allow NVPerfHUD = No
+15:30:13: D3D9 : RenderSystem Option: FSAA = 0
+15:30:13: D3D9 : RenderSystem Option: Floating-point mode = Fastest
+15:30:13: D3D9 : RenderSystem Option: Full Screen = No
+15:30:13: D3D9 : RenderSystem Option: Rendering Device = Monitor-1-ATI Mobility Radeon HD 5650
+15:30:13: D3D9 : RenderSystem Option: Resource Creation Policy = Create on all devices
+15:30:13: D3D9 : RenderSystem Option: VSync = No
+15:30:13: D3D9 : RenderSystem Option: VSync Interval = 1
+15:30:13: D3D9 : RenderSystem Option: Video Mode = 800 x 600 @ 32-bit colour
+15:30:13: D3D9 : RenderSystem Option: sRGB Gamma Conversion = No
+15:30:13: CPU Identifier & Features
+15:30:13: -------------------------
+15:30:13:  *   CPU ID: GenuineIntel: Intel(R) Core(TM) i5 CPU       M 450  @ 2.40GHz
+15:30:13:  *      SSE: yes
+15:30:13:  *     SSE2: yes
+15:30:13:  *     SSE3: yes
+15:30:13:  *      MMX: yes
+15:30:13:  *   MMXEXT: yes
+15:30:13:  *    3DNOW: no
+15:30:13:  * 3DNOWEXT: no
+15:30:13:  *     CMOV: yes
+15:30:13:  *      TSC: yes
+15:30:13:  *      FPU: yes
+15:30:13:  *      PRO: yes
+15:30:13:  *       HT: no
+15:30:13: -------------------------
+15:30:13: D3D9 : Subsystem Initialising
+15:30:13: Registering ResourceManager for type Texture
+15:30:13: Registering ResourceManager for type GpuProgram
+15:30:13: ***************************************
+15:30:13: *** D3D9 : Subsystem Initialised OK ***
+15:30:13: ***************************************
+15:30:13: D3D9RenderSystem::_createRenderWindow "View", 640x480 windowed  miscParams: externalWindowHandle=459594 
+15:30:13: D3D9 : Created D3D9 Rendering Window 'View' : 640x480, 32bpp
+15:30:13: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+15:30:13: D3D9: Vertex texture format supported - PF_L8
+15:30:13: D3D9: Vertex texture format supported - PF_L16
+15:30:13: D3D9: Vertex texture format supported - PF_A8
+15:30:13: D3D9: Vertex texture format supported - PF_A4L4
+15:30:13: D3D9: Vertex texture format supported - PF_BYTE_LA
+15:30:13: D3D9: Vertex texture format supported - PF_R5G6B5
+15:30:13: D3D9: Vertex texture format supported - PF_B5G6R5
+15:30:13: D3D9: Vertex texture format supported - PF_A4R4G4B4
+15:30:13: D3D9: Vertex texture format supported - PF_A1R5G5B5
+15:30:13: D3D9: Vertex texture format supported - PF_A8R8G8B8
+15:30:13: D3D9: Vertex texture format supported - PF_B8G8R8A8
+15:30:13: D3D9: Vertex texture format supported - PF_A2R10G10B10
+15:30:13: D3D9: Vertex texture format supported - PF_A2B10G10R10
+15:30:13: D3D9: Vertex texture format supported - PF_DXT1
+15:30:13: D3D9: Vertex texture format supported - PF_DXT2
+15:30:13: D3D9: Vertex texture format supported - PF_DXT3
+15:30:13: D3D9: Vertex texture format supported - PF_DXT4
+15:30:13: D3D9: Vertex texture format supported - PF_DXT5
+15:30:13: D3D9: Vertex texture format supported - PF_FLOAT16_RGB
+15:30:13: D3D9: Vertex texture format supported - PF_FLOAT16_RGBA
+15:30:13: D3D9: Vertex texture format supported - PF_FLOAT32_RGB
+15:30:13: D3D9: Vertex texture format supported - PF_FLOAT32_RGBA
+15:30:13: D3D9: Vertex texture format supported - PF_X8R8G8B8
+15:30:13: D3D9: Vertex texture format supported - PF_X8B8G8R8
+15:30:13: D3D9: Vertex texture format supported - PF_R8G8B8A8
+15:30:13: D3D9: Vertex texture format supported - PF_DEPTH
+15:30:13: D3D9: Vertex texture format supported - PF_SHORT_RGBA
+15:30:13: D3D9: Vertex texture format supported - PF_FLOAT16_R
+15:30:13: D3D9: Vertex texture format supported - PF_FLOAT32_R
+15:30:13: D3D9: Vertex texture format supported - PF_SHORT_GR
+15:30:13: D3D9: Vertex texture format supported - PF_FLOAT16_GR
+15:30:13: D3D9: Vertex texture format supported - PF_FLOAT32_GR
+15:30:13: D3D9: Vertex texture format supported - PF_SHORT_RGB
+15:30:13: D3D9: Vertex texture format supported - PF_PVRTC_RGB2
+15:30:13: D3D9: Vertex texture format supported - PF_PVRTC_RGBA2
+15:30:13: D3D9: Vertex texture format supported - PF_PVRTC_RGB4
+15:30:13: D3D9: Vertex texture format supported - PF_PVRTC_RGBA4
+15:30:13: RenderSystem capabilities
+15:30:13: -------------------------
+15:30:13: RenderSystem Name: Direct3D9 Rendering Subsystem
+15:30:13: GPU Vendor: ati
+15:30:13: Device Name: Monitor-1-ATI Mobility Radeon HD 5650
+15:30:13: Driver Version: 8.14.1.6099
+15:30:13:  * Fixed function pipeline: yes
+15:30:13:  * Hardware generation of mipmaps: yes
+15:30:13:  * Texture blending: yes
+15:30:13:  * Anisotropic texture filtering: yes
+15:30:13:  * Dot product texture operation: yes
+15:30:13:  * Cube mapping: yes
+15:30:13:  * Hardware stencil buffer: yes
+15:30:13:    - Stencil depth: 8
+15:30:13:    - Two sided stencil support: yes
+15:30:13:    - Wrap stencil values: yes
+15:30:13:  * Hardware vertex / index buffers: yes
+15:30:13:  * Vertex programs: yes
+15:30:13:  * Number of floating-point constants for vertex programs: 256
+15:30:13:  * Number of integer constants for vertex programs: 16
+15:30:13:  * Number of boolean constants for vertex programs: 16
+15:30:13:  * Fragment programs: yes
+15:30:13:  * Number of floating-point constants for fragment programs: 224
+15:30:13:  * Number of integer constants for fragment programs: 16
+15:30:13:  * Number of boolean constants for fragment programs: 16
+15:30:13:  * Geometry programs: no
+15:30:13:  * Number of floating-point constants for geometry programs: 0
+15:30:13:  * Number of integer constants for geometry programs: 0
+15:30:13:  * Number of boolean constants for geometry programs: 0
+15:30:13:  * Supported Shader Profiles: hlsl ps_1_1 ps_1_2 ps_1_3 ps_1_4 ps_2_0 ps_2_a ps_2_b ps_2_x ps_3_0 vs_1_1 vs_2_0 vs_2_a vs_2_x vs_3_0
+15:30:13:  * Texture Compression: yes
+15:30:13:    - DXT: yes
+15:30:13:    - VTC: no
+15:30:13:    - PVRTC: no
+15:30:13:  * Scissor Rectangle: yes
+15:30:13:  * Hardware Occlusion Query: yes
+15:30:13:  * User clip planes: yes
+15:30:13:  * VET_UBYTE4 vertex element type: yes
+15:30:13:  * Infinite far plane projection: yes
+15:30:13:  * Hardware render-to-texture: yes
+15:30:13:  * Floating point textures: yes
+15:30:13:  * Non-power-of-two textures: yes
+15:30:13:  * Volume textures: yes
+15:30:13:  * Multiple Render Targets: 4
+15:30:13:    - With different bit depths: yes
+15:30:13:  * Point Sprites: yes
+15:30:13:  * Extended point parameters: yes
+15:30:13:  * Max Point Size: 10
+15:30:13:  * Vertex texture fetch: yes
+15:30:13:  * Number of world matrices: 0
+15:30:13:  * Number of texture units: 8
+15:30:13:  * Stencil buffer depth: 8
+15:30:13:  * Number of vertex blend matrices: 0
+15:30:13:    - Max vertex textures: 4
+15:30:13:    - Vertex textures shared: no
+15:30:13:  * Render to Vertex Buffer : no
+15:30:13:  * DirectX per stage constants: yes
+15:30:13: DefaultWorkQueue('Root') initialising on thread 007A3AB0.
+15:30:13: DefaultWorkQueue('Root')::WorkerFunc - thread 007C8E18 starting.
+15:30:13: DefaultWorkQueue('Root')::WorkerFunc - thread 007C8E88 starting.
+15:30:13: DefaultWorkQueue('Root')::WorkerFunc - thread 007C9818 starting.
+15:30:13: Particle Renderer Type 'billboard' registered
+15:30:13: DefaultWorkQueue('Root')::WorkerFunc - thread 007CCE18 starting.
+15:30:13: Creating resource group material
+15:30:13: Added resource location 'F:\C++\WarChess\media\testmaterial\.' of type 'FileSystem' to resource group 'material'
+15:30:13: Creating resource group mesh
+15:30:13: Added resource location 'F:\C++\WarChess\media\testmesh\.' of type 'FileSystem' to resource group 'mesh'
+15:30:13: Creating resource group terrain
+15:30:13: Added resource location 'F:\C++\WarChess\media\terrain\.' of type 'FileSystem' to resource group 'terrain'
+15:30:13: Parsing scripts for resource group Autodetect
+15:30:13: Finished parsing scripts for resource group Autodetect
+15:30:13: Parsing scripts for resource group General
+15:30:13: Finished parsing scripts for resource group General
+15:30:13: Parsing scripts for resource group Internal
+15:30:13: Finished parsing scripts for resource group Internal
+15:30:13: Parsing scripts for resource group material
+15:30:13: Parsing script bank.material
+15:30:13: Parsing script cliff.material
+15:30:13: Parsing script cube.material
+15:30:13: Parsing script flag.material
+15:30:13: Parsing script map.material
+15:30:13: Parsing script TerrainBlock.material
+15:30:13: Parsing script tree.material
+15:30:13: Parsing script water.material
+15:30:13: Finished parsing scripts for resource group material
+15:30:13: Parsing scripts for resource group mesh
+15:30:13: Parsing script arrow.material
+15:30:13: Parsing script athene.material
+15:30:13: Parsing script knot.material
+15:30:13: Finished parsing scripts for resource group mesh
+15:30:13: Parsing scripts for resource group terrain
+15:30:13: Finished parsing scripts for resource group terrain
+15:30:13: Terrain created; size=513 minBatch=33 maxBatch=65 treeDepth=4 lodLevels=5 leafLods=2
+15:30:15: Texture: grass_1024.jpg: Loading 1 faces(PF_R8G8B8,1024x1024x1) with  hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,1024x1024x1.
+15:30:15: Texture: waveNM.png: Loading 1 faces(PF_R8G8B8,256x256x1) with  hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,256x256x1.
+15:30:15: D3D9 device: 0x[0471A2A0] lost. Releasing D3D9 texture: SceneManagerInstance2/compRTT
+15:30:15: Released D3D9 texture: SceneManagerInstance2/compRTT
+15:30:15: D3D9 Device 0x[0471A2A0] entered lost state
+15:30:15: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+15:30:15: !!! Direct3D Device successfully restored.
+15:30:15: D3D9 device: 0x[0471A2A0] was reset
+15:30:15: Texture: spot_shadow_fade.png: Loading 1 faces(PF_R8G8B8,128x128x1) with  hardware generated mipmaps from Image. Internal format is PF_X8R8G8B8,128x128x1.
+15:30:19: D3D9 device: 0x[0471A2A0] lost. Releasing D3D9 texture: SceneManagerInstance2/compRTT
+15:30:19: Released D3D9 texture: SceneManagerInstance2/compRTT
+15:30:19: D3D9 Device 0x[0471A2A0] entered lost state
+15:30:19: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+15:30:19: !!! Direct3D Device successfully restored.
+15:30:19: D3D9 device: 0x[0471A2A0] was reset
+15:30:57: D3D9 device: 0x[0471A2A0] lost. Releasing D3D9 texture: SceneManagerInstance2/compRTT
+15:30:57: Released D3D9 texture: SceneManagerInstance2/compRTT
+15:30:57: D3D9 Device 0x[0471A2A0] entered lost state
+15:30:57: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+15:30:58: !!! Direct3D Device successfully restored.
+15:30:58: D3D9 device: 0x[0471A2A0] was reset
+15:30:58: D3D9 device: 0x[0471A2A0] lost. Releasing D3D9 texture: SceneManagerInstance2/compRTT
+15:30:58: Released D3D9 texture: SceneManagerInstance2/compRTT
+15:30:58: D3D9 Device 0x[0471A2A0] entered lost state
+15:30:58: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+15:30:58: !!! Direct3D Device successfully restored.
+15:30:58: D3D9 device: 0x[0471A2A0] was reset
+15:30:58: D3D9 device: 0x[0471A2A0] lost. Releasing D3D9 texture: SceneManagerInstance2/compRTT
+15:30:58: Released D3D9 texture: SceneManagerInstance2/compRTT
+15:30:58: D3D9 Device 0x[0471A2A0] entered lost state
+15:30:58: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+15:30:58: !!! Direct3D Device successfully restored.
+15:30:58: D3D9 device: 0x[0471A2A0] was reset
+15:30:58: D3D9 device: 0x[0471A2A0] lost. Releasing D3D9 texture: SceneManagerInstance2/compRTT
+15:30:58: Released D3D9 texture: SceneManagerInstance2/compRTT
+15:30:58: D3D9 Device 0x[0471A2A0] entered lost state
+15:30:58: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+15:30:58: !!! Direct3D Device successfully restored.
+15:30:58: D3D9 device: 0x[0471A2A0] was reset
+15:30:58: D3D9 device: 0x[0471A2A0] lost. Releasing D3D9 texture: SceneManagerInstance2/compRTT
+15:30:58: Released D3D9 texture: SceneManagerInstance2/compRTT
+15:30:58: D3D9 Device 0x[0471A2A0] entered lost state
+15:30:58: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+15:30:58: !!! Direct3D Device successfully restored.
+15:30:58: D3D9 device: 0x[0471A2A0] was reset
+15:30:58: D3D9 device: 0x[0471A2A0] lost. Releasing D3D9 texture: SceneManagerInstance2/compRTT
+15:30:58: Released D3D9 texture: SceneManagerInstance2/compRTT
+15:30:58: D3D9 Device 0x[0471A2A0] entered lost state
+15:30:58: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+15:30:58: !!! Direct3D Device successfully restored.
+15:30:58: D3D9 device: 0x[0471A2A0] was reset
+15:30:58: D3D9 device: 0x[0471A2A0] lost. Releasing D3D9 texture: SceneManagerInstance2/compRTT
+15:30:58: Released D3D9 texture: SceneManagerInstance2/compRTT
+15:30:58: D3D9 Device 0x[0471A2A0] entered lost state
+15:30:58: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+15:30:58: !!! Direct3D Device successfully restored.
+15:30:58: D3D9 device: 0x[0471A2A0] was reset
+15:30:59: D3D9 device: 0x[0471A2A0] lost. Releasing D3D9 texture: SceneManagerInstance2/compRTT
+15:30:59: Released D3D9 texture: SceneManagerInstance2/compRTT
+15:30:59: D3D9 Device 0x[0471A2A0] entered lost state
+15:30:59: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+15:30:59: !!! Direct3D Device successfully restored.
+15:30:59: D3D9 device: 0x[0471A2A0] was reset
+15:30:59: D3D9 device: 0x[0471A2A0] lost. Releasing D3D9 texture: SceneManagerInstance2/compRTT
+15:30:59: Released D3D9 texture: SceneManagerInstance2/compRTT
+15:30:59: D3D9 Device 0x[0471A2A0] entered lost state
+15:30:59: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+15:30:59: !!! Direct3D Device successfully restored.
+15:30:59: D3D9 device: 0x[0471A2A0] was reset
+15:30:59: D3D9 device: 0x[0471A2A0] lost. Releasing D3D9 texture: SceneManagerInstance2/compRTT
+15:30:59: Released D3D9 texture: SceneManagerInstance2/compRTT
+15:30:59: D3D9 Device 0x[0471A2A0] entered lost state
+15:30:59: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+15:30:59: !!! Direct3D Device successfully restored.
+15:30:59: D3D9 device: 0x[0471A2A0] was reset
+15:30:59: D3D9 device: 0x[0471A2A0] lost. Releasing D3D9 texture: SceneManagerInstance2/compRTT
+15:30:59: Released D3D9 texture: SceneManagerInstance2/compRTT
+15:30:59: D3D9 Device 0x[0471A2A0] entered lost state
+15:30:59: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+15:30:59: !!! Direct3D Device successfully restored.
+15:30:59: D3D9 device: 0x[0471A2A0] was reset
+15:30:59: D3D9 device: 0x[0471A2A0] lost. Releasing D3D9 texture: SceneManagerInstance2/compRTT
+15:30:59: Released D3D9 texture: SceneManagerInstance2/compRTT
+15:30:59: D3D9 Device 0x[0471A2A0] entered lost state
+15:30:59: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+15:30:59: !!! Direct3D Device successfully restored.
+15:30:59: D3D9 device: 0x[0471A2A0] was reset
+15:30:59: D3D9 device: 0x[0471A2A0] lost. Releasing D3D9 texture: SceneManagerInstance2/compRTT
+15:30:59: Released D3D9 texture: SceneManagerInstance2/compRTT
+15:30:59: D3D9 Device 0x[0471A2A0] entered lost state
+15:30:59: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+15:30:59: !!! Direct3D Device successfully restored.
+15:30:59: D3D9 device: 0x[0471A2A0] was reset
+15:30:59: D3D9 device: 0x[0471A2A0] lost. Releasing D3D9 texture: SceneManagerInstance2/compRTT
+15:30:59: Released D3D9 texture: SceneManagerInstance2/compRTT
+15:30:59: D3D9 Device 0x[0471A2A0] entered lost state
+15:30:59: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+15:30:59: !!! Direct3D Device successfully restored.
+15:30:59: D3D9 device: 0x[0471A2A0] was reset
+15:30:59: D3D9 device: 0x[0471A2A0] lost. Releasing D3D9 texture: SceneManagerInstance2/compRTT
+15:30:59: Released D3D9 texture: SceneManagerInstance2/compRTT
+15:30:59: D3D9 Device 0x[0471A2A0] entered lost state
+15:30:59: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+15:30:59: !!! Direct3D Device successfully restored.
+15:30:59: D3D9 device: 0x[0471A2A0] was reset
+15:30:59: D3D9 device: 0x[0471A2A0] lost. Releasing D3D9 texture: SceneManagerInstance2/compRTT
+15:30:59: Released D3D9 texture: SceneManagerInstance2/compRTT
+15:30:59: D3D9 Device 0x[0471A2A0] entered lost state
+15:30:59: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+15:30:59: !!! Direct3D Device successfully restored.
+15:30:59: D3D9 device: 0x[0471A2A0] was reset
+15:30:59: D3D9 device: 0x[0471A2A0] lost. Releasing D3D9 texture: SceneManagerInstance2/compRTT
+15:30:59: Released D3D9 texture: SceneManagerInstance2/compRTT
+15:30:59: D3D9 Device 0x[0471A2A0] entered lost state
+15:30:59: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+15:30:59: !!! Direct3D Device successfully restored.
+15:30:59: D3D9 device: 0x[0471A2A0] was reset
+15:30:59: D3D9 device: 0x[0471A2A0] lost. Releasing D3D9 texture: SceneManagerInstance2/compRTT
+15:30:59: Released D3D9 texture: SceneManagerInstance2/compRTT
+15:30:59: D3D9 Device 0x[0471A2A0] entered lost state
+15:30:59: D3D9 : WARNING - disabling VSync in windowed mode can cause timing issues at lower frame rates, turn VSync on if you observe this problem.
+15:30:59: !!! Direct3D Device successfully restored.
+15:30:59: D3D9 device: 0x[0471A2A0] was reset
