@@ -51,7 +51,12 @@ else {
 	$time = intval($row['time']);
 	$crttime = time();
 
-	($crttime - $time > 60) or die('Please wait at least 1 minute to send another feedback');
+	if ($crttime - $time < 60) { //or die('Please wait at least 1 minute to send another feedback');
+		echo '您的反馈提交失败！';
+		mysql_free_result($result);
+		mysql_close($con);
+		exit();
+	}
 
 	$query = "UPDATE `timestamp` SET `timestamp`.`time`='" . $crttime . "' WHERE `timestamp`.`ip`='" . $realip . "'";
 	mysql_query($query) or die('Query failed: ' . mysql_error());
@@ -78,6 +83,7 @@ mysql_query($query) or die('Query failed: ' . mysql_error());
 
 mysql_close($con);
 
+echo '您已经成功提交了反馈，感谢您对游戏提出的宝贵意见！';
 exit();
 
 ?>

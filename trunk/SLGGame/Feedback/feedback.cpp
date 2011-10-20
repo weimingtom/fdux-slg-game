@@ -73,6 +73,7 @@ void Feedback::releaseNetworkResource()
 
 void Feedback::sendFeedbackFinished(QNetworkReply *reply)
 {
+	/*
 	if (reply->error() == QNetworkReply::NoError)
 	{
 		QMessageBox::information(NULL, QString::fromStdWString(L"提示"), QString::fromStdWString(L"您已经成功提交了反馈，感谢您对游戏提出的宝贵意见！"));
@@ -81,6 +82,9 @@ void Feedback::sendFeedbackFinished(QNetworkReply *reply)
 	{
 		QMessageBox::information(NULL, QString::fromStdWString(L"提示"), QString::fromStdWString(L"您的反馈提交失败！"));
 	}
+	*/
+
+	QMessageBox::information(NULL, QString::fromStdWString(L"提示"), QTextCodec::codecForName("utf8")->toUnicode(reply->readAll()));
 	reply->deleteLater();
 }
 
