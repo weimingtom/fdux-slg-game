@@ -15,6 +15,7 @@
 #include <QMessageBox>
 #include <QPlainTextEdit>
 #include <QResizeEvent>
+#include <QTextCodec>
 
 class Feedback : public QMainWindow
 {
