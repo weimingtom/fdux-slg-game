@@ -3,9 +3,11 @@
 #include <IIRoot.h>
 
 SkillEditor::SkillEditor(QWidget *parent, Qt::WFlags flags)
-	: QMainWindow(parent, flags)
+	: QMainWindow(parent, flags),mDeltaTime(0)
 {
 	ui.setupUi(this);
+
+	mSkillManager=new SkillManager();
 
 	rWindow=ui.graphicsView;
 	mFpsLable=new QLabel(this);
@@ -42,8 +44,12 @@ IIRenderWindow* SkillEditor::getGView()
 
 void SkillEditor::timerEvent( QTimerEvent * event )
 {
+	mTimer.start();
 	rWindow->timerEvent(event);
+	mSkillManager->update(mDeltaTime);
 	IIRoot::getSingletonPtr()->mRoot->renderOneFrame();
+	mDeltaTime=mTimer.interval()+1;
+	mTimer.stop();
 }
 
 void SkillEditor::messageLogged( const Ogre::String &message, Ogre::LogMessageLevel lml, bool maskDebug, const Ogre::String &logName )
