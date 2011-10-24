@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 
 		w.initValue();
 		w.show();
-		w.startTimer(10);
+		w.startTimer(1);
 		return app.exec();
 	}
 	catch (Ogre::Exception& e)

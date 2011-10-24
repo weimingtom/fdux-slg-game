@@ -6,11 +6,13 @@
 
 #include <QLCDNumber>
 #include <QLabel>
+#include <QTimer>
 
 #include <Ogre.h>
 
 #include "renderwindow.h"
 #include "ToolBarControl.h"
+#include "SkillManager.h"
 
 class SkillEditor : public QMainWindow,public Ogre::LogListener
 {
@@ -35,6 +37,10 @@ private:
 	QLCDNumber* mCruuTimeShower;
 	QLabel* mFpsLable;
 	QLabel* mCameraLable;
+
+	SkillManager* mSkillManager;
+	unsigned int mDeltaTime;
+	QTimer mTimer;
 
 
 };

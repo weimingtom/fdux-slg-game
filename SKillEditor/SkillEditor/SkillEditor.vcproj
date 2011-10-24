@@ -210,7 +210,7 @@
 					>
 					<Tool
 						Name="VCCustomBuildTool"
-						CommandLine="copy $(InputFileName) ..\debug"
+						CommandLine="copy $(InputFileName) ..\debug&#x0D;&#x0A;"
 						Outputs="$(InputDir)"
 					/>
 				</FileConfiguration>
@@ -541,6 +541,38 @@
 					/>
 				</FileConfiguration>
 			</File>
+		</Filter>
+		<Filter
+			Name="Skill"
+			>
+			<File
+				RelativePath=".\Src\Skill.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Src\Skill.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Src\SkillManager.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Src\SkillManager.h"
+				>
+			</File>
+			<Filter
+				Name="Driver"
+				>
+				<File
+					RelativePath=".\Src\Driver.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Src\Driver.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 	</Files>
 	<Globals>
