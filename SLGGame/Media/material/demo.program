@@ -1,0 +1,169 @@
+vertex_program NormalDepthVP/Skinned/OneTexture cg
+{
+    source NormalDepth_VP_S_1T.cg
+    entry_point main
+    profiles arbvp1 vs_2_0
+ 
+	includes_skeletal_animation true
+    default_params
+    {
+	   	param_named_auto worldMatrix3x4Array world_matrix_array_3x4
+		param_named_auto viewProjectionMatrix viewproj_matrix
+    }
+}
+
+vertex_program NormalDepthVP/NotSkinned/OneTexture cg
+{
+    source NormalDepth_VP_NS_1T.cg
+    entry_point main
+    profiles arbvp1 vs_2_0
+ 
+    default_params
+    {
+		param_named_auto worldViewProj worldviewproj_matrix
+		param_named_auto worldMatrix world_matrix
+    }
+}
+
+vertex_program NormalDepthVP/NotSkinned/MultiTexture cg
+{
+    source NormalDepth_VP_NS_MT.cg
+    entry_point main
+    profiles arbvp1 vs_2_0
+ 
+    default_params
+    {
+		param_named_auto worldViewProj worldviewproj_matrix
+		param_named_auto worldMatrix world_matrix
+    }
+}
+ 
+fragment_program NormalDepthFP/OneTexture cg
+{
+    source NormalDepth_FP_1T.cg
+    entry_point main
+    profiles arbfp1 ps_2_0 fp20
+ 
+    default_params
+    {
+		param_named_auto farChip far_clip_distance 
+    }
+}
+
+fragment_program NormalDepthFP/MultiTexture cg
+{
+    source NormalDepth_FP_MT.cg
+    entry_point main
+    profiles arbfp1 ps_2_0 fp20
+ 
+    default_params
+    {
+		param_named_auto farChip far_clip_distance 
+    }
+}
+
+vertex_program ColorOnlyVP/Skinned/OneTexture cg
+{
+    source ColorOnly_VP_S_1T.cg
+    entry_point main
+    profiles arbvp1 vs_2_0
+ 
+	includes_skeletal_animation true
+    default_params
+    {
+		param_named_auto worldMatrix3x4Array world_matrix_array_3x4
+		param_named_auto viewProjectionMatrix viewproj_matrix
+    }
+}
+
+vertex_program ColorOnlyVP/NotSkinned/OneTexture cg
+{
+    source ColorOnly_VP_NS_1T.cg
+    entry_point main
+    profiles arbvp1 vs_2_0
+ 
+    default_params
+    {
+		param_named_auto worldViewProj worldviewproj_matrix
+    }
+}
+ 
+fragment_program ColorOnlyFP/OneTexture cg
+{
+    source ColorOnly_FP_1T.cg
+    entry_point main
+    profiles arbfp1 ps_2_0 fp20
+ 
+    default_params
+    {
+    }
+}
+
+vertex_program ColorOnlyVP/NotSkinned/TwoTexture cg
+{
+    source ColorOnly_VP_NS_2T.cg
+    entry_point main
+    profiles arbvp1 vs_2_0
+ 
+    default_params
+    {
+		param_named_auto worldViewProj worldviewproj_matrix
+    }
+}
+
+fragment_program ColorOnlyFP/TwoTexture cg
+{
+    source ColorOnly_FP_2T.cg
+    entry_point main
+    profiles arbfp1 ps_2_0 fp20
+ 
+    default_params
+    {
+    }
+}
+
+vertex_program ColorOnlyVP/NotSkinned/FourTexture cg
+{
+    source ColorOnly_VP_NS_4T.cg
+    entry_point main
+    profiles arbvp1 vs_2_0
+ 
+    default_params
+    {
+		param_named_auto worldViewProj worldviewproj_matrix
+    }
+}
+
+fragment_program ColorOnlyFP/FourTexture cg
+{
+    source ColorOnly_FP_4T.cg
+    entry_point main
+    profiles arbfp1 ps_2_0 fp20
+ 
+    default_params
+    {
+    }
+}
+
+vertex_program FinalPassVP cg
+{
+    source FinalPass_VP.cg
+    entry_point main
+    profiles arbvp1 vs_2_0
+ 
+    default_params
+    {
+		param_named_auto flip render_target_flipping
+    }
+}
+
+fragment_program FinalPassFP cg
+{
+    source FinalPass_FP.cg
+    entry_point main
+    profiles arbfp1 ps_2_0 fp20
+ 
+    default_params
+    {
+    }
+}

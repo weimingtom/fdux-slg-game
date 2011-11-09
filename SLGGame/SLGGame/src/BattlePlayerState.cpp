@@ -6,6 +6,7 @@
 
 #include <boost/format.hpp>
 
+#include "CommonFunction.h"
 #include "GUISystem.h"
 #include "GUIBattle.h"
 #include "Core.h"
@@ -219,7 +220,7 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 		case PLAYERCONTROL_CHOOSESKILL:
 
 		case PLAYERCONTROL_NONE:
-			for(int n = 0; n < battlemanager->mSquadList.size(); n++)
+			for(unsigned int n = 0; n < battlemanager->mSquadList.size(); n++)
 			{
 				int x,y;
 				battlemanager->mSquadList[n]->getCrood(&x,&y);
@@ -279,20 +280,20 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 				SquadGraphics* squadgrap = SquadGrapManager::getSingleton().getSquad(grapid);
 				if(x != -1 && !(x == GX && y == GY) && squadgrap->isDirectionOver())
 				{
-					Direction d;
-					float k;
-					if(GY-y == 0)
-						k = 2.0f;
-					else
-						k = abs(GX -x)/ abs(GY - y);
-					if( GY > y && k <= 1.0f)
-						d = South;
-					else if( GY < y && k <= 1.0f)
-						d = North;
-					else if( GX > x )
-						d = East;
-					else
-						d = West;
+					Direction d = GetDirection(x,y,GX,GY);
+// 					float k;
+// 					if(GY-y == 0)
+// 						k = 2.0f;
+// 					else
+// 						k = abs(GX -x)/ abs(GY - y);
+// 					if( GY > y && k <= 1.0f)
+// 						d = South;
+// 					else if( GY < y && k <= 1.0f)
+// 						d = North;
+// 					else if( GX > x )
+// 						d = East;
+// 					else
+// 						d = West;
 					mSelectSquad->setDirection(d);
 					squadgrap->setDirection(d,true);
 					mSquadWindow->setSquad(mSelectSquad);
@@ -336,7 +337,7 @@ void BattlePlayerState::newTurn()
 	GUIInfoWindow* infoWindow=(GUIInfoWindow*)mGUIBattle->getSubWindow("InfoWindow");
 	infoWindow->setCaption(StringTable::getSingletonPtr()->getString("PlayerTurn"),MyGUI::Colour::White);
 	infoWindow->showScene("");
-	for(int n = 0; n < mSquadManager->mSquadList.size(); n++)
+	for(unsigned int n = 0; n < mSquadManager->mSquadList.size(); n++)
 	{
 		if(mSquadManager->mSquadList[n]->getTeam() == 1)
 		{
@@ -420,7 +421,7 @@ void BattlePlayerState::moveSquad()
 	coordlist.push_back(startx);
 	coordlist.push_back(starty);
 	//寻找可以移动的路径
-	int n = 0;
+	unsigned int n = 0;
 	bool finding = true;
 	while(finding)
 	{

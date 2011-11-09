@@ -1,0 +1,22 @@
+import NotSkinned/CastShadow/TwoTexture from "demotemplate.material"
+material CliffMat1 : NotSkinned/CastShadow/TwoTexture
+{
+	set_texture_alias Diffuse GreenLand.dds
+	set_texture_alias Diffuse1 Cliff.dds
+}
+
+material CliffMat2 : NotSkinned/CastShadow/TwoTexture
+{
+	set_texture_alias Diffuse Desert.dds
+	set_texture_alias Diffuse1 Cliff.dds
+}
+material CliffMat3 : NotSkinned/CastShadow/TwoTexture
+{
+	set_texture_alias Diffuse GreenLand.dds
+	set_texture_alias Diffuse1 Cliff.dds
+}
+material CliffMat4 : NotSkinned/CastShadow/TwoTexture
+{
+	set_texture_alias Diffuse Desert.dds
+	set_texture_alias Diffuse1 Cliff.dds
+}

@@ -1,0 +1,12 @@
+void main(
+	float2	uv		:	TEXCOORD0,
+	
+	out float4 oColour	: COLOR,
+	
+	uniform	sampler2D	diffuseMap	:	register(s0)
+	)
+{
+	float4 color  = tex2D(diffuseMap, uv);
+	clip(color.w - 0.9);
+	oColour = float4(color.xyz, 1.0);
+}

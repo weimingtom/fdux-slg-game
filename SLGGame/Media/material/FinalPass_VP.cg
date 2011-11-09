@@ -1,0 +1,17 @@
+void main(
+	float4 Pos: POSITION,
+	
+	out float4 oPos: POSITION,
+	out float2 oUv: TEXCOORD0,
+
+	uniform float flip
+	)
+{
+	Pos.xy = sign(Pos.xy);
+	
+	oPos = float4(Pos.xy, 0, 1);
+	oPos.y *= flip;
+	
+	oUv.x = 0.5 * (1 + Pos.x);
+	oUv.y = 0.5 * (1 - Pos.y);
+}

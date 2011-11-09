@@ -43,7 +43,7 @@ void BattleControlState::update(unsigned int deltaTime)
 	}
 	//执行回合结束触发器
 	BattleSquadManager* battlesquadmanager = BattleSquadManager::getSingletonPtr();
-	for(int n = 0; n < battlesquadmanager->mSquadList.size(); n++)
+	for(unsigned int n = 0; n < battlesquadmanager->mSquadList.size(); n++)
 	{
 		if(battlesquadmanager->mSquadList[n]->getTeam() == team)
 			battlesquadmanager->mSquadList[n]->OnTurnEnd();

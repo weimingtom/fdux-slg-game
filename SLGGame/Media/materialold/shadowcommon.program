@@ -56,19 +56,6 @@ fragment_program DepthShadowmap/CasterFP cg
     }
 }
 
-
-vertex_program DepthShadowmap/CastNoShadowVP cg
-{
-    source CastNoShadow.cg
-    entry_point casterVP
-    profiles arbvp1 vs_2_0
- 
-    default_params
-    {
-        param_named_auto worldViewProj worldviewproj_matrix
-    }
-}
- 
 fragment_program DepthShadowmap/CastNoShadowFP cg
 {
     source CastNoShadow.cg
