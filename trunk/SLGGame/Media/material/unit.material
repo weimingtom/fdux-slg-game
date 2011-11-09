@@ -1,0 +1,35 @@
+import Skinned/CastShadow/OneTexture from "demotemplate.material"
+material HolySpirit : Skinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse HolySpirit.dds
+}
+
+material HeavyInf : Skinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse HeavyInf.dds
+}
+
+material HeavyInfOf : Skinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse HeavyInfOf.dds
+}
+ 
+material Saint : Skinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse Saint.dds
+}
+
+material Stronghold : Skinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse Stronghold.dds
+}
+
+material LightInfOf : Skinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse LightInfOf.dds
+}
+
+material LightInf : Skinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse LightInf.dds
+}

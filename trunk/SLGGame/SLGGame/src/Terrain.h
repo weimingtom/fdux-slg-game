@@ -108,4 +108,5 @@ private:
 	Ogre::Plane mWaterPlane;
 	Ogre::RenderTarget* mReflectionTarget;
 	Ogre::RenderTarget* mShadowDepthMapTarget;
+	Ogre::Viewport* mMainViewport;
 };

@@ -13,6 +13,7 @@ Terrain::Terrain()
 	mObjId = 0;
 	mPUId = 0;
 	mGridNode = NULL;
+	mMainViewport = NULL;
 }
 
 Terrain::~Terrain()
@@ -22,6 +23,12 @@ Terrain::~Terrain()
 
 bool Terrain::createTerrain()
 {
+
+	if(mMainViewport == NULL) 
+		mMainViewport = Core::getSingleton().mCamera->getViewport();
+	Ogre::CompositorManager::getSingleton().addCompositor(mMainViewport, "DemoCompositor");
+	Ogre::CompositorManager::getSingleton().setCompositorEnabled(mMainViewport, "DemoCompositor", true);
+
 	mMapData = MapDataManager::getSingletonPtr();
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	int terrainszie = mMapData->getMapSize() + 2 * MAPBOLDER + 1;
@@ -39,8 +46,10 @@ bool Terrain::createTerrain()
 	mLight->setDiffuseColour(Ogre::ColourValue(1.0f, 1.0f,1.0f));
 
 	//设置深度图投影
-	Ogre::TexturePtr tex = Ogre::TextureManager::getSingleton().createManual("shadowdepthmap",
-		Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::TEX_TYPE_2D, 1024, 1024, 0, Ogre::PF_FLOAT32_R, Ogre::TU_RENDERTARGET);
+	Ogre::TexturePtr tex = Ogre::TextureManager::getSingleton().getByName("shadowdepthmap");
+	if(tex.isNull())
+		tex = Ogre::TextureManager::getSingleton().createManual("shadowdepthmap",
+			Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::TEX_TYPE_2D, 1024, 1024, 0, Ogre::PF_FLOAT32_R, Ogre::TU_RENDERTARGET);
 	mShadowDepthMapTarget = tex->getBuffer()->getRenderTarget();
 	Ogre::Viewport* vp = mShadowDepthMapTarget->addViewport(CameraContral::getSingleton().getShadowMapCamera());
 	vp->setSkiesEnabled(false);
@@ -52,69 +61,54 @@ bool Terrain::createTerrain()
 	//弱爆了……
 	Ogre::MaterialPtr mat;
 	mat = Ogre::MaterialManager::getSingleton().getByName("TerrainTile");
-	Ogre::Technique* tech = mat->getTechnique("default");
-	Ogre::Pass* pass = tech->getPass(1);
-	Ogre::TextureUnitState* tu =  pass->getTextureUnitState(0);
-	tu->setTextureName(tex->getName());
-	pass = tech->getPass(0);
-	tu =  pass->getTextureUnitState(0);
+	Ogre::AliasTextureNamePairList texAliasList;
 	std::string texname;
 	datalib->getData("GameData/BattleData/MapData/Ground/G0Tex",texname);
-	tu->setTextureName(texname);
-	tu =  pass->getTextureUnitState(1);
+	texAliasList.insert(std::make_pair("Diffuse",texname));
+	//mat->applyTextureAliases(Ogre::AliasTextureNamePairList("Diffuse",texname));
 	datalib->getData("GameData/BattleData/MapData/Ground/G1Tex",texname);
-	tu->setTextureName(texname);
-	tu =  pass->getTextureUnitState(2);
+	texAliasList.insert(std::make_pair("Diffuse1",texname));
+	//mat->applyTextureAliases(Ogre::AliasTextureNamePairList("Diffuse1",texname));
 	datalib->getData("GameData/BattleData/MapData/Ground/G2Tex",texname);
-	tu->setTextureName(texname);
-	tu =  pass->getTextureUnitState(3);
+	texAliasList.insert(std::make_pair("Diffuse2",texname));
+	//mat->applyTextureAliases(Ogre::AliasTextureNamePairList("Diffuse2",texname));
 	datalib->getData("GameData/BattleData/MapData/Ground/G3Tex",texname);
-	tu->setTextureName(texname);
+	texAliasList.insert(std::make_pair("Diffuse3",texname));
+	//mat->applyTextureAliases(Ogre::AliasTextureNamePairList("Diffuse3",texname));
+	mat->applyTextureAliases(texAliasList);
+	texAliasList.clear();
 
-// 	mat = Ogre::MaterialManager::getSingleton().getByName("TerrainTile");
-// 	tech = mat->getTechnique("default");
-// 	pass = tech->getPass(1);
-// 	tu =  pass->getTextureUnitState(0);
-// 	tu->setTextureName(tex->getName());
 	mat = Ogre::MaterialManager::getSingleton().getByName("CliffMat1");
-	tech = mat->getTechnique("default");
-	pass = tech->getPass(1);
-	tu =  pass->getTextureUnitState(0);
-	tu->setTextureName(tex->getName());
-	pass = tech->getPass(0);
-	tu =  pass->getTextureUnitState(0);
 	datalib->getData("GameData/BattleData/MapData/Ground/G0Tex",texname);
-	tu->setTextureName(texname);
+	//mat->applyTextureAliases(Ogre::AliasTextureNamePairList("Diffuse",texname));
+	texAliasList.insert(std::make_pair("Diffuse",texname));
+	texAliasList.insert(std::make_pair("Diffuse1","Cliff.dds"));
+	mat->applyTextureAliases(texAliasList);
+	texAliasList.clear();
 
 	mat = Ogre::MaterialManager::getSingleton().getByName("CliffMat2");
-	tech = mat->getTechnique("default");
-	pass = tech->getPass(1);
-	tu =  pass->getTextureUnitState(0);
-	tu->setTextureName(tex->getName());
-	pass = tech->getPass(0);
-	tu =  pass->getTextureUnitState(0);
 	datalib->getData("GameData/BattleData/MapData/Ground/G1Tex",texname);
-	tu->setTextureName(texname);
+	//mat->applyTextureAliases(Ogre::AliasTextureNamePairList("Diffuse",texname));
+	texAliasList.insert(std::make_pair("Diffuse",texname));
+	texAliasList.insert(std::make_pair("Diffuse1","Cliff.dds"));
+	mat->applyTextureAliases(texAliasList);
+	texAliasList.clear();
 
 	mat = Ogre::MaterialManager::getSingleton().getByName("CliffMat3");
-	tech = mat->getTechnique("default");
-	pass = tech->getPass(1);
-	tu =  pass->getTextureUnitState(0);
-	tu->setTextureName(tex->getName());
-	pass = tech->getPass(0);
-	tu =  pass->getTextureUnitState(0);
 	datalib->getData("GameData/BattleData/MapData/Ground/G2Tex",texname);
-	tu->setTextureName(texname);
+	//mat->applyTextureAliases(Ogre::AliasTextureNamePairList("Diffuse",texname));
+	texAliasList.insert(std::make_pair("Diffuse",texname));
+	texAliasList.insert(std::make_pair("Diffuse1","Cliff.dds"));
+	mat->applyTextureAliases(texAliasList);
+	texAliasList.clear();
 
 	mat = Ogre::MaterialManager::getSingleton().getByName("CliffMat4");
-	tech = mat->getTechnique("default");
-	pass = tech->getPass(1);
-	tu =  pass->getTextureUnitState(0);
-	tu->setTextureName(tex->getName());
-	pass = tech->getPass(0);
-	tu =  pass->getTextureUnitState(0);
 	datalib->getData("GameData/BattleData/MapData/Ground/G3Tex",texname);
-	tu->setTextureName(texname);
+	//mat->applyTextureAliases(Ogre::AliasTextureNamePairList("Diffuse",texname));
+	texAliasList.insert(std::make_pair("Diffuse",texname));
+	texAliasList.insert(std::make_pair("Diffuse1","Cliff.dds"));
+	mat->applyTextureAliases(texAliasList);
+	texAliasList.clear();
 
 	//创建地面Mesh
 	mTerrainNode = Core::getSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode("TerrainNode");
@@ -232,16 +226,18 @@ bool Terrain::createTerrain()
 	mTerrainNode->setPosition(0,0,0);
 
 	//创建水面
-	tex = Ogre::TextureManager::getSingleton().createManual("reflection",
-		Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::TEX_TYPE_2D, 512, 512, 0, Ogre::PF_R8G8B8, Ogre::TU_RENDERTARGET);
+	tex = Ogre::TextureManager::getSingleton().getByName("reflection");
+	if(tex.isNull())
+		tex = Ogre::TextureManager::getSingleton().createManual("reflection",
+			Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::TEX_TYPE_2D, 512, 512, 0, Ogre::PF_R8G8B8, Ogre::TU_RENDERTARGET);
 	mReflectionTarget = tex->getBuffer()->getRenderTarget();
 	mReflectionTarget->addViewport(Core::getSingleton().mCamera)->setOverlaysEnabled(false);
 	mReflectionTarget->addListener(this);
-	mat = Ogre::MaterialManager::getSingleton().getByName("ReflectionWater");
-	tech = mat->getTechnique(0);
-	pass = tech->getPass(0);
-	tu =  pass->getTextureUnitState(1);
-	tu->setTextureName(tex->getName());
+// 	mat = Ogre::MaterialManager::getSingleton().getByName("ReflectionWater");
+// 	tech = mat->getTechnique(0);
+// 	pass = tech->getPass(0);
+// 	tu =  pass->getTextureUnitState(1);
+// 	tu->setTextureName(tex->getName());
 
 	mWaterPlane = Ogre::Plane(Ogre::Vector3::UNIT_Y, WATERHEIGHT);
 
@@ -303,12 +299,15 @@ bool Terrain::createTerrain()
 // 	Ogre::SceneNode* testnode = Core::getSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode();
 // 	testnode->attachObject(testent);
 // 	testnode->setPosition(0.0f,10.0f,0.0f);
-
 	return true;
 }
 
 void Terrain::destoryTerrian()
 {
+
+	Ogre::CompositorManager::getSingleton().removeCompositor(mMainViewport,"DemoCompositor");
+
+
 	Core* core = Core::getSingletonPtr();
 	core->mSceneMgr->destroyLight(mLight);
 
@@ -370,13 +369,13 @@ void Terrain::destoryTerrian()
 	mReflectionTarget->removeAllViewports();
 	//Ogre::ResourceGroupManager::getSingleton().deleteResource("reflection");
 	//rSys->destroyRenderTarget(mReflectionTarget->getName());
-	Ogre::TextureManager::getSingleton().remove("reflection");
+	//Ogre::TextureManager::getSingleton().remove("reflection");
 
 	mShadowDepthMapTarget->removeAllListeners();
 	mShadowDepthMapTarget->removeAllViewports();
 	//rSys->destroyRenderTarget(mShadowDepthMapTarget->getName());
 	//Ogre::ResourceGroupManager::getSingleton().deleteResource("shadowdepthmap");
-	Ogre::TextureManager::getSingleton().remove("shadowdepthmap");
+	//Ogre::TextureManager::getSingleton().remove("shadowdepthmap");
 
 }
 
@@ -1033,6 +1032,10 @@ void Terrain::preRenderTargetUpdate(const Ogre::RenderTargetEvent& evt)
 		//Ogre::Vector3 shadowdir = CameraContral::getSingleton().getShadowMapCamera()->getDirection();
 		//sharedparams->setNamedConstant("shadowDir",shadowdir);
 	}
+// 	else
+// 	{
+// 		Ogre::CompositorManager::getSingleton().setCompositorEnabled(mMainViewport, "DemoCompositor", false);
+// 	}
 }
 void Terrain::postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt)
 {
@@ -1049,5 +1052,9 @@ void Terrain::postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt)
 // 				ite->second->mTileNode->setVisible(true);
 // 			}
 // 		SquadGrapManager::getSingleton().setParticleVisible(true);
+// 	}
+// 	if(evt.source == mReflectionTarget)
+// 	{
+// 		Ogre::CompositorManager::getSingleton().setCompositorEnabled(mMainViewport, "DemoCompositor", true);
 // 	}
 }

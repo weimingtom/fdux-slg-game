@@ -36,7 +36,7 @@ GUISquadWindows::GUISquadWindows(MyGUI::Window* window,int Width,int Height):GUI
 	assignWidget(mSquadImage,"SquadImage");
 	assignWidget(mSquadFactionImage,"SquadFactionImage");
 
-	mSquadLeadName->eventToolTip= MyGUI::newDelegate(GUITipsWindow::getSingletonPtr(), &GUITipsWindow::eventToolTip);
+	mSquadLeadName->eventToolTip += MyGUI::newDelegate(GUITipsWindow::getSingletonPtr(), &GUITipsWindow::eventToolTip);
 
 
 	window->setPosition(0,Height-window->getHeight());

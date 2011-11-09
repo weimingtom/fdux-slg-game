@@ -1,0 +1,218 @@
+material Skinned/CastShadow/OneTexture
+{ 
+	technique default
+	{
+		scheme Default
+		pass
+		{
+		    vertex_program_ref ColorOnlyVP/Skinned/OneTexture
+            {
+            }
+            fragment_program_ref ColorOnlyFP/OneTexture
+            {
+            }
+			texture_unit Diffuse
+			{
+				texture Saint.dds
+			}
+		}
+	}
+    technique
+    {
+		scheme WriteDepthMap
+        pass 
+        {
+            vertex_program_ref DepthShadowmap/CasterWithSkinVP
+            {
+            }
+            fragment_program_ref DepthShadowmap/CasterFP
+            {
+            }
+        }
+    }
+	technique
+	{
+		scheme NormalDepth
+		pass 
+        {
+            vertex_program_ref NormalDepthVP/Skinned/OneTexture
+            {
+            }
+            fragment_program_ref NormalDepthFP/OneTexture
+            {
+            }
+			texture_unit Diffuse
+			{
+				texture Saint.dds
+			}
+        }
+	}
+}
+
+material NotSkinned/CastShadow/OneTexture
+{ 
+	technique default
+	{
+		scheme Default
+		pass
+		{
+			vertex_program_ref ColorOnlyVP/NotSkinned/OneTexture
+            {
+            }
+            fragment_program_ref ColorOnlyFP/OneTexture
+            {
+            }
+			texture_unit Diffuse
+			{
+				texture SceneObj.dds
+			}
+		}
+	}
+    technique
+    {
+		scheme WriteDepthMap
+        pass 
+        {
+            vertex_program_ref DepthShadowmap/CasterVP
+            {
+            }
+            fragment_program_ref DepthShadowmap/CasterFP
+            {
+            }
+        }
+    }
+	technique
+	{
+		scheme NormalDepth
+		pass 
+        {
+            vertex_program_ref NormalDepthVP/NotSkinned/OneTexture
+            {
+            }
+            fragment_program_ref NormalDepthFP/OneTexture
+            {
+            }
+			texture_unit Diffuse
+			{
+				texture Saint.dds
+			}
+        }
+	}
+}
+
+material NotSkinned/CastShadow/TwoTexture
+{ 
+	technique default
+	{
+		scheme Default
+		pass
+		{
+            vertex_program_ref ColorOnlyVP/NotSkinned/TwoTexture
+            {
+            }
+            fragment_program_ref ColorOnlyFP/TwoTexture
+            {
+            }
+			texture_unit Diffuse
+			{
+				texture SceneObj.dds
+			}
+			texture_unit Diffuse1
+			{
+				texture SceneObj.dds
+			}
+		}
+	}
+    technique
+    {
+		scheme WriteDepthMap
+        pass 
+        {
+            vertex_program_ref DepthShadowmap/CasterVP
+            {
+            }
+            fragment_program_ref DepthShadowmap/CasterFP
+            {
+            }
+        }
+    }
+	technique
+	{
+		scheme NormalDepth
+		pass 
+        {
+            vertex_program_ref NormalDepthVP/NotSkinned/MultiTexture
+            {
+            }
+            fragment_program_ref NormalDepthFP/MultiTexture
+            {
+            }
+        }
+	}
+}
+
+material NotSkinned/CastShadow/FourTexture
+{ 
+	technique default
+	{
+		scheme Default
+		pass
+		{
+            vertex_program_ref ColorOnlyVP/NotSkinned/FourTexture
+            {
+            }
+            fragment_program_ref ColorOnlyFP/FourTexture
+            {
+            }
+			texture_unit Diffuse
+			{
+				tex_coord_set 0
+				texture Desert.dds
+			}
+			texture_unit Diffuse1
+			{
+				tex_coord_set 1
+				texture GreenLand.dds
+				colour_op alpha_blend
+			}
+			texture_unit Diffuse2
+			{
+				tex_coord_set 2 
+				texture Swamp.dds 		
+				colour_op alpha_blend
+			}
+			texture_unit Diffuse3
+			{
+				tex_coord_set 3
+				texture Snow.dds
+				colour_op alpha_blend
+			}
+		}
+	}
+    technique
+    {
+		scheme WriteDepthMap
+        pass 
+        {
+            vertex_program_ref DepthShadowmap/CasterVP
+            {
+            }
+            fragment_program_ref DepthShadowmap/CasterFP
+            {
+            }
+        }
+    }
+	technique
+	{
+		scheme NormalDepth
+		pass 
+        {
+            vertex_program_ref NormalDepthVP/NotSkinned/MultiTexture
+            {
+            }
+            fragment_program_ref NormalDepthFP/MultiTexture
+            {
+            }
+        }
+	}
+}

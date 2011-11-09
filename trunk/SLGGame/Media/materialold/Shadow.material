@@ -23,10 +23,6 @@ material DepthShadowmap/CastNoShadow
 		scheme WriteDepthMap
         pass 
         {
-			scene_blend modulate
-			vertex_program_ref DepthShadowmap/CastNoShadowVP
-            {
-            }
 			fragment_program_ref DepthShadowmap/CastNoShadowFP
             {
             }

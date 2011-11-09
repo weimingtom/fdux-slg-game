@@ -1,0 +1,12 @@
+void main(
+	float3	normal	:	TEXCOORD0,
+	float	depth	:	TEXCOORD1,
+	
+	out float4 oColour	: COLOR,
+	
+	uniform	float	farChip
+	)
+{
+	float normdepth = depth.x / farChip;
+	oColour = float4(normal.xyz, normdepth);
+}

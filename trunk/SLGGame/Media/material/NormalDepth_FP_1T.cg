@@ -1,0 +1,17 @@
+void main(
+	float3	normal	:	TEXCOORD0,
+	float	depth	:	TEXCOORD1,
+	float2	uv		:	TEXCOORD2,
+	
+	
+	out float4 oColour	: COLOR,
+	
+	uniform	sampler2D	diffuseMap	:	register(s0),
+	uniform	float	farChip
+	)
+{
+	float a = tex2D(diffuseMap, uv).w;
+	clip(a - 0.9);
+	float normdepth = depth.x / farChip;
+	oColour = float4(normal.xyz, normdepth);
+}

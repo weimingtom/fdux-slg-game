@@ -1,0 +1,36 @@
+import NotSkinned/CastShadow/OneTexture from "demotemplate.material"
+material soul : NotSkinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse soul.dds
+}
+
+material SceneObj : NotSkinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse SceneObj.dds
+}
+
+material Pike : NotSkinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse Pike.dds
+}
+
+material RoundShield : NotSkinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse RoundShield.dds
+}
+
+material LargeShield : NotSkinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse LargeShield.dds
+}
+
+material Bow : NotSkinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse bow.dds
+}
+
+material LargeShield : NotSkinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse LargeShield.dds
+}
+

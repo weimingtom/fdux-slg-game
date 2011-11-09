@@ -1,0 +1,16 @@
+void main(
+	float4	position	:	POSITION,
+	float3	normal		:	NORMAL,
+
+	out	float4	oPosition	:	POSITION,
+	out	float3	oNormal		:	TEXCOORD0,
+	out	float	oDepth		:	TEXCOORD1,
+
+	uniform	float4x4	worldViewProj,
+	uniform	float3x4	worldMatrix
+	)
+{
+	oPosition = mul(worldViewProj, position);
+	oDepth.x = oPosition.z;
+	oNormal = mul((float3x3)worldMatrix, normal);
+}

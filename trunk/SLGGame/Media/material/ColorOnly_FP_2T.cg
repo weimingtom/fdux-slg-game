@@ -1,0 +1,15 @@
+void main(
+	float2	uv		:	TEXCOORD0,
+	float2	uv1		:	TEXCOORD1,
+	
+	out float4 oColour	: COLOR,
+	
+	uniform	sampler2D	diffuseMap	:	register(s0),
+	uniform	sampler2D	diffuseMap1	:	register(s1)
+	)
+{
+	float4 color  = tex2D(diffuseMap, uv);
+	float4 color1  = tex2D(diffuseMap1, uv1);
+	float3 final = lerp(color.xyz, color1.xyz, color1.w);
+	oColour = float4(final, 1.0);
+}

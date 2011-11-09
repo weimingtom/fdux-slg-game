@@ -1,0 +1,7 @@
+void casterFP(
+    out float4 result        : COLOR
+	)
+{
+    clip(-1);
+	result = float4(1.0,1.0,1.0,0.0);
+}

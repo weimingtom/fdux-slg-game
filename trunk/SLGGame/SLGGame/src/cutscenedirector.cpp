@@ -95,7 +95,7 @@ bool CutSceneDirector::mouseMoved(const OIS::MouseEvent &arg)
 }
 bool CutSceneDirector::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
 {
-	if(id == OIS::MouseButtonID::MB_Left)
+	if(id == OIS::MB_Left)
 		skipCutScene(0);
 	return false;
 }
