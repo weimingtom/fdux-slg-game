@@ -1,35 +1,35 @@
-shared_params ShadowSharedParamsName
-{
-	shared_param_named texView matrix4x4
-	shared_param_named texProj matrix4x4
-}
+//shared_params ShadowSharedParamsName
+//{
+//	shared_param_named texView matrix4x4
+//	shared_param_named texProj matrix4x4
+//}
 
-vertex_program DepthShadowmap/ReceiverVP cg
-{
-    source ShadowReceiver.cg
-    entry_point receiverVP
-    profiles arbvp1 vs_2_0
+//vertex_program DepthShadowmap/ReceiverVP cg
+//{
+//   source ShadowReceiver.cg
+//    entry_point receiverVP
+//    profiles arbvp1 vs_2_0
+// 
+//   default_params
+//    {
+//		param_named_auto world world_matrix
+//      param_named_auto worldViewProj worldviewproj_matrix
+//		shared_params_ref ShadowSharedParamsName
+//    }
+//}
  
-    default_params
-    {
-		param_named_auto world world_matrix
-        param_named_auto worldViewProj worldviewproj_matrix
-		shared_params_ref ShadowSharedParamsName
-    }
-}
- 
-fragment_program DepthShadowmap/ReceiverFP cg
-{
-    source ShadowReceiver.cg
-    entry_point receiverFP
-    profiles arbfp1 ps_2_0 fp20
- 
-    default_params
-    {
-		//param_named depthRange float 500
-		param_named depthOffset float 0.001
-    }
-}
+//fragment_program DepthShadowmap/ReceiverFP cg
+//{
+//  source ShadowReceiver.cg
+//    entry_point receiverFP
+//    profiles arbfp1 ps_2_0 fp20
+// 
+//   default_params
+//    {
+//		//param_named depthRange float 500
+//		param_named depthOffset float 0.001
+//    }
+//}
 
 vertex_program DepthShadowmap/CasterVP cg
 {

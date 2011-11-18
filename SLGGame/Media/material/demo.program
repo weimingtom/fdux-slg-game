@@ -9,6 +9,7 @@ vertex_program NormalDepthVP/Skinned/OneTexture cg
     {
 	   	param_named_auto worldMatrix3x4Array world_matrix_array_3x4
 		param_named_auto viewProjectionMatrix viewproj_matrix
+		param_named_auto viewMatrix view_matrix
     }
 }
 
@@ -21,6 +22,7 @@ vertex_program NormalDepthVP/NotSkinned/OneTexture cg
     default_params
     {
 		param_named_auto worldViewProj worldviewproj_matrix
+		param_named_auto worldView worldview_matrix 
 		param_named_auto worldMatrix world_matrix
     }
 }
@@ -34,6 +36,7 @@ vertex_program NormalDepthVP/NotSkinned/MultiTexture cg
     default_params
     {
 		param_named_auto worldViewProj worldviewproj_matrix
+		param_named_auto worldView worldview_matrix 
 		param_named_auto worldMatrix world_matrix
     }
 }
@@ -145,6 +148,46 @@ fragment_program ColorOnlyFP/FourTexture cg
     }
 }
 
+vertex_program SpecularEmissiveVP/Skinned/NoTexture cg
+{
+    source SpecularEmissive_VP_S_NT.cg
+    entry_point main
+    profiles arbvp1 vs_2_0
+ 
+	includes_skeletal_animation true
+    default_params
+    {
+	   	param_named_auto worldMatrix3x4Array world_matrix_array_3x4
+		param_named_auto viewProjectionMatrix viewproj_matrix
+    }
+}
+
+vertex_program SpecularEmissiveVP/NotSkinned/NoTexture cg
+{
+    source SpecularEmissive_VP_NS_NT.cg
+    entry_point main
+    profiles arbvp1 vs_2_0
+ 
+    default_params
+    {
+		param_named_auto worldViewProj worldviewproj_matrix
+    }
+}
+ 
+fragment_program SpecularEmissiveFP/NoTexture cg
+{
+    source SpecularEmissive_FP_NT.cg
+    entry_point main
+    profiles arbfp1 ps_2_0 fp20
+ 
+    default_params
+    {
+		param_named_auto sspecular surface_specular_colour
+		param_named_auto semissive surface_emissive_colour
+		param_named_auto shininess surface_shininess 
+    }
+}
+
 vertex_program FinalPassVP cg
 {
     source FinalPass_VP.cg
@@ -153,7 +196,7 @@ vertex_program FinalPassVP cg
  
     default_params
     {
-		param_named_auto flip render_target_flipping
+		param_named_auto worldViewProj worldviewproj_matrix
     }
 }
 
@@ -165,5 +208,53 @@ fragment_program FinalPassFP cg
  
     default_params
     {
+    }
+}
+
+vertex_program LightQuadVP cg
+{
+    source LightQuad_VP.cg
+    entry_point main
+    profiles arbvp1 vs_2_0
+ 
+    default_params
+    {
+		param_named_auto worldViewProj worldviewproj_matrix
+		param_named_auto viewportH viewport_height
+		param_named_auto viewportW viewport_width 
+		param_named_auto fov fov
+    }
+}
+
+shared_params TestSharedParamsName
+{
+	shared_param_named viewInv matrix4x4
+}
+
+shared_params ShadowSharedParamsName
+{
+	shared_param_named texView matrix4x4
+	shared_param_named texProj matrix4x4
+}
+
+fragment_program LightQuadFP cg
+{
+    source LightQuad_FP.cg
+    entry_point main
+    profiles arbfp1 ps_3_0 fp20
+ 
+    default_params
+    {
+		//param_named_auto viewInv inverse_view_matrix  
+		param_named_auto farChip far_clip_distance 
+		param_named_auto ambientColor ambient_light_colour
+		param_named_auto lightDir light_position 0
+		param_named_auto lightDifColor light_diffuse_colour 0
+		param_named_auto lightSpeColor light_specular_colour 0
+		param_named_auto cameraPos camera_position
+		param_named depthOffset float 0.001
+		param_named pcfOffset float 0.001
+		shared_params_ref ShadowSharedParamsName
+		shared_params_ref TestSharedParamsName 
     }
 }

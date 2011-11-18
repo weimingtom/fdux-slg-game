@@ -38,18 +38,19 @@ bool Terrain::createTerrain()
 
 
 	//创建灯光
-	Core::getSingleton().mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5f, 0.5f, 0.5f));
+	Core::getSingleton().mSceneMgr->setAmbientLight(Ogre::ColourValue(0.6f, 0.6f, 0.6f));
 	mLight = Core::getSingleton().mSceneMgr->createLight("TerrainLight");
 	mLight->setType(Ogre::Light::LT_DIRECTIONAL);
 	mLight->setPosition(-500.0f,500.0f, 500.0f);
 	mLight->setDirection(1.0f, -1.0f, -1.0f);
-	mLight->setDiffuseColour(Ogre::ColourValue(1.0f, 1.0f,1.0f));
+	mLight->setDiffuseColour(Ogre::ColourValue(0.6f, 0.6f,0.6f));
+	mLight->setSpecularColour(Ogre::ColourValue(1.0f, 1.0f,1.0f));
 
 	//设置深度图投影
 	Ogre::TexturePtr tex = Ogre::TextureManager::getSingleton().getByName("shadowdepthmap");
 	if(tex.isNull())
 		tex = Ogre::TextureManager::getSingleton().createManual("shadowdepthmap",
-			Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::TEX_TYPE_2D, 1024, 1024, 0, Ogre::PF_FLOAT32_R, Ogre::TU_RENDERTARGET);
+			Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::TEX_TYPE_2D, 1024, 1024, 0, Ogre::PF_FLOAT16_R, Ogre::TU_RENDERTARGET);
 	mShadowDepthMapTarget = tex->getBuffer()->getRenderTarget();
 	Ogre::Viewport* vp = mShadowDepthMapTarget->addViewport(CameraContral::getSingleton().getShadowMapCamera());
 	vp->setSkiesEnabled(false);
@@ -244,7 +245,7 @@ bool Terrain::createTerrain()
 	mWaterNode = Core::getSingleton().mSceneMgr->getRootSceneNode()->createChildSceneNode("WaterNode");
 	mWaterObject = Core::getSingleton().mSceneMgr->createManualObject("WaterObject");
 
-	mWaterObject->begin("ReflectionWater",Ogre::RenderOperation::OT_TRIANGLE_LIST);
+	mWaterObject->begin("DemoWater",Ogre::RenderOperation::OT_TRIANGLE_LIST);
 	startpos += TILESIZE/2;
 	for(int y = 0; y < terrainszie; y++)
 		for(int x = 0; x < terrainszie; x++)
@@ -1057,4 +1058,10 @@ void Terrain::postRenderTargetUpdate(const Ogre::RenderTargetEvent& evt)
 // 	{
 // 		Ogre::CompositorManager::getSingleton().setCompositorEnabled(mMainViewport, "DemoCompositor", true);
 // 	}
+	if(evt.source == mReflectionTarget)
+	{
+		Ogre::GpuSharedParametersPtr sharedparams = Ogre::GpuProgramManager::getSingleton().getSharedParameters("TestSharedParamsName");
+		Ogre::Matrix4 cameraview= Core::getSingleton().mCamera->getViewMatrix().inverse();
+		sharedparams->setNamedConstant("viewInv",cameraview);
+	}
 }

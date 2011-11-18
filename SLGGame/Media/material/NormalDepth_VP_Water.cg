@@ -7,15 +7,24 @@ void main(
 	out	float3	oNormal		:	TEXCOORD0,
 	out	float3	oViewPos	:	TEXCOORD1,
 	out	float2	oUv			:	TEXCOORD2,
+	out float3	oNoiseUv	:	TEXCOORD3,
 
 	uniform	float4x4	worldViewProj,
 	uniform	float4x4	worldView,
-	uniform	float3x4	worldMatrix
+	uniform	float3x4	worldMatrix,
+	uniform float timeVal,
+	uniform float scale,  // the amount to scale the noise texture by
+	uniform float scroll, // the amount by which to scroll the noise
+	uniform float noise  // the noise perturb as a factor of the  time
 	)
 {
 	oPosition = mul(worldViewProj, position);
 	float4 viewpos = mul(worldView, position);
 	oViewPos =  viewpos.xyz / viewpos.w;
 	oNormal = mul((float3x3)worldMatrix, normal);
+	
 	oUv = uv;
+	// Noise map coords
+	oNoiseUv.xy = (uv + (timeVal * scroll)) * scale;
+	oNoiseUv.z = noise * timeVal;
 }

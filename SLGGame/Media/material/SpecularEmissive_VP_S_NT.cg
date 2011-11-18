@@ -1,0 +1,19 @@
+void main(
+	float4	position	:	POSITION,
+	float4 	blendIdx	:	BLENDINDICES,
+	float4	blendWgt	:	BLENDWEIGHT,
+
+	out	float4	oPosition	:	POSITION,
+
+	uniform	float4x4	viewProjectionMatrix,
+	uniform	float3x4	worldMatrix3x4Array[80]
+	)
+{
+	float4 blendPos = float4(0,0,0,0);
+	int i;
+	for (i = 0; i < 4; ++i)
+	{
+		blendPos += float4(mul(worldMatrix3x4Array[blendIdx[i]], position).xyz, 1.0) * blendWgt[i];
+	}
+	oPosition = mul(viewProjectionMatrix, blendPos);
+}

@@ -5,7 +5,7 @@ compositor DemoCompositor
 		texture normal_depth target_width target_height PF_FLOAT16_RGBA
 		texture light target_width target_height PF_R8G8B8
 		texture color target_width target_height PF_R8G8B8
-		texture ssao target_width target_height PF_R8G8B8
+		texture specular_emissive target_width target_height PF_R8G8B8
 		
 		target normal_depth
 		{
@@ -23,25 +23,6 @@ compositor DemoCompositor
 				last_render_queue  79	
 			}
 		}
-		target light
-		{
-			input none
-			pass render_quad
-			{
-				material LightQuad
-				input 0 normal_depth
-				input 1 color
-			}
-		}
-		target ssao
-		{
-			input none
-			pass render_quad
-			{
-				material SSAO
-				input 0 normal_depth
-			}
-		}
 		target color
 		{
 			input none
@@ -56,6 +37,36 @@ compositor DemoCompositor
 			{
 				first_render_queue 10
 				last_render_queue  79	
+			}
+		}
+		target specular_emissive
+		{
+			input none
+			pass clear
+			{
+			}
+			
+			shadows off
+			material_scheme SpecularEmissive
+			
+			pass render_scene
+			{
+				first_render_queue 10
+				last_render_queue  79	
+			}
+		}
+		target light
+		{
+			input none
+			pass clear
+			{
+			}
+			pass render_quad
+			{
+				material LightQuad
+				input 0 normal_depth
+				input 1 color
+				input 2 specular_emissive
 			}
 		}
 		target_output
@@ -75,10 +86,7 @@ compositor DemoCompositor
 			pass render_quad
 			{
 				material FinalPass
-				input 0 normal_depth
-				input 1 color
-				input 2 light
-				input 3 ssao
+				input 0 light
 			}
 			
 			pass render_scene

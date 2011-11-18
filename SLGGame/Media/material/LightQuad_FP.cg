@@ -1,0 +1,55 @@
+void main(
+	float2 uv: TEXCOORD0, 
+	float3 ray: TEXCOORD1,
+	
+	out float4 oColour	: COLOR,
+
+	uniform float4x4 texView,
+	uniform float4x4 texProj,
+	uniform float4x4 viewInv,
+	uniform float farChip,
+	uniform float pcfOffset,
+	uniform float depthOffset,
+	uniform float3 ambientColor,
+	uniform float4 lightDir,
+	uniform float3 lightDifColor,
+	uniform float3 lightSpeColor,
+	uniform float3 cameraPos,
+	uniform sampler2D normalDepthTex: register(s0),	
+	uniform sampler2D colorTex: register(s1),
+	uniform sampler2D SpEmiTex: register(s2),
+	uniform sampler2D shadowMap : register(s3)
+	)
+{
+	float4 nd = tex2D(normalDepthTex, uv);
+	float3 color = tex2D(colorTex, uv).xyz;
+	float3 sm = tex2D(SpEmiTex, uv).xyz;
+	
+	float3 viewpos = ray * farChip * nd.w;
+	float4 worldpos = mul(viewInv, float4(viewpos,1.0));
+	
+	float4x4 texViewProj = mul(texProj, texView);
+    float4 shadowuv = mul(texViewProj,worldpos);
+	shadowuv.xyz = shadowuv.xyz / shadowuv.w;
+	shadowuv.z -= depthOffset;
+	float depth = tex2D(shadowMap, shadowuv.xy).x;
+	float PCFdepth1 = tex2D(shadowMap, shadowuv.xy + float2(-pcfOffset,0.0)).x;
+	float PCFdepth2 = tex2D(shadowMap, shadowuv.xy + float2(pcfOffset,0.0)).x;
+	float PCFdepth3 = tex2D(shadowMap, shadowuv.xy + float2(0.0,-pcfOffset)).x;
+	float PCFdepth4 = tex2D(shadowMap, shadowuv.xy + float2(0.0,pcfOffset)).x;
+	float shadow = (depth < shadowuv.z)? 0.0:1.0;
+	shadow += (PCFdepth1 < shadowuv.z)? 0.0:1.0;
+	shadow += (PCFdepth2 < shadowuv.z)? 0.0:1.0;
+	shadow += (PCFdepth3 < shadowuv.z)? 0.0:1.0;
+	shadow += (PCFdepth4 < shadowuv.z)? 0.0:1.0;
+	shadow = shadow * 0.2;
+	
+	float3 lightcolor = ambientColor + sm.zzz;	
+	float3 diffColor = lightDifColor * max(dot(nd.xyz,lightDir.xyz),0.0);
+	float3 V = normalize(cameraPos - worldpos.xyz);
+	float3 H = normalize(lightDir.xyz + V);
+	float3 specular = lightSpeColor * pow(max(dot(nd.xyz, H),0.0), sm.y * 100.0);
+	lightcolor = lightcolor + (diffColor + specular * sm.x) * shadow;
+	
+	oColour  = float4(color *  lightcolor,1.0);//float4(color * shadow,1.0);
+}

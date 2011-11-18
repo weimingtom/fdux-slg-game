@@ -4,13 +4,15 @@ void main(
 
 	out	float4	oPosition	:	POSITION,
 	out	float3	oNormal		:	TEXCOORD0,
-	out	float	oDepth		:	TEXCOORD1,
+	out	float3	oViewPos	:	TEXCOORD1,
 
 	uniform	float4x4	worldViewProj,
-	uniform	float3x4	worldMatrix
+	uniform	float3x4	worldMatrix,
+	uniform float4x4 	worldView
 	)
 {
 	oPosition = mul(worldViewProj, position);
-	oDepth.x = oPosition.z;
+	float4 viewpos = mul(worldView, position);
+	oViewPos =  viewpos.xyz / viewpos.w;
 	oNormal = mul((float3x3)worldMatrix, normal);
 }

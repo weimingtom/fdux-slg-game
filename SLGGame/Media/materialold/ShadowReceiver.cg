@@ -8,8 +8,7 @@ void receiverVP(
     uniform float4x4 world,
     uniform float4x4 worldViewProj,
     uniform float4x4 texView,
-	uniform float4x4 texProj,
-	uniform float3 shadowDir
+	uniform float4x4 texProj
     )
 {
     float4 worldPos = mul(world, position);

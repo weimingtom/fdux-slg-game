@@ -3,14 +3,10 @@ void main(
 	
 	out float4 oColour	: COLOR,
 
-	uniform sampler normalDepthTex: register(s0),	
-	uniform sampler colorTex: register(s1),
-	uniform sampler lightTex: register(s2),
-	uniform sampler ssaoTex: register(s3)
+	uniform sampler lightTex: register(s0)
 	)
 {
-	float3 color = tex2D(colorTex, uv);
-	float4 normal = tex2D(normalDepthTex, uv);
+	float3 light = tex2D(lightTex, uv);
 
-	oColour  = float4(lerp(color,normal.xyz,normal.w),1.0);
+	oColour  = float4(light,1.0);
 }

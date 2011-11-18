@@ -17,6 +17,22 @@ material Skinned/CastShadow/OneTexture
 			}
 		}
 	}
+	technique 
+	{
+		scheme SpecularEmissive
+		pass 
+        {
+			
+			emissive 0.0 0.0 0.0
+			specular 1.0 1.0 1.0 12.5
+			vertex_program_ref SpecularEmissiveVP/Skinned/NoTexture
+			{
+			}
+			fragment_program_ref SpecularEmissiveFP/NoTexture
+			{
+			}
+		}
+	}
     technique
     {
 		scheme WriteDepthMap
@@ -65,6 +81,21 @@ material NotSkinned/CastShadow/OneTexture
 			texture_unit Diffuse
 			{
 				texture SceneObj.dds
+			}
+		}
+	}
+	technique 
+	{
+		scheme SpecularEmissive
+		pass
+		{
+			emissive 0.0 0.0 0.0
+			specular 1.0 1.0 1.0 12.5
+			vertex_program_ref SpecularEmissiveVP/NotSkinned/NoTexture
+			{
+			}
+			fragment_program_ref SpecularEmissiveFP/NoTexture
+			{
 			}
 		}
 	}
@@ -120,6 +151,21 @@ material NotSkinned/CastShadow/TwoTexture
 			texture_unit Diffuse1
 			{
 				texture SceneObj.dds
+			}
+		}
+	}
+	technique 
+	{
+		scheme SpecularEmissive
+		pass
+		{
+			emissive 0.0 0.0 0.0
+			specular 1.0 1.0 1.0 12.5
+			vertex_program_ref SpecularEmissiveVP/NotSkinned/NoTexture
+			{
+			}
+			fragment_program_ref SpecularEmissiveFP/NoTexture
+			{
 			}
 		}
 	}
@@ -186,6 +232,21 @@ material NotSkinned/CastShadow/FourTexture
 				tex_coord_set 3
 				texture Snow.dds
 				colour_op alpha_blend
+			}
+		}
+	}
+	technique 
+	{
+		scheme SpecularEmissive
+		pass
+		{
+			emissive 0.0 0.0 0.0
+			specular 1.0 1.0 1.0 12.5
+			vertex_program_ref SpecularEmissiveVP/NotSkinned/NoTexture
+			{
+			}
+			fragment_program_ref SpecularEmissiveFP/NoTexture
+			{
 			}
 		}
 	}
