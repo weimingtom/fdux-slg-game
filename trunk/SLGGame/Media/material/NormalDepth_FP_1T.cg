@@ -1,6 +1,6 @@
 void main(
 	float3	normal	:	TEXCOORD0,
-	float	depth	:	TEXCOORD1,
+	float3	viewpos	:	TEXCOORD1,
 	float2	uv		:	TEXCOORD2,
 	
 	
@@ -12,6 +12,6 @@ void main(
 {
 	float a = tex2D(diffuseMap, uv).w;
 	clip(a - 0.9);
-	float normdepth = depth.x / farChip;
+	float normdepth = -viewpos.z / farChip;
 	oColour = float4(normal.xyz, normdepth);
 }

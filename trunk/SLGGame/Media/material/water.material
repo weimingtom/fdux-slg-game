@@ -1,0 +1,153 @@
+vertex_program ColorOnlyVP/Water cg
+{
+    source ColorOnly_VP_Water.cg
+    entry_point main
+    profiles arbvp1 vs_2_0
+ 
+    default_params
+    {
+		param_named_auto worldViewProjMatrix worldviewproj_matrix
+		param_named_auto eyePosition camera_position_object_space
+		param_named_auto timeVal time 0.05
+		param_named scroll float 1  
+		param_named scale float 2 
+		param_named noise float 5 
+		// scroll and noisePos will need updating per frame
+    }
+}
+
+fragment_program ColorOnlyFP/Water cg
+{
+    source ColorOnly_FP_Water.cg
+    entry_point main
+    profiles arbfp1 ps_2_0 fp20
+ 
+    default_params
+    {
+		param_named fresnelBias float 0.5 
+		param_named fresnelScale float 1.8 
+		param_named fresnelPower float 8  
+		param_named noiseScale float 0.02 
+    }
+}
+
+
+vertex_program NormalDepthVP/Water cg
+{
+    source NormalDepth_VP_Water.cg
+    entry_point main
+    profiles arbvp1 vs_2_0
+ 
+    default_params
+    {
+		param_named_auto worldViewProj worldviewproj_matrix
+		param_named_auto worldMatrix world_matrix
+		param_named_auto timeVal time 0.05
+		param_named scroll float 1  
+		param_named scale float 2 
+		param_named noise float 5 
+    }
+}
+ 
+fragment_program NormalDepthFP/Water cg
+{
+    source NormalDepth_FP_Water.cg
+    entry_point main
+    profiles arbfp1 ps_2_0 fp20
+ 
+    default_params
+    {
+		param_named_auto farChip far_clip_distance
+		param_named noiseScale float 0.02 
+		param_named texnoiseScale float 5
+    }
+}
+
+material DemoWater
+{ 
+	technique default
+	{
+		scheme Default
+		pass
+		{
+			vertex_program_ref ColorOnlyVP/Water
+            {
+            }
+            fragment_program_ref ColorOnlyFP/Water
+            {
+            }
+			texture_unit
+			{
+				// Perlin noise volume
+				texture waves2.dds
+				// min / mag filtering, no mip
+				filtering linear linear none
+				tex_address_mode wrap
+			}
+			// Reflection
+			texture_unit
+			{
+				// Will be filled in at runtime
+				texture reflection
+				tex_address_mode clamp
+			}
+		}
+	}
+	technique 
+	{
+		scheme SpecularEmissive
+		pass
+		{
+			emissive 0.5 0.5 0.5
+			specular 1.0 1.0 1.0 5.0
+			vertex_program_ref SpecularEmissiveVP/NotSkinned/NoTexture
+			{
+			}
+			fragment_program_ref SpecularEmissiveFP/NoTexture
+			{
+			}
+		}
+	}
+    technique
+    {
+		scheme WriteDepthMap
+        pass 
+        {
+            vertex_program_ref DepthShadowmap/CasterVP
+            {
+            }
+            fragment_program_ref DepthShadowmap/CasterFP
+            {
+            }
+        }
+    }
+	technique
+	{
+		scheme NormalDepth
+		pass 
+        {
+            vertex_program_ref NormalDepthVP/Water
+            {
+            }
+            fragment_program_ref NormalDepthFP/Water
+            {
+            }
+			texture_unit
+			{
+				// Perlin noise volume
+				texture waves2.dds
+				// min / mag filtering, no mip
+				filtering linear linear none
+				tex_address_mode wrap
+			}
+			texture_unit
+			{
+				// Perlin noise volume
+				texture 723-normal.jpg
+				// min / mag filtering, no mip
+				filtering linear linear none
+				tex_address_mode wrap
+			}
+        }
+	}
+}

@@ -12,15 +12,50 @@ material FinalPass
             }
 			texture_unit
 			{
-				tex_coord_set 0
 				tex_address_mode clamp
 				filtering none
 			}
 			texture_unit
 			{
-				tex_coord_set 1
 				tex_address_mode clamp
 				filtering none
+			}
+		}
+	}
+}
+
+material LightQuad
+{ 
+	technique
+	{
+		pass
+		{
+			vertex_program_ref LightQuadVP
+			{
+			}
+			fragment_program_ref LightQuadFP
+            {
+            }
+			texture_unit
+			{
+				tex_address_mode clamp
+				filtering none
+			}
+			texture_unit
+			{
+				tex_address_mode clamp
+				filtering none
+			}
+			texture_unit
+			{
+				tex_address_mode clamp
+				filtering none
+			}
+			texture_unit
+			{
+				texture shadowdepthmap
+				tex_address_mode border
+				tex_border_colour 1.0 1.0 1.0 1.0
 			}
 		}
 	}
