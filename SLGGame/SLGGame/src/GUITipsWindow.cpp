@@ -107,3 +107,9 @@ void GUITipsWindow::eventToolTip( MyGUI::Widget* _sender, const MyGUI::ToolTipIn
 		setTipsWindowPosition(_info.point.left+20,_info.point.top);
 	}
 }
+
+void GUITipsWindow::addToolTipEvent( MyGUI::Widget* widget )
+{
+	widget->eventToolTip.clear();
+	widget->eventToolTip += MyGUI::newDelegate(this, &GUITipsWindow::eventToolTip);
+}
