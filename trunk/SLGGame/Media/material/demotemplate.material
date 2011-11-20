@@ -5,6 +5,7 @@ material Skinned/CastShadow/OneTexture
 		scheme Default
 		pass
 		{
+			cull_hardware none
 		    vertex_program_ref ColorOnlyVP/Skinned/OneTexture
             {
             }
@@ -17,14 +18,14 @@ material Skinned/CastShadow/OneTexture
 			}
 		}
 	}
-	technique 
+	technique specular
 	{
 		scheme SpecularEmissive
 		pass 
         {
-			
+			cull_hardware none
 			emissive 0.0 0.0 0.0
-			specular 1.0 1.0 1.0 12.5
+			specular 1.0 1.0 1.0 50.0
 			vertex_program_ref SpecularEmissiveVP/Skinned/NoTexture
 			{
 			}
@@ -38,6 +39,7 @@ material Skinned/CastShadow/OneTexture
 		scheme WriteDepthMap
         pass 
         {
+			cull_hardware none
             vertex_program_ref DepthShadowmap/CasterWithSkinVP
             {
             }
@@ -51,6 +53,7 @@ material Skinned/CastShadow/OneTexture
 		scheme NormalDepth
 		pass 
         {
+			cull_hardware none
             vertex_program_ref NormalDepthVP/Skinned/OneTexture
             {
             }
@@ -72,6 +75,7 @@ material NotSkinned/CastShadow/OneTexture
 		scheme Default
 		pass
 		{
+			cull_hardware none
 			vertex_program_ref ColorOnlyVP/NotSkinned/OneTexture
             {
             }
@@ -84,11 +88,12 @@ material NotSkinned/CastShadow/OneTexture
 			}
 		}
 	}
-	technique 
+	technique specular
 	{
 		scheme SpecularEmissive
 		pass
 		{
+			cull_hardware none
 			emissive 0.0 0.0 0.0
 			specular 1.0 1.0 1.0 12.5
 			vertex_program_ref SpecularEmissiveVP/NotSkinned/NoTexture
@@ -104,6 +109,7 @@ material NotSkinned/CastShadow/OneTexture
 		scheme WriteDepthMap
         pass 
         {
+			cull_hardware none
             vertex_program_ref DepthShadowmap/CasterVP
             {
             }
@@ -117,6 +123,7 @@ material NotSkinned/CastShadow/OneTexture
 		scheme NormalDepth
 		pass 
         {
+			cull_hardware none
             vertex_program_ref NormalDepthVP/NotSkinned/OneTexture
             {
             }
@@ -154,13 +161,13 @@ material NotSkinned/CastShadow/TwoTexture
 			}
 		}
 	}
-	technique 
+	technique specular
 	{
 		scheme SpecularEmissive
 		pass
 		{
 			emissive 0.0 0.0 0.0
-			specular 1.0 1.0 1.0 12.5
+			specular 0.0 0.0 0.0 10.0
 			vertex_program_ref SpecularEmissiveVP/NotSkinned/NoTexture
 			{
 			}
@@ -235,13 +242,13 @@ material NotSkinned/CastShadow/FourTexture
 			}
 		}
 	}
-	technique 
+	technique specular
 	{
 		scheme SpecularEmissive
 		pass
 		{
 			emissive 0.0 0.0 0.0
-			specular 1.0 1.0 1.0 12.5
+			specular 0.0 0.0 0.0 10.0
 			vertex_program_ref SpecularEmissiveVP/NotSkinned/NoTexture
 			{
 			}

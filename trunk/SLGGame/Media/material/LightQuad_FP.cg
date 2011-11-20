@@ -44,11 +44,12 @@ void main(
 	shadow += (PCFdepth4 < shadowuv.z)? 0.0:1.0;
 	shadow = shadow * 0.2;
 	
+	float3 normal = nd.xyz * 2 - 1;
 	float3 lightcolor = ambientColor + sm.zzz;	
-	float3 diffColor = lightDifColor * max(dot(nd.xyz,lightDir.xyz),0.0);
+	float3 diffColor = lightDifColor * max(dot(normal,lightDir.xyz),0.0);
 	float3 V = normalize(cameraPos - worldpos.xyz);
 	float3 H = normalize(lightDir.xyz + V);
-	float3 specular = lightSpeColor * pow(max(dot(nd.xyz, H),0.0), sm.y * 100.0);
+	float3 specular = lightSpeColor * pow(max(dot(normal, H),0.0), sm.y * 100.0);
 	lightcolor = lightcolor + (diffColor + specular * sm.x) * shadow;
 	
 	oColour  = float4(color *  lightcolor,1.0);//float4(color * shadow,1.0);

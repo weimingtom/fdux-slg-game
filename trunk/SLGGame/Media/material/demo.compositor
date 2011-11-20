@@ -6,6 +6,9 @@ compositor DemoCompositor
 		texture light target_width target_height PF_R8G8B8
 		texture color target_width target_height PF_R8G8B8
 		texture specular_emissive target_width target_height PF_R8G8B8
+		texture	brightpass target_width_scaled 0.5 target_height_scaled 0.5 PF_R8G8B8
+		texture bloom_blurx  target_width target_height PF_R8G8B8
+		texture bloom_blury  target_width target_height PF_R8G8B8
 		
 		target normal_depth
 		{
@@ -69,6 +72,42 @@ compositor DemoCompositor
 				input 2 specular_emissive
 			}
 		}
+		target brightpass
+		{
+		    input none
+            pass clear
+            {
+            }
+            pass render_quad
+            {
+                material BrightPass
+                input 0 light
+            }
+		}
+		target bloom_blurx
+		{
+		    input none
+            pass clear
+            {
+            }
+            pass render_quad
+            {
+                material BlurX
+                input 0 brightpass
+            }
+		}
+		target bloom_blury
+		{
+		    input none
+            pass clear
+            {
+            }
+            pass render_quad
+            {
+                material BlurY
+                input 0 bloom_blurx
+            }
+		}
 		target_output
 		{
 			input none
@@ -87,6 +126,7 @@ compositor DemoCompositor
 			{
 				material FinalPass
 				input 0 light
+				input 1 bloom_blury
 			}
 			
 			pass render_scene

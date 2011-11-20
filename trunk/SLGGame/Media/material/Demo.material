@@ -1,29 +1,3 @@
-material FinalPass
-{ 
-	technique
-	{
-		pass
-		{
-			vertex_program_ref FinalPassVP
-			{
-			}
-			fragment_program_ref FinalPassFP
-            {
-            }
-			texture_unit
-			{
-				tex_address_mode clamp
-				filtering none
-			}
-			texture_unit
-			{
-				tex_address_mode clamp
-				filtering none
-			}
-		}
-	}
-}
-
 material LightQuad
 { 
 	technique
@@ -56,6 +30,95 @@ material LightQuad
 				texture shadowdepthmap
 				tex_address_mode border
 				tex_border_colour 1.0 1.0 1.0 1.0
+			}
+		}
+	}
+}
+
+material BrightPass
+{
+	technique
+	{
+		pass
+		{
+			vertex_program_ref FinalPassVP
+			{
+			}
+			fragment_program_ref BrightPassFP
+            {
+            }
+			texture_unit
+			{
+				tex_address_mode clamp
+				filtering trilinear
+			}
+		}
+	}
+}
+
+material BlurX
+{
+	technique
+	{
+		pass
+		{
+			vertex_program_ref FinalPassVP
+			{
+			}
+			fragment_program_ref BlurXFP
+            {
+            }
+			texture_unit
+			{
+				tex_address_mode clamp
+				filtering trilinear
+			}
+		}
+	}
+}
+
+material BlurY
+{
+	technique
+	{
+		pass
+		{
+			vertex_program_ref FinalPassVP
+			{
+			}
+			fragment_program_ref BlurYFP
+            {
+            }
+			texture_unit
+			{
+				tex_address_mode clamp
+				filtering trilinear
+			}
+		}
+	}
+}
+
+material FinalPass
+{ 
+	technique
+	{
+		pass
+		{
+			vertex_program_ref FinalPassVP
+			{
+			}
+			fragment_program_ref FinalPassFP
+            {
+            }
+			texture_unit
+			{
+				tex_address_mode clamp
+				filtering none
+			}
+			texture_unit
+			{
+				tex_address_mode clamp
+				filtering none
 			}
 		}
 	}

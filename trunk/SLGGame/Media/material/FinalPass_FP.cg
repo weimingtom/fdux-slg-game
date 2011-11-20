@@ -3,10 +3,13 @@ void main(
 	
 	out float4 oColour	: COLOR,
 
-	uniform sampler lightTex: register(s0)
+	uniform sampler2D lightTex: register(s0),
+	uniform sampler2D bloomTex: register(s1)
 	)
 {
 	float3 light = tex2D(lightTex, uv);
+	float3 bloom = tex2D(bloomTex, uv);
+	float3 finalcolor = lerp(light , bloom, 0.3);
 
-	oColour  = float4(light,1.0);
+	oColour  = float4(finalcolor,1.0);
 }

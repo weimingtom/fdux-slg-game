@@ -8,5 +8,6 @@ void main(
 	)
 {
 	float normdepth = -viewpos.z / farChip;
-	oColour = float4(normal.xyz, normdepth);
+	float3 worldnormal = normal * 0.5 + 0.5;
+	oColour = float4(worldnormal, normdepth);
 }
