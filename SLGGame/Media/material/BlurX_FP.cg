@@ -1,0 +1,46 @@
+static const float samples[11] =
+{//stddev=2.0
+0.01222447,
+0.02783468,
+0.06559061,
+0.12097757,
+0.17466632,
+
+0.19741265,
+
+0.17466632,
+0.12097757,
+0.06559061,
+0.02783468,
+0.01222447
+};
+
+static const float2 pos[11] =
+{
+-5, 0,
+-4, 0,
+-3, 0,
+-2, 0,
+-1, 0,
+ 0, 0,
+ 1, 0,
+ 2, 0,
+ 3, 0,
+ 4, 0,
+ 5, 0,
+};
+
+void main(
+	float2 uv: TEXCOORD0, 
+	
+	out float4 oColour	: COLOR,
+
+	uniform sampler2D bloomTex: register(s0)
+	)
+{
+	oColour = float4(0.0,0.0,0.0,0.0);
+	for (int i = 0; i < 11; i++)
+   {
+      oColour += tex2D(bloomTex, uv + pos[i]*0.01) * samples[i];
+   }
+}

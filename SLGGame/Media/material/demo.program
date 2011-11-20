@@ -188,29 +188,6 @@ fragment_program SpecularEmissiveFP/NoTexture cg
     }
 }
 
-vertex_program FinalPassVP cg
-{
-    source FinalPass_VP.cg
-    entry_point main
-    profiles arbvp1 vs_2_0
- 
-    default_params
-    {
-		param_named_auto worldViewProj worldviewproj_matrix
-    }
-}
-
-fragment_program FinalPassFP cg
-{
-    source FinalPass_FP.cg
-    entry_point main
-    profiles arbfp1 ps_2_0 fp20
- 
-    default_params
-    {
-    }
-}
-
 vertex_program LightQuadVP cg
 {
     source LightQuad_VP.cg
@@ -241,7 +218,7 @@ fragment_program LightQuadFP cg
 {
     source LightQuad_FP.cg
     entry_point main
-    profiles arbfp1 ps_3_0 fp20
+    profiles arbfp1 ps_2_x fp20
  
     default_params
     {
@@ -256,5 +233,61 @@ fragment_program LightQuadFP cg
 		param_named pcfOffset float 0.001
 		shared_params_ref ShadowSharedParamsName
 		shared_params_ref TestSharedParamsName 
+    }
+}
+
+fragment_program BrightPassFP cg
+{
+    source BrightPass_FP.cg
+    entry_point main
+    profiles arbfp1 ps_2_0 fp20
+ 
+    default_params
+    {
+    }
+}
+
+fragment_program BlurXFP cg
+{
+    source BlurX_FP.cg
+    entry_point main
+    profiles arbfp1 ps_2_0 fp20
+ 
+    default_params
+    {
+    }
+}
+
+fragment_program BlurYFP cg
+{
+    source BlurY_FP.cg
+    entry_point main
+    profiles arbfp1 ps_2_0 fp20
+ 
+    default_params
+    {
+    }
+}
+
+vertex_program FinalPassVP cg
+{
+    source FinalPass_VP.cg
+    entry_point main
+    profiles arbvp1 vs_2_0
+ 
+    default_params
+    {
+		param_named_auto worldViewProj worldviewproj_matrix
+    }
+}
+
+fragment_program FinalPassFP cg
+{
+    source FinalPass_FP.cg
+    entry_point main
+    profiles arbfp1 ps_2_0 fp20
+ 
+    default_params
+    {
     }
 }
