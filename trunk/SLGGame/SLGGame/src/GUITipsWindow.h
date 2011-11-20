@@ -12,6 +12,8 @@ public:
 	GUITipsWindow(MyGUI::Window* window,int Width,int Height);
 	~GUITipsWindow();
 
+	void addToolTipEvent(MyGUI::Widget* widget);
+
 	void eventToolTip(MyGUI::Widget* _sender, const MyGUI::ToolTipInfo& _info); 
 
 	bool GridInputEvent(int x,int y);
