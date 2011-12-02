@@ -98,13 +98,91 @@ material BlurY
 	}
 }
 
+material SSAO
+{
+	technique
+	{
+		pass
+		{
+			vertex_program_ref LightQuadVP
+			{
+			}
+			fragment_program_ref SSAOFP
+            {
+            }
+			texture_unit
+			{
+				tex_address_mode clamp
+				filtering trilinear
+			}
+			texture_unit
+			{
+				texture random.png
+				filtering none
+			}
+		}
+	}
+}
+
+material SSAOBlurX
+{
+	technique
+	{
+		pass
+		{
+			vertex_program_ref LightQuadVP
+			{
+			}
+			fragment_program_ref SSAOBlurXFP
+            {
+            }
+			texture_unit
+			{
+				tex_address_mode clamp
+				filtering trilinear
+			}
+			texture_unit
+			{
+				tex_address_mode clamp
+				filtering trilinear
+			}
+		}
+	}
+}
+
+material SSAOBlurY
+{
+	technique
+	{
+		pass
+		{
+			vertex_program_ref LightQuadVP
+			{
+			}
+			fragment_program_ref SSAOBlurYFP
+            {
+            }
+			texture_unit
+			{
+				tex_address_mode clamp
+				filtering trilinear
+			}
+			texture_unit
+			{
+				tex_address_mode clamp
+				filtering trilinear
+			}
+		}
+	}
+}
+
 material FinalPass
 { 
 	technique
 	{
 		pass
 		{
-			vertex_program_ref FinalPassVP
+			vertex_program_ref LightQuadVP
 			{
 			}
 			fragment_program_ref FinalPassFP
@@ -118,6 +196,22 @@ material FinalPass
 			texture_unit
 			{
 				tex_address_mode clamp
+				filtering none
+			}
+			texture_unit
+			{
+				tex_address_mode clamp
+				filtering none
+			}
+			texture_unit
+			{
+				tex_address_mode clamp
+				filtering none
+			}
+			texture_unit
+			{
+				texture fog.dds
+				tex_address_mode wrap 
 				filtering none
 			}
 		}

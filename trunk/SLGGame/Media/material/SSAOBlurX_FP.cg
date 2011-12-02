@@ -30,18 +30,24 @@ static const float2 pos[11] =
  5, 0,
 };
 
-
 void main(
-	float2 uv: TEXCOORD0, 
+	float2 uv: TEXCOORD0,
+	float3 ray: TEXCOORD1,	
 	
 	out float4 oColour	: COLOR,
-
-	uniform sampler2D bloomTex: register(s0)
+	
+	uniform	sampler2D ssaoTex: register(s0),
+	uniform sampler2D normaldepthTex: register(s1),
+	uniform float4x4 viewInv,
+	uniform float farChip
 	)
 {
+	//float4 ssao = tex2D(ssaoTex, uv);
+	//float4 nd = tex2D(normaldepthTex, uv);
+	//oColour = float4(ssao.xxx, 1.0);
 	oColour = float4(0.0,0.0,0.0,0.0);
 	for (int i = 0; i < 11; i++)
    {
-      oColour += tex2D(bloomTex, uv + pos[i]* 0.00078125) * samples[i];
+      oColour += tex2D(ssaoTex, uv + pos[i] * 0.00078125) * samples[i];
    }
 }

@@ -41,6 +41,7 @@ vertex_program NormalDepthVP/Water cg
     default_params
     {
 		param_named_auto worldViewProj worldviewproj_matrix
+		param_named_auto worldView worldview_matrix 
 		param_named_auto timeVal time 0.05
 		param_named scroll float 1  
 		param_named scale float 2 
@@ -99,7 +100,7 @@ material DemoWater
 		pass
 		{
 			emissive 0.5 0.5 0.5
-			specular 1.0 1.0 1.0 50.0
+			specular 1.0 1.0 1.0 10.0
 			vertex_program_ref SpecularEmissiveVP/NotSkinned/NoTexture
 			{
 			}

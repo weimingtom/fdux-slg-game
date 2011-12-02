@@ -1,15 +1,60 @@
 void main(
-	float2 uv: TEXCOORD0, 
+	float2 uv: TEXCOORD0,
+	float3 ray: TEXCOORD1,	
 	
 	out float4 oColour	: COLOR,
 
-	uniform sampler2D lightTex: register(s0),
-	uniform sampler2D bloomTex: register(s1)
+	uniform sampler2D normaldepthTex: register(s0),
+	uniform sampler2D lightTex: register(s1),
+	uniform sampler2D bloomTex: register(s2),
+	uniform sampler2D ssaoTex: register(s3),
+	uniform sampler2D noiseTex: register(s4),
+	uniform float4x4 viewInv,
+	uniform float farChip,
+	uniform float4 fogColor,
+	uniform float4 fogParam,
+	uniform float border,
+	uniform float3 cameraPos,
+	uniform float timeVal
 	)
 {
+	float4 nd = tex2D(normaldepthTex, uv);
+	float3 viewpos = ray * farChip * nd.w;
+	float4 worldpos = mul(viewInv, float4(viewpos,1.0));
+	float fogborder1 = 0.0;
+	float fogborder2 = 0.0;
+	if(worldpos.x > border)
+	{
+		fogborder1 = (worldpos.x - border)/24;
+	}
+	else if(worldpos.x < -border)
+	{
+		fogborder1 = (-border - worldpos.x)/24;
+	}
+	if(worldpos.z > border)
+	{
+		fogborder2 = (worldpos.z - border)/24;
+	}
+	else if(worldpos.z < -border)
+	{
+		fogborder2 = (-border - worldpos.z)/24;
+	}
+	fogborder1 = fogborder1 + fogborder2;
+	if(fogborder1 > 0.8) { fogborder1 = 0.8; }
+	
+	cameraPos *= 0.01;
+	float2 foguv = float2(uv.x + timeVal + cameraPos.x -  cameraPos.z, uv.y + cameraPos.x + cameraPos.z);
+	float3 fognoise = tex2D(noiseTex, foguv);
+	if(fogborder1 > 0.0)
+		fogborder1 += fognoise.x * 0.3;
+	
+	float ssao = tex2D(ssaoTex, uv).x;
 	float3 light = tex2D(lightTex, uv);
 	float3 bloom = tex2D(bloomTex, uv);
 	float3 finalcolor = lerp(light , bloom, 0.3);
-
-	oColour  = float4(finalcolor,1.0);
+	finalcolor = finalcolor * ssao;
+	
+	finalcolor = lerp(finalcolor, fogColor.xyz , fogborder1);
+	
+	oColour  = float4(finalcolor ,1.0);
 }
