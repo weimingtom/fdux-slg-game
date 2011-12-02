@@ -30,6 +30,10 @@ void main(
 	{
 		norm += mul((float3x3)worldMatrix3x4Array[blendIdx[i]], normal)* blendWgt[i];
 	}
+	float3 viewnormal =  mul((float3x3)viewMatrix, norm);
+	float normaldot = dot( normalize(viewpos.xyz), viewnormal);
 	oNormal = norm;
+	if(normaldot > 0.0)
+		oNormal = -oNormal;
 	oUv = uv;
 }

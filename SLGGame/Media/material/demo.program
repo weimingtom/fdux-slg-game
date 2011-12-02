@@ -269,6 +269,49 @@ fragment_program BlurYFP cg
     }
 }
 
+fragment_program SSAOFP cg
+{
+    source SSAO_FP.cg
+    entry_point main
+    profiles arbfp1 ps_2_x fp20
+ 
+    default_params
+    {
+		param_named_auto farChip far_clip_distance 
+		param_named_auto viewMatrix view_matrix
+		param_named_auto viewportH viewport_height
+		param_named_auto viewportW viewport_width 
+		param_named_auto fov fov
+    }
+}
+
+fragment_program SSAOBlurXFP cg
+{
+    source SSAOBlurX_FP.cg
+    entry_point main
+    profiles arbfp1 ps_2_0 fp20
+ 
+    default_params
+    {
+		param_named_auto farChip far_clip_distance 
+		shared_params_ref TestSharedParamsName 
+    }
+}
+
+fragment_program SSAOBlurYFP cg
+{
+    source SSAOBlurY_FP.cg
+    entry_point main
+    profiles arbfp1 ps_2_0 fp20
+ 
+    default_params
+    {
+		param_named_auto farChip far_clip_distance 
+		shared_params_ref TestSharedParamsName 
+    }
+}
+
+
 vertex_program FinalPassVP cg
 {
     source FinalPass_VP.cg
@@ -289,5 +332,12 @@ fragment_program FinalPassFP cg
  
     default_params
     {
+		param_named_auto farChip far_clip_distance 
+		param_named_auto fogParam fog_params 
+		param_named_auto fogColor fog_colour 
+		param_named_auto cameraPos camera_position
+		param_named_auto timeVal time 0.05
+		param_named border float 144.0
+		shared_params_ref TestSharedParamsName 
     }
 }
