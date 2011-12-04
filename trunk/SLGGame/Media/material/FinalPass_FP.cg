@@ -7,8 +7,7 @@ void main(
 	uniform sampler2D normaldepthTex: register(s0),
 	uniform sampler2D lightTex: register(s1),
 	uniform sampler2D bloomTex: register(s2),
-	uniform sampler2D ssaoTex: register(s3),
-	uniform sampler2D noiseTex: register(s4),
+	uniform sampler2D noiseTex: register(s3),
 	uniform float4x4 viewInv,
 	uniform float farChip,
 	uniform float4 fogColor,
@@ -48,11 +47,9 @@ void main(
 	if(fogborder1 > 0.0)
 		fogborder1 += fognoise.x * 0.3;
 	
-	float ssao = tex2D(ssaoTex, uv).x;
 	float3 light = tex2D(lightTex, uv);
 	float3 bloom = tex2D(bloomTex, uv);
-	float3 finalcolor = lerp(light , bloom, 0.3);
-	finalcolor = finalcolor * ssao;
+	float3 finalcolor = lerp(light , bloom, 0.25);
 	
 	finalcolor = lerp(finalcolor, fogColor.xyz , fogborder1);
 	

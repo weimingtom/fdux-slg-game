@@ -34,21 +34,25 @@ material Skinned/CastShadow/OneTexture
 			}
 		}
 	}
-    technique
+    technique shadowmap
     {
 		scheme WriteDepthMap
         pass 
         {
 			cull_hardware none
-            vertex_program_ref DepthShadowmap/CasterWithSkinVP
+            vertex_program_ref DepthShadowmapVP/Skinned/OneTexture
             {
             }
-            fragment_program_ref DepthShadowmap/CasterFP
+            fragment_program_ref DepthShadowmapFP/OneTexture
             {
             }
+			texture_unit Diffuse
+			{
+				texture Saint.dds
+			}
         }
     }
-	technique
+	technique normaldepth
 	{
 		scheme NormalDepth
 		pass 
@@ -104,21 +108,25 @@ material NotSkinned/CastShadow/OneTexture
 			}
 		}
 	}
-    technique
+    technique shadowmap
     {
 		scheme WriteDepthMap
         pass 
         {
 			cull_hardware none
-            vertex_program_ref DepthShadowmap/CasterVP
+            vertex_program_ref DepthShadowmapVP/NotSkinned/OneTexture
             {
             }
-            fragment_program_ref DepthShadowmap/CasterFP
+            fragment_program_ref DepthShadowmapFP/OneTexture
             {
             }
+			texture_unit Diffuse
+			{
+				texture Saint.dds
+			}
         }
     }
-	technique
+	technique normaldepth
 	{
 		scheme NormalDepth
 		pass 
@@ -176,20 +184,20 @@ material NotSkinned/CastShadow/TwoTexture
 			}
 		}
 	}
-    technique
+    technique shadowmap
     {
 		scheme WriteDepthMap
         pass 
         {
-            vertex_program_ref DepthShadowmap/CasterVP
+            vertex_program_ref DepthShadowmapVP/NotSkinned/NoTexture
             {
             }
-            fragment_program_ref DepthShadowmap/CasterFP
+            fragment_program_ref DepthShadowmapFP/NoTexture
             {
             }
         }
     }
-	technique
+	technique normaldepth
 	{
 		scheme NormalDepth
 		pass 
@@ -257,20 +265,20 @@ material NotSkinned/CastShadow/FourTexture
 			}
 		}
 	}
-    technique
+    technique shadowmap
     {
 		scheme WriteDepthMap
         pass 
         {
-            vertex_program_ref DepthShadowmap/CasterVP
+            vertex_program_ref DepthShadowmapVP/NotSkinned/NoTexture
             {
             }
-            fragment_program_ref DepthShadowmap/CasterFP
+            fragment_program_ref DepthShadowmapFP/NoTexture
             {
             }
         }
     }
-	technique
+	technique normaldepth
 	{
 		scheme NormalDepth
 		pass 

@@ -1,0 +1,13 @@
+void main(
+	float2	depth	:	TEXCOORD0,
+	
+	out float4 oColour	: COLOR,
+	
+	uniform float 		depthOffset
+	)
+{	
+    float finalDepth = depth.x / depth.y;
+	finalDepth += depthOffset;
+	
+    oColour = float4(finalDepth, finalDepth, finalDepth, 1);
+}

@@ -6,15 +6,3 @@ material TerrainTile : NotSkinned/CastShadow/FourTexture
 	set_texture_alias Diffuse2 Desert.dds
 	set_texture_alias Diffuse3 GreenLand.dds
 }
-
-material GridMat
-{
-	technique
-	{
-		pass
-		{
-			diffuse 0.5 0.5 0.5
-			lighting off
-		}
-	}
-}

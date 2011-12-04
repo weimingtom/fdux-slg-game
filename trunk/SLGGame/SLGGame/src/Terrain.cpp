@@ -55,7 +55,7 @@ bool Terrain::createTerrain()
 	Ogre::Viewport* vp = mShadowDepthMapTarget->addViewport(CameraContral::getSingleton().getShadowMapCamera());
 	vp->setSkiesEnabled(false);
 	vp->setOverlaysEnabled(false);
-	vp->setVisibilityMask(1);
+	vp->setVisibilityMask(VISMASK_OPAQUE);
 	vp->setMaterialScheme("WriteDepthMap");
 	vp->setBackgroundColour(Ogre::ColourValue(1.0f,1.0f,1.0f));
 	mShadowDepthMapTarget->addListener(this);
@@ -223,7 +223,7 @@ bool Terrain::createTerrain()
 
 	mTerrainEntity = Core::getSingleton().mSceneMgr->createEntity("TerrianMesh");
 	mTerrainNode->attachObject(mTerrainEntity);
-	mTerrainEntity->setQueryFlags(TERRAIN_MASK);
+	mTerrainEntity->setQueryFlags(QUERYMASK_TERRAIN);
 	mTerrainNode->setPosition(0,0,0);
 
 	//创建水面
@@ -407,7 +407,7 @@ float Terrain::getHeight(float x, float y)
 		Ogre::Entity* entity = NULL;
 		Ogre::Vector3 result = Ogre::Vector3::ZERO;
 		float distToColl = 20.0f;
-		if(mCollisionTools->raycastFromPoint(Ogre::Vector3(x,20.0f,y),Ogre::Vector3::NEGATIVE_UNIT_Y,result,(Ogre::ulong&)entity,distToColl,TERRAIN_MASK))
+		if(mCollisionTools->raycastFromPoint(Ogre::Vector3(x,20.0f,y),Ogre::Vector3::NEGATIVE_UNIT_Y,result,(Ogre::ulong&)entity,distToColl,QUERYMASK_TERRAIN))
 		{
 			height = 20.0f - distToColl;
 		}
@@ -830,7 +830,7 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 		entitydata->mTileEntity->setMaterialName(materialName);
 		entitydata->mTileNode = mTerrainNode->createChildSceneNode();
 		entitydata->mTileNode->attachObject(entitydata->mTileEntity);
-		entitydata->mTileEntity->setQueryFlags(TERRAIN_MASK);
+		entitydata->mTileEntity->setQueryFlags(QUERYMASK_TERRAIN);
 		entitydata->mTileNode->setPosition(sx + TILESIZE /2 ,PLANEHEIGHT,sy + TILESIZE /2);
 		entitydata->mTileNode->yaw(Ogre::Degree(angle));
 		mTileEntityVector.push_back(entitydata);
@@ -878,7 +878,8 @@ void Terrain::createGrid()
 			}
 		}
 		mGrid->end();
-		mGrid->setQueryFlags(GRID_MASK);
+		mGrid->setQueryFlags(QUERYMASK_GRID);
+		mGrid->setVisibilityFlags(VISMASK_TRANSPARENT);
 		mGridNode->attachObject(mGrid);
 		mGridNode->setPosition(0,PLANEHEIGHT+ 0.5f,0);
 }
@@ -905,7 +906,7 @@ bool Terrain::coordinateToGrid( float x,float y,int& GX,int& GY )
 	Ogre::Vector3 point;
 	Ogre::ulong target;
 	float d;
-	if(mCollisionTools->raycast(ray,point,target,d,TERRAIN_MASK))
+	if(mCollisionTools->raycast(ray,point,target,d,QUERYMASK_TERRAIN))
 	{
 		calculateGrid(point.x,point.z,GX, GY);
 		return true;

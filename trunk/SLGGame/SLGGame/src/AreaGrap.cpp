@@ -78,6 +78,7 @@ void AreaGrap::creatArea(std::string mat)
 		mAreaObj->normal(0.0f,1.0f,0.0f);		
 	}
 	mAreaObj->end();
+	mAreaObj->setVisibilityFlags(VISMASK_TRANSPARENT);
 	mNode->attachObject(mAreaObj);
 }
 

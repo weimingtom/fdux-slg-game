@@ -1,0 +1,144 @@
+material Examples/LightRibbonTrail
+{
+	technique default
+	{
+		scheme Default
+		pass
+		{
+			lighting off
+			scene_blend add
+			depth_write off
+			diffuse vertexcolour
+
+			texture_unit
+			{
+				texture ribbonband.png 1d
+				tex_address_mode clamp
+				filtering none
+			}
+		}
+	}
+	technique specular
+	{
+		scheme SpecularEmissive
+		pass 
+        {
+			cull_hardware none
+			emissive 1.0 1.0 1.0
+			specular 1.0 1.0 1.0 50.0
+			vertex_program_ref SpecularEmissiveVP/Skinned/NoTexture
+			{
+			}
+			fragment_program_ref SpecularEmissiveFP/NoTexture
+			{
+			}
+		}
+	}
+	technique shadowmap
+    {
+		scheme WriteDepthMap
+        pass 
+        {
+            vertex_program_ref DepthShadowmapVP/NotSkinned/NoTexture
+            {
+            }
+            fragment_program_ref DepthShadowmapFP/NoTexture
+            {
+            }
+        }
+    }
+	technique normaldepth
+	{
+		scheme NormalDepth
+		pass 
+        {
+            vertex_program_ref NormalDepthVP/NotSkinned/MultiTexture
+            {
+            }
+            fragment_program_ref NormalDepthFP/MultiTexture
+            {
+            }
+        }
+	}	
+}
+
+material SelectSquadPlane
+{
+	technique default
+	{
+		scheme Default
+		pass
+		{
+			vertex_program_ref ColorOnlyVP/NotSkinned/OneTexture
+            {
+            }
+            fragment_program_ref ColorOnlyFP/OneTexture
+            {
+            }
+			texture_unit
+			{
+				texture SelectSquad.dds
+				filtering none
+				rotate_anim -0.5
+				tex_address_mode clamp
+			}
+		}
+	}
+	technique specular
+	{
+		scheme SpecularEmissive
+		pass
+		{
+			cull_hardware none
+			emissive 0.0 0.0 0.0
+			specular 1.0 1.0 1.0 12.5
+			vertex_program_ref SpecularEmissiveVP/NotSkinned/NoTexture
+			{
+			}
+			fragment_program_ref SpecularEmissiveFP/NoTexture
+			{
+			}
+		}
+	}
+    technique shadowmap
+    {
+		scheme WriteDepthMap
+        pass 
+        {
+			cull_hardware none
+            vertex_program_ref DepthShadowmapVP/NotSkinned/OneTexture
+            {
+            }
+            fragment_program_ref DepthShadowmapFP/OneTexture
+            {
+            }
+			texture_unit
+			{
+				texture SelectSquad.dds
+				filtering none
+				rotate_anim -0.5
+				tex_address_mode clamp
+			}
+        }
+    }
+	technique normaldepth
+	{
+		scheme NormalDepth
+		pass 
+        {
+            vertex_program_ref NormalDepthVP/NotSkinned/OneTexture
+            {
+            }
+            fragment_program_ref NormalDepthFP/OneTexture
+            {
+            }
+			texture_unit
+			{
+				texture SelectSquad.dds
+				filtering none
+				rotate_anim -0.5
+				tex_address_mode clamp
+			}
+        }
+	}
+}
