@@ -114,10 +114,10 @@ material DemoWater
 		scheme WriteDepthMap
         pass 
         {
-            vertex_program_ref DepthShadowmap/CasterVP
+            vertex_program_ref DepthShadowmapVP/NotSkinned/NoTexture
             {
             }
-            fragment_program_ref DepthShadowmap/CasterFP
+            fragment_program_ref DepthShadowmapFP/NoTexture
             {
             }
         }

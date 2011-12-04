@@ -95,7 +95,8 @@ bool Core::initialize(bool isFullScene)
 
 	mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC);
 
-	Ogre::MovableObject::setDefaultQueryFlags(0);
+	Ogre::MovableObject::setDefaultQueryFlags(QUERYMASK_OTHER);
+	Ogre::MovableObject::setDefaultVisibilityFlags(VISMASK_OPAQUE);
 
 	mCamera = mSceneMgr->createCamera("PlayerCam");
 	mCamera->setPosition(Ogre::Vector3(50.0f,0.0f,50.0f));
@@ -352,7 +353,7 @@ bool Core::windowClosing( Ogre::RenderWindow* rw )
 ParticleUniverse::ParticleSystem* Core::createPUSystem( std::string name,std::string script )
 {
 	ParticleUniverse::ParticleSystem* pSys=ParticleUniverse::ParticleSystemManager::getSingletonPtr()->createParticleSystem(name,script,mSceneMgr);
-	pSys->setVisibilityFlags(2);
+	pSys->setVisibilityFlags(VISMASK_PARTICLE);
 	mPUSystems.push_back(pSys);
 	return pSys;
 }

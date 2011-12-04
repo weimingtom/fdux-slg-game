@@ -33,8 +33,13 @@ static const int BOTTOMRIGHT = 3;
 static const float TERRAINTEXSIZE = 256.0f;
 static const float TERRAINTEXTILESIZE = 64.0f;
 
-static const Ogre::uint32 TERRAIN_MASK = 1 << 0;
-static const Ogre::uint32 GRID_MASK = 1 << 2;
+static const Ogre::uint32 QUERYMASK_TERRAIN = 1 << 0;
+static const Ogre::uint32 QUERYMASK_GRID = 1 << 1;
+static const Ogre::uint32 QUERYMASK_OTHER = 1 << 2;
+
+static const Ogre::uint32	VISMASK_OPAQUE = 1 << 0;
+static const Ogre::uint32	VISMASK_TRANSPARENT = 1 << 1;
+static const Ogre::uint32	VISMASK_PARTICLE = 1 << 2;
 
 class Terrain:public IISingleton<Terrain>,public Ogre::RenderTargetListener
 {

@@ -1,0 +1,56 @@
+material MoveArrow
+{
+	technique default
+	{
+		scheme Default
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 1.000000 1.000000 1.000000 1.000000
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+		}
+	}
+	technique specular
+	{
+		scheme SpecularEmissive
+		pass 
+        {
+			cull_hardware none
+			emissive 0.0 0.0 0.0
+			specular 1.0 1.0 1.0 50.0
+			vertex_program_ref SpecularEmissiveVP/Skinned/NoTexture
+			{
+			}
+			fragment_program_ref SpecularEmissiveFP/NoTexture
+			{
+			}
+		}
+	}
+	technique shadowmap
+    {
+		scheme WriteDepthMap
+        pass 
+        {
+            vertex_program_ref DepthShadowmapVP/NotSkinned/NoTexture
+            {
+            }
+            fragment_program_ref DepthShadowmapFP/NoTexture
+            {
+            }
+        }
+    }
+	technique normaldepth
+	{
+		scheme NormalDepth
+		pass 
+        {
+            vertex_program_ref NormalDepthVP/NotSkinned/MultiTexture
+            {
+            }
+            fragment_program_ref NormalDepthFP/MultiTexture
+            {
+            }
+        }
+	}
+}
