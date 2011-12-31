@@ -4,8 +4,9 @@
 #include <vector>
 
 #include "squaddefine.h"
+#include "Squad.h"
 
-class BattleSquad
+class BattleSquad: public Squad
 {
 public:
 	BattleSquad(std::string id, int grapid,int x, int y);
@@ -28,7 +29,7 @@ public:
 	std::string getFactionId();
 	int getGrapId() { return mGrapId; }
 
-	float getAttr(AttrType attrtype, AttrCalcType calctype, Direction direction);
+	float getAttr(enumtype attrtype, enumtype calctype, Direction direction);
 
 	float getMoraleBonse();
 	void modifyMorale(int m);

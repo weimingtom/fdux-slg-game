@@ -339,6 +339,14 @@
 					RelativePath=".\src\LuaStateFun.h"
 					>
 				</File>
+				<File
+					RelativePath=".\src\Squad.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\Squad.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="Battle"
@@ -897,10 +905,6 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath=".\ClassDiagram1.cd"
-			>
-		</File>
 		<File
 			RelativePath="..\Demo.ico"
 			>

@@ -8,6 +8,8 @@ void main(
 	)
 {
 	oPos = mul(worldViewProj, Pos);
-	oUv.x = 0.5 * (1.0 + oPos.x);
-	oUv.y = 0.5 * (1.0 - oPos.y);
+	Pos.xy = sign(Pos.xy);
+
+	oUv.x = 0.5 * (1.0 + Pos.x);
+	oUv.y = 0.5 * (1.0 - Pos.y);
 }

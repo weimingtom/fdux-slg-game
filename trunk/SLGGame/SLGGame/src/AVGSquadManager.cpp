@@ -126,7 +126,7 @@ void AVGSquadManager::modifyMorale(std::string id, int morale)
 		if(all || id == (*ite))
 		{
 			path = str(boost::format("GameData/StoryData/SquadData/EnableSquad/%1%")%(*ite));
-			moralemodi = getSquadAttr(path,ATTR_INJURY,ATTRCALC_FULL,moralemodi);
+			moralemodi = getSquadAttr(path,ATTR_MORALE,ATTRCALC_FULL,moralemodi);
 			path = path + "/Morale";
 			datalib->getData(path,morale1);
 			morale1 += floor(moralemodi * morale + 0.5f);
@@ -135,8 +135,8 @@ void AVGSquadManager::modifyMorale(std::string id, int morale)
 	}
 }
 
-bool AVGSquadManager::equipEquipment(std::string path, EquipmentType type, std::string id)
-		{
+bool AVGSquadManager::equipEquipment(std::string path, enumtype type, std::string id)
+{
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	std::string srcpath;
 	std::string distpath;
@@ -278,7 +278,7 @@ bool AVGSquadManager::applyModifer(std::string path, AttrModifier* modifier, std
 	datalib->setData(path + std::string("/ActionPoint"), modifier->ActionPoint, true);
 	datalib->setData(path + std::string("/Detection"), modifier->Detection, true);
 	datalib->setData(path + std::string("/Covert"), modifier->Covert, true);
-	datalib->setData(path + std::string("/Injury"), modifier->Injury, true);
+	datalib->setData(path + std::string("/Injury"), modifier->Morale, true);
 	datalib->setData(path + std::string("/Conter"), modifier->Conter, true);
 	return true;
 }
@@ -344,13 +344,13 @@ void AVGSquadManager::removeEffect(std::string path,std::string effectid)
 }
 
 
-bool AVGSquadManager::getSquadAttr(std::string path, AttrType attrtype, AttrCalcType calctype, float &val)
+bool AVGSquadManager::getSquadAttr(std::string path, enumtype attrtype, enumtype calctype, float &val)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	std::vector<std::string> modifierlist = datalib->getChildList(path + std::string("/ModifierList"));
 	if(modifierlist.size() == 0)
 		return false;
-	if(attrtype >= ATTR_RANGEDDEFENCE || attrtype < ATTR_ATTACK)
+	if(attrtype == ATTR_RANGEDDEFENCE )
 		return false;
 	float base = 0.0f;
 	float mbouse = 0.0f;
@@ -391,7 +391,7 @@ bool AVGSquadManager::getSquadAttr(std::string path, AttrType attrtype, AttrCalc
 		case ATTR_COVERT:
 			re = datalib->getData(datapath + std::string("/Covert"), attrval);
 			break;
-		case ATTR_INJURY:
+		case ATTR_MORALE:
 			re = datalib->getData(datapath + std::string("/Injury"), attrval);
 			break;
 		case ATTR_CONTER:
@@ -515,4 +515,28 @@ void AVGSquadManager::disableTrigger(std::string path,std::string triggerid)
 	{
 		datalib->setData(str(boost::format("%1%/Trigger/%2%")%path%triggerid),0);
 	}
+}
+
+bool AVGSquadManager::(std::string squadid, std::string suqadtypeid)
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::string srcpath = "StaticData/SquadData";
+	std::vector<std::string> squadlist = datalib->getChildList(srcpath);
+	std::vector<std::string>::iterator ite = std::find(squadlist.begin(), squadlist.end(),suqadtypeid);
+	if(ite == squadlist.end())
+		return false;
+	srcpath = srcpath + std::string("/") + suqadtypeid;
+	std::string path = "GameData/StoryData/SquadData";
+	squadlist = datalib->getChildList(path);
+	ite = std::find(squadlist.begin(), squadlist.end(),squadid);
+	if(ite != squadlist.end())
+		return false;
+	path = path + std::string("/") + squadid;
+	datalib->copyNode(srcpath, path, true);
+	return true;
+}
+
+void AVGSquadManager::dumpSquad(Squad* squad)
+{
+	
 }

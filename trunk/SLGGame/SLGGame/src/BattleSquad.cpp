@@ -213,12 +213,12 @@ std::string BattleSquad::getFactionId()
 	return tempstr;
 }
 
-float BattleSquad::getAttr(AttrType attrtype, AttrCalcType calctype, Direction direction)
+float BattleSquad::getAttr(enumtype attrtype, enumtype calctype, Direction direction)
 {
 	if(attrtype > ATTR_RANGEDDEFENCE || attrtype < ATTR_ATTACK)
 		return 0.0f;
 	float attr = 0.0f;
-	AttrType tempattrtype = attrtype;
+	enumtype tempattrtype = attrtype;
 	if( attrtype == ATTR_RANGEDDEFENCE)
 		tempattrtype = ATTR_DEFENCE;
 	bool re = AVGSquadManager::getSingleton().getSquadAttr(getPath(),tempattrtype,calctype ,attr);
@@ -355,7 +355,7 @@ void BattleSquad::modifyMorale(int m)
 {
 	int morale = 0;
 	DataLibrary::getSingleton().getData(getPath() + std::string("/Morale"),morale);
-	float moralequotiety = getAttr(ATTR_INJURY, ATTRCALC_FULL, North);
+	float moralequotiety = getAttr(ATTR_MORALE, ATTRCALC_FULL, North);
 	moralequotiety *= m;
 	m = floor(moralequotiety + 0.5f);
 	morale += m;
