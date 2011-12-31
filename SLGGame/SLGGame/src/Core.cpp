@@ -177,7 +177,7 @@ bool Core::testHardwareSupport()
 	}
 
 	if (!Ogre::GpuProgramManager::getSingleton().isSyntaxSupported("arbfp1") &&
-		!Ogre::GpuProgramManager::getSingleton().isSyntaxSupported("ps_2_0") &&
+		!Ogre::GpuProgramManager::getSingleton().isSyntaxSupported("ps_2_x") &&
 		!Ogre::GpuProgramManager::getSingleton().isSyntaxSupported("vs_2_0"))
 	{
 		MessageBoxA(NULL, StringTable::getSingleton().getAnsiString("NotSupportSM2_0").c_str(),StringTable::getSingleton().getAnsiString("gamename").c_str(), MB_OK | MB_ICONERROR | MB_TASKMODAL);

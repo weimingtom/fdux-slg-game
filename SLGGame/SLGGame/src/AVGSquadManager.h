@@ -8,6 +8,8 @@ using namespace izayoi;
 
 #include "squaddefine.h"
 
+class Squad;
+
 class AVGSquadManager:public IISingleton<AVGSquadManager>
 {
 public:
@@ -17,7 +19,7 @@ public:
 	bool addSquad(std::string uid, std::string id, std::string path);
 	void modifyMorale(std::string id, int morale);
 
-	bool equipEquipment(std::string path, EquipmentType type, std::string id);
+	bool equipEquipment(std::string path, enumtype type, std::string id);
 
 	bool learnSkill(std::string path,std::string id);
 
@@ -28,7 +30,7 @@ public:
 	bool applyEffect(std::string path, std::string id, std::string &effectid);
 	void removeEffect(std::string path,std::string effectid);
 	
-	bool getSquadAttr(std::string path, AttrType attrtype, AttrCalcType calctype, float &val);
+	bool getSquadAttr(std::string path, enumtype attrtype, enumtype calctype, float &val);
 	
 	bool applyParticle(std::string path,UnitType unittype, std::string particle, std::string &particleid);
 	void removeParticle(std::string path,std::string particleid);
@@ -37,5 +39,10 @@ public:
 	void removeTrigger(std::string path,std::string triggerid);
 	void activeTrigger(std::string path,std::string triggerid);
 	void disableTrigger(std::string path,std::string triggerid);
-private:
+
+public:
+	bool addNewSquad(std::string squadid, std::string suqadtypeid);
+
+	void dumpSquad(Squad* squad);
+	
 };

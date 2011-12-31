@@ -1,48 +1,63 @@
 #pragma once
 
-typedef int EquipmentType;
-const EquipmentType EQUIP_SOILDER = 0;
-const EquipmentType EQUIP_HORSE = 1;
-const EquipmentType EQUIP_ARMOR = 2;
-const EquipmentType EQUIP_SHIELD = 3;
-const EquipmentType EQUIP_PWEAPON = 4;
-const EquipmentType EQUIP_SWEAPON = 5;
+typedef int enumtype;
 
-typedef int PweaponType;
-const PweaponType EQUIP_PWEAPON_ONEHANDSWORD = 1;
-const PweaponType EQUIP_PWEAPON_LONG = 5;
+enum EquipmentType
+{
+	EQUIP_SOILDER = 0,
+	EQUIP_HORSE = 1,
+	EQUIP_ARMOR = 2,
+	EQUIP_SHIELD = 3,
+	EQUIP_PWEAPON = 4,
+	EQUIP_SWEAPON = 5
+};
 
-typedef int SweaponType;
-const PweaponType EQUIP_SWEAPON_BOW = 0;
-const PweaponType EQUIP_SWEAPON_XBOW = 1;
+enum PweaponType
+{
+	EQUIP_PWEAPON_ONEHANDSWORD = 0,
+	EQUIP_PWEAPON_ONEHANDBLUNT = 1,
+	EQUIP_PWEAPON_LONG = 5
+};
 
-typedef int ArmorType;
-const ArmorType EQUIP_ARMOR_LIGHT = 0;
-const ArmorType EQUIP_ARMOR_HEAVY = 1;
+enum SweaponType
+{
+	EQUIP_SWEAPON_BOW = 0,
+	EQUIP_SWEAPON_XBOW = 1
+};
 
-typedef int AttrModifierType;
-const AttrModifierType ATTRMODIFIER_BASE = 0;
-const AttrModifierType ATTRMODIFIER_MAGIC = 1;
-const AttrModifierType ATTRMODIFIER_COMMAND = 2;
-const AttrModifierType ATTRMODIFIER_RESISTANCE = 3;
+enum ArmorType
+{
+	EQUIP_ARMOR_LIGHT = 0,
+	EQUIP_ARMOR_HEAVY = 1
+};
 
-typedef int AttrType;
-const AttrType ATTR_ATTACK = 0;
-const AttrType ATTR_RANGEDATTACK = 1;
-const AttrType ATTR_DEFENCE = 2;
-const AttrType ATTR_FORM = 3;
-const AttrType ATTR_INITIATIVE = 4;
-const AttrType ATTR_ACTIONPOINT = 5;
-const AttrType ATTR_DETECTION = 6;
-const AttrType ATTR_COVERT = 7;
-const AttrType ATTR_INJURY = 8;
-const AttrType ATTR_CONTER = 9;
-const AttrType ATTR_RANGEDDEFENCE = 10;
+enum AttrModifierType
+{
+	ATTRMODIFIER_BASE = 0,
+	ATTRMODIFIER_MAGIC = 1,
+	ATTRMODIFIER_COMMAND = 2,
+	ATTRMODIFIER_RESISTANCE = 3
+};
+
+enum AttrType
+{
+	ATTR_ATTACK = 0,
+	ATTR_RANGEDATTACK = 1,
+	ATTR_DEFENCE = 2,
+	ATTR_FORM = 3,
+	ATTR_INITIATIVE = 4,
+	ATTR_ACTIONPOINT = 5,
+	ATTR_DETECTION = 6,
+	ATTR_COVERT = 7,
+	ATTR_MORALE = 8,
+	ATTR_CONTER = 9,
+	ATTR_RANGEDDEFENCE = 10
+};
 
 
 struct AttrModifier
 {
-	AttrModifierType Type;
+	enumtype Type;
 	float	Attack;
 	float	RangedAttack;
 	float	Defence;
@@ -51,7 +66,7 @@ struct AttrModifier
 	float	ActionPoint;
 	float	Detection;
 	float	Covert;
-	float	Injury;
+	float	Morale;
 	float	Conter;
 	AttrModifier()
 	{
@@ -64,7 +79,7 @@ struct AttrModifier
 		ActionPoint = 0.0f;
 		Detection = 0.0f;
 		Covert = 0.0f;
-		Injury = 0.0f;
+		Morale = 0.0f;
 		Conter = 0.0f;
 	}
 };
@@ -87,11 +102,14 @@ const Formation Loose = 2;
 const int StroySquad = 0;
 const int MapSquad = 1;
 
-typedef int AttrCalcType;
-const AttrCalcType ATTRCALC_FULL = 0;
-const AttrCalcType ATTRCALC_ONLYBASE = 1;
-const AttrCalcType ATTRCALC_ONLYBONUS = 2;
-const AttrCalcType ATTRCALC_RESISTLEFT = 3;
+enum AttrCalcType
+{
+	ATTRCALC_FULL = 0,
+	ATTRCALC_ONLYBASE = 1,
+	ATTRCALC_ONLYBONUS = 2,
+	ATTRCALC_RESISTLEFT = 3
+};
+
 
 const float FORMBONSE_LINE_FRONT = 1.0f;
 const float FORMBONSE_LINE_SIDE = 0.4f;

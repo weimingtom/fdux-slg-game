@@ -12,16 +12,10 @@ void main(
 	)
 {
 	oPos = mul(worldViewProj, Pos);
-	oUv.x = 0.5 * (1.0 + oPos.x);
-	oUv.y = 0.5 * (1.0 - oPos.y);
-	//oPos = projPos;
-	//Pos.xy = sign(Pos.xy);
+	Pos.xy = sign(Pos.xy);
 	
-	//oPos = float4(Pos.xy, 0, 1);
-	//oPos.y *= flip;
-	
-	//oUv.x = 0.5 * (1 + Pos.x);
-	//oUv.y = 0.5 * (1 - Pos.y);
+	oUv.x = 0.5 * (1.0 + Pos.x);
+	oUv.y = 0.5 * (1.0 - Pos.y);
 	
 	float aspect = viewportH / viewportW;
 	float tfov = tan(fov / 2.0);

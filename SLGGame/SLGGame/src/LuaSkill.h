@@ -151,7 +151,7 @@ static int ApplyModifier(lua_State* L)
 	modifier->ActionPoint = luaL_checknumber(L,8);
 	modifier->Detection = luaL_checknumber(L,9);
 	modifier->Covert = luaL_checknumber(L,10);
-	modifier->Injury = luaL_checknumber(L,11);
+	modifier->Morale = luaL_checknumber(L,11);
 	modifier->Conter = luaL_checknumber(L,12);
 	std::string id("");
 	AVGSquadManager::getSingleton().applyModifer(squadpath,modifier,id);
