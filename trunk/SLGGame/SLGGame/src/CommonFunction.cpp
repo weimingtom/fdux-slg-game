@@ -37,6 +37,57 @@ int GetSide(Direction d1, Direction d2)
 	return 0;
 }
 
+float GetFormationBonus(int side, enumtype formtype)
+{
+	float form;
+	switch(side)
+	{
+	case 0:
+		switch(formtype)
+		{
+		case Line:
+			form *= FORMBONSE_LINE_FRONT;
+			break;
+		case Circular:
+			form *= FORMBONSE_CIRC_FRONT;
+			break;
+		case Loose:
+			form *= FORMBONSE_LOOS_FRONT;
+			break;
+		}
+		break;
+	case 1:
+		switch(formtype)
+		{
+		case Line:
+			form *= FORMBONSE_LINE_SIDE;
+			break;
+		case Circular:
+			form *= FORMBONSE_CIRC_SIDE;
+			break;
+		case Loose:
+			form *= FORMBONSE_LOOS_SIDE;
+			break;
+		}
+		break;
+	case 2:
+		switch(formtype)
+		{
+		case Line:
+			form *= FORMBONSE_LINE_BACK;
+			break;
+		case Circular:
+			form *= FORMBONSE_CIRC_BACK;
+			break;
+		case Loose:
+			form *= FORMBONSE_LOOS_BACK;
+			break;
+		}
+		break;
+	}
+	return form;
+}
+
 Direction GetDirection(int sx, int sy, int x, int y)
 {
 	Direction d = North;

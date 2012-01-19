@@ -122,13 +122,13 @@ private:
 
 	std::string mSkillid;
 	BattleSquad* mTargetSquad;
-	SkillType mSkillType;
+	enumtype mSkillType;
 	int mSkillArea;
 	bool mMeleeSkill;
 	AreaGrap* mTargetAreaGrap;
-	void drawSkillMoveArea(SkillType skilltype, float skillcost);
-	void drawSkillArea(SkillType skilltype, int minrange, int maxrange);
-	int skillPass(int x, int y, float &apcost, SkillType skilltype, float skillcost);
+	void drawSkillMoveArea(enumtype skilltype, float skillcost);
+	void drawSkillArea(enumtype skilltype, int minrange, int maxrange);
+	int skillPass(int x, int y, float &apcost, enumtype skilltype, float skillcost);
 	void useSkillAt(int x,int y);
 	void drawSkillTargetArea(int x,int y);
 	void executeSkillAt(int x, int y);

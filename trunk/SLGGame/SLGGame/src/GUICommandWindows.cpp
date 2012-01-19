@@ -194,9 +194,9 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 	std::vector<std::string> skilllist = datalib->getChildList(skilltablepath);
 	for(ite = skilllist.begin(); ite != skilllist.end(); ite++)
 	{
-		SkillType skilltype;
+		enumtype skilltype;
 		bool re = datalib->getData(std::string("StaticData/SkillData/")+ (*ite)+ std::string("/Type"),skilltype);
-		if(skilltype == SKILLTYPE_PASSIVE)
+		if(skilltype == SKILLTARGETTYPE_PASSIVE)
 			continue;
 		mSkill[skillno]->setVisible(true);
 		std::string skillpath = skilltablepath + std::string("/") + (*ite);

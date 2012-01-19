@@ -30,7 +30,7 @@
 	<SquadData>
 		<CheetahSquad>
 			<Type type="Int" value="0"/>
-			<SquadType type="Int" value="1"/>
+			<SquadType type="Int" value="0"/>
 			<SoilderId type="String" value="WingsSoilder"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="HeavySword"/>
@@ -48,16 +48,17 @@
 				<OneHandSword type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="Cheetah"/>
+			<RetainerID type="String" value="Scout"/>
 			<Level type="Int" value="5" />
 			<Exp type="Int" value="0" />
-			<RetainerID type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
 			<UnitMesh type="String" value="HeavyInf.mesh"/>
 			<UnitMat type="String" value="HeavyInf"/>
 			<MoveSound type="String" value="HeavyInf.mp3"/>
 		</CheetahSquad>
 		<DandelionSquad>
 			<Type type="Int" value="0"/>
-			<SquadType type="Int" value="2"/>
+			<SquadType type="Int" value="1"/>
 			<SoilderId type="String" value="WingsSoilder"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="ShortSword"/>
@@ -75,16 +76,17 @@
 				<LightArmor type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="Dandelion"/>
+			<RetainerID type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
 			<Level type="Int" value="5" />
 			<Exp type="Int" value="0" />
-			<RetainerID type="String" value="Scout"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
 			<MoveSound type="String" value="BowMan.mp3"/>
 		</DandelionSquad>
 		<Olivia>
 			<Type type="Int" value="1"/>
-			<SquadType type="Int" value="3"/>
+			<SquadType type="Int" value="5"/>
 			<SoilderId type="String" value="HolySpirit"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="none"/>
@@ -99,9 +101,10 @@
 				<Pray type="Int" value="1" />
 			</SkillTable>
 			<LeaderId type="String" value="Olivia"/>
+			<RetainerID type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
 			<Level type="Int" value="4" />
 			<Exp type="Int" value="0" />
-			<RetainerID type="String" value="Scout"/>
 			<UnitMesh type="String" value="HolySpirit.mesh"/>
 			<UnitMat type="String" value="HolySpirit"/>
 			<MoveSound type="String" value="Olivia.mp3"/>
@@ -123,9 +126,10 @@
 				<LightArmor type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="DuxLightOfficer"/>
+			<RetainerID type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
 			<Level type="Int" value="2" />
 			<Exp type="Int" value="0" />
-			<RetainerID type="String" value="Scout"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
 			<UnitMaxNumber type="Int" value="50"/>
@@ -133,7 +137,7 @@
 		</DuxLightSpear>
 		<DuxHeavyInf>
 			<Type type="Int" value="0"/>
-			<SquadType type="Int" value="1"/>
+			<SquadType type="Int" value="0"/>
 			<SoilderId type="String" value="EtasiSoilder"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="HeavySword"/>
@@ -149,9 +153,10 @@
 				<OneHandSword type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="DuxHeavyOfficer"/>
+			<RetainerID type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
 			<Level type="Int" value="3" />
 			<Exp type="Int" value="0" />
-			<RetainerID type="String" value="Scout"/>
 			<UnitMesh type="String" value="HeavyInf.mesh"/>
 			<UnitMat type="String" value="HeavyInf"/>
 			<MoveSound type="String" value="HeavyInf.mp3"/>
@@ -167,16 +172,15 @@
 				<Attack type="Float" value="2.0"/>
 				<RangedAttack type="Float" value="2.0"/>
 				<Defence type="Float" value="2.0"/>
-				<Formation type="Float" value="0.06"/>
+				<Formation type="Float" value="2.0"/>
 				<Initiative type="Float" value="1.0"/>
 				<ActionPoint type="Float" value="9.0"/>
 				<Detection type="Float" value="5.0"/>
 				<Covert type="Float" value="0.0"/>
-				<Morale type="Float" value="0.8"/>
+				<Toughness type="Float" value="0.7"/>
 				<Conter type="Float" value="0.5"/>
 			</AttrModifer>
-			<Morale type="Int" value="1" />
-			<Fluctuate type="Int" value="10" />
+			<Randomness type="Int" value="20" />
 		</WingsSoilder>
 		<HolySpirit>
 			<Type type="Int" value="1"/>
@@ -192,11 +196,10 @@
 				<ActionPoint type="Float" value="8.0"/>
 				<Detection type="Float" value="5.0"/>
 				<Covert type="Float" value="0.0"/>
-				<Morale type="Float" value="0.0"/>
+				<Toughness type="Float" value="1.0"/>
 				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
-			<Morale type="Int" value="0" />
-			<Fluctuate type="Int" value="10" />
+			<Randomness type="Int" value="20" />
 		</HolySpirit>
 		<DuxSoilder>
 			<Type type="Int" value="1"/>
@@ -207,16 +210,15 @@
 				<Attack type="Float" value="1.0"/>
 				<RangedAttack type="Float" value="0.0"/>
 				<Defence type="Float" value="1.0"/>
-				<Formation type="Float" value="0.04"/>
+				<Formation type="Float" value="1.0"/>
 				<Initiative type="Float" value="2.0"/>
 				<ActionPoint type="Float" value="10.0"/>
 				<Detection type="Float" value="6.0"/>
 				<Covert type="Float" value="0.0"/>
-				<Morale type="Float" value="1.0"/>
+				<Toughness type="Float" value="0.6"/>
 				<Conter type="Float" value="0.4"/>
 			</AttrModifer>
-			<Morale type="Int" value="1" />
-			<Fluctuate type="Int" value="20" />
+			<Randomness type="Int" value="40" />
 		</DuxSoilder>
 	</SoilderData>
 	<HorseData>
@@ -241,7 +243,7 @@
 				<ActionPoint type="Float" value="0.0"/>
 				<Detection type="Float" value="0.0"/>
 				<Covert type="Float" value="0.0"/>
-				<Morale type="Float" value="0.0"/>
+				<Toughness type="Float" value="0.0"/>
 				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
 		</HeavySword>
@@ -264,7 +266,7 @@
 				<ActionPoint type="Float" value="0.0"/>
 				<Detection type="Float" value="0.0"/>
 				<Covert type="Float" value="0.0"/>
-				<Morale type="Float" value="0.0"/>
+				<Toughness type="Float" value="0.0"/>
 				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
 		</ShortSword>
@@ -287,7 +289,7 @@
 				<ActionPoint type="Float" value="0.0"/>
 				<Detection type="Float" value="0.0"/>
 				<Covert type="Float" value="0.0"/>
-				<Morale type="Float" value="0.0"/>
+				<Toughness type="Float" value="0.0"/>
 				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
 		</ShortSpear>
@@ -314,7 +316,7 @@
 				<ActionPoint type="Float" value="0.0"/>
 				<Detection type="Float" value="0.0"/>
 				<Covert type="Float" value="0.0"/>
-				<Morale type="Float" value="0.0"/>
+				<Toughness type="Float" value="0.0"/>
 				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
 		</LongBow>
@@ -337,7 +339,7 @@
 				<ActionPoint type="Float" value="-1.0"/>
 				<Detection type="Float" value="0.0"/>
 				<Covert type="Float" value="-1.0"/>
-				<Morale type="Float" value="0.0"/>
+				<Toughness type="Float" value="0.0"/>
 				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
 		</KnightShield>
@@ -358,7 +360,7 @@
 				<ActionPoint type="Float" value="0.0"/>
 				<Detection type="Float" value="0.0"/>
 				<Covert type="Float" value="0.0"/>
-				<Morale type="Float" value="0.0"/>
+				<Toughness type="Float" value="0.0"/>
 				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
 		</RoundShield>
@@ -378,7 +380,7 @@
 				<ActionPoint type="Float" value="-1.0"/>
 				<Detection type="Float" value="0.0"/>
 				<Covert type="Float" value="-1.0"/>
-				<Morale type="Float" value="0.0"/>
+				<Toughness type="Float" value="0.0"/>
 				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
 		</HeavyMail>
@@ -396,7 +398,7 @@
 				<ActionPoint type="Float" value="0.0"/>
 				<Detection type="Float" value="0.0"/>
 				<Covert type="Float" value="0.0"/>
-				<Morale type="Float" value="0.0"/>
+				<Toughness type="Float" value="0.0"/>
 				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
 		</LightMail>
@@ -414,20 +416,27 @@
 				<ActionPoint type="Float" value="0.0"/>
 				<Detection type="Float" value="0.0"/>
 				<Covert type="Float" value="0.0"/>
-				<Morale type="Float" value="0.0"/>
+				<Toughness type="Float" value="0.0"/>
 				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
 		</LeatherArmor>
 	</ArmorData>
 	<RetainerData>
 		<Scout>
-			<Skill type="String" value="RetainerDetection"/>
+			<Type type = "Int" value = "0" />
+			<Valve type = "Int" value = "10" />
+			<Wage type = "Int" value = "10" />
+			<Skill type="String" value="DetectionTrain"/>
 			<SkillType type="Int" value="0" />
 			<Picture type="String" value="Scout.png" />
 		</Scout>
 	</RetainerData>
 	<SkillListData>
 		<Infantry>
+			<Default>
+				<Attack type = "Int" value = "1"/>
+				<Rest type = "Int" value = "1"/>
+			</Default>
 			<Active>
 				<Defence type="Int" value="2"/>
 				<Break  type="Int" value="5"/>
@@ -447,6 +456,11 @@
 			</Equip>
 		</Infantry>
 		<MissileInfantry>
+			<Default>
+				<Attack type = "Int" value = "1"/>
+				<Rest type = "Int" value = "1"/>
+				<RangedAttack type = "Int" value = "1" />
+			</Default>
 			<Active>
 				<Defence type="Int" value="2"/>
 				<SuppressAttack type="Int" value="5"/>
@@ -467,6 +481,7 @@
 			</Equip>
 		</MissileInfantry>
 		<Saint>
+			<Default />
 			<Active>
 				<Heal type="Int" value="1"/>
 				<MagicShield type="Int" value="3"/>
@@ -480,7 +495,7 @@
 	</SkillListData>
 	<SkillData>
 		<Attack>
-			<Type type="Int" value="2"/>
+			<Type type="Int" value="1"/>
 			<MaxRange type="Int" value="1"/>
 			<MinRange type="Int" value="1"/>
 			<Area type="Int" value="1"/>
@@ -492,7 +507,7 @@
 			<Script type="String" value="attack.lua"/>
 		</Attack>
 		<MagicShield>
-			<Type type="Int" value="3"/>
+			<Type type="Int" value="2"/>
 			<MaxRange type="Int" value="2"/>
 			<MinRange type="Int" value="1"/>
 			<Area type="Int" value="1"/>
@@ -504,7 +519,7 @@
 			<Script type="String" value="magicshield.lua"/>
 		</MagicShield>
 		<RangedAttack>
-			<Type type="Int" value="7"/>
+			<Type type="Int" value="6"/>
 			<MaxRange type="Int" value="0"/>
 			<MinRange type="Int" value="0"/>
 			<Area type="Int" value="1"/>
@@ -516,7 +531,7 @@
 			<Script type="String" value="rangedattack.lua"/>
 		</RangedAttack>
 		<Defence>
-			<Type type="Int" value="1"/>
+			<Type type="Int" value="0"/>
 			<MaxRange type="Int" value="0"/>
 			<MinRange type="Int" value="0"/>
 			<Area type="Int" value="1"/>
@@ -528,7 +543,7 @@
 			<Script type="String" value="defence.lua"/>
 		</Defence>
 		<Rest>
-			<Type type="Int" value="1"/>
+			<Type type="Int" value="0"/>
 			<MaxRange type="Int" value="0"/>
 			<MinRange type="Int" value="0"/>
 			<Area type="Int" value="1"/>
@@ -540,7 +555,7 @@
 			<Script type="String" value="rest.lua"/>
 		</Rest>
 		<Heal>
-			<Type type="Int" value="3"/>
+			<Type type="Int" value="2"/>
 			<MaxRange type="Int" value="2"/>
 			<MinRange type="Int" value="1"/>
 			<Area type="Int" value="1"/>
@@ -552,7 +567,7 @@
 			<Script type="String" value="heal.lua"/>
 		</Heal>
 		<Break>
-			<Type type="Int" value="2"/>
+			<Type type="Int" value="1"/>
 			<MaxRange type="Int" value="1"/>
 			<MinRange type="Int" value="1"/>
 			<Area type="Int" value="1"/>
@@ -564,7 +579,7 @@
 			<Script type="String" value="break.lua"/>
 		</Break>
 		<SuppressAttack>
-			<Type type="Int" value="7"/>
+			<Type type="Int" value="6"/>
 			<MaxRange type="Int" value="0"/>
 			<MinRange type="Int" value="0"/>
 			<Area type="Int" value="1"/>
@@ -576,7 +591,7 @@
 			<Script type="String" value="suppressattack.lua"/>
 		</SuppressAttack>
 		<Pray>
-			<Type type="Int" value="1"/>
+			<Type type="Int" value="0"/>
 			<MaxRange type="Int" value="0"/>
 			<MinRange type="Int" value="0"/>
 			<Area type="Int" value="1"/>
@@ -589,11 +604,11 @@
 		</Pray>
 	</SkillData>
 	<EffectData>
-		<RetainerDetection>
+		<DetectionTrain>
 			<Type type="Int" value="0"/>
-			<Icon type="String" value="RetainerDetection.jpg"/>
-			<Script type="String" value="RetainerDetection.lua"/>
-		</RetainerDetection>
+			<Icon type="String" value="DetectionTrain.jpg"/>
+			<Script type="String" value="DetectionTrain.lua"/>
+		</DetectionTrain>
 		<AttacktTrain>
 			<Type type="Int" value="0"/>
 			<Icon type="String" value="AttacktTrain.jpg"/>
@@ -604,11 +619,11 @@
 			<Icon type="String" value="DefenceTrain.jpg"/>
 			<Script type="String" value="DefenceTrain.lua"/>
 		</DefenceTrain>
-		<RangedAttackTrain >
+		<RangedAttackTrain>
 			<Type type="Int" value="0"/>
 			<Icon type="String" value="RangedAttackTrain.jpg"/>
 			<Script type="String" value="RangedAttackTrain.lua"/>
-		</RangedAttackTrain >
+		</RangedAttackTrain>
 		<Faith>
 			<Type type="Int" value="0"/>
 			<Icon type="String" value="Faith.jpg"/>
@@ -620,12 +635,12 @@
 			<Script type="String" value="StrengthenSprite.lua"/>
 		</StrengthenSprite>
 		<MagicShield>
-			<Type type="Int" value="1"/>
+			<Type type="Int" value="2"/>
 			<Icon type="String" value="magicshield.jpg"/>
 			<Script type="String" value="magicshield.lua"/>
 		</MagicShield>
 		<Defence>
-			<Type type="Int" value="1"/>
+			<Type type="Int" value="2"/>
 			<Icon type="String" value="defence.jpg"/>
 			<Script type="String" value="defence.lua"/>
 		</Defence>

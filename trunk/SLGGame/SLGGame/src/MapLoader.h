@@ -18,4 +18,14 @@ public:
 	void initMapScript();
 private:
 	void creatSquadGrapAtPath(std::string path);
+	struct MapSquadInfo
+	{
+		std::string squadId;
+		std::string squadTempId;
+		int team;
+		int x,y;
+		int unitNum;
+		enumtype dir;
+	};
+	std::queue<MapSquadInfo> mMapSquadInfo;
 };

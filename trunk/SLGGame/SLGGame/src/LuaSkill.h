@@ -51,12 +51,13 @@ static int MagicAttack(lua_State* L)
 	std::string defendsquad(luaL_checkstring(L, 2));
 	int atktime = luaL_checknumber(L, 3);
 	float atk = luaL_checknumber(L, 4);
+	int fluctuate = luaL_checknumber(L, 5);
 	BattleSquad* attacker = BattleSquadManager::getSingleton().getBattleSquad(attacksquad);
 	BattleSquad* defender = BattleSquadManager::getSingleton().getBattleSquad(defendsquad);
 	int re = 0;
 	if(attacker != NULL &&  defender!= NULL)
 	{
-		re =  BattleSquadManager::getSingleton().dealMagicDamage(attacker, defender,atktime,atk);
+		re =  BattleSquadManager::getSingleton().dealMagicDamage(attacker, defender,atktime,atk, fluctuate);
 	}
 	else
 		re = 0;
@@ -151,7 +152,7 @@ static int ApplyModifier(lua_State* L)
 	modifier->ActionPoint = luaL_checknumber(L,8);
 	modifier->Detection = luaL_checknumber(L,9);
 	modifier->Covert = luaL_checknumber(L,10);
-	modifier->Morale = luaL_checknumber(L,11);
+	modifier->Toughness = luaL_checknumber(L,11);
 	modifier->Conter = luaL_checknumber(L,12);
 	std::string id("");
 	AVGSquadManager::getSingleton().applyModifer(squadpath,modifier,id);
@@ -313,19 +314,6 @@ static int SquadParticle(lua_State* L)
 	return 0;
 }
 
-static int SetMorale(lua_State* L)
-{
-	std::string squad(luaL_checkstring(L, 1));
-	int morale = luaL_checknumber(L, 2);
-	int	spread = luaL_checknumber(L, 3);
-	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
-	if(spread == 1)
-		battlesquad->modifyMorale(morale);
-	else
-		BattleSquadManager::getSingleton().spreadModifyMorale(battlesquad,morale);
-	return 0;
-}
-
 static const struct luaL_Reg SkillLib[] =
 {
 	{"MeleeCombat",MeleeCombat},
@@ -348,6 +336,5 @@ static const struct luaL_Reg SkillLib[] =
 	{"GetUnitMaxNum",GetUnitMaxNum},
 	{"ChangeFormation",ChangeFormation},
 	{"SquadParticle",SquadParticle},
-	{"SetMorale",SetMorale},
 	{NULL,NULL}
 };

@@ -9,6 +9,8 @@ using namespace izayoi;
 class BattleSquad;
 class BattleState;
 
+struct LuaTempContext;
+
 class TriggerContext
 {
 public:
@@ -45,6 +47,7 @@ public:
 	void changeState(int statetype, std::string arg);
 
 	void Trigger(std::string path, TriggerContext* triggercontext);
+	void Trigger(std::string path, std::string triggertype, LuaTempContext * tempcontext);
 private:
 	BattleState* mBattleState;
 };

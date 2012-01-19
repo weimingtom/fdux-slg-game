@@ -20,6 +20,13 @@ class LuaSystemListener
 		virtual void onComplete()=0;//当全部脚本结束时
 };
 
+struct LuaTempContext
+{
+	std::map<std::string, int> intMap;
+	std::map<std::string, float> floatMap;
+	std::map<std::string, std::string> strMap;
+};
+
 class LuaSystem:public IISingleton<LuaSystem> 
 {
 public:
@@ -47,8 +54,7 @@ public:
 
 	std::string getContext();
 	std::string getFileName();
-	//bool executeFile(std::string filename, std::string context);
-	bool executeFunction(std::string filename, std::string funcname, std::string context);
+	bool executeFunction(std::string filename, std::string funcname, std::string context, LuaTempContext *tempcontext = NULL);
 
 private:
 	lua_State* L;
@@ -61,5 +67,6 @@ private:
 
 	std::vector<std::string> mContextStack;
 	std::vector<std::string> mFileNameStack;
+	std::vector<LuaTempContext*> mTempContextStack;
 };
 

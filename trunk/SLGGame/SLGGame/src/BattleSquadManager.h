@@ -42,13 +42,11 @@ public:
 	//½Å±¾µ÷ÓÃ
 	bool meleeAttackSquad(BattleSquad* attacksquad, BattleSquad* defenesquad);
 	
-	bool dealMagicDamage(BattleSquad* attacksquad, BattleSquad* defenesquad, int attacktime, float atk);
+	bool dealMagicDamage(BattleSquad* attacksquad, BattleSquad* defenesquad, int attacktime, float atk, int fluctuate);
 
 	bool dealRangedDamage(BattleSquad* attacksquad, BattleSquad* defenesquad);
 
 	void rangedAttackCutScene(BattleSquad* attacksquad, int x, int y, UnitType castunit , std::string castparticle, std::string castaction, std::string castsound, int missiletype, std::string missileres, std::string hitparticle,std::string hitsound);
-
-	void spreadModifyMorale(BattleSquad* squad, int val);
 
 	void setCutScene(CutScene* cutscene);
 	CutScene* getCutScene();

@@ -126,7 +126,7 @@ void AVGSquadManager::modifyMorale(std::string id, int morale)
 		if(all || id == (*ite))
 		{
 			path = str(boost::format("GameData/StoryData/SquadData/EnableSquad/%1%")%(*ite));
-			moralemodi = getSquadAttr(path,ATTR_MORALE,ATTRCALC_FULL,moralemodi);
+			moralemodi = getSquadAttr(path,ATTR_TOUGHNESS,ATTRCALC_FULL,moralemodi);
 			path = path + "/Morale";
 			datalib->getData(path,morale1);
 			morale1 += floor(moralemodi * morale + 0.5f);
@@ -196,12 +196,12 @@ bool AVGSquadManager::equipEquipment(std::string path, enumtype type, std::strin
 bool AVGSquadManager::learnSkill(std::string path,std::string id)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
-	SkillType skilltype;
+	enumtype skilltype;
 	bool re = datalib->getData(std::string("StaticData/SkillData/")+ id+ std::string("/Type"),skilltype);
 	if(!re)
 		return false;
 	datalib->setData(path + std::string("/SkillTable/")+ id, 0);
-	if(skilltype == SKILLTYPE_PASSIVE)
+	if(skilltype == SKILLTARGETTYPE_PASSIVE)
 	{
 		std::string skillcontext = path + std::string("/SkillTable/")+ id + std::string("/ScriptContext");
 		std::string skillscript;
@@ -278,7 +278,7 @@ bool AVGSquadManager::applyModifer(std::string path, AttrModifier* modifier, std
 	datalib->setData(path + std::string("/ActionPoint"), modifier->ActionPoint, true);
 	datalib->setData(path + std::string("/Detection"), modifier->Detection, true);
 	datalib->setData(path + std::string("/Covert"), modifier->Covert, true);
-	datalib->setData(path + std::string("/Injury"), modifier->Morale, true);
+	datalib->setData(path + std::string("/Injury"), modifier->Toughness, true);
 	datalib->setData(path + std::string("/Conter"), modifier->Conter, true);
 	return true;
 }
@@ -391,7 +391,7 @@ bool AVGSquadManager::getSquadAttr(std::string path, enumtype attrtype, enumtype
 		case ATTR_COVERT:
 			re = datalib->getData(datapath + std::string("/Covert"), attrval);
 			break;
-		case ATTR_MORALE:
+		case ATTR_TOUGHNESS:
 			re = datalib->getData(datapath + std::string("/Injury"), attrval);
 			break;
 		case ATTR_CONTER:

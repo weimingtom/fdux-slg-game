@@ -14,7 +14,6 @@
 #include "CommonFunction.h"
 
 BattleSquad::BattleSquad(std::string id, int grapid ,int x, int y)
-:mId(id),mGrapId(grapid)
 {
 	setCrood(x,y);
 	std::string team;
@@ -148,15 +147,7 @@ BattleSquad::BattleSquad(std::string id, int grapid ,int x, int y)
 	else
 		mIsEliminated = true;
 }
-BattleSquad::~BattleSquad()
-{
 
-}
-
-std::string BattleSquad::getPath()
-{
-	return std::string("GameData/BattleData/SquadList/") + mId;
-}
 
 void BattleSquad::setCrood(int x, int y)
 {
@@ -287,7 +278,6 @@ float BattleSquad::getAttr(enumtype attrtype, enumtype calctype, Direction direc
 			break;
 		}
 		attr = attr + form;
-		attr *= getMoraleBonse();
 		if(attrtype==ATTR_DEFENCE)
 		{
 			trrainmodi = MapDataManager::getSingleton().getDefModify(mX,mY,mTeam);
@@ -318,7 +308,6 @@ float BattleSquad::getAttr(enumtype attrtype, enumtype calctype, Direction direc
 			break;
 		}
 		attr = attr + RANGEDDEFENCEBONUS - form;
-		attr *= getMoraleBonse();
 		trrainmodi = MapDataManager::getSingleton().getDefModify(mX,mY,mTeam);
 		if(trrainmodi < 0.0f)
 		{
@@ -344,25 +333,6 @@ float BattleSquad::getAttr(enumtype attrtype, enumtype calctype, Direction direc
 	return attr;
 }
 
-float BattleSquad::getMoraleBonse()
-{
-	int morale = 0;
-	DataLibrary::getSingleton().getData(getPath() + std::string("/Morale"),morale);
-	return 0.6f +  0.006f * morale;
-}
-
-void BattleSquad::modifyMorale(int m)
-{
-	int morale = 0;
-	DataLibrary::getSingleton().getData(getPath() + std::string("/Morale"),morale);
-	float moralequotiety = getAttr(ATTR_MORALE, ATTRCALC_FULL, North);
-	moralequotiety *= m;
-	m = floor(moralequotiety + 0.5f);
-	morale += m;
-	morale = (morale > 100)? 100: morale;
-	morale = (morale < 0)? 0: morale;
-	DataLibrary::getSingleton().setData(getPath() + std::string("/Morale"),morale);
-}
 
 int BattleSquad::getUnitRealNum()
 {
@@ -373,7 +343,7 @@ int BattleSquad::getUnitRealNum()
 
 int BattleSquad::getUnitGrapNum()
 {
-	SquadType squadtype;
+	enumtype squadtype;
 	DataLibrary::getSingleton().getData(getPath() + std::string("/Type"),squadtype);
 	int unitnum=getUnitRealNum();
 	if(unitnum == 0)
@@ -506,9 +476,9 @@ float BattleSquad::getActionPoint()
 	return ap;
 }
 
-SquadType BattleSquad::getType()
+enumtype BattleSquad::getType()
 {
-	SquadType type;
+	enumtype type;
 	DataLibrary::getSingleton().getData(getPath() + std::string("/Type"),type);
 	if(type!= SQUAD_NORMAL && type!= SQUAD_SPECIAL)
 		type = SQUAD_NORMAL;
@@ -523,162 +493,6 @@ float BattleSquad::getActionPointCost(int type)
 	else if(type == SKILLAPTYPE_BATTLE)
 		DataLibrary::getSingleton().getData(getPath() + std::string("/APBattle"),apcost);
 	return apcost;
-}
-
-AttackInfo BattleSquad::getAttackRolls(bool rangedattack,bool asdefender, Direction d)
-{
-	AttackInfo attackinfo;
-	float atkf;
-	if(rangedattack)
-		atkf = getAttr(ATTR_RANGEDATTACK, ATTRCALC_FULL, d);
-	else
-		atkf = getAttr(ATTR_ATTACK, ATTRCALC_FULL, d);
-	int atk = floor(atkf + 0.5f);
- 	int soildernum;
- 	DataLibrary::getSingleton().getData(getPath() + std::string("/UnitNumber"),soildernum);
-	soildernum = floor((-0.010907f) * soildernum * soildernum  + 1.37256f * soildernum+ 8.638347f + 0.5f);
-// 	DataLibrary::getSingleton().getData(getPath() + std::string("/WoundNum"),woundnum);
-// 	healthynum = soildernum - woundnum;
- 	if(asdefender)
- 		soildernum *= getAttr(ATTR_CONTER,ATTRCALC_FULL, d);
-	std::string soilderid;
-	int fluctuate;
-	DataLibrary::getSingleton().getData(getPath() + std::string("/SoilderId"),soilderid);
-	DataLibrary::getSingleton().getData(std::string("StaticData/SoilderData/") + soilderid + std::string("/Fluctuate"),fluctuate);
-// 	int atknum = std::min(healthynum , soildernum);
-// 	int n = 0;
-// 	for(n = 0; n < atknum; n++)
-// 	{
-// 		int atkroll = rand()% ATKROLL;
-// 		if(atkroll == ATKROLL -1)
-// 			atkroll = 100;
-// 		else if(atkroll == 0)
-// 			atkroll = -100;
-// 		attackrolls.push_back(atk + atkroll);
-// 	}
-// 	soildernum -= atknum;
-// 	healthynum -= atknum;
-// 	if(soildernum > 0)
-// 	{
-// 		atknum = std::min(woundnum , soildernum);
-// 		atk *= getAttr(ATTR_INJURY,ATTRCALC_FULL, d);
-// 		for(n = 0; n < atknum; n++)
-// 		{
-// 			int atkroll = rand()% ATKROLL;
-// 			if(atkroll == ATKROLL -1)
-// 				atkroll = 100;
-// 			else if(atkroll == 0)
-// 				atkroll = -100;
-// 			attackrolls.push_back(atk +atkroll);
-// 		}
-// 	}
-	attackinfo.AtkTime = soildernum;
-	attackinfo.Atk = atkf;
-	attackinfo.Fluctuate = fluctuate;
-	return attackinfo;
-}
-
-void BattleSquad::applyAttackRolls(bool rangedattack, Direction d, AttackInfo &attackinfo)
-{
-	float deff;
-	if(rangedattack)
-		deff = getAttr(ATTR_RANGEDDEFENCE, ATTRCALC_FULL, d);
-	else
-		deff = getAttr(ATTR_DEFENCE, ATTRCALC_FULL, d);
-	int def = floor(deff + 0.5f);
-	//int wounddef = def * getAttr(ATTR_INJURY, ATTRCALC_FULL, d);
-	int soildernum;
-	DataLibrary::getSingleton().getData(getPath() + std::string("/UnitNumber"),soildernum);
-// 	DataLibrary::getSingleton().getData(getPath() + std::string("/WoundNum"),woundnum);
-// 	std::string soilderid;
-// 	int inj;
-// 	DataLibrary::getSingleton().getData(getPath() + std::string("/SoilderId"),soilderid);
-// 	DataLibrary::getSingleton().getData(std::string("StaticData/SoilderData/") + soilderid + std::string("/Injury"),inj);
-// 	healthynum = soildernum - woundnum;
-// 	int atknum = 0;
-// 	int unit = 1;
-// 	int temphealth = 0, tempwound = 0;
-// 	while(atknum < attackrolls.size())
-// 	{
-// 		if(unit > soildernum)
-// 		{
-// 			healthynum = temphealth;
-// 			woundnum = tempwound;
-// 			temphealth = 0;
-// 			tempwound = 0;
-// 			soildernum = healthynum + woundnum;
-// 			unit = 1;
-// 			if(soildernum == 0)
-// 			{
-// 				DataLibrary::getSingleton().setData(getPath() + std::string("/UnitNumber"),0);
-// 				DataLibrary::getSingleton().setData(getPath() + std::string("/WoundNum"),0);
-// 				OnDead();
-// 				break;
-// 			}
-// 		}
-// 		if(unit < healthynum)
-// 		{
-// 			if(attackrolls[atknum] > def + DEFBOUSE)
-// 			{
-// 				atknum++;
-// 				if(inj != 0)
-// 				{
-// 					if(atknum< attackrolls.size())
-// 					{
-// 						if (attackrolls[atknum] <= def + DEFBOUSE)
-// 						{
-// 							tempwound++;
-// 						}
-// 						atknum++;
-// 					}
-// 				}
-// 			}
-// 			else
-// 			{
-// 				atknum++;
-// 				temphealth++;
-// 			}
-// 		}
-// 		else
-// 		{
-// 			if(attackrolls[atknum] > wounddef + DEFBOUSE)
-// 			{
-// 				atknum++;
-// 			}
-// 			else
-// 			{
-// 				atknum++;
-// 				tempwound++;
-// 			}
-// 		}
-// 		unit++;
-// 	}
-// 	if(unit < healthynum)
-// 	{
-// 		temphealth += healthynum - unit + 1;
-// 		tempwound += woundnum;
-// 	}
-// 	else
-// 	{
-// 		tempwound += woundnum - (unit - healthynum - 1);
-// 	}
-// 	soildernum = tempwound + temphealth;
-	int atk = floor(attackinfo.Atk + 0.5f);
-	float perc = AtkDefToPerc(atk,def);
-	float killf = perc * attackinfo.AtkTime;
-	killf += killf * (rand() % (attackinfo.Fluctuate * 2 + 1) - attackinfo.Fluctuate) / 100.0f;
-	int kill = floor(killf + 0.5f);
-	if(kill == 0)
-	{
-		if(rand() % 100 < attackinfo.Fluctuate)
-			kill = 1;
-	}
-	soildernum -= kill;
-	soildernum  = (soildernum < 0)? 0: soildernum;
-	DataLibrary::getSingleton().setData(getPath() + std::string("/UnitNumber"),soildernum);
-	if(soildernum == 0)
-		OnEliminated();
-	//DataLibrary::getSingleton().setData(getPath() + std::string("/WoundNum"),tempwound);
 }
 
 void BattleSquad::OnEliminated()
@@ -727,7 +541,7 @@ void BattleSquad::OnTurnEnd()
 int BattleSquad::getTeamFaction(int team)
 {
 	std::string temppath,tempstr;
-	temppath = std::string("GameData/BattleData/Team/Team") + Ogre::StringConverter::toString(team) + std::string("/Relation");
+	temppath = std::string("GameData/BattleData/Team/Team") + Ogre::StringConverter::toString(team + 1) + std::string("/Relation");
 	DataLibrary::getSingleton().getData(temppath,tempstr);
 	if(tempstr == "alliance")
 		return 0;
@@ -742,3 +556,246 @@ int BattleSquad::getTeamFaction(int team)
 	return 0;
 }
 
+BattleSquad::BattleSquad(std::string path, std::string srcpath, int team, int unitnum, int x, int y, enumtype d)
+{
+	Squad(path, srcpath);
+	if(mInit == false)
+		return;
+	DataLibrary *datalib = DataLibrary::getSingletonPtr();
+	datalib->setData(getPath() + std::string("/Team"),team);
+	setCrood(x, y);
+	setDirection(d);
+
+	datalib->setData(getPath() + std::string("/UnitNum"),unitnum);
+	enumtype squadtype2;
+	datalib->getData(srcpath + std::string("/Type"), squadtype2);
+	if(squadtype2 == SQUAD_NORMAL)
+		datalib->getData(srcpath + std::string("/UnitMaxNum"), unitnum);
+	else
+		datalib->setData(getPath() + std::string("/UnitMaxNum"),20);
+
+	float covert;
+	covert = getAttr(ATTR_COVERT, ATTRCALC_FULL);
+	if(covert < 0.0f)
+	{
+		switch(getTeamFaction(team))
+		{
+		case 0:
+			datalib->setData(getPath() + std::string("/ViewbyPlayer"),1);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy1"),0);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy2"),0);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy3"),0);
+			break;
+		case 1:
+			datalib->setData(getPath() + std::string("/ViewbyPlayer"),0);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy1"),1);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy2"),0);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy3"),0);
+			break;
+		case 2:
+			datalib->setData(getPath() + std::string("/ViewbyPlayer"),0);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy1"),0);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy2"),1);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy3"),0);
+			break;
+		case 3:
+			datalib->setData(getPath() + std::string("/ViewbyPlayer"),0);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy1"),0);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy2"),0);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy3"),1);
+			break;
+		}
+	}
+	else
+	{
+		datalib->setData(getPath() + std::string("/ViewbyPlayer"),1);
+		datalib->setData(getPath() + std::string("/ViewbyEnemy1"),1);
+		datalib->setData(getPath() + std::string("/ViewbyEnemy2"),1);
+		datalib->setData(getPath() + std::string("/ViewbyEnemy3"),1);
+	}
+
+	datalib->setData(getPath() + std::string("/AmbushPlayer"),0);
+	datalib->setData(getPath() + std::string("/AmbushEnemy1"),0);
+	datalib->setData(getPath() + std::string("/AmbushEnemy2"),0);
+	datalib->setData(getPath() + std::string("/AmbushEnemy3"),0);
+	mInit = true;
+}
+
+BattleSquad::BattleSquad(std::string path, std::string srcpath, int team)
+{
+	Squad(path, srcpath);
+	if(mInit == false)
+		return;
+	DataLibrary *datalib = DataLibrary::getSingletonPtr();
+	datalib->setData(getPath() + std::string("/Team"),team);
+	setCrood(-10, -10);
+	setDirection(North);
+
+	int unitnum;
+	enumtype squadtype2;
+	datalib->getData(srcpath + std::string("/Type"), squadtype2);
+	if(squadtype2 == SQUAD_NORMAL)
+		datalib->getData(srcpath + std::string("/UnitNum"), unitnum);
+	else
+		unitnum = 20;
+	datalib->setData(getPath() + std::string("/UnitNum"),unitnum);
+	datalib->setData(getPath() + std::string("/UnitMaxNum"),unitnum);
+
+	float covert;
+	covert = getAttr(ATTR_COVERT, ATTRCALC_ONLYBASE);
+	if(covert < 0.0f)
+	{
+		switch(getTeamFaction(team))
+		{
+		case 0:
+			datalib->setData(getPath() + std::string("/ViewbyPlayer"),1);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy1"),0);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy2"),0);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy3"),0);
+			break;
+		case 1:
+			datalib->setData(getPath() + std::string("/ViewbyPlayer"),0);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy1"),1);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy2"),0);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy3"),0);
+			break;
+		case 2:
+			datalib->setData(getPath() + std::string("/ViewbyPlayer"),0);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy1"),0);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy2"),1);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy3"),0);
+			break;
+		case 3:
+			datalib->setData(getPath() + std::string("/ViewbyPlayer"),0);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy1"),0);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy2"),0);
+			datalib->setData(getPath() + std::string("/ViewbyEnemy3"),1);
+			break;
+		}
+	}
+	else
+	{
+		datalib->setData(getPath() + std::string("/ViewbyPlayer"),1);
+		datalib->setData(getPath() + std::string("/ViewbyEnemy1"),1);
+		datalib->setData(getPath() + std::string("/ViewbyEnemy2"),1);
+		datalib->setData(getPath() + std::string("/ViewbyEnemy3"),1);
+	}
+
+	datalib->setData(getPath() + std::string("/AmbushPlayer"),0);
+	datalib->setData(getPath() + std::string("/AmbushEnemy1"),0);
+	datalib->setData(getPath() + std::string("/AmbushEnemy2"),0);
+	datalib->setData(getPath() + std::string("/AmbushEnemy3"),0);
+	mInit = true;
+}
+
+BattleSquad::BattleSquad(std::string path)
+{
+	Squad(path);
+	if(mInit == false)
+		return;
+	mInit = true;
+}
+
+BattleSquad::~BattleSquad()
+{
+
+}
+
+float BattleSquad::getAttr(enumtype attrtype , enumtype calctype)
+{
+	float val = Squad::getAttr(attrtype, calctype);
+	return val;
+}
+
+AttackInfo BattleSquad::getAttackRolls(bool rangedattack,bool asdefender, Direction d)
+{
+	DataLibrary *datalib = DataLibrary::getSingletonPtr();
+	AttackInfo attackinfo;
+	int soildernum;
+	datalib->getData(getPath() + std::string("/UnitNum"),soildernum);
+	int atktime =  floor((-0.010907f) * soildernum * soildernum  + 1.37256f * soildernum+ 8.638347f + 0.5f);
+	if(asdefender)
+	{
+		attackinfo.AtkTime = atktime * getAttr(ATTR_CONTER,ATTRCALC_FULL);
+	}
+	else
+	{
+		attackinfo.AtkTime = atktime;
+	}
+
+	float atkf;
+	if(rangedattack)
+	{
+		atkf = getAttr(ATTR_RANGEDATTACK, ATTRCALC_FULL);
+	}
+	else
+	{
+		atkf = getAttr(ATTR_ATTACK, ATTRCALC_FULL);
+		float formation;
+		formation = getAttr(ATTR_FORM, ATTRCALC_FULL);
+		formation = formation * soildernum / 50.0f;
+		enumtype formtype;
+		datalib->getData(getPath() + std::string("/Formation"),formtype);
+		enumtype mydir;
+		datalib->getData(getPath() + std::string("/Direction"),mydir);
+		int side = GetSide(mydir,d);
+		formation *= GetFormationBonus(side, formtype);
+		atkf += formation;
+	}
+	attackinfo.Atk = atkf;
+
+	std::string soilderid;
+	float randomness;
+	datalib->getData(getPath() + std::string("/SoilderId"),soilderid);
+	datalib->getData(std::string("StaticData/SoilderData/") + soilderid + std::string("/Randomness"),randomness);
+	attackinfo.Randomness = randomness;
+
+	return attackinfo;
+}
+
+void BattleSquad::applyAttackRolls(bool rangedattack, Direction d, AttackInfo &attackinfo)
+{
+	DataLibrary *datalib = DataLibrary::getSingletonPtr();
+
+	int soildernum;
+	datalib->getData(getPath() + std::string("/UnitNum"),soildernum);
+	float deff;
+	if(rangedattack)
+	{
+		deff = getAttr(ATTR_RANGEDDEFENCE, ATTRCALC_FULL);
+	}
+	else
+	{
+		deff = getAttr(ATTR_DEFENCE, ATTRCALC_FULL);
+		float formation;
+		formation = getAttr(ATTR_FORM, ATTRCALC_FULL);
+		formation = formation * soildernum / 50.0f;
+		enumtype formtype;
+		datalib->getData(getPath() + std::string("/Formation"),formtype);
+		enumtype mydir;
+		datalib->getData(getPath() + std::string("/Direction"),mydir);
+		int side = GetSide(mydir,d);
+		formation *= GetFormationBonus(side, formtype);
+		deff += formation;
+	}
+	int def = floor(deff + 0.5f);
+
+	int atk = floor(attackinfo.Atk + 0.5f);
+	float perc = AtkDefToPerc(atk,def);
+	float killf = perc * attackinfo.AtkTime;
+	killf += killf * (rand() % (attackinfo.Randomness * 2 + 1) - attackinfo.Randomness) / 100.0f;
+	int kill = floor(killf + 0.5f);
+	if(kill == 0)
+	{
+		if(rand() % 100 < attackinfo.Randomness)
+			kill = 1;
+	}
+	soildernum -= kill;
+	soildernum = (soildernum < 0)? 0: soildernum;
+	datalib->setData(getPath() + std::string("/UnitNum"),soildernum);
+
+	int maxnum;
+	datalib->getData(getPath() + std::string("/UnitMaxNum"),maxnum);
+	maxnum -= kill * (1.0f - getAttr(ATTR_TOUGHNESS, ATTRCALC_FULL));
+	datalib->setData(getPath() + std::string("/UnitMaxNum"),maxnum);
+}

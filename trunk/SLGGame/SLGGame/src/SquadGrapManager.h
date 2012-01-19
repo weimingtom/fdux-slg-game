@@ -28,9 +28,14 @@ public:
 
 	void update(unsigned int deltaTime);
 
-	void setParticleVisible(bool visible);
+//	void setParticleVisible(bool visible);
+
+	bool createSquadGrap(std::string squadid, std::string datapath);
+	void destorySquad(std::string squadid);
+	SquadGraphics* getSquad(std::string squadid);
 
 private:
+	std::map<std::string, SquadGraphics*> mSquadGrapMap;
 	std::vector<SquadGraphics*> mUnitList;
 	unsigned int unitIndex;
 	BillboardManager* mBBManager;
