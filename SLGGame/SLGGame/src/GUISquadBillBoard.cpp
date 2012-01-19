@@ -78,7 +78,7 @@ void GUISquadBillBoard::setName( std::string name,MyGUI::Colour c)
 }
 
 
-void GUISquadBillBoard::setIcon( SquadType type )
+void GUISquadBillBoard::setIcon( SquadIconType type )
 {
 	switch(type)
 	{

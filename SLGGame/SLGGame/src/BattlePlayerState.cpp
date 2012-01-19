@@ -316,7 +316,7 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 				mGUICommand->setSquad(mSelectSquad);
 				clearPathInfo(true);
 				mSkillid = "none";
-				mSkillType = SKILLTYPE_PASSIVE;
+				mSkillType = SKILLTARGETTYPE_PASSIVE;
 				mSkillArea = 0;
 				mState = PLAYERCONTROL_CHOOSESKILL;
 				break;
@@ -835,11 +835,11 @@ void BattlePlayerState::useSkill(std::string skillid)
 		apcost = std::max(apcost,apleft);
 	if(apleft < apcost)
 		return;
-	SkillType skilltype;
+	enumtype skilltype;
 	datalib->getData(std::string("StaticData/SkillData/")+ skillid + std::string("/Type"),skilltype);
-	if(skilltype == SKILLTYPE_PASSIVE)
+	if(skilltype == SKILLTARGETTYPE_PASSIVE)
 		return;
-	if(skilltype == SKILLTYPE_TARGETSELF)
+	if(skilltype == SKILLTARGETTYPE_TARGETSELF)
 	{
 		CutScene* cutscene = BattleSquadManager::getSingleton().useSkillOn(mSelectSquad, mSelectSquad,skillid);
 		if(cutscene!= NULL)
@@ -866,9 +866,9 @@ void BattlePlayerState::useSkill(std::string skillid)
 	datalib->getData(std::string("StaticData/SkillData/")+ skillid + std::string("/MinRange"),minrange);
 	switch(skilltype)
 	{
-	case SKILLTYPE_TARGETENEMY:
-	case SKILLTYPE_TARGETFRIEND:
-	case SKILLTYPE_TARGETALL:
+	case SKILLTARGETTYPE_TARGETENEMY:
+	case SKILLTARGETTYPE_TARGETFRIEND:
+	case SKILLTARGETTYPE_TARGETALL:
 		if((minrange == 0 || minrange == 1)&& maxrange == 1)
 		{
 			drawSkillMoveArea(skilltype, apcost);
@@ -880,12 +880,12 @@ void BattlePlayerState::useSkill(std::string skillid)
 			mMeleeSkill = false;
 		}
 		break;
-	case SKILLTYPE_TARGETAREA:
-	case SKILLTYPE_TARGETLINE:
+	case SKILLTARGETTYPE_TARGETAREA:
+	case SKILLTARGETTYPE_TARGETLINE:
 		drawSkillArea(skilltype,minrange,maxrange);
 		mMeleeSkill = false;
 		break;
-	case SKILLTYPE_RANGED:
+	case SKILLTARGETTYPE_RANGED:
 		std::string path = mSelectSquad->getPath();
 		std::string sweaponid("none");
 		datalib->getData(str(boost::format("%1%/SweaponId")%path),sweaponid);
@@ -906,7 +906,7 @@ void BattlePlayerState::useSkill(std::string skillid)
 	mState = PLAYERCONTROL_SKILL;
 }
 
-void BattlePlayerState::drawSkillMoveArea(SkillType skilltype, float skillcost)
+void BattlePlayerState::drawSkillMoveArea(enumtype skilltype, float skillcost)
 {
 	int startx,starty;
 	MapDataManager* mapdata = MapDataManager::getSingletonPtr();
@@ -1081,7 +1081,7 @@ void BattlePlayerState::drawSkillMoveArea(SkillType skilltype, float skillcost)
 		mMovePathList.push_back(new MovePath);
 }
 
-void BattlePlayerState::drawSkillArea(SkillType skilltype, int minrange, int maxrange)
+void BattlePlayerState::drawSkillArea(enumtype skilltype, int minrange, int maxrange)
 {
 	int x,y;
 	mSelectSquad->getCrood(&x,&y);
@@ -1095,7 +1095,7 @@ void BattlePlayerState::drawSkillArea(SkillType skilltype, int minrange, int max
 			int irange = abs(xx - x) + abs(yy - y);
 			if(irange <=  maxrange && irange >= minrange)
 			{
-				if(skilltype == SKILLTYPE_TARGETLINE)
+				if(skilltype == SKILLTARGETTYPE_TARGETLINE)
 				{
 					if(xx == x && abs(yy - y) > 1)
 						continue;
@@ -1116,15 +1116,15 @@ void BattlePlayerState::drawSkillArea(SkillType skilltype, int minrange, int max
 					int relaction = blocksquad->getTeamFaction(team);
 					switch(skilltype)
 					{
-					case SKILLTYPE_RANGED:
-					case SKILLTYPE_TARGETENEMY:
+					case SKILLTARGETTYPE_RANGED:
+					case SKILLTARGETTYPE_TARGETENEMY:
 						if(relaction > 0)
 						{
 							skillcoordlist.push_back(xx);
 							skillcoordlist.push_back(yy);
 						}
 						break;
-					case SKILLTYPE_TARGETFRIEND:
+					case SKILLTARGETTYPE_TARGETFRIEND:
 						if(relaction == 0)
 						{
 							skillcoordlist.push_back(xx);
@@ -1143,7 +1143,7 @@ void BattlePlayerState::drawSkillArea(SkillType skilltype, int minrange, int max
 	mMoveAreaGrap = new AreaGrap(skillcoordlist,"CUBE_BLUE");
 }
 
-int BattlePlayerState::skillPass(int x, int y, float &apcost, SkillType skilltype, float skillcost)
+int BattlePlayerState::skillPass(int x, int y, float &apcost, enumtype skilltype, float skillcost)
 {
 	float apleft = apcost;
 	bool passable = canPass(x,y,apcost);
@@ -1165,15 +1165,15 @@ int BattlePlayerState::skillPass(int x, int y, float &apcost, SkillType skilltyp
 	apcost = skillcost;
 	switch(skilltype)
 	{
-	case SKILLTYPE_TARGETALL:
+	case SKILLTARGETTYPE_TARGETALL:
 		return 2;
 		break;
-	case SKILLTYPE_TARGETENEMY:
+	case SKILLTARGETTYPE_TARGETENEMY:
 		if(relaction > 0)
 			return 2;
 		return 0;
 		break;
-	case SKILLTYPE_TARGETFRIEND:
+	case SKILLTARGETTYPE_TARGETFRIEND:
 		if(relaction == 0)
 			return 2;
 		return 0;
@@ -1191,10 +1191,10 @@ void BattlePlayerState::useSkillAt(int x,int y)
 	BattleSquad* squad =NULL;
 	switch(mSkillType)
 	{
-	case SKILLTYPE_TARGETSELF:
+	case SKILLTARGETTYPE_TARGETSELF:
 		executeSkillAt(x,y);
 		break;
-	case SKILLTYPE_TARGETALL:
+	case SKILLTARGETTYPE_TARGETALL:
 		squad = BattleSquadManager::getSingleton().getBattleSquadAt(x,y,1,true);
 		if(squad == NULL)
 			return;
@@ -1203,7 +1203,7 @@ void BattlePlayerState::useSkillAt(int x,int y)
 		else
 			executeSkillAt(x,y);
 		break;
-	case SKILLTYPE_TARGETENEMY:
+	case SKILLTARGETTYPE_TARGETENEMY:
 		squad = BattleSquadManager::getSingleton().getBattleSquadAt(x,y,1,true);
 		if(squad == NULL)
 			return;
@@ -1215,7 +1215,7 @@ void BattlePlayerState::useSkillAt(int x,int y)
 				executeSkillAt(x,y);
 		}
 		break;
-	case SKILLTYPE_TARGETFRIEND:
+	case SKILLTARGETTYPE_TARGETFRIEND:
 		squad = BattleSquadManager::getSingleton().getBattleSquadAt(x,y,1,true);
 		if(squad == NULL)
 			return;
@@ -1235,7 +1235,7 @@ void BattlePlayerState::useSkillAt(int x,int y)
 
 void BattlePlayerState::drawSkillTargetArea(int x,int y)
 {
-	if(mSkillType == SKILLTYPE_TARGETALL || mSkillType == SKILLTYPE_TARGETENEMY || mSkillType == SKILLTYPE_TARGETFRIEND)
+	if(mSkillType == SKILLTARGETTYPE_TARGETALL || mSkillType == SKILLTARGETTYPE_TARGETENEMY || mSkillType == SKILLTARGETTYPE_TARGETFRIEND)
 	{
 		if(mMeleeSkill)
 			createPath(x,y);
@@ -1245,11 +1245,11 @@ void BattlePlayerState::drawSkillTargetArea(int x,int y)
 void BattlePlayerState::executeSkillAt(int x, int y)
 {
 	CutScene* battlecutscene = NULL;
-	if(mSkillType == SKILLTYPE_TARGETLINE || mSkillType == SKILLTYPE_TARGETAREA)
+	if(mSkillType == SKILLTARGETTYPE_TARGETLINE || mSkillType == SKILLTARGETTYPE_TARGETAREA)
 	{
 		battlecutscene = BattleSquadManager::getSingleton().useSkillAt(mSelectSquad,x,y, mSkillid);
 		mSkillid = "none";
-		mSkillType = SKILLTYPE_PASSIVE;
+		mSkillType = SKILLTARGETTYPE_PASSIVE;
 		clearPathInfo(true);
 	}
 	else
@@ -1259,7 +1259,7 @@ void BattlePlayerState::executeSkillAt(int x, int y)
 		{
 			battlecutscene = BattleSquadManager::getSingleton().useSkillOn(mSelectSquad,battlesquad, mSkillid);
 			mSkillid = "none";
-			mSkillType = SKILLTYPE_PASSIVE;
+			mSkillType = SKILLTARGETTYPE_PASSIVE;
 			clearPathInfo(true);
 		}
 		else
@@ -1365,7 +1365,7 @@ void BattlePlayerState::executeSkillOn(int x, int y, BattleSquad* squad)
 		dircutscene->setNextScene(battlecutscene);
 		mTargetSquad = NULL;
 		mSkillid = "none";
-		mSkillType = SKILLTYPE_PASSIVE;
+		mSkillType = SKILLTARGETTYPE_PASSIVE;
 	}
 	CutSceneDirector* cutscenedirector = new CutSceneDirector;
 	cutscenedirector->addCutScene(movecutscene);

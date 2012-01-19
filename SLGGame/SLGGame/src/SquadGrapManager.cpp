@@ -71,10 +71,41 @@ SquadGraphics* SquadGrapManager::getSquad( unsigned int id )
 	return NULL;
 }
 
-void SquadGrapManager::setParticleVisible(bool visible)
+// void SquadGrapManager::setParticleVisible(bool visible)
+// {
+// 	for (std::vector<SquadGraphics*>::iterator it=mUnitList.begin();it!=mUnitList.end();it++)
+// 	{
+// 		(*it)->setParticleVisible(visible);
+// 	}
+// }
+
+
+bool SquadGrapManager::createSquadGrap(std::string squadid, std::string datapath)
 {
-	for (std::vector<SquadGraphics*>::iterator it=mUnitList.begin();it!=mUnitList.end();it++)
-	{
-		(*it)->setParticleVisible(visible);
-	}
+	std::map<std::string, SquadGraphics*>::iterator ite;
+	ite = mSquadGrapMap.find(squadid);
+	if(ite != mSquadGrapMap.end())
+		return false;
+	SquadGraphics* squadGrap = new SquadGraphics(squadid, datapath);
+	mSquadGrapMap.insert(std::make_pair(squadid, squadGrap));
+	return true;
+}
+
+void SquadGrapManager::destorySquad(std::string squadid)
+{
+	std::map<std::string, SquadGraphics*>::iterator ite;
+	ite = mSquadGrapMap.find(squadid);
+	if(ite == mSquadGrapMap.end())
+		return NULL;
+	delete ite->second;
+	mSquadGrapMap.erase(ite);
+}
+
+SquadGraphics* SquadGrapManager::getSquad(std::string squadid)
+{
+	std::map<std::string, SquadGraphics*>::iterator ite;
+	ite = mSquadGrapMap.find(squadid);
+	if(ite == mSquadGrapMap.end())
+		return NULL;
+	return ite->second;
 }

@@ -9,23 +9,21 @@ class Squad
 public:
 	Squad(std::string path, std::string srcpath);
 	Squad(std::string path);
-	~Squad();
+	virtual ~Squad();
 
 	bool isInit() { return mInit; } 
 private:
 	bool mInit;
 	std::string mPath;
 
+public:
+	std::string getPath() { return mPath; }
+
 private:
 	std::string mSquadId;
 
 public:
 	std::string getSquadId() { return mSquadId; }
-
-public:
-	bool applyModifer(std::string modifierpath, std::string &modifierid);
-	bool applyModifer(AttrModifier* modifier, std::string &modifierid);
-	void removeModifier(std::string modifierid);
 
 //补给：装备更换
 public:
@@ -35,7 +33,7 @@ public:
 //补给：技能升级
 public:
 	bool learnSkill(enumtype skilltype, std::string skillid);
-	void forgetSkill(enumtype skilltype, std::string skillid);
+	void forgetSkill(std::string skillid);
 
 //补给：随从更换
 public:
@@ -43,6 +41,10 @@ public:
 	void fireRetainer();
 
 public:
+	bool applyModifer(std::string modifierpath, std::string &modifierid);
+	bool applyModifer(AttrModifier* modifier, std::string &modifierid);
+	void removeModifier(std::string modifierid);
+	
 	bool addSkill(std::string skillid);
 	void removeSkill(std::string skillid);
 

@@ -149,10 +149,10 @@
 		</Pray>
 	</SkillData>
 	<EffectData>
-		<RetainerDetection>
-			<Name type="String" value="斥候"/>
-			<Describe type="String" value="斥候"/>
-		</RetainerDetection>
+		<DetectionTrain>
+			<Name type="String" value="侦查训练"/>
+			<Describe type="String" value="侦查训练"/>
+		</DetectionTrain>
 		<AttacktTrain>
 			<Name type="String" value="攻击训练"/>
 			<Describe type="String" value="攻击训练"/>

@@ -172,13 +172,13 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 		child->GetValue(&particlename);
 		datapath = std::string("GameData/BattleData/MapData/MapParticleInfo/") + particlename;
 		int particlex,particley;
-		std::string scriptname;
+		std::string name;
 		child->GetAttribute("GridX",&particlex);
 		child->GetAttribute("GridY",&particley);
-		child->GetAttribute("Type",&scriptname);
+		child->GetAttribute("Type",&name);
 		datalibrary->setData(datapath + "/GridX", particlex);
 		datalibrary->setData(datapath + "/GridY", particley);
-		datalibrary->setData(datapath + "/Script", scriptname);
+		datalibrary->setData(datapath + "/Type", name);
 	}
 
 	terrain->createTerrain();
@@ -231,45 +231,54 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 
 	//载入部队信息
 	element = doc->FirstChildElement("MapSquad");
+	MapSquadInfo mapsquadinfo;
 	for(child = child.begin(element); child != child.end(); child++)
 	{
 		std::string teamid;
 		child->GetValue(&teamid);
+		if(teamid == "Team1")
+			mapsquadinfo.team = 0;
+		else if(teamid == "Team2")
+			mapsquadinfo.team = 1;
+		else if(teamid == "Team3")
+			mapsquadinfo.team = 2;
+		else
+			mapsquadinfo.team = 3;
 		datapath = std::string("GameData/BattleData/SquadList");
 		ticpp::Iterator<ticpp::Element> childchild;
 		for(childchild = childchild.begin(child.Get()); childchild != childchild.end(); childchild++)
 		{
-			std::string squadid;
-			std::string squadtype;
-			childchild->GetValue(&squadid);
-			int x;
-			int y;
-			Direction d;
-			int unitnum;
-			int morale;
-			childchild->GetAttribute("Type",&squadtype);
-			childchild->GetAttribute("GridX",&x);
-			childchild->GetAttribute("GridY",&y);
-			childchild->GetAttribute("UnitNum",&unitnum);
-			childchild->GetAttribute("Direction",&d);
-			childchild->GetAttribute("Morale", &morale);
-			AVGSquadManager::getSingleton().addSquad(squadid,squadtype, datapath);
-			int type;
-			Formation f;
-			datalibrary->getData(datapath + std::string("/") + squadid + std::string("/Type"), type );
-			if(type == SQUAD_NORMAL)
-				f = Line;
-			else
-				f = Loose;
-			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/GridX"), x, true );
-			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/GridY"), y, true );
-			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/UnitNumber"), unitnum, true );
-			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/Direction"), d, true );
-			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/Formation"), f, true );
-			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/TeamId"), teamid, true );
-			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/CreateType"), MapSquad, true );
-			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/ActionPoint"), 0.0f, true );
-			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/Morale"), morale, true );
+// 			std::string squadid;
+// 			std::string squadtype;
+			childchild->GetValue(&mapsquadinfo.squadId);
+// 			int x;
+// 			int y;
+// 			Direction d;
+// 			int unitnum;
+// 			int morale;
+			childchild->GetAttribute("Type",&mapsquadinfo.squadTempId);
+			childchild->GetAttribute("GridX",&mapsquadinfo.x);
+			childchild->GetAttribute("GridY",&mapsquadinfo.y);
+			childchild->GetAttribute("UnitNum",&mapsquadinfo.unitNum);
+			childchild->GetAttribute("Direction",&mapsquadinfo.dir);
+			mMapSquadInfo.push(mapsquadinfo);
+// 			AVGSquadManager::getSingleton().addSquad(squadid,squadtype, datapath);
+// 			int type;
+// 			Formation f;
+// 			datalibrary->getData(datapath + std::string("/") + squadid + std::string("/Type"), type );
+// 			if(type == SQUAD_NORMAL)
+// 				f = Line;
+// 			else
+// 				f = Loose;
+// 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/GridX"), x, true );
+// 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/GridY"), y, true );
+// 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/UnitNumber"), unitnum, true );
+// 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/Direction"), d, true );
+// 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/Formation"), f, true );
+// 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/TeamId"), teamid, true );
+// 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/CreateType"), MapSquad, true );
+// 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/ActionPoint"), 0.0f, true );
+// 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/Morale"), morale, true );
 		}
 	}
 	delete element;
@@ -332,10 +341,29 @@ void MapLoader::initBattleSquad(bool loadfrommap)
 	BattleSquadManager* battlesuqadmanager = BattleSquadManager::getSingletonPtr();
 	DataLibrary* datalib =DataLibrary::getSingletonPtr();
 	SquadGrapManager* suqadgrapmanager = SquadGrapManager::getSingletonPtr();
-	AVGSquadManager* avgsquadmanager = AVGSquadManager::getSingletonPtr();
-	creatSquadGrapAtPath(std::string("GameData/BattleData/SquadList"));
+	//AVGSquadManager* avgsquadmanager = AVGSquadManager::getSingletonPtr();
+	std::string path = "GameData/BattleData/SquadList";
 	if(loadfrommap)
 	{
+		//载入地图部队
+		while(mMapSquadInfo.size() > 0)
+		{
+			MapSquadInfo squadinfo = mMapSquadInfo.front();
+			BattleSquad* battlesquad = new BattleSquad(str(boost::format("%1%/%2%")%path%squadinfo.squadId),
+													str(boost::format("StaticData/SquadData/%1%")%squadinfo.squadTempId),
+													squadinfo.team, squadinfo.unitNum, squadinfo.x, 
+													squadinfo.y, squadinfo.dir);
+			if(!battlesquad->isInit())
+			{
+				delete battlesquad;
+			}
+			else
+			{
+				battlesuqadmanager->mSquadList.push_back(battlesquad);
+			}
+			mMapSquadInfo.pop();
+		}
+		//载入玩家部队
 		std::vector<std::string> childlist;
 		childlist = datalib->getChildList(std::string("GameData/StoryData/SquadData/EnableSquad"));
 		if(childlist.size()>0)
@@ -343,27 +371,52 @@ void MapLoader::initBattleSquad(bool loadfrommap)
 			std::vector<std::string>::iterator ite;
 			for(ite = childlist.begin(); ite != childlist.end(); ite++)
 			{
-				std::string datapath = std::string("GameData/BattleData/SquadList/") + (*ite);
-				datalib->copyNode(std::string("GameData/StoryData/SquadData/EnableSquad/") + (*ite),datapath, true);
-				int type;
-				Formation f;
-				datalib->getData(datapath + std::string("/Type"), type );
-				if(type == SQUAD_NORMAL)
-					f = Line;
+				BattleSquad* battlesquad = new BattleSquad(str(boost::format("%1%/%2%")%path%(*ite)),
+														str(boost::format("GameData/StoryData/SquadData/EnableSquad/%1%")%(*ite)),
+														0);
+// 				std::string datapath = std::string("GameData/BattleData/SquadList/") + (*ite);
+// 				datalib->copyNode(std::string("GameData/StoryData/SquadData/EnableSquad/") + (*ite),datapath, true);
+// 				int type;
+// 				Formation f;
+// 				datalib->getData(datapath + std::string("/Type"), type );
+// 				if(type == SQUAD_NORMAL)
+// 					f = Line;
+// 				else
+// 					f = Loose;
+// 				datalib->setData(datapath +std::string("/TeamId"), std::string("Team1"), true );
+// 				datalib->setData(datapath +std::string("/Grapid"),battlesuqadmanager->mCurid, true);
+// 				datalib->setData(datapath +std::string("/CreateType"), StroySquad, true );
+// 				datalib->setData(datapath +std::string("/Direction"), North, true );
+// 				datalib->setData(datapath +std::string("/Formation"), f, true );
+// 				datalib->setData(datapath +std::string("/ActionPoint"), 0.0f, true );
+// 				BattleSquad* battlesquad = new BattleSquad((*ite),battlesuqadmanager->mCurid,-10,-10); 
+// 				SquadGraphics* squadgrap = suqadgrapmanager->createSquad((*ite), datapath, battlesuqadmanager->mCurid, -10, -10,North,Line,battlesquad->getUnitGrapNum());
+// 				squadgrap->setFormation(f,false);
+// 				squadgrap->setDirection(North,false);
+				if(!battlesquad->isInit())
+				{
+					delete battlesquad;
+				}
 				else
-					f = Loose;
-				datalib->setData(datapath +std::string("/TeamId"), std::string("Team1"), true );
-				datalib->setData(datapath +std::string("/Grapid"),battlesuqadmanager->mCurid, true);
-				datalib->setData(datapath +std::string("/CreateType"), StroySquad, true );
-				datalib->setData(datapath +std::string("/Direction"), North, true );
-				datalib->setData(datapath +std::string("/Formation"), f, true );
-				datalib->setData(datapath +std::string("/ActionPoint"), 0.0f, true );
-				BattleSquad* battlesquad = new BattleSquad((*ite),battlesuqadmanager->mCurid,-10,-10); 
-				SquadGraphics* squadgrap = suqadgrapmanager->createSquad((*ite), datapath, battlesuqadmanager->mCurid, -10, -10,North,Line,battlesquad->getUnitGrapNum());
-				squadgrap->setFormation(f,false);
-				squadgrap->setDirection(North,false);
-				battlesuqadmanager->mDeployList.push_back(battlesquad);
-				battlesuqadmanager->mCurid ++;
+				{
+					battlesuqadmanager->mDeployList.push_back(battlesquad);
+				}
+//				battlesuqadmanager->mCurid ++;
+			}
+		}
+	}
+	else
+	{
+		std::vector<std::string> childlist;
+		childlist = datalib->getChildList(path);
+		if(childlist.size()>0)
+		{
+			std::vector<std::string>::iterator ite;
+			for(ite = childlist.begin(); ite != childlist.end(); ite++)
+			{
+				std::string datapath = path + std::string("/") + (*ite);
+				BattleSquad* battlesquad = new BattleSquad(datapath);
+				battlesuqadmanager->mSquadList.push_back(battlesquad);
 			}
 		}
 	}
@@ -373,8 +426,8 @@ void MapLoader::creatSquadGrapAtPath(std::string path)
 {
 	BattleSquadManager* battlesuqadmanager = BattleSquadManager::getSingletonPtr();
 	DataLibrary* datalib =DataLibrary::getSingletonPtr();
-	SquadGrapManager* suqadgrapmanager = SquadGrapManager::getSingletonPtr();
-	AVGSquadManager* avgsquadmanager = AVGSquadManager::getSingletonPtr();
+//	SquadGrapManager* suqadgrapmanager = SquadGrapManager::getSingletonPtr();
+//	AVGSquadManager* avgsquadmanager = AVGSquadManager::getSingletonPtr();
 	std::vector<std::string> childlist;
 	childlist = datalib->getChildList(path);
 	if(childlist.size()>0)
@@ -383,24 +436,33 @@ void MapLoader::creatSquadGrapAtPath(std::string path)
 		for(ite = childlist.begin(); ite != childlist.end(); ite++)
 		{
 			std::string datapath = path + std::string("/") + (*ite);
-			int x,y;
-			Direction d;
-			Formation f;
-			datalib->getData(datapath + "/GridX",x);
-			datalib->getData(datapath + "/GridY",y);
-			datalib->getData(datapath + "/Direction",d);
-			datalib->getData(datapath + "/Formation",f);
-			BattleSquad* battlesquad =  new BattleSquad((*ite),battlesuqadmanager->mCurid,x,y); 
-			SquadGraphics* squadgrap  = suqadgrapmanager->createSquad((*ite), datapath, battlesuqadmanager->mCurid,x,y,d,f, battlesquad->getUnitGrapNum());
-			if(!battlesquad->viewbyTeam(1) || battlesquad->IsEliminated())
+// 			int x,y;
+// 			Direction d;
+// 			Formation f;
+// 			datalib->getData(datapath + "/GridX",x);
+// 			datalib->getData(datapath + "/GridY",y);
+// 			datalib->getData(datapath + "/Direction",d);
+// 			datalib->getData(datapath + "/Formation",f);
+			BattleSquad* battlesquad = new BattleSquad(datapath);
+			if(!battlesquad->isInit())
 			{
-				squadgrap->setVisible(false);
+				delete battlesquad;
 			}
-			squadgrap->setFormation(f,false);
-			squadgrap->setDirection(d,false);
-			datalib->setData(datapath +std::string("/Grapid"),battlesuqadmanager->mCurid);
-			battlesuqadmanager->mSquadList.push_back(battlesquad);
-			battlesuqadmanager->mCurid ++;
+			else
+			{
+				battlesuqadmanager->mSquadList.push_back(battlesquad);
+			}
+// 			BattleSquad* battlesquad =  new BattleSquad((*ite),battlesuqadmanager->mCurid,x,y); 
+// 			SquadGraphics* squadgrap  = suqadgrapmanager->createSquad((*ite), datapath, battlesuqadmanager->mCurid,x,y,d,f, battlesquad->getUnitGrapNum());
+// 			if(!battlesquad->viewbyTeam(1) || battlesquad->IsEliminated())
+// 			{
+// 				squadgrap->setVisible(false);
+// 			}
+// 			squadgrap->setFormation(f,false);
+// 			squadgrap->setDirection(d,false);
+// 			datalib->setData(datapath +std::string("/Grapid"),battlesuqadmanager->mCurid);
+// 			battlesuqadmanager->mSquadList.push_back(battlesquad);
+// 			battlesuqadmanager->mCurid ++;
 		}
 	}
 }

@@ -7,12 +7,15 @@
 class LoadScene;
 class MapLoader;
 
-const int LOADSCENE = 0;
-const int LOADTERRAIN = 1;
-const int LOADOBJECT = 2;
-const int LOADUNIT = 3;
-const int LOADGRID = 4;
-const int LOADFINISH = 5;
+enum
+{
+	LOADSCENE = 0,
+	LOADTERRAIN = 1,
+	LOADOBJECT = 2,
+	LOADUNIT = 3,
+	LOADGRID = 4,
+	LOADFINISH = 5
+};
 
 class BattleLoadState: public SubBattleState, public InputListener
 {
@@ -33,6 +36,6 @@ private:
 	LoadScene* mLoadScene;
 	bool mLoadFromMap;
 	std::string mMapFile;
-	int mState;
+	enumtype mState;
 	bool mIsPressKey;
 };

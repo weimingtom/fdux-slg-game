@@ -144,29 +144,14 @@ std::string LuaSystem::getFileName()
 {
 	return mFileNameStack.back();
 }
-/*
-bool LuaSystem::executeFile(std::string filename, std::string context)
+
+bool LuaSystem::executeFunction(std::string filename, std::string funcname, std::string context, LuaTempContext *tempcontext)
 {
 	if(context == "\0")
 		return false;
 	mContextStack.push_back(context);
 	mFileNameStack.push_back(filename);
-	Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(filename, "General", true);
-	int result;
-	result = luaL_loadstring(L,stream->getAsString().c_str());
-	if(!result)
-		result = lua_pcall(L,0 ,0, 0);
-	mFileNameStack.pop_back();
-	mContextStack.pop_back();
-	return !result;
-}
-*/
-bool LuaSystem::executeFunction(std::string filename, std::string funcname, std::string context)
-{
-	if(context == "\0")
-		return false;
-	mContextStack.push_back(context);
-	mFileNameStack.push_back(filename);
+	mTempContextStack.push_back(tempcontext);
 	Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(filename, "General", true);
 	int result;
 	result = luaL_loadstring(L,stream->getAsString().c_str());
@@ -197,6 +182,7 @@ bool LuaSystem::executeFunction(std::string filename, std::string funcname, std:
 		erro = lua_tostring(L,-1);
 		Ogre::LogManager::getSingletonPtr()->logMessage(erro,Ogre::LML_CRITICAL);
 	}
+	mTempContextStack.pop_back();
 	mFileNameStack.pop_back();
 	mContextStack.pop_back();
 	return !result;

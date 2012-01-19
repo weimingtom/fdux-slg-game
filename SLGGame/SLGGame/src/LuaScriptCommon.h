@@ -131,7 +131,7 @@ static int CopySquadData(lua_State* L)
 	{
 		if((*ite)->getTeam() != 1)
 			continue;
-		path = str(boost::format("GameData/StoryData/SquadData/EnableSquad/%1%/UnitNumber")%(*ite)->getId());
+		path = str(boost::format("GameData/StoryData/SquadData/EnableSquad/%1%/UnitNumber")%(*ite)->getSquadId());
 		DataLibrary* datalib = DataLibrary::getSingletonPtr();
 		if(datalib->getData(path,num,true))
 		{
@@ -139,7 +139,7 @@ static int CopySquadData(lua_State* L)
 			datalib->setData(path,num);
 			path = str(boost::format("%1%/Morale")%(*ite)->getPath());
 			datalib->getData(path,num);
-			path = str(boost::format("GameData/StoryData/SquadData/EnableSquad/%1%/Morale")%(*ite)->getId());
+			path = str(boost::format("GameData/StoryData/SquadData/EnableSquad/%1%/Morale")%(*ite)->getSquadId());
 			datalib->setData(path,num);
 		}
 	}

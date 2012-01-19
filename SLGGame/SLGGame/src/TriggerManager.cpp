@@ -104,7 +104,7 @@ void TriggerManager::unitDead(BattleSquad* squad)
 // 		}
 // 	}
 	TriggerContext* trigger = new TriggerContext("UnitDead");
-	trigger->SetContext("squad",squad->getId());
+	trigger->SetContext("squad",squad->getSquadId());
 	Trigger("GameData/BattleData",trigger);
 }
 
@@ -226,4 +226,9 @@ void TriggerManager::Trigger(std::string path, TriggerContext* triggercontext)
 		}
 	}
 	delete triggercontext;
+}
+
+void TriggerManager::Trigger(std::string path, std::string triggertype, LuaTempContext * tempcontext)
+{
+
 }

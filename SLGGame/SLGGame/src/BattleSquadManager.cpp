@@ -101,12 +101,12 @@ BattleSquad* BattleSquadManager::getBattleSquad(std::string id)
 	BattleSquadIte ite;
 	for(ite = mSquadList.begin(); ite != mSquadList.end(); ite++)
 	{
-		if(id == (*ite)->getId() && (*ite)->IsEliminated() == false)
+		if(id == (*ite)->getSquadId() && (*ite)->IsEliminated() == false)
 			return (*ite);
 	}
 	for(ite = mDeployList.begin(); ite != mDeployList.end(); ite++)
 	{
-		if(id == (*ite)->getId())
+		if(id == (*ite)->getSquadId())
 			return (*ite);
 	}
 	return NULL;
@@ -270,15 +270,15 @@ CutScene* BattleSquadManager::useSkillOn(BattleSquad* attacksquad, BattleSquad* 
 		apcost = std::max(apcost,apleft);
 	if(apleft < apcost)
 		return NULL;
-	SkillType skilltype;
+	enumtype skilltype;
 	datalib->getData(skillinfopath + std::string("/Type"),skilltype);
-	if(skilltype == SKILLTYPE_PASSIVE || skilltype == SKILLTYPE_TARGETAREA || skilltype == SKILLTYPE_TARGETLINE)
+	if(skilltype == SKILLTARGETTYPE_PASSIVE || skilltype == SKILLTARGETTYPE_TARGETAREA || skilltype == SKILLTARGETTYPE_TARGETLINE)
 		return NULL;
 	int minrange;
 	int maxrange; 
 	datalib->getData(skillinfopath + std::string("/MaxRange"),maxrange);
 	datalib->getData(skillinfopath + std::string("/MinRange"),minrange);
-	if(skilltype == SKILLTYPE_RANGED)
+	if(skilltype == SKILLTARGETTYPE_RANGED)
 	{
 		std::string sweaponpath = attacksquad->getPath();
 		std::string sweaponid("none");
@@ -304,9 +304,9 @@ CutScene* BattleSquadManager::useSkillOn(BattleSquad* attacksquad, BattleSquad* 
 	datalib->getData(skillinfopath + std::string("/Script"),skillscript);
 	//设置脚本上下文
 	datalib->setData(skillpath + std::string("/ScriptContext/skillcast"),0);
-	datalib->setData(skillpath + std::string("/ScriptContext/skillcaster"),attacksquad->getId());
+	datalib->setData(skillpath + std::string("/ScriptContext/skillcaster"),attacksquad->getSquadId());
 	datalib->setData(skillpath + std::string("/ScriptContext/skillcasterpath"),attacksquad->getPath());
-	datalib->setData(skillpath + std::string("/ScriptContext/skilltarget"),targetsquad->getId());
+	datalib->setData(skillpath + std::string("/ScriptContext/skilltarget"),targetsquad->getSquadId());
 	datalib->setData(skillpath + std::string("/ScriptContext/skilltargetpath"),targetsquad->getPath());
 	re = LuaSystem::getSingleton().executeFunction(skillscript, "useskill" , skillpath + std::string("/ScriptContext"));
 	if(!re)
@@ -386,8 +386,6 @@ bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad*
 		if(squad == attacksquad)
 		{
 			atkinfo = squad->getAttackRolls(false,false,d);
-			if(attacksquad->getUnitRealNum() * 2 > defenesquad->getUnitRealNum())
-				defenesquad->modifyMorale(-2);
 			switch(defenesquad->getFormation())
 			{
 			case Line:
@@ -409,8 +407,6 @@ bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad*
 		else
 		{
 			atkinfo = squad->getAttackRolls(false,true,temp[d]);
-			if(defenesquad->getUnitRealNum() * 2 > attacksquad->getUnitRealNum())
-				attacksquad->modifyMorale(-2);
 			squad = attacksquad;
 		}
 		if(atkinfo.AtkTime > 0)
@@ -423,8 +419,6 @@ bool BattleSquadManager::meleeAttackSquad(BattleSquad* attacksquad, BattleSquad*
 				squad->applyAttackRolls(false, temp[d], atkinfo);
 			int squaduga = squad->getUnitGrapNum();
 			int squadRealNumA=squad->getUnitRealNum();
-			morale -= DeathToMorale(squadRealNumB - squadRealNumA);
-			spreadModifyMorale(squad,morale);
 			if(squaduga <= squadugb)
 			{
 				//setCutScene(new SquadDeadCutScene(squad->getGrapId(), squadugb - squaduga));
@@ -525,23 +519,20 @@ void BattleSquadManager::rangedAttackCutScene(BattleSquad* attacksquad, int x, i
 	setCutScene(ccs);
 }
 
-bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* defenesquad, int attacktime, float atk)
+bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* defenesquad, int attacktime, float atk, int fluctuate)
 {
 	AttackInfo atkinfo;
 	atkinfo.Atk = atk;
 	atkinfo.AtkTime = attacktime;
-	atkinfo.Fluctuate = 10;
+	atkinfo.Randomness = fluctuate;
 	if(attacktime > 0)
 	{
 		int squadRealNumB=defenesquad->getUnitRealNum();
-		if(attacktime * 2 > squadRealNumB)
-			defenesquad->modifyMorale(-4);
 		int squadugb = defenesquad->getUnitGrapNum();
 		Direction d = defenesquad->getDirection();
 		defenesquad->applyAttackRolls(true, d, atkinfo);
 		int squaduga = defenesquad->getUnitGrapNum();
 		int squadRealNumA=defenesquad->getUnitRealNum();
-		spreadModifyMorale(defenesquad, -DeathToMorale(squadRealNumB - squadRealNumA)) ;
 		if(squaduga < squadugb)
 		{
 			setCutScene(new SquadDeadCutScene(defenesquad->getGrapId(), squadugb - squaduga));
@@ -570,14 +561,11 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 	if(atkinfo.AtkTime > 0)
 	{
 		int squadRealNumB=defenesquad->getUnitRealNum();
-		if(atkinfo.AtkTime * 2 > squadRealNumB)
-			defenesquad->modifyMorale(-4);
 		int squadugb = defenesquad->getUnitGrapNum();
 		d = defenesquad->getDirection();
 		defenesquad->applyAttackRolls(true, d, atkinfo);
 		int squadRealNumA=defenesquad->getUnitRealNum();
 		int squaduga = defenesquad->getUnitGrapNum();
-		spreadModifyMorale(defenesquad, -DeathToMorale(squadRealNumB - squadRealNumA)) ;
 		if(squaduga < squadugb)
 		{
 			setCutScene(new SquadDeadCutScene(defenesquad->getGrapId(), squadugb - squaduga));
@@ -593,34 +581,6 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 		return true;
 	}
 	return false;
-}
-
-void BattleSquadManager::spreadModifyMorale(BattleSquad* squad, int val)
-{
-	if(squad == NULL)
-		return;
-	std::vector<BattleSquad*> squadlist;
-	BattleSquadIte ite;
-	int x1,y1,x2,y2;
-	int faction = squad->getTeamFaction(squad->getTeam());
-	squad->getCrood(&x1,&y1);
-	for(ite = mSquadList.begin(); ite != mSquadList.end(); ite++)
-	{
-		if(squad == (*ite))
-			continue;
-		if((*ite)->getTeamFaction((*ite)->getTeam()) != faction)
-			continue;
-		(*ite)->getCrood(&x2,&y2);
-		if(GetDistance(x1,y1,x2,y2) > 2)
-			continue;
-		squadlist.push_back((*ite));
-	}
-	int morale = floor(((float)val / (2 + squadlist.size())+ 0.5f));
-	squad->modifyMorale( 2 * morale);
-	for(ite = squadlist.begin(); ite != squadlist.end(); ite++)
-	{
-		(*ite)->modifyMorale(morale);
-	}
 }
 
 CutScene* BattleSquadManager::getCutScene()

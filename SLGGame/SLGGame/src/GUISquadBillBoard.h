@@ -22,7 +22,7 @@ public:
 
 	void setName(std::string name,MyGUI::Colour c);
 
-	void setIcon(SquadType type);
+	void setIcon(SquadIconType type);
 
 	void setVisible(bool v);
 
