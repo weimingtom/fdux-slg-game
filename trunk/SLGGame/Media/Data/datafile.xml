@@ -55,6 +55,7 @@
 			<UnitMesh type="String" value="HeavyInf.mesh"/>
 			<UnitMat type="String" value="HeavyInf"/>
 			<MoveSound type="String" value="HeavyInf.mp3"/>
+			<Script type="String" value="none"/>
 		</CheetahSquad>
 		<DandelionSquad>
 			<Type type="Int" value="0"/>
@@ -83,10 +84,11 @@
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
 			<MoveSound type="String" value="BowMan.mp3"/>
+			<Script type="String" value="none"/>
 		</DandelionSquad>
 		<Olivia>
 			<Type type="Int" value="1"/>
-			<SquadType type="Int" value="5"/>
+			<SquadType type="Int" value="2"/>
 			<SoilderId type="String" value="HolySpirit"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="none"/>
@@ -108,11 +110,12 @@
 			<UnitMesh type="String" value="HolySpirit.mesh"/>
 			<UnitMat type="String" value="HolySpirit"/>
 			<MoveSound type="String" value="Olivia.mp3"/>
+			<Script type="String" value="none"/>
 		</Olivia>
 		<DuxLightSpear>
 			<Type type="Int" value="0"/>
 			<SquadType type="Int" value="0"/>
-			<SoilderId type="String" value="EtasiSoilder"/>
+			<SoilderId type="String" value="DuxSoilder"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="ShortSpear"/>
 			<SweaponId type="String" value="none"/>
@@ -132,13 +135,13 @@
 			<Exp type="Int" value="0" />
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
-			<UnitMaxNumber type="Int" value="50"/>
 			<MoveSound type="String" value="LightInf.mp3"/>
+			<Script type="String" value="none"/>
 		</DuxLightSpear>
 		<DuxHeavyInf>
 			<Type type="Int" value="0"/>
 			<SquadType type="Int" value="0"/>
-			<SoilderId type="String" value="EtasiSoilder"/>
+			<SoilderId type="String" value="DuxSoilder"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="HeavySword"/>
 			<SweaponId type="String" value="none"/>
@@ -160,6 +163,7 @@
 			<UnitMesh type="String" value="HeavyInf.mesh"/>
 			<UnitMat type="String" value="HeavyInf"/>
 			<MoveSound type="String" value="HeavyInf.mp3"/>
+			<Script type="String" value="none"/>
 		</DuxHeavyInf>
 	</SquadData>
 	<SoilderData>
@@ -442,9 +446,9 @@
 				<Break  type="Int" value="5"/>
 			</Active>
 			<Passive>
-				<AttacktTrain type="Int" value="1"/>
+				<AttackTrain type="Int" value="1"/>
 				<DefenceTrain type="Int" value="1"/>
-				<AttacktTrain type="Int" value="3"/>
+				<AttackTrain type="Int" value="3"/>
 				<DefenceTrain type="Int" value="3"/>
 			</Passive>
 			<Equip>
@@ -469,7 +473,7 @@
 				<AttacktTrain type="Int" value="1"/>
 				<DefenceTrain type="Int" value="1"/>
 				<RangedAttackTrain type="Int" value="1"/>
-				<AttacktTrain type="Int" value="3"/>
+				<AttackTrain type="Int" value="3"/>
 				<DefenceTrain type="Int" value="3"/>
 				<RangedAttackTrain type="Int" value="1"/>
 			</Passive>
@@ -609,11 +613,11 @@
 			<Icon type="String" value="DetectionTrain.jpg"/>
 			<Script type="String" value="DetectionTrain.lua"/>
 		</DetectionTrain>
-		<AttacktTrain>
+		<AttackTrain>
 			<Type type="Int" value="0"/>
 			<Icon type="String" value="AttacktTrain.jpg"/>
 			<Script type="String" value="AttacktTrain.lua"/>
-		</AttacktTrain>
+		</AttackTrain>
 		<DefenceTrain>
 			<Type type="Int" value="0"/>
 			<Icon type="String" value="DefenceTrain.jpg"/>

@@ -4,7 +4,7 @@
 
 class BattleState;
 class BattleSquad;
-class BattlePlayerState;
+//class BattlePlayerState;
 
 class GUICommandWindows:public GUISubWindows
 {
@@ -32,7 +32,7 @@ public:
 	}
 
 	void setSquad(BattleSquad* squad);
-	void setPlayerState(BattlePlayerState* playerstate);
+	//void setPlayerState(BattlePlayerState* playerstate);
 private:
 	MyGUI::Window* mWindow;
 	MyGUI::Button* mSkill[9];
@@ -52,6 +52,6 @@ private:
 
 	std::string mSkillId[9];
 
-	BattlePlayerState* mPlayerState;
+	//BattlePlayerState* mPlayerState;
 	BattleSquad* mSelectSquad;
 };

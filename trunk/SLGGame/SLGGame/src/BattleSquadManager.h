@@ -4,6 +4,7 @@
 using namespace izayoi;
 
 #include <string>
+#include <map>
 #include <vector>
 
 #include "squaddefine.h"
@@ -22,36 +23,23 @@ public:
 
 	void clear();
 
-	typedef std::vector<BattleSquad*>::iterator BattleSquadIte;
-	std::vector<BattleSquad*> mSquadList;
-	std::vector<BattleSquad*> mDeployList;
+	typedef std::map<std::string, BattleSquad*>::iterator BattleSquadIte;
+	std::map<std::string, BattleSquad*> mSquadList;
 
-	void deployConfirm();
 	bool allDeployed();
 
-	int getTeamSquadLeft(int team);
-
 	BattleSquad* getBattleSquad(std::string id);
-	BattleSquad* getBattleSquadAt(int x, int y, int team, bool visibleonly);
+	BattleSquad* getBattleSquadAt(int x, int y, bool visibleonly);
 
 	void moveSquad(BattleSquad* squad,std::vector<int> pointlist, int &stopedpoint, int &eventtype);
 
-	CutScene* useSkillOn(BattleSquad* attacksquad, BattleSquad* targetsquad, std::string skillid);
-	CutScene* useSkillAt(BattleSquad* attacksquad, int x, int y, std::string skillid);
+	bool useSkillOn(BattleSquad* attacksquad, BattleSquad* targetsquad, std::string skillid);
+	bool useSkillAt(BattleSquad* attacksquad, int x, int y, std::string skillid);
 
 	//½Å±¾µ÷ÓÃ
-	bool meleeAttackSquad(BattleSquad* attacksquad, BattleSquad* defenesquad);
+	bool dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* defenesquad);
 	
 	bool dealMagicDamage(BattleSquad* attacksquad, BattleSquad* defenesquad, int attacktime, float atk, int fluctuate);
 
 	bool dealRangedDamage(BattleSquad* attacksquad, BattleSquad* defenesquad);
-
-	void rangedAttackCutScene(BattleSquad* attacksquad, int x, int y, UnitType castunit , std::string castparticle, std::string castaction, std::string castsound, int missiletype, std::string missileres, std::string hitparticle,std::string hitsound);
-
-	void setCutScene(CutScene* cutscene);
-	CutScene* getCutScene();
-private:
-	int mCurid;
-	CutScene* mCutSceneQueue;
-	CutScene* mLastCutScene;
 };

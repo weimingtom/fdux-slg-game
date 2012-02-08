@@ -80,13 +80,13 @@ SquadGraphics* SquadGrapManager::getSquad( unsigned int id )
 // }
 
 
-bool SquadGrapManager::createSquadGrap(std::string squadid, std::string datapath)
+bool SquadGrapManager::createSquadGrap(std::string squadid, std::string datapath, int gridx, int gridy, enumtype direction, enumtype formation, int soldierCount)
 {
 	std::map<std::string, SquadGraphics*>::iterator ite;
 	ite = mSquadGrapMap.find(squadid);
 	if(ite != mSquadGrapMap.end())
 		return false;
-	SquadGraphics* squadGrap = new SquadGraphics(squadid, datapath);
+	SquadGraphics* squadGrap = new SquadGraphics(squadid, datapath, gridx, gridy, direction, formation, soldierCount);
 	mSquadGrapMap.insert(std::make_pair(squadid, squadGrap));
 	return true;
 }
@@ -96,7 +96,7 @@ void SquadGrapManager::destorySquad(std::string squadid)
 	std::map<std::string, SquadGraphics*>::iterator ite;
 	ite = mSquadGrapMap.find(squadid);
 	if(ite == mSquadGrapMap.end())
-		return NULL;
+		return;
 	delete ite->second;
 	mSquadGrapMap.erase(ite);
 }

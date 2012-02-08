@@ -46,13 +46,13 @@ float GetFormationBonus(int side, enumtype formtype)
 		switch(formtype)
 		{
 		case Line:
-			form *= FORMBONSE_LINE_FRONT;
+			form = FORMBONSE_LINE_FRONT;
 			break;
 		case Circular:
-			form *= FORMBONSE_CIRC_FRONT;
+			form = FORMBONSE_CIRC_FRONT;
 			break;
 		case Loose:
-			form *= FORMBONSE_LOOS_FRONT;
+			form = FORMBONSE_LOOS_FRONT;
 			break;
 		}
 		break;
@@ -60,13 +60,13 @@ float GetFormationBonus(int side, enumtype formtype)
 		switch(formtype)
 		{
 		case Line:
-			form *= FORMBONSE_LINE_SIDE;
+			form = FORMBONSE_LINE_SIDE;
 			break;
 		case Circular:
-			form *= FORMBONSE_CIRC_SIDE;
+			form = FORMBONSE_CIRC_SIDE;
 			break;
 		case Loose:
-			form *= FORMBONSE_LOOS_SIDE;
+			form = FORMBONSE_LOOS_SIDE;
 			break;
 		}
 		break;
@@ -74,13 +74,13 @@ float GetFormationBonus(int side, enumtype formtype)
 		switch(formtype)
 		{
 		case Line:
-			form *= FORMBONSE_LINE_BACK;
+			form = FORMBONSE_LINE_BACK;
 			break;
 		case Circular:
-			form *= FORMBONSE_CIRC_BACK;
+			form = FORMBONSE_CIRC_BACK;
 			break;
 		case Loose:
-			form *= FORMBONSE_LOOS_BACK;
+			form = FORMBONSE_LOOS_BACK;
 			break;
 		}
 		break;

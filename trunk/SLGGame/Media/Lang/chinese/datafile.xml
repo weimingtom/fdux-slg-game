@@ -153,18 +153,18 @@
 			<Name type="String" value="侦查训练"/>
 			<Describe type="String" value="侦查训练"/>
 		</DetectionTrain>
-		<AttacktTrain>
+		<AttackTrain>
 			<Name type="String" value="攻击训练"/>
 			<Describe type="String" value="攻击训练"/>
-		</AttacktTrain>
+		</AttackTrain>
 		<DefenceTrain>
 			<Name type="String" value="防御训练"/>
 			<Describe type="String" value="防御训练"/>
 		</DefenceTrain>
-		<RangedAttackTrain >
+		<RangedAttackTrain>
 			<Name type="String" value="射击训练"/>
 			<Describe type="String" value="射击训练"/>
-		</RangedAttackTrain >
+		</RangedAttackTrain>
 		<Faith>
 			<Name type="String" value="信念"/>
 			<Describe type="String" value="信念"/>

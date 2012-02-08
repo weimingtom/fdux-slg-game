@@ -56,7 +56,8 @@ static int GetSquadCoord(lua_State* L)
 	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
 	if(battlesquad!=NULL)
 	{
-		battlesquad->getCrood(&x,&y);
+		x = battlesquad->getGridX();
+		y = battlesquad->getGridY();
 	}
 	lua_pushnumber(L,x);
 	lua_pushnumber(L,y);
@@ -67,7 +68,7 @@ static int GetTeamSquadLeft(lua_State* L)
 {
 	int team = luaL_checknumber(L,1);
 	int n = 0;
-	n = BattleSquadManager::getSingleton().getTeamSquadLeft(team);
+
 	lua_pushnumber(L,n);
 	return 1;
 }
@@ -115,8 +116,8 @@ static int GetRand(lua_State* L)
 static int Story(lua_State* L)
 {
 	std::string script(luaL_checkstring(L, 1));
-	StoryCutScene* scs = new StoryCutScene(script);
-	BattleSquadManager::getSingleton().setCutScene(scs);
+// 	StoryCutScene* scs = new StoryCutScene(script);
+// 	BattleSquadManager::getSingleton().setCutScene(scs);
 	return 0;
 }
 
@@ -125,23 +126,9 @@ static int CopySquadData(lua_State* L)
 {
 	BattleSquadManager::BattleSquadIte ite;
 	BattleSquadManager* bsm = BattleSquadManager::getSingletonPtr();
-	std::string path;
-	int num = 0;
 	for(ite = bsm->mSquadList.begin(); ite != bsm->mSquadList.end(); ite++)
 	{
-		if((*ite)->getTeam() != 1)
-			continue;
-		path = str(boost::format("GameData/StoryData/SquadData/EnableSquad/%1%/UnitNumber")%(*ite)->getSquadId());
-		DataLibrary* datalib = DataLibrary::getSingletonPtr();
-		if(datalib->getData(path,num,true))
-		{
-			num = (*ite)->getUnitRealNum() + 0.5f * (num -  (*ite)->getUnitRealNum());
-			datalib->setData(path,num);
-			path = str(boost::format("%1%/Morale")%(*ite)->getPath());
-			datalib->getData(path,num);
-			path = str(boost::format("GameData/StoryData/SquadData/EnableSquad/%1%/Morale")%(*ite)->getSquadId());
-			datalib->setData(path,num);
-		}
+		
 	}
 	return 0;
 }

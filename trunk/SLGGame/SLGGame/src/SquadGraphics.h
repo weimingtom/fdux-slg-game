@@ -65,7 +65,7 @@ public:
 	bool getVisible() {return mVisibale;}
 	void setParticleVisible(bool visible);
 
-	bool addParticle(std::string id,std::string name,UnitType object);
+	bool addParticle(std::string id,std::string name,enumtype object);
 	void startParticle(std::string id);
 	void stopParticle(std::string id);
 	void delParticle(std::string id);
@@ -81,6 +81,7 @@ public:
 
 private:
 	SquadGraphics(std::string squadName, std::string datapath, Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index,int soldierCount);
+	SquadGraphics(std::string squadid, std::string datapath, int gridx, int gridy, enumtype direction, enumtype formation, int soldierCount);
 
 	void update(unsigned int deltaTime);
 

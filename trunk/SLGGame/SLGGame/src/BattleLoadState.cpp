@@ -5,7 +5,7 @@
 
 #include "BattleState.h"
 #include "BattleDeployState.h"
-#include "BattleControlState.h"
+//#include "BattleControlState.h"
 #include "LoadScene.h"
 #include "BattleSquadManager.h"
 #include "DataLibrary.h"
@@ -108,8 +108,8 @@ void BattleLoadState::update(unsigned int deltaTime)
 			}
 			else
 			{
-				BattleControlState* controlstate = new BattleControlState(false);
-				mMainState->ChangeState(controlstate);
+// 				BattleControlState* controlstate = new BattleControlState(false);
+// 				mMainState->ChangeState(controlstate);
 			}
 		}
 		break;

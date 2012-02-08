@@ -30,7 +30,7 @@ public:
 
 //	void setParticleVisible(bool visible);
 
-	bool createSquadGrap(std::string squadid, std::string datapath);
+	bool createSquadGrap(std::string squadid, std::string datapath, int gridx, int gridy, enumtype direction, enumtype formation, int soldierCount);
 	void destorySquad(std::string squadid);
 	SquadGraphics* getSquad(std::string squadid);
 

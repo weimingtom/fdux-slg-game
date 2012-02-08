@@ -11,39 +11,47 @@ CutSceneDirector::CutSceneDirector()
 	mId = 0;
 	mMouseX = 640;
 	mMouseY = 360;
+	mCutScene = NULL;
 	mCameraContral = CameraContral::getSingletonPtr();
 	Core::getSingleton().mInputControl->pushListener(this);
 }
 CutSceneDirector::~CutSceneDirector()
 {
-	CutSceneIte ite;
-	for(ite = mCutScene.begin(); ite != mCutScene.end();ite++)
-	{
-		delete ite->second;
-	}
+// 	CutSceneIte ite;
+// 	for(ite = mCutScene.begin(); ite != mCutScene.end();ite++)
+// 	{
+// 		delete ite->second;
+// 	}
+	if(mCutScene)
+		delete mCutScene;
 	Core::getSingleton().mInputControl->popListener();
 }
 
-int CutSceneDirector::addCutScene(CutScene* cutscene)
+void CutSceneDirector::addCutScene(CutScene* cutscene)
 {
-	if(cutscene!= NULL)
-	{
-		int id = mId++;
-		mCutScene.insert(CutScenePair(id, cutscene));
-		cutscene->start();
-		return id;
-	}
-	return -1;
+// 	if(cutscene!= NULL)
+// 	{
+// 		int id = mId++;
+// 		mCutScene.insert(CutScenePair(id, cutscene));
+// 		cutscene->start();
+// 		return id;
+// 	}
+// 	return -1;
+	if(mCutScene != NULL)
+		delete mCutScene;
+	mCutScene = cutscene;
 }
 
-void CutSceneDirector::skipCutScene(int id)
+void CutSceneDirector::skipCutScene()
 {
-	CutSceneIte ite;
-	ite = mCutScene.find(id);
-	if(ite != mCutScene.end())
-	{
-		ite->second->skipall();
-	}
+// 	CutSceneIte ite;
+// 	ite = mCutScene.find(id);
+// 	if(ite != mCutScene.end())
+// 	{
+// 		ite->second->skipall();
+// 	}
+	if(mCutScene)
+		mCutScene->skipall();
 }
 
 void CutSceneDirector::update(unsigned int deltaTime)
@@ -60,22 +68,27 @@ void CutSceneDirector::update(unsigned int deltaTime)
 		dy = dt;
 	mCameraContral->moveCamera(dx,dy);
 
-	CutSceneIte ite;
-	for(ite = mCutScene.begin(); ite != mCutScene.end();)
+// 	CutSceneIte ite;
+// 	for(ite = mCutScene.begin(); ite != mCutScene.end();)
+// 	{
+// 		if(ite->second->end())
+// 		{
+// 			delete ite->second;
+// 			ite = mCutScene.erase(ite);
+// 		}
+// 		else
+// 		{
+// 			ite->second->update(deltaTime);
+// 			ite++;
+// 		}
+// 	}
+// 	if(mCutScene.size() == 0)
+	if(mCutScene == NULL || mCutScene->end())
 	{
-		if(ite->second->end())
-		{
-			delete ite->second;
-			ite = mCutScene.erase(ite);
-		}
-		else
-		{
-			ite->second->update(deltaTime);
-			ite++;
-		}
-	}
-	if(mCutScene.size() == 0)
 		mMainState->PopState();
+	}
+	else
+		mCutScene->update(deltaTime);
 }
 
 bool CutSceneDirector::keyPressed(const OIS::KeyEvent &arg)
@@ -96,7 +109,7 @@ bool CutSceneDirector::mouseMoved(const OIS::MouseEvent &arg)
 bool CutSceneDirector::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
 {
 	if(id == OIS::MB_Left)
-		skipCutScene(0);
+		skipCutScene();
 	return false;
 }
 bool CutSceneDirector::mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id)

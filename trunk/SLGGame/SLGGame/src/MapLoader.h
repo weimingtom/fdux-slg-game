@@ -1,6 +1,9 @@
 #pragma once
 
 #include <string>
+#include <queue>
+
+#include "squaddefine.h"
 
 class MapLoader
 {
