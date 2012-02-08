@@ -20,7 +20,7 @@ static int MeleeCombat(lua_State* L)
 	int re = 0;
 	if(attacker != NULL &&  defender!= NULL)
 	{
-		re =  BattleSquadManager::getSingleton().meleeAttackSquad(attacker, defender);
+		re =  BattleSquadManager::getSingleton().dealMeleeDamage(attacker, defender);
 	}
 	else
 		re = 0;
@@ -79,25 +79,29 @@ static int Missile(lua_State* L)
 	std::string hitparticle(luaL_checkstring(L, 10));
 	std::string hitsound(luaL_checkstring(L, 11));
 	BattleSquad* attacker = BattleSquadManager::getSingleton().getBattleSquad(attacksquad);
-	BattleSquadManager::getSingleton().rangedAttackCutScene(attacker,x ,y,castunit,castparticle,castaction,castsound,missletype,missileres, hitparticle,hitsound);
+	//BattleSquadManager::getSingleton().rangedAttackCutScene(attacker,x ,y,castunit,castparticle,castaction,castsound,missletype,missileres, hitparticle,hitsound);
 	return 0;
 }
 
 static int ApplyEffect(lua_State* L)
 {
-	std::string squadpath(luaL_checkstring(L, 1));
+	std::string squad(luaL_checkstring(L, 1));
 	std::string effect(luaL_checkstring(L, 2));
-	std::string effectid("");
-	AVGSquadManager::getSingleton().applyEffect(squadpath,effect,effectid);
-	lua_pushstring(L,effectid.c_str());
+	std::string id("");
+	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
+	battlesquad->applyEffect(effect, id);
+	//AVGSquadManager::getSingleton().applyEffect(squadpath,effect,effectid);
+	lua_pushstring(L,id.c_str());
 	return 1;
 }
 
 static int RemoveEffect(lua_State* L)
 {
-	std::string squadpath(luaL_checkstring(L, 1));
+	std::string squad(luaL_checkstring(L, 1));
 	std::string id(luaL_checkstring(L, 2));
-	AVGSquadManager::getSingleton().removeEffect(squadpath,id);
+	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
+	battlesquad->removeEffect(id);
+	//AVGSquadManager::getSingleton().removeEffect(squadpath,id);
 	return 0;
 }
 
@@ -105,17 +109,17 @@ static int RemoveEffect(lua_State* L)
 static int ApplyParticle(lua_State* L)
 {
 	std::string squadpath(luaL_checkstring(L, 1));
-	UnitType unittype = luaL_checknumber(L,2);
+	enumtype unittype = luaL_checknumber(L,2);
 	std::string particleid(luaL_checkstring(L, 3));
 	std::string id("");
-	AVGSquadManager::getSingleton().applyParticle(squadpath,unittype,particleid,id);
-	std::string::size_type i = squadpath.rfind('/');
-	std::string squad = squadpath.substr(i + 1,squadpath.size() - i -1);
-	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
-	if(battlesquad)
-	{
-		BattleSquadManager::getSingleton().setCutScene(new SquadStateCutScene(battlesquad,SQUAD_STATE_PARTICLE,id,4));
-	}
+// 	AVGSquadManager::getSingleton().applyParticle(squadpath,unittype,particleid,id);
+// 	std::string::size_type i = squadpath.rfind('/');
+// 	std::string squad = squadpath.substr(i + 1,squadpath.size() - i -1);
+// 	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
+// 	if(battlesquad)
+// 	{
+// 		BattleSquadManager::getSingleton().setCutScene(new SquadStateCutScene(battlesquad,SQUAD_STATE_PARTICLE,id,4));
+// 	}
 	lua_pushstring(L,id.c_str());
 	return 1;
 }
@@ -126,22 +130,22 @@ static int RemoveParticle(lua_State* L)
 {
 	std::string squadpath(luaL_checkstring(L, 1));
 	std::string id(luaL_checkstring(L, 2));
-	AVGSquadManager::getSingleton().removeParticle(squadpath,id);
-	std::string::size_type i = squadpath.rfind('/');
-	std::string squad = squadpath.substr(i + 1,squadpath.size() - i -1);
-	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
-	if(battlesquad)
-	{
-		SquadGraphics* squadgrap = SquadGrapManager::getSingleton().getSquad(battlesquad->getGrapId());
-		if(squadgrap)
-			squadgrap->delParticle(id);
-	}
+// 	AVGSquadManager::getSingleton().removeParticle(squadpath,id);
+// 	std::string::size_type i = squadpath.rfind('/');
+// 	std::string squad = squadpath.substr(i + 1,squadpath.size() - i -1);
+// 	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
+// 	if(battlesquad)
+// 	{
+// 		SquadGraphics* squadgrap = SquadGrapManager::getSingleton().getSquad(battlesquad->getGrapId());
+// 		if(squadgrap)
+// 			squadgrap->delParticle(id);
+// 	}
 	return 0;
 }
 
 static int ApplyModifier(lua_State* L)
 {
-	std::string squadpath(luaL_checkstring(L, 1));
+	std::string squad(luaL_checkstring(L, 1));
 	AttrModifier* modifier = new AttrModifier;
 	modifier->Type = luaL_checknumber(L,2);
 	modifier->Attack = luaL_checknumber(L,3);
@@ -155,7 +159,9 @@ static int ApplyModifier(lua_State* L)
 	modifier->Toughness = luaL_checknumber(L,11);
 	modifier->Conter = luaL_checknumber(L,12);
 	std::string id("");
-	AVGSquadManager::getSingleton().applyModifer(squadpath,modifier,id);
+	//AVGSquadManager::getSingleton().applyModifer(squadpath,modifier,id);
+	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
+	battlesquad->applyModifer(modifier, id);
 	delete modifier;
 	lua_pushstring(L,id.c_str());
 	return 1;
@@ -163,9 +169,11 @@ static int ApplyModifier(lua_State* L)
 
 static int RemoveModifier(lua_State* L)
 {
-	std::string squadpath(luaL_checkstring(L, 1));
+	std::string squad(luaL_checkstring(L, 1));
 	std::string id(luaL_checkstring(L, 2));
-	AVGSquadManager::getSingleton().removeModifier(squadpath,id);
+	//AVGSquadManager::getSingleton().removeModifier(squadpath,id);
+	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
+	battlesquad->removeModifier(id);
 	return 0;
 }
 
@@ -178,8 +186,8 @@ static int Action(lua_State* L)
 	std::string action(luaL_checkstring(L, 4));
 	std::string sound(luaL_checkstring(L, 5));
 	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
-	AnimationCutScene* acs = new AnimationCutScene(battlesquad->getGrapId(),castunit,action,sound,particle,false,true);
-	BattleSquadManager::getSingleton().setCutScene(acs);
+	//AnimationCutScene* acs = new AnimationCutScene(battlesquad->getGrapId(),castunit,action,sound,particle,false,true);
+	//BattleSquadManager::getSingleton().setCutScene(acs);
 	return 0;
 }
 
@@ -203,7 +211,7 @@ static int SetSquadApLeft(lua_State* L)
 	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
 	if(battlesquad)
 	{
-		DataLibrary::getSingleton().setData(battlesquad->getPath() + "/ActionPoint",ap);
+		battlesquad->setActionPoint(ap);
 	}
 	return 0;
 }
@@ -242,7 +250,7 @@ static int GetUnitNum(lua_State* L)
 	int un = 0;
 	if(battlesquad)
 	{
-		un = battlesquad->getUnitRealNum();
+		un = battlesquad->getUnitNum();
 	}
 	lua_pushnumber(L,un);
 	return 1;
@@ -255,7 +263,7 @@ static int GetUnitMaxNum(lua_State* L)
 	int un = 0;
 	if(battlesquad)
 	{
-		DataLibrary::getSingleton().getData(battlesquad->getPath() + "/UnitMaxNumber",un);
+		un = battlesquad->getUnitMaxNum(); 
 	}
 	lua_pushnumber(L,un);
 	return 1;
@@ -276,11 +284,11 @@ static int SetUnitNum(lua_State* L)
 		una = battlesquad->getUnitGrapNum();
 		if(una < unb)
 		{
-			BattleSquadManager::getSingleton().setCutScene(new SquadDeadCutScene(battlesquad->getGrapId(), unb - una));
+//			BattleSquadManager::getSingleton().setCutScene(new SquadDeadCutScene(battlesquad->getGrapId(), unb - una));
 		}
 		else if(una > unb)
 		{
-			BattleSquadManager::getSingleton().setCutScene(new SquadRecoverCutScene(battlesquad->getGrapId(), una - unb));
+//			BattleSquadManager::getSingleton().setCutScene(new SquadRecoverCutScene(battlesquad->getGrapId(), una - unb));
 		}
 	}
 	return 0;
@@ -295,7 +303,7 @@ static int ChangeFormation(lua_State* L)
 	if(battlesquad)
 	{
 		battlesquad->setFormation(f);
-		BattleSquadManager::getSingleton().setCutScene(new FormationCutScene(battlesquad->getGrapId(),f));
+		//BattleSquadManager::getSingleton().setCutScene(new FormationCutScene(battlesquad->getGrapId(),f));
 	}
 	return 0;
 }
@@ -309,8 +317,8 @@ static int SquadParticle(lua_State* L)
 	std::string sound(luaL_checkstring(L, 4));
 	int time  = luaL_checknumber(L, 5);
 	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
-	EffectCutScene* ecs = new EffectCutScene(battlesquad->getGrapId(),castunit,particle,sound,time);
-	BattleSquadManager::getSingleton().setCutScene(ecs);
+	//EffectCutScene* ecs = new EffectCutScene(battlesquad->getGrapId(),castunit,particle,sound,time);
+	//BattleSquadManager::getSingleton().setCutScene(ecs);
 	return 0;
 }
 

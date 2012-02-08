@@ -359,20 +359,22 @@ void MapLoader::initBattleSquad(bool loadfrommap)
 			}
 			else
 			{
-				battlesuqadmanager->mSquadList.push_back(battlesquad);
+				battlesuqadmanager->mSquadList.insert(std::make_pair(battlesquad->getSquadId(),battlesquad));
+				suqadgrapmanager->createSquadGrap(battlesquad->getSquadId(), battlesquad->getPath(), battlesquad->getGridX(), battlesquad->getGridY(), 
+													battlesquad->getDirection(), battlesquad->getFormation(), battlesquad->getUnitGrapNum());
 			}
 			mMapSquadInfo.pop();
 		}
 		//载入玩家部队
 		std::vector<std::string> childlist;
-		childlist = datalib->getChildList(std::string("GameData/StoryData/SquadData/EnableSquad"));
+		childlist = datalib->getChildList(std::string("GameData/StoryData/SquadData"));
 		if(childlist.size()>0)
 		{
 			std::vector<std::string>::iterator ite;
 			for(ite = childlist.begin(); ite != childlist.end(); ite++)
 			{
 				BattleSquad* battlesquad = new BattleSquad(str(boost::format("%1%/%2%")%path%(*ite)),
-														str(boost::format("GameData/StoryData/SquadData/EnableSquad/%1%")%(*ite)),
+														str(boost::format("GameData/StoryData/SquadData/%1%")%(*ite)),
 														0);
 // 				std::string datapath = std::string("GameData/BattleData/SquadList/") + (*ite);
 // 				datalib->copyNode(std::string("GameData/StoryData/SquadData/EnableSquad/") + (*ite),datapath, true);
@@ -399,7 +401,9 @@ void MapLoader::initBattleSquad(bool loadfrommap)
 				}
 				else
 				{
-					battlesuqadmanager->mDeployList.push_back(battlesquad);
+					battlesuqadmanager->mSquadList.insert(std::make_pair(battlesquad->getSquadId(),battlesquad));
+					suqadgrapmanager->createSquadGrap(battlesquad->getSquadId(), battlesquad->getPath(), battlesquad->getGridX(), battlesquad->getGridY(), 
+						battlesquad->getDirection(), battlesquad->getFormation(), battlesquad->getUnitGrapNum());
 				}
 //				battlesuqadmanager->mCurid ++;
 			}
@@ -416,7 +420,9 @@ void MapLoader::initBattleSquad(bool loadfrommap)
 			{
 				std::string datapath = path + std::string("/") + (*ite);
 				BattleSquad* battlesquad = new BattleSquad(datapath);
-				battlesuqadmanager->mSquadList.push_back(battlesquad);
+				battlesuqadmanager->mSquadList.insert(std::make_pair(battlesquad->getSquadId(),battlesquad));
+				suqadgrapmanager->createSquadGrap(battlesquad->getSquadId(), battlesquad->getPath(), battlesquad->getGridX(), battlesquad->getGridY(), 
+					battlesquad->getDirection(), battlesquad->getFormation(), battlesquad->getUnitGrapNum());
 			}
 		}
 	}
@@ -426,7 +432,7 @@ void MapLoader::creatSquadGrapAtPath(std::string path)
 {
 	BattleSquadManager* battlesuqadmanager = BattleSquadManager::getSingletonPtr();
 	DataLibrary* datalib =DataLibrary::getSingletonPtr();
-//	SquadGrapManager* suqadgrapmanager = SquadGrapManager::getSingletonPtr();
+	SquadGrapManager* suqadgrapmanager = SquadGrapManager::getSingletonPtr();
 //	AVGSquadManager* avgsquadmanager = AVGSquadManager::getSingletonPtr();
 	std::vector<std::string> childlist;
 	childlist = datalib->getChildList(path);
@@ -450,7 +456,12 @@ void MapLoader::creatSquadGrapAtPath(std::string path)
 			}
 			else
 			{
-				battlesuqadmanager->mSquadList.push_back(battlesquad);
+				battlesuqadmanager->mSquadList.insert(std::make_pair(battlesquad->getSquadId(),battlesquad));
+				if(battlesquad->getUnitNum() > 0)
+				{
+					suqadgrapmanager->createSquadGrap(battlesquad->getSquadId(), battlesquad->getPath(), battlesquad->getGridX(), battlesquad->getGridY(), 
+						battlesquad->getDirection(), battlesquad->getFormation(), battlesquad->getUnitGrapNum());
+				}
 			}
 // 			BattleSquad* battlesquad =  new BattleSquad((*ite),battlesuqadmanager->mCurid,x,y); 
 // 			SquadGraphics* squadgrap  = suqadgrapmanager->createSquad((*ite), datapath, battlesuqadmanager->mCurid,x,y,d,f, battlesquad->getUnitGrapNum());

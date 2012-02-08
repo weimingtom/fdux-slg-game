@@ -127,7 +127,7 @@ void GUISquadWindows::updateSquad()
 {
 	if(mSelectSquad ==NULL)
 		return;
-	if(mSelectSquad->IsEliminated())
+	if(mSelectSquad->getUnitNum() == 0)
 	{
 		setSquad(NULL);
 		return;
@@ -184,9 +184,9 @@ void GUISquadWindows::updateSquad()
 	}
 
 	float tempfloat;
-	tempfloat = mSelectSquad->getAttr(ATTR_ATTACK,ATTRCALC_FULL,x);
+	tempfloat = mSelectSquad->getAttr(ATTR_ATTACK,ATTRCALC_FULL);
 	mSquadAttack->setCaption(str(boost::format("%1%")%floor(tempfloat+0.5f)));
-	tempfloat = mSelectSquad->getAttr(ATTR_DEFENCE,ATTRCALC_FULL,x);
+	tempfloat = mSelectSquad->getAttr(ATTR_DEFENCE,ATTRCALC_FULL);
 	mSquadDefence->setCaption(str(boost::format("%1%")%floor(tempfloat+0.5f)));
 
 	re = DataLibrary::getSingletonPtr()->getData(datapath+"/UnitMaxNumber",x);

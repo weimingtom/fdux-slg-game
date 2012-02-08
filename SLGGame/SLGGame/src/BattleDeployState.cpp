@@ -13,12 +13,13 @@
 #include "GUIPUDebug.h"
 #include "GUIMenuWindow.h"
 #include "GUIBattle.h"
-#include "BattleControlState.h"
+//#include "BattleControlState.h"
 #include "GUIDeployWindow.h"
 #include "AreaGrap.h"
 #include "MapDataManager.h"
 #include "GUISquadWindows.h"
 #include "TriggerManager.h"
+#include "CommonFunction.h"
 
 BattleDeployState::BattleDeployState()
 {
@@ -46,11 +47,15 @@ BattleDeployState::BattleDeployState()
 	//建立部署小队列表
 	BattleSquadManager::BattleSquadIte ite;
 	std::vector<std::string> squadlist;
-	if(mSquadManager->mDeployList.size() != 0)
+	if(mSquadManager->mSquadList.size() != 0)
 	{
-		for(ite = mSquadManager->mDeployList.begin(); ite != mSquadManager->mDeployList.end(); ite++)
+		for(ite = mSquadManager->mSquadList.begin(); ite != mSquadManager->mSquadList.end(); ite++)
 		{
-			squadlist.push_back((*ite)->getSquadName());
+			if(ite->second->getGridX() < 0)
+			{
+				squadlist.push_back(ite->second->getName());
+				mDeployList.push_back(ite->second);
+			}
 		}
 		mDeployWindow->initList(squadlist);
 	}
@@ -69,7 +74,7 @@ BattleDeployState::BattleDeployState()
 	//		k++;
 	//	}
 	//}
-
+	DataLibrary::getSingleton().saveXmlData(DataLibrary::GameData,"test.xml");
 }
 BattleDeployState::~BattleDeployState()
 {
@@ -139,12 +144,13 @@ bool BattleDeployState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 		if(id == OIS::MB_Left)
 		{
 			MapDataManager* datamanager = MapDataManager::getSingletonPtr();
-			if(mAreaGrap->inArea(GX,GY) && datamanager->getPassable(GX,GY,1) && mSquadManager->getBattleSquadAt(GX,GY,0,false) == NULL)
+			if(mAreaGrap->inArea(GX,GY) && datamanager->getPassable(GX,GY,0) && mSquadManager->getBattleSquadAt(GX,GY,false) == NULL)
 			{
-				int id = mSelectSquad->getGrapId();
+				std::string id = mSelectSquad->getSquadId();
 				SquadGraphics* squadgrap = SquadGrapManager::getSingleton().getSquad(id);
 				squadgrap->setGrid(GX,GY);
-				mSelectSquad->setCrood(GX,GY);
+				mSelectSquad->setGridX(GX);
+				mSelectSquad->setGridY(GY);
 				char info[64];
 				sprintf_s(info,64,"%d,%d",GX,GY);
 				mDeployWindow->setDeployInfo(mSelectIndex,std::string(info));
@@ -155,29 +161,14 @@ bool BattleDeployState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 		else if(id == OIS::MB_Right)
 		{
 			int x,y;
-			mSelectSquad->getCrood(&x,&y);
-			if(x != -1 && !(x == GX && y == GY))
-			{
-				Direction d;
-				float k;
-				if(GY-y == 0)
-					k = 2.0f;
-				else
-					k = abs(GX -x)/ abs(GY - y);
-				if( GY > y && k <= 1.0f)
-					d = South;
-				else if( GY < y && k <= 1.0f)
-					d = North;
-				else if( GX > x )
-					d = East;
-				else
-					d = West;
-				mSelectSquad->setDirection(d);
-				int grapid = mSelectSquad->getGrapId();
-				SquadGraphics* squadgrap = SquadGrapManager::getSingleton().getSquad(grapid);
-				squadgrap->setDirection(d,false);
-				mSquadWindow->setSquad(mSelectSquad);
-			}
+			x = mSelectSquad->getGridX();
+			y = mSelectSquad->getGridY();
+			Direction d = GetDirection(x,y, GX, GY);
+			mSelectSquad->setDirection(d);
+			std::string grapid = mSelectSquad->getSquadId();
+			SquadGraphics* squadgrap = SquadGrapManager::getSingleton().getSquad(grapid);
+			squadgrap->setDirection(d,false);
+			mSquadWindow->setSquad(mSelectSquad);
 		}
 
 	}
@@ -192,18 +183,18 @@ void BattleDeployState::deployConfirm()
 {
 	if(mSquadManager->allDeployed())
 	{
-		mSquadManager->deployConfirm();
-		BattleControlState* controlstate = new BattleControlState(true);
-		mMainState->ChangeState(controlstate);
-		TriggerManager::getSingleton().finishdeploy();
+// 		mSquadManager->deployConfirm();
+// 		BattleControlState* controlstate = new BattleControlState(true);
+// 		mMainState->ChangeState(controlstate);
+// 		TriggerManager::getSingleton().finishdeploy();
 	}
 }
 
 void BattleDeployState::selectIndex(int index)
 {
-	if (index<mSquadManager->mDeployList.size())
+	if (index < mDeployList.size())
 	{
-		mSelectSquad = mSquadManager->mDeployList[index];
+		mSelectSquad = mDeployList[index];
 		mSquadWindow->setSquad(mSelectSquad);
 		mSelectIndex = index;
 	}

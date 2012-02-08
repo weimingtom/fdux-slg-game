@@ -7,6 +7,8 @@
 class LoadScene;
 class MapLoader;
 
+#include "squaddefine.h"
+
 enum
 {
 	LOADSCENE = 0,

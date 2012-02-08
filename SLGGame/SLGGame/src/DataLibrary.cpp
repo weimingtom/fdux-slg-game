@@ -82,6 +82,11 @@ void DataLibrary::appendXmlDate( ticpp::Document* currentDoc,std::string fileNam
 
 void DataLibrary::copyElement( ticpp::Element* srcElement,ticpp::Element* destElement )
 {
+	ticpp::Iterator< ticpp::Attribute > attribute;
+	for ( attribute = attribute.begin( srcElement ); attribute != attribute.end(); attribute++ )
+	{
+		destElement->SetAttribute(attribute->Name(), attribute->Value());
+	}
 
 	ticpp::Iterator< ticpp::Element > child;
 	for ( child = child.begin(srcElement); child != child.end(); child++ )

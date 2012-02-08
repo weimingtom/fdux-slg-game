@@ -8,7 +8,7 @@
 
 SquadStateCutScene::SquadStateCutScene(BattleSquad* battlesquad, SquadStateType type, std::string stateid ,int val)
 {
-	mSquadGraphics = SquadGrapManager::getSingleton().getSquad(battlesquad->getGrapId());
+	mSquadGraphics = SquadGrapManager::getSingleton().getSquad(battlesquad->getSquadId());
 	mSquad = battlesquad;
 	mStateType = type;
 	mStateId = stateid;
@@ -38,7 +38,7 @@ void SquadStateCutScene::startCutScence()
 			if(mStateValue == 1 || mStateValue == 4 )
 			{
 				std::string name;
-				UnitType object;
+				enumtype object;
 				DataLibrary::getSingleton().getData(str(boost::format("%1%/ParticleList/%2%/Particle")%mSquad->getPath()%mStateId),name);
 				DataLibrary::getSingleton().getData(str(boost::format("%1%/ParticleList/%2%/UnitType")%mSquad->getPath()%mStateId),object);
 				mSquadGraphics->addParticle(mStateId,name,object);

@@ -65,7 +65,7 @@ void BattleState::update(unsigned int deltaTime)
 		mSubStateStack.back()->update(deltaTime);
 	mSquadGrapManager->update(deltaTime);
 	if(mEndTrigger)
-		StateManager::getSingleton().changeState(mArg,StateManager::StateType::AVG);
+		StateManager::getSingleton().changeState(mArg,StateManager::AVG);
 }
 
 void BattleState::ChangeState(SubBattleState* substate)

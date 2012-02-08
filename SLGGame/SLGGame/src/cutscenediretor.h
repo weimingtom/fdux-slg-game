@@ -3,7 +3,7 @@
 #include "SubBattleState.h"
 #include "InputListener.h"
 
-#include <map>
+//#include <map>
 
 
 class CutScene;
@@ -15,8 +15,8 @@ public:
 	CutSceneDirector();
 	~CutSceneDirector();
 
-	int addCutScene(CutScene* cutscene);
-	void skipCutScene(int id);
+	void addCutScene(CutScene* cutscene);
+	void skipCutScene();
 
 	virtual bool keyPressed(const OIS::KeyEvent &arg);
 	virtual bool keyReleased(const OIS::KeyEvent &arg);
@@ -27,9 +27,10 @@ public:
 
 	virtual void update(unsigned int deltaTime);
 private:
-	typedef std::pair<int, CutScene*> CutScenePair;
-	typedef std::map<int, CutScene*>::iterator CutSceneIte;
-	std::map<int, CutScene*> mCutScene;
+// 	typedef std::pair<int, CutScene*> CutScenePair;
+// 	typedef std::map<int, CutScene*>::iterator CutSceneIte;
+// 	std::map<int, CutScene*> mCutScene;
+	CutScene* mCutScene;
 	int mId;
 
 	int mMouseX;

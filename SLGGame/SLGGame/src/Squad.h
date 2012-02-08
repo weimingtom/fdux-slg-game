@@ -3,6 +3,40 @@
 #include <string>
 
 #include "squaddefine.h"
+#include "DataLibrary.h"
+
+#define INTVAL(a) int get##a() \
+	{ \
+		int val = 0; \
+		DataLibrary::getSingleton().getData(getPath() + "/" + #a, val); \
+		return val; \
+	} \
+	void set##a(int val) \
+	{ \
+		DataLibrary::getSingleton().setData(getPath() + "/" + #a, val); \
+	}
+
+#define FLOATVAL(a) float get##a() \
+	{ \
+		float val = 0.0f; \
+		DataLibrary::getSingleton().getData(getPath() + "/" + #a, val); \
+		return val; \
+	} \
+	void set##a(float val) \
+	{ \
+		DataLibrary::getSingleton().setData(getPath() + "/" + #a, val); \
+	}
+
+#define STRVAL(a) std::string get##a() \
+	{ \
+		std::string val(""); \
+		DataLibrary::getSingleton().getData(getPath() + "/" + #a, val); \
+		return val; \
+	} \
+	void set##a(std::string val) \
+	{ \
+		DataLibrary::getSingleton().setData(getPath() + "/" + #a, val); \
+	}
 
 class Squad
 {
@@ -12,14 +46,14 @@ public:
 	virtual ~Squad();
 
 	bool isInit() { return mInit; } 
-private:
+protected:
 	bool mInit;
 	std::string mPath;
 
 public:
 	std::string getPath() { return mPath; }
 
-private:
+protected:
 	std::string mSquadId;
 
 public:
@@ -55,4 +89,17 @@ public:
 public:
 	virtual float getAttr(enumtype attrtype , enumtype calctype);
 
+
+//ªÒ»° Ù–‘
+public:
+	INTVAL(Type);
+	INTVAL(SquadType);
+
+	STRVAL(Name);
+
+	INTVAL(UnitNum);
+	INTVAL(Level);
+	INTVAL(Exp);
+
+	STRVAL(SoilderId);
 };

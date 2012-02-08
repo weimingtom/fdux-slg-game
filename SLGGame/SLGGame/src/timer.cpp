@@ -1,7 +1,7 @@
 #include "timer.hpp"
 using namespace std;
 
-template<type T>
+template<typename T>
 static bool isPO2(T n)
 {
     return (n & (n-1)) == 0;

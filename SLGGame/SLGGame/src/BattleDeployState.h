@@ -3,6 +3,8 @@
 #include "SubBattleState.h"
 #include "InputListener.h"
 
+#include <vector>
+
 class CameraContral;
 
 class GUIBattle;
@@ -36,6 +38,7 @@ private:
 	GUIDeployWindows* mDeployWindow;
 	GUISquadWindows* mSquadWindow;
 	GUIMenuWindow* mMenuWindow;
+	std::vector<BattleSquad*> mDeployList;
 	BattleSquad* mSelectSquad;
 	int mSelectIndex;
 	BattleSquadManager* mSquadManager;
