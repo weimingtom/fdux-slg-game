@@ -6,7 +6,7 @@
 #include "Core.h"
 #include "BillboardManager.h"
 
-SquadGrapManager::SquadGrapManager(Ogre::SceneManager* sceneMgr):unitIndex(0)
+SquadGrapManager::SquadGrapManager(Ogre::SceneManager* sceneMgr)/*:unitIndex(0)*/
 {
 	mBBManager=new BillboardManager(Core::getSingletonPtr()->mCamera);
 }
@@ -19,57 +19,67 @@ SquadGrapManager::~SquadGrapManager(void)
 
 void SquadGrapManager::clear()
 {
-	for (std::vector<SquadGraphics*>::iterator it=mUnitList.begin();it!=mUnitList.end();it++)
+// 	for (std::vector<SquadGraphics*>::iterator it=mUnitList.begin();it!=mUnitList.end();it++)
+// 	{
+// 		delete (*it);
+// 	}
+// 	mUnitList.clear();
+	std::map<std::string, SquadGraphics*>::iterator ite;
+	for(ite = mSquadGrapMap.begin(); ite != mSquadGrapMap.end(); ite++)
 	{
-		delete (*it);
+		delete ite->second;
 	}
-	mUnitList.clear();
+	mSquadGrapMap.clear();
 }
 
-SquadGraphics* SquadGrapManager::createSquad( std::string unitName,std::string datapath,unsigned int id,int x,int y,Direction d,Formation f,int soldierCount)
-{
-	SquadGraphics* squadGrap=new SquadGraphics(unitName,datapath,Ogre::Vector2(x,y),d,f,id,soldierCount);
+// SquadGraphics* SquadGrapManager::createSquad( std::string unitName,std::string datapath,unsigned int id,int x,int y,Direction d,Formation f,int soldierCount)
+// {
+// 	SquadGraphics* squadGrap=new SquadGraphics(unitName,datapath,Ogre::Vector2(x,y),d,f,id,soldierCount);
+// 
+// 	mUnitList.push_back(squadGrap);
+// 
+// 	return squadGrap;
+// }
 
-	mUnitList.push_back(squadGrap);
-
-	return squadGrap;
-}
-
-void SquadGrapManager::destorySquad(unsigned int id)
-{
-	//将队列中的进行消除
-	for (std::vector<SquadGraphics*>::iterator it=mUnitList.begin();it!=mUnitList.end();it++)
-	{
-		if ((*it)->mID==id)
-		{
-			delete (*it);
-			mUnitList.erase(it);
-			break;
-		}
-	}
-}
-
+// void SquadGrapManager::destorySquad(unsigned int id)
+// {
+// 	//将队列中的进行消除
+// 	for (std::vector<SquadGraphics*>::iterator it=mUnitList.begin();it!=mUnitList.end();it++)
+// 	{
+// 		if ((*it)->mID==id)
+// 		{
+// 			delete (*it);
+// 			mUnitList.erase(it);
+// 			break;
+// 		}
+// 	}
+// }
+// 
 void SquadGrapManager::update(unsigned int deltaTime)
 {
-	for (std::vector<SquadGraphics*>::iterator it=mUnitList.begin();it!=mUnitList.end();it++)
+// 	for (std::vector<SquadGraphics*>::iterator it=mUnitList.begin();it!=mUnitList.end();it++)
+// 	{
+// 		(*it)->update(deltaTime);
+// 	}
+	std::map<std::string, SquadGraphics*>::iterator ite;
+	for(ite = mSquadGrapMap.begin(); ite != mSquadGrapMap.end(); ite++)
 	{
-		(*it)->update(deltaTime);
+		ite->second->update(deltaTime);
 	}
-
 	mBBManager->update(deltaTime);
 }
 
-SquadGraphics* SquadGrapManager::getSquad( unsigned int id )
-{
-	for (std::vector<SquadGraphics*>::iterator it=mUnitList.begin();it!=mUnitList.end();it++)
-	{
-		if ((*it)->mID==id)
-		{
-			return (*it);
-		}
-	}
-	return NULL;
-}
+// SquadGraphics* SquadGrapManager::getSquad( unsigned int id )
+// {
+// 	for (std::vector<SquadGraphics*>::iterator it=mUnitList.begin();it!=mUnitList.end();it++)
+// 	{
+// 		if ((*it)->mID==id)
+// 		{
+// 			return (*it);
+// 		}
+// 	}
+// 	return NULL;
+// }
 
 // void SquadGrapManager::setParticleVisible(bool visible)
 // {

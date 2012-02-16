@@ -10,7 +10,7 @@ class AnimationCutScene:public CutScene
 {
 public:
 	//isBackToWait:是否回退到待机动画
-	AnimationCutScene(unsigned int id,UnitType object,std::string name,std::string sound , std::string particle,bool isLoop=true,bool isBackToWait=false);
+	AnimationCutScene(std::string id,UnitType object,std::string name,std::string sound , std::string particle,bool isLoop=true,bool isBackToWait=false);
 	~AnimationCutScene(void);
 
 

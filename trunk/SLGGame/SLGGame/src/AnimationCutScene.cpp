@@ -5,7 +5,7 @@
 #include "AudioSystem.h"
 #include "Core.h"
 
-AnimationCutScene::AnimationCutScene(unsigned int id,UnitType object,std::string name,std::string sound , std::string particle,bool isLoop,bool isBackToWait)
+AnimationCutScene::AnimationCutScene(std::string id,UnitType object,std::string name,std::string sound , std::string particle,bool isLoop,bool isBackToWait)
 :CutScene(0),mName(name),mSound(sound),mParticle(particle),mIsBackToWait(isBackToWait)
 {
 	mSquadGraphics=SquadGrapManager::getSingletonPtr()->getSquad(id);

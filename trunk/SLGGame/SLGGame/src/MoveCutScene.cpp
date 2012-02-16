@@ -6,7 +6,7 @@
 
 #include "CameraContral.h"
 
-MoveCutScene::MoveCutScene(unsigned int id,std::vector<Ogre::Vector2>& grids,Ogre::Vector2& currentGrid)
+MoveCutScene::MoveCutScene(std::string id,std::vector<Ogre::Vector2>& grids,Ogre::Vector2& currentGrid)
 {
 
 	vectors.clear();

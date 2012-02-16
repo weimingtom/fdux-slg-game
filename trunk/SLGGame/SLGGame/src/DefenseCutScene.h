@@ -1,12 +1,14 @@
 #pragma once
 #include "cutscene.h"
 
+#include <string>
+
 class SquadGraphics;
 
 class DefenseCutScene:public CutScene
 {
 public:
-	DefenseCutScene(unsigned int attackID,unsigned int defenseID,unsigned int defenseDeadCount);
+	DefenseCutScene(std::string attackID, std::string defenseID, unsigned int defenseDeadCount);
 	~DefenseCutScene();
 protected:
 	void startCutScence();

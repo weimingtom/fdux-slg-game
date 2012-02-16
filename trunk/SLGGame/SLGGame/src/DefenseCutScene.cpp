@@ -3,7 +3,7 @@
 #include "SquadGrapManager.h"
 #include "SquadGraphics.h"
 
-DefenseCutScene::DefenseCutScene(unsigned int attackID,unsigned int defenseID,unsigned int defenseDeadCount)
+DefenseCutScene::DefenseCutScene(std::string attackID, std::string defenseID, unsigned int defenseDeadCount)
 {
 	mAttackSG=SquadGrapManager::getSingletonPtr()->getSquad(attackID);
 	mDefenseSG=SquadGrapManager::getSingletonPtr()->getSquad(defenseID);

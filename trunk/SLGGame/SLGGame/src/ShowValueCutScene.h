@@ -17,7 +17,7 @@ public:
 		SceWepon
 	};
 
-	ShowValueCutScene(unsigned int id,std::string value,Ogre::ColourValue c);
+	ShowValueCutScene(std::string id,std::string value,Ogre::ColourValue c);
 	virtual ~ShowValueCutScene(void);
 
 	void startCutScence();

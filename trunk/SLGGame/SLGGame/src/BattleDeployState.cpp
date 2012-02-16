@@ -10,7 +10,7 @@
 #include "BattleSquad.h"
 #include "DataLibrary.h"
 #include "Terrain.h"
-#include "GUIPUDebug.h"
+//#include "GUIPUDebug.h"
 #include "GUIMenuWindow.h"
 #include "GUIBattle.h"
 //#include "BattleControlState.h"

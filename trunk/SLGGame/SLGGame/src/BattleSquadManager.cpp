@@ -33,6 +33,7 @@ void BattleSquadManager::clear()
 	{
 		delete ite->second;
 	}
+	mSquadList.clear();
 }
 
 

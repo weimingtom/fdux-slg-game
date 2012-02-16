@@ -22,9 +22,9 @@ public:
 
 	void clear();
 
-	SquadGraphics* createSquad(std::string unitName,std::string datapath,unsigned int id,int x,int y,Direction d,Formation f,int soldierCount=4);
-	void destorySquad(unsigned int id);
-	SquadGraphics* getSquad(unsigned int id);
+//	SquadGraphics* createSquad(std::string unitName,std::string datapath,unsigned int id,int x,int y,Direction d,Formation f,int soldierCount=4);
+//	void destorySquad(unsigned int id);
+//	SquadGraphics* getSquad(unsigned int id);
 
 	void update(unsigned int deltaTime);
 
@@ -36,7 +36,7 @@ public:
 
 private:
 	std::map<std::string, SquadGraphics*> mSquadGrapMap;
-	std::vector<SquadGraphics*> mUnitList;
-	unsigned int unitIndex;
+// 	std::vector<SquadGraphics*> mUnitList;
+// 	unsigned int unitIndex;
 	BillboardManager* mBBManager;
 };

@@ -3,7 +3,7 @@
 #include "SquadGraphics.h"
 #include "SquadGrapManager.h"
 
-WeapenCutScene::WeapenCutScene(unsigned int id,WeaponType type):mType(type)
+WeapenCutScene::WeapenCutScene(std::string id,WeaponType type):mType(type)
 {
 	mSquadGraphics=SquadGrapManager::getSingletonPtr()->getSquad(id);
 }

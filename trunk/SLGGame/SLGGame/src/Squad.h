@@ -102,4 +102,11 @@ public:
 	INTVAL(Exp);
 
 	STRVAL(SoilderId);
+	STRVAL(HorseId);
+	STRVAL(PweaponId);
+	STRVAL(ShieldId);
+	STRVAL(SweaponId);
+	STRVAL(ArmorId);
+	STRVAL(LeaderId);
+	STRVAL(RetainerID);
 };

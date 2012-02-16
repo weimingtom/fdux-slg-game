@@ -6,8 +6,6 @@
 #include "squaddefine.h"
 #include "Squad.h"
 
-class SquadGraphics;
-
 class BattleSquad: public Squad
 {
 public:
