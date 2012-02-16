@@ -23,7 +23,7 @@ public:
 	void PushState(SubBattleState* substate); //Ñ¹Èë×´Ì¬
 	void PopState(); //Ñ¹³ö×´Ì¬
 
-	void setNextState(int statetype, std::string arg);
+//	void setNextState(int statetype, std::string arg);
 
 private:
 
@@ -32,8 +32,8 @@ private:
 
 	SquadGrapManager* mSquadGrapManager;
 
-	bool mIsEnd;
-	bool mEndTrigger;
-	int mStateType;
-	std::string mArg;
+// 	bool mIsEnd;
+// 	bool mEndTrigger;
+// 	int mStateType;
+// 	std::string mArg;
 };

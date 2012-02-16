@@ -23,8 +23,8 @@
 		</DuxLightOfficer>
 		<DuxHeavyOfficer>
 			<Picture type="String" value="EtasiSquadLeader.png" />
-			<Mesh type="String" value="LightInfOf.mesh"/>
-			<Mat type="String" value="LightInfOf"/>
+			<Mesh type="String" value="HeavyInfOf.mesh"/>
+			<Mat type="String" value="HeavyInfOf"/>
 		</DuxHeavyOfficer>
 	</LeaderDate>
 	<SquadData>

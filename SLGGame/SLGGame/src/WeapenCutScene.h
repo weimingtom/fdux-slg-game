@@ -2,6 +2,8 @@
 #include "cutscene.h"
 #include "squaddefine.h"
 
+#include <string>
+
 class SquadGraphics;
 
 class WeapenCutScene :
@@ -14,7 +16,7 @@ public:
 		SceWepon
 	};
 
-	WeapenCutScene(unsigned int id,WeaponType type);
+	WeapenCutScene(std::string id,WeaponType type);
 	virtual ~WeapenCutScene(void);
 
 	void startCutScence();

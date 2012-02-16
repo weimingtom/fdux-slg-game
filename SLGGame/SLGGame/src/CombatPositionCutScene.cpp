@@ -3,7 +3,7 @@
 #include "SquadGraphics.h"
 #include "SquadGrapManager.h"
 
-CombatPositionCutScene::CombatPositionCutScene(unsigned int id,Direction direction,bool isBack):mDirection(direction),mIsBack(isBack)
+CombatPositionCutScene::CombatPositionCutScene(std::string id, Direction direction, bool isBack):mDirection(direction),mIsBack(isBack)
 {
 	mSquadGraphics=SquadGrapManager::getSingletonPtr()->getSquad(id);
 }

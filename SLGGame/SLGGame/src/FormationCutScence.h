@@ -3,13 +3,15 @@
 #include "cutscene.h"
 #include "squaddefine.h"
 
+#include <string>
+
 class SquadGraphics;
 
 class FormationCutScene:public CutScene
 {
 public:
 
-	FormationCutScene(unsigned int id,Formation formation);
+	FormationCutScene(std::string id,Formation formation);
 	~FormationCutScene(void);
 
 protected:

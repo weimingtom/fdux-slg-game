@@ -258,7 +258,7 @@ int BattleSquad::getFaction()
 {
 	int team = getTeam();
 	std::string relation;
-	bool re = DataLibrary::getSingleton().getData(str(boost::format("GameData/BattleData/Team/Team/%1%/Relation")%team),relation);
+	bool re = DataLibrary::getSingleton().getData(str(boost::format("GameData/BattleData/Team/Team%1%/Relation")%team),relation);
 	if(re)
 	{
 		if(relation == "enemy1")
@@ -275,11 +275,22 @@ std::string BattleSquad::getFactionId()
 {
 	int team = getTeam();
 	std::string factionid;
-	DataLibrary::getSingleton().getData(str(boost::format("GameData/BattleData/Team/Team/%1%/FactionId")%team),factionid);
+	DataLibrary::getSingleton().getData(str(boost::format("GameData/BattleData/Team/Team%1%/FactionId")%team),factionid);
 	return factionid;
 }
 
 int BattleSquad::getUnitGrapNum()
 {
-	return 2;
+	enumtype squadtype = getType();
+	int unitnum = getUnitNum();
+	if(unitnum == 0)
+		return 0;
+	else if(squadtype == SQUAD_NORMAL)
+	{
+		return (unitnum-1)/10; 
+	}
+	else
+	{
+		return (unitnum+9)/10;
+	}
 }

@@ -237,13 +237,13 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 		std::string teamid;
 		child->GetValue(&teamid);
 		if(teamid == "Team1")
-			mapsquadinfo.team = 0;
-		else if(teamid == "Team2")
 			mapsquadinfo.team = 1;
-		else if(teamid == "Team3")
+		else if(teamid == "Team2")
 			mapsquadinfo.team = 2;
-		else
+		else if(teamid == "Team3")
 			mapsquadinfo.team = 3;
+		else
+			mapsquadinfo.team = 4;
 		datapath = std::string("GameData/BattleData/SquadList");
 		ticpp::Iterator<ticpp::Element> childchild;
 		for(childchild = childchild.begin(child.Get()); childchild != childchild.end(); childchild++)
@@ -306,7 +306,7 @@ void MapLoader::loadMapObj()
 	childlist = datalibrary->getChildList(datapath);
 	if(childlist.size()>0)
 	{
-		for(int n = 0; n < childlist.size(); n++)
+		for(unsigned int n = 0; n < childlist.size(); n++)
 		{
 			std::string meshname;
 			int x,y;
@@ -322,7 +322,7 @@ void MapLoader::loadMapObj()
 	childlist = datalibrary->getChildList(datapath);
 	if(childlist.size()>0)
 	{
-		for(int n = 0; n < childlist.size(); n++)
+		for(unsigned int n = 0; n < childlist.size(); n++)
 		{
 			std::string particlename;
 			int x,y;
@@ -375,7 +375,7 @@ void MapLoader::initBattleSquad(bool loadfrommap)
 			{
 				BattleSquad* battlesquad = new BattleSquad(str(boost::format("%1%/%2%")%path%(*ite)),
 														str(boost::format("GameData/StoryData/SquadData/%1%")%(*ite)),
-														0);
+														1);
 // 				std::string datapath = std::string("GameData/BattleData/SquadList/") + (*ite);
 // 				datalib->copyNode(std::string("GameData/StoryData/SquadData/EnableSquad/") + (*ite),datapath, true);
 // 				int type;

@@ -3,13 +3,15 @@
 #include "cutscene.h"
 #include "squaddefine.h"
 
+#include <string>
+
 class SquadGraphics;
 
 class DirectionCutScene:public CutScene
 {
 public:
 
-	DirectionCutScene(unsigned int id,Direction direction);
+	DirectionCutScene(std::string id,Direction direction);
 	~DirectionCutScene(void);
 
 protected:

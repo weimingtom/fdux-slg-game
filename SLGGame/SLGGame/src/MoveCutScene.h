@@ -2,6 +2,7 @@
 
 #include <Ogre.h>
 #include <vector>
+#include <string>
 
 #include "cutscene.h"
 
@@ -10,7 +11,7 @@
 class MoveCutScene:public CutScene
 {
 public:
-	MoveCutScene(unsigned int id,std::vector<Ogre::Vector2>& grids,Ogre::Vector2& currentGrid);
+	MoveCutScene(std::string id,std::vector<Ogre::Vector2>& grids,Ogre::Vector2& currentGrid);
 	~MoveCutScene(void);
 
 protected:

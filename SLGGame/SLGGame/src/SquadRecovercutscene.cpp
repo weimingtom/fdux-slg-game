@@ -2,7 +2,7 @@
 #include "SquadGraphics.h"
 #include "SquadGrapManager.h"
 
-SquadRecoverCutScene::SquadRecoverCutScene(unsigned int squadgpid,int deadnum)
+SquadRecoverCutScene::SquadRecoverCutScene(std::string squadgpid,int deadnum)
 {
 	mSquad=SquadGrapManager::getSingletonPtr()->getSquad(squadgpid);
 	mRecoverNum = deadnum;

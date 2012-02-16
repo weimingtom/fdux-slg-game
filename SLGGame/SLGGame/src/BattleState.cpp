@@ -17,10 +17,10 @@
 BattleState::BattleState(void)
 {
 	mSquadGrapManager = SquadGrapManager::getSingletonPtr();
-	mEndTrigger = false;
-	mIsEnd = false;
-	mStateType = 0;
-	mArg = "";
+// 	mEndTrigger = false;
+// 	mIsEnd = false;
+// 	mStateType = 0;
+// 	mArg = "";
 }
 
 BattleState::~BattleState(void)
@@ -44,9 +44,14 @@ void BattleState::initialize( std::string arg )
 void BattleState::uninitialize()
 {
 	TriggerManager::getSingleton().setBattleState(NULL);
-	mIsEnd = true;
-	if(mSubStateStack.size()>0)
-		PopState();
+//	mIsEnd = true;
+// 	if(mSubStateStack.size()>0)
+// 		PopState();
+	while(mSubStateStack.size()>0)
+	{
+		delete mSubStateStack.back();
+		mSubStateStack.pop_back();
+	}
 	Terrain::getSingleton().destoryTerrian();
 	BattleSquadManager::getSingleton().clear();
 	SquadGrapManager::getSingleton().clear();
@@ -64,8 +69,8 @@ void BattleState::update(unsigned int deltaTime)
 	if(mSubStateStack.size() > 0)
 		mSubStateStack.back()->update(deltaTime);
 	mSquadGrapManager->update(deltaTime);
-	if(mEndTrigger)
-		StateManager::getSingleton().changeState(mArg,StateManager::AVG);
+// 	if(mEndTrigger)
+// 		StateManager::getSingleton().changeState(mArg,StateManager::AVG);
 }
 
 void BattleState::ChangeState(SubBattleState* substate)
@@ -92,15 +97,15 @@ void BattleState::PopState()
 	SubBattleState* ite = mSubStateStack.back();
 	delete ite;
 	mSubStateStack.pop_back();
-	if(mIsEnd)
-		mEndTrigger = true;
-	else
+// 	if(mIsEnd)
+// 		mEndTrigger = true;
+// 	else
 		mSubStateStack.back()->reactiveState();
 }
 
-void BattleState::setNextState(int statetype, std::string arg)
-{
-	mIsEnd = true;
-	mStateType = statetype;
-	mArg = arg;
-}
+// void BattleState::setNextState(int statetype, std::string arg)
+// {
+// 	mIsEnd = true;
+// 	mStateType = statetype;
+// 	mArg = arg;
+// }

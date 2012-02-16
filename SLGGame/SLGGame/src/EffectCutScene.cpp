@@ -4,7 +4,7 @@
 #include "SquadGraphics.h"
 #include "AudioSystem.h"
 
-EffectCutScene::EffectCutScene(unsigned int id,UnitType object,std::string name,std::string sound,unsigned int lasttime):CutScene(lasttime)
+EffectCutScene::EffectCutScene(std::string id,UnitType object,std::string name,std::string sound,unsigned int lasttime):CutScene(lasttime)
 {
 	mSquadGraphics=SquadGrapManager::getSingletonPtr()->getSquad(id);
 	static int n = 0;

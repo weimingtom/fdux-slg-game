@@ -178,8 +178,8 @@ void TriggerManager::setBattleState(BattleState* battlestate)
 }
 void TriggerManager::changeState(int statetype, std::string arg)
 {
-	if(mBattleState)
-		mBattleState->setNextState(statetype,arg);
+// 	if(mBattleState)
+// 		mBattleState->setNextState(statetype,arg);
 }
 
 void TriggerManager::Trigger(std::string path, TriggerContext* triggercontext)

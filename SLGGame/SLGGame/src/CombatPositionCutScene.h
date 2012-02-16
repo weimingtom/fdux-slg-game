@@ -3,12 +3,14 @@
 #include "cutscene.h"
 #include "squaddefine.h"
 
+#include <string>
+
 class SquadGraphics;
 
 class CombatPositionCutScene:public CutScene
 {
 public:
-	CombatPositionCutScene(unsigned int id,Direction direction,bool isBack);
+	CombatPositionCutScene(std::string id, Direction direction, bool isBack);
 	virtual ~CombatPositionCutScene(void);
 
 protected:

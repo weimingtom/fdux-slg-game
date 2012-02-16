@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <set>
 #include <time.h>
+#include <boost/format.hpp>
 
 #include "Core.h"
 #include "DataLibrary.h"
@@ -24,156 +25,156 @@ const Ogre::Vector3 LooseVector[5]={Ogre::Vector3(0,0,0),Ogre::Vector3(-5,0,5),O
 #define RELIEF_MOVE_TIME 1
 #define COMBAT_POSITION 5
 
-SquadGraphics::SquadGraphics(std::string squadName,std::string datapath,Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index,int soldierCount):
-mSquadId(squadName),
-mID(index),
-mNextDirection(-1),
-mNodeAnimation(NULL),
-mNodeAnimationState(NULL),
-mSoldierIndex(0),
-mFormation(f),
-mDirection(direction)
-{
-	mSceneMgr=Core::getSingletonPtr()->mSceneMgr;
-	mNode=mSceneMgr->getRootSceneNode()->createChildSceneNode(squadName+Ogre::StringConverter::toString(index));
-
-	//获取数据
-
-	DataLibrary* datalib = DataLibrary::getSingletonPtr();
-	datalib->getData(datapath + std::string("/LeaderMesh"),mLeaderMesh);
-	datalib->getData(datapath + std::string("/LeaderMat"),mLeaderMat);
-	datalib->getData(datapath + std::string("/UnitMesh"),mSoilderMesh);
-	datalib->getData(datapath + std::string("/UnitMat"),mSoilderMat);
-	datalib->getData(datapath + std::string("/MoveSound"),mMoveSound);
-
-
-	std::string tempid;
-	datalib->getData(datapath + std::string("/PweaponId"),tempid);
-	if(tempid != "none")
-	{
-		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/Mesh"), mPWeaponMesh);
-		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/Mat"), mPWeaponMat);
-		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/PU"), mPWeaponPU);
-		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/PUVector"), mPWeaponPUVector);
-		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/AniGroup"), mPWeaponAniGroup);
-	}
-	else
-	{
-		mPWeaponMesh = "none";
-		mPWeaponMat = "none";
-		mPWeaponAniGroup = "1H1";
-		mPWeaponPU="none";
-	}
-	datalib->getData(datapath + std::string("/SweaponId"),tempid);
-	if(tempid != "none")
-	{
-		int sweapontype;
-		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/Type"), sweapontype);
-		mSWeaponBow = (sweapontype == EQUIP_SWEAPON_BOW);
-		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/Mesh"), mSWeaponMesh);
-		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/Mat"), mSWeaponMat);
-		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/PU"), mSWeaponPU);
-		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/PUVector"), mSWeaponPUVector);
-		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/AniGroup"), mSWeaponAniGroup);
-	}
-	else
-	{
-		mSWeaponBow = false;
-		mSWeaponMesh = "none";
-		mSWeaponMat = "none";
-		mSWeaponAniGroup = "bow";
-		mSWeaponPU="none";
-	}
-	datalib->getData(datapath + std::string("/ShieldId"),tempid);
-	if(tempid != "none")
-	{
-		datalib->getData( std::string("StaticData/ShieldData/") + tempid + std::string("/Mesh"), mShieldMesh);
-		datalib->getData( std::string("StaticData/ShieldData/") + tempid + std::string("/Mat"), mShieldMat);
-		datalib->getData( std::string("StaticData/ShieldData/") + tempid + std::string("/PU"), mShieldPU);
-		datalib->getData( std::string("StaticData/ShieldData/") + tempid + std::string("/PUVector"), mShieldVector);
-	}
-	else
-	{
-		mShieldMesh = "none";
-		mShieldMat = "none";
-		mShieldPU="none";
-	}
-	datalib->getData(datapath + std::string("/TeamId"),tempid);
-	datalib->getData( std::string("GameData/BattleData/Team/") + tempid + std::string("/FactionId"), tempid);
-	datalib->getData( std::string("StaticData/FactionData/") + tempid + std::string("/Texture"), mFactionTexture);
-	
-
-	//组建单位队伍与组建武器
-	mCommanderUnit=new UnitGrap(mLeaderMesh,mLeaderMat,mFactionTexture,mSceneMgr->getRootSceneNode()->createChildSceneNode(mNode->getName()+"_Commander"));
-	mCommanderUnit->createWeapon(mPWeaponMesh,mPWeaponMat,mPWeaponPU,mPWeaponPUVector,UnitGrap::MainWepon);
-	mCommanderUnit->createWeapon(mSWeaponMesh,mSWeaponMat,mSWeaponPU,mSWeaponPUVector,UnitGrap::SecWepon);
-	mCommanderUnit->createWeapon(mShieldMesh,mShieldMat,mShieldPU,mSWeaponPUVector,UnitGrap::Shield);
-
-	for (int i=0;i<soldierCount;i++)
-	{
-		createSoldier();
-	}
-	
-	//设置指示器
-	mSquadBB=new GUISquadBillBoard(mCommanderUnit->mNode);
-	std::string name;
-	int type;
-	datalib->getData(datapath + std::string("/Name"),name);
-	datalib->getData(datapath + std::string("/SquadType"),type);
-
-	datalib->getData(datapath + std::string("/TeamId"),tempid);
-	datalib->getData( std::string("GameData/BattleData/Team/") + tempid + std::string("/Relation"), tempid);
-	if (tempid=="player")
-	{
-		mSquadBB->setName(name,MyGUI::Colour::Blue);
-		mSquadBB->mHasApColor=MyGUI::Colour::Blue;
-		mSquadBB->mNoneApColor=MyGUI::Colour(0,0,0.5);
-	}
-	else if (tempid=="enemy1" || tempid=="enemy2" ||tempid=="enemy3")
-	{
-		mSquadBB->setName(name,MyGUI::Colour::Red);
-		mSquadBB->mHasApColor=MyGUI::Colour::Red;
-		mSquadBB->mNoneApColor=MyGUI::Colour(0.5,0,0);
-	}
-	else if (tempid=="aliiance")
-	{
-		mSquadBB->setName(name,MyGUI::Colour::Green);
-		mSquadBB->mHasApColor=MyGUI::Colour::Green;
-		mSquadBB->mNoneApColor=MyGUI::Colour(0,0.5,0);
-	}
-	else
-	{
-		mSquadBB->setName(name,MyGUI::Colour::Black);
-	}
-
-	mSquadBB->setIcon(type);
-	mSName=name;
-	BillboardManager::getSingletonPtr()->addBillBoard(mSquadBB);
-
-	mSquadValueBB=new GUISquadValueBillBoard(mCommanderUnit->mNode);
-	BillboardManager::getSingletonPtr()->addBillBoard(mSquadValueBB);
-
-	//设置参数
-	setGrid(grid.x,grid.y);
-	setFormation(f,false);
-	setDirection(direction,false);
-	if(mSWeaponMesh == "none")
-		setWeaponMode(SquadGraphics::MainWepon);
-	else
-		setWeaponMode(SquadGraphics::SceWepon);
-
-	//读取现有效果
-	std::vector<std::string> particlelist = datalib->getChildList(datapath + std::string("/ParticleList"));
-	std::vector<std::string>::iterator ite;
-	for(ite = particlelist.begin(); ite != particlelist.end(); ite++)
-	{
-		enumtype unittype;
-		datalib->getData(datapath + std::string("/ParticleList/")+ (*ite) +std::string("/UnitType"),unittype);
-		datalib->getData(datapath + std::string("/ParticleList/")+ (*ite) +std::string("/Particle"),tempid);
-		addParticle((*ite),tempid,unittype);
-		startParticle((*ite));
-	}
-}
+// SquadGraphics::SquadGraphics(std::string squadName,std::string datapath,Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index,int soldierCount):
+// mSquadId(squadName),
+// mID(index),
+// mNextDirection(-1),
+// mNodeAnimation(NULL),
+// mNodeAnimationState(NULL),
+// mSoldierIndex(0),
+// mFormation(f),
+// mDirection(direction)
+// {
+// 	mSceneMgr=Core::getSingletonPtr()->mSceneMgr;
+// 	mNode=mSceneMgr->getRootSceneNode()->createChildSceneNode(squadName+Ogre::StringConverter::toString(index));
+// 
+// 	//获取数据
+// 
+// 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+// 	datalib->getData(datapath + std::string("/LeaderMesh"),mLeaderMesh);
+// 	datalib->getData(datapath + std::string("/LeaderMat"),mLeaderMat);
+// 	datalib->getData(datapath + std::string("/UnitMesh"),mSoilderMesh);
+// 	datalib->getData(datapath + std::string("/UnitMat"),mSoilderMat);
+// 	datalib->getData(datapath + std::string("/MoveSound"),mMoveSound);
+// 
+// 
+// 	std::string tempid;
+// 	datalib->getData(datapath + std::string("/PweaponId"),tempid);
+// 	if(tempid != "none")
+// 	{
+// 		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/Mesh"), mPWeaponMesh);
+// 		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/Mat"), mPWeaponMat);
+// 		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/PU"), mPWeaponPU);
+// 		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/PUVector"), mPWeaponPUVector);
+// 		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/AniGroup"), mPWeaponAniGroup);
+// 	}
+// 	else
+// 	{
+// 		mPWeaponMesh = "none";
+// 		mPWeaponMat = "none";
+// 		mPWeaponAniGroup = "1H1";
+// 		mPWeaponPU="none";
+// 	}
+// 	datalib->getData(datapath + std::string("/SweaponId"),tempid);
+// 	if(tempid != "none")
+// 	{
+// 		int sweapontype;
+// 		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/Type"), sweapontype);
+// 		mSWeaponBow = (sweapontype == EQUIP_SWEAPON_BOW);
+// 		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/Mesh"), mSWeaponMesh);
+// 		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/Mat"), mSWeaponMat);
+// 		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/PU"), mSWeaponPU);
+// 		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/PUVector"), mSWeaponPUVector);
+// 		datalib->getData( std::string("StaticData/SweaponData/") + tempid + std::string("/AniGroup"), mSWeaponAniGroup);
+// 	}
+// 	else
+// 	{
+// 		mSWeaponBow = false;
+// 		mSWeaponMesh = "none";
+// 		mSWeaponMat = "none";
+// 		mSWeaponAniGroup = "bow";
+// 		mSWeaponPU="none";
+// 	}
+// 	datalib->getData(datapath + std::string("/ShieldId"),tempid);
+// 	if(tempid != "none")
+// 	{
+// 		datalib->getData( std::string("StaticData/ShieldData/") + tempid + std::string("/Mesh"), mShieldMesh);
+// 		datalib->getData( std::string("StaticData/ShieldData/") + tempid + std::string("/Mat"), mShieldMat);
+// 		datalib->getData( std::string("StaticData/ShieldData/") + tempid + std::string("/PU"), mShieldPU);
+// 		datalib->getData( std::string("StaticData/ShieldData/") + tempid + std::string("/PUVector"), mShieldVector);
+// 	}
+// 	else
+// 	{
+// 		mShieldMesh = "none";
+// 		mShieldMat = "none";
+// 		mShieldPU="none";
+// 	}
+// 	datalib->getData(datapath + std::string("/TeamId"),tempid);
+// 	datalib->getData( std::string("GameData/BattleData/Team/") + tempid + std::string("/FactionId"), tempid);
+// 	datalib->getData( std::string("StaticData/FactionData/") + tempid + std::string("/Texture"), mFactionTexture);
+// 	
+// 
+// 	//组建单位队伍与组建武器
+// 	mCommanderUnit=new UnitGrap(mLeaderMesh,mLeaderMat,mFactionTexture,mSceneMgr->getRootSceneNode()->createChildSceneNode(mNode->getName()+"_Commander"));
+// 	mCommanderUnit->createWeapon(mPWeaponMesh,mPWeaponMat,mPWeaponPU,mPWeaponPUVector,UnitGrap::MainWepon);
+// 	mCommanderUnit->createWeapon(mSWeaponMesh,mSWeaponMat,mSWeaponPU,mSWeaponPUVector,UnitGrap::SecWepon);
+// 	mCommanderUnit->createWeapon(mShieldMesh,mShieldMat,mShieldPU,mSWeaponPUVector,UnitGrap::Shield);
+// 
+// 	for (int i=0;i<soldierCount;i++)
+// 	{
+// 		createSoldier();
+// 	}
+// 	
+// 	//设置指示器
+// 	mSquadBB=new GUISquadBillBoard(mCommanderUnit->mNode);
+// 	std::string name;
+// 	int type;
+// 	datalib->getData(datapath + std::string("/Name"),name);
+// 	datalib->getData(datapath + std::string("/SquadType"),type);
+// 
+// 	datalib->getData(datapath + std::string("/TeamId"),tempid);
+// 	datalib->getData( std::string("GameData/BattleData/Team/") + tempid + std::string("/Relation"), tempid);
+// 	if (tempid=="player")
+// 	{
+// 		mSquadBB->setName(name,MyGUI::Colour::Blue);
+// 		mSquadBB->mHasApColor=MyGUI::Colour::Blue;
+// 		mSquadBB->mNoneApColor=MyGUI::Colour(0,0,0.5);
+// 	}
+// 	else if (tempid=="enemy1" || tempid=="enemy2" ||tempid=="enemy3")
+// 	{
+// 		mSquadBB->setName(name,MyGUI::Colour::Red);
+// 		mSquadBB->mHasApColor=MyGUI::Colour::Red;
+// 		mSquadBB->mNoneApColor=MyGUI::Colour(0.5,0,0);
+// 	}
+// 	else if (tempid=="aliiance")
+// 	{
+// 		mSquadBB->setName(name,MyGUI::Colour::Green);
+// 		mSquadBB->mHasApColor=MyGUI::Colour::Green;
+// 		mSquadBB->mNoneApColor=MyGUI::Colour(0,0.5,0);
+// 	}
+// 	else
+// 	{
+// 		mSquadBB->setName(name,MyGUI::Colour::Black);
+// 	}
+// 
+// 	mSquadBB->setIcon(type);
+// 	mSName=name;
+// 	BillboardManager::getSingletonPtr()->addBillBoard(mSquadBB);
+// 
+// 	mSquadValueBB=new GUISquadValueBillBoard(mCommanderUnit->mNode);
+// 	BillboardManager::getSingletonPtr()->addBillBoard(mSquadValueBB);
+// 
+// 	//设置参数
+// 	setGrid(grid.x,grid.y);
+// 	setFormation(f,false);
+// 	setDirection(direction,false);
+// 	if(mSWeaponMesh == "none")
+// 		setWeaponMode(SquadGraphics::MainWepon);
+// 	else
+// 		setWeaponMode(SquadGraphics::SceWepon);
+// 
+// 	//读取现有效果
+// 	std::vector<std::string> particlelist = datalib->getChildList(datapath + std::string("/ParticleList"));
+// 	std::vector<std::string>::iterator ite;
+// 	for(ite = particlelist.begin(); ite != particlelist.end(); ite++)
+// 	{
+// 		enumtype unittype;
+// 		datalib->getData(datapath + std::string("/ParticleList/")+ (*ite) +std::string("/UnitType"),unittype);
+// 		datalib->getData(datapath + std::string("/ParticleList/")+ (*ite) +std::string("/Particle"),tempid);
+// 		addParticle((*ite),tempid,unittype);
+// 		startParticle((*ite));
+// 	}
+// }
 
 SquadGraphics::SquadGraphics(std::string squadid, std::string datapath, int gridx, int gridy, enumtype direction, enumtype formation, int soldierCount)
 :mNextDirection(-1),
@@ -250,9 +251,13 @@ mDirection(direction)
 		mShieldMat = "none";
 		mShieldPU="none";
 	}
-	datalib->getData(datapath + std::string("/TeamId"),tempid);
-	datalib->getData( std::string("GameData/BattleData/Team/") + tempid + std::string("/FactionId"), tempid);
-	datalib->getData( std::string("StaticData/FactionData/") + tempid + std::string("/Texture"), mFactionTexture);
+	int team = 0;
+	datalib->getData(datapath + std::string("/Team"),team);
+	datalib->getData(str(boost::format("GameData/BattleData/Team/Team%1%/FactionId")%team), tempid);
+	datalib->getData(str(boost::format("StaticData/FactionData/%1%/Texture")%tempid), mFactionTexture);
+//	datalib->getData(datapath + std::string("/TeamId"),tempid);
+// 	datalib->getData( std::string("GameData/BattleData/Team/") + tempid + std::string("/FactionId"), tempid);
+// 	datalib->getData( std::string("StaticData/FactionData/") + tempid + std::string("/Texture"), mFactionTexture);
 
 
 	//组建单位队伍与组建武器
@@ -269,12 +274,11 @@ mDirection(direction)
 	//设置指示器
 	mSquadBB=new GUISquadBillBoard(mCommanderUnit->mNode);
 	std::string name;
-	int type;
+	int type = 0;
 	datalib->getData(datapath + std::string("/Name"),name);
 	datalib->getData(datapath + std::string("/SquadType"),type);
 
-	datalib->getData(datapath + std::string("/TeamId"),tempid);
-	datalib->getData( std::string("GameData/BattleData/Team/") + tempid + std::string("/Relation"), tempid);
+	datalib->getData(str(boost::format("GameData/BattleData/Team/Team%1%/Relation")%team), tempid);
 	if (tempid=="player")
 	{
 		mSquadBB->setName(name,MyGUI::Colour::Blue);
@@ -287,7 +291,7 @@ mDirection(direction)
 		mSquadBB->mHasApColor=MyGUI::Colour::Red;
 		mSquadBB->mNoneApColor=MyGUI::Colour(0.5,0,0);
 	}
-	else if (tempid=="aliiance")
+	else if (tempid=="alliance")
 	{
 		mSquadBB->setName(name,MyGUI::Colour::Green);
 		mSquadBB->mHasApColor=MyGUI::Colour::Green;

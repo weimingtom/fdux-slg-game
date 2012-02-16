@@ -3,7 +3,7 @@
 #include "SquadGrapManager.h"
 #include "SquadGraphics.h"
 
-DirectionCutScene::DirectionCutScene(unsigned int id,Direction direction)
+DirectionCutScene::DirectionCutScene(std::string id,Direction direction)
 {
 	mSquadGraphics=SquadGrapManager::getSingletonPtr()->getSquad(id);
 	mDirection=direction;

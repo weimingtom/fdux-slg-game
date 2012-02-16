@@ -111,24 +111,30 @@ void GUITargetWindows::updateSquad()
 		setSquad(NULL);
 		return;
 	}
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	std::string tempstr,temppath;
-	std::string datapath = mSelectSquad->getPath();
-	bool re = DataLibrary::getSingletonPtr()->getData(datapath+"/LeaderPicture",tempstr);
+	tempstr = mSelectSquad->getLeaderId();
+	temppath = str(boost::format("StaticData/LeaderDate/%1%/Picture")%tempstr);
+	bool re = datalib->getData(temppath, tempstr);
 	mSquadImage->setImageTexture(tempstr);
+
 	tempstr = mSelectSquad->getFactionId();
-	temppath = std::string("StaticData/FactionData/") + tempstr + std::string("/LittlePicture");
-	re = DataLibrary::getSingletonPtr()->getData(temppath,tempstr);
+	temppath = str(boost::format("StaticData/FactionData/%1%/LittlePicture")%tempstr);
+	re = datalib->getData(temppath,tempstr);
 	mSquadFactionImage->setImageTexture(tempstr);
 
-	re = DataLibrary::getSingletonPtr()->getData(datapath+"/LeaderName",tempstr);
+	tempstr = mSelectSquad->getLeaderId();
+	temppath = str(boost::format("StaticData/LeaderDate/%1%/Name")%tempstr);
+	re = datalib->getData(temppath, tempstr);
 	mSquadLeadName->setCaption(tempstr);
-	re = DataLibrary::getSingletonPtr()->getData(datapath+"/Name",tempstr);
-	mSquadTypeName->setCaption(tempstr);
+
+	mSquadTypeName->setCaption(mSelectSquad->getName());
+
 	int x,y;
-	//mSelectSquad->getCrood(&x,&y);
-	DataLibrary::getSingletonPtr()->getData(datapath+"/Morale",x);
+	x = mSelectSquad->getGridX();
+	y = mSelectSquad->getGridY();
 	mSquadGridX->setCaption(Ogre::StringConverter::toString(x));
-	//mSquadGridY->setCaption(Ogre::StringConverter::toString(y));
+	mSquadGridY->setCaption(Ogre::StringConverter::toString(y));
 
 	x = mSelectSquad->getDirection();
 	switch(x)
@@ -167,30 +173,30 @@ void GUITargetWindows::updateSquad()
 	tempfloat = mSelectSquad->getAttr(ATTR_DEFENCE,ATTRCALC_FULL);
 	mSquadDefence->setCaption(str(boost::format("%1%")%floor(tempfloat+0.5f)));
 
-	re = DataLibrary::getSingletonPtr()->getData(datapath+"/UnitMaxNumber",x);
-	re = DataLibrary::getSingletonPtr()->getData(datapath+"/UnitNumber",y);
-	int morale;
-	re = DataLibrary::getSingletonPtr()->getData(datapath+"/SoilderId",tempstr);
-	re = DataLibrary::getSingletonPtr()->getData(std::string("StaticData/SoilderData/") + tempstr + std::string("/Morale"),morale);
-	if(morale == 1)
-	{
-		re = DataLibrary::getSingletonPtr()->getData(datapath+"/Morale",morale);
-	}
+	x = mSelectSquad->getUnitMaxNum();
+	y = mSelectSquad->getUnitNum();
+	// 	int morale;
+	// 	re = DataLibrary::getSingletonPtr()->getData(datapath+"/SoilderId",tempstr);
+	// 	re = DataLibrary::getSingletonPtr()->getData(std::string("StaticData/SoilderData/") + tempstr + std::string("/Morale"),morale);
+	// 	if(morale == 1)
+	// 	{
+	// 		re = DataLibrary::getSingletonPtr()->getData(datapath+"/Morale",morale);
+	// 	}
 	mSquadUnitNum->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("SquadUnitNumNoInjSimple"))%y%x));
-	
-	re = DataLibrary::getSingletonPtr()->getData(datapath+"/ActionPoint",x);
+
+	x = mSelectSquad->getActionPoint();
 	mSquadAp->setCaption(Ogre::StringConverter::toString(x));
 
-	re = DataLibrary::getSingletonPtr()->getData(datapath+"/PweaponId",tempstr);
+	tempstr = mSelectSquad->getPweaponId();
 	if(tempstr == "none")
 		mSquadPWeapon->setCaption(StringTable::getSingleton().getString(tempstr));
 	else
 	{
 		temppath = std::string("StaticData/PweaponData/") + tempstr + std::string("/Name");
-		re = DataLibrary::getSingletonPtr()->getData(temppath,tempstr);
+		re = datalib->getData(temppath,tempstr);
 		mSquadPWeapon->setCaption(tempstr);
 	}
-	re = DataLibrary::getSingletonPtr()->getData(datapath+"/SweaponId",tempstr);
+	tempstr = mSelectSquad->getSweaponId();
 	if(tempstr == "none")
 		mSquadSWeapon->setCaption(StringTable::getSingleton().getString(tempstr));
 	else
@@ -199,7 +205,7 @@ void GUITargetWindows::updateSquad()
 		re = DataLibrary::getSingletonPtr()->getData(temppath,tempstr);
 		mSquadSWeapon->setCaption(tempstr);
 	}
-	re = DataLibrary::getSingletonPtr()->getData(datapath+"/ShieldId",tempstr);
+	tempstr = mSelectSquad->getShieldId();
 	if(tempstr == "none")
 		mSquadShield->setCaption(StringTable::getSingleton().getString(tempstr));
 	else
@@ -208,7 +214,8 @@ void GUITargetWindows::updateSquad()
 		re = DataLibrary::getSingletonPtr()->getData(temppath,tempstr);
 		mSquadShield->setCaption(tempstr);
 	}
-	re = DataLibrary::getSingletonPtr()->getData(datapath+"/ArmorId",tempstr);
+
+	tempstr = mSelectSquad->getArmorId();
 	if(tempstr == "none")
 		mSquadArmor->setCaption(StringTable::getSingleton().getString(tempstr));
 	else

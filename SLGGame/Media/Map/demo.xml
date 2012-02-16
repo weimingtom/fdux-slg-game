@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <MapName>map1</MapName>
 <MapTeam>
-    <Team2 TeamType="enemy1" TeamFaction="Etasi" />
+    <Team2 TeamType="enemy1" TeamFaction="Dux" />
     <Team3 TeamType="none" TeamFaction="none" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>

@@ -504,14 +504,6 @@
 					>
 				</File>
 				<File
-					RelativePath=".\src\GUIPUDebug.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\src\GUIPUDebug.h"
-					>
-				</File>
-				<File
 					RelativePath=".\src\SquadGrapManager.cpp"
 					>
 				</File>

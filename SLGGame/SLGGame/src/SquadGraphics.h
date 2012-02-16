@@ -80,7 +80,7 @@ public:
 	std::string mSName;
 
 private:
-	SquadGraphics(std::string squadName, std::string datapath, Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index,int soldierCount);
+	//SquadGraphics(std::string squadName, std::string datapath, Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index,int soldierCount);
 	SquadGraphics(std::string squadid, std::string datapath, int gridx, int gridy, enumtype direction, enumtype formation, int soldierCount);
 
 	void update(unsigned int deltaTime);

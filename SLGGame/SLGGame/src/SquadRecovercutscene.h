@@ -1,12 +1,14 @@
 #pragma once
 #include "cutscene.h"
 
+#include <string>
+
 class SquadGraphics;
 
 class SquadRecoverCutScene:public CutScene
 {
 public:
-	SquadRecoverCutScene(unsigned int squadgpid,int deadnum);
+	SquadRecoverCutScene(std::string squadgpid,int deadnum);
 	~SquadRecoverCutScene();
 private:
 	virtual void startCutScence();
