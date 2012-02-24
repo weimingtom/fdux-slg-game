@@ -7,6 +7,7 @@
 #include <string>
 #include <list>
 #include <vector>
+#include <map>
 
 struct lua_State;
 struct luaL_Reg;
