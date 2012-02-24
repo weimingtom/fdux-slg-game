@@ -24,4 +24,7 @@
         <Property key="Range" value="100"/>
         <Property key="RangePosition" value="0"/>
     </Widget>
+    <Widget type="ImageBox" skin="SLGImageBox" position="315 165 320 340">
+        <Property key="ImageTexture" value="SquadBillboard.png"/>
+    </Widget>
 </MyGUI>

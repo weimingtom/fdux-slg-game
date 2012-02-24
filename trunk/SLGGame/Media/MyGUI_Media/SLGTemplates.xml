@@ -2,9 +2,9 @@
 <MyGUI type="Resource" version="1.1">    
     <Resource type="ResourceLayout" name="SLGWindow" version="3.2.0">
     <Widget type="Widget" name="Root" skin="SLGWindowSkin" position="95 70 220 215">
-        <Widget type="Widget" skin="SLGWindowTopSkin" position="65 -1 90 62" align="HCenter Top"/>
-        <Widget type="Widget" skin="SLGWindowLeftSkin" position="10 83 26 48" align="Left VCenter"/>
-        <Widget type="Widget" skin="SLGwindowRightSkin" position="187 86 25 43" align="Right VCenter"/>
+        <Widget type="Widget" skin="SLGWindowTopSkin" position="65 -1 198 64" align="HCenter Top"/>
+       <!-- <Widget type="Widget" skin="SLGWindowLeftSkin" position="10 83 26 48" align="Left VCenter"/>
+        <Widget type="Widget" skin="SLGwindowRightSkin" position="187 86 25 43" align="Right VCenter"/>-->
     </Widget>
        <Widget type="Window" skin="Window" position="15 75 68 49">
             <Property key="Caption" value="Text"/>
@@ -120,6 +120,7 @@
             <Property key="AddItem" value="line3"/>
         </Widget>
     </Resource>
+    
     <Resource type="ResourceLayout" name="SLGScrollBarV" version="3.2.0">
         <Widget type="Widget" skin="SLGScrollBarVSkin" position="25 50 25 125" name="Root">
             <Property key="VerticalAlignment" value="true"/>
@@ -143,7 +144,6 @@
             <Property key="ViewPage" value="1"/>
         </Widget>
     </Resource>
-    
     <Resource type="ResourceLayout" name="SLGScrollBarH" version="3.2.0">
         <Widget type="Widget" skin="SLGScrollBarHSkin" position="25 50 125 15" name="Root">
             <Property key="VerticalAlignment" value="false"/>
@@ -172,7 +172,7 @@
         <Widget type="Widget" skin="SLGMiniWindowSkin" position="25 10 55 55" name="Root">
             <Property key="MultiLine" value="true"/>
             <UserString key="LE_TargetWidgetType" value="EditBox"/>
-            <Widget type="TextBox" skin="EditClientSkin" position="12 12 5 20" align="Stretch" name="Client">
+            <Widget type="TextBox" skin="EditClientSkin" position="12 12 20 20" align="Stretch" name="Client">
                 <Property key="TextAlign" value="Default"/>
                 <Property key="TextColour" value="1 1 1"/>
                 <Property key="FontName" value="Default"/>
@@ -185,4 +185,16 @@
             <Property key="Caption" value="test test test test test test test\ntest test test test test test test\ntest test test test test test test\ntest test test test test test test\ntest test test test test test test\ntest test test test test test test\ntest test test test test test test\ntest test test test test test test\ntest test test test test test test\ntest test test test test test test\ntest test test test test test test\ntest test test test test test test"/>
         </Widget>
     </Resource>
+    
+    <Resource type="ResourceLayout" name="SLGImageBox" version="3.2.0">
+        <Widget type="Widget" skin="SLGImageBoxSkin" position="0 0 50 50 " name="Root">
+            <UserString key="LE_TargetWidgetType" value="ImageBox"/>
+            <UserString key="HeightLine" value="21"/>
+            <UserString key="SkinLine" value="ListBoxItem"/>
+			<Widget type="ImageBox" skin="ImageBox" position="10 10 50 50" align="Stretch" name="Image">
+                <Property key="NeedMouse" value="false"/>
+            </Widget>
+        </Widget>
+    </Resource>
+    
 </MyGUI>
