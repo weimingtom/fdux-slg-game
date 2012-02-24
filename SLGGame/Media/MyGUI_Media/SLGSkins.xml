@@ -1,37 +1,53 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Resource" version="1.1">
-    <Resource type="ResourceSkin" name="SLGWindowSkin" size="134 152" texture="MyGUI_UISkins.png">
-        <BasisSkin type="SubSkin" offset="0 0 56 75" align="Left Top">
-            <State name="normal" offset="51 52 56 75"/>
+    <Resource type="ResourceSkin" name="SLGWindowSkin" size="205 150" texture="MyGUI_UISkins.png">
+        <BasisSkin type="SubSkin" offset="0 0 42 53" align="Left Top">
+            <State name="normal" offset="18 55 42 53"/>
         </BasisSkin>
-        <BasisSkin type="SubSkin" offset="56 0 23 75" align="HStretch Top">
-            <State name="normal" offset="107 52 23 75"/>
+        <BasisSkin type="TileRect" offset="42 0 121 53" align="HStretch Top">
+            <State name="normal" offset="60 55 121 53">
+                <Property key="TileSize" value="121 53"/>
+                <Property key="TileH" value="true"/>
+                <Property key="TileV" value="true"/>
+            </State>
         </BasisSkin>
-        <BasisSkin type="SubSkin" offset="79 0 55 75" align="Right Top">
-            <State name="normal" offset="130 52 55 75"/>
+        <BasisSkin type="SubSkin" offset="163 0 42 53" align="Right Top">
+            <State name="normal" offset="181 55 42 53"/>
         </BasisSkin>
-        <BasisSkin type="SubSkin" offset="79 75 55 34" align="Right VStretch">
-            <State name="normal" offset="130 127 55 34"/>
+        <BasisSkin type="TileRect" offset="163 53 42 70" align="Right VStretch">
+            <State name="normal" offset="181 108 42 70">
+                <Property key="TileSize" value="42 70"/>
+                <Property key="TileH" value="false"/>
+                <Property key="TileV" value="true"/>
+            </State>
         </BasisSkin>
-        <BasisSkin type="SubSkin" offset="79 109 55 43" align="Right Bottom">
-            <State name="normal" offset="130 161 55 43"/>
+        <BasisSkin type="SubSkin" offset="163 123 42 27" align="Right Bottom">
+            <State name="normal" offset="181 178 42 27"/>
         </BasisSkin>
-        <BasisSkin type="SubSkin" offset="56 109 23 43" align="HStretch Bottom">
-            <State name="normal" offset="107 161 23 43"/>
+        <BasisSkin type="TileRect" offset="42 123 121 27" align="HStretch Bottom">
+            <State name="normal" offset="60 178 121 27">
+                <Property key="TileSize" value="121 27"/>
+                <Property key="TileH" value="true"/>
+                <Property key="TileV" value="true"/>
+            </State>
         </BasisSkin>
-        <BasisSkin type="SubSkin" offset="0 109 56 43" align="Left Bottom">
-            <State name="normal" offset="51 161 56 43"/>
+        <BasisSkin type="SubSkin" offset="0 123 42 27" align="Left Bottom">
+            <State name="normal" offset="18 178 42 27"/>
         </BasisSkin>
-        <BasisSkin type="SubSkin" offset="0 75 56 34" align="Left VStretch">
-            <State name="normal" offset="51 127 56 34"/>
+        <BasisSkin type="TileRect" offset="0 53 42 70" align="Left VStretch">
+            <State name="normal" offset="18 108 42 70">
+                <Property key="TileSize" value="42 70"/>
+                <Property key="TileH" value="false"/>
+                <Property key="TileV" value="true"/>
+            </State>
         </BasisSkin>
-        <BasisSkin type="SubSkin" offset="56 75 23 34" align="Stretch">
-            <State name="normal" offset="107 127 23 34"/>
+        <BasisSkin type="SubSkin" offset="42 53 121 70" align="Stretch">
+            <State name="normal" offset="60 108 121 70"/>
         </BasisSkin>
     </Resource>
-    <Resource type="ResourceSkin" name="SLGWindowTopSkin" size="90 62" texture="MyGUI_UISkins.png">
-        <BasisSkin type="SubSkin" offset="0 0 90 62" align="Stretch">
-            <State name="normal" offset="188 62 90 62"/>
+    <Resource type="ResourceSkin" name="SLGWindowTopSkin" size="203 64" texture="MyGUI_UISkins.png">
+        <BasisSkin type="SubSkin" offset="0 0 203 64" align="Stretch">
+            <State name="normal" offset="240 21 203 64"/>
         </BasisSkin>
     </Resource>
     <Resource type="ResourceSkin" name="SLGWindowLeftSkin" size="26 48" texture="MyGUI_UISkins.png">
@@ -125,33 +141,33 @@
             <State name="pushed" colour="0 0 0" shift="0"/>
         </BasisSkin>
     </Resource>
-    <Resource type="ResourceSkin" name="SLGButtonSkin3" size="142 46" texture="MyGUI_UISkins.png">
-        <BasisSkin type="SubSkin" offset="0 0 142 46" align="Center">
-            <State name="disabled" offset="325 328 142 46"/>
-            <State name="normal" offset="325 375 142 46"/>
-            <State name="highlighted" offset="325 422 142 46"/>
-            <State name="pushed" offset="325 469 142 46"/>
+    <Resource type="ResourceSkin" name="SLGButtonSkin3" size="142 47" texture="MyGUI_UISkins.png">
+        <BasisSkin type="SubSkin" offset="0 0 142 47" align="Center">
+            <State name="disabled" offset="322 328 142 47"/>
+            <State name="normal" offset="322 376 142 47"/>
+            <State name="highlighted" offset="322 424 142 47"/>
+            <State name="pushed" offset="322 470 142 47"/>
         </BasisSkin>
-        <BasisSkin type="SimpleText" offset="21 11 101 24" align="Stretch">
+        <BasisSkin type="SimpleText" offset="21 13 101 24" align="Stretch">
             <State name="disabled" colour="0 0 0" shift="0"/>
             <State name="normal" colour="0 0 0" shift="0"/>
             <State name="highlighted" colour="0 0 0" shift="0"/>
             <State name="pushed" colour="0 0 0" shift="0"/>
         </BasisSkin>
     </Resource>
-    <Resource type="ResourceSkin" name="SLGSLWindowSkin" size="510 536" texture="MyGUI_UISkins.png">
-        <BasisSkin type="SubSkin" offset="0 0 510 536" align="Center">
-            <State name="normal" offset="500 463 510 536"/>
+    <Resource type="ResourceSkin" name="SLGSLWindowSkin" size="509 541" texture="MyGUI_UISkins.png">
+        <BasisSkin type="SubSkin" offset="0 0 509 541" align="Center">
+            <State name="normal" offset="500 470 509 541"/>
         </BasisSkin>
     </Resource>
-    <Resource type="ResourceSkin" name="SLGSquedWindowSkin" size="266 377" texture="MyGUI_UISkins.png">
-        <BasisSkin type="SubSkin" offset="0 0 266 377" align="Center">
-            <State name="normal" offset="482 77 266 377"/>
+    <Resource type="ResourceSkin" name="SLGSquedWindowSkin" size="266 376" texture="MyGUI_UISkins.png">
+        <BasisSkin type="SubSkin" offset="0 0 266 376" align="Center">
+            <State name="normal" offset="481 76 266 376"/>
         </BasisSkin>
     </Resource>
-    <Resource type="ResourceSkin" name="SLGCommandWindowSkin" size="261 262" texture="MyGUI_UISkins.png">
-        <BasisSkin type="SubSkin" offset="0 0 261 262" align="Center">
-            <State name="normal" offset="744 73 261 262"/>
+    <Resource type="ResourceSkin" name="SLGCommandWindowSkin" size="238 268" texture="MyGUI_UISkins.png">
+        <BasisSkin type="SubSkin" offset="0 0 238 268" align="Center">
+            <State name="normal" offset="760 57 238 268"/>
         </BasisSkin>
     </Resource>
     <Resource type="ResourceSkin" name="SLGListSkin" size="350 382" texture="MyGUI_UISkins.png">
@@ -199,7 +215,6 @@
             <State name="normal" offset="444 700 23 32"/>
         </BasisSkin>
     </Resource>
-    
     <Resource type="ResourceSkin" name="SLGScrollBarHSkin" size="100 7" texture="MyGUI_UISkins.png">
         <BasisSkin type="TileRect" offset="0 0 100 7" align="HStretch VCenter">
             <State name="normal" offset="394 564 100 7">
@@ -214,5 +229,49 @@
             <State name="normal" offset="420 523 32 23"/>
         </BasisSkin>
     </Resource>
-    
+    <Resource type="ResourceSkin" name="SLGImageBoxSkin" size="105 132" texture="MyGUI_UISkins.png">
+        <BasisSkin type="SubSkin" offset="0 0 9 11" align="Left Top">
+            <State name="normal" offset="755 336 9 11"/>
+        </BasisSkin>
+        <BasisSkin type="TileRect" offset="9 0 87 11" align="HStretch Top">
+            <State name="normal" offset="764 336 87 11">
+                <Property key="TileSize" value="87 11"/>
+                <Property key="TileH" value="true"/>
+                <Property key="TileV" value="true"/>
+            </State>
+        </BasisSkin>
+        <BasisSkin type="SubSkin" offset="96 0 9 11" align="Right Top">
+            <State name="normal" offset="851 336 9 11"/>
+        </BasisSkin>
+        <BasisSkin type="TileRect" offset="96 11 9 111" align="Right VStretch">
+            <State name="normal" offset="851 347 9 111">
+                <Property key="TileSize" value="9 111"/>
+                <Property key="TileH" value="false"/>
+                <Property key="TileV" value="true"/>
+            </State>
+        </BasisSkin>
+        <BasisSkin type="SubSkin" offset="96 122 9 10" align="Right Bottom">
+            <State name="normal" offset="851 458 9 10"/>
+        </BasisSkin>
+        <BasisSkin type="TileRect" offset="9 122 87 10" align="HStretch Bottom">
+            <State name="normal" offset="764 458 87 10">
+                <Property key="TileSize" value="87 10"/>
+                <Property key="TileH" value="true"/>
+                <Property key="TileV" value="true"/>
+            </State>
+        </BasisSkin>
+        <BasisSkin type="SubSkin" offset="0 122 9 10" align="Left Bottom">
+            <State name="normal" offset="755 458 9 10"/>
+        </BasisSkin>
+        <BasisSkin type="TileRect" offset="0 11 9 111" align="Left VStretch">
+            <State name="normal" offset="755 347 9 111">
+                <Property key="TileSize" value="9 111"/>
+                <Property key="TileH" value="false"/>
+                <Property key="TileV" value="true"/>
+            </State>
+        </BasisSkin>
+        <BasisSkin type="SubSkin" offset="9 11 87 111" align="Stretch">
+            <State name="normal" offset="764 347 87 111"/>
+        </BasisSkin>
+    </Resource>
 </MyGUI>
