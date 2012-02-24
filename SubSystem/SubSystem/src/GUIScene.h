@@ -30,7 +30,7 @@ public:
 	int mHeigth;
 
 protected:
-	template <name T>
+	template <typename T>
 	void assignWidget(T * & _widget, const std::string& _name, bool _throw = true)
 	{
 		_widget = nullptr;
