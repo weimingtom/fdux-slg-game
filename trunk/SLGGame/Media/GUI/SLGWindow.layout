@@ -24,7 +24,14 @@
         <Property key="Range" value="100"/>
         <Property key="RangePosition" value="0"/>
     </Widget>
-    <Widget type="ImageBox" skin="SLGImageBox" position="315 165 320 340">
+    <Widget type="ImageBox" skin="SLGImageBox" position="315 165 294 79">
         <Property key="ImageTexture" value="SquadBillboard.png"/>
+    </Widget>
+    <Widget type="ProgressBar" skin="ProgressBarFill" position="110 235 305 20"/>
+    <Widget type="ProgressBar" skin="SLGMiniProgressBar" position="70 280 150 10">
+        <Property key="Range" value="100"/>
+        <Property key="RangePosition" value="95"/>
+        <Property key="AutoTrack" value="false"/>
+        <Property key="FlowDirection" value="LeftToRight"/>
     </Widget>
 </MyGUI>

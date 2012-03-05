@@ -61,6 +61,27 @@
         </Widget>
     </Resource>
 
+    <Resource type="ResourceLayout" name="SLGMiniProgressBar" version="3.2.0">
+        <Widget type="Widget" skin="SLGMiniProgressBarSkin" position="0 0 5 10" name="Root">
+            <Property key="MoveToClick" value="true"/>
+            <UserString key="LE_TargetWidgetType" value="ProgressBar"/>
+            <UserString key="TrackFill" value="true"/>
+            <UserString key="TrackSkin" value="SLGMiniProgressBarTrackSkin"/>
+            <UserString key="TrackWidth" value="30"/>
+            <UserString key="TrackMin" value="1"/>
+            <Widget type="Widget" skin="PanelEmpty" position="2 2 5 10" align="HStretch VStretch" name="TrackPlace">
+                <Property key="NeedKey" value="false"/>
+                <Property key="InheritsPick" value="true"/>
+            </Widget>
+        </Widget>
+        <Widget type="ProgressBar" skin="ProgressBarFill" position="25 75 125 5">
+            <Property key="Range" value="100"/>
+            <Property key="RangePosition" value="50"/>
+            <Property key="Page" value="1"/>
+            <Property key="ViewPage" value="1"/>
+        </Widget>
+    </Resource>
+    
 	<Resource type="ResourceLayout" name="SLGListItem" version="3.2.0">
         <Widget type="Widget" skin="SLGListItemSkin" position="20 20 43 40" name="Root">
             <Property key="FontName" value="Default"/>

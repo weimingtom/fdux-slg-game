@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout" version="3.2.0">
+    <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" name="SupplyBG">
+        <Widget type="Window" skin="SLGWindow" position="0 0 235 477">
+            <Widget type="ListBox" skin="ListBox" position="25 55 185 395"/>
+        </Widget>
+        <Widget type="Window" skin="SLGMiniWindowSkin" position="245 0 730 340"/>
+        <Widget type="Window" skin="SLGMiniWindowSkin" position="240 350 735 335">
+            <Widget type="TabControl" skin="TabControl" position="15 15 705 305">
+                <Widget type="TabItem" skin="" position="2 24 699 277">
+                    <Property key="Caption" value=" weapon"/>
+                </Widget>
+            </Widget>
+        </Widget>
+        <Widget type="Window" skin="SLGWindow" position="5 480 225 205">
+            <Widget type="Button" skin="SLGButton3" position="25 100 175 35" name="SupplyLoad">
+                <Property key="Caption" value="load"/>
+                <Property key="TextColour" value="1 1 1"/>
+                <Property key="FontHeight" value="18"/>
+                <Property key="FontName" value="fireflysung"/>
+            </Widget>
+            <Widget type="Button" skin="SLGButton3" position="25 140 175 35" name="SupplyExit">
+                <Property key="Caption" value="exit"/>
+                <Property key="TextColour" value="1 1 1"/>
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="18"/>
+            </Widget>
+            <Widget type="Button" skin="SLGButton3" position="25 60 175 35" name="SupplySave">
+                <Property key="Caption" value="save"/>
+                <Property key="TextColour" value="1 1 1"/>
+                <Property key="FontHeight" value="18"/>
+                <Property key="FontName" value="fireflysung"/>
+            </Widget>
+        </Widget>
+    </Widget>
+    <CodeGenaratorSettings/>
+</MyGUI>
