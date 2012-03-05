@@ -243,11 +243,11 @@
         <Property key="FontHeight" value="20"/>
         <Widget type="ListBox" skin="ListBox" position="0 0 210 105" name="MissionList"/>
     </Widget>
-    <Widget type="Window" skin="SLGWindow" position="875 210 414 504" layer="Popup" name="DeployWindow">
+    <Widget type="Window" skin="ImageBox" position="565 325 350 390" layer="Popup" name="DeployWindow">
         <Property key="Caption" value="DeployWindow"/>
         <Property key="FontName" value="fireflysung"/>
         <Property key="Visible" value="false"/>
-        <Widget type="MultiListBox" skin="SLGList" position="30 60 355 380" name="DeployList">
+        <Widget type="MultiListBox" skin="SLGList" position="0 5 345 380" name="DeployList">
             <Widget type="MultiListItem" skin="" position="0 0 71 351">
                 <Property key="Caption" value="Name"/>
             </Widget>
@@ -255,7 +255,7 @@
                 <Property key="Caption" value="DeployState"/>
             </Widget>
         </Widget>
-        <Widget type="Button" skin="SLGButton2" position="85 435 255 50" name="DeployConfirm">
+        <Widget type="Button" skin="SLGButton2" position="65 300 225 50" name="DeployConfirm">
             <Property key="Caption" value="DeployConfirm"/>
             <Property key="Enabled" value="false"/>
             <Property key="Colour" value="1 1 1"/>

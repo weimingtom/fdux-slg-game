@@ -858,11 +858,15 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\ClassDiagram1.cd"
+			RelativePath="..\Demo.ico"
 			>
 		</File>
 		<File
-			RelativePath="..\Demo.ico"
+			RelativePath=".\src\Squad.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\src\Squad.h"
 			>
 		</File>
 	</Files>
