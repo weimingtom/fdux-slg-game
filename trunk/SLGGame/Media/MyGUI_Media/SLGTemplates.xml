@@ -41,19 +41,19 @@
         <Widget type="Button" skin="Button" position="20 60 29 26"/>
     </Resource>
      <Resource type="ResourceLayout" name="SLGProgressBar" version="3.2.0">
-        <Widget type="Widget" skin="SLGProgressBarSkin" position="25 50 125 15" name="Root">
+        <Widget type="Widget" skin="SLGProgressBarSkin" position="0 0 223 46" name="Root">
             <Property key="MoveToClick" value="true"/>
             <UserString key="LE_TargetWidgetType" value="ProgressBar"/>
             <UserString key="TrackFill" value="true"/>
             <UserString key="TrackSkin" value="SLGProgressBarTrackSkin"/>
-            <UserString key="TrackWidth" value="10"/>
+            <UserString key="TrackWidth" value="1"/>
             <UserString key="TrackMin" value="1"/>
-            <Widget type="Widget" skin="PanelEmpty" position="60 0 5 50" align="HStretch Top" name="TrackPlace">
+            <Widget type="Widget" skin="PanelEmpty" position="6 8 211 46" align="HStretch Top" name="TrackPlace">
                 <Property key="NeedKey" value="false"/>
-                <Property key="InheritsPick" value="true"/>
+                <Property key="InheritsPick" value="false"/>
             </Widget>
         </Widget>
-        <Widget type="ProgressBar" skin="ProgressBarFill" position="25 75 125 15">
+        <Widget type="ProgressBar" skin="ProgressBarFill" position="25 75 125 46">
             <Property key="Range" value="100"/>
             <Property key="RangePosition" value="50"/>
             <Property key="Page" value="1"/>

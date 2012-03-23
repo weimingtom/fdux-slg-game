@@ -3,6 +3,7 @@
 #include "AVGState.h"
 #include "MenuState.h"
 #include "BattleState.h"
+#include "SupplyState.h"
 
 #include "LuaSystem.h"
 #include "LuaStateFun.h"
@@ -96,6 +97,10 @@ GameState* StateManager::CreateState( StateType type )
 		{
 			state = new BattleState();
 			break;
+		}
+	case Supply:
+		{
+			state = new SupplyState();
 		}
 	}
 

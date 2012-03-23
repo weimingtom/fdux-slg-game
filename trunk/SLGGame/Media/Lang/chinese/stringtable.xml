@@ -80,6 +80,29 @@
 		<LoadingUnit type="String" value="读取单位.." />
 		<CreatingGrid type="String" value="构建地形.." />
 		<Finish type="String" value="按任意键继续.." />
+        <T_SupplySave type="String" value="保存游戏" />
+        <T_SupplyLoad type="String" value="读取游戏" />
+        <T_SupplyExit type="String" value="补给结束" />
+        <TEXT_SquadPWeapon type="String" value="主武器" />
+        <TEXT_SquadSWeapon type="String" value="副武器" />
+        <TEXT_SquadShield type="String" value="盾牌" />
+        <TEXT_SquadArmor type="String" value="盔甲" />
+        <TEXT_SqureHorse type="String" value="马匹" />
+        <TEXT_SquadAttack type="String" value="攻击力" />
+        <TEXT_SquadRangeAttack type="String" value="远程攻击力" />
+        <TEXT_SquadDefense type="String" value="防御力" />
+        <TEXT_SquadArray type="String" value="阵列值" />
+        <TEXT_SquadAgility type="String" value="先攻值" />
+        <TEXT_SquadDetect type="String" value="侦查值" />
+        <TEXT_SquadConcealment type="String" value="隐蔽值" />
+        <TEXT_SquadTenacity type="String" value="坚韧值" />
+        <TEXT_SquadAP type="String" value="AP值" />
+        <TEXT_SquadCounterattack type="String" value="反击值" />
+        <TEXT_SquadPeople type="String" value="人数" />
+        <TEXT_SquadSkill type="String" value="主动技能" />
+        <TEXT_SquadPassiveSkill type="String" value="被动技能" />
+        <TEXT_SquadUseEquip type="String" value="可用装备" />
+        <TEXT_SquadEffect type="String" value="激活效果" />
 		
 		<GameTurn type="String" value="回合数:"/>
 		<CurTeam type="String" value="当前队伍:"/>

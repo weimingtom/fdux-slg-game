@@ -436,6 +436,26 @@
 					</File>
 				</Filter>
 			</Filter>
+			<Filter
+				Name="Supply"
+				>
+				<File
+					RelativePath=".\src\GUISupply.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\GUISupply.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\SupplyState.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\SupplyState.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Battle"
