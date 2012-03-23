@@ -58,6 +58,7 @@ enum GUISceneType
 	NoneScene,
 	StageScene,
 	MenuScene,
+	SupplyScene,
 	PUDebugScene,
 	LoadingScene,
 	BattleScene,

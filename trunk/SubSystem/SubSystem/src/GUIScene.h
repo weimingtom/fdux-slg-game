@@ -90,6 +90,10 @@ protected:
 
 	void StopMoveTo(MyGUI::Widget* moveWidget);
 
+	void setSceneLanguage();
+
+	void recursionSetSceneLanguage(MyGUI::Widget* widget);
+
 	MyGUI::VectorWidgetPtr mWidgetList;
 	MyGUI::Widget* mContainerWidget;
 	std::string mLayoutName;
