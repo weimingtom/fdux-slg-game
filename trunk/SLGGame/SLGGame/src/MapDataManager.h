@@ -18,6 +18,7 @@ static const int	Cliff = 3;
 static const int	Ramp = 4;
 
 class MapLoader;
+struct LuaTempContext;
 
 class MapDataManager: public IISingleton<MapDataManager>
 {
@@ -35,6 +36,16 @@ public:
 	float getCavApCost(int x, int y, int team);
 	float getCovert(int x, int y, int team);
 	float getDefModify(int x, int y, int team);
+	
+//´¥·¢Æ÷
+public:
+	std::string addTrigger(std::string trigertype, std::string file ,std::string func, std::string context);
+	void removeTrigger(std::string tid);
+
+	void activeTrigger(std::string tid);
+	void disableTrigger(std::string tid);
+
+	void Trigger(std::string triggertype, LuaTempContext * tempcontext);
 private:
 	int mMapSize;
 };

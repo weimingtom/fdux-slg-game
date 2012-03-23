@@ -13,12 +13,11 @@
 //#include "GUIPUDebug.h"
 #include "GUIMenuWindow.h"
 #include "GUIBattle.h"
-//#include "BattleControlState.h"
+#include "BattleControlState.h"
 #include "GUIDeployWindow.h"
 #include "AreaGrap.h"
 #include "MapDataManager.h"
 #include "GUISquadWindows.h"
-#include "TriggerManager.h"
 #include "CommonFunction.h"
 
 BattleDeployState::BattleDeployState()
@@ -42,14 +41,14 @@ BattleDeployState::BattleDeployState()
 	mDeployWindow->setDeployState(this);
 	mSquadWindow = static_cast<GUISquadWindows *>(mGUIBattle->getSubWindow("SquadWindow"));
 	mSquadWindow->setSquad(NULL);
-	mSquadManager = BattleSquadManager::getSingletonPtr();
+	BattleSquadManager* squadmanager = BattleSquadManager::getSingletonPtr();
 	mSelectSquad = NULL;
 	//建立部署小队列表
 	BattleSquadManager::BattleSquadIte ite;
 	std::vector<std::string> squadlist;
-	if(mSquadManager->mSquadList.size() != 0)
+	if(squadmanager->mSquadList.size() != 0)
 	{
-		for(ite = mSquadManager->mSquadList.begin(); ite != mSquadManager->mSquadList.end(); ite++)
+		for(ite = squadmanager->mSquadList.begin(); ite != squadmanager->mSquadList.end(); ite++)
 		{
 			if(ite->second->getGridX() < 0)
 			{
@@ -74,7 +73,6 @@ BattleDeployState::BattleDeployState()
 	//		k++;
 	//	}
 	//}
-	DataLibrary::getSingleton().saveXmlData(DataLibrary::GameData,"test.xml");
 }
 BattleDeployState::~BattleDeployState()
 {
@@ -144,17 +142,14 @@ bool BattleDeployState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 		if(id == OIS::MB_Left)
 		{
 			MapDataManager* datamanager = MapDataManager::getSingletonPtr();
-			if(mAreaGrap->inArea(GX,GY) && datamanager->getPassable(GX,GY,0) && mSquadManager->getBattleSquadAt(GX,GY,false) == NULL)
+			if(mAreaGrap->inArea(GX,GY) && datamanager->getPassable(GX,GY,0) && BattleSquadManager::getSingleton().getBattleSquadAt(GX,GY,false) == NULL)
 			{
 				std::string id = mSelectSquad->getSquadId();
 				SquadGraphics* squadgrap = SquadGrapManager::getSingleton().getSquad(id);
 				squadgrap->setGrid(GX,GY);
 				mSelectSquad->setGridX(GX);
 				mSelectSquad->setGridY(GY);
-				char info[64];
-				sprintf_s(info,64,"%d,%d",GX,GY);
-				mDeployWindow->setDeployInfo(mSelectIndex,std::string(info));
-				if(mSquadManager->allDeployed())
+				if(BattleSquadManager::getSingleton().allDeployed())
 					mDeployWindow->setAllowConfirm(true);
 			}
 		}
@@ -181,16 +176,14 @@ bool BattleDeployState::mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButt
 
 void BattleDeployState::deployConfirm()
 {
-	if(mSquadManager->allDeployed())
+	if(BattleSquadManager::getSingleton().allDeployed())
 	{
-// 		mSquadManager->deployConfirm();
-// 		BattleControlState* controlstate = new BattleControlState(true);
-// 		mMainState->ChangeState(controlstate);
-// 		TriggerManager::getSingleton().finishdeploy();
+		BattleControlState* controlstate = new BattleControlState(true);
+		mMainState->ChangeState(controlstate);
 	}
 }
 
-void BattleDeployState::selectIndex(int index)
+void BattleDeployState::selectIndex(unsigned int index)
 {
 	if (index < mDeployList.size())
 	{

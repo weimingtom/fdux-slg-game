@@ -6,12 +6,12 @@
 #include "BattleState.h"
 #include "CameraContral.h"
 
-CutSceneDirector::CutSceneDirector()
+CutSceneDirector::CutSceneDirector(CutScene* cutscene)
 {
 	mId = 0;
 	mMouseX = 640;
 	mMouseY = 360;
-	mCutScene = NULL;
+	mCutScene = cutscene;
 	mCameraContral = CameraContral::getSingletonPtr();
 	Core::getSingleton().mInputControl->pushListener(this);
 }
@@ -27,20 +27,20 @@ CutSceneDirector::~CutSceneDirector()
 	Core::getSingleton().mInputControl->popListener();
 }
 
-void CutSceneDirector::addCutScene(CutScene* cutscene)
-{
-// 	if(cutscene!= NULL)
-// 	{
-// 		int id = mId++;
-// 		mCutScene.insert(CutScenePair(id, cutscene));
-// 		cutscene->start();
-// 		return id;
-// 	}
-// 	return -1;
-	if(mCutScene != NULL)
-		delete mCutScene;
-	mCutScene = cutscene;
-}
+// void CutSceneDirector::addCutScene(CutScene* cutscene)
+// {
+// // 	if(cutscene!= NULL)
+// // 	{
+// // 		int id = mId++;
+// // 		mCutScene.insert(CutScenePair(id, cutscene));
+// // 		cutscene->start();
+// // 		return id;
+// // 	}
+// // 	return -1;
+// 	if(mCutScene != NULL)
+// 		delete mCutScene;
+// 	mCutScene = cutscene;
+// }
 
 void CutSceneDirector::skipCutScene()
 {

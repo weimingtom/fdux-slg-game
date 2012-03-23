@@ -38,9 +38,9 @@
 			<ShieldId type="String" value="KnightShield"/>
 			<ArmorId type="String" value="HeavyMail"/>
 			<SkillTable>
-				<AttackTrain type="Int" value="0"/>
-				<DefenceTrain type="Int" value="0"/>
-				<DefenceTrain type="Int" value="0"/>
+				<AttackTrain1 type="Int" value="0"/>
+				<DefenceTrain1 type="Int" value="0"/>
+				<DefenceTrain2 type="Int" value="0"/>
 				<Defence type="Int" value="1"/>
 				<Break  type="Int" value="1"/>
 				<HeavyArmor type="Int" value="2"/>
@@ -48,14 +48,13 @@
 				<OneHandSword type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="Cheetah"/>
-			<RetainerID type="String" value="Scout"/>
+			<RetainerId type="String" value="Scout"/>
 			<Level type="Int" value="5" />
 			<Exp type="Int" value="0" />
 			<UnitNum value="50" type="Int" />
 			<UnitMesh type="String" value="HeavyInf.mesh"/>
 			<UnitMat type="String" value="HeavyInf"/>
 			<MoveSound type="String" value="HeavyInf.mp3"/>
-			<Script type="String" value="none"/>
 		</CheetahSquad>
 		<DandelionSquad>
 			<Type type="Int" value="0"/>
@@ -67,24 +66,24 @@
 			<ShieldId type="String" value="RoundShield"/>
 			<ArmorId type="String" value="LightMail"/>
 			<SkillTable>
-				<RangedAttackTrain type="Int" value="0"/>
-				<RangedAttackTrain type="Int" value="0"/>
-				<DefenceTrain type="Int" value="0"/>
+				<RangedAttackTrain1 type="Int" value="0"/>
+				<RangedAttackTrain2 type="Int" value="0"/>
+				<DefenceTrain1 type="Int" value="0"/>
 				<Defence type="Int" value="1"/>
 				<SuppressAttack type="Int" value="1"/>
 				<OneHandSword type="Int" value="2"/>
 				<Bow type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
 				<LightArmor type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="Dandelion"/>
-			<RetainerID type="String" value="Scout"/>
+			<RetainerId type="String" value="Scout"/>
 			<UnitNum value="50" type="Int" />
 			<Level type="Int" value="5" />
 			<Exp type="Int" value="0" />
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
 			<MoveSound type="String" value="BowMan.mp3"/>
-			<Script type="String" value="none"/>
 		</DandelionSquad>
 		<Olivia>
 			<Type type="Int" value="1"/>
@@ -103,14 +102,13 @@
 				<Pray type="Int" value="1" />
 			</SkillTable>
 			<LeaderId type="String" value="Olivia"/>
-			<RetainerID type="String" value="Scout"/>
+			<RetainerId type="String" value="Scout"/>
 			<UnitNum value="50" type="Int" />
 			<Level type="Int" value="4" />
 			<Exp type="Int" value="0" />
 			<UnitMesh type="String" value="HolySpirit.mesh"/>
 			<UnitMat type="String" value="HolySpirit"/>
 			<MoveSound type="String" value="Olivia.mp3"/>
-			<Script type="String" value="none"/>
 		</Olivia>
 		<DuxLightSpear>
 			<Type type="Int" value="0"/>
@@ -122,21 +120,20 @@
 			<ShieldId type="String" value="RoundShield"/>
 			<ArmorId type="String" value="LeatherArmor"/>
 			<SkillTable>
-				<DefenceTrain type="Int" value="0"/>
+				<DefenceTrain1 type="Int" value="0"/>
 				<Defence type="Int" value="1"/>
 				<OneHandSpear type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
 				<LightArmor type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="DuxLightOfficer"/>
-			<RetainerID type="String" value="Scout"/>
+			<RetainerId type="String" value="Scout"/>
 			<UnitNum value="50" type="Int" />
 			<Level type="Int" value="2" />
 			<Exp type="Int" value="0" />
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
 			<MoveSound type="String" value="LightInf.mp3"/>
-			<Script type="String" value="none"/>
 		</DuxLightSpear>
 		<DuxHeavyInf>
 			<Type type="Int" value="0"/>
@@ -148,22 +145,21 @@
 			<ShieldId type="String" value="RoundShield"/>
 			<ArmorId type="String" value="HeavyMail"/>
 			<SkillTable>
-				<AttackTrain type="Int" value="0"/>
-				<AttackTrain type="Int" value="0"/>
+				<AttackTrain1 type="Int" value="0"/>
+				<AttackTrain2 type="Int" value="0"/>
 				<Defence type="Int" value="1"/>
 				<HeavyArmor type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
 				<OneHandSword type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="DuxHeavyOfficer"/>
-			<RetainerID type="String" value="Scout"/>
+			<RetainerId type="String" value="Scout"/>
 			<UnitNum value="50" type="Int" />
 			<Level type="Int" value="3" />
 			<Exp type="Int" value="0" />
 			<UnitMesh type="String" value="HeavyInf.mesh"/>
 			<UnitMat type="String" value="HeavyInf"/>
 			<MoveSound type="String" value="HeavyInf.mp3"/>
-			<Script type="String" value="none"/>
 		</DuxHeavyInf>
 	</SquadData>
 	<SoilderData>
@@ -288,7 +284,7 @@
 				<Attack type="Float" value="2.0"/>
 				<RangedAttack type="Float" value="0.0"/>
 				<Defence type="Float" value="-1.0"/>
-				<Formation type="Float" value="0.08"/>
+				<Formation type="Float" value="4.0"/>
 				<Initiative type="Float" value="6.0"/>
 				<ActionPoint type="Float" value="0.0"/>
 				<Detection type="Float" value="0.0"/>
@@ -446,10 +442,18 @@
 				<Break  type="Int" value="5"/>
 			</Active>
 			<Passive>
-				<AttackTrain type="Int" value="1"/>
-				<DefenceTrain type="Int" value="1"/>
-				<AttackTrain type="Int" value="3"/>
-				<DefenceTrain type="Int" value="3"/>
+				<AttackTrain1 type="Int" value="1">
+					<Effect type="String" value="AttackTrain"/>
+				</AttackTrain1>
+				<DefenceTrain1 type="Int" value="1">
+					<Effect type="String" value="DefenceTrain"/>
+				</DefenceTrain1>
+				<AttackTrain2 type="Int" value="3">
+					<Effect type="String" value="AttackTrain"/>
+				</AttackTrain2>
+				<DefenceTrain2 type="Int" value="3">
+					<Effect type="String" value="DefenceTrain"/>
+				</DefenceTrain2>
 			</Passive>
 			<Equip>
 				<OneHandSword type="Int" value="7"/>
@@ -470,17 +474,30 @@
 				<SuppressAttack type="Int" value="5"/>
 			</Active>
 			<Passive>
-				<AttacktTrain type="Int" value="1"/>
-				<DefenceTrain type="Int" value="1"/>
-				<RangedAttackTrain type="Int" value="1"/>
-				<AttackTrain type="Int" value="3"/>
-				<DefenceTrain type="Int" value="3"/>
-				<RangedAttackTrain type="Int" value="1"/>
+				<AttackTrain1 type="Int" value="1">
+					<Effect type="String" value="AttackTrain"/>
+				</AttackTrain1>
+				<DefenceTrain1 type="Int" value="1">
+					<Effect type="String" value="DefenceTrain"/>
+				</DefenceTrain1>
+				<RangedAttackTrain1 type="Int" value="1">
+					<Effect type="String" value="RangedAttackTrain"/>
+				</RangedAttackTrain1>
+				<AttackTrain2 type="Int" value="3">
+					<Effect type="String" value="AttackTrain"/>
+				</AttackTrain2>
+				<DefenceTrain2 type="Int" value="3">
+					<Effect type="String" value="DefenceTrain"/>
+				</DefenceTrain2>
+				<RangedAttackTrain2 type="Int" value="3">
+					<Effect type="String" value="RangedAttackTrain"/>
+				</RangedAttackTrain2>
 			</Passive>
 			<Equip>
 				<OneHandSword type="Int" value="7"/>
 				<Bow type="Int" value="7"/>
 				<XBow type="Int" value="7"/>
+				<Shield type="Int" value="7"/>
 				<LightArmor type="Int" value="7"/>
 			</Equip>
 		</MissileInfantry>
@@ -492,8 +509,12 @@
 				<Pray type="Int" value="5" />
 			</Active>
 			<Passive>
-				<Faith type="Int" value="2"/>
-				<StrengthenSprite type="Int" value="4"/>
+				<Faith type="Int" value="2">
+					<Effect type="String" value="Faith"/>
+				</Faith>
+				<StrengthenSprite type="Int" value="4">
+					<Effect type="String" value="StrengthenSprite"/>
+				</StrengthenSprite>
 			</Passive>
 		</Saint>
 	</SkillListData>

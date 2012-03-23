@@ -10,7 +10,6 @@
 #include "SquadGrapManager.h"
 #include "BattleSquadManager.h"
 #include "StateManager.h"
-#include "TriggerManager.h"
 #include "GUISystem.h"
 #include "AudioSystem.h"
 
@@ -37,13 +36,13 @@ void BattleState::initialize( std::string arg )
 	BattleLoadState* loadState = new BattleLoadState(arg);
 	PushState(loadState);
 
-	TriggerManager::getSingleton().setBattleState(this);
+//TriggerManager::getSingleton().setBattleState(this);
 	
 }
 
 void BattleState::uninitialize()
 {
-	TriggerManager::getSingleton().setBattleState(NULL);
+//TriggerManager::getSingleton().setBattleState(NULL);
 //	mIsEnd = true;
 // 	if(mSubStateStack.size()>0)
 // 		PopState();

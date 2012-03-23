@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <MapName>map2</MapName>
 <MapTeam>
-    <Team2 TeamType="enemy1" TeamFaction="Etasi" />
+    <Team2 TeamType="enemy1" TeamFaction="Dux" />
     <Team3 TeamType="none" TeamFaction="none" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
@@ -54,12 +54,12 @@
 <MapSquad>
     <Team1 />
     <Team2>
-	    <Team2Squad_0 Type="EtasiLightSpear" GridX="11" GridY="3" Direction = "1" UnitNum = "50" Morale = "67" />
-        <Team2Squad_1 Type="EtasiHeavyInf" GridX="11" GridY="4" Direction = "1" UnitNum = "50" Morale = "67" />
-		<Team2Squad_2 Type="EtasiLightSpear" GridX="11" GridY="5" Direction = "1" UnitNum = "50" Morale = "67" />
-		<Team2Squad_3 Type="EtasiLightSpear" GridX="2" GridY="11" Direction = "1" UnitNum = "50" Morale = "67" />
-        <Team2Squad_4 Type="EtasiHeavyInf" GridX="3" GridY="11" Direction = "1" UnitNum = "50" Morale = "67" />
-		<Team2Squad_5 Type="EtasiLightSpear" GridX="4" GridY="11" Direction = "1" UnitNum = "50" Morale = "67" />
+	    <Team2Squad_0 Type="DuxLightSpear" GridX="11" GridY="3" Direction = "1" UnitNum = "50" />
+        <Team2Squad_1 Type="DuxHeavyInf" GridX="11" GridY="4" Direction = "1" UnitNum = "50" />
+		<Team2Squad_2 Type="DuxLightSpear" GridX="11" GridY="5" Direction = "1" UnitNum = "50" />
+		<Team2Squad_3 Type="DuxLightSpear" GridX="2" GridY="11" Direction = "1" UnitNum = "50" />
+        <Team2Squad_4 Type="DuxHeavyInf" GridX="3" GridY="11" Direction = "1" UnitNum = "50" />
+		<Team2Squad_5 Type="DuxLightSpear" GridX="4" GridY="11" Direction = "1" UnitNum = "50" />
 	</Team2>
     <Team3 />
     <Team4 />

@@ -1,8 +1,8 @@
 #include "AVGSquadManager.h"
 
 #include "DataLibrary.h"
-#include "StringTable.h"
-#include "LuaSystem.h"
+#include "Squad.h"
+
 #include "boost/format.hpp"
 
 AVGSquadManager::AVGSquadManager()
@@ -33,7 +33,32 @@ bool AVGSquadManager::addNewSquad(std::string squadid, std::string suqadtypeid)
 	return true;
 }
 
-void AVGSquadManager::dumpSquad(Squad* squad)
+void AVGSquadManager::dumpSquad(std::string squadid, Squad* squad)
 {
-	
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::string path = "GameData/StoryData/SquadData";
+	std::vector<std::string> squadlist = datalib->getChildList(path);
+	std::vector<std::string>::iterator ite = std::find(squadlist.begin(), squadlist.end(),squadid);
+	if(ite != squadlist.end())
+		return;
+	path = str(boost::format("GameData/StoryData/SquadData/%1%/")%squadid);
+	datalib->setData(path + "LeaderId", squad->getLeaderId());
+	datalib->setData(path + "RetainerId", squad->getRetainerId());
+	datalib->setData(path + "SoilderId", squad->getSoilderId());
+	datalib->setData(path + "HorseId", squad->getHorseId());
+	datalib->setData(path + "PweaponId", squad->getPweaponId());
+	datalib->setData(path + "SweaponId", squad->getSweaponId());
+	datalib->setData(path + "ShieldId", squad->getShieldId());
+	datalib->setData(path + "ArmorId", squad->getArmorId());
+	datalib->setData(path + "Level", squad->getLevel());
+	datalib->setData(path + "Exp", squad->getExp());
+	datalib->setData(path + "UnitNum", squad->getUnitNum());
+	//复制技能数据
+	datalib->delNode(path + "SkillTable");
+	std::map<std::string, enumtype> skilltable = squad->getSkillTable();
+	std::map<std::string, enumtype>::iterator ite1;
+	for(ite1 = skilltable.begin(); ite1 != skilltable.end(); ite1++)
+	{
+		datalib->setData(path + "SkillTable/" + ite1->first, ite1->second );
+	}
 }

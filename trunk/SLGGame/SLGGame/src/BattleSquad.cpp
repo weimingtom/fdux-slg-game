@@ -11,14 +11,23 @@
 #include "MapDataManager.h"
 #include "BattleSquadManager.h" 
 #include "LuaSystem.h"
-#include "TriggerManager.h"
 #include "CommonFunction.h"
 
-BattleSquad::BattleSquad(std::string path, std::string srcpath, int team, int unitnum, int x, int y, enumtype d)
-:Squad(path, srcpath)
+BattleSquad::BattleSquad(std::string path)
+:Squad(path)
 {
-	if(mInit == false)
-		return;
+
+}
+
+BattleSquad::~BattleSquad()
+{
+
+}
+
+bool BattleSquad::init(std::string srcpath, int team, int unitnum, int x, int y, enumtype d)
+{
+	if(!Squad::init(srcpath))
+		return false;
 	DataLibrary *datalib = DataLibrary::getSingletonPtr();
 	setTeam(team);
 	setGridX(x);
@@ -35,7 +44,7 @@ BattleSquad::BattleSquad(std::string path, std::string srcpath, int team, int un
 
 	float covert;
 	covert = getAttr(ATTR_COVERT, ATTRCALC_FULL);
-	if(covert < 0.0f)
+	if(covert > 0.0f)
 	{
 		switch(getFaction())
 		{
@@ -78,14 +87,12 @@ BattleSquad::BattleSquad(std::string path, std::string srcpath, int team, int un
 	setAmbushEnemy1(0);
 	setAmbushEnemy2(0);
 	setAmbushEnemy3(0);
-	mInit = true;
+	return true;
 }
-
-BattleSquad::BattleSquad(std::string path, std::string srcpath, int team)
-:Squad(path, srcpath)
+bool BattleSquad::init(std::string srcpath, int team)
 {
-	if(mInit == false)
-		return;
+	if(!Squad::init(srcpath))
+		return false;
 	DataLibrary *datalib = DataLibrary::getSingletonPtr();
 	setTeam(team);
 	setGridX(-10);
@@ -104,7 +111,7 @@ BattleSquad::BattleSquad(std::string path, std::string srcpath, int team)
 
 	float covert;
 	covert = getAttr(ATTR_COVERT, ATTRCALC_ONLYBASE);
-	if(covert < 0.0f)
+	if(covert > 0.0f)
 	{
 		switch(getFaction())
 		{
@@ -147,26 +154,132 @@ BattleSquad::BattleSquad(std::string path, std::string srcpath, int team)
 	setAmbushEnemy1(0);
 	setAmbushEnemy2(0);
 	setAmbushEnemy3(0);
-	mInit = true;
+	return true;
 }
 
-BattleSquad::BattleSquad(std::string path)
-:Squad(path)
+bool BattleSquad::init()
 {
-	if(mInit == false)
-		return;
-	mInit = true;
-}
-
-BattleSquad::~BattleSquad()
-{
-
+	return Squad::init();
 }
 
 float BattleSquad::getAttr(enumtype attrtype , enumtype calctype)
 {
-	float val = Squad::getAttr(attrtype, calctype);
-	return val;
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::vector<std::string> modifierlist = datalib->getChildList(mPath + std::string("/ModifierList"));
+	if(modifierlist.size() == 0)
+		return 0.0f;
+	if(attrtype == ATTR_RANGEDDEFENCE )
+		attrtype = ATTR_DEFENCE;
+	float base = 0.0f;
+	float mbouse = 0.0f;
+	float mbane = 0.0f;
+	float resist = 0.0f;
+	float cbouse = 0.0f;
+	float cbane = 0.0f;
+	std::vector<std::string>::iterator ite;
+	for(ite = modifierlist.begin(); ite != modifierlist.end(); ite++)
+	{
+		enumtype type = ATTRMODIFIER_BASE;
+		float attrval = 0.0f;
+		std::string datapath = mPath + std::string("/ModifierList/") + (*ite);
+		datalib->getData(datapath + std::string("/Type"), type);
+		switch(attrtype)
+		{
+		case ATTR_ATTACK:
+			datalib->getData(datapath + std::string("/Attack"), attrval);
+			break;
+		case ATTR_RANGEDATTACK:
+			datalib->getData(datapath + std::string("/RangedAttack"), attrval);
+			break;
+		case ATTR_DEFENCE:
+			datalib->getData(datapath + std::string("/Defence"), attrval);
+			break;
+		case ATTR_FORM:
+			datalib->getData(datapath + std::string("/Formation"), attrval);
+			break;
+		case ATTR_INITIATIVE:
+			datalib->getData(datapath + std::string("/Initiative"), attrval);
+			break;
+		case ATTR_ACTIONPOINT:
+			datalib->getData(datapath + std::string("/ActionPoint"), attrval);
+			break;
+		case ATTR_DETECTION:
+			datalib->getData(datapath + std::string("/Detection"), attrval);
+			break;
+		case ATTR_COVERT:
+			datalib->getData(datapath + std::string("/Covert"), attrval);
+			break;
+		case ATTR_TOUGHNESS:
+			datalib->getData(datapath + std::string("/Injury"), attrval);
+			break;
+		case ATTR_CONTER:
+			datalib->getData(datapath + std::string("/Conter"), attrval);
+			break;
+		}
+		switch(type)
+		{
+		case ATTRMODIFIER_BASE:
+			base += attrval;
+			break;
+		case ATTRMODIFIER_MAGIC:
+			if(attrval > mbouse)
+				mbouse = attrval;
+			if(attrval < mbane)
+				mbane = attrval;
+			break;
+		case ATTRMODIFIER_COMMAND:
+			if(attrval > cbouse)
+				cbouse = attrval;
+			if(attrval < cbane)
+				cbane = attrval;
+			break;
+		case ATTRMODIFIER_RESISTANCE:
+			if(attrval > resist)
+				resist = attrval;
+			break;
+		}
+	}
+	float bouse = cbouse + mbouse;
+	float bane = cbane + mbane;
+	float terrainbouse = 0.0f;
+	switch(attrtype)
+	{
+		case ATTR_DEFENCE:
+			terrainbouse = MapDataManager::getSingleton().getDefModify(getGridX(), getGridY(), getTeam());
+			break;
+		case ATTR_COVERT:
+			terrainbouse = MapDataManager::getSingleton().getCovert(getGridX(), getGridY(), getTeam());
+			break;
+	}
+	if(terrainbouse > 0.0f)
+		bouse += terrainbouse;
+	else
+		bane += terrainbouse;
+	if(bane < -resist)
+	{
+		bane += resist;
+		resist = 0.0f;
+	}
+	else
+	{
+		bane = 0.0f;
+		resist += bane;
+	}
+
+	bouse = bouse + bane;
+	switch(calctype)
+	{
+	case ATTRCALC_FULL:
+		return base + bouse;
+		break;
+	case ATTRCALC_ONLYBASE:
+		return base;
+		break;
+	case ATTRCALC_ONLYBONUS:
+		return bouse;
+		break;
+	}
+	return 0.0f;
 }
 
 AttackInfo BattleSquad::getAttackRolls(bool rangedattack,bool asdefender, enumtype d)

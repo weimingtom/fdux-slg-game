@@ -9,11 +9,12 @@
 class BattleSquad: public Squad
 {
 public:
-	BattleSquad(std::string path, std::string srcpath, int team, int unitnum, int x, int y, enumtype d);
-	BattleSquad(std::string path, std::string srcpath, int team);
 	BattleSquad(std::string path);
 	virtual ~BattleSquad();
 
+	virtual bool init(std::string srcpath, int team, int unitnum, int x, int y, enumtype d);
+	virtual bool init(std::string srcpath, int team);
+	virtual bool init();
 public:
 	virtual float getAttr(enumtype attrtype , enumtype calctype);
 

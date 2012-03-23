@@ -19,5 +19,5 @@ public:
 public:
 	bool addNewSquad(std::string squadid, std::string suqadtypeid);
 
-	void dumpSquad(Squad* squad);
+	void dumpSquad(std::string squadid, Squad* squad);
 };

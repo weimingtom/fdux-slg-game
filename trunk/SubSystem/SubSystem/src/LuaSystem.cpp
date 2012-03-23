@@ -145,6 +145,11 @@ std::string LuaSystem::getFileName()
 	return mFileNameStack.back();
 }
 
+LuaTempContext*	LuaSystem::getTempContext()
+{
+	return mTempContextStack.back();
+}
+
 bool LuaSystem::executeFunction(std::string filename, std::string funcname, std::string context, LuaTempContext *tempcontext)
 {
 	if(context == "\0")

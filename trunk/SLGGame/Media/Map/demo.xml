@@ -5,7 +5,7 @@
     <Team3 TeamType="none" TeamFaction="none" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
-<MapScript>testscript.lua</MapScript>
+<MapScript>mapscript.lua</MapScript>
 <MapInfo>mapinfo1</MapInfo>
 <MapLoadBG>map1.png</MapLoadBG>
 <MapSize>12</MapSize>
@@ -54,9 +54,9 @@
 <MapSquad>
     <Team1 />
     <Team2>
-	    <Team2Squad_0 Type="DuxLightSpear" GridX="5" GridY="4" Direction = "2" UnitNum = "50" Morale = "67" />
-		<Team2Squad_2 Type="DuxHeavyInf" GridX="6" GridY="3" Direction = "1" UnitNum = "50" Morale = "67" />
-        <Team2Squad_3 Type="DuxLightSpear" GridX="5" GridY="6" Direction = "2" UnitNum = "50" Morale = "67" />
+	    <Team2Squad_0 Type="DuxLightSpear" GridX="5" GridY="4" Direction = "2" UnitNum = "50" />
+		<Team2Squad_2 Type="DuxHeavyInf" GridX="6" GridY="3" Direction = "1" UnitNum = "50" />
+        <Team2Squad_3 Type="DuxLightSpear" GridX="5" GridY="6" Direction = "2" UnitNum = "50" />
 	</Team2>
     <Team3 />
     <Team4 />

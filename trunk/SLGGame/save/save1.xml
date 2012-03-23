@@ -16,7 +16,7 @@
         <RightSize value="640,720,0" type="Vector3" />
         <Text value="" type="String" />
         <RoleName value="" type="String" />
-        <TextCursorType value="0" type="Int" />
+        <TextCursorType value="205" type="Int" />
         <ScriptName value="Chapter1.lua" type="String" />
         <ScriptLine value="599" type="Int" />
         <MusicName value="fight.mp3" type="String" />

@@ -55,6 +55,7 @@ public:
 
 	std::string getContext();
 	std::string getFileName();
+	LuaTempContext*	getTempContext();
 	bool executeFunction(std::string filename, std::string funcname, std::string context, LuaTempContext *tempcontext = NULL);
 
 private:
