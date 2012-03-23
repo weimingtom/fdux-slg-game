@@ -10,14 +10,11 @@ using namespace izayoi;
 #include "squaddefine.h"
 
 class BattleSquad;
-class MapLoader;
 class CutScene;
 
 class BattleSquadManager:public IISingleton<BattleSquadManager>
 {
 public:
-	friend MapLoader;
-
 	BattleSquadManager();
 	~BattleSquadManager();
 

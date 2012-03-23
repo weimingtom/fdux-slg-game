@@ -1,9 +1,12 @@
 #pragma once
 
 #include <string>
+#include <map>
 
 #include "squaddefine.h"
 #include "DataLibrary.h"
+
+struct LuaTempContext;
 
 #define INTVAL(a) int get##a() \
 	{ \
@@ -41,13 +44,12 @@
 class Squad
 {
 public:
-	Squad(std::string path, std::string srcpath);
 	Squad(std::string path);
 	virtual ~Squad();
 
-	bool isInit() { return mInit; } 
+	virtual bool init(std::string srcpath);
+	virtual bool init();
 protected:
-	bool mInit;
 	std::string mPath;
 
 public:
@@ -85,12 +87,27 @@ public:
 
 	bool applyEffect(std::string effectid, std::string &eid);
 	void removeEffect(std::string eid);
+	int getEffectLevel(std::string eid);
 
 public:
 	virtual float getAttr(enumtype attrtype , enumtype calctype);
 
+//触发器
+public:
+	std::string addTrigger(std::string trigertype, std::string file ,std::string func, std::string context);
+	void removeTrigger(std::string tid);
+
+	void activeTrigger(std::string tid);
+	void disableTrigger(std::string tid);
+
+protected:
+	void Trigger(std::string triggertype, LuaTempContext *tempcontext);
+
 
 //获取属性
+public:
+	std::map<std::string, enumtype> getSkillTable();
+
 public:
 	INTVAL(Type);
 	INTVAL(SquadType);
@@ -108,5 +125,5 @@ public:
 	STRVAL(SweaponId);
 	STRVAL(ArmorId);
 	STRVAL(LeaderId);
-	STRVAL(RetainerID);
+	STRVAL(RetainerId);
 };

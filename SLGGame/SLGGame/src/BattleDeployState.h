@@ -11,7 +11,6 @@ class GUIBattle;
 class GUIDeployWindows;
 class GUIMenuWindow;
 class BattleSquad;
-class BattleSquadManager;
 class AreaGrap;
 class GUISquadWindows;
 
@@ -31,7 +30,7 @@ public:
 	virtual bool mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id);
 
 	void deployConfirm();
-	void selectIndex(int index);
+	void selectIndex(unsigned int index);
 private:
 	CameraContral* mCameraContral;
 	GUIBattle* mGUIBattle;
@@ -41,7 +40,6 @@ private:
 	std::vector<BattleSquad*> mDeployList;
 	BattleSquad* mSelectSquad;
 	int mSelectIndex;
-	BattleSquadManager* mSquadManager;
 	AreaGrap* mAreaGrap;
 
 	int mMouseX;

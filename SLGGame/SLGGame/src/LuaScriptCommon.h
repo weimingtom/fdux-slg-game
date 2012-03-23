@@ -49,30 +49,35 @@ static int SetString(lua_State* L)
 	return 0;
 }
 
-static int GetSquadCoord(lua_State* L)
+static int GetTempInt(lua_State* L)
 {
-	std::string squad(luaL_checkstring(L, 1));
-	int x = -1,y = -1;
-	BattleSquad* battlesquad = BattleSquadManager::getSingleton().getBattleSquad(squad);
-	if(battlesquad!=NULL)
+	std::string id(luaL_checkstring(L, 1));
+	int val = 0;
+	LuaTempContext* tempcontext = LuaSystem::getSingleton().getTempContext();
+	if(tempcontext)
 	{
-		x = battlesquad->getGridX();
-		y = battlesquad->getGridY();
+		std::map<std::string, int>::iterator ite = tempcontext->intMap.find(id);
+		if(ite != tempcontext->intMap.end())
+			val = ite->second;
 	}
-	lua_pushnumber(L,x);
-	lua_pushnumber(L,y);
-	return 2;
-}
-
-static int GetTeamSquadLeft(lua_State* L)
-{
-	int team = luaL_checknumber(L,1);
-	int n = 0;
-
-	lua_pushnumber(L,n);
+	lua_pushnumber(L,val);
 	return 1;
 }
 
+static int GetTempString(lua_State* L)
+{
+	std::string id(luaL_checkstring(L, 1));
+	std::string val;
+	LuaTempContext* tempcontext = LuaSystem::getSingleton().getTempContext();
+	if(tempcontext)
+	{
+		std::map<std::string, std::string>::iterator ite = tempcontext->strMap.find(id);
+		if(ite != tempcontext->strMap.end())
+			val = ite->second;
+	}
+	lua_pushstring(L,val.c_str());
+	return 1;
+}
 
 static int PlayMusic(lua_State* L)
 {
@@ -80,27 +85,6 @@ static int PlayMusic(lua_State* L)
 	DataLibrary::getSingleton().setData("GameData/StoryData/MusicName", music);
 	AudioSystem::getSingleton().playStream(music,true,2000);
 	return 0;
-}
-
-#include "CameraContral.h"
-#include "Terrain.h"
-static int SetCamera(lua_State* L)
-{
-	int x =  luaL_checknumber(L,1);
-	int y =  luaL_checknumber(L,2);
-	float xx,yy;
-	Terrain::getSingleton().getWorldCoords(x,y,xx,yy);
-	CameraContral::getSingleton().moveCameraTo(xx,yy);
-	return 0;
-}
-
-static int GetSquadIdFromPath(lua_State* L)
-{
-	std::string squadpath(luaL_checkstring(L, 1));
-	std::string::size_type i = squadpath.rfind('/');
-	std::string squad = squadpath.substr(i + 1,squadpath.size() - i -1);
-	lua_pushstring(L,squad.c_str());
-	return 1;
 }
 
 static int GetRand(lua_State* L)
@@ -112,40 +96,15 @@ static int GetRand(lua_State* L)
 	return 1;
 }
 
-#include "StoryCutScene.h"
-static int Story(lua_State* L)
-{
-	std::string script(luaL_checkstring(L, 1));
-// 	StoryCutScene* scs = new StoryCutScene(script);
-// 	BattleSquadManager::getSingleton().setCutScene(scs);
-	return 0;
-}
-
-#include <boost/format.hpp>
-static int CopySquadData(lua_State* L)
-{
-	BattleSquadManager::BattleSquadIte ite;
-	BattleSquadManager* bsm = BattleSquadManager::getSingletonPtr();
-	for(ite = bsm->mSquadList.begin(); ite != bsm->mSquadList.end(); ite++)
-	{
-		
-	}
-	return 0;
-}
-
 static const struct luaL_Reg ScriptCommonLib[] =
 {
 	{"SetInt",SetInt},
 	{"GetInt",GetInt},
 	{"GetString",GetString},
 	{"SetString",SetString},
-	{"GetSquadCoord",GetSquadCoord},
-	{"GetTeamSquadLeft",GetTeamSquadLeft},
+	{"GetTempInt",GetTempInt},
+	{"GetTempString",GetTempString},
 	{"PlayMusic",PlayMusic},
-	{"SetCamera",SetCamera},
-	{"GetSquadIdFromPath",GetSquadIdFromPath},
 	{"GetRand",GetRand},
-	{"Story",Story},
-	{"CopySquadData",CopySquadData},
 	{NULL,NULL}
 };

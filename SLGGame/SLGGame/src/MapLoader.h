@@ -20,7 +20,7 @@ public:
 
 	void initMapScript();
 private:
-	void creatSquadGrapAtPath(std::string path);
+	//void creatSquadGrapAtPath(std::string path);
 	struct MapSquadInfo
 	{
 		std::string squadId;

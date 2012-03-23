@@ -45,9 +45,13 @@ public:
 	//文件载入处理
 	void loadState(std::string file);
 
+	StateType curState() { return mCurState; }
+
 private:
 	GameState* CreateState(StateType type);
 
 	GameState* mBaseState;
 	GameState* mAffixationState;
+
+	StateType  mCurState;
 };

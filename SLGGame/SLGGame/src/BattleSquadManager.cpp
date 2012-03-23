@@ -15,8 +15,6 @@
 
 #include "Terrain.h"
 
-#include "TriggerManager.h"
-
 BattleSquadManager::BattleSquadManager()
 {
 

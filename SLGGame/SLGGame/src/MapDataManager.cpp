@@ -5,7 +5,9 @@
 #include "AVGSquadManager.h"
 #include "BattleSquadManager.h"
 #include "BattleSquad.h"
-#include "boost/format.hpp"
+#include "LuaSystem.h"
+
+#include <boost/format.hpp>
 #include <ticpp.h>
 
 MapDataManager::MapDataManager()
@@ -193,4 +195,68 @@ float MapDataManager::getCovert(int x, int y, int team)
 		re = datalib->getData(path, groundobjcost);
 	}
 	return groundcost + terraincost + groundobjcost;
+}
+
+std::string MapDataManager::addTrigger(std::string trigertype, std::string file ,std::string func, std::string context)
+{
+	int newid = 0;
+	int test;
+	while(DataLibrary::getSingleton().getData(str(boost::format("GameData/BattleData/Trigger/T%1%")%newid),test,true))
+		newid++;
+	DataLibrary::getSingleton().setData(str(boost::format("GameData/BattleData/Trigger/T%1%")%newid),0);
+	DataLibrary::getSingleton().setData(str(boost::format("GameData/BattleData/Trigger/T%1%/type")%newid),trigertype);
+	DataLibrary::getSingleton().setData(str(boost::format("GameData/BattleData/Trigger/T%1%/file")%newid),file);
+	DataLibrary::getSingleton().setData(str(boost::format("GameData/BattleData/Trigger/T%1%/func")%newid),func);
+	DataLibrary::getSingleton().setData(str(boost::format("GameData/BattleData/Trigger/T%1%/context")%newid),context);
+	return std::string("T") + Ogre::StringConverter::toString(newid);
+}
+void MapDataManager::removeTrigger(std::string tid)
+{
+	std::string particlepath = std::string("GameData/BattleData/Trigger/") + tid;
+	DataLibrary::getSingleton().delNode(particlepath);
+}
+
+void MapDataManager::activeTrigger(std::string tid)
+{
+	int test;
+	if(DataLibrary::getSingleton().getData(str(boost::format("GameData/BattleData/Trigger/%1%")%tid),test,true))
+	{
+		DataLibrary::getSingleton().setData(str(boost::format("GameData/BattleData/Trigger/%1%")%tid),1);
+	}
+}
+
+void MapDataManager::disableTrigger(std::string tid)
+{
+	int test;
+	if(DataLibrary::getSingleton().getData(str(boost::format("GameData/BattleData/Trigger/%1%")%tid),test,true))
+	{
+		DataLibrary::getSingleton().setData(str(boost::format("GameData/BattleData/Trigger/%1%")%tid),0);
+	}
+}
+
+void MapDataManager::Trigger(std::string triggertype, LuaTempContext * tempcontext)
+{
+	if(tempcontext == NULL)
+		return;
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::vector<std::string> triggerlist;
+	triggerlist = datalib->getChildList("GameData/BattleData/Trigger");
+	std::vector<std::string>::iterator ite;
+	for(ite = triggerlist.begin(); ite != triggerlist.end(); ite++)
+	{
+		std::string datapath = std::string("GameData/BattleData/Trigger/") + (*ite);
+		int active;
+		datalib->getData(datapath,active);
+		if(!active)
+			continue;
+		std::string type;
+		datalib->getData(datapath + std::string("/type"),type);
+		if(type != triggertype)
+			continue;
+		std::string context,filename,funcname;
+		datalib->getData(datapath + std::string("/file"),filename);
+		datalib->getData(datapath + std::string("/func"),funcname);
+		datalib->getData(datapath + std::string("/context"),context);
+		LuaSystem::getSingleton().executeFunction(filename,funcname,context,tempcontext);
+	}
 }

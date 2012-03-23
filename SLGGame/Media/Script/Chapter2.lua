@@ -457,6 +457,5 @@ GUI.ShowImage("",4,2000);
 GUI.CM(2000);
 GUI.SetDialogVisible(0);
 
-AVGLib.ModifyMorale("none",20);
 AVGLib.AddSquad("Olivia","Olivia");
 StateLib.BattleState("demo1.xml");

@@ -7,41 +7,50 @@
 #define RETURNONERR(a) if(!a) return;
 #define RETURNFALSEONERR(a) if(!a) return false;
 
-Squad::Squad(std::string path, std::string srcpath)
+Squad::Squad(std::string path)
 {
-	mInit = false;
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	mPath = path;
 	std::string::size_type i = path.rfind('/');
 	mSquadId = path.substr(i + 1,path.size() - i -1);
-	RETURNONERR(datalib->copyNode(srcpath + std::string("/Name"), mPath + std::string("/Name"), true));
-	RETURNONERR(datalib->copyNode(srcpath + std::string("/Describe"), mPath + std::string("/Describe"), true));
-	RETURNONERR(datalib->copyNode(srcpath + std::string("/Type"), mPath + std::string("/Type"), true));
-	RETURNONERR(datalib->copyNode(srcpath + std::string("/SquadType"), mPath + std::string("/SquadType"), true));
-	RETURNONERR(datalib->copyNode(srcpath + std::string("/Level"), mPath + std::string("/Level"), true));
-	RETURNONERR(datalib->copyNode(srcpath + std::string("/Exp"), mPath + std::string("/Exp"), true));
-	RETURNONERR(datalib->copyNode(srcpath + std::string("/UnitNum"), mPath + std::string("/UnitNum"), true));
-	RETURNONERR(datalib->copyNode(srcpath + std::string("/UnitMesh"), mPath + std::string("/UnitMesh"), true));
-	RETURNONERR(datalib->copyNode(srcpath + std::string("/UnitMat"), mPath + std::string("/UnitMat"), true));
-	RETURNONERR(datalib->copyNode(srcpath + std::string("/MoveSound"), mPath + std::string("/MoveSound"), true));
+}
+
+Squad::~Squad()
+{
+	DataLibrary::getSingleton().delNode(mPath);
+}
+
+bool Squad::init(std::string srcpath)
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/Name"), mPath + std::string("/Name"), true));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/Describe"), mPath + std::string("/Describe"), true));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/Type"), mPath + std::string("/Type"), true));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/SquadType"), mPath + std::string("/SquadType"), true));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/Level"), mPath + std::string("/Level"), true));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/Exp"), mPath + std::string("/Exp"), true));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/UnitNum"), mPath + std::string("/UnitNum"), true));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/UnitMesh"), mPath + std::string("/UnitMesh"), true));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/UnitMat"), mPath + std::string("/UnitMat"), true));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/MoveSound"), mPath + std::string("/MoveSound"), true));
 
 	std::string tempstr;
-	RETURNONERR(datalib->getData(srcpath + std::string("/SoilderId"), tempstr, true));
-	RETURNONERR(equipEquipment(EQUIP_SOILDER, tempstr));
-	RETURNONERR(datalib->getData(srcpath + std::string("/HorseId"), tempstr, true));
-	RETURNONERR(equipEquipment(EQUIP_HORSE, tempstr));
-	RETURNONERR(datalib->getData(srcpath + std::string("/PweaponId"), tempstr, true));
-	RETURNONERR(equipEquipment(EQUIP_PWEAPON, tempstr));
-	RETURNONERR(datalib->getData(srcpath + std::string("/SweaponId"), tempstr, true));
-	RETURNONERR(equipEquipment(EQUIP_SWEAPON, tempstr));
-	RETURNONERR(datalib->getData(srcpath + std::string("/ArmorId"), tempstr, true));
-	RETURNONERR(equipEquipment(EQUIP_ARMOR, tempstr));
-	RETURNONERR(datalib->getData(srcpath + std::string("/ShieldId"), tempstr, true));
-	RETURNONERR(equipEquipment(EQUIP_SHIELD, tempstr));
+	RETURNFALSEONERR(datalib->getData(srcpath + std::string("/SoilderId"), tempstr, true));
+	RETURNFALSEONERR(equipEquipment(EQUIP_SOILDER, tempstr));
+	RETURNFALSEONERR(datalib->getData(srcpath + std::string("/HorseId"), tempstr, true));
+	RETURNFALSEONERR(equipEquipment(EQUIP_HORSE, tempstr));
+	RETURNFALSEONERR(datalib->getData(srcpath + std::string("/PweaponId"), tempstr, true));
+	RETURNFALSEONERR(equipEquipment(EQUIP_PWEAPON, tempstr));
+	RETURNFALSEONERR(datalib->getData(srcpath + std::string("/SweaponId"), tempstr, true));
+	RETURNFALSEONERR(equipEquipment(EQUIP_SWEAPON, tempstr));
+	RETURNFALSEONERR(datalib->getData(srcpath + std::string("/ArmorId"), tempstr, true));
+	RETURNFALSEONERR(equipEquipment(EQUIP_ARMOR, tempstr));
+	RETURNFALSEONERR(datalib->getData(srcpath + std::string("/ShieldId"), tempstr, true));
+	RETURNFALSEONERR(equipEquipment(EQUIP_SHIELD, tempstr));
 
-	RETURNONERR(datalib->copyNode(srcpath + std::string("/LeaderId"), mPath + std::string("/LeaderId"), true));
-	RETURNONERR(datalib->getData(srcpath + std::string("/RetainerID"), tempstr, true));
-	RETURNONERR(hireRetainer(tempstr));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/LeaderId"), mPath + std::string("/LeaderId"), true));
+	RETURNFALSEONERR(datalib->getData(srcpath + std::string("/RetainerId"), tempstr, true));
+	RETURNFALSEONERR(hireRetainer(tempstr));
 
 	enumtype squadtype;
 	datalib->getData(mPath + std::string("/SquadType"), squadtype);
@@ -63,7 +72,7 @@ Squad::Squad(std::string path, std::string srcpath)
 	for(ite = skilltable.begin(); ite != skilltable.end(); ite++)
 	{	
 		//RETURNONERR(datalib->getData(defaultskillpath + std::string("/") + (*ite), tempstr, true));
-		RETURNONERR(addSkill((*ite)));
+		RETURNFALSEONERR(addSkill((*ite)));
 	}
 
 	skilltable.clear();
@@ -71,26 +80,14 @@ Squad::Squad(std::string path, std::string srcpath)
 	enumtype type = 0;
 	for(ite = skilltable.begin(); ite != skilltable.end(); ite++)
 	{	
-		RETURNONERR(datalib->getData(srcpath + std::string("/SkillTable/") + (*ite), type, true));
-		RETURNONERR(learnSkill(type, (*ite)));
+		RETURNFALSEONERR(datalib->getData(srcpath + std::string("/SkillTable/") + (*ite), type, true));
+		RETURNFALSEONERR(learnSkill(type, (*ite)));
 	}
-
-	mInit = true;
+	return true;
 }
-
-Squad::Squad(std::string path)
+bool Squad::init()
 {
-	mInit = false;
-	DataLibrary* datalib = DataLibrary::getSingletonPtr();
-	mPath = path;
-	std::string::size_type i = path.rfind('/');
-	mSquadId = path.substr(i + 1,path.size() - i -1);
-	mInit = true;
-}
-
-Squad::~Squad()
-{
-	DataLibrary::getSingleton().delNode(mPath);
+	return true;
 }
 
 bool Squad::applyModifer(std::string modifierpath, std::string &modifierid)
@@ -138,7 +135,7 @@ bool Squad::applyModifer(AttrModifier* modifier, std::string &modifierid)
 	datalib->setData(distpath + std::string("/Covert"), modifier->Covert, true);
 	datalib->setData(distpath + std::string("/Toughness"), modifier->Toughness, true);
 	datalib->setData(distpath + std::string("/Conter"), modifier->Conter, true);
-	return false;
+	return true;
 }
 void Squad::removeModifier(std::string modifierid)
 {
@@ -301,8 +298,10 @@ bool Squad::learnSkill(enumtype skilltype, std::string skillid)
 			//ite = skilltable.find(skillid);
 			if(ite != skilltable.end())
 			{
+				std::string effect;
+				datalib->getData(str(boost::format("%1%/%2%/Effect")%defaultskillpath%skillid), effect);
 				std::string eid;
-				if(applyEffect(skillid, eid))
+				if(applyEffect(effect, eid))
 				{
 					datalib->setData(str(boost::format("%1%/SkillTable/%2%")%mPath%skillid), skilltype);
 					datalib->setData(str(boost::format("%1%/SkillTable/%2%/EffectId")%mPath%skillid), eid);
@@ -502,12 +501,12 @@ bool Squad::applyEffect(std::string effectid, std::string &eid)
 						effectlevel += 1;
 						datalib->setData(str(boost::format("%1%/%2%")%distpath%(*ite)), effectlevel);
 						//调用效果脚本
-// 						std::string contexpath = str(boost::format("%1%/%2%/ScriptContext")%distpath%eid);
-// 						LuaTempContext* tempcontext = new LuaTempContext;
-// 						tempcontext->strMap.insert(std::make_pair("squadid", mSquadId));
-// 						tempcontext->strMap.insert(std::make_pair("effectid", eid));
-// 						LuaSystem::getSingleton().executeFunction(scriptpath ,"onaffect",contexpath, tempcontext);
-// 						delete tempcontext;
+						std::string contexpath = str(boost::format("%1%/%2%/ScriptContext")%distpath%eid);
+						LuaTempContext* tempcontext = new LuaTempContext;
+						tempcontext->strMap.insert(std::make_pair("squadid", mSquadId));
+						tempcontext->strMap.insert(std::make_pair("effectid", eid));
+						LuaSystem::getSingleton().executeFunction(scriptpath ,"onaffect",contexpath, tempcontext);
+						delete tempcontext;
 					}
 					else
 					{
@@ -531,12 +530,12 @@ bool Squad::applyEffect(std::string effectid, std::string &eid)
 			datalib->setData(str(boost::format("%1%/%2%")%distpath%eid), 1);
 			datalib->setData(str(boost::format("%1%/%2%/EffectId")%distpath%eid), effectid);
 			//调用效果脚本
-// 			std::string contexpath = str(boost::format("%1%/%2%/ScriptContext")%distpath%eid);
-// 			LuaTempContext* tempcontext = new LuaTempContext;
-// 			tempcontext->strMap.insert(std::make_pair("squadid", mSquadId));
-// 			tempcontext->strMap.insert(std::make_pair("effectid", eid));
-// 			LuaSystem::getSingleton().executeFunction(scriptpath ,"onaffect",contexpath, tempcontext);
-// 			delete tempcontext;
+			std::string contexpath = str(boost::format("%1%/%2%/ScriptContext")%distpath%eid);
+			LuaTempContext* tempcontext = new LuaTempContext;
+			tempcontext->strMap.insert(std::make_pair("squadid", mSquadId));
+			tempcontext->strMap.insert(std::make_pair("effectid", eid));
+			LuaSystem::getSingleton().executeFunction(scriptpath ,"onaffect",contexpath, tempcontext);
+			delete tempcontext;
 		}
 		return true;
 	}
@@ -570,14 +569,23 @@ void Squad::removeEffect(std::string eid)
 			return;
 		}
 		//调用效果脚本
-// 		std::string contexpath = str(boost::format("%1%/ScriptContext")%distpath);
-// 		LuaTempContext* tempcontext = new LuaTempContext;
-// 		tempcontext->strMap.insert(std::make_pair("squadid", mSquadId));
-// 		tempcontext->strMap.insert(std::make_pair("effectid", eid));
-// 		LuaSystem::getSingleton().executeFunction(scriptpath ,"onremove",contexpath, tempcontext);
-// 		delete tempcontext;
-// 		datalib->delNode(distpath);
+		std::string contexpath = str(boost::format("%1%/ScriptContext")%distpath);
+		LuaTempContext* tempcontext = new LuaTempContext;
+		tempcontext->strMap.insert(std::make_pair("squadid", mSquadId));
+		tempcontext->strMap.insert(std::make_pair("effectid", eid));
+		LuaSystem::getSingleton().executeFunction(scriptpath ,"onremove",contexpath, tempcontext);
+		delete tempcontext;
+		datalib->delNode(distpath);
 	}
+}
+
+int Squad::getEffectLevel(std::string eid)
+{
+	int lv = 0;
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::string distpath = mPath + std::string("/Effect/") + eid;
+	datalib->getData(distpath, lv);
+	return lv;
 }
 
 float Squad::getAttr(enumtype attrtype , enumtype calctype)
@@ -684,4 +692,83 @@ float Squad::getAttr(enumtype attrtype , enumtype calctype)
 		break;
 	}
 	return 0.0f;
+}
+
+std::string Squad::addTrigger(std::string trigertype, std::string file ,std::string func, std::string context)
+{
+	int newid = 0;
+	int test;
+	while(DataLibrary::getSingleton().getData(str(boost::format("%1%/Trigger/T%2%")%mPath%newid),test,true))
+		newid++;
+	DataLibrary::getSingleton().setData(str(boost::format("%1%/Trigger/T%2%")%mPath%newid),0);
+	DataLibrary::getSingleton().setData(str(boost::format("%1%/Trigger/T%2%/type")%mPath%newid),trigertype);
+	DataLibrary::getSingleton().setData(str(boost::format("%1%/Trigger/T%2%/file")%mPath%newid),file);
+	DataLibrary::getSingleton().setData(str(boost::format("%1%/Trigger/T%2%/func")%mPath%newid),func);
+	DataLibrary::getSingleton().setData(str(boost::format("%1%/Trigger/T%2%/context")%mPath%newid),context);
+	return std::string("T") + Ogre::StringConverter::toString(newid);
+}
+void Squad::removeTrigger(std::string tid)
+{
+	std::string particlepath = str(boost::format("%1%/Trigger/%2%")%mPath%tid);
+	DataLibrary::getSingleton().delNode(particlepath);
+}
+
+void Squad::activeTrigger(std::string tid)
+{
+	int test;
+	if(DataLibrary::getSingleton().getData(str(boost::format("%1%/Trigger/%2%")%mPath%tid),test,true))
+	{
+		DataLibrary::getSingleton().setData(str(boost::format("%1%/Trigger/%2%")%mPath%tid),1);
+	}
+}
+
+void Squad::disableTrigger(std::string tid)
+{
+	int test;
+	if(DataLibrary::getSingleton().getData(str(boost::format("GameData/BattleData/Trigger/%1%")%tid),test,true))
+	{
+		DataLibrary::getSingleton().setData(str(boost::format("GameData/BattleData/Trigger/%1%")%tid),0);
+	}
+}
+
+void Squad::Trigger(std::string triggertype, LuaTempContext * tempcontext)
+{
+	if(tempcontext == NULL)
+		return;
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::vector<std::string> triggerlist;
+	triggerlist = datalib->getChildList(mPath + std::string("/Trigger"));
+	std::vector<std::string>::iterator ite;
+	for(ite = triggerlist.begin(); ite != triggerlist.end(); ite++)
+	{
+		std::string datapath = mPath + std::string("/Trigger/") + (*ite);
+		int active;
+		datalib->getData(datapath,active);
+		if(!active)
+			continue;
+		std::string type;
+		datalib->getData(datapath + std::string("/type"),type);
+		if(type != triggertype)
+			continue;
+		std::string context,filename,funcname;
+		datalib->getData(datapath + std::string("/file"),filename);
+		datalib->getData(datapath + std::string("/func"),funcname);
+		datalib->getData(datapath + std::string("/context"),context);
+		LuaSystem::getSingleton().executeFunction(filename,funcname,context,tempcontext);
+	}
+}
+
+std::map<std::string, enumtype> Squad::getSkillTable()
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::map<std::string, int> skilllist;
+	std::vector<std::string> skilltable = datalib->getChildList(mPath + std::string("/SkillTable"));
+	enumtype type = 0;
+	std::vector<std::string>::iterator ite;
+	for(ite = skilltable.begin(); ite != skilltable.end(); ite++)
+	{	
+		datalib->getData(mPath + std::string("/SkillTable/") + (*ite), type, true);
+		skilllist.insert(std::make_pair((*ite), type));
+	}
+	return skilllist;
 }

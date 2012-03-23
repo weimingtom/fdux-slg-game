@@ -9,7 +9,7 @@
 #include "LuaStateFun.h"
 #include "DataLibrary.h"
 
-StateManager::StateManager(void):mBaseState(NULL),mAffixationState(NULL)
+StateManager::StateManager(void):mBaseState(NULL),mAffixationState(NULL),mCurState(None)
 {
 	//×¢²áluaº¯Êý
 	LuaSystem::getSingletonPtr()->registerCLib("StateLib",StateLib);
@@ -32,6 +32,7 @@ void StateManager::changeState( std::string arg,StateType type )
 		delete mBaseState;
 	}
 
+	mCurState = type;
 	mBaseState=CreateState(type);
 
 	mBaseState->initialize(arg);

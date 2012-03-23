@@ -12,10 +12,10 @@ class CameraContral;
 class CutSceneDirector:public SubBattleState, public InputListener
 {
 public:
-	CutSceneDirector();
+	CutSceneDirector(CutScene* cutscene);
 	~CutSceneDirector();
 
-	void addCutScene(CutScene* cutscene);
+//	void addCutScene(CutScene* cutscene);
 	void skipCutScene();
 
 	virtual bool keyPressed(const OIS::KeyEvent &arg);

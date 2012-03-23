@@ -48,7 +48,7 @@ bool GUIDeployWindows::GridInputEvent(int x,int y)
 
 void GUIDeployWindows::initList(std::vector<std::string> squadlist)
 {
-	for(int n = 0; n < squadlist.size(); n++)
+	for(unsigned int n = 0; n < squadlist.size(); n++)
 	{
 		mDeployList->addItem(squadlist[n]);
 		mDeployList->setSubItemNameAt(1, n ,StringTable::getSingleton().getString("NotDeploy"));

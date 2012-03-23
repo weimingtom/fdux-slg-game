@@ -25,11 +25,12 @@
 #include "timer.hpp"
 #include "MapDataManager.h"
 #include "Terrain.h"
-#include "TriggerManager.h"
 #include "CameraContral.h"
 #include "LuaSkill.h"
 #include "LuaScriptCommon.h"
-#include "LuaTrigger.h"
+#include "LuaMap.h"
+#include "LuaSquad.h"
+#include "LuaBattle.h"
 #include "GUISLWindow.h"
 #include "Framerate.h"
 
@@ -150,11 +151,12 @@ bool Core::initialize(bool isFullScene)
 	new MapDataManager;
 	new SquadGrapManager(mSceneMgr);
 	new Terrain;
-	new TriggerManager;
 	new CameraContral;
-	mLuaSystem->registerCLib("TriggerLib",TriggerLib);
 	mLuaSystem->registerCLib("ScriptCommonLib",ScriptCommonLib);
 	mLuaSystem->registerCLib("SkillLib",SkillLib);
+	mLuaSystem->registerCLib("MapLib",MapLib);
+	mLuaSystem->registerCLib("SquadLib",SquadLib);
+	mLuaSystem->registerCLib("BattleLib",BattleLib);
 
 
 	mStateManager=new StateManager();
