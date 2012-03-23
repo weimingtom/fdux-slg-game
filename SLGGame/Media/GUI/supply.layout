@@ -1,69 +1,153 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout" version="3.2.0">
-    <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" name="SupplyBG">
+    <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Main" name="SupplyBG">
         <Widget type="Window" skin="SLGWindow" position="0 0 235 477">
             <Widget type="ListBox" skin="ListBox" position="25 55 185 395"/>
         </Widget>
         <Widget type="Window" skin="SLGMiniWindowSkin" position="240 5 730 305">
             <Widget type="ImageBox" skin="SLGImageBox" position="25 20 96 128" name="SquadImage"/>
-            <Widget type="TextBox" skin="TextBox" position="25 155 95 20" name="SquadLeadName"/>
-            <Widget type="TextBox" skin="TextBox" position="25 185 95 20" name="SquadType"/>
-            <Widget type="TextBox" skin="TextBox" position="50 215 70 20" name="SquadLv"/>
+            <Widget type="TextBox" skin="TextBox" position="25 155 95 20" name="SquadLeadName">
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="20"/>
+                <Property key="Caption" value="SquadLeadName"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="25 185 95 20" name="SquadType">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="50 215 70 20" name="SquadLv">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
             <Widget type="TextBox" skin="TextBox" position="25 215 23 20">
                 <Property key="Caption" value="LV:"/>
+                <Property key="FontHeight" value="20"/>
             </Widget>
             <Widget type="TextBox" skin="TextBox" position="25 240 30 20">
                 <Property key="Caption" value="Exp:"/>
+                <Property key="FontHeight" value="20"/>
             </Widget>
-            <Widget type="TextBox" skin="TextBox" position="25 265 95 20" name="SquadExp"/>
-            <Widget type="TextBox" skin="TextBox" position="125 25 55 20" name="TEXT_SquadPWeapon"/>
-            <Widget type="TextBox" skin="TextBox" position="185 25 105 20" name="SquadPWeapon"/>
-            <Widget type="TextBox" skin="TextBox" position="125 50 55 20" name="TEXT_SquadSWeapon"/>
-            <Widget type="TextBox" skin="TextBox" position="185 50 105 20" name="SquadSWeapon"/>
-            <Widget type="TextBox" skin="TextBox" position="125 75 55 20" name="TEXT_SquadShield"/>
-            <Widget type="TextBox" skin="TextBox" position="185 75 105 20" name="SquadShield"/>
-            <Widget type="TextBox" skin="TextBox" position="125 100 55 20" name="TEXT_SquadArmor"/>
-            <Widget type="TextBox" skin="TextBox" position="185 100 105 20" name="SquadArmor"/>
-            <Widget type="TextBox" skin="TextBox" position="125 125 55 20" name="TEXT_SqureHorse"/>
-            <Widget type="TextBox" skin="TextBox" position="185 125 105 20" name="SqureHorse"/>
+            <Widget type="TextBox" skin="TextBox" position="25 265 95 20" name="SquadExp">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="125 25 55 20" name="TEXT_SquadPWeapon">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="185 25 105 20" name="SquadPWeapon">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="125 50 55 20" name="TEXT_SquadSWeapon">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="185 50 105 20" name="SquadSWeapon">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="125 75 55 20" name="TEXT_SquadShield">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="185 75 105 20" name="SquadShield">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="125 100 55 20" name="TEXT_SquadArmor">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="185 100 105 20" name="SquadArmor">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="125 125 55 20" name="TEXT_SqureHorse">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="185 125 105 20" name="SqureHorse">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
             <Widget type="ScrollBar" skin="SLGScrollBarV" position="300 10 15 285"/>
-            <Widget type="TextBox" skin="TextBox" position="325 15 55 20" name="TEXT_SquadAttack"/>
-            <Widget type="TextBox" skin="TextBox" position="325 40 55 20" name="TEXT_SquadRangeAttack"/>
-            <Widget type="TextBox" skin="TextBox" position="325 65 55 20" name="TEXT_SquadDefense"/>
-            <Widget type="TextBox" skin="TextBox" position="325 90 55 20" name="TEXT_SquadArray"/>
-            <Widget type="TextBox" skin="TextBox" position="325 115 55 20" name="TEXT_SquadAgility"/>
-            <Widget type="TextBox" skin="TextBox" position="325 140 55 20" name="TEXT_SquadDetect"/>
-            <Widget type="TextBox" skin="TextBox" position="325 165 55 20" name="TEXT_SquadConcealment"/>
-            <Widget type="TextBox" skin="TextBox" position="325 190 55 20" name="TEXT_SquadTenacity"/>
-            <Widget type="TextBox" skin="TextBox" position="325 215 55 20" name="TEXT_SquadAP"/>
-            <Widget type="TextBox" skin="TextBox" position="325 240 55 20" name="TEXT_SquadCounterattack"/>
-            <Widget type="TextBox" skin="TextBox" position="325 265 55 20" name="TEXT_SquadPeople"/>
-            <Widget type="TextBox" skin="TextBox" position="385 15 105 20" name="SquadAttack"/>
-            <Widget type="TextBox" skin="TextBox" position="385 40 105 20" name="SquadRangeAttack"/>
-            <Widget type="TextBox" skin="TextBox" position="385 65 105 20" name="SquadDefense"/>
-            <Widget type="TextBox" skin="TextBox" position="385 90 105 20" name="SquadArray"/>
-            <Widget type="TextBox" skin="TextBox" position="385 115 105 20" name="SquadAgility"/>
-            <Widget type="TextBox" skin="TextBox" position="385 140 105 20" name="SquadDetect"/>
-            <Widget type="TextBox" skin="TextBox" position="385 165 105 20" name="SquadConcealment"/>
-            <Widget type="TextBox" skin="TextBox" position="385 190 105 20" name="SquadTenacity"/>
-            <Widget type="TextBox" skin="TextBox" position="385 215 105 20" name="SquadAP"/>
-            <Widget type="TextBox" skin="TextBox" position="385 240 105 20" name="SquadCounterattack"/>
-            <Widget type="TextBox" skin="TextBox" position="385 265 105 20" name="SquadPeople"/>
-            <Widget type="TextBox" skin="TextBox" position="510 15 60 20" name="TEXT_SquadSkill"/>
+            <Widget type="TextBox" skin="TextBox" position="325 15 55 20" name="TEXT_SquadAttack">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="325 40 55 20" name="TEXT_SquadRangeAttack">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="325 65 55 20" name="TEXT_SquadDefense">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="325 90 55 20" name="TEXT_SquadArray">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="325 115 55 20" name="TEXT_SquadAgility">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="325 140 55 20" name="TEXT_SquadDetect">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="325 165 55 20" name="TEXT_SquadConcealment">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="325 190 55 20" name="TEXT_SquadTenacity">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="325 215 55 20" name="TEXT_SquadAP">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="325 240 55 20" name="TEXT_SquadCounterattack">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="325 265 55 20" name="TEXT_SquadPeople">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="385 15 105 20" name="SquadAttack">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="385 40 105 20" name="SquadRangeAttack">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="385 65 105 20" name="SquadDefense">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="385 90 105 20" name="SquadArray">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="385 115 105 20" name="SquadAgility">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="385 140 105 20" name="SquadDetect">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="385 165 105 20" name="SquadConcealment">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="385 190 105 20" name="SquadTenacity">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="385 215 105 20" name="SquadAP">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="385 240 105 20" name="SquadCounterattack">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="385 265 105 20" name="SquadPeople">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="510 15 60 20" name="TEXT_SquadSkill">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
             <Widget type="ImageBox" skin="ImageBox" position="510 40 35 35" name="SquadSkillIcon1"/>
             <Widget type="ImageBox" skin="ImageBox" position="550 40 35 35" name="SquadSkillIcon2"/>
             <Widget type="ImageBox" skin="ImageBox" position="590 40 35 35" name="SquadSkillIcon3"/>
             <Widget type="ImageBox" skin="ImageBox" position="510 105 35 35" name="SquadPassiveSkillIcon1"/>
             <Widget type="ImageBox" skin="ImageBox" position="550 105 35 35" name="SquadPassiveSkillIcon2"/>
-            <Widget type="TextBox" skin="TextBox" position="510 80 60 20" name="TEXT_SquadPassiveSkill"/>
+            <Widget type="TextBox" skin="TextBox" position="510 80 60 20" name="TEXT_SquadPassiveSkill">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
             <Widget type="ImageBox" skin="ImageBox" position="590 105 35 35" name="SquadPassiveSkillIcon3"/>
             <Widget type="ImageBox" skin="ImageBox" position="630 105 35 35" name="SquadPassiveSkillIcon4"/>
             <Widget type="ImageBox" skin="ImageBox" position="670 105 35 35" name="SquadPassiveSkillIcon5"/>
-            <Widget type="TextBox" skin="TextBox" position="510 150 60 20" name="TEXT_SquadUseEquip"/>
+            <Widget type="TextBox" skin="TextBox" position="510 150 60 20" name="TEXT_SquadUseEquip">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
             <Widget type="ImageBox" skin="ImageBox" position="510 175 35 35" name="SquadUseEquipIcon1"/>
             <Widget type="ImageBox" skin="ImageBox" position="550 175 35 35" name="SquadUseEquipIcon2"/>
             <Widget type="ImageBox" skin="ImageBox" position="590 175 35 35" name="SquadUseEquipIcon3"/>
-            <Widget type="TextBox" skin="TextBox" position="510 215 60 20" name="TEXT_SquadEffect"/>
+            <Widget type="TextBox" skin="TextBox" position="510 215 60 20" name="TEXT_SquadEffect">
+                <Property key="FontHeight" value="20"/>
+            </Widget>
             <Widget type="ImageBox" skin="ImageBox" position="510 240 35 35" name="SquadEffectIcon1"/>
             <Widget type="ImageBox" skin="ImageBox" position="550 240 35 35" name="SquadEffectIcon2"/>
             <Widget type="ImageBox" skin="ImageBox" position="590 240 35 35" name="SquadEffectIcon3"/>
@@ -77,23 +161,20 @@
             </Widget>
         </Widget>
         <Widget type="Window" skin="SLGWindow" position="5 480 225 205">
-            <Widget type="Button" skin="SLGButton3" position="25 100 175 35" name="SupplyLoad">
+            <Widget type="Button" skin="SLGButton3" position="25 90 175 55" name="T_SupplyLoad">
                 <Property key="Caption" value="load"/>
                 <Property key="TextColour" value="1 1 1"/>
-                <Property key="FontHeight" value="18"/>
-                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="20"/>
             </Widget>
-            <Widget type="Button" skin="SLGButton3" position="25 140 175 35" name="SupplyExit">
+            <Widget type="Button" skin="SLGButton3" position="25 130 175 60" name="T_SupplyExit">
                 <Property key="Caption" value="exit"/>
                 <Property key="TextColour" value="1 1 1"/>
-                <Property key="FontName" value="fireflysung"/>
-                <Property key="FontHeight" value="18"/>
+                <Property key="FontHeight" value="20"/>
             </Widget>
-            <Widget type="Button" skin="SLGButton3" position="25 60 175 35" name="SupplySave">
+            <Widget type="Button" skin="SLGButton3" position="25 50 175 55" name="T_SupplySave">
                 <Property key="Caption" value="save"/>
                 <Property key="TextColour" value="1 1 1"/>
-                <Property key="FontHeight" value="18"/>
-                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="20"/>
             </Widget>
         </Widget>
     </Widget>

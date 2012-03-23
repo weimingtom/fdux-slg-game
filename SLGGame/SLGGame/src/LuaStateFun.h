@@ -27,7 +27,7 @@ extern "C"
 		return 0;
 	}
 
-	static int SupplyState(lua_State* L)
+	static int SupplyState1(lua_State* L)
 	{
 		std::string arg(luaL_checkstring(L, 1));
 
@@ -49,7 +49,7 @@ extern "C"
 	{
 		{"AvgState",AvgState},
 		{"BattleState",BattleState1},
-		{"SupplyState",SupplyState},
+		{"SupplyState",SupplyState1},
 		{"MenuState",Menustate},
 
 		{NULL,NULL}

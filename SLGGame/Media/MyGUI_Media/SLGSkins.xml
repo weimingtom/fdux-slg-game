@@ -103,25 +103,25 @@
             <State name="pushed" colour="0 0 0" shift="0"/>
         </BasisSkin>
     </Resource>
-    <Resource type="ResourceSkin" name="SLGProgressBarSkin" size="176 50" texture="MyGUI_UISkins.png">
-        <BasisSkin type="SubSkin" offset="103 0 73 50" align="Right Top">
-            <State name="normal" offset="303 273 73 50"/>
+    <Resource type="ResourceSkin" name="SLGProgressBarSkin" size="224 46" texture="MyGUI_UISkins.png">
+        <BasisSkin type="SubSkin" offset="208 0 16 46" align="Right Top">
+            <State name="normal" offset="392 276 16 46"/>
         </BasisSkin>
-        <BasisSkin type="SubSkin" offset="0 0 72 50" align="Left Top">
-            <State name="normal" offset="200 273 72 50"/>
+        <BasisSkin type="SubSkin" offset="0 0 16 46" align="Left Top">
+            <State name="normal" offset="184 276 16 46"/>
         </BasisSkin>
-        <BasisSkin type="TileRect" offset="72 0 31 50" align="Top HStretch">
-            <State name="normal" offset="272 273 31 50">
-                <Property key="TileSize" value="31 50"/>
+        <BasisSkin type="TileRect" offset="16 0 192 46" align="Top HStretch">
+            <State name="normal" offset="200 276 192 46">
+                <Property key="TileSize" value="192 46"/>
                 <Property key="TileH" value="true"/>
                 <Property key="TileV" value="false"/>
             </State>
         </BasisSkin>
     </Resource>
-    <Resource type="ResourceSkin" name="SLGProgressBarTrackSkin" size="28 50" texture="MyGUI_UISkins.png">
-        <BasisSkin type="TileRect" offset="0 0 28 50" align="Top HStretch">
-            <State name="normal" offset="110 274 28 50">
-                <Property key="TileSize" value="28 50"/>
+    <Resource type="ResourceSkin" name="SLGProgressBarTrackSkin" size="39 30" texture="MyGUI_UISkins.png">
+        <BasisSkin type="TileRect" offset="0 0 39 30" align="Top HStretch">
+            <State name="normal" offset="125 285 39 30">
+                <Property key="TileSize" value="39 30"/>
                 <Property key="TileH" value="true"/>
                 <Property key="TileV" value="false"/>
             </State>
@@ -274,14 +274,14 @@
             <State name="normal" offset="764 347 87 111"/>
         </BasisSkin>
     </Resource>
-    <Resource type="ResourceSkin" name="SLGMiniProgressBarSkin" size="176 8" texture="MyGUI_UISkins.png">
-        <BasisSkin type="SubSkin" offset="0 0 176 8" align="Center">
-            <State name="normal" offset="89 501 176 8"/>
+    <Resource type="ResourceSkin" name="SLGMiniProgressBarSkin" size="110 7" texture="MyGUI_UISkins.png">
+        <BasisSkin type="SubSkin" offset="0 0 110 7" align="Center">
+            <State name="normal" offset="109 502 110 7"/>
         </BasisSkin>
     </Resource>
-    <Resource type="ResourceSkin" name="SLGMiniProgressBarTrackSkin" size="170 5" texture="MyGUI_UISkins.png">
-        <BasisSkin type="SubSkin" offset="0 0 170 5" align="Center">
-            <State name="normal" offset="90 518 170 5"/>
+    <Resource type="ResourceSkin" name="SLGMiniProgressBarTrackSkin" size="104 3" texture="MyGUI_UISkins.png">
+        <BasisSkin type="SubSkin" offset="0 0 104 3" align="Center">
+            <State name="normal" offset="111 517 104 3"/>
         </BasisSkin>
     </Resource>
 </MyGUI>

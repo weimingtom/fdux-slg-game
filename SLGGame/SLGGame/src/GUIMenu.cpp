@@ -110,7 +110,8 @@ void GUIMenu::onOtherSceneNotify(std::string arg)
 		case NewState:
 			 {
 				 DataLibrary::getSingleton().delNode(std::string("GameData/StoryData"));
-				 StateManager::getSingletonPtr()->changeState("Chapter1.lua",StateManager::AVG);
+				 //StateManager::getSingletonPtr()->changeState("Chapter1.lua",StateManager::AVG);
+				 StateManager::getSingletonPtr()->changeState("",StateManager::Supply);
 				 break;
 			 }
 		case ExitState:
