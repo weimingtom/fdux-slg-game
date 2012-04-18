@@ -83,9 +83,9 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 	{
 		for(int x = 0; x < mapsize; x++)
 		{
-			int index = (y * mapsize + x);
+			int index = y * mapsize + x;
 			char datapathtemp[64];
-			sprintf_s(datapathtemp, 64, "GameData/BattleData/MapData/Map/M%d", index);
+			sprintf_s(datapathtemp, 64, "GameData/BattleData/MapData/Map/M%d", MapDataManager::getSingleton().getGridId(x, y));
 			std::string datapath = datapathtemp;
 			if(str1[index * 2] == 'l')
 			{
@@ -159,7 +159,7 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 		datalibrary->setData(datapath + "/GridY", objy);
 		datalibrary->setData(datapath + "/Mesh", meshname);
 		//物品类型脚本
-		datapath = std::string("GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(objy * mapsize + objx) + std::string("/MapObjType");
+		datapath = std::string("GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(MapDataManager::getSingleton().getGridId(objx, objy)) + std::string("/MapObjType");
 		datalibrary->setData(datapath, objtype);
 		datalibrary->setData(datapath + "/MapObjModuleId", objname);
 	}

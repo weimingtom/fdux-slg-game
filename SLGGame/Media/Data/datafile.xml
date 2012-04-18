@@ -520,7 +520,7 @@
 	</SkillListData>
 	<SkillData>
 		<Attack>
-			<Type type="Int" value="1"/>
+			<Type type="Int" value="7"/>
 			<MaxRange type="Int" value="1"/>
 			<MinRange type="Int" value="1"/>
 			<Area type="Int" value="1"/>
@@ -592,7 +592,7 @@
 			<Script type="String" value="heal.lua"/>
 		</Heal>
 		<Break>
-			<Type type="Int" value="1"/>
+			<Type type="Int" value="7"/>
 			<MaxRange type="Int" value="1"/>
 			<MinRange type="Int" value="1"/>
 			<Area type="Int" value="1"/>

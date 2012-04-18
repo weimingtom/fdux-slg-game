@@ -3,7 +3,7 @@
 #include "DataLibrary.h"
 #include "boost\format.hpp"
 
-//#include "BattlePlayerState.h"
+#include "BattlePlayerState.h"
 #include "BattleSquad.h"
 #include <algorithm>
 #include "StringTable.h"
@@ -259,12 +259,79 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 // 		mSkill[skillno]->setVisible(false);
 // 		mSkill[skillno]->setEnabled(false);
 // 	}
+	mSelectSquad = squad;
+	if(mSelectSquad == NULL)
+	{
+		for(int n =0; n <9; n++)
+		{
+			mSkill[n]->setVisible(false);
+			mSkill[n]->setImageResource("");
+			mSkillId[n] = "none";
+		}
+		hideScene();
+		return;
+	}
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	float apleft = mSelectSquad->getActionPoint();
+	mAPLabel->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("APLabel"))%(int)apleft));
+	std::vector<BattleSquad::ActiveSkillInfo> skilllist = mSelectSquad->GetActiveSkillList();
+	std::vector<BattleSquad::ActiveSkillInfo>::iterator ite = skilllist.begin();
+	int n = 0;
+	std::string skillname;
+	std::string skillTips;
+	std::string skillIcon;
+	for(;ite != skilllist.end(); ite++)
+	{
+		if(ite->skillid == "move")
+		{
+			mSkill[n]->setImageResource("Move");
+			mSkill[n]->setCaption(StringTable::getSingleton().getString("Move"));
+			mSkill[n]->setUserString("Tips",StringTable::getSingleton().getString("Tips_Move"));
+		}
+		else if(ite->skillid == "looseformation")
+		{
+			mSkill[n]->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("FormationLoosButton"))%((*ite).apcost)));
+			mSkill[n]->setUserString("Tips",StringTable::getSingletonPtr()->getString("Tips_FormationLoosButton"));
+			mSkill[n]->setImageResource("Defence");
+		}
+		else if(ite->skillid == "lineformation")
+		{
+			mSkill[n]->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("FormationLineButton"))%((*ite).apcost)));
+			mSkill[n]->setUserString("Tips",StringTable::getSingletonPtr()->getString("Tips_FormationLineButton"));
+			mSkill[n]->setImageResource("Defence");
+		}
+		else if(ite->skillid == "circularformation")
+		{
+			mSkill[n]->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("FormationCircButton"))%((*ite).apcost)));
+			mSkill[n]->setUserString("Tips",StringTable::getSingletonPtr()->getString("Tips_FormationCircButton"));
+			mSkill[n]->setImageResource("Defence");
+		}
+		else
+		{
+			datalib->getData(std::string("StaticData/SkillData/")+ (*ite).skillid + std::string("/Name"),skillname);
+			datalib->getData(std::string("StaticData/SkillData/")+ (*ite).skillid + std::string("/Describe"),skillTips);
+			mSkill[n]->setCaption(str(boost::format("%1%\nAP:%2%")%skillname%((*ite).apcost)));
+			mSkill[n]->setUserString("Tips",skillTips);
+			mSkill[n]->setImageResource("none");
+		}
+		mSkill[n]->setVisible(true);
+		mSkill[n]->setEnabled((*ite).available);
+		mSkillId[n] = (*ite).skillid;
+		n++;
+	}
+	for(; n <9; n++)
+	{
+		mSkill[n]->setImageResource("");
+		mSkill[n]->setVisible(false);
+		mSkillId[n] = "none";
+	}
+	showScene("");
 }
 
-// void GUICommandWindows::setPlayerState(BattlePlayerState* playerstate)
-// {
-// 	mPlayerState = playerstate;
-// }
+ void GUICommandWindows::setPlayerState(BattlePlayerState* playerstate)
+ {
+ 	mPlayerState = playerstate;
+ }
 
 void GUICommandWindows::onSkill1(MyGUI::Widget* _sender)
 {
@@ -325,5 +392,6 @@ void GUICommandWindows::useSkill(int n)
 // 		mPlayerState->changeFormation(Loose);
 // 		return;
 // 	}
-// 	mPlayerState->useSkill(mSkillId[n]);
+	if(mPlayerState)
+ 		mPlayerState->useSkill(mSkillId[n]);
 }

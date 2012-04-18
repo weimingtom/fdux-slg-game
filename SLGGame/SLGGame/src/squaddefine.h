@@ -95,13 +95,12 @@ const Direction EastSouth=5;
 const Direction SouthWest=6;
 const Direction WestNorth=7;
 
-typedef int  Formation;
-const Formation Line = 0;
-const Formation Circular = 1;
-const Formation Loose = 2;
-
-const int StroySquad = 0;
-const int MapSquad = 1;
+enum  Formation
+{
+	Line = 0,
+	Circular = 1,
+	Loose = 2
+};
 
 enum AttrCalcType
 {
@@ -153,14 +152,14 @@ enum SkillTargetType
 	SKILLTARGETTYPE_TARGETAREA = 4,
 	SKILLTARGETTYPE_TARGETLINE = 5,
 	SKILLTARGETTYPE_RANGED = 6,
-	SKILLTARGETTYPE_PASSIVE = 7
+	SKILLTARGETTYPE_MELEE = 7
 };
 
 enum SkillApType
 {
 	SKILLAPTYPE_SETUP = 0,
 	SKILLAPTYPE_BATTLE = 1,
-	SKILLAPTYPE_DEFENCE
+	SKILLAPTYPE_DEFENCE = 2
 };
 
 enum EffectType
@@ -190,11 +189,13 @@ enum UnitType
 	UNITTYPE_ALL = 3
 };
 
-typedef int SquadIconType;
-const SquadIconType SQUADTYPE_LightInf=0;
-const SquadIconType SQUADTYPE_HeavyInf=1;
-const SquadIconType SQUADTYPE_Bowman=2;
-const SquadIconType SQUADTYPE_Saint=3;
+enum SquadIconType
+{
+	SQUADTYPE_LightInf = 0,
+	SQUADTYPE_HeavyInf = 1,
+	SQUADTYPE_Bowman = 2,
+	SQUADTYPE_Saint = 3
+};
 
 struct AttackInfo
 {

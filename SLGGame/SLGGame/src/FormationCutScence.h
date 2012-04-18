@@ -11,7 +11,7 @@ class FormationCutScene:public CutScene
 {
 public:
 
-	FormationCutScene(std::string id,Formation formation);
+	FormationCutScene(std::string id, enumtype formation);
 	~FormationCutScene(void);
 
 protected:
@@ -21,6 +21,6 @@ protected:
 	void updateCutScene(unsigned int deltaTime);
 
 	SquadGraphics* mSquadGraphics;
-	Formation mForm;
+	enumtype mForm;
 	unsigned int time;
 };
