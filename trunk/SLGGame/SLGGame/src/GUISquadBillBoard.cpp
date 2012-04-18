@@ -78,7 +78,7 @@ void GUISquadBillBoard::setName( std::string name,MyGUI::Colour c)
 }
 
 
-void GUISquadBillBoard::setIcon( SquadIconType type )
+void GUISquadBillBoard::setIcon( enumtype type )
 {
 	switch(type)
 	{

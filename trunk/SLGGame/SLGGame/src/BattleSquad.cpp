@@ -38,9 +38,15 @@ bool BattleSquad::init(std::string srcpath, int team, int unitnum, int x, int y,
 	enumtype squadtype2;
 	datalib->getData(srcpath + std::string("/Type"), squadtype2);
 	if(squadtype2 == SQUAD_NORMAL)
+	{
 		setUnitMaxNum(unitnum);
+		setFormation(Line);
+	}
 	else
+	{
 		setUnitMaxNum(20);
+		setFormation(Loose);
+	}
 
 	float covert;
 	covert = getAttr(ATTR_COVERT, ATTRCALC_FULL);
@@ -87,6 +93,10 @@ bool BattleSquad::init(std::string srcpath, int team, int unitnum, int x, int y,
 	setAmbushEnemy1(0);
 	setAmbushEnemy2(0);
 	setAmbushEnemy3(0);
+
+	setActionPoint(0.0f);
+	setAPSetup(0.0f);
+	setAPBattle(0.0f);
 	return true;
 }
 bool BattleSquad::init(std::string srcpath, int team)
@@ -103,9 +113,15 @@ bool BattleSquad::init(std::string srcpath, int team)
 	enumtype squadtype2;
 	datalib->getData(srcpath + std::string("/Type"), squadtype2);
 	if(squadtype2 == SQUAD_NORMAL)
+	{
 		datalib->getData(srcpath + std::string("/UnitNum"), unitnum);
+		setFormation(Line);
+	}
 	else
+	{
 		unitnum = 20;
+		setFormation(Loose);
+	}
 	setUnitNum(unitnum);
 	setUnitMaxNum(unitnum);
 
@@ -154,6 +170,10 @@ bool BattleSquad::init(std::string srcpath, int team)
 	setAmbushEnemy1(0);
 	setAmbushEnemy2(0);
 	setAmbushEnemy3(0);
+
+	setActionPoint(0.0f);
+	setAPSetup(0.0f);
+	setAPBattle(0.0f);
 	return true;
 }
 
@@ -367,6 +387,121 @@ void BattleSquad::applyAttackRolls(bool rangedattack, enumtype d, AttackInfo &at
 	setUnitMaxNum(maxnum);
 }
 
+bool BattleSquad::changeFormation(enumtype formation, bool costap)
+{
+	if(canChangeFormation(formation) != SKILLSTATE_AVAILABLE)
+		return false;
+	setFormation(formation);
+	if(costap)
+	{
+		float ap = getActionPoint();
+		float apcost = getAPTypeCostModify(SKILLAPTYPE_SETUP);
+		ap -= apcost;
+		setAPTypeCostModify(SKILLAPTYPE_SETUP, apcost + 1.0f);
+		setActionPoint(ap);
+	}
+	return true;
+}
+
+bool BattleSquad::useSkillOn(BattleSquad* targetsquad, std::string skillid)
+{
+	if(canUseSkill(skillid) != SKILLSTATE_AVAILABLE)
+		return false;
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::string skillpath = getPath() + std::string("/SkillTable/") + skillid;
+	std::string skillinfopath = std::string("StaticData/SkillData/")+ skillid;
+	std::string skillscript;
+	datalib->getData(skillinfopath + std::string("/Script"),skillscript);
+	LuaTempContext* context = new LuaTempContext;
+	context->strMap.insert(std::make_pair("castsquad", getSquadId()));
+	context->strMap.insert(std::make_pair("targetsquad", targetsquad->getSquadId()));
+	context->intMap.insert(std::make_pair("castsuccess", 0));
+	bool re = LuaSystem::getSingleton().executeFunction(skillscript, "useskill" , skillpath + std::string("/ScriptContext"), context);
+	if(re)
+	{
+		if(context->intMap["castsuccess"] == 1)
+		{
+			float apcost = getSkillApCost(skillid);
+			float apleft = getActionPoint() - apcost;
+			setActionPoint(apleft);
+			int aptype = SKILLAPTYPE_BATTLE;
+			datalib->getData(skillinfopath + "/APType", aptype);
+			if(aptype != SKILLAPTYPE_DEFENCE)
+			{
+				apcost = getAPTypeCostModify(aptype);
+				apcost += 1.0f;
+				setAPTypeCostModify(aptype, apcost);
+			}
+			datalib->getData(skillinfopath + "/CoolDown", apcost);
+			datalib->setData(skillpath + "/CoolDown", apcost);
+		}
+	}
+	delete context;
+	return re;
+}
+
+bool BattleSquad::useSkillAt(int x, int y, std::string skillid)
+{
+	if(canUseSkill(skillid) != SKILLSTATE_AVAILABLE)
+		return false;
+	return false;
+}
+
+bool BattleSquad::tryMove(int srcx, int srcy, int tgx, int tgy, float &apleft, unsigned int &eventflag)
+{
+	MapDataManager* mapdatamanager = MapDataManager::getSingletonPtr();
+	if(mapdatamanager->getPassable(tgx, tgy, getTeam()))
+	{
+		float mapapcost = mapdatamanager->getInfApCost(tgx, tgy, getTeam());
+		if(mapapcost <= apleft)
+		{
+			apleft -= mapapcost;
+			eventflag = 0;
+			return true;
+		}
+	}
+	return false;
+}
+
+
+bool BattleSquad::move(int tgx, int tgy, unsigned int &eventflag)
+{
+	MapDataManager* mapdatamanager = MapDataManager::getSingletonPtr();
+	if(mapdatamanager->getPassable(tgx, tgy, getTeam()))
+	{
+		float mapapcost = mapdatamanager->getInfApCost(tgx, tgy, getTeam());
+		float ap = getActionPoint();
+		if(mapapcost <= ap)
+		{
+			ap -= mapapcost;
+			setActionPoint(ap);
+			eventflag = 0;
+			return true;
+		}
+	}
+	eventflag |= MOVEEVENT_WRONG;
+	return false;
+}
+
+void BattleSquad::turnStart()
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	float ap = getAttr(ATTR_ACTIONPOINT,ATTRCALC_FULL);
+	setActionPoint(ap);
+	setAPSetup(0.0f);
+	setAPBattle(0.0f);
+	LuaTempContext* luatempcontext = new LuaTempContext();
+	Trigger("TurnStart", luatempcontext);
+	delete luatempcontext;
+}
+
+void BattleSquad::turnEnd()
+{
+	LuaTempContext* luatempcontext = new LuaTempContext();
+	Trigger("TurnEnd", luatempcontext);
+	delete luatempcontext;
+}
+
 int BattleSquad::getFaction()
 {
 	int team = getTeam();
@@ -392,6 +527,78 @@ std::string BattleSquad::getFactionId()
 	return factionid;
 }
 
+bool BattleSquad::getViewByFaction(int faction)
+{
+	switch(faction)
+	{
+	case 0:
+		return getViewbyPlayer();
+	case 1:
+		return getViewbyEnemy1();
+	case 2:
+		return getViewbyEnemy2();
+	case 3:
+		return getViewbyEnemy3();
+	}
+	return false;
+}
+
+void BattleSquad::setViewByFaction(int faction, bool view)
+{
+	int iview = view?1:0;
+	switch(faction)
+	{
+	case 0:
+		setViewbyPlayer(iview);
+		break;
+	case 1:
+		setViewbyEnemy1(iview);
+		break;
+	case 2:
+		setViewbyEnemy2(iview);
+		break;
+	case 3:
+		setViewbyEnemy3(iview);
+		break;
+	}
+}
+
+bool BattleSquad::getAmbushFaction(int faction)
+{
+	switch(faction)
+	{
+	case 0:
+		return getAmbushPlayer();
+	case 1:
+		return getAmbushEnemy1();
+	case 2:
+		return getAmbushEnemy2();
+	case 3:
+		return getAmbushEnemy3();
+	}
+	return false;
+}
+
+void BattleSquad::setAmbushFaction(int faction, bool ambush)
+{
+	int iambush = ambush?1:0;
+	switch(faction)
+	{
+	case 0:
+		setAmbushPlayer(iambush);
+		break;
+	case 1:
+		setAmbushEnemy1(iambush);
+		break;
+	case 2:
+		setAmbushEnemy2(iambush);
+		break;
+	case 3:
+		setAmbushEnemy3(iambush);
+		break;
+	}
+}
+
 int BattleSquad::getUnitGrapNum()
 {
 	enumtype squadtype = getType();
@@ -405,5 +612,185 @@ int BattleSquad::getUnitGrapNum()
 	else
 	{
 		return (unitnum+9)/10;
+	}
+}
+
+std::vector<BattleSquad::ActiveSkillInfo> BattleSquad::GetActiveSkillList()
+{
+	std::vector<ActiveSkillInfo> skilllist;
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	ActiveSkillInfo skillinfo;
+	//判断移动
+	if(canMove() == SKILLSTATE_AVAILABLE)
+	{
+		skillinfo.skillid = "move";
+		skillinfo.apcost = 0;
+		skillinfo.available = true;
+		skilllist.push_back(skillinfo);
+	}
+	else if(canMove() == SKILLSTATE_NOTAVAILABLE)
+	{
+		skillinfo.skillid = "move";
+		skillinfo.apcost = 0;
+		skillinfo.available = false;
+		skilllist.push_back(skillinfo);
+	}
+	
+	//判断阵型
+	switch(canChangeFormation(Loose))
+	{
+	case SKILLSTATE_AVAILABLE:
+		skillinfo.skillid = "looseformation";
+		skillinfo.apcost = getChangeFormationApCost(Loose);
+		skillinfo.available = true;
+		skilllist.push_back(skillinfo);
+		break;
+	case SKILLSTATE_NOTAVAILABLE:
+		skillinfo.skillid = "looseformation";
+		skillinfo.apcost = getChangeFormationApCost(Loose);
+		skillinfo.available = false;
+		skilllist.push_back(skillinfo);
+		break;
+	}
+	switch(canChangeFormation(Line))
+	{
+	case SKILLSTATE_AVAILABLE:
+		skillinfo.skillid = "lineformation";
+		skillinfo.apcost = getChangeFormationApCost(Line);
+		skillinfo.available = true;
+		skilllist.push_back(skillinfo);
+		break;
+	case SKILLSTATE_NOTAVAILABLE:
+		skillinfo.skillid = "lineformation";
+		skillinfo.apcost = getChangeFormationApCost(Line);
+		skillinfo.available = false;
+		skilllist.push_back(skillinfo);
+		break;
+	}
+	switch(canChangeFormation(Circular))
+	{
+	case SKILLSTATE_AVAILABLE:
+		skillinfo.skillid = "circularformation";
+		skillinfo.apcost = getChangeFormationApCost(Circular);
+		skillinfo.available = true;
+		skilllist.push_back(skillinfo);
+		break;
+	case SKILLSTATE_NOTAVAILABLE:
+		skillinfo.skillid = "circularformation";
+		skillinfo.apcost = getChangeFormationApCost(Circular);
+		skillinfo.available = false;
+		skilllist.push_back(skillinfo);
+		break;
+	}
+	//判断主动技能
+	std::vector<std::string> activeskills;
+	activeskills = datalib->getChildList(mPath + "/Skill");
+	std::vector<std::string>::iterator ite;
+	for(ite = activeskills.begin(); ite != activeskills.end(); ite++)
+	{
+		switch(canUseSkill(*ite))
+		{
+		case SKILLSTATE_AVAILABLE:
+			skillinfo.skillid = (*ite);
+			skillinfo.apcost = getSkillApCost(*ite);
+			skillinfo.available = true;
+			skilllist.push_back(skillinfo);
+			break;
+		case SKILLSTATE_NOTAVAILABLE:
+			skillinfo.skillid = (*ite);
+			skillinfo.apcost = getSkillApCost(*ite);
+			skillinfo.available = false;
+			skilllist.push_back(skillinfo);
+			break;
+		}
+	}
+	return skilllist;
+}
+
+BattleSquad::SkillState BattleSquad::canMove()
+{
+	return SKILLSTATE_AVAILABLE;
+}
+
+BattleSquad::SkillState BattleSquad::canChangeFormation(enumtype formation)
+{
+	if(getType() != SQUAD_NORMAL)
+		return SKILLSTATE_NOSKILL;
+	if(getFormation() == formation)
+		return SKILLSTATE_NOSKILL;
+	if(getActionPoint() >= getChangeFormationApCost(formation))
+		return SKILLSTATE_AVAILABLE;
+	return SKILLSTATE_NOTAVAILABLE;
+}
+
+BattleSquad::SkillState BattleSquad::canUseSkill(std::string skillid)
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::vector<std::string> activeskills;
+	activeskills = datalib->getChildList(mPath + "/Skill");
+	std::vector<std::string>::iterator ite;
+	ite = std::find(activeskills.begin(), activeskills.end(), skillid);
+	if(ite == activeskills.end())
+		return SKILLSTATE_NOSKILL;
+	if(getActionPoint() >= getSkillApCost(skillid))
+		return SKILLSTATE_AVAILABLE;
+	return SKILLSTATE_NOTAVAILABLE;
+}
+
+float BattleSquad::getChangeFormationApCost(enumtype formation)
+{
+	return getAPTypeCostModify(SKILLAPTYPE_SETUP);
+}
+
+float BattleSquad::getSkillApCost(std::string skillid)
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::vector<std::string> skilllist;
+	skilllist = datalib->getChildList("StaticData/SkillData");
+	std::vector<std::string>::iterator ite;
+	ite = std::find(skilllist.begin(), skilllist.end(), skillid);
+	if(ite == skilllist.end())
+		return 0.0f;
+	enumtype skillaptype;
+	float skillapcost;
+	datalib->getData(str(boost::format("StaticData/SkillData/%1%/APType")%skillid),skillaptype);
+	datalib->getData(str(boost::format("StaticData/SkillData/%1%/APCost")%skillid),skillapcost);
+	switch(skillaptype)
+	{
+	case SKILLAPTYPE_SETUP:
+	case SKILLAPTYPE_BATTLE:
+		return getAPTypeCostModify(skillaptype) + skillapcost;
+	case SKILLAPTYPE_DEFENCE:
+		{
+			float ap = getActionPoint();
+			return (ap > skillapcost)?ap:skillapcost;
+		}
+	}
+	return 0.0f;
+}
+
+
+float BattleSquad::getAPTypeCostModify(enumtype aptype)
+{
+	switch(aptype)
+	{
+	case SKILLAPTYPE_SETUP:
+		return getAPSetup();
+	case SKILLAPTYPE_BATTLE:
+		return getAPBattle();
+	}
+	return 0.0f;
+}
+
+void BattleSquad::setAPTypeCostModify(enumtype aptype, float val)
+{
+	switch(aptype)
+	{
+	case SKILLAPTYPE_SETUP:
+		setAPSetup(val);
+		break;
+	case SKILLAPTYPE_BATTLE:
+		setAPBattle(val);
+		break;
 	}
 }

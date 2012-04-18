@@ -115,12 +115,6 @@ int GetDistance(int x1, int y1, int x2, int y2)
 	return abs(x1 - x2) + abs(y1 - y2);
 }
 
-int DeathToMorale(int dead)
-{
-	if(dead >=  30)
-		return 60;
-	return floor(0.025f * dead * dead + 1.25f * dead + 0.5f);
-}
 
 float AtkDefToPerc(int atk, int def)
 {

@@ -64,6 +64,19 @@ static int GetTempInt(lua_State* L)
 	return 1;
 }
 
+static int SetTempInt(lua_State* L)
+{
+	std::string id(luaL_checkstring(L, 1));
+	int val = luaL_checkinteger(L, 2);
+	LuaTempContext* tempcontext = LuaSystem::getSingleton().getTempContext();
+	if(tempcontext)
+	{
+		tempcontext->intMap[id] = val;
+	}
+	return 0;
+}
+
+
 static int GetTempString(lua_State* L)
 {
 	std::string id(luaL_checkstring(L, 1));
@@ -98,13 +111,14 @@ static int GetRand(lua_State* L)
 
 static const struct luaL_Reg ScriptCommonLib[] =
 {
-	{"SetInt",SetInt},
-	{"GetInt",GetInt},
-	{"GetString",GetString},
-	{"SetString",SetString},
-	{"GetTempInt",GetTempInt},
-	{"GetTempString",GetTempString},
-	{"PlayMusic",PlayMusic},
-	{"GetRand",GetRand},
+	{"SetInt", SetInt},
+	{"GetInt", GetInt},
+	{"GetString", GetString},
+	{"SetString", SetString},
+	{"GetTempInt", GetTempInt},
+	{"SetTempInt", SetTempInt},
+	{"GetTempString", GetTempString},
+	{"PlayMusic", PlayMusic},
+	{"GetRand", GetRand},
 	{NULL,NULL}
 };

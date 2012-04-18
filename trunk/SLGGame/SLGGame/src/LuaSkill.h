@@ -12,5 +12,5 @@ extern "C"
 
 static const struct luaL_Reg SkillLib[] =
 {
-	{NULL,NULL}
+	{NULL, NULL}
 };

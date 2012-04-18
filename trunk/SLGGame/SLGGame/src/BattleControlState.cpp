@@ -8,6 +8,10 @@
 #include "BattleAIState.h"
 #include "BattlePlayerState.h"
 
+#include "BattleSquadManager.h"
+#include "BattleSquad.h"
+#include "CutSceneBuilder.h"
+
 #include "GUISystem.h"
 #include "GUIBattle.h"
 #include "GUIGameStateWindows.h"
@@ -34,17 +38,21 @@ void BattleControlState::update(unsigned int deltaTime)
 			LuaTempContext* luatempcontext = new LuaTempContext();
 			MapDataManager::getSingleton().Trigger("FinishDeploy", luatempcontext);
 			delete luatempcontext;
+			if(CutSceneBuilder::getSingleton().hasCutScenes())
+			{
+
+			}
 			mCurState = ControlState_Normal;
 			DataLibrary::getSingleton().saveXmlData(DataLibrary::GameData,"test.xml");
-			return;
 		}
 		break;
 	case ControlState_LoadGame:
 		{
-			BattlePlayerState* playerstate = new BattlePlayerState(false);
+			BattlePlayerState* playerstate = new BattlePlayerState();
 			mMainState->PushState(playerstate);
 			mGUIState->showScene("");
 			mGUIState->update();
+			mCurState = ControlState_Normal;
 		}
 		break;
 	case ControlState_Normal:
@@ -62,7 +70,23 @@ void BattleControlState::update(unsigned int deltaTime)
 				{
 				case 1:
 					{
-						BattlePlayerState* playerstate = new BattlePlayerState(true);
+						LuaTempContext* luatempcontext = new LuaTempContext();
+						luatempcontext->intMap["turn"] = turn;
+						luatempcontext->intMap["team"] = team;
+						MapDataManager::getSingleton().Trigger("TurnStart", luatempcontext);
+						delete luatempcontext;
+						BattleSquadManager* battlesquadmanager = BattleSquadManager::getSingletonPtr();
+						BattleSquadManager::BattleSquadIte ite = battlesquadmanager->mSquadList.begin();
+						for(; ite != battlesquadmanager->mSquadList.end(); ite++)
+						{
+							if(ite->second->getTeam() == team)
+								ite->second->turnStart();
+						}
+						if(CutSceneBuilder::getSingleton().hasCutScenes())
+						{
+							mCurState = ControlState_TurnStart;
+						}
+						BattlePlayerState* playerstate = new BattlePlayerState();
 						mMainState->PushState(playerstate);
 						turn = turn + 1;
 						nextteam = true;
@@ -82,8 +106,23 @@ void BattleControlState::update(unsigned int deltaTime)
 						}
 						else
 						{
+							LuaTempContext* luatempcontext = new LuaTempContext();
+							luatempcontext->intMap["turn"] = turn;
+							luatempcontext->intMap["team"] = team;
+							MapDataManager::getSingleton().Trigger("TurnStart", luatempcontext);
+							delete luatempcontext;
+							BattleSquadManager* battlesquadmanager = BattleSquadManager::getSingletonPtr();
+							BattleSquadManager::BattleSquadIte ite = battlesquadmanager->mSquadList.begin();
+							for(; ite != battlesquadmanager->mSquadList.end(); ite++)
+							{
+								if(ite->second->getTeam() == team)
+									ite->second->turnStart();
+							}
+							if(CutSceneBuilder::getSingleton().hasCutScenes())
+							{
+								mCurState = ControlState_TurnStart;
+							}
 							BattleAIState* aistate = new BattleAIState(team);
-							//					aistate->newTurn();
 							mMainState->PushState(aistate);
 							nextteam = true;
 						}	
@@ -101,6 +140,59 @@ void BattleControlState::update(unsigned int deltaTime)
 			mGUIState->showScene("");
 			mGUIState->update();
 		}
+		break;
+	case ControlState_TurnEnd:
+	case ControlState_TurnStart:
+		mCurState = ControlState_Normal;
+		break;
+	}
+}
+
+void BattleControlState::reactiveState()
+{
+	switch(mCurState)
+	{
+	case ControlState_TurnStart:
+		{
+			int team;
+			DataLibrary::getSingletonPtr()->getData("GameData/BattleData/BattleState/CurTeam",team);
+			if(team == 1)
+			{
+				BattlePlayerState* playerstate = new BattlePlayerState();
+				mMainState->PushState(playerstate);
+			}
+			else
+			{
+				BattleAIState* aistate = new BattleAIState(team);
+				mMainState->PushState(aistate);
+			}
+			mCurState = ControlState_Normal;
+		}
+		break;
+	case ControlState_Normal:
+		{
+			int turn,team;
+			DataLibrary::getSingletonPtr()->getData("GameData/BattleData/BattleState/Ture",turn);
+			DataLibrary::getSingletonPtr()->getData("GameData/BattleData/BattleState/CurTeam",team);
+			LuaTempContext* luatempcontext = new LuaTempContext();
+			luatempcontext->intMap["turn"] = turn;
+			luatempcontext->intMap["team"] = team;
+			MapDataManager::getSingleton().Trigger("TurnEnd", luatempcontext);
+			delete luatempcontext;
+			BattleSquadManager* battlesquadmanager = BattleSquadManager::getSingletonPtr();
+			BattleSquadManager::BattleSquadIte ite = battlesquadmanager->mSquadList.begin();
+			for(; ite != battlesquadmanager->mSquadList.end(); ite++)
+			{
+				if(ite->second->getTeam() == team)
+					ite->second->turnEnd();
+			}
+			mCurState = ControlState_Normal;
+		}
+		break;
+	case ControlState_TurnEnd:
+	case ControlState_NewGame:
+	case ControlState_LoadGame:
+		mCurState = ControlState_Normal;
 		break;
 	}
 }

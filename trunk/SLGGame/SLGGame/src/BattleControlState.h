@@ -13,6 +13,8 @@ public:
 	~BattleControlState();
 
 	virtual void update(unsigned int deltaTime);
+
+	virtual void reactiveState();
 private:
 	GUIBattle* mGUIBattle;
 	GUIGameStateWindows* mGUIState;
@@ -20,7 +22,9 @@ private:
 	{
 		ControlState_NewGame,
 		ControlState_LoadGame,
-		ControlState_Normal
+		ControlState_Normal,
+		ControlState_TurnStart,
+		ControlState_TurnEnd
 	};
 	ControlState mCurState;
 };

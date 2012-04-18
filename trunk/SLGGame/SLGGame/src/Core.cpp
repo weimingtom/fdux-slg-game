@@ -20,6 +20,7 @@
 #include "StringTable.h"
 #include "LuaAVG.h"
 #include "AVGSquadManager.h"
+#include "CutSceneBuilder.h"
 #include "BattleSquadManager.h"
 #include "SquadGrapManager.h"
 #include "timer.hpp"
@@ -148,6 +149,7 @@ bool Core::initialize(bool isFullScene)
 
 	//初始化战斗部分
 	new BattleSquadManager;
+	new CutSceneBuilder;
 	new MapDataManager;
 	new SquadGrapManager(mSceneMgr);
 	new Terrain;

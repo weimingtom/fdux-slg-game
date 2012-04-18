@@ -12,6 +12,7 @@ CutSceneDirector::CutSceneDirector(CutScene* cutscene)
 	mMouseX = 640;
 	mMouseY = 360;
 	mCutScene = cutscene;
+	mCutScene->start();
 	mCameraContral = CameraContral::getSingletonPtr();
 	Core::getSingleton().mInputControl->pushListener(this);
 }

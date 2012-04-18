@@ -19,3 +19,25 @@ material CUBE_BLUE
 		}
 	}
 }
+
+material CUBE_YELLOW
+{
+	technique default
+	{
+		scheme Default
+		pass
+		{
+			scene_blend alpha_blend
+			//depth_check off
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.25000000 1.00000 1.000000 1
+			specular 0.500000 0.500000 0.500000 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			
+			texture_unit 
+			{
+				texture overlay.png
+			}
+		}
+	}
+}

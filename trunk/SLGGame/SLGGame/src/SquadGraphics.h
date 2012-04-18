@@ -37,7 +37,7 @@ public:
 	void setDirection(Direction d,bool isAnim);
 	Direction getDirection();
 	bool isDirectionOver();
-	void setFormation(Formation f,bool isAnim);
+	void setFormation(enumtype f,bool isAnim);
 	bool isFormationOrDirectionOver();
 	bool isTransformOver();
 	void stopTransform();
@@ -91,7 +91,7 @@ private:
 
 	UnitGrap* createSoldier();
 
-	void getFormationPosition(Formation f,Direction d,Ogre::Vector3& CommanderVector,Ogre::Vector3 SoldierVector[]);
+	void getFormationPosition(enumtype f,enumtype d,Ogre::Vector3& CommanderVector,Ogre::Vector3 SoldierVector[]);
 
 	std::map<int,Ogre::Vector3>* getUnitMovePath(UnitGrap* unit,std::map<int,Ogre::Vector3>& vectors,std::map<int,Direction>& directions,bool isCommander);
 	unsigned int mID;
@@ -126,10 +126,10 @@ private:
 	std::string mFactionTexture;
 	std::vector<UnitGrap*> mSoldierUnits;
 	int mSoldierIndex;
-	Formation mFormation;
-	Direction mDirection;
-	Direction mIdleDirection;
-	Direction mNextDirection;
+	enumtype mFormation;
+	enumtype mDirection;
+	enumtype mIdleDirection;
+	enumtype mNextDirection;
 	std::string mMoveSound;
 
 	enum DeathStep

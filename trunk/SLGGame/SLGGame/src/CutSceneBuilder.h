@@ -11,7 +11,11 @@ public:
 	CutSceneBuilder();
 	~CutSceneBuilder();
 
+	void addCutScene(CutScene* cutscene);
+
+	bool hasCutScenes();
 	CutScene* getCutScenes();
 private:
-	
+	CutScene* mLastCutScene;
+	CutScene* mFirstCutScene;
 };

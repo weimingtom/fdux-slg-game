@@ -70,7 +70,7 @@ bool GUITargetWindows::GridInputEvent( int x,int y )
 	mCurY = y;
 	
 	BattleSquadManager* battlemanager = BattleSquadManager::getSingletonPtr();
-	BattleSquad* battesquade = battlemanager->getBattleSquadAt(mCurX,mCurY,true);
+	BattleSquad* battesquade = battlemanager->getBattleSquadAt(mCurX,mCurY,1,true);
 	setSquad(battesquade);
 	/*
 	for(int n = 0; n < battlemanager->mSquadList.size(); n++)

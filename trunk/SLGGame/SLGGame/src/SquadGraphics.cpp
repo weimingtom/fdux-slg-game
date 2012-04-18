@@ -645,7 +645,7 @@ bool SquadGraphics::isAnimationOver(UnitType object)
 // 	}
 // }
 
-void SquadGraphics::getFormationPosition(Formation f,Direction d,Ogre::Vector3& CommanderVector,Ogre::Vector3 SoldierVector[])
+void SquadGraphics::getFormationPosition(enumtype f,enumtype d,Ogre::Vector3& CommanderVector,Ogre::Vector3 SoldierVector[])
 {
 	switch(f)//确定各个位置
 	{
@@ -750,7 +750,7 @@ void SquadGraphics::getFormationPosition(Formation f,Direction d,Ogre::Vector3& 
 	}
 }
 
-void SquadGraphics::setFormation( Formation f,bool isAnim )
+void SquadGraphics::setFormation( enumtype f,bool isAnim )
 {
 	mFormation=f;
 	Ogre::Vector3 CommanderVector;

@@ -179,6 +179,21 @@ static int RemoveModifier(lua_State* L)
 	return 0;
 }
 
+static int GetActionPoint(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	BattleSquad* squad = NULL;
+	float ap = 0.0f;
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+	{
+		squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+		if(squad)
+			ap = squad->getActionPoint();
+	}
+	lua_pushnumber(L, ap);
+	return 1;
+}
+
 static const struct luaL_Reg SquadLib[] =
 {
 	{"GetSquadCoord",GetSquadCoord},
@@ -191,5 +206,6 @@ static const struct luaL_Reg SquadLib[] =
 	{"GetEffectLevel",GetEffectLevel},
 	{"ApplyModifier",ApplyModifier},
 	{"RemoveModifier",RemoveModifier},
+	{"GetActionPoint",GetActionPoint},
 	{NULL,NULL}
 };

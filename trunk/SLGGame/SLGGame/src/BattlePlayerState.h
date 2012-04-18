@@ -7,19 +7,23 @@ class GUIBattle;
 class GUIGameStateWindows;
 class GUIMenuWindow;
 class GUISquadWindows;
+class GUICommandWindows;
 
 class CameraContral;
 
 class BattleSquad;
+class AreaGrap;
 
 
 class BattlePlayerState:public SubBattleState, public InputListener
 {
 public:
-	BattlePlayerState(bool newturn);
+	BattlePlayerState();
 	~BattlePlayerState();
 
 	virtual void update(unsigned int deltaTime);
+
+	virtual void reactiveState();
 
 	virtual bool keyPressed(const OIS::KeyEvent &arg);
 	virtual bool keyReleased(const OIS::KeyEvent &arg);
@@ -27,11 +31,14 @@ public:
 	virtual bool mouseMoved(const OIS::MouseEvent &arg);
 	virtual bool mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id);
 	virtual bool mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id);
+
+	void useSkill(std::string skillid);
 private:
 	GUIBattle* mGUIBattle;
 	GUIGameStateWindows* mGUIState;
 	GUIMenuWindow* mGUIMenu;
 	GUISquadWindows* mGUISquad;
+	GUICommandWindows* mGUICommand;
 
 	int mMouseX;
 	int mMouseY;
@@ -47,9 +54,11 @@ private:
 	};
 	PlayerControlState mControlState;
 
-private:
-	void newTurn();
-
 	BattleSquad* mSelectSquad;
+	std::string mSelectSkillId;
 
+	AreaGrap* mRangeGrap;
+	AreaGrap* mTargetAreaGrap;
+	int mLastTargetX;
+	int mLastTargetY;	
 };
