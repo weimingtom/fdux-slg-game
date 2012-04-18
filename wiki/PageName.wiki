@@ -1,4 +1,5 @@
 #summary 地图编辑器使用说明
+#labels Featured
 
 = 地图编辑器使用说明 =
 
