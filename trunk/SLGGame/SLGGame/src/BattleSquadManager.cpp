@@ -97,6 +97,18 @@ BattleSquad* BattleSquadManager::getBattleSquadAt(int x, int y, int faction, boo
 	return NULL;
 }
 
+void BattleSquadManager::turnEnd(int team)
+{
+	BattleSquadIte ite = mSquadList.begin();
+	for(; ite != mSquadList.end(); ite++)
+	{
+		if(ite->second->getTeam() == team)
+		{
+			ite->second->turnEnd();
+		}
+	}
+}
+
 std::map<int, BattleSquadManager::MoveNode> BattleSquadManager::getMoveArea(BattleSquad* squad)
 {
 	MapDataManager* mapdatamanager = MapDataManager::getSingletonPtr();
@@ -288,6 +300,152 @@ void BattleSquadManager::changeFormation(BattleSquad* squad, enumtype formation,
 // 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 // 	return true;
 // }
+
+std::vector<BattleSquadManager::SkillNode> BattleSquadManager::getSkillArea(BattleSquad* squad, std::string skillid)
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	MapDataManager* mapdatamanager = MapDataManager::getSingletonPtr();
+	LuaSystem* luasystem = LuaSystem::getSingletonPtr();
+
+	std::vector<SkillNode> skillarea;
+	std::vector<int> idlist;
+	
+	SkillNode skillnode;
+
+	int skilltype;
+	bool re = datalib->getData(str(boost::format("StaticData/SkillData/%1%/Type")%skillid),skilltype);
+	int minrange;
+	re = datalib->getData(str(boost::format("StaticData/SkillData/%1%/MinRange")%skillid),minrange);
+	int maxrange;
+	re = datalib->getData(str(boost::format("StaticData/SkillData/%1%/MaxRange")%skillid),maxrange);
+	std::string script;
+	re = datalib->getData(str(boost::format("StaticData/SkillData/%1%/Script")%skillid),script);
+	std::string contextpath = str(boost::format("%1%/Skill/%2%/ScriptContext")%squad->getPath()%skillid);
+	switch(skilltype)
+	{
+	case SKILLTARGETTYPE_TARGETSQUAD:
+	case SKILLTARGETTYPE_RANGED:
+		{
+			if(skilltype == SKILLTARGETTYPE_RANGED)
+			{
+				int weaponminrange = 1, weaponmaxrange = 3;
+
+				minrange = weaponminrange - minrange;
+				minrange = (minrange < 0)?0:minrange;
+				maxrange = weaponmaxrange + maxrange;
+			}
+			int minx,miny,maxx, maxy;
+			minx = squad->getGridX() - maxrange;
+			minx = (minx < 0)?0:minx;
+			miny = squad->getGridY() - maxrange;
+			miny = (miny < 0)?0:miny;
+			maxx = squad->getGridX() + maxrange;
+			maxx = (maxx > mapdatamanager->getMapSize() - 1)?mapdatamanager->getMapSize() - 1:maxx;
+			maxy = squad->getGridY() + maxrange;
+			maxy = (maxy > mapdatamanager->getMapSize() - 1)?mapdatamanager->getMapSize() - 1:maxy;
+			for(int x = minx; x <= maxx; x++)
+			{
+				for(int y = miny; y <= maxy; y++)
+				{
+					int range = abs(x - squad->getGridX()) + abs(y - squad->getGridY());
+					if(range <= maxrange && range >= minrange)
+					{
+						//判断区域是否符合
+						bool validarea = false;
+						LuaTempContext* luatempcontext = new LuaTempContext;
+						luatempcontext->strMap["squadid"] = squad->getSquadId();
+						luatempcontext->intMap["targetx"] = x;
+						luatempcontext->intMap["targety"] = y;
+						luatempcontext->intMap["validarea"] = 0;
+						luasystem->executeFunction(script, "validarea", contextpath, luatempcontext);
+						if(luatempcontext->intMap["validarea"] == 1)
+							validarea = true;
+						if(validarea)
+						{
+							skillnode.x = x;
+							skillnode.y = y;
+							skillnode.validTarget = false;
+
+							//判断目标是否符合
+							BattleSquad* targetsquad = getBattleSquadAt(x, y, squad->getFaction(), true);
+							if(targetsquad)
+							{
+								luatempcontext->strMap["targetsquadid"] = targetsquad->getSquadId();
+								luatempcontext->intMap["validtarget"] = 0;
+								luasystem->executeFunction(script, "validtarget", contextpath, luatempcontext);
+								if(luatempcontext->intMap["validtarget"] == 1)
+									skillnode.validTarget = true;
+							}
+							skillarea.push_back(skillnode);
+						}
+						delete luatempcontext;
+					}
+				}
+			}
+	
+		}
+		break;
+	case SKILLTARGETTYPE_MELEE:
+		{
+
+		}
+		break;
+	}
+	
+	return skillarea;
+}
+
+std::vector<BattleSquadManager::SkillNode> BattleSquadManager::getSkillTargetArea(BattleSquad* squad, std::string skillid, int x, int y)
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::vector<SkillNode> skillarea;
+
+	SkillNode skillnode;
+
+	int skilltype;
+	bool re = datalib->getData(str(boost::format("StaticData/SkillData/%1%/Type")%skillid),skilltype);
+	switch(skilltype)
+	{
+	case SKILLTARGETTYPE_TARGETSQUAD:
+	case SKILLTARGETTYPE_RANGED:
+		{
+			skillnode.x = x;
+			skillnode.y = y;
+			skillarea.push_back(skillnode);
+		}
+		break;
+	case SKILLTARGETTYPE_MELEE:
+		{
+
+		}
+		break;
+	}
+
+	return skillarea;
+}
+
+void BattleSquadManager::useSkill(BattleSquad* squad, std::string skillid, int x, int y, unsigned int &eventflag)
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	int skilltype;
+	bool re = datalib->getData(str(boost::format("StaticData/SkillData/%1%/Type")%skillid),skilltype);
+	switch(skilltype)
+	{
+	case SKILLTARGETTYPE_TARGETSQUAD:
+	case SKILLTARGETTYPE_RANGED:
+		{
+			BattleSquad* targetsquad = getBattleSquadAt(x, y, squad->getFaction(), true);
+			if(targetsquad)
+				squad->useSkillOn(targetsquad, skillid);
+		}
+		break;
+	case SKILLTARGETTYPE_MELEE:
+		{
+
+		}
+		break;
+	}
+}
 
 bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* defenesquad)
 {

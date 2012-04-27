@@ -11,6 +11,7 @@
 #include "BattleSquadManager.h"
 #include "BattleSquad.h"
 #include "CutSceneBuilder.h"
+#include "cutscenediretor.h"
 
 #include "GUISystem.h"
 #include "GUIBattle.h"
@@ -21,12 +22,12 @@ BattleControlState::BattleControlState(bool newgame)
 {
 	mGUIBattle = static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
 	mGUIState = static_cast<GUIGameStateWindows *>(mGUIBattle->getSubWindow("GameState"));
-	mGUIState->setBattleState(mMainState);
+	//mGUIState->setBattleState(mMainState);
 	mCurState = (newgame)?ControlState_NewGame:ControlState_LoadGame;
 }
 BattleControlState::~BattleControlState()
 {
-	mGUIState->setBattleState(NULL);
+	//mGUIState->setBattleState(NULL);
 }
 
 void BattleControlState::update(unsigned int deltaTime)
@@ -40,7 +41,8 @@ void BattleControlState::update(unsigned int deltaTime)
 			delete luatempcontext;
 			if(CutSceneBuilder::getSingleton().hasCutScenes())
 			{
-
+				CutSceneDirector* cutscenedirector = new CutSceneDirector(CutSceneBuilder::getSingleton().getCutScenes());
+				mMainState->PushState(cutscenedirector);
 			}
 			mCurState = ControlState_Normal;
 			DataLibrary::getSingleton().saveXmlData(DataLibrary::GameData,"test.xml");
@@ -84,7 +86,10 @@ void BattleControlState::update(unsigned int deltaTime)
 						}
 						if(CutSceneBuilder::getSingleton().hasCutScenes())
 						{
+							CutSceneDirector* cutscenedirector = new CutSceneDirector(CutSceneBuilder::getSingleton().getCutScenes());
+							mMainState->PushState(cutscenedirector);
 							mCurState = ControlState_TurnStart;
+							return;
 						}
 						BattlePlayerState* playerstate = new BattlePlayerState();
 						mMainState->PushState(playerstate);
@@ -120,7 +125,10 @@ void BattleControlState::update(unsigned int deltaTime)
 							}
 							if(CutSceneBuilder::getSingleton().hasCutScenes())
 							{
+								CutSceneDirector* cutscenedirector = new CutSceneDirector(CutSceneBuilder::getSingleton().getCutScenes());
+								mMainState->PushState(cutscenedirector);
 								mCurState = ControlState_TurnStart;
+								return;
 							}
 							BattleAIState* aistate = new BattleAIState(team);
 							mMainState->PushState(aistate);
@@ -180,13 +188,14 @@ void BattleControlState::reactiveState()
 			MapDataManager::getSingleton().Trigger("TurnEnd", luatempcontext);
 			delete luatempcontext;
 			BattleSquadManager* battlesquadmanager = BattleSquadManager::getSingletonPtr();
-			BattleSquadManager::BattleSquadIte ite = battlesquadmanager->mSquadList.begin();
-			for(; ite != battlesquadmanager->mSquadList.end(); ite++)
+			battlesquadmanager->turnEnd(team);
+			DataLibrary::getSingleton().saveXmlData(DataLibrary::GameData,"test.xml");
+			if(CutSceneBuilder::getSingleton().hasCutScenes())
 			{
-				if(ite->second->getTeam() == team)
-					ite->second->turnEnd();
+				CutSceneDirector* cutscenedirector = new CutSceneDirector(CutSceneBuilder::getSingleton().getCutScenes());
+				mMainState->PushState(cutscenedirector);
 			}
-			mCurState = ControlState_Normal;
+			mCurState = ControlState_TurnEnd;
 		}
 		break;
 	case ControlState_TurnEnd:
