@@ -15,10 +15,13 @@ function onaffect()
 	lv = SquadLib.GetEffectLevel(sid, eid);
 	ap = SquadLib.GetActionPoint(sid);
 	defence = lv + (ap - 2) / 2;
+	if defence > 2 + lv then
+		defence = 2 + lv;
+	end
 	mid = SquadLib.ApplyModifier(sid, 0, 0.0, 0.0, defence, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 	ScriptCommonLib.SetString("modifierid", mid);
-	if tid ~= "" then
-		tid = SquadLib.AddSquadTrigger(sid, "turnstart", "onturnstart");
+	if tid == "" then
+		tid = SquadLib.AddSquadTrigger(sid, "TurnStart", "onturnstart");
 		SquadLib.ActiveSquadTrigger(sid, tid);
 		ScriptCommonLib.SetString("triggerid", tid);
 	end
@@ -28,7 +31,7 @@ end
 function onremove()
 	mid = ScriptCommonLib.GetString("modifierid");
 	sid = ScriptCommonLib.GetTempString("squadid");
-	tid = ScriptCommonLib.GetTempString("triggerid");
+	tid = ScriptCommonLib.GetString("triggerid");
 	if mid ~= "" then
 		SquadLib.RemoveModifier(sid, mid);
 	end
@@ -40,5 +43,13 @@ end
 function onturnstart()
 	sid = ScriptCommonLib.GetTempString("squadid");
 	eid = ScriptCommonLib.GetString("effectid");
-	ScriptCommonLib.RemoveEffect(sid, eid);
+	SquadLib.RemoveEffect(sid, eid);
+end
+
+function validarea()
+	ScriptCommonLib.SetTempInt("validarea", 1);
+end
+
+function validtarget()
+	ScriptCommonLib.SetTempInt("validtarget", 1);
 end

@@ -9,7 +9,6 @@
 #include "SquadGrapManager.h"
 #include "SquadGraphics.h"
 #include "MapDataManager.h"
-#include "BattleSquadManager.h" 
 #include "LuaSystem.h"
 #include "CommonFunction.h"
 
@@ -408,7 +407,7 @@ bool BattleSquad::useSkillOn(BattleSquad* targetsquad, std::string skillid)
 	if(canUseSkill(skillid) != SKILLSTATE_AVAILABLE)
 		return false;
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
-	std::string skillpath = getPath() + std::string("/SkillTable/") + skillid;
+	std::string skillpath = getPath() + std::string("/Skill/") + skillid;
 	std::string skillinfopath = std::string("StaticData/SkillData/")+ skillid;
 	std::string skillscript;
 	datalib->getData(skillinfopath + std::string("/Script"),skillscript);
@@ -491,6 +490,7 @@ void BattleSquad::turnStart()
 	setAPSetup(0.0f);
 	setAPBattle(0.0f);
 	LuaTempContext* luatempcontext = new LuaTempContext();
+	luatempcontext->strMap["squadid"] = getSquadId();
 	Trigger("TurnStart", luatempcontext);
 	delete luatempcontext;
 }
@@ -498,8 +498,14 @@ void BattleSquad::turnStart()
 void BattleSquad::turnEnd()
 {
 	LuaTempContext* luatempcontext = new LuaTempContext();
+	luatempcontext->strMap["squadid"] = getSquadId();
 	Trigger("TurnEnd", luatempcontext);
 	delete luatempcontext;
+
+	setAmbushPlayer(0);
+	setAmbushEnemy1(0);
+	setAmbushEnemy2(0);
+	setAmbushEnemy3(0);
 }
 
 int BattleSquad::getFaction()

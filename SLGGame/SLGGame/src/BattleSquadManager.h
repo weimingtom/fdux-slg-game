@@ -30,6 +30,9 @@ public:
 	BattleSquad* getBattleSquad(std::string id);
 	BattleSquad* getBattleSquadAt(int x, int y, int faction, bool visibleonly);
 
+	//回合
+	void turnEnd(int team);
+
 	//移动相关
 public:
 	struct MoveNode
@@ -39,14 +42,14 @@ public:
 		int lastx;
 		int lasty;
 		float apleft;
-		unsigned int eventflag;
+		unsigned int eventflag; //使用方式未定
 	};
 	std::map<int, MoveNode> getMoveArea(BattleSquad* squad);
 	std::vector<MoveNode> getMovePath(BattleSquad* squad, int x, int y);
 	void moveSquad(BattleSquad* squad, std::vector<int> pointlist, unsigned int &stopedpoint, unsigned int &eventflag);
 	void InterruptMove();
 
-public:
+private:
 	bool m_moveInterrupt;
 	BattleSquad* m_moveSquad;
 	std::vector<Ogre::Vector2> m_moveList;
@@ -60,7 +63,18 @@ public:
 public:
 // 	bool useSkillOn(BattleSquad* attacksquad, BattleSquad* targetsquad, std::string skillid);
 // 	bool useSkillAt(BattleSquad* attacksquad, int x, int y, std::string skillid);
+	struct SkillNode
+	{
+		int x;
+		int y;
+		bool validTarget;
+	};
+	std::vector<SkillNode> getSkillArea(BattleSquad* squad, std::string skillid);
+	std::vector<SkillNode> getSkillTargetArea(BattleSquad* squad, std::string skillid, int x, int y);
+	void useSkill(BattleSquad* squad, std::string skillid, int x, int y, unsigned int &eventflag);
 
+
+	//战斗相关脚本调用
 	bool dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* defenesquad);
 	
 	bool dealMagicDamage(BattleSquad* attacksquad, BattleSquad* defenesquad, int attacktime, float atk, int fluctuate);

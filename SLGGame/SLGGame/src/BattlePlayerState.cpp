@@ -30,6 +30,7 @@ BattlePlayerState::BattlePlayerState()
 	mGUIBattle = static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
 	GUISystem::getSingletonPtr()->setFrameUpdateScene(BattleScene);
 	mGUIState = static_cast<GUIGameStateWindows *>(mGUIBattle->getSubWindow("GameState"));
+	//mGUIState->setBattleState(mMainState);
 	mGUIState->setAllowNextTurn(true);
 	mGUIMenu=static_cast<GUIMenuWindow *>(GUISystem::getSingleton().createScene(MenuWindowsScene));
 	mGUIMenu->hideScene();
@@ -61,7 +62,7 @@ BattlePlayerState::BattlePlayerState()
 BattlePlayerState::~BattlePlayerState()
 {
 	Core::getSingleton().mInputControl->popListener();
-
+	//mGUIState->setBattleState(NULL);
 	mGUICommand->setPlayerState(NULL);
 }
 
@@ -168,6 +169,16 @@ bool BattlePlayerState::mouseMoved(const OIS::MouseEvent &arg)
 						pathlist.push_back(path[n].y);
 					}
 				}
+				else
+				{
+					std::vector<BattleSquadManager::SkillNode> path = 
+						BattleSquadManager::getSingleton().getSkillTargetArea(mSelectSquad, mSelectSkillId, GX, GY);
+					for(unsigned int n = 0; n < path.size(); n++)
+					{
+						pathlist.push_back(path[n].x);
+						pathlist.push_back(path[n].y);
+					}
+				}
 				if(mTargetAreaGrap)
 				{
 					mTargetAreaGrap->changeArea(pathlist);
@@ -249,13 +260,26 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 						{
 
 						}
-						if(CutSceneBuilder::getSingleton().hasCutScenes())
+					}
+					else
+					{
+						unsigned int evt = 0;
+						battlesquadmanager->useSkill(mSelectSquad, mSelectSkillId, GX, GY, evt);
+						if(evt == MOVEEVENT_SPOT)
 						{
-							CutSceneDirector* cutscenedirector = new CutSceneDirector(CutSceneBuilder::getSingleton().getCutScenes());
-							mMainState->PushState(cutscenedirector);
-							mGUICommand->setSquad(NULL);
+
 						}
 					}
+					if(CutSceneBuilder::getSingleton().hasCutScenes())
+					{
+						CutSceneDirector* cutscenedirector = new CutSceneDirector(CutSceneBuilder::getSingleton().getCutScenes());
+						mMainState->PushState(cutscenedirector);
+						mGUICommand->setSquad(NULL);
+					}
+	 				else
+	 				{
+	 					mGUICommand->setSquad(mSelectSquad);
+	 				}
 					if(mRangeGrap)
 					{
 						delete mRangeGrap;
@@ -305,29 +329,27 @@ void BattlePlayerState::useSkill(std::string skillid)
 		if(mSelectSquad->canMove())
 		{
 			std::map<int, BattleSquadManager::MoveNode> movenodes = battlesquadmanager->getMoveArea(mSelectSquad);
-			if(movenodes.size() > 0)
+	
+			std::vector<int> movearealist;
+			std::map<int, BattleSquadManager::MoveNode>::iterator ite = movenodes.begin();
+			for(; ite != movenodes.end(); ite++)
 			{
-				std::vector<int> movearealist;
-				std::map<int, BattleSquadManager::MoveNode>::iterator ite = movenodes.begin();
-				for(; ite != movenodes.end(); ite++)
-				{
-					movearealist.push_back(ite->second.x);
-					movearealist.push_back(ite->second.y);
-				}
-				if(mRangeGrap)
-					delete mRangeGrap;
-				mRangeGrap = new AreaGrap(movearealist, "CUBE_BLUE");
-				if(mTargetAreaGrap)
-				{
-					delete mTargetAreaGrap;
-					mTargetAreaGrap = NULL;
-				}
-				mLastTargetX = -1;
-				mLastTargetY = -1;	
-				mSelectSkillId = "move";
-				mGUICommand->setSquad(NULL);
-				mControlState = PLAYERCONTROL_CHOOSETARGET;
+				movearealist.push_back(ite->second.x);
+				movearealist.push_back(ite->second.y);
 			}
+			if(mRangeGrap)
+				delete mRangeGrap;
+			mRangeGrap = new AreaGrap(movearealist, "CUBE_BLUE");
+			if(mTargetAreaGrap)
+			{
+				delete mTargetAreaGrap;
+				mTargetAreaGrap = NULL;
+			}
+			mLastTargetX = -1;
+			mLastTargetY = -1;	
+			mSelectSkillId = "move";
+			mGUICommand->setSquad(NULL);
+			mControlState = PLAYERCONTROL_CHOOSETARGET;
 		}
 	}
 	else if(skillid == "looseformation")
@@ -362,25 +384,55 @@ void BattlePlayerState::useSkill(std::string skillid)
 	}
 	else
 	{
-		DataLibrary* datalib = DataLibrary::getSingletonPtr();
-		int skilltype;
-		bool re = datalib->getData(str(boost::format("StaticData/SkillData/%1%/Type")%skillid),skilltype);
-		if(re)
-		{
-			if(skilltype == SKILLTARGETTYPE_TARGETSELF)
-			{
-				mSelectSquad->useSkillOn(mSelectSquad, skillid);
-				if(CutSceneBuilder::getSingleton().hasCutScenes())
-				{
-					CutSceneDirector* cutscenedirector = new CutSceneDirector(CutSceneBuilder::getSingleton().getCutScenes());
-					mMainState->PushState(cutscenedirector);
-					mGUICommand->setSquad(NULL);
-				}
-			}
-			else
-			{
+// 		DataLibrary* datalib = DataLibrary::getSingletonPtr();
+// 		int skilltype;
+// 		bool re = datalib->getData(str(boost::format("StaticData/SkillData/%1%/Type")%skillid),skilltype);
+// 		if(re)
+// 		{
+// 			if(skilltype == SKILLTARGETTYPE_TARGETSELF)
+// 			{
+// 				mSelectSquad->useSkillOn(mSelectSquad, skillid);
+// 				if(CutSceneBuilder::getSingleton().hasCutScenes())
+// 				{
+// 					CutSceneDirector* cutscenedirector = new CutSceneDirector(CutSceneBuilder::getSingleton().getCutScenes());
+// 					mMainState->PushState(cutscenedirector);
+// 					mGUICommand->setSquad(NULL);
+// 				}
+// 				else
+// 				{
+// 					mGUICommand->setSquad(mSelectSquad);
+// 				}
+// 			}
+// 			else
+// 			{
+				std::vector<BattleSquadManager::SkillNode> skillnodes = battlesquadmanager->getSkillArea(mSelectSquad, skillid);
 
-			}
-		}
+				std::vector<int> skillarealist;
+				std::vector<BattleSquadManager::SkillNode>::iterator ite = skillnodes.begin();
+				for(; ite != skillnodes.end(); ite++)
+				{
+					if((*ite).validTarget)
+					{
+						skillarealist.push_back((*ite).x);
+						skillarealist.push_back((*ite).y);
+					}
+				}
+
+				if(mRangeGrap)
+					delete mRangeGrap;
+				mRangeGrap = new AreaGrap(skillarealist, "CUBE_BLUE");
+				if(mTargetAreaGrap)
+				{
+					delete mTargetAreaGrap;
+					mTargetAreaGrap = NULL;
+				}
+				mLastTargetX = -1;
+				mLastTargetY = -1;	
+				mSelectSkillId = skillid;
+				mGUICommand->setSquad(NULL);
+				mControlState = PLAYERCONTROL_CHOOSETARGET;
+//			}
+//		}
 	}
+	mGUISquad->setSquad(mSelectSquad);
 }

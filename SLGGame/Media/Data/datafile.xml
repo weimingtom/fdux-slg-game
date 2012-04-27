@@ -520,7 +520,7 @@
 	</SkillListData>
 	<SkillData>
 		<Attack>
-			<Type type="Int" value="7"/>
+			<Type type="Int" value="4"/>
 			<MaxRange type="Int" value="1"/>
 			<MinRange type="Int" value="1"/>
 			<Area type="Int" value="1"/>
@@ -532,7 +532,7 @@
 			<Script type="String" value="attack.lua"/>
 		</Attack>
 		<MagicShield>
-			<Type type="Int" value="2"/>
+			<Type type="Int" value="0"/>
 			<MaxRange type="Int" value="2"/>
 			<MinRange type="Int" value="1"/>
 			<Area type="Int" value="1"/>
@@ -544,7 +544,7 @@
 			<Script type="String" value="magicshield.lua"/>
 		</MagicShield>
 		<RangedAttack>
-			<Type type="Int" value="6"/>
+			<Type type="Int" value="3"/>
 			<MaxRange type="Int" value="0"/>
 			<MinRange type="Int" value="0"/>
 			<Area type="Int" value="1"/>
@@ -580,7 +580,7 @@
 			<Script type="String" value="rest.lua"/>
 		</Rest>
 		<Heal>
-			<Type type="Int" value="2"/>
+			<Type type="Int" value="0"/>
 			<MaxRange type="Int" value="2"/>
 			<MinRange type="Int" value="1"/>
 			<Area type="Int" value="1"/>
@@ -592,7 +592,7 @@
 			<Script type="String" value="heal.lua"/>
 		</Heal>
 		<Break>
-			<Type type="Int" value="7"/>
+			<Type type="Int" value="4"/>
 			<MaxRange type="Int" value="1"/>
 			<MinRange type="Int" value="1"/>
 			<Area type="Int" value="1"/>
@@ -604,7 +604,7 @@
 			<Script type="String" value="break.lua"/>
 		</Break>
 		<SuppressAttack>
-			<Type type="Int" value="6"/>
+			<Type type="Int" value="3"/>
 			<MaxRange type="Int" value="0"/>
 			<MinRange type="Int" value="0"/>
 			<Area type="Int" value="1"/>
