@@ -68,6 +68,7 @@ public:
 		int x;
 		int y;
 		bool validTarget;
+		enumtype direction;
 	};
 	std::vector<SkillNode> getSkillArea(BattleSquad* squad, std::string skillid);
 	std::vector<SkillNode> getSkillTargetArea(BattleSquad* squad, std::string skillid, int x, int y);

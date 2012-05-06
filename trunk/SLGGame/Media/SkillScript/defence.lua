@@ -1,5 +1,5 @@
 function useskill()
-	caster  = ScriptCommonLib.GetTempString("castsquad");
+	caster  = ScriptCommonLib.GetTempString("squadid");
 	eid = SquadLib.ApplyEffect(caster, "Defence");
 	ScriptCommonLib.SetTempInt("castsuccess", 1);
 end

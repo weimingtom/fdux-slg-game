@@ -17,6 +17,12 @@
 #include "FormationCutScence.h"
 #include "MoveCutScene.h"
 #include "SquadStateCutScene.h"
+#include "DefenseCutScene.h"
+#include "CombineCutScene.h"
+#include "DirectionCutScene.h"
+#include "ShowValueCutScene.h"
+#include "WeapenCutScene.h"
+#include "AnimationCutScene.h"
 
 #include "MapDataManager.h"
 
@@ -308,7 +314,6 @@ std::vector<BattleSquadManager::SkillNode> BattleSquadManager::getSkillArea(Batt
 	LuaSystem* luasystem = LuaSystem::getSingletonPtr();
 
 	std::vector<SkillNode> skillarea;
-	std::vector<int> idlist;
 	
 	SkillNode skillnode;
 
@@ -374,7 +379,10 @@ std::vector<BattleSquadManager::SkillNode> BattleSquadManager::getSkillArea(Batt
 								luatempcontext->intMap["validtarget"] = 0;
 								luasystem->executeFunction(script, "validtarget", contextpath, luatempcontext);
 								if(luatempcontext->intMap["validtarget"] == 1)
+								{
 									skillnode.validTarget = true;
+									skillnode.direction = GetDirection(x, y, squad->getGridX(), squad->getGridY());
+								}
 							}
 							skillarea.push_back(skillnode);
 						}
@@ -387,7 +395,62 @@ std::vector<BattleSquadManager::SkillNode> BattleSquadManager::getSkillArea(Batt
 		break;
 	case SKILLTARGETTYPE_MELEE:
 		{
-
+			float apcost = squad->getSkillApCost(skillid);
+			std::map<int, int> meleesquadmap;
+			std::map<int, MoveNode> movenodes = getMoveArea(squad);
+			std::map<int, MoveNode>::iterator ite = movenodes.begin();
+			for(; ite != movenodes.end(); ite++)
+			{
+				skillnode.x = ite->second.x;
+				skillnode.y = ite->second.y;
+				skillnode.validTarget = false;
+				skillarea.push_back(skillnode);
+				if(ite->second.apleft >= apcost)
+				{
+					//寻找可攻击的目标
+					int x[4] = {ite->second.x - 1, ite->second.x + 1, ite->second.x, ite->second.x};
+					int y[4] = {ite->second.y, ite->second.y, ite->second.y - 1, ite->second.y + 1};
+					for(unsigned int n = 0 ; n < 4; n++)
+					{
+						BattleSquad* targetsquad = getBattleSquadAt(x[n], y[n], squad->getFaction(), true);
+						if(targetsquad)
+						{
+							LuaTempContext* luatempcontext = new LuaTempContext;
+							luatempcontext->strMap["squadid"] = squad->getSquadId();
+							luatempcontext->intMap["x"] = ite->second.x;
+							luatempcontext->intMap["y"] = ite->second.y;
+							luatempcontext->strMap["targetsquadid"] = targetsquad->getSquadId();
+							luatempcontext->intMap["targetx"] = x[n];
+							luatempcontext->intMap["targety"] = y[n];
+							luatempcontext->intMap["validtarget"] = 0;
+							luasystem->executeFunction(script, "validtarget", contextpath, luatempcontext);
+							if(luatempcontext->intMap["validtarget"] == 1)
+							{
+								std::map<int, int>::iterator ite1 = meleesquadmap.find(mapdatamanager->getGridId(x[n], y[n]));
+								if(ite1 == meleesquadmap.end())
+								{
+									meleesquadmap.insert(std::make_pair(mapdatamanager->getGridId(x[n], y[n]), 
+																		mapdatamanager->getGridId(ite->second.x, ite->second.y)));
+								}
+								else if(movenodes[ite1->second].apleft <= ite->second.apleft)
+								{
+									ite1->second = mapdatamanager->getGridId(ite->second.x, ite->second.y);
+								}
+							}
+						}
+					}
+				}
+			}
+			std::map<int, int>::iterator ite1 = meleesquadmap.begin();
+			for(; ite1 != meleesquadmap.end(); ite1++)
+			{
+				mapdatamanager->getCrood(ite1->first, skillnode.x, skillnode.y);
+				skillnode.validTarget = true;
+				int x, y;
+				mapdatamanager->getCrood(ite1->second, x, y);
+				skillnode.direction = GetDirection(skillnode.x, skillnode.y, x, y);
+				skillarea.push_back(skillnode);
+			}
 		}
 		break;
 	}
@@ -411,12 +474,53 @@ std::vector<BattleSquadManager::SkillNode> BattleSquadManager::getSkillTargetAre
 		{
 			skillnode.x = x;
 			skillnode.y = y;
+			skillnode.validTarget = true;
 			skillarea.push_back(skillnode);
 		}
 		break;
 	case SKILLTARGETTYPE_MELEE:
 		{
-
+			std::vector<SkillNode> skillnodelist = getSkillArea(squad, skillid);
+			std::vector<SkillNode>::iterator ite = skillnodelist.begin();
+			for( ; ite!= skillnodelist.end(); ite++)
+			{
+				if(x == (*ite).x && y == (*ite).y)
+				{
+					int movex = x, movey = y;
+					if((*ite).validTarget)
+					{
+						skillnode.x = x;
+						skillnode.y = y;
+						skillnode.validTarget = true;
+						skillnode.direction = (*ite).direction;
+						skillarea.push_back(skillnode);
+						switch((*ite).direction)
+						{
+						case North:
+							movey -= 1;
+							break;
+						case South:
+							movey += 1;
+							break;
+						case East:
+							movex += 1;
+							break;
+						case West:
+							movex -= 1;
+							break;
+						}
+					}
+					std::vector<MoveNode> movepath = getMovePath(squad, movex, movey);
+					std::vector<MoveNode>::iterator ite1 =  movepath.begin();
+					for(; ite1 != movepath.end(); ite1++)
+					{
+						skillnode.x = (*ite1).x;
+						skillnode.y = (*ite1).y;
+						skillnode.validTarget = false;
+						skillarea.push_back(skillnode);
+					}
+				}
+			}
 		}
 		break;
 	}
@@ -441,7 +545,49 @@ void BattleSquadManager::useSkill(BattleSquad* squad, std::string skillid, int x
 		break;
 	case SKILLTARGETTYPE_MELEE:
 		{
-
+			std::vector<SkillNode> skillnodelist = getSkillArea(squad, skillid);
+			std::vector<SkillNode>::iterator ite = skillnodelist.begin();
+			for( ; ite!= skillnodelist.end(); ite++)
+			{
+				if(x == (*ite).x && y == (*ite).y)
+				{
+					int movex = x, movey = y;
+					if((*ite).validTarget)
+					{
+						switch((*ite).direction)
+						{
+						case North:
+							movey -= 1;
+							break;
+						case South:
+							movey += 1;
+							break;
+						case East:
+							movex += 1;
+							break;
+						case West:
+							movex -= 1;
+							break;
+						}
+					}
+					std::vector<int> pathlist;
+					std::vector<MoveNode> movepath = getMovePath(squad, movex, movey);
+					std::vector<MoveNode>::reverse_iterator rite;
+					for(rite = movepath.rbegin(); rite != movepath.rend(); rite++)
+					{
+						pathlist.push_back((*rite).x);
+						pathlist.push_back((*rite).y);
+					}
+					unsigned int stoppoint;
+					moveSquad(squad, pathlist, stoppoint, eventflag);
+					if(eventflag == 0)
+					{
+						BattleSquad* targetsquad = getBattleSquadAt(x, y, squad->getFaction(), true);
+						if(targetsquad)
+							squad->useSkillOn(targetsquad, skillid);
+					}
+				}
+			}
 		}
 		break;
 	}
@@ -450,6 +596,103 @@ void BattleSquadManager::useSkill(BattleSquad* squad, std::string skillid, int x
 bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* defenesquad)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	CutSceneBuilder* cutscenebuilder = CutSceneBuilder::getSingletonPtr();
+	Direction d,dd;
+	int defenderx, defendery, attackerx,attackery;
+	attackerx = attacksquad->getGridX();
+	attackery = attacksquad->getGridY();
+	defenderx = defenesquad->getGridX();
+	defendery = defenesquad->getGridY();
+
+	d = GetDirection(attackerx,attackery,defenderx,defendery);
+	if(attacksquad->getDirection() != d)
+	{
+		attacksquad->setDirection(d);
+		cutscenebuilder->addCutScene(new DirectionCutScene(attacksquad->getSquadId(), d));
+	}
+
+	cutscenebuilder->addCutScene(new WeapenCutScene(attacksquad->getSquadId(),WeapenCutScene::MainWepon));
+	cutscenebuilder->addCutScene(new WeapenCutScene(defenesquad->getSquadId(),WeapenCutScene::MainWepon));
+
+	dd = defenesquad->getDirection();
+	Direction temp[4] = {South,North,East,West};
+	cutscenebuilder->addCutScene(new DirectionCutScene(defenesquad->getSquadId(),temp[d]));
+
+	float atkint = attacksquad->getAttr(ATTR_INITIATIVE, ATTRCALC_FULL);
+	float defint = defenesquad->getAttr(ATTR_INITIATIVE, ATTRCALC_FULL);
+	BattleSquad* squad = NULL;
+	if(atkint>=defint)
+		squad = attacksquad;
+	else
+		squad = defenesquad;
+
+	CombineCutScene* showValueCutScenes=new CombineCutScene();
+	for(int n = 0; n < 2; n++)
+	{
+		//攻击动作
+		if(squad->getType() == SQUAD_NORMAL)
+			cutscenebuilder->addCutScene(new AnimationCutScene(squad->getSquadId(),UNITTYPE_ALL,"Attack","attack.mp3","none",false,true));
+		else
+			cutscenebuilder->addCutScene(new AnimationCutScene(squad->getSquadId(),UNITTYPE_SOLIDER,"Attack","attack.mp3","none",false,true));
+		AttackInfo atkinfo;
+		if(squad == attacksquad)
+		{
+			atkinfo = squad->getAttackRolls(false,false,d);
+			switch(defenesquad->getFormation())
+			{
+			case Line:
+				if(GetSide(dd,temp[d]) == 1)
+				{
+				}
+				else if(GetSide(dd,temp[d]) == 2)
+				{
+				}
+				break;
+			case Loose:
+				break;
+			}
+			squad = defenesquad;
+		}
+		else
+		{
+			atkinfo = squad->getAttackRolls(false,true,temp[d]);
+			squad = attacksquad;
+		}
+		if(atkinfo.AtkTime > 0)
+		{
+			int squadugb = squad->getUnitGrapNum();
+			int squadRealNumB=squad->getUnitNum();
+			if(squad == attacksquad)
+				squad->applyAttackRolls(false, d, atkinfo);
+			else
+				squad->applyAttackRolls(false, temp[d], atkinfo);
+			int squaduga = squad->getUnitGrapNum();
+			int squadRealNumA=squad->getUnitNum();
+			if(squaduga <= squadugb)
+			{
+				//setCutScene(new SquadDeadCutScene(squad->getGrapId(), squadugb - squaduga));
+				if(squad == attacksquad)
+					cutscenebuilder->addCutScene(new DefenseCutScene(defenesquad->getSquadId(),squad->getSquadId(), squadugb - squaduga));
+				else
+					cutscenebuilder->addCutScene(new DefenseCutScene(attacksquad->getSquadId(),squad->getSquadId(), squadugb - squaduga));
+			}
+			if(squad->getUnitNum() == 0)
+			{
+				cutscenebuilder->addCutScene(new SquadStateCutScene(squad,SQUAD_STATE_VISIBLE,"none",0));
+				showValueCutScenes->addCutScene(new ShowValueCutScene(squad->getSquadId(),StringTable::getSingletonPtr()->getString("SquadDead"),Ogre::ColourValue::Red));
+			}
+			else
+			{
+				showValueCutScenes->addCutScene(new ShowValueCutScene(squad->getSquadId(),str(boost::format(StringTable::getSingletonPtr()->getString("BattleInfo"))%(squadRealNumB-squadRealNumA)),Ogre::ColourValue::Red));
+			}
+		}
+	}
+
+	if(defenesquad->getUnitNum() > 0)
+		cutscenebuilder->addCutScene(new DirectionCutScene(defenesquad->getSquadId(),dd));
+
+	cutscenebuilder->addCutScene(showValueCutScenes);
+
 	return true;
 }
 
