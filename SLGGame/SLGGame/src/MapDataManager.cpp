@@ -51,6 +51,12 @@ int MapDataManager::getGridId(int x, int y)
 	return (y + 1) * (mMapSize + 2) + x + 1;
 }
 
+void MapDataManager::getCrood(int gridid, int &x, int &y)
+{
+	y = gridid / (mMapSize + 2) - 1;
+	x = gridid % (mMapSize + 2) - 1;
+}
+
 bool MapDataManager::getPassable(int x, int y, int team)
 {
 	if(x < 0 || x >= mMapSize || y < 0 || y >= mMapSize)

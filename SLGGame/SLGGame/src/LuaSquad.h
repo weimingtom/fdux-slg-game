@@ -194,6 +194,20 @@ static int GetActionPoint(lua_State* L)
 	return 1;
 }
 
+static int GetFaction(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	int faction = 0;
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+	{
+		BattleSquad* squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+		if(squad)
+			faction = squad->getFaction();
+	}
+	lua_pushnumber(L, faction);
+	return 1;
+}
+
 static const struct luaL_Reg SquadLib[] =
 {
 	{"GetSquadCoord",GetSquadCoord},
@@ -207,5 +221,6 @@ static const struct luaL_Reg SquadLib[] =
 	{"ApplyModifier",ApplyModifier},
 	{"RemoveModifier",RemoveModifier},
 	{"GetActionPoint",GetActionPoint},
+	{"GetFaction",GetFaction},
 	{NULL,NULL}
 };

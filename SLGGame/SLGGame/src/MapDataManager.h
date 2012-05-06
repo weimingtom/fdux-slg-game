@@ -32,6 +32,7 @@ public:
 	TerrainType getTerrainType(int x, int y);
 	int getMapSize() {return mMapSize;}
 	int getGridId(int x, int y);
+	void getCrood(int gridid, int &x, int &y);
 	bool getPassable(int x, int y, int team);
 	float getInfApCost(int x, int y, int team);
 	float getCavApCost(int x, int y, int team);

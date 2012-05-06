@@ -412,8 +412,8 @@ bool BattleSquad::useSkillOn(BattleSquad* targetsquad, std::string skillid)
 	std::string skillscript;
 	datalib->getData(skillinfopath + std::string("/Script"),skillscript);
 	LuaTempContext* context = new LuaTempContext;
-	context->strMap.insert(std::make_pair("castsquad", getSquadId()));
-	context->strMap.insert(std::make_pair("targetsquad", targetsquad->getSquadId()));
+	context->strMap.insert(std::make_pair("squadid", getSquadId()));
+	context->strMap.insert(std::make_pair("targetsquadid", targetsquad->getSquadId()));
 	context->intMap.insert(std::make_pair("castsuccess", 0));
 	bool re = LuaSystem::getSingleton().executeFunction(skillscript, "useskill" , skillpath + std::string("/ScriptContext"), context);
 	if(re)
