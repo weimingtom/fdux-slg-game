@@ -1,31 +1,22 @@
 void main(
 	float3	viewpos	:	TEXCOORD0,
-	float2	uv		:	TEXCOORD1,
-	float2 	noiseUv	:	TEXCOORD2,
-	float3	normal	:	TEXCOORD3,
+	float3  noiseCoord	: 	TEXCOORD1,
+	float2	texUv		:	TEXCOORD2,
 	
 	out float4 oColour	: COLOR,
 	
-	uniform	sampler2D	waveMap	:	register(s0),
-	uniform sampler2D	noiseMap : register(s1),
-	uniform	float4x4	worldMatrix,
 	uniform	float	farChip,
-	uniform float	noiseScale, 
-	uniform float	fresnelBias,
-	uniform float	fresnelScale,
-	uniform float	fresnelPower,
-	uniform float	texnoiseScale
+	uniform float 	noiseScale, 
+	uniform sampler2D noiseMap : register(s0),
+	uniform sampler2D waveMap : register(s1)
 	)
 {
-	float3 noiseNormal = (tex2D(noiseMap, (noiseUv.xy / 5)).rgb - 0.5).rbg * noiseScale;
-	
-	float3 normal1 = tex2D(waveMap, uv + noiseNormal.xy * texnoiseScale).xyz;
-	normal1 = normal1 * 2.0 - 1.0;
-	
-	normal = normal + float3(0.0,0.0,1.0) - normal1;
-	float3 normalworld = mul((float3x3)worldMatrix, normal);
-	normalworld = normalworld * 0.5 + 0.5;
-	
 	float normdepth = -viewpos.z / farChip;
-	oColour = float4(  normalworld, normdepth);
+	
+	float3 noiseNormal = (tex2D(noiseMap, (noiseCoord.xy / 5)).rgb - 0.5).rbg * noiseScale;
+	float2 finaluv = texUv * 2 + noiseNormal.xz;
+	
+	float3 normal = tex2D(waveMap, finaluv).rbg;
+	
+	oColour = float4(  normal, normdepth);
 }

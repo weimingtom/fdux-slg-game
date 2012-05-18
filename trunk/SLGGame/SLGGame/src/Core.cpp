@@ -359,7 +359,7 @@ bool Core::windowClosing( Ogre::RenderWindow* rw )
 ParticleUniverse::ParticleSystem* Core::createPUSystem( std::string name,std::string script )
 {
 	ParticleUniverse::ParticleSystem* pSys=ParticleUniverse::ParticleSystemManager::getSingletonPtr()->createParticleSystem(name,script,mSceneMgr);
-	pSys->setVisibilityFlags(VISMASK_PARTICLE);
+	pSys->setVisibilityFlags(VISMASK_TRANSPARENT);
 	mPUSystems.push_back(pSys);
 	return pSys;
 }

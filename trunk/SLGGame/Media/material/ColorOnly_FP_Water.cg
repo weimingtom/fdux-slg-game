@@ -11,7 +11,6 @@ void main(
 		uniform float fresnelBias,
 		uniform float fresnelScale,
 		uniform float fresnelPower,
-		uniform float texnoiseScale,
 		uniform sampler2D noiseMap : register(s0),
 		uniform sampler2D reflectMap : register(s1)
 		)
@@ -30,11 +29,10 @@ void main(
 	// Reflection / refraction
 	float4 reflectionColour = tex2D(reflectMap, final);
 	//float4 refractionColour = tex2D(refractMap, final) + tintColour;
-	float4 vertexColour = float4(0.2,0.2,0.8,1.0);
+	float4 vertexColour = float4(0.2, 0.2, 0.8, 1.0);
 
 	// Final colour
 	//col = lerp(refractionColour, reflectionColour, fresnel);
 	col = lerp(vertexColour, reflectionColour, fresnel);
-
 
 }

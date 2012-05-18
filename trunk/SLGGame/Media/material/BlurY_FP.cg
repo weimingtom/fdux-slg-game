@@ -30,7 +30,7 @@ static const float2 pos[11] =
 0, 5
 };
 
-static const float pixstep = 20 / 720;
+static const float pixstep = 1.5 / 720;
 
 void main(
 	float2 uv: TEXCOORD0, 
@@ -43,6 +43,6 @@ void main(
 	oColour = float4(0.0,0.0,0.0,0.0);
 	for (int i = 0; i < 11; i++)
    {
-      oColour += tex2D(bloomTex, uv + pos[i] * 0.001388889) * samples[i];
+      oColour += tex2D(bloomTex, uv + pos[i] * pixstep) * samples[i]; //0.001388889
    }
 }

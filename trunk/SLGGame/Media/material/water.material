@@ -57,10 +57,8 @@ fragment_program NormalDepthFP/Water cg
  
     default_params
     {
-		param_named_auto worldMatrix world_matrix
 		param_named_auto farChip far_clip_distance
-		param_named noiseScale float 0.02 
-		param_named texnoiseScale float 5
+		param_named noiseScale float 0.1 
     }
 }
 
@@ -99,8 +97,8 @@ material DemoWater
 		scheme SpecularEmissive
 		pass
 		{
-			emissive 0.5 0.5 0.5
-			specular 1.0 1.0 1.0 10.0
+			emissive 0.6 0.6 0.6
+			specular 1.0 1.0 1.0 20.0
 			vertex_program_ref SpecularEmissiveVP/NotSkinned/NoTexture
 			{
 			}
@@ -141,10 +139,10 @@ material DemoWater
 				filtering linear linear none
 				tex_address_mode wrap
 			}
+			// Reflection
 			texture_unit
 			{
-				texture 723-normal.jpg
-				filtering linear linear none
+				texture 4141-normal.jpg
 				tex_address_mode wrap
 			}
         }

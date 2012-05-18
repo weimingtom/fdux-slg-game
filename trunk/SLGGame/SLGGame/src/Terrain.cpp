@@ -853,14 +853,14 @@ void Terrain::createGrid()
 			{
 				float xx = startpos + x * TILESIZE;
 				float yy = startpos + y * TILESIZE;
-				if(!mMapData->getPassable(x ,y -1,1))
+				if(!mMapData->getPassable(x ,y -1,-1))
 				{
 					mGrid->position(xx,getHeight(xx,yy),yy);
 					mGrid->colour(1.0f,1.0f,1.0f);
 					mGrid->position(xx+TILESIZE,getHeight(xx+TILESIZE,yy),yy);
 					mGrid->colour(1.0f,1.0f,1.0f);
 				}
-				if(!mMapData->getPassable(x - 1,y,0))
+				if(!mMapData->getPassable(x - 1,y,-1))
 				{
 					mGrid->position(xx,getHeight(xx,yy+TILESIZE),yy+TILESIZE);
 					mGrid->colour(1.0f,1.0f,1.0f);

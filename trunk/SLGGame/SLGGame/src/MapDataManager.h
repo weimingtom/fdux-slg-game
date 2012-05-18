@@ -33,11 +33,11 @@ public:
 	int getMapSize() {return mMapSize;}
 	int getGridId(int x, int y);
 	void getCrood(int gridid, int &x, int &y);
-	bool getPassable(int x, int y, int team);
-	float getInfApCost(int x, int y, int team);
-	float getCavApCost(int x, int y, int team);
-	float getCovert(int x, int y, int team);
-	float getDefModify(int x, int y, int team);
+	bool getPassable(int x, int y, int faction);
+	float getInfApCost(int x, int y, int faction);
+	float getCavApCost(int x, int y, int faction);
+	float getCovert(int x, int y, int faction);
+	float getDefModify(int x, int y, int faction);
 	
 //´¥·¢Æ÷
 public:

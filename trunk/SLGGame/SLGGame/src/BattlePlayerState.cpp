@@ -209,7 +209,7 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 		{
 		case PLAYERCONTROL_NONE:
 			{
-				BattleSquad* squad = BattleSquadManager::getSingleton().getBattleSquadAt(GX,GY,1,true);
+				BattleSquad* squad = BattleSquadManager::getSingleton().getBattleSquadAt(GX,GY,0,true);
 				if(squad)
 				{
 					if(squad ->getTeam() == 1)
@@ -224,7 +224,7 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 			break;
 		case PLAYERCONTROL_CHOOSESKILL:
 			{
-				BattleSquad* squad = BattleSquadManager::getSingleton().getBattleSquadAt(GX,GY,1,true);
+				BattleSquad* squad = BattleSquadManager::getSingleton().getBattleSquadAt(GX,GY,0,true);
 				if(squad)
 				{
 					if(squad!= mSelectSquad && squad ->getTeam() == 1)

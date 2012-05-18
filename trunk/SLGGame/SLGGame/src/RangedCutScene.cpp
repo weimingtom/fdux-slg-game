@@ -1,6 +1,7 @@
 #include "RangedCutScene.h"
 
 #include "Core.h"
+#include "Terrain.h"
 
 RangedCutScene::RangedCutScene(Ogre::Vector3 startpos, Ogre::Vector3 endpoint, int type, std::string resname)
 :mStartpoint(startpos),mEndpoint(endpoint)
@@ -42,6 +43,7 @@ RangedCutScene::RangedCutScene(Ogre::Vector3 startpos, Ogre::Vector3 endpoint, i
 		rootNode->attachObject(trail);
 
 		trail->setMaterialName("Examples/LightRibbonTrail");
+		trail->setVisibilityFlags(VISMASK_TRANSPARENT);
 
 		trail->setTrailLength(20);
 

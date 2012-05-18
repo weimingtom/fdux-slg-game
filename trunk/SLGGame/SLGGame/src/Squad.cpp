@@ -636,7 +636,7 @@ float Squad::getAttr(enumtype attrtype , enumtype calctype)
 			datalib->getData(datapath + std::string("/Covert"), attrval);
 			break;
 		case ATTR_TOUGHNESS:
-			datalib->getData(datapath + std::string("/Injury"), attrval);
+			datalib->getData(datapath + std::string("/Toughness"), attrval);
 			break;
 		case ATTR_CONTER:
 			datalib->getData(datapath + std::string("/Conter"), attrval);

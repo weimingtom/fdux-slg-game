@@ -229,7 +229,7 @@ float BattleSquad::getAttr(enumtype attrtype , enumtype calctype)
 			datalib->getData(datapath + std::string("/Covert"), attrval);
 			break;
 		case ATTR_TOUGHNESS:
-			datalib->getData(datapath + std::string("/Injury"), attrval);
+			datalib->getData(datapath + std::string("/Toughness"), attrval);
 			break;
 		case ATTR_CONTER:
 			datalib->getData(datapath + std::string("/Conter"), attrval);
@@ -449,9 +449,9 @@ bool BattleSquad::useSkillAt(int x, int y, std::string skillid)
 bool BattleSquad::tryMove(int srcx, int srcy, int tgx, int tgy, float &apleft, unsigned int &eventflag)
 {
 	MapDataManager* mapdatamanager = MapDataManager::getSingletonPtr();
-	if(mapdatamanager->getPassable(tgx, tgy, getTeam()))
+	if(mapdatamanager->getPassable(tgx, tgy, getFaction()))
 	{
-		float mapapcost = mapdatamanager->getInfApCost(tgx, tgy, getTeam());
+		float mapapcost = mapdatamanager->getInfApCost(tgx, tgy, getFaction());
 		if(mapapcost <= apleft)
 		{
 			apleft -= mapapcost;
@@ -466,9 +466,9 @@ bool BattleSquad::tryMove(int srcx, int srcy, int tgx, int tgy, float &apleft, u
 bool BattleSquad::move(int tgx, int tgy, unsigned int &eventflag)
 {
 	MapDataManager* mapdatamanager = MapDataManager::getSingletonPtr();
-	if(mapdatamanager->getPassable(tgx, tgy, getTeam()))
+	if(mapdatamanager->getPassable(tgx, tgy, getFaction()))
 	{
-		float mapapcost = mapdatamanager->getInfApCost(tgx, tgy, getTeam());
+		float mapapcost = mapdatamanager->getInfApCost(tgx, tgy, getFaction());
 		float ap = getActionPoint();
 		if(mapapcost <= ap)
 		{
