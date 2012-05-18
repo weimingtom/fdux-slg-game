@@ -112,30 +112,6 @@ compositor DemoCompositor
                 input 0 bloom_blurx
             }
 		}
-		target bloom_blurx
-		{
-		    input none
-            pass clear
-            {
-            }
-            pass render_quad
-            {
-                material BlurX
-                input 0 bloom_blury
-            }
-		}
-		target bloom_blury
-		{
-		    input none
-            pass clear
-            {
-            }
-            pass render_quad
-            {
-                material BlurY
-                input 0 bloom_blurx
-            }
-		}
 		target_output
 		{
 			input none
@@ -156,13 +132,6 @@ compositor DemoCompositor
 				input 0 normal_depth
 				input 1 light
 				input 2 bloom_blury
-			}
-			
-			visibility_mask 4
-			pass render_scene
-			{
-				first_render_queue 10
-				last_render_queue  79	
 			}
 			
 			pass render_scene

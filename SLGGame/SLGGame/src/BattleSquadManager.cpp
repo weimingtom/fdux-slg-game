@@ -74,6 +74,8 @@ BattleSquad* BattleSquadManager::getBattleSquadAt(int x, int y, int faction, boo
 			continue;
 		if(ite->second->getGridY() != y)
 			continue;
+		if(ite->second->getUnitNum() <= 0)
+			continue;
 		if(visibleonly)
 		{
 

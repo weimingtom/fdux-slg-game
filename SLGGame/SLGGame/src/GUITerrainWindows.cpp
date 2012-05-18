@@ -118,13 +118,13 @@ bool GUITerrainWindows::GridInputEvent( int x,int y )
 		mGroundObjLabel->setCaption("");
 	}
 	float modifier;
-	modifier = MapDataManager::getSingleton().getDefModify(x,y,1);
+	modifier = MapDataManager::getSingleton().getDefModify(x,y,0);
 	mTerrainDefenceLabel->setCaption(Ogre::StringConverter::toString(modifier));
-	modifier = MapDataManager::getSingleton().getCovert(x,y,1);
+	modifier = MapDataManager::getSingleton().getCovert(x,y,0);
 	mTerrainCovertLabel->setCaption(Ogre::StringConverter::toString(modifier));
-	modifier = MapDataManager::getSingleton().getCavApCost(x,y,1);
+	modifier = MapDataManager::getSingleton().getCavApCost(x,y,0);
 	mTerrainCavApLabel->setCaption(Ogre::StringConverter::toString(modifier));
-	modifier = MapDataManager::getSingleton().getInfApCost(x,y,1);
+	modifier = MapDataManager::getSingleton().getInfApCost(x,y,0);
 	mTerrainInfApLabel->setCaption(Ogre::StringConverter::toString(modifier));
 	return false;
 }

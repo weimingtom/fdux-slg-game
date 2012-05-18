@@ -39,7 +39,7 @@ static const Ogre::uint32 QUERYMASK_OTHER = 1 << 2;
 
 static const Ogre::uint32	VISMASK_OPAQUE = 1 << 0;
 static const Ogre::uint32	VISMASK_TRANSPARENT = 1 << 1;
-static const Ogre::uint32	VISMASK_PARTICLE = 1 << 2;
+//static const Ogre::uint32	VISMASK_PARTICLE = 1 << 2;
 
 class Terrain:public IISingleton<Terrain>,public Ogre::RenderTargetListener
 {

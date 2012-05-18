@@ -152,10 +152,12 @@ void GUISquadWindows::updateSquad()
 	mSquadTypeName->setCaption(mSelectSquad->getName());
 
 	int x,y;
-	x = mSelectSquad->getGridX();
-	y = mSelectSquad->getGridY();
+	//x = mSelectSquad->getGridX();
+	//y = mSelectSquad->getGridY();
+	//mSquadGridX->setCaption(Ogre::StringConverter::toString(x));
+	//mSquadGridY->setCaption(Ogre::StringConverter::toString(y));
+	x = mSelectSquad->getLevel();
 	mSquadGridX->setCaption(Ogre::StringConverter::toString(x));
-	mSquadGridY->setCaption(Ogre::StringConverter::toString(y));
 
 	x = mSelectSquad->getDirection();
 	switch(x)

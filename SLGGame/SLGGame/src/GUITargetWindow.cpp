@@ -70,7 +70,7 @@ bool GUITargetWindows::GridInputEvent( int x,int y )
 	mCurY = y;
 	
 	BattleSquadManager* battlemanager = BattleSquadManager::getSingletonPtr();
-	BattleSquad* battesquade = battlemanager->getBattleSquadAt(mCurX,mCurY,1,true);
+	BattleSquad* battesquade = battlemanager->getBattleSquadAt(mCurX,mCurY,0,true);
 	setSquad(battesquade);
 	/*
 	for(int n = 0; n < battlemanager->mSquadList.size(); n++)
@@ -131,10 +131,12 @@ void GUITargetWindows::updateSquad()
 	mSquadTypeName->setCaption(mSelectSquad->getName());
 
 	int x,y;
-	x = mSelectSquad->getGridX();
-	y = mSelectSquad->getGridY();
+	//x = mSelectSquad->getGridX();
+	//y = mSelectSquad->getGridY();
+	//mSquadGridX->setCaption(Ogre::StringConverter::toString(x));
+	//mSquadGridY->setCaption(Ogre::StringConverter::toString(y));
+	x = mSelectSquad->getLevel();
 	mSquadGridX->setCaption(Ogre::StringConverter::toString(x));
-	mSquadGridY->setCaption(Ogre::StringConverter::toString(y));
 
 	x = mSelectSquad->getDirection();
 	switch(x)

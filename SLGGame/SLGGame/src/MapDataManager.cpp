@@ -57,7 +57,7 @@ void MapDataManager::getCrood(int gridid, int &x, int &y)
 	x = gridid % (mMapSize + 2) - 1;
 }
 
-bool MapDataManager::getPassable(int x, int y, int team)
+bool MapDataManager::getPassable(int x, int y, int faction)
 {
 	if(x < 0 || x >= mMapSize || y < 0 || y >= mMapSize)
 		return false;
@@ -90,17 +90,20 @@ bool MapDataManager::getPassable(int x, int y, int team)
 	//额外修正
 
 	//小队阻挡
-	if(team != 0)
+	if(faction >= 0)
 	{
 		BattleSquadManager* battlesquadmanager = BattleSquadManager::getSingletonPtr();
-		BattleSquadManager::BattleSquadIte ite;
-		for(ite = battlesquadmanager->mSquadList.begin(); ite != battlesquadmanager->mSquadList.end(); ite++)
-		{
-			int xx = ite->second->getGridX();
-			int yy = ite->second->getGridY();
-			if(xx ==x && yy == y)
-				return false;
-		}
+// 		BattleSquadManager::BattleSquadIte ite;
+// 		for(ite = battlesquadmanager->mSquadList.begin(); ite != battlesquadmanager->mSquadList.end(); ite++)
+// 		{
+// 			int xx = ite->second->getGridX();
+// 			int yy = ite->second->getGridY();
+// 			if(xx ==x && yy == y)
+// 				return false;
+// 		}
+		BattleSquad* squad = battlesquadmanager->getBattleSquadAt(x, y, faction, true);
+		if(squad)
+			return false;
 	}
 
 	if(maxpassable == 2)
@@ -109,7 +112,7 @@ bool MapDataManager::getPassable(int x, int y, int team)
 		return false;
 	return true;
 }
-float MapDataManager::getInfApCost(int x, int y, int team)
+float MapDataManager::getInfApCost(int x, int y, int faction)
 {
 	TerrainType t = getTerrainType(x,y);
 	GroundType g = getGroundType(x,y);
@@ -131,7 +134,7 @@ float MapDataManager::getInfApCost(int x, int y, int team)
 	}
 	return groundcost + terraincost + groundobjcost;
 }
-float MapDataManager::getCavApCost(int x, int y, int team)
+float MapDataManager::getCavApCost(int x, int y, int faction)
 {
 	TerrainType t = getTerrainType(x,y);
 	GroundType g = getGroundType(x,y);
@@ -153,7 +156,7 @@ float MapDataManager::getCavApCost(int x, int y, int team)
 	}
 	return groundcost + terraincost + groundobjcost;
 }
-float MapDataManager::getDefModify(int x, int y, int team)
+float MapDataManager::getDefModify(int x, int y, int faction)
 {
 	TerrainType t = getTerrainType(x,y);
 	GroundType g = getGroundType(x,y);
@@ -176,7 +179,7 @@ float MapDataManager::getDefModify(int x, int y, int team)
 	return groundcost + terraincost + groundobjcost;
 }
 
-float MapDataManager::getCovert(int x, int y, int team)
+float MapDataManager::getCovert(int x, int y, int faction)
 {
 	TerrainType t = getTerrainType(x,y);
 	GroundType g = getGroundType(x,y);

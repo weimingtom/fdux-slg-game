@@ -44,7 +44,7 @@ void AreaGrap::creatArea(std::string mat)
 	terrain->getWorldCoords(0,0,startpos,startpos);
 	startpos -= TILESIZE /2.0f;
 	mAreaObj->begin(mat);
-	for(int n = 0; n < mCoordList.size() / 2 ; n++)
+	for(unsigned int n = 0; n < mCoordList.size() / 2 ; n++)
 	{
 		int x = mCoordList[n * 2];
 		int y = mCoordList[n * 2 + 1];
@@ -95,7 +95,7 @@ void AreaGrap::changeArea(std::vector<int> coordlist)
 
 bool AreaGrap::inArea(int x, int y)
 {
-	for(int n = 0; n < mCoordList.size() / 2 ; n++)
+	for(unsigned int n = 0; n < mCoordList.size() / 2 ; n++)
 	{
 		if(x == mCoordList[n * 2] && y == mCoordList[n * 2 + 1])
 			return true;

@@ -49,7 +49,10 @@ void main(
 	
 	float3 light = tex2D(lightTex, uv);
 	float3 bloom = tex2D(bloomTex, uv);
-	float3 finalcolor = lerp(light , bloom, 0.25);
+	bloom = bloom * 1.25;
+	light *= (1 - saturate(bloom));
+		
+	float3 finalcolor = light + bloom;//lerp(light , bloom, 0.25);
 	
 	finalcolor = lerp(finalcolor, fogColor.xyz , fogborder1);
 	

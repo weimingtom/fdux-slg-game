@@ -142,7 +142,7 @@ bool BattleDeployState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 		if(id == OIS::MB_Left)
 		{
 			MapDataManager* datamanager = MapDataManager::getSingletonPtr();
-			if(mAreaGrap->inArea(GX,GY) && datamanager->getPassable(GX,GY,0) && BattleSquadManager::getSingleton().getBattleSquadAt(GX,GY,1,false) == NULL)
+			if(mAreaGrap->inArea(GX,GY) && datamanager->getPassable(GX,GY,0) && BattleSquadManager::getSingleton().getBattleSquadAt(GX,GY,0,false) == NULL)
 			{
 				std::string id = mSelectSquad->getSquadId();
 				SquadGraphics* squadgrap = SquadGrapManager::getSingleton().getSquad(id);

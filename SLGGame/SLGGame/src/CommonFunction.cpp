@@ -97,7 +97,7 @@ Direction GetDirection(int sx, int sy, int x, int y)
 		if(y-sy == 0)
 			k = 2.0f;
 		else
-			k = abs(x -sx)/ abs(y - sy);
+			k = (float)abs(x -sx) / abs(y - sy);
 		if( y > sy && k <= 1.0f)
 			d = South;
 		else if( y < sy && k <= 1.0f)
