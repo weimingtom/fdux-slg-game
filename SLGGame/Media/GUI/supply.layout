@@ -2,16 +2,16 @@
 <MyGUI type="Layout" version="3.2.0">
     <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Main" name="SupplyBG">
         <Widget type="Window" skin="SLGWindow" position="0 0 235 477">
-            <Widget type="ListBox" skin="ListBox" position="25 55 185 395"/>
+            <Widget type="ListBox" skin="ListBox" position="25 55 185 395" name="ArmyList"/>
         </Widget>
         <Widget type="Window" skin="SLGMiniWindowSkin" position="240 5 730 305">
-            <Widget type="ImageBox" skin="SLGImageBox" position="25 20 96 128" name="SquadImage"/>
-            <Widget type="TextBox" skin="TextBox" position="25 155 95 20" name="SquadLeadName">
+            <Widget type="ImageBox" skin="SLGImageBox" position="16 13 105 135" name="SquadImageSkin"/>
+            <Widget type="TextBox" skin="TextBox" position="25 185 95 20" name="SquadLeadName">
                 <Property key="FontName" value="fireflysung"/>
                 <Property key="FontHeight" value="20"/>
                 <Property key="Caption" value="SquadLeadName"/>
             </Widget>
-            <Widget type="TextBox" skin="TextBox" position="25 185 95 20" name="SquadType">
+            <Widget type="TextBox" skin="TextBox" position="25 155 95 20" name="SquadType">
                 <Property key="FontHeight" value="20"/>
             </Widget>
             <Widget type="TextBox" skin="TextBox" position="50 215 70 20" name="SquadLv">
@@ -152,11 +152,13 @@
             <Widget type="ImageBox" skin="ImageBox" position="550 240 35 35" name="SquadEffectIcon2"/>
             <Widget type="ImageBox" skin="ImageBox" position="590 240 35 35" name="SquadEffectIcon3"/>
             <Widget type="ImageBox" skin="ImageBox" position="630 240 35 35" name="SquadEffectIcon4"/>
+            <Widget type="ImageBox" skin="ImageBox" position="21 17 96 128" name="SquadImage"/>
         </Widget>
         <Widget type="Window" skin="SLGMiniWindowSkin" position="240 310 735 375">
             <Widget type="TabControl" skin="TabControl" position="15 15 705 345">
                 <Widget type="TabItem" skin="" position="2 24 699 317">
                     <Property key="Caption" value=" weapon"/>
+                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 315" align="Stretch" name="WeaponItemBox"/>
                 </Widget>
             </Widget>
         </Widget>

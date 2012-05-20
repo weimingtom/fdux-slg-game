@@ -424,4 +424,41 @@
 			</Index>
 		</Group>
 	</Resource>
+    
+    	<Resource type="ResourceImageSet" name="pic_ItemBackImage">
+		<Group name="States" texture="Crystal_Clear_Items.png" size="74 74">
+			<Index name="None">
+				<Frame point="773 2"/>
+			</Index>
+			<Index name="Normal">
+				<Frame point="773 2"/>
+			</Index>
+			<Index name="Active">
+				<Frame point="773 79"/>
+			</Index>
+			<Index name="Pressed">
+				<Frame point="773 156"/>
+			</Index>
+			<Index name="Select">
+				<Frame point="773 233"/>
+			</Index>
+		</Group>
+	</Resource>
+
+	<Resource type="ResourceImageSet" name="pic_ItemSelectImage">
+		<Group name="States" texture="Crystal_Clear_Items.png" size="74 74">
+			<Index name="None">
+				<Frame point="696 233"/>
+			</Index>
+			<Index name="Normal">
+				<Frame point="696 2"/>
+			</Index>
+			<Index name="Refuse">
+				<Frame point="696 79"/>
+			</Index>
+			<Index name="Accept">
+				<Frame point="696 156"/>
+			</Index>
+		</Group>
+	</Resource>
 </MyGUI>
