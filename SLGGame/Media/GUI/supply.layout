@@ -2,7 +2,9 @@
 <MyGUI type="Layout" version="3.2.0">
     <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Main" name="SupplyBG">
         <Widget type="Window" skin="SLGWindow" position="0 0 235 477">
-            <Widget type="ListBox" skin="ListBox" position="25 55 185 395" name="ArmyList"/>
+            <Widget type="ListBox" skin="ListBox" position="25 55 185 395" name="ArmyList">
+                <Property key="AddItem" value="asd"/>
+            </Widget>
         </Widget>
         <Widget type="Window" skin="SLGMiniWindowSkin" position="240 5 730 305">
             <Widget type="ImageBox" skin="SLGImageBox" position="16 13 105 135" name="SquadImageSkin"/>
@@ -156,9 +158,10 @@
         </Widget>
         <Widget type="Window" skin="SLGMiniWindowSkin" position="240 310 735 375">
             <Widget type="TabControl" skin="TabControl" position="15 15 705 345">
-                <Widget type="TabItem" skin="" position="2 24 699 317">
-                    <Property key="Caption" value=" weapon"/>
-                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 315" align="Stretch" name="WeaponItemBox"/>
+                <Widget type="TabItem" skin="" position="2 24 699 317" name="TEXT_SquadPWeapon">
+                    <Property key="Caption" value="PWeapon"/>
+                    <Property key="FontHeight" value="16"/>
+                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 315" align="Stretch" name="PWeaponItemBox"/>
                 </Widget>
             </Widget>
         </Widget>

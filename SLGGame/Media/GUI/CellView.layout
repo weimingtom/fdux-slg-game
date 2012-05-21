@@ -6,13 +6,17 @@
         <Widget type="ImageBox" skin="ImageBox" position="0 0 230 50" align="Stretch" name="image_Back">
             <Widget type="ImageBox" skin="ImageBox" position="0 0 230 50" align="Stretch" name="image_Border">
                 <Widget type="ImageBox" skin="ImageBox" position="5 2 48 45" align="Stretch" name="image_Item"/>
-                <Widget type="TextBox" skin="TextBox" position="151 28 75 20" align="Stretch" name="text_Back">
-                    <Property key="TextAlign" value="Right Bottom"/>
-                    <Property key="TextColour" value="0 0 0"/>
+                <Widget type="TextBox" skin="TextBox" position="55 28 171 20" align="Stretch" name="text_Back">
+                    <Property key="TextAlign" value="Center"/>
+                    <Property key="TextColour" value="1 0.796875 0"/>
+                    <Property key="Caption" value="1223"/>
+                    <Property key="FontHeight" value="20"/>
                 </Widget>
                 <Widget type="TextBox" skin="TextBox" position="55 2 170 23" align="Stretch" name="text_Front">
-                    <Property key="TextAlign" value="Right Bottom"/>
+                    <Property key="TextAlign" value="Center"/>
                     <Property key="TextColour" value="1 1 1"/>
+                    <Property key="FontHeight" value="22"/>
+                    <Property key="Caption" value="123123"/>
                 </Widget>
             </Widget>
         </Widget>

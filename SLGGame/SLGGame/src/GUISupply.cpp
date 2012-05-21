@@ -15,13 +15,11 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 
 	assignWidget(mSupplyBG,"SupplyBG");
 	assignWidget(mArmyList,"ArmyList");
+
 	MyGUI::ItemBox* baseItemBox;
-	assignWidget(baseItemBox,"WeaponItemBox");
-	mWeaponItemBox=new demo::ItemBox(baseItemBox);
-	mWeaponItemBox->addItem(new demo::ItemData());
-	mWeaponItemBox->addItem(new demo::ItemData());
-	mWeaponItemBox->addItem(new demo::ItemData());
-	mWeaponItemBox->addItem(new demo::ItemData());
+	assignWidget(baseItemBox,"PWeaponItemBox");
+	mPWeaponItemBox=new demo::ItemBox(baseItemBox);
+
 	assignWidget(mSquadImage,"SquadImage");
 	assignWidget(mTextSquadLeadName,"SquadLeadName");
 	assignWidget(mTextSquadType,"SquadType");
@@ -128,6 +126,33 @@ void GUISupply::showArmy( int index )
 	mTextSquadArmor->setCaption(getItemNameFormLanguage("ArmorData",army->getArmorId()));
 	mTextSqureHorse->setCaption(getItemNameFormLanguage("HorseData",army->getHorseId()));
 
+	showAttribute(index,0,"");
+}
+
+std::string GUISupply::itemCompare(BattleSquad* newSquad,BattleSquad* oldSquad,AttrType type)
+{
+	int oldAttr=oldSquad->getAttr(type,ATTRCALC_FULL);
+	int newAttr=newSquad->getAttr(type,ATTRCALC_FULL);
+
+	int difference=newAttr-oldAttr;
+	if(difference>0)
+	{
+		return Ogre::StringConverter::toString(newAttr) +" (+"+Ogre::StringConverter::toString(difference)+")";
+	}
+	else if(difference==0)
+	{
+		return Ogre::StringConverter::toString(oldAttr);
+	}
+	else if(difference<0)
+	{
+		return Ogre::StringConverter::toString(newAttr) +" (-"+Ogre::StringConverter::toString(difference)+")";
+	}
+}
+
+void GUISupply::showAttribute(int index,int itemType,std::string itemID)
+{
+	BattleSquad* army=mBattleSquad.at(index);
+
 	mTextSquadAttack->setCaption(Ogre::StringConverter::toString(army->getAttr(ATTR_ATTACK,ATTRCALC_FULL)));
 	mTextSquadRangeAttack->setCaption(Ogre::StringConverter::toString(army->getAttr(ATTR_RANGEDATTACK,ATTRCALC_FULL)));
 	mTextSquadDefense->setCaption(Ogre::StringConverter::toString(army->getAttr(ATTR_DEFENCE,ATTRCALC_FULL)));
@@ -164,13 +189,28 @@ void GUISupply::showArmy( int index )
 			m_SquadUseEquipNum++;
 		}
 	}
+}
 
-	std::vector<std::string> child=DataLibrary::getSingletonPtr()->getChildList("StaticData/PweaponData");
-	for(std::vector<std::string>::iterator it=child.begin();it!=child.end();it++)
+void GUISupply::showItem(ItemType type)
+{
+	std::string path;
+	demo::ItemBox* itemBox;
+	switch(type)
 	{
-		mWeaponItemBox->addItem(new demo::ItemData("StaticData/PweaponData/"+(*it)));
+	case ePWeapon:
+		path="StaticData/PweaponData";
+		itemBox=mPWeaponItemBox;
+		break;
+	case eSWeapon:
+		break;
 	}
 
+	itemBox->removeAllItems();
+	std::vector<std::string> child=DataLibrary::getSingletonPtr()->getChildList(path);
+	for(std::vector<std::string>::iterator it=child.begin();it!=child.end();it++)
+	{
+		itemBox->addItem(new demo::ItemData((*it)));
+	}
 }
 
 std::string GUISupply::getItemNameFormLanguage(std::string type,std::string name)
@@ -190,7 +230,11 @@ std::string GUISupply::getItemNameFormLanguage(std::string type,std::string name
 void GUISupply::onSelect( MyGUI::ListBox* _sender, size_t _index )
 {
 	if(_index!=-1)
-	showArmy(_index);
+	{
+		showArmy(_index);
+		showItem(ePWeapon);
+		m_CurrIndex=_index;
+	}
 }
 
 void GUISupply::showScene( std::string arg )

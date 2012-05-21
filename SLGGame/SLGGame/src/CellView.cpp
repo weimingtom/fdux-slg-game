@@ -41,8 +41,8 @@ namespace demo
 			{
 				mImageItem->setVisible(false);
 			}
-			mTextBack->setCaption(((_data->getCount() > 1) && ( ! _info.drag)) ? MyGUI::utility::toString(_data->getCount()) : "");
-			mTextFront->setCaption(((_data->getCount() > 1) && ( ! _info.drag)) ? MyGUI::utility::toString(_data->getCount()) : "");
+			mTextBack->setCaption(_data->getPrice());
+			mTextFront->setCaption(_data->getName());
 
 			static MyGUI::ResourceImageSetPtr resource_back = nullptr;
 			static MyGUI::ResourceImageSetPtr resource_select = nullptr;

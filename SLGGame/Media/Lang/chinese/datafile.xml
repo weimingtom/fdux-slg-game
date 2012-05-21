@@ -65,10 +65,10 @@
 			<Name type="String" value="短剑"/>
 			<Describe type="String" value="短剑"/>
 		</ShortSword>
-		<Pike>
+		<!--<Pike>
 			<Name type="String" value="长枪"/>
 			<Describe type="String" value="长枪"/>
-		</Pike>
+		</Pike>-->
 		<ShortSpear>
 			<Name type="String" value="短枪"/>
 			<Describe type="String" value="短枪"/>
