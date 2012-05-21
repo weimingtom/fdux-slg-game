@@ -461,4 +461,47 @@
 			</Index>
 		</Group>
 	</Resource>
+	
+	<Resource type="ResourceImageSet" name="HeavySword">
+		<Group name="States" texture="icon1.png" size="48 48">
+			<Index name="Normal">
+				<Frame point="0 0"/>
+			</Index>
+			<Index name="Refuse">
+				<Frame point="0 0"/>
+			</Index>
+			<Index name="Accept">
+				<Frame point="0 0"/>
+			</Index>
+		</Group>
+	</Resource>
+	
+	<Resource type="ResourceImageSet" name="ShortSword">
+		<Group name="States" texture="icon1.png" size="48 48">
+			<Index name="Normal">
+				<Frame point="0 0"/>
+			</Index>
+			<Index name="Refuse">
+				<Frame point="0 0"/>
+			</Index>
+			<Index name="Accept">
+				<Frame point="0 0"/>
+			</Index>
+		</Group>
+	</Resource>
+	
+	<Resource type="ResourceImageSet" name="ShortSpear">
+		<Group name="States" texture="icon1.png" size="48 48">
+			<Index name="Normal">
+				<Frame point="0 0"/>
+			</Index>
+			<Index name="Refuse">
+				<Frame point="0 0"/>
+			</Index>
+			<Index name="Accept">
+				<Frame point="0 0"/>
+			</Index>
+		</Group>
+	</Resource>
+	
 </MyGUI>

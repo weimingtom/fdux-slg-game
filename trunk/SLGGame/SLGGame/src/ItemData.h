@@ -3,6 +3,8 @@
 
 #include "ResourceItemInfo.h"
 #include "MyGUI_ResourceManager.h"
+#include "DataLibrary.h"
+#include "StringTable.h"
 
 namespace demo
 {
@@ -22,14 +24,14 @@ namespace demo
 			mResourceInfo(nullptr),
 			mResourceImage(nullptr)
 		{
-			//MyGUI::ResourceManager& manager = MyGUI::ResourceManager::getInstance();
+			MyGUI::ResourceManager& manager = MyGUI::ResourceManager::getInstance();
 			//mResourceInfo = manager.getByName(_resource)->castType<demo::ResourceItemInfo>();
-			//mResourceImage = manager.getByName(mResourceInfo->getItemResourceImage())->castType<MyGUI::ResourceImageSet>();
+			mResourceImage = manager.getByName(mID)->castType<MyGUI::ResourceImageSet>();
 		}
 
 		bool isEmpty() const
 		{
-			return mResourceInfo == 0;
+			return false;
 		}
 
 		void clear()
@@ -51,12 +53,16 @@ namespace demo
 
 		std::string getPrice()
 		{
-
+			std::string price;
+			DataLibrary::getSingletonPtr()->getData("StaticData/PweaponData/"+mID+"/Value",price);
+			return StringTable::getSingleton().getString("Price")+price;
 		}
 
 		std::string getName()
 		{
-
+			std::string name;
+			DataLibrary::getSingletonPtr()->getData("StaticData/PweaponData/"+mID+"/Name",name);
+			return name;
 		}
 
 	private:

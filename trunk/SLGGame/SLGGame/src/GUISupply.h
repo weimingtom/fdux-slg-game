@@ -32,11 +32,21 @@ public:
 		return SupplyScene;
 	}
 
+	enum ItemType
+	{
+		ePWeapon,
+		eSWeapon
+	};
+
 private:
 	void createBattleSquad();
 	void clearBattleSquad();
 	void refreshArmyList();
 	void showArmy(int index);
+	void showItem(ItemType type);
+	void showAttribute(int index,int itemType,std::string itemID);
+
+	std::string itemCompare(BattleSquad* newSquad,BattleSquad* oldSquad,AttrType type);
 
 	void onSelect(MyGUI::ListBox* _sender, size_t _index);
 
@@ -45,7 +55,7 @@ private:
 	MyGUI::ImageBox* mSupplyBG;
 	MyGUI::ListBox* mArmyList;
 
-	demo::ItemBox* mWeaponItemBox;
+	demo::ItemBox* mPWeaponItemBox;
 
 	MyGUI::ImageBox* mSquadImage;
 	MyGUI::TextBox* mTextSquadLeadName;
@@ -79,6 +89,8 @@ private:
 	int m_SquadPassiveSkillNum;
 	int m_SquadUseEquipNum;
 	int m_SquadEffectNum;
+
+	int m_CurrIndex;
 };
 
 class GUISupplywFactory:

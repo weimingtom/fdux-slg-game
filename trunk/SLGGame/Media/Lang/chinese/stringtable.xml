@@ -103,6 +103,7 @@
         <TEXT_SquadPassiveSkill type="String" value="被动技能" />
         <TEXT_SquadUseEquip type="String" value="可用装备" />
         <TEXT_SquadEffect type="String" value="激活效果" />
+		<Price type="String" value="价格:" />
 		
 		<GameTurn type="String" value="回合数:"/>
 		<CurTeam type="String" value="当前队伍:"/>
