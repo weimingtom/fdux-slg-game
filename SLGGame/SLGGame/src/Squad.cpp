@@ -237,16 +237,18 @@ void Squad::unloadEquipment(enumtype equiptype)
 		distpath = mPath + std::string("/SweaponId");
 		break;
 	}
-	std::string tempstr;
-	bool re = datalib->getData(distpath, tempstr);
+	
+	std::string itemID;
+	bool re = datalib->getData(distpath, itemID);
 	if(!re)
 	{
 		datalib->setData(distpath, std::string("none"), true);
 		return;
 	}
-	else if(tempstr == "none")
+	else if(itemID == "none")
 		return;
 
+	std::string tempstr;
 	re = datalib->getData(distpath + std::string("/Modifierid"), tempstr);
 	if(re)
 	{
@@ -255,7 +257,7 @@ void Squad::unloadEquipment(enumtype equiptype)
 
 	//调用装备脚本
 	std::string	scriptpath;
-	datalib->getData(str(boost::format("%1%/Script")%srcpath), scriptpath);
+	datalib->getData(str(boost::format("%1%/%2%/Script")%srcpath%itemID), scriptpath);
 	if(scriptpath != "none")
 	{
 		std::string contexpath = str(boost::format("%1%/ScriptContext")%distpath);

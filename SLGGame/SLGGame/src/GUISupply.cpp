@@ -19,6 +19,8 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	MyGUI::ItemBox* baseItemBox;
 	assignWidget(baseItemBox,"PWeaponItemBox");
 	mPWeaponItemBox=new demo::ItemBox(baseItemBox);
+	mPWeaponItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventMouseItemActivate);
+	mPWeaponItemBox->getItemBox()->eventSelectItemAccept+= MyGUI::newDelegate(this, &GUISupply::eventSelectItemAccept);
 
 	assignWidget(mSquadImage,"SquadImage");
 	assignWidget(mTextSquadLeadName,"SquadLeadName");
@@ -67,6 +69,11 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	refreshArmyList();
 
 	mArmyList->eventListMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::onSelect);
+
+	m_CurrSelectType=EQUIP_PWEAPON;
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/Money",1000);
+	m_Money=0;
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/Money",m_Money);
 }
 
 GUISupply::~GUISupply(void)
@@ -129,47 +136,89 @@ void GUISupply::showArmy( int index )
 	showAttribute(index,0,"");
 }
 
-std::string GUISupply::itemCompare(BattleSquad* newSquad,BattleSquad* oldSquad,AttrType type)
+std::string GUISupply::itemCompare(BattleSquad* compareSquad,BattleSquad* squad,AttrType type)
 {
-	int oldAttr=oldSquad->getAttr(type,ATTRCALC_FULL);
-	int newAttr=newSquad->getAttr(type,ATTRCALC_FULL);
+	float oldAttr=squad->getAttr(type,ATTRCALC_FULL);
 
-	int difference=newAttr-oldAttr;
-	if(difference>0)
+	if(compareSquad!=NULL)
 	{
-		return Ogre::StringConverter::toString(newAttr) +" (+"+Ogre::StringConverter::toString(difference)+")";
+		float newAttr=compareSquad->getAttr(type,ATTRCALC_FULL);
+
+		float difference=newAttr-oldAttr;
+		if(difference>0)
+		{
+			return "#00FF00" + Ogre::StringConverter::toString(newAttr) +" (+"+Ogre::StringConverter::toString(difference)+")";
+		}
+		else if(difference==0)
+		{
+			return Ogre::StringConverter::toString(oldAttr);
+		}
+		else
+		{
+			return "#FF0000"+Ogre::StringConverter::toString(newAttr) +" (-"+Ogre::StringConverter::toString(abs(difference))+")";
+		}
 	}
-	else if(difference==0)
+	else
 	{
 		return Ogre::StringConverter::toString(oldAttr);
 	}
-	else if(difference<0)
+}
+
+void GUISupply::eventMouseItemActivate(MyGUI::ItemBox* _sender, size_t _index)
+{
+	if(_index!=-1)
 	{
-		return Ogre::StringConverter::toString(newAttr) +" (-"+Ogre::StringConverter::toString(difference)+")";
+		demo::ItemData* item=*(_sender->getItemDataAt<demo::ItemData*>(_index));
+		showAttribute(m_CurrSquadIndex,m_CurrSelectType,item->getID());
+	}
+	else
+	{
+		showAttribute(m_CurrSquadIndex,0,"");
+	}
+}
+
+void GUISupply::eventSelectItemAccept(MyGUI::ItemBox* _sender, size_t _index)
+{
+	if(_index!=-1)
+	{
+		demo::ItemData* item=*(_sender->getItemDataAt<demo::ItemData*>(_index));
+		buyItem(m_CurrSquadIndex,item);
 	}
 }
 
 void GUISupply::showAttribute(int index,int itemType,std::string itemID)
 {
 	BattleSquad* army=mBattleSquad.at(index);
+	BattleSquad* copySquad=NULL;
+	if(itemID!="")
+	{
+		DataLibrary::getSingletonPtr()->copyNode(army->getPath(),"GameData/BattleData/SquadList/TempSquad");
+		copySquad=new BattleSquad("GameData/BattleData/SquadList/TempSquad");
+		copySquad->equipEquipment(itemType,itemID);
 
-	mTextSquadAttack->setCaption(Ogre::StringConverter::toString(army->getAttr(ATTR_ATTACK,ATTRCALC_FULL)));
-	mTextSquadRangeAttack->setCaption(Ogre::StringConverter::toString(army->getAttr(ATTR_RANGEDATTACK,ATTRCALC_FULL)));
-	mTextSquadDefense->setCaption(Ogre::StringConverter::toString(army->getAttr(ATTR_DEFENCE,ATTRCALC_FULL)));
-	mTextSquadArray->setCaption(Ogre::StringConverter::toString(army->getAttr(ATTR_FORM,ATTRCALC_FULL)));
-	mTextSquadAgility->setCaption(Ogre::StringConverter::toString(army->getAttr(ATTR_INITIATIVE,ATTRCALC_FULL)));
-	mTextSquadDetect->setCaption(Ogre::StringConverter::toString(army->getAttr(ATTR_DETECTION,ATTRCALC_FULL)));
-	mTextSquadConcealment->setCaption(Ogre::StringConverter::toString(army->getAttr(ATTR_COVERT,ATTRCALC_FULL)));
-	mTextSquadTenacity->setCaption(Ogre::StringConverter::toString(army->getAttr(ATTR_TOUGHNESS,ATTRCALC_FULL)));
-	mTextSquadAP->setCaption(Ogre::StringConverter::toString(army->getAttr(ATTR_ACTIONPOINT,ATTRCALC_FULL)));
-	mTextSquadCounterattack->setCaption(Ogre::StringConverter::toString(army->getAttr(ATTR_CONTER,ATTRCALC_FULL)));
+	}
+
+	mTextSquadAttack->setCaption(itemCompare(copySquad,army,ATTR_ATTACK));
+	mTextSquadRangeAttack->setCaption(itemCompare(copySquad,army,ATTR_RANGEDATTACK));
+	mTextSquadDefense->setCaption(itemCompare(copySquad,army,ATTR_DEFENCE));
+	mTextSquadArray->setCaption(itemCompare(copySquad,army,ATTR_FORM));
+	mTextSquadAgility->setCaption(itemCompare(copySquad,army,ATTR_INITIATIVE));
+	mTextSquadDetect->setCaption(itemCompare(copySquad,army,ATTR_DETECTION));
+	mTextSquadConcealment->setCaption(itemCompare(copySquad,army,ATTR_COVERT));
+	mTextSquadTenacity->setCaption(itemCompare(copySquad,army,ATTR_TOUGHNESS));
+	mTextSquadAP->setCaption(itemCompare(copySquad,army,ATTR_ACTIONPOINT));
+	mTextSquadCounterattack->setCaption(itemCompare(copySquad,army,ATTR_CONTER));
 	mTextSquadPeople->setCaption(Ogre::StringConverter::toString(army->getUnitNum()));
 	
 	m_SquadSkillNum=0;
 	m_SquadPassiveSkillNum=0;
 	m_SquadUseEquipNum=0;
 	m_SquadEffectNum=0;
-	std::map<std::string,enumtype> skillmap=army->getSkillTable();
+	std::map<std::string,enumtype> skillmap;
+	if(itemID!="")
+		skillmap=copySquad->getSkillTable();
+	else
+		skillmap=army->getSkillTable();
 
 	for(std::map<std::string,enumtype>::iterator it=skillmap.begin();it!=skillmap.end();it++)
 	{
@@ -189,19 +238,29 @@ void GUISupply::showAttribute(int index,int itemType,std::string itemID)
 			m_SquadUseEquipNum++;
 		}
 	}
+
+	if(itemID!="")
+	{
+		delete copySquad;
+		DataLibrary::getSingletonPtr()->delNode("GameData/BattleData/SquadList/TempSquad");
+	}
+
 }
 
-void GUISupply::showItem(ItemType type)
+void GUISupply::showItem(int type)
 {
 	std::string path;
 	demo::ItemBox* itemBox;
+	std::string equipID;
+	int equipType=type;
+	BattleSquad* army=mBattleSquad.at(m_CurrSquadIndex);
+
 	switch(type)
 	{
-	case ePWeapon:
+	case EQUIP_PWEAPON:
 		path="StaticData/PweaponData";
 		itemBox=mPWeaponItemBox;
-		break;
-	case eSWeapon:
+		equipID=army->getPweaponId();
 		break;
 	}
 
@@ -209,7 +268,28 @@ void GUISupply::showItem(ItemType type)
 	std::vector<std::string> child=DataLibrary::getSingletonPtr()->getChildList(path);
 	for(std::vector<std::string>::iterator it=child.begin();it!=child.end();it++)
 	{
-		itemBox->addItem(new demo::ItemData((*it)));
+		demo::ItemData* data=new demo::ItemData(equipType,(*it));
+		if((*it)==equipID)
+		{
+			data->setEquip(true);
+		}
+		itemBox->addItem(data);
+	}
+}
+
+void GUISupply::buyItem(int index,demo::ItemData* item)
+{
+	BattleSquad* army=mBattleSquad.at(index);
+
+	if(!item->getEquip() && item->getCanBuy())
+	{
+		army->equipEquipment(item->getType(),item->getID());
+
+		showArmy(m_CurrSquadIndex);
+		showItem(item->getType());
+
+		m_Money-=item->getPriceValue();
+		DataLibrary::getSingletonPtr()->setData("GameData/StoryData/Money",m_Money);
 	}
 }
 
@@ -231,9 +311,9 @@ void GUISupply::onSelect( MyGUI::ListBox* _sender, size_t _index )
 {
 	if(_index!=-1)
 	{
+		m_CurrSquadIndex=_index;
 		showArmy(_index);
-		showItem(ePWeapon);
-		m_CurrIndex=_index;
+		showItem(EQUIP_PWEAPON);
 	}
 }
 
