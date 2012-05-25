@@ -888,31 +888,11 @@
 				Name="Supply"
 				>
 				<File
-					RelativePath=".\src\CellView.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\src\CellView.h"
-					>
-				</File>
-				<File
 					RelativePath=".\src\GUISupply.cpp"
 					>
 				</File>
 				<File
 					RelativePath=".\src\GUISupply.h"
-					>
-				</File>
-				<File
-					RelativePath=".\src\ItemBox.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\src\ItemBox.h"
-					>
-				</File>
-				<File
-					RelativePath=".\src\ItemData.h"
 					>
 				</File>
 				<File
@@ -929,6 +909,26 @@
 				</File>
 				<File
 					RelativePath=".\src\SupplyState.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\WeaponCellView.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\WeaponCellView.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\WeaponItemBox.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\WeaponItemBox.h"
+					>
+				</File>
+				<File
+					RelativePath=".\src\WeaponItemData.h"
 					>
 				</File>
 			</Filter>

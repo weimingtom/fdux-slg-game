@@ -8,19 +8,14 @@
 
 #include <MyGUI.h>
 #include "ItemBox/BaseItemBox.h"
-#include "CellView.h"
+#include "WeaponCellView.h"
 
-namespace demo
-{
-
-	class ItemBox :
-		public wraps::BaseItemBox<CellView>
+class WeaponItemBox :
+		public wraps::BaseItemBox<WeaponCellView>
 	{
 	public:
-		ItemBox(MyGUI::Widget* _parent);
-		virtual ~ItemBox();
+		WeaponItemBox(MyGUI::Widget* _parent);
+		virtual ~WeaponItemBox();
 	};
-
-} // namespace demo
 
 #endif // __ITEM_BOXV_H__

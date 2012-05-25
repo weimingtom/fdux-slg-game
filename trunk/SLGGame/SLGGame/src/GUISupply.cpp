@@ -18,7 +18,7 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 
 	MyGUI::ItemBox* baseItemBox;
 	assignWidget(baseItemBox,"PWeaponItemBox");
-	mPWeaponItemBox=new demo::ItemBox(baseItemBox);
+	mPWeaponItemBox=new WeaponItemBox(baseItemBox);
 	mPWeaponItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventMouseItemActivate);
 	mPWeaponItemBox->getItemBox()->eventSelectItemAccept+= MyGUI::newDelegate(this, &GUISupply::eventSelectItemAccept);
 
@@ -168,7 +168,7 @@ void GUISupply::eventMouseItemActivate(MyGUI::ItemBox* _sender, size_t _index)
 {
 	if(_index!=-1)
 	{
-		demo::ItemData* item=*(_sender->getItemDataAt<demo::ItemData*>(_index));
+		WeaponItemData* item=*(_sender->getItemDataAt<WeaponItemData*>(_index));
 		showAttribute(m_CurrSquadIndex,m_CurrSelectType,item->getID());
 	}
 	else
@@ -181,7 +181,7 @@ void GUISupply::eventSelectItemAccept(MyGUI::ItemBox* _sender, size_t _index)
 {
 	if(_index!=-1)
 	{
-		demo::ItemData* item=*(_sender->getItemDataAt<demo::ItemData*>(_index));
+		WeaponItemData* item=*(_sender->getItemDataAt<WeaponItemData*>(_index));
 		buyItem(m_CurrSquadIndex,item);
 	}
 }
@@ -250,7 +250,7 @@ void GUISupply::showAttribute(int index,int itemType,std::string itemID)
 void GUISupply::showItem(int type)
 {
 	std::string path;
-	demo::ItemBox* itemBox;
+	WeaponItemBox* itemBox;
 	std::string equipID;
 	int equipType=type;
 	BattleSquad* army=mBattleSquad.at(m_CurrSquadIndex);
@@ -268,7 +268,7 @@ void GUISupply::showItem(int type)
 	std::vector<std::string> child=DataLibrary::getSingletonPtr()->getChildList(path);
 	for(std::vector<std::string>::iterator it=child.begin();it!=child.end();it++)
 	{
-		demo::ItemData* data=new demo::ItemData(equipType,(*it));
+		WeaponItemData* data=new WeaponItemData(equipType,(*it));
 		if((*it)==equipID)
 		{
 			data->setEquip(true);
@@ -277,7 +277,7 @@ void GUISupply::showItem(int type)
 	}
 }
 
-void GUISupply::buyItem(int index,demo::ItemData* item)
+void GUISupply::buyItem(int index,WeaponItemData* item)
 {
 	BattleSquad* army=mBattleSquad.at(index);
 
