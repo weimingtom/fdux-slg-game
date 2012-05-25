@@ -39,7 +39,7 @@ private:
 	void showArmy(int index);
 	void showItem(int type);
 	void showAttribute(int index,int itemType,std::string itemID);
-	void buyItem(int index,demo::ItemData* item);
+	void buyItem(int index,WeaponItemData* item);
 
 	void eventMouseItemActivate(MyGUI::ItemBox* _sender, size_t _index);
 	void eventSelectItemAccept(MyGUI::ItemBox* _sender, size_t _index);
@@ -53,7 +53,7 @@ private:
 	MyGUI::ImageBox* mSupplyBG;
 	MyGUI::ListBox* mArmyList;
 
-	demo::ItemBox* mPWeaponItemBox;
+	WeaponItemBox* mPWeaponItemBox;
 
 	MyGUI::ImageBox* mSquadImage;
 	MyGUI::TextBox* mTextSquadLeadName;
