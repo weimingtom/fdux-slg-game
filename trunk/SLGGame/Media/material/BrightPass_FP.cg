@@ -3,16 +3,17 @@ void main(
 	
 	out float4 oColour	: COLOR,
 
+	uniform float4 bloomThreshold,
 	uniform sampler2D lightTex: register(s0)
 	)
 {
 	float4 light = tex2D(lightTex, uv);
-	float4 BloomThreshold = float4(0.6, 0.6, 0.6, 1.0);
+	//float4 bloomThreshold = float4(0.75, 0.75, 0.75, 1.0);
 	
 	//light -= 1;
 	//float4 bright4= -6 * light * light + 2; 
 	//float bright = dot( bright4, float4( 0.333333, 0.333333, 0.333333, 0) );
 	//light += bright + 0.6;
 
-	oColour  = saturate((light - BloomThreshold) / (1 - BloomThreshold));//ight;
+	oColour  = saturate((light - bloomThreshold) / (1 - bloomThreshold));//ight;
 }

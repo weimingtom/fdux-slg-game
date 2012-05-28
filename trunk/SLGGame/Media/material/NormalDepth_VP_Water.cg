@@ -10,6 +10,9 @@ void main(
 	uniform	float4x4	worldViewProj,
 	uniform	float4x4	worldView,
 	uniform float timeVal,
+	uniform float uSpeed,
+	uniform float vSpeed,
+	uniform float uvScale,
 	uniform float scale,  // the amount to scale the noise texture by
 	uniform float scroll, // the amount by which to scroll the noise
 	uniform float noise  // the noise perturb as a factor of the  time
@@ -22,5 +25,5 @@ void main(
 	oNoiseCoord.xy = (tex + (timeVal * scroll)) * scale;
 	oNoiseCoord.z = noise * timeVal;
 	
-	oTexUv = tex;
+	oTexUv = (tex + timeVal * float2(uSpeed, vSpeed)) * uvScale;
 }

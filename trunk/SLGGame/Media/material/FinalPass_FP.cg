@@ -1,3 +1,10 @@
+float3 AdjustSaturation(float3 color, float saturation)
+{
+    // We define gray as the same color we used in the grayscale shader
+    float grey = dot(color, float3(0.3, 0.59, 0.11));
+    return lerp(float3(grey, grey, grey), color, saturation);
+}
+
 void main(
 	float2 uv: TEXCOORD0,
 	float3 ray: TEXCOORD1,	
@@ -14,7 +21,8 @@ void main(
 	uniform float4 fogParam,
 	uniform float border,
 	uniform float3 cameraPos,
-	uniform float timeVal
+	uniform float timeVal,
+	uniform float4 bloomArg
 	)
 {
 	float4 nd = tex2D(normaldepthTex, uv);
@@ -49,7 +57,8 @@ void main(
 	
 	float3 light = tex2D(lightTex, uv);
 	float3 bloom = tex2D(bloomTex, uv);
-	bloom = bloom * 1.25;
+	bloom = AdjustSaturation(bloom , bloomArg.y) * bloomArg.x;
+	light = AdjustSaturation(light , bloomArg.w) * bloomArg.z;
 	light *= (1 - saturate(bloom));
 		
 	float3 finalcolor = light + bloom;//lerp(light , bloom, 0.25);
