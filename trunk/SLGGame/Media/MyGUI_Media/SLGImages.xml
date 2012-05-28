@@ -504,4 +504,56 @@
 		</Group>
 	</Resource>
 	
+<Resource type="ResourceImageSet" name="LightInfIcon_Supply">
+		<Group name="States" texture="SLGIcon.png" size="22 24">
+			<Index name="Normal">
+				<Frame point="272 12"/>
+			</Index>
+            <Index name="Refuse">
+				<Frame point="272 12"/>
+			</Index>
+            <Index name="Accept">
+				<Frame point="272 12"/>
+			</Index>
+		</Group>
+	</Resource>
+<Resource type="ResourceImageSet" name="BowmanIcon_Supply">
+		<Group name="States" texture="SLGIcon.png" size="22 24">
+			<Index name="Normal">
+				<Frame point="300 12"/>
+			</Index>
+			<Index name="Refuse">
+				<Frame point="300 12"/>
+			</Index>
+			<Index name="Accept">
+				<Frame point="300 12"/>
+			</Index>
+		</Group>
+	</Resource>
+<Resource type="ResourceImageSet" name="HeavyInfIcon_Supply">
+		<Group name="States" texture="SLGIcon.png" size="22 24">
+			<Index name="Normal">
+				<Frame point="327 12"/>
+			</Index>
+			<Index name="Refuse">
+				<Frame point="327 12"/>
+			</Index>
+			<Index name="Accept">
+				<Frame point="327 12"/>
+			</Index>
+		</Group>
+	</Resource>
+<Resource type="ResourceImageSet" name="SaintIcon_Supply">
+		<Group name="States" texture="SLGIcon.png" size="22 24">
+			<Index name="Normal">
+				<Frame point="354 12"/>
+			</Index>
+			<Index name="Refuse">
+				<Frame point="354 12"/>
+			</Index>
+			<Index name="Accept">
+				<Frame point="354 12"/>
+			</Index>
+		</Group>
+	</Resource>
 </MyGUI>

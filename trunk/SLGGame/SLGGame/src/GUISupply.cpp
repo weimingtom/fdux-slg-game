@@ -3,8 +3,6 @@
 #include "DataLibrary.h"
 #include "StringTable.h"
 
-#include "ItemData.h"
-
 #include "boost/format.hpp"
 #include <string>
 #include <map>
@@ -14,13 +12,16 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	setSceneLanguage();
 
 	assignWidget(mSupplyBG,"SupplyBG");
-	assignWidget(mArmyList,"ArmyList");
 
 	MyGUI::ItemBox* baseItemBox;
 	assignWidget(baseItemBox,"PWeaponItemBox");
 	mPWeaponItemBox=new WeaponItemBox(baseItemBox);
 	mPWeaponItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventMouseItemActivate);
 	mPWeaponItemBox->getItemBox()->eventSelectItemAccept+= MyGUI::newDelegate(this, &GUISupply::eventSelectItemAccept);
+
+	assignWidget(baseItemBox,"ArmyList");
+	mSquadItemBox=new SquadItemBox(baseItemBox);
+	mSquadItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventSquadMouseItemActivate);
 
 	assignWidget(mSquadImage,"SquadImage");
 	assignWidget(mTextSquadLeadName,"SquadLeadName");
@@ -68,8 +69,6 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	createBattleSquad();
 	refreshArmyList();
 
-	mArmyList->eventListMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::onSelect);
-
 	m_CurrSelectType=EQUIP_PWEAPON;
 	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/Money",1000);
 	m_Money=0;
@@ -106,10 +105,10 @@ void GUISupply::createBattleSquad()
 
 void GUISupply::refreshArmyList()
 {
-	mArmyList->removeAllItems();
+	mSquadItemBox->removeAllItems();
 	for(std::vector<BattleSquad*>::iterator it=mBattleSquad.begin();it!=mBattleSquad.end();it++)
 	{
-		mArmyList->addItem((*it)->getName());
+		mSquadItemBox->addItem(new SquadItemData((*it)->getSquadType(),(*it)->getName(),(*it)->getLevel()));
 	}
 }
 
@@ -161,6 +160,16 @@ std::string GUISupply::itemCompare(BattleSquad* compareSquad,BattleSquad* squad,
 	else
 	{
 		return Ogre::StringConverter::toString(oldAttr);
+	}
+}
+
+void GUISupply::eventSquadMouseItemActivate(MyGUI::ItemBox* _sender, size_t _index)
+{
+	if(_index!=-1)
+	{
+		m_CurrSquadIndex=_index;
+		showArmy(_index);
+		showItem(EQUIP_PWEAPON);
 	}
 }
 
@@ -304,16 +313,6 @@ std::string GUISupply::getItemNameFormLanguage(std::string type,std::string name
 		std::string temppath = std::string("StaticData/")+type+"/"+ name + std::string("/Name");
 		DataLibrary::getSingletonPtr()->getData(temppath,tempstr);
 		return tempstr;
-	}
-}
-
-void GUISupply::onSelect( MyGUI::ListBox* _sender, size_t _index )
-{
-	if(_index!=-1)
-	{
-		m_CurrSquadIndex=_index;
-		showArmy(_index);
-		showItem(EQUIP_PWEAPON);
 	}
 }
 
