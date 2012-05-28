@@ -54,6 +54,7 @@ fragment_program BrightPassFP cg
  
     default_params
     {
+		param_named bloomThreshold float3 0.75 0.75 0.75 1.0
     }
 }
 
@@ -104,6 +105,7 @@ fragment_program FinalPassFP cg
 		param_named_auto fogColor fog_colour 
 		param_named_auto cameraPos camera_position
 		param_named_auto timeVal time 0.05
+		param_named bloomArg float4  1.8 1.0 1.0 1.0
 		param_named border float 144.0
 		shared_params_ref TestSharedParamsName 
     }

@@ -4,7 +4,7 @@
     <SEVolume value="99" type="UInt" />
     <TextSpeed value="99" type="UInt" />
     <Save>
-        <Save1 value="AutoSave 2012-5-18 13:33:3" type="String" />
+        <Save1 value="AutoSave 2012-5-29 2:30:48" type="String" />
         <Save2 value="NoName 2012-3-22 0:58:42" type="String" />
     </Save>
 </SystemConfig>

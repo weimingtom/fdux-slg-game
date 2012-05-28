@@ -24,10 +24,11 @@ fragment_program ColorOnlyFP/Water cg
  
     default_params
     {
-		param_named fresnelBias float 0.5 
+		param_named fresnelBias float 0.20
 		param_named fresnelScale float 1.8 
 		param_named fresnelPower float 8  
 		param_named noiseScale float 0.02 
+		param_named waterColor float3 0.20  0.30  0.32
     }
 }
 
@@ -43,6 +44,9 @@ vertex_program NormalDepthVP/Water cg
 		param_named_auto worldViewProj worldviewproj_matrix
 		param_named_auto worldView worldview_matrix 
 		param_named_auto timeVal time 0.05
+		param_named uSpeed float 0.15
+		param_named vSpeed float 0.1
+		param_named uvScale float 2
 		param_named scroll float 1  
 		param_named scale float 2 
 		param_named noise float 5 
