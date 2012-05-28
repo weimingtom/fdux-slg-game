@@ -2,9 +2,7 @@
 <MyGUI type="Layout" version="3.2.0">
     <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Main" name="SupplyBG">
         <Widget type="Window" skin="SLGWindow" position="0 0 235 477">
-            <Widget type="ListBox" skin="ListBox" position="25 55 185 395" name="ArmyList">
-                <Property key="AddItem" value="asd"/>
-            </Widget>
+            <Widget type="ItemBox" skin="ItemBox" position="22 55 190 399" name="ArmyList"/>
         </Widget>
         <Widget type="Window" skin="SLGMiniWindowSkin" position="240 5 730 305">
             <Widget type="ImageBox" skin="SLGImageBox" position="16 13 105 135" name="SquadImageSkin"/>

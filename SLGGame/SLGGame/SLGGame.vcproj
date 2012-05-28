@@ -911,26 +911,54 @@
 					RelativePath=".\src\SupplyState.h"
 					>
 				</File>
-				<File
-					RelativePath=".\src\WeaponCellView.cpp"
+				<Filter
+					Name="WeaponItemBox"
 					>
-				</File>
-				<File
-					RelativePath=".\src\WeaponCellView.h"
+					<File
+						RelativePath=".\src\WeaponCellView.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\WeaponCellView.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\WeaponItemBox.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\WeaponItemBox.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\WeaponItemData.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="SquadItemBox"
 					>
-				</File>
-				<File
-					RelativePath=".\src\WeaponItemBox.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\src\WeaponItemBox.h"
-					>
-				</File>
-				<File
-					RelativePath=".\src\WeaponItemData.h"
-					>
-				</File>
+					<File
+						RelativePath=".\src\SquadCellView.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\SquadCellView.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\SquadItemBox.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\SquadItemBox.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\SquadItemData.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 		<Filter

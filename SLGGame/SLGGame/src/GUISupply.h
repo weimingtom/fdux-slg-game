@@ -4,7 +4,8 @@
 
 #include "BattleSquad.h"
 
-#include "ItemBox.h"
+#include "WeaponItemBox.h"
+#include "SquadItemBox.h"
 
 #include <vector>
 
@@ -43,17 +44,16 @@ private:
 
 	void eventMouseItemActivate(MyGUI::ItemBox* _sender, size_t _index);
 	void eventSelectItemAccept(MyGUI::ItemBox* _sender, size_t _index);
+	void eventSquadMouseItemActivate(MyGUI::ItemBox* _sender, size_t _index);
 
 	std::string itemCompare(BattleSquad* newSquad,BattleSquad* oldSquad,AttrType type);
-
-	void onSelect(MyGUI::ListBox* _sender, size_t _index);
 
 	std::string getItemNameFormLanguage(std::string type,std::string name);
 
 	MyGUI::ImageBox* mSupplyBG;
-	MyGUI::ListBox* mArmyList;
 
 	WeaponItemBox* mPWeaponItemBox;
+	SquadItemBox* mSquadItemBox;
 
 	MyGUI::ImageBox* mSquadImage;
 	MyGUI::TextBox* mTextSquadLeadName;
