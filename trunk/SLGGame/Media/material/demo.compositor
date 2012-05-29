@@ -3,8 +3,8 @@ compositor DemoCompositor
 	technique
 	{
 		texture normal_depth target_width target_height PF_FLOAT16_RGBA
-		texture color target_width target_height PF_R8G8B8
-		texture specular_emissive target_width target_height PF_R8G8B8
+		texture color target_width target_height PF_R8G8B8A8
+		texture specular_emissive target_width target_height PF_R8G8B8A8
 		texture light target_width target_height PF_R8G8B8
 		texture	brightpass target_width_scaled 0.5 target_height_scaled 0.5 PF_R8G8B8
 		texture bloom_blurx  target_width target_height PF_R8G8B8
