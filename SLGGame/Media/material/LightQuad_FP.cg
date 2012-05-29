@@ -22,7 +22,7 @@ void main(
 	)
 {
 	float4 nd = tex2D(normalDepthTex, uv);
-	float3 color = tex2D(colorTex, uv).xyz;
+	float4 color = tex2D(colorTex, uv);
 	float3 sm = tex2D(SpEmiTex, uv).xyz;
 	
 	float3 viewpos = ray * farChip * nd.w;
@@ -50,7 +50,7 @@ void main(
 	float3 V = normalize(cameraPos - worldpos.xyz);
 	float3 H = normalize(lightDir.xyz + V);
 	float3 specular = lightSpeColor * pow(max(dot(normal, H),0.0), sm.y * 100.0);
-	lightcolor = lightcolor + (diffColor + specular * sm.x) * shadow;
+	lightcolor = lightcolor + (diffColor * color.a + specular * sm.x) * shadow;
 	
-	oColour  = float4(color *  lightcolor,1.0);//float4(color * shadow,1.0);
+	oColour  = float4(color.rgb *  lightcolor,1.0);//float4(color * shadow,1.0);
 }

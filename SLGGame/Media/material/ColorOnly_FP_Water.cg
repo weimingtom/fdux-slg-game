@@ -28,13 +28,15 @@ void main(
 	float fresnel = fresnelBias + fresnelScale * pow(1 + dot(eyeDir, normal), fresnelPower);
 
 	// Reflection / refraction
-	float4 reflectionColour = tex2D(reflectMap, final);
+	float3 reflectionColour = tex2D(reflectMap, final).rgb;
 	//float4 refractionColour = tex2D(refractMap, final) + tintColour;
-	float4 vertexColour = float4(waterColor, 1.0);
+	//float3 vertexColour = float4(waterColor, 1.0);
+	col.rgb =  lerp(waterColor, reflectionColour, fresnel);
+	col.a = 0.25;
 
 	// Final colour
 	//col = lerp(refractionColour, reflectionColour, fresnel);
-	col = lerp(vertexColour, reflectionColour, fresnel);
+	//col = lerp(vertexColour, reflectionColour, fresnel);
 	//col = vertexColour;
 
 }
