@@ -106,6 +106,9 @@
 		<Price type="String" value="价格:" />
         <NoEnoughMoney type="String" value="(金钱不足)" />
         <Equiped type="String" value="已装备" />
+        <ItemPrice type="String" value="#FFFF00价格:%1%(%2%X%3%人)" />
+        <TEXT_ArmyInfoName type="String" value="军团状况"/>
+        <ArmyInfo_Money type="String" value="军团资金:%1%"/>
 		
 		<GameTurn type="String" value="回合数:"/>
 		<CurTeam type="String" value="当前队伍:"/>

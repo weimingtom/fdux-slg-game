@@ -17,15 +17,21 @@ public:
 	  {
 	  }
 
-	  WeaponItemData(int type,const std::string& id) :
+	  WeaponItemData(int type,const std::string& id,int peopleNum) :
 	  mType(type),
 		  mID(id),
+		  mPeopleNum(peopleNum),
 		  mResourceInfo(nullptr),
 		  mResourceImage(nullptr)
 	  {
 		  MyGUI::ResourceManager& manager = MyGUI::ResourceManager::getInstance();
 		  //mResourceInfo = manager.getByName(_resource)->castType<demo::ResourceItemInfo>();
-		  mResourceImage = manager.getByName(mID)->castType<MyGUI::ResourceImageSet>();
+
+		  if(manager.getByName(mID,false)!=nullptr)
+			 mResourceImage = manager.getByName(mID,false)->castType<MyGUI::ResourceImageSet>();
+		  else
+			mResourceImage = manager.getByName("NULLICON",false)->castType<MyGUI::ResourceImageSet>();
+
 		  mIsEquip=false;
 
 		  switch(type)
@@ -134,6 +140,13 @@ public:
 	  {
 		  int price;
 		  DataLibrary::getSingletonPtr()->getData(mTypeString+mID+"/Value",price);
+		  return price*mPeopleNum;
+	  }
+
+	  int getOnePrice()
+	  {
+		  int price;
+		  DataLibrary::getSingletonPtr()->getData(mTypeString+mID+"/Value",price);
 		  return price;
 	  }
 
@@ -141,6 +154,7 @@ private:
 
 	std::string mID;
 	std::string mTypeString;
+	int mPeopleNum;
 	int mType;
 	bool mIsEquip;
 	bool mIsCanBuy;
