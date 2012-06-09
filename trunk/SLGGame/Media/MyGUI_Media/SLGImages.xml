@@ -504,6 +504,20 @@
 		</Group>
 	</Resource>
 	
+	<Resource type="ResourceImageSet" name="NULLICON">
+		<Group name="States" texture="icon2.png" size="48 48">
+			<Index name="Normal">
+				<Frame point="0 0"/>
+			</Index>
+			<Index name="Refuse">
+				<Frame point="0 0"/>
+			</Index>
+			<Index name="Accept">
+				<Frame point="0 0"/>
+			</Index>
+		</Group>
+	</Resource>
+    
 <Resource type="ResourceImageSet" name="LightInfIcon_Supply">
 		<Group name="States" texture="SLGIcon.png" size="22 24">
 			<Index name="Normal">

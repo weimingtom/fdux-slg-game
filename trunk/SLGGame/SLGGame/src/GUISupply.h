@@ -41,18 +41,28 @@ private:
 	void showItem(int type);
 	void showAttribute(int index,int itemType,std::string itemID);
 	void buyItem(int index,WeaponItemData* item);
+	void setItemInfo(WeaponItemData* item);
+	void showArmyInfo();
 
 	void eventMouseItemActivate(MyGUI::ItemBox* _sender, size_t _index);
 	void eventSelectItemAccept(MyGUI::ItemBox* _sender, size_t _index);
 	void eventSquadMouseItemActivate(MyGUI::ItemBox* _sender, size_t _index);
+	void eventTabChangeSelect(MyGUI::TabControl* _sender, size_t _index);
 
 	std::string itemCompare(BattleSquad* newSquad,BattleSquad* oldSquad,AttrType type);
 
 	std::string getItemNameFormLanguage(std::string type,std::string name);
 
+
 	MyGUI::ImageBox* mSupplyBG;
 
 	WeaponItemBox* mPWeaponItemBox;
+	WeaponItemBox* mSWeaponItemBox;
+	WeaponItemBox* mShieldItemBox;
+	WeaponItemBox* mHorseItemBox;
+	WeaponItemBox* mArmorItemBox;
+	WeaponItemBox* mSoilderItemBox;
+
 	SquadItemBox* mSquadItemBox;
 
 	MyGUI::ImageBox* mSquadImage;
@@ -81,6 +91,15 @@ private:
 	MyGUI::ImageBox* mSquadUseEquipIcon[SQUAD_USE_EQUIP_NUM];
 	MyGUI::ImageBox* mSquadEffectIcon[SQUAD_EFFECT_NUM];
 
+	MyGUI::ImageBox* mItemIcon;
+	MyGUI::TextBox* mTextItemName;
+	MyGUI::TextBox* mTextItemPrice;
+	MyGUI::TextBox* mTextItemInfo;
+
+	MyGUI::TextBox* mTextArmyInfo;
+
+	MyGUI::TabControl* mWeaponTabControl;
+
 	std::vector<BattleSquad*> mBattleSquad;
 
 	int m_SquadSkillNum;
@@ -91,6 +110,7 @@ private:
 	int m_Money;
 	int m_CurrSquadIndex;
 	EquipmentType m_CurrSelectType;
+	WeaponItemData* m_CurrSquadEquipItem;
 };
 
 class GUISupplywFactory:

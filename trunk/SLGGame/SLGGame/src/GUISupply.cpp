@@ -19,6 +19,31 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	mPWeaponItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventMouseItemActivate);
 	mPWeaponItemBox->getItemBox()->eventSelectItemAccept+= MyGUI::newDelegate(this, &GUISupply::eventSelectItemAccept);
 
+	assignWidget(baseItemBox,"SWeaponItemBox");
+	mSWeaponItemBox=new WeaponItemBox(baseItemBox);
+	mSWeaponItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventMouseItemActivate);
+	mSWeaponItemBox->getItemBox()->eventSelectItemAccept+= MyGUI::newDelegate(this, &GUISupply::eventSelectItemAccept);
+
+	assignWidget(baseItemBox,"ShieldItemBox");
+	mShieldItemBox=new WeaponItemBox(baseItemBox);
+	mShieldItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventMouseItemActivate);
+	mShieldItemBox->getItemBox()->eventSelectItemAccept+= MyGUI::newDelegate(this, &GUISupply::eventSelectItemAccept);
+
+	assignWidget(baseItemBox,"HorseItemBox");
+	mHorseItemBox=new WeaponItemBox(baseItemBox);
+	mHorseItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventMouseItemActivate);
+	mHorseItemBox->getItemBox()->eventSelectItemAccept+= MyGUI::newDelegate(this, &GUISupply::eventSelectItemAccept);
+
+	assignWidget(baseItemBox,"ArmorItemBox");
+	mArmorItemBox=new WeaponItemBox(baseItemBox);
+	mArmorItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventMouseItemActivate);
+	mArmorItemBox->getItemBox()->eventSelectItemAccept+= MyGUI::newDelegate(this, &GUISupply::eventSelectItemAccept);
+
+	assignWidget(baseItemBox,"SoilderItemBox");
+	mSoilderItemBox=new WeaponItemBox(baseItemBox);
+	mSoilderItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventMouseItemActivate);
+	mSoilderItemBox->getItemBox()->eventSelectItemAccept+= MyGUI::newDelegate(this, &GUISupply::eventSelectItemAccept);
+
 	assignWidget(baseItemBox,"ArmyList");
 	mSquadItemBox=new SquadItemBox(baseItemBox);
 	mSquadItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventSquadMouseItemActivate);
@@ -45,6 +70,16 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	assignWidget(mTextSquadPeople,"SquadPeople");
 	assignWidget(mTextSquadAP,"SquadAP");
 
+	assignWidget(mTextItemName,"ItemName");
+	assignWidget(mTextItemPrice,"ItemPrice");
+	assignWidget(mItemIcon,"ItemIcon");
+	assignWidget(mTextItemInfo,"ItemInfo");
+
+	assignWidget(mTextArmyInfo,"ArmyInfo");
+
+	assignWidget(mWeaponTabControl,"WeaponTabControl");
+	mWeaponTabControl->eventTabChangeSelect+=MyGUI::newDelegate(this, &GUISupply::eventTabChangeSelect);
+
 	int i=0;
 	for(i=0;i<SQUAD_SKILL_NUM;i++)
 	{
@@ -69,10 +104,13 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	createBattleSquad();
 	refreshArmyList();
 
+	m_CurrSquadEquipItem=NULL;
 	m_CurrSelectType=EQUIP_PWEAPON;
+	m_CurrSquadIndex=-1;
 	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/Money",1000);
 	m_Money=0;
 	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/Money",m_Money);
+	showArmyInfo();
 }
 
 GUISupply::~GUISupply(void)
@@ -169,6 +207,7 @@ void GUISupply::eventSquadMouseItemActivate(MyGUI::ItemBox* _sender, size_t _ind
 	{
 		m_CurrSquadIndex=_index;
 		showArmy(_index);
+		setItemInfo(NULL);
 		showItem(EQUIP_PWEAPON);
 	}
 }
@@ -179,10 +218,12 @@ void GUISupply::eventMouseItemActivate(MyGUI::ItemBox* _sender, size_t _index)
 	{
 		WeaponItemData* item=*(_sender->getItemDataAt<WeaponItemData*>(_index));
 		showAttribute(m_CurrSquadIndex,m_CurrSelectType,item->getID());
+		setItemInfo(item);
 	}
 	else
 	{
 		showAttribute(m_CurrSquadIndex,0,"");
+		setItemInfo(NULL);
 	}
 }
 
@@ -263,6 +304,7 @@ void GUISupply::showItem(int type)
 	std::string equipID;
 	int equipType=type;
 	BattleSquad* army=mBattleSquad.at(m_CurrSquadIndex);
+	m_CurrSelectType=(EquipmentType)type;
 
 	switch(type)
 	{
@@ -271,16 +313,42 @@ void GUISupply::showItem(int type)
 		itemBox=mPWeaponItemBox;
 		equipID=army->getPweaponId();
 		break;
+	case EQUIP_SWEAPON:
+		path="StaticData/SweaponData";
+		itemBox=mSWeaponItemBox;
+		equipID=army->getSweaponId();
+		break;
+	case EQUIP_SHIELD:
+		path="StaticData/ShieldData";
+		itemBox=mShieldItemBox;
+		equipID=army->getShieldId();
+		break;
+	case EQUIP_ARMOR:
+		path="StaticData/ArmorData";
+		itemBox=mArmorItemBox;
+		equipID=army->getArmorId();
+		break;
+	case EQUIP_HORSE:
+		path="StaticData/HorseData";
+		itemBox=mHorseItemBox;
+		equipID=army->getHorseId();
+		break;
+	case EQUIP_SOILDER:
+		path="StaticData/SoilderData";
+		itemBox=mSoilderItemBox;
+		equipID=army->getSoilderId();
+		break;
 	}
 
 	itemBox->removeAllItems();
 	std::vector<std::string> child=DataLibrary::getSingletonPtr()->getChildList(path);
 	for(std::vector<std::string>::iterator it=child.begin();it!=child.end();it++)
 	{
-		WeaponItemData* data=new WeaponItemData(equipType,(*it));
+		WeaponItemData* data=new WeaponItemData(equipType,(*it),army->getUnitNum());
 		if((*it)==equipID)
 		{
 			data->setEquip(true);
+			m_CurrSquadEquipItem=data;
 		}
 		itemBox->addItem(data);
 	}
@@ -298,7 +366,12 @@ void GUISupply::buyItem(int index,WeaponItemData* item)
 		showItem(item->getType());
 
 		m_Money-=item->getPriceValue();
+
+		if(m_CurrSquadEquipItem!=NULL)
+			m_Money+=m_CurrSquadEquipItem->getPriceValue()/2;
+
 		DataLibrary::getSingletonPtr()->setData("GameData/StoryData/Money",m_Money);
+		showArmyInfo();
 	}
 }
 
@@ -314,6 +387,65 @@ std::string GUISupply::getItemNameFormLanguage(std::string type,std::string name
 		DataLibrary::getSingletonPtr()->getData(temppath,tempstr);
 		return tempstr;
 	}
+}
+
+void GUISupply::eventTabChangeSelect(MyGUI::TabControl* _sender, size_t _index)
+{
+	if(m_CurrSquadIndex!=-1)
+	{
+		showAttribute(m_CurrSquadIndex,0,"");
+		setItemInfo(NULL);
+		switch(_index)
+		{
+		case 0:
+			showItem(EQUIP_PWEAPON);
+			break;
+		case 1:
+			showItem(EQUIP_SWEAPON);
+			break;
+		case 2:
+			showItem(EQUIP_SHIELD);
+			break;
+		case 3:
+			showItem(EQUIP_HORSE);
+			break;
+		case 4:
+			showItem(EQUIP_ARMOR);
+			break;
+		case 5:
+			showItem(EQUIP_SOILDER);
+			break;
+		}
+	}
+}
+
+void GUISupply::setItemInfo(WeaponItemData* item)
+{
+	if(item!=NULL)
+	{
+		BattleSquad* army=mBattleSquad.at(m_CurrSquadIndex);
+		mTextItemName->setCaption(item->getName());
+		mTextItemPrice->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("ItemPrice"))%item->getPriceValue()%item->getOnePrice()%army->getUnitNum()));
+		mItemIcon->setItemResourcePtr(item->getImage());
+		mItemIcon->setItemGroup("States");
+		mItemIcon->setVisible(true);
+	}
+	else
+	{
+		mTextItemInfo->setCaption("");
+		mTextItemPrice->setCaption("");
+		mTextItemName->setCaption("");
+		mItemIcon->setVisible(false);
+	}
+}
+
+void GUISupply::showArmyInfo()
+{
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/Money",m_Money);
+	std::string info;
+	info+=str(boost::format(StringTable::getSingletonPtr()->getString("ArmyInfo_Money"))%m_Money);
+	info+="\n";
+	mTextArmyInfo->setCaption(info);
 }
 
 void GUISupply::showScene( std::string arg )
