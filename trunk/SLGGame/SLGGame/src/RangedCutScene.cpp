@@ -22,8 +22,8 @@ RangedCutScene::RangedCutScene(Ogre::Vector3 startpos, Ogre::Vector3 endpoint, i
 	mEntity= NULL;
 	rootNode=NULL;
 	trail=NULL;
-	if(resname == "none")
-		return;
+//	if(resname == "none")
+//		return;
 	switch(type)
 	{
 	case 0:
@@ -58,7 +58,7 @@ RangedCutScene::RangedCutScene(Ogre::Vector3 startpos, Ogre::Vector3 endpoint, i
 		trail->addNode(mNode);
 
 		
-		if (resname!="NoMesh")
+		if (resname!="none")
 		{
 			mEntity = Core::getSingleton().mSceneMgr->createEntity(resname);
 			mNode->attachObject(mEntity);

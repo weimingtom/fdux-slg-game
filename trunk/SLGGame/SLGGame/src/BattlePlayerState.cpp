@@ -2,6 +2,8 @@
 
 #include <boost/format.hpp>
 
+#include "CommonFunction.h"
+
 #include "InputControl.h"
 #include "CameraContral.h"
 
@@ -128,6 +130,10 @@ bool BattlePlayerState::keyPressed(const OIS::KeyEvent &arg)
 				mTargetAreaGrap = NULL;
 			}
 			mGUISquad->setSquad(mSelectSquad);
+			mGUICommand->setSquad(mSelectSquad);
+			mControlState = PLAYERCONTROL_CHOOSESKILL;
+			break;
+		case PLAYERCONTROL_TURNSQUAD:
 			mGUICommand->setSquad(mSelectSquad);
 			mControlState = PLAYERCONTROL_CHOOSESKILL;
 			break;
@@ -294,6 +300,19 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 				}
 			}
 			break;
+		case PLAYERCONTROL_TURNSQUAD:
+			{
+				int GX,GY;
+				Terrain::getSingletonPtr()->coordinateToGrid(arg.state.X.abs,arg.state.Y.abs,GX,GY);
+				enumtype d = GetDirection(mSelectSquad->getGridX(), mSelectSquad->getGridY(), GX, GY);
+				BattleSquadManager::getSingleton().setDirection(mSelectSquad, d);
+				if(CutSceneBuilder::getSingleton().hasCutScenes())
+				{
+					CutSceneDirector* cutscenedirector = new CutSceneDirector(CutSceneBuilder::getSingleton().getCutScenes());
+					mMainState->PushState(cutscenedirector);
+				}
+			}
+			break;
 		case PLAYERCONTROL_MENU:
 			break;
 		}
@@ -303,13 +322,30 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 	{
 		switch(mControlState)
 		{
-		case PLAYERCONTROL_NONE:
-			break;
 		case PLAYERCONTROL_CHOOSESKILL:
+			mSelectSquad = NULL;
+			mGUISquad->setSquad(NULL);
+			mGUICommand->setSquad(NULL);
+			mControlState = PLAYERCONTROL_NONE;
 			break;
 		case PLAYERCONTROL_CHOOSETARGET:
+			if(mRangeGrap)
+			{
+				delete mRangeGrap;
+				mRangeGrap = NULL;
+			}
+			if(mTargetAreaGrap)
+			{
+				delete mTargetAreaGrap;
+				mTargetAreaGrap = NULL;
+			}
+			mGUISquad->setSquad(mSelectSquad);
+			mGUICommand->setSquad(mSelectSquad);
+			mControlState = PLAYERCONTROL_CHOOSESKILL;
 			break;
-		case PLAYERCONTROL_MENU:
+		case PLAYERCONTROL_TURNSQUAD:
+			mGUICommand->setSquad(mSelectSquad);
+			mControlState = PLAYERCONTROL_CHOOSESKILL;
 			break;
 		}
 		return true;
@@ -351,6 +387,11 @@ void BattlePlayerState::useSkill(std::string skillid)
 			mGUICommand->setSquad(NULL);
 			mControlState = PLAYERCONTROL_CHOOSETARGET;
 		}
+	}
+	else if(skillid == "turn")
+	{
+		mGUICommand->setSquad(NULL);
+		mControlState = PLAYERCONTROL_TURNSQUAD;
 	}
 	else if(skillid == "looseformation")
 	{

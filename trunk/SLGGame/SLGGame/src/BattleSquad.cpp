@@ -309,7 +309,7 @@ AttackInfo BattleSquad::getAttackRolls(bool rangedattack,bool asdefender, enumty
 	int atktime =  floor((-0.010907f) * soildernum * soildernum  + 1.37256f * soildernum+ 8.638347f + 0.5f);
 	if(asdefender)
 	{
-		attackinfo.AtkTime = atktime * getAttr(ATTR_CONTER,ATTRCALC_FULL);
+		attackinfo.AtkTime = atktime * getAttr(ATTR_CONTER,ATTRCALC_FULL) / 10.0f;
 	}
 	else
 	{
@@ -352,6 +352,23 @@ void BattleSquad::applyAttackRolls(bool rangedattack, enumtype d, AttackInfo &at
 	if(rangedattack)
 	{
 		deff = getAttr(ATTR_RANGEDDEFENCE, ATTRCALC_FULL);
+		deff += RANGEDDEFENCEBONUS;
+		float formation;
+		formation = getAttr(ATTR_FORM, ATTRCALC_FULL);
+		formation = formation * soildernum / 50.0f;
+		switch(getFormation())
+		{
+		case Line:
+			formation *= FORMBONSE_LINE_RANGED;
+			break;
+		case Circular:
+			formation *= FORMBONSE_CIRC_RANGED;
+			break;
+		default:
+			formation *= FORMBONSE_LOOS_RANGED;
+			break;
+		}
+		deff -= formation;
 	}
 	else
 	{
@@ -382,7 +399,7 @@ void BattleSquad::applyAttackRolls(bool rangedattack, enumtype d, AttackInfo &at
 	setUnitNum(soildernum);
 
 	int maxnum = getUnitMaxNum();
-	maxnum -= kill * (1.0f - getAttr(ATTR_TOUGHNESS, ATTRCALC_FULL));
+	maxnum -= kill * (1.0f - getAttr(ATTR_TOUGHNESS, ATTRCALC_FULL) / 10.0f);
 	setUnitMaxNum(maxnum);
 }
 
@@ -508,6 +525,22 @@ void BattleSquad::turnEnd()
 	setAmbushEnemy3(0);
 }
 
+void BattleSquad::onMeleeAttack(BattleSquad* targetsquad)
+{
+	LuaTempContext* luatempcontext = new LuaTempContext();
+	luatempcontext->strMap["squadid"] = getSquadId();
+	luatempcontext->strMap["targetsquadid"] = targetsquad->getSquadId();
+	Trigger("OnMeleeAttack", luatempcontext);
+}
+
+void BattleSquad::afterMeleeAttack(BattleSquad* targetsquad)
+{
+	LuaTempContext* luatempcontext = new LuaTempContext();
+	luatempcontext->strMap["squadid"] = getSquadId();
+	luatempcontext->strMap["targetsquadid"] = targetsquad->getSquadId();
+	Trigger("AfterMeleeAttack", luatempcontext);
+}
+
 int BattleSquad::getFaction()
 {
 	int team = getTeam();
@@ -630,6 +663,10 @@ std::vector<BattleSquad::ActiveSkillInfo> BattleSquad::GetActiveSkillList()
 	if(canMove() == SKILLSTATE_AVAILABLE)
 	{
 		skillinfo.skillid = "move";
+		skillinfo.apcost = 0;
+		skillinfo.available = true;
+		skilllist.push_back(skillinfo);
+		skillinfo.skillid = "turn";
 		skillinfo.apcost = 0;
 		skillinfo.available = true;
 		skilllist.push_back(skillinfo);

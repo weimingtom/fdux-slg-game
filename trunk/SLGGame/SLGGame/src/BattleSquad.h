@@ -33,6 +33,8 @@ public:
 public:
 	void turnStart();
 	void turnEnd();
+	void onMeleeAttack(BattleSquad* targetsquad);
+	void afterMeleeAttack(BattleSquad* targetsquad);
 
 //ªÒ»° Ù–‘
 public:

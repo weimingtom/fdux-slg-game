@@ -120,6 +120,7 @@
 		<Formation type="String" value="阵型:"/>
 		<Direction type="String" value="方向:"/>
 		<Move type="String" value="移动"/>
+		<TurnSquad type="String" value="转向"/>
 		<FormationLineButton type="String" value="线型阵&#x0D;AP:%1%"/>
 		<FormationCircButton type="String" value="圆型阵&#x0D;AP:%1%"/>
 		<FormationLoosButton type="String" value="散阵&#x0D;AP:%1%"/>

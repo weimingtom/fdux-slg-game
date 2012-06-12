@@ -182,9 +182,17 @@
 			<Describe type="String" value="防御"/>
 		</Defence>
 		<Suppressed>
-			<Name type="String" value="被压制"/>
-			<Describe type="String" value="被压制"/>
+			<Name type="String" value="压制"/>
+			<Describe type="String" value="压制"/>
 		</Suppressed>
+		<Waver>
+			<Name type="String" value="动摇"/>
+			<Describe type="String" value="动摇"/>
+		</Waver>
+		<AntiCav>
+			<Name type="String" value="对抗骑兵"/>
+			<Describe type="String" value="对抗骑兵"/>
+		</AntiCav>
 	</EffectData>
 	<GroundData>
 		<Grass>

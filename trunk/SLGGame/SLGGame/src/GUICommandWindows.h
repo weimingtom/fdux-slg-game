@@ -51,6 +51,7 @@ private:
 	void useSkill(int n);
 
 	std::string mSkillId[9];
+	int mSkillPage;
 
 	BattlePlayerState* mPlayerState;
 	BattleSquad* mSelectSquad;

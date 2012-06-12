@@ -59,6 +59,9 @@ private:
 public:
 	void changeFormation(BattleSquad* squad, enumtype formation, bool costap);
 
+public:
+	void setDirection(BattleSquad* squad, enumtype direction);
+
 	//技能相关
 public:
 // 	bool useSkillOn(BattleSquad* attacksquad, BattleSquad* targetsquad, std::string skillid);
@@ -81,4 +84,8 @@ public:
 	bool dealMagicDamage(BattleSquad* attacksquad, BattleSquad* defenesquad, int attacktime, float atk, int fluctuate);
 
 	bool dealRangedDamage(BattleSquad* attacksquad, BattleSquad* defenesquad);
+
+	void setUnitNum(BattleSquad* squad, int unitnum);
+
+	void rangedCutScene(BattleSquad* attacksquad, int x, int y, UnitType castunit , std::string castparticle, std::string castaction, std::string castsound, int missiletype, std::string missileres, std::string hitparticle,std::string hitsound);
 };

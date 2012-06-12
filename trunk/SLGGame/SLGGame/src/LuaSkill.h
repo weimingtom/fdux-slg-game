@@ -28,8 +28,34 @@ static int MeleeCombat(lua_State* L)
 	return 1;
 }
 
+static int RangedAttack(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	std::string targetsquadid(luaL_checkstring(L, 2));
+	int re = 0;
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+	{
+		BattleSquad* squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+		BattleSquad* targetsquad = BattleSquadManager::getSingleton().getBattleSquad(targetsquadid);
+		if(squad &&  targetsquad)
+		{
+			re = BattleSquadManager::getSingleton().dealRangedDamage(squad, targetsquad);
+		}
+	}
+	lua_pushnumber(L, re);
+	return 1;
+}
+
+static int RangedCutScene(lua_State* L)
+{
+	return 0;
+}
+
+
 static const struct luaL_Reg SkillLib[] =
 {
 	{"MeleeCombat",MeleeCombat},
+	{"RangedAttack", RangedAttack},
+	{"RangedCutScene",RangedCutScene},
 	{NULL, NULL}
 };
