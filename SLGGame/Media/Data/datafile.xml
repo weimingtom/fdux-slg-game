@@ -192,8 +192,8 @@
 				<ActionPoint type="Float" value="7.0"/>
 				<Detection type="Float" value="5.0"/>
 				<Covert type="Float" value="0.0"/>
-				<Toughness type="Float" value="0.7"/>
-				<Conter type="Float" value="0.5"/>
+				<Toughness type="Float" value="7.0"/>
+				<Conter type="Float" value="5.0"/>
 			</AttrModifer>
 			<Randomness type="Int" value="20" />
 		</WingsSoilder>
@@ -211,7 +211,7 @@
 				<ActionPoint type="Float" value="6.0"/>
 				<Detection type="Float" value="5.0"/>
 				<Covert type="Float" value="0.0"/>
-				<Toughness type="Float" value="1.0"/>
+				<Toughness type="Float" value="0.0"/>
 				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
 			<Randomness type="Int" value="20" />
@@ -230,8 +230,8 @@
 				<ActionPoint type="Float" value="8.0"/>
 				<Detection type="Float" value="6.0"/>
 				<Covert type="Float" value="0.0"/>
-				<Toughness type="Float" value="0.6"/>
-				<Conter type="Float" value="0.4"/>
+				<Toughness type="Float" value="6.0"/>
+				<Conter type="Float" value="4.0"/>
 			</AttrModifer>
 			<Randomness type="Int" value="40" />
 		</DuxSoilder>
@@ -288,7 +288,7 @@
 		<ShortSpear>
 			<Type type="Int" value="5"/>
 			<Value type="Int" value="10"/>
-			<Script type="String" value="none"/>
+			<Script type="String" value="anticavweapon1.lua"/>
 			<Mesh type="String" value="ShortSpear.mesh"/>
 			<Mat type="String" value="Pike"/>
 			<PU type="String" value="none"/>
@@ -624,7 +624,7 @@
 			<MinRange type="Int" value="0"/>
 			<Area type="Int" value="1"/>
 			<APType type="Int" value="1"/>
-			<APCost type="float" value="4.0"/>
+			<APCost type="float" value="5.0"/>
 			<CoolDown type="Int" value="1"/>
 			<Value type="Int" value="10"/>
 			<Icon type="String" value="none"/>
@@ -689,6 +689,16 @@
 			<Icon type="String" value="suppressattack.jpg"/>
 			<Script type="String" value="suppressattack.lua"/>
 		</Suppressed>
+		<Waver>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="waver.jpg"/>
+			<Script type="String" value="waver.lua"/>
+		</Waver>
+		<AntiCav>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="anticav.jpg"/>
+			<Script type="String" value="anticav.lua"/>
+		</AntiCav>
 	</EffectData>
 	<GroundData>
 		<Grass>

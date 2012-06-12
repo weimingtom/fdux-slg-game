@@ -124,7 +124,7 @@ const float FORMBONSE_LOOS_SIDE = 0.0f;
 const float FORMBONSE_LOOS_BACK = 0.0f;
 const float FORMBONSE_LOOS_RANGED = 0.0f;
 
-const float RANGEDDEFENCEBONUS = 7.0f;
+const float RANGEDDEFENCEBONUS = 4.0f;
 
 const int MOVEEVENT_WRONG = 1;
 const int MOVEEVENT_CHARGE = 2;

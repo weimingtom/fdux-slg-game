@@ -1,9 +1,3 @@
-function useskill()
-	caster  = ScriptCommonLib.GetTempString("squadid");
-	eid = SquadLib.ApplyEffect(caster, "Defence");
-	ScriptCommonLib.SetTempInt("castsuccess", 1);
-end
-
 function onaffect()
 	mid = ScriptCommonLib.GetString("modifierid");
 	sid = ScriptCommonLib.GetTempString("squadid");
@@ -13,12 +7,7 @@ function onaffect()
 		SquadLib.RemoveModifier(sid, mid);
 	end
 	lv = SquadLib.GetEffectLevel(sid, eid);
-	ap = SquadLib.GetActionPoint(sid);
-	defence = lv + (ap - 2) / 2;
-	if defence > 2 + lv then
-		defence = 2 + lv;
-	end
-	mid = SquadLib.ApplyModifier(sid, 0, 0.0, 0.0, defence, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+	mid = SquadLib.ApplyModifier(sid, 1, -lv, 0.0, -lv, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 	ScriptCommonLib.SetString("modifierid", mid);
 	if tid == "" then
 		tid = SquadLib.AddSquadTrigger(sid, "TurnStart", "onturnstart");
@@ -44,12 +33,4 @@ function onturnstart()
 	sid = ScriptCommonLib.GetTempString("squadid");
 	eid = ScriptCommonLib.GetString("effectid");
 	SquadLib.RemoveEffect(sid, eid);
-end
-
-function validarea()
-	ScriptCommonLib.SetTempInt("validarea", 1);
-end
-
-function validtarget()
-	ScriptCommonLib.SetTempInt("validtarget", 1);
 end

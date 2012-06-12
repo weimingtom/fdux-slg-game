@@ -208,6 +208,66 @@ static int GetFaction(lua_State* L)
 	return 1;
 }
 
+static int GetUnitMaxNum(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	BattleSquad* squad = NULL;
+	int maxnum = 0;
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+		squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+	else
+		squad = NULL;
+	if(squad)
+		maxnum = squad->getUnitMaxNum();
+	lua_pushnumber(L, maxnum);
+	return 1;
+}
+
+static int GetUnitNum(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	Squad* squad = NULL;
+	int num = 0;
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+		squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+	else
+		squad = NULL; 
+	if(squad)
+		num = squad->getUnitNum();
+	lua_pushnumber(L, num);
+	return 1;
+}
+
+static int SetUnitNum(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	int num = luaL_checkinteger(L, 2);
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+	{
+		BattleSquad* squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+		BattleSquadManager::getSingleton().setUnitNum(squad, num);
+	}
+	else
+	{
+	}
+	return 0;
+}
+
+static int ChangeFormation(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	int formation = luaL_checkinteger(L, 2);
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+	{
+		BattleSquad* squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+		BattleSquadManager::getSingleton().changeFormation(squad, formation, false);
+	}
+	else
+	{
+	}
+	return 0;
+}
+
 static const struct luaL_Reg SquadLib[] =
 {
 	{"GetSquadCoord",GetSquadCoord},
@@ -222,5 +282,9 @@ static const struct luaL_Reg SquadLib[] =
 	{"RemoveModifier",RemoveModifier},
 	{"GetActionPoint",GetActionPoint},
 	{"GetFaction",GetFaction},
+	{"GetUnitMaxNum",GetUnitMaxNum},
+	{"GetUnitNum",GetUnitNum},
+	{"SetUnitNum",SetUnitNum},
+	{"ChangeFormation",ChangeFormation},
 	{NULL,NULL}
 };

@@ -13,6 +13,9 @@
 #include "LuaSystem.h"
 #include "StringTable.h"
 
+#include "Terrain.h"
+#include "SquadGrapManager.h"
+
 #include "CutSceneBuilder.h"
 #include "FormationCutScence.h"
 #include "MoveCutScene.h"
@@ -23,6 +26,11 @@
 #include "ShowValueCutScene.h"
 #include "WeapenCutScene.h"
 #include "AnimationCutScene.h"
+#include "SquadRecoverCutScene.h"
+#include "SquadDeadCutScene.h"
+#include "AnimationCutScene.h"
+#include "RangedCutScene.h"
+#include "MapPUCutScene.h"
 
 #include "MapDataManager.h"
 
@@ -639,15 +647,18 @@ bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* 
 		AttackInfo atkinfo;
 		if(squad == attacksquad)
 		{
+			squad->onMeleeAttack(defenesquad);
 			atkinfo = squad->getAttackRolls(false,false,d);
 			switch(defenesquad->getFormation())
 			{
 			case Line:
-				if(GetSide(dd,temp[d]) == 1)
+				if(GetSide(dd,temp[d]) != 0)
 				{
-				}
-				else if(GetSide(dd,temp[d]) == 2)
-				{
+//				}
+//				else if(GetSide(dd,temp[d]) == 2)
+//				{
+					std::string eid;
+					defenesquad->applyEffect("Waver", eid);
 				}
 				break;
 			case Loose:
@@ -657,6 +668,7 @@ bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* 
 		}
 		else
 		{
+			squad->onMeleeAttack(attacksquad);
 			atkinfo = squad->getAttackRolls(false,true,temp[d]);
 			squad = attacksquad;
 		}
@@ -665,18 +677,24 @@ bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* 
 			int squadugb = squad->getUnitGrapNum();
 			int squadRealNumB=squad->getUnitNum();
 			if(squad == attacksquad)
+			{
 				squad->applyAttackRolls(false, d, atkinfo);
+				defenesquad->afterMeleeAttack(squad);
+			}
 			else
+			{
 				squad->applyAttackRolls(false, temp[d], atkinfo);
+				attacksquad->afterMeleeAttack(squad);
+			}
 			int squaduga = squad->getUnitGrapNum();
 			int squadRealNumA=squad->getUnitNum();
 			if(squaduga <= squadugb)
 			{
 				//setCutScene(new SquadDeadCutScene(squad->getGrapId(), squadugb - squaduga));
 				if(squad == attacksquad)
-					cutscenebuilder->addCutScene(new DefenseCutScene(defenesquad->getSquadId(),squad->getSquadId(), squadugb - squaduga));
+					showValueCutScenes->addCutScene(new DefenseCutScene(defenesquad->getSquadId(),squad->getSquadId(), squadugb - squaduga));
 				else
-					cutscenebuilder->addCutScene(new DefenseCutScene(attacksquad->getSquadId(),squad->getSquadId(), squadugb - squaduga));
+					showValueCutScenes->addCutScene(new DefenseCutScene(attacksquad->getSquadId(),squad->getSquadId(), squadugb - squaduga));
 			}
 			if(squad->getUnitNum() == 0)
 			{
@@ -690,10 +708,10 @@ bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* 
 		}
 	}
 
+	cutscenebuilder->addCutScene(showValueCutScenes);
+
 	if(defenesquad->getUnitNum() > 0)
 		cutscenebuilder->addCutScene(new DirectionCutScene(defenesquad->getSquadId(),dd));
-
-	cutscenebuilder->addCutScene(showValueCutScenes);
 
 	return true;
 }
@@ -707,5 +725,123 @@ bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* 
 bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad* defenesquad)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	CutSceneBuilder* cutscenebuilder = CutSceneBuilder::getSingletonPtr();
+
+	int x = defenesquad->getGridX();
+	int y = defenesquad->getGridY();
+	rangedCutScene(attacksquad, x, y, UNITTYPE_ALL, "none","Attack","Ranged.mp3",0,"none","none","none");
+
+	AttackInfo atkinfo;
+	atkinfo = attacksquad->getAttackRolls(true, false, attacksquad->getDirection());
+
+	int squadugb = defenesquad->getUnitGrapNum();
+	int squadRealNumB = defenesquad->getUnitNum();
+	defenesquad->applyAttackRolls(true, defenesquad->getDirection(), atkinfo);
+	int squaduga = defenesquad->getUnitGrapNum();
+	int squadRealNumA = defenesquad->getUnitNum();
+
+	if(squadugb - squaduga  > 0 )
+	{
+		CombineCutScene* showValueCutScenes=new CombineCutScene();
+		showValueCutScenes->addCutScene(new ShowValueCutScene(defenesquad->getSquadId(),str(boost::format(StringTable::getSingletonPtr()->getString("BattleInfo"))%(squadRealNumB-squadRealNumA)),Ogre::ColourValue::Red));
+		showValueCutScenes->addCutScene(new SquadDeadCutScene(defenesquad->getSquadId(), squadugb - squaduga));
+		cutscenebuilder->addCutScene(showValueCutScenes);
+	}
+	else
+	{
+		cutscenebuilder->addCutScene(new ShowValueCutScene(defenesquad->getSquadId(),str(boost::format(StringTable::getSingletonPtr()->getString("BattleInfo"))%(squadRealNumB-squadRealNumA)),Ogre::ColourValue::Red));
+	}
+
+	if(defenesquad->getUnitNum() == 0)
+	{
+		cutscenebuilder->addCutScene(new SquadStateCutScene(defenesquad, SQUAD_STATE_VISIBLE, "none", 0));
+	}
+
 	return true;
+}
+
+void BattleSquadManager::setUnitNum(BattleSquad* squad, int unitnum)
+{
+	if(squad->getUnitMaxNum() < unitnum)
+		return;
+	CutSceneBuilder* cutscenebuilder = CutSceneBuilder::getSingletonPtr();
+	int squadugb = squad->getUnitGrapNum();
+	squad->setUnitNum(unitnum);
+	int squaduga = squad->getUnitGrapNum();
+	if(squaduga > squadugb)
+	{
+		cutscenebuilder->addCutScene(new SquadRecoverCutScene(squad->getSquadId(), squaduga - squadugb));
+	}
+	else if(squaduga < squadugb)
+	{
+		cutscenebuilder->addCutScene(new SquadDeadCutScene(squad->getSquadId(), squadugb - squaduga));
+	}
+
+	if(squad->getUnitNum() == 0)
+	{
+		cutscenebuilder->addCutScene(new SquadStateCutScene(squad, SQUAD_STATE_VISIBLE, "none", 0));
+	}
+}
+
+void BattleSquadManager::setDirection(BattleSquad* squad, enumtype direction)
+{
+	if(squad->getDirection() != direction)
+	{
+		squad->setDirection(direction);
+		CutSceneBuilder::getSingleton().addCutScene(new DirectionCutScene(squad->getSquadId(),direction));
+	}
+}
+
+void BattleSquadManager::rangedCutScene(BattleSquad* attacksquad, int x, int y, UnitType castunit , std::string castparticle, std::string castaction, std::string castsound, int missiletype, std::string missileres, std::string hitparticle,std::string hitsound)
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	CutSceneBuilder* cutscenebuilder = CutSceneBuilder::getSingletonPtr();
+	//设置小队朝向
+	Direction d;
+	int casterx,castery;
+	casterx = attacksquad->getGridX();
+	castery = attacksquad->getGridY();
+	if(casterx != x || castery != y)
+	{
+		d = GetDirection(casterx,castery,x,y);
+		setDirection(attacksquad, d);
+	}
+	else
+		return;
+
+	cutscenebuilder->addCutScene(new WeapenCutScene(attacksquad->getSquadId(),WeapenCutScene::SceWepon));
+
+	cutscenebuilder->addCutScene(new AnimationCutScene(attacksquad->getSquadId(),castunit,castaction,castsound,castparticle,false, true));
+
+	CombineCutScene* ccs = new CombineCutScene;
+	float xx,yy;
+	Terrain::getSingleton().getWorldCoords(x,y,xx,yy);
+	SquadGraphics* squadgrap = SquadGrapManager::getSingleton().getSquad(attacksquad->getSquadId());
+	if(castunit & UNITTYPE_LEADER)
+	{
+		Ogre::Vector3 startpoint = squadgrap->getLeaderPosition();
+		startpoint = startpoint + Ogre::Vector3(0.0f,6.0f,0.0f);
+		Ogre::Vector3 endpoint = Ogre::Vector3(xx - TILESIZE/2.0f + (rand()%int(TILESIZE)),0.0f,yy - TILESIZE/2.0f + (rand()%int(TILESIZE)));
+		RangedCutScene* rangedcutscene = new RangedCutScene(startpoint,endpoint,missiletype,missileres);
+		ccs->addCutScene(rangedcutscene);
+		if(hitparticle != "none")
+			rangedcutscene->setNextScene(new MapPUCutScene(endpoint,1.0f,hitparticle,hitsound));
+	}
+	if(castunit & UNITTYPE_SOLIDER)
+	{
+		std::vector<Ogre::Vector3> posvec;
+		posvec = squadgrap->getSoiderPosition();
+		std::vector<Ogre::Vector3>::iterator ite;
+		for(ite = posvec.begin(); ite != posvec.end(); ite++)
+		{
+			Ogre::Vector3 startpoint = (*ite);
+			startpoint = startpoint + Ogre::Vector3(0.0f,6.0f,0.0f);
+			Ogre::Vector3 endpoint = Ogre::Vector3(xx - TILESIZE/2.0f + (rand()%int(TILESIZE)),0.0f,yy - TILESIZE/2.0f + (rand()%int(TILESIZE)));
+			RangedCutScene* rangedcutscene = new RangedCutScene(startpoint,endpoint,missiletype,missileres);
+			ccs->addCutScene(rangedcutscene);
+			if(hitparticle != "none")
+				rangedcutscene->setNextScene(new MapPUCutScene(endpoint,1.0f,hitparticle,hitsound));
+		}
+	}
+	cutscenebuilder->addCutScene(ccs);
 }

@@ -262,6 +262,7 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 	mSelectSquad = squad;
 	if(mSelectSquad == NULL)
 	{
+		mSkillPage = 1;
 		for(int n =0; n <9; n++)
 		{
 			mSkill[n]->setVisible(false);
@@ -276,17 +277,49 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 	mAPLabel->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("APLabel"))%(int)apleft));
 	std::vector<BattleSquad::ActiveSkillInfo> skilllist = mSelectSquad->GetActiveSkillList();
 	std::vector<BattleSquad::ActiveSkillInfo>::iterator ite = skilllist.begin();
+	int maxn = 9;
+	std::vector<BattleSquad::ActiveSkillInfo>::iterator endite = skilllist.end();
+	if(skilllist.size() > 9)
+	{
+		maxn = 8;
+		mSkill[8]->setVisible(true);
+		mSkill[8]->setEnabled(true);
+		if(mSkillPage == 1)
+		{
+			endite = ite + 8;
+			mSkill[8]->setCaption("nextpage");
+			mSkill[8]->setUserString("Tips",StringTable::getSingletonPtr()->getString("Tips_FormationLoosButton"));
+			mSkill[8]->setImageResource("Defence");
+			mSkillId[8] = "nextpage";
+		}
+		else
+		{
+			ite = ite + 8;
+			mSkill[8]->setCaption("prevpage");
+			mSkill[8]->setUserString("Tips",StringTable::getSingletonPtr()->getString("Tips_FormationLoosButton"));
+			mSkill[8]->setImageResource("Defence");
+			mSkillId[8] = "prevpage";
+		}
+	}
+	else
+		mSkillPage = 1;
 	int n = 0;
 	std::string skillname;
 	std::string skillTips;
 	std::string skillIcon;
-	for(;ite != skilllist.end(); ite++)
+	for(;ite != endite; ite++)
 	{
 		if(ite->skillid == "move")
 		{
 			mSkill[n]->setImageResource("Move");
 			mSkill[n]->setCaption(StringTable::getSingleton().getString("Move"));
 			mSkill[n]->setUserString("Tips",StringTable::getSingleton().getString("Tips_Move"));
+		}
+		else if(ite->skillid == "turn")
+		{
+			mSkill[n]->setCaption(StringTable::getSingleton().getString("TurnSquad"));
+			mSkill[n]->setUserString("Tips",StringTable::getSingleton().getString("Tips_Move"));
+			mSkill[n]->setImageResource("Move");
 		}
 		else if(ite->skillid == "looseformation")
 		{
@@ -319,7 +352,7 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 		mSkillId[n] = (*ite).skillid;
 		n++;
 	}
-	for(; n <9; n++)
+	for(; n < maxn; n++)
 	{
 		mSkill[n]->setImageResource("");
 		mSkill[n]->setVisible(false);
@@ -392,6 +425,16 @@ void GUICommandWindows::useSkill(int n)
 // 		mPlayerState->changeFormation(Loose);
 // 		return;
 // 	}
-	if(mPlayerState)
+	if(mSkillId[n] == "nextpage")
+	{
+		mSkillPage = 2;
+		setSquad(mSelectSquad);
+	}
+	else if(mSkillId[n] == "prevpage")
+	{
+		mSkillPage = 1;
+		setSquad(mSelectSquad);
+	}
+	else if(mPlayerState)
  		mPlayerState->useSkill(mSkillId[n]);
 }
