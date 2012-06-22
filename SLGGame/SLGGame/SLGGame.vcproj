@@ -530,6 +530,14 @@
 							>
 						</File>
 						<File
+							RelativePath=".\src\ChangeStateCutScene.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\src\ChangeStateCutScene.h"
+							>
+						</File>
+						<File
 							RelativePath=".\src\CombatPositionCutScene.cpp"
 							>
 						</File>

@@ -39,7 +39,7 @@ void AVGSquadManager::dumpSquad(std::string squadid, Squad* squad)
 	std::string path = "GameData/StoryData/SquadData";
 	std::vector<std::string> squadlist = datalib->getChildList(path);
 	std::vector<std::string>::iterator ite = std::find(squadlist.begin(), squadlist.end(),squadid);
-	if(ite != squadlist.end())
+	if(ite == squadlist.end())
 		return;
 	path = str(boost::format("GameData/StoryData/SquadData/%1%/")%squadid);
 	datalib->setData(path + "LeaderId", squad->getLeaderId());
@@ -53,6 +53,10 @@ void AVGSquadManager::dumpSquad(std::string squadid, Squad* squad)
 	datalib->setData(path + "Level", squad->getLevel());
 	datalib->setData(path + "Exp", squad->getExp());
 	datalib->setData(path + "UnitNum", squad->getUnitNum());
+	datalib->setData(path + "SkillPointAction", squad->getSkillPointAction());
+	datalib->setData(path + "SkillPointPassive", squad->getSkillPointPassive());
+	datalib->setData(path + "SkillPointEquip", squad->getSkillPointEquip());
+	
 	//复制技能数据
 	datalib->delNode(path + "SkillTable");
 	std::map<std::string, enumtype> skilltable = squad->getSkillTable();

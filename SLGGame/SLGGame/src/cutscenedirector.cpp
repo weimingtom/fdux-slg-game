@@ -12,7 +12,7 @@ CutSceneDirector::CutSceneDirector(CutScene* cutscene)
 	mMouseX = 640;
 	mMouseY = 360;
 	mCutScene = cutscene;
-	mCutScene->start();
+	mStart = false;
 	mCameraContral = CameraContral::getSingletonPtr();
 	Core::getSingleton().mInputControl->pushListener(this);
 }
@@ -89,7 +89,15 @@ void CutSceneDirector::update(unsigned int deltaTime)
 		mMainState->PopState();
 	}
 	else
-		mCutScene->update(deltaTime);
+	{
+		if(!mStart)
+		{
+			mCutScene->start();
+			mStart = true;
+		}
+		else
+			mCutScene->update(deltaTime);
+	}
 }
 
 bool CutSceneDirector::keyPressed(const OIS::KeyEvent &arg)

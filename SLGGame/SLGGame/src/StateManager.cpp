@@ -13,6 +13,7 @@ StateManager::StateManager(void):mBaseState(NULL),mAffixationState(NULL),mCurSta
 {
 	//×¢²áluaº¯Êý
 	LuaSystem::getSingletonPtr()->registerCLib("StateLib",StateLib);
+	mNextState = None;
 }
 
 StateManager::~StateManager(void)
@@ -21,6 +22,9 @@ StateManager::~StateManager(void)
 
 void StateManager::changeState( std::string arg,StateType type )
 {
+	mNextStateArg = arg;
+	mNextState = type;
+	/*
 	if (mAffixationState!=NULL)
 	{
 		removeAffixationState();
@@ -36,6 +40,7 @@ void StateManager::changeState( std::string arg,StateType type )
 	mBaseState=CreateState(type);
 
 	mBaseState->initialize(arg);
+	*/
 }
 
 void StateManager::addAffixationState( std::string arg,StateType type )
@@ -75,7 +80,31 @@ void StateManager::StateUpdate(unsigned int deltaTime)
 		mAffixationState->update(deltaTime);
 	}
 
-	mBaseState->update(deltaTime);
+	if(mBaseState!=NULL)
+	{
+		mBaseState->update(deltaTime);
+	}
+
+	if(mNextState != None)
+	{
+		if (mAffixationState!=NULL)
+		{
+			removeAffixationState();
+		}
+
+		if (mBaseState!=NULL)
+		{
+			mBaseState->uninitialize();
+			delete mBaseState;
+		}
+
+		mCurState = mNextState;
+		mBaseState=CreateState(mNextState);
+
+		mBaseState->initialize(mNextStateArg);
+
+		mNextState = None;
+	}
 }
 
 GameState* StateManager::CreateState( StateType type )

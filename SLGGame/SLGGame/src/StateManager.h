@@ -54,4 +54,6 @@ private:
 	GameState* mAffixationState;
 
 	StateType  mCurState;
+	StateType  mNextState;
+	std::string mNextStateArg;
 };

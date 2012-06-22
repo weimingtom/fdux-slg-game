@@ -11,6 +11,7 @@
 #include "MapDataManager.h"
 #include "LuaSystem.h"
 #include "CommonFunction.h"
+#include "MapDataManager.h"
 
 BattleSquad::BattleSquad(std::string path)
 :Squad(path)
@@ -835,5 +836,25 @@ void BattleSquad::setAPTypeCostModify(enumtype aptype, float val)
 	case SKILLAPTYPE_BATTLE:
 		setAPBattle(val);
 		break;
+	}
+}
+
+void BattleSquad::setUnitNum(int val)
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+
+	datalib->setData(getPath() + "/UnitNum", val);
+
+	LuaTempContext* luatempcontext = new LuaTempContext();
+	luatempcontext->strMap["squadid"] = getSquadId();
+	Trigger("UnitNumChange", luatempcontext);
+	delete luatempcontext;
+
+	if(getUnitNum() <= 0)
+	{
+		LuaTempContext* luatempcontext = new LuaTempContext();
+		luatempcontext->strMap["squadid"] = getSquadId();
+		MapDataManager::getSingleton().Trigger("SquadAnnihilated", luatempcontext);
+		delete luatempcontext;
 	}
 }

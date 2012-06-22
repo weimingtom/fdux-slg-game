@@ -72,6 +72,9 @@ public:
 
 	float getAPTypeCostModify(enumtype aptype);
 	void setAPTypeCostModify(enumtype aptype, float val);
+
+	//жиди
+	void setUnitNum(int val);
 public:
 	INTVAL(GridX);
 	INTVAL(GridY);
