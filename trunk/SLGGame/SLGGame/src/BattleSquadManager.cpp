@@ -13,6 +13,7 @@
 #include "LuaSystem.h"
 #include "StringTable.h"
 
+#include "AVGSquadManager.h"
 #include "Terrain.h"
 #include "SquadGrapManager.h"
 
@@ -111,6 +112,35 @@ BattleSquad* BattleSquadManager::getBattleSquadAt(int x, int y, int faction, boo
 			return ite->second;
 	}
 	return NULL;
+}
+
+int BattleSquadManager::getTeamSquadLeft(int team)
+{
+	int num = 0;
+	BattleSquadIte ite = mSquadList.begin();
+	for(; ite!= mSquadList.end(); ite++)
+	{
+		if(ite->second->getUnitNum() <= 0)
+			continue;
+		if(ite->second->getTeam() != team)
+			continue;
+		num++;
+	}
+	return num;
+}
+
+void BattleSquadManager::dumpSquadData()
+{
+	BattleSquadIte ite = mSquadList.begin();
+	for(; ite!= mSquadList.end(); ite++)
+	{
+		if(ite->second->getTeam() == 1)
+		{
+			int unitnum = ite->second->getUnitMaxNum();
+			ite->second->setUnitNum(unitnum);
+			AVGSquadManager::getSingleton().dumpSquad(ite->second->getSquadId(), ite->second);
+		}
+	}
 }
 
 void BattleSquadManager::turnEnd(int team)

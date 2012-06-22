@@ -30,6 +30,7 @@ private:
 // 	typedef std::pair<int, CutScene*> CutScenePair;
 // 	typedef std::map<int, CutScene*>::iterator CutSceneIte;
 // 	std::map<int, CutScene*> mCutScene;
+	bool mStart;
 	CutScene* mCutScene;
 	int mId;
 

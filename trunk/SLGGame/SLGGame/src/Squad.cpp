@@ -29,6 +29,9 @@ bool Squad::init(std::string srcpath)
 	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/SquadType"), mPath + std::string("/SquadType"), true));
 	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/Level"), mPath + std::string("/Level"), true));
 	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/Exp"), mPath + std::string("/Exp"), true));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/SkillPointAction"), mPath + std::string("/SkillPointAction"), true));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/SkillPointPassive"), mPath + std::string("/SkillPointPassive"), true));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/SkillPointEquip"), mPath + std::string("/SkillPointEquip"), true));
 	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/UnitNum"), mPath + std::string("/UnitNum"), true));
 	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/UnitMesh"), mPath + std::string("/UnitMesh"), true));
 	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/UnitMat"), mPath + std::string("/UnitMat"), true));

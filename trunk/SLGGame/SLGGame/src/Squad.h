@@ -117,6 +117,9 @@ public:
 	INTVAL(UnitNum);
 	INTVAL(Level);
 	INTVAL(Exp);
+	INTVAL(SkillPointAction);
+	INTVAL(SkillPointPassive);
+	INTVAL(SkillPointEquip);
 
 	STRVAL(SoilderId);
 	STRVAL(HorseId);

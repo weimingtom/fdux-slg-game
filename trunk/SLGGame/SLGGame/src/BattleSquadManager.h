@@ -30,6 +30,10 @@ public:
 	BattleSquad* getBattleSquad(std::string id);
 	BattleSquad* getBattleSquadAt(int x, int y, int faction, bool visibleonly);
 
+	int getTeamSquadLeft(int team);
+
+	void dumpSquadData();
+
 	//»ØºÏ
 	void turnEnd(int team);
 
