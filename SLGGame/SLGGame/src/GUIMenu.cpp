@@ -25,6 +25,7 @@ GUIMenu::GUIMenu(int width,int height):GUIScene("MainMenu.layout",width,height),
 	assignWidget(mLoad,"Load");
 	assignWidget(mOpiton,"Opiton");
 	assignWidget(mExit,"Exit");
+	assignWidget(mSupport,"Support");
 
 	mLogoImage->setSize(width,height);
 	mMenuImage->setSize(width,height);
@@ -38,6 +39,8 @@ GUIMenu::GUIMenu(int width,int height):GUIScene("MainMenu.layout",width,height),
 	mOpiton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onOpiton);
 	mExit->setCaption(StringTable::getSingleton().getString("ExitGame"));
 	mExit->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onExit);
+	mSupport->setCaption(StringTable::getSingleton().getString("Supprot"));
+	mSupport->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onSupprot);
 	setButtonLock(false);
 }
 
@@ -111,9 +114,14 @@ void GUIMenu::onOtherSceneNotify(std::string arg)
 			 {
 				 DataLibrary::getSingleton().delNode(std::string("GameData/StoryData"));
 				 StateManager::getSingletonPtr()->changeState("Chapter1.lua",StateManager::AVG);
-				 //StateManager::getSingletonPtr()->changeState("",StateManager::Supply);
 				 break;
 			 }
+		case SupprotState:
+			{
+				DataLibrary::getSingleton().delNode(std::string("GameData/StoryData"));
+				StateManager::getSingletonPtr()->changeState("",StateManager::Supply);
+				break;
+			}
 		case ExitState:
 			  {
 				  Core::getSingletonPtr()->stop();
@@ -188,3 +196,11 @@ void GUIMenu::onOpiton( MyGUI::Widget* _sender )
 	mOptionWindow->showScene("");
 }
 
+void GUIMenu::onSupprot(MyGUI::Widget* _sender)
+{
+	setButtonLock(false);
+
+	mMenuState=SupprotState;
+
+	FadeOut(FadeTime,mMenuImage);
+}

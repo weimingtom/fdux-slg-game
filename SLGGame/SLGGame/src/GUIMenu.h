@@ -26,6 +26,7 @@ private:
 	void onLoad(MyGUI::Widget* _sender);
 	void onOpiton(MyGUI::Widget* _sender);
 	void onExit(MyGUI::Widget* _sender);
+	void onSupprot(MyGUI::Widget* _sender);
 
 	void setButtonLock(bool isLock);
 	void onOtherSceneNotify(std::string arg);
@@ -36,6 +37,7 @@ private:
 		NewState,
 		WaitState,
 		ExitState,
+		SupprotState,
 		MainMenuState,
 		SaveMenuState,
 		LoadMenuState,
@@ -48,6 +50,7 @@ private:
 	MyGUI::ImageBox* mLogoImage;
 	MyGUI::ImageBox* mMenuImage;
 
+	MyGUI::Button* mSupport;
 	MyGUI::Button* mNewGame;
 	MyGUI::Button* mLoad;
 	MyGUI::Button* mOpiton;
