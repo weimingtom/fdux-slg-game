@@ -83,6 +83,7 @@
         <T_SupplySave type="String" value="保存游戏" />
         <T_SupplyLoad type="String" value="读取游戏" />
         <T_SupplyExit type="String" value="补给结束" />
+        <Supprot type="String" value="补给" />
         <TEXT_SquadPWeapon type="String" value="主武器" />
         <TEXT_SquadSWeapon type="String" value="副武器" />
         <TEXT_SquadShield type="String" value="盾牌" />
