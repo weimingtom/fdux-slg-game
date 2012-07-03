@@ -32,4 +32,11 @@ material LightInfOf : Skinned/CastShadow/OneTexture
 material LightInf : Skinned/CastShadow/OneTexture
 {
     set_texture_alias Diffuse LightInf.dds
+	set_texture_alias Material LightInfMat.dds
+}
+
+material LightInfDux : Skinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse LightInfDux.dds
+	set_texture_alias Material LightInfMat.dds
 }

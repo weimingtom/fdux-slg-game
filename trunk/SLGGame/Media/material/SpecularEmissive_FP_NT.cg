@@ -3,8 +3,8 @@ void main(
 	
 	uniform float3 sspecular,
 	uniform float3 semissive,
-	uniform float shininess 
+	uniform float3 sdiffuse 
 	)
 {
-	oColour = float4(sspecular.x , shininess/ 100.0, semissive.x , 1.0);
+	oColour = float4(sdiffuse.x, sspecular.x , semissive.x , 1.0);
 }

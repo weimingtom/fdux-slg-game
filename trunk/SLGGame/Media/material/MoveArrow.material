@@ -17,8 +17,9 @@ material MoveArrow
 		pass 
         {
 			cull_hardware none
+			diffuse 1.0 1.0 1.0
 			emissive 0.0 0.0 0.0
-			specular 1.0 1.0 1.0 50.0
+			specular 1.0 1.0 1.0 10.0
 			vertex_program_ref SpecularEmissiveVP/Skinned/NoTexture
 			{
 			}
