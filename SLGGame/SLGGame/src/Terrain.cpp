@@ -849,7 +849,7 @@ void Terrain::createGrid()
 	for(int y = 0; y < mMapData->getMapSize(); y++)
 		for(int x = 0; x < mMapData->getMapSize(); x++)
 		{
-			if(mMapData->getPassable(x,y,0))
+			if(mMapData->getPassable(x,y,-1))
 			{
 				float xx = startpos + x * TILESIZE;
 				float yy = startpos + y * TILESIZE;

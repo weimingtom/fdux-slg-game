@@ -144,7 +144,7 @@
 			<SkillPointPassive type="Int" value="0"/>
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
-			<UnitMat type="String" value="LightInf"/>
+			<UnitMat type="String" value="LightInfDux"/>
 			<MoveSound type="String" value="LightInf.mp3"/>
 		</DuxLightSpear>
 		<DuxHeavyInf>

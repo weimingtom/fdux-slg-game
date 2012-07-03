@@ -18,12 +18,12 @@ function finishdeploy()
 	MapLib.ActiveMapTrigger(trigerid);
 	ScriptCommonLib.SetString("turnendtriger",trigerid);
 	
-	BattleLib.CreateAIGroup(2, "DuxRaider");
-	BattleLib.AssignAIGroup(2, "Team2Squad_1", "DuxRaider");
+	--BattleLib.CreateAIGroup(2, "DuxRaider");
 	BattleLib.AssignAIGroup(2, "Team2Squad_0", "DuxRaider");
+	BattleLib.AssignAIGroup(2, "Team2Squad_1", "DuxRaider");
 	BattleLib.AssignAIGroup(2, "Team2Squad_2", "DuxRaider");
-	BattleLib.CreateAIMission(2, "RaidArea", 1, "CampArea");
-	BattleLib.AssignAIMission(2, "DuxRaider", "RaidArea");
+	BattleLib.CreateAIMission(2, "EliminateTeam1", 1, 1);
+	BattleLib.AssignAIMission(2, "DuxRaider", "EliminateTeam1");
 end
 
 function unitdead()
@@ -42,15 +42,15 @@ function turnend()
 	end
 	
 	if team == 1 then
-		if BattleLib.TeamSquadLeft(2) == 1 then
-			if turn < 4 then
+		if BattleLib.TeamSquadLeft(2) == 2 then
+			if turn < 6 then
 				BattleLib.AddGold(500);
 			end
 			BattleLib.AddGold(2000);
 			BattleLib.DumpSquadData();
 			BattleLib.ChangeState(2,"Chapter2.lua");
 		elseif BattleLib.TeamSquadLeft(2) == 0 then
-			if turn < 4 then
+			if turn < 6 then
 				BattleLib.AddGold(500);
 			end
 			BattleLib.AddGold(2500);

@@ -6,48 +6,8 @@ material GridMat
 		pass
 		{
 			diffuse 1.0 1.0 1.0
+			depth_write off
 			lighting off
 		}
-	}
-	technique specular
-	{
-		scheme SpecularEmissive
-		pass
-		{
-			emissive 1.0 1.0 1.0
-			specular 0.0 0.0 0.0 10.0
-			vertex_program_ref SpecularEmissiveVP/NotSkinned/NoTexture
-			{
-			}
-			fragment_program_ref SpecularEmissiveFP/NoTexture
-			{
-			}
-		}
-	}
-    technique shadowmap
-    {
-		scheme WriteDepthMap
-        pass 
-        {
-            vertex_program_ref DepthShadowmapVP/NotSkinned/NoTexture
-            {
-            }
-            fragment_program_ref DepthShadowmapFP/NoTexture
-            {
-            }
-        }
-    }
-	technique normaldepth
-	{
-		scheme NormalDepth
-		pass 
-        {
-            vertex_program_ref NormalDepthVP/NotSkinned/MultiTexture
-            {
-            }
-            fragment_program_ref NormalDepthFP/MultiTexture
-            {
-            }
-        }
 	}
 }

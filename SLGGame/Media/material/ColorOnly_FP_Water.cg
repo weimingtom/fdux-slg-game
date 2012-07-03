@@ -32,7 +32,7 @@ void main(
 	//float4 refractionColour = tex2D(refractMap, final) + tintColour;
 	//float3 vertexColour = float4(waterColor, 1.0);
 	col.rgb =  lerp(waterColor, reflectionColour, fresnel);
-	col.a = 0.25;
+	col.a = 1.0;
 
 	// Final colour
 	//col = lerp(refractionColour, reflectionColour, fresnel);

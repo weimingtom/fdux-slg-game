@@ -9,6 +9,8 @@ extern "C"
 
 #include <string>
 
+#include <boost/format.hpp>
+
 #include "SquadDefine.h"
 #include "DataLibrary.h"
 #include "BattleSquadManager.h"
@@ -54,18 +56,22 @@ static int AddGold(lua_State* L)
 	return 0;
 }
 
+/*
 static int CreateAIGroup(lua_State* L)
 {
 	int team = luaL_checkint(L, 1);
 	std::string groupname(luaL_checkstring(L, 2));
 	return 0;
 }
+*/
 
 static int AssignAIGroup(lua_State* L)
 {
 	int team = luaL_checkint(L, 1);
 	std::string squadid(luaL_checkstring(L, 2));
 	std::string groupid(luaL_checkstring(L, 3));
+	DataLibrary::getSingleton().setData(
+		str(boost::format("GameData/BattleData/AIData/Team%1%/Group/%2%/SquadList/%3%")%team%groupid%squadid), 1);
 	return 0;
 }
 
@@ -76,9 +82,22 @@ static int CreateAIMission(lua_State* L)
 	int missiontype = luaL_checkint(L, 3);
 	switch(missiontype)
 	{
+	case 0:
+		{
+			std::string areaid(luaL_checkstring(L, 4));
+			DataLibrary::getSingleton().setData(
+				str(boost::format("GameData/BattleData/AIData/Team%1%/Mission/%2%")%team%missionname), missiontype);
+			DataLibrary::getSingleton().setData(
+				str(boost::format("GameData/BattleData/AIData/Team%1%/Mission/%2%/AreaId")%team%missionname), areaid);
+		}
+		break;
 	case 1:
 		{
-			std::string groupid(luaL_checkstring(L, 4));
+			int targetteam = luaL_checkint(L, 4);
+			DataLibrary::getSingleton().setData(
+				str(boost::format("GameData/BattleData/AIData/Team%1%/Mission/%2%")%team%missionname), missiontype);
+			DataLibrary::getSingleton().setData(
+				str(boost::format("GameData/BattleData/AIData/Team%1%/Mission/%2%/TargetTeam")%team%missionname), targetteam);
 		}
 		break;
 	}
@@ -90,6 +109,8 @@ static int AssignAIMission(lua_State* L)
 	int team = luaL_checkint(L, 1);
 	std::string groupid(luaL_checkstring(L, 2));
 	std::string missionname(luaL_checkstring(L, 3));
+	DataLibrary::getSingleton().setData(
+		str(boost::format("GameData/BattleData/AIData/Team%1%/Group/%2%/Mission")%team%groupid), missionname);
 	return 0;
 }
 
@@ -100,7 +121,7 @@ static const struct luaL_Reg BattleLib[] =
 	{"TeamSquadLeft",TeamSquadLeft},
 	{"Story",Story},
 	{"AddGold",AddGold},
-	{"CreateAIGroup",CreateAIGroup},
+	//{"CreateAIGroup",CreateAIGroup},
 	{"AssignAIGroup",AssignAIGroup},
 	{"CreateAIMission",CreateAIMission},
 	{"AssignAIMission",AssignAIMission},

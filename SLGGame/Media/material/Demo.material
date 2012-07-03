@@ -4,6 +4,8 @@ material LightQuad
 	{
 		pass
 		{
+			depth_write off
+			depth_check off
 			vertex_program_ref LightQuadVP
 			{
 			}
@@ -41,6 +43,8 @@ material BrightPass
 	{
 		pass
 		{
+			depth_write off
+			depth_check off
 			vertex_program_ref FinalPassVP
 			{
 			}
@@ -62,6 +66,8 @@ material BlurX
 	{
 		pass
 		{
+			depth_write off
+			depth_check off
 			vertex_program_ref FinalPassVP
 			{
 			}
@@ -83,6 +89,8 @@ material BlurY
 	{
 		pass
 		{
+			depth_write off
+			depth_check off
 			vertex_program_ref FinalPassVP
 			{
 			}
@@ -105,6 +113,8 @@ material FinalPass
 	{
 		pass
 		{
+			depth_write off
+			depth_check off
 			vertex_program_ref LightQuadVP
 			{
 			}
