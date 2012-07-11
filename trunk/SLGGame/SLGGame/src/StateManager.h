@@ -52,6 +52,7 @@ public:
 private:
 	GameState* CreateState(StateType type);
 
+	GameState* mWillChangeState;
 	GameState* mBaseState;
 	GameState* mAffixationState;
 

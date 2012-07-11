@@ -24,6 +24,9 @@ void StateManager::changeState( std::string arg,StateType type )
 {
 	mNextStateArg = arg;
 	mNextState = type;
+
+	mWillChangeState=CreateState(type);
+	mWillChangeState->initialize(arg);
 	/*
 	if (mAffixationState!=NULL)
 	{
@@ -99,9 +102,7 @@ void StateManager::StateUpdate(unsigned int deltaTime)
 		}
 
 		mCurState = mNextState;
-		mBaseState=CreateState(mNextState);
-
-		mBaseState->initialize(mNextStateArg);
+		mBaseState= mWillChangeState;
 
 		mNextState = None;
 	}
