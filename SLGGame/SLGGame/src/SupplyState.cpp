@@ -17,16 +17,10 @@ SupplyState::~SupplyState()
 
 void SupplyState::initialize( std::string arg )
 {
-	MapLoader* mMapLoader = new MapLoader;
-
-	mMapLoader->loadMapFormFile("demo.xml");
-	//mMapLoader->loadMapObj();
-	mMapLoader->initBattleSquad(true);
-	//mMapLoader->initMapScript();
 
 	GUIScene* supplyScene=GUISystem::getSingletonPtr()->createScene(SupplyScene);
 
-	supplyScene->showScene("");
+	supplyScene->showScene(arg);
 }
 
 void SupplyState::uninitialize()
