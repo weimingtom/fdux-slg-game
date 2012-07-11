@@ -47,6 +47,8 @@ public:
 
 	StateType curState() { return mCurState; }
 
+	StateType nextState() {return mNextState; }
+
 private:
 	GameState* CreateState(StateType type);
 

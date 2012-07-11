@@ -2,6 +2,8 @@
 
 #include "DataLibrary.h"
 #include "StringTable.h"
+#include "StateManager.h"
+#include "AVGSquadManager.h"
 
 #include "boost/format.hpp"
 #include <string>
@@ -12,6 +14,14 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	setSceneLanguage();
 
 	assignWidget(mSupplyBG,"SupplyBG");
+
+	assignWidget(mSaveButton,"T_SupplySave");
+	assignWidget(mLoadButton,"T_SupplyLoad");
+	assignWidget(mExitButton,"T_SupplyExit");
+
+	mSaveButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUISupply::onSave);
+	mLoadButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUISupply::onLoad);
+	mExitButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUISupply::onExit);
 
 	MyGUI::ItemBox* baseItemBox;
 	assignWidget(baseItemBox,"PWeaponItemBox");
@@ -106,10 +116,9 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 
 	m_CurrSquadEquipItem=NULL;
 	m_CurrSelectType=EQUIP_PWEAPON;
-	m_CurrSquadIndex=-1;
-	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/Money",1000);
+	m_CurrSquadIndex=-1;;
 	m_Money=0;
-	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/Money",m_Money);
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/Gold",m_Money);
 	showArmyInfo();
 }
 
@@ -121,7 +130,7 @@ GUISupply::~GUISupply(void)
 void GUISupply::clearBattleSquad()
 {
 	//Ïú»ÙBattleDate
-	for(std::vector<BattleSquad*>::iterator it=mBattleSquad.begin();it!=mBattleSquad.end();it++)
+	for(std::vector<Squad*>::iterator it=mBattleSquad.begin();it!=mBattleSquad.end();it++)
 	{
 		delete (*it);
 	}
@@ -134,17 +143,19 @@ void GUISupply::createBattleSquad()
 	//¶ÁÈ¡BattleData
 	clearBattleSquad();
 
-	std::vector<std::string> child=DataLibrary::getSingletonPtr()->getChildList("GameData/BattleData/SquadList");
+	std::vector<std::string> child=DataLibrary::getSingletonPtr()->getChildList("GameData/StoryData/SquadData");
 	for(std::vector<std::string>::iterator it=child.begin();it!=child.end();it++)
 	{
-		mBattleSquad.push_back(new BattleSquad(std::string("GameData/BattleData/SquadList/")+(*it)));
+		Squad* bs=new Squad(std::string("GameData/StoryData/Supply/")+(*it));
+		bs->init(std::string("GameData/StoryData/SquadData/")+(*it));
+		mBattleSquad.push_back(bs);
 	}
 }
 
 void GUISupply::refreshArmyList()
 {
 	mSquadItemBox->removeAllItems();
-	for(std::vector<BattleSquad*>::iterator it=mBattleSquad.begin();it!=mBattleSquad.end();it++)
+	for(std::vector<Squad*>::iterator it=mBattleSquad.begin();it!=mBattleSquad.end();it++)
 	{
 		mSquadItemBox->addItem(new SquadItemData((*it)->getSquadType(),(*it)->getName(),(*it)->getLevel()));
 	}
@@ -152,7 +163,7 @@ void GUISupply::refreshArmyList()
 
 void GUISupply::showArmy( int index )
 {
-	BattleSquad* army=mBattleSquad.at(index);
+	Squad* army=mBattleSquad.at(index);
 	
 	std::string tempstr,temppath;
 	tempstr = army->getLeaderId();
@@ -173,7 +184,7 @@ void GUISupply::showArmy( int index )
 	showAttribute(index,0,"");
 }
 
-std::string GUISupply::itemCompare(BattleSquad* compareSquad,BattleSquad* squad,AttrType type)
+std::string GUISupply::itemCompare(Squad* compareSquad,Squad* squad,AttrType type)
 {
 	float oldAttr=squad->getAttr(type,ATTRCALC_FULL);
 
@@ -238,12 +249,12 @@ void GUISupply::eventSelectItemAccept(MyGUI::ItemBox* _sender, size_t _index)
 
 void GUISupply::showAttribute(int index,int itemType,std::string itemID)
 {
-	BattleSquad* army=mBattleSquad.at(index);
-	BattleSquad* copySquad=NULL;
+	Squad* army=mBattleSquad.at(index);
+	Squad* copySquad=NULL;
 	if(itemID!="")
 	{
-		DataLibrary::getSingletonPtr()->copyNode(army->getPath(),"GameData/BattleData/SquadList/TempSquad");
-		copySquad=new BattleSquad("GameData/BattleData/SquadList/TempSquad");
+		DataLibrary::getSingletonPtr()->copyNode(army->getPath(),"GameData/StoryData/SquadData/TempSquad");
+		copySquad=new Squad("GameData/StoryData/SquadData/TempSquad");
 		copySquad->equipEquipment(itemType,itemID);
 
 	}
@@ -292,7 +303,7 @@ void GUISupply::showAttribute(int index,int itemType,std::string itemID)
 	if(itemID!="")
 	{
 		delete copySquad;
-		DataLibrary::getSingletonPtr()->delNode("GameData/BattleData/SquadList/TempSquad");
+		DataLibrary::getSingletonPtr()->delNode("GameData/StoryData/SquadData/TempSquad");
 	}
 
 }
@@ -303,7 +314,7 @@ void GUISupply::showItem(int type)
 	WeaponItemBox* itemBox;
 	std::string equipID;
 	int equipType=type;
-	BattleSquad* army=mBattleSquad.at(m_CurrSquadIndex);
+	Squad* army=mBattleSquad.at(m_CurrSquadIndex);
 	m_CurrSelectType=(EquipmentType)type;
 
 	switch(type)
@@ -356,7 +367,7 @@ void GUISupply::showItem(int type)
 
 void GUISupply::buyItem(int index,WeaponItemData* item)
 {
-	BattleSquad* army=mBattleSquad.at(index);
+	Squad* army=mBattleSquad.at(index);
 
 	if(!item->getEquip() && item->getCanBuy())
 	{
@@ -370,7 +381,7 @@ void GUISupply::buyItem(int index,WeaponItemData* item)
 		if(m_CurrSquadEquipItem!=NULL)
 			m_Money+=m_CurrSquadEquipItem->getPriceValue()/2;
 
-		DataLibrary::getSingletonPtr()->setData("GameData/StoryData/Money",m_Money);
+		DataLibrary::getSingletonPtr()->setData("GameData/StoryData/Gold",m_Money);
 		showArmyInfo();
 	}
 }
@@ -423,7 +434,7 @@ void GUISupply::setItemInfo(WeaponItemData* item)
 {
 	if(item!=NULL)
 	{
-		BattleSquad* army=mBattleSquad.at(m_CurrSquadIndex);
+		Squad* army=mBattleSquad.at(m_CurrSquadIndex);
 		mTextItemName->setCaption(item->getName());
 		mTextItemPrice->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("ItemPrice"))%item->getPriceValue()%item->getOnePrice()%army->getUnitNum()));
 		mItemIcon->setItemResourcePtr(item->getImage());
@@ -441,16 +452,34 @@ void GUISupply::setItemInfo(WeaponItemData* item)
 
 void GUISupply::showArmyInfo()
 {
-	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/Money",m_Money);
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/Gold",m_Money);
 	std::string info;
 	info+=str(boost::format(StringTable::getSingletonPtr()->getString("ArmyInfo_Money"))%m_Money);
 	info+="\n";
 	mTextArmyInfo->setCaption(info);
 }
 
+void GUISupply::onSave(MyGUI::Widget* _sender)
+{
+}
+
+void GUISupply::onLoad(MyGUI::Widget* _sender)
+{
+}
+
+void GUISupply::onExit(MyGUI::Widget* _sender)
+{
+	for(std::vector<Squad*>::iterator it=mBattleSquad.begin();it!=mBattleSquad.end();it++)
+	{
+		AVGSquadManager::getSingletonPtr()->dumpSquad((*it)->getSquadId(),(*it));
+	}
+	
+	StateManager::getSingletonPtr()->changeState(mNextScript,StateManager::AVG);
+}
+
 void GUISupply::showScene( std::string arg )
 {
-
+	mNextScript=arg;
 }
 
 void GUISupply::hideScene()

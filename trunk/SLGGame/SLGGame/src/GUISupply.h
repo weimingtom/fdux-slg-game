@@ -2,7 +2,7 @@
 
 #include "GUIScene.h"
 
-#include "BattleSquad.h"
+#include "Squad.h"
 
 #include "WeaponItemBox.h"
 #include "SquadItemBox.h"
@@ -49,10 +49,17 @@ private:
 	void eventSquadMouseItemActivate(MyGUI::ItemBox* _sender, size_t _index);
 	void eventTabChangeSelect(MyGUI::TabControl* _sender, size_t _index);
 
-	std::string itemCompare(BattleSquad* newSquad,BattleSquad* oldSquad,AttrType type);
+	std::string itemCompare(Squad* newSquad,Squad* oldSquad,AttrType type);
 
 	std::string getItemNameFormLanguage(std::string type,std::string name);
 
+	void onSave(MyGUI::Widget* _sender);
+	void onLoad(MyGUI::Widget* _sender);
+	void onExit(MyGUI::Widget* _sender);
+
+	MyGUI::Button* mSaveButton;
+	MyGUI::Button* mLoadButton;
+	MyGUI::Button* mExitButton;
 
 	MyGUI::ImageBox* mSupplyBG;
 
@@ -100,7 +107,7 @@ private:
 
 	MyGUI::TabControl* mWeaponTabControl;
 
-	std::vector<BattleSquad*> mBattleSquad;
+	std::vector<Squad*> mBattleSquad;
 
 	int m_SquadSkillNum;
 	int m_SquadPassiveSkillNum;
@@ -111,6 +118,8 @@ private:
 	int m_CurrSquadIndex;
 	EquipmentType m_CurrSelectType;
 	WeaponItemData* m_CurrSquadEquipItem;
+
+	std::string mNextScript;
 };
 
 class GUISupplywFactory:
