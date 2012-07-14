@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GUIScene.h"
+#include "GUISLWindow.h"
 
 #include "Squad.h"
 
@@ -120,6 +121,8 @@ private:
 	WeaponItemData* m_CurrSquadEquipItem;
 
 	std::string mNextScript;
+
+	GUISLWindow* SLWindow;
 };
 
 class GUISupplywFactory:

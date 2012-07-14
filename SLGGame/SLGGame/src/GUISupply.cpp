@@ -461,10 +461,16 @@ void GUISupply::showArmyInfo()
 
 void GUISupply::onSave(MyGUI::Widget* _sender)
 {
+	SLWindow= (GUISLWindow*)GUISystem::getSingletonPtr()->createScene(SLScene);
+	SLWindow->setCallScene(this);
+	SLWindow->showScene("save");
 }
 
 void GUISupply::onLoad(MyGUI::Widget* _sender)
 {
+	SLWindow= (GUISLWindow*)GUISystem::getSingletonPtr()->createScene(SLScene);
+	SLWindow->setCallScene(this);
+	SLWindow->showScene("load");
 }
 
 void GUISupply::onExit(MyGUI::Widget* _sender)

@@ -5,6 +5,8 @@
 
 #include "MapLoader.h"
 
+#include "DataLibrary.h"
+
 SupplyState::SupplyState()
 {
 
@@ -20,7 +22,20 @@ void SupplyState::initialize( std::string arg )
 
 	GUIScene* supplyScene=GUISystem::getSingletonPtr()->createScene(SupplyScene);
 
-	supplyScene->showScene(arg);
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/GameState",std::string("Supply"));
+
+	std::string next;
+	if(arg=="save.xml")
+	{
+		DataLibrary::getSingletonPtr()->getData("GameData/StoryData/SupplyNextScene",next);
+	}
+	else
+	{
+		next=arg;
+		DataLibrary::getSingletonPtr()->setData("GameData/StoryData/SupplyNextScene",arg);
+	}
+
+	supplyScene->showScene(next);
 }
 
 void SupplyState::uninitialize()
