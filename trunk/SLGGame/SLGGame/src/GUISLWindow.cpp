@@ -111,7 +111,8 @@ void GUISLWindow::onOtherSceneNotify(std::string arg)
 		}
 		else
 		{
-			mCallScene->onOtherSceneNotify("Return");
+			if(mCallScene!=NULL)
+				mCallScene->onOtherSceneNotify("Return");
 		}
 		GUISystem::getSingletonPtr()->destoryScene(SLScene);
 	}

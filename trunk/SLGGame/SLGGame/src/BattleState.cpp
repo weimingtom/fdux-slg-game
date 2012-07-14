@@ -12,6 +12,7 @@
 #include "StateManager.h"
 #include "GUISystem.h"
 #include "AudioSystem.h"
+#include "GUISLWindow.h"
 
 BattleState::BattleState(void)
 {
@@ -32,6 +33,10 @@ void BattleState::initialize( std::string arg )
 	srand((int)time(0));
 
 	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/GameState",std::string("Battle"));
+
+	GUISLWindow* SLWindow= (GUISLWindow*)GUISystem::getSingletonPtr()->getScene(SLScene);
+	if(SLWindow!=NULL)
+		SLWindow->setCallScene(NULL);
 
 	BattleLoadState* loadState = new BattleLoadState(arg);
 	PushState(loadState);
