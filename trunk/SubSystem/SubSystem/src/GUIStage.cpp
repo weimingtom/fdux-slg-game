@@ -153,6 +153,12 @@ void GUIStage::eventHistoryBoxExit(MyGUI::Widget* _sender)
 
 void GUIStage::keyPressed(const OIS::KeyEvent &arg )
 {
+	if(arg.key==OIS::KC_P)
+	{
+		int i;
+		i=1;
+	}
+
 	if (arg.key==OIS::KC_LCONTROL)
 	{
 		mIsFastForward=true;
@@ -465,6 +471,8 @@ void GUIStage::showImage( std::string imageName,GUIImageLayer layer,float time,i
 			FadeOut(time,mLeftLayer);
 			FadeOut(time,mMidLayer);
 			FadeOut(time,mRightLayer);
+
+			GUISystem::getSingletonPtr()->setFrameUpdateScene(StageScene);
 
 			return;
 		}
