@@ -122,6 +122,8 @@ private:
 	std::string mShieldMesh;
 	std::string mShieldMat;
 	std::string mShieldPU;
+	std::string mHorseMesh;
+	std::string mHorseMat;
 	Ogre::Vector3 mShieldVector;
 	std::string mFactionTexture;
 	std::vector<UnitGrap*> mSoldierUnits;

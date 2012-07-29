@@ -11,7 +11,7 @@
 #define ALPHA_DELTA_TIME 100
 #define MOVE_KEYFRAME_TIME 1.5
 
-UnitGrap::UnitGrap(std::string unitmesh, std::string unitmat,std::string factiontex,Ogre::SceneNode* node):
+UnitGrap::UnitGrap(std::string unitmesh, std::string unitmat,std::string horsemesh,std::string horsemat,std::string factiontex,Ogre::SceneNode* node):
 mNode(node),
 mMainWeapon(NULL),
 mSecWeapon(NULL),
@@ -43,10 +43,39 @@ mIsAnimationComplete(true)
 	{
 		mUnitEntity->setMaterialName(unitmat);
 	}
+
+	if(horsemesh!="none")
+	{
+		mHorseEntity=Core::getSingletonPtr()->mSceneMgr->createEntity(horsemesh);
+
+		if (horsemat!="none")
+		{
+			mHorseEntity->setMaterialName(horsemat);
+		}
+	}
+	else
+	{
+		mHorseEntity=NULL;
+	}
+
 	mNode->attachObject(mUnitEntity);
+	if (mHorseEntity!=NULL)
+	{
+		mNode->attachObject(mHorseEntity);
+	}
+	
 
 	mAniBlender=new AnimationBlender(mUnitEntity);
 	mAniBlender->init(mIdleName);
+	if (mHorseEntity!=NULL)
+	{
+		mHorseAniBlender=new AnimationBlender(mHorseEntity);
+		mHorseAniBlender->init(mIdleName);
+	}
+	else
+	{
+		mHorseAniBlender=NULL;
+	}
 
 	mParticleVisible = true;
 	mParticleNode = mNode->createChildSceneNode();
@@ -82,6 +111,11 @@ UnitGrap::~UnitGrap(void)
 	mNode->detachAllObjects();
 	Core::getSingletonPtr()->mSceneMgr->destroySceneNode(mNode);
 	Core::getSingletonPtr()->mSceneMgr->destroyEntity(mUnitEntity);
+	if(mHorseEntity!=NULL)
+	{
+		Core::getSingletonPtr()->mSceneMgr->destroyEntity(mHorseEntity);
+	}
+	
 }
 
 void UnitGrap::setWeapon( WeaponType type,BoneType bone )
@@ -245,6 +279,10 @@ void UnitGrap::setAniGroup(std::string anigroup)
 		mIdleName = std::string("Ready1H");
 	}
 	mAniBlender->init(mIdleName);
+	if (mHorseAniBlender!=NULL)
+	{
+		mAniBlender->init(mIdleName);
+	}
 }
 
 void UnitGrap::createWeapon( std::string mesh, std::string mat,std::string weaponPU,Ogre::Vector3 PUVector,WeaponType type )
@@ -347,6 +385,8 @@ void UnitGrap::setAnimation( std::string name,bool loop,bool returnInit )
 	else if(name == "Walk")
 		name == mWalkName;
 	mAniBlender->blend(name,AnimationBlender::BlendSwitch,0.2,loop);
+	if(mHorseAniBlender!=NULL)
+		mHorseAniBlender->blend(name,AnimationBlender::BlendSwitch,0.2,loop);
 	mReturnInitAni=returnInit;
 	mIsAnimationComplete=false;
 }
@@ -372,6 +412,10 @@ void UnitGrap::stopTransform()
 	if (mReturnInitAni)
 	{
 		mAniBlender->BackToInit();
+		if (mHorseAniBlender!=NULL)
+		{
+			mHorseAniBlender->BackToInit();
+		}
 		mReturnInitAni=false;
 	}
 	AudioSystem::getSingletonPtr()->stopSample();
@@ -380,6 +424,10 @@ void UnitGrap::stopTransform()
 void UnitGrap::update( unsigned int deltaTime )
 {
 	mAniBlender->addTime(deltaTime/1000.0f);
+	if (mHorseAniBlender!=NULL)
+	{
+		mHorseAniBlender->addTime(deltaTime/1000.0f);
+	}
 	
 	if ( !mIsAnimationComplete && mAniBlender->complete)
 	{
@@ -387,6 +435,10 @@ void UnitGrap::update( unsigned int deltaTime )
 		if (mReturnInitAni)
 		{
 			mAniBlender->BackToInit();
+			if (mHorseAniBlender!=NULL)
+			{
+				mHorseAniBlender->BackToInit();
+			}
 			mReturnInitAni=false;
 		}
 	}

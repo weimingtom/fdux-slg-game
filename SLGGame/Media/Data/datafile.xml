@@ -32,7 +32,7 @@
 			<Type type="Int" value="0"/>
 			<SquadType type="Int" value="0"/>
 			<SoilderId type="String" value="WingsSoilder"/>
-			<HorseId type="String" value="none"/>
+			<HorseId type="String" value="LightCavalryHorse"/>
 			<PweaponId type="String" value="HeavySword"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="KnightShield"/>
@@ -55,8 +55,8 @@
 			<SkillPointPassive type="Int" value="0"/>
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitNum value="50" type="Int" />
-			<UnitMesh type="String" value="HeavyInf.mesh"/>
-			<UnitMat type="String" value="HeavyInf"/>
+			<UnitMesh type="String" value="LightCavalry.mesh"/>
+			<UnitMat type="String" value="LightCavalry"/>
 			<MoveSound type="String" value="HeavyInf.mp3"/>
 		</CheetahSquad>
 		<DandelionSquad>
@@ -237,6 +237,31 @@
 		</DuxSoilder>
 	</SoilderData>
 	<HorseData>
+        <LightCavalryHorse>
+        	<Type type="Int" value="0"/>
+            <Value type="Int" value="10"/>
+        	<Mesh type="String" value="LightCavalryHorse.mesh"/>
+			<Mat type="String" value="LightCavalryHorse"/>
+			<Script type="String" value="none"/>
+			<AttrModifer>
+				<Type type="Int" value="0"/>
+				<Attack type="Float" value="5.0"/>
+				<RangedAttack type="Float" value="0.0"/>
+				<Defence type="Float" value="1.0"/>
+				<Formation type="Float" value="0.0"/>
+				<Initiative type="Float" value="3.0"/>
+				<ActionPoint type="Float" value="0.0"/>
+				<Detection type="Float" value="0.0"/>
+				<Covert type="Float" value="0.0"/>
+				<Toughness type="Float" value="0.0"/>
+				<Conter type="Float" value="0.0"/>
+			</AttrModifer>
+        </LightCavalryHorse>
+        <HeavyCavalryHorse>
+            <Value type="Int" value="10"/>
+        	<Mesh type="String" value="soul.mesh"/>
+			<Mat type="String" value="soul"/>
+        </HeavyCavalryHorse>
 	</HorseData>
 	<PweaponData>
 		<HeavySword>

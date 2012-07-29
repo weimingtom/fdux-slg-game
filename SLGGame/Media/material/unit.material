@@ -40,3 +40,13 @@ material LightInfDux : Skinned/CastShadow/OneTexture
     set_texture_alias Diffuse LightInfDux.dds
 	set_texture_alias Material LightInfMat.dds
 }
+
+material LightCavalry : Skinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse LightCavalry.dds
+}
+
+material LightCavalryHorse : Skinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse LightCavalryHorse.dds
+}

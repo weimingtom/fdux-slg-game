@@ -251,6 +251,19 @@ mDirection(direction)
 		mShieldMat = "none";
 		mShieldPU="none";
 	}
+
+	datalib->getData(datapath + std::string("/HorseId"),tempid);
+	if(tempid != "none")
+	{
+		datalib->getData( std::string("StaticData/HorseData/") + tempid + std::string("/Mesh"), mHorseMesh);
+		datalib->getData( std::string("StaticData/HorseData/") + tempid + std::string("/Mat"), mHorseMat);		
+	}
+	else
+	{
+		mHorseMesh="none";
+		mHorseMat="none";
+	}
+
 	int team = 0;
 	datalib->getData(datapath + std::string("/Team"),team);
 	datalib->getData(str(boost::format("GameData/BattleData/Team/Team%1%/FactionId")%team), tempid);
@@ -261,7 +274,7 @@ mDirection(direction)
 
 
 	//组建单位队伍与组建武器
-	mCommanderUnit=new UnitGrap(mLeaderMesh,mLeaderMat,mFactionTexture,mSceneMgr->getRootSceneNode()->createChildSceneNode(mNode->getName()+"_Commander"));
+	mCommanderUnit=new UnitGrap(mLeaderMesh,mLeaderMat,mHorseMesh,mHorseMat,mFactionTexture,mSceneMgr->getRootSceneNode()->createChildSceneNode(mNode->getName()+"_Commander"));
 	mCommanderUnit->createWeapon(mPWeaponMesh,mPWeaponMat,mPWeaponPU,mPWeaponPUVector,UnitGrap::MainWepon);
 	mCommanderUnit->createWeapon(mSWeaponMesh,mSWeaponMat,mSWeaponPU,mSWeaponPUVector,UnitGrap::SecWepon);
 	mCommanderUnit->createWeapon(mShieldMesh,mShieldMat,mShieldPU,mSWeaponPUVector,UnitGrap::Shield);
@@ -374,7 +387,7 @@ void SquadGraphics::setSquadBillBoardState( bool hasAp )
 UnitGrap* SquadGraphics::createSoldier()
 {
 	mSoldierIndex++;
-	UnitGrap* unit=new UnitGrap(mSoilderMesh,mSoilderMat,mFactionTexture,mSceneMgr->getRootSceneNode()->createChildSceneNode(mNode->getName()+"_Soldier"+Ogre::StringConverter::toString(mSoldierIndex)));
+	UnitGrap* unit=new UnitGrap(mSoilderMesh,mSoilderMat,mHorseMesh,mHorseMat,mFactionTexture,mSceneMgr->getRootSceneNode()->createChildSceneNode(mNode->getName()+"_Soldier"+Ogre::StringConverter::toString(mSoldierIndex)));
 
 	unit->createWeapon(mPWeaponMesh,mPWeaponMat,mPWeaponPU,mPWeaponPUVector,UnitGrap::MainWepon);
 	unit->createWeapon(mSWeaponMesh,mSWeaponMat,mSWeaponPU,mSWeaponPUVector,UnitGrap::SecWepon);
@@ -561,6 +574,10 @@ void SquadGraphics::setInitAnimation( UnitType object )
 	case UNITTYPE_LEADER:
 		{
 			mCommanderUnit->mAniBlender->BackToInit();
+			if (mCommanderUnit->mHorseAniBlender!=NULL)
+			{
+				mCommanderUnit->mHorseAniBlender->BackToInit();
+			}
 			if (object!=UNITTYPE_ALL)
 			{
 				break;
@@ -571,6 +588,10 @@ void SquadGraphics::setInitAnimation( UnitType object )
 			for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 			{
 				(*it)->mAniBlender->BackToInit();
+				if ((*it)->mHorseAniBlender!=NULL)
+				{
+					(*it)->mHorseAniBlender->BackToInit();
+				}
 			}
 			break;
 		}
