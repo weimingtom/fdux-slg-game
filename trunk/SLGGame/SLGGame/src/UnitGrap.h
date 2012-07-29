@@ -16,7 +16,7 @@ class AnimationBlender;
 class UnitGrap:public ParticleUniverse::ParticleSystemListener 
 {
 public:
-	UnitGrap(std::string unitmesh, std::string unitmat,std::string factiontex,Ogre::SceneNode* node);
+	UnitGrap(std::string unitmesh, std::string unitmat,std::string horsemesh,std::string horsemat,std::string factiontex,Ogre::SceneNode* node);
 	~UnitGrap(void);
 	
 	enum WeaponType
@@ -59,6 +59,7 @@ public:
 
 	Ogre::SceneNode* mNode;
 	Ogre::Entity* mUnitEntity;
+	Ogre::Entity* mHorseEntity;
 	bool mIsCheckHeight;
 
 	WeaponGrap* mMainWeapon;
@@ -76,6 +77,7 @@ public:
 	float mOffsetY;
 
 	AnimationBlender* mAniBlender;//¶¯»­´úÀí
+	AnimationBlender* mHorseAniBlender;
 	Ogre::Animation* mNodeAnimation;
 	Ogre::AnimationState* mNodeAnimationState;
 
