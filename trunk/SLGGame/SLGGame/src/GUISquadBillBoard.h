@@ -24,6 +24,8 @@ public:
 
 	void setIcon(enumtype type);
 
+	void setBar(int v);
+
 	void setVisible(bool v);
 
 	void changeColor(MyGUI::Colour c);
@@ -37,6 +39,7 @@ private:
 	MyGUI::TextBox* mBName;
 	MyGUI::ImageBox* mBImage;
 	MyGUI::ImageBox* mBIcon;
+	MyGUI::ProgressBar* mBBar;
 	
 	bool mIsVisible;
 };
