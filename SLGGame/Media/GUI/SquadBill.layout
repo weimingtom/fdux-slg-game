@@ -12,9 +12,9 @@
             <Property key="ImageGroup" value="Button"/>
             <Property key="ImageName" value="normal"/>
         </Widget>
-        <Widget type="ProgressBar" skin="SLGMiniProgressBar" position="30 22 135 6" name="BProgressBar">
+        <Widget type="ProgressBar" skin="SLGMiniProgressBar" position="30 22 110 6" name="BProgressBar">
             <Property key="Range" value="100"/>
-            <Property key="RangePosition" value="50"/>
+            <Property key="RangePosition" value="90"/>
         </Widget>
     </Widget>
 </MyGUI>

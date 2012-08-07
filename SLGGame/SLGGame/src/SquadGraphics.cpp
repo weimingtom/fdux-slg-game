@@ -14,6 +14,8 @@
 #include "GUISquadBillBoard.h"
 #include "GUISquadValueBillBoard.h"
 #include "AudioSystem.h"
+#include "BattleSquadManager.h"
+#include "BattleSquad.h"
 
 #include "Terrain.h"
 
@@ -330,6 +332,8 @@ mDirection(direction)
 		setWeaponMode(SquadGraphics::MainWepon);
 	else
 		setWeaponMode(SquadGraphics::SceWepon);
+
+	updateBB();
 
 	//读取现有效果
 // 	std::vector<std::string> particlelist = datalib->getChildList(datapath + std::string("/ParticleList"));
@@ -1418,6 +1422,7 @@ bool SquadGraphics::isRecoverOver()
 
 void SquadGraphics::setRecover(int num)
 {
+	updateBB();
 	int size=mSoldierUnits.size();
 	if (mSoldierUnits.size()+num<5)
 	{
@@ -1562,6 +1567,7 @@ bool SquadGraphics::addParticle(std::string id,std::string name,enumtype object)
 }
 void SquadGraphics::startParticle(std::string id)
 {
+	updateBB();
 	mCommanderUnit->startParticle(id);
 	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 	{
@@ -1715,6 +1721,7 @@ std::vector<Ogre::Vector3> SquadGraphics::getSoiderPosition()
 
 void SquadGraphics::showValue( std::string value,Ogre::ColourValue c )
 {
+	updateBB();
 	mSquadValueBB->setValue(value,MyGUI::Colour(c.r,c.g,c.b));
 }
 
@@ -1807,6 +1814,14 @@ bool SquadGraphics::isDefenseActionOver()
 	{
 		return false;
 	}
+}
+
+void SquadGraphics::updateBB()
+{
+	BattleSquad* squad=BattleSquadManager::getSingletonPtr()->getBattleSquad(mNode->getName());
+	float v=((float)squad->getUnitNum())/((float)squad->getUnitMaxNum());
+	v*=100;
+	mSquadBB->setBar(v);
 }
 
 

@@ -93,6 +93,8 @@ private:
 
 	void getFormationPosition(enumtype f,enumtype d,Ogre::Vector3& CommanderVector,Ogre::Vector3 SoldierVector[]);
 
+	void updateBB();
+
 	std::map<int,Ogre::Vector3>* getUnitMovePath(UnitGrap* unit,std::map<int,Ogre::Vector3>& vectors,std::map<int,Direction>& directions,bool isCommander);
 	unsigned int mID;
 
