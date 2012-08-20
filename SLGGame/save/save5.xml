@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GameData>
+    <StoryData>
+        <GameState value="Supply" type="String" />
+        <BackGroundName value="" type="String" />
+        <BackGroundPosition value="0,0,0" type="Vector3" />
+        <BackGroundSize value="1280,720,0" type="Vector3" />
+        <LeftName value="" type="String" />
+        <LeftPosition value="5,25,0" type="Vector3" />
+        <LeftSize value="275,480,0" type="Vector3" />
+        <MidName value="" type="String" />
+        <MidPosition value="295,25,0" type="Vector3" />
+        <MidSize value="245,480,0" type="Vector3" />
+        <RightName value="" type="String" />
+        <RightPosition value="545,25,0" type="Vector3" />
+        <RightSize value="250,480,0" type="Vector3" />
+        <Text value="" type="String" />
+        <RoleName value="" type="String" />
+        <TextCursorType value="205" type="Int" />
+        <ScriptName value="Chapter1.lua" type="String" />
+        <ScriptLine value="599" type="Int" />
+        <MusicName value="battle1.mp3" type="String" />
+        <SquadData>
+            <Cheetah>
+                <Type type="Int" value="0" />
+                <SquadType type="Int" value="0" />
+                <SoilderId type="String" value="WingsSoilder" />
+                <HorseId type="String" value="none" />
+                <PweaponId type="String" value="HeavySword" />
+                <SweaponId type="String" value="none" />
+                <ShieldId type="String" value="KnightShield" />
+                <ArmorId type="String" value="HeavyMail" />
+                <LeaderId type="String" value="Cheetah" />
+                <RetainerId type="String" value="Scout" />
+                <Level type="Int" value="5" />
+                <Exp type="Int" value="0" />
+                <SkillPointAction type="Int" value="0" />
+                <SkillPointPassive type="Int" value="0" />
+                <SkillPointEquip type="Int" value="0" />
+                <UnitNum value="47" type="Int" />
+                <UnitMesh type="String" value="HeavyInf.mesh" />
+                <UnitMat type="String" value="HeavyInf" />
+                <MoveSound type="String" value="HeavyInf.mp3" />
+                <Name type="String" value="齐塔重步兵队" />
+                <Describe type="String" value="齐塔重步兵队" />
+                <SkillTable>
+                    <AttackTrain1 value="0" type="Int" />
+                    <Break value="1" type="Int" />
+                    <Defence value="1" type="Int" />
+                    <DefenceTrain1 value="0" type="Int" />
+                    <DefenceTrain2 value="0" type="Int" />
+                    <HeavyArmor value="2" type="Int" />
+                    <OneHandSword value="2" type="Int" />
+                    <Shield value="2" type="Int" />
+                </SkillTable>
+            </Cheetah>
+            <Dandelion>
+                <Type type="Int" value="0" />
+                <SquadType type="Int" value="1" />
+                <SoilderId type="String" value="WingsSoilder" />
+                <HorseId type="String" value="none" />
+                <PweaponId type="String" value="ShortSword" />
+                <SweaponId type="String" value="LongBow" />
+                <ShieldId type="String" value="RoundShield" />
+                <ArmorId type="String" value="LightMail" />
+                <LeaderId type="String" value="Dandelion" />
+                <RetainerId type="String" value="Scout" />
+                <UnitNum value="50" type="Int" />
+                <Level type="Int" value="5" />
+                <Exp type="Int" value="0" />
+                <SkillPointAction type="Int" value="0" />
+                <SkillPointPassive type="Int" value="0" />
+                <SkillPointEquip type="Int" value="0" />
+                <UnitMesh type="String" value="LightInf.mesh" />
+                <UnitMat type="String" value="LightInf" />
+                <MoveSound type="String" value="BowMan.mp3" />
+                <Name type="String" value="丹德来恩弓兵队" />
+                <Describe type="String" value="丹德来恩弓兵队" />
+                <SkillTable>
+                    <Bow value="2" type="Int" />
+                    <Defence value="1" type="Int" />
+                    <DefenceTrain1 value="0" type="Int" />
+                    <LightArmor value="2" type="Int" />
+                    <OneHandSword value="2" type="Int" />
+                    <RangedAttackTrain1 value="0" type="Int" />
+                    <RangedAttackTrain2 value="0" type="Int" />
+                    <Shield value="2" type="Int" />
+                    <SuppressAttack value="1" type="Int" />
+                </SkillTable>
+            </Dandelion>
+        </SquadData>
+        <Faction value="Wing" type="String" />
+        <Gold value="2500" type="Int" />
+        <Supply>
+            <Cheetah>
+                <Name type="String" value="齐塔重步兵队" />
+                <Describe type="String" value="齐塔重步兵队" />
+                <Type type="Int" value="0" />
+                <SquadType type="Int" value="0" />
+                <Level type="Int" value="5" />
+                <Exp type="Int" value="0" />
+                <SkillPointAction type="Int" value="0" />
+                <SkillPointPassive type="Int" value="0" />
+                <SkillPointEquip type="Int" value="0" />
+                <UnitNum value="47" type="Int" />
+                <UnitMesh type="String" value="HeavyInf.mesh" />
+                <UnitMat type="String" value="HeavyInf" />
+                <MoveSound type="String" value="HeavyInf.mp3" />
+                <SoilderId value="WingsSoilder" type="String">
+                    <Modifierid value="m0" type="String" />
+                </SoilderId>
+                <ModifierList>
+                    <m0>
+                        <Type type="Int" value="0" />
+                        <Attack type="Float" value="1.0" />
+                        <RangedAttack type="Float" value="1.0" />
+                        <Defence type="Float" value="1.0" />
+                        <Formation type="Float" value="2.0" />
+                        <Initiative type="Float" value="1.0" />
+                        <ActionPoint type="Float" value="7.0" />
+                        <Detection type="Float" value="5.0" />
+                        <Covert type="Float" value="0.0" />
+                        <Toughness type="Float" value="7.0" />
+                        <Conter type="Float" value="5.0" />
+                    </m0>
+                    <m1>
+                        <Type type="Int" value="0" />
+                        <Attack type="Float" value="5.0" />
+                        <RangedAttack type="Float" value="0.0" />
+                        <Defence type="Float" value="1.0" />
+                        <Formation type="Float" value="0.0" />
+                        <Initiative type="Float" value="3.0" />
+                        <ActionPoint type="Float" value="0.0" />
+                        <Detection type="Float" value="0.0" />
+                        <Covert type="Float" value="0.0" />
+                        <Toughness type="Float" value="0.0" />
+                        <Conter type="Float" value="0.0" />
+                    </m1>
+                    <m2>
+                        <Type type="Int" value="0" />
+                        <Attack type="Float" value="0.0" />
+                        <RangedAttack type="Float" value="0.0" />
+                        <Defence type="Float" value="3.0" />
+                        <Formation type="Float" value="0.0" />
+                        <Initiative type="Float" value="0.0" />
+                        <ActionPoint type="Float" value="-1.0" />
+                        <Detection type="Float" value="0.0" />
+                        <Covert type="Float" value="-1.0" />
+                        <Toughness type="Float" value="0.0" />
+                        <Conter type="Float" value="0.0" />
+                    </m2>
+                    <m3>
+                        <Type type="Int" value="0" />
+                        <Attack type="Float" value="1.0" />
+                        <RangedAttack type="Float" value="0.0" />
+                        <Defence type="Float" value="3.0" />
+                        <Formation type="Float" value="0.0" />
+                        <Initiative type="Float" value="0.0" />
+                        <ActionPoint type="Float" value="-1.0" />
+                        <Detection type="Float" value="0.0" />
+                        <Covert type="Float" value="-1.0" />
+                        <Toughness type="Float" value="0.0" />
+                        <Conter type="Float" value="0.0" />
+                    </m3>
+                </ModifierList>
+                <HorseId value="none" type="String" />
+                <PweaponId value="HeavySword" type="String">
+                    <Modifierid value="m1" type="String" />
+                </PweaponId>
+                <SweaponId value="none" type="String" />
+                <ArmorId value="HeavyMail" type="String">
+                    <Modifierid value="m2" type="String" />
+                </ArmorId>
+                <ShieldId value="KnightShield" type="String">
+                    <Modifierid value="m3" type="String" />
+                </ShieldId>
+                <LeaderId type="String" value="Cheetah" />
+                <RetainerId value="Scout" type="String">
+                    <EffectId value="e0" type="String" />
+                </RetainerId>
+                <Effect>
+                    <e0 value="1" type="Int">
+                        <EffectId value="DetectionTrain" type="String" />
+                        <ScriptContext>
+                            <modifierid value="" type="String" />
+                        </ScriptContext>
+                    </e0>
+                    <e1 value="1" type="Int">
+                        <EffectId value="AttackTrain" type="String" />
+                        <ScriptContext>
+                            <modifierid value="" type="String" />
+                        </ScriptContext>
+                    </e1>
+                    <e2 value="2" type="Int">
+                        <EffectId value="DefenceTrain" type="String" />
+                        <ScriptContext>
+                            <modifierid value="" type="String" />
+                        </ScriptContext>
+                    </e2>
+                </Effect>
+                <Skill>
+                    <Attack value="1" type="Int" />
+                    <Rest value="1" type="Int" />
+                    <Break value="1" type="Int" />
+                    <Defence value="1" type="Int" />
+                </Skill>
+                <SkillTable>
+                    <AttackTrain1 value="0" type="Int">
+                        <EffectId value="e1" type="String" />
+                    </AttackTrain1>
+                    <Break value="1" type="Int" />
+                    <Defence value="1" type="Int" />
+                    <DefenceTrain1 value="0" type="Int">
+                        <EffectId value="e2" type="String" />
+                    </DefenceTrain1>
+                    <DefenceTrain2 value="0" type="Int">
+                        <EffectId value="e2" type="String" />
+                    </DefenceTrain2>
+                    <HeavyArmor value="2" type="Int" />
+                    <OneHandSword value="2" type="Int" />
+                    <Shield value="2" type="Int" />
+                </SkillTable>
+            </Cheetah>
+            <Dandelion>
+                <Name type="String" value="丹德来恩弓兵队" />
+                <Describe type="String" value="丹德来恩弓兵队" />
+                <Type type="Int" value="0" />
+                <SquadType type="Int" value="1" />
+                <Level type="Int" value="5" />
+                <Exp type="Int" value="0" />
+                <SkillPointAction type="Int" value="0" />
+                <SkillPointPassive type="Int" value="0" />
+                <SkillPointEquip type="Int" value="0" />
+                <UnitNum value="50" type="Int" />
+                <UnitMesh type="String" value="LightInf.mesh" />
+                <UnitMat type="String" value="LightInf" />
+                <MoveSound type="String" value="BowMan.mp3" />
+                <SoilderId value="WingsSoilder" type="String">
+                    <Modifierid value="m0" type="String" />
+                </SoilderId>
+                <ModifierList>
+                    <m0>
+                        <Type type="Int" value="0" />
+                        <Attack type="Float" value="1.0" />
+                        <RangedAttack type="Float" value="1.0" />
+                        <Defence type="Float" value="1.0" />
+                        <Formation type="Float" value="2.0" />
+                        <Initiative type="Float" value="1.0" />
+                        <ActionPoint type="Float" value="7.0" />
+                        <Detection type="Float" value="5.0" />
+                        <Covert type="Float" value="0.0" />
+                        <Toughness type="Float" value="7.0" />
+                        <Conter type="Float" value="5.0" />
+                    </m0>
+                    <m1>
+                        <Type type="Int" value="0" />
+                        <Attack type="Float" value="3.0" />
+                        <RangedAttack type="Float" value="0.0" />
+                        <Defence type="Float" value="1.0" />
+                        <Formation type="Float" value="0.0" />
+                        <Initiative type="Float" value="4.0" />
+                        <ActionPoint type="Float" value="0.0" />
+                        <Detection type="Float" value="0.0" />
+                        <Covert type="Float" value="0.0" />
+                        <Toughness type="Float" value="0.0" />
+                        <Conter type="Float" value="0.0" />
+                    </m1>
+                    <m2>
+                        <Type type="Int" value="0" />
+                        <Attack type="Float" value="0.0" />
+                        <RangedAttack type="Float" value="6.0" />
+                        <Defence type="Float" value="0.0" />
+                        <Formation type="Float" value="0.0" />
+                        <Initiative type="Float" value="0.0" />
+                        <ActionPoint type="Float" value="0.0" />
+                        <Detection type="Float" value="0.0" />
+                        <Covert type="Float" value="0.0" />
+                        <Toughness type="Float" value="0.0" />
+                        <Conter type="Float" value="0.0" />
+                    </m2>
+                    <m3>
+                        <Type type="Int" value="0" />
+                        <Attack type="Float" value="0.0" />
+                        <RangedAttack type="Float" value="0.0" />
+                        <Defence type="Float" value="2.0" />
+                        <Formation type="Float" value="0.0" />
+                        <Initiative type="Float" value="0.0" />
+                        <ActionPoint type="Float" value="0.0" />
+                        <Detection type="Float" value="0.0" />
+                        <Covert type="Float" value="0.0" />
+                        <Toughness type="Float" value="0.0" />
+                        <Conter type="Float" value="0.0" />
+                    </m3>
+                    <m4>
+                        <Type type="Int" value="0" />
+                        <Attack type="Float" value="2.0" />
+                        <RangedAttack type="Float" value="0.0" />
+                        <Defence type="Float" value="2.0" />
+                        <Formation type="Float" value="0.0" />
+                        <Initiative type="Float" value="0.0" />
+                        <ActionPoint type="Float" value="0.0" />
+                        <Detection type="Float" value="0.0" />
+                        <Covert type="Float" value="0.0" />
+                        <Toughness type="Float" value="0.0" />
+                        <Conter type="Float" value="0.0" />
+                    </m4>
+                </ModifierList>
+                <HorseId value="none" type="String" />
+                <PweaponId value="ShortSword" type="String">
+                    <Modifierid value="m1" type="String" />
+                </PweaponId>
+                <SweaponId value="LongBow" type="String">
+                    <Modifierid value="m2" type="String" />
+                </SweaponId>
+                <ArmorId value="LightMail" type="String">
+                    <Modifierid value="m3" type="String" />
+                </ArmorId>
+                <ShieldId value="RoundShield" type="String">
+                    <Modifierid value="m4" type="String" />
+                </ShieldId>
+                <LeaderId type="String" value="Dandelion" />
+                <RetainerId value="Scout" type="String">
+                    <EffectId value="e0" type="String" />
+                </RetainerId>
+                <Effect>
+                    <e0 value="1" type="Int">
+                        <EffectId value="DetectionTrain" type="String" />
+                        <ScriptContext>
+                            <modifierid value="" type="String" />
+                        </ScriptContext>
+                    </e0>
+                    <e1 value="1" type="Int">
+                        <EffectId value="DefenceTrain" type="String" />
+                        <ScriptContext>
+                            <modifierid value="" type="String" />
+                        </ScriptContext>
+                    </e1>
+                    <e2 value="2" type="Int">
+                        <EffectId value="RangedAttackTrain" type="String" />
+                        <ScriptContext>
+                            <modifierid value="" type="String" />
+                        </ScriptContext>
+                    </e2>
+                </Effect>
+                <Skill>
+                    <Attack value="1" type="Int" />
+                    <Rest value="1" type="Int" />
+                    <RangedAttack value="1" type="Int" />
+                    <Defence value="1" type="Int" />
+                    <SuppressAttack value="1" type="Int" />
+                </Skill>
+                <SkillTable>
+                    <Bow value="2" type="Int" />
+                    <Defence value="1" type="Int" />
+                    <DefenceTrain1 value="0" type="Int">
+                        <EffectId value="e1" type="String" />
+                    </DefenceTrain1>
+                    <LightArmor value="2" type="Int" />
+                    <OneHandSword value="2" type="Int" />
+                    <RangedAttackTrain1 value="0" type="Int">
+                        <EffectId value="e2" type="String" />
+                    </RangedAttackTrain1>
+                    <RangedAttackTrain2 value="0" type="Int">
+                        <EffectId value="e2" type="String" />
+                    </RangedAttackTrain2>
+                    <Shield value="2" type="Int" />
+                    <SuppressAttack value="1" type="Int" />
+                </SkillTable>
+            </Dandelion>
+        </Supply>
+    </StoryData>
+</GameData>
