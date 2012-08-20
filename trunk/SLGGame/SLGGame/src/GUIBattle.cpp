@@ -8,15 +8,19 @@
 #include "GUITargetWindow.h"
 #include "GUIInfoWindow.h"
 #include "GUITipsWindow.h"
+#include "GUIMissionWindow.h"
 
 #include "Terrain.h"
 
 #include "CollisionTools.h"
 #include "CameraContral.h"
+#include "StringTable.h"
 
 GUIBattle::GUIBattle(int Width,int Height):GUIScene("Battle.layout",Width,Height)
 {
 	MyGUI::Window* window;
+
+	setSceneLanguage();
 
 	assignWidget(window,"TipsWindow");
 	mSubWindows.push_back(new GUITipsWindow(window,Width,Height));
@@ -34,6 +38,10 @@ GUIBattle::GUIBattle(int Width,int Height):GUIScene("Battle.layout",Width,Height
 	mSubWindows.push_back(new GUIDeployWindows(window,Width,Height));
 	assignWidget(window,"InfoWindow");
 	mSubWindows.push_back(new GUIInfoWindow(window,Width,Height));
+	assignWidget(mMissionButton,"MissionButton");
+	mMissionButton->setCaption(StringTable::getSingletonPtr()->getString("MissionButton"));
+	assignWidget(window,"MissionWindow");
+	mSubWindows.push_back(new GUIMissionWindow(window,Width,Height));
 	//assignWidget(mButton,"ShadowMapTarget");
 
 }

@@ -20,17 +20,17 @@ GUISquadWindows::GUISquadWindows(MyGUI::Window* window,int Width,int Height):GUI
 	assignWidget(mSquadShield,"SquadShield");
 	assignWidget(mSquadArmor,"SquadArmor");
 	assignWidget(mSquadUnitNum,"SquadUnitNum");
-	assignWidget(mSquadAp,"SquadAp");
+//	assignWidget(mSquadAp,"SquadAp");
 	assignWidget(mSquadAttack,"SquadAttack");
 	assignWidget(mSquadDefence,"SquadDefence");
 
 	MyGUI::TextBox* textBox;
 	assignWidget(textBox,"FormationLabel");
 	textBox->setCaption(StringTable::getSingleton().getString("Formation"));
-	assignWidget(textBox,"DirectionLabel");
-	textBox->setCaption(StringTable::getSingleton().getString("Direction"));
+	//assignWidget(textBox,"DirectionLabel");
+	//textBox->setCaption(StringTable::getSingleton().getString("Direction"));
 
-	assignWidget(mSquadDirection,"SquadDirection");
+	//assignWidget(mSquadDirection,"SquadDirection");
 	assignWidget(mSquadFormation,"SquadFormation");
 
 	assignWidget(mSquadImage,"SquadImage");
@@ -159,7 +159,7 @@ void GUISquadWindows::updateSquad()
 	x = mSelectSquad->getLevel();
 	mSquadGridX->setCaption(Ogre::StringConverter::toString(x));
 
-	x = mSelectSquad->getDirection();
+	/*x = mSelectSquad->getDirection();
 	switch(x)
 	{
 	case North:
@@ -174,7 +174,7 @@ void GUISquadWindows::updateSquad()
 	case East:
 		mSquadDirection->setCaption(StringTable::getSingleton().getString("DirectionEast"));
 		break;
-	}
+	}*/
 
 	y = mSelectSquad->getFormation();
 	switch(y)
@@ -192,9 +192,12 @@ void GUISquadWindows::updateSquad()
 
 	float tempfloat;
 	tempfloat = mSelectSquad->getAttr(ATTR_ATTACK,ATTRCALC_FULL);
-	mSquadAttack->setCaption(str(boost::format("%1%")%floor(tempfloat+0.5f)));
+	float tempfloat1;
+	tempfloat1 = mSelectSquad->getAttr(ATTR_RANGEDATTACK,ATTRCALC_FULL);
+	mSquadAttack->setCaption(str(boost::format("%1%/%2%")%floor(tempfloat+0.5f)%floor(tempfloat1+0.5f)));
 	tempfloat = mSelectSquad->getAttr(ATTR_DEFENCE,ATTRCALC_FULL);
-	mSquadDefence->setCaption(str(boost::format("%1%")%floor(tempfloat+0.5f)));
+	tempfloat1 = mSelectSquad->getAttr(ATTR_RANGEDDEFENCE,ATTRCALC_FULL);
+	mSquadDefence->setCaption(str(boost::format("%1%/%2%")%floor(tempfloat+0.5f)%floor(tempfloat1+0.5f)));
 
 	x = mSelectSquad->getUnitMaxNum();
 	y = mSelectSquad->getUnitNum();
@@ -207,8 +210,8 @@ void GUISquadWindows::updateSquad()
 // 	}
 	mSquadUnitNum->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("SquadUnitNumNoInjSimple"))%y%x));
 
-	x = mSelectSquad->getActionPoint();
-	mSquadAp->setCaption(Ogre::StringConverter::toString(x));
+	//x = mSelectSquad->getActionPoint();
+	//mSquadAp->setCaption(Ogre::StringConverter::toString(x));
 
 	tempstr = mSelectSquad->getPweaponId();
 	if(tempstr == "none")

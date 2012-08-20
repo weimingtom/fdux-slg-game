@@ -19,17 +19,17 @@ GUITargetWindows::GUITargetWindows(MyGUI::Window* window,int Width,int Height):G
 	assignWidget(mSquadShield,"TargetShield");
 	assignWidget(mSquadArmor,"TargetArmor");
 	assignWidget(mSquadUnitNum,"TargetUnitNum");
-	assignWidget(mSquadAp,"TargetAp");
+	//assignWidget(mSquadAp,"TargetAp");
 	assignWidget(mSquadAttack,"TargetAttack");
 	assignWidget(mSquadDefence,"TargetDefence");
-	assignWidget(mSquadDirection,"TargetDirection");
+	//assignWidget(mSquadDirection,"TargetDirection");
 	assignWidget(mSquadFormation,"TargetFormation");
 
 	MyGUI::TextBox* textBox;
 	assignWidget(textBox,"FormationLabel");
 	textBox->setCaption(StringTable::getSingleton().getString("Formation"));
-	assignWidget(textBox,"DirectionLabel");
-	textBox->setCaption(StringTable::getSingleton().getString("Direction"));
+	//assignWidget(textBox,"DirectionLabel");
+	//textBox->setCaption(StringTable::getSingleton().getString("Direction"));
 
 	assignWidget(mSquadImage,"TargetImage");
 	assignWidget(mSquadFactionImage,"TargetFactionImage");
@@ -138,22 +138,22 @@ void GUITargetWindows::updateSquad()
 	x = mSelectSquad->getLevel();
 	mSquadGridX->setCaption(Ogre::StringConverter::toString(x));
 
-	x = mSelectSquad->getDirection();
-	switch(x)
-	{
-	case North:
-		mSquadDirection->setCaption(StringTable::getSingleton().getString("DirectionNorth"));
-		break;
-	case South:
-		mSquadDirection->setCaption(StringTable::getSingleton().getString("DirectionSouth"));
-		break;
-	case West:
-		mSquadDirection->setCaption(StringTable::getSingleton().getString("DirectionWest"));
-		break;
-	case East:
-		mSquadDirection->setCaption(StringTable::getSingleton().getString("DirectionEast"));
-		break;
-	}
+	//x = mSelectSquad->getDirection();
+	//switch(x)
+	//{
+	//case North:
+	//	mSquadDirection->setCaption(StringTable::getSingleton().getString("DirectionNorth"));
+	//	break;
+	//case South:
+	//	mSquadDirection->setCaption(StringTable::getSingleton().getString("DirectionSouth"));
+	//	break;
+	//case West:
+	//	mSquadDirection->setCaption(StringTable::getSingleton().getString("DirectionWest"));
+	//	break;
+	//case East:
+	//	mSquadDirection->setCaption(StringTable::getSingleton().getString("DirectionEast"));
+	//	break;
+	//}
 
 	y = mSelectSquad->getFormation();
 	switch(y)
@@ -171,9 +171,12 @@ void GUITargetWindows::updateSquad()
 
 	float tempfloat;
 	tempfloat = mSelectSquad->getAttr(ATTR_ATTACK,ATTRCALC_FULL);
-	mSquadAttack->setCaption(str(boost::format("%1%")%floor(tempfloat+0.5f)));
+	float tempfloat1;
+	tempfloat1 = mSelectSquad->getAttr(ATTR_RANGEDATTACK,ATTRCALC_FULL);
+	mSquadAttack->setCaption(str(boost::format("%1%/%2%")%floor(tempfloat+0.5f)%floor(tempfloat1+0.5f)));
 	tempfloat = mSelectSquad->getAttr(ATTR_DEFENCE,ATTRCALC_FULL);
-	mSquadDefence->setCaption(str(boost::format("%1%")%floor(tempfloat+0.5f)));
+	tempfloat1 = mSelectSquad->getAttr(ATTR_RANGEDDEFENCE,ATTRCALC_FULL);
+	mSquadDefence->setCaption(str(boost::format("%1%/%2%")%floor(tempfloat+0.5f)%floor(tempfloat1+0.5f)));
 
 	x = mSelectSquad->getUnitMaxNum();
 	y = mSelectSquad->getUnitNum();
@@ -186,8 +189,8 @@ void GUITargetWindows::updateSquad()
 	// 	}
 	mSquadUnitNum->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("SquadUnitNumNoInjSimple"))%y%x));
 
-	x = mSelectSquad->getActionPoint();
-	mSquadAp->setCaption(Ogre::StringConverter::toString(x));
+	//x = mSelectSquad->getActionPoint();
+	//mSquadAp->setCaption(Ogre::StringConverter::toString(x));
 
 	tempstr = mSelectSquad->getPweaponId();
 	if(tempstr == "none")

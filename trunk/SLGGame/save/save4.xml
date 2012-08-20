@@ -5,20 +5,20 @@
         <BackGroundName value="grasslands.png" type="String" />
         <BackGroundPosition value="0,0,0" type="Vector3" />
         <BackGroundSize value="1280,720,0" type="Vector3" />
-        <LeftName value="Cheetah_left_1.png" type="String" />
-        <LeftPosition value="-100,0,0" type="Vector3" />
+        <LeftName value="Olivia_left_1.png" type="String" />
+        <LeftPosition value="100,0,0" type="Vector3" />
         <LeftSize value="640,720,0" type="Vector3" />
         <MidName value="" type="String" />
         <MidPosition value="295,25,0" type="Vector3" />
         <MidSize value="245,480,0" type="Vector3" />
-        <RightName value="scout_right_1.png" type="String" />
-        <RightPosition value="700,0,0" type="Vector3" />
-        <RightSize value="640,720,0" type="Vector3" />
-        <Text value="" type="String" />
-        <RoleName value="" type="String" />
-        <TextCursorType value="0" type="Int" />
+        <RightName value="" type="String" />
+        <RightPosition value="545,25,0" type="Vector3" />
+        <RightSize value="250,480,0" type="Vector3" />
+        <Text value="奥莉瓦在圣城的时候一定见过不少贵族妇人吧？" type="String" />
+        <RoleName value="罗莎" type="String" />
+        <TextCursorType value="1" type="Int" />
         <ScriptName value="Chapter1.lua" type="String" />
-        <ScriptLine value="599" type="Int" />
-        <MusicName value="fight.mp3" type="String" />
+        <ScriptLine value="36" type="Int" />
+        <MusicName value="grasslands.mp3" type="String" />
     </StoryData>
 </GameData>

@@ -38,6 +38,8 @@ private:
 	
 	BattleState* mBattleState;
 
+	MyGUI::Button* mMissionButton;
+
 	//MyGUI::Button* mButton;
 };
 

@@ -570,4 +570,14 @@
 			</Index>
 		</Group>
 	</Resource>
+    
+    <Resource type="ResourceImageSet" name="MissionIcon">
+		<Group name="States" texture="mission.png" size="64 64">
+			<Index name="Normal">
+				<Frame point="0 0"/>
+			</Index>
+		</Group>
+	</Resource>
 </MyGUI>
+
+

@@ -829,6 +829,14 @@
 								>
 							</File>
 							<File
+								RelativePath=".\src\GUIMissionWindow.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\src\GUIMissionWindow.h"
+								>
+							</File>
+							<File
 								RelativePath=".\src\GUISquadWindows.cpp"
 								>
 							</File>
