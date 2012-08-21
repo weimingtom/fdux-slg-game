@@ -31,14 +31,17 @@ public:
 	GUISubWindows* getSubWindow(std::string arg);
 
 	void setBattleState(BattleState* state);
+
+	void onMissionButton(MyGUI::Widget* _sender);
+
+	MyGUI::Button* mMissionButton;
+	
 private:
 	std::list<GUISubWindows*> mSubWindows;
 
 	void GridInputEvent(int x,int y);
 	
 	BattleState* mBattleState;
-
-	MyGUI::Button* mMissionButton;
 
 	//MyGUI::Button* mButton;
 };

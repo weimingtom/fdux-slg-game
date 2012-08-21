@@ -494,36 +494,47 @@
             <Property key="Caption" value="TEXT_MissionList"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="25"/>
+            <Property key="TextAlign" value="Center"/>
         </Widget>
         <Widget type="TextBox" skin="TextBox" position="45 41 165 20" name="Mission1Caption">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
-            <Property key="Caption" value="1234"/>
         </Widget>
-        <Widget type="ImageBox" skin="ImageBox" position="15 40 22 22" name="Mission1Icon"/>
-        <Widget type="ImageBox" skin="ImageBox" position="15 65 22 22" name="Mission2Icon"/>
-        <Widget type="ImageBox" skin="ImageBox" position="15 90 22 22" name="Mission3Icon"/>
-        <Widget type="ImageBox" skin="ImageBox" position="15 115 22 22" name="Mission4Icon"/>
-        <Widget type="ImageBox" skin="ImageBox" position="15 140 22 22" name="Mission5Icon"/>
+        <Widget type="ImageBox" skin="ImageBox" position="15 40 22 22" name="Mission1Icon">
+            <Property key="ImageResource" value="MissionStateIcon"/>
+            <Property key="ImageGroup" value="States"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="15 65 22 22" name="Mission2Icon">
+            <Property key="ImageResource" value="MissionStateIcon"/>
+            <Property key="ImageGroup" value="States"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="15 90 22 22" name="Mission3Icon">
+            <Property key="ImageResource" value="MissionStateIcon"/>
+            <Property key="ImageGroup" value="States"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="15 115 22 22" name="Mission4Icon">
+            <Property key="ImageResource" value="MissionStateIcon"/>
+            <Property key="ImageGroup" value="States"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="15 140 22 22" name="Mission5Icon">
+            <Property key="ImageResource" value="MissionStateIcon"/>
+            <Property key="ImageGroup" value="States"/>
+        </Widget>
         <Widget type="TextBox" skin="TextBox" position="45 140 165 20" name="Mission5Caption">
-            <Property key="Caption" value="1234"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
         <Widget type="TextBox" skin="TextBox" position="45 65 165 20" name="Mission2Caption">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
-            <Property key="Caption" value="1234"/>
         </Widget>
         <Widget type="TextBox" skin="TextBox" position="45 90 165 20" name="Mission3Caption">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
-            <Property key="Caption" value="1234"/>
         </Widget>
         <Widget type="TextBox" skin="TextBox" position="45 115 165 20" name="Mission4Caption">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
-            <Property key="Caption" value="1234"/>
         </Widget>
         <Widget type="Button" skin="SLGButton1" position="60 165 110 30" name="TEXT_Close"/>
     </Widget>

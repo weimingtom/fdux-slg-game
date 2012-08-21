@@ -106,8 +106,9 @@
         <TEXT_SquadPassiveSkill type="String" value="被动技能" />
         <TEXT_SquadUseEquip type="String" value="可用装备" />
         <TEXT_SquadEffect type="String" value="激活效果" />
-        <MissionButton type="String" value="任务" />
+        <MissionButton type="String" value="!" />
         <TEXT_MissionList type="String" value="任务列表" />
+        <TEXT_Close type="String" value="关闭" />
 		<Price type="String" value="价格:" />
         <NoEnoughMoney type="String" value="(金钱不足)" />
         <Equiped type="String" value="已装备" />
