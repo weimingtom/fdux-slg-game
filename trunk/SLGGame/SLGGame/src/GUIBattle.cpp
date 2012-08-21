@@ -40,6 +40,8 @@ GUIBattle::GUIBattle(int Width,int Height):GUIScene("Battle.layout",Width,Height
 	mSubWindows.push_back(new GUIInfoWindow(window,Width,Height));
 	assignWidget(mMissionButton,"MissionButton");
 	mMissionButton->setCaption(StringTable::getSingletonPtr()->getString("MissionButton"));
+	mMissionButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIBattle::onMissionButton);
+
 	assignWidget(window,"MissionWindow");
 	mSubWindows.push_back(new GUIMissionWindow(window,Width,Height));
 	//assignWidget(mButton,"ShadowMapTarget");
@@ -49,6 +51,13 @@ GUIBattle::GUIBattle(int Width,int Height):GUIScene("Battle.layout",Width,Height
 GUIBattle::~GUIBattle(void)
 {
 	hideScene();
+}
+
+void GUIBattle::onMissionButton(MyGUI::Widget* _sender)
+{
+	getSubWindow("MissionWindow")->showScene("start");
+	FadeOut(300,mMissionButton);
+	mMissionButton->setEnabled(false);
 }
 
 void GUIBattle::showScene( std::string arg )

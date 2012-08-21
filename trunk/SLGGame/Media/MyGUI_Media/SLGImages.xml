@@ -578,6 +578,20 @@
 			</Index>
 		</Group>
 	</Resource>
+    
+     <Resource type="ResourceImageSet" name="MissionStateIcon">
+		<Group name="States" texture="SLGIcon.png" size="22 22">
+			<Index name="New">
+				<Frame point="275 60"/>
+			</Index>
+            <Index name="Complete">
+				<Frame point="305 59"/>
+			</Index>
+            <Index name="Fail">
+				<Frame point="332 59"/>
+			</Index>
+		</Group>
+	</Resource>
 </MyGUI>
 
 
