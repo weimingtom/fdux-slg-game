@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout" version="3.2.0">
-    <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Main" name="SupplyBG">
-        <Widget type="Window" skin="SLGWindow" position="0 0 235 477">
+    <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Info" name="SupplyBG">
+        <Property key="ImageTexture" value="campsite.png"/>
+        <Widget type="Window" skin="SLGWindow" position="0 0 235 477" name="ArmyWindow">
             <Widget type="ItemBox" skin="ItemBox" position="22 55 190 399" name="ArmyList"/>
         </Widget>
-        <Widget type="Window" skin="SLGMiniWindowSkin" position="240 5 730 305">
+        <Widget type="Window" skin="SLGMiniWindowSkin" position="240 5 730 305" name="AttributeWindow">
             <Widget type="ImageBox" skin="SLGImageBox" position="16 13 105 135" name="SquadImageSkin"/>
             <Widget type="TextBox" skin="TextBox" position="25 185 95 20" name="SquadLeadName">
                 <Property key="FontName" value="fireflysung"/>
@@ -154,7 +155,7 @@
             <Widget type="ImageBox" skin="ImageBox" position="630 240 35 35" name="SquadEffectIcon4"/>
             <Widget type="ImageBox" skin="ImageBox" position="21 17 96 128" name="SquadImage"/>
         </Widget>
-        <Widget type="Window" skin="SLGMiniWindowSkin" position="240 310 730 375">
+        <Widget type="Window" skin="SLGMiniWindowSkin" position="240 310 730 375" name="ItemWindow">
             <Widget type="TabControl" skin="TabControl" position="15 15 705 345" name="WeaponTabControl">
                 <Widget type="TabItem" skin="" position="2 24 699 317" name="TEXT_SquadPWeapon">
                     <Property key="Caption" value="PWeapon"/>
@@ -183,7 +184,7 @@
                 </Widget>
             </Widget>
         </Widget>
-        <Widget type="Window" skin="SLGWindow" position="5 480 225 205">
+        <Widget type="Window" skin="SLGWindow" position="5 480 225 205" name="ControlWindow">
             <Widget type="Button" skin="SLGButton3" position="25 90 175 55" name="T_SupplyLoad">
                 <Property key="Caption" value="load"/>
                 <Property key="TextColour" value="1 1 1"/>
@@ -200,7 +201,7 @@
                 <Property key="FontHeight" value="20"/>
             </Widget>
         </Widget>
-        <Widget type="Window" skin="SLGMiniWindowSkin" position="970 310 301 375">
+        <Widget type="Window" skin="SLGMiniWindowSkin" position="970 310 301 375" name="ItemAttributeWindow">
             <Widget type="ImageBox" skin="ImageBox" position="20 20 48 48" name="ItemIcon"/>
             <Widget type="TextBox" skin="TextBox" position="80 30 205 30" name="ItemName">
                 <Property key="FontHeight" value="25"/>
@@ -212,7 +213,7 @@
                 <Property key="FontHeight" value="22"/>
             </Widget>
         </Widget>
-        <Widget type="Window" skin="SLGMiniWindowSkin" position="970 5 300 305">
+        <Widget type="Window" skin="SLGMiniWindowSkin" position="970 5 300 305" name="TemaWindow">
             <Widget type="TextBox" skin="TextBox" position="45 20 215 30" name="TEXT_ArmyInfoName">
                 <Property key="TextAlign" value="Center"/>
             </Widget>

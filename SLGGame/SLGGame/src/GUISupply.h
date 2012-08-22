@@ -57,6 +57,7 @@ private:
 	void onSave(MyGUI::Widget* _sender);
 	void onLoad(MyGUI::Widget* _sender);
 	void onExit(MyGUI::Widget* _sender);
+	void onOtherSceneNotify(std::string arg);
 
 	MyGUI::Button* mSaveButton;
 	MyGUI::Button* mLoadButton;
@@ -72,6 +73,13 @@ private:
 	WeaponItemBox* mSoilderItemBox;
 
 	SquadItemBox* mSquadItemBox;
+
+	MyGUI::Window* mArmyWindow;
+	MyGUI::Window* mControlWindow;
+	MyGUI::Window* mAttributeWindow;
+	MyGUI::Window* mItemWindow;
+	MyGUI::Window* mTemaWindow;
+	MyGUI::Window* mItemAttributeWindow;
 
 	MyGUI::ImageBox* mSquadImage;
 	MyGUI::TextBox* mTextSquadLeadName;
@@ -123,6 +131,8 @@ private:
 	std::string mNextScript;
 
 	GUISLWindow* SLWindow;
+
+	bool mIsHideScene;
 };
 
 class GUISupplywFactory:
