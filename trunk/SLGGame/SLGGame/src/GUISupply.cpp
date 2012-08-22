@@ -58,6 +58,21 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	mSquadItemBox=new SquadItemBox(baseItemBox);
 	mSquadItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventSquadMouseItemActivate);
 
+	assignWidget(mArmyWindow,"ArmyWindow");
+	assignWidget(mControlWindow,"ControlWindow");
+	assignWidget(mAttributeWindow,"AttributeWindow");
+	assignWidget(mItemWindow,"ItemWindow");
+	assignWidget(mTemaWindow,"TemaWindow");
+	assignWidget(mItemAttributeWindow,"ItemAttributeWindow");
+
+	mArmyWindow->setPosition(-235,0);
+	mAttributeWindow->setPosition(240,-310);
+	mControlWindow->setPosition(-230,480);
+	mItemWindow->setPosition(240,800);
+	mTemaWindow->setPosition(1280,5);
+	mItemAttributeWindow->setPosition(1280,310);
+	mIsHideScene=false;
+
 	assignWidget(mSquadImage,"SquadImage");
 	assignWidget(mTextSquadLeadName,"SquadLeadName");
 	assignWidget(mTextSquadType,"SquadType");
@@ -480,20 +495,56 @@ void GUISupply::onExit(MyGUI::Widget* _sender)
 		AVGSquadManager::getSingletonPtr()->dumpSquad((*it)->getSquadId(),(*it));
 	}
 	
-	StateManager::getSingletonPtr()->changeState(mNextScript,StateManager::AVG);
+	hideScene();
 }
 
 void GUISupply::showScene( std::string arg )
 {
 	mNextScript=arg;
+	FadeIn(1000,mSupplyBG);
 }
 
 void GUISupply::hideScene()
 {
+	mIsHideScene=true;
 
+	MoveTo(-235,0,1000,mArmyWindow);
+	MoveTo(240,-310,1000,mAttributeWindow);
+	MoveTo(-230,480,1000,mControlWindow);
+	MoveTo(240,800,1000,mItemWindow);
+	MoveTo(1280,5,1000,mTemaWindow);
+	MoveTo(1280,310,1000,mItemAttributeWindow);
 }
 
 void GUISupply::FrameEvent()
 {
 
+}
+
+void GUISupply::onOtherSceneNotify( std::string arg )
+{
+	if(arg=="FadeInOver")
+	{
+		MoveTo(0,0,1000,mArmyWindow);
+		MoveTo(240,5,1000,mAttributeWindow);
+		MoveTo(5,480,1000,mControlWindow);
+		MoveTo(240,310,1000,mItemWindow);
+		MoveTo(970,5,1000,mTemaWindow);
+		MoveTo(970,310,1000,mItemAttributeWindow);
+	}
+	else if(arg=="MoveToOver" && mIsHideScene)
+	{
+		mIsHideScene=false;
+		FadeOut(1000,mSupplyBG);
+	}
+	else if(arg=="FadeOutOver")
+	{
+		if(mNextScript!="AVG")
+			StateManager::getSingletonPtr()->changeState(mNextScript,StateManager::AVG);
+		else
+		{
+			GUISystem::getSingletonPtr()->getScene(StageScene)->onOtherSceneNotify("ReturnFromSupply");
+			StateManager::getSingletonPtr()->removeAffixationState();
+		}
+	}
 }

@@ -26,7 +26,7 @@
     </Widget>
     <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" layer="Overlapped" name="TextBoxBG">
         <Property key="Visible" value="false"/>
-        <Widget type="EditBox" skin="WordWrapEmpty" position_real="0.0483163 0.763967 0.885798 0.187151" name="TextBox"/>
+        <Widget type="EditBox" skin="WordWrapEmpty" position_real="0.046875 0.76375 0.884375 0.18625" name="TextBox"/>
         <Widget type="EditBox" skin="WordWrapEmpty" position="40 410 195 30" name="RoleName"/>
         <Widget type="EditBox" skin="WordWrapEmpty" position="45 410 190 30" name="RoleNameUniversal"/>
         <Widget type="ImageBox" skin="ImageBox" position="0 0 24 24" name="TextCursor">
@@ -76,6 +76,16 @@
             <Property key="FontName" value="fireflysung"/>
             <Property key="TextColour" value="1 1 1"/>
             <Property key="FontHeight" value="24"/>
+            <Property key="Visible" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="1190 355 64 64" name="TEXT_Supprot">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+            <Property key="Caption" value="1234"/>
+            <Property key="TextColour" value="1 0 0"/>
+            <Property key="ImageResource" value="MissionIcon"/>
+            <Property key="ImageGroup" value="States"/>
+            <Property key="ImageName" value="Normal"/>
             <Property key="Visible" value="false"/>
         </Widget>
     </Widget>
