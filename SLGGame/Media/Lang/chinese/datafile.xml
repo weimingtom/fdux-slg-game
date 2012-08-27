@@ -55,6 +55,10 @@
 		</DuxSoilder>
 	</SoilderData>
 	<HorseData>
+		<LightCavalryHorse>
+			<Name type="String" value="轻装战马"/>
+			<Describe type="String" value="轻装战马"/>
+		</LightCavalryHorse>
 	</HorseData>
 	<PweaponData>
 		<HeavySword>
@@ -109,6 +113,10 @@
 			<Name type="String" value="斥候"/>
 			<Describe type="String" value="斥候"/>
 		</Scout>
+		<Test>
+			<Name type="String" value="测试"/>
+			<Describe type="String" value="测试"/>
+		</Test>
 	</RetainerData>
 	<SkillData>
 		<Attack>
@@ -147,6 +155,10 @@
 			<Name type="String" value="祷告"/>
 			<Describe type="String" value="祷告"/>
 		</Pray>
+		<Inspire>
+			<Name type="String" value="激励"/>
+			<Describe type="String" value="激励"/>
+		</Inspire>
 	</SkillData>
 	<EffectData>
 		<DetectionTrain>

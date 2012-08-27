@@ -7,6 +7,6 @@ void main(
 	)
 {
 	float4 color  = tex2D(diffuseMap, uv);
-	clip(color.w - 0.9);
+	clip(color.w - 0.5);
 	oColour = float4(color.xyz, 1.0);
 }

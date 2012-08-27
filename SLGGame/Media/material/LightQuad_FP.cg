@@ -50,7 +50,7 @@ void main(
 	float3 V = normalize(cameraPos - worldpos.xyz);
 	float3 H = normalize(lightDir.xyz + V);
 	float3 specular = lightSpeColor * pow(max(dot(normal, H),0.0), 25.0);
-	lightcolor = lightcolor + (diffColor * sm.x + specular * sm.y) * shadow;
+	lightcolor = lightcolor + (diffColor * sm.x + 2 * specular * sm.y) * shadow;
 	
 	oColour  = float4(color *  lightcolor,1.0);//float4(color * shadow,1.0);
 }

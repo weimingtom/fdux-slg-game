@@ -30,13 +30,20 @@ public:
 	bool useSkillOn(BattleSquad* targetsquad, std::string skillid);
 	bool useSkillAt(int x, int y, std::string skillid);
 
+	//粒子特效(数据)
+	bool addParticle(std::string particlename, enumtype object, std::string &particleid);
+	void removeParticle(std::string particleid);
+
+	//各种触发器 
 public:
 	void turnStart();
 	void turnEnd();
-	void onMeleeAttack(BattleSquad* targetsquad);
-	void afterMeleeAttack(BattleSquad* targetsquad);
+	void onMeleeAttack(BattleSquad* targetsquad, bool asdefender = false);
+	void afterMeleeAttack(BattleSquad* targetsquad, bool asdefender = false);
+	void onCharge();
+	void afterCharge();
 
-//获取属性
+	//获取属性
 public:
 	int getFaction();
 	std::string getFactionId();
@@ -73,8 +80,7 @@ public:
 	float getAPTypeCostModify(enumtype aptype);
 	void setAPTypeCostModify(enumtype aptype, float val);
 
-	//重载
-	void setUnitNum(int val);
+	void setUnitNum(int val); //重载Squad::setUnitNum
 public:
 	INTVAL(GridX);
 	INTVAL(GridY);

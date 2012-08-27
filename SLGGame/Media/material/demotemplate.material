@@ -6,6 +6,8 @@ material Skinned/CastShadow/OneTexture
 		pass
 		{
 			cull_hardware none
+			depth_write off
+			depth_check on
 		    vertex_program_ref ColorOnlyVP/Skinned/OneTexture
             {
             }
@@ -14,6 +16,8 @@ material Skinned/CastShadow/OneTexture
             }
 			texture_unit Diffuse
 			{
+				filtering anisotropic
+				max_anisotropy 2
 				texture MRAMOR6X6.jpg
 			}
 		}
@@ -24,6 +28,8 @@ material Skinned/CastShadow/OneTexture
 		pass 
         {
 			cull_hardware none
+			depth_write off
+			depth_check on
 		    vertex_program_ref ColorOnlyVP/Skinned/OneTexture
             {
             }
@@ -32,6 +38,8 @@ material Skinned/CastShadow/OneTexture
             }
 			texture_unit Material
 			{
+				filtering anisotropic
+				max_anisotropy 2
 				texture defaultmat.dds
 			}
 		}
@@ -50,6 +58,8 @@ material Skinned/CastShadow/OneTexture
             }
 			texture_unit Diffuse
 			{
+				filtering anisotropic
+				max_anisotropy 2
 				texture MRAMOR6X6.jpg
 			}
         }
@@ -60,6 +70,8 @@ material Skinned/CastShadow/OneTexture
 		pass 
         {
 			cull_hardware none
+			depth_write on
+			depth_check on
             vertex_program_ref NormalDepthVP/Skinned/OneTexture
             {
             }
@@ -68,6 +80,8 @@ material Skinned/CastShadow/OneTexture
             }
 			texture_unit Diffuse
 			{
+				filtering anisotropic
+				max_anisotropy 2
 				texture MRAMOR6X6.jpg
 			}
         }
@@ -82,6 +96,8 @@ material NotSkinned/CastShadow/OneTexture
 		pass
 		{
 			cull_hardware none
+			depth_write off
+			depth_check on
 			vertex_program_ref ColorOnlyVP/NotSkinned/OneTexture
             {
             }
@@ -90,6 +106,7 @@ material NotSkinned/CastShadow/OneTexture
             }
 			texture_unit Diffuse
 			{
+				filtering trilinear
 				texture MRAMOR6X6.jpg
 			}
 		}
@@ -100,14 +117,18 @@ material NotSkinned/CastShadow/OneTexture
 		pass
 		{
 			cull_hardware none
-			diffuse 1.0 1.0 1.0
-			emissive 0.0 0.0 0.0
-			specular 0.0 0.0 0.0 10.0
-			vertex_program_ref SpecularEmissiveVP/NotSkinned/NoTexture
+			depth_write off
+			depth_check on
+			vertex_program_ref ColorOnlyVP/NotSkinned/OneTexture
+            {
+            }
+            fragment_program_ref ColorOnlyFP/OneTexture
+            {
+            }
+			texture_unit Diffuse
 			{
-			}
-			fragment_program_ref SpecularEmissiveFP/NoTexture
-			{
+				filtering trilinear
+				texture defaultmat.dds
 			}
 		}
 	}
@@ -125,6 +146,7 @@ material NotSkinned/CastShadow/OneTexture
             }
 			texture_unit Diffuse
 			{
+				filtering trilinear
 				texture MRAMOR6X6.jpg
 			}
         }
@@ -135,6 +157,8 @@ material NotSkinned/CastShadow/OneTexture
 		pass 
         {
 			cull_hardware none
+			depth_write on
+			depth_check on
             vertex_program_ref NormalDepthVP/NotSkinned/OneTexture
             {
             }
@@ -143,6 +167,7 @@ material NotSkinned/CastShadow/OneTexture
             }
 			texture_unit Diffuse
 			{
+				filtering trilinear
 				texture MRAMOR6X6.jpg
 			}
         }
@@ -156,6 +181,8 @@ material NotSkinned/CastShadow/TwoTexture
 		scheme Default
 		pass
 		{
+			depth_write off
+			depth_check on
             vertex_program_ref ColorOnlyVP/NotSkinned/TwoTexture
             {
             }
@@ -164,11 +191,11 @@ material NotSkinned/CastShadow/TwoTexture
             }
 			texture_unit Diffuse
 			{
-				texture SceneObj.dds
+				texture GreenLand.dds
 			}
 			texture_unit Diffuse1
 			{
-				texture SceneObj.dds
+				texture Cliff.dds
 			}
 		}
 	}
@@ -177,9 +204,11 @@ material NotSkinned/CastShadow/TwoTexture
 		scheme SpecularEmissive
 		pass
 		{
-			diffuse 1.0 1.0 1.0
-			emissive 0.0 0.0 0.0
-			specular 0.0 0.0 0.0 10.0
+			depth_write off
+			depth_check on
+			diffuse 0.9 0.9 0.9
+			emissive 0.15 0.15 0.15
+			specular 0.2 0.2 0.2 10.0
 			vertex_program_ref SpecularEmissiveVP/NotSkinned/NoTexture
 			{
 			}
@@ -206,6 +235,8 @@ material NotSkinned/CastShadow/TwoTexture
 		scheme NormalDepth
 		pass 
         {
+			depth_write on
+			depth_check on
             vertex_program_ref NormalDepthVP/NotSkinned/MultiTexture
             {
             }
@@ -223,6 +254,8 @@ material NotSkinned/CastShadow/FourTexture
 		scheme Default
 		pass
 		{
+			depth_write off
+			depth_check on
             vertex_program_ref ColorOnlyVP/NotSkinned/FourTexture
             {
             }
@@ -259,9 +292,11 @@ material NotSkinned/CastShadow/FourTexture
 		scheme SpecularEmissive
 		pass
 		{
-			diffuse 1.0 1.0 1.0
-			emissive 0.0 0.0 0.0
-			specular 0.0 0.0 0.0 10.0
+			depth_write off
+			depth_check on
+			diffuse 0.9 0.9 0.9
+			emissive 0.15 0.15 0.15
+			specular 0.2 0.2 0.2 10.0
 			vertex_program_ref SpecularEmissiveVP/NotSkinned/NoTexture
 			{
 			}
@@ -288,6 +323,8 @@ material NotSkinned/CastShadow/FourTexture
 		scheme NormalDepth
 		pass 
         {
+			depth_write on
+			depth_check on
             vertex_program_ref NormalDepthVP/NotSkinned/MultiTexture
             {
             }

@@ -77,7 +77,7 @@ void CameraContral::resetCamera()
 {
 	mX = 0.0f;
 	mY = 0.0f;
-	mHeight = 75.0f;
+	mHeight = 55.0f;
 	setCamera();
 }
 

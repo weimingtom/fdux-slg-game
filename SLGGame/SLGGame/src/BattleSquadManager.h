@@ -85,7 +85,7 @@ public:
 	//战斗相关脚本调用
 	bool dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* defenesquad);
 	
-	bool dealMagicDamage(BattleSquad* attacksquad, BattleSquad* defenesquad, int attacktime, float atk, int fluctuate);
+	bool dealMagicDamage(BattleSquad* attacksquad, BattleSquad* defenesquad, int attacktime, float atk, int randomness);
 
 	bool dealRangedDamage(BattleSquad* attacksquad, BattleSquad* defenesquad);
 

@@ -247,8 +247,11 @@ void BattleSquadManager::moveSquad(BattleSquad* squad,std::vector<int> pointlist
 		if(m_moveInterrupt)
 			return;
 
+		int lastx = squad->getGridX();
+		int lasty = squad->getGridY();
 		squad->setGridX(x);
 		squad->setGridY(y);
+		squad->setDirection(GetDirection(lastx, lasty, x, y));
 
 		m_moveList.push_back(Ogre::Vector2(x, y));
 
@@ -493,6 +496,49 @@ std::vector<BattleSquadManager::SkillNode> BattleSquadManager::getSkillArea(Batt
 			}
 		}
 		break;
+	case SKILLTARGETTYPE_TARGETAREA:
+	case SKILLTARGETTYPE_TARGETLINE:
+		{
+			int minx,miny,maxx, maxy;
+			minx = squad->getGridX() - maxrange;
+			minx = (minx < 0)?0:minx;
+			miny = squad->getGridY() - maxrange;
+			miny = (miny < 0)?0:miny;
+			maxx = squad->getGridX() + maxrange;
+			maxx = (maxx > mapdatamanager->getMapSize() - 1)?mapdatamanager->getMapSize() - 1:maxx;
+			maxy = squad->getGridY() + maxrange;
+			maxy = (maxy > mapdatamanager->getMapSize() - 1)?mapdatamanager->getMapSize() - 1:maxy;
+			for(int x = minx; x <= maxx; x++)
+			{
+				for(int y = miny; y <= maxy; y++)
+				{
+					int range = abs(x - squad->getGridX()) + abs(y - squad->getGridY());
+					if(range <= maxrange && range >= minrange)
+					{
+						//ÅÐ¶ÏÇøÓòÊÇ·ñ·ûºÏ
+						bool validarea = false;
+						LuaTempContext* luatempcontext = new LuaTempContext;
+						luatempcontext->strMap["squadid"] = squad->getSquadId();
+						luatempcontext->intMap["targetx"] = x;
+						luatempcontext->intMap["targety"] = y;
+						luatempcontext->intMap["validarea"] = 0;
+						luasystem->executeFunction(script, "validarea", contextpath, luatempcontext);
+						if(luatempcontext->intMap["validarea"] == 1)
+							validarea = true;
+						if(validarea)
+						{
+							skillnode.x = x;
+							skillnode.y = y;
+							skillnode.validTarget = true;
+
+							skillarea.push_back(skillnode);
+						}
+						delete luatempcontext;
+					}
+				}
+			}
+		}
+		break;
 	}
 	
 	return skillarea;
@@ -563,6 +609,60 @@ std::vector<BattleSquadManager::SkillNode> BattleSquadManager::getSkillTargetAre
 			}
 		}
 		break;
+	case SKILLTARGETTYPE_TARGETAREA:
+	case SKILLTARGETTYPE_TARGETLINE:
+		{
+			MapDataManager* mapdatamanager = MapDataManager::getSingletonPtr();
+			LuaSystem* luasystem = LuaSystem::getSingletonPtr();
+
+			int area;
+			bool re = datalib->getData(str(boost::format("StaticData/SkillData/%1%/Area")%skillid),area);
+
+			int minx,miny,maxx, maxy;
+			minx = x - area;
+			minx = (minx < 0)?0:minx;
+			miny = y - area;
+			miny = (miny < 0)?0:miny;
+			maxx = x + area;
+			maxx = (maxx > mapdatamanager->getMapSize() - 1)?mapdatamanager->getMapSize() - 1:maxx;
+			maxy = y + area;
+			maxy = (maxy > mapdatamanager->getMapSize() - 1)?mapdatamanager->getMapSize() - 1:maxy;
+			for(int tgx = minx; tgx <= maxx; tgx++)
+			{
+				for(int tgy = miny; tgy <= maxy; tgy++)
+				{
+					int range = abs(tgx - x) + abs(tgy - y);
+					if(range <= area)
+					{
+						//ÅÐ¶ÏÇøÓòÊÇ·ñ·ûºÏ
+						std::string script;
+						datalib->getData(str(boost::format("StaticData/SkillData/%1%/Script")%skillid),script);
+						std::string contextpath = str(boost::format("%1%/Skill/%2%/ScriptContext")%squad->getPath()%skillid);
+						bool validaffectarea = false;
+						LuaTempContext* luatempcontext = new LuaTempContext;
+						luatempcontext->strMap["squadid"] = squad->getSquadId();
+						luatempcontext->intMap["centerx"] = x;
+						luatempcontext->intMap["centery"] = y;
+						luatempcontext->intMap["targetx"] = tgx;
+						luatempcontext->intMap["targety"] = tgy;
+						luatempcontext->intMap["validaffectarea"] = 0;
+						luasystem->executeFunction(script, "validaffectarea", contextpath, luatempcontext);
+						if(luatempcontext->intMap["validaffectarea"] == 1)
+							validaffectarea = true;
+						if(validaffectarea)
+						{
+							skillnode.x = tgx;
+							skillnode.y = tgy;
+							skillnode.validTarget = true;
+
+							skillarea.push_back(skillnode);
+						}
+						delete luatempcontext;
+					}
+				}
+			}
+		}
+		break;
 	}
 
 	return skillarea;
@@ -581,6 +681,11 @@ void BattleSquadManager::useSkill(BattleSquad* squad, std::string skillid, int x
 			BattleSquad* targetsquad = getBattleSquadAt(x, y, squad->getFaction(), true);
 			if(targetsquad)
 				squad->useSkillOn(targetsquad, skillid);
+		}
+		break;
+	case SKILLTARGETTYPE_TARGETAREA:
+		{
+			squad->useSkillAt(x, y, skillid);
 		}
 		break;
 	case SKILLTARGETTYPE_MELEE:
@@ -620,11 +725,29 @@ void BattleSquadManager::useSkill(BattleSquad* squad, std::string skillid, int x
 					}
 					unsigned int stoppoint;
 					moveSquad(squad, pathlist, stoppoint, eventflag);
-					if(eventflag == 0)
+					if(!(eventflag & MOVEEVENT_WRONG))
 					{
 						BattleSquad* targetsquad = getBattleSquadAt(x, y, squad->getFaction(), true);
 						if(targetsquad)
+						{
+							bool charge = false;
+							if(eventflag & MOVEEVENT_CHARGE)
+							{
+								enumtype chagedir = GetChargeDir(eventflag);
+								enumtype targetdir = GetDirection(squad->getGridX(), squad->getGridY(),
+									targetsquad->getGridX(), targetsquad->getGridY());
+								if(targetdir == chagedir)
+								{
+									squad->onCharge();
+									charge = true;	
+								}
+							}
 							squad->useSkillOn(targetsquad, skillid);
+							if(charge)
+							{
+								squad->afterCharge();
+							}
+						}
 					}
 				}
 			}
@@ -677,7 +800,7 @@ bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* 
 		AttackInfo atkinfo;
 		if(squad == attacksquad)
 		{
-			squad->onMeleeAttack(defenesquad);
+			squad->onMeleeAttack(defenesquad, false);
 			atkinfo = squad->getAttackRolls(false,false,d);
 			switch(defenesquad->getFormation())
 			{
@@ -698,7 +821,7 @@ bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* 
 		}
 		else
 		{
-			squad->onMeleeAttack(attacksquad);
+			squad->onMeleeAttack(attacksquad, true);
 			atkinfo = squad->getAttackRolls(false,true,temp[d]);
 			squad = attacksquad;
 		}
@@ -709,12 +832,12 @@ bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* 
 			if(squad == attacksquad)
 			{
 				squad->applyAttackRolls(false, d, atkinfo);
-				defenesquad->afterMeleeAttack(squad);
+				defenesquad->afterMeleeAttack(squad, true);
 			}
 			else
 			{
 				squad->applyAttackRolls(false, temp[d], atkinfo);
-				attacksquad->afterMeleeAttack(squad);
+				attacksquad->afterMeleeAttack(squad, false);
 			}
 			int squaduga = squad->getUnitGrapNum();
 			int squadRealNumA=squad->getUnitNum();
@@ -746,9 +869,38 @@ bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* 
 	return true;
 }
 
-bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* defenesquad, int attacktime, float atk, int fluctuate)
+bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* defenesquad, int attacktime, float atk, int randomness)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	CutSceneBuilder* cutscenebuilder = CutSceneBuilder::getSingletonPtr();
+
+	AttackInfo atkinfo;
+	atkinfo.Atk = atk;
+	atkinfo.AtkTime = attacktime;
+	atkinfo.Randomness = randomness;
+	int squadugb = defenesquad->getUnitGrapNum();
+	int squadRealNumB = defenesquad->getUnitNum();
+	defenesquad->applyAttackRolls(true, defenesquad->getDirection(), atkinfo);
+	int squaduga = defenesquad->getUnitGrapNum();
+	int squadRealNumA = defenesquad->getUnitNum();
+
+	if(squadugb - squaduga  > 0 )
+	{
+		CombineCutScene* showValueCutScenes=new CombineCutScene();
+		showValueCutScenes->addCutScene(new ShowValueCutScene(defenesquad->getSquadId(),str(boost::format(StringTable::getSingletonPtr()->getString("BattleInfo"))%(squadRealNumB-squadRealNumA)),Ogre::ColourValue::Red));
+		showValueCutScenes->addCutScene(new SquadDeadCutScene(defenesquad->getSquadId(), squadugb - squaduga));
+		cutscenebuilder->addCutScene(showValueCutScenes);
+	}
+	else
+	{
+		cutscenebuilder->addCutScene(new ShowValueCutScene(defenesquad->getSquadId(),str(boost::format(StringTable::getSingletonPtr()->getString("BattleInfo"))%(squadRealNumB-squadRealNumA)),Ogre::ColourValue::Red));
+	}
+
+	if(defenesquad->getUnitNum() == 0)
+	{
+		cutscenebuilder->addCutScene(new SquadStateCutScene(defenesquad, SQUAD_STATE_VISIBLE, "none", 0));
+	}
+
 	return true;
 }
 

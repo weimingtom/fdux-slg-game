@@ -16,6 +16,9 @@ enum PweaponType
 {
 	EQUIP_PWEAPON_ONEHANDSWORD = 0,
 	EQUIP_PWEAPON_ONEHANDBLUNT = 1,
+	EQUIP_PWEAPON_TWOHANDSWORD = 2,
+	EQUIP_PWEAPON_TWOHANDBLUNT = 3,
+	EQUIP_PWEAPON_SHORTSPEAR = 4,
 	EQUIP_PWEAPON_LONG = 5
 };
 
@@ -29,7 +32,8 @@ enum SweaponType
 enum ArmorType
 {
 	EQUIP_ARMOR_LIGHT = 0,
-	EQUIP_ARMOR_HEAVY = 1
+	EQUIP_ARMOR_MIDDLE = 1,
+	EQUIP_ARMOR_HEAVY = 2
 };
 
 enum AttrModifierType
@@ -134,6 +138,9 @@ const int MOVEEVENT_MAPEVENT = 16;
 const int MOVEEVENT_CHARGE_DIR_1 = 32; //冲锋方向位1
 const int MOVEEVENT_CHARGE_DIR_2 = 64; //冲锋方向位2
 const int MOVEEVENT_SPOTBYPLAYER = 128;
+
+#define SetChargeDir(d) (d << 6)
+#define GetChargeDir(f) ((f >> 6) && 0x03)
 
 enum SkillType
 {
