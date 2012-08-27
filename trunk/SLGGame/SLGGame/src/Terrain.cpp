@@ -38,19 +38,19 @@ bool Terrain::createTerrain()
 
 
 	//创建灯光
-	Core::getSingleton().mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5f, 0.5f, 0.5f));
+	Core::getSingleton().mSceneMgr->setAmbientLight(Ogre::ColourValue(0.3f, 0.3f, 0.3f));
 	mLight = Core::getSingleton().mSceneMgr->createLight("TerrainLight");
 	mLight->setType(Ogre::Light::LT_DIRECTIONAL);
 	mLight->setPosition(-500.0f,500.0f, 500.0f);
 	mLight->setDirection(1.0f, -1.0f, -1.0f);
 	mLight->setDiffuseColour(Ogre::ColourValue(0.6f, 0.6f,0.6f));
-	mLight->setSpecularColour(Ogre::ColourValue(1.0f, 1.0f,1.0f));
+	mLight->setSpecularColour(Ogre::ColourValue(0.8f, 0.8f,0.8f));
 
 	//设置深度图投影
 	Ogre::TexturePtr tex = Ogre::TextureManager::getSingleton().getByName("shadowdepthmap");
 	if(tex.isNull())
 		tex = Ogre::TextureManager::getSingleton().createManual("shadowdepthmap",
-			Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::TEX_TYPE_2D, 1024, 1024, 0, Ogre::PF_FLOAT16_R, Ogre::TU_RENDERTARGET);
+			Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, Ogre::TEX_TYPE_2D, 2048, 2048, 0, Ogre::PF_FLOAT16_R, Ogre::TU_RENDERTARGET);
 	mShadowDepthMapTarget = tex->getBuffer()->getRenderTarget();
 	Ogre::Viewport* vp = mShadowDepthMapTarget->addViewport(CameraContral::getSingleton().getShadowMapCamera());
 	vp->setSkiesEnabled(false);

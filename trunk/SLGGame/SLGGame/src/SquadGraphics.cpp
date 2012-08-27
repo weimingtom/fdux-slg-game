@@ -336,16 +336,16 @@ mDirection(direction)
 	updateBB();
 
 	//读取现有效果
-// 	std::vector<std::string> particlelist = datalib->getChildList(datapath + std::string("/ParticleList"));
-// 	std::vector<std::string>::iterator ite;
-// 	for(ite = particlelist.begin(); ite != particlelist.end(); ite++)
-// 	{
-// 		enumtype unittype;
-// 		datalib->getData(datapath + std::string("/ParticleList/")+ (*ite) +std::string("/UnitType"),unittype);
-// 		datalib->getData(datapath + std::string("/ParticleList/")+ (*ite) +std::string("/Particle"),tempid);
-// 		addParticle((*ite),tempid,unittype);
-// 		startParticle((*ite));
-// 	}
+ 	std::vector<std::string> particlelist = datalib->getChildList(datapath + std::string("/ParticleList"));
+ 	std::vector<std::string>::iterator ite;
+ 	for(ite = particlelist.begin(); ite != particlelist.end(); ite++)
+ 	{
+ 		enumtype unittype;
+ 		datalib->getData(datapath + std::string("/ParticleList/")+ (*ite) +std::string("/AffectUnit"),unittype);
+ 		datalib->getData(datapath + std::string("/ParticleList/")+ (*ite) +std::string("/ParticleName"),tempid);
+ 		addParticle((*ite),tempid,unittype);
+ 		startParticle((*ite));
+ 	}
 }
 
 SquadGraphics::~SquadGraphics(void)

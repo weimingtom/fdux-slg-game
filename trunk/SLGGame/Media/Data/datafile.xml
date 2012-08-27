@@ -43,12 +43,12 @@
 				<DefenceTrain2 type="Int" value="0"/>
 				<Defence type="Int" value="1"/>
 				<Break  type="Int" value="1"/>
-				<HeavyArmor type="Int" value="2"/>
+				<MiddleArmor type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
 				<OneHandSword type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="Cheetah"/>
-			<RetainerId type="String" value="Scout"/>
+			<RetainerId type="String" value="Test"/>
 			<Level type="Int" value="5" />
 			<Exp type="Int" value="0" />
 			<SkillPointAction type="Int" value="0"/>
@@ -160,7 +160,7 @@
 				<AttackTrain1 type="Int" value="0"/>
 				<AttackTrain2 type="Int" value="0"/>
 				<Defence type="Int" value="1"/>
-				<HeavyArmor type="Int" value="2"/>
+				<MiddleArmor type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
 				<OneHandSword type="Int" value="2"/>
 			</SkillTable>
@@ -245,23 +245,18 @@
 			<Script type="String" value="none"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
-				<Attack type="Float" value="5.0"/>
+				<Attack type="Float" value="1.0"/>
 				<RangedAttack type="Float" value="0.0"/>
-				<Defence type="Float" value="1.0"/>
-				<Formation type="Float" value="0.0"/>
-				<Initiative type="Float" value="3.0"/>
-				<ActionPoint type="Float" value="0.0"/>
+				<Defence type="Float" value="-2.0"/>
+				<Formation type="Float" value="-1.0"/>
+				<Initiative type="Float" value="2.0"/>
+				<ActionPoint type="Float" value="2.0"/>
 				<Detection type="Float" value="0.0"/>
-				<Covert type="Float" value="0.0"/>
+				<Covert type="Float" value="-2.0"/>
 				<Toughness type="Float" value="0.0"/>
 				<Conter type="Float" value="0.0"/>
 			</AttrModifer>
         </LightCavalryHorse>
-        <HeavyCavalryHorse>
-            <Value type="Int" value="10"/>
-        	<Mesh type="String" value="soul.mesh"/>
-			<Mat type="String" value="soul"/>
-        </HeavyCavalryHorse>
 	</HorseData>
 	<PweaponData>
 		<HeavySword>
@@ -311,7 +306,7 @@
 			</AttrModifer>
 		</ShortSword>
 		<ShortSpear>
-			<Type type="Int" value="5"/>
+			<Type type="Int" value="4"/>
 			<Value type="Int" value="10"/>
 			<Script type="String" value="anticavweapon1.lua"/>
 			<Mesh type="String" value="ShortSpear.mesh"/>
@@ -470,6 +465,14 @@
 			<SkillType type="Int" value="0" />
 			<Picture type="String" value="Scout.png" />
 		</Scout>
+		<Test>
+			<Type type = "Int" value = "0" />
+			<Valve type = "Int" value = "10" />
+			<Wage type = "Int" value = "10" />
+			<Skill type="String" value="Inspire"/>
+			<SkillType type="Int" value="1" />
+			<Picture type="String" value="Scout.png" />
+		</Test>
 	</RetainerData>
 	<SkillListData>
 		<Infantry>
@@ -500,6 +503,7 @@
 				<OneHandSpear type="Int" value="7"/>
 				<Shield type="Int" value="7"/>
 				<LightArmor type="Int" value="7"/>
+				<MiddleArmor type="Int" value="7"/>
 				<HeavyArmor type="Int" value="7"/>
 			</Equip>
 		</Infantry>
@@ -539,6 +543,7 @@
 				<XBow type="Int" value="7"/>
 				<Shield type="Int" value="7"/>
 				<LightArmor type="Int" value="7"/>
+				<MiddleArmor type="Int" value="7"/>
 			</Equip>
 		</MissileInfantry>
 		<Saint>
@@ -667,6 +672,18 @@
 			<Icon type="String" value="Recrew"/>
 			<Script type="String" value="pray.lua"/>
 		</Pray>
+		<Inspire>
+			<Type type="Int" value="1"/>
+			<MaxRange type="Int" value="0"/>
+			<MinRange type="Int" value="0"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="0"/>
+			<APCost type="float" value="3.0"/>
+			<CoolDown type="Int" value="2"/>
+			<Value type="Int" value="10"/>
+			<Icon type="String" value="Recrew"/>
+			<Script type="String" value="Inspire.lua"/>
+		</Inspire>
 	</SkillData>
 	<EffectData>
 		<DetectionTrain>

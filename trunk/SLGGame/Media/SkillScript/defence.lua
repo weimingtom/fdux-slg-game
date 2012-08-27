@@ -9,6 +9,7 @@ function onaffect()
 	sid = ScriptCommonLib.GetTempString("squadid");
 	eid = ScriptCommonLib.GetTempString("effectid");
 	tid = ScriptCommonLib.GetString("triggerid");
+	pid = ScriptCommonLib.GetString("particleid");
 	if mid ~= "" then
 		SquadLib.RemoveModifier(sid, mid);
 	end
@@ -26,17 +27,25 @@ function onaffect()
 		ScriptCommonLib.SetString("triggerid", tid);
 	end
 	ScriptCommonLib.SetString("effectid", eid);
+	if pid == "" then
+		pid = SquadLib.AddParticle(sid, "PUMediaPack/Fireplace_01", 3);
+	end
+	ScriptCommonLib.SetString("particleid", pid);
 end
 
 function onremove()
 	mid = ScriptCommonLib.GetString("modifierid");
 	sid = ScriptCommonLib.GetTempString("squadid");
 	tid = ScriptCommonLib.GetString("triggerid");
+	pid = ScriptCommonLib.GetString("particleid");
 	if mid ~= "" then
 		SquadLib.RemoveModifier(sid, mid);
 	end
 	if tid ~= "" then
 		SquadLib.RemoveSquadTrigger(sid, tid);
+	end
+	if pid ~= "" then
+		SquadLib.DelParticle(sid, pid);
 	end
 end
 

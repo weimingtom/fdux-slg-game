@@ -13,6 +13,10 @@ extern "C"
 #include "StateManager.h"
 #include "BattleSquadManager.h"
 #include "BattleSquad.h"
+#include "SquadGrapManager.h"
+
+#include "CutSceneBuilder.h"
+#include "SquadParticleCutScence.h"
 
 static int GetSquadCoord(lua_State* L)
 {
@@ -268,6 +272,35 @@ static int ChangeFormation(lua_State* L)
 	return 0;
 }
 
+static int AddParticle(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	std::string particlename(luaL_checkstring(L, 2));
+	int objecttype = luaL_checkinteger(L, 3);
+	std::string particleid;
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+	{
+		BattleSquad* squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+		squad->addParticle(particlename, objecttype, particleid);
+		CutSceneBuilder::getSingleton().addCutScene(new SquadParticleCutScence(squadid, particleid, particlename, objecttype));
+	}
+	lua_pushstring(L, particleid.c_str());
+	return 1;
+}
+
+static int DelParticle(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	std::string particleid(luaL_checkstring(L, 2));
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+	{
+		BattleSquad* squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+		squad->removeParticle(particleid);
+		CutSceneBuilder::getSingleton().addCutScene(new SquadParticleCutScence(squadid, particleid));
+	}
+	return 0;
+}
+
 static const struct luaL_Reg SquadLib[] =
 {
 	{"GetSquadCoord",GetSquadCoord},
@@ -286,5 +319,7 @@ static const struct luaL_Reg SquadLib[] =
 	{"GetUnitNum",GetUnitNum},
 	{"SetUnitNum",SetUnitNum},
 	{"ChangeFormation",ChangeFormation},
+	{"AddParticle",AddParticle},
+	{"DelParticle",DelParticle},
 	{NULL,NULL}
 };

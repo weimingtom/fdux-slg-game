@@ -47,8 +47,8 @@
     <forestlow_12 Type="ForestLow" GridX="7" GridY="8" Mesh="forest3.mesh" />
     <forestlow_13 Type="ForestLow" GridX="8" GridY="7" Mesh="forest3.mesh" />
     <forestlow_14 Type="ForestLow" GridX="8" GridY="6" Mesh="forest3.mesh" />
-	<forestlow_15 Type="ForestLow" GridX="3" GridY="9" Mesh="forest3.mesh" />
-	<forestlow_16 Type="ForestLow" GridX="5" GridY="0" Mesh="forest3.mesh" />
+	<forestlow_15 Type="ForestLow" GridX="3" GridY="9" Mesh="Tree1.mesh" />
+	<forestlow_16 Type="ForestLow" GridX="5" GridY="0" Mesh="Tree1.mesh" />
 </MapObject>
 <MapEffect />
 <MapSquad>

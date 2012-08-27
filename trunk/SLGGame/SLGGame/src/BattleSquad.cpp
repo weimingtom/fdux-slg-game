@@ -461,6 +461,37 @@ bool BattleSquad::useSkillAt(int x, int y, std::string skillid)
 {
 	if(canUseSkill(skillid) != SKILLSTATE_AVAILABLE)
 		return false;
+		DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::string skillpath = getPath() + std::string("/Skill/") + skillid;
+	std::string skillinfopath = std::string("StaticData/SkillData/")+ skillid;
+	std::string skillscript;
+	datalib->getData(skillinfopath + std::string("/Script"),skillscript);
+	LuaTempContext* context = new LuaTempContext;
+	context->strMap.insert(std::make_pair("squadid", getSquadId()));
+	context->intMap.insert(std::make_pair("targetx", x));
+	context->intMap.insert(std::make_pair("targety", y));
+	context->intMap.insert(std::make_pair("castsuccess", 0));
+	bool re = LuaSystem::getSingleton().executeFunction(skillscript, "useskill" , skillpath + std::string("/ScriptContext"), context);
+	if(re)
+	{
+		if(context->intMap["castsuccess"] == 1)
+		{
+			float apcost = getSkillApCost(skillid);
+			float apleft = getActionPoint() - apcost;
+			setActionPoint(apleft);
+			int aptype = SKILLAPTYPE_BATTLE;
+			datalib->getData(skillinfopath + "/APType", aptype);
+			if(aptype != SKILLAPTYPE_DEFENCE)
+			{
+				apcost = getAPTypeCostModify(aptype);
+				apcost += 1.0f;
+				setAPTypeCostModify(aptype, apcost);
+			}
+			datalib->getData(skillinfopath + "/CoolDown", apcost);
+			datalib->setData(skillpath + "/CoolDown", apcost);
+		}
+	}
+	delete context;
 	return false;
 }
 
@@ -473,10 +504,20 @@ bool BattleSquad::tryMove(int srcx, int srcy, int tgx, int tgy, float &apleft, u
 		if(mapapcost <= apleft)
 		{
 			apleft -= mapapcost;
-			eventflag = 0;
+			if(mapapcost <= 2)
+			{
+				eventflag |= MOVEEVENT_CHARGE;
+				enumtype curdir = GetDirection(srcx, srcy, tgx, tgy);
+				eventflag |= SetChargeDir(curdir);
+			}
+			else
+			{
+				eventflag &= ~MOVEEVENT_CHARGE;
+			}
 			return true;
 		}
 	}
+	eventflag |= MOVEEVENT_WRONG;
 	return false;
 }
 
@@ -492,12 +533,47 @@ bool BattleSquad::move(int tgx, int tgy, unsigned int &eventflag)
 		{
 			ap -= mapapcost;
 			setActionPoint(ap);
-			eventflag = 0;
+			if(mapapcost <= 2)
+			{
+				eventflag |= MOVEEVENT_CHARGE;
+				enumtype curdir = GetDirection(getGridX(), getGridY(), tgx, tgy);
+				eventflag |= SetChargeDir(curdir);
+			}
+			else
+			{
+				eventflag &= ~MOVEEVENT_CHARGE;
+			}
 			return true;
 		}
 	}
 	eventflag |= MOVEEVENT_WRONG;
 	return false;
+}
+
+bool BattleSquad::addParticle(std::string particlename, enumtype object, std::string &particleid)
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::string distpath = mPath + std::string("/ParticleList");
+	std::vector<std::string> particlelist = datalib->getChildList(distpath);
+	int x = 0;
+	particleid = std::string("p") + Ogre::StringConverter::toString(x);
+	std::vector<std::string>::iterator ite = std::find(particlelist.begin(), particlelist.end(),particleid);
+	while(ite != particlelist.end())
+	{
+		x = x + 1;
+		particleid = std::string("p") + Ogre::StringConverter::toString(x);
+		ite = std::find(particlelist.begin(), particlelist.end(),particleid);
+	}
+	distpath = distpath + std::string("/") + particleid;
+	datalib->setData(distpath + std::string("/ParticleName"), particlename, true);
+	datalib->setData(distpath + std::string("/AffectUnit"), object, true);
+	return true;
+}
+
+void BattleSquad::removeParticle(std::string particleid)
+{
+	std::string particlepath = mPath + std::string("/ParticleList/") + particleid;
+	DataLibrary::getSingleton().delNode(particlepath);
 }
 
 void BattleSquad::turnStart()
@@ -526,20 +602,40 @@ void BattleSquad::turnEnd()
 	setAmbushEnemy3(0);
 }
 
-void BattleSquad::onMeleeAttack(BattleSquad* targetsquad)
+void BattleSquad::onMeleeAttack(BattleSquad* targetsquad, bool asdefender)
 {
 	LuaTempContext* luatempcontext = new LuaTempContext();
 	luatempcontext->strMap["squadid"] = getSquadId();
 	luatempcontext->strMap["targetsquadid"] = targetsquad->getSquadId();
+	luatempcontext->intMap["asdefender"] = asdefender?1:0;
 	Trigger("OnMeleeAttack", luatempcontext);
+	delete luatempcontext;
 }
 
-void BattleSquad::afterMeleeAttack(BattleSquad* targetsquad)
+void BattleSquad::afterMeleeAttack(BattleSquad* targetsquad, bool asdefender)
 {
 	LuaTempContext* luatempcontext = new LuaTempContext();
 	luatempcontext->strMap["squadid"] = getSquadId();
 	luatempcontext->strMap["targetsquadid"] = targetsquad->getSquadId();
+	luatempcontext->intMap["asdefender"] = asdefender?1:0;
 	Trigger("AfterMeleeAttack", luatempcontext);
+	delete luatempcontext;
+}
+
+void BattleSquad::onCharge()
+{
+	LuaTempContext* luatempcontext = new LuaTempContext();
+	luatempcontext->strMap["squadid"] = getSquadId();
+	Trigger("OnCharge", luatempcontext);
+	delete luatempcontext;
+}
+
+void BattleSquad::afterCharge()
+{
+	LuaTempContext* luatempcontext = new LuaTempContext();
+	luatempcontext->strMap["squadid"] = getSquadId();
+	Trigger("AfterCharge", luatempcontext);
+	delete luatempcontext;
 }
 
 int BattleSquad::getFaction()
