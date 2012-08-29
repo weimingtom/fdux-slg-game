@@ -52,6 +52,8 @@ public:
 
 	void setHistoryBoxVisible(bool visible);
 
+	void setIsShowSupplyButton(bool visible);
+
 	GUISceneType getType()
 	{
 		return StageScene;
@@ -91,6 +93,7 @@ private:
 	void onSystem(MyGUI::Widget* _sender);
 	void onHistory( MyGUI::Widget* _sender );
 	void onAuto( MyGUI::Widget* _sender );
+	void onSupply( MyGUI::Widget* _sender );
 
 	void load();
 
@@ -174,6 +177,8 @@ private:
 	MyGUI::Button* mSystemButton;
 	MyGUI::Button* mHistoryButton;
 	MyGUI::Button* mAutoButton;
+	MyGUI::Button* mSupplyButton;
+	bool mIsShowSupplyButton;
 
 	struct ShockParam
 	{
