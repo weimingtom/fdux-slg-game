@@ -485,6 +485,18 @@ extern "C"
 		return 1;
 	}
 
+	static int SetShowSupplyButton(lua_State* L)
+	{
+		int v=luaL_checkint(L, 1);
+		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+		if(v==1)
+			stage->setIsShowSupplyButton(true);
+		else
+			stage->setIsShowSupplyButton(false);
+
+		return 1;
+	}
+
 	static const struct luaL_Reg GUILib[] =
 	{
 		{"Music",Music},
@@ -516,6 +528,7 @@ extern "C"
 		{"AutoSave",AutoSave},
 		{"ButtonLock",ButtonLock},
 		{"StoryOver",StoryOver},
+		{"SetShowSupplyButton",SetShowSupplyButton},
 
 		{NULL,NULL}
 	};

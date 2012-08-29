@@ -24,8 +24,12 @@
 
 #include "timer.hpp"
 
-GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),mCheckMouseDown(false),mIsMouseDown(false),mTextX(0),mTextY(0),mIsFastForward(false),SLWindow(NULL),mIsAuto(false),mLeftOffect(0),mIsCanShowTextBox(false),mIsCanShowButton(true)
+#include "StateManager.h"
+
+GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),mCheckMouseDown(false),mIsMouseDown(false),mTextX(0),mTextY(0),mIsFastForward(false),SLWindow(NULL),mIsAuto(false),mLeftOffect(0),mIsCanShowTextBox(false),mIsCanShowButton(true),mIsShowSupplyButton(true)
 {
+	setSceneLanguage();
+
 	assignWidget(mBackGroundGroup, "BackGroundGroup");
 	assignWidget(mBackGround, "BackGround");
 	assignWidget(mBackGroundUniversal, "BackGroundUniversal");
@@ -63,6 +67,7 @@ GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),m
 	assignWidget(mSystemButton,"SystemButton");
 	assignWidget(mHistoryButton,"HistoryButton");
 	assignWidget(mAutoButton,"AutoButton");
+	assignWidget(mSupplyButton,"TEXT_Supprot");
 
 #ifndef SCRIPT_EDITOR
 	mSaveButton->setCaption(StringTable::getSingletonPtr()->getString("SaveButton"));
@@ -81,6 +86,7 @@ GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),m
 	mSystemButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::onSystem);
 	mHistoryButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::onHistory);
 	mAutoButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::onAuto);
+	mSupplyButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIStage::onSupply);
 
 	changeShowTextOptionTime();
 }
@@ -908,6 +914,11 @@ void GUIStage::onOtherSceneNotify(std::string arg)
 		mTimerWork=NoneWork;
 		GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);
 	}
+	else if (arg=="ReturnFromSupply")
+	{
+		mInputGroup->setEnabled(true);
+		mInputGroup->setVisible(true);
+	}
 }
 
 
@@ -1057,6 +1068,13 @@ void GUIStage::onSystem( MyGUI::Widget* _sender )
 #endif
 }
 
+void GUIStage::onSupply( MyGUI::Widget* _sender )
+{
+	mInputGroup->setEnabled(false);
+	mInputGroup->setVisible(false);
+	StateManager::getSingletonPtr()->addAffixationState("AVG",StateManager::Supply);
+}
+
 void GUIStage::load()
 {
 #ifndef SCRIPT_EDITOR
@@ -1165,6 +1183,7 @@ void GUIStage::buttonLock( bool lock )
 	mSystemButton->setVisible(lock);
 	mHistoryButton->setVisible(lock);
 	mAutoButton->setVisible(lock);
+	mSupplyButton->setVisible(lock && mIsShowSupplyButton);
 }
 
 void GUIStage::setButtonLock( bool visible )
@@ -1172,4 +1191,8 @@ void GUIStage::setButtonLock( bool visible )
 	mIsCanShowButton=visible;
 }
 
+void GUIStage::setIsShowSupplyButton( bool visible )
+{
+	mIsShowSupplyButton=visible;
+}
 
