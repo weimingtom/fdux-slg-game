@@ -5,20 +5,44 @@
 
 #include <OgreLogManager.h> 
 
+#include <fstream>
+
 DataLibrary::DataLibrary(void)
 {
 	LuaSystem::getSingletonPtr()->registerCLib("DataLib",DataLib);
-	ticpp::Declaration* decl = new ticpp::Declaration( "1.0", "UTF-8", "" );  
-	mGameData.LinkEndChild( decl );  
-	mGameData.LinkEndChild(new ticpp::Element("GameData"));
 
-	decl = new ticpp::Declaration( "1.0", "UTF-8", "" );  
-	mStaticData.LinkEndChild( decl );  
-	mStaticData.LinkEndChild(new ticpp::Element("StaticData"));
-	
-	decl = new ticpp::Declaration( "1.0", "UTF-8", "" );  
-	mSystemConfig.LinkEndChild( decl );  
-	mSystemConfig.LinkEndChild(new ticpp::Element("SystemConfig"));
+	rapidxml::xml_node<>* gameData_decl = mGameData.allocate_node(rapidxml::node_declaration);  
+	rapidxml::xml_attribute<>* gameData_decl_ver =  
+		mGameData.allocate_attribute("version", "1.0");
+	rapidxml::xml_attribute<>* gameDate_decl_encoding =  
+		mGameData.allocate_attribute("encoding", "UTF-8");  
+	gameData_decl->append_attribute(gameData_decl_ver);  
+	gameData_decl->append_attribute(gameDate_decl_encoding);  
+	mGameData.append_node(gameData_decl);
+	rapidxml::xml_node<>* gameData_element = mGameData.allocate_node(rapidxml::node_element,"GameData");
+	mGameData.append_node(gameData_element);
+
+	rapidxml::xml_node<>* staticData_decl = mStaticData.allocate_node(rapidxml::node_declaration);  
+	rapidxml::xml_attribute<>* staticData_decl_ver =  
+		mStaticData.allocate_attribute("version", "1.0");
+	rapidxml::xml_attribute<>* staticData_decl_encoding =  
+		mStaticData.allocate_attribute("encoding", "UTF-8");  
+	staticData_decl->append_attribute(staticData_decl_ver);  
+	staticData_decl->append_attribute(staticData_decl_encoding);  
+	mStaticData.append_node(staticData_decl);
+	rapidxml::xml_node<>* staticData_element = mStaticData.allocate_node(rapidxml::node_element,"StaticData");
+	mStaticData.append_node(staticData_element);
+
+	rapidxml::xml_node<>* systemConfig_decl = mSystemConfig.allocate_node(rapidxml::node_declaration);  
+	rapidxml::xml_attribute<>* systemConfig_decl_ver =  
+		mSystemConfig.allocate_attribute("version", "1.0");
+	rapidxml::xml_attribute<>* systemConfig_decl_encoding =  
+		mSystemConfig.allocate_attribute("encoding", "UTF-8");  
+	systemConfig_decl->append_attribute(systemConfig_decl_ver);  
+	systemConfig_decl->append_attribute(systemConfig_decl_encoding);  
+	mSystemConfig.append_node(systemConfig_decl);
+	rapidxml::xml_node<>* systemConfig_element = mSystemConfig.allocate_node(rapidxml::node_element,"SystemConfig");
+	mSystemConfig.append_node(systemConfig_element);
 }
 
 DataLibrary::~DataLibrary(void)
@@ -28,7 +52,7 @@ DataLibrary::~DataLibrary(void)
 
 void DataLibrary::loadXmlData( DataBlock type,std::string fileName,bool append)
 {
-	ticpp::Document* currentDoc;
+	rapidxml::xml_document<>* currentDoc;
 	switch(type)
 	{
 	case SystemConfig:
@@ -50,58 +74,78 @@ void DataLibrary::loadXmlData( DataBlock type,std::string fileName,bool append)
 		}
 		else
 		{
-			currentDoc->Clear();
-			currentDoc->LoadFile(fileName,TIXML_ENCODING_UTF8);
+			currentDoc->clear();
+			Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(fileName, "General", true);
+			char* s=new char[stream->size()];
+			stream->read(s,stream->size());
+			currentDoc->parse<0>(s);
+			delete []s;
 		}
 	}
-	catch (ticpp::Exception& e)
+	catch (rapidxml::parse_error& e)
 	{
-		Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
+		Ogre::LogManager::getSingletonPtr()->logMessage(e.what(),Ogre::LML_CRITICAL);
 	}
 }
 
-void DataLibrary::appendXmlDate( ticpp::Document* currentDoc,std::string fileName )
+void DataLibrary::appendXmlDate( rapidxml::xml_document<>* currentDoc,std::string fileName )
 {
 	try
 	{
-		ticpp::Document doc;
-		doc.LoadFile(fileName,TIXML_ENCODING_UTF8);
+		rapidxml::xml_document<>* doc;
+		Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(fileName, "General", true);
+		char* s=new char[stream->size()];
+		stream->read(s,stream->size());
+		doc->parse<0>(s);
+		delete []s;
 
-		ticpp::Element* srcElement=doc.FirstChildElement();
-		ticpp::Element* destElement=currentDoc->FirstChildElement();
+		rapidxml::xml_node<>* srcElement=doc->first_node();
+		rapidxml::xml_node<>* destElement=doc->first_node();
 
 		copyElement(srcElement,destElement);
-
-		delete destElement;
 	}
-	catch (ticpp::Exception& e)
+	catch (rapidxml::parse_error& e)
 	{
-		Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
+		Ogre::LogManager::getSingletonPtr()->logMessage(e.what(),Ogre::LML_CRITICAL);
 	}
 }
 
-void DataLibrary::copyElement( ticpp::Element* srcElement,ticpp::Element* destElement )
+void DataLibrary::copyElement(rapidxml::xml_node<>* srcElement,rapidxml::xml_node<>* destElement )
 {
-	ticpp::Iterator< ticpp::Attribute > attribute;
-	for ( attribute = attribute.begin( srcElement ); attribute != attribute.end(); attribute++ )
+	for (rapidxml::xml_attribute<> *attr = srcElement->first_attribute();
+		attr; attr = attr->next_attribute())
 	{
-		destElement->SetAttribute(attribute->Name(), attribute->Value());
+		rapidxml::xml_attribute<> *oldAttr=destElement->first_attribute(attr->name());
+		if(oldAttr!=0)
+		{
+			char* value=destElement->document()->allocate_string(attr->value());
+			oldAttr->value(value);
+		}
+		else
+		{
+			char* name=destElement->document()->allocate_string(attr->name());
+			char* value=destElement->document()->allocate_string(attr->value());
+			rapidxml::xml_attribute<> *newAttr=destElement->document()->allocate_attribute(name,value);
+			destElement->append_attribute(newAttr);
+		}
 	}
 
-	ticpp::Iterator< ticpp::Element > child;
-	for ( child = child.begin(srcElement); child != child.end(); child++ )
+	for (rapidxml::xml_node<> *child = srcElement->first_node();
+		child; child = srcElement->next_sibling())
 	{
-		ticpp::Element* findElement=destElement->FirstChildElement(child->Value(),false);
+		rapidxml::xml_node<> * findElement=destElement->first_node(child->name());
 		if(findElement!=NULL)//如果有,就继续递归
 		{
 			copyElement(&(*child),findElement);
 		}
 		else//如果没找到,说明目标节点下面没有该源节点
 		{
-			std::auto_ptr< ticpp::Node > clonedNode=child->Clone();
-			destElement->LinkEndChild(clonedNode->ToElement());
+			char* name=destElement->document()->allocate_string(child->name());
+			rapidxml::xml_node<> *newNode=destElement->document()->allocate_node(rapidxml::node_element,name);
+			destElement->append_node(newNode);
+
+			copyElement(&(*child),newNode);
 		}
-		delete findElement;
 	}
 
 	
@@ -109,39 +153,54 @@ void DataLibrary::copyElement( ticpp::Element* srcElement,ticpp::Element* destEl
 
 void DataLibrary::saveXmlData( DataBlock type,std::string fileName )
 {
-	try
-	{
+		std::string text;
 		switch(type)
 		{
 		case SystemConfig:
-			mSystemConfig.SaveFile(fileName);
+			rapidxml::print(std::back_inserter(text),mSystemConfig,0); 
 			break;
 		case GameData:
-			mGameData.SaveFile(fileName);
+			rapidxml::print(std::back_inserter(text),mGameData,0);
 			break;
 		case StaticData:
-			mStaticData.SaveFile(fileName);
+			rapidxml::print(std::back_inserter(text),mStaticData,0);
 			break;
-		}
+		}   
+		  
+		std::ofstream fout(fileName.c_str());
 
-	}
-	catch (ticpp::Exception& e)
-	{
-		Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
-	}
+		fout<<text;
+
+		fout.close();
 }
 
 bool DataLibrary::setData( std::string path,const int& value,bool createpath)
 {
-	ticpp::Element* node=getNode(path,createpath);
+	rapidxml::xml_node<>* node=getNode(path,createpath);
 	if (node!=NULL)
 	{
-		node->SetAttribute("value",value);
-		node->SetAttribute("type","Int");
-		if (mCreateState==CreateState_NoCreate)
+		rapidxml::xml_attribute<> *typeAttr=node->first_attribute("type");
+		if(typeAttr!=0)
 		{
-			delete node;
+			typeAttr->value("Int");
 		}
+		else
+		{
+			node->append_attribute(node->document()->allocate_attribute("type","Int"));
+		}
+
+		rapidxml::xml_attribute<> *valueAttr=node->first_attribute("value");
+		std::string sValue=Ogre::StringConverter::toString(value);
+		char* value=node->document()->allocate_string(sValue.c_str());
+		if(valueAttr!=0)
+		{
+			valueAttr->value(value);
+		}
+		else
+		{
+			node->append_attribute(node->document()->allocate_attribute("value",value));
+		}
+		
 
 		return true;
 	}
@@ -153,14 +212,29 @@ bool DataLibrary::setData( std::string path,const int& value,bool createpath)
 
 bool DataLibrary::setData( std::string path,const unsigned int& value,bool createpath)
 {
-	ticpp::Element* node=getNode(path,createpath);
+	rapidxml::xml_node<>* node=getNode(path,createpath);
 	if (node!=NULL)
 	{
-		node->SetAttribute("value",value);
-		node->SetAttribute("type","UInt");
-		if (mCreateState==CreateState_NoCreate)
+		rapidxml::xml_attribute<> *typeAttr=node->first_attribute("type");
+		if(typeAttr!=0)
 		{
-			delete node;
+			typeAttr->value("UInt");
+		}
+		else
+		{
+			node->append_attribute(node->document()->allocate_attribute("type","UInt"));
+		}
+
+		rapidxml::xml_attribute<> *valueAttr=node->first_attribute("value");
+		std::string sValue=Ogre::StringConverter::toString(value);
+		char* value=node->document()->allocate_string(sValue.c_str());
+		if(valueAttr!=0)
+		{
+			valueAttr->value(value);
+		}
+		else
+		{
+			node->append_attribute(node->document()->allocate_attribute("value",value));
 		}
 
 		return true;
@@ -173,14 +247,29 @@ bool DataLibrary::setData( std::string path,const unsigned int& value,bool creat
 
 bool DataLibrary::setData( std::string path,const float& value,bool createpath)
 {
-	ticpp::Element* node=getNode(path,createpath);
+	rapidxml::xml_node<>* node=getNode(path,createpath);
 	if (node!=NULL)
 	{
-		node->SetAttribute("value",value);	
-		node->SetAttribute("type","Float");
-		if (mCreateState==CreateState_NoCreate)
+		rapidxml::xml_attribute<> *typeAttr=node->first_attribute("type");
+		if(typeAttr!=0)
 		{
-			delete node;
+			typeAttr->value("Float");
+		}
+		else
+		{
+			node->append_attribute(node->document()->allocate_attribute("type","Float"));
+		}
+
+		rapidxml::xml_attribute<> *valueAttr=node->first_attribute("value");
+		std::string sValue=Ogre::StringConverter::toString(value);
+		char* value=node->document()->allocate_string(sValue.c_str());
+		if(valueAttr!=0)
+		{
+			valueAttr->value(value);
+		}
+		else
+		{
+			node->append_attribute(node->document()->allocate_attribute("value",value));
 		}
 
 		return true;
@@ -193,14 +282,29 @@ bool DataLibrary::setData( std::string path,const float& value,bool createpath)
 
 bool DataLibrary::setData( std::string path,const double& value,bool createpath )
 {
-	ticpp::Element* node=getNode(path,createpath);
+	rapidxml::xml_node<>* node=getNode(path,createpath);
 	if (node!=NULL)
 	{
-		node->SetAttribute("value",value);
-		node->SetAttribute("type","Double");
-		if (mCreateState==CreateState_NoCreate)
+		rapidxml::xml_attribute<> *typeAttr=node->first_attribute("type");
+		if(typeAttr!=0)
 		{
-			delete node;
+			typeAttr->value("Double");
+		}
+		else
+		{
+			node->append_attribute(node->document()->allocate_attribute("type","Double"));
+		}
+
+		rapidxml::xml_attribute<> *valueAttr=node->first_attribute("value");
+		std::string sValue=Ogre::StringConverter::toString((float)value);
+		char* value=node->document()->allocate_string(sValue.c_str());
+		if(valueAttr!=0)
+		{
+			valueAttr->value(value);
+		}
+		else
+		{
+			node->append_attribute(node->document()->allocate_attribute("value",value));
 		}
 
 		return true;
@@ -213,14 +317,28 @@ bool DataLibrary::setData( std::string path,const double& value,bool createpath 
 
 bool DataLibrary::setData( std::string path,const std::string& value,bool createpath )
 {
-	ticpp::Element* node=getNode(path,createpath);
+	rapidxml::xml_node<>* node=getNode(path,createpath);
 	if (node!=NULL)
 	{
-		node->SetAttribute("value",value);
-		node->SetAttribute("type","String");
-		if (mCreateState==CreateState_NoCreate)
+		rapidxml::xml_attribute<> *typeAttr=node->first_attribute("type");
+		if(typeAttr!=0)
 		{
-			delete node;
+			typeAttr->value("String");
+		}
+		else
+		{
+			node->append_attribute(node->document()->allocate_attribute("type","String"));
+		}
+
+		rapidxml::xml_attribute<> *valueAttr=node->first_attribute("value");
+		char* v=node->document()->allocate_string(value.c_str());
+		if(valueAttr!=0)
+		{
+			valueAttr->value(v);
+		}
+		else
+		{
+			node->append_attribute(node->document()->allocate_attribute("value",v));
 		}
 
 		return true;
@@ -233,15 +351,29 @@ bool DataLibrary::setData( std::string path,const std::string& value,bool create
 
 bool DataLibrary::setData( std::string path,const Ogre::Vector3& value,bool createpath )
 {
-	ticpp::Element* node=getNode(path,createpath);
+	rapidxml::xml_node<>* node=getNode(path,createpath);
 	if (node!=NULL)
 	{
-		std::string v=Ogre::StringConverter::toString(value.x)+","+Ogre::StringConverter::toString(value.y)+","+Ogre::StringConverter::toString(value.z);
-		node->SetAttribute("value",v);
-		node->SetAttribute("type","Vector3");
-		if (mCreateState==CreateState_NoCreate)
+		rapidxml::xml_attribute<> *typeAttr=node->first_attribute("type");
+		if(typeAttr!=0)
 		{
-			delete node;
+			typeAttr->value("Vector3");
+		}
+		else
+		{
+			node->append_attribute(node->document()->allocate_attribute("type","Vector3"));
+		}
+
+		rapidxml::xml_attribute<> *valueAttr=node->first_attribute("value");
+		std::string sValue=Ogre::StringConverter::toString(value.x)+","+Ogre::StringConverter::toString(value.y)+","+Ogre::StringConverter::toString(value.z);
+		char* value=node->document()->allocate_string(sValue.c_str());
+		if(valueAttr!=0)
+		{
+			valueAttr->value(value);
+		}
+		else
+		{
+			node->append_attribute(node->document()->allocate_attribute("value",value));
 		}
 
 		return true;
@@ -254,22 +386,20 @@ bool DataLibrary::setData( std::string path,const Ogre::Vector3& value,bool crea
 
 bool DataLibrary::getData( std::string path,int& value,bool testExist )
 {
-	ticpp::Element* node=getNode(path,false);
+	rapidxml::xml_node<>* node=getNode(path,false);
 	if (node!=NULL)
 	{
-		try
+		rapidxml::xml_attribute<> *valueAttr=node->first_attribute("value");
+		if(valueAttr!=0)
 		{
-			node->GetAttribute("value",&value);
-			delete node;
+			char* v=valueAttr->value();
+			value=Ogre::StringConverter::parseInt(v);
+			return 	true;
 		}
-		catch (ticpp::Exception& e)
+		else
 		{
-			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
-			delete node;
 			return false;
 		}
-		
-		return 	true;
 	}
 	else
 	{
@@ -283,22 +413,20 @@ bool DataLibrary::getData( std::string path,int& value,bool testExist )
 
 bool DataLibrary::getData( std::string path,unsigned int& value,bool testExist )
 {
-	ticpp::Element* node=getNode(path,false);
+	rapidxml::xml_node<>* node=getNode(path,false);
 	if (node!=NULL)
 	{
-		try
+		rapidxml::xml_attribute<> *valueAttr=node->first_attribute("value");
+		if(valueAttr!=0)
 		{
-			node->GetAttribute("value",&value);
-			delete node;
+			char* v=valueAttr->value();
+			value=Ogre::StringConverter::parseUnsignedInt(v);
+			return 	true;
 		}
-		catch (ticpp::Exception& e)
+		else
 		{
-			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
-			delete node;
 			return false;
-		}
-
-		return 	true;	
+		}	
 	}
 	else
 	{
@@ -312,22 +440,20 @@ bool DataLibrary::getData( std::string path,unsigned int& value,bool testExist )
 
 bool DataLibrary::getData( std::string path,float& value,bool testExist )
 {
-	ticpp::Element* node=getNode(path,false);
+	rapidxml::xml_node<>* node=getNode(path,false);
 	if (node!=NULL)
 	{
-		try
+		rapidxml::xml_attribute<> *valueAttr=node->first_attribute("value");
+		if(valueAttr!=0)
 		{
-			node->GetAttribute("value",&value);
-			delete node;
+			char* v=valueAttr->value();
+			value=Ogre::StringConverter::parseReal(v);
+			return 	true;
 		}
-		catch (ticpp::Exception& e)
+		else
 		{
-			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
-			delete node;
 			return false;
-		}
-
-		return 	true;		
+		}	
 	}
 	else
 	{
@@ -341,22 +467,20 @@ bool DataLibrary::getData( std::string path,float& value,bool testExist )
 
 bool DataLibrary::getData( std::string path,double& value,bool testExist )
 {
-	ticpp::Element* node=getNode(path,false);
+	rapidxml::xml_node<>* node=getNode(path,false);
 	if (node!=NULL)
 	{
-		try
+		rapidxml::xml_attribute<> *valueAttr=node->first_attribute("value");
+		if(valueAttr!=0)
 		{
-			node->GetAttribute("value",&value);
-			delete node;
+			char* v=valueAttr->value();
+			value=Ogre::StringConverter::parseReal(v);
+			return 	true;
 		}
-		catch (ticpp::Exception& e)
+		else
 		{
-			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
-			delete node;
 			return false;
-		}
-
-		return 	true;		
+		}	
 	}
 	else
 	{
@@ -370,22 +494,20 @@ bool DataLibrary::getData( std::string path,double& value,bool testExist )
 
 bool DataLibrary::getData( std::string path,std::string& value,bool testExist )
 {
-	ticpp::Element* node=getNode(path,false);
+	rapidxml::xml_node<>* node=getNode(path,false);
 	if (node!=NULL)
 	{
-		try
+		rapidxml::xml_attribute<> *valueAttr=node->first_attribute("value");
+		if(valueAttr!=0)
 		{
-			node->GetAttribute("value",&value);
-			delete node;
+			char* v=valueAttr->value();
+			value=v;
+			return 	true;
 		}
-		catch (ticpp::Exception& e)
+		else
 		{
-			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
-			delete node;
 			return false;
-		}
-
-		return 	true;			
+		}	
 	}
 	else
 	{
@@ -399,19 +521,18 @@ bool DataLibrary::getData( std::string path,std::string& value,bool testExist )
 
 bool DataLibrary::getData( std::string path,Ogre::Vector3& value,bool testExist )
 {
-	ticpp::Element* node=getNode(path,false);
+	rapidxml::xml_node<>* node=getNode(path,false);
 	if (node!=NULL)
 	{
-		try
+		rapidxml::xml_attribute<> *valueAttr=node->first_attribute("value");
+		if(valueAttr!=0)
 		{
-			std::string v;
+			char* v=valueAttr->value();
 			std::queue<std::string> vl;
-			node->GetAttribute("value",&v);
 			split(v,',',vl);
 			if (vl.size()!=3)
 			{
 				Ogre::LogManager::getSingletonPtr()->logMessage(path+" has a bad format",Ogre::LML_CRITICAL);
-				delete node;
 				return false;
 			}
 			else
@@ -421,16 +542,13 @@ bool DataLibrary::getData( std::string path,Ogre::Vector3& value,bool testExist 
 				value.y=Ogre::StringConverter::parseReal(vl.front());
 				vl.pop();
 				value.z=Ogre::StringConverter::parseReal(vl.front());
-				delete node;
+				return true;
 			}
 		}
-		catch (ticpp::Exception& e)
+		else
 		{
-			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
 			return false;
-		}
-
-		return 	true;			
+		}	
 	}
 	else
 	{
@@ -444,20 +562,19 @@ bool DataLibrary::getData( std::string path,Ogre::Vector3& value,bool testExist 
 
 bool DataLibrary::delNode(std::string path)
 {
-	ticpp::Element* node=getNode(path,false);
+	rapidxml::xml_node<>* node=getNode(path,false);
 	if(node == NULL)
 	{
 		return false;
 	}
 
-	ticpp::Node* parent = node->Parent(false);
+	rapidxml::xml_node<>* parent = node->parent();
 	if(parent == NULL)
 	{
-		delete node;
 		return false;
 	}
 
-	parent->RemoveChild(node);
+	parent->remove_node(node);
 	delete parent;
 
 	return true;
@@ -470,26 +587,19 @@ void DataLibrary::createPath(std::string path)
 
 bool DataLibrary::copyNode(std::string srcpath, std::string distpath, bool createpath)
 {
-	ticpp::Element* srcnode=getNode(srcpath,false);
+	rapidxml::xml_node<>* srcnode=getNode(srcpath,false);
 	if(!srcnode)
 	{
 		return false;
 	}
 
-	ticpp::Element* distnode=getNode(distpath,createpath);
+	rapidxml::xml_node<>* distnode=getNode(distpath,createpath);
 	if(!distnode)
 	{
-		delete srcnode;
 		return false;
 	}
 
 	copyElement(srcnode,distnode );
-
-	delete srcnode;
-	if (mCreateState==CreateState_Create)
-	{
-		delete distnode;
-	}
 
 	return true;
 }
@@ -497,64 +607,57 @@ bool DataLibrary::copyNode(std::string srcpath, std::string distpath, bool creat
 std::vector<std::string> DataLibrary::getChildList(std::string path)
 {
 	std::vector<std::string> chlidlist;
-	ticpp::Element* node=getNode(path,false);
+	rapidxml::xml_node<>* node=getNode(path,false);
 	if(node)
 	{
-		ticpp::Iterator<ticpp::Element> child;
-		for(child = child.begin(node); child != child.end(); child++)
+		for (rapidxml::xml_attribute<> *attr = node->first_attribute();
+			attr; attr = attr->next_attribute())
 		{
-			std::string childname;
-			child->GetValue(&childname);
-			chlidlist.push_back(childname);
+			chlidlist.push_back(attr->name());
 		}
 	}
-	delete node;
 
 	return chlidlist;
 }
 
-ticpp::Element* DataLibrary::findNode( ticpp::Element* parent,std::queue<std::string>* path,bool createpath)
+rapidxml::xml_node<>* DataLibrary::findNode(rapidxml::xml_node<>* parent,std::queue<std::string>* path,bool createpath)
 {
 	std::string nodeName=path->front();
 	path->pop();
 	
-	if (!parent->NoChildren())
+	if (parent->first_node())
 	{
-		ticpp::Element* child=parent->FirstChildElement(nodeName,false);
+		rapidxml::xml_node<>* child=parent->first_node(nodeName.c_str());
 		if (child!=NULL)
 		{
 			if (!path->empty())
 			{
-				ticpp::Element* rtn=findNode(child,path,createpath);
-				delete child;
+				rapidxml::xml_node<>* rtn=findNode(child,path,createpath);
 				return rtn;
 			}
 			else
 			{
-				mCreateState=CreateState_NoCreate;
 				return child;
 			}
 		}
-		delete child;
 	}
 	
 	if(createpath)
 	{
-		ticpp::Element* newNode=new ticpp::Element(nodeName);
-		parent->LinkEndChild(newNode);
+		rapidxml::xml_node<>* newNode=parent->document()->allocate_node(rapidxml::node_element,parent->document()->allocate_string(nodeName.c_str()));
+		parent->append_node(newNode);
+
 		if (!path->empty())
 		{
 			return findNode(newNode,path,createpath);
 		}
 		else
 		{
-			mCreateState=CreateState_Create;
 			return newNode;
 		}
 	}
 	else
 	{
-		mCreateState=CreateState_NoCreate;
 		return NULL;
 	}
 
@@ -576,30 +679,29 @@ void DataLibrary::split(const std::string& s, char c,std::queue<std::string>& v)
 	}
 }
 
-ticpp::Element* DataLibrary::getNode( std::string path,bool createpath)
+rapidxml::xml_node<>* DataLibrary::getNode( std::string path,bool createpath)
 {
 	mCreateState=CreateState_None;
 	std::queue<std::string> pathQueue;
 	split(path,'/',pathQueue);
 	if (pathQueue.size()>=2)
 	{
-		ticpp::Element* parent=NULL;
+		rapidxml::xml_node<>* parent=NULL;
 		if (pathQueue.front()=="GameData")
 		{
-			parent=mGameData.FirstChildElement();
+			parent=mGameData.first_node();
 		}
 		else if(pathQueue.front()=="StaticData")
 		{
-			parent=mStaticData.FirstChildElement();
+			parent=mStaticData.first_node();
 		}
 		else
 		{
-			parent=mSystemConfig.FirstChildElement();
+			parent=mSystemConfig.first_node();
 		}
 
 		pathQueue.pop();
-		ticpp::Element* e=findNode(parent,&pathQueue,createpath);
-		delete parent;
+		rapidxml::xml_node<>* e=findNode(parent,&pathQueue,createpath);
 		return e;
 	}
 	else
@@ -610,44 +712,35 @@ ticpp::Element* DataLibrary::getNode( std::string path,bool createpath)
 
 DataLibrary::DataType DataLibrary::getDataType( std::string path )
 {
-	ticpp::Element* node=getNode(path,false);
+	rapidxml::xml_node<>* node=getNode(path,false);
 	if (node!=NULL)
 	{
 		std::string value=0;
-		try
-		{
-			value=node->GetAttribute("type");
-		}
-		catch (ticpp::Exception& e)
-		{
-			Ogre::LogManager::getSingletonPtr()->logMessage(e.m_details,Ogre::LML_CRITICAL);
-			delete node;
-			return NoneType;
-		}
-		
+		rapidxml::xml_attribute<>* attri=node->first_attribute("type");
 		DataType type=NoneType;
-		if (value=="Int")
+		if(attri!=0)
 		{
-			type=IntType;
+			if (value=="Int")
+			{
+				type=IntType;
+			}
+			else if (value=="UInt")
+			{
+				type=UIntType;
+			} 
+			else if (value=="Float")
+			{
+				type=FloatType;
+			} 
+			else if (value=="Double")
+			{
+				type=DubleType;
+			} 
+			else if (value=="String")
+			{
+				type=StringType;
+			}
 		}
-		else if (value=="UInt")
-		{
-			type=UIntType;
-		} 
-		else if (value=="Float")
-		{
-			type=FloatType;
-		} 
-		else if (value=="Double")
-		{
-			type=DubleType;
-		} 
-		else if (value=="String")
-		{
-			type=StringType;
-		} 
-		
-		delete node;
 
 		return 	type;		
 	}

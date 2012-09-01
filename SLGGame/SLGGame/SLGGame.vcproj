@@ -997,6 +997,26 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="RapidXML"
+			>
+			<File
+				RelativePath=".\src\rapidxml\rapidxml.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\rapidxml\rapidxml_iterators.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\rapidxml\rapidxml_print.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\rapidxml\rapidxml_utils.hpp"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath="..\Demo.ico"
 			>

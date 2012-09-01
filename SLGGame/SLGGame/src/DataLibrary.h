@@ -1,7 +1,7 @@
 #pragma once
 
-#define TIXML_USE_TICPP
-#include <ticpp.h>
+#include "rapidxml\rapidxml.hpp"
+#include "rapidxml\rapidxml_print.hpp"
 #include <queue>
 #include <vector>
 #include <string>
@@ -36,7 +36,6 @@ public:
 	};
 
 	void loadXmlData(DataBlock type,std::string fileName,bool append);
-	void copyElement(ticpp::Element* srcElement,ticpp::Element* destElement);
 	void saveXmlData(DataBlock type,std::string fileName);
 
 	bool setData(std::string path,const int& value,bool createpath=true);
@@ -61,9 +60,9 @@ public:
 
 	DataType getDataType(std::string path);
 private:
-	ticpp::Document mSystemConfig;
-	ticpp::Document mGameData;
-	ticpp::Document mStaticData;
+	rapidxml::xml_document<> mSystemConfig;
+	rapidxml::xml_document<> mGameData;
+	rapidxml::xml_document<> mStaticData;
 
 	typedef int CreateState;
 	static const int	CreateState_None = 0;
@@ -72,9 +71,10 @@ private:
 
 	CreateState mCreateState;
 
-	void appendXmlDate(ticpp::Document* currentDoc,std::string fileName);
-	ticpp::Element* getNode(std::string path,bool createpath);
-	ticpp::Element* findNode(ticpp::Element* parent,std::queue<std::string>* path,bool createpath);
+	void copyElement(rapidxml::xml_node<>* srcElement,rapidxml::xml_node<>* destElement);
+	void appendXmlDate( rapidxml::xml_document<>* currentDoc,std::string fileName);
+	rapidxml::xml_node<>* getNode(std::string path,bool createpath);
+	rapidxml::xml_node<>* findNode(rapidxml::xml_node<>* parent,std::queue<std::string>* path,bool createpath);
 	void split(const std::string& s, char c,std::queue<std::string>& v);
 };
 
