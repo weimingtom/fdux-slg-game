@@ -74,12 +74,8 @@ void DataLibrary::loadXmlData( DataBlock type,std::string fileName,bool append, 
 		}
 		else
 		{
-			currentDoc->clear();
-			Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(fileName, resGroup.c_str(), true);
-			char* s=new char[stream->size()];
-			stream->read(s,stream->size());
-			currentDoc->parse<0>(s);
-			delete []s;
+			currentDoc->last_node()->remove_all_nodes();
+			appendXmlDate(currentDoc,fileName,resGroup);
 		}
 	}
 	catch (rapidxml::parse_error& e)
@@ -92,17 +88,21 @@ void DataLibrary::appendXmlDate( rapidxml::xml_document<>* currentDoc,std::strin
 {
 	try
 	{
-		rapidxml::xml_document<>* doc;
+		rapidxml::xml_document<> doc;
 		Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(fileName, resGroup.c_str(), true);
-		char* s=new char[stream->size()];
-		stream->read(s,stream->size());
-		doc->parse<0>(s);
-		delete []s;
+		std::string ss=stream->getAsString();
+		int i=ss.size();
+		char* s=new char[i+1];
+		ss.copy(s,i);
+		s[i]='\0';
+		doc.parse<0>(s);
 
-		rapidxml::xml_node<>* srcElement=doc->first_node();
-		rapidxml::xml_node<>* destElement=doc->first_node();
+		rapidxml::xml_node<>* srcElement=doc.first_node();
+		rapidxml::xml_node<>* destElement=currentDoc->last_node();
 
 		copyElement(srcElement,destElement);
+
+		delete []s;
 	}
 	catch (rapidxml::parse_error& e)
 	{
@@ -131,7 +131,7 @@ void DataLibrary::copyElement(rapidxml::xml_node<>* srcElement,rapidxml::xml_nod
 	}
 
 	for (rapidxml::xml_node<> *child = srcElement->first_node();
-		child; child = srcElement->next_sibling())
+		child; child = child->next_sibling())
 	{
 		rapidxml::xml_node<> * findElement=destElement->first_node(child->name());
 		if(findElement!=NULL)//如果有,就继续递归
@@ -575,7 +575,6 @@ bool DataLibrary::delNode(std::string path)
 	}
 
 	parent->remove_node(node);
-	delete parent;
 
 	return true;
 }
@@ -610,10 +609,10 @@ std::vector<std::string> DataLibrary::getChildList(std::string path)
 	rapidxml::xml_node<>* node=getNode(path,false);
 	if(node)
 	{
-		for (rapidxml::xml_attribute<> *attr = node->first_attribute();
-			attr; attr = attr->next_attribute())
+		for (rapidxml::xml_node<>* child = node->first_node();
+			child; child = child->next_sibling())
 		{
-			chlidlist.push_back(attr->name());
+			chlidlist.push_back(child->name());
 		}
 	}
 
@@ -689,15 +688,15 @@ rapidxml::xml_node<>* DataLibrary::getNode( std::string path,bool createpath)
 		rapidxml::xml_node<>* parent=NULL;
 		if (pathQueue.front()=="GameData")
 		{
-			parent=mGameData.first_node();
+			parent=mGameData.last_node();
 		}
 		else if(pathQueue.front()=="StaticData")
 		{
-			parent=mStaticData.first_node();
+			parent=mStaticData.last_node();
 		}
 		else
 		{
-			parent=mSystemConfig.first_node();
+			parent=mSystemConfig.last_node();
 		}
 
 		pathQueue.pop();
