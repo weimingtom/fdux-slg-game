@@ -50,7 +50,7 @@ DataLibrary::~DataLibrary(void)
 
 }
 
-void DataLibrary::loadXmlData( DataBlock type,std::string fileName,bool append)
+void DataLibrary::loadXmlData( DataBlock type,std::string fileName,bool append, std::string resGroup)
 {
 	rapidxml::xml_document<>* currentDoc;
 	switch(type)
@@ -70,12 +70,12 @@ void DataLibrary::loadXmlData( DataBlock type,std::string fileName,bool append)
 	{
 		if (append)
 		{
-			appendXmlDate(currentDoc,fileName);
+			appendXmlDate(currentDoc,fileName,resGroup);
 		}
 		else
 		{
 			currentDoc->clear();
-			Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(fileName, "General", true);
+			Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(fileName, resGroup.c_str(), true);
 			char* s=new char[stream->size()];
 			stream->read(s,stream->size());
 			currentDoc->parse<0>(s);
@@ -88,12 +88,12 @@ void DataLibrary::loadXmlData( DataBlock type,std::string fileName,bool append)
 	}
 }
 
-void DataLibrary::appendXmlDate( rapidxml::xml_document<>* currentDoc,std::string fileName )
+void DataLibrary::appendXmlDate( rapidxml::xml_document<>* currentDoc,std::string fileName, std::string resGroup )
 {
 	try
 	{
 		rapidxml::xml_document<>* doc;
-		Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(fileName, "General", true);
+		Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(fileName, resGroup.c_str(), true);
 		char* s=new char[stream->size()];
 		stream->read(s,stream->size());
 		doc->parse<0>(s);
