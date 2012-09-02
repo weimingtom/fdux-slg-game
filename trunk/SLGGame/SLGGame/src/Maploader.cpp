@@ -30,55 +30,83 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 	Terrain* terrain = Terrain::getSingletonPtr();
 	DataLibrary* datalibrary = DataLibrary::getSingletonPtr();
 	std::string path = ".\\..\\Media\\Map\\" + mapname;
-	ticpp::Document *doc = new ticpp::Document();
-	doc->LoadFile(path,TIXML_ENCODING_UTF8);
+
+	//ticpp::Document *doc = new ticpp::Document();
+	rapidxml::xml_document<>* doc;
+	//doc->LoadFile(path,TIXML_ENCODING_UTF8);
+	Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(path, "General", true);
+	char* s=new char[stream->size()];
+	stream->read(s,stream->size());
+	doc->parse<0>(s);
+	delete []s;
+
 	std::string str1;
 	//载入地图名字，介绍和脚本名
-	ticpp::Element *element = doc->FirstChildElement("MapName");
-	element->GetText(&str1);
+	//ticpp::Element *element = doc->FirstChildElement("MapName");
+	rapidxml::xml_node<> * element = doc->first_node("MapName");
+	//element->GetText(&str1);
+	str1 = element->value();
 	datalibrary->setData("GameData/BattleData/MapData/MapName", StringTable::getSingleton().getString(str1));
-	delete element;
+	//delete element;
 
-	element = doc->FirstChildElement("MapScript");
-	element->GetText(&str1);
+	//element = doc->FirstChildElement("MapScript");
+	element = doc->first_node("MapScript");
+	//element->GetText(&str1);
+	str1 = element->value();
 	datalibrary->setData("GameData/BattleData/MapData/MapScript", str1);
-	delete element;
+	//delete element;
 
-	element = doc->FirstChildElement("MapInfo");
-	element->GetText(&str1);
+	//element = doc->FirstChildElement("MapInfo");
+	element = doc->first_node("MapInfo");
+	//element->GetText(&str1);
+	str1 = element->value();
 	datalibrary->setData("GameData/BattleData/MapData/MapInfo",str1);
-	delete element;
+	//delete element;
 
-	element = doc->FirstChildElement("MapLoadBG");
-	element->GetText(&str1);
+	//element = doc->FirstChildElement("MapLoadBG");
+	element = doc->first_node("MapLoadBG");
+	//element->GetText(&str1);
+	str1 = element->value();
 	datalibrary->setData("GameData/BattleData/MapData/MapLoadBG",str1);
-	delete element;
+	//delete element;
 
 	//载入地图地形信息
-	element = doc->FirstChildElement("MapSize");
-	element->GetText(&mapsize);
+	//element = doc->FirstChildElement("MapSize");
+	element = doc->first_node("MapSize");
+	//element->GetText(&mapsize);
+	mapsize = Ogre::StringConverter::parseUnsignedInt(element->value());
 	MapDataManager::getSingleton().mMapSize = mapsize;
 	datalibrary->setData("GameData/BattleData/MapData/MapSize", mapsize);
-	delete element;
+	//delete element;
 
-	element= doc->FirstChildElement("MapGround");
-	ticpp::Iterator<ticpp::Element> child;
+	//element= doc->FirstChildElement("MapGround");
+	element = doc->first_node("MapGround");
+	//ticpp::Iterator<ticpp::Element> child;
+	rapidxml::xml_node<> *child = element->first_node();
 	std::string datapath;
-	for(child = child.begin(element); child != child.end(); child++)
+	//for(child = child.begin(element); child != child.end(); child++)
+	for(; child; element->next_sibling())
 	{
 		std::string layer,type,texture;
-		child->GetValue(&layer);
-		child->GetAttribute("Type",&type);
-		child->GetAttribute("Texture",&texture);
+		//child->GetValue(&layer);
+		layer = child->value();
+		//child->GetAttribute("Type",&type);
+		rapidxml::xml_attribute<> *attr = child->first_attribute("Type");
+		type = attr->value();
+		//child->GetAttribute("Texture",&texture);
+		attr = child->first_attribute("Texture");
+		texture = attr->value();
 		datapath = str(boost::format("GameData/BattleData/MapData/Ground/%1%")%layer);
 		datalibrary->setData(datapath, type);
 		datapath = str(boost::format("GameData/BattleData/MapData/Ground/%1%Tex")%layer);
 		datalibrary->setData(datapath, texture);
 	}
-	delete element;
+	//delete element;
 
-	element = doc->FirstChildElement("MapData");
-	element->GetText(&str1);
+	//element = doc->FirstChildElement("MapData");
+	element = doc->first_node("MapData");
+	//element->GetText(&str1);
+	str1 = element->value();
 	for(int y = 0; y < mapsize; y++)
 	{
 		for(int x = 0; x < mapsize; x++)
@@ -141,20 +169,31 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 			}
 		}
 	}
-	delete element;
+	//delete element;
 
-	element = doc->FirstChildElement("MapObject");
-	for(child = child.begin(element); child != child.end(); child++)
+	//element = doc->FirstChildElement("MapObject");
+	element = doc->first_node("MapObject");
+	//for(child = child.begin(element); child != child.end(); child++)
+	for(child = element->first_node(); child; element->next_sibling())
 	{
 		std::string objname;
-		child->GetValue(&objname);
+		//child->GetValue(&objname);
+		objname = child->value();
 		datapath = std::string("GameData/BattleData/MapData/MapObjModleInfo/") + objname;
 		int objx,objy;
 		std::string meshname,objtype;
-		child->GetAttribute("GridX",&objx);
-		child->GetAttribute("GridY",&objy);
-		child->GetAttribute("Mesh",&meshname);
-		child->GetAttribute("Type",&objtype);
+		//child->GetAttribute("GridX",&objx);
+		rapidxml::xml_attribute<> *attr = child->first_attribute("GridX");
+		objx = Ogre::StringConverter::parseInt(attr->value());
+		//child->GetAttribute("GridY",&objy);
+		attr = child->first_attribute("GridY");
+		objy = Ogre::StringConverter::parseInt(attr->value());
+		//child->GetAttribute("Mesh",&meshname);
+		child->first_attribute("Mesh");
+		meshname = attr->value();
+		//child->GetAttribute("Type",&objtype);
+		child->first_attribute("Type");
+		objtype = attr->value();
 		datalibrary->setData(datapath + "/GridX", objx);
 		datalibrary->setData(datapath + "/GridY", objy);
 		datalibrary->setData(datapath + "/Mesh", meshname);
@@ -163,79 +202,107 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 		datalibrary->setData(datapath, objtype);
 		datalibrary->setData(datapath + "/MapObjModuleId", objname);
 	}
-	delete element;
+	//delete element;
 
-	element = doc->FirstChildElement("MapEffect");
-	for(child = child.begin(element); child != child.end(); child++)
+	//element = doc->FirstChildElement("MapEffect");
+	element = doc->first_node("MapEffect");
+	//for(child = child.begin(element); child != child.end(); child++)
+	for(child = element->first_node(); child; element->next_sibling())
 	{
 		std::string particlename;
-		child->GetValue(&particlename);
+		//child->GetValue(&particlename);
+		particlename = child->value();
 		datapath = std::string("GameData/BattleData/MapData/MapParticleInfo/") + particlename;
 		int particlex,particley;
 		std::string name;
-		child->GetAttribute("GridX",&particlex);
-		child->GetAttribute("GridY",&particley);
-		child->GetAttribute("Type",&name);
+		//child->GetAttribute("GridX",&particlex);
+		rapidxml::xml_attribute<> *attr = child->first_attribute("GridX");
+		particlex = Ogre::StringConverter::parseInt(attr->value());
+		//child->GetAttribute("GridY",&particley);
+		attr = child->first_attribute("GridY");
+		particley = Ogre::StringConverter::parseInt(attr->value());
+		//child->GetAttribute("Type",&name);
+		child->first_attribute("Type");
+		name = attr->value();
 		datalibrary->setData(datapath + "/GridX", particlex);
 		datalibrary->setData(datapath + "/GridY", particley);
 		datalibrary->setData(datapath + "/Type", name);
 	}
 
 	terrain->createTerrain();
-	delete element;
+	//delete element;
 
 	//载入区域信息
-	element = doc->FirstChildElement("MapArea");
-	for(child = child.begin(element); child != child.end(); child++)
+	//element = doc->FirstChildElement("MapArea");
+	element = doc->first_node("MapArea");
+	//for(child = child.begin(element); child != child.end(); child++)
+	for(child = element->first_node(); child; element->next_sibling())
 	{
 		std::string areaname;
-		child->GetValue(&areaname);
+		//child->GetValue(&areaname);
+		areaname = child->value();
 		datapath = std::string("GameData/BattleData/MapData/Area/") + areaname;
-		ticpp::Iterator<ticpp::Element> childchild;
-		for(childchild = childchild.begin(child.Get()); childchild != childchild.end(); childchild++)
+		//ticpp::Iterator<ticpp::Element> childchild;
+		rapidxml::xml_node<> *childchild = child->first_node();
+		//for(childchild = childchild.begin(child.Get()); childchild != childchild.end(); childchild++)
+		for(; childchild; child->next_sibling())
 		{
 			std::string coordname;
-			childchild->GetValue(&coordname);
+			//childchild->GetValue(&coordname);
+			coordname = childchild->value();
 			int x;
 			int y;
-			childchild->GetAttribute("X",&x);
-			childchild->GetAttribute("Y",&y);
+			//childchild->GetAttribute("X",&x);
+			rapidxml::xml_attribute<> *attr = childchild->first_attribute("X");
+			x = Ogre::StringConverter::parseInt(attr->value());
+			//childchild->GetAttribute("Y",&y);
+			attr = childchild->first_attribute("Y");
+			y = Ogre::StringConverter::parseInt(attr->value());
 			datalibrary->setData(datapath + std::string("/CoordList/") + coordname + std::string("/X"),x );
 			datalibrary->setData(datapath + std::string("/CoordList/") + coordname + std::string("/Y"),y );
 		}
 
 	}
-	delete element;
+	//delete element;
 
 	//载入队伍信息
-	element = doc->FirstChildElement("MapTeam");
+	//element = doc->FirstChildElement("MapTeam");
+	element = doc->first_node("MapTeam");
 	for(int n = 2; n < 5; n++)
 	{
 		std::string name = std::string("Team") + Ogre::StringConverter::toString(n);
 		std::string factionid;
-		ticpp::Element* subelement = element->FirstChildElement(name);
-		subelement->GetAttribute("TeamFaction",&factionid);
+		//ticpp::Element* subelement = element->FirstChildElement(name);
+		child = element->first_node(name.c_str());
+		//subelement->GetAttribute("TeamFaction",&factionid);
+		rapidxml::xml_attribute<> *attr = child->first_attribute("TeamFaction");
+		factionid = attr->value();
 		datalibrary->setData(std::string("GameData/BattleData/Team/")+ name+ "/FactionId", factionid);
 		if(factionid != "none")
 		{
-			subelement->GetAttribute("TeamType",&factionid);
+			//subelement->GetAttribute("TeamType",&factionid);
+			attr = child->first_attribute("TeamType");
+			factionid = attr->value();
 			datalibrary->setData(std::string("GameData/BattleData/Team/")+ name+ "/Relation", factionid);
 		}
-		delete subelement;
+		//delete subelement;
 	}
 	std::string playerfactionid;
 	datalibrary->getData("GameData/StoryData/Faction",playerfactionid);
 	datalibrary->setData("GameData/BattleData/Team/Team1/FactionId",playerfactionid);
 	datalibrary->setData("GameData/BattleData/Team/Team1/Relation","player");
-	delete element;
+	//delete element;
 
 	//载入部队信息
-	element = doc->FirstChildElement("MapSquad");
+	//element = doc->FirstChildElement("MapSquad");
+	element = doc->first_node("MapSquad");
 	MapSquadInfo mapsquadinfo;
-	for(child = child.begin(element); child != child.end(); child++)
+	//for(child = child.begin(element); child != child.end(); child++)
+	for(child = element->first_node(); child; element->next_sibling())
 	{
 		std::string teamid;
-		child->GetValue(&teamid);
+		//child->GetValue(&teamid);
+		teamid = child->value();
 		if(teamid == "Team1")
 			mapsquadinfo.team = 1;
 		else if(teamid == "Team2")
@@ -245,22 +312,35 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 		else
 			mapsquadinfo.team = 4;
 		datapath = std::string("GameData/BattleData/SquadList");
-		ticpp::Iterator<ticpp::Element> childchild;
-		for(childchild = childchild.begin(child.Get()); childchild != childchild.end(); childchild++)
+		//ticpp::Iterator<ticpp::Element> childchild;
+		rapidxml::xml_node<> *childchild = child->first_node();
+		//for(childchild = childchild.begin(child.Get()); childchild != childchild.end(); childchild++)
+		for(; childchild; child->next_sibling())
 		{
 // 			std::string squadid;
 // 			std::string squadtype;
-			childchild->GetValue(&mapsquadinfo.squadId);
+			//childchild->GetValue(&mapsquadinfo.squadId);
+			mapsquadinfo.squadId = childchild->value();
 // 			int x;
 // 			int y;
 // 			Direction d;
 // 			int unitnum;
 // 			int morale;
-			childchild->GetAttribute("Type",&mapsquadinfo.squadTempId);
-			childchild->GetAttribute("GridX",&mapsquadinfo.x);
-			childchild->GetAttribute("GridY",&mapsquadinfo.y);
-			childchild->GetAttribute("UnitNum",&mapsquadinfo.unitNum);
-			childchild->GetAttribute("Direction",&mapsquadinfo.dir);
+			//childchild->GetAttribute("Type",&mapsquadinfo.squadTempId);
+			rapidxml::xml_attribute<> *attr = childchild->first_attribute("Type");
+			mapsquadinfo.squadTempId = attr->value();
+			//childchild->GetAttribute("GridX",&mapsquadinfo.x);
+			attr = childchild->first_attribute("GridX");
+			mapsquadinfo.x = Ogre::StringConverter::parseInt(attr->value());
+			//childchild->GetAttribute("GridY",&mapsquadinfo.y);
+			attr = childchild->first_attribute("GridY");
+			mapsquadinfo.y = Ogre::StringConverter::parseInt(attr->value());
+			//childchild->GetAttribute("UnitNum",&mapsquadinfo.unitNum);
+			attr = childchild->first_attribute("UnitNum");
+			mapsquadinfo.unitNum = Ogre::StringConverter::parseInt(attr->value());
+			//childchild->GetAttribute("Direction",&mapsquadinfo.dir);
+			attr = childchild->first_attribute("Direction");
+			mapsquadinfo.dir = Ogre::StringConverter::parseInt(attr->value());
 			mMapSquadInfo.push(mapsquadinfo);
 // 			AVGSquadManager::getSingleton().addSquad(squadid,squadtype, datapath);
 // 			int type;
@@ -281,7 +361,7 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 // 			datalibrary->setData(datapath + std::string("/") + squadid + std::string("/Morale"), morale, true );
 		}
 	}
-	delete element;
+	//delete element;
 
 	return true;
 }

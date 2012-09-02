@@ -35,7 +35,7 @@ public:
 		Vector3Type
 	};
 
-	void loadXmlData(DataBlock type,std::string fileName,bool append);
+	void loadXmlData(DataBlock type,std::string fileName,bool append, std::string resGroup);
 	void saveXmlData(DataBlock type,std::string fileName);
 
 	bool setData(std::string path,const int& value,bool createpath=true);
@@ -72,7 +72,7 @@ private:
 	CreateState mCreateState;
 
 	void copyElement(rapidxml::xml_node<>* srcElement,rapidxml::xml_node<>* destElement);
-	void appendXmlDate( rapidxml::xml_document<>* currentDoc,std::string fileName);
+	void appendXmlDate( rapidxml::xml_document<>* currentDoc,std::string fileName, std::string resGroup);
 	rapidxml::xml_node<>* getNode(std::string path,bool createpath);
 	rapidxml::xml_node<>* findNode(rapidxml::xml_node<>* parent,std::queue<std::string>* path,bool createpath);
 	void split(const std::string& s, char c,std::queue<std::string>& v);

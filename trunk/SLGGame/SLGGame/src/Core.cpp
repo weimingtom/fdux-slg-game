@@ -50,15 +50,6 @@ Core::~Core(void)
 
 bool Core::initialize(bool isFullScene)
 {
-	//初始化数据文件
-	mLuaSystem=new LuaSystem();
-	mDataLibrary=new DataLibrary();
-	mDataLibrary->loadXmlData(DataLibrary::StaticData,"../media/data/datafile.xml",true);
-	mDataLibrary->loadXmlData(DataLibrary::StaticData,"../media/lang/chinese/datafile.xml",true);
-	mDataLibrary->loadXmlData(DataLibrary::StaticData,"../media/lang/chinese/stringtable.xml",true);
-	mDataLibrary->loadXmlData(DataLibrary::SystemConfig,"../save/Config.xml",true);
-	new StringTable;
-
 	mRoot = new Ogre::Root("Plugins.cfg","","log.txt");
 // 	if(!mRoot->restoreConfig())
 // 	{
@@ -76,7 +67,7 @@ bool Core::initialize(bool isFullScene)
 
 	mRoot->initialise(false);
 
-	std::string title = StringTable::getSingleton().getAnsiString("gamename");
+	std::string title = "遗忘的战场";//StringTable::getSingleton().getAnsiString("gamename");
 	
 	Ogre::NameValuePairList list;
 
@@ -117,6 +108,14 @@ bool Core::initialize(bool isFullScene)
 
 	Ogre::ResourceGroupManager::getSingletonPtr()->initialiseAllResourceGroups();
 
+	//初始化数据文件
+	mLuaSystem=new LuaSystem();
+	mDataLibrary=new DataLibrary();
+	mDataLibrary->loadXmlData(DataLibrary::StaticData,"datafile.xml",true, "General");
+	mDataLibrary->loadXmlData(DataLibrary::StaticData,"datafile.xml",true, "Lang");
+	mDataLibrary->loadXmlData(DataLibrary::StaticData,"stringtable.xml",true, "Lang");
+	mDataLibrary->loadXmlData(DataLibrary::SystemConfig,"Config.xml",true, "General");
+
 	mDebugOverlay = Ogre::OverlayManager::getSingleton().getByName("Core/DebugOverlay");
 
 	mGUISystem=new GUISystem(mWindow,mSceneMgr);
@@ -143,6 +142,7 @@ bool Core::initialize(bool isFullScene)
 	//初始化阴影
 	mSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_NONE);
 
+	new StringTable;
 	//初始化文字部分
 	mLuaSystem->registerCLib("AVGLib",AVGLib);
 	new AVGSquadManager;
