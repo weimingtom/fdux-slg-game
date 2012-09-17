@@ -72,7 +72,6 @@ private:
 	WeaponItemBox* mArmorItemBox;
 	WeaponItemBox* mSoilderItemBox;
 	WeaponItemBox* mRetainerItemBox;
-	WeaponItemBox* mSkillItemBox;
 
 	SquadItemBox* mSquadItemBox;
 
