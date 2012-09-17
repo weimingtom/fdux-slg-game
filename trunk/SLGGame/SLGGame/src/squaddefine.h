@@ -9,7 +9,8 @@ enum EquipmentType
 	EQUIP_ARMOR = 2,
 	EQUIP_SHIELD = 3,
 	EQUIP_PWEAPON = 4,
-	EQUIP_SWEAPON = 5
+	EQUIP_SWEAPON = 5,
+	EQUIP_RETAINER = 6
 };
 
 enum PweaponType
