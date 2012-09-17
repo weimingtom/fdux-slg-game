@@ -54,6 +54,9 @@ public:
 		  case EQUIP_SWEAPON:
 			  mTypeString = "StaticData/SweaponData/";
 			  break;
+		  case EQUIP_RETAINER:
+			  mTypeString = "StaticData/RetainerData/";
+			  break;
 		  }
 
 	  }

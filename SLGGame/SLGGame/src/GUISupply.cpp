@@ -54,6 +54,16 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	mSoilderItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventMouseItemActivate);
 	mSoilderItemBox->getItemBox()->eventSelectItemAccept+= MyGUI::newDelegate(this, &GUISupply::eventSelectItemAccept);
 
+	assignWidget(baseItemBox,"RetainerItemBox");
+	mRetainerItemBox=new WeaponItemBox(baseItemBox);
+	mRetainerItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventMouseItemActivate);
+	mRetainerItemBox->getItemBox()->eventSelectItemAccept+= MyGUI::newDelegate(this, &GUISupply::eventSelectItemAccept);
+
+	assignWidget(baseItemBox,"SkillItemBox");
+	mSkillItemBox=new WeaponItemBox(baseItemBox);
+	mSkillItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventMouseItemActivate);
+	mSkillItemBox->getItemBox()->eventSelectItemAccept+= MyGUI::newDelegate(this, &GUISupply::eventSelectItemAccept);
+
 	assignWidget(baseItemBox,"ArmyList");
 	mSquadItemBox=new SquadItemBox(baseItemBox);
 	mSquadItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventSquadMouseItemActivate);
@@ -94,6 +104,10 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	assignWidget(mTextSquadCounterattack,"SquadCounterattack");
 	assignWidget(mTextSquadPeople,"SquadPeople");
 	assignWidget(mTextSquadAP,"SquadAP");
+	assignWidget(mTextRetainer,"Retainer");
+	assignWidget(mRetainerSkill1,"RetainerSkill1");
+	assignWidget(mRetainerSkill2,"RetainerSkill2");
+	assignWidget(mRetainerImage,"RetainerImage");
 
 	assignWidget(mTextItemName,"ItemName");
 	assignWidget(mTextItemPrice,"ItemPrice");
@@ -195,6 +209,30 @@ void GUISupply::showArmy( int index )
 	mTextSquadShield->setCaption(getItemNameFormLanguage("ShieldData",army->getShieldId()));
 	mTextSquadArmor->setCaption(getItemNameFormLanguage("ArmorData",army->getArmorId()));
 	mTextSqureHorse->setCaption(getItemNameFormLanguage("HorseData",army->getHorseId()));
+	mTextRetainer->setCaption(getItemNameFormLanguage("RetainerData",army->getRetainerId()));
+	if(army->getRetainerId()!="none")
+	{
+		tempstr = army->getRetainerId();
+		temppath = str(boost::format("StaticData/RetainerData/%1%/Picture")%tempstr);
+		DataLibrary::getSingletonPtr()->getData(temppath, tempstr);
+		mRetainerImage->setImageTexture(tempstr);
+
+		temppath=str(boost::format("StaticData/RetainerData/%1%/Skill")%tempstr);
+		DataLibrary::getSingletonPtr()->getData(temppath, tempstr);
+		if(tempstr!="none")
+		{
+			temppath=str(boost::format("StaticData/SkillData/%1%/Icon")%tempstr);
+			std::string temppath2=str(boost::format("StaticData/EffectData/%1%/Icon")%tempstr);
+			if(DataLibrary::getSingletonPtr()->getData(temppath, tempstr))
+			{
+				mRetainerSkill1->setItemResource(tempstr);
+			}
+			else if(DataLibrary::getSingletonPtr()->getData(temppath2, tempstr))
+			{
+				mRetainerSkill1->setItemResource(tempstr);
+			}
+		}
+	}
 
 	showAttribute(index,0,"");
 }
@@ -243,7 +281,8 @@ void GUISupply::eventMouseItemActivate(MyGUI::ItemBox* _sender, size_t _index)
 	if(_index!=-1)
 	{
 		WeaponItemData* item=*(_sender->getItemDataAt<WeaponItemData*>(_index));
-		showAttribute(m_CurrSquadIndex,m_CurrSelectType,item->getID());
+		if(item->getType()!=EQUIP_RETAINER)
+			showAttribute(m_CurrSquadIndex,m_CurrSelectType,item->getID());
 		setItemInfo(item);
 	}
 	else
@@ -364,6 +403,10 @@ void GUISupply::showItem(int type)
 		itemBox=mSoilderItemBox;
 		equipID=army->getSoilderId();
 		break;
+	case EQUIP_RETAINER:
+		path="StaticData/RetainerData";
+		itemBox=mRetainerItemBox;
+		equipID=army->getRetainerId();
 	}
 
 	itemBox->removeAllItems();
@@ -386,14 +429,17 @@ void GUISupply::buyItem(int index,WeaponItemData* item)
 
 	if(!item->getEquip() && item->getCanBuy())
 	{
-		army->equipEquipment(item->getType(),item->getID());
+		if(item->getType()!=EQUIP_RETAINER)
+			army->equipEquipment(item->getType(),item->getID());
+		else
+			army->hireRetainer(item->getID());
 
 		showArmy(m_CurrSquadIndex);
 		showItem(item->getType());
 
 		m_Money-=item->getPriceValue();
 
-		if(m_CurrSquadEquipItem!=NULL)
+		if(m_CurrSquadEquipItem!=NULL && item->getType()!=EQUIP_RETAINER)
 			m_Money+=m_CurrSquadEquipItem->getPriceValue()/2;
 
 		DataLibrary::getSingletonPtr()->setData("GameData/StoryData/Gold",m_Money);
@@ -440,6 +486,9 @@ void GUISupply::eventTabChangeSelect(MyGUI::TabControl* _sender, size_t _index)
 			break;
 		case 5:
 			showItem(EQUIP_SOILDER);
+			break;
+		case 6://¸±¹Ù
+			showItem(EQUIP_RETAINER);
 			break;
 		}
 	}

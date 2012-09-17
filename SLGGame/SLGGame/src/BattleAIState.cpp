@@ -51,8 +51,8 @@ void BattleAIState::update(unsigned int deltaTime)
 
 		SaveOtherTeamInfo();
 
-		mMainState->PopState();
 		mState = AISTATE_SHUTDOWN;
+		mMainState->PopState();
 		break;
 	case AISTATE_SHUTDOWN:
 		break;

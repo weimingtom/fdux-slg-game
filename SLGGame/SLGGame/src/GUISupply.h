@@ -71,6 +71,8 @@ private:
 	WeaponItemBox* mHorseItemBox;
 	WeaponItemBox* mArmorItemBox;
 	WeaponItemBox* mSoilderItemBox;
+	WeaponItemBox* mRetainerItemBox;
+	WeaponItemBox* mSkillItemBox;
 
 	SquadItemBox* mSquadItemBox;
 
@@ -106,6 +108,10 @@ private:
 	MyGUI::ImageBox* mSquadPassiveSkillIcon[SQUAD_PASSIVE_SKILL_NUM];
 	MyGUI::ImageBox* mSquadUseEquipIcon[SQUAD_USE_EQUIP_NUM];
 	MyGUI::ImageBox* mSquadEffectIcon[SQUAD_EFFECT_NUM];
+	MyGUI::TextBox* mTextRetainer;
+	MyGUI::ImageBox* mRetainerSkill1;
+	MyGUI::ImageBox* mRetainerSkill2;
+	MyGUI::ImageBox* mRetainerImage;
 
 	MyGUI::ImageBox* mItemIcon;
 	MyGUI::TextBox* mTextItemName;

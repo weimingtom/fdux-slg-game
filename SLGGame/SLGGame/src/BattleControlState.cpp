@@ -17,6 +17,8 @@
 #include "GUIBattle.h"
 #include "GUIGameStateWindows.h"
 
+#include <boost/format.hpp>
+
 
 BattleControlState::BattleControlState(bool newgame)
 {
@@ -102,7 +104,7 @@ void BattleControlState::update(unsigned int deltaTime)
 				case 4:
 					{
 						std::string teamstr;
-						std::string teampath = std::string("GameData/BattleData/Team/Team") + Ogre::StringConverter::toString(team) + std::string("/FactionId");
+						std::string teampath =str(boost::format("GameData/BattleData/Team/Team%1%/FactionId")%team);
 						DataLibrary::getSingleton().getData(teampath,teamstr);
 						if(teamstr == "none")
 						{
