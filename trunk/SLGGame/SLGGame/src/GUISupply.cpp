@@ -59,11 +59,6 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	mRetainerItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventMouseItemActivate);
 	mRetainerItemBox->getItemBox()->eventSelectItemAccept+= MyGUI::newDelegate(this, &GUISupply::eventSelectItemAccept);
 
-	assignWidget(baseItemBox,"SkillItemBox");
-	mSkillItemBox=new WeaponItemBox(baseItemBox);
-	mSkillItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventMouseItemActivate);
-	mSkillItemBox->getItemBox()->eventSelectItemAccept+= MyGUI::newDelegate(this, &GUISupply::eventSelectItemAccept);
-
 	assignWidget(baseItemBox,"ArmyList");
 	mSquadItemBox=new SquadItemBox(baseItemBox);
 	mSquadItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventSquadMouseItemActivate);
@@ -432,7 +427,12 @@ void GUISupply::buyItem(int index,WeaponItemData* item)
 		if(item->getType()!=EQUIP_RETAINER)
 			army->equipEquipment(item->getType(),item->getID());
 		else
+		{
+			if(m_CurrSquadEquipItem!=NULL)
+				army->fireRetainer();
+
 			army->hireRetainer(item->getID());
+		}
 
 		showArmy(m_CurrSquadIndex);
 		showItem(item->getType());
