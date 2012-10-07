@@ -117,6 +117,8 @@
         <Equiped type="String" value="已装备" />
         <ItemPrice type="String" value="#FFFF00价格:%1%(%2%X%3%人)" />
         <TEXT_ArmyInfoName type="String" value="军团状况"/>
+        <TEXT_Equipment type="String" value="装备"/>
+        <TEXT_Skill type="String" value="技能"/>
         <ArmyInfo_Money type="String" value="军团资金:%1%"/>
 		
 		<GameTurn type="String" value="回合数:"/>
