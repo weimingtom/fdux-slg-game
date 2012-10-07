@@ -221,41 +221,63 @@
             </Widget>
         </Widget>
         <Widget type="Window" skin="SLGMiniWindowSkin" position="240 310 730 375" name="ItemWindow">
-            <Widget type="TabControl" skin="TabControl" position="15 15 705 345" name="WeaponTabControl">
-                <Widget type="TabItem" skin="" position="2 24 699 317" name="TEXT_SquadPWeapon">
+            <Widget type="TabControl" skin="TabControl" position="15 50 705 310" name="WeaponTabControl">
+                <Widget type="TabItem" skin="" position="2 24 699 282" name="TEXT_SquadPWeapon">
                     <Property key="Caption" value="PWeapon"/>
                     <Property key="FontHeight" value="16"/>
-                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 315" align="Stretch" name="PWeaponItemBox"/>
+                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 280" align="Stretch" name="PWeaponItemBox"/>
                 </Widget>
-                <Widget type="TabItem" skin="" position="2 24 699 317" name="TEXT_SquadSWeapon">
+                <Widget type="TabItem" skin="" position="2 24 699 282" name="TEXT_SquadSWeapon">
                     <Property key="Caption" value="SWeapon"/>
                     <Widget type="ItemBox" skin="ItemBox" position="0 5 700 315" name="SWeaponItemBox"/>
                 </Widget>
-                <Widget type="TabItem" skin="" position="2 24 699 317" name="TEXT_SquadShield">
+                <Widget type="TabItem" skin="" position="2 24 699 282" name="TEXT_SquadShield">
                     <Property key="Caption" value="Shield"/>
                     <Widget type="ItemBox" skin="ItemBox" position="0 5 700 315" name="ShieldItemBox"/>
                 </Widget>
-                <Widget type="TabItem" skin="" position="2 24 699 317" name="TEXT_SquadHorse">
+                <Widget type="TabItem" skin="" position="2 24 699 282" name="TEXT_SquadHorse">
                     <Property key="Caption" value="Horse"/>
                     <Widget type="ItemBox" skin="ItemBox" position="0 5 700 315" name="HorseItemBox"/>
                 </Widget>
-                <Widget type="TabItem" skin="" position="2 24 699 317" name="TEXT_SquadArmor">
+                <Widget type="TabItem" skin="" position="2 24 699 282" name="TEXT_SquadArmor">
                     <Property key="Caption" value="Armor"/>
                     <Widget type="ItemBox" skin="ItemBox" position="0 5 700 315" name="ArmorItemBox"/>
                 </Widget>
-                <Widget type="TabItem" skin="" position="2 24 699 317" name="TEXT_SquadSoilder">
+                <Widget type="TabItem" skin="" position="2 24 699 282" name="TEXT_SquadSoilder">
                     <Property key="Caption" value="Soilder"/>
                     <Widget type="ItemBox" skin="ItemBox" position="0 5 700 315" name="SoilderItemBox"/>
                 </Widget>
-                <Widget type="TabItem" skin="" position="2 24 699 317" name="TEXT_Retainer">
+                <Widget type="TabItem" skin="" position="2 24 699 282" name="TEXT_Retainer">
                     <Property key="Caption" value="Retainer"/>
                     <Property key="FontHeight" value="20"/>
                     <Widget type="ItemBox" skin="ItemBox" position="0 5 700 315" name="RetainerItemBox"/>
                 </Widget>
-                <Widget type="TabItem" skin="" position="2 24 699 317" name="TEXT_Skill">
-                    <Property key="Caption" value="Skill"/>
+            </Widget>
+            <Widget type="Button" skin="SLGButton2" position="75 5 255 45" name="TEXT_Equipment">
+                <Property key="FontHeight" value="20"/>
+                <Property key="Caption" value="Equipment"/>
+                <Property key="TextColour" value="1 1 1"/>
+            </Widget>
+            <Widget type="Button" skin="SLGButton2" position="405 5 255 45" name="TEXT_Skill">
+                <Property key="FontHeight" value="20"/>
+                <Property key="Caption" value="Skill"/>
+                <Property key="TextColour" value="1 1 1"/>
+            </Widget>
+            <Widget type="TabControl" skin="TabControl" position="15 50 705 310" name="SkillTabControl">
+                <Widget type="TabItem" skin="" position="2 24 699 282">
+                    <Property key="Caption" value="Active"/>
                     <Property key="FontHeight" value="20"/>
-                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 315" name="SkillItemBox"/>
+                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 315" name="ActiveItemBox"/>
+                </Widget>
+                <Widget type="TabItem" skin="" position="2 24 699 282">
+                    <Property key="Caption" value="Passive"/>
+                    <Property key="FontHeight" value="20"/>
+                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 315" name="PassiveItemBox"/>
+                </Widget>
+                <Widget type="TabItem" skin="" position="2 24 699 282">
+                    <Property key="Caption" value="Equip"/>
+                    <Property key="FontHeight" value="20"/>
+                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 315" name="EquipItemBox"/>
                 </Widget>
             </Widget>
         </Widget>
