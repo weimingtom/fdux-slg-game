@@ -4,7 +4,9 @@
 #include "GUIStage.h"
 #include "LuaSystem.h"
 #include "AudioSystem.h"
+#ifndef SCRIPT_EDITOR
 #include "StateManager.h"
+#endif
 
 #define DefaultShowTextTime 0.1//默认打字效果速度
 #define DefaultCursorTime 0.01//默认光标闪烁频率
@@ -472,7 +474,9 @@ extern "C"
 
 	static int StoryOver(lua_State* L)
 	{
+#ifndef SCRIPT_EDITOR
 		StateManager::getSingletonPtr()->removeAffixationState();
+#endif
 		
 		return 1;
 	}

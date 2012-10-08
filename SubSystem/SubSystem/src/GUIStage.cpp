@@ -22,9 +22,12 @@
 
 #define SAVE_PATH "..\\save"
 
+#ifndef SCRIPT_EDITOR
 #include "timer.hpp"
-
 #include "StateManager.h"
+#else
+#include "..\..\SLGGame\SLGGame\Src\timer.hpp"
+#endif
 
 GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),mCheckMouseDown(false),mIsMouseDown(false),mTextX(0),mTextY(0),mIsFastForward(false),SLWindow(NULL),mIsAuto(false),mLeftOffect(0),mIsCanShowTextBox(false),mIsCanShowButton(true),mIsShowSupplyButton(true)
 {
@@ -1070,9 +1073,11 @@ void GUIStage::onSystem( MyGUI::Widget* _sender )
 
 void GUIStage::onSupply( MyGUI::Widget* _sender )
 {
+#ifndef SCRIPT_EDITOR
 	mInputGroup->setEnabled(false);
 	mInputGroup->setVisible(false);
 	StateManager::getSingletonPtr()->addAffixationState("AVG",StateManager::Supply);
+#endif
 }
 
 void GUIStage::load()
