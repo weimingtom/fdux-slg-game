@@ -1,6 +1,8 @@
 #include "GUIScene.h"
 
+#ifndef SCRIPT_EDITOR
 #include "StringTable.h"
+#endif
 
 GUIScene::GUIScene(std::string layoutFile,int Width,int Height):mContainerWidget(NULL),mLayoutName(layoutFile),mWidth(Width),mHeigth(Height)
 {
@@ -113,6 +115,7 @@ void GUIScene::setSceneLanguage()
 
 void GUIScene::recursionSetSceneLanguage(MyGUI::Widget* widget)
 {
+#ifndef SCRIPT_EDITOR
 	for (int i=0;i<widget->getChildCount();i++)
 	{
 		MyGUI::Widget* child=widget->getChildAt(i);
@@ -137,4 +140,5 @@ void GUIScene::recursionSetSceneLanguage(MyGUI::Widget* widget)
 			recursionSetSceneLanguage(child);
 		}
 	}
+#endif
 }

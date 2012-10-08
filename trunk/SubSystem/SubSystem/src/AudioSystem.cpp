@@ -1,5 +1,7 @@
 #include "AudioSystem.h"
+#ifndef SCRIPT_EDITOR
 #include "DataLibrary.h"
+#endif
 
 #define BGM_PATH "..\\media\\bgm\\"
 #define SE_PATH "..\\media\\sound\\"
