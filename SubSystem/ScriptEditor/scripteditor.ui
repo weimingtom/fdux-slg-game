@@ -50,15 +50,81 @@
           </item>
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_4">
+            <property name="spacing">
+             <number>6</number>
+            </property>
             <item>
-             <widget class="QPushButton" name="ClearButton">
-              <property name="text">
-               <string>清空左边</string>
-              </property>
-             </widget>
+             <layout class="QVBoxLayout" name="verticalLayout_5">
+              <item>
+               <widget class="QPushButton" name="ClearButton">
+                <property name="text">
+                 <string>清空左边</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="ClearRightButton">
+                <property name="text">
+                 <string>清空右边</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="ClearSreenButton">
+                <property name="text">
+                 <string>清空舞台文本</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
             <item>
              <widget class="QPushButton" name="ParseButton">
+              <property name="palette">
+               <palette>
+                <active>
+                 <colorrole role="ButtonText">
+                  <brush brushstyle="SolidPattern">
+                   <color alpha="255">
+                    <red>255</red>
+                    <green>0</green>
+                    <blue>0</blue>
+                   </color>
+                  </brush>
+                 </colorrole>
+                </active>
+                <inactive>
+                 <colorrole role="ButtonText">
+                  <brush brushstyle="SolidPattern">
+                   <color alpha="255">
+                    <red>255</red>
+                    <green>0</green>
+                    <blue>0</blue>
+                   </color>
+                  </brush>
+                 </colorrole>
+                </inactive>
+                <disabled>
+                 <colorrole role="ButtonText">
+                  <brush brushstyle="SolidPattern">
+                   <color alpha="255">
+                    <red>120</red>
+                    <green>120</green>
+                    <blue>120</blue>
+                   </color>
+                  </brush>
+                 </colorrole>
+                </disabled>
+               </palette>
+              </property>
+              <property name="font">
+               <font>
+                <family>宋体</family>
+                <pointsize>9</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="text">
                <string>转换</string>
               </property>
@@ -474,8 +540,32 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionSaveScript"/>
+   <addaction name="actionSaveLua"/>
+   <addaction name="actionLoadScript"/>
+   <addaction name="actionLoadLua"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionSaveScript">
+   <property name="text">
+    <string>保存脚本</string>
+   </property>
+  </action>
+  <action name="actionSaveLua">
+   <property name="text">
+    <string>保存Lua</string>
+   </property>
+  </action>
+  <action name="actionLoadScript">
+   <property name="text">
+    <string>读取脚本</string>
+   </property>
+  </action>
+  <action name="actionLoadLua">
+   <property name="text">
+    <string>读取Lua</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
