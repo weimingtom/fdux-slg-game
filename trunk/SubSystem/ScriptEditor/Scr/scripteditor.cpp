@@ -6,6 +6,8 @@
 #include <QColorDialog>
 #include <QMessageBox>
 #include <QSettings>
+#include <QFileDialog>
+#include <QTextStream>
 
 ScriptEditor::ScriptEditor(QWidget *parent, Qt::WFlags flags)
 	: QMainWindow(parent, flags)
@@ -18,9 +20,17 @@ ScriptEditor::ScriptEditor(QWidget *parent, Qt::WFlags flags)
 	this->connect(ui.ShowTextButton,SIGNAL(clicked(bool)),this,SLOT(ShowTextButton()));
 	this->connect(ui.ShowRoleNameButton,SIGNAL(clicked(bool)),this,SLOT(ShowRoleNameButton()));
 	this->connect(ui.ClearTextButton,SIGNAL(clicked(bool)),this,SLOT(ClearTextButton()));
+	this->connect(ui.ClearRightButton,SIGNAL(clicked(bool)),this,SLOT(ClearLuaButton()));
+	this->connect(ui.ClearSreenButton,SIGNAL(clicked(bool)),this,SLOT(ClearSreenButton()));
+	this->connect(ui.ClearTextButton,SIGNAL(clicked(bool)),this,SLOT(ClearTextButton()));
 	this->connect(ui.RunButton,SIGNAL(clicked(bool)),this,SLOT(RunLuaScript()));
 	this->connect(ui.ParseButton,SIGNAL(clicked(bool)),this,SLOT(ParseScript()));
 	this->connect(ui.ClearButton,SIGNAL(clicked(bool)),this,SLOT(ClearScript()));
+
+	this->connect(ui.actionSaveScript,SIGNAL(triggered(bool)),this,SLOT(actionSaveScript()));
+	this->connect(ui.actionSaveLua,SIGNAL(triggered(bool)),this,SLOT(actionSaveLua()));
+	this->connect(ui.actionLoadScript,SIGNAL(triggered(bool)),this,SLOT(actionLoadScript()));
+	this->connect(ui.actionLoadLua,SIGNAL(triggered(bool)),this,SLOT(actionLoadLua()));
 
 	QSettings settings("config.ini", QSettings::IniFormat);
 	ui.DialogXEdit->setText(settings.value("DialogLeft").toString());
@@ -211,4 +221,91 @@ void ScriptEditor::ParseScript()
 void ScriptEditor::ClearScript()
 {
 	ui.scrEdit->setText("");
+}
+
+void ScriptEditor::ClearLuaButton()
+{
+	ui.luaEdit->setText("");
+}
+
+void ScriptEditor::ClearSreenButton()
+{
+	static_cast<GUIStage*>(OgreCore::getSingletonPtr()->mGUISystem->getScene(StageScene))->clearText();
+}
+
+void ScriptEditor::actionSaveScript()
+{
+	QString text =QFileDialog::getSaveFileName(this, tr("保存脚本文件.."),
+		"",
+		tr("Script (*.txt)"));
+	if (text.isEmpty())
+	{
+		return;
+	}
+
+	QFile file(text);
+	if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+		return;
+
+	QTextStream s(&file);
+	s<<ui.scrEdit->toPlainText();
+
+	file.close();
+
+}
+
+void ScriptEditor::actionSaveLua()
+{
+	QString text =QFileDialog::getSaveFileName(this, tr("保存Lua文件.."),
+		"",
+		tr("Lua (*.lua)"));
+	if (text.isEmpty())
+	{
+		return;
+	}
+
+	QFile file(text);
+	if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+		return;
+
+	QTextStream s(&file);
+	s<<ui.luaEdit->toPlainText();
+
+	file.close();
+}
+
+void ScriptEditor::actionLoadScript()
+{
+	QString dialogText =QFileDialog::getOpenFileName(this, tr("打开脚本文件.."),
+		"",
+		tr("Script (*.txt)"));
+
+	if (dialogText.isEmpty()) return;
+
+	QFile file(dialogText);
+	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+		return;
+
+	QTextStream s(&file);
+	ui.scrEdit->setText(s.readAll());
+
+	file.close();
+}
+
+void ScriptEditor::actionLoadLua()
+{
+	QString dialogText =QFileDialog::getOpenFileName(this, tr("打开Lua文件.."),
+		"",
+		tr("Lua (*.lua)"));
+
+	if (dialogText.isEmpty()) return;
+
+	QFile file(dialogText);
+	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+		return;
+
+	QTextStream s(&file);
+	ui.luaEdit->setText(s.readAll());
+
+	file.close();
 }

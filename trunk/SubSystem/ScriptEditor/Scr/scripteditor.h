@@ -34,9 +34,15 @@ public slots:
 	void ShowRoleNameButton();
 	void SetRoleNameColorButton();
 	void ClearTextButton();
+	void ClearLuaButton();
+	void ClearSreenButton();
 	void RunLuaScript();
 	void ParseScript();
 	void ClearScript();
+	void actionSaveScript();
+	void actionSaveLua();
+	void actionLoadScript();
+	void actionLoadLua();
 private:
 	Ui::ScriptEditorClass ui;
 	GUIDialogAttribute mDialogAttribute;
