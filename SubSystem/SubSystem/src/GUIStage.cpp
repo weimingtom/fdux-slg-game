@@ -522,6 +522,14 @@ void GUIStage::showImage( std::string imageName,GUIImageLayer layer,float time,i
 		{
 			mUniversalLayer->setImageTexture(imageName);
 
+			if(layer==LeftLayer)
+				mIsMirrorMode=true;
+			else
+				mIsMirrorMode=false;
+
+			if(mIsMirrorMode)
+				mUniversalLayer->getSubWidgetMain()->_setUVSet(MyGUI::FloatRect(1,0,0,1));;
+
 			mTimerWork=UniversalWork;
 			mTextureName=imageName;
 
@@ -535,6 +543,8 @@ void GUIStage::showImage( std::string imageName,GUIImageLayer layer,float time,i
 		else
 		{
 			mScrLayer->setImageTexture(imageName);
+			if(layer==LeftLayer)
+				mScrLayer->getSubWidgetMain()->_setUVSet(MyGUI::FloatRect(1,0,0,1));
 		}
 
 	}
@@ -874,10 +884,16 @@ void GUIStage::onOtherSceneNotify(std::string arg)
 			{
 				mLeftLayer->setImageTexture("");
 				mLeftLayer->setAlpha(1.0);
+				mLeftLayerUniversal->setImageTexture("");
+				mLeftLayerUniversal->setAlpha(1.0);
 				mMidLayer->setImageTexture("");
 				mMidLayer->setAlpha(1.0);
+				mMidLayerUniversal->setImageTexture("");
+				mMidLayerUniversal->setAlpha(1.0);
 				mRightLayer->setImageTexture("");
 				mRightLayer->setAlpha(1.0);
+				mRightUniversal->setImageTexture("");
+				mRightUniversal->setAlpha(1.0);
 				break;
 			}
 		case FadeInOutWork:
@@ -897,6 +913,8 @@ void GUIStage::onOtherSceneNotify(std::string arg)
 			{
 				mScrLayer->setImageTexture(mTextureName);
 				mScrLayer->setAlpha(1);
+				if(mIsMirrorMode)
+					mScrLayer->getSubWidgetMain()->_setUVSet(MyGUI::FloatRect(1,0,0,1));
 				mUniversalLayer->setAlpha(0);
 				if (mEffectLayerGroup->getVisible())
 				{

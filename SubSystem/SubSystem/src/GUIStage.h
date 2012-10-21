@@ -192,6 +192,8 @@ private:
 	
 	ShockParam mShockParam;
 
+	bool mIsMirrorMode;
+
 };
 
 class GUIStageFactory:
