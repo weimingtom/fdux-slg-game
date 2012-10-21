@@ -36,6 +36,7 @@ public slots:
 	void ClearTextButton();
 	void ClearLuaButton();
 	void ClearSreenButton();
+	void ClearRoleButton();
 	void RunLuaScript();
 	void ParseScript();
 	void ClearScript();

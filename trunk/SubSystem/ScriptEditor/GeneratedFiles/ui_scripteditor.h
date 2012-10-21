@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'scripteditor.ui'
 **
-** Created: Tue Oct 9 00:21:35 2012
+** Created: Mon Oct 15 00:18:48 2012
 **      by: Qt User Interface Compiler version 4.6.3
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -38,6 +38,10 @@ QT_BEGIN_NAMESPACE
 class Ui_ScriptEditorClass
 {
 public:
+    QAction *actionSaveScript;
+    QAction *actionSaveLua;
+    QAction *actionLoadScript;
+    QAction *actionLoadLua;
     QWidget *centralWidget;
     QGridLayout *gridLayout_3;
     QTabWidget *tabWidget;
@@ -49,7 +53,11 @@ public:
     QHBoxLayout *horizontalLayout_2;
     QTextEdit *scrEdit;
     QVBoxLayout *verticalLayout_4;
+    QVBoxLayout *verticalLayout_5;
     QPushButton *ClearButton;
+    QPushButton *ClearRightButton;
+    QPushButton *ClearSreenButton;
+    QPushButton *ClearRoleButton;
     QPushButton *ParseButton;
     QVBoxLayout *verticalLayout_3;
     QLabel *label_23;
@@ -132,6 +140,14 @@ public:
         if (ScriptEditorClass->objectName().isEmpty())
             ScriptEditorClass->setObjectName(QString::fromUtf8("ScriptEditorClass"));
         ScriptEditorClass->resize(930, 652);
+        actionSaveScript = new QAction(ScriptEditorClass);
+        actionSaveScript->setObjectName(QString::fromUtf8("actionSaveScript"));
+        actionSaveLua = new QAction(ScriptEditorClass);
+        actionSaveLua->setObjectName(QString::fromUtf8("actionSaveLua"));
+        actionLoadScript = new QAction(ScriptEditorClass);
+        actionLoadScript->setObjectName(QString::fromUtf8("actionLoadScript"));
+        actionLoadLua = new QAction(ScriptEditorClass);
+        actionLoadLua->setObjectName(QString::fromUtf8("actionLoadLua"));
         centralWidget = new QWidget(ScriptEditorClass);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         gridLayout_3 = new QGridLayout(centralWidget);
@@ -173,13 +189,49 @@ public:
         verticalLayout_4 = new QVBoxLayout();
         verticalLayout_4->setSpacing(6);
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
+        verticalLayout_5 = new QVBoxLayout();
+        verticalLayout_5->setSpacing(6);
+        verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
         ClearButton = new QPushButton(tab_2);
         ClearButton->setObjectName(QString::fromUtf8("ClearButton"));
 
-        verticalLayout_4->addWidget(ClearButton);
+        verticalLayout_5->addWidget(ClearButton);
+
+        ClearRightButton = new QPushButton(tab_2);
+        ClearRightButton->setObjectName(QString::fromUtf8("ClearRightButton"));
+
+        verticalLayout_5->addWidget(ClearRightButton);
+
+        ClearSreenButton = new QPushButton(tab_2);
+        ClearSreenButton->setObjectName(QString::fromUtf8("ClearSreenButton"));
+
+        verticalLayout_5->addWidget(ClearSreenButton);
+
+        ClearRoleButton = new QPushButton(tab_2);
+        ClearRoleButton->setObjectName(QString::fromUtf8("ClearRoleButton"));
+
+        verticalLayout_5->addWidget(ClearRoleButton);
+
+
+        verticalLayout_4->addLayout(verticalLayout_5);
 
         ParseButton = new QPushButton(tab_2);
         ParseButton->setObjectName(QString::fromUtf8("ParseButton"));
+        QPalette palette;
+        QBrush brush(QColor(255, 0, 0, 255));
+        brush.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::ButtonText, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::ButtonText, brush);
+        QBrush brush1(QColor(120, 120, 120, 255));
+        brush1.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Disabled, QPalette::ButtonText, brush1);
+        ParseButton->setPalette(palette);
+        QFont font;
+        font.setFamily(QString::fromUtf8("\345\256\213\344\275\223"));
+        font.setPointSize(9);
+        font.setBold(true);
+        font.setWeight(75);
+        ParseButton->setFont(font);
 
         verticalLayout_4->addWidget(ParseButton);
 
@@ -564,6 +616,11 @@ public:
         statusBar->setObjectName(QString::fromUtf8("statusBar"));
         ScriptEditorClass->setStatusBar(statusBar);
 
+        mainToolBar->addAction(actionSaveScript);
+        mainToolBar->addAction(actionSaveLua);
+        mainToolBar->addAction(actionLoadScript);
+        mainToolBar->addAction(actionLoadLua);
+
         retranslateUi(ScriptEditorClass);
 
         tabWidget->setCurrentIndex(0);
@@ -575,9 +632,16 @@ public:
     void retranslateUi(QMainWindow *ScriptEditorClass)
     {
         ScriptEditorClass->setWindowTitle(QApplication::translate("ScriptEditorClass", "ScriptEditor", 0, QApplication::UnicodeUTF8));
+        actionSaveScript->setText(QApplication::translate("ScriptEditorClass", "\344\277\235\345\255\230\350\204\232\346\234\254", 0, QApplication::UnicodeUTF8));
+        actionSaveLua->setText(QApplication::translate("ScriptEditorClass", "\344\277\235\345\255\230Lua", 0, QApplication::UnicodeUTF8));
+        actionLoadScript->setText(QApplication::translate("ScriptEditorClass", "\350\257\273\345\217\226\350\204\232\346\234\254", 0, QApplication::UnicodeUTF8));
+        actionLoadLua->setText(QApplication::translate("ScriptEditorClass", "\350\257\273\345\217\226Lua", 0, QApplication::UnicodeUTF8));
         label_19->setText(QApplication::translate("ScriptEditorClass", "\350\204\232\346\234\254\347\252\227\345\217\243", 0, QApplication::UnicodeUTF8));
         label_21->setText(QApplication::translate("ScriptEditorClass", "LUA\344\273\243\347\240\201\347\252\227\345\217\243", 0, QApplication::UnicodeUTF8));
         ClearButton->setText(QApplication::translate("ScriptEditorClass", "\346\270\205\347\251\272\345\267\246\350\276\271", 0, QApplication::UnicodeUTF8));
+        ClearRightButton->setText(QApplication::translate("ScriptEditorClass", "\346\270\205\347\251\272\345\217\263\350\276\271", 0, QApplication::UnicodeUTF8));
+        ClearSreenButton->setText(QApplication::translate("ScriptEditorClass", "\346\270\205\347\251\272\350\210\236\345\217\260\346\226\207\346\234\254", 0, QApplication::UnicodeUTF8));
+        ClearRoleButton->setText(QApplication::translate("ScriptEditorClass", "\346\270\205\347\251\272\344\272\272\347\211\251", 0, QApplication::UnicodeUTF8));
         ParseButton->setText(QApplication::translate("ScriptEditorClass", "\350\275\254\346\215\242", 0, QApplication::UnicodeUTF8));
         label_23->setText(QApplication::translate("ScriptEditorClass", "\345\210\235\345\247\213\345\214\226\346\256\265", 0, QApplication::UnicodeUTF8));
         label_24->setText(QApplication::translate("ScriptEditorClass", "LUA\346\256\265", 0, QApplication::UnicodeUTF8));

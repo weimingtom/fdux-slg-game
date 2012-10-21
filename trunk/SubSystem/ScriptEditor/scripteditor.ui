@@ -76,6 +76,13 @@
                 </property>
                </widget>
               </item>
+              <item>
+               <widget class="QPushButton" name="ClearRoleButton">
+                <property name="text">
+                 <string>清空人物</string>
+                </property>
+               </widget>
+              </item>
              </layout>
             </item>
             <item>

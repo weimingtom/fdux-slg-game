@@ -22,6 +22,7 @@ ScriptEditor::ScriptEditor(QWidget *parent, Qt::WFlags flags)
 	this->connect(ui.ClearTextButton,SIGNAL(clicked(bool)),this,SLOT(ClearTextButton()));
 	this->connect(ui.ClearRightButton,SIGNAL(clicked(bool)),this,SLOT(ClearLuaButton()));
 	this->connect(ui.ClearSreenButton,SIGNAL(clicked(bool)),this,SLOT(ClearSreenButton()));
+	this->connect(ui.ClearRoleButton,SIGNAL(clicked(bool)),this,SLOT(ClearRoleButton()));
 	this->connect(ui.ClearTextButton,SIGNAL(clicked(bool)),this,SLOT(ClearTextButton()));
 	this->connect(ui.RunButton,SIGNAL(clicked(bool)),this,SLOT(RunLuaScript()));
 	this->connect(ui.ParseButton,SIGNAL(clicked(bool)),this,SLOT(ParseScript()));
@@ -231,6 +232,12 @@ void ScriptEditor::ClearLuaButton()
 void ScriptEditor::ClearSreenButton()
 {
 	static_cast<GUIStage*>(OgreCore::getSingletonPtr()->mGUISystem->getScene(StageScene))->clearText();
+	static_cast<GUIStage*>(OgreCore::getSingletonPtr()->mGUISystem->getScene(StageScene))->showImage("",BackGroundLayer,0,0,0);
+}
+
+void ScriptEditor::ClearRoleButton()
+{
+	static_cast<GUIStage*>(OgreCore::getSingletonPtr()->mGUISystem->getScene(StageScene))->showImage("",AllLayer,0,0,0);
 }
 
 void ScriptEditor::actionSaveScript()

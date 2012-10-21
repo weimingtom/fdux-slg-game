@@ -194,10 +194,11 @@ extern "C"
 
 	static int ShowImage (lua_State* L)//œ‘ æÕº∆¨
 	{
+
 		const char* imageName = luaL_checkstring(L, 1);
 		int imageLayer =luaL_checkint(L, 2);
 		float time =(float)luaL_checkint(L, 3);
-		
+
 		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
 
 		unsigned int left=0;
@@ -226,7 +227,7 @@ extern "C"
 		}
 
 		stage->showImage(imageName,(GUIImageLayer)imageLayer,time,left,top);
-		
+
 		LuaSystem::getSingletonPtr()->LuaBreakupFun=ShowImageBreakup;
 
 		return 1;
