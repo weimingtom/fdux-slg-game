@@ -18,10 +18,15 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	assignWidget(mSaveButton,"T_SupplySave");
 	assignWidget(mLoadButton,"T_SupplyLoad");
 	assignWidget(mExitButton,"T_SupplyExit");
+	assignWidget(mEquipmentButton,"TEXT_Equipment");
+	assignWidget(mSkillButton,"TEXT_Skill");
+
 
 	mSaveButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUISupply::onSave);
 	mLoadButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUISupply::onLoad);
 	mExitButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUISupply::onExit);
+	mEquipmentButton->eventMouseButtonClick+=MyGUI::newDelegate(this, &GUISupply::onExit);
+	mSkillButton->eventMouseButtonClick+=MyGUI::newDelegate(this, &GUISupply::onExit);
 
 	MyGUI::ItemBox* baseItemBox;
 	assignWidget(baseItemBox,"PWeaponItemBox");
@@ -545,6 +550,16 @@ void GUISupply::onExit(MyGUI::Widget* _sender)
 	}
 	
 	hideScene();
+}
+
+void GUISupply::onEquipment(MyGUI::Widget* _sender)
+{
+
+}
+
+void GUISupply::onSkill(MyGUI::Widget* _sender)
+{
+
 }
 
 void GUISupply::showScene( std::string arg )
