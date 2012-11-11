@@ -58,10 +58,14 @@ private:
 	void onLoad(MyGUI::Widget* _sender);
 	void onExit(MyGUI::Widget* _sender);
 	void onOtherSceneNotify(std::string arg);
+	void onEquipment(MyGUI::Widget* _sender);
+	void onSkill(MyGUI::Widget* _sender);
 
 	MyGUI::Button* mSaveButton;
 	MyGUI::Button* mLoadButton;
 	MyGUI::Button* mExitButton;
+	MyGUI::Button* mEquipmentButton;
+	MyGUI::Button* mSkillButton;
 
 	MyGUI::ImageBox* mSupplyBG;
 
