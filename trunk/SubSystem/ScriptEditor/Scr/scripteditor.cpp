@@ -221,7 +221,9 @@ void ScriptEditor::ParseScript()
 
 void ScriptEditor::ClearScript()
 {
-	ui.scrEdit->setText("");
+	int r=QMessageBox::warning(this,"提示","确定要清空左边?",QMessageBox::StandardButton::Yes,QMessageBox::StandardButton::No);
+	if(r==QMessageBox::StandardButton::Yes)
+		ui.scrEdit->setText("");
 }
 
 void ScriptEditor::ClearLuaButton()

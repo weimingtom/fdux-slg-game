@@ -12,9 +12,12 @@
 
 using namespace audiere;
 
-AudioSystem::AudioSystem(void):mStreamName("none"),mStream(NULL),mSample(NULL)//:mVol(-1),mStream(0),mSample(0),mStreamName("none"),mNextMusic("none"),mNextTime(0),mNextLoop(true)
+AudioSystem::AudioSystem(void):mStreamName("none"),mStream(NULL),mSample(NULL)
 {
-
+	mSampleVol=1.0f;
+	mStreamVol=1.0f;
+	mIsFadeIn=false;
+	mIsFadeOut=false;
 }
 
 AudioSystem::~AudioSystem(void)
@@ -62,7 +65,18 @@ bool AudioSystem::playStream( std::string name,bool isLoop,int time)
 
 	mStream=OpenSound(mDevice, path.c_str(), true);
 	mStream->setRepeat(isLoop);
-	mStream->setVolume(mStreamVol);
+	if(time==0)
+	{
+		mStream->setVolume(mStreamVol);
+	}
+	else
+	{
+		mStream->setVolume(0);
+		mTimer.reset();
+		mIsFadeIn=true;
+		mTickTime=time/(mStreamVol/0.05);
+		mCurStreamVol=0;
+	}
 	mStream->play();
 
 	return true;
@@ -72,8 +86,20 @@ bool AudioSystem::stopStream(int time)
 {
 	if (mStream!=NULL)
 	{
-		mStream->stop();
+		if(time==0)
+		{
+			mStream->stop();
+		}
+		else
+		{
+			mTimer.reset();
+			mIsFadeOut=true;
+			mTickTime=time/(mStreamVol/0.05);
+			mCurStreamVol=mStreamVol;
+		}
 	}
+
+
 	return true;
 }
 
@@ -92,7 +118,36 @@ bool AudioSystem::playSample( std::string name,bool isLoop)
 
 void AudioSystem::FrameUpdate()
 {
+	if(mIsFadeIn || mIsFadeOut)
+	{
+		if(mIsFadeIn)
+		{
+			if(mTimer.getMilliseconds()>=mTickTime)
+			{
+				mCurStreamVol+=0.05;
+				mTimer.reset();
+				if(mCurStreamVol>=mStreamVol)
+				{
+					mIsFadeIn=false;
+				}
+			}
+		}
+		else if(mIsFadeOut)
+		{
+			if(mTimer.getMilliseconds()>=mTickTime)
+			{
+				mCurStreamVol-=0.05;
+				mTimer.reset();
+				if(mCurStreamVol<=0)
+				{
+					mStream->stop();
+					mIsFadeOut=false;
+				}
+			}
+		}
 
+		mStream->setVolume(mCurStreamVol);
+	}
 }
 
 std::string AudioSystem::getError(bool isStreamError)
