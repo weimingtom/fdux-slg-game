@@ -39,13 +39,9 @@ private:
 	audiere::OutputStreamPtr mSample;
 	float mStreamVol;
 	float mSampleVol;
-	//MyGUI::Timer mTimer;
-	//HSTREAM mStream;//音频流
-	//HSAMPLE mSample;//音效
-	//int mVol;
-	//bool mInOut;//渐入还是渐出,true为in,false为out
-	//int mTickTime;//定时器单次时间
-	//std::string mNextMusic;
-	//int mNextTime;
-	//bool mNextLoop;
+	MyGUI::Timer mTimer;
+	bool mIsFadeIn;
+	bool mIsFadeOut;
+	int mTickTime;//定时器单次时间
+	float mCurStreamVol;
 };
