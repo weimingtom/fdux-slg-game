@@ -85,7 +85,11 @@ public:
 
 	  std::string getPrice()
 	  {
-		  if(!mIsEquip)
+		  if(mIsHaveSkill)
+		  {
+			return "#FFFF00"+StringTable::getSingleton().getString("NoSkillEquip");
+		  }
+		  else if(!mIsEquip)
 		  {
 			  int price=getPriceValue();
 			  int money=0;
@@ -124,6 +128,16 @@ public:
 		  mIsEquip=isEquip;
 	  }
 
+	  bool getIsHaveSkill()
+	  {
+		  return mIsHaveSkill;
+	  }
+
+	  void setIsHaveSkill(bool skill)
+	  {
+		  mIsHaveSkill=skill;
+	  }
+
 	  bool getEquip()
 	  {
 		  return mIsEquip;
@@ -160,6 +174,7 @@ private:
 	int mPeopleNum;
 	int mType;
 	bool mIsEquip;
+	bool mIsHaveSkill;
 	bool mIsCanBuy;
 	demo::ResourceItemInfoPtr mResourceInfo;
 	MyGUI::ResourceImageSetPtr mResourceImage;

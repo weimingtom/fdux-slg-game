@@ -7,13 +7,14 @@
 
 #include "WeaponItemBox.h"
 #include "SquadItemBox.h"
+#include "SkillItemBox.h"
 
 #include <vector>
 
-#define SQUAD_SKILL_NUM 3
+#define SQUAD_SKILL_NUM 5
 #define SQUAD_PASSIVE_SKILL_NUM 5
-#define SQUAD_USE_EQUIP_NUM 3
-#define SQUAD_EFFECT_NUM 4
+#define SQUAD_USE_EQUIP_NUM 5
+#define SQUAD_EFFECT_NUM 5
 
 class ItemBox;
 
@@ -43,12 +44,20 @@ private:
 	void showAttribute(int index,int itemType,std::string itemID);
 	void buyItem(int index,WeaponItemData* item);
 	void setItemInfo(WeaponItemData* item);
+	void setSkillInfo(SkillItemData* item);
 	void showArmyInfo();
+	void showSkill(int type);
+	void showSkillItem(int type,std::string skillListPath);
+	void trainSkill(SkillItemData* skill);
 
 	void eventMouseItemActivate(MyGUI::ItemBox* _sender, size_t _index);
 	void eventSelectItemAccept(MyGUI::ItemBox* _sender, size_t _index);
 	void eventSquadMouseItemActivate(MyGUI::ItemBox* _sender, size_t _index);
 	void eventTabChangeSelect(MyGUI::TabControl* _sender, size_t _index);
+
+	void eventMouseSkillActivate(MyGUI::ItemBox* _sender, size_t _index);
+	void eventSelectSkillAccept(MyGUI::ItemBox* _sender, size_t _index);
+	void eventSkillTabChangeSelect(MyGUI::TabControl* _sender, size_t _index);
 
 	std::string itemCompare(Squad* newSquad,Squad* oldSquad,AttrType type);
 
@@ -76,6 +85,10 @@ private:
 	WeaponItemBox* mArmorItemBox;
 	WeaponItemBox* mSoilderItemBox;
 	WeaponItemBox* mRetainerItemBox;
+
+	SkillItemBox* mActiveItemBox;
+	SkillItemBox* mPassiveItemBox;
+	SkillItemBox* mEquipItemBox;
 
 	SquadItemBox* mSquadItemBox;
 
@@ -123,7 +136,11 @@ private:
 
 	MyGUI::TextBox* mTextArmyInfo;
 
+	MyGUI::TabControl* mSkillTabControl;
 	MyGUI::TabControl* mWeaponTabControl;
+	MyGUI::TextBox* mSquadPassivePoint;
+	MyGUI::TextBox* mSquadActivePoint;
+	MyGUI::TextBox* mSquadEquipPoint;
 
 	std::vector<Squad*> mBattleSquad;
 
@@ -131,6 +148,7 @@ private:
 	int m_SquadPassiveSkillNum;
 	int m_SquadUseEquipNum;
 	int m_SquadEffectNum;
+	SkillType m_CurrSkillType;
 
 	int m_Money;
 	int m_CurrSquadIndex;
@@ -142,6 +160,8 @@ private:
 	GUISLWindow* SLWindow;
 
 	bool mIsHideScene;
+
+	std::map<int,std::string> mSquadTypeMap;
 };
 
 class GUISupplywFactory:

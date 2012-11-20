@@ -25,8 +25,8 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	mSaveButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUISupply::onSave);
 	mLoadButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUISupply::onLoad);
 	mExitButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUISupply::onExit);
-	mEquipmentButton->eventMouseButtonClick+=MyGUI::newDelegate(this, &GUISupply::onExit);
-	mSkillButton->eventMouseButtonClick+=MyGUI::newDelegate(this, &GUISupply::onExit);
+	mEquipmentButton->eventMouseButtonClick+=MyGUI::newDelegate(this, &GUISupply::onEquipment);
+	mSkillButton->eventMouseButtonClick+=MyGUI::newDelegate(this, &GUISupply::onSkill);
 
 	MyGUI::ItemBox* baseItemBox;
 	assignWidget(baseItemBox,"PWeaponItemBox");
@@ -67,6 +67,33 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	assignWidget(baseItemBox,"ArmyList");
 	mSquadItemBox=new SquadItemBox(baseItemBox);
 	mSquadItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventSquadMouseItemActivate);
+
+	assignWidget(baseItemBox,"ActiveItemBox");
+	mActiveItemBox=new SkillItemBox(baseItemBox);
+	mActiveItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventMouseSkillActivate);
+	mActiveItemBox->getItemBox()->eventSelectItemAccept+= MyGUI::newDelegate(this, &GUISupply::eventSelectSkillAccept);
+
+	assignWidget(baseItemBox,"PassiveItemBox");
+	mPassiveItemBox=new SkillItemBox(baseItemBox);
+	mPassiveItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventMouseSkillActivate);
+	mPassiveItemBox->getItemBox()->eventSelectItemAccept+= MyGUI::newDelegate(this, &GUISupply::eventSelectSkillAccept);
+
+	assignWidget(baseItemBox,"EquipItemBox");
+	mEquipItemBox=new SkillItemBox(baseItemBox);
+	mEquipItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventMouseSkillActivate);
+	mEquipItemBox->getItemBox()->eventSelectItemAccept+= MyGUI::newDelegate(this, &GUISupply::eventSelectSkillAccept);
+
+	assignWidget(mWeaponTabControl,"WeaponTabControl");
+	mWeaponTabControl->eventTabChangeSelect+=MyGUI::newDelegate(this, &GUISupply::eventTabChangeSelect);
+	assignWidget(mSkillTabControl,"SkillTabControl");
+	mSkillTabControl->eventTabChangeSelect+=MyGUI::newDelegate(this, &GUISupply::eventSkillTabChangeSelect);
+	
+	mWeaponTabControl->setVisible(true);
+	mSkillTabControl->setVisible(false);
+
+	assignWidget(mSquadPassivePoint,"SquadPassivePoint");
+	assignWidget(mSquadActivePoint,"SquadActivePoint");
+	assignWidget(mSquadEquipPoint,"SquadEquipPoint");
 
 	assignWidget(mArmyWindow,"ArmyWindow");
 	assignWidget(mControlWindow,"ControlWindow");
@@ -116,9 +143,6 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 
 	assignWidget(mTextArmyInfo,"ArmyInfo");
 
-	assignWidget(mWeaponTabControl,"WeaponTabControl");
-	mWeaponTabControl->eventTabChangeSelect+=MyGUI::newDelegate(this, &GUISupply::eventTabChangeSelect);
-
 	int i=0;
 	for(i=0;i<SQUAD_SKILL_NUM;i++)
 	{
@@ -148,6 +172,15 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	m_CurrSquadIndex=-1;;
 	m_Money=0;
 	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/Gold",m_Money);
+
+	mSquadTypeMap.clear();
+	std::vector<std::string> child=DataLibrary::getSingletonPtr()->getChildList("StaticData/SkillListData");
+	for(std::vector<std::string>::iterator it=child.begin();it!=child.end();it++)
+	{
+		int type;
+		DataLibrary::getSingletonPtr()->getData("StaticData/SkillListData/"+(*it),type);
+		mSquadTypeMap[type]=(*it);
+	}
 	showArmyInfo();
 }
 
@@ -272,7 +305,10 @@ void GUISupply::eventSquadMouseItemActivate(MyGUI::ItemBox* _sender, size_t _ind
 		m_CurrSquadIndex=_index;
 		showArmy(_index);
 		setItemInfo(NULL);
+		mWeaponTabControl->setIndexSelected(0);
+		mSkillTabControl->setIndexSelected(0);
 		showItem(EQUIP_PWEAPON);
+		showSkill(SKILLTYPE_ACTIVE);
 	}
 }
 
@@ -335,21 +371,31 @@ void GUISupply::showAttribute(int index,int itemType,std::string itemID)
 	else
 		skillmap=army->getSkillTable();
 
+	MyGUI::ResourceManager& manager = MyGUI::ResourceManager::getInstance();
 	for(std::map<std::string,enumtype>::iterator it=skillmap.begin();it!=skillmap.end();it++)
 	{
+		MyGUI::ResourceImageSetPtr image;
+		if(manager.getByName(it->first,false)!=nullptr)
+			image = manager.getByName(it->first,false)->castType<MyGUI::ResourceImageSet>();
+		else
+			image = manager.getByName("NULLICON",false)->castType<MyGUI::ResourceImageSet>();
+
 		if(it->second==SKILLTYPE_ACTIVE)
 		{
-			mSquadSkillIcon[m_SquadSkillNum]->setItemResource(it->first);
+			mSquadSkillIcon[m_SquadSkillNum]->setItemResourcePtr(image);
+			mSquadSkillIcon[m_SquadSkillNum]->setItemGroup("States");
 			m_SquadSkillNum++;
 		}
 		else if(it->second==SKILLTYPE_PASSIVE)
 		{
-			mSquadPassiveSkillIcon[m_SquadPassiveSkillNum]->setItemResource(it->first);
+			mSquadPassiveSkillIcon[m_SquadPassiveSkillNum]->setItemResourcePtr(image);
+			mSquadPassiveSkillIcon[m_SquadPassiveSkillNum]->setItemGroup("States");
 			m_SquadPassiveSkillNum++;
 		}
 		else if (it->second==SKILLTYPE_EQUIP)
 		{
-			mSquadUseEquipIcon[m_SquadUseEquipNum]->setItemResource(it->first);
+			mSquadUseEquipIcon[m_SquadUseEquipNum]->setItemResourcePtr(image);
+			mSquadUseEquipIcon[m_SquadUseEquipNum]->setItemGroup("States");
 			m_SquadUseEquipNum++;
 		}
 	}
@@ -414,6 +460,15 @@ void GUISupply::showItem(int type)
 	for(std::vector<std::string>::iterator it=child.begin();it!=child.end();it++)
 	{
 		WeaponItemData* data=new WeaponItemData(equipType,(*it),army->getUnitNum());
+		if()
+		{
+			data->setIsHaveSkill(true)
+		}
+		else
+		{
+			data->setIsHaveSkill(false);
+		}
+
 		if((*it)==equipID)
 		{
 			data->setEquip(true);
@@ -427,7 +482,7 @@ void GUISupply::buyItem(int index,WeaponItemData* item)
 {
 	Squad* army=mBattleSquad.at(index);
 
-	if(!item->getEquip() && item->getCanBuy())
+	if(!item->getEquip() && item->getCanBuy() && item->getIsHaveSkill())
 	{
 		if(item->getType()!=EQUIP_RETAINER)
 			army->equipEquipment(item->getType(),item->getID());
@@ -519,6 +574,26 @@ void GUISupply::setItemInfo(WeaponItemData* item)
 	}
 }
 
+void GUISupply::setSkillInfo(SkillItemData* item)
+{
+	if(item!=NULL)
+	{
+		Squad* army=mBattleSquad.at(m_CurrSquadIndex);
+		mTextItemName->setCaption(item->getName());
+		mTextItemPrice->setCaption(item->getPrice());
+		mItemIcon->setItemResourcePtr(item->getImage());
+		mItemIcon->setItemGroup("States");
+		mItemIcon->setVisible(true);
+	}
+	else
+	{
+		mTextItemInfo->setCaption("");
+		mTextItemPrice->setCaption("");
+		mTextItemName->setCaption("");
+		mItemIcon->setVisible(false);
+	}
+}
+
 void GUISupply::showArmyInfo()
 {
 	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/Gold",m_Money);
@@ -554,12 +629,14 @@ void GUISupply::onExit(MyGUI::Widget* _sender)
 
 void GUISupply::onEquipment(MyGUI::Widget* _sender)
 {
-
+	mWeaponTabControl->setVisible(true);
+	mSkillTabControl->setVisible(false);
 }
 
 void GUISupply::onSkill(MyGUI::Widget* _sender)
 {
-
+	mWeaponTabControl->setVisible(false);
+	mSkillTabControl->setVisible(true);
 }
 
 void GUISupply::showScene( std::string arg )
@@ -610,5 +687,163 @@ void GUISupply::onOtherSceneNotify( std::string arg )
 			GUISystem::getSingletonPtr()->getScene(StageScene)->onOtherSceneNotify("ReturnFromSupply");
 			StateManager::getSingletonPtr()->removeAffixationState();
 		}
+	}
+}
+
+
+
+void GUISupply::eventMouseSkillActivate(MyGUI::ItemBox* _sender, size_t _index)
+{
+	if(_index!=-1)
+	{
+		SkillItemData* item=*(_sender->getItemDataAt<SkillItemData*>(_index));
+		setSkillInfo(item);
+	}
+	else
+	{
+		setSkillInfo(NULL);
+	}
+}
+
+void GUISupply::eventSelectSkillAccept(MyGUI::ItemBox* _sender, size_t _index)
+{
+	if(_index!=-1)
+	{
+		SkillItemData* item=*(_sender->getItemDataAt<SkillItemData*>(_index));
+		trainSkill(item);
+	}
+}
+
+void GUISupply::eventSkillTabChangeSelect(MyGUI::TabControl* _sender, size_t _index)
+{
+	if(m_CurrSquadIndex==-1)
+		return ;
+
+	switch(_index)
+	{
+	case 0:
+		showSkill(1);
+		break;
+	case 1:
+		showSkill(0);
+		break;
+	case 2:
+		showSkill(2);
+		break;
+	}
+	
+}
+
+void GUISupply::trainSkill(SkillItemData* skill)
+{
+	if(m_CurrSquadIndex==-1)
+		return ;
+
+	Squad* army=mBattleSquad.at(m_CurrSquadIndex);
+
+	if(!skill->getCanTrain() || !skill->getHaveEnoughPoint() )
+		return;
+
+	switch(skill->getType())
+	{
+	case SKILLTYPE_PASSIVE:
+		army->setSkillPointPassive(army->getSkillPointPassive()-skill->getPoint());
+		break;
+	case SKILLTYPE_ACTIVE:
+		army->setSkillPointAction(army->getSkillPointAction()-skill->getPoint());
+		break;
+	case SKILLTYPE_EQUIP:
+		army->setSkillPointEquip(army->getSkillPointEquip()-skill->getPoint());
+		break;
+	}
+
+	if(skill->getType()==SKILLTYPE_PASSIVE)
+		army->learnSkill(skill->getType(),skill->getName());
+	else
+		army->learnSkill(skill->getType(),skill->getID());
+
+	showAttribute(m_CurrSquadIndex,0,"");
+	showSkill(skill->getType());
+}
+
+void GUISupply::showSkill(int type)
+{
+	Squad* army=mBattleSquad.at(m_CurrSquadIndex);
+
+	switch(type)
+	{
+	case SKILLTYPE_PASSIVE:
+		mSquadPassivePoint->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("SquadPassivePoint"))%(army->getSkillPointPassive())));
+		showSkillItem(SKILLTYPE_PASSIVE,"StaticData/SkillListData/"+mSquadTypeMap[army->getType()]);
+		break;
+	case SKILLTYPE_ACTIVE:
+		mSquadActivePoint->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("SquadActivePoint"))%(army->getSkillPointAction())));
+		showSkillItem(SKILLTYPE_ACTIVE,"StaticData/SkillListData/"+mSquadTypeMap[army->getType()]);
+		break;
+	case SKILLTYPE_EQUIP:
+		mSquadEquipPoint->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("SquadEquipPoint"))%(army->getSkillPointEquip())));
+		showSkillItem(SKILLTYPE_EQUIP,"StaticData/SkillListData/"+mSquadTypeMap[army->getType()]);
+		break;
+	}
+}
+
+void GUISupply::showSkillItem(int type,std::string skillListPath)
+{
+	std::string path;
+	SkillItemBox* itemBox;
+	std::string skillID;
+	Squad* army=mBattleSquad.at(m_CurrSquadIndex);
+	m_CurrSkillType=(SkillType)type;
+	int totalPoint;
+
+	switch(type)
+	{
+	case SKILLTYPE_PASSIVE:
+		path=skillListPath+"/Passive";
+		itemBox=mPassiveItemBox;
+		totalPoint=army->getSkillPointPassive();
+		break;
+	case SKILLTYPE_ACTIVE:
+		path=skillListPath+"/Active";
+		itemBox=mActiveItemBox;
+		totalPoint=army->getSkillPointAction();
+		break;
+	case SKILLTYPE_EQUIP:
+		path=skillListPath+"/Equip";
+		itemBox=mEquipItemBox;
+		totalPoint=army->getSkillPointEquip();
+		break;
+	}
+
+	itemBox->removeAllItems();
+	std::map<std::string,enumtype> skillmap;
+	skillmap=army->getSkillTable();
+	std::vector<std::string> child=DataLibrary::getSingletonPtr()->getChildList(path);
+	for(std::vector<std::string>::iterator it=child.begin();it!=child.end();it++)
+	{
+		int point;
+		DataLibrary::getSingletonPtr()->getData(path+"/"+(*it),point);
+		SkillItemData* data;
+		if(type==SKILLTYPE_PASSIVE)
+		{
+			std::string effectName;
+			DataLibrary::getSingletonPtr()->getData(path+"/"+(*it)+"/Effect",effectName);
+			data=new SkillItemData(type,effectName,point,(*it),totalPoint);
+		}
+		else
+		{
+			data=new SkillItemData(type,(*it),point,(*it),totalPoint);
+		}
+	
+		if(skillmap.find((*it))!=skillmap.end())
+		{
+			data->setCanTrain(false);
+		}
+		else
+		{
+			data->setCanTrain(true);
+		}
+
+		itemBox->addItem(data);
 	}
 }

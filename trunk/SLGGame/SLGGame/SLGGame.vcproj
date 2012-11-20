@@ -983,6 +983,30 @@
 						>
 					</File>
 				</Filter>
+				<Filter
+					Name="SkillItemBox"
+					>
+					<File
+						RelativePath=".\src\SkillCellView.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\SkillCellView.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\SkillItemBox.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\src\SkillItemBox.h"
+						>
+					</File>
+					<File
+						RelativePath=".\src\SkillItemData.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 		<Filter

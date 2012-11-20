@@ -34,9 +34,9 @@
                 <RetainerId type="String" value="Scout" />
                 <Level type="Int" value="5" />
                 <Exp type="Int" value="0" />
-                <SkillPointAction type="Int" value="0" />
-                <SkillPointPassive type="Int" value="0" />
-                <SkillPointEquip type="Int" value="0" />
+                <SkillPointAction type="Int" value="20" />
+                <SkillPointPassive type="Int" value="20" />
+                <SkillPointEquip type="Int" value="20" />
                 <UnitNum value="47" type="Int" />
                 <UnitMesh type="String" value="HeavyInf.mesh" />
                 <UnitMat type="String" value="HeavyInf" />
@@ -99,9 +99,9 @@
                 <SquadType type="Int" value="0" />
                 <Level type="Int" value="5" />
                 <Exp type="Int" value="0" />
-                <SkillPointAction type="Int" value="0" />
-                <SkillPointPassive type="Int" value="0" />
-                <SkillPointEquip type="Int" value="0" />
+                <SkillPointAction type="Int" value="20" />
+                <SkillPointPassive type="Int" value="20" />
+                <SkillPointEquip type="Int" value="20" />
                 <UnitNum value="47" type="Int" />
                 <UnitMesh type="String" value="HeavyInf.mesh" />
                 <UnitMat type="String" value="HeavyInf" />

@@ -475,7 +475,7 @@
 		</Test>
 	</RetainerData>
 	<SkillListData>
-		<Infantry>
+		<Infantry type = "Int" value = "0">
 			<Default>
 				<Attack type = "Int" value = "1"/>
 				<Rest type = "Int" value = "1"/>
@@ -507,7 +507,7 @@
 				<HeavyArmor type="Int" value="7"/>
 			</Equip>
 		</Infantry>
-		<MissileInfantry>
+		<MissileInfantry type = "Int" value = "1">
 			<Default>
 				<Attack type = "Int" value = "1"/>
 				<Rest type = "Int" value = "1"/>
@@ -546,7 +546,7 @@
 				<MiddleArmor type="Int" value="7"/>
 			</Equip>
 		</MissileInfantry>
-		<Saint>
+		<Saint  type = "Int" value = "2">
 			<Default />
 			<Active>
 				<Heal type="Int" value="1"/>

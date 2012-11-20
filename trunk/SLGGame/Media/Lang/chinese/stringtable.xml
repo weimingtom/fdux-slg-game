@@ -89,7 +89,7 @@
         <TEXT_SquadSWeapon type="String" value="副武器" />
         <TEXT_SquadShield type="String" value="盾牌" />
         <TEXT_SquadArmor type="String" value="盔甲" />
-        <TEXT_SqureHorse type="String" value="马匹" />
+        <TEXT_SquadHorse type="String" value="马匹" />
         <TEXT_SquadAttack type="String" value="攻击力" />
         <TEXT_SquadAttackALL type="String" value="攻击力(近/远)" />
         <TEXT_SquadRangeAttack type="String" value="远程攻击力" />
@@ -111,6 +111,7 @@
         <TEXT_MissionList type="String" value="任务列表" />
         <TEXT_Close type="String" value="关闭" />
         <TEXT_Retainer type="String" value="副官"/>
+		<TEXT_SquadSoilder type="String" value="士兵"/>
         <TEXT_RetainerSkill type="String" value="副官技能"/>
 		<Price type="String" value="价格:" />
         <NoEnoughMoney type="String" value="(金钱不足)" />
@@ -120,6 +121,14 @@
         <TEXT_Equipment type="String" value="装备"/>
         <TEXT_Skill type="String" value="技能"/>
         <ArmyInfo_Money type="String" value="军团资金:%1%"/>
+        <SquadPassivePoint type="String" value="可用被动技能点:%1%"/>
+        <SquadActivePoint type="String" value="可用主动技能点:%1%"/>
+        <SquadEquipPoint type="String" value="可用装备技能点:%1%"/>
+        <Trained type="String" value="已训练"/>
+        <point type="String" value="点数:"/>
+        <NoEnoughPoint type="String" value="(点数不足)"/>
+        <NoSkillEquip type="String" value="没有装备技能"/>
+        
 		
 		<GameTurn type="String" value="回合数:"/>
 		<CurTeam type="String" value="当前队伍:"/>
