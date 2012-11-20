@@ -119,23 +119,27 @@ void GUIScene::recursionSetSceneLanguage(MyGUI::Widget* widget)
 	for (int i=0;i<widget->getChildCount();i++)
 	{
 		MyGUI::Widget* child=widget->getChildAt(i);
-		if(child->getChildCount()==0)
+		
+		if(child->getName().substr(0,2)=="T_" || child->getName().substr(0,5)=="TEXT_" )
 		{
-			if(child->getName().substr(0,2)=="T_" || child->getName().substr(0,5)=="TEXT_" )
+			if(child->getTypeName()=="TextBox")
 			{
-				if(child->getTypeName()=="TextBox")
-				{
-					MyGUI::TextBox* textBox=child->castType<MyGUI::TextBox>(child);
-					textBox->setCaption(StringTable::getSingleton().getString(textBox->getName()));
-				}
-				else if(child->getTypeName()=="Button")
-				{
-					MyGUI::Button* button=child->castType<MyGUI::Button>(child);
-					button->setCaption(StringTable::getSingleton().getString(button->getName()));					
-				}
+				MyGUI::TextBox* textBox=child->castType<MyGUI::TextBox>(child);
+				textBox->setCaption(StringTable::getSingleton().getString(textBox->getName()));
+			}
+			else if(child->getTypeName()=="Button")
+			{
+				MyGUI::Button* button=child->castType<MyGUI::Button>(child);
+				button->setCaption(StringTable::getSingleton().getString(button->getName()));					
+			}
+			else if(child->getTypeName()=="TabItem")
+			{
+				MyGUI::TabItem* tabItem=child->castType<MyGUI::TabItem>(child);
+				tabItem->setCaption(StringTable::getSingleton().getString(tabItem->getName()));		
 			}
 		}
-		else
+
+		if(child->getChildCount()!=0)
 		{
 			recursionSetSceneLanguage(child);
 		}
