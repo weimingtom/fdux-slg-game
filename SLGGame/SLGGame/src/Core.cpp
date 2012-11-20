@@ -67,7 +67,7 @@ bool Core::initialize(bool isFullScene)
 
 	mRoot->initialise(false);
 
-	std::string title = "遗忘的战场";//StringTable::getSingleton().getAnsiString("gamename");
+	std::string title = "忘却的战场";//StringTable::getSingleton().getAnsiString("gamename");
 	
 	Ogre::NameValuePairList list;
 
