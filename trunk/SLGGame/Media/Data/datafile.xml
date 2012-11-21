@@ -131,7 +131,7 @@
 			<SkillTable>
 				<DefenceTrain1 type="Int" value="0"/>
 				<Defence type="Int" value="1"/>
-				<OneHandSpear type="Int" value="2"/>
+				<ShortSpear type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
 				<LightArmor type="Int" value="2"/>
 			</SkillTable>
@@ -500,7 +500,7 @@
 			</Passive>
 			<Equip>
 				<OneHandSword type="Int" value="7"/>
-				<OneHandSpear type="Int" value="7"/>
+				<ShortSpear type="Int" value="7"/>
 				<Shield type="Int" value="7"/>
 				<LightArmor type="Int" value="7"/>
 				<MiddleArmor type="Int" value="7"/>
@@ -540,7 +540,7 @@
 			<Equip>
 				<OneHandSword type="Int" value="7"/>
 				<Bow type="Int" value="7"/>
-				<XBow type="Int" value="7"/>
+				<LXBox type="Int" value="7"/>
 				<Shield type="Int" value="7"/>
 				<LightArmor type="Int" value="7"/>
 				<MiddleArmor type="Int" value="7"/>

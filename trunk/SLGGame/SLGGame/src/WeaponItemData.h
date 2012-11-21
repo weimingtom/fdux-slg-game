@@ -85,7 +85,7 @@ public:
 
 	  std::string getPrice()
 	  {
-		  if(mIsHaveSkill)
+		  if(!mIsHaveSkill)
 		  {
 			return "#FFFF00"+StringTable::getSingleton().getString("NoSkillEquip");
 		  }
