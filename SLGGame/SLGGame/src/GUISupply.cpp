@@ -9,6 +9,17 @@
 #include <string>
 #include <map>
 
+const char* gEquipTypeName[EQUIP_RETAINER+1][6] =
+{
+	"","","","","","",
+	"","","","","","",
+	"LightArmor","MiddleArmor","HeavyArmor","","","",
+	"","","","","","",
+	"OneHandSword","OneHandBlunt","TwoHandSword","TwoHandBlunt","ShortSpear","Long",
+	"Box","LXBox","HXBox","","","",
+	"","","","","",""
+};
+
 GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height)
 {
 	setSceneLanguage();
@@ -457,16 +468,26 @@ void GUISupply::showItem(int type)
 
 	itemBox->removeAllItems();
 	std::vector<std::string> child=DataLibrary::getSingletonPtr()->getChildList(path);
+	int equipSubType;
 	for(std::vector<std::string>::iterator it=child.begin();it!=child.end();it++)
 	{
 		WeaponItemData* data=new WeaponItemData(equipType,(*it),army->getUnitNum());
-		if()
+		
+		if(type==EQUIP_PWEAPON || type==EQUIP_SWEAPON || type==EQUIP_ARMOR)
 		{
-			data->setIsHaveSkill(true)
+			std::string temppath = path+"/"+ (*it) + std::string("/Type");
+			DataLibrary::getSingletonPtr()->getData(temppath,equipSubType);
+
+			std::map<std::string,enumtype> skillmap;
+			skillmap=army->getSkillTable();
+			if(skillmap.find(gEquipTypeName[type][equipSubType])!=skillmap.end())
+				data->setIsHaveSkill(true);
+			else
+				data->setIsHaveSkill(false);
 		}
 		else
 		{
-			data->setIsHaveSkill(false);
+			data->setIsHaveSkill(true);
 		}
 
 		if((*it)==equipID)
