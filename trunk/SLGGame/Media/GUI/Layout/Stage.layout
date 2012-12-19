@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout" version="3.2.0">
+    <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" layer="Overlapped" name="BackGroundGroup">
+        <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" name="BackGround"/>
+        <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" name="BackGroundUniversal">
+            <Property key="Visible" value="false"/>
+        </Widget>
+    </Widget>
+    <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" layer="Overlapped" name="LeftLayerGroup">
+        <Widget type="ImageBox" skin="ImageBox" position="5 25 275 480" name="LeftLayer"/>
+        <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" name="LeftLayerUniversal">
+            <Property key="Visible" value="false"/>
+        </Widget>
+    </Widget>
+    <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" layer="Overlapped" name="MidLayerGroup">
+        <Widget type="ImageBox" skin="ImageBox" position="295 25 245 480" name="MidLayer"/>
+        <Widget type="ImageBox" skin="ImageBox" position="0 0 245 480" name="MidLayerUniversal">
+            <Property key="Visible" value="false"/>
+        </Widget>
+    </Widget>
+    <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" layer="Overlapped" name="RightLayerGroup">
+        <Widget type="ImageBox" skin="ImageBox" position="545 25 250 480" name="RightLayer"/>
+        <Widget type="ImageBox" skin="ImageBox" position="0 0 250 480" name="RightLayerUniversal">
+            <Property key="Visible" value="false"/>
+        </Widget>
+    </Widget>
+    <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" layer="Overlapped" name="TextBoxBG">
+        <Property key="Visible" value="false"/>
+        <Widget type="EditBox" skin="WordWrapEmpty" position_real="0.046875 0.76375 0.884375 0.18625" name="TextBox"/>
+        <Widget type="EditBox" skin="WordWrapEmpty" position="40 410 195 30" name="RoleName"/>
+        <Widget type="EditBox" skin="WordWrapEmpty" position="45 410 190 30" name="RoleNameUniversal"/>
+        <Widget type="ImageBox" skin="ImageBox" position="0 0 24 24" name="TextCursor">
+            <Property key="Visible" value="false"/>
+        </Widget>
+    </Widget>
+    <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" layer="Overlapped" name="InputGroup">
+        <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" name="InputLayer"/>
+        <Widget type="Button" skin="SLGButton3" position="695 680 135 45" name="HistoryButton">
+            <Property key="Caption" value="History"/>
+            <Property key="TextColour" value="1 1 1"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="24"/>
+            <Property key="Visible" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="SLGButton3" position="295 680 140 45" name="SaveButton">
+            <Property key="Caption" value="Save"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="TextColour" value="1 1 1"/>
+            <Property key="FontHeight" value="24"/>
+            <Property key="Visible" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="SLGButton3" position="430 680 135 45" name="LoadButton">
+            <Property key="Caption" value="Load"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="TextColour" value="1 1 1"/>
+            <Property key="FontHeight" value="24"/>
+            <Property key="Visible" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="SLGButton3" position="830 680 140 45" name="HideButton">
+            <Property key="Caption" value="Hide"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="24"/>
+            <Property key="TextColour" value="1 1 1"/>
+            <Property key="Visible" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="SLGButtonSkin3" position="965 680 140 45" name="SystemButton">
+            <Property key="Caption" value="System"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="TextColour" value="1 1 1"/>
+            <Property key="FontHeight" value="24"/>
+            <Property key="TextAlign" value="Center"/>
+            <Property key="Visible" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="SLGButton3" position="565 680 130 45" name="AutoButton">
+            <Property key="Caption" value="Auto"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="TextColour" value="1 1 1"/>
+            <Property key="FontHeight" value="24"/>
+            <Property key="Visible" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="1190 355 64 64" name="TEXT_Supprot">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+            <Property key="Caption" value="1234"/>
+            <Property key="TextColour" value="1 0 0"/>
+            <Property key="ImageResource" value="MissionIcon"/>
+            <Property key="ImageGroup" value="States"/>
+            <Property key="ImageName" value="Normal"/>
+            <Property key="Visible" value="false"/>
+        </Widget>
+    </Widget>
+    <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" layer="Overlapped" name="EffectLayerGroup">
+        <Property key="Visible" value="false"/>
+        <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" name="EffectLayer"/>
+        <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" name="EffectLayerUniversal">
+            <Property key="Visible" value="false"/>
+        </Widget>
+    </Widget>
+    <Widget type="EditBox" skin="SLGEditBoxStretch" position="0 0 1280 720" layer="Overlapped" name="HistoryBox">
+        <Property key="Visible" value="false"/>
+        <Property key="ReadOnly" value="true"/>
+        <Property key="Static" value="true"/>
+        <Property key="VisibleHScroll" value="false"/>
+    </Widget>
+    <Widget type="ImageBox" skin="ImageBox" position="1230 5 32 32" layer="Middle" name="HistoryBoxExit">
+        <Property key="ImageGroup" value="Button"/>
+        <Property key="ImageName" value="normal"/>
+        <Property key="ImageResource" value="34"/>
+        <Property key="Visible" value="false"/>
+    </Widget>
+</MyGUI>
