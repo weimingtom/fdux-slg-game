@@ -43,6 +43,8 @@ static int TeamSquadLeft(lua_State* L)
 static int Story(lua_State* L)
 {
 	std::string storyscript(luaL_checkstring(L, 1));
+
+	CutSceneBuilder::getSingleton().addCutScene(new StoryCutScene(storyscript));
 	return 0;
 }
 
