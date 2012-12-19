@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout" version="3.2.0">
+    <Widget type="ImageBox" skin="ImageBox" position="0 0 183 36" layer="Back" name="BImage">
+        <Property key="ImageTexture" value="SquadBillboard.png"/>
+        <Widget type="TextBox" skin="TextBox" position="31 4 150 15" name="BName">
+            <Property key="TextColour" value="0 0 1"/>
+            <Property key="Caption" value="sdfsdfsdfsdf"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="19"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="5 5 22 24" name="BIcon">
+            <Property key="ImageGroup" value="Button"/>
+            <Property key="ImageName" value="normal"/>
+        </Widget>
+        <Widget type="ProgressBar" skin="SLGMiniProgressBar" position="30 22 110 6" name="BProgressBar">
+            <Property key="Range" value="100"/>
+            <Property key="RangePosition" value="90"/>
+        </Widget>
+    </Widget>
+</MyGUI>
