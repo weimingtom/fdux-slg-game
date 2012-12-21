@@ -111,10 +111,10 @@ bool Core::initialize(bool isFullScene)
 	//初始化数据文件
 	mLuaSystem=new LuaSystem();
 	mDataLibrary=new DataLibrary();
-	mDataLibrary->loadXmlData(DataLibrary::StaticData,"datafile.xml",true, "General");
+	mDataLibrary->loadXmlData(DataLibrary::StaticData,"datafile.xml",true, "Data");
 	mDataLibrary->loadXmlData(DataLibrary::StaticData,"datafile.xml",true, "Lang");
 	mDataLibrary->loadXmlData(DataLibrary::StaticData,"stringtable.xml",true, "Lang");
-	mDataLibrary->loadXmlData(DataLibrary::SystemConfig,"Config.xml",true, "General");
+	mDataLibrary->loadXmlData(DataLibrary::SystemConfig,"Config.xml",true, "Save");
 
 	mDebugOverlay = Ogre::OverlayManager::getSingleton().getByName("Core/DebugOverlay");
 

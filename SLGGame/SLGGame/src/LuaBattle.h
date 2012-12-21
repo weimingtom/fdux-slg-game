@@ -17,6 +17,7 @@ extern "C"
 
 #include "CutSceneBuilder.h"
 #include "ChangeStateCutScene.h"
+#include "StoryCutScene.h"
 
 static int ChangeState(lua_State* L)
 {

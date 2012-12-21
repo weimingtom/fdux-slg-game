@@ -152,7 +152,7 @@ void StateManager::loadState( std::string file )
 		delete mBaseState;
 		mBaseState = NULL;
 	}
-	DataLibrary::getSingletonPtr()->loadXmlData(DataLibrary::GameData,file,false, "General");
+	DataLibrary::getSingletonPtr()->loadXmlData(DataLibrary::GameData,file,false, "Data");
 	std::string state;
 	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/GameState",state);
 	if (state=="AVG")
