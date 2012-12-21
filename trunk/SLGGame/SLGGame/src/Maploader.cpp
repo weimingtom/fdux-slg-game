@@ -34,7 +34,7 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 	//ticpp::Document *doc = new ticpp::Document();
 	rapidxml::xml_document<> doc;
 	//doc.LoadFile(path,TIXML_ENCODING_UTF8);
-	Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(path, "General", true);
+	Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(mapname, "Data", true);
 	char* s=new char[stream->size()+1];
 	stream->read(s,stream->size());
 	s[stream->size()]='\0';

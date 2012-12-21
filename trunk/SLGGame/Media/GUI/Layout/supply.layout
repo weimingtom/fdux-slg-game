@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout" version="3.2.0">
     <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Info" name="SupplyBG">
-        <Property key="ImageTexture" value="campsite.png"/>
+        <Property key="ImageTexture" value="yingdi.png"/>
         <Widget type="Window" skin="SLGWindow" position="0 0 235 477" name="ArmyWindow">
             <Widget type="ItemBox" skin="ItemBox" position="22 55 190 399" name="ArmyList"/>
         </Widget>
