@@ -3,8 +3,8 @@
 #include "DataLibrary.h"
 #endif
 
-#define BGM_PATH "..\\media\\bgm\\"
-#define SE_PATH "..\\media\\sound\\"
+#define BGM_PATH "..\\media\\sound\\bgm\\"
+#define SE_PATH "..\\media\\sound\\Effect\\"
 
 #ifndef SCRIPT_EDITOR
 #include "Framerate.h"

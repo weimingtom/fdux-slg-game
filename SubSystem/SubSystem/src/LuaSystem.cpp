@@ -119,7 +119,7 @@ void LuaSystem::runScriptFromFile( const std::string& filename,int lineNum)
 	mScriptName=filename;
 	mScriptLine=lineNum;
 
-	Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(filename, "General", true);
+	Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(filename, "Script", true);
 
 	runScript(stream->getAsString());
 
@@ -157,7 +157,7 @@ bool LuaSystem::executeFunction(std::string filename, std::string funcname, std:
 	mContextStack.push_back(context);
 	mFileNameStack.push_back(filename);
 	mTempContextStack.push_back(tempcontext);
-	Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(filename, "General", true);
+	Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(filename, "Script", true);
 	int result;
 	result = luaL_loadstring(L,stream->getAsString().c_str());
 	if(!result)

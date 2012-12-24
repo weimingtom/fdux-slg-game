@@ -8,7 +8,7 @@
 GUISystem::GUISystem(Ogre::RenderWindow* window,Ogre::SceneManager* scene):mWindow(window),mSceneManager(scene),mFrameUpdateScene(NULL)
 {
 	mPlatform = new MyGUI::OgrePlatform();
-	mPlatform->initialise(mWindow, mSceneManager);
+	mPlatform->initialise(mWindow, mSceneManager,"GUI");
 	mGUI = new MyGUI::Gui();
 	mGUI->initialise("MyGUI_Core.xml");
 	MyGUI::FactoryManager::getInstance().registerFactory<MyGUI::RTTLayer>("Layer");
