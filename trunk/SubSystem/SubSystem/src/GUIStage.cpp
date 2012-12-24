@@ -496,7 +496,7 @@ void GUIStage::showImage( std::string imageName,GUIImageLayer layer,float time,i
 		if(!Ogre::TextureManager::getSingleton().resourceExists(imageName))
 		{
 			Ogre::Image i;
-			i.load(imageName,Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+			i.load(imageName,"GUI");
 			width=i.getWidth();
 			height=i.getHeight();
 		}
