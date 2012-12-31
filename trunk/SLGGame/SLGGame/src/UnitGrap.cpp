@@ -9,7 +9,7 @@
 #include <iostream>
 
 #define ALPHA_DELTA_TIME 100
-#define MOVE_KEYFRAME_TIME 1.5
+#define MOVE_KEYFRAME_TIME 0.1
 
 UnitGrap::UnitGrap(std::string unitmesh, std::string unitmat,std::string horsemesh,std::string horsemat,std::string factiontex,Ogre::SceneNode* node):
 mNode(node),
@@ -313,29 +313,66 @@ void UnitGrap::createWeapon( std::string mesh, std::string mat,std::string weapo
 void UnitGrap::setMovePath( std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions,float MoveSpeed)
 {
 	std::cout<<mNode->getName()+"_Ani"<<" Created"<<std::endl;
-	mNodeAnimation = Core::getSingletonPtr()->mSceneMgr->createAnimation(mNode->getName()+"_Ani", vectors.size()*MOVE_KEYFRAME_TIME*MoveSpeed);
+	mNodeAnimation = Core::getSingletonPtr()->mSceneMgr->createAnimation(mNode->getName()+"_Ani", (vectors.size()-1)*MOVE_KEYFRAME_TIME*20*MoveSpeed);
 	mNodeAnimation->setInterpolationMode(Ogre::Animation::IM_LINEAR);
 	Ogre::NodeAnimationTrack* track = mNodeAnimation->createNodeTrack(1, mNode);
 
 	float timePosition=0;
-	Ogre::TransformKeyFrame* kf = track->createNodeKeyFrame(timePosition);
-	kf->setTranslate(mNode->getPosition());
-	kf->setRotation(mNode->getOrientation());
+	Ogre::TransformKeyFrame* kf;
+	
+	std::map<int,Ogre::Vector3>::iterator itrr=vectors.begin();
 
-	std::map<int,Ogre::Vector3>::iterator itr  =  vectors.begin();
-	for(  ;  itr !=  vectors.end();  ++itr )
+	for( std::map<int,Ogre::Vector3>::iterator itr  =  vectors.begin();  itr !=  vectors.end();  itr++ )
 	{
-		timePosition+=MOVE_KEYFRAME_TIME*MoveSpeed;
-		kf = track->createNodeKeyFrame(timePosition);
+		itrr++;
 
-		kf->setTranslate(itr->second);//+Ogre::Vector3(mOffsetX,0,mOffsetY));
-
-		std::map<int,Ogre::Quaternion>::iterator itr1;
-		itr1 = quaternions.find(itr->first);
-
-		if( itr1 != quaternions.end() )
+		if(itrr==vectors.end())
+			break;
+		
+		if(itr->second.x==itrr->second.x || itr->second.z==itrr->second.z)
 		{
-			kf->setRotation(itr1->second);
+
+			timePosition+=MOVE_KEYFRAME_TIME;
+			kf = track->createNodeKeyFrame(timePosition);
+			kf->setRotation(quaternions[itr->first]);
+			kf->setTranslate(Ogre::Vector3(itr->second.x, mNode->getPosition().y,itr->second.z));
+
+			timePosition+=MOVE_KEYFRAME_TIME*19;
+			kf = track->createNodeKeyFrame(timePosition);
+			kf->setRotation(quaternions[itrr->first]);
+			kf->setTranslate(Ogre::Vector3(itrr->second.x, mNode->getPosition().y,itrr->second.z));
+
+		}
+		else
+		{
+
+
+			mBezier.P0.x=itr->second.x;
+			mBezier.P0.y=itr->second.z;
+
+			mBezier.P1.x=itr->second.x;
+			mBezier.P1.y=itrr->second.z;
+
+			mBezier.P2.x=itrr->second.x;
+			mBezier.P2.y=itrr->second.z;
+
+			mBezier.initValue();
+
+			for(int i=0;i<20;i++)
+			{
+				mBezier.calculate(i,20);
+
+				timePosition+=MOVE_KEYFRAME_TIME;
+				kf = track->createNodeKeyFrame(timePosition);
+					
+				Ogre::Quaternion q;
+
+				Ogre::Vector3 dir(-mBezier.DX,0,mBezier.DY);
+		
+
+				kf->setRotation(dir.getRotationTo(Ogre::Vector3(0,0,1)));
+				kf->setTranslate(Ogre::Vector3(mBezier.CurX, mNode->getPosition().y,mBezier.CurY));
+			}
 		}
 	}
 

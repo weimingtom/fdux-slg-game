@@ -181,6 +181,10 @@
 			Name="Core"
 			>
 			<File
+				RelativePath=".\src\Bezier.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\CollisionTools.cpp"
 				>
 			</File>

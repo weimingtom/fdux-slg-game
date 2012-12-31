@@ -3,10 +3,13 @@
 #include <ogre.h>
 #include <string>
 #include <vector>
+#include <queue>
 #include <map>
 
 #include <ParticleUniverseSystem.h>
 #include <ParticleUniverseSystemListener.h>
+
+#include "Bezier.h"
 
 #include "WeaponGrap.h"
 
@@ -78,6 +81,15 @@ public:
 
 	AnimationBlender* mAniBlender;//¶¯»­´úÀí
 	AnimationBlender* mHorseAniBlender;
+
+	std::queue<Ogre::Vector3> mVectors;
+	std::queue<Ogre::Quaternion> mQuaternions;
+	
+	Ogre::Quaternion mDestinationDir;
+	Ogre::Vector3 mDestination;
+	float mSpeed;
+	Bezier mBezier;
+
 	Ogre::Animation* mNodeAnimation;
 	Ogre::AnimationState* mNodeAnimationState;
 

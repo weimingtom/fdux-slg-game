@@ -410,34 +410,7 @@ void SquadGraphics::setMovePath(std::map<int,Ogre::Vector3>& vectors,std::map<in
 		return;
 	}
 
-	Ogre::Vector3 v=vectors[0];
-	Ogre::Vector3 df=mNode->getPosition();
-	
-	if(v.z!=df.z)
-	{
-		if (v.z-df.z<0)
-		{
-			setDirection(North,false);
-		}
-		else
-		{
-			setDirection(South,false);
-		}
-	}
-
-	if(v.x!=df.x)
-	{
-		if (v.x-df.x<0)
-		{
-			setDirection(West,false);
-		}
-		else
-		{
-			setDirection(East,false);
-		}
-	}
-
-	mNode->setPosition((vectors.end().operator --())->second);
+	setDirection(directions[0],false);
 	mDirection=(directions.end().operator --())->second;
 
 	Ogre::Vector3 CommanderVector;
