@@ -16,18 +16,26 @@ MoveCutScene::MoveCutScene(std::string id,std::vector<Ogre::Vector2>& grids,Ogre
 	Ogre::Vector2 current=currentGrid;
 	int index=0;
 	mSquadGraphics=SquadGrapManager::getSingletonPtr()->getSquad(id);
-
-	//路径点查找算法
-	for(std::vector<Ogre::Vector2>::iterator it=grids.begin();it!=grids.end();it++)
+	
+	std::vector<Ogre::Vector2> mGrids;
+	mGrids.push_back(currentGrid);
+	for(std::vector<Ogre::Vector2>::iterator itt=grids.begin();itt!=grids.end();itt++)
 	{
-		//取得当前位置与目标格的差值
-		Ogre::Vector2 diffGrid=(*it)-current;
-		Ogre::Vector3 position;
+		mGrids.push_back((*itt));
+	}
+
+	Ogre::Quaternion q;
+	Ogre::Vector3 position;
+	//路径点查找算法
+	std::vector<Ogre::Vector2>::iterator itr=mGrids.begin();
+	for(std::vector<Ogre::Vector2>::iterator it=mGrids.begin();it!=mGrids.end();it++)
+	{
 		
 		//确定位置
 		float wx=0,wy=0,height=0;
+		itr++;
 
-		if (it+1==grids.end())//如果为最后一个节点
+		if (itr==mGrids.end())//如果为最后一个节点
 		{
 			Terrain::getSingletonPtr()->getWorldCoords((*it).x,(*it).y,wx,wy);//移动到最后一个节点的中心
 			//height=Terrain::getSingletonPtr()->getHeight(wx,wy);
@@ -40,37 +48,39 @@ MoveCutScene::MoveCutScene(std::string id,std::vector<Ogre::Vector2>& grids,Ogre
 		}
 		else
 		{
-			Terrain::getSingletonPtr()->getWorldCoords(current.x,current.y,wx,wy);
+			//取得当前位置与目标格的差值
+			Ogre::Vector2 diffGrid=(*(itr))-(*it);
+			Terrain::getSingletonPtr()->getWorldCoords((*it).x,(*it).y,wx,wy);
 			//height=Terrain::getSingletonPtr()->getHeight(wx,wy);
 
-			Ogre::Vector3 v(wx+diffGrid.x*(TILESIZE),height,wy+diffGrid.y*(TILESIZE));
+			Ogre::Vector3 v(wx,height,wy);
 			position=v;
-		}
-		
-		//确定方向
-		Ogre::Quaternion q;
-		if (diffGrid.x==0 && diffGrid.y==-1)//北
-		{
-			q.FromAngleAxis(Ogre::Degree(180),Ogre::Vector3(0,1,0));
-			mDirection=North;
-		}
-		else if (diffGrid.x==0 && diffGrid.y==1)//南
-		{
-			q.FromAngleAxis(Ogre::Degree(0),Ogre::Vector3(0,1,0));
-			mDirection=South;
-		}
-		else if (diffGrid.x==-1 && diffGrid.y==0)//西
-		{
-			q.FromAngleAxis(Ogre::Degree(270),Ogre::Vector3(0,1,0));
-			mDirection=West;
-		}
-		else if (diffGrid.x==1 && diffGrid.y==0)//东
-		{
-			q.FromAngleAxis(Ogre::Degree(90),Ogre::Vector3(0,1,0));
-			mDirection=East;
+
+			//确定方向
+			if (diffGrid.x==0 && diffGrid.y==-1)//北
+			{
+				q.FromAngleAxis(Ogre::Degree(180),Ogre::Vector3(0,1,0));
+				mDirection=North;
+			}
+			else if (diffGrid.x==0 && diffGrid.y==1)//南
+			{
+				q.FromAngleAxis(Ogre::Degree(0),Ogre::Vector3(0,1,0));
+				mDirection=South;
+			}
+			else if (diffGrid.x==-1 && diffGrid.y==0)//西
+			{
+				q.FromAngleAxis(Ogre::Degree(270),Ogre::Vector3(0,1,0));
+				mDirection=West;
+			}
+			else if (diffGrid.x==1 && diffGrid.y==0)//东
+			{
+				q.FromAngleAxis(Ogre::Degree(90),Ogre::Vector3(0,1,0));
+				mDirection=East;
+			}
+
 		}
 
-		if (it+1!=grids.end())//判断是不是拐角
+		/*if (it+1!=grids.end())//判断是不是拐角
 		{
 			Ogre::Vector2 diff=(*(it+1))-(*it);
 			
@@ -78,13 +88,17 @@ MoveCutScene::MoveCutScene(std::string id,std::vector<Ogre::Vector2>& grids,Ogre
 			{
 				if (diff.x==1 && diff.y==0)//东
 				{
-					q.FromAngleAxis(Ogre::Degree(135),Ogre::Vector3(0,1,0));
-					mDirection=NorthEast;
+					//q.FromAngleAxis(Ogre::Degree(135),Ogre::Vector3(0,1,0));
+					//mDirection=NorthEast;
+					if()
+					current=(*it);
 				}
 				if (diff.x==-1 && diff.y==0)//西
 				{
-					q.FromAngleAxis(Ogre::Degree(225),Ogre::Vector3(0,1,0));
-					mDirection=WestNorth;
+					//q.FromAngleAxis(Ogre::Degree(225),Ogre::Vector3(0,1,0));
+					//mDirection=WestNorth;
+					current=(*it);
+					continue;
 				}
 			}
 
@@ -92,13 +106,17 @@ MoveCutScene::MoveCutScene(std::string id,std::vector<Ogre::Vector2>& grids,Ogre
 			{
 				if (diff.x==0 && diff.y==1)//北
 				{
-					q.FromAngleAxis(Ogre::Degree(45),Ogre::Vector3(0,1,0));
-					mDirection=EastSouth;
+					//q.FromAngleAxis(Ogre::Degree(45),Ogre::Vector3(0,1,0));
+					//mDirection=EastSouth;
+					current=(*it);
+					continue;
 				}
 				if (diff.x==0 && diff.y==-1)//南
 				{
-					q.FromAngleAxis(Ogre::Degree(135),Ogre::Vector3(0,1,0));
-					mDirection=NorthEast;
+					//q.FromAngleAxis(Ogre::Degree(135),Ogre::Vector3(0,1,0));
+					//mDirection=NorthEast;
+					current=(*it);
+					continue;
 				}
 			}
 
@@ -106,13 +124,17 @@ MoveCutScene::MoveCutScene(std::string id,std::vector<Ogre::Vector2>& grids,Ogre
 			{
 				if (diff.x==1 && diff.y==0)//
 				{
-					q.FromAngleAxis(Ogre::Degree(45),Ogre::Vector3(0,1,0));
-					mDirection=EastSouth;
+					//q.FromAngleAxis(Ogre::Degree(45),Ogre::Vector3(0,1,0));
+					//mDirection=EastSouth;
+					current=(*it);
+					continue;
 				}
 				if (diff.x==-1 && diff.y==0)//
 				{
-					q.FromAngleAxis(Ogre::Degree(315),Ogre::Vector3(0,1,0));
-					mDirection=SouthWest;
+					//q.FromAngleAxis(Ogre::Degree(315),Ogre::Vector3(0,1,0));
+					//mDirection=SouthWest;
+					current=(*it);
+					continue;
 				}
 			}
 
@@ -120,16 +142,20 @@ MoveCutScene::MoveCutScene(std::string id,std::vector<Ogre::Vector2>& grids,Ogre
 			{
 				if (diff.x==0 && diff.y==1)//
 				{
-					q.FromAngleAxis(Ogre::Degree(315),Ogre::Vector3(0,1,0));
-					mDirection=SouthWest;
+					//q.FromAngleAxis(Ogre::Degree(315),Ogre::Vector3(0,1,0));
+					//mDirection=SouthWest;
+					current=(*it);
+					continue;
 				}
 				if (diff.x==0 && diff.y==-1)//
 				{
-					q.FromAngleAxis(Ogre::Degree(225),Ogre::Vector3(0,1,0));
-					mDirection=WestNorth;
+					//q.FromAngleAxis(Ogre::Degree(225),Ogre::Vector3(0,1,0));
+					//mDirection=WestNorth;
+					current=(*it);
+					continue;
 				}
 			}
-		}
+		}*/
 		
 
 		//记录位置
