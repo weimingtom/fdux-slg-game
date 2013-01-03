@@ -391,71 +391,6 @@
             <Property key="FontHeight" value="25"/>
         </Widget>
     </Widget>
-    <Widget type="Window" skin="SLGCommandWindowSkin" position="265 440 254 270" layer="Main" name="CommandWindow">
-        <Property key="FontName" value="fireflysung"/>
-        <Property key="Caption" value="Command"/>
-        <Property key="FontHeight" value="20"/>
-        <Property key="Visible" value="false"/>
-        <Widget type="Button" skin="ButtonImage" position="30 60 55 55" name="Skill1">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-            <Property key="ModeImage" value="true"/>
-            <Property key="NeedToolTip" value="true"/>
-        </Widget>
-        <Widget type="Button" skin="ButtonImage" position="100 60 55 55" name="Skill2">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-            <Property key="ModeImage" value="true"/>
-            <Property key="NeedToolTip" value="true"/>
-        </Widget>
-        <Widget type="Button" skin="ButtonImage" position="165 60 55 55" name="Skill3">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-            <Property key="ModeImage" value="true"/>
-            <Property key="NeedToolTip" value="true"/>
-        </Widget>
-        <Widget type="Button" skin="ButtonImage" position="30 125 55 55" name="Skill4">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-            <Property key="ModeImage" value="true"/>
-            <Property key="NeedToolTip" value="true"/>
-        </Widget>
-        <Widget type="Button" skin="ButtonImage" position="100 125 55 55" name="Skill5">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-            <Property key="ModeImage" value="true"/>
-            <Property key="NeedToolTip" value="true"/>
-        </Widget>
-        <Widget type="Button" skin="ButtonImage" position="165 125 55 55" name="Skill6">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-            <Property key="ModeImage" value="true"/>
-            <Property key="NeedToolTip" value="true"/>
-        </Widget>
-        <Widget type="Button" skin="ButtonImage" position="30 185 55 55" name="Skill7">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-            <Property key="ModeImage" value="true"/>
-            <Property key="NeedToolTip" value="true"/>
-        </Widget>
-        <Widget type="Button" skin="ButtonImage" position="100 185 55 55" name="Skill8">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-            <Property key="ModeImage" value="true"/>
-            <Property key="NeedToolTip" value="true"/>
-        </Widget>
-        <Widget type="Button" skin="ButtonImage" position="165 185 55 55" name="Skill9">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-            <Property key="ModeImage" value="true"/>
-            <Property key="NeedToolTip" value="true"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="40 35 175 25" name="APLabel">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="24"/>
-            <Property key="TextAlign" value="Center"/>
-        </Widget>
-    </Widget>
     <Widget type="Window" skin="SLGMiniWindowSkin" position="430 280 470 100" layer="Popup" name="InfoWindow">
         <Property key="Visible" value="false"/>
         <Widget type="TextBox" skin="TextBox" position="52 20 365 60" align="Center" name="Caption">
@@ -537,5 +472,87 @@
             <Property key="FontHeight" value="20"/>
         </Widget>
         <Widget type="Button" skin="SLGButton1" position="60 165 110 30" name="TEXT_Close"/>
+    </Widget>
+    <Widget type="Window" skin="SLGWindow" position="260 510 350 205" layer="Main" name="CommandWindow">
+        <Widget type="TextBox" skin="TextBox" position="30 50 125 25" name="APLabel">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="24"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="190 50 130 25" name="SkillName">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="24"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="30 130 45 45" name="Skill_7">
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="ModeImage" value="true"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="30 80 45 45" name="Skill_1">
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="ModeImage" value="true"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="80 80 45 45" name="Skill_2">
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="ModeImage" value="true"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="130 80 45 45" name="Skill_3">
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="ModeImage" value="true"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="180 80 45 45" name="Skill_4">
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="ModeImage" value="true"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="280 80 45 45" name="Skill_6">
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="ModeImage" value="true"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="130 130 45 45" name="Skill_9">
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="ModeImage" value="true"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="180 130 45 45" name="Skill_10">
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="ModeImage" value="true"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="230 130 45 45" name="Skill_11">
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="ModeImage" value="true"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="280 130 45 45" name="Skill_12">
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="ModeImage" value="true"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="80 130 45 45" name="Skill_8">
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="ModeImage" value="true"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="230 80 45 45" name="Skill_5">
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="ModeImage" value="true"/>
+        </Widget>
     </Widget>
 </MyGUI>

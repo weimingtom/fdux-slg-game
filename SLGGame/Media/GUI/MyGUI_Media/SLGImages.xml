@@ -1,5 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Resource" version="1.1">
+
+	<Resource type="ResourceImageSet" name="ac">
+
+		<Group name="ac_form" texture="ac_form.png" size="45 45">
+			<Index name="disabled">
+				<Frame point="0 0"/>
+			</Index>
+			<Index name="normal">
+				<Frame point="45 0"/>
+			</Index>
+			<Index name="highlighted">
+				<Frame point="90 0"/>
+			</Index>
+			<Index name="pushed">
+				<Frame point="135 0"/>
+			</Index>
+		</Group>
+
+		<Group name="ac_move" texture="ac_move.png" size="45 45">
+			<Index name="disabled">
+				<Frame point="0 0"/>
+			</Index>
+			<Index name="normal">
+				<Frame point="45 0"/>
+			</Index>
+			<Index name="highlighted">
+				<Frame point="90 0"/>
+			</Index>
+			<Index name="pushed">
+				<Frame point="135 0"/>
+			</Index>
+		</Group>
+
+	</Resource>
+
+	<Resource type="ResourceImageSet" name="skill">
+		<Group name="ac_atkc" texture="ac_atkc.png" size="45 45">
+			<Index name="disabled">
+				<Frame point="0 0"/>
+			</Index>
+			<Index name="normal">
+				<Frame point="45 0"/>
+			</Index>
+			<Index name="highlighted">
+				<Frame point="90 0"/>
+			</Index>
+			<Index name="pushed">
+				<Frame point="135 0"/>
+			</Index>
+		</Group>
+
+		<Group name="ac_atkr" texture="ac_atkr.png" size="45 45">
+			<Index name="disabled">
+				<Frame point="0 0"/>
+			</Index>
+			<Index name="normal">
+				<Frame point="45 0"/>
+			</Index>
+			<Index name="highlighted">
+				<Frame point="90 0"/>
+			</Index>
+			<Index name="pushed">
+				<Frame point="135 0"/>
+			</Index>
+		</Group>
+	</Resource>
+
 	<Resource type="ResourceImageSet" name="AttackIcon">
 	<Group name="Button" texture="SLGIcon.png" size="55 55">
 			<Index name="disabled">
