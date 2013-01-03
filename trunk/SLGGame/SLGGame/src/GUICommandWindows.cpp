@@ -9,28 +9,45 @@
 #include "StringTable.h"
 #include "GUITipsWindow.h"
 
+void split(const std::string& s, std::string c,std::queue<std::string>& v) 
+{
+	std::string::size_type i = 0;
+	std::string::size_type j = s.find(c);
+
+	while (j != std::string::npos) 
+	{
+		v.push(s.substr(i, j-i));
+		i = ++j;
+		j = s.find(c, j);
+
+		if (j == std::string::npos)
+			v.push(s.substr(i, s.length( )));
+	}
+}
+
 GUICommandWindows::GUICommandWindows(MyGUI::Window* window,int Width,int Height):GUISubWindows(window,Width,Height),mWindow(window)
 {
-	assignWidget(mSkill[0],"Skill1");
-	assignWidget(mSkill[1],"Skill2");
-	assignWidget(mSkill[2],"Skill3");
-	assignWidget(mSkill[3],"Skill4");
-	assignWidget(mSkill[4],"Skill5");
-	assignWidget(mSkill[5],"Skill6");
-	assignWidget(mSkill[6],"Skill7");
-	assignWidget(mSkill[7],"Skill8");
-	assignWidget(mSkill[8],"Skill9");
+	assignWidget(mSkill[0],"Skill_1");
+	assignWidget(mSkill[1],"Skill_2");
+	assignWidget(mSkill[2],"Skill_3");
+	assignWidget(mSkill[3],"Skill_4");
+	assignWidget(mSkill[4],"Skill_5");
+	assignWidget(mSkill[5],"Skill_6");
+	assignWidget(mSkill[6],"Skill_7");
+	assignWidget(mSkill[7],"Skill_8");
+	assignWidget(mSkill[8],"Skill_9");
+	assignWidget(mSkill[9],"Skill_10");
+	assignWidget(mSkill[10],"Skill_11");
+	assignWidget(mSkill[11],"Skill_12");
 	assignWidget(mAPLabel,"APLabel");
+	assignWidget(mSkillName,"SkillName");
 
-	mSkill[0]->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUICommandWindows::onSkill1);
-	mSkill[1]->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUICommandWindows::onSkill2);
-	mSkill[2]->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUICommandWindows::onSkill3);
-	mSkill[3]->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUICommandWindows::onSkill4);
-	mSkill[4]->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUICommandWindows::onSkill5);
-	mSkill[5]->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUICommandWindows::onSkill6);
-	mSkill[6]->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUICommandWindows::onSkill7);
-	mSkill[7]->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUICommandWindows::onSkill8);
-	mSkill[8]->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUICommandWindows::onSkill9);
+	for(int i=0;i<12;i++)
+	{
+		mSkill[i]->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUICommandWindows::onSkillClick);
+		mSkill[i]->eventMouseSetFocus+= MyGUI::newDelegate(this, &GUICommandWindows::onSkillHighlighted);
+		mSkill[i]->eventMouseLostFocus+= MyGUI::newDelegate(this, &GUICommandWindows::onSkillLostFocus);
+	}
 
 	setSquad(NULL);
 	//mPlayerState = NULL;
@@ -274,7 +291,7 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 	}
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	float apleft = mSelectSquad->getActionPoint();
-	mAPLabel->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("APLabel"))%(int)apleft));
+	mAPLabel->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("APLabel"))%(int)apleft%mSelectSquad->getAttr(ATTR_ACTIONPOINT,ATTRCALC_FULL)));
 	std::vector<BattleSquad::ActiveSkillInfo> skilllist = mSelectSquad->GetActiveSkillList();
 	std::vector<BattleSquad::ActiveSkillInfo>::iterator ite = skilllist.begin();
 	int maxn = 9;
@@ -311,41 +328,50 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 	{
 		if(ite->skillid == "move")
 		{
-			mSkill[n]->setImageResource("Move");
-			mSkill[n]->setCaption(StringTable::getSingleton().getString("Move"));
+			mSkill[n]->setImageResource("ac");
+			mSkill[n]->setImageGroup("ac_move");
+			mSkill[n]->setCaption("");
 			mSkill[n]->setUserString("Tips",StringTable::getSingleton().getString("Tips_Move"));
+			mSkill[n]->setUserString("Discribe",StringTable::getSingleton().getString("Move"));
 		}
 		else if(ite->skillid == "turn")
 		{
-			mSkill[n]->setCaption(StringTable::getSingleton().getString("TurnSquad"));
+			mSkill[n]->setCaption("");
 			mSkill[n]->setUserString("Tips",StringTable::getSingleton().getString("Tips_Move"));
+			mSkill[n]->setUserString("Discribe",StringTable::getSingleton().getString("TurnSquad"));
 			mSkill[n]->setImageResource("Move");
 		}
 		else if(ite->skillid == "looseformation")
 		{
-			mSkill[n]->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("FormationLoosButton"))%((*ite).apcost)));
+			mSkill[n]->setCaption(Ogre::StringConverter::toString((*ite).apcost));
 			mSkill[n]->setUserString("Tips",StringTable::getSingletonPtr()->getString("Tips_FormationLoosButton"));
+			mSkill[n]->setUserString("Discribe",str(boost::format(StringTable::getSingletonPtr()->getString("FormationLoosButton"))%((*ite).apcost)));
 			mSkill[n]->setImageResource("Defence");
 		}
 		else if(ite->skillid == "lineformation")
 		{
-			mSkill[n]->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("FormationLineButton"))%((*ite).apcost)));
+			mSkill[n]->setCaption(Ogre::StringConverter::toString((*ite).apcost));
 			mSkill[n]->setUserString("Tips",StringTable::getSingletonPtr()->getString("Tips_FormationLineButton"));
+			mSkill[n]->setUserString("Discribe",str(boost::format(StringTable::getSingletonPtr()->getString("FormationLineButton"))%((*ite).apcost)));
 			mSkill[n]->setImageResource("Defence");
 		}
 		else if(ite->skillid == "circularformation")
 		{
-			mSkill[n]->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("FormationCircButton"))%((*ite).apcost)));
+			mSkill[n]->setCaption(Ogre::StringConverter::toString((*ite).apcost));
 			mSkill[n]->setUserString("Tips",StringTable::getSingletonPtr()->getString("Tips_FormationCircButton"));
+			mSkill[n]->setUserString("Discribe",str(boost::format(StringTable::getSingletonPtr()->getString("FormationCircButton"))%((*ite).apcost)));
 			mSkill[n]->setImageResource("Defence");
 		}
 		else
 		{
 			datalib->getData(std::string("StaticData/SkillData/")+ (*ite).skillid + std::string("/Name"),skillname);
 			datalib->getData(std::string("StaticData/SkillData/")+ (*ite).skillid + std::string("/Describe"),skillTips);
-			mSkill[n]->setCaption(str(boost::format("%1%\nAP:%2%")%skillname%((*ite).apcost)));
+			datalib->getData(std::string("StaticData/SkillData/")+ (*ite).skillid + std::string("/Icon"),skillIcon);
+			mSkill[n]->setImageResource("skill");
+			mSkill[n]->setImageGroup(skillIcon);
+			mSkill[n]->setCaption(Ogre::StringConverter::toString((*ite).apcost)+"   ");
 			mSkill[n]->setUserString("Tips",skillTips);
-			mSkill[n]->setImageResource("none");
+			mSkill[n]->setUserString("Discribe",str(boost::format("%1%(AP:%2%)")%skillname%((*ite).apcost)));
 		}
 		mSkill[n]->setVisible(true);
 		mSkill[n]->setEnabled((*ite).available);
@@ -366,41 +392,29 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
  	mPlayerState = playerstate;
  }
 
-void GUICommandWindows::onSkill1(MyGUI::Widget* _sender)
+void GUICommandWindows::onSkillClick(MyGUI::Widget* _sender)
 {
-	useSkill(0);
+	std::string name=_sender->getName();
+
+	std::queue<std::string> r;
+
+	split(name,"_",r);
+
+	r.pop();
+
+	int index=atoi(r.front().c_str());
+
+	useSkill(index-1);
 }
-void GUICommandWindows::onSkill2(MyGUI::Widget* _sender)
+
+void GUICommandWindows::onSkillHighlighted(MyGUI::Widget* _sender, MyGUI::Widget* _old)
 {
-	useSkill(1);
+	mSkillName->setCaption(_sender->getUserString("Discribe"));
 }
-void GUICommandWindows::onSkill3(MyGUI::Widget* _sender)
+
+void GUICommandWindows::onSkillLostFocus( MyGUI::Widget* _sender, MyGUI::Widget* _old )
 {
-	useSkill(2);
-}
-void GUICommandWindows::onSkill4(MyGUI::Widget* _sender)
-{
-	useSkill(3);
-}
-void GUICommandWindows::onSkill5(MyGUI::Widget* _sender)
-{
-	useSkill(4);
-}
-void GUICommandWindows::onSkill6(MyGUI::Widget* _sender)
-{
-	useSkill(5);
-}
-void GUICommandWindows::onSkill7(MyGUI::Widget* _sender)
-{
-	useSkill(6);
-}
-void GUICommandWindows::onSkill8(MyGUI::Widget* _sender)
-{
-	useSkill(7);
-}
-void GUICommandWindows::onSkill9(MyGUI::Widget* _sender)
-{
-	useSkill(8);
+	mSkillName->setCaption("");
 }
 
 void GUICommandWindows::useSkill(int n)

@@ -35,18 +35,13 @@ public:
 	void setPlayerState(BattlePlayerState* playerstate);
 private:
 	MyGUI::Window* mWindow;
-	MyGUI::Button* mSkill[9];
+	MyGUI::Button* mSkill[12];
 	MyGUI::TextBox* mAPLabel;
+	MyGUI::TextBox* mSkillName;
 
-	void onSkill1(MyGUI::Widget* _sender);
-	void onSkill2(MyGUI::Widget* _sender);
-	void onSkill3(MyGUI::Widget* _sender);
-	void onSkill4(MyGUI::Widget* _sender);
-	void onSkill5(MyGUI::Widget* _sender);
-	void onSkill6(MyGUI::Widget* _sender);
-	void onSkill7(MyGUI::Widget* _sender);
-	void onSkill8(MyGUI::Widget* _sender);
-	void onSkill9(MyGUI::Widget* _sender);
+	void onSkillClick(MyGUI::Widget* _sender);
+	void onSkillHighlighted(MyGUI::Widget* _sender, MyGUI::Widget* _old);
+	void onSkillLostFocus(MyGUI::Widget* _sender, MyGUI::Widget* _old);
 
 	void useSkill(int n);
 

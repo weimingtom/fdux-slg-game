@@ -573,7 +573,7 @@
 			<APCost type="float" value="3.0"/>
 			<CoolDown type="Int" value="0"/>
 			<Value type="Int" value="0"/>
-			<Icon type="String" value="AttackIcon"/>
+			<Icon type="String" value="ac_atkc"/>
 			<Script type="String" value="attack.lua"/>
 		</Attack>
 		<MagicShield>
