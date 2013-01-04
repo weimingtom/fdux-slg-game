@@ -3,7 +3,7 @@
 
 	<Resource type="ResourceImageSet" name="ac">
 
-		<Group name="ac_form" texture="ac_form.png" size="45 45">
+		<Group name="ac_turn" texture="ac_turn.png" size="45 45">
 			<Index name="disabled">
 				<Frame point="0 0"/>
 			</Index>
@@ -19,6 +19,51 @@
 		</Group>
 
 		<Group name="ac_move" texture="ac_move.png" size="45 45">
+			<Index name="disabled">
+				<Frame point="0 0"/>
+			</Index>
+			<Index name="normal">
+				<Frame point="45 0"/>
+			</Index>
+			<Index name="highlighted">
+				<Frame point="90 0"/>
+			</Index>
+			<Index name="pushed">
+				<Frame point="135 0"/>
+			</Index>
+		</Group>
+
+		<Group name="form_dispersed" texture="form_dispersed.png" size="45 45">
+			<Index name="disabled">
+				<Frame point="0 0"/>
+			</Index>
+			<Index name="normal">
+				<Frame point="45 0"/>
+			</Index>
+			<Index name="highlighted">
+				<Frame point="90 0"/>
+			</Index>
+			<Index name="pushed">
+				<Frame point="135 0"/>
+			</Index>
+		</Group>
+
+		<Group name="form_line" texture="form_line.png" size="45 45">
+			<Index name="disabled">
+				<Frame point="0 0"/>
+			</Index>
+			<Index name="normal">
+				<Frame point="45 0"/>
+			</Index>
+			<Index name="highlighted">
+				<Frame point="90 0"/>
+			</Index>
+			<Index name="pushed">
+				<Frame point="135 0"/>
+			</Index>
+		</Group>
+
+		<Group name="form_round" texture="form_round.png" size="45 45">
 			<Index name="disabled">
 				<Frame point="0 0"/>
 			</Index>
@@ -52,6 +97,51 @@
 		</Group>
 
 		<Group name="ac_atkr" texture="ac_atkr.png" size="45 45">
+			<Index name="disabled">
+				<Frame point="0 0"/>
+			</Index>
+			<Index name="normal">
+				<Frame point="45 0"/>
+			</Index>
+			<Index name="highlighted">
+				<Frame point="90 0"/>
+			</Index>
+			<Index name="pushed">
+				<Frame point="135 0"/>
+			</Index>
+		</Group>
+
+		<Group name="ac_rest" texture="ac_rest.png" size="45 45">
+			<Index name="disabled">
+				<Frame point="0 0"/>
+			</Index>
+			<Index name="normal">
+				<Frame point="45 0"/>
+			</Index>
+			<Index name="highlighted">
+				<Frame point="90 0"/>
+			</Index>
+			<Index name="pushed">
+				<Frame point="135 0"/>
+			</Index>
+		</Group>
+
+		<Group name="skill_act1_def" texture="skill_act1_def.png" size="45 45">
+			<Index name="disabled">
+				<Frame point="0 0"/>
+			</Index>
+			<Index name="normal">
+				<Frame point="45 0"/>
+			</Index>
+			<Index name="highlighted">
+				<Frame point="90 0"/>
+			</Index>
+			<Index name="pushed">
+				<Frame point="135 0"/>
+			</Index>
+		</Group>
+		
+		<Group name="skill_act1_suppress" texture="skill_act1_suppress.png" size="45 45">
 			<Index name="disabled">
 				<Frame point="0 0"/>
 			</Index>

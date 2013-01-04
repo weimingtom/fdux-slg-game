@@ -339,28 +339,32 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 			mSkill[n]->setCaption("");
 			mSkill[n]->setUserString("Tips",StringTable::getSingleton().getString("Tips_Move"));
 			mSkill[n]->setUserString("Discribe",StringTable::getSingleton().getString("TurnSquad"));
-			mSkill[n]->setImageResource("Move");
+			mSkill[n]->setImageResource("ac");
+			mSkill[n]->setImageGroup("ac_turn");
 		}
 		else if(ite->skillid == "looseformation")
 		{
-			mSkill[n]->setCaption(Ogre::StringConverter::toString((*ite).apcost));
+			mSkill[n]->setCaption(Ogre::StringConverter::toString((*ite).apcost)+"   ");
 			mSkill[n]->setUserString("Tips",StringTable::getSingletonPtr()->getString("Tips_FormationLoosButton"));
 			mSkill[n]->setUserString("Discribe",str(boost::format(StringTable::getSingletonPtr()->getString("FormationLoosButton"))%((*ite).apcost)));
-			mSkill[n]->setImageResource("Defence");
+			mSkill[n]->setImageResource("ac");
+			mSkill[n]->setImageGroup("form_dispersed");
 		}
 		else if(ite->skillid == "lineformation")
 		{
-			mSkill[n]->setCaption(Ogre::StringConverter::toString((*ite).apcost));
+			mSkill[n]->setCaption(Ogre::StringConverter::toString((*ite).apcost)+"   ");
 			mSkill[n]->setUserString("Tips",StringTable::getSingletonPtr()->getString("Tips_FormationLineButton"));
 			mSkill[n]->setUserString("Discribe",str(boost::format(StringTable::getSingletonPtr()->getString("FormationLineButton"))%((*ite).apcost)));
-			mSkill[n]->setImageResource("Defence");
+			mSkill[n]->setImageResource("ac");
+			mSkill[n]->setImageGroup("form_line");
 		}
 		else if(ite->skillid == "circularformation")
 		{
-			mSkill[n]->setCaption(Ogre::StringConverter::toString((*ite).apcost));
+			mSkill[n]->setCaption(Ogre::StringConverter::toString((*ite).apcost)+"   ");
 			mSkill[n]->setUserString("Tips",StringTable::getSingletonPtr()->getString("Tips_FormationCircButton"));
 			mSkill[n]->setUserString("Discribe",str(boost::format(StringTable::getSingletonPtr()->getString("FormationCircButton"))%((*ite).apcost)));
-			mSkill[n]->setImageResource("Defence");
+			mSkill[n]->setImageResource("ac");
+			mSkill[n]->setImageGroup("form_round");
 		}
 		else
 		{
