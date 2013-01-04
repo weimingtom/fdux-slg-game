@@ -597,7 +597,7 @@
 			<APCost type="float" value="3.0"/>
 			<CoolDown type="Int" value="0"/>
 			<Value type="Int" value="10"/>
-			<Icon type="String" value="none"/>
+			<Icon type="String" value="ac_atkr"/>
 			<Script type="String" value="rangedattack.lua"/>
 		</RangedAttack>
 		<Defence>
@@ -609,7 +609,7 @@
 			<APCost type="float" value="2.0"/>
 			<CoolDown type="Int" value="0"/>
 			<Value type="Int" value="10"/>
-			<Icon type="String" value="Recrew"/>
+			<Icon type="String" value="skill_act1_def"/>
 			<Script type="String" value="defence.lua"/>
 		</Defence>
 		<Rest>
@@ -621,7 +621,7 @@
 			<APCost type="float" value="2.0"/>
 			<CoolDown type="Int" value="0"/>
 			<Value type="Int" value="10"/>
-			<Icon type="String" value="Recrew"/>
+			<Icon type="String" value="ac_rest"/>
 			<Script type="String" value="rest.lua"/>
 		</Rest>
 		<Heal>
@@ -657,7 +657,7 @@
 			<APCost type="float" value="5.0"/>
 			<CoolDown type="Int" value="1"/>
 			<Value type="Int" value="10"/>
-			<Icon type="String" value="none"/>
+			<Icon type="String" value="skill_act1_suppress"/>
 			<Script type="String" value="suppressattack.lua"/>
 		</SuppressAttack>
 		<Pray>
