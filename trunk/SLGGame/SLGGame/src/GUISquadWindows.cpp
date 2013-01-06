@@ -24,9 +24,9 @@ GUISquadWindows::GUISquadWindows(MyGUI::Window* window,int Width,int Height):GUI
 	assignWidget(mSquadAttack,"SquadAttack");
 	assignWidget(mSquadDefence,"SquadDefence");
 
-	MyGUI::TextBox* textBox;
-	assignWidget(textBox,"FormationLabel");
-	textBox->setCaption(StringTable::getSingleton().getString("Formation"));
+	//MyGUI::TextBox* textBox;
+	//assignWidget(textBox,"FormationLabel");
+	//textBox->setCaption(StringTable::getSingleton().getString("Formation"));
 	//assignWidget(textBox,"DirectionLabel");
 	//textBox->setCaption(StringTable::getSingleton().getString("Direction"));
 
