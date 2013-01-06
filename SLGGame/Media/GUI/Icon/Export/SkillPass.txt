@@ -1,0 +1,226 @@
+    <Resource type="ResourceImageSet" name="skillpass">
+
+        <Group name="skill_pass_APDown" texture="skill_pass_APDown.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_APUp" texture="skill_pass_APUp.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_AtkcDown" texture="skill_pass_AtkcDown.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_AtkcUp" texture="skill_pass_AtkcUp.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_AtkrDown" texture="skill_pass_AtkrDown.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_AtkrUp" texture="skill_pass_AtkrUp.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_chaos" texture="skill_pass_chaos.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_CountDown" texture="skill_pass_CountDown.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_CountUp" texture="skill_pass_CountUp.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_cruel" texture="skill_pass_cruel.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_DefDown" texture="skill_pass_DefDown.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_DefUp" texture="skill_pass_DefUp.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_DetDown" texture="skill_pass_DetDown.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_DetUp" texture="skill_pass_DetUp.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_FormDown" texture="skill_pass_FormDown.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_FormUp" texture="skill_pass_FormUp.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_gas" texture="skill_pass_gas.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_hideDown" texture="skill_pass_hideDown.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_HideUp" texture="skill_pass_HideUp.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_InitDown" texture="skill_pass_InitDown.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_InitUp" texture="skill_pass_InitUp.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_poison" texture="skill_pass_poison.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_shake" texture="skill_pass_shake.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_ToughfDown" texture="skill_pass_ToughfDown.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_ToughfUp" texture="skill_pass_ToughfUp.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_trample" texture="skill_pass_trample.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_upcharge" texture="skill_pass_upcharge.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_uppuppetA" texture="skill_pass_uppuppetA.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_uppuppetD" texture="skill_pass_uppuppetD.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_upspirit" texture="skill_pass_upspirit.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_vsmage" texture="skill_pass_vsmage.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_vsrider" texture="skill_pass_vsrider.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+    </Resource>

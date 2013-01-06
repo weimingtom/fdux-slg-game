@@ -1,0 +1,135 @@
+    <Resource type="ResourceImageSet" name="eqp">
+
+        <Group name="eqp_armor" texture="eqp_armor.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_bow" texture="eqp_bow.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_close" texture="eqp_close.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_crossbow" texture="eqp_crossbow.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_halberd" texture="eqp_halberd.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_heavyarmor" texture="eqp_heavyarmor.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_heavyhorse" texture="eqp_heavyhorse.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_horse" texture="eqp_horse.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_lightarmor" texture="eqp_lightarmor.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_lighthorse" texture="eqp_lighthorse.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_midarmor" texture="eqp_midarmor.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_oneaxe" texture="eqp_oneaxe.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_onesword" texture="eqp_onesword.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_range" texture="eqp_range.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_shield" texture="eqp_shield.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_soldier" texture="eqp_soldier.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_spear" texture="eqp_spear.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_twoaxe" texture="eqp_twoaxe.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_twosword" texture="eqp_twosword.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+    </Resource>

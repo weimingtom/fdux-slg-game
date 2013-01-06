@@ -1,0 +1,79 @@
+    <Resource type="ResourceImageSet" name="state">
+
+        <Group name="state_ap" texture="state_ap.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="state_atkc" texture="state_atkc.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="state_atkr" texture="state_atkr.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="state_count" texture="state_count.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="state_def" texture="state_def.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="state_det" texture="state_det.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="state_form" texture="state_form.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="state_hide" texture="state_hide.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="state_init" texture="state_init.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="state_num" texture="state_num.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="state_toughf" texture="state_toughf.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+    </Resource>
