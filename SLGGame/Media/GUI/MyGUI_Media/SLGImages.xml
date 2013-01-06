@@ -126,36 +126,985 @@
 			</Index>
 		</Group>
 
-		<Group name="skill_act1_def" texture="skill_act1_def.png" size="45 45">
-			<Index name="disabled">
-				<Frame point="0 0"/>
-			</Index>
-			<Index name="normal">
-				<Frame point="45 0"/>
-			</Index>
-			<Index name="highlighted">
-				<Frame point="90 0"/>
-			</Index>
-			<Index name="pushed">
-				<Frame point="135 0"/>
-			</Index>
-		</Group>
-		
-		<Group name="skill_act1_suppress" texture="skill_act1_suppress.png" size="45 45">
-			<Index name="disabled">
-				<Frame point="0 0"/>
-			</Index>
-			<Index name="normal">
-				<Frame point="45 0"/>
-			</Index>
-			<Index name="highlighted">
-				<Frame point="90 0"/>
-			</Index>
-			<Index name="pushed">
-				<Frame point="135 0"/>
-			</Index>
-		</Group>
+		<Group name="skill_act1_ambush" texture="skill_act1_ambush.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act1_break" texture="skill_act1_break.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act1_check" texture="skill_act1_check.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act1_def" texture="skill_act1_def.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act1_dispatch" texture="skill_act1_dispatch.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act1_disturb" texture="skill_act1_disturb.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act1_extrusion" texture="skill_act1_extrusion.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act1_inspire" texture="skill_act1_inspire.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act1_ready" texture="skill_act1_ready.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act1_snipe" texture="skill_act1_snipe.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act1_strike" texture="skill_act1_strike.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act1_suppress" texture="skill_act1_suppress.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act2_cold" texture="skill_act2_cold.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act2_confession" texture="skill_act2_confession.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act2_firm" texture="skill_act2_firm.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act2_heal" texture="skill_act2_heal.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act2_pray" texture="skill_act2_pray.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act2_protect" texture="skill_act2_protect.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act2_sumspirit" texture="skill_act2_sumspirit.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act3_enarmor" texture="skill_act3_enarmor.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act3_enweapon" texture="skill_act3_enweapon.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act3_hide" texture="skill_act3_hide.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act3_repair" texture="skill_act3_repair.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act3_smoke" texture="skill_act3_smoke.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act3_sumpuppet" texture="skill_act3_sumpuppet.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act3_weak" texture="skill_act3_weak.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act4_fire" texture="skill_act4_fire.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act4_thunder" texture="skill_act4_thunder.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act4_water" texture="skill_act4_water.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_act4_wind" texture="skill_act4_wind.png" size="45 45">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="45 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="90 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="135 0"/>
+            </Index>
+        </Group>
 	</Resource>
+
+    <Resource type="ResourceImageSet" name="skillpass">
+
+        <Group name="skill_pass_APDown" texture="skill_pass_APDown.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_APUp" texture="skill_pass_APUp.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_AtkcDown" texture="skill_pass_AtkcDown.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_AtkcUp" texture="skill_pass_AtkcUp.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_AtkrDown" texture="skill_pass_AtkrDown.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_AtkrUp" texture="skill_pass_AtkrUp.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_chaos" texture="skill_pass_chaos.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_CountDown" texture="skill_pass_CountDown.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_CountUp" texture="skill_pass_CountUp.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_cruel" texture="skill_pass_cruel.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_DefDown" texture="skill_pass_DefDown.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_DefUp" texture="skill_pass_DefUp.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_DetDown" texture="skill_pass_DetDown.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_DetUp" texture="skill_pass_DetUp.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_FormDown" texture="skill_pass_FormDown.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_FormUp" texture="skill_pass_FormUp.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_gas" texture="skill_pass_gas.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_hideDown" texture="skill_pass_hideDown.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_HideUp" texture="skill_pass_HideUp.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_InitDown" texture="skill_pass_InitDown.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_InitUp" texture="skill_pass_InitUp.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_poison" texture="skill_pass_poison.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_shake" texture="skill_pass_shake.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_ToughfDown" texture="skill_pass_ToughfDown.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_ToughfUp" texture="skill_pass_ToughfUp.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_trample" texture="skill_pass_trample.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_upcharge" texture="skill_pass_upcharge.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_uppuppetA" texture="skill_pass_uppuppetA.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_uppuppetD" texture="skill_pass_uppuppetD.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_upspirit" texture="skill_pass_upspirit.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_vsmage" texture="skill_pass_vsmage.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="skill_pass_vsrider" texture="skill_pass_vsrider.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+    </Resource>
+
+    <Resource type="ResourceImageSet" name="state">
+
+        <Group name="state_ap" texture="state_ap.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="state_atkc" texture="state_atkc.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="state_atkr" texture="state_atkr.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="state_count" texture="state_count.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="state_def" texture="state_def.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="state_det" texture="state_det.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="state_form" texture="state_form.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="state_hide" texture="state_hide.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="state_init" texture="state_init.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="state_num" texture="state_num.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="state_toughf" texture="state_toughf.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+        <Group name="state_armor" texture="state_armor.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+    </Resource>
+
+    <Resource type="ResourceImageSet" name="eqp">
+
+        <Group name="eqp_armor" texture="eqp_armor.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_bow" texture="eqp_bow.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_close" texture="eqp_close.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_crossbow" texture="eqp_crossbow.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_halberd" texture="eqp_halberd.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_heavyarmor" texture="eqp_heavyarmor.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_heavyhorse" texture="eqp_heavyhorse.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_horse" texture="eqp_horse.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_lightarmor" texture="eqp_lightarmor.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_lighthorse" texture="eqp_lighthorse.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_midarmor" texture="eqp_midarmor.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_oneaxe" texture="eqp_oneaxe.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_onesword" texture="eqp_onesword.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_range" texture="eqp_range.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_shield" texture="eqp_shield.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_soldier" texture="eqp_soldier.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_spear" texture="eqp_spear.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_twoaxe" texture="eqp_twoaxe.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="eqp_twosword" texture="eqp_twosword.png" size="45 45">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+    </Resource>
+
+    <Resource type="ResourceImageSet" name="button">
+
+        <Group name="button_skill" texture="button_skill.png" size="60 60">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="60 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="120 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="180 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="button_supply" texture="button_supply.png" size="60 60">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="60 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="120 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="180 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="button_task" texture="button_task.png" size="60 60">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="60 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="120 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="180 0"/>
+            </Index>
+        </Group>
+
+    </Resource>
 
 	<Resource type="ResourceImageSet" name="AttackIcon">
 	<Group name="Button" texture="SLGIcon.png" size="55 55">
