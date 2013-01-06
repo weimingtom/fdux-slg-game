@@ -1,0 +1,50 @@
+    <Resource type="ResourceImageSet" name="button">
+
+        <Group name="button_skill" texture="button_skill.png" size="60 60">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="60 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="120 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="180 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="button_supply" texture="button_supply.png" size="60 60">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="60 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="120 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="180 0"/>
+            </Index>
+        </Group>
+
+
+        <Group name="button_task" texture="button_task.png" size="60 60">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="60 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="120 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="180 0"/>
+            </Index>
+        </Group>
+
+    </Resource>
