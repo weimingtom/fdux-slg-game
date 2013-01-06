@@ -917,6 +917,13 @@
             </Index>
         </Group>
 
+        <Group name="state_horse" texture="state_horse.png" size="20 20">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+
     </Resource>
 
     <Resource type="ResourceImageSet" name="eqp">
