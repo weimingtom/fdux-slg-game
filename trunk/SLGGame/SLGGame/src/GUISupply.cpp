@@ -29,8 +29,8 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	assignWidget(mSaveButton,"T_SupplySave");
 	assignWidget(mLoadButton,"T_SupplyLoad");
 	assignWidget(mExitButton,"T_SupplyExit");
-	assignWidget(mEquipmentButton,"TEXT_Equipment");
-	assignWidget(mSkillButton,"TEXT_Skill");
+	assignWidget(mEquipmentButton,"Button_Equipment");
+	assignWidget(mSkillButton,"Button_Skill");
 
 
 	mSaveButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUISupply::onSave);
@@ -689,7 +689,7 @@ void GUISupply::onOtherSceneNotify( std::string arg )
 	{
 		MoveTo(0,0,1000,mArmyWindow);
 		MoveTo(240,5,1000,mAttributeWindow);
-		MoveTo(5,480,1000,mControlWindow);
+		MoveTo(5,500,1000,mControlWindow);
 		MoveTo(240,310,1000,mItemWindow);
 		MoveTo(970,5,1000,mTemaWindow);
 		MoveTo(970,310,1000,mItemAttributeWindow);

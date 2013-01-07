@@ -2,8 +2,8 @@
 <MyGUI type="Layout" version="3.2.0">
     <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Info" name="SupplyBG">
         <Property key="ImageTexture" value="yingdi.png"/>
-        <Widget type="Window" skin="SLGWindow" position="0 0 235 477" name="ArmyWindow">
-            <Widget type="ItemBox" skin="ItemBox" position="22 55 190 399" name="ArmyList"/>
+        <Widget type="Window" skin="SLGWindow" position="0 0 235 505" name="ArmyWindow">
+            <Widget type="ItemBox" skin="ItemBox" position="22 55 190 425" name="ArmyList"/>
         </Widget>
         <Widget type="Window" skin="SLGMiniWindowSkin" position="240 5 730 305" name="AttributeWindow">
             <Widget type="ImageBox" skin="SLGImageBox" position="16 13 105 135" name="SquadImageSkin"/>
@@ -295,77 +295,97 @@
                 <Property key="ImageGroup" value="state_num"/>
             </Widget>
         </Widget>
-        <Widget type="Window" skin="SLGMiniWindowSkin" position="240 310 730 375" name="ItemWindow">
-            <Widget type="TabControl" skin="TabControl" position="15 60 705 300" name="WeaponTabControl">
-                <Widget type="TabItem" skin="" position="2 24 699 272" name="TEXT_SquadPWeapon">
+        <Widget type="Window" skin="SLGMiniWindowSkin" position="240 310 730 405" name="ItemWindow">
+            <Widget type="TabControl" skin="TabControl" position="15 80 705 310" name="WeaponTabControl">
+                <Widget type="TabItem" skin="" position="2 24 699 282" name="TEXT_SquadPWeapon">
                     <Property key="Caption" value="PWeapon"/>
                     <Property key="FontHeight" value="16"/>
-                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 270" align="Stretch" name="PWeaponItemBox"/>
+                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 280" align="Stretch" name="PWeaponItemBox"/>
                 </Widget>
-                <Widget type="TabItem" skin="" position="2 24 699 272" name="TEXT_SquadSWeapon">
+                <Widget type="TabItem" skin="" position="2 24 699 282" name="TEXT_SquadSWeapon">
                     <Property key="Caption" value="SWeapon"/>
-                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 265" name="SWeaponItemBox"/>
+                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 280" name="SWeaponItemBox"/>
                 </Widget>
-                <Widget type="TabItem" skin="" position="2 24 699 272" name="TEXT_SquadShield">
+                <Widget type="TabItem" skin="" position="2 24 699 282" name="TEXT_SquadShield">
                     <Property key="Caption" value="Shield"/>
-                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 270" name="ShieldItemBox"/>
+                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 280" name="ShieldItemBox"/>
                 </Widget>
-                <Widget type="TabItem" skin="" position="2 24 699 272" name="TEXT_SquadHorse">
+                <Widget type="TabItem" skin="" position="2 24 699 282" name="TEXT_SquadHorse">
                     <Property key="Caption" value="Horse"/>
-                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 270" name="HorseItemBox"/>
+                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 280" name="HorseItemBox"/>
                 </Widget>
-                <Widget type="TabItem" skin="" position="2 24 699 272" name="TEXT_SquadArmor">
+                <Widget type="TabItem" skin="" position="2 24 699 282" name="TEXT_SquadArmor">
                     <Property key="Caption" value="Armor"/>
-                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 270" name="ArmorItemBox"/>
+                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 280" name="ArmorItemBox"/>
                 </Widget>
-                <Widget type="TabItem" skin="" position="2 24 699 272" name="TEXT_SquadSoilder">
+                <Widget type="TabItem" skin="" position="2 24 699 282" name="TEXT_SquadSoilder">
                     <Property key="Caption" value="Soilder"/>
-                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 265" name="SoilderItemBox"/>
+                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 280" name="SoilderItemBox"/>
                 </Widget>
-                <Widget type="TabItem" skin="" position="2 24 699 272" name="TEXT_Retainer">
+                <Widget type="TabItem" skin="" position="2 24 699 282" name="TEXT_Retainer">
                     <Property key="Caption" value="Retainer"/>
                     <Property key="FontHeight" value="20"/>
-                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 270" name="RetainerItemBox"/>
+                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 280" name="RetainerItemBox"/>
                 </Widget>
             </Widget>
-            <Widget type="Button" skin="SLGButton2" position="75 5 255 45" name="TEXT_Equipment">
-                <Property key="FontHeight" value="20"/>
-                <Property key="Caption" value="Equipment"/>
-                <Property key="TextColour" value="1 1 1"/>
-            </Widget>
-            <Widget type="Button" skin="SLGButton2" position="405 5 255 45" name="TEXT_Skill">
-                <Property key="FontHeight" value="20"/>
-                <Property key="Caption" value="Skill"/>
-                <Property key="TextColour" value="1 1 1"/>
-            </Widget>
-            <Widget type="TabControl" skin="TabControl" position="15 60 705 300" name="SkillTabControl">
-                <Widget type="TabItem" skin="" position="2 24 699 272" name="TEXT_SquadSkill">
+            <Widget type="TabControl" skin="TabControl" position="15 80 705 310" name="SkillTabControl">
+                <Property key="ButtonAutoWidth" value="true"/>
+                <Widget type="TabItem" skin="" position="2 24 699 282" name="TEXT_SquadSkill">
                     <Property key="Caption" value="Active"/>
                     <Property key="FontHeight" value="20"/>
-                    <Widget type="ItemBox" skin="ItemBox" position="0 35 700 240" name="ActiveItemBox"/>
+                    <Widget type="ItemBox" skin="ItemBox" position="0 35 700 250" name="ActiveItemBox"/>
                     <Widget type="TextBox" skin="TextBox" position="15 5 175 25" name="SquadActivePoint">
                         <Property key="FontName" value="fireflysung.17"/>
                     </Widget>
                 </Widget>
-                <Widget type="TabItem" skin="" position="2 24 699 272" name="TEXT_SquadPassiveSkill">
+                <Widget type="TabItem" skin="" position="2 24 699 282" name="TEXT_SquadPassiveSkill">
                     <Property key="Caption" value="Passive"/>
                     <Property key="FontHeight" value="20"/>
-                    <Widget type="ItemBox" skin="ItemBox" position="0 35 700 240" name="PassiveItemBox"/>
+                    <Widget type="ItemBox" skin="ItemBox" position="0 35 700 250" name="PassiveItemBox"/>
                     <Widget type="TextBox" skin="TextBox" position="15 5 175 25" name="SquadPassivePoint">
                         <Property key="FontName" value="fireflysung.17"/>
                     </Widget>
                 </Widget>
-                <Widget type="TabItem" skin="" position="2 24 699 272" name="TEXT_SquadUseEquip">
+                <Widget type="TabItem" skin="" position="2 24 699 282" name="TEXT_SquadUseEquip">
                     <Property key="Caption" value="Equip"/>
-                    <Property key="FontHeight" value="20"/>
-                    <Widget type="ItemBox" skin="ItemBox" position="0 35 700 240" name="EquipItemBox"/>
+                    <Property key="FontHeight" value="17"/>
+                    <Property key="FontName" value="fireflysung.17"/>
+                    <Widget type="ItemBox" skin="ItemBox" position="0 35 700 250" name="EquipItemBox"/>
                     <Widget type="TextBox" skin="TextBox" position="15 5 175 25" name="SquadEquipPoint">
                         <Property key="FontName" value="fireflysung.17"/>
                     </Widget>
                 </Widget>
             </Widget>
+            <Widget type="Button" skin="ButtonImage" position="130 10 60 60" name="Button_Equipment">
+                <Property key="ImageResource" value="button"/>
+                <Property key="ImageGroup" value="button_supply"/>
+                <Property key="TextColour" value="1 0.588235 0"/>
+                <Property key="ModeImage" value="true"/>
+                <Property key="FontHeight" value="17"/>
+                <Property key="FontName" value="fireflysung.17"/>
+                <Property key="TextAlign" value="Right Bottom"/>
+                <Property key="TextShadow" value="true"/>
+                <Property key="TextShadowColour" value="1 1 1"/>
+            </Widget>
+            <Widget type="Button" skin="ButtonImage" position="445 10 60 60" name="Button_Skill">
+                <Property key="ImageResource" value="button"/>
+                <Property key="ImageGroup" value="button_skill"/>
+                <Property key="TextColour" value="1 1 1"/>
+                <Property key="ModeImage" value="true"/>
+                <Property key="FontName" value="fireflysung.17"/>
+                <Property key="TextAlign" value="HCenter Bottom"/>
+                <Property key="FontHeight" value="17"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="200 25 80 30" name="TEXT_Equipment">
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="30"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="525 25 80 30" name="TEXT_Skill">
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="30"/>
+            </Widget>
         </Widget>
-        <Widget type="Window" skin="SLGWindow" position="5 480 225 205" name="ControlWindow">
+        <Widget type="Window" skin="SLGWindow" position="5 500 225 205" name="ControlWindow">
             <Widget type="Button" skin="SLGButton3" position="25 90 175 55" name="T_SupplyLoad">
                 <Property key="Caption" value="load"/>
                 <Property key="TextColour" value="1 1 1"/>
@@ -382,7 +402,7 @@
                 <Property key="FontHeight" value="20"/>
             </Widget>
         </Widget>
-        <Widget type="Window" skin="SLGMiniWindowSkin" position="970 310 301 375" name="ItemAttributeWindow">
+        <Widget type="Window" skin="SLGMiniWindowSkin" position="970 310 301 405" name="ItemAttributeWindow">
             <Widget type="ImageBox" skin="ImageBox" position="20 20 48 48" name="ItemIcon"/>
             <Widget type="TextBox" skin="TextBox" position="80 30 205 30" name="ItemName">
                 <Property key="FontHeight" value="25"/>
@@ -390,7 +410,7 @@
             <Widget type="TextBox" skin="TextBox" position="20 80 265 25" name="ItemPrice">
                 <Property key="FontHeight" value="22"/>
             </Widget>
-            <Widget type="TextBox" skin="TextBox" position="20 115 265 240" name="ItemInfo">
+            <Widget type="TextBox" skin="TextBox" position="20 115 265 270" name="ItemInfo">
                 <Property key="FontHeight" value="22"/>
             </Widget>
         </Widget>
