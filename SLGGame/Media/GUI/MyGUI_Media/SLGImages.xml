@@ -1064,6 +1064,66 @@
 
     <Resource type="ResourceImageSet" name="button">
 
+        <Group name="button_start" texture="button_start.png" size="200 70">
+            <Index name="disabled">
+                <Frame point="600 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="200 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="400 0"/>
+            </Index>
+        </Group>
+
+        <Group name="button_option" texture="button_option.png" size="200 70">
+            <Index name="disabled">
+                <Frame point="600 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="200 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="400 0"/>
+            </Index>
+        </Group>
+
+        <Group name="button_load" texture="button_load.png" size="200 70">
+            <Index name="disabled">
+                <Frame point="600 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="200 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="400 0"/>
+            </Index>
+        </Group>
+
+        <Group name="button_end" texture="button_end.png" size="200 70">
+            <Index name="disabled">
+                <Frame point="600 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="200 0"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="400 0"/>
+            </Index>
+        </Group>
+
         <Group name="button_skill" texture="button_skill.png" size="60 60">
             <Index name="disabled">
                 <Frame point="0 0"/>
