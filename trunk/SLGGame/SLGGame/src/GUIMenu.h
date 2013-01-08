@@ -38,6 +38,7 @@ private:
 		WaitState,
 		ExitState,
 		SupprotState,
+		PlaneState,
 		MainMenuState,
 		SaveMenuState,
 		LoadMenuState,
@@ -49,8 +50,8 @@ private:
 
 	MyGUI::ImageBox* mLogoImage;
 	MyGUI::ImageBox* mMenuImage;
+	MyGUI::ImageBox* mPlaneImage;
 
-	MyGUI::Button* mSupport;
 	MyGUI::Button* mNewGame;
 	MyGUI::Button* mLoad;
 	MyGUI::Button* mOpiton;

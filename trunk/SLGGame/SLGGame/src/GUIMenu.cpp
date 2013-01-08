@@ -20,27 +20,21 @@ GUIMenu::GUIMenu(int width,int height):GUIScene("MainMenu.layout",width,height),
 {
 	assignWidget(mLogoImage,"LogoImage");
 	assignWidget(mMenuImage,"BackGround");
+	assignWidget(mPlaneImage,"Plane");
 
 	assignWidget(mNewGame,"New");
 	assignWidget(mLoad,"Load");
 	assignWidget(mOpiton,"Opiton");
 	assignWidget(mExit,"Exit");
-	assignWidget(mSupport,"Support");
 
 	mLogoImage->setSize(width,height);
 	mMenuImage->setSize(width,height);
 
 	std::string data;
-	mNewGame->setCaption(StringTable::getSingleton().getString("NewGame"));
 	mNewGame->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onNewGame);
-	mLoad->setCaption(StringTable::getSingleton().getString("LoadGame"));
 	mLoad->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onLoad);
-	mOpiton->setCaption(StringTable::getSingleton().getString("Opition"));
 	mOpiton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onOpiton);
-	mExit->setCaption(StringTable::getSingleton().getString("ExitGame"));
 	mExit->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onExit);
-	mSupport->setCaption(StringTable::getSingleton().getString("Supprot"));
-	mSupport->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onSupprot);
 	setButtonLock(false);
 }
 
@@ -58,6 +52,7 @@ void GUIMenu::showScene( std::string arg )
 	if (arg=="logo")
 	{
 		mMenuState=LogoState;
+		mPlaneImage->setVisible(false);
 		mMenuImage->setVisible(false);
 		mLogoImage->setAlpha(0);
 		mLogoImage->setVisible(true);
@@ -67,8 +62,14 @@ void GUIMenu::showScene( std::string arg )
 	{
 		mMenuState=MainMenuState;
 		mMenuImage->setAlpha(0);
+		mPlaneImage->setVisible(true);
 		mMenuImage->setVisible(true);
 		mLogoImage->setVisible(false);
+		mPlaneImage->setPosition(0,200);
+		mNewGame->setAlpha(0);
+		mLoad->setAlpha(0);
+		mOpiton->setAlpha(0);
+		mExit->setAlpha(0);
 		FadeIn(FadeTime,mMenuImage);
 		AudioSystem::getSingletonPtr()->playStream("op.mp3",true,0);
 	}
@@ -96,10 +97,19 @@ void GUIMenu::onOtherSceneNotify(std::string arg)
 			 }
 		case  MainMenuState:
 			  {
+				  MoveTo(0,0,1000,mPlaneImage);
 				  setButtonLock(true);
 				  break;
 			  }
 		}
+	}
+	else if(arg=="MoveToOver")
+	{
+		FadeIn(1000,mNewGame);
+		FadeIn(1000,mLoad);
+		FadeIn(1000,mOpiton);
+		FadeIn(1000,mExit);
+		mMenuState=PlaneState;
 	}
 	else if (arg=="FadeOutOver")
 	{
@@ -116,12 +126,6 @@ void GUIMenu::onOtherSceneNotify(std::string arg)
 				 StateManager::getSingletonPtr()->changeState("cp0.lua",StateManager::AVG);
 				 break;
 			 }
-		case SupprotState:
-			{
-				DataLibrary::getSingleton().delNode(std::string("GameData/StoryData"));
-				StateManager::getSingletonPtr()->changeState("",StateManager::Supply);
-				break;
-			}
 		case ExitState:
 			  {
 				  Core::getSingletonPtr()->stop();
@@ -164,6 +168,7 @@ void GUIMenu::onNewGame( MyGUI::Widget* _sender )
 	mMenuState=NewState;
 	
 	FadeOut(FadeTime,mMenuImage);
+	FadeOut(FadeTime,mPlaneImage);
 }
 
 void GUIMenu::onExit( MyGUI::Widget* _sender )
@@ -173,6 +178,7 @@ void GUIMenu::onExit( MyGUI::Widget* _sender )
 	mMenuState=ExitState;
 
 	FadeOut(FadeTime,mMenuImage);
+	FadeOut(FadeTime,mPlaneImage);
 }
 
 void GUIMenu::setButtonLock( bool isLock )
@@ -194,13 +200,4 @@ void GUIMenu::onOpiton( MyGUI::Widget* _sender )
 {
 	mOptionWindow= (GUIOptionWindow*)GUISystem::getSingletonPtr()->createScene(OptionWindowScene);
 	mOptionWindow->showScene("");
-}
-
-void GUIMenu::onSupprot(MyGUI::Widget* _sender)
-{
-	setButtonLock(false);
-
-	mMenuState=SupprotState;
-
-	FadeOut(FadeTime,mMenuImage);
 }
