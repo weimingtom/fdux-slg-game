@@ -1439,7 +1439,7 @@ void SquadGraphics::setRecover(int num)
 
 bool SquadGraphics::isDirectionOver()
 {
-	return mNextDirection==-1 && isTransformOver();
+	return mNextDirection==-1 && mNodeAnimationState==NULL;
 }
 
 void SquadGraphics::update( unsigned int deltaTime )
@@ -1449,8 +1449,9 @@ void SquadGraphics::update( unsigned int deltaTime )
 		doDeathStep();
 	}
 	
-	if (mNextDirection!=-1 && isTransformOver())
+	if (mNextDirection!=-1 && isFormationOrDirectionOver())
 	{
+		stopTransform();
 		changeUnitPosition(mNextDirection,Ogre::Vector3(0,0,0),true);
 		mNextDirection=-1;
 	}
@@ -1633,46 +1634,69 @@ void SquadGraphics::changeUnitPosition( Direction d,Ogre::Vector3 offsetVector,b
 		}
 	}
 
-	Ogre::Vector3 commandVector;
-	Ogre::Vector3 soldierVector[4];
-	getFormationPosition(mFormation,d,commandVector,soldierVector);
+	Ogre::Vector3 CommanderVector;
+	Ogre::Vector3 SoldierVector[4];
 
-	std::map<int,Ogre::Vector3> commandVectors;
-	std::map<int,Ogre::Quaternion> quaternions;
-	commandVectors[0]=mNode->getPosition()+commandVector+offsetVector;
-	quaternions[0]=q;
-	mCommanderUnit->mOffsetX=commandVector.x;
-	mCommanderUnit->mOffsetY=commandVector.z;
+	getFormationPosition(mFormation,d,CommanderVector,SoldierVector);
 
 	if (isAnim)
 	{
-		//ÉèÖÃÒÆ¶¯
-		mCommanderUnit->setMovePath(commandVectors,quaternions,0.5);
+		mNodeAnimation = mSceneMgr->createAnimation(mNode->getName()+"_Ani",FORMATION_KEYFRAME_TIME);
+		mNodeAnimation->setInterpolationMode(Ogre::Animation::IM_LINEAR);
+		Ogre::NodeAnimationTrack* track = mNodeAnimation->createNodeTrack(0,mCommanderUnit->mNode);
 
+		Ogre::TransformKeyFrame* kf = track->createNodeKeyFrame(0);
+		kf->setTranslate(mCommanderUnit->mNode->getPosition());
+		kf->setRotation(mCommanderUnit->mNode->getOrientation());
+		kf->setScale(mCommanderUnit->mNode->getScale());
+
+		kf=track->createNodeKeyFrame(FORMATION_KEYFRAME_TIME);
+		Ogre::Vector3 v=CommanderVector;
+		mCommanderUnit->mOffsetX=v.x;
+		mCommanderUnit->mOffsetY=v.z;
+		Ogre::Vector3 np=mNode->getPosition();
+		v+=np;
+		v.y=Terrain::getSingletonPtr()->getHeight(v.x,v.z);
+		kf->setTranslate(v);
+		kf->setRotation(q);
+		kf->setScale(mCommanderUnit->mNode->getScale());
+
+		int i=0;
 		for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 		{
-			std::map<int,Ogre::Vector3> vectors;
-			(*it)->mOffsetX=soldierVector[(*it)->mFormationPosition].x;
-			(*it)->mOffsetY=soldierVector[(*it)->mFormationPosition].z;
-			vectors[0]=mNode->getPosition()+soldierVector[(*it)->mFormationPosition]+offsetVector;
-			(*it)->setMovePath(vectors,quaternions,0.5);
-		}
-	}
-	else
-	{
-		mCommanderUnit->mNode->setPosition(commandVectors[0]);
-		mCommanderUnit->mNode->setOrientation(q);
+			track = mNodeAnimation->createNodeTrack(i+1,(*it)->mNode);
 
+			Ogre::TransformKeyFrame* kf = track->createNodeKeyFrame(0);
+			kf->setTranslate((*it)->mNode->getPosition());
+			kf->setRotation((*it)->mNode->getOrientation());
+			kf->setScale((*it)->mNode->getScale());
+			v=SoldierVector[i];
+			(*it)->mOffsetX=v.x;
+			(*it)->mOffsetY=v.z;
+			v+=mNode->getPosition();
+			v.y=Terrain::getSingletonPtr()->getHeight(v.x,v.z);
+
+			kf=track->createNodeKeyFrame(FORMATION_KEYFRAME_TIME);
+			kf->setTranslate(v);
+			kf->setRotation(q);
+			kf->setScale((*it)->mNode->getScale());
+			(*it)->mFormationPosition=i;
+			i++;
+		}
+
+		mNodeAnimationState = mSceneMgr->createAnimationState(mNode->getName()+"_Ani");
+
+		setCheckUnitHeight(true);
+		mNodeAnimationState->setLoop(false);
+		mNodeAnimationState->setEnabled(true);
+
+		mCommanderUnit->setAnimation(mCommanderUnit->mWalkName,true,false);
 		for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 		{
-			Ogre::Vector3 sVector;
-			(*it)->mOffsetX=soldierVector[(*it)->mFormationPosition].x;
-			(*it)->mOffsetY=soldierVector[(*it)->mFormationPosition].z;
-			sVector=mNode->getPosition()+soldierVector[(*it)->mFormationPosition]+offsetVector;
-
-			(*it)->mNode->setPosition(sVector);
-			(*it)->mNode->setOrientation(q);
+			(*it)->setAnimation((*it)->mWalkName,true,false);
 		}
+		mReturnInitAni=true;
+
 	}
 
 }

@@ -46,7 +46,7 @@ public:
 
 	void setAniGroup(std::string anigroup);
 
-	void setMovePath(std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions,float MoveSpeed=1.0);
+	void setMovePath(std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions,float MoveSpeed=1.0,bool NotBezier=false);
 
 	void setPosition(float x,float z);
 

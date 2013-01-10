@@ -310,7 +310,7 @@ void UnitGrap::createWeapon( std::string mesh, std::string mat,std::string weapo
 	}
 }
 
-void UnitGrap::setMovePath( std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions,float MoveSpeed)
+void UnitGrap::setMovePath( std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions,float MoveSpeed,bool NotBezier)
 {
 	std::cout<<mNode->getName()+"_Ani"<<" Created"<<std::endl;
 	mNodeAnimation = Core::getSingletonPtr()->mSceneMgr->createAnimation(mNode->getName()+"_Ani", (vectors.size()-1)*MOVE_KEYFRAME_TIME*20*MoveSpeed);
@@ -329,7 +329,7 @@ void UnitGrap::setMovePath( std::map<int,Ogre::Vector3>& vectors,std::map<int,Og
 		if(itrr==vectors.end())
 			break;
 		
-		if(itr->second.x==itrr->second.x || itr->second.z==itrr->second.z)
+		if(itr->second.x==itrr->second.x || itr->second.z==itrr->second.z || NotBezier==true)
 		{
 
 			timePosition+=MOVE_KEYFRAME_TIME;

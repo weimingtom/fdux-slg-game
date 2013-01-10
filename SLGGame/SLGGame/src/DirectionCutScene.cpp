@@ -26,9 +26,7 @@ bool DirectionCutScene::endCutScene()
 
 void DirectionCutScene::skipCutScene()
 {
-	mSquadGraphics->stopTransform();
 
-	mSquadGraphics->setDirection(mDirection,false);
 }
 
 void DirectionCutScene::updateCutScene( unsigned int deltaTime )
