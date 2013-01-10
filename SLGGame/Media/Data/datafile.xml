@@ -585,7 +585,7 @@
 			<APCost type="float" value="3.0"/>
 			<CoolDown type="Int" value="0"/>
 			<Value type="Int" value="10"/>
-			<Icon type="String" value="none"/>
+			<Icon type="String" value="skill_act2_firm"/>
 			<Script type="String" value="magicshield.lua"/>
 		</MagicShield>
 		<RangedAttack>
@@ -633,7 +633,7 @@
 			<APCost type="float" value="3.0"/>
 			<CoolDown type="Int" value="0"/>
 			<Value type="Int" value="10"/>
-			<Icon type="String" value="Recrew"/>
+			<Icon type="String" value="skill_act2_heal"/>
 			<Script type="String" value="heal.lua"/>
 		</Heal>
 		<Break>
@@ -645,7 +645,7 @@
 			<APCost type="float" value="5.0"/>
 			<CoolDown type="Int" value="1"/>
 			<Value type="Int" value="0"/>
-			<Icon type="String" value="AttackIcon"/>
+			<Icon type="String" value="skill_act1_break"/>
 			<Script type="String" value="break.lua"/>
 		</Break>
 		<SuppressAttack>
@@ -723,7 +723,7 @@
 		</MagicShield>
 		<Defence>
 			<Type type="Int" value="2"/>
-			<Icon type="String" value="defence.jpg"/>
+			<Icon type="String" value="skill_pass_DefUp"/>
 			<Script type="String" value="defence.lua"/>
 		</Defence>
 		<Suppressed>
