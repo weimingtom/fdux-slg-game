@@ -174,9 +174,9 @@ MoveCutScene::MoveCutScene(std::string id,std::vector<Ogre::Vector2>& grids,Ogre
 
 MoveCutScene::~MoveCutScene(void)
 {
-	//mSquadGraphics->stopTransform();
-	//mSquadGraphics->setGrid(mEndPosition.x,mEndPosition.y);
-	//mSquadGraphics->setDirection(mDirection,false);
+	mSquadGraphics->stopTransform();
+	mSquadGraphics->setGrid(mEndPosition.x,mEndPosition.y);
+	mSquadGraphics->setDirection(mDirection,false);
 }
 
 bool MoveCutScene::endCutScene()
