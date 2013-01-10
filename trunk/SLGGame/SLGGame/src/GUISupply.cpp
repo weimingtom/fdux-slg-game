@@ -385,29 +385,30 @@ void GUISupply::showAttribute(int index,int itemType,std::string itemID)
 	MyGUI::ResourceManager& manager = MyGUI::ResourceManager::getInstance();
 	for(std::map<std::string,enumtype>::iterator it=skillmap.begin();it!=skillmap.end();it++)
 	{
-		MyGUI::ResourceImageSetPtr image;
-		if(manager.getByName(it->first,false)!=nullptr)
-			image = manager.getByName(it->first,false)->castType<MyGUI::ResourceImageSet>();
-		else
-			image = manager.getByName("NULLICON",false)->castType<MyGUI::ResourceImageSet>();
-
+		std::string icon;
 		if(it->second==SKILLTYPE_ACTIVE)
 		{
-			mSquadSkillIcon[m_SquadSkillNum]->setItemResourcePtr(image);
-			mSquadSkillIcon[m_SquadSkillNum]->setItemGroup("States");
+			DataLibrary::getSingletonPtr()->getData(str(boost::format("StaticData/SkillData/%1%/Icon")%it->first),icon);
+
+			mSquadSkillIcon[m_SquadSkillNum]->setItemResource("skill");
+			mSquadSkillIcon[m_SquadSkillNum]->setItemGroup(icon);
+			mSquadSkillIcon[m_SquadSkillNum]->setItemName("normal");
 			m_SquadSkillNum++;
 		}
 		else if(it->second==SKILLTYPE_PASSIVE)
 		{
-			mSquadPassiveSkillIcon[m_SquadPassiveSkillNum]->setItemResourcePtr(image);
-			mSquadPassiveSkillIcon[m_SquadPassiveSkillNum]->setItemGroup("States");
+			DataLibrary::getSingletonPtr()->getData(str(boost::format("StaticData/EffectData/%1%/Icon")%it->first),icon);
+
+			mSquadPassiveSkillIcon[m_SquadPassiveSkillNum]->setItemResource("skill");
+			mSquadPassiveSkillIcon[m_SquadPassiveSkillNum]->setItemGroup(icon);
+			mSquadPassiveSkillIcon[m_SquadPassiveSkillNum]->setItemName("normal");
 			m_SquadPassiveSkillNum++;
 		}
 		else if (it->second==SKILLTYPE_EQUIP)
 		{
-			mSquadUseEquipIcon[m_SquadUseEquipNum]->setItemResourcePtr(image);
-			mSquadUseEquipIcon[m_SquadUseEquipNum]->setItemGroup("States");
-			m_SquadUseEquipNum++;
+			//mSquadUseEquipIcon[m_SquadUseEquipNum]->setItemResourcePtr(image);
+			//mSquadUseEquipIcon[m_SquadUseEquipNum]->setItemGroup("States");
+			//m_SquadUseEquipNum++;
 		}
 	}
 
