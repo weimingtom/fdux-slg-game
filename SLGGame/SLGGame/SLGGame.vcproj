@@ -825,6 +825,14 @@
 								>
 							</File>
 							<File
+								RelativePath=".\src\GUIEffectWindow.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\src\GUIEffectWindow.h"
+								>
+							</File>
+							<File
 								RelativePath=".\src\GUIGameStateWindows.cpp"
 								>
 							</File>
