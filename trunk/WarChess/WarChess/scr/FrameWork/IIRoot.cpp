@@ -28,6 +28,8 @@ bool IIRoot::setup(QGraphicsView *graphicsView)
           return false;
       }
 
+	  Ogre::ResourceGroupManager::getSingletonPtr()->initialiseAllResourceGroups();
+
 	  mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC);
       mRgm=Ogre::ResourceGroupManager::getSingletonPtr();
 
@@ -164,43 +166,40 @@ void IIRoot::setResourcePath(QDir* dir,QString secName)
 
 bool IIRoot::setupResourcesPath()
 {
-    Ogre::ConfigFile cf;
-    cf.load("setting.cfg");
+	Ogre::ConfigFile cf;
 
-    Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
+	cf.load("resources.cfg");
 
-    Ogre::String secName, typeName, archName;
-    while (seci.hasMoreElements())
-    {
-        secName = seci.peekNextKey();
-        Ogre::ConfigFile::SettingsMultiMap *settings = seci.getNext();
-        Ogre::ConfigFile::SettingsMultiMap::iterator i;
-        for (i = settings->begin(); i != settings->end(); ++i)
-        {
-            typeName = i->first;
-            archName = i->second;
-                QDir dir(*new QString(archName.c_str()));
-                if(!dir.exists())
-                {
-                    QMessageBox::warning(0,"warning!","From setting.cfg's ResourceLib path inexistence.");
-					QString resPath = QFileDialog::getExistingDirectory(0,QString("set ResourceLib path for ")+QString(secName.c_str()),QString(),
-                                                 QFileDialog::ShowDirsOnly
-                                                 | QFileDialog::DontResolveSymlinks);
-                    if(resPath.isNull())
-                    {
-                        return false;
-                    }
-                    dir.setPath(resPath);
-                    setPathToFile(resPath,secName.c_str());
-                }
+	// Go through all sections & settings in the file
 
-                Ogre::ResourceGroupManager::getSingletonPtr()->createResourceGroup(secName);
-                QString path=dir.path();
-                path.replace("/", "\\");
-                resPathList.insert(secName.c_str(),path);
-                setResourcePath(&dir,secName.c_str());
-        }
-    }
-    Ogre::ResourceGroupManager::getSingletonPtr()->initialiseAllResourceGroups();
+	Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
+
+	Ogre::String secName, typeName, archName;
+
+	while (seci.hasMoreElements())
+
+	{
+
+		secName = seci.peekNextKey();
+
+		Ogre::ConfigFile::SettingsMultiMap *settings = seci.getNext();
+
+		Ogre::ConfigFile::SettingsMultiMap::iterator i;
+
+		for (i = settings->begin(); i != settings->end(); ++i)
+
+		{
+
+			typeName = i->first;
+
+			archName = i->second;
+
+			Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+
+				archName, typeName, secName);
+
+		}
+
+	}
     return true;
 }

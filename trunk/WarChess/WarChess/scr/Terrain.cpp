@@ -23,7 +23,7 @@ void TerrainSystem::initTerrain(int GridSize,int BlockSize)
 	//创建两层网格
 	if (mMGrid==NULL)
 	{
-		mMGrid=new Grid(mSceneManager,GridSize+1,GridSize+1,BlockSize,Ogre::ColourValue::Blue,"mainGrid");
+		mMGrid=new Grid(mSceneManager,GridSize+1,GridSize+1,BlockSize,Ogre::ColourValue::ZERO,"mainGrid");
 		mMGrid->setPosition(Ogre::Vector3::ZERO);
 		mMGrid->setCursorVisible(false);
 	}

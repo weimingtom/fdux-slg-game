@@ -10,7 +10,7 @@
 			>
 			<DebugSettings
 				Command="$(TargetPath)"
-				WorkingDirectory="F:\C++\WarChess\WarChess\Release"
+				WorkingDirectory="F:\C++\WarChess\Release"
 				CommandArguments=""
 				Attach="false"
 				DebuggerType="3"
