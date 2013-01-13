@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout" version="3.2.0">
-    <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Popup" name="Plane">
+    <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Main" name="Plane">
         <Property key="ImageTexture" value="login_panel.png"/>
         <Widget type="Button" skin="ButtonImage" position="120 525 200 70" name="New">
             <Property key="FontName" value="fireflysung"/>
@@ -37,7 +37,7 @@
             <Property key="ImageGroup" value="button_end"/>
         </Widget>
     </Widget>
-    <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Main" name="BackGround">
+    <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Back" name="BackGround">
         <Property key="ImageTexture" value="menubg.png"/>
     </Widget>
     <Widget type="ImageBox" skin="ImageBox" position="0 0 1020 610" layer="Overlapped" name="LogoImage">
