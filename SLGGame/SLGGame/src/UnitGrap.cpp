@@ -9,7 +9,7 @@
 #include <iostream>
 
 #define ALPHA_DELTA_TIME 100
-#define MOVE_KEYFRAME_TIME 0.1
+#define MOVE_KEYFRAME_TIME 0.05
 
 UnitGrap::UnitGrap(std::string unitmesh, std::string unitmat,std::string horsemesh,std::string horsemat,std::string factiontex,Ogre::SceneNode* node):
 mNode(node),

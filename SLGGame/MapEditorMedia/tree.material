@@ -1,0 +1,16 @@
+    material SOLID/TEX/wood7.jpg
+    {
+        technique
+        {
+            pass
+            {
+                ambient 0.4 0.4 0.4 0.5
+                diffuse 1 1 1
+                scene_blend alpha_blend
+                texture_unit
+                {
+                    texture wood7.jpg
+                }
+            }
+        }
+    }
