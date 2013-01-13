@@ -6,10 +6,10 @@
 using namespace izayoi;
 
 class StringTable;
-class GUIEffectWindow:public IISingleton<GUIEffectWindow>,public GUISubWindows
+class GUIEffectWindow:public GUISubWindows
 {
 public:
-	GUIEffectWindow(MyGUI::Window* window,int Width,int Height);
+	GUIEffectWindow(MyGUI::Window* window,int Width,int Height,int index);
 	~GUIEffectWindow();
 
 	bool GridInputEvent(int x,int y);
@@ -21,13 +21,16 @@ public:
 
 	std::string getName()
 	{
-		return "EffectWindow";
+		return std::string("EffectWindow")+Ogre::StringConverter::toString(mIndex);
 	}
 	void showScene( std::string arg );
 	void hideScene();
 	void FrameEvent();
 
+	void setEffectList(std::vector<std::string> list);
+
+	int mIndex;
 	MyGUI::Window* mWindow;
-	MyGUI::ImageBox* mEffect[12];
+	MyGUI::Button* mEffect[10];
 	
 };

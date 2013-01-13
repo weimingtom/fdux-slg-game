@@ -583,8 +583,8 @@ void GUISupply::setItemInfo(WeaponItemData* item)
 		Squad* army=mBattleSquad.at(m_CurrSquadIndex);
 		mTextItemName->setCaption(item->getName());
 		mTextItemPrice->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("ItemPrice"))%item->getPriceValue()%item->getOnePrice()%army->getUnitNum()));
-		mItemIcon->setItemResourcePtr(item->getImage());
-		mItemIcon->setItemGroup("States");
+		mItemIcon->setItemResource(item->getImage());
+		mItemIcon->setItemGroup(item->getImage());
 		mItemIcon->setVisible(true);
 	}
 	else
@@ -603,8 +603,9 @@ void GUISupply::setSkillInfo(SkillItemData* item)
 		Squad* army=mBattleSquad.at(m_CurrSquadIndex);
 		mTextItemName->setCaption(item->getName());
 		mTextItemPrice->setCaption(item->getPrice());
-		mItemIcon->setItemResourcePtr(item->getImage());
-		mItemIcon->setItemGroup("States");
+		mItemIcon->setItemResource(item->getResoure());
+		mItemIcon->setItemGroup(item->getImage());
+		mItemIcon->setItemName("normal");
 		mItemIcon->setVisible(true);
 	}
 	else

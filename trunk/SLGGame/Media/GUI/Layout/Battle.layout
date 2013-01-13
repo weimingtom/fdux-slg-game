@@ -495,17 +495,131 @@
         </Widget>
         <Widget type="Button" skin="SLGButton1" position="60 165 110 30" name="TEXT_Close"/>
     </Widget>
-    <Widget type="Window" skin="ImageBox" position="0 240 265 120" layer="Main" name="EffectWindow">
-        <Widget type="ImageBox" skin="ImageBox" position="10 65 45 45" name="effect1"/>
-        <Widget type="ImageBox" skin="ImageBox" position="60 65 45 45" name="effect2"/>
-        <Widget type="ImageBox" skin="ImageBox" position="110 65 45 45" name="effect3"/>
-        <Widget type="ImageBox" skin="ImageBox" position="160 65 45 45" name="effect4"/>
-        <Widget type="ImageBox" skin="ImageBox" position="210 65 45 45" name="effect5"/>
-        <Widget type="ImageBox" skin="ImageBox" position="10 15 45 45" name="effect6"/>
-        <Widget type="ImageBox" skin="ImageBox" position="60 15 45 45" name="effect7"/>
-        <Widget type="ImageBox" skin="ImageBox" position="110 15 45 45" name="effect8"/>
-        <Widget type="ImageBox" skin="ImageBox" position="160 15 45 45" name="effect9"/>
-        <Widget type="ImageBox" skin="ImageBox" position="210 15 45 45" name="effect10"/>
+    <Widget type="Window" skin="ImageBox" position="0 230 265 120" layer="Main" name="EffectWindow1">
+        <Property key="Visible" value="false"/>
+        <Widget type="Button" skin="ButtonImage" position="10 65 45 45" name="effect1">
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="ModeImage" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="60 65 45 45" name="effect2">
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="ModeImage" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="110 65 45 45" name="effect3">
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="ModeImage" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="160 65 45 45" name="effect4">
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="ModeImage" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="210 65 45 45" name="effect5">
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="ModeImage" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="10 15 45 45" name="effect6">
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="ModeImage" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="60 15 45 45" name="effect7">
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="ModeImage" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="110 15 45 45" name="effect8">
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="ModeImage" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="160 15 45 45" name="effect9">
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="ModeImage" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="210 15 45 45" name="effect10">
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="ModeImage" value="false"/>
+        </Widget>
+    </Widget>
+    <Widget type="Window" skin="ImageBox" position="1015 230 265 120" layer="Main" name="EffectWindow2">
+        <Property key="Visible" value="false"/>
+        <Widget type="Button" skin="ButtonImage" position="10 65 45 45" name="effect1">
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="ModeImage" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="60 65 45 45" name="effect2">
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="ModeImage" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="110 65 45 45" name="effect3">
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="ModeImage" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="160 65 45 45" name="effect4">
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="ModeImage" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="210 65 45 45" name="effect5">
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="ModeImage" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="10 15 45 45" name="effect6">
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="ModeImage" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="60 15 45 45" name="effect7">
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="ModeImage" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="110 15 45 45" name="effect8">
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="ModeImage" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="160 15 45 45" name="effect9">
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="ModeImage" value="false"/>
+        </Widget>
+        <Widget type="Button" skin="ButtonImage" position="210 15 45 45" name="effect10">
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="16"/>
+            <Property key="TextAlign" value="Right Bottom"/>
+            <Property key="ModeImage" value="false"/>
+        </Widget>
     </Widget>
     <Widget type="Window" skin="SLGWindow" position="265 505 350 205" layer="Main" name="CommandWindow">
         <Widget type="TextBox" skin="TextBox" position="50 50 105 25" name="APLabel">

@@ -4,6 +4,8 @@
 
 class BattleSquad;
 
+class GUIEffectWindow;
+
 class GUITargetWindows:public GUISubWindows
 {
 public:
@@ -50,6 +52,7 @@ private:
 	MyGUI::ImageBox* mSquadFactionImage;
 
 	BattleSquad* mSelectSquad;
+	GUIEffectWindow* mEffectWindow;
 
 	int mCurX;
 	int mCurY;

@@ -22,16 +22,8 @@ public:
 		  mID(id),
 		  mPeopleNum(peopleNum),
 		  mResourceInfo(nullptr),
-		  mResourceImage(nullptr)
+		  mResourceImage("")
 	  {
-		  MyGUI::ResourceManager& manager = MyGUI::ResourceManager::getInstance();
-		  //mResourceInfo = manager.getByName(_resource)->castType<demo::ResourceItemInfo>();
-
-		  if(manager.getByName(mID,false)!=nullptr)
-			 mResourceImage = manager.getByName(mID,false)->castType<MyGUI::ResourceImageSet>();
-		  else
-			mResourceImage = manager.getByName("NULLICON",false)->castType<MyGUI::ResourceImageSet>();
-
 		  mIsEquip=false;
 
 		  switch(type)
@@ -58,7 +50,8 @@ public:
 			  mTypeString = "StaticData/RetainerData/";
 			  break;
 		  }
-
+		
+		  DataLibrary::getSingletonPtr()->getData(mTypeString+id+"/Icon",mResourceImage);
 	  }
 
 	  bool isEmpty() const
@@ -69,7 +62,7 @@ public:
 	  void clear()
 	  {
 		  mResourceInfo = nullptr;
-		  mResourceImage = nullptr;
+		  mResourceImage = "";
 		  mID="";
 	  }
 
@@ -78,7 +71,7 @@ public:
 		  return mResourceInfo;
 	  }
 
-	  MyGUI::ResourceImageSetPtr getImage() const
+	  std::string getImage() const
 	  {
 		  return mResourceImage;
 	  }
@@ -177,7 +170,7 @@ private:
 	bool mIsHaveSkill;
 	bool mIsCanBuy;
 	demo::ResourceItemInfoPtr mResourceInfo;
-	MyGUI::ResourceImageSetPtr mResourceImage;
+	std::string mResourceImage;
 };
 
 #endif // __ITEM_DATA_H__

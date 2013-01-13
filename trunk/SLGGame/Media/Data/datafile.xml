@@ -243,6 +243,7 @@
         	<Mesh type="String" value="LightCavalryHorse.mesh"/>
 			<Mat type="String" value="LightCavalryHorse"/>
 			<Script type="String" value="none"/>
+			<Icon type="string" value="eqp_lighthorse"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="1.0"/>

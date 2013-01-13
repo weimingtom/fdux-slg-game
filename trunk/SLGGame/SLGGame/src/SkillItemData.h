@@ -17,7 +17,7 @@ public:
 		  mPoint(0),
 		  mTotalPoint(0),
 		  mResourceInfo(nullptr),
-		  mResourceImage(nullptr)
+		  mGroup("")
 	  {
 	  }
 
@@ -28,28 +28,30 @@ public:
 		  mTotalPoint(totalPoint),
 		  mName(name),
 		  mResourceInfo(nullptr),
-		  mResourceImage(nullptr)
+		  mGroup("")
 	  {
-		  MyGUI::ResourceManager& manager = MyGUI::ResourceManager::getInstance();
-
-		  if(manager.getByName(mID,false)!=nullptr)
-			 mResourceImage = manager.getByName(mID,false)->castType<MyGUI::ResourceImageSet>();
-		  else
-			mResourceImage = manager.getByName("NULLICON",false)->castType<MyGUI::ResourceImageSet>();
 
 		  switch(type)
 		  {
 		  case SKILLTYPE_PASSIVE:
 			  mTypeString = "StaticData/EffectData/"+id;
+			  DataLibrary::getSingletonPtr()->getData(mTypeString+"/Icon",mGroup);
+			  mResoure="skillpass";
+			  DataLibrary::getSingletonPtr()->getData(mTypeString+"/Name",mName);
 			  break;
 		  case SKILLTYPE_ACTIVE:
 			  mTypeString = "StaticData/SkillData/"+id;
+			  DataLibrary::getSingletonPtr()->getData(mTypeString+"/Icon",mGroup);
+			  DataLibrary::getSingletonPtr()->getData(mTypeString+"/Name",mName);
+			  mResoure="skill";
 			  break;
 		  case SKILLTYPE_EQUIP:
 			  mTypeString = "";
+			  mGroup=id;
+			  mResoure="eqp";
+			  StringTable::getSingletonPtr()->getString(mName);
 			  break;
 		  }
-
 	  }
 
 	  bool isEmpty() const
@@ -60,7 +62,7 @@ public:
 	  void clear()
 	  {
 		  mResourceInfo = nullptr;
-		  mResourceImage = nullptr;
+		  mGroup = "";
 		  mID="";
 		  mType=0;
 		  mTypeString="";
@@ -73,9 +75,14 @@ public:
 		  return mResourceInfo;
 	  }
 
-	  MyGUI::ResourceImageSetPtr getImage() const
+	  std::string getResoure() const
 	  {
-		  return mResourceImage;
+		  return mResoure;
+	  }
+
+	  std::string getImage() const
+	  {
+		  return mGroup;
 	  }
 
 	  std::string getPrice()
@@ -146,7 +153,8 @@ private:
 	bool mIsCanTrain;
 	bool mIsHaveEnoughPoint;
 	demo::ResourceItemInfoPtr mResourceInfo;
-	MyGUI::ResourceImageSetPtr mResourceImage;
+	std::string mResoure;
+	std::string mGroup;
 };
 
 #endif // __ITEM_DATA_H__

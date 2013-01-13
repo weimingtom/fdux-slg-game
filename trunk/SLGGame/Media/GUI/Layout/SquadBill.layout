@@ -8,7 +8,7 @@
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="19"/>
         </Widget>
-        <Widget type="ImageBox" skin="ImageBox" position="5 5 22 24" name="BIcon">
+        <Widget type="ImageBox" skin="ImageBox" position="0 2 30 30" name="BIcon">
             <Property key="ImageGroup" value="Button"/>
             <Property key="ImageName" value="normal"/>
         </Widget>

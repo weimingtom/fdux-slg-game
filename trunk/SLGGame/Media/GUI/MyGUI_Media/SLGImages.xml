@@ -935,7 +935,7 @@
         </Group>
 
 
-        <Group name="eqp_bow" texture="eqp_bow.png" size="45 45">
+        <Group name="Bow" texture="eqp_bow.png" size="45 45">
             <Index name="normal">
                 <Frame point="0 0"/>
             </Index>
@@ -949,7 +949,7 @@
         </Group>
 
 
-        <Group name="eqp_crossbow" texture="eqp_crossbow.png" size="45 45">
+        <Group name="LXBox" texture="eqp_crossbow.png" size="45 45">
             <Index name="normal">
                 <Frame point="0 0"/>
             </Index>
@@ -963,7 +963,7 @@
         </Group>
 
 
-        <Group name="eqp_heavyarmor" texture="eqp_heavyarmor.png" size="45 45">
+        <Group name="HeavyArmor" texture="eqp_heavyarmor.png" size="45 45">
             <Index name="normal">
                 <Frame point="0 0"/>
             </Index>
@@ -984,7 +984,7 @@
         </Group>
 
 
-        <Group name="eqp_lightarmor" texture="eqp_lightarmor.png" size="45 45">
+        <Group name="LightArmor" texture="eqp_lightarmor.png" size="45 45">
             <Index name="normal">
                 <Frame point="0 0"/>
             </Index>
@@ -998,7 +998,7 @@
         </Group>
 
 
-        <Group name="eqp_midarmor" texture="eqp_midarmor.png" size="45 45">
+        <Group name="MiddleArmor" texture="eqp_midarmor.png" size="45 45">
             <Index name="normal">
                 <Frame point="0 0"/>
             </Index>
@@ -1012,7 +1012,7 @@
         </Group>
 
 
-        <Group name="eqp_onesword" texture="eqp_onesword.png" size="45 45">
+        <Group name="OneHandSword" texture="eqp_onesword.png" size="45 45">
             <Index name="normal">
                 <Frame point="0 0"/>
             </Index>
@@ -1026,7 +1026,7 @@
         </Group>
 
 
-        <Group name="eqp_shield" texture="eqp_shield.png" size="45 45">
+        <Group name="Shield" texture="eqp_shield.png" size="45 45">
             <Index name="normal">
                 <Frame point="0 0"/>
             </Index>
@@ -1040,7 +1040,7 @@
         </Group>
 
 
-        <Group name="eqp_spear" texture="eqp_spear.png" size="45 45">
+        <Group name="ShortSpear" texture="eqp_spear.png" size="45 45">
             <Index name="normal">
                 <Frame point="0 0"/>
             </Index>
@@ -1168,6 +1168,82 @@
             </Index>
             <Index name="pushed">
                 <Frame point="180 0"/>
+            </Index>
+        </Group>
+
+        <Group name="item_skin" texture="Item.png" size="230 50">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="0 50"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="0 100"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="0 150"/>
+            </Index>
+        </Group>
+
+        <Group name="squad_skin" texture="Squad.png" size="180 40">
+            <Index name="disabled">
+                <Frame point="0 0"/>
+            </Index>
+            <Index name="normal">
+                <Frame point="0 40"/>
+            </Index>
+            <Index name="highlighted">
+                <Frame point="0 80"/>
+            </Index>
+            <Index name="pushed">
+                <Frame point="0 120"/>
+            </Index>
+        </Group>
+
+    </Resource>
+
+    <Resource type="ResourceImageSet" name="kind">
+
+        <Group name="kind_heavyinf" texture="kind_heavyinf.png" size="30 30">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+        <Group name="kind_heavyrid" texture="kind_heavyrid.png" size="30 30">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+        <Group name="kind_lightinf" texture="kind_lightinf.png" size="30 30">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+        <Group name="kind_lightrid" texture="kind_lightrid.png" size="30 30">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+        <Group name="kind_mage" texture="kind_mage.png" size="30 30">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+        <Group name="kind_priest" texture="kind_priest.png" size="30 30">
+            <Index name="normal">
+                <Frame point="0 0"/>
+            </Index>
+        </Group>
+
+        <Group name="kind_warlock" texture="kind_warlock.png" size="30 30">
+            <Index name="normal">
+                <Frame point="0 0"/>
             </Index>
         </Group>
 

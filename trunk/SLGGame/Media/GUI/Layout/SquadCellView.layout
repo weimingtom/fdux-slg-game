@@ -5,8 +5,8 @@
         <Property key="NeedKey" value="false"/>
         <Widget type="ImageBox" skin="ImageBox" position="0 0 180 40" align="Stretch" name="image_Back">
             <Widget type="ImageBox" skin="ImageBox" position="0 0 180 45" align="Stretch" name="image_Border">
-                <Widget type="ImageBox" skin="ImageBox" position="5 4 32 32" align="Stretch" name="image_Item"/>
-                <Widget type="TextBox" skin="TextBox" position="41 25 139 15" align="Stretch" name="text_Back">
+                <Widget type="ImageBox" skin="ImageBox" position="5 5 30 30" align="Stretch" name="image_Item"/>
+                <Widget type="TextBox" skin="TextBox" position="41 23 139 15" align="Stretch" name="text_Back">
                     <Property key="TextAlign" value="Center"/>
                     <Property key="TextColour" value="1 0.796875 0"/>
                     <Property key="Caption" value="1223"/>

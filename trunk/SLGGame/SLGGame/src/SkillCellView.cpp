@@ -30,8 +30,8 @@ void SkillCellView::update(const MyGUI::IBDrawItemInfo& _info, SkillItemData* _d
 	{
 		if (!_data->isEmpty())
 		{
-			mImageItem->setItemResourcePtr(_data->getImage());
-			mImageItem->setItemGroup("States");
+			mImageItem->setItemResource(_data->getResoure());
+			mImageItem->setItemGroup(_data->getImage());
 			mImageItem->setVisible(true);
 		}
 		else
@@ -41,20 +41,20 @@ void SkillCellView::update(const MyGUI::IBDrawItemInfo& _info, SkillItemData* _d
 		mTextBack->setCaption(_data->getPrice());
 		mTextFront->setCaption(_data->getName());
 
-		static MyGUI::ResourceImageSetPtr resource_back = nullptr;
+	/*	static MyGUI::ResourceImageSetPtr resource_back = nullptr;
 		static MyGUI::ResourceImageSetPtr resource_select = nullptr;
 		if (resource_back == nullptr)
 			resource_back = MyGUI::ResourceManager::getInstance().getByName("pic_ItemBackImage")->castType<MyGUI::ResourceImageSet>();
 		if (resource_select == nullptr)
-			resource_select = MyGUI::ResourceManager::getInstance().getByName("pic_ItemSelectImage")->castType<MyGUI::ResourceImageSet>();
+			resource_select = MyGUI::ResourceManager::getInstance().getByName("pic_ItemSelectImage")->castType<MyGUI::ResourceImageSet>();*/
 
-		mImageBack->setItemResourcePtr(resource_back);
-		mImageBack->setItemGroup("States");
-		mImageBorder->setItemResourcePtr(resource_select);
-		mImageBorder->setItemGroup("States");
+		mImageBack->setItemResource("button");
+		mImageBack->setItemGroup("item_skin");
+		//mImageBorder->setItemResourcePtr(resource_select);
+		//mImageBorder->setItemGroup("States");
 	}
 
-	if (_info.drag)
+	/*if (_info.drag)
 	{
 		mImageBack->setItemName("None");
 		mImageBorder->setItemName("None");
@@ -76,18 +76,19 @@ void SkillCellView::update(const MyGUI::IBDrawItemInfo& _info, SkillItemData* _d
 	}
 	else
 	{
+	*/
 		if (_info.active)
 		{
 			if (_info.select)
-				mImageBack->setItemName("Select");
+				mImageBack->setItemName("highlighted");
 			else
-				mImageBack->setItemName("Active");
+				mImageBack->setItemName("highlighted");
 		}
 		else if (_info.select)
-			mImageBack->setItemName("Pressed");
+			mImageBack->setItemName("highlighted");
 		else
-			mImageBack->setItemName("Normal");
-
+			mImageBack->setItemName("normal");
+/*
 		if (_info.drop_refuse)
 		{
 			mImageBorder->setItemName("Refuse");
@@ -98,20 +99,20 @@ void SkillCellView::update(const MyGUI::IBDrawItemInfo& _info, SkillItemData* _d
 			mImageBorder->setItemName("Accept");
 			mTextFront->setTextColour(MyGUI::Colour::Green);
 		}
-		else
+		else*/
 		{
-			mImageBorder->setItemName("Normal");
+			//mImageBorder->setItemName("normal");
 			mTextFront->setTextColour(MyGUI::Colour::White);
 		}
 
 		if (!_data->isEmpty())
 		{
-			mImageItem->setItemName("Normal");
+			mImageItem->setItemName("normal");
 			mImageItem->setVisible(true);
 		}
 		else
 		{
 			mImageItem->setVisible(false);
 		}
-	}
+	//}
 }
