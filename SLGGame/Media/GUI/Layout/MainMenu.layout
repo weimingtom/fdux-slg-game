@@ -2,7 +2,7 @@
 <MyGUI type="Layout" version="3.2.0">
     <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Popup" name="Plane">
         <Property key="ImageTexture" value="login_panel.png"/>
-        <Widget type="Button" skin="ButtonImage" position="120 520 200 70" name="New">
+        <Widget type="Button" skin="ButtonImage" position="120 525 200 70" name="New">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
             <Property key="TextAlign" value="Center"/>
@@ -11,7 +11,7 @@
             <Property key="ImageGroup" value="button_start"/>
             <Property key="ModeImage" value="true"/>
         </Widget>
-        <Widget type="Button" skin="ButtonImage" position="400 520 200 70" name="Load">
+        <Widget type="Button" skin="ButtonImage" position="400 525 200 70" name="Load">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
             <Property key="TextColour" value="1 1 1"/>
@@ -19,7 +19,7 @@
             <Property key="ImageResource" value="button"/>
             <Property key="ImageGroup" value="button_load"/>
         </Widget>
-        <Widget type="Button" skin="ButtonImage" position="680 520 200 70" name="Opiton">
+        <Widget type="Button" skin="ButtonImage" position="680 525 200 70" name="Opiton">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
             <Property key="TextAlign" value="Center"/>
@@ -28,7 +28,7 @@
             <Property key="ImageGroup" value="button_option"/>
             <Property key="ModeImage" value="true"/>
         </Widget>
-        <Widget type="Button" skin="ButtonImage" position="960 520 200 70" name="Exit">
+        <Widget type="Button" skin="ButtonImage" position="960 525 200 70" name="Exit">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
             <Property key="TextColour" value="1 1 1"/>

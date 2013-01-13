@@ -10,7 +10,6 @@
             <Widget type="TextBox" skin="TextBox" position="15 185 105 20" name="SquadLeadName">
                 <Property key="FontName" value="fireflysung"/>
                 <Property key="FontHeight" value="20"/>
-                <Property key="Caption" value="SquadLeadName"/>
             </Widget>
             <Widget type="TextBox" skin="TextBox" position="15 155 105 20" name="SquadType">
                 <Property key="FontHeight" value="20"/>
@@ -334,7 +333,7 @@
                     <Property key="Caption" value="Active"/>
                     <Property key="FontHeight" value="20"/>
                     <Widget type="ItemBox" skin="ItemBox" position="0 35 700 250" name="ActiveItemBox"/>
-                    <Widget type="TextBox" skin="TextBox" position="15 5 175 25" name="SquadActivePoint">
+                    <Widget type="TextBox" skin="TextBox" position="15 7 175 25" name="SquadActivePoint">
                         <Property key="FontName" value="fireflysung.17"/>
                     </Widget>
                 </Widget>
@@ -342,7 +341,7 @@
                     <Property key="Caption" value="Passive"/>
                     <Property key="FontHeight" value="20"/>
                     <Widget type="ItemBox" skin="ItemBox" position="0 35 700 250" name="PassiveItemBox"/>
-                    <Widget type="TextBox" skin="TextBox" position="15 5 175 25" name="SquadPassivePoint">
+                    <Widget type="TextBox" skin="TextBox" position="15 7 175 25" name="SquadPassivePoint">
                         <Property key="FontName" value="fireflysung.17"/>
                     </Widget>
                 </Widget>
@@ -351,7 +350,7 @@
                     <Property key="FontHeight" value="17"/>
                     <Property key="FontName" value="fireflysung.17"/>
                     <Widget type="ItemBox" skin="ItemBox" position="0 35 700 250" name="EquipItemBox"/>
-                    <Widget type="TextBox" skin="TextBox" position="15 5 175 25" name="SquadEquipPoint">
+                    <Widget type="TextBox" skin="TextBox" position="15 7 175 25" name="SquadEquipPoint">
                         <Property key="FontName" value="fireflysung.17"/>
                     </Widget>
                 </Widget>

@@ -8,6 +8,8 @@
 #include "BattleSquad.h"
 
 #include "GUITipsWindow.h"
+#include "GUIBattle.h"
+#include "GUIEffectWindow.h"
 
 GUISquadWindows::GUISquadWindows(MyGUI::Window* window,int Width,int Height):GUISubWindows(window,Width,Height),mWindow(window)
 {
@@ -41,6 +43,8 @@ GUISquadWindows::GUISquadWindows(MyGUI::Window* window,int Width,int Height):GUI
 
 	window->setPosition(0,Height-window->getHeight());
 
+	mEffectWindow=NULL;
+
 	setSquad(NULL);
 }
 
@@ -51,11 +55,24 @@ GUISquadWindows::~GUISquadWindows(void)
 void GUISquadWindows::showScene( std::string arg )
 {
 	mWindow->setVisible(true);
+
+	if(mEffectWindow==NULL)
+	{
+		GUIBattle* battle=(GUIBattle*)GUISystem::getSingletonPtr()->getScene(BattleScene);
+		mEffectWindow=(GUIEffectWindow*)battle->getSubWindow("EffectWindow1");
+	}
+
+	mEffectWindow->showScene("");
+
 }
 
 void GUISquadWindows::hideScene()
 {
 	mWindow->setVisible(false);
+	if (mEffectWindow!=NULL)
+	{
+		mEffectWindow->hideScene();
+	}
 }
 
 void GUISquadWindows::FrameEvent()
@@ -120,6 +137,7 @@ void GUISquadWindows::setSquad(BattleSquad* squad)
 	{
 		showScene("");
 		updateSquad();
+
 	}
 }
 
@@ -250,4 +268,19 @@ void GUISquadWindows::updateSquad()
 		re = DataLibrary::getSingletonPtr()->getData(temppath,tempstr);
 		mSquadArmor->setCaption(tempstr);
 	}
+
+
+	std::string distpath = mSelectSquad->getPath() + std::string("/Effect");
+	std::vector<std::string> effectName;
+	std::vector<std::string> effectlist = datalib->getChildList(distpath);
+	for(std::vector<std::string>::iterator it=effectlist.begin();it!=effectlist.end();it++)
+	{
+		std::string p=mSelectSquad->getPath() + std::string("/Effect/")+(*it)+std::string("/EffectId");
+		std::string data;
+		DataLibrary::getSingletonPtr()->getData(p,data);
+
+		effectName.push_back(data);
+	}
+
+	mEffectWindow->setEffectList(effectName);
 }

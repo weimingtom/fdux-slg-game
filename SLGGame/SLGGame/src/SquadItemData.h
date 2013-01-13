@@ -21,7 +21,7 @@ public:
 		  mSquadName(squadName),
 		  mLevel(level),
 		  mResourceInfo(nullptr),
-		  mResourceImage(nullptr)
+		  mResourceImage("")
 	  {
 		  mSquadType=squadType;
 		  std::string type;
@@ -29,34 +29,31 @@ public:
 		  {
 		  case SQUADTYPE_LightInf:
 			  {
-				 type="LightInfIcon_Supply";
+				 mResourceImage="kind_lightinf";
 				 break;
 			  }
 		  case SQUADTYPE_HeavyInf:
 			  {
-				  type="HeavyInfIcon_Supply";
+				  mResourceImage="kind_heavyinf";
 				  break;
 			  }
 		  case SQUADTYPE_Saint:
 			  {
-				  type="SaintIcon_Supply";
+				  mResourceImage="kind_mage";
 				  break;
 			  }
 		  case SQUADTYPE_Bowman:
 			  {
-				  type="BowmanIcon_Supply";
+				  mResourceImage="kind_lightinf";
 				  break;
 			  }
 		  }
-
-		  MyGUI::ResourceManager& manager = MyGUI::ResourceManager::getInstance();
-		  mResourceImage = manager.getByName(type)->castType<MyGUI::ResourceImageSet>();
 	  }
 
 	  void clear()
 	  {
 		  mResourceInfo = nullptr;
-		  mResourceImage = nullptr;
+		  mResourceImage = "";
 		  mSquadType=0;
 		  mSquadName="";
 		  mLevel=0;
@@ -67,7 +64,7 @@ public:
 		  return mResourceInfo;
 	  }
 
-	  MyGUI::ResourceImageSetPtr getImage() const
+	  std::string getImage() const
 	  {
 		  return mResourceImage;
 	  }
@@ -93,7 +90,7 @@ private:
 	std::string mSquadName;
 	int mLevel;
 	demo::ResourceItemInfoPtr mResourceInfo;
-	MyGUI::ResourceImageSetPtr mResourceImage;
+	std::string mResourceImage;
 };
 
 #endif // __ITEM_DATA_H__

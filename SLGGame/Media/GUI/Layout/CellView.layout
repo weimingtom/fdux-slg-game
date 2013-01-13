@@ -5,7 +5,7 @@
         <Property key="NeedKey" value="false"/>
         <Widget type="ImageBox" skin="ImageBox" position="0 0 230 50" align="Stretch" name="image_Back">
             <Widget type="ImageBox" skin="ImageBox" position="0 0 230 50" align="Stretch" name="image_Border">
-                <Widget type="ImageBox" skin="ImageBox" position="5 2 48 45" align="Stretch" name="image_Item"/>
+                <Widget type="ImageBox" skin="ImageBox" position="5 2 45 45" align="Stretch" name="image_Item"/>
                 <Widget type="TextBox" skin="TextBox" position="55 28 171 20" align="Stretch" name="text_Back">
                     <Property key="TextAlign" value="Center"/>
                     <Property key="TextColour" value="1 0.796875 0"/>

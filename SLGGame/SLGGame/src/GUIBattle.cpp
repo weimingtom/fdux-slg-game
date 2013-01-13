@@ -26,6 +26,10 @@ GUIBattle::GUIBattle(int Width,int Height):GUIScene("Battle.layout",Width,Height
 
 	assignWidget(window,"TipsWindow");
 	mSubWindows.push_back(new GUITipsWindow(window,Width,Height));
+	assignWidget(window,"EffectWindow1");
+	mSubWindows.push_back(new GUIEffectWindow(window,Width,Height,1));
+	assignWidget(window,"EffectWindow2");
+	mSubWindows.push_back(new GUIEffectWindow(window,Width,Height,2));
 	assignWidget(window,"Terrain");
 	mSubWindows.push_back(new GUITerrainWindows(window,Width,Height));
 	assignWidget(window,"TargetWindow");
@@ -40,8 +44,6 @@ GUIBattle::GUIBattle(int Width,int Height):GUIScene("Battle.layout",Width,Height
 	mSubWindows.push_back(new GUIDeployWindows(window,Width,Height));
 	assignWidget(window,"InfoWindow");
 	mSubWindows.push_back(new GUIInfoWindow(window,Width,Height));
-	assignWidget(window,"EffectWindow");
-	mSubWindows.push_back(new GUIEffectWindow(window,Width,Height));
 	assignWidget(mMissionButton,"MissionButton");
 	mMissionButton->setCaption(StringTable::getSingletonPtr()->getString("MissionButton"));
 	mMissionButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIBattle::onMissionButton);

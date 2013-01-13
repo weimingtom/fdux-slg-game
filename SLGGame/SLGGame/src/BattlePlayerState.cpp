@@ -17,6 +17,7 @@
 #include "GUIInfoWindow.h"
 #include "GUISquadWindows.h"
 #include "GUICommandWindows.h"
+#include "GUITargetWindow.h"
 
 #include "Terrain.h"
 #include "BattleSquadManager.h"

@@ -81,26 +81,28 @@ void GUISquadBillBoard::setName( std::string name,MyGUI::Colour c)
 
 void GUISquadBillBoard::setIcon( enumtype type )
 {
+	mBIcon->setItemResource("kind");
 	switch(type)
 	{
 	case SQUADTYPE_LightInf:
 		 {
-			mBIcon->setItemResource("LightInfIcon");
+			mBIcon->setItemGroup("kind_lightinf");
 			break;
 		 }
 	case SQUADTYPE_HeavyInf:
 		  {
-			  mBIcon->setItemResource("HeavyInfIcon");
+			  mBIcon->setItemGroup("kind_heavyinf");
+			
 			  break;
 		  }
 	case SQUADTYPE_Saint:
 		  {
-			  mBIcon->setItemResource("SaintIcon");
+			  mBIcon->setItemGroup("kind_mage");
 			  break;
 		  }
 	case SQUADTYPE_Bowman:
 		  {
-			  mBIcon->setItemResource("BowmanIcon");
+			  mBIcon->setItemGroup("kind_lightinf");
 			  break;
 		  }
 	}
