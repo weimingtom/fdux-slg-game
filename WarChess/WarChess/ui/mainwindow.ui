@@ -41,9 +41,6 @@
           </property>
          </widget>
         </item>
-        <item>
-         <widget class="QTextEdit" name="textEdit"/>
-        </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tab_4">
@@ -162,6 +159,24 @@
           <item row="6" column="1">
            <widget class="QLineEdit" name="mapBG"/>
           </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="label_12">
+            <property name="text">
+             <string>一层地表</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <layout class="QHBoxLayout" name="horizontalLayout_9">
+            <item>
+             <widget class="QLabel" name="label_13">
+              <property name="text">
+               <string>类型:</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
          </layout>
         </item>
         <item>
@@ -222,7 +237,7 @@
         <item>
          <widget class="QTabWidget" name="dataTab">
           <property name="currentIndex">
-           <number>4</number>
+           <number>5</number>
           </property>
           <widget class="QWidget" name="soldierTab">
            <attribute name="title">
@@ -510,8 +525,18 @@
       </widget>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
-        <string>战斗模拟</string>
+        <string>日志</string>
        </attribute>
+       <widget class="QTextEdit" name="textEdit">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>641</width>
+          <height>591</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>
@@ -523,7 +548,7 @@
      <x>0</x>
      <y>0</y>
      <width>1245</width>
-     <height>17</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
