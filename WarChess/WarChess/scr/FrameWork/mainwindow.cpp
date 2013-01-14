@@ -188,9 +188,53 @@ void MainWindow::LoadMap()
 	element = element->NextSiblingElement("MapSize");
 	int gridSize = QString::fromStdString(element->GetText()).toInt();
 	TerrainSystem *terrain = IIRoot::getSingleton().mTerrain;
-	terrain->initTerrain(gridSize, 16);
+	terrain->initTerrain(gridSize, 24);
 	TerrainEditor *editor = terrain->addEditor(GroundID,SecGrid);
 	editor->setEditorMode(PutMode);
+	element = element->NextSiblingElement("MapGround");
+	if (!element->NoChildren())
+	{
+		subElement = element->FirstChildElement(false);
+		while(subElement != NULL)
+		{		
+			std::string name;
+			subElement->GetValue(&name);
+			if(name=="G0")
+			{
+				std::string type=subElement->GetAttribute("Type");
+				std::string texture=subElement->GetAttribute("Texture");
+
+				ui->layer1Type->setText(QString::fromStdString(type));
+				ui->layer1Texture->setText(QString::fromStdString(texture));
+			}
+			if(name=="G1")
+			{
+				std::string type=subElement->GetAttribute("Type");
+				std::string texture=subElement->GetAttribute("Texture");
+
+				ui->layer2Type->setText(QString::fromStdString(type));
+				ui->layer2Texture->setText(QString::fromStdString(texture));
+			}
+			if(name=="G2")
+			{
+				std::string type=subElement->GetAttribute("Type");
+				std::string texture=subElement->GetAttribute("Texture");
+
+				ui->layer3Type->setText(QString::fromStdString(type));
+				ui->layer3Texture->setText(QString::fromStdString(texture));
+			}
+			if(name=="G3")
+			{
+				std::string type=subElement->GetAttribute("Type");
+				std::string texture=subElement->GetAttribute("Texture");
+
+				ui->layer4Type->setText(QString::fromStdString(type));
+				ui->layer4Texture->setText(QString::fromStdString(texture));
+			}
+
+			subElement = static_cast<ticpp::Element*>(element->IterateChildren(subElement));
+		}
+	}
 	element = element->NextSiblingElement("MapData");
 	QString mapData = QString::fromStdString(element->GetText());
 	for (int z = 0; z < gridSize; z++)
@@ -290,7 +334,34 @@ void MainWindow::LoadMap()
 			Ogre::Entity* entity=IIRoot::getSingleton().mSceneMgr->createEntity(meshName.toLocal8Bit().data());
 			entity->setQueryFlags(DEFAULT_QUERY_MARK);
 			node->attachObject(entity);
+
 			QMap<QString, QString> map;
+			int dir=0;
+			subElement->GetAttribute("Direction", &dir, false);
+			switch(dir)
+			{
+			case 0:
+				{
+					map["ObjectDirection"]="North";
+					break;
+				}
+			case 1:
+				{
+					map["ObjectDirection"]="South";
+					break;
+				}
+			case 2:
+				{
+					map["ObjectDirection"]="West";
+					break;
+				}
+			case 3:
+				{
+					map["ObjectDirection"]="East";
+					break;
+				}
+			}
+
 			objectControl->addObject(objectName,groupName,typeName,node,entity,map);
 
 			subElement = static_cast<ticpp::Element*>(element->IterateChildren(subElement));
@@ -459,6 +530,26 @@ void MainWindow::SaveMap()
 	element = new ticpp::Element("MapSize");
 	element->SetText(mapsize);
 	doc->LinkEndChild(element);
+
+	element = new ticpp::Element("MapGround");
+	subelement = new ticpp::Element( "G0" );
+	subelement->SetAttribute("Type",ui->layer1Type->text().toStdString());
+	subelement->SetAttribute("Texture",ui->layer1Texture->text().toStdString());
+	element->LinkEndChild(subelement);
+	subelement = new ticpp::Element( "G1" );
+	subelement->SetAttribute("Type",ui->layer2Type->text().toStdString());
+	subelement->SetAttribute("Texture",ui->layer2Texture->text().toStdString());
+	element->LinkEndChild(subelement);
+	subelement = new ticpp::Element( "G2" );
+	subelement->SetAttribute("Type",ui->layer3Type->text().toStdString());
+	subelement->SetAttribute("Texture",ui->layer3Texture->text().toStdString());
+	element->LinkEndChild(subelement);
+	subelement = new ticpp::Element( "G3" );
+	subelement->SetAttribute("Type",ui->layer4Type->text().toStdString());
+	subelement->SetAttribute("Texture",ui->layer4Texture->text().toStdString());
+	element->LinkEndChild(subelement);
+	doc->LinkEndChild(element);
+
 	element = new ticpp::Element("MapData");
 	char* mapdata = new char[mapsize * mapsize *2];
 	char* mapdataptr = mapdata;
@@ -522,6 +613,25 @@ void MainWindow::SaveMap()
 			subelement->SetAttribute("GridX",data->GridX );
 			subelement->SetAttribute("GridY",data->GridY );
 			subelement->SetAttribute("Mesh",data->mEntity->getMesh()->getName());
+			std::string value=data->map.value("ObjectDirection").toStdString();
+			int d=0;
+			if(value=="North")
+			{
+				d=0;
+			}
+			else if(value=="South")
+			{
+				d=1;
+			}
+			else if(value=="West")
+			{
+				d=2;
+			}
+			else if(value=="East")
+			{
+				d=3;
+			}
+			subelement->SetAttribute("Direction",d);
 			//subelement->SetAttribute("Mat",data->mEntity->getSubEntity(0)->getMaterialName());
 			//模型的信息
 			element->LinkEndChild(subelement);

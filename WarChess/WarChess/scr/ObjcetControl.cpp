@@ -134,6 +134,30 @@ void ObjcetControl::addObject( QString name,QString groupName,QString entityType
 		objectData->GridX=GX;
 		objectData->GridY=GY;
 
+		QString value=attrMap.value("ObjectDirection");
+		Ogre::Quaternion q;
+
+		if(value=="North")
+		{
+			q.FromAngleAxis(Ogre::Degree(180),Ogre::Vector3(0,1,0));
+		}
+		else if(value=="South")
+		{
+			q.FromAngleAxis(Ogre::Degree(360),Ogre::Vector3(0,1,0));
+		}
+		else if(value=="West")
+		{
+			q.FromAngleAxis(Ogre::Degree(270),Ogre::Vector3(0,1,0));
+		}
+		else if(value=="East")
+		{
+			q.FromAngleAxis(Ogre::Degree(90),Ogre::Vector3(0,1,0));
+		}
+
+		objectData->mNode->setOrientation(q);
+
+		objectData->map["ObjectDirection"]=attrMap.value("ObjectDirection");
+
 		groupItem->appendChild(new EntityTreeItem(objectData,groupItem,EntityItemType::Entity));
 		mTreeView->reset();//改变数据后,记得通知view刷新
 		mTreeView->expand(mObjectModel->index(groupItem->row(),0));//展开对应的组
@@ -701,6 +725,11 @@ void ObjcetControl::setAttribute()
 		map["ScaleY#float"]=QString().setNum(s.y);
 		map["ScaleZ#float"]=QString().setNum(s.z);
 
+		if (mSelectObject->map.contains("ObjectDirection"))
+		{
+			map["ObjectDirection#enum|North|South|West|East"]=mSelectObject->map.value("ObjectDirection");
+		}
+
 		if (mSelectObject->map.contains("direction"))
 		{
 			map["Direction#string"] = mSelectObject->map.value("direction");
@@ -839,6 +868,30 @@ void ObjcetControl::attributeChangle( QString name,QString value )
 		else if (name == "Morale")
 		{
 			mSelectObject->map["morale"] = value;
+		}
+		else if (name == "ObjectDirection")
+		{
+			mSelectObject->map["ObjectDirection"] = value;
+			Ogre::Quaternion q;
+
+			if(value=="North")
+			{
+				q.FromAngleAxis(Ogre::Degree(180),Ogre::Vector3(0,1,0));
+			}
+			else if(value=="South")
+			{
+				q.FromAngleAxis(Ogre::Degree(360),Ogre::Vector3(0,1,0));
+			}
+			else if(value=="West")
+			{
+				q.FromAngleAxis(Ogre::Degree(270),Ogre::Vector3(0,1,0));
+			}
+			else if(value=="East")
+			{
+				q.FromAngleAxis(Ogre::Degree(90),Ogre::Vector3(0,1,0));
+			}
+
+			mSelectObject->mNode->setOrientation(q);
 		}
 	}
 }
