@@ -83,6 +83,7 @@ void EntityItemDelegate::setModelData(QWidget *editor, QAbstractItemModel *model
 		entityData->EntityName=dialog->entityData->EntityName;
 		entityData->GroupName=dialog->entityData->GroupName;
 		entityData->MatName=dialog->entityData->MatName;
+		entityData->EntityType=dialog->entityData->EntityType;
 		if(item->data(0)->GroupName!=item->parent()->data(0)->name)//如果用户修改了实体的组
 		{
 			EntityTreeItem* newGroupItem=entityTreeModel->getRootItem()->findItem(item->data(0)->GroupName);

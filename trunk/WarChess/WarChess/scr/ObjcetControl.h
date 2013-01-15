@@ -102,10 +102,14 @@ private:
 	bool mScaleLocked;//是否使用全轴缩放
 	int mLastMouseY;//上一次鼠标Y轴
 	ArrowType mPressArrow;//当前按下的轴
+	bool mIsPickUp;
+	int mGX;
+	int mGY;
 
 	void setArrowStyle();//设置箭头的样式
 
 	EntityTreeItem* findEntity(const QModelIndex& index,const Ogre::Entity* entity);//递归匹配实体
+	EntityTreeItem* findEntity(const QModelIndex& index,int gx,int gy );
 
 };
 
