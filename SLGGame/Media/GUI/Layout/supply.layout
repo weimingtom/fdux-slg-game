@@ -331,7 +331,7 @@
                 <Property key="ButtonAutoWidth" value="true"/>
                 <Widget type="TabItem" skin="" position="2 24 699 282" name="TEXT_SquadSkill">
                     <Property key="Caption" value="Active"/>
-                    <Property key="FontHeight" value="20"/>
+                    <Property key="FontHeight" value="17"/>
                     <Widget type="ItemBox" skin="ItemBox" position="0 35 700 250" name="ActiveItemBox"/>
                     <Widget type="TextBox" skin="TextBox" position="15 7 175 25" name="SquadActivePoint">
                         <Property key="FontName" value="fireflysung.17"/>

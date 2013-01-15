@@ -612,7 +612,7 @@
     </Resource>
     <Resource type="ResourceLayout" name="TabHeaderButton" version="3.2.0">
         <Widget type="Button" skin="TabHeaderButtonSkin" position="20 25 52 23" name="Root">
-            <Property key="FontName" value="Default"/>
+            <Property key="FontName" value="fireflysung.17"/>
             <Property key="TextAlign" value="Center"/>
             <UserString key="LE_TargetWidgetType" value="Button"/>
         </Widget>
