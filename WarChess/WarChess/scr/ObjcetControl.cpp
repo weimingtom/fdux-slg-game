@@ -21,7 +21,10 @@ ObjcetControl::ObjcetControl(QTreeView* treeView,AttributeControl* attribute)
 	mPressArrow(NoneArrow),
 	mAssistPlane(NULL),
 	mMoveLocked(false),
-	mAttribute(attribute)
+	mAttribute(attribute),
+	mGX(0),
+	mGY(0),
+	mIsPickUp(false)
 {
 	//创建模型类,将模型设置到视图上
 	mObjectModel=new EntityTreeModel();
@@ -232,7 +235,23 @@ void ObjcetControl::removeObjectGroup()
 
 void ObjcetControl::mouseMove( QMouseEvent * event )
 {
-	if (mPressArrow!=NoneArrow && mEditMode!=NoneEdit)//如果已经对某个轴按下了,并且开始某个编辑动作
+	if(mIsPickUp)
+	{
+		int GX,GY;
+		if(IIRoot::getSingletonPtr()->mTerrain->coordinateToGrid(event->x(),event->y(),&GX,&GY))
+		{
+			Ogre::Vector2 v1=IIRoot::getSingletonPtr()->mTerrain->getRealXY(GX,GY,SecGrid);
+			float height=IIRoot::getSingletonPtr()->mTerrain->getHeight(GX,GY);
+			Ogre::Vector3 v(v1.x,height,v1.y);
+			mSelectObject->GridX=GX;
+			mSelectObject->GridY=GY;
+			mSelectObject->mNode->setPosition(v);
+			
+			setAttribute();
+		}
+	}
+
+	/*if (mPressArrow!=NoneArrow && mEditMode!=NoneEdit)//如果已经对某个轴按下了,并且开始某个编辑动作
 	{
 
 		switch(mEditMode)//根据编辑模式进行操作
@@ -267,12 +286,12 @@ void ObjcetControl::mouseMove( QMouseEvent * event )
 		}
 
 		setAttribute();
-	}
+	}*/
 }
 
 void ObjcetControl::mousePress( QMouseEvent * event )
 {
-	if (event->button()==Qt::MouseButton::LeftButton)
+	if (event->button()==Qt::MouseButton::LeftButton  && mIsPickUp==false)
 	{
 		//构造查询射线
 		Ogre::Ray mouseRay = mCamera->getCameraToViewportRay(float(event->x())/float(mWindow->getWidth()),float(event->y())/float(mWindow->getHeight()));
@@ -281,9 +300,12 @@ void ObjcetControl::mousePress( QMouseEvent * event )
 		Ogre::Vector3 result = Ogre::Vector3::ZERO;
 		float distToColl;
 
-		if (mSelectObject!=NULL)//以前已经选中了某对象
-		{
-			if (mCollisionTools->raycast(mouseRay,result,(Ogre::ulong&)entity,distToColl,ARROW_QUERY_MARK))//首先检查是否点击轴
+		int gx,gy;
+		IIRoot::getSingletonPtr()->mTerrain->coordinateToGrid(event->x(),event->y(),&gx,&gy);
+
+		//if (mSelectObject!=NULL)//以前已经选中了某对象
+		//{
+			/*if (mCollisionTools->raycast(mouseRay,result,(Ogre::ulong&)entity,distToColl,ARROW_QUERY_MARK))//首先检查是否点击轴
 			{
 				//QMessageBox::information(NULL,QString(entity->getName().c_str()),QString().setNum(entity->getQueryFlags()));
 				if (entity->getName()=="ArrowX")
@@ -303,25 +325,27 @@ void ObjcetControl::mousePress( QMouseEvent * event )
 				}
 				mLastPosition=entity->getParentSceneNode()->getPosition();
 				mLastMouseY=event->y();
-			}
-			else//如果没有点击轴,那么清空选择
+				return;
+			}*/
+		//}
+
+		if (mSelectObject!=NULL)
+		{
+			if(mEditMode==NoneEdit)
 			{
 				mSelectObject->mNode->showBoundingBox(false);//隐藏包围盒
 				mSelectObject=NULL;
-				mPressArrow=NoneArrow;
-				mArrowNode->setVisible(false);
-				setAttribute();
 			}
 		}
-		else//如果以前没有选中了某对象
+
+		//如果以前没有选中了某对象
 		{
-			if (mCollisionTools->raycast(mouseRay,result,(Ogre::ulong&)entity,distToColl))//使用精确检测执行查询
-			{
+
 				EntityTreeItem* item=NULL;
 				//获取root下面的节点,进行查找
 				for (int i=0;i<mObjectModel->rowCount();i++)
 				{
-					item=findEntity(mObjectModel->index(i,0),entity);
+					item=findEntity(mObjectModel->index(i,0),gx,gy);
 					if (item!=NULL)
 					{
 						break;
@@ -332,14 +356,16 @@ void ObjcetControl::mousePress( QMouseEvent * event )
 				{
 					mSelectObject=static_cast<ObjectData*>(item->data(0));
 					mSelectObject->mNode->showBoundingBox(true);//对于选中的对象,显示他的包围盒
-					if (mEditMode!=NoneEdit)//如果开启了编辑模式
+					/*if (mEditMode!=NoneEdit)//如果开启了编辑模式
 					{
 						mArrowNode->setVisible(true);
 						mArrowNode->setPosition(mSelectObject->mNode->getPosition());
-					}
+					}*/
+					mGX=gx;
+					mGY=gy;
+					mIsPickUp=true;
 				}
 				setAttribute();
-			}
 		}
 	}
 
@@ -347,8 +373,9 @@ void ObjcetControl::mousePress( QMouseEvent * event )
 
 void ObjcetControl::mouseRelease( QMouseEvent * event )
 {
-	if (mSelectObject!=NULL)
+	if (mSelectObject!=NULL && mIsPickUp)
 	{
+		mIsPickUp=false;
 		Ogre::Vector3 v=mSelectObject->mNode->getPosition();
 		int GX,GY;
 		IIRoot::getSingletonPtr()->mTerrain->calculateGrid(v.x,v.z,&GX,&GY); 
@@ -356,8 +383,11 @@ void ObjcetControl::mouseRelease( QMouseEvent * event )
 		float height=IIRoot::getSingletonPtr()->mTerrain->getHeight(GX,GY);
 		mSelectObject->GridX=GX;
 		mSelectObject->GridY=GY;
+		v.x=v1.x;
+		v.y=height;
+		v.z=v1.y;
 
-		if (mMoveLocked)//如果是限制到网格上
+		/*if (mMoveLocked)//如果是限制到网格上
 		{
 			switch(mPressArrow)
 			{
@@ -376,12 +406,20 @@ void ObjcetControl::mouseRelease( QMouseEvent * event )
 					v.z=v1.y;
 					break;
 				}
-			}
+			}*/
 			mSelectObject->mNode->setPosition(v);
-			mArrowNode->setPosition(v);
-		}
+		//	mArrowNode->setPosition(v);
+		//}
 
 		mPressArrow=NoneArrow;
+
+		if(mEditMode==Move)
+		{
+			mSelectObject->mNode->showBoundingBox(false);//隐藏包围盒
+			mSelectObject=NULL;
+		}
+	//	mPressArrow=NoneArrow;
+	//	mArrowNode->setVisible(false);
 
 		setAttribute();
 	}
@@ -652,6 +690,47 @@ EntityTreeItem* ObjcetControl::findEntity(const QModelIndex& index,const Ogre::E
 	}
 
 }
+
+EntityTreeItem* ObjcetControl::findEntity(const QModelIndex& index,int gx,int gy )
+{
+	if (index.isValid())
+	{
+		EntityTreeItem* parentItem=static_cast<EntityTreeItem*>(index.internalPointer());//取得index对应的Item项
+		int childCount=parentItem->childCount();
+		if (childCount!=0)//如果下面有子节点
+		{
+			for (int i=0;i<childCount;i++)//遍历子节点
+			{
+				EntityTreeItem* childItem=parentItem->child(i);
+				if (childItem->entityItemType==Group)//如果子节点还是一个组
+				{
+					EntityTreeItem* result=findEntity(mObjectModel->index(i,0,index),gx,gy);//递归进行查找
+
+					if(result!=NULL)
+					{
+						return result;
+					}
+				}
+				else//子节点是Item
+				{
+					ObjectData* data=static_cast<ObjectData*>(childItem->data(0));
+					if (data->GridX==gx && data->GridY==gy)//匹配是否为要查找的Entity
+					{
+						return childItem;
+					}
+				}
+			}
+		}
+
+		return NULL;
+	}
+	else
+	{
+		return NULL;
+	}
+
+}
+
 
 void ObjcetControl::createAssistPlane(ArrowType type,Ogre::Vector3 pos)
 {
