@@ -180,6 +180,11 @@ void ObjcetControl::removeObject()
 			QMessageBox::StandardButton button=QMessageBox::information(NULL,"提示","真的要删除该对象?",(QMessageBox::Yes | QMessageBox::No));
 			if(button==QMessageBox::Yes)
 			{
+				if (mSelectObject!=NULL)
+				{
+					mSelectObject->mNode->showBoundingBox(false);//隐藏包围盒
+					mSelectObject=NULL;
+				}
 				mObjectModel->removeRow(selectionIndex.row());
 				childItem->parent()->removeChild(childItem);		
 				mTreeView->reset();//改变数据后,记得通知view刷新
