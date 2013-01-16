@@ -830,6 +830,36 @@
 				<InfAp type="Float" value="0.0"/>
 			</GroundModifier>
 		</Camp>
+		<Outpost>
+			<Script type="String" value="none"/>
+			<GroundModifier>
+				<Passable type="Int" value="1"/>
+				<Covert type="Float" value="1.0"/>
+				<Defence type="Float" value="3.0"/>
+				<CavAp type="Float" value="1.0"/>
+				<InfAp type="Float" value="0.0"/>
+			</GroundModifier>
+		</Outpost>
+		<Castle>
+			<Script type="String" value="none"/>
+			<GroundModifier>
+				<Passable type="Int" value="1"/>
+				<Covert type="Float" value="1.0"/>
+				<Defence type="Float" value="3.0"/>
+				<CavAp type="Float" value="1.0"/>
+				<InfAp type="Float" value="0.0"/>
+			</GroundModifier>
+		</Castle>
+		<Stone>
+			<Script type="String" value="none"/>
+			<GroundModifier>
+				<Passable type="Int" value="0"/>
+				<Covert type="Float" value="1.0"/>
+				<Defence type="Float" value="3.0"/>
+				<CavAp type="Float" value="1.0"/>
+				<InfAp type="Float" value="0.0"/>
+			</GroundModifier>
+		</Stone>
 		<Forest>
 			<Script type="String" value="none"/>
 			<GroundModifier>
