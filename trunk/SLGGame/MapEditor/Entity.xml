@@ -9,6 +9,30 @@
   <Group name="势力4单位"/>
  </GroupList>
  <EntityList>
+  <Entity entity="BigCamp.mesh" mat="SceneObj" group="地表物件" type="Camp" name="BigCamp"/>
+  <Entity entity="Camp.mesh" mat="SceneObj" group="地表物件" type="Camp" name="LittleCamp"/>
+  <Entity entity="ForestLowWithRoad3.mesh" mat="SceneObj" group="地表物件" type="Forest" name="ForestLowWithRoad3"/>
+  <Entity entity="Forest1.mesh" mat="SceneObj" group="地表物件" type="Forest" name="Forest1"/>
+  <Entity entity="Forest2.mesh" mat="SceneObj" group="地表物件" type="Forest" name="Forest2"/>
+  <Entity entity="ForestLowWithRoad2.mesh" mat="SceneObj" group="地表物件" type="Forest" name="ForestLowWithRoad2"/>
+  <Entity entity="ForestLow1.mesh" mat="SceneObj" group="地表物件" type="Forest" name="ForestLow1"/>
+  <Entity entity="forest3.mesh" mat="SceneObj" group="地表物件" type="Forest" name="forest3"/>
+  <Entity entity="ForestLow2.mesh" mat="SceneObj" group="地表物件" type="Forest" name="ForestLow2"/>
+  <Entity entity="ForestLowWithRoad1.mesh" mat="SceneObj" group="地表物件" type="Forest" name="ForestLowWithRoad1"/>
+  <Entity entity="BigOutpost.mesh" mat="SceneObj" group="地表物件" type="Outpost" name="BigOutpost"/>
+  <Entity entity="LittleOutpost.mesh" mat="SceneObj" group="地表物件" type="Outpost" name="LittleOutpost"/>
+  <Entity entity="Castle.mesh" mat="SceneObj" group="地表物件" type="Castle" name="Castle"/>
+  <Entity entity="Stone1.mesh" mat="SceneObj" group="地表物件" type="Stone" name="Stone1"/>
+  <Entity entity="Stone2.mesh" mat="SceneObj" group="地表物件" type="Stone" name="Stone2"/>
+  <Entity entity="BigCity1.mesh" mat="SceneObj" group="地表物件" type="City" name="BigCity1"/>
+  <Entity entity="BigCity2.mesh" mat="SceneObj" group="地表物件" type="City" name="BigCity2"/>
+  <Entity entity="BigCity3.mesh" mat="SceneObj" group="地表物件" type="City" name="BigCity3"/>
+  <Entity entity="BigCity4.mesh" mat="SceneObj" group="地表物件" type="City" name="BigCity4"/>
+  <Entity entity="BigCity5.mesh" mat="SceneObj" group="地表物件" type="City" name="BigCity5"/>
+  <Entity entity="BigCity6.mesh" mat="SceneObj" group="地表物件" type="City" name="BigCity6"/>
+  <Entity entity="BigCity7.mesh" mat="SceneObj" group="地表物件" type="City" name="BigCity7"/>
+  <Entity entity="BigCity8.mesh" mat="SceneObj" group="地表物件" type="City" name="BigCity8"/>
+  <Entity entity="BigCity9.mesh" mat="SceneObj" group="地表物件" type="City" name="BigCity9"/>
   <Entity entity="cube.mesh" mat="CUBE_WHITE" group="地表特效" type="none" name="mapeffect"/>
   <Entity entity="flagred.mesh" mat="FlagRed" group="势力1单位" type="none" name="Team1Squad"/>
   <Entity entity="flagred.mesh" mat="FlagBlue" group="势力2单位" type="none" name="Team2Squad"/>
