@@ -5,7 +5,7 @@
     <Team3 TeamType="none" TeamFaction="none" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
-<MapScript>none</MapScript>
+<MapScript>mapscript.lua</MapScript>
 <MapInfo>none</MapInfo>
 <MapLoadBG>none</MapLoadBG>
 <MapSize>12</MapSize>
@@ -15,7 +15,7 @@
     <G2 Type="" Texture="" />
     <G3 Type="" Texture="" />
 </MapGround>
-<MapData>wgwglglglglglglglglgwgwglgwgwgwgwglglglgwgwgwglglglglglgwgwgwgwgwglglglglglglglglglglglglglglglglglglglglglgldldldlglglglglglglgldldldlglglglglglglglglglgldldlglglglglglglgldldldldldldlgldldldlglgldlglglgldldldldlglglglgldlglglgldlglglglglglglgldlglglgldlglglglglglglgldlglglgldlglglglglg</MapData>
+<MapData>wgwglglglglglglglglgwgwglgwgwgwgwglgwgwgwgwgwglglglglglgwgwgwglglglglglglglglglglglglglglslslslslglglglglglglslslslglglglglglglglslslslglglglglglglglglglglslslglglglglglglglslslslslslslglslslslglglslglglglslslslslglglglglslglglglslglglglglglglglslglglglslglglglglglglglslglglglslglglglglg</MapData>
 <MapObject>
     <BigCamp_0 Type="" GridX="6" GridY="6" Mesh="BigCamp.mesh" Direction="0" />
     <Forest1_0 Type="" GridX="3" GridY="4" Mesh="Forest1.mesh" Direction="0" />
@@ -78,6 +78,12 @@
     <ForestLow2_9 Type="Forest" GridX="1" GridY="9" Mesh="ForestLow2.mesh" Direction="0" />
     <ForestLow2_10 Type="Forest" GridX="1" GridY="7" Mesh="ForestLow2.mesh" Direction="0" />
     <ForestLow1_11 Type="Forest" GridX="0" GridY="8" Mesh="ForestLow1.mesh" Direction="0" />
+    <Forest1_9 Type="Forest" GridX="7" GridY="3" Mesh="Forest1.mesh" Direction="0" />
+    <Forest2_3 Type="Forest" GridX="6" GridY="3" Mesh="Forest2.mesh" Direction="0" />
+    <forest3_4 Type="Forest" GridX="5" GridY="3" Mesh="forest3.mesh" Direction="0" />
+    <ForestLow2_11 Type="Forest" GridX="4" GridY="3" Mesh="ForestLow2.mesh" Direction="0" />
+    <ForestLow1_12 Type="Forest" GridX="3" GridY="2" Mesh="ForestLow1.mesh" Direction="0" />
+    <ForestLow2_12 Type="Forest" GridX="2" GridY="3" Mesh="ForestLow2.mesh" Direction="0" />
 </MapObject>
 <MapEffect />
 <MapSquad>
