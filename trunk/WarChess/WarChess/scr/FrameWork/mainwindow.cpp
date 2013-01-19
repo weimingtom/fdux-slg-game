@@ -551,48 +551,47 @@ void MainWindow::SaveMap()
 	doc->LinkEndChild(element);
 
 	element = new ticpp::Element("MapData");
-	char* mapdata = new char[mapsize * mapsize *2];
-	char* mapdataptr = mapdata;
+	std::string mapdata;
 	for(int z = 0; z < mapsize; z++)
 	{
 		for(int x = 0; x < mapsize; x++)
 		{
-			switch (terrain->mTerrainBlocks[x][z]->getBlockType(BottomRight))
-			{
-			case HighGround:
-				*mapdataptr = 'h';
-				break;
-			case LowGround:
-				*mapdataptr = 'l';
-				break;
-			case Water:
-				*mapdataptr = 'w';
-				break;
-			}
 			if(terrain->mRamp->isRamp(x,z))
 			{
-				*mapdataptr = 'r';
+				mapdata +=  'r';
 			}
-			mapdataptr++;
+			else
+			{
+				switch (terrain->mTerrainBlocks[x][z]->getBlockType(BottomRight))
+				{
+				case HighGround:
+					mapdata += 'h';
+					break;
+				case LowGround:
+					mapdata += 'l';
+					break;
+				case Water:
+					mapdata += 'w';
+					break;
+				}
+			}
 			switch (terrain->mTerrainBlocks[x][z]->getTerrianType(BottomRight))
 			{
 			case GreenLand:
-				*mapdataptr = 'g';
+				mapdata +=  'g';
 				break;
 			case Desert:
-				*mapdataptr = 'd';
+				mapdata +=  'd';
 				break;
 			case Swamp:
-				*mapdataptr = 'w';
+				mapdata +=  'w';
 				break;
 			case Snow:
-				*mapdataptr = 's';
+				mapdata +=  's';
 				break;
 			}
-			mapdataptr++;
 		}
 	}
-	*mapdataptr = '\0';
 	element->SetText(mapdata);
 	//delete [] mapdata;
 	doc->LinkEndChild(element);
@@ -714,4 +713,5 @@ void MainWindow::SaveMap()
 
 	doc->LinkEndChild(element);
 	doc->SaveFile();
+	delete doc;
 }
