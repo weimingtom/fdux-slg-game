@@ -281,29 +281,40 @@ void MainWindow::LoadMap()
 						int tempindex = u * gridSize + v;
 						if(mapData.at(tempindex * 2) == 'h' )
 						{	
-							GroundType t=((GroundEditor*)editor)->getTileTerrianType(u,v);
 							isHigh ++;
-
-							switch (t)
-							{
-							case GreenLand:
-								temp = "HighGroundGreen";
-								break;
-							case Desert:
-								temp = "HighGroundDesert";
-								break;
-							case Swamp:
-								temp = "HighGroundSwamp";
-								break;
-							case Snow:
-								temp = "HighGroundSnow";
-								break;
-							}
 						}
 					}
 				}
 				if(isHigh==9)
 				{
+					for(int i = 1; i <= z; i ++)
+					{
+						int tempindex = (z-i) * gridSize + (x-i);
+						if(mapData.at(tempindex * 2)=='l')
+						{
+							if (mapData.at(tempindex * 2+1) == 'g')
+							{
+								temp = "HighGroundGreen";
+								break;
+							}
+							else if (mapData.at(tempindex * 2+1) == 'd')
+							{
+								temp = "HighGroundDesert";
+								break;
+							}
+							else if (mapData.at(tempindex * 2+1) == 'w')
+							{
+								temp = "HighGroundSwamp";
+								break;
+							}
+							else if (mapData.at(tempindex * 2+1) == 's')
+							{
+								temp = "HighGroundSnow";
+								break;
+							}
+						}
+					}
+
 					if (suffix == 'g')
 					{
 						type = "HighGroundGreenPlane";
