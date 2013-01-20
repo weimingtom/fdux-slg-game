@@ -20,6 +20,7 @@
 #include "Area.h"
 #include "RampManager.h"
 #include "TerrainEditor.h"
+#include "GroundEditor.h"
 
 MainWindow::MainWindow(QWidget *parent)
 : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -237,6 +238,7 @@ void MainWindow::LoadMap()
 	}
 	element = element->NextSiblingElement("MapData");
 	QString mapData = QString::fromStdString(element->GetText());
+	std::map<Ogre::Vector2*,std::string> highGroundPlane;
 	for (int z = 0; z < gridSize; z++)
 	{
 		for (int x = 0; x < gridSize; x++)
@@ -247,40 +249,99 @@ void MainWindow::LoadMap()
 			std::string type;
 			if (prefix == 'l')
 			{
-				if (suffix == 'g')
-				{
-					type = "GreenLand";
-				}
-				else if (suffix == 'd')
-				{
-					type = "Desert";
-				}
-				else if (suffix == 'w')
-				{
-					type = "Swamp";
-				}
-				else if (suffix == 's')
-				{
-					type = "Snow";
-				}
+					if (suffix == 'g')
+					{
+						type = "GreenLand";
+					}
+					else if (suffix == 'd')
+					{
+						type = "Desert";
+					}
+					else if (suffix == 'w')
+					{
+						type = "Swamp";
+					}
+					else if (suffix == 's')
+					{
+						type = "Snow";
+					}
 			}
 			else if (prefix == 'h')
 			{
-				if (suffix == 'g')
+				int isHigh=0;
+				std::string temp;
+				for(int i = z - 1; i < z + 2; i ++)
 				{
-					type = "HighGroundGreen";
+					for(int j =  x - 1; j < x + 2; j++)
+					{
+						int u = (i<0)?0:i;
+						u = (u >= gridSize)?gridSize-1:u;
+						int v = (j<0)?0:j;
+						v = (v >= gridSize)?gridSize-1:v;
+						int tempindex = u * gridSize + v;
+						if(mapData.at(tempindex * 2) == 'h' )
+						{	
+							GroundType t=((GroundEditor*)editor)->getTileTerrianType(u,v);
+							isHigh ++;
+
+							switch (t)
+							{
+							case GreenLand:
+								temp = "HighGroundGreen";
+								break;
+							case Desert:
+								temp = "HighGroundDesert";
+								break;
+							case Swamp:
+								temp = "HighGroundSwamp";
+								break;
+							case Snow:
+								temp = "HighGroundSnow";
+								break;
+							}
+						}
+					}
 				}
-				else if (suffix == 'd')
+				if(isHigh==9)
 				{
-					type = "HighGroundDesert";
+					if (suffix == 'g')
+					{
+						type = "HighGroundGreenPlane";
+					}
+					else if (suffix == 'd')
+					{
+						type = "HighGroundDesertPlane";
+					}
+					else if (suffix == 'w')
+					{
+						type = "HighGroundSwampPlane";
+					}
+					else if (suffix == 's')
+					{
+						type = "HighGroundSnowPlane";
+					}
+
+					highGroundPlane[new Ogre::Vector2(x,z)]=type;
+					type=temp;
 				}
-				else if (suffix == 'w')
+				else
 				{
-					type = "HighGroundSwamp";
-				}
-				else if (suffix == 's')
-				{
-					type = "HighGroundSnow";
+					if (suffix == 'g')
+					{
+						type = "HighGroundGreen";
+					}
+					else if (suffix == 'd')
+					{
+						type = "HighGroundDesert";
+					}
+					else if (suffix == 'w')
+					{
+						type = "HighGroundSwamp";
+					}
+					else if (suffix == 's')
+					{
+						type = "HighGroundSnow";
+					}
 				}
 			}
 			else if (prefix == 'w')
@@ -310,6 +371,14 @@ void MainWindow::LoadMap()
 			editor->setGrid(x, z);
 		}
 	}
+
+	for(std::map<Ogre::Vector2*,std::string>::iterator itr=highGroundPlane.begin();itr!=highGroundPlane.end();itr++)
+	{
+		editor->setEditorType(itr->second);
+		editor->setGrid(itr->first->x, itr->first->y);
+		delete itr->first;
+	}
+
 	element = element->NextSiblingElement("MapObject");
 	if (!element->NoChildren())
 	{
