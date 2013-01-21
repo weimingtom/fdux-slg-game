@@ -33,8 +33,11 @@ function onmeleeattack()
 	tsid  = ScriptCommonLib.GetTempString("targetsquadid");
 	eid = ScriptCommonLib.GetString("effectid");
 	lv = SquadLib.GetEffectLevel(sid, eid);
-	mid = SquadLib.ApplyModifier(sid, 0, lv * 5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-	ScriptCommonLib.SetString("modifierid", mid);
+	house = SquadLib.GetEquip(tsid, 1);
+	if house ~= "none" then
+		mid = SquadLib.ApplyModifier(sid, 0, lv * 2 + 1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+		ScriptCommonLib.SetString("modifierid", mid);
+	end
 end
 
 function aftermeleeattack()

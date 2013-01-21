@@ -38,12 +38,12 @@ bool Terrain::createTerrain()
 
 
 	//创建灯光
-	Core::getSingleton().mSceneMgr->setAmbientLight(Ogre::ColourValue(0.3f, 0.3f, 0.3f));
+	Core::getSingleton().mSceneMgr->setAmbientLight(Ogre::ColourValue(0.1f, 0.1f, 0.1f));
 	mLight = Core::getSingleton().mSceneMgr->createLight("TerrainLight");
 	mLight->setType(Ogre::Light::LT_DIRECTIONAL);
 	mLight->setPosition(-500.0f,500.0f, 500.0f);
 	mLight->setDirection(1.0f, -1.0f, -1.0f);
-	mLight->setDiffuseColour(Ogre::ColourValue(0.6f, 0.6f,0.6f));
+	mLight->setDiffuseColour(Ogre::ColourValue(0.7f, 0.7f,0.7f));
 	mLight->setSpecularColour(Ogre::ColourValue(0.8f, 0.8f,0.8f));
 
 	//设置深度图投影
@@ -484,6 +484,9 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 	groundindex[gt[TOPRIGHT]] += 4;
 	groundindex[gt[BOTTOMLEFT]] += 2;
 	groundindex[gt[BOTTOMRIGHT]] += 1;
+	//groundindex[0] = 15;
+	//groundindex[1] = groundindex[1] | groundindex[2] | groundindex[3];
+	//groundindex[2] = groundindex[2] | groundindex[3];
 
 	//绘制地形块位置
 	//左上
@@ -887,7 +890,8 @@ void Terrain::createGrid()
 std::string Terrain::randMesh(int x, int y)
 {
 	char temp[8];
-	int num = abs(x + y)%2 +1;
+	int num = abs(x + y);
+	num = (num % 2 & ((num + 3) % 4 / 2) )+ 1;
 	sprintf_s(temp, 8, "_%d", num);
 	return temp;
 }
@@ -954,7 +958,7 @@ void Terrain::calculateGrid( float x,float y,int& GX, int& GY )
 	*/
 }
 
-int Terrain::createMapObj(int x, int y, std::string meshname)
+int Terrain::createMapObj(int x, int y, std::string meshname, enumtype dir)
 {
 	stTileEntityData* entitydata = new stTileEntityData;
 	entitydata->mTileEntity = Core::getSingleton().mSceneMgr->createEntity(meshname);
@@ -963,6 +967,18 @@ int Terrain::createMapObj(int x, int y, std::string meshname)
 	float xx,yy;
 	getWorldCoords(x,y,xx,yy);
 	entitydata->mTileNode->setPosition(xx ,getHeight(xx,yy),yy);
+	switch(dir)
+	{
+	case South:
+		entitydata->mTileNode->yaw(Ogre::Radian(Ogre::Math::HALF_PI));
+		break;
+	case West:
+		entitydata->mTileNode->yaw(Ogre::Radian(Ogre::Math::PI));
+		break;
+	case East:
+		entitydata->mTileNode->yaw(Ogre::Radian(-Ogre::Math::HALF_PI));
+		break;
+	}
 	mObjId ++;
 	mMapObjMap.insert(std::map<int, stTileEntityData*>::value_type(mObjId,entitydata ));
 	return mObjId;

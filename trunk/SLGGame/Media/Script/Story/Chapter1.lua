@@ -610,4 +610,4 @@ GUI.SetDialogVisible(0);
 AVGLib.AddSquad("Cheetah","CheetahSquad");
 AVGLib.AddSquad("Dandelion","DandelionSquad");
 AVGLib.SetPlayerFaction("Wing");
-StateLib.BattleState("demo.xml");
+StateLib.BattleState("tworiver.xml");

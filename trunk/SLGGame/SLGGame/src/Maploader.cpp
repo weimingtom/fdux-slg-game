@@ -180,7 +180,7 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 		//child->GetValue(&objname);
 		objname = child->name();
 		datapath = std::string("GameData/BattleData/MapData/MapObjModleInfo/") + objname;
-		int objx,objy;
+		int objx,objy, objdir;
 		std::string meshname,objtype;
 		//child->GetAttribute("GridX",&objx);
 		rapidxml::xml_attribute<> *attr = child->first_attribute("GridX");
@@ -194,9 +194,12 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 		//child->GetAttribute("Type",&objtype);
 		attr=child->first_attribute("Type");
 		objtype = attr->value();
+		attr=child->first_attribute("Direction");
+		objdir = Ogre::StringConverter::parseInt(attr->value());
 		datalibrary->setData(datapath + "/GridX", objx);
 		datalibrary->setData(datapath + "/GridY", objy);
 		datalibrary->setData(datapath + "/Mesh", meshname);
+		datalibrary->setData(datapath + "/Direction", objdir);
 		//物品类型脚本
 		datapath = std::string("GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(MapDataManager::getSingleton().getGridId(objx, objy)) + std::string("/MapObjType");
 		datalibrary->setData(datapath, objtype);
@@ -389,12 +392,13 @@ void MapLoader::loadMapObj()
 		for(unsigned int n = 0; n < childlist.size(); n++)
 		{
 			std::string meshname;
-			int x,y;
+			int x,y,dir;
 			datalibrary->getData(datapath + std::string("/") + childlist[n] + std::string("/Mesh"),meshname);
 			datalibrary->getData(datapath + std::string("/") +childlist[n] + std::string("/GridX"),x);
 			datalibrary->getData(datapath + std::string("/") +childlist[n] + std::string("/GridY"),y);
+			datalibrary->getData(datapath + std::string("/") +childlist[n] + std::string("/Direction"),dir);
 			int index;
-			index = terrain->createMapObj(x,y,meshname);
+			index = terrain->createMapObj(x,y,meshname, dir);
 			datalibrary->setData(datapath + std::string("/") + childlist[n] + std::string("/Index"),index);
 		}
 	}
