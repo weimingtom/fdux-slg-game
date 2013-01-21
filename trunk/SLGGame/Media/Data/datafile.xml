@@ -147,6 +147,34 @@
 			<UnitMat type="String" value="LightInfDux"/>
 			<MoveSound type="String" value="LightInf.mp3"/>
 		</DuxLightSpear>
+				<DuxLightBow>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="0"/>
+			<SoilderId type="String" value="DuxSoilder"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="ShortSpear"/>
+			<SweaponId type="String" value="LongBow""/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="LeatherArmor"/>
+			<SkillTable>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<ShortSpear type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="DuxLightOfficer"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="2" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="LightInf.mesh"/>
+			<UnitMat type="String" value="LightInfDux"/>
+			<MoveSound type="String" value="LightInf.mp3"/>
+		</DuxLightSpear>
 		<DuxHeavyInf>
 			<Type type="Int" value="0"/>
 			<SquadType type="Int" value="0"/>
@@ -762,6 +790,15 @@
 				<InfAp type="Float" value="2.0"/>
 			</GroundModifier>
 		</Soil>
+		<Cobble>
+			<GroundModifier>
+				<Passable type="Int" value="1"/>
+				<Covert type="Float" value="0.0"/>
+				<Defence type="Float" value="0.0"/>
+				<CavAp type="Float" value="2.0"/>
+				<InfAp type="Float" value="2.0"/>
+			</GroundModifier>
+		</Cobble>
 		<Road>
 			<GroundModifier>
 				<Passable type="Int" value="1"/>
