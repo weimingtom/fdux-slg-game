@@ -41,6 +41,25 @@ static int TeamSquadLeft(lua_State* L)
 	return 1;
 }
 
+
+static int GetSquadAt(lua_State* L)
+{
+	int x = luaL_checkint(L, 1);
+	int y = luaL_checkint(L, 2);
+	int visibleonly = luaL_checkint(L, 3);
+	int faction = luaL_checkint(L, 4);
+	BattleSquad* squad =BattleSquadManager::getSingleton().getBattleSquadAt(x, y, faction, visibleonly);
+	if(squad)
+	{
+		lua_pushstring(L,squad->getSquadId().c_str());
+	}
+	else
+	{
+		lua_pushstring(L,"\0");
+	}
+	return 1;
+}
+
 static int Story(lua_State* L)
 {
 	std::string storyscript(luaL_checkstring(L, 1));
@@ -122,6 +141,7 @@ static const struct luaL_Reg BattleLib[] =
 	{"ChangeState",ChangeState},
 	{"DumpSquadData",DumpSquadData},
 	{"TeamSquadLeft",TeamSquadLeft},
+	{"GetSquadAt",GetSquadAt},
 	{"Story",Story},
 	{"AddGold",AddGold},
 	//{"CreateAIGroup",CreateAIGroup},

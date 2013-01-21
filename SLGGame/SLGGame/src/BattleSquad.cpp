@@ -500,7 +500,11 @@ bool BattleSquad::tryMove(int srcx, int srcy, int tgx, int tgy, float &apleft, u
 	MapDataManager* mapdatamanager = MapDataManager::getSingletonPtr();
 	if(mapdatamanager->getPassable(tgx, tgy, getFaction()))
 	{
-		float mapapcost = mapdatamanager->getInfApCost(tgx, tgy, getFaction());
+		float mapapcost = 0.0f;
+		if(getHorseId() != "none")
+			mapapcost = mapdatamanager->getCavApCost(tgx, tgy, getFaction());
+		else
+			mapapcost = mapdatamanager->getInfApCost(tgx, tgy, getFaction());
 		if(mapapcost <= apleft)
 		{
 			apleft -= mapapcost;
@@ -527,7 +531,11 @@ bool BattleSquad::move(int tgx, int tgy, unsigned int &eventflag)
 	MapDataManager* mapdatamanager = MapDataManager::getSingletonPtr();
 	if(mapdatamanager->getPassable(tgx, tgy, getFaction()))
 	{
-		float mapapcost = mapdatamanager->getInfApCost(tgx, tgy, getFaction());
+		float mapapcost = 0.0f;
+		if(getHorseId() != "none")
+			mapapcost = mapdatamanager->getCavApCost(tgx, tgy, getFaction());
+		else
+			mapapcost = mapdatamanager->getInfApCost(tgx, tgy, getFaction());
 		float ap = getActionPoint();
 		if(mapapcost <= ap)
 		{

@@ -39,6 +39,10 @@
 			<Name type="String" value="达克斯轻装长矛队"/>
 			<Describe type="String" value="达克斯轻装长矛队"/>
 		</DuxLightSpear>
+		<DuxLightBow>
+			<Name type="String" value="达克斯轻装弓箭队"/>
+			<Describe type="String" value="达克斯轻装弓箭队"/>
+		</DuxLightBow>
 		<DuxHeavyInf>
 			<Name type="String" value="达克斯重步兵队"/>
 			<Describe type="String" value="达克斯重步兵队"/>
@@ -114,8 +118,8 @@
 			<Describe type="String" value="斥候"/>
 		</Scout>
 		<Test>
-			<Name type="String" value="测试"/>
-			<Describe type="String" value="测试"/>
+			<Name type="String" value="旗手"/>
+			<Describe type="String" value="旗手"/>
 		</Test>
 	</RetainerData>
 	<SkillData>
@@ -205,6 +209,10 @@
 			<Name type="String" value="对抗骑兵"/>
 			<Describe type="String" value="对抗骑兵"/>
 		</AntiCav>
+		<Inspired>
+			<Name type="String" value="被激励"/>
+			<Describe type="String" value="被激励"/>
+		</Inspired>
 	</EffectData>
 	<GroundData>
 		<Grass>
@@ -215,6 +223,10 @@
 			<Name type="String" value="荒地"/>
 			<Describe type="String" value="荒地"/>
 		</Soil>
+		<Cobble>
+			<Name type="String" value="石路"/>
+			<Describe type="String" value="石路"/>
+		</Cobble>
 		<Road>
 			<Name type="String" value="道路"/>
 			<Describe type="String" value="道路"/>
@@ -247,6 +259,18 @@
 			<Name type="String" value="营寨"/>
 			<Describe type="String" value="营寨"/>
 		</Camp>
+		<Outpost>
+			<Name type="String" value="哨站"/>
+			<Describe type="String" value="哨站"/>
+		</Outpost>
+		<Castle>
+			<Name type="String" value="城堡"/>
+			<Describe type="String" value="城堡"/>
+		</Castle>
+		<Stone>
+			<Name type="String" value="石堆"/>
+			<Describe type="String" value="石堆"/>
+		</Stone>
 		<Forest>
 			<Name type="String" value="森林"/>
 			<Describe type="String" value="森林"/>

@@ -8,6 +8,8 @@ using namespace izayoi;
 #include <vector>
 #include <map>
 
+#include "squaddefine.h"
+
 class MapDataManager;
 
 static const float PLANEHEIGHT = 0.0f;
@@ -64,7 +66,7 @@ public:
 	//获取格子的高度
 	float getHeight(float x, float y);
 	
-	int createMapObj(int x, int y, std::string meshname);
+	int createMapObj(int x, int y, std::string meshname, enumtype dir);
 	void deleteMapObj(int index);
 
 	int createMapParticle(int x, int y,std::string particlename);

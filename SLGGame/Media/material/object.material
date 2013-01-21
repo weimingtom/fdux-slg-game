@@ -6,7 +6,7 @@ material soul : NotSkinned/CastShadow/OneTexture
 
 material SceneObj : NotSkinned/CastShadow/OneTexture
 {
-    set_texture_alias Diffuse 1024.dds
+    set_texture_alias Diffuse 512.dds
 }
 
 material Pike : NotSkinned/CastShadow/OneTexture
@@ -28,9 +28,3 @@ material Bow : NotSkinned/CastShadow/OneTexture
 {
     set_texture_alias Diffuse bow.dds
 }
-
-material LargeShield : NotSkinned/CastShadow/OneTexture
-{
-    set_texture_alias Diffuse LargeShield.dds
-}
-

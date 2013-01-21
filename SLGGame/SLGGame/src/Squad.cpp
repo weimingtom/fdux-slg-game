@@ -274,6 +274,34 @@ void Squad::unloadEquipment(enumtype equiptype)
 	datalib->setData(distpath, std::string("none"), true);
 }
 
+std::string Squad::getEquipment(enumtype equiptype)
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::string equip("none");
+	switch(equiptype)
+	{
+	case EQUIP_ARMOR:
+		datalib->getData(mPath + std::string("/ArmorId"), equip);
+		break;
+	case EQUIP_HORSE:
+		datalib->getData(mPath + std::string("/HorseId"), equip);
+		break;
+	case EQUIP_SOILDER:
+		datalib->getData(mPath + std::string("/SoilderId"), equip);
+		break;
+	case EQUIP_SHIELD:
+		datalib->getData(mPath + std::string("/ShieldId"), equip);
+		break;
+	case EQUIP_PWEAPON:
+		datalib->getData(mPath + std::string("/PweaponId"), equip);
+		break;
+	case EQUIP_SWEAPON:
+		datalib->getData(mPath + std::string("/SweaponId"), equip);
+		break;
+	}
+	return equip;
+}
+
 bool Squad::learnSkill(enumtype skilltype, std::string skillid)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();

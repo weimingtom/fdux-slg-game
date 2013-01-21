@@ -147,20 +147,20 @@
 			<UnitMat type="String" value="LightInfDux"/>
 			<MoveSound type="String" value="LightInf.mp3"/>
 		</DuxLightSpear>
-				<DuxLightBow>
+		<DuxLightBow>
 			<Type type="Int" value="0"/>
-			<SquadType type="Int" value="0"/>
+			<SquadType type="Int" value="1"/>
 			<SoilderId type="String" value="DuxSoilder"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="ShortSpear"/>
-			<SweaponId type="String" value="LongBow""/>
+			<PweaponId type="String" value="ShortSword"/>
+			<SweaponId type="String" value="LongBow"/>
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LeatherArmor"/>
 			<SkillTable>
-				<DefenceTrain1 type="Int" value="0"/>
-				<Defence type="Int" value="1"/>
-				<ShortSpear type="Int" value="2"/>
-				<Shield type="Int" value="2"/>
+				<RangedAttackTrain1 type="Int" value="0"/>
+				<SuppressAttack type="Int" value="1"/>
+				<OneHandSword type="Int" value="2"/>
+				<Bow type="Int" value="2"/>
 				<LightArmor type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="DuxLightOfficer"/>
@@ -174,7 +174,7 @@
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInfDux"/>
 			<MoveSound type="String" value="LightInf.mp3"/>
-		</DuxLightSpear>
+		</DuxLightBow>
 		<DuxHeavyInf>
 			<Type type="Int" value="0"/>
 			<SquadType type="Int" value="0"/>
@@ -275,7 +275,7 @@
 			<AttrModifer>
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="1.0"/>
-				<RangedAttack type="Float" value="0.0"/>
+				<RangedAttack type="Float" value="-2.0"/>
 				<Defence type="Float" value="-2.0"/>
 				<Formation type="Float" value="-1.0"/>
 				<Initiative type="Float" value="2.0"/>
@@ -601,7 +601,6 @@
 			<APType type="Int" value="1"/>
 			<APCost type="float" value="3.0"/>
 			<CoolDown type="Int" value="0"/>
-			<Value type="Int" value="0"/>
 			<Icon type="String" value="ac_atkc"/>
 			<Script type="String" value="attack.lua"/>
 		</Attack>
@@ -613,7 +612,6 @@
 			<APType type="Int" value="0"/>
 			<APCost type="float" value="3.0"/>
 			<CoolDown type="Int" value="0"/>
-			<Value type="Int" value="10"/>
 			<Icon type="String" value="skill_act2_firm"/>
 			<Script type="String" value="magicshield.lua"/>
 		</MagicShield>
@@ -625,7 +623,6 @@
 			<APType type="Int" value="1"/>
 			<APCost type="float" value="3.0"/>
 			<CoolDown type="Int" value="0"/>
-			<Value type="Int" value="10"/>
 			<Icon type="String" value="ac_atkr"/>
 			<Script type="String" value="rangedattack.lua"/>
 		</RangedAttack>
@@ -637,7 +634,6 @@
 			<APType type="Int" value="2"/>
 			<APCost type="float" value="2.0"/>
 			<CoolDown type="Int" value="0"/>
-			<Value type="Int" value="10"/>
 			<Icon type="String" value="skill_act1_def"/>
 			<Script type="String" value="defence.lua"/>
 		</Defence>
@@ -649,7 +645,6 @@
 			<APType type="Int" value="2"/>
 			<APCost type="float" value="2.0"/>
 			<CoolDown type="Int" value="0"/>
-			<Value type="Int" value="10"/>
 			<Icon type="String" value="ac_rest"/>
 			<Script type="String" value="rest.lua"/>
 		</Rest>
@@ -661,7 +656,6 @@
 			<APType type="Int" value="0"/>
 			<APCost type="float" value="3.0"/>
 			<CoolDown type="Int" value="0"/>
-			<Value type="Int" value="10"/>
 			<Icon type="String" value="skill_act2_heal"/>
 			<Script type="String" value="heal.lua"/>
 		</Heal>
@@ -673,7 +667,6 @@
 			<APType type="Int" value="1"/>
 			<APCost type="float" value="5.0"/>
 			<CoolDown type="Int" value="1"/>
-			<Value type="Int" value="0"/>
 			<Icon type="String" value="skill_act1_break"/>
 			<Script type="String" value="break.lua"/>
 		</Break>
@@ -685,7 +678,6 @@
 			<APType type="Int" value="1"/>
 			<APCost type="float" value="5.0"/>
 			<CoolDown type="Int" value="1"/>
-			<Value type="Int" value="10"/>
 			<Icon type="String" value="skill_act1_suppress"/>
 			<Script type="String" value="suppressattack.lua"/>
 		</SuppressAttack>
@@ -697,7 +689,6 @@
 			<APType type="Int" value="2"/>
 			<APCost type="float" value="2.0"/>
 			<CoolDown type="Int" value="0"/>
-			<Value type="Int" value="10"/>
 			<Icon type="String" value="Recrew"/>
 			<Script type="String" value="pray.lua"/>
 		</Pray>
@@ -709,7 +700,6 @@
 			<APType type="Int" value="0"/>
 			<APCost type="float" value="3.0"/>
 			<CoolDown type="Int" value="2"/>
-			<Value type="Int" value="10"/>
 			<Icon type="String" value="Recrew"/>
 			<Script type="String" value="Inspire.lua"/>
 		</Inspire>
@@ -770,6 +760,11 @@
 			<Icon type="String" value="anticav.jpg"/>
 			<Script type="String" value="anticav.lua"/>
 		</AntiCav>
+		<Inspired>
+			<Type type="Int" value="2"/>
+			<Icon type="String" value="Inspired.jpg"/>
+			<Script type="String" value="Inspire.lua"/>
+		</Inspired>
 	</EffectData>
 	<GroundData>
 		<Grass>

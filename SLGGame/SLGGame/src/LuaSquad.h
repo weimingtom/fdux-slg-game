@@ -301,6 +301,28 @@ static int DelParticle(lua_State* L)
 	return 0;
 }
 
+static int GetEquip(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	enumtype equiptype = luaL_checkinteger(L, 2);
+	std::string equip("none");
+	Squad* squad = NULL;
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+	{
+		squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+	}
+	else
+	{
+
+	}
+	if(squad)
+	{
+		equip = squad->getEquipment(equiptype);
+	}
+	lua_pushstring(L, equip.c_str());
+	return 1;
+}
+
 static const struct luaL_Reg SquadLib[] =
 {
 	{"GetSquadCoord",GetSquadCoord},
@@ -321,5 +343,6 @@ static const struct luaL_Reg SquadLib[] =
 	{"ChangeFormation",ChangeFormation},
 	{"AddParticle",AddParticle},
 	{"DelParticle",DelParticle},
+	{"GetEquip",GetEquip},
 	{NULL,NULL}
 };

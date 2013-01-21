@@ -65,6 +65,7 @@ public:
 public:
 	bool equipEquipment(enumtype equiptype, std::string equipid);
 	void unloadEquipment(enumtype equiptype);
+	std::string getEquipment(enumtype equiptype);
 
 //补给：技能升级
 public:
