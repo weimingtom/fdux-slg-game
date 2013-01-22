@@ -65,11 +65,6 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	mArmorItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventMouseItemActivate);
 	mArmorItemBox->getItemBox()->eventSelectItemAccept+= MyGUI::newDelegate(this, &GUISupply::eventSelectItemAccept);
 
-	assignWidget(baseItemBox,"SoilderItemBox");
-	mSoilderItemBox=new WeaponItemBox(baseItemBox);
-	mSoilderItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventMouseItemActivate);
-	mSoilderItemBox->getItemBox()->eventSelectItemAccept+= MyGUI::newDelegate(this, &GUISupply::eventSelectItemAccept);
-
 	assignWidget(baseItemBox,"RetainerItemBox");
 	mRetainerItemBox=new WeaponItemBox(baseItemBox);
 	mRetainerItemBox->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUISupply::eventMouseItemActivate);
@@ -566,10 +561,7 @@ void GUISupply::eventTabChangeSelect(MyGUI::TabControl* _sender, size_t _index)
 		case 4:
 			showItem(EQUIP_ARMOR);
 			break;
-		case 5:
-			showItem(EQUIP_SOILDER);
-			break;
-		case 6://릴바
+		case 5://릴바
 			showItem(EQUIP_RETAINER);
 			break;
 		}
