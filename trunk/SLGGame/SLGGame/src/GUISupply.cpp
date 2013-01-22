@@ -31,6 +31,8 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	assignWidget(mExitButton,"T_SupplyExit");
 	assignWidget(mEquipmentButton,"Button_Equipment");
 	assignWidget(mSkillButton,"Button_Skill");
+	assignWidget(mSoilderButton,"Button_Soldier");
+	assignWidget(mSoilderButtonText,"TEXT_SoldierSupply");
 
 
 	mSaveButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUISupply::onSave);
@@ -38,6 +40,8 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	mExitButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUISupply::onExit);
 	mEquipmentButton->eventMouseButtonClick+=MyGUI::newDelegate(this, &GUISupply::onEquipment);
 	mSkillButton->eventMouseButtonClick+=MyGUI::newDelegate(this, &GUISupply::onSkill);
+	mSoilderButton->eventMouseButtonClick+=MyGUI::newDelegate(this, &GUISupply::onSoilder);
+	mSoilderButtonText->eventMouseButtonClick+=MyGUI::newDelegate(this, &GUISupply::onSoilder);
 
 	MyGUI::ItemBox* baseItemBox;
 	assignWidget(baseItemBox,"PWeaponItemBox");
@@ -274,6 +278,19 @@ void GUISupply::showArmy( int index )
 	}
 
 	showAttribute(index,0,"");
+	if(army->getUnitNum()!=50)
+	{
+		tempstr = army->getSoilderId();
+		temppath = str(boost::format("StaticData/SoilderData/%1%/Value")%tempstr);
+		int value;
+		DataLibrary::getSingletonPtr()->getData(temppath, value);
+		int money=(50-army->getUnitNum())*value;
+		mSoilderButtonText->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("TEXT_SoldierSupplyNeed"))%money));
+	}
+	else
+	{
+		mSoilderButtonText->setCaption(StringTable::getSingletonPtr()->getString("TEXT_SoldierFull"));
+	}
 }
 
 std::string GUISupply::itemCompare(Squad* compareSquad,Squad* squad,AttrType type)
@@ -652,6 +669,32 @@ void GUISupply::onSkill(MyGUI::Widget* _sender)
 {
 	mWeaponTabControl->setVisible(false);
 	mSkillTabControl->setVisible(true);
+}
+
+void GUISupply::onSoilder(MyGUI::Widget* _sender)
+{
+	if(m_CurrSquadIndex!=-1)
+	{
+		Squad* army=mBattleSquad.at(m_CurrSquadIndex);
+		if(army->getUnitNum()!=50)
+		{
+			std::string tempstr = army->getSoilderId();
+			std::string temppath = str(boost::format("StaticData/SoilderData/%1%/Value")%tempstr);
+			int value;
+			DataLibrary::getSingletonPtr()->getData(temppath, value);
+			int money=(50-army->getUnitNum())*value;
+			int moneyhave=0;
+			DataLibrary::getSingletonPtr()->getData("GameData/StoryData/Gold",moneyhave);
+			if(moneyhave-money>0)
+			{
+				mSoilderButtonText->setCaption(StringTable::getSingletonPtr()->getString("TEXT_SoldierFull"));
+				army->setUnitNum(50);
+				DataLibrary::getSingletonPtr()->setData("GameData/StoryData/Gold",moneyhave-money);
+				showArmy(m_CurrSquadIndex);
+				showArmyInfo();
+			}
+		}
+	}
 }
 
 void GUISupply::showScene( std::string arg )
