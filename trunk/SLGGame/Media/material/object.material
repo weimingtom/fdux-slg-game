@@ -28,3 +28,23 @@ material Bow : NotSkinned/CastShadow/OneTexture
 {
     set_texture_alias Diffuse bow.dds
 }
+
+material LargeShield : NotSkinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse LargeShield.dds
+}
+
+material twosword : NotSkinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse twosword.dds
+}
+
+material halberd : NotSkinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse halberd.dds
+}
+
+material crossbow : NotSkinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse crossbow.dds
+}

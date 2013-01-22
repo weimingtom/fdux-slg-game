@@ -317,10 +317,6 @@
                     <Property key="Caption" value="Armor"/>
                     <Widget type="ItemBox" skin="ItemBox" position="0 5 700 280" name="ArmorItemBox"/>
                 </Widget>
-                <Widget type="TabItem" skin="" position="2 24 699 282" name="TEXT_SquadSoilder">
-                    <Property key="Caption" value="Soilder"/>
-                    <Widget type="ItemBox" skin="ItemBox" position="0 5 700 280" name="SoilderItemBox"/>
-                </Widget>
                 <Widget type="TabItem" skin="" position="2 24 699 282" name="TEXT_Retainer">
                     <Property key="Caption" value="Retainer"/>
                     <Property key="FontHeight" value="20"/>
