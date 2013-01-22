@@ -48,3 +48,8 @@ material crossbow : NotSkinned/CastShadow/OneTexture
 {
     set_texture_alias Diffuse crossbow.dds
 }
+
+material axes : NotSkinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse Axes.dds
+}
