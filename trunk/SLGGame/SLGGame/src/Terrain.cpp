@@ -970,13 +970,13 @@ int Terrain::createMapObj(int x, int y, std::string meshname, enumtype dir)
 	switch(dir)
 	{
 	case South:
-		entitydata->mTileNode->yaw(Ogre::Radian(Ogre::Math::HALF_PI));
-		break;
-	case West:
 		entitydata->mTileNode->yaw(Ogre::Radian(Ogre::Math::PI));
 		break;
-	case East:
+	case West:
 		entitydata->mTileNode->yaw(Ogre::Radian(-Ogre::Math::HALF_PI));
+		break;
+	case East:
+		entitydata->mTileNode->yaw(Ogre::Radian(Ogre::Math::HALF_PI));
 		break;
 	}
 	mObjId ++;
