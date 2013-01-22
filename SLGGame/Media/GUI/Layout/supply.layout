@@ -351,7 +351,7 @@
                     </Widget>
                 </Widget>
             </Widget>
-            <Widget type="Button" skin="ButtonImage" position="130 10 60 60" name="Button_Equipment">
+            <Widget type="Button" skin="ButtonImage" position="60 10 60 60" name="Button_Equipment">
                 <Property key="ImageResource" value="button"/>
                 <Property key="ImageGroup" value="button_supply"/>
                 <Property key="TextColour" value="1 0.588235 0"/>
@@ -362,7 +362,7 @@
                 <Property key="TextShadow" value="true"/>
                 <Property key="TextShadowColour" value="1 1 1"/>
             </Widget>
-            <Widget type="Button" skin="ButtonImage" position="445 10 60 60" name="Button_Skill">
+            <Widget type="Button" skin="ButtonImage" position="285 10 60 60" name="Button_Skill">
                 <Property key="ImageResource" value="button"/>
                 <Property key="ImageGroup" value="button_skill"/>
                 <Property key="TextColour" value="1 1 1"/>
@@ -371,13 +371,23 @@
                 <Property key="TextAlign" value="HCenter Bottom"/>
                 <Property key="FontHeight" value="17"/>
             </Widget>
-            <Widget type="TextBox" skin="TextBox" position="200 25 80 30" name="TEXT_Equipment">
+            <Widget type="TextBox" skin="TextBox" position="145 25 80 30" name="TEXT_Equipment">
                 <Property key="FontName" value="fireflysung"/>
                 <Property key="FontHeight" value="30"/>
             </Widget>
-            <Widget type="TextBox" skin="TextBox" position="525 25 80 30" name="TEXT_Skill">
+            <Widget type="TextBox" skin="TextBox" position="375 25 80 30" name="TEXT_Skill">
                 <Property key="FontName" value="fireflysung"/>
                 <Property key="FontHeight" value="30"/>
+            </Widget>
+            <Widget type="Button" skin="ButtonImage" position="520 20 45 45" name="Button_Soldier">
+                <Property key="ImageResource" value="eqp"/>
+                <Property key="ImageGroup" value="eqp_soldier"/>
+                <Property key="TextAlign" value="Center"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="580 20 135 45" name="TEXT_SoldierSupply">
+                <Property key="FontName" value="fireflysung"/>
+                <Property key="FontHeight" value="24"/>
+                <Property key="TextAlign" value="Left VCenter"/>
             </Widget>
         </Widget>
         <Widget type="Window" skin="SLGWindow" position="5 500 225 205" name="ControlWindow">

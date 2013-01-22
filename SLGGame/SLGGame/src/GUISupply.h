@@ -69,12 +69,15 @@ private:
 	void onOtherSceneNotify(std::string arg);
 	void onEquipment(MyGUI::Widget* _sender);
 	void onSkill(MyGUI::Widget* _sender);
+	void onSoilder(MyGUI::Widget* _sender);
 
 	MyGUI::Button* mSaveButton;
 	MyGUI::Button* mLoadButton;
 	MyGUI::Button* mExitButton;
 	MyGUI::Button* mEquipmentButton;
 	MyGUI::Button* mSkillButton;
+	MyGUI::Button* mSoilderButton;
+	MyGUI::TextBox* mSoilderButtonText;
 
 	MyGUI::ImageBox* mSupplyBG;
 

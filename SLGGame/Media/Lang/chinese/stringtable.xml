@@ -113,6 +113,9 @@
         <TEXT_Retainer type="String" value="副官"/>
 		<TEXT_SquadSoilder type="String" value="士兵"/>
         <TEXT_RetainerSkill type="String" value="副官技能"/>
+        <TEXT_SoldierSupply type="String" value="补充士兵"/>
+        <TEXT_SoldierSupplyNeed type="String" value="补充士兵&#x0D;(资金:%1%)"/>
+        <TEXT_SoldierFull type="String" value="补充士兵&#x0D;(已满)"/>
 		<Price type="String" value="价格:" />
         <NoEnoughMoney type="String" value="(金钱不足)" />
         <Equiped type="String" value="已装备" />
