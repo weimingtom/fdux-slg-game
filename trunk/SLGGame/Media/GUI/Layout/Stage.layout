@@ -78,16 +78,18 @@
             <Property key="FontHeight" value="24"/>
             <Property key="Visible" value="false"/>
         </Widget>
-        <Widget type="Button" skin="ButtonImage" position="1190 355 64 64" name="TEXT_Supprot">
+        <Widget type="Button" skin="ButtonImage" position="1190 355 64 64" name="Supprot">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
             <Property key="Caption" value="1234"/>
-            <Property key="TextColour" value="1 1 1"/>
+            <Property key="TextColour" value="0.230469 1 0"/>
             <Property key="ImageResource" value="button"/>
             <Property key="Visible" value="false"/>
             <Property key="ImageGroup" value="button_supply"/>
             <Property key="ModeImage" value="true"/>
             <Property key="TextAlign" value="HCenter Bottom"/>
+            <Property key="TextShadow" value="true"/>
+            <Property key="TextShadowColour" value="0 0 0"/>
         </Widget>
     </Widget>
     <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" layer="Overlapped" name="EffectLayerGroup">
