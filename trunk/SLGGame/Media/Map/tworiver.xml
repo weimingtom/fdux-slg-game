@@ -5,7 +5,7 @@
     <Team3 TeamType="none" TeamFaction="none" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
-<MapScript>mapscript.lua</MapScript>
+<MapScript>mapscript1.lua</MapScript>
 <MapInfo>mapinfo1</MapInfo>
 <MapLoadBG>map1.png</MapLoadBG>
 <MapSize>12</MapSize>
@@ -101,11 +101,12 @@
     <Team1 />
     <Team2>
         <Team2Squad_0 Type="DuxLightSpear" GridX="3" GridY="5" Direction="1" UnitNum="50" />
-        <Team2Squad_1 Type="DuxHeavyInf" GridX="6" GridY="7" Direction="1" UnitNum="50" />
+        <Team2Squad_1 Type="DuxHeavySpear" GridX="6" GridY="7" Direction="1" UnitNum="50" />
         <Team2Squad_2 Type="DuxLightSpear" GridX="2" GridY="8" Direction="1" UnitNum="50" />
         <Team2Squad_3 Type="DuxLightSpear" GridX="4" GridY="7" Direction="1" UnitNum="50" />
         <Team2Squad_4 Type="DuxLightBow" GridX="6" GridY="6" Direction="1" UnitNum="50" />
         <Team2Squad_5 Type="DuxLightBow" GridX="8" GridY="4" Direction="1" UnitNum="50" />
+		<Team2Squad_6 Type="DuxLightBow" GridX="7" GridY="5" Direction="1" UnitNum="50" />
     </Team2>
     <Team3 />
     <Team4 />
