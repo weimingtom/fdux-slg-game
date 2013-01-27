@@ -967,18 +967,24 @@ int Terrain::createMapObj(int x, int y, std::string meshname, enumtype dir)
 	float xx,yy;
 	getWorldCoords(x,y,xx,yy);
 	entitydata->mTileNode->setPosition(xx ,getHeight(xx,yy),yy);
+
+	Ogre::Quaternion q;
 	switch(dir)
 	{
+	case North:
+		q.FromAngleAxis(Ogre::Degree(180),Ogre::Vector3(0,1,0));
+		break;
 	case South:
-		entitydata->mTileNode->yaw(Ogre::Radian(Ogre::Math::PI));
+		q.FromAngleAxis(Ogre::Degree(360),Ogre::Vector3(0,1,0));
 		break;
 	case West:
-		entitydata->mTileNode->yaw(Ogre::Radian(-Ogre::Math::HALF_PI));
+		q.FromAngleAxis(Ogre::Degree(270),Ogre::Vector3(0,1,0));
 		break;
 	case East:
-		entitydata->mTileNode->yaw(Ogre::Radian(Ogre::Math::HALF_PI));
+		q.FromAngleAxis(Ogre::Degree(90),Ogre::Vector3(0,1,0));
 		break;
 	}
+	entitydata->mTileNode->setOrientation(q);
 	mObjId ++;
 	mMapObjMap.insert(std::map<int, stTileEntityData*>::value_type(mObjId,entitydata ));
 	return mObjId;

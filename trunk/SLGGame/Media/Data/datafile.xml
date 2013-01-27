@@ -32,11 +32,11 @@
 			<Type type="Int" value="0"/>
 			<SquadType type="Int" value="0"/>
 			<SoilderId type="String" value="WingsSoilder"/>
-			<HorseId type="String" value="LightCavalryHorse"/>
-			<PweaponId type="String" value="HeavySword"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="Heavysword1"/>
 			<SweaponId type="String" value="none"/>
-			<ShieldId type="String" value="KnightShield"/>
-			<ArmorId type="String" value="HeavyMail"/>
+			<ShieldId type="String" value="Shield1"/>
+			<ArmorId type="String" value="Heavyarmor1"/>
 			<SkillTable>
 				<AttackTrain1 type="Int" value="0"/>
 				<DefenceTrain1 type="Int" value="0"/>
@@ -55,8 +55,8 @@
 			<SkillPointPassive type="Int" value="0"/>
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitNum value="50" type="Int" />
-			<UnitMesh type="String" value="LightCavalry.mesh"/>
-			<UnitMat type="String" value="LightCavalry"/>
+			<UnitMesh type="String" value="HeavyInf.mesh"/>
+			<UnitMat type="String" value="HeavyInf"/>
 			<MoveSound type="String" value="HeavyInf.mp3"/>
 		</CheetahSquad>
 		<DandelionSquad>
@@ -64,10 +64,10 @@
 			<SquadType type="Int" value="1"/>
 			<SoilderId type="String" value="WingsSoilder"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="ShortSword"/>
-			<SweaponId type="String" value="LongBow"/>
-			<ShieldId type="String" value="RoundShield"/>
-			<ArmorId type="String" value="LightMail"/>
+			<PweaponId type="String" value="Shortsword1"/>
+			<SweaponId type="String" value="Bow1"/>
+			<ShieldId type="String" value="Shield1"/>
+			<ArmorId type="String" value="Lightarmor1"/>
 			<SkillTable>
 				<RangedAttackTrain1 type="Int" value="0"/>
 				<RangedAttackTrain2 type="Int" value="0"/>
@@ -124,10 +124,10 @@
 			<SquadType type="Int" value="0"/>
 			<SoilderId type="String" value="DuxSoilder"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="ShortSpear"/>
+			<PweaponId type="String" value="Shortspear1"/>
 			<SweaponId type="String" value="none"/>
-			<ShieldId type="String" value="RoundShield"/>
-			<ArmorId type="String" value="LeatherArmor"/>
+			<ShieldId type="String" value="Shield1"/>
+			<ArmorId type="String" value="Lightarmor1"/>
 			<SkillTable>
 				<DefenceTrain1 type="Int" value="0"/>
 				<Defence type="Int" value="1"/>
@@ -152,10 +152,10 @@
 			<SquadType type="Int" value="1"/>
 			<SoilderId type="String" value="DuxSoilder"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="ShortSword"/>
-			<SweaponId type="String" value="LongBow"/>
+			<PweaponId type="String" value="Shortsword1"/>
+			<SweaponId type="String" value="Bow1"/>
 			<ShieldId type="String" value="none"/>
-			<ArmorId type="String" value="LeatherArmor"/>
+			<ArmorId type="String" value="Lightarmor1"/>
 			<SkillTable>
 				<RangedAttackTrain1 type="Int" value="0"/>
 				<SuppressAttack type="Int" value="1"/>
@@ -180,10 +180,10 @@
 			<SquadType type="Int" value="0"/>
 			<SoilderId type="String" value="DuxSoilder"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="HeavySword"/>
+			<PweaponId type="String" value="Heavysword1"/>
 			<SweaponId type="String" value="none"/>
-			<ShieldId type="String" value="RoundShield"/>
-			<ArmorId type="String" value="HeavyMail"/>
+			<ShieldId type="String" value="Shield1"/>
+			<ArmorId type="String" value="Heavyarmor1"/>
 			<SkillTable>
 				<AttackTrain1 type="Int" value="0"/>
 				<AttackTrain2 type="Int" value="0"/>
@@ -205,286 +205,1800 @@
 			<MoveSound type="String" value="HeavyInf.mp3"/>
 		</DuxHeavyInf>
 	</SquadData>
+
 	<SoilderData>
 		<WingsSoilder>
-			<Type type="Int" value="1"/>
-			<Value type="Int" value="10"/>
-			<Script type="String" value="none"/>
-			<AttrModifer>
-				<Type type="Int" value="0"/>
-				<Attack type="Float" value="1.0"/>
-				<RangedAttack type="Float" value="1.0"/>
-				<Defence type="Float" value="1.0"/>
-				<Formation type="Float" value="2.0"/>
-				<Initiative type="Float" value="1.0"/>
-				<ActionPoint type="Float" value="7.0"/>
-				<Detection type="Float" value="5.0"/>
-				<Covert type="Float" value="0.0"/>
-				<Toughness type="Float" value="7.0"/>
-				<Conter type="Float" value="5.0"/>
-			</AttrModifer>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="20" />
+			<Script type="String" value="none" />
 			<Randomness type="Int" value="20" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="4.0" />
+				<RangedAttack type="Float" value="2.0" />
+				<Defence type="Float" value="4.0" />
+				<Formation type="Float" value="1.0" />
+				<Initiative type="Float" value="5.0" />
+				<ActionPoint type="Float" value="7.0" />
+				<Detection type="Float" value="6.0" />
+				<Covert type="Float" value="2.0" />
+				<Toughness type="Float" value="3.0" />
+				<Conter type="Float" value="2.0" />
+			</AttrModifer>
 		</WingsSoilder>
-		<HolySpirit>
-			<Type type="Int" value="1"/>
-			<Value type="Int" value="10"/>
-			<Script type="String" value="none"/>
-			<AttrModifer>
-				<Type type="Int" value="0"/>
-				<Attack type="Float" value="5.0"/>
-				<RangedAttack type="Float" value="0.0"/>
-				<Defence type="Float" value="13.0"/>
-				<Formation type="Float" value="0.0"/>
-				<Initiative type="Float" value="1.0"/>
-				<ActionPoint type="Float" value="6.0"/>
-				<Detection type="Float" value="5.0"/>
-				<Covert type="Float" value="0.0"/>
-				<Toughness type="Float" value="0.0"/>
-				<Conter type="Float" value="0.0"/>
-			</AttrModifer>
-			<Randomness type="Int" value="20" />
-		</HolySpirit>
-		<DuxSoilder>
-			<Type type="Int" value="1"/>
-			<Value type="Int" value="10"/>
-			<Script type="String" value="none"/>
-			<AttrModifer>
-				<Type type="Int" value="0"/>
-				<Attack type="Float" value="1.0"/>
-				<RangedAttack type="Float" value="0.0"/>
-				<Defence type="Float" value="1.0"/>
-				<Formation type="Float" value="1.0"/>
-				<Initiative type="Float" value="2.0"/>
-				<ActionPoint type="Float" value="8.0"/>
-				<Detection type="Float" value="6.0"/>
-				<Covert type="Float" value="0.0"/>
-				<Toughness type="Float" value="6.0"/>
-				<Conter type="Float" value="4.0"/>
-			</AttrModifer>
+		<FantasiSoilder>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="20" />
+			<Script type="String" value="none" />
 			<Randomness type="Int" value="40" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="4.0" />
+				<RangedAttack type="Float" value="1.0" />
+				<Defence type="Float" value="3.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="4.0" />
+				<ActionPoint type="Float" value="7.0" />
+				<Detection type="Float" value="5.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="2.0" />
+				<Conter type="Float" value="1.0" />
+			</AttrModifer>
+		</FantasiSoilder>
+		<DuxSoilder>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="20" />
+			<Script type="String" value="none" />
+			<Randomness type="Int" value="40" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="3.0" />
+				<RangedAttack type="Float" value="1.0" />
+				<Defence type="Float" value="3.0" />
+				<Formation type="Float" value="2.0" />
+				<Initiative type="Float" value="2.0" />
+				<ActionPoint type="Float" value="7.0" />
+				<Detection type="Float" value="5.0" />
+				<Covert type="Float" value="1.0" />
+				<Toughness type="Float" value="3.0" />
+				<Conter type="Float" value="1.0" />
+			</AttrModifer>
 		</DuxSoilder>
+		<Bandits>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="20" />
+			<Script type="String" value="none" />
+			<Randomness type="Int" value="50" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="2.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="3.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="2.0" />
+				<ActionPoint type="Float" value="5.0" />
+				<Detection type="Float" value="5.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="1.0" />
+			</AttrModifer>
+		</Bandits>
+		<TowerGuard>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="20" />
+			<Script type="String" value="none" />
+			<Randomness type="Int" value="30" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="2.0" />
+				<RangedAttack type="Float" value="1.0" />
+				<Defence type="Float" value="5.0" />
+				<Formation type="Float" value="2.0" />
+				<Initiative type="Float" value="3.0" />
+				<ActionPoint type="Float" value="7.0" />
+				<Detection type="Float" value="5.0" />
+				<Covert type="Float" value="1.0" />
+				<Toughness type="Float" value="2.0" />
+				<Conter type="Float" value="1.0" />
+			</AttrModifer>
+		</TowerGuard>
+		<Magician>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="20" />
+			<Script type="String" value="none" />
+			<Randomness type="Int" value="10" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="3.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="4.0" />
+				<ActionPoint type="Float" value="7.0" />
+				<Detection type="Float" value="4.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Magician>
+		<NothSoilder>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="20" />
+			<Script type="String" value="none" />
+			<Randomness type="Int" value="40" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="6.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="3.0" />
+				<Formation type="Float" value="1.0" />
+				<Initiative type="Float" value="5.0" />
+				<ActionPoint type="Float" value="7.0" />
+				<Detection type="Float" value="6.0" />
+				<Covert type="Float" value="3.0" />
+				<Toughness type="Float" value="3.0" />
+				<Conter type="Float" value="2.0" />
+			</AttrModifer>
+		</NothSoilder>
+		<UlvaSoilder>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="20" />
+			<Script type="String" value="none" />
+			<Randomness type="Int" value="40" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="4.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="3.0" />
+				<Formation type="Float" value="1.0" />
+				<Initiative type="Float" value="4.0" />
+				<ActionPoint type="Float" value="7.0" />
+				<Detection type="Float" value="5.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="1.0" />
+				<Conter type="Float" value="1.0" />
+			</AttrModifer>
+		</UlvaSoilder>
+		<WinfredSoilder>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="20" />
+			<Script type="String" value="none" />
+			<Randomness type="Int" value="30" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="3.0" />
+				<RangedAttack type="Float" value="2.0" />
+				<Defence type="Float" value="4.0" />
+				<Formation type="Float" value="2.0" />
+				<Initiative type="Float" value="4.0" />
+				<ActionPoint type="Float" value="7.0" />
+				<Detection type="Float" value="5.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="2.0" />
+				<Conter type="Float" value="1.0" />
+			</AttrModifer>
+		</WinfredSoilder>
+		<DarkKnight>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="20" />
+			<Script type="String" value="none" />
+			<Randomness type="Int" value="20" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="5.0" />
+				<RangedAttack type="Float" value="1.0" />
+				<Defence type="Float" value="5.0" />
+				<Formation type="Float" value="2.0" />
+				<Initiative type="Float" value="6.0" />
+				<ActionPoint type="Float" value="7.0" />
+				<Detection type="Float" value="7.0" />
+				<Covert type="Float" value="3.0" />
+				<Toughness type="Float" value="4.0" />
+				<Conter type="Float" value="3.0" />
+			</AttrModifer>
+		</DarkKnight>
 	</SoilderData>
-	<HorseData>
-        <LightCavalryHorse>
-        	<Type type="Int" value="0"/>
-            <Value type="Int" value="10"/>
-        	<Mesh type="String" value="LightCavalryHorse.mesh"/>
-			<Mat type="String" value="LightCavalryHorse"/>
-			<Script type="String" value="none"/>
-			<Icon type="string" value="eqp_lighthorse"/>
-			<AttrModifer>
-				<Type type="Int" value="0"/>
-				<Attack type="Float" value="1.0"/>
-				<RangedAttack type="Float" value="-2.0"/>
-				<Defence type="Float" value="-2.0"/>
-				<Formation type="Float" value="-1.0"/>
-				<Initiative type="Float" value="2.0"/>
-				<ActionPoint type="Float" value="2.0"/>
-				<Detection type="Float" value="0.0"/>
-				<Covert type="Float" value="-2.0"/>
-				<Toughness type="Float" value="0.0"/>
-				<Conter type="Float" value="0.0"/>
-			</AttrModifer>
-        </LightCavalryHorse>
-	</HorseData>
 	<PweaponData>
-		<HeavySword>
-			<Type type="Int" value="0"/>
-			<Value type="Int" value="10"/>
-			<Script type="String" value="none"/>
-			<Mesh type="String" value="soul.mesh"/>
-			<Mat type="String" value="soul"/>
-			<PU type="String" value="none"/>
-			<PUVector type="Vector3" value="0,0,0"/>
-			<AniGroup type="String" value="1H2"/>
+		<Shortsword1>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="500" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="soul.mesh" />
+			<Mat type="String" value="soul" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="1H2" />
+			<Icon type="String" value="OneHandSword" />
 			<AttrModifer>
-				<Type type="Int" value="0"/>
-				<Attack type="Float" value="5.0"/>
-				<RangedAttack type="Float" value="0.0"/>
-				<Defence type="Float" value="1.0"/>
-				<Formation type="Float" value="0.0"/>
-				<Initiative type="Float" value="3.0"/>
-				<ActionPoint type="Float" value="0.0"/>
-				<Detection type="Float" value="0.0"/>
-				<Covert type="Float" value="0.0"/>
-				<Toughness type="Float" value="0.0"/>
-				<Conter type="Float" value="0.0"/>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="3.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="1.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="2.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="2.0" />
 			</AttrModifer>
-		</HeavySword>
-		<ShortSword>
-			<Type type="Int" value="0"/>
-			<Value type="Int" value="10"/>
-			<Script type="String" value="none"/>
-			<Mesh type="String" value="soul.mesh"/>
-			<Mat type="String" value="soul"/>
-			<PU type="String" value="none"/>
-			<PUVector type="Vector3" value="0,0,0"/>
-			<AniGroup type="String" value="1H2"/>
+		</Shortsword1>
+		<Shortsword2>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="750" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="soul.mesh" />
+			<Mat type="String" value="soul" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="1H2" />
+			<Icon type="String" value="OneHandSword" />
 			<AttrModifer>
-				<Type type="Int" value="0"/>
-				<Attack type="Float" value="3.0"/>
-				<RangedAttack type="Float" value="0.0"/>
-				<Defence type="Float" value="1.0"/>
-				<Formation type="Float" value="0.0"/>
-				<Initiative type="Float" value="4.0"/>
-				<ActionPoint type="Float" value="0.0"/>
-				<Detection type="Float" value="0.0"/>
-				<Covert type="Float" value="0.0"/>
-				<Toughness type="Float" value="0.0"/>
-				<Conter type="Float" value="0.0"/>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="4.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="1.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="2.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="2.0" />
 			</AttrModifer>
-		</ShortSword>
-		<ShortSpear>
-			<Type type="Int" value="4"/>
-			<Value type="Int" value="10"/>
-			<Script type="String" value="anticavweapon1.lua"/>
-			<Mesh type="String" value="ShortSpear.mesh"/>
-			<Mat type="String" value="Pike"/>
-			<PU type="String" value="none"/>
-			<PUVector type="Vector3" value="0,0,0"/>			
-			<AniGroup type="String" value="1H2"/>
+		</Shortsword2>
+		<Shortsword3>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="1200" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="soul.mesh" />
+			<Mat type="String" value="soul" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="1H2" />
+			<Icon type="String" value="OneHandSword" />
 			<AttrModifer>
-				<Type type="Int" value="0"/>
-				<Attack type="Float" value="2.0"/>
-				<RangedAttack type="Float" value="0.0"/>
-				<Defence type="Float" value="-1.0"/>
-				<Formation type="Float" value="4.0"/>
-				<Initiative type="Float" value="6.0"/>
-				<ActionPoint type="Float" value="0.0"/>
-				<Detection type="Float" value="0.0"/>
-				<Covert type="Float" value="0.0"/>
-				<Toughness type="Float" value="0.0"/>
-				<Conter type="Float" value="0.0"/>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="6.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="1.0" />
+				<Initiative type="Float" value="2.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="1.0" />
 			</AttrModifer>
-		</ShortSpear>
+		</Shortsword3>
+		<Shortsword4>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="1550" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="soul.mesh" />
+			<Mat type="String" value="soul" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="1H2" />
+			<Icon type="String" value="OneHandSword" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="7.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="1.0" />
+				<Formation type="Float" value="1.0" />
+				<Initiative type="Float" value="2.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="2.0" />
+			</AttrModifer>
+		</Shortsword4>
+		<Shortsword5>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="2000" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="soul.mesh" />
+			<Mat type="String" value="soul" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="1H2" />
+			<Icon type="String" value="OneHandSword" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="7.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="2.0" />
+				<Formation type="Float" value="1.0" />
+				<Initiative type="Float" value="2.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="3.0" />
+			</AttrModifer>
+		</Shortsword5>
+		<Heavysword1>
+			<Type type="Int" value="2" />
+			<Value type="Int" value="750" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="twosword.mesh" />
+			<Mat type="String" value="twosword" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="2H1" />
+			<Icon type="String" value="eqp_twosword" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="10.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="1.0" />
+				<Formation type="Float" value="-2.0" />
+				<Initiative type="Float" value="3.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="3.0" />
+			</AttrModifer>
+		</Heavysword1>
+		<Heavysword2>
+			<Type type="Int" value="2" />
+			<Value type="Int" value="1100" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="twosword.mesh" />
+			<Mat type="String" value="twosword" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="2H1" />
+			<Icon type="String" value="eqp_twosword" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="13.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="-2.0" />
+				<Initiative type="Float" value="3.0" />
+				<ActionPoint type="Float" value="-1.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="1.0" />
+			</AttrModifer>
+		</Heavysword2>
+		<Heavysword3>
+			<Type type="Int" value="2" />
+			<Value type="Int" value="1550" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="twosword.mesh" />
+			<Mat type="String" value="twosword" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="2H1" />
+			<Icon type="String" value="eqp_twosword" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="12.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="1.0" />
+				<Formation type="Float" value="-2.0" />
+				<Initiative type="Float" value="3.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="3.0" />
+			</AttrModifer>
+		</Heavysword3>
+		<Heavysword4>
+			<Type type="Int" value="2" />
+			<Value type="Int" value="2100" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="twosword.mesh" />
+			<Mat type="String" value="twosword" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="2H1" />
+			<Icon type="String" value="eqp_twosword" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="14.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="1.0" />
+				<Formation type="Float" value="-2.0" />
+				<Initiative type="Float" value="3.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="3.0" />
+			</AttrModifer>
+		</Heavysword4>
+		<Heavysword5>
+			<Type type="Int" value="2" />
+			<Value type="Int" value="2800" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="twosword.mesh" />
+			<Mat type="String" value="twosword" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="2H1" />
+			<Icon type="String" value="eqp_twosword" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="16.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="1.0" />
+				<Formation type="Float" value="-2.0" />
+				<Initiative type="Float" value="3.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="4.0" />
+			</AttrModifer>
+		</Heavysword5>
+		<Shortaxe1>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="450" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="Axes.mesh" />
+			<Mat type="String" value="axes" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="1H2" />
+			<Icon type="String" value="eqp_oneaxe" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="5.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="-1.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="1.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Shortaxe1>
+		<Shortaxe2>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="700" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="Axes.mesh" />
+			<Mat type="String" value="axes" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="1H2" />
+			<Icon type="String" value="eqp_oneaxe" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="6.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="-1.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="1.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Shortaxe2>
+		<Shortaxe3>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="1000" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="Axes.mesh" />
+			<Mat type="String" value="axes" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="1H2" />
+			<Icon type="String" value="eqp_oneaxe" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="7.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="-1.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="1.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Shortaxe3>
+		<Shortaxe4>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="1350" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="Axes.mesh" />
+			<Mat type="String" value="axes" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="1H2" />
+			<Icon type="String" value="eqp_oneaxe" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="10.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="-2.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="1.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Shortaxe4>
+		<Shortaxe5>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="1800" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="Axes.mesh" />
+			<Mat type="String" value="axes" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="1H2" />
+			<Icon type="String" value="eqp_oneaxe" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="10.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="1.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Shortaxe5>
+		<Heavyaxe1>
+			<Type type="Int" value="3" />
+			<Value type="Int" value="650" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="DAxes.mesh" />
+			<Mat type="String" value="axes" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="2H1" />
+			<Icon type="String" value="eqp_twoaxe" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="12.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="-3.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="2.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Heavyaxe1>
+		<Heavyaxe2>
+			<Type type="Int" value="3" />
+			<Value type="Int" value="900" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="DAxes.mesh" />
+			<Mat type="String" value="axes" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="2H1" />
+			<Icon type="String" value="eqp_twoaxe" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="13.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="-3.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="2.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Heavyaxe2>
+		<Heavyaxe3>
+			<Type type="Int" value="3" />
+			<Value type="Int" value="1350" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="DAxes.mesh" />
+			<Mat type="String" value="axes" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="2H1" />
+			<Icon type="String" value="eqp_twoaxe" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="15.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="-3.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="2.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Heavyaxe3>
+		<Heavyaxe4>
+			<Type type="Int" value="3" />
+			<Value type="Int" value="1850" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="DAxes.mesh" />
+			<Mat type="String" value="axes" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="2H1" />
+			<Icon type="String" value="eqp_twoaxe" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="17.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="-3.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="2.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Heavyaxe4>
+		<Heavyaxe5>
+			<Type type="Int" value="3" />
+			<Value type="Int" value="2500" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="DAxes.mesh" />
+			<Mat type="String" value="axes" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="2H1" />
+			<Icon type="String" value="eqp_twoaxe" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="19.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="-3.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="2.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Heavyaxe5>
+		<Shortspear1>
+			<Type type="Int" value="4" />
+			<Value type="Int" value="400" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="Pike.mesh" />
+			<Mat type="String" value="Pike" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="1H2" />
+			<Icon type="String" value="ShortSpear" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="1.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="1.0" />
+				<Formation type="Float" value="1.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Shortspear1>
+		<Shortspear2>
+			<Type type="Int" value="4" />
+			<Value type="Int" value="650" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="Pike.mesh" />
+			<Mat type="String" value="Pike" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="1H2" />
+			<Icon type="String" value="ShortSpear" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="2.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="1.0" />
+				<Formation type="Float" value="2.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Shortspear2>
+		<Shortspear3>
+			<Type type="Int" value="4" />
+			<Value type="Int" value="900" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="Pike.mesh" />
+			<Mat type="String" value="Pike" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="1H2" />
+			<Icon type="String" value="ShortSpear" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="3.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="1.0" />
+				<Formation type="Float" value="2.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Shortspear3>
+		<Shortspear4>
+			<Type type="Int" value="4" />
+			<Value type="Int" value="1200" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="Pike.mesh" />
+			<Mat type="String" value="Pike" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="1H2" />
+			<Icon type="String" value="ShortSpear" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="3.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="1.0" />
+				<Formation type="Float" value="3.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Shortspear4>
+		<Shortspear5>
+			<Type type="Int" value="4" />
+			<Value type="Int" value="1650" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="Pike.mesh" />
+			<Mat type="String" value="Pike" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="1H2" />
+			<Icon type="String" value="ShortSpear" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="4.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="1.0" />
+				<Formation type="Float" value="3.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Shortspear5>
+		<Halberd1>
+			<Type type="Int" value="5" />
+			<Value type="Int" value="600" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="halberd.mesh" />
+			<Mat type="String" value="halberd" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="2HL" />
+			<Icon type="String" value="eqp_halberd" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="6.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="3.0" />
+				<Initiative type="Float" value="1.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Halberd1>
+		<Halberd2>
+			<Type type="Int" value="5" />
+			<Value type="Int" value="850" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="halberd.mesh" />
+			<Mat type="String" value="halberd" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="2HL" />
+			<Icon type="String" value="eqp_halberd" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="6.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="4.0" />
+				<Initiative type="Float" value="1.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Halberd2>
+		<Halberd3>
+			<Type type="Int" value="5" />
+			<Value type="Int" value="1250" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="halberd.mesh" />
+			<Mat type="String" value="halberd" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="2HL" />
+			<Icon type="String" value="eqp_halberd" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="7.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="4.0" />
+				<Initiative type="Float" value="1.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Halberd3>
+		<Halberd4>
+			<Type type="Int" value="5" />
+			<Value type="Int" value="1800" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="halberd.mesh" />
+			<Mat type="String" value="halberd" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="2HL" />
+			<Icon type="String" value="eqp_halberd" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="8.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="5.0" />
+				<Initiative type="Float" value="1.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Halberd4>
+		<Halberd5>
+			<Type type="Int" value="5" />
+			<Value type="Int" value="2350" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="halberd.mesh" />
+			<Mat type="String" value="halberd" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="2HL" />
+			<Icon type="String" value="eqp_halberd" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="9.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="5.0" />
+				<Initiative type="Float" value="1.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Halberd5>
 	</PweaponData>
 	<SweaponData>
-		<LongBow>
-			<Type type="Int" value="0"/>
-			<Value type="Int" value="10"/>
-			<Script type="String" value="none"/>
-			<Mesh type="String" value="bow.mesh"/>
-			<Mat type="String" value="Bow"/>
-			<PU type="String" value="none"/>
-			<PUVector type="Vector3" value="0,0,0"/>			
-			<MaxRange type="Int" value="3"/>
-			<MinRange type="Int" value="1"/>
-			<AniGroup type="String" value="bow"/>
+		<Bow1>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="650" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="bow.mesh" />
+			<Mat type="String" value="Bow" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="Bow" />
+			<Icon type="String" value="Bow" />
+			<MaxRange type="Int" value="1" />
+			<MinRange type="Int" value="3" />
 			<AttrModifer>
-				<Type type="Int" value="0"/>
-				<Attack type="Float" value="0.0"/>
-				<RangedAttack type="Float" value="6.0"/>
-				<Defence type="Float" value="0.0"/>
-				<Formation type="Float" value="0.0"/>
-				<Initiative type="Float" value="0.0"/>
-				<ActionPoint type="Float" value="0.0"/>
-				<Detection type="Float" value="0.0"/>
-				<Covert type="Float" value="0.0"/>
-				<Toughness type="Float" value="0.0"/>
-				<Conter type="Float" value="0.0"/>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="5.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</LongBow>
+		</Bow1>
+		<Bow2>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="1000" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="bow.mesh" />
+			<Mat type="String" value="Bow" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="Bow" />
+			<Icon type="String" value="Bow" />
+			<MaxRange type="Int" value="1" />
+			<MinRange type="Int" value="4" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="6.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="-1.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Bow2>
+		<Bow3>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="1450" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="bow.mesh" />
+			<Mat type="String" value="Bow" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="Bow" />
+			<Icon type="String" value="Bow" />
+			<MaxRange type="Int" value="1" />
+			<MinRange type="Int" value="3" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="6.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Bow3>
+		<Bow4>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="1950" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="bow.mesh" />
+			<Mat type="String" value="Bow" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="Bow" />
+			<Icon type="String" value="Bow" />
+			<MaxRange type="Int" value="1" />
+			<MinRange type="Int" value="4" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="6.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Bow4>
+		<Bow5>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="2500" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="bow.mesh" />
+			<Mat type="String" value="Bow" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="Bow" />
+			<Icon type="String" value="Bow" />
+			<MaxRange type="Int" value="1" />
+			<MinRange type="Int" value="4" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="7.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Bow5>
+		<Crossbow1>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="750" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="crossbow.mesh" />
+			<Mat type="String" value="crossbow" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="Crossbow" />
+			<Icon type="String" value="LXBox" />
+			<MaxRange type="Int" value="1" />
+			<MinRange type="Int" value="2" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="7.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Crossbow1>
+		<Crossbow2>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="1100" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="crossbow.mesh" />
+			<Mat type="String" value="crossbow" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="Crossbow" />
+			<Icon type="String" value="LXBox" />
+			<MaxRange type="Int" value="1" />
+			<MinRange type="Int" value="2" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="8.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Crossbow2>
+		<Crossbow3>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="1500" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="crossbow.mesh" />
+			<Mat type="String" value="crossbow" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="Crossbow" />
+			<Icon type="String" value="LXBox" />
+			<MaxRange type="Int" value="1" />
+			<MinRange type="Int" value="3" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="8.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Crossbow3>
+		<Crossbow4>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="2100" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="crossbow.mesh" />
+			<Mat type="String" value="crossbow" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="Crossbow" />
+			<Icon type="String" value="LXBox" />
+			<MaxRange type="Int" value="1" />
+			<MinRange type="Int" value="2" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="4.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="-1.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Crossbow4>
+		<Crossbow5>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="2800" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="crossbow.mesh" />
+			<Mat type="String" value="crossbow" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="Crossbow" />
+			<Icon type="String" value="LXBox" />
+			<MaxRange type="Int" value="1" />
+			<MinRange type="Int" value="3" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="9.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Crossbow5>
 	</SweaponData>
+	<HorseData>
+		<Lighthorse1>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="700" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="LightCavalryHorse.mesh" />
+			<Mat type="String" value="LightCavalryHorse" />
+			<Icon type="String" value="eqp_lighthorse" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="-4.0" />
+				<Formation type="Float" value="-6.0" />
+				<Initiative type="Float" value="1.0" />
+				<ActionPoint type="Float" value="3.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="-4.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="-3.0" />
+			</AttrModifer>
+		</Lighthorse1>
+		<Lighthorse2>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="1200" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="LightCavalryHorse.mesh" />
+			<Mat type="String" value="LightCavalryHorse" />
+			<Icon type="String" value="eqp_lighthorse" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="-4.0" />
+				<Formation type="Float" value="-5.0" />
+				<Initiative type="Float" value="2.0" />
+				<ActionPoint type="Float" value="3.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="-3.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="-3.0" />
+			</AttrModifer>
+		</Lighthorse2>
+		<Lighthorse3>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="1800" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="LightCavalryHorse.mesh" />
+			<Mat type="String" value="LightCavalryHorse" />
+			<Icon type="String" value="eqp_lighthorse" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="1.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="-3.0" />
+				<Formation type="Float" value="-5.0" />
+				<Initiative type="Float" value="2.0" />
+				<ActionPoint type="Float" value="3.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="-3.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="-3.0" />
+			</AttrModifer>
+		</Lighthorse3>
+		<Lighthorse4>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="2400" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="LightCavalryHorse.mesh" />
+			<Mat type="String" value="LightCavalryHorse" />
+			<Icon type="String" value="eqp_lighthorse" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="1.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="-3.0" />
+				<Formation type="Float" value="-4.0" />
+				<Initiative type="Float" value="3.0" />
+				<ActionPoint type="Float" value="4.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="-3.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="-2.0" />
+			</AttrModifer>
+		</Lighthorse4>
+		<Lighthorse5>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="3000" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="LightCavalryHorse.mesh" />
+			<Mat type="String" value="LightCavalryHorse" />
+			<Icon type="String" value="eqp_lighthorse" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="1.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="-3.0" />
+				<Formation type="Float" value="-4.0" />
+				<Initiative type="Float" value="4.0" />
+				<ActionPoint type="Float" value="4.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="-2.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="-2.0" />
+			</AttrModifer>
+		</Lighthorse5>
+		<HeavyHorse1>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="700" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="HeavyCavalryHorse.mesh" />
+			<Mat type="String" value="HeavyCavalryHorse" />
+			<Icon type="String" value="eqp_heavyhorse" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="-3.0" />
+				<Formation type="Float" value="-4.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="2.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="-5.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="-5.0" />
+			</AttrModifer>
+		</HeavyHorse1>
+		<HeavyHorse2>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="1200" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="HeavyCavalryHorse.mesh" />
+			<Mat type="String" value="HeavyCavalryHorse" />
+			<Icon type="String" value="eqp_heavyhorse" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="1.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="-3.0" />
+				<Formation type="Float" value="-3.0" />
+				<Initiative type="Float" value="1.0" />
+				<ActionPoint type="Float" value="2.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="-5.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="-4.0" />
+			</AttrModifer>
+		</HeavyHorse2>
+		<HeavyHorse3>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="1800" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="HeavyCavalryHorse.mesh" />
+			<Mat type="String" value="HeavyCavalryHorse" />
+			<Icon type="String" value="eqp_heavyhorse" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="1.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="-2.0" />
+				<Formation type="Float" value="-3.0" />
+				<Initiative type="Float" value="1.0" />
+				<ActionPoint type="Float" value="2.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="-4.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="-4.0" />
+			</AttrModifer>
+		</HeavyHorse3>
+		<HeavyHorse4>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="2400" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="HeavyCavalryHorse.mesh" />
+			<Mat type="String" value="HeavyCavalryHorse" />
+			<Icon type="String" value="eqp_heavyhorse" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="2.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="-2.0" />
+				<Formation type="Float" value="-2.0" />
+				<Initiative type="Float" value="2.0" />
+				<ActionPoint type="Float" value="2.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="-4.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="-4.0" />
+			</AttrModifer>
+		</HeavyHorse4>
+		<HeavyHorse5>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="3000" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="HeavyCavalryHorse.mesh" />
+			<Mat type="String" value="HeavyCavalryHorse" />
+			<Icon type="String" value="eqp_heavyhorse" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="2.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="-1.0" />
+				<Formation type="Float" value="-1.0" />
+				<Initiative type="Float" value="2.0" />
+				<ActionPoint type="Float" value="2.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="-4.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="-3.0" />
+			</AttrModifer>
+		</HeavyHorse5>
+	</HorseData>
 	<ShieldData>
-		<KnightShield>
-			<Value type="Int" value="10"/>
-			<Script type="String" value="none"/>
-			<Mesh type="String" value="LargeShield.mesh"/>
-			<Mat type="String" value="LargeShield"/>
-			<PU type="String" value="none"/>
-			<PUVector type="Vector3" value="0,0,0"/>		
+		<Shield1>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="450" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="RoundShield.mesh" />
+			<Mat type="String" value="RoundShield" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<Icon type="String" value="Shield" />
 			<AttrModifer>
-				<Type type="Int" value="0"/>
-				<Attack type="Float" value="1.0"/>
-				<RangedAttack type="Float" value="0.0"/>
-				<Defence type="Float" value="3.0"/>
-				<Formation type="Float" value="0.0"/>
-				<Initiative type="Float" value="0.0"/>
-				<ActionPoint type="Float" value="-1.0"/>
-				<Detection type="Float" value="0.0"/>
-				<Covert type="Float" value="-1.0"/>
-				<Toughness type="Float" value="0.0"/>
-				<Conter type="Float" value="0.0"/>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="1.0" />
+				<Formation type="Float" value="1.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="1.0" />
 			</AttrModifer>
-		</KnightShield>
-		<RoundShield>
-			<Value type="Int" value="10"/>
-			<Script type="String" value="none"/>
-			<Mesh type="String" value="RoundShield.mesh"/>
-			<Mat type="String" value="RoundShield"/>
-			<PU type="String" value="none"/>
-			<PUVector type="Vector3" value="0,0,0"/>			
+		</Shield1>
+		<Shield2>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="600" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="LargeShield.mesh" />
+			<Mat type="String" value="LargeShield" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<Icon type="String" value="Shield" />
 			<AttrModifer>
-				<Type type="Int" value="0"/>
-				<Attack type="Float" value="2.0"/>
-				<RangedAttack type="Float" value="0.0"/>
-				<Defence type="Float" value="2.0"/>
-				<Formation type="Float" value="0.0"/>
-				<Initiative type="Float" value="0.0"/>
-				<ActionPoint type="Float" value="0.0"/>
-				<Detection type="Float" value="0.0"/>
-				<Covert type="Float" value="0.0"/>
-				<Toughness type="Float" value="0.0"/>
-				<Conter type="Float" value="0.0"/>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="3.0" />
+				<Formation type="Float" value="1.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</RoundShield>
+		</Shield2>
+		<Shield3>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="600" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="LargeShield.mesh" />
+			<Mat type="String" value="LargeShield" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<Icon type="String" value="Shield" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="1.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="2.0" />
+				<Formation type="Float" value="2.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="1.0" />
+			</AttrModifer>
+		</Shield3>
+		<Shield4>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="600" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="LargeShield.mesh" />
+			<Mat type="String" value="LargeShield" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<Icon type="String" value="Shield" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="1.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="4.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Shield4>
+		<Shield5>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="800" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="LargeShield.mesh" />
+			<Mat type="String" value="LargeShield" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<Icon type="String" value="Shield" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="1.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="3.0" />
+				<Formation type="Float" value="2.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="1.0" />
+			</AttrModifer>
+		</Shield5>
 	</ShieldData>
 	<ArmorData>
-		<HeavyMail>
-			<Type type="Int" value="1"/>
-			<Value type="Int" value="10"/>
-			<Script type="String" value="none"/>
+		<Lightarmor1>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="700" />
+			<Script type="String" value="none" />
+			<Icon type="String" value="eqp_lightarmor" />
 			<AttrModifer>
-				<Type type="Int" value="0"/>
-				<Attack type="Float" value="0.0"/>
-				<RangedAttack type="Float" value="0.0"/>
-				<Defence type="Float" value="3.0"/>
-				<Formation type="Float" value="0.0"/>
-				<Initiative type="Float" value="0.0"/>
-				<ActionPoint type="Float" value="-1.0"/>
-				<Detection type="Float" value="0.0"/>
-				<Covert type="Float" value="-1.0"/>
-				<Toughness type="Float" value="0.0"/>
-				<Conter type="Float" value="0.0"/>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="1.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="2.0" />
+				<ActionPoint type="Float" value="1.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="1.0" />
 			</AttrModifer>
-		</HeavyMail>
-		<LightMail>
-			<Type type="Int" value="0"/>
-			<Value type="Int" value="10"/>
-			<Script type="String" value="none"/>
+		</Lightarmor1>
+		<Lightarmor2>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="950" />
+			<Script type="String" value="none" />
+			<Icon type="String" value="eqp_lightarmor" />
 			<AttrModifer>
-				<Type type="Int" value="0"/>
-				<Attack type="Float" value="0.0"/>
-				<RangedAttack type="Float" value="0.0"/>
-				<Defence type="Float" value="2.0"/>
-				<Formation type="Float" value="0.0"/>
-				<Initiative type="Float" value="0.0"/>
-				<ActionPoint type="Float" value="0.0"/>
-				<Detection type="Float" value="0.0"/>
-				<Covert type="Float" value="0.0"/>
-				<Toughness type="Float" value="0.0"/>
-				<Conter type="Float" value="0.0"/>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="2.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="2.0" />
+				<ActionPoint type="Float" value="1.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="1.0" />
 			</AttrModifer>
-		</LightMail>
-		<LeatherArmor>
-			<Type type="Int" value="0"/>
-			<Value type="Int" value="10"/>
-			<Script type="String" value="none"/>
+		</Lightarmor2>
+		<Lightarmor3>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="1300" />
+			<Script type="String" value="none" />
+			<Icon type="String" value="eqp_lightarmor" />
 			<AttrModifer>
-				<Type type="Int" value="0"/>
-				<Attack type="Float" value="0.0"/>
-				<RangedAttack type="Float" value="0.0"/>
-				<Defence type="Float" value="1.0"/>
-				<Formation type="Float" value="0.0"/>
-				<Initiative type="Float" value="0.0"/>
-				<ActionPoint type="Float" value="0.0"/>
-				<Detection type="Float" value="0.0"/>
-				<Covert type="Float" value="0.0"/>
-				<Toughness type="Float" value="0.0"/>
-				<Conter type="Float" value="0.0"/>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="3.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="2.0" />
+				<ActionPoint type="Float" value="1.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="1.0" />
+				<Conter type="Float" value="1.0" />
 			</AttrModifer>
-		</LeatherArmor>
+		</Lightarmor3>
+		<Lightarmor4>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="1700" />
+			<Script type="String" value="none" />
+			<Icon type="String" value="eqp_lightarmor" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="4.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="2.0" />
+				<ActionPoint type="Float" value="1.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="1.0" />
+				<Conter type="Float" value="1.0" />
+			</AttrModifer>
+		</Lightarmor4>
+		<Lightarmor5>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="2200" />
+			<Script type="String" value="none" />
+			<Icon type="String" value="eqp_lightarmor" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="5.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="2.0" />
+				<ActionPoint type="Float" value="1.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="1.0" />
+				<Conter type="Float" value="1.0" />
+			</AttrModifer>
+		</Lightarmor5>
+		<Midarmor1>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="800" />
+			<Script type="String" value="none" />
+			<Icon type="String" value="eqp_midarmor" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="2.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="1.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="1.0" />
+				<Conter type="Float" value="2.0" />
+			</AttrModifer>
+		</Midarmor1>
+		<Midarmor2>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="1100" />
+			<Script type="String" value="none" />
+			<Icon type="String" value="eqp_midarmor" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="3.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="1.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="1.0" />
+				<Conter type="Float" value="2.0" />
+			</AttrModifer>
+		</Midarmor2>
+		<Midarmor3>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="1550" />
+			<Script type="String" value="none" />
+			<Icon type="String" value="eqp_midarmor" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="4.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="1.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="1.0" />
+				<Conter type="Float" value="2.0" />
+			</AttrModifer>
+		</Midarmor3>
+		<Midarmor4>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="2000" />
+			<Script type="String" value="none" />
+			<Icon type="String" value="eqp_midarmor" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="5.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="1.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="2.0" />
+				<Conter type="Float" value="2.0" />
+			</AttrModifer>
+		</Midarmor4>
+		<Midarmor5>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="2500" />
+			<Script type="String" value="none" />
+			<Icon type="String" value="eqp_midarmor" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="6.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="1.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="2.0" />
+				<Conter type="Float" value="2.0" />
+			</AttrModifer>
+		</Midarmor5>
+		<Heavyarmor1>
+			<Type type="Int" value="2" />
+			<Value type="Int" value="900" />
+			<Script type="String" value="none" />
+			<Icon type="String" value="eqp_heavyarmor" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="-2.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="4.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="-1.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="-1.0" />
+				<Toughness type="Float" value="2.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Heavyarmor1>
+		<Heavyarmor2>
+			<Type type="Int" value="2" />
+			<Value type="Int" value="1200" />
+			<Script type="String" value="none" />
+			<Icon type="String" value="eqp_heavyarmor" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="-2.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="5.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="-1.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="-1.0" />
+				<Toughness type="Float" value="2.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Heavyarmor2>
+		<Heavyarmor3>
+			<Type type="Int" value="2" />
+			<Value type="Int" value="1650" />
+			<Script type="String" value="none" />
+			<Icon type="String" value="eqp_heavyarmor" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="-2.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="6.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="-1.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="-1.0" />
+				<Toughness type="Float" value="2.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Heavyarmor3>
+		<Heavyarmor4>
+			<Type type="Int" value="2" />
+			<Value type="Int" value="2200" />
+			<Script type="String" value="none" />
+			<Icon type="String" value="eqp_heavyarmor" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="-2.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="7.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="-1.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="-1.0" />
+				<Toughness type="Float" value="3.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Heavyarmor4>
+		<Heavyarmor5>
+			<Type type="Int" value="2" />
+			<Value type="Int" value="2800" />
+			<Script type="String" value="none" />
+			<Icon type="String" value="eqp_heavyarmor" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="-2.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="8.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="-1.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="-1.0" />
+				<Toughness type="Float" value="3.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Heavyarmor5>
 	</ArmorData>
+
 	<RetainerData>
 		<Scout>
 			<Type type = "Int" value = "0" />
