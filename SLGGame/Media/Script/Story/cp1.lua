@@ -382,5 +382,7 @@ GUI.ShowImage("black.png",4,3000);
 
 AVGLib.AddSquad("Cheetah","CheetahSquad");
 AVGLib.AddSquad("Dandelion","DandelionSquad");
+AVGLib.AddSquad("WingsLightInf","WingsLightInf");
+AVGLib.AddSquad("WingsCrossBow","WingsCrossBow");
 AVGLib.SetPlayerFaction("Wing");
-StateLib.BattleState("tworiver.xml");
+StateLib.BattleState("battle1.xml");
