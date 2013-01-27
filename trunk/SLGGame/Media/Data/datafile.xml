@@ -2,30 +2,65 @@
 <StaticData>
 	<LeaderDate>
 		<Cheetah>
-			<Picture type="String" value="Cheetah.png" />
+			<Picture type="String" value="qita.png" />
 			<Mesh type="String" value="HeavyInfOf.mesh"/>
 			<Mat type="String" value="HeavyInfOf"/>
 		</Cheetah>
 		<Dandelion>
-			<Picture type="String" value="Dandelion.png" />
+			<Picture type="String" value="dande.png" />
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
 		</Dandelion>
 		<Olivia>
-			<Picture type="String" value="Olivia.png" />
+			<Picture type="String" value="aoliwa.png" />
 			<Mesh type="String" value="Saint.mesh"/>
 			<Mat type="String" value="Saint"/>
 		</Olivia>
-		<DuxLightOfficer>
-			<Picture type="String" value="EtasiSquadLeader.png" />
+		<Cossa>
+			<Picture type="String" value="kesa.png" />
+			<Mesh type="String" value="LightCavalry.mesh"/>
+			<Mat type="String" value="LightCavalry"/>
+		</Cossa>
+		</WingsLightCavalry>
+			<Picture type="String" value="qingbu.png" />
+			<Mesh type="String" value="LightCavalry.mesh"/>
+			<Mat type="String" value="LightCavalry"/>
+		</WingsLightCavalry>
+		<WingsLightInf>
+			<Picture type="String" value="zhongbu2.png" />
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
-		</DuxLightOfficer>
-		<DuxHeavyOfficer>
-			<Picture type="String" value="EtasiSquadLeader.png" />
+		</WingsLightInf>
+		<WingsCrossBow>
+			<Picture type="String" value="qingbu.png" />
+			<Mesh type="String" value="LightInfOf.mesh"/>
+			<Mat type="String" value="LightInfOf"/>
+		</WingsCrossBow>
+		<DuxLightSpear>
+			<Picture type="String" value="zhongbu1.png" />
+			<Mesh type="String" value="LightInfOf.mesh"/>
+			<Mat type="String" value="LightInfOf"/>
+		</DuxLightSpear>
+		<DuxLightBow>
+			<Picture type="String" value="qingbu.png" />
+			<Mesh type="String" value="LightInfOf.mesh"/>
+			<Mat type="String" value="LightInfOf"/>
+		</DuxLightBow>
+		<DuxHeavySpear>
+			<Picture type="String" value="fuguan1.png" />
 			<Mesh type="String" value="HeavyInfOf.mesh"/>
 			<Mat type="String" value="HeavyInfOf"/>
-		</DuxHeavyOfficer>
+		</DuxHeavySpear>
+		<DuxHeavyCavalry>
+			<Picture type="String" value="fuguan1.png" />
+			<Mesh type="String" value="HeavyCavalry.mesh"/>
+			<Mat type="String" value="HeavyCavalry"/>
+		</DuxHeavyCavalry>
+		<FantasyHeavyCavalry>
+			<Picture type="String" value="fuguan3.png" />
+			<Mesh type="String" value="HeavyCavalry.mesh"/>
+			<Mat type="String" value="HeavyCavalry"/>
+		</FantasyHeavyCavalry>
 	</LeaderDate>
 	<SquadData>
 		<CheetahSquad>
@@ -33,10 +68,10 @@
 			<SquadType type="Int" value="0"/>
 			<SoilderId type="String" value="WingsSoilder"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="Heavysword1"/>
+			<PweaponId type="String" value="ShortSword1"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="Shield1"/>
-			<ArmorId type="String" value="Heavyarmor1"/>
+			<ArmorId type="String" value="HeavyArmor1"/>
 			<SkillTable>
 				<AttackTrain1 type="Int" value="0"/>
 				<DefenceTrain1 type="Int" value="0"/>
@@ -64,10 +99,10 @@
 			<SquadType type="Int" value="1"/>
 			<SoilderId type="String" value="WingsSoilder"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="Shortsword1"/>
+			<PweaponId type="String" value="ShortSword1"/>
 			<SweaponId type="String" value="Bow1"/>
-			<ShieldId type="String" value="Shield1"/>
-			<ArmorId type="String" value="Lightarmor1"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="LightArmor1"/>
 			<SkillTable>
 				<RangedAttackTrain1 type="Int" value="0"/>
 				<RangedAttackTrain2 type="Int" value="0"/>
@@ -91,15 +126,79 @@
 			<UnitMat type="String" value="LightInf"/>
 			<MoveSound type="String" value="BowMan.mp3"/>
 		</DandelionSquad>
+		<WingsLightInf>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="0"/>
+			<SoilderId type="String" value="WingsSoilder"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="ShortAxe"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="Shield1"/>
+			<ArmorId type="String" value="LightArmor1"/>
+			<SkillTable>
+				<RangedAttackTrain1 type="Int" value="0"/>
+				<RangedAttackTrain2 type="Int" value="0"/>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<SuppressAttack type="Int" value="1"/>
+				<OneHandSword type="Int" value="2"/>
+				<Bow type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="WingsLightInf"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="5" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="LightInf.mesh"/>
+			<UnitMat type="String" value="LightInf"/>
+			<MoveSound type="String" value="LightInf.mp3"/>
+		</WingsLightInf>
+		<WingsCrossBow>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="1"/>
+			<SoilderId type="String" value="WingsSoilder"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="ShortsAxe"/>
+			<SweaponId type="String" value="CrossBow1"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="LightArmor1"/>
+			<SkillTable>
+				<RangedAttackTrain1 type="Int" value="0"/>
+				<RangedAttackTrain2 type="Int" value="0"/>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<SuppressAttack type="Int" value="1"/>
+				<OneHandSword type="Int" value="2"/>
+				<Bow type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="WingsCrossBow"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="5" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="LightInf.mesh"/>
+			<UnitMat type="String" value="LightInf"/>
+			<MoveSound type="String" value="BowMan.mp3"/>
+		</WingsCrossBow>
 		<Olivia>
 			<Type type="Int" value="1"/>
-			<SquadType type="Int" value="2"/>
-			<SoilderId type="String" value="HolySpirit"/>
+			<SquadType type="Int" value="4"/>
+			<SoilderId type="String" value="Magician"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="none"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="none"/>
-			<ArmorId type="String" value="none"/>
+			<ArmorId type="String" value="LightArmor1"/>
 			<SkillTable>
 				<Faith type="Int" value="0"/>
 				<StrengthenSprite type="Int" value="0"/>
@@ -119,15 +218,71 @@
 			<UnitMat type="String" value="HolySpirit"/>
 			<MoveSound type="String" value="Olivia.mp3"/>
 		</Olivia>
+		<Cossa>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="2"/>
+			<SoilderId type="String" value="WingsSoilder"/>
+			<HorseId type="String" value="LightHorse3"/>
+			<PweaponId type="String" value="ShortSword4"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="Shield3"/>
+			<ArmorId type="String" value="MidArmor4"/>
+			<SkillTable>
+				<Faith type="Int" value="0"/>
+				<StrengthenSprite type="Int" value="0"/>
+				<Heal type="Int" value="1"/>
+				<MagicShield type="Int" value="1"/>
+				<Pray type="Int" value="1" />
+			</SkillTable>
+			<LeaderId type="String" value="Cossa"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="4" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="LightCavalry.mesh"/>
+			<UnitMat type="String" value="LightCavalry"/>
+			<MoveSound type="String" value="LightCavalry.mp3"/>
+		</Cossa>
+		<WingsLightCavalry>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="3"/>
+			<SoilderId type="String" value="WingsSoilder"/>
+			<HorseId type="String" value="LightHorse3"/>
+			<PweaponId type="String" value="ShortSword2"/>
+			<SweaponId type="String" value="Bow4"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="LightArmor3"/>
+			<SkillTable>
+				<Faith type="Int" value="0"/>
+				<StrengthenSprite type="Int" value="0"/>
+				<Heal type="Int" value="1"/>
+				<MagicShield type="Int" value="1"/>
+				<Pray type="Int" value="1" />
+			</SkillTable>
+			<LeaderId type="String" value="WingsLightCavalry"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="4" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="LightCavalry.mesh"/>
+			<UnitMat type="String" value="LightCavalry"/>
+			<MoveSound type="String" value="LightCavalry.mp3"/>
+		</WingsLightCavalry>
 		<DuxLightSpear>
 			<Type type="Int" value="0"/>
 			<SquadType type="Int" value="0"/>
 			<SoilderId type="String" value="DuxSoilder"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="Shortspear1"/>
+			<PweaponId type="String" value="ShortSpear1"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="Shield1"/>
-			<ArmorId type="String" value="Lightarmor1"/>
+			<ArmorId type="String" value="LightArmor1"/>
 			<SkillTable>
 				<DefenceTrain1 type="Int" value="0"/>
 				<Defence type="Int" value="1"/>
@@ -135,7 +290,7 @@
 				<Shield type="Int" value="2"/>
 				<LightArmor type="Int" value="2"/>
 			</SkillTable>
-			<LeaderId type="String" value="DuxLightOfficer"/>
+			<LeaderId type="String" value="DuxLightSpear"/>
 			<RetainerId type="String" value="Scout"/>
 			<UnitNum value="50" type="Int" />
 			<Level type="Int" value="2" />
@@ -152,10 +307,10 @@
 			<SquadType type="Int" value="1"/>
 			<SoilderId type="String" value="DuxSoilder"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="Shortsword1"/>
+			<PweaponId type="String" value="ShortSword1"/>
 			<SweaponId type="String" value="Bow1"/>
 			<ShieldId type="String" value="none"/>
-			<ArmorId type="String" value="Lightarmor1"/>
+			<ArmorId type="String" value="LightArmor1"/>
 			<SkillTable>
 				<RangedAttackTrain1 type="Int" value="0"/>
 				<SuppressAttack type="Int" value="1"/>
@@ -163,7 +318,7 @@
 				<Bow type="Int" value="2"/>
 				<LightArmor type="Int" value="2"/>
 			</SkillTable>
-			<LeaderId type="String" value="DuxLightOfficer"/>
+			<LeaderId type="String" value="DuxLightBow"/>
 			<RetainerId type="String" value="Scout"/>
 			<UnitNum value="50" type="Int" />
 			<Level type="Int" value="2" />
@@ -175,15 +330,15 @@
 			<UnitMat type="String" value="LightInfDux"/>
 			<MoveSound type="String" value="LightInf.mp3"/>
 		</DuxLightBow>
-		<DuxHeavyInf>
+		<DuxHeavySpear>
 			<Type type="Int" value="0"/>
 			<SquadType type="Int" value="0"/>
 			<SoilderId type="String" value="DuxSoilder"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="Heavysword1"/>
+			<PweaponId type="String" value="ShortSpear2"/>
 			<SweaponId type="String" value="none"/>
-			<ShieldId type="String" value="Shield1"/>
-			<ArmorId type="String" value="Heavyarmor1"/>
+			<ShieldId type="String" value="Shield3"/>
+			<ArmorId type="String" value="HeavyArmor1"/>
 			<SkillTable>
 				<AttackTrain1 type="Int" value="0"/>
 				<AttackTrain2 type="Int" value="0"/>
@@ -192,7 +347,7 @@
 				<Shield type="Int" value="2"/>
 				<OneHandSword type="Int" value="2"/>
 			</SkillTable>
-			<LeaderId type="String" value="DuxHeavyOfficer"/>
+			<LeaderId type="String" value="DuxHeavySpear"/>
 			<RetainerId type="String" value="Scout"/>
 			<UnitNum value="50" type="Int" />
 			<Level type="Int" value="3" />
@@ -203,9 +358,66 @@
 			<UnitMesh type="String" value="HeavyInf.mesh"/>
 			<UnitMat type="String" value="HeavyInf"/>
 			<MoveSound type="String" value="HeavyInf.mp3"/>
-		</DuxHeavyInf>
+		</DuxHeavySpear>
+		<DuxHeavyCavalry>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="2"/>
+			<SoilderId type="String" value="DuxSoilder"/>
+			<HorseId type="String" value="HeavyHorse3"/>
+			<PweaponId type="String" value="ShortSpear3"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="Shield3"/>
+			<ArmorId type="String" value="HeavyArmor2"/>
+			<SkillTable>
+				<AttackTrain1 type="Int" value="0"/>
+				<AttackTrain2 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<MiddleArmor type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<OneHandSword type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="DuxHeavyCavalry"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="3" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="HeavyCavalry.mesh"/>
+			<UnitMat type="String" value="HeavyCavalry."/>
+			<MoveSound type="String" value="HeavyCavalry.mp3"/>
+		</DuxHeavyCavalry>
+		<FantasyHeavyCavalry>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="2"/>
+			<SoilderId type="String" value="FantasySoilder"/>
+			<HorseId type="String" value="HeavyHorse1"/>
+			<PweaponId type="String" value="ShortSword3"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="Shield3"/>
+			<ArmorId type="String" value="HeavyArmor2"/>
+			<SkillTable>
+				<AttackTrain1 type="Int" value="0"/>
+				<AttackTrain2 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<MiddleArmor type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<OneHandSword type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="FantasyHeavyCavalry"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="3" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="HeavyCavalry.mesh"/>
+			<UnitMat type="String" value="HeavyCavalry."/>
+			<MoveSound type="String" value="HeavyCavalry.mp3"/>
+		</FantasyCavalry>
 	</SquadData>
-
 	<SoilderData>
 		<WingsSoilder>
 			<Type type="Int" value="0" />
@@ -219,14 +431,14 @@
 				<Defence type="Float" value="4.0" />
 				<Formation type="Float" value="1.0" />
 				<Initiative type="Float" value="5.0" />
-				<ActionPoint type="Float" value="7.0" />
+				<ActionPoint type="Float" value="8.0" />
 				<Detection type="Float" value="6.0" />
 				<Covert type="Float" value="2.0" />
 				<Toughness type="Float" value="3.0" />
-				<Conter type="Float" value="2.0" />
+				<Conter type="Float" value="3.0" />
 			</AttrModifer>
 		</WingsSoilder>
-		<FantasiSoilder>
+		<FantasySoilder>
 			<Type type="Int" value="0" />
 			<Value type="Int" value="20" />
 			<Script type="String" value="none" />
@@ -238,13 +450,13 @@
 				<Defence type="Float" value="3.0" />
 				<Formation type="Float" value="0.0" />
 				<Initiative type="Float" value="4.0" />
-				<ActionPoint type="Float" value="7.0" />
+				<ActionPoint type="Float" value="8.0" />
 				<Detection type="Float" value="5.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="2.0" />
-				<Conter type="Float" value="1.0" />
+				<Conter type="Float" value="2.0" />
 			</AttrModifer>
-		</FantasiSoilder>
+		</FantasySoilder>
 		<DuxSoilder>
 			<Type type="Int" value="0" />
 			<Value type="Int" value="20" />
@@ -257,11 +469,11 @@
 				<Defence type="Float" value="3.0" />
 				<Formation type="Float" value="2.0" />
 				<Initiative type="Float" value="2.0" />
-				<ActionPoint type="Float" value="7.0" />
+				<ActionPoint type="Float" value="8.0" />
 				<Detection type="Float" value="5.0" />
 				<Covert type="Float" value="1.0" />
 				<Toughness type="Float" value="3.0" />
-				<Conter type="Float" value="1.0" />
+				<Conter type="Float" value="2.0" />
 			</AttrModifer>
 		</DuxSoilder>
 		<Bandits>
@@ -276,11 +488,11 @@
 				<Defence type="Float" value="3.0" />
 				<Formation type="Float" value="0.0" />
 				<Initiative type="Float" value="2.0" />
-				<ActionPoint type="Float" value="5.0" />
+				<ActionPoint type="Float" value="7.0" />
 				<Detection type="Float" value="5.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="1.0" />
+				<Conter type="Float" value="2.0" />
 			</AttrModifer>
 		</Bandits>
 		<TowerGuard>
@@ -295,11 +507,11 @@
 				<Defence type="Float" value="5.0" />
 				<Formation type="Float" value="2.0" />
 				<Initiative type="Float" value="3.0" />
-				<ActionPoint type="Float" value="7.0" />
+				<ActionPoint type="Float" value="8.0" />
 				<Detection type="Float" value="5.0" />
 				<Covert type="Float" value="1.0" />
 				<Toughness type="Float" value="2.0" />
-				<Conter type="Float" value="1.0" />
+				<Conter type="Float" value="2.0" />
 			</AttrModifer>
 		</TowerGuard>
 		<Magician>
@@ -314,11 +526,11 @@
 				<Defence type="Float" value="3.0" />
 				<Formation type="Float" value="0.0" />
 				<Initiative type="Float" value="4.0" />
-				<ActionPoint type="Float" value="7.0" />
+				<ActionPoint type="Float" value="8.0" />
 				<Detection type="Float" value="4.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="0.0" />
+				<Conter type="Float" value="1.0" />
 			</AttrModifer>
 		</Magician>
 		<NothSoilder>
@@ -333,11 +545,11 @@
 				<Defence type="Float" value="3.0" />
 				<Formation type="Float" value="1.0" />
 				<Initiative type="Float" value="5.0" />
-				<ActionPoint type="Float" value="7.0" />
+				<ActionPoint type="Float" value="8.0" />
 				<Detection type="Float" value="6.0" />
 				<Covert type="Float" value="3.0" />
 				<Toughness type="Float" value="3.0" />
-				<Conter type="Float" value="2.0" />
+				<Conter type="Float" value="3.0" />
 			</AttrModifer>
 		</NothSoilder>
 		<UlvaSoilder>
@@ -352,11 +564,11 @@
 				<Defence type="Float" value="3.0" />
 				<Formation type="Float" value="1.0" />
 				<Initiative type="Float" value="4.0" />
-				<ActionPoint type="Float" value="7.0" />
+				<ActionPoint type="Float" value="8.0" />
 				<Detection type="Float" value="5.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="1.0" />
-				<Conter type="Float" value="1.0" />
+				<Conter type="Float" value="2.0" />
 			</AttrModifer>
 		</UlvaSoilder>
 		<WinfredSoilder>
@@ -371,11 +583,11 @@
 				<Defence type="Float" value="4.0" />
 				<Formation type="Float" value="2.0" />
 				<Initiative type="Float" value="4.0" />
-				<ActionPoint type="Float" value="7.0" />
+				<ActionPoint type="Float" value="8.0" />
 				<Detection type="Float" value="5.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="2.0" />
-				<Conter type="Float" value="1.0" />
+				<Conter type="Float" value="2.0" />
 			</AttrModifer>
 		</WinfredSoilder>
 		<DarkKnight>
@@ -390,18 +602,18 @@
 				<Defence type="Float" value="5.0" />
 				<Formation type="Float" value="2.0" />
 				<Initiative type="Float" value="6.0" />
-				<ActionPoint type="Float" value="7.0" />
+				<ActionPoint type="Float" value="9.0" />
 				<Detection type="Float" value="7.0" />
 				<Covert type="Float" value="3.0" />
 				<Toughness type="Float" value="4.0" />
-				<Conter type="Float" value="3.0" />
+				<Conter type="Float" value="4.0" />
 			</AttrModifer>
 		</DarkKnight>
 	</SoilderData>
 	<PweaponData>
-		<Shortsword1>
+		<ShortSword1>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="500" />
+			<Value type="Int" value="10" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="soul.mesh" />
 			<Mat type="String" value="soul" />
@@ -422,10 +634,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="2.0" />
 			</AttrModifer>
-		</Shortsword1>
+		</ShortSword1>
 		<Shortsword2>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="750" />
+			<Value type="Int" value="15" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="soul.mesh" />
 			<Mat type="String" value="soul" />
@@ -447,9 +659,9 @@
 				<Conter type="Float" value="2.0" />
 			</AttrModifer>
 		</Shortsword2>
-		<Shortsword3>
+		<ShortSword3>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="1200" />
+			<Value type="Int" value="24" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="soul.mesh" />
 			<Mat type="String" value="soul" />
@@ -470,10 +682,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="1.0" />
 			</AttrModifer>
-		</Shortsword3>
-		<Shortsword4>
+		</ShortSword3>
+		<ShortSword4>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="1550" />
+			<Value type="Int" value="31" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="soul.mesh" />
 			<Mat type="String" value="soul" />
@@ -494,10 +706,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="2.0" />
 			</AttrModifer>
-		</Shortsword4>
-		<Shortsword5>
+		</ShortSword4>
+		<ShortSword5>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="2000" />
+			<Value type="Int" value="40" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="soul.mesh" />
 			<Mat type="String" value="soul" />
@@ -518,10 +730,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="3.0" />
 			</AttrModifer>
-		</Shortsword5>
-		<Heavysword1>
+		</ShortSword5>
+		<HeavySword1>
 			<Type type="Int" value="2" />
-			<Value type="Int" value="750" />
+			<Value type="Int" value="15" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="twosword.mesh" />
 			<Mat type="String" value="twosword" />
@@ -542,10 +754,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="3.0" />
 			</AttrModifer>
-		</Heavysword1>
-		<Heavysword2>
+		</HeavySword1>
+		<HeavySword2>
 			<Type type="Int" value="2" />
-			<Value type="Int" value="1100" />
+			<Value type="Int" value="22" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="twosword.mesh" />
 			<Mat type="String" value="twosword" />
@@ -566,10 +778,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="1.0" />
 			</AttrModifer>
-		</Heavysword2>
-		<Heavysword3>
+		</HeavySword2>
+		<HeavySword3>
 			<Type type="Int" value="2" />
-			<Value type="Int" value="1550" />
+			<Value type="Int" value="31" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="twosword.mesh" />
 			<Mat type="String" value="twosword" />
@@ -590,10 +802,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="3.0" />
 			</AttrModifer>
-		</Heavysword3>
-		<Heavysword4>
+		</HeavySword3>
+		<HeavySword4>
 			<Type type="Int" value="2" />
-			<Value type="Int" value="2100" />
+			<Value type="Int" value="42" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="twosword.mesh" />
 			<Mat type="String" value="twosword" />
@@ -614,10 +826,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="3.0" />
 			</AttrModifer>
-		</Heavysword4>
-		<Heavysword5>
+		</HeavySword4>
+		<HeavySword5>
 			<Type type="Int" value="2" />
-			<Value type="Int" value="2800" />
+			<Value type="Int" value="56" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="twosword.mesh" />
 			<Mat type="String" value="twosword" />
@@ -638,10 +850,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="4.0" />
 			</AttrModifer>
-		</Heavysword5>
-		<Shortaxe1>
+		</HeavySword5>
+		<ShortAxe1>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="450" />
+			<Value type="Int" value="9" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="Axes.mesh" />
 			<Mat type="String" value="axes" />
@@ -662,10 +874,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Shortaxe1>
-		<Shortaxe2>
+		</ShortAxe1>
+		<ShortAxe2>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="700" />
+			<Value type="Int" value="14" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="Axes.mesh" />
 			<Mat type="String" value="axes" />
@@ -686,10 +898,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Shortaxe2>
-		<Shortaxe3>
+		</ShortAxe2>
+		<ShortAxe3>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="1000" />
+			<Value type="Int" value="20" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="Axes.mesh" />
 			<Mat type="String" value="axes" />
@@ -710,10 +922,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Shortaxe3>
-		<Shortaxe4>
+		</ShortAxe3>
+		<ShortAxe4>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="1350" />
+			<Value type="Int" value="23" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="Axes.mesh" />
 			<Mat type="String" value="axes" />
@@ -734,10 +946,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Shortaxe4>
-		<Shortaxe5>
+		</ShortAxe4>
+		<ShortAxe5>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="1800" />
+			<Value type="Int" value="36" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="Axes.mesh" />
 			<Mat type="String" value="axes" />
@@ -758,10 +970,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Shortaxe5>
-		<Heavyaxe1>
+		</ShortAxe5>
+		<HeavyAxe1>
 			<Type type="Int" value="3" />
-			<Value type="Int" value="650" />
+			<Value type="Int" value="13" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="DAxes.mesh" />
 			<Mat type="String" value="axes" />
@@ -782,10 +994,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Heavyaxe1>
-		<Heavyaxe2>
+		</HeavyAxe1>
+		<HeavyAxe2>
 			<Type type="Int" value="3" />
-			<Value type="Int" value="900" />
+			<Value type="Int" value="19" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="DAxes.mesh" />
 			<Mat type="String" value="axes" />
@@ -806,10 +1018,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Heavyaxe2>
-		<Heavyaxe3>
+		</HeavyAxe2>
+		<HeavyAxe3>
 			<Type type="Int" value="3" />
-			<Value type="Int" value="1350" />
+			<Value type="Int" value="27" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="DAxes.mesh" />
 			<Mat type="String" value="axes" />
@@ -830,10 +1042,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Heavyaxe3>
-		<Heavyaxe4>
+		</HeavyAxe3>
+		<HeavyAxe4>
 			<Type type="Int" value="3" />
-			<Value type="Int" value="1850" />
+			<Value type="Int" value="37" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="DAxes.mesh" />
 			<Mat type="String" value="axes" />
@@ -854,10 +1066,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Heavyaxe4>
-		<Heavyaxe5>
+		</HeavyAxe4>
+		<HeavyAxe5>
 			<Type type="Int" value="3" />
-			<Value type="Int" value="2500" />
+			<Value type="Int" value="50" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="DAxes.mesh" />
 			<Mat type="String" value="axes" />
@@ -878,10 +1090,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Heavyaxe5>
-		<Shortspear1>
+		</HeavyAxe5>
+		<ShortSpear1>
 			<Type type="Int" value="4" />
-			<Value type="Int" value="400" />
+			<Value type="Int" value="8" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="Pike.mesh" />
 			<Mat type="String" value="Pike" />
@@ -902,10 +1114,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Shortspear1>
-		<Shortspear2>
+		</ShortSpear1>
+		<ShortSpear2>
 			<Type type="Int" value="4" />
-			<Value type="Int" value="650" />
+			<Value type="Int" value="13" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="Pike.mesh" />
 			<Mat type="String" value="Pike" />
@@ -926,10 +1138,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Shortspear2>
-		<Shortspear3>
+		</ShortSpear2>
+		<ShortSpear3>
 			<Type type="Int" value="4" />
-			<Value type="Int" value="900" />
+			<Value type="Int" value="17" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="Pike.mesh" />
 			<Mat type="String" value="Pike" />
@@ -950,10 +1162,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Shortspear3>
-		<Shortspear4>
+		</ShortSpear3>
+		<ShortSpear4>
 			<Type type="Int" value="4" />
-			<Value type="Int" value="1200" />
+			<Value type="Int" value="24" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="Pike.mesh" />
 			<Mat type="String" value="Pike" />
@@ -974,10 +1186,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Shortspear4>
-		<Shortspear5>
+		</ShortSpear4>
+		<ShortSpear5>
 			<Type type="Int" value="4" />
-			<Value type="Int" value="1650" />
+			<Value type="Int" value="33" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="Pike.mesh" />
 			<Mat type="String" value="Pike" />
@@ -998,10 +1210,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Shortspear5>
+		</ShortSpear5>
 		<Halberd1>
 			<Type type="Int" value="5" />
-			<Value type="Int" value="600" />
+			<Value type="Int" value="14" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="halberd.mesh" />
 			<Mat type="String" value="halberd" />
@@ -1025,7 +1237,7 @@
 		</Halberd1>
 		<Halberd2>
 			<Type type="Int" value="5" />
-			<Value type="Int" value="850" />
+			<Value type="Int" value="18" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="halberd.mesh" />
 			<Mat type="String" value="halberd" />
@@ -1049,7 +1261,7 @@
 		</Halberd2>
 		<Halberd3>
 			<Type type="Int" value="5" />
-			<Value type="Int" value="1250" />
+			<Value type="Int" value="25" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="halberd.mesh" />
 			<Mat type="String" value="halberd" />
@@ -1073,7 +1285,7 @@
 		</Halberd3>
 		<Halberd4>
 			<Type type="Int" value="5" />
-			<Value type="Int" value="1800" />
+			<Value type="Int" value="34" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="halberd.mesh" />
 			<Mat type="String" value="halberd" />
@@ -1097,7 +1309,7 @@
 		</Halberd4>
 		<Halberd5>
 			<Type type="Int" value="5" />
-			<Value type="Int" value="2350" />
+			<Value type="Int" value="47" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="halberd.mesh" />
 			<Mat type="String" value="halberd" />
@@ -1123,7 +1335,33 @@
 	<SweaponData>
 		<Bow1>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="650" />
+			<Value type="Int" value="13" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="bow.mesh" />
+			<Mat type="String" value="Bow" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="Bow" />
+			<Icon type="String" value="Bow" />
+			<MaxRange type="Int" value="1" />
+			<MinRange type="Int" value="2" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="4.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Bow1>
+		<Bow2>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="20" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="bow.mesh" />
 			<Mat type="String" value="Bow" />
@@ -1140,32 +1378,6 @@
 				<Defence type="Float" value="0.0" />
 				<Formation type="Float" value="0.0" />
 				<Initiative type="Float" value="0.0" />
-				<ActionPoint type="Float" value="0.0" />
-				<Detection type="Float" value="0.0" />
-				<Covert type="Float" value="0.0" />
-				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="0.0" />
-			</AttrModifer>
-		</Bow1>
-		<Bow2>
-			<Type type="Int" value="0" />
-			<Value type="Int" value="1000" />
-			<Script type="String" value="none" />
-			<Mesh type="String" value="bow.mesh" />
-			<Mat type="String" value="Bow" />
-			<PU type="String" value="none" />
-			<PUVector type="String" value="0,0,0" />
-			<AniGroup type="String" value="Bow" />
-			<Icon type="String" value="Bow" />
-			<MaxRange type="Int" value="1" />
-			<MinRange type="Int" value="4" />
-			<AttrModifer>
-				<Type type="Int" value="0" />
-				<Attack type="Float" value="0.0" />
-				<RangedAttack type="Float" value="6.0" />
-				<Defence type="Float" value="0.0" />
-				<Formation type="Float" value="0.0" />
-				<Initiative type="Float" value="0.0" />
 				<ActionPoint type="Float" value="-1.0" />
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="0.0" />
@@ -1175,7 +1387,7 @@
 		</Bow2>
 		<Bow3>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="1450" />
+			<Value type="Int" value="29" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="bow.mesh" />
 			<Mat type="String" value="Bow" />
@@ -1184,11 +1396,11 @@
 			<AniGroup type="String" value="Bow" />
 			<Icon type="String" value="Bow" />
 			<MaxRange type="Int" value="1" />
-			<MinRange type="Int" value="3" />
+			<MinRange type="Int" value="2" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="0.0" />
-				<RangedAttack type="Float" value="6.0" />
+				<RangedAttack type="Float" value="7.0" />
 				<Defence type="Float" value="0.0" />
 				<Formation type="Float" value="0.0" />
 				<Initiative type="Float" value="0.0" />
@@ -1201,7 +1413,7 @@
 		</Bow3>
 		<Bow4>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="1950" />
+			<Value type="Int" value="39" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="bow.mesh" />
 			<Mat type="String" value="Bow" />
@@ -1210,7 +1422,59 @@
 			<AniGroup type="String" value="Bow" />
 			<Icon type="String" value="Bow" />
 			<MaxRange type="Int" value="1" />
-			<MinRange type="Int" value="4" />
+			<MinRange type="Int" value="3" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="7.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Bow4>
+		<Bow5>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="50" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="bow.mesh" />
+			<Mat type="String" value="Bow" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="Bow" />
+			<Icon type="String" value="Bow" />
+			<MaxRange type="Int" value="1" />
+			<MinRange type="Int" value="3" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="8.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Bow5>
+		<CrossBow1>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="15" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="crossbow.mesh" />
+			<Mat type="String" value="crossbow" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="Crossbow" />
+			<Icon type="String" value="LXBox" />
+			<MaxRange type="Int" value="1" />
+			<MinRange type="Int" value="2" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="0.0" />
@@ -1224,36 +1488,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Bow4>
-		<Bow5>
-			<Type type="Int" value="0" />
-			<Value type="Int" value="2500" />
-			<Script type="String" value="none" />
-			<Mesh type="String" value="bow.mesh" />
-			<Mat type="String" value="Bow" />
-			<PU type="String" value="none" />
-			<PUVector type="String" value="0,0,0" />
-			<AniGroup type="String" value="Bow" />
-			<Icon type="String" value="Bow" />
-			<MaxRange type="Int" value="1" />
-			<MinRange type="Int" value="4" />
-			<AttrModifer>
-				<Type type="Int" value="0" />
-				<Attack type="Float" value="0.0" />
-				<RangedAttack type="Float" value="7.0" />
-				<Defence type="Float" value="0.0" />
-				<Formation type="Float" value="0.0" />
-				<Initiative type="Float" value="0.0" />
-				<ActionPoint type="Float" value="0.0" />
-				<Detection type="Float" value="0.0" />
-				<Covert type="Float" value="0.0" />
-				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="0.0" />
-			</AttrModifer>
-		</Bow5>
-		<Crossbow1>
+		</CrossBow1>
+		<CrossBow2>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="750" />
+			<Value type="Int" value="22" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="crossbow.mesh" />
 			<Mat type="String" value="crossbow" />
@@ -1276,10 +1514,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Crossbow1>
-		<Crossbow2>
+		</CrossBow2>
+		<CrossBow3>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="1100" />
+			<Value type="Int" value="30" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="crossbow.mesh" />
 			<Mat type="String" value="crossbow" />
@@ -1289,84 +1527,6 @@
 			<Icon type="String" value="LXBox" />
 			<MaxRange type="Int" value="1" />
 			<MinRange type="Int" value="2" />
-			<AttrModifer>
-				<Type type="Int" value="0" />
-				<Attack type="Float" value="0.0" />
-				<RangedAttack type="Float" value="8.0" />
-				<Defence type="Float" value="0.0" />
-				<Formation type="Float" value="0.0" />
-				<Initiative type="Float" value="0.0" />
-				<ActionPoint type="Float" value="0.0" />
-				<Detection type="Float" value="0.0" />
-				<Covert type="Float" value="0.0" />
-				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="0.0" />
-			</AttrModifer>
-		</Crossbow2>
-		<Crossbow3>
-			<Type type="Int" value="1" />
-			<Value type="Int" value="1500" />
-			<Script type="String" value="none" />
-			<Mesh type="String" value="crossbow.mesh" />
-			<Mat type="String" value="crossbow" />
-			<PU type="String" value="none" />
-			<PUVector type="String" value="0,0,0" />
-			<AniGroup type="String" value="Crossbow" />
-			<Icon type="String" value="LXBox" />
-			<MaxRange type="Int" value="1" />
-			<MinRange type="Int" value="3" />
-			<AttrModifer>
-				<Type type="Int" value="0" />
-				<Attack type="Float" value="0.0" />
-				<RangedAttack type="Float" value="8.0" />
-				<Defence type="Float" value="0.0" />
-				<Formation type="Float" value="0.0" />
-				<Initiative type="Float" value="0.0" />
-				<ActionPoint type="Float" value="0.0" />
-				<Detection type="Float" value="0.0" />
-				<Covert type="Float" value="0.0" />
-				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="0.0" />
-			</AttrModifer>
-		</Crossbow3>
-		<Crossbow4>
-			<Type type="Int" value="1" />
-			<Value type="Int" value="2100" />
-			<Script type="String" value="none" />
-			<Mesh type="String" value="crossbow.mesh" />
-			<Mat type="String" value="crossbow" />
-			<PU type="String" value="none" />
-			<PUVector type="String" value="0,0,0" />
-			<AniGroup type="String" value="Crossbow" />
-			<Icon type="String" value="LXBox" />
-			<MaxRange type="Int" value="1" />
-			<MinRange type="Int" value="2" />
-			<AttrModifer>
-				<Type type="Int" value="0" />
-				<Attack type="Float" value="0.0" />
-				<RangedAttack type="Float" value="4.0" />
-				<Defence type="Float" value="0.0" />
-				<Formation type="Float" value="0.0" />
-				<Initiative type="Float" value="0.0" />
-				<ActionPoint type="Float" value="-1.0" />
-				<Detection type="Float" value="0.0" />
-				<Covert type="Float" value="0.0" />
-				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="0.0" />
-			</AttrModifer>
-		</Crossbow4>
-		<Crossbow5>
-			<Type type="Int" value="1" />
-			<Value type="Int" value="2800" />
-			<Script type="String" value="none" />
-			<Mesh type="String" value="crossbow.mesh" />
-			<Mat type="String" value="crossbow" />
-			<PU type="String" value="none" />
-			<PUVector type="String" value="0,0,0" />
-			<AniGroup type="String" value="Crossbow" />
-			<Icon type="String" value="LXBox" />
-			<MaxRange type="Int" value="1" />
-			<MinRange type="Int" value="3" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="0.0" />
@@ -1380,12 +1540,64 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Crossbow5>
+		</CrossBow3>
+		<CrossBow4>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="42" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="crossbow.mesh" />
+			<Mat type="String" value="crossbow" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="Crossbow" />
+			<Icon type="String" value="LXBox" />
+			<MaxRange type="Int" value="1" />
+			<MinRange type="Int" value="1" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="6.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="-1.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</CrossBow4>
+		<CrossBow5>
+			<Type type="Int" value="1" />
+			<Value type="Int" value="56" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="crossbow.mesh" />
+			<Mat type="String" value="crossbow" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="Crossbow" />
+			<Icon type="String" value="LXBox" />
+			<MaxRange type="Int" value="1" />
+			<MinRange type="Int" value="2" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="11.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</CrossBow5>
 	</SweaponData>
 	<HorseData>
-		<Lighthorse1>
+		<LightHorse1>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="700" />
+			<Value type="Int" value="14" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="LightCavalryHorse.mesh" />
 			<Mat type="String" value="LightCavalryHorse" />
@@ -1403,10 +1615,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="-3.0" />
 			</AttrModifer>
-		</Lighthorse1>
-		<Lighthorse2>
+		</LightHorse1>
+		<LightHorse2>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="1200" />
+			<Value type="Int" value="25" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="LightCavalryHorse.mesh" />
 			<Mat type="String" value="LightCavalryHorse" />
@@ -1424,10 +1636,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="-3.0" />
 			</AttrModifer>
-		</Lighthorse2>
-		<Lighthorse3>
+		</LightHorse2>
+		<LightHorse3>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="1800" />
+			<Value type="Int" value="36" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="LightCavalryHorse.mesh" />
 			<Mat type="String" value="LightCavalryHorse" />
@@ -1445,10 +1657,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="-3.0" />
 			</AttrModifer>
-		</Lighthorse3>
-		<Lighthorse4>
+		</LightHorse3>
+		<LightHorse4>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="2400" />
+			<Value type="Int" value="48" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="LightCavalryHorse.mesh" />
 			<Mat type="String" value="LightCavalryHorse" />
@@ -1466,10 +1678,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="-2.0" />
 			</AttrModifer>
-		</Lighthorse4>
-		<Lighthorse5>
+		</LightHorse4>
+		<LightHorse5>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="3000" />
+			<Value type="Int" value="60" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="LightCavalryHorse.mesh" />
 			<Mat type="String" value="LightCavalryHorse" />
@@ -1487,10 +1699,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="-2.0" />
 			</AttrModifer>
-		</Lighthorse5>
+		</LightHorse5>
 		<HeavyHorse1>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="700" />
+			<Value type="Int" value="16" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="HeavyCavalryHorse.mesh" />
 			<Mat type="String" value="HeavyCavalryHorse" />
@@ -1511,7 +1723,7 @@
 		</HeavyHorse1>
 		<HeavyHorse2>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="1200" />
+			<Value type="Int" value="27" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="HeavyCavalryHorse.mesh" />
 			<Mat type="String" value="HeavyCavalryHorse" />
@@ -1532,7 +1744,7 @@
 		</HeavyHorse2>
 		<HeavyHorse3>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="1800" />
+			<Value type="Int" value="39" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="HeavyCavalryHorse.mesh" />
 			<Mat type="String" value="HeavyCavalryHorse" />
@@ -1553,7 +1765,7 @@
 		</HeavyHorse3>
 		<HeavyHorse4>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="2400" />
+			<Value type="Int" value="50" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="HeavyCavalryHorse.mesh" />
 			<Mat type="String" value="HeavyCavalryHorse" />
@@ -1574,7 +1786,7 @@
 		</HeavyHorse4>
 		<HeavyHorse5>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="3000" />
+			<Value type="Int" value="65" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="HeavyCavalryHorse.mesh" />
 			<Mat type="String" value="HeavyCavalryHorse" />
@@ -1597,7 +1809,7 @@
 	<ShieldData>
 		<Shield1>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="450" />
+			<Value type="Int" value="9" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="RoundShield.mesh" />
 			<Mat type="String" value="RoundShield" />
@@ -1620,7 +1832,7 @@
 		</Shield1>
 		<Shield2>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="600" />
+			<Value type="Int" value="12" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="LargeShield.mesh" />
 			<Mat type="String" value="LargeShield" />
@@ -1643,7 +1855,7 @@
 		</Shield2>
 		<Shield3>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="600" />
+			<Value type="Int" value="12" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="LargeShield.mesh" />
 			<Mat type="String" value="LargeShield" />
@@ -1666,7 +1878,7 @@
 		</Shield3>
 		<Shield4>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="600" />
+			<Value type="Int" value="12" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="LargeShield.mesh" />
 			<Mat type="String" value="LargeShield" />
@@ -1689,7 +1901,7 @@
 		</Shield4>
 		<Shield5>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="800" />
+			<Value type="Int" value="16" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="LargeShield.mesh" />
 			<Mat type="String" value="LargeShield" />
@@ -1712,9 +1924,9 @@
 		</Shield5>
 	</ShieldData>
 	<ArmorData>
-		<Lightarmor1>
+		<LightArmor1>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="700" />
+			<Value type="Int" value="14" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_lightarmor" />
 			<AttrModifer>
@@ -1730,10 +1942,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="1.0" />
 			</AttrModifer>
-		</Lightarmor1>
-		<Lightarmor2>
+		</LightArmor1>
+		<LightArmor2>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="950" />
+			<Value type="Int" value="19" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_lightarmor" />
 			<AttrModifer>
@@ -1749,10 +1961,10 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="1.0" />
 			</AttrModifer>
-		</Lightarmor2>
-		<Lightarmor3>
+		</LightArmor2>
+		<LightArmor3>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="1300" />
+			<Value type="Int" value="26" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_lightarmor" />
 			<AttrModifer>
@@ -1768,10 +1980,10 @@
 				<Toughness type="Float" value="1.0" />
 				<Conter type="Float" value="1.0" />
 			</AttrModifer>
-		</Lightarmor3>
-		<Lightarmor4>
+		</LightArmor3>
+		<LightArmor4>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="1700" />
+			<Value type="Int" value="34" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_lightarmor" />
 			<AttrModifer>
@@ -1787,10 +1999,10 @@
 				<Toughness type="Float" value="1.0" />
 				<Conter type="Float" value="1.0" />
 			</AttrModifer>
-		</Lightarmor4>
-		<Lightarmor5>
+		</LightArmor4>
+		<LightArmor5>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="2200" />
+			<Value type="Int" value="45" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_lightarmor" />
 			<AttrModifer>
@@ -1806,10 +2018,10 @@
 				<Toughness type="Float" value="1.0" />
 				<Conter type="Float" value="1.0" />
 			</AttrModifer>
-		</Lightarmor5>
-		<Midarmor1>
+		</LightArmor5>
+		<MidArmor1>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="800" />
+			<Value type="Int" value="16" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_midarmor" />
 			<AttrModifer>
@@ -1825,10 +2037,10 @@
 				<Toughness type="Float" value="1.0" />
 				<Conter type="Float" value="2.0" />
 			</AttrModifer>
-		</Midarmor1>
-		<Midarmor2>
+		</MidArmor1>
+		<MidArmor2>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="1100" />
+			<Value type="Int" value="22" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_midarmor" />
 			<AttrModifer>
@@ -1844,10 +2056,10 @@
 				<Toughness type="Float" value="1.0" />
 				<Conter type="Float" value="2.0" />
 			</AttrModifer>
-		</Midarmor2>
-		<Midarmor3>
+		</MidArmor2>
+		<MidArmor3>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="1550" />
+			<Value type="Int" value="31" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_midarmor" />
 			<AttrModifer>
@@ -1863,10 +2075,10 @@
 				<Toughness type="Float" value="1.0" />
 				<Conter type="Float" value="2.0" />
 			</AttrModifer>
-		</Midarmor3>
-		<Midarmor4>
+		</MidArmor3>
+		<MidArmor4>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="2000" />
+			<Value type="Int" value="40" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_midarmor" />
 			<AttrModifer>
@@ -1882,10 +2094,10 @@
 				<Toughness type="Float" value="2.0" />
 				<Conter type="Float" value="2.0" />
 			</AttrModifer>
-		</Midarmor4>
-		<Midarmor5>
+		</MidArmor4>
+		<MidArmor5>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="2500" />
+			<Value type="Int" value="50" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_midarmor" />
 			<AttrModifer>
@@ -1901,10 +2113,10 @@
 				<Toughness type="Float" value="2.0" />
 				<Conter type="Float" value="2.0" />
 			</AttrModifer>
-		</Midarmor5>
-		<Heavyarmor1>
+		</MidArmor5>
+		<HeavyArmor1>
 			<Type type="Int" value="2" />
-			<Value type="Int" value="900" />
+			<Value type="Int" value="18" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_heavyarmor" />
 			<AttrModifer>
@@ -1920,10 +2132,10 @@
 				<Toughness type="Float" value="2.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Heavyarmor1>
-		<Heavyarmor2>
+		</HeavyArmor1>
+		<HeavyArmor2>
 			<Type type="Int" value="2" />
-			<Value type="Int" value="1200" />
+			<Value type="Int" value="24" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_heavyarmor" />
 			<AttrModifer>
@@ -1939,10 +2151,10 @@
 				<Toughness type="Float" value="2.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Heavyarmor2>
-		<Heavyarmor3>
+		</HeavyArmor2>
+		<HeavyArmor3>
 			<Type type="Int" value="2" />
-			<Value type="Int" value="1650" />
+			<Value type="Int" value="33" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_heavyarmor" />
 			<AttrModifer>
@@ -1958,10 +2170,10 @@
 				<Toughness type="Float" value="2.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Heavyarmor3>
-		<Heavyarmor4>
+		</HeavyArmor3>
+		<HeavyArmor4>
 			<Type type="Int" value="2" />
-			<Value type="Int" value="2200" />
+			<Value type="Int" value="45" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_heavyarmor" />
 			<AttrModifer>
@@ -1977,10 +2189,10 @@
 				<Toughness type="Float" value="3.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Heavyarmor4>
-		<Heavyarmor5>
+		</HeavyArmor4>
+		<HeavyArmor5>
 			<Type type="Int" value="2" />
-			<Value type="Int" value="2800" />
+			<Value type="Int" value="56" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_heavyarmor" />
 			<AttrModifer>
@@ -1996,9 +2208,9 @@
 				<Toughness type="Float" value="3.0" />
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
-		</Heavyarmor5>
+		</HeavyArmor5>
 	</ArmorData>
-
+	
 	<RetainerData>
 		<Scout>
 			<Type type = "Int" value = "0" />
