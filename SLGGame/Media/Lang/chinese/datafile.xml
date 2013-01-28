@@ -137,10 +137,10 @@
 			<Name type="String" value="短剑" />
 			<Describe type="String" value="由铁匠铺批量制作的短剑，物美价廉，常被用作防身" />
 		</ShortSword1>
-		<Shortsword2>
+		<ShortSword2>
 			<Name type="String" value="骑士长剑" />
 			<Describe type="String" value="轻巧的作战用长剑，剑身细长优美，深受各地小贵族们喜爱" />
-		</Shortsword2>
+		</ShortSword2>
 		<ShortSword3>
 			<Name type="String" value="反曲刀" />
 			<Describe type="String" value="从极北冻原之外流传进中州的剑种，剑身反曲，挥砍极为有力但难以控制" />
