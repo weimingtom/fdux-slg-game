@@ -13,14 +13,42 @@
 			<Name type="String" value="奥莉瓦"/>
 			<Describe type="String" value="奥莉瓦"/>
 		</Olivia>
-		<DuxLightOfficer>
-			<Name type="String" value="达克斯轻装指挥官"/>
-			<Describe type="String" value="达克斯轻装指挥官"/>
-		</DuxLightOfficer>
-		<DuxHeavyOfficer>
-			<Name type="String" value="达克斯重装指挥官"/>
-			<Describe type="String" value="达克斯重装指挥官"/>
-		</DuxHeavyOfficer>
+		<Cossa>
+			<Name type="String" value="柯萨"/>
+			<Describe type="String" value="柯萨"/>
+		</Cossa>
+		<WingsLightCavalry>
+			<Name type="String" value="翼骑团指挥官"/>
+			<Describe type="String" value="翼骑团指挥官"/>
+		</WingsLightCavalry>
+		<WingsLightInf>
+			<Name type="String" value="翼骑团指挥官"/>
+			<Describe type="String" value="翼骑团指挥官"/>
+		</WingsLightInf>
+		<WingsCrossBow>
+			<Name type="String" value="翼骑团指挥官"/>
+			<Describe type="String" value="翼骑团指挥官"/>
+		</WingsCrossBow>
+		<DuxLightSpear>
+			<Name type="String" value="达克斯骑士"/>
+			<Describe type="String" value="达克斯骑士"/>
+		</DuxLightSpear>
+		<DuxLightBow>
+			<Name type="String" value="达克斯骑士"/>
+			<Describe type="String" value="达克斯骑士"/>
+		</DuxLightBow>
+		<DuxHeavySpear>
+			<Name type="String" value="达克斯高阶骑士"/>
+			<Describe type="String" value="达克斯高阶骑士"/>
+		</DuxHeavySpear>
+		<DuxHeavyCavalry>
+			<Name type="String" value="达克斯爵士"/>
+			<Describe type="String" value="达克斯爵士"/>
+		</DuxHeavyCavalry>
+		<FantasyHeavyCavalry>
+			<Name type="String" value="凡塔斯爵士"/>
+			<Describe type="String" value="凡塔斯爵士"/>
+		</FantasyHeavyCavalry>
 	</LeaderDate>
 	<SquadData>
 		<CheetahSquad>
@@ -31,22 +59,46 @@
 			<Name type="String" value="丹德来恩弓兵队"/>
 			<Describe type="String" value="丹德来恩弓兵队"/>
 		</DandelionSquad>
+		<WingsLightInf>
+			<Name type="String" value="翼骑团轻步兵队"/>
+			<Describe type="String" value="翼骑团轻步兵队"/>
+		</WingsLightInf>
+		<WingsCrossBow>
+			<Name type="String" value="翼骑团弩兵队"/>
+			<Describe type="String" value="翼骑团弩兵队"/>
+		</WingsCrossBow>
 		<Olivia>
 			<Name type="String" value="奥莉瓦"/>
 			<Describe type="String" value="奥莉瓦"/>
 		</Olivia>
+		<Cossa>
+			<Name type="String" value="柯萨轻骑兵队"/>
+			<Describe type="String" value="柯萨轻骑兵队"/>
+		</Cossa>
+		<WingsLightCavalry>
+			<Name type="String" value="翼骑团轻弓骑队"/>
+			<Describe type="String" value="翼骑团轻弓骑队"/>
+		</WingsLightCavalry>
 		<DuxLightSpear>
-			<Name type="String" value="达克斯轻装长矛队"/>
-			<Describe type="String" value="达克斯轻装长矛队"/>
+			<Name type="String" value="达克斯轻步兵队"/>
+			<Describe type="String" value="达克斯轻步兵队"/>
 		</DuxLightSpear>
 		<DuxLightBow>
-			<Name type="String" value="达克斯轻装弓箭队"/>
-			<Describe type="String" value="达克斯轻装弓箭队"/>
+			<Name type="String" value="达克斯弓兵队"/>
+			<Describe type="String" value="达克斯弓兵队"/>
 		</DuxLightBow>
-		<DuxHeavyInf>
+		<DuxHeavySpear>
 			<Name type="String" value="达克斯重步兵队"/>
 			<Describe type="String" value="达克斯重步兵队"/>
-		</DuxHeavyInf>
+		</DuxHeavySpear>
+		<DuxHeavyCavalry>
+			<Name type="String" value="达克斯重骑兵队"/>
+			<Describe type="String" value="达克斯重骑兵队"/>
+		</DuxHeavyCavalry>
+		<FantasyHeavyCavalry>
+			<Name type="String" value="凡塔斯重骑兵队"/>
+			<Describe type="String" value="凡塔斯重骑兵队"/>
+		</FantasyHeavyCavalry>
 	</SquadData>
 	<SoilderData>
 		<WingsSoilder>
@@ -81,106 +133,106 @@
 		</DarkKnight>
 	</SoilderData>
 	<PweaponData>
-		<Shortsword1>
+		<ShortSword1>
 			<Name type="String" value="短剑" />
 			<Describe type="String" value="由铁匠铺批量制作的短剑，物美价廉，常被用作防身" />
-		</Shortsword1>
+		</ShortSword1>
 		<Shortsword2>
 			<Name type="String" value="骑士长剑" />
 			<Describe type="String" value="轻巧的作战用长剑，剑身细长优美，深受各地小贵族们喜爱" />
 		</Shortsword2>
-		<Shortsword3>
+		<ShortSword3>
 			<Name type="String" value="反曲刀" />
 			<Describe type="String" value="从极北冻原之外流传进中州的剑种，剑身反曲，挥砍极为有力但难以控制" />
-		</Shortsword3>
-		<Shortsword4>
+		</ShortSword3>
+		<ShortSword4>
 			<Name type="String" value="西原弯刀" />
 			<Describe type="String" value="西原的游牧部族中的勇士才有资格使用的单手弯刀，轻巧但极富杀伤力" />
-		</Shortsword4>
-		<Shortsword5>
+		</ShortSword4>
+		<ShortSword5>
 			<Name type="String" value="皇家长剑" />
 			<Describe type="String" value="手持皇家长剑的都文力重骑士是中州上任何敢于挑战皇家权威之人的噩梦，这种由先祖设计的精巧长剑几乎成了皇权的代名词" />
-		</Shortsword5>
-		<Heavysword1>
+		</ShortSword5>
+		<HeavySword1>
 			<Name type="String" value="大剑" />
 			<Describe type="String" value="剑身长而厚的大剑是体格强壮之人最喜欢的武器，但它挥舞起来的巨大半径也给大编队作战带来了不便" />
-		</Heavysword1>
-		<Heavysword2>
+		</HeavySword1>
+		<HeavySword2>
 			<Name type="String" value="重剑" />
 			<Describe type="String" value="这种沉重的巨剑有着惊人的杀伤力，这足以弥补它的沉重造成的行动不便" />
-		</Heavysword2>
-		<Heavysword3>
+		</HeavySword2>
+		<HeavySword3>
 			<Name type="String" value="斩马刀" />
 			<Describe type="String" value="顾名思义，这种长刀拥有将战马一刀两断的惊人杀伤力，当然使用它的风险也是显而易见的：你将完全暴露在敌方远程打击力量下" />
-		</Heavysword3>
-		<Heavysword4>
+		</HeavySword3>
+		<HeavySword4>
 			<Name type="String" value="北境巨剑" />
 			<Describe type="String" value="如果说北境的山岳中最凶猛的生物是什么，那无疑就是身负巨剑的勇士们，你经常能见到打猎归来的他们扛着被斩为两段的可怜猛兽" />
-		</Heavysword4>
-		<Heavysword5>
+		</HeavySword4>
+		<HeavySword5>
 			<Name type="String" value="诺斯焰型剑" />
 			<Describe type="String" value="这种带有火焰状锯齿的巨剑是诺斯王家的标志之一，它们被分配给诺斯最强悍的战士，为此，你需要去猎杀一头巨熊来证明自己" />
-		</Heavysword5>
-		<Shortaxe1>
+		</HeavySword5>
+		<ShortAxe1>
 			<Name type="String" value="短斧" />
 			<Describe type="String" value="这是一种简单的武器，制造简单，使用简单，但这并不影响它的杀伤力" />
-		</Shortaxe1>
-		<Shortaxe2>
+		</ShortAxe1>
+		<ShortAxe2>
 			<Name type="String" value="猎人斧" />
 			<Describe type="String" value="猎人们通常会带上一把短斧：当然不仅仅为了劈柴生火" />
-		</Shortaxe2>
-		<Shortaxe3>
+		</ShortAxe2>
+		<ShortAxe3>
 			<Name type="String" value="海贼斧" />
 			<Describe type="String" value="南海之上的海盗们最爱的武器，也是过往商船的噩梦" />
-		</Shortaxe3>
-		<Shortaxe4>
+		</ShortAxe3>
+		<ShortAxe4>
 			<Name type="String" value="南境手斧" />
 			<Describe type="String" value="即使最有经验的战士面对挥舞着手斧冲过来的南境蛮族时也会胆寒" />
-		</Shortaxe4>
-		<Shortaxe5>
+		</ShortAxe4>
+		<ShortAxe5>
 			<Name type="String" value="勇士长斧" />
 			<Describe type="String" value="南境那分歧不断的众多部落只有在一件事情上是没有分歧的：不要去惹手持勇士长斧的人，即使他来自敌对部落" />
-		</Shortaxe5>
-		<Heavyaxe1>
+		</ShortAxe5>
+		<HeavyAxe1>
 			<Name type="String" value="伐木斧" />
 			<Describe type="String" value="这种大斧经常被用来劈木头，不过不要忘了一个事实：木头比人硬" />
-		</Heavyaxe1>
-		<Heavyaxe2>
+		</HeavyAxe1>
+		<HeavyAxe2>
 			<Name type="String" value="大斧" />
 			<Describe type="String" value="这种斧头跟伐木斧的区别很简单：它专门用来劈人的" />
-		</Heavyaxe2>
-		<Heavyaxe3>
+		</HeavyAxe2>
+		<HeavyAxe3>
 			<Name type="String" value="双刃巨斧" />
 			<Describe type="String" value="经过改良的大斧，前端拥有两个斧刃，在运用灵活的人手中它将发挥出惊人的杀伤力" />
-		</Heavyaxe3>
-		<Heavyaxe4>
+		</HeavyAxe3>
+		<HeavyAxe4>
 			<Name type="String" value="斩击斧" />
 			<Describe type="String" value="这种大斧的斧刃较长，因此在必要的时候它可以被当成大刀使用，前提是你能控制住它的重心" />
-		</Heavyaxe4>
-		<Heavyaxe5>
+		</HeavyAxe4>
+		<HeavyAxe5>
 			<Name type="String" value="海王战斧" />
 			<Describe type="String" value="如何让那些手持大斧、天性凶悍的海盗们臣服？盛产海盗的岛国贾斯丁给出了答案：使用可以把海盗们和他们的斧头一起劈成两节的巨大战斧" />
-		</Heavyaxe5>
-		<Shortspear1>
+		</HeavyAxe5>
+		<ShortSpear1>
 			<Name type="String" value="短矛" />
 			<Describe type="String" value="最常见也是最简易的武器，但是只要经过必要的阵型训练，一群手持短矛的农夫组成的军队也能成为敌方的噩梦" />
-		</Shortspear1>
-		<Shortspear2>
+		</ShortSpear1>
+		<ShortSpear2>
 			<Name type="String" value="钢矛" />
 			<Describe type="String" value="这种短矛只是将矛头的一小部分进行了改良，但是对于方阵中的矛兵来说，这已经可以扭转战局了" />
-		</Shortspear2>
-		<Shortspear3>
+		</ShortSpear2>
+		<ShortSpear3>
 			<Name type="String" value="骑兵矛" />
 			<Describe type="String" value="骑兵矛很好的满足了骑兵们的需求：更轻巧更长，即使它不怎么结实" />
-		</Shortspear3>
-		<Shortspear4>
+		</ShortSpear3>
+		<ShortSpear4>
 			<Name type="String" value="蛇矛" />
 			<Describe type="String" value="这种矛将短小的钢制矛尖变成细长的蛇形矛头，在保证刺击威力的同时具有了一定挥砍能力，任何人都不想去硬碰使用这种矛的方阵" />
-		</Shortspear4>
-		<Shortspear5>
+		</ShortSpear4>
+		<ShortSpear5>
 			<Name type="String" value="铁卫战矛" />
 			<Describe type="String" value="毫无疑问，达克斯拥有大量的农夫组成的矛兵，但你若因此小瞧达克斯铁卫，那你很快就会明白这种战矛为什么会被称为安萨斯特的矛尖了" />
-		</Shortspear5>
+		</ShortSpear5>
 		<Halberd1>
 			<Name type="String" value="长戟" />
 			<Describe type="String" value="在合理的阵型中，这种看似笨重的长武器将称为最具威胁的杀人利器，但你不要指望使用它与人单挑" />
@@ -205,66 +257,66 @@
 	<SweaponData>
 		<Bow1>
 			<Name type="String" value="短弓" />
-			<Describe type="String" value="这种短小轻便的弓箭是猎人们的最爱，即使它射不了太远，但是用来对付猎物已经足够了" />
+			<Describe type="String" value="这种短小轻便的弓箭是猎人们的最爱，即使它射不了太远，但是用来对付猎物已经足够了（攻击距离2格）" />
 		</Bow1>
 		<Bow2>
 			<Name type="String" value="长弓" />
-			<Describe type="String" value="这种弓箭更长更大，因此也拥有更远的射程，虽然它很笨重，但对敌方轻装单位来说依然是极为恐怖的武器" />
+			<Describe type="String" value="这种弓箭更长更大，因此也拥有更远的射程，虽然它很笨重，但对敌方轻装单位来说依然是极为恐怖的武器（攻击距离3格）" />
 		</Bow2>
 		<Bow3>
 			<Name type="String" value="反曲弓" />
-			<Describe type="String" value="这种弓身反曲的弓箭拥有强大的杀伤力，但是由于拉弓时太过费力，它的准头稍微有点低" />
+			<Describe type="String" value="这种弓身反曲的弓箭拥有强大的杀伤力，但是由于拉弓时太过费力，它的准头稍微有点低（攻击距离2格）" />
 		</Bow3>
 		<Bow4>
 			<Name type="String" value="复合弓" />
-			<Describe type="String" value="复合弓的使用让西原的弓骑兵在中洲大陆上威名远播，中部诸国不得不穿上更厚更笨重的盔甲来抵挡弓箭，因此也丧失了进犯西原的能力" />
+			<Describe type="String" value="复合弓的使用让西原的弓骑兵在中洲大陆上威名远播，中部诸国不得不穿上更厚更笨重的盔甲来抵挡弓箭，因此也丧失了进犯西原的能力（攻击距离3格）" />
 		</Bow4>
 		<Bow5>
-			<Name type="String" value="西原猎手弓" />
-			<Describe type="String" value="如果说战场上什么是让指挥官们最担心的，那无疑就是通过这种弓箭射出的箭矢：西原的神射手可以在不可思议的距离上击杀对方将领" />
+			<Name type="String" value="西原射手弓" />
+			<Describe type="String" value="如果说战场上什么是让指挥官们最担心的，那无疑就是通过这种弓箭射出的箭矢：西原的神射手可以在不可思议的距离上击杀对方将领（攻击距离3格）" />
 		</Bow5>
-		<Crossbow1>
+		<CrossBow1>
 			<Name type="String" value="轻弩" />
-			<Describe type="String" value="这种武器虽然射程有限，但是从暗处射来的短箭往往成为骑士们噩梦" />
-		</Crossbow1>
-		<Crossbow2>
+			<Describe type="String" value="这种武器虽然射程有限，但是从暗处射来的短箭往往成为骑士们噩梦（攻击距离2格）" />
+		</CrossBow1>
+		<CrossBow2>
 			<Name type="String" value="猎弩" />
-			<Describe type="String" value="这种经过加强的弩威力惊人，在近距离上它可以射穿棕熊的头骨" />
-		</Crossbow2>
-		<Crossbow3>
+			<Describe type="String" value="这种经过加强的弩威力惊人，在近距离上它可以射穿棕熊的头骨（攻击距离2格）" />
+		</CrossBow2>
+		<CrossBow3>
 			<Name type="String" value="复合弩" />
-			<Describe type="String" value="复合弓的使用促使了这种弩的诞生，它上箭更轻松，射程更远，威力依旧惊人" />
-		</Crossbow3>
-		<Crossbow4>
+			<Describe type="String" value="复合弓的使用促使了这种弩的诞生，它上箭更轻松，射程更远，威力依旧惊人（攻击距离2格）" />
+		</CrossBow3>
+		<CrossBow4>
 			<Name type="String" value="连击弩" />
-			<Describe type="String" value="经过精巧组装的机关弩，能够对敌人进行两次打击，但上箭缓慢" />
-		</Crossbow4>
-		<Crossbow5>
+			<Describe type="String" value="这种经过精巧组装的机关弩能够对敌人进行两次打击，但上箭缓慢且射程有限（攻击距离1格）" />
+		</CrossBow4>
+		<CrossBow5>
 			<Name type="String" value="猎鲨弩" />
-			<Describe type="String" value="对于时刻面对着海盗威胁的水手们来说，一把使用简单但威力十足的弩是必不可少的；对船王之国菲比斯来说，这种弩也是对抗贾斯丁的最强武器" />
-		</Crossbow5>
+			<Describe type="String" value="对于时刻面对着海盗威胁的水手们来说，一把使用简单但威力十足的弩是必不可少的；对船王之国菲比斯来说，这种弩也是对抗贾斯丁的最强武器（攻击距离2格）" />
+		</CrossBow5>
 	</SweaponData>
 	<HorseData>
-		<Lighthorse1>
+		<LightHorse1>
 			<Name type="String" value="驽马" />
 			<Describe type="String" value="如果说这种马有什么作用的话，那就是聊胜于无了" />
-		</Lighthorse1>
-		<Lighthorse2>
+		</LightHorse1>
+		<LightHorse2>
 			<Name type="String" value="狩猎马" />
 			<Describe type="String" value="一般打猎时常用的马，不过没经受过战场训练" />
-		</Lighthorse2>
-		<Lighthorse3>
+		</LightHorse2>
+		<LightHorse3>
 			<Name type="String" value="河谷马" />
 			<Describe type="String" value="生活在锐脊河谷地带的一种低矮马种，拥有不错的速度和耐力" />
-		</Lighthorse3>
-		<Lighthorse4>
+		</LightHorse3>
+		<LightHorse4>
 			<Name type="String" value="山地马" />
 			<Describe type="String" value="在山地之国克里夫生活的一种山地马种，经常被选为斥候用马" />
-		</Lighthorse4>
-		<Lighthorse5>
+		</LightHorse4>
+		<LightHorse5>
 			<Name type="String" value="西原马" />
 			<Describe type="String" value="西原诸国的瑰宝，中州大路上最优秀的轻装战马，拥有极为优秀的耐力和奔跑速度" />
-		</Lighthorse5>
+		</LightHorse5>
 		<HeavyHorse1>
 			<Name type="String" value="年老战马" />
 			<Describe type="String" value="这种重装战马已经过了最佳的服役年限" />
@@ -309,66 +361,66 @@
 		</Shield5>
 	</ShieldData>
 	<ArmorData>
-		<Lightarmor1>
+		<LightArmor1>
 			<Name type="String" value="轻皮甲" />
 			<Describe type="String" value="一种轻巧的皮甲，但防御力有限" />
-		</Lightarmor1>
-		<Lightarmor2>
+		</LightArmor1>
+		<LightArmor2>
 			<Name type="String" value="斥候皮甲" />
 			<Describe type="String" value="斥候们常用的皮甲，在保证轻巧的基础上加入了部分金属，提高了防御力" />
-		</Lightarmor2>
-		<Lightarmor3>
+		</LightArmor2>
+		<LightArmor3>
 			<Name type="String" value="犀皮甲" />
 			<Describe type="String" value="使用坚硬的犀牛皮打造的皮甲，拥有不错的防御力" />
-		</Lightarmor3>
-		<Lightarmor4>
+		</LightArmor3>
+		<LightArmor4>
 			<Name type="String" value="铁鳞皮甲" />
 			<Describe type="String" value="这种皮甲在关键部位加入了多层铁鳞，可以抵抗一部分箭矢" />
-		</Lightarmor4>
-		<Lightarmor5>
+		</LightArmor4>
+		<LightArmor5>
 			<Name type="String" value="西原勇士皮甲" />
 			<Describe type="String" value="西原的勇士们才有资格拥有的精制皮甲，所有的部位都经过精细的防护处理" />
-		</Lightarmor5>
-		<Midarmor1>
+		</LightArmor5>
+		<MidArmor1>
 			<Name type="String" value="鳞甲" />
 			<Describe type="String" value="在布甲上缝上一些鳞片构成的鳞甲，因为制作简单而被广泛使用" />
-		</Midarmor1>
-		<Midarmor2>
+		</MidArmor1>
+		<MidArmor2>
 			<Name type="String" value="短链甲" />
 			<Describe type="String" value="使用铁链编织而成的锁子甲，因为成本原因，防御面积较小" />
-		</Midarmor2>
-		<Midarmor3>
+		</MidArmor2>
+		<MidArmor3>
 			<Name type="String" value="长链甲" />
 			<Describe type="String" value="及膝长的锁子甲，能够有效防御大部分挥砍攻击" />
-		</Midarmor3>
-		<Midarmor4>
+		</MidArmor3>
+		<MidArmor4>
 			<Name type="String" value="精钢鳞甲" />
 			<Describe type="String" value="在优质的皮甲内衬上细心的缝制了精钢鳞片，主要部位有得到了有效防御" />
-		</Midarmor4>
-		<Midarmor5>
+		</MidArmor4>
+		<MidArmor5>
 			<Name type="String" value="百夫长鳞甲" />
 			<Describe type="String" value="北境军队的百夫长们配制的精制鳞甲，在防御力和行动之间取到了最优值" />
-		</Midarmor5>
-		<Heavyarmor1>
+		</MidArmor5>
+		<HeavyArmor1>
 			<Name type="String" value="胸甲" />
 			<Describe type="String" value="使用金属环片编织而成的重装铠甲，制作简单，防御不俗" />
-		</Heavyarmor1>
-		<Heavyarmor2>
+		</HeavyArmor1>
+		<HeavyArmor2>
 			<Name type="String" value="环片甲" />
 			<Describe type="String" value="用金属制作的胸甲，可以有效保护上半身" />
-		</Heavyarmor2>
-		<Heavyarmor3>
+		</HeavyArmor2>
+		<HeavyArmor3>
 			<Name type="String" value="全身板甲" />
 			<Describe type="String" value="简单的全身板甲，可以防御大多数部位的攻击，但对于熟练的战士来说依旧有机可乘" />
-		</Heavyarmor3>
-		<Heavyarmor4>
+		</HeavyArmor3>
+		<HeavyArmor4>
 			<Name type="String" value="骑士板甲" />
 			<Describe type="String" value="贵族骑士们装备的精制全身板甲，防御力惊人，但略显笨重" />
-		</Heavyarmor4>
-		<Heavyarmor5>
+		</HeavyArmor4>
+		<HeavyArmor5>
 			<Name type="String" value="皇家守卫甲" />
 			<Describe type="String" value="没有人不畏惧都文力的皇家重装骑士，看到他们的盔甲你就会明白为什么他们难以战胜" />
-		</Heavyarmor5>
+		</HeavyArmor5>
 	</ArmorData>
 	<RetainerData>
 		<Scout>
