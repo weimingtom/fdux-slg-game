@@ -21,7 +21,7 @@
 			<Mesh type="String" value="LightCavalry.mesh"/>
 			<Mat type="String" value="LightCavalry"/>
 		</Cossa>
-		</WingsLightCavalry>
+		<WingsLightCavalry>
 			<Picture type="String" value="qingbu.png" />
 			<Mesh type="String" value="LightCavalry.mesh"/>
 			<Mat type="String" value="LightCavalry"/>
@@ -128,7 +128,7 @@
 		</DandelionSquad>
 		<WingsLightInf>
 			<Type type="Int" value="0"/>
-			<SquadType type="Int" value="0"/>
+			<SquadType type="Int" value="1"/>
 			<SoilderId type="String" value="WingsSoilder"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="ShortAxe"/>
@@ -220,7 +220,7 @@
 		</Olivia>
 		<Cossa>
 			<Type type="Int" value="0"/>
-			<SquadType type="Int" value="2"/>
+			<SquadType type="Int" value="1"/>
 			<SoilderId type="String" value="WingsSoilder"/>
 			<HorseId type="String" value="LightHorse3"/>
 			<PweaponId type="String" value="ShortSword4"/>
@@ -228,11 +228,15 @@
 			<ShieldId type="String" value="Shield3"/>
 			<ArmorId type="String" value="MidArmor4"/>
 			<SkillTable>
-				<Faith type="Int" value="0"/>
-				<StrengthenSprite type="Int" value="0"/>
-				<Heal type="Int" value="1"/>
-				<MagicShield type="Int" value="1"/>
-				<Pray type="Int" value="1" />
+				<RangedAttackTrain1 type="Int" value="0"/>
+				<RangedAttackTrain2 type="Int" value="0"/>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<SuppressAttack type="Int" value="1"/>
+				<OneHandSword type="Int" value="2"/>
+				<Bow type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="Cossa"/>
 			<RetainerId type="String" value="Scout"/>
@@ -248,7 +252,7 @@
 		</Cossa>
 		<WingsLightCavalry>
 			<Type type="Int" value="0"/>
-			<SquadType type="Int" value="3"/>
+			<SquadType type="Int" value="1"/>
 			<SoilderId type="String" value="WingsSoilder"/>
 			<HorseId type="String" value="LightHorse3"/>
 			<PweaponId type="String" value="ShortSword2"/>
@@ -256,11 +260,15 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor3"/>
 			<SkillTable>
-				<Faith type="Int" value="0"/>
-				<StrengthenSprite type="Int" value="0"/>
-				<Heal type="Int" value="1"/>
-				<MagicShield type="Int" value="1"/>
-				<Pray type="Int" value="1" />
+				<RangedAttackTrain1 type="Int" value="0"/>
+				<RangedAttackTrain2 type="Int" value="0"/>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<SuppressAttack type="Int" value="1"/>
+				<OneHandSword type="Int" value="2"/>
+				<Bow type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="WingsLightCavalry"/>
 			<RetainerId type="String" value="Scout"/>
@@ -340,12 +348,11 @@
 			<ShieldId type="String" value="Shield3"/>
 			<ArmorId type="String" value="HeavyArmor1"/>
 			<SkillTable>
-				<AttackTrain1 type="Int" value="0"/>
-				<AttackTrain2 type="Int" value="0"/>
+				<DefenceTrain1 type="Int" value="0"/>
 				<Defence type="Int" value="1"/>
-				<MiddleArmor type="Int" value="2"/>
+				<ShortSpear type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
-				<OneHandSword type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="DuxHeavySpear"/>
 			<RetainerId type="String" value="Scout"/>
@@ -361,7 +368,7 @@
 		</DuxHeavySpear>
 		<DuxHeavyCavalry>
 			<Type type="Int" value="0"/>
-			<SquadType type="Int" value="2"/>
+			<SquadType type="Int" value="0"/>
 			<SoilderId type="String" value="DuxSoilder"/>
 			<HorseId type="String" value="HeavyHorse3"/>
 			<PweaponId type="String" value="ShortSpear3"/>
@@ -369,12 +376,11 @@
 			<ShieldId type="String" value="Shield3"/>
 			<ArmorId type="String" value="HeavyArmor2"/>
 			<SkillTable>
-				<AttackTrain1 type="Int" value="0"/>
-				<AttackTrain2 type="Int" value="0"/>
+				<DefenceTrain1 type="Int" value="0"/>
 				<Defence type="Int" value="1"/>
-				<MiddleArmor type="Int" value="2"/>
+				<ShortSpear type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
-				<OneHandSword type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="DuxHeavyCavalry"/>
 			<RetainerId type="String" value="Scout"/>
@@ -390,7 +396,7 @@
 		</DuxHeavyCavalry>
 		<FantasyHeavyCavalry>
 			<Type type="Int" value="0"/>
-			<SquadType type="Int" value="2"/>
+			<SquadType type="Int" value="0"/>
 			<SoilderId type="String" value="FantasySoilder"/>
 			<HorseId type="String" value="HeavyHorse1"/>
 			<PweaponId type="String" value="ShortSword3"/>
@@ -398,12 +404,11 @@
 			<ShieldId type="String" value="Shield3"/>
 			<ArmorId type="String" value="HeavyArmor2"/>
 			<SkillTable>
-				<AttackTrain1 type="Int" value="0"/>
-				<AttackTrain2 type="Int" value="0"/>
+				<DefenceTrain1 type="Int" value="0"/>
 				<Defence type="Int" value="1"/>
-				<MiddleArmor type="Int" value="2"/>
+				<ShortSpear type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
-				<OneHandSword type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="FantasyHeavyCavalry"/>
 			<RetainerId type="String" value="Scout"/>

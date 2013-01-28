@@ -384,5 +384,7 @@ AVGLib.AddSquad("Cheetah","CheetahSquad");
 AVGLib.AddSquad("Dandelion","DandelionSquad");
 AVGLib.AddSquad("WingsLightInf","WingsLightInf");
 AVGLib.AddSquad("WingsCrossBow","WingsCrossBow");
+AVGLib.AddSquad("Cossa","Cossa");
+AVGLib.AddSquad("WingsLightCavalry","WingsLightCavalry");
 AVGLib.SetPlayerFaction("Wing");
 StateLib.BattleState("battle1.xml");
