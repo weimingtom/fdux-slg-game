@@ -963,7 +963,7 @@
         </Group>
 
 
-        <Group name="HeavyArmor" texture="eqp_heavyarmor.png" size="45 45">
+        <Group name="eqp_heavyarmor" texture="eqp_heavyarmor.png" size="45 45">
             <Index name="normal">
                 <Frame point="0 0"/>
             </Index>
@@ -984,7 +984,7 @@
         </Group>
 
 
-        <Group name="LightArmor" texture="eqp_lightarmor.png" size="45 45">
+        <Group name="eqp_lightarmor" texture="eqp_lightarmor.png" size="45 45">
             <Index name="normal">
                 <Frame point="0 0"/>
             </Index>
@@ -998,7 +998,7 @@
         </Group>
 
 
-        <Group name="MiddleArmor" texture="eqp_midarmor.png" size="45 45">
+        <Group name="eqp_midarmor" texture="eqp_midarmor.png" size="45 45">
             <Index name="normal">
                 <Frame point="0 0"/>
             </Index>
