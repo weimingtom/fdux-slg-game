@@ -131,7 +131,7 @@
 			<SquadType type="Int" value="1"/>
 			<SoilderId type="String" value="WingsSoilder"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="ShortAxe"/>
+			<PweaponId type="String" value="ShortAxe1"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="Shield1"/>
 			<ArmorId type="String" value="LightArmor1"/>
@@ -163,7 +163,7 @@
 			<SquadType type="Int" value="1"/>
 			<SoilderId type="String" value="WingsSoilder"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="ShortsAxe"/>
+			<PweaponId type="String" value="ShortAxe1"/>
 			<SweaponId type="String" value="CrossBow1"/>
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor1"/>
@@ -256,7 +256,7 @@
 			<SoilderId type="String" value="WingsSoilder"/>
 			<HorseId type="String" value="LightHorse3"/>
 			<PweaponId type="String" value="ShortSword2"/>
-			<SweaponId type="String" value="Bow4"/>
+			<SweaponId type="String" value="Bow3"/>
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor3"/>
 			<SkillTable>
@@ -640,7 +640,7 @@
 				<Conter type="Float" value="2.0" />
 			</AttrModifer>
 		</ShortSword1>
-		<Shortsword2>
+		<ShortSword2>
 			<Type type="Int" value="0" />
 			<Value type="Int" value="15" />
 			<Script type="String" value="none" />
@@ -663,7 +663,7 @@
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="2.0" />
 			</AttrModifer>
-		</Shortsword2>
+		</ShortSword2>
 		<ShortSword3>
 			<Type type="Int" value="0" />
 			<Value type="Int" value="24" />
