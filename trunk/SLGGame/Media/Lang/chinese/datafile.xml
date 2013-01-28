@@ -38,16 +38,16 @@
 			<Describe type="String" value="达克斯骑士"/>
 		</DuxLightBow>
 		<DuxHeavySpear>
-			<Name type="String" value="达克斯高阶骑士"/>
-			<Describe type="String" value="达克斯高阶骑士"/>
+			<Name type="String" value="达克斯男爵"/>
+			<Describe type="String" value="达克斯男爵"/>
 		</DuxHeavySpear>
 		<DuxHeavyCavalry>
-			<Name type="String" value="达克斯爵士"/>
-			<Describe type="String" value="达克斯爵士"/>
+			<Name type="String" value="达克斯子爵"/>
+			<Describe type="String" value="达克斯子爵"/>
 		</DuxHeavyCavalry>
 		<FantasyHeavyCavalry>
-			<Name type="String" value="凡塔斯爵士"/>
-			<Describe type="String" value="凡塔斯爵士"/>
+			<Name type="String" value="凡塔斯子爵"/>
+			<Describe type="String" value="凡塔斯子爵"/>
 		</FantasyHeavyCavalry>
 	</LeaderDate>
 	<SquadData>
