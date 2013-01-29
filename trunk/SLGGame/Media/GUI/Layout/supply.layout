@@ -415,8 +415,9 @@
             <Widget type="TextBox" skin="TextBox" position="20 80 255 25" name="ItemPrice">
                 <Property key="FontHeight" value="22"/>
             </Widget>
-            <Widget type="TextBox" skin="TextBox" position="20 115 255 270" name="ItemInfo">
+            <Widget type="EditBox" skin="EditBoxEmpty" position="20 115 255 270" name="ItemInfo">
                 <Property key="FontHeight" value="22"/>
+                <Property key="WordWrap" value="true"/>
             </Widget>
         </Widget>
         <Widget type="Window" skin="SLGMiniWindowSkin" position="980 5 290 305" name="TemaWindow">

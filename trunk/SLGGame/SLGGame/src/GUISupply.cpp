@@ -490,6 +490,7 @@ void GUISupply::showItem(int type)
 		{
 			std::string temppath = path+"/"+ (*it) + std::string("/Type");
 			DataLibrary::getSingletonPtr()->getData(temppath,equipSubType);
+			data->setSubType(equipSubType);
 
 			std::map<std::string,enumtype> skillmap;
 			skillmap=army->getSkillTable();
@@ -519,7 +520,39 @@ void GUISupply::buyItem(int index,WeaponItemData* item)
 	if(!item->getEquip() && item->getCanBuy() && item->getIsHaveSkill())
 	{
 		if(item->getType()!=EQUIP_RETAINER)
+		{
+			if(item->getType()==EQUIP_PWEAPON && (item->getSubType()==EQUIP_PWEAPON_TWOHANDSWORD || item->getSubType()==EQUIP_PWEAPON_TWOHANDBLUNT))
+			{
+				if(army->getShieldId()!="none")
+				{
+					int value=0;
+					std::string path="StaticData/ShieldData/"+army->getShieldId()+"/Value";
+					DataLibrary::getSingletonPtr()->getData(path,value);
+					
+					m_Money+=(value*army->getUnitNum())/2;
+
+					army->unloadEquipment(EQUIP_SHIELD);
+				}
+			}
+			else if(item->getType()==EQUIP_SHIELD)
+			{
+				int value=0;
+				std::string path="StaticData/PweaponData/"+army->getPweaponId()+"/Type";
+				DataLibrary::getSingletonPtr()->getData(path,value);
+
+				if(value==EQUIP_PWEAPON_TWOHANDSWORD || value==EQUIP_PWEAPON_TWOHANDBLUNT)
+				{
+					path="StaticData/PweaponData/"+army->getPweaponId()+"/Value";
+					DataLibrary::getSingletonPtr()->getData(path,value);
+					
+					m_Money+=(value*army->getUnitNum())/2;
+
+					army->unloadEquipment(EQUIP_PWEAPON);
+				}
+			}
+
 			army->equipEquipment(item->getType(),item->getID());
+		}
 		else
 		{
 			if(m_CurrSquadEquipItem!=NULL)
@@ -592,9 +625,10 @@ void GUISupply::setItemInfo(WeaponItemData* item)
 		Squad* army=mBattleSquad.at(m_CurrSquadIndex);
 		mTextItemName->setCaption(item->getName());
 		mTextItemPrice->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("ItemPrice"))%item->getPriceValue()%item->getOnePrice()%army->getUnitNum()));
-		mItemIcon->setItemResource(item->getImage());
+		mItemIcon->setItemResource("eqp");
 		mItemIcon->setItemGroup(item->getImage());
 		mItemIcon->setVisible(true);
+		mTextItemInfo->setCaption(item->getDescribe());
 	}
 	else
 	{

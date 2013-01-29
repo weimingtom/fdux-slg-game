@@ -22,7 +22,8 @@ public:
 		  mID(id),
 		  mPeopleNum(peopleNum),
 		  mResourceInfo(nullptr),
-		  mResourceImage("")
+		  mResourceImage(""),
+		  mSubType(0)
 	  {
 		  mIsEquip=false;
 
@@ -111,6 +112,13 @@ public:
 		  return name;
 	  }
 
+	  std::string getDescribe()
+	  {
+		  std::string des;
+		  DataLibrary::getSingletonPtr()->getData(mTypeString+mID+"/Describe",des);
+		  return des;
+	  }
+
 	  std::string getID()
 	  {
 		  return mID;
@@ -160,12 +168,23 @@ public:
 		  return price;
 	  }
 
+	  void setSubType(int subType)
+	  {
+		  mSubType=subType;
+	  }
+
+	  int getSubType()
+	  {
+		  return mSubType;
+	  }
+
 private:
 
 	std::string mID;
 	std::string mTypeString;
 	int mPeopleNum;
 	int mType;
+	int mSubType;
 	bool mIsEquip;
 	bool mIsHaveSkill;
 	bool mIsCanBuy;
