@@ -18,6 +18,9 @@ def PweaponData(table,xmlTree,stringTree):
     stringTree.append(stringTreeRoot)
     nrows = table.nrows
     for i in range(3,nrows):
+        if table.cell(i,13).value=="" :
+            return
+
         print "PWwaponData:"+table.cell(i,13).value
         name = table.cell(i,13).value
         item = Element(name)

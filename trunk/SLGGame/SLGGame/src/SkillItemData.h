@@ -107,6 +107,13 @@ public:
 		  }
 	  }
 
+	  std::string getDescribe()
+	  {
+		  std::string des;
+		  DataLibrary::getSingletonPtr()->getData(mTypeString+mID+"/Describe",des);
+		  return des;
+	  }
+
 	  std::string getName()
 	  {
 		  return mName;

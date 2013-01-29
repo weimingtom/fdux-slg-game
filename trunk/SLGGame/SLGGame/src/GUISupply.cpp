@@ -9,6 +9,8 @@
 #include <string>
 #include <map>
 
+#include "conversion.h"
+
 const char* gEquipTypeName[EQUIP_RETAINER+1][6] =
 {
 	"","","","","","",
@@ -628,7 +630,32 @@ void GUISupply::setItemInfo(WeaponItemData* item)
 		mItemIcon->setItemResource("eqp");
 		mItemIcon->setItemGroup(item->getImage());
 		mItemIcon->setVisible(true);
-		mTextItemInfo->setCaption(item->getDescribe());
+		mTextItemInfo->setCaption("");
+
+		std::wstring tempstring;
+		std::string d=item->getDescribe();
+		UTF8ToUnicode(d,tempstring);
+		UnicodeToANSI(tempstring,d);
+
+		DWORD dwNum = MultiByteToWideChar (CP_ACP, 0, d.c_str(), -1, NULL, 0);
+		wchar_t *pwText;
+		pwText = new wchar_t[dwNum];
+
+		MultiByteToWideChar (CP_ACP, 0, d.c_str(), -1, pwText, dwNum);
+
+		std::wstring text=pwText;
+		while(!text.empty())
+		{
+			mTextItemInfo->addText(text.substr(0,1));
+			if (mTextItemInfo->getHScrollPosition()!=0)//自动换行
+			{
+				int length=mTextItemInfo->getTextLength();
+				mTextItemInfo->eraseText(length-1);
+				mTextItemInfo->addText("\n");
+				mTextItemInfo->addText(text.substr(0,1));
+			}
+			text.erase(text.begin());
+		}
 	}
 	else
 	{
@@ -650,6 +677,33 @@ void GUISupply::setSkillInfo(SkillItemData* item)
 		mItemIcon->setItemGroup(item->getImage());
 		mItemIcon->setItemName("normal");
 		mItemIcon->setVisible(true);
+
+		mTextItemInfo->setCaption("");
+
+		std::wstring tempstring;
+		std::string d=item->getDescribe();
+		UTF8ToUnicode(d,tempstring);
+		UnicodeToANSI(tempstring,d);
+
+		DWORD dwNum = MultiByteToWideChar (CP_ACP, 0, d.c_str(), -1, NULL, 0);
+		wchar_t *pwText;
+		pwText = new wchar_t[dwNum];
+
+		MultiByteToWideChar (CP_ACP, 0, d.c_str(), -1, pwText, dwNum);
+
+		std::wstring text=pwText;
+		while(!text.empty())
+		{
+			mTextItemInfo->addText(text.substr(0,1));
+			if (mTextItemInfo->getHScrollPosition()!=0)//自动换行
+			{
+				int length=mTextItemInfo->getTextLength();
+				mTextItemInfo->eraseText(length-1);
+				mTextItemInfo->addText("\n");
+				mTextItemInfo->addText(text.substr(0,1));
+			}
+			text.erase(text.begin());
+		}
 	}
 	else
 	{
@@ -759,11 +813,11 @@ void GUISupply::onOtherSceneNotify( std::string arg )
 	if(arg=="FadeInOver")
 	{
 		MoveTo(0,0,1000,mArmyWindow);
-		MoveTo(240,5,1000,mAttributeWindow);
+		MoveTo(230,5,1000,mAttributeWindow);
 		MoveTo(5,500,1000,mControlWindow);
-		MoveTo(240,310,1000,mItemWindow);
-		MoveTo(970,5,1000,mTemaWindow);
-		MoveTo(970,310,1000,mItemAttributeWindow);
+		MoveTo(230,310,1000,mItemWindow);
+		MoveTo(980,5,1000,mTemaWindow);
+		MoveTo(980,310,1000,mItemAttributeWindow);
 	}
 	else if(arg=="MoveToOver" && mIsHideScene)
 	{
