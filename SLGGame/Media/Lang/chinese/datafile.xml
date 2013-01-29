@@ -155,23 +155,23 @@
 		</ShortSword5>
 		<HeavySword1>
 			<Name type="String" value="大剑" />
-			<Describe type="String" value="剑身长而厚的大剑是体格强壮之人最喜欢的武器，但它挥舞起来的巨大半径也给大编队作战带来了不便" />
+			<Describe type="String" value="剑身长而厚的大剑是体格强壮之人最喜欢的武器，但它挥舞起来的巨大半径也给大编队作战带来了不便&#x0D;&#x0D;无法同时装备盾牌" />
 		</HeavySword1>
 		<HeavySword2>
 			<Name type="String" value="重剑" />
-			<Describe type="String" value="这种沉重的巨剑有着惊人的杀伤力，这足以弥补它的沉重造成的行动不便" />
+			<Describe type="String" value="这种沉重的巨剑有着惊人的杀伤力，这足以弥补它的沉重造成的行动不便&#x0D;&#x0D;无法同时装备盾牌" />
 		</HeavySword2>
 		<HeavySword3>
 			<Name type="String" value="斩马刀" />
-			<Describe type="String" value="顾名思义，这种长刀拥有将战马一刀两断的惊人杀伤力，当然使用它的风险也是显而易见的：你将完全暴露在敌方远程打击力量下" />
+			<Describe type="String" value="顾名思义，这种长刀拥有将战马一刀两断的惊人杀伤力，当然使用它的风险也是显而易见的：你将完全暴露在敌方远程打击力量下&#x0D;&#x0D;无法同时装备盾牌" />
 		</HeavySword3>
 		<HeavySword4>
 			<Name type="String" value="北境巨剑" />
-			<Describe type="String" value="如果说北境的山岳中最凶猛的生物是什么，那无疑就是身负巨剑的勇士们，你经常能见到打猎归来的他们扛着被斩为两段的可怜猛兽" />
+			<Describe type="String" value="如果说北境的山岳中最凶猛的生物是什么，那无疑就是身负巨剑的勇士们，你经常能见到打猎归来的他们扛着被斩为两段的可怜猛兽&#x0D;&#x0D;无法同时装备盾牌" />
 		</HeavySword4>
 		<HeavySword5>
 			<Name type="String" value="诺斯焰型剑" />
-			<Describe type="String" value="这种带有火焰状锯齿的巨剑是诺斯王家的标志之一，它们被分配给诺斯最强悍的战士，为此，你需要去猎杀一头巨熊来证明自己" />
+			<Describe type="String" value="这种带有火焰状锯齿的巨剑是诺斯王家的标志之一，它们被分配给诺斯最强悍的战士，为此，你需要去猎杀一头巨熊来证明自己&#x0D;&#x0D;无法同时装备盾牌" />
 		</HeavySword5>
 		<ShortAxe1>
 			<Name type="String" value="短斧" />
@@ -195,23 +195,23 @@
 		</ShortAxe5>
 		<HeavyAxe1>
 			<Name type="String" value="伐木斧" />
-			<Describe type="String" value="这种大斧经常被用来劈木头，不过不要忘了一个事实：木头比人硬" />
+			<Describe type="String" value="这种大斧经常被用来劈木头，不过不要忘了一个事实：木头比人硬&#x0D;&#x0D;无法同时装备盾牌" />
 		</HeavyAxe1>
 		<HeavyAxe2>
 			<Name type="String" value="大斧" />
-			<Describe type="String" value="这种斧头跟伐木斧的区别很简单：它专门用来劈人的" />
+			<Describe type="String" value="这种斧头跟伐木斧的区别很简单：它专门用来劈人的&#x0D;&#x0D;无法同时装备盾牌" />
 		</HeavyAxe2>
 		<HeavyAxe3>
 			<Name type="String" value="双刃巨斧" />
-			<Describe type="String" value="经过改良的大斧，前端拥有两个斧刃，在运用灵活的人手中它将发挥出惊人的杀伤力" />
+			<Describe type="String" value="经过改良的大斧，前端拥有两个斧刃，在运用灵活的人手中它将发挥出惊人的杀伤力&#x0D;&#x0D;无法同时装备盾牌" />
 		</HeavyAxe3>
 		<HeavyAxe4>
 			<Name type="String" value="斩击斧" />
-			<Describe type="String" value="这种大斧的斧刃较长，因此在必要的时候它可以被当成大刀使用，前提是你能控制住它的重心" />
+			<Describe type="String" value="这种大斧的斧刃较长，因此在必要的时候它可以被当成大刀使用，前提是你能控制住它的重心&#x0D;&#x0D;无法同时装备盾牌" />
 		</HeavyAxe4>
 		<HeavyAxe5>
 			<Name type="String" value="海王战斧" />
-			<Describe type="String" value="如何让那些手持大斧、天性凶悍的海盗们臣服？盛产海盗的岛国贾斯丁给出了答案：使用可以把海盗们和他们的斧头一起劈成两节的巨大战斧" />
+			<Describe type="String" value="如何让那些手持大斧、天性凶悍的海盗们臣服？盛产海盗的岛国贾斯丁给出了答案：使用可以把海盗们和他们的斧头一起劈成两节的巨大战斧&#x0D;&#x0D;无法同时装备盾牌" />
 		</HeavyAxe5>
 		<ShortSpear1>
 			<Name type="String" value="短矛" />

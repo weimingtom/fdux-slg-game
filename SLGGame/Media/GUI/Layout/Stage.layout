@@ -81,7 +81,6 @@
         <Widget type="Button" skin="ButtonImage" position="1190 355 64 64" name="Supprot">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
-            <Property key="Caption" value="1234"/>
             <Property key="TextColour" value="0.230469 1 0"/>
             <Property key="ImageResource" value="button"/>
             <Property key="Visible" value="false"/>
