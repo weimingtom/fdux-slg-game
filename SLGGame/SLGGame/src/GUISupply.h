@@ -135,7 +135,7 @@ private:
 	MyGUI::ImageBox* mItemIcon;
 	MyGUI::TextBox* mTextItemName;
 	MyGUI::TextBox* mTextItemPrice;
-	MyGUI::TextBox* mTextItemInfo;
+	MyGUI::EditBox* mTextItemInfo;
 
 	MyGUI::TextBox* mTextArmyInfo;
 
