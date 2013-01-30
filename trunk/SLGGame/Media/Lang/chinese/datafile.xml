@@ -49,6 +49,18 @@
 			<Name type="String" value="凡塔斯子爵"/>
 			<Describe type="String" value="凡塔斯子爵"/>
 		</FantasyHeavyCavalry>
+		<GuardHeavySpear>
+			<Name type="String" value="法卫队队长"/>
+			<Describe type="String" value="法卫队队长"/>
+		</GuardHeavySpear>
+		<GuardLightBow>
+			<Name type="String" value="法卫队斥候长"/>
+			<Describe type="String" value="法卫队斥候长"/>
+		</GuardLightBow>
+		<GuardLightHalberd>
+			<Name type="String" value="法卫队军士长"/>
+			<Describe type="String" value="法卫队军士长"/>
+		</GuardLightHalberd>
 	</LeaderDate>
 	<SquadData>
 		<CheetahSquad>
@@ -99,6 +111,18 @@
 			<Name type="String" value="凡塔斯重骑兵队"/>
 			<Describe type="String" value="凡塔斯重骑兵队"/>
 		</FantasyHeavyCavalry>
+		<GuardLightHalberd>
+			<Name type="String" value="法卫队轻步兵队"/>
+			<Describe type="String" value="法卫队轻步兵队"/>
+		</GuardLightHalberd>
+		<GuardLightBow>
+			<Name type="String" value="法卫队轻弓兵队"/>
+			<Describe type="String" value="法卫队轻弓兵队"/>
+		</GuardLightBow>
+		<GuardHeavySpear>
+			<Name type="String" value="法卫队重步兵队"/>
+			<Describe type="String" value="法卫队重步兵队"/>
+		</GuardHeavySpear>
 	</SquadData>
 	<SoilderData>
 		<WingsSoilder>
