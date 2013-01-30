@@ -266,17 +266,47 @@ void UnitGrap::setAniGroup(std::string anigroup)
 		mAttackName = std::string("Attack1H2");
 		mIdleName = std::string("Ready1H");
 	}
-	else if(anigroup == "2HL2")
+	else if(anigroup == "2HL")
 	{
 		mWalkName = std::string("Run2HL");;
 		mAttackName = std::string("Attack2HL2");
 		mIdleName = std::string("Ready2HL");
 	}
-	else if(anigroup == "bow")
+	else if(anigroup == "2H1")
 	{
-		mWalkName = std::string("Run1H");;
-		mAttackName = std::string("AttackBow");
-		mIdleName = std::string("Ready1H");
+		mWalkName = std::string("Run2H");;
+		mAttackName = std::string("Attack2H1");
+		mIdleName = std::string("Ready2H");
+	}
+	else if(anigroup == "Bow")
+	{
+		if(mHorseEntity==NULL)
+		{
+			mWalkName = std::string("Run1H");;
+			mAttackName = std::string("AttackBow");
+			mIdleName = std::string("Ready1H");
+		}
+		else
+		{
+			mWalkName = std::string("RunBow");;
+			mAttackName = std::string("AttackBow");
+			mIdleName = std::string("ReadyBow");
+		}
+	}
+	else if(anigroup == "crossbow")
+	{
+		if(mHorseEntity==NULL)
+		{
+			mWalkName = std::string("Run1H");
+			mAttackName = std::string("AttackCrossbow");
+			mIdleName = std::string("Ready1H");
+		}
+		else
+		{
+			mWalkName = std::string("RunCrossbow");
+			mAttackName = std::string("AttackCrossbow");
+			mIdleName = std::string("ReadyCrossbow");
+		}
 	}
 	mAniBlender->init(mIdleName);
 	if (mHorseAniBlender!=NULL)
