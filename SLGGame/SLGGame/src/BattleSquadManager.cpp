@@ -35,6 +35,10 @@
 
 #include "MapDataManager.h"
 
+#include "GUIBattle.h"
+#include "GUITargetWindow.h"
+#include "GUISquadWindows.h"
+
 BattleSquadManager::BattleSquadManager()
 {
 
@@ -862,6 +866,12 @@ bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* 
 	}
 
 	cutscenebuilder->addCutScene(showValueCutScenes);
+
+	GUIBattle* guibattle=static_cast<GUIBattle *>(GUISystem::getSingleton().createScene(BattleScene));
+	GUITargetWindows* targetGUI=(GUITargetWindows*)guibattle->getSubWindow("TargetWindow");
+	targetGUI->updateSquad();
+	GUISquadWindows* squadGUI=(GUISquadWindows*)guibattle->getSubWindow("SquadWindow");
+	squadGUI->updateSquad();
 
 	if(defenesquad->getUnitNum() > 0)
 		cutscenebuilder->addCutScene(new DirectionCutScene(defenesquad->getSquadId(),dd));
