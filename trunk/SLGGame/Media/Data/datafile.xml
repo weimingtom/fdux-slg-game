@@ -864,7 +864,7 @@
 			<Mat type="String" value="axes" />
 			<PU type="String" value="none" />
 			<PUVector type="String" value="0,0,0" />
-			<AniGroup type="String" value="1H2" />
+			<AniGroup type="String" value="1H3" />
 			<Icon type="String" value="eqp_oneaxe" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
@@ -888,7 +888,7 @@
 			<Mat type="String" value="axes" />
 			<PU type="String" value="none" />
 			<PUVector type="String" value="0,0,0" />
-			<AniGroup type="String" value="1H2" />
+			<AniGroup type="String" value="1H3" />
 			<Icon type="String" value="eqp_oneaxe" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
@@ -912,7 +912,7 @@
 			<Mat type="String" value="axes" />
 			<PU type="String" value="none" />
 			<PUVector type="String" value="0,0,0" />
-			<AniGroup type="String" value="1H2" />
+			<AniGroup type="String" value="1H3" />
 			<Icon type="String" value="eqp_oneaxe" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
@@ -936,7 +936,7 @@
 			<Mat type="String" value="axes" />
 			<PU type="String" value="none" />
 			<PUVector type="String" value="0,0,0" />
-			<AniGroup type="String" value="1H2" />
+			<AniGroup type="String" value="1H3" />
 			<Icon type="String" value="eqp_oneaxe" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
@@ -960,7 +960,7 @@
 			<Mat type="String" value="axes" />
 			<PU type="String" value="none" />
 			<PUVector type="String" value="0,0,0" />
-			<AniGroup type="String" value="1H2" />
+			<AniGroup type="String" value="1H3" />
 			<Icon type="String" value="eqp_oneaxe" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
