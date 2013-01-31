@@ -61,6 +61,30 @@
 			<Name type="String" value="法卫队军士长"/>
 			<Describe type="String" value="法卫队军士长"/>
 		</GuardLightHalberd>
+		<UlvaLightHSword>
+			<Name type="String" value="复国团中级军官"/>
+			<Describe type="String" value="复国团中级军官"/>
+		</UlvaLightHSword>
+		<UlvaLightBow>
+			<Name type="String" value="复国团低级军官"/>
+			<Describe type="String" value="复国团低级军官"/>
+		</UlvaLightBow>
+		<UlvaCrossBow>
+			<Name type="String" value="复国团低级军官"/>
+			<Describe type="String" value="复国团低级军官"/>
+		</UlvaCrossBow>
+		<FNothHeavyHSword>
+			<Name type="String" value="不明军官"/>
+			<Describe type="String" value="不明军官"/>
+		</FNothHeavyHSword>
+		<FNothLightHSword>
+			<Name type="String" value="不明军官"/>
+			<Describe type="String" value="不明军官"/>
+		</FNothLightHSword>
+		<FNothLightBow>
+			<Name type="String" value="不明军官"/>
+			<Describe type="String" value="不明军官"/>
+		</FNothLightBow>
 	</LeaderDate>
 	<SquadData>
 		<CheetahSquad>
@@ -72,12 +96,12 @@
 			<Describe type="String" value="丹德来恩弓兵队"/>
 		</DandelionSquad>
 		<WingsLightInf>
-			<Name type="String" value="翼骑团轻步兵队"/>
-			<Describe type="String" value="翼骑团轻步兵队"/>
+			<Name type="String" value="翼骑团轻装斧兵"/>
+			<Describe type="String" value="翼骑团轻装斧兵"/>
 		</WingsLightInf>
 		<WingsCrossBow>
-			<Name type="String" value="翼骑团弩兵队"/>
-			<Describe type="String" value="翼骑团弩兵队"/>
+			<Name type="String" value="翼骑团轻装弩兵"/>
+			<Describe type="String" value="翼骑团轻装弩兵"/>
 		</WingsCrossBow>
 		<Olivia>
 			<Name type="String" value="奥莉瓦"/>
@@ -88,41 +112,65 @@
 			<Describe type="String" value="柯萨轻骑兵队"/>
 		</Cossa>
 		<WingsLightCavalry>
-			<Name type="String" value="翼骑团轻弓骑队"/>
-			<Describe type="String" value="翼骑团轻弓骑队"/>
+			<Name type="String" value="翼骑团轻装弓骑兵"/>
+			<Describe type="String" value="翼骑团轻装弓骑兵"/>
 		</WingsLightCavalry>
 		<DuxLightSpear>
-			<Name type="String" value="达克斯轻步兵队"/>
-			<Describe type="String" value="达克斯轻步兵队"/>
+			<Name type="String" value="达克斯轻装矛兵"/>
+			<Describe type="String" value="达克斯轻装矛兵"/>
 		</DuxLightSpear>
 		<DuxLightBow>
-			<Name type="String" value="达克斯弓兵队"/>
-			<Describe type="String" value="达克斯弓兵队"/>
+			<Name type="String" value="达克斯轻装弓兵"/>
+			<Describe type="String" value="达克斯轻装弓兵"/>
 		</DuxLightBow>
 		<DuxHeavySpear>
-			<Name type="String" value="达克斯重步兵队"/>
-			<Describe type="String" value="达克斯重步兵队"/>
+			<Name type="String" value="达克斯重装矛兵"/>
+			<Describe type="String" value="达克斯重装矛兵"/>
 		</DuxHeavySpear>
 		<DuxHeavyCavalry>
-			<Name type="String" value="达克斯重骑兵队"/>
-			<Describe type="String" value="达克斯重骑兵队"/>
+			<Name type="String" value="达克斯重骑兵"/>
+			<Describe type="String" value="达克斯重骑兵"/>
 		</DuxHeavyCavalry>
 		<FantasyHeavyCavalry>
-			<Name type="String" value="凡塔斯重骑兵队"/>
-			<Describe type="String" value="凡塔斯重骑兵队"/>
+			<Name type="String" value="凡塔斯重骑兵"/>
+			<Describe type="String" value="凡塔斯重骑兵"/>
 		</FantasyHeavyCavalry>
 		<GuardLightHalberd>
-			<Name type="String" value="法卫队轻步兵队"/>
-			<Describe type="String" value="法卫队轻步兵队"/>
+			<Name type="String" value="法卫队轻装长戟兵"/>
+			<Describe type="String" value="法卫队轻装长戟兵"/>
 		</GuardLightHalberd>
 		<GuardLightBow>
-			<Name type="String" value="法卫队轻弓兵队"/>
-			<Describe type="String" value="法卫队轻弓兵队"/>
+			<Name type="String" value="法卫队轻装弓兵"/>
+			<Describe type="String" value="法卫队轻装弓兵"/>
 		</GuardLightBow>
 		<GuardHeavySpear>
-			<Name type="String" value="法卫队重步兵队"/>
-			<Describe type="String" value="法卫队重步兵队"/>
+			<Name type="String" value="法卫队重装矛兵"/>
+			<Describe type="String" value="法卫队重装矛兵"/>
 		</GuardHeavySpear>
+		<UlvaLightHSword>
+			<Name type="String" value="复国团轻装巨剑兵"/>
+			<Describe type="String" value="复国团轻装巨剑兵"/>
+		</UlvaLightHSword>
+		<UlvaLightBow>
+			<Name type="String" value="复国团轻装弓兵"/>
+			<Describe type="String" value="复国团轻装弓兵"/>
+		</UlvaLightBow>
+		<UlvaCrossBow>
+			<Name type="String" value="复国团轻装弩兵"/>
+			<Describe type="String" value="复国团轻装弩兵"/>
+		</UlvaCrossBow>
+		<FNothHeavyHSword>
+			<Name type="String" value="不明重装巨剑兵"/>
+			<Describe type="String" value="不明重装巨剑兵"/>
+		</FNothHeavyHSword>
+		<FNothLightHSword>
+			<Name type="String" value="不明轻装巨剑兵"/>
+			<Describe type="String" value="不明轻装巨剑兵"/>
+		</FNothLightHSword>
+		<FNothLightBow>
+			<Name type="String" value="不明弓兵"/>
+			<Describe type="String" value="不明弓兵"/>
+		</FNothLightBow>
 	</SquadData>
 	<SoilderData>
 		<WingsSoilder>
