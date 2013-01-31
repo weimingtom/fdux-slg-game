@@ -76,6 +76,36 @@
 			<Mesh type="String" value="HeavyInfOf.mesh"/>
 			<Mat type="String" value="HeavyInfOf"/>
 		</GuardHeavySpear>
+		<UlvaLightHSword>
+			<Picture type="String" value="zhongbu1.png" />
+			<Mesh type="String" value="LightInfOf.mesh"/>
+			<Mat type="String" value="LightInfOf"/>
+		</UlvaLightHSword>
+		<UlvaLightBow>
+			<Picture type="String" value="qingbu.png" />
+			<Mesh type="String" value="LightInfOf.mesh"/>
+			<Mat type="String" value="LightInfOf"/>
+		</UlvaLightBow>
+		<UlvaCrossBow>
+			<Picture type="String" value="qingbu.png" />
+			<Mesh type="String" value="LightInfOf.mesh"/>
+			<Mat type="String" value="LightInfOf"/>
+		</UlvaCrossBow>
+		<FNothLightHSword>
+			<Picture type="String" value="zhongbu1.png" />
+			<Mesh type="String" value="LightInfOf.mesh"/>
+			<Mat type="String" value="LightInfOf"/>
+		</FNothLightHSword>
+		<FNothHeavyHSword>
+			<Picture type="String" value="fuguan1.png" />
+			<Mesh type="String" value="HeavyInfOf.mesh"/>
+			<Mat type="String" value="HeavyInfOf"/>
+		</FNothHeavyHSword>
+		<FNothLightBow>
+			<Picture type="String" value="qingbu.png" />
+			<Mesh type="String" value="LightInfOf.mesh"/>
+			<Mat type="String" value="LightInfOf"/>
+		</FNothLightBow>
 	</LeaderDate>
 	<SquadData>
 		<CheetahSquad>
@@ -529,6 +559,174 @@
 			<UnitMat type="String" value="HeavyInf"/>
 			<MoveSound type="String" value="HeavyInf.mp3"/>
 		</GuardHeavySpear>
+		<UlvaLightHSword>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="0"/>
+			<SoilderId type="String" value="UlvaSoilder"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="HeavySword1"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="MidArmor1"/>
+			<SkillTable>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<ShortSpear type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="UlvaLightHSword"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="3" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="LightInf.mesh"/>
+			<UnitMat type="String" value="LightInf"/>
+			<MoveSound type="String" value="LightInf.mp3"/>
+		</UlvaLightHSword>
+		<UlvaLightBow>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="0"/>
+			<SoilderId type="String" value="UlvaSoilder"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="ShortAxe1"/>
+			<SweaponId type="String" value="Bow1"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="LightArmor1"/>
+			<SkillTable>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<ShortSpear type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="UlvaLightBow"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="3" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="LightInf.mesh"/>
+			<UnitMat type="String" value="LightInf"/>
+			<MoveSound type="String" value="LightInf.mp3"/>
+		</UlvaLightBow>
+		<UlvaCrossBow>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="0"/>
+			<SoilderId type="String" value="UlvaSoilder"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="ShortSword1"/>
+			<SweaponId type="String" value="CrossBow1"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="LightArmor1"/>
+			<SkillTable>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<ShortSpear type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="UlvaCrossBow"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="3" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="LightInf.mesh"/>
+			<UnitMat type="String" value="LightInf"/>
+			<MoveSound type="String" value="LightInf.mp3"/>
+		</UlvaCrossBow>
+		<FNothHeavyHSword>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="0"/>
+			<SoilderId type="String" value="UlvaSoilder"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="HeavySword2"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="HeavyArmor2"/>
+			<SkillTable>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<ShortSpear type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="FNothHeavyHSword"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="3" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="HeavyInf.mesh"/>
+			<UnitMat type="String" value="HeavyInf"/>
+			<MoveSound type="String" value="HeavyInf.mp3"/>
+		</FNothHeavyHSword>
+		<FNothLightHSword>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="0"/>
+			<SoilderId type="String" value="UlvaSoilder"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="HeavySword2"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="MidArmor1"/>
+			<SkillTable>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<ShortSpear type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="FNothLightHSword"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="3" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="LightInf.mesh"/>
+			<UnitMat type="String" value="LightInf"/>
+			<MoveSound type="String" value="LightInf.mp3"/>
+		</FNothLightHSword>
+		<FNothLightBow>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="0"/>
+			<SoilderId type="String" value="UlvaSoilder"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="ShortSword1"/>
+			<SweaponId type="String" value="Bow2"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="LightArmor2"/>
+			<SkillTable>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<ShortSpear type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="FNothLightBow"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="3" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="LightInf.mesh"/>
+			<UnitMat type="String" value="LightInf"/>
+			<MoveSound type="String" value="LightInf.mp3"/>
+		</FNothLightBow>
 	</SquadData>
 	<SoilderData>
 		<WingsSoilder>
