@@ -203,6 +203,7 @@ mDirection(direction)
 
 
 	std::string tempid;
+	mSoilderHaveWeapon=1;
 	datalib->getData(datapath + std::string("/PweaponId"),tempid);
 	if(tempid != "none")
 	{
@@ -211,6 +212,7 @@ mDirection(direction)
 		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/PU"), mPWeaponPU);
 		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/PUVector"), mPWeaponPUVector);
 		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/AniGroup"), mPWeaponAniGroup);
+		datalib->getData( std::string("StaticData/PweaponData/") + tempid + std::string("/SoilderHaveWeapon"), mSoilderHaveWeapon);
 	}
 	else
 	{
@@ -393,9 +395,12 @@ UnitGrap* SquadGraphics::createSoldier()
 	mSoldierIndex++;
 	UnitGrap* unit=new UnitGrap(mSoilderMesh,mSoilderMat,mHorseMesh,mHorseMat,mFactionTexture,mSceneMgr->getRootSceneNode()->createChildSceneNode(mNode->getName()+"_Soldier"+Ogre::StringConverter::toString(mSoldierIndex)));
 
-	unit->createWeapon(mPWeaponMesh,mPWeaponMat,mPWeaponPU,mPWeaponPUVector,UnitGrap::MainWepon);
-	unit->createWeapon(mSWeaponMesh,mSWeaponMat,mSWeaponPU,mSWeaponPUVector,UnitGrap::SecWepon);
-	unit->createWeapon(mShieldMesh,mShieldMat,mShieldPU,mShieldVector,UnitGrap::Shield);
+	if(mSoilderHaveWeapon)
+	{
+		unit->createWeapon(mPWeaponMesh,mPWeaponMat,mPWeaponPU,mPWeaponPUVector,UnitGrap::MainWepon);
+		unit->createWeapon(mSWeaponMesh,mSWeaponMat,mSWeaponPU,mSWeaponPUVector,UnitGrap::SecWepon);
+		unit->createWeapon(mShieldMesh,mShieldMat,mShieldPU,mShieldVector,UnitGrap::Shield);
+	}
 
 	mSoldierUnits.push_back(unit);
 

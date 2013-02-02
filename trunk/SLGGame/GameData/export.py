@@ -248,7 +248,22 @@ def SoilderData(table,xmlTree,stringTree):
         SubElement(stringItem,  'Name', {'type' : "String",'value':table.cell(i,0).value})
         #SubElement(stringItem,  'Describe', {'type' : "String",'value':table.cell(i,18).value})
 
-        
+
+def indent(elem, level=0):
+    i = "\n" + level*"\t"
+    if len(elem):
+        if not elem.text or not elem.text.strip():
+            elem.text = i + "\t"
+        for e in elem:
+            indent(e, level+1)
+            if not e.tail or not e.tail.strip():
+                e.tail = i + "\t"
+        if not e.tail or not e.tail.strip():
+            e.tail = i
+    else:
+        if level and (not elem.tail or not elem.tail.strip()):
+            elem.tail = i
+
 for arg in args:
     print >>sys.stderr, 'extracting data from', arg
     book = xlrd.open_workbook(arg)
@@ -269,7 +284,9 @@ for arg in args:
     ShieldData(book.sheets()[4],xmlTreeRoot,stringTreeRoot)
     ArmorData(book.sheets()[5],xmlTreeRoot,stringTreeRoot)
 
-    xmlTree.write('data.xml',"utf-8")
+    indent(xmlTreeRoot)
+    indent(stringTreeRoot)
+    xmlTree.write('data.xml')
     stringTree.write('string.xml',"utf-8")
 
     print "Over"

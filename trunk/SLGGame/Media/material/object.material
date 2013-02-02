@@ -53,3 +53,18 @@ material axes : NotSkinned/CastShadow/OneTexture
 {
     set_texture_alias Diffuse Axes.dds
 }
+
+material Staves1 : NotSkinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse Staves1.dds
+}
+
+material Staves2 : NotSkinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse Staves2.dds
+}
+
+material Staves3 : NotSkinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse Staves3.dds
+}
