@@ -60,3 +60,23 @@ material HeavyCavalryHorse : Skinned/CastShadow/OneTexture
 {
     set_texture_alias Diffuse HeavyCavalryHorse.dds
 }
+
+material Warmage: Skinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse Warmage.dds
+}
+
+material Elementalist: Skinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse Elementalist.dds
+}
+
+material Pirate: Skinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse Pirate.dds
+}
+
+material Puppet: Skinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse Puppet.dds
+}

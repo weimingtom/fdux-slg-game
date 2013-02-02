@@ -13,8 +13,8 @@
 		</Dandelion>
 		<Olivia>
 			<Picture type="String" value="aoliwa.png" />
-			<Mesh type="String" value="Saint.mesh"/>
-			<Mat type="String" value="Saint"/>
+			<Mesh type="String" value="Warmage.mesh"/>
+			<Mat type="String" value="Warmage"/>
 		</Olivia>
 		<Cossa>
 			<Picture type="String" value="kesa.png" />
@@ -237,10 +237,10 @@
 		</WingsCrossBow>
 		<Olivia>
 			<Type type="Int" value="1"/>
-			<SquadType type="Int" value="4"/>
+			<SquadType type="Int" value="2"/>
 			<SoilderId type="String" value="Magician"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="none"/>
+			<PweaponId type="String" value="Staves2"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor1"/>
@@ -1641,6 +1641,80 @@
 				<Conter type="Float" value="0.0" />
 			</AttrModifer>
 		</Halberd5>
+		<Staves1>
+			<Type type="Int" value="6" />
+			<Value type="Int" value="0" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="Staves1.mesh" />
+			<Mat type="String" value="Staves1" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="1H" />
+			<Icon type="String" value="none" />
+			<SoilderHaveWeapon type="Int" value="0"/>
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Staves1>
+		<Staves2>
+			<Type type="Int" value="6" />
+			<Value type="Int" value="0" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="Staves2.mesh" />
+			<Mat type="String" value="Staves2" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="1H" />
+			<Icon type="String" value="none" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Staves2>
+		<Staves3>
+			<Type type="Int" value="6" />
+			<Value type="Int" value="0" />
+			<Script type="String" value="none" />
+			<Mesh type="String" value="Staves3.mesh" />
+			<Mat type="String" value="Staves3" />
+			<PU type="String" value="none" />
+			<PUVector type="String" value="0,0,0" />
+			<AniGroup type="String" value="1H" />
+			<Icon type="String" value="none" />
+			<SoilderHaveWeapon type="Int" value="0"/>
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="0.0" />
+				<Detection type="Float" value="0.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Staves3>
 	</PweaponData>
 	<SweaponData>
 		<Bow1>

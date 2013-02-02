@@ -110,6 +110,7 @@ private:
 	UnitGrap* mCommanderUnit;
 	std::string mSoilderMesh;
 	std::string mSoilderMat;
+	int mSoilderHaveWeapon;
 	std::string mPWeaponMesh;
 	std::string mPWeaponMat;
 	std::string mPWeaponAniGroup;

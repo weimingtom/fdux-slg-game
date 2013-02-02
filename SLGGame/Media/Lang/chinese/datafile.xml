@@ -325,6 +325,18 @@
 			<Name type="String" value="神圣战戟" />
 			<Describe type="String" value="在锡盟教廷圣法师的法杖和神圣卫队的长戟是任何人都不感挑衅的东西，它们一起组成了教廷最核心的战斗力" />
 		</Halberd5>
+		<Staves1>
+			<Name type="String" value="神圣之仗" />
+			<Describe type="String" value="" />
+		</Staves1>
+		<Staves2>
+			<Name type="String" value="魔力之仗" />
+			<Describe type="String" value="" />
+		</Staves2>
+		<Staves3>
+			<Name type="String" value="元素之仗" />
+			<Describe type="String" value="" />
+		</Staves3>
 	</PweaponData>
 	<SweaponData>
 		<Bow1>
