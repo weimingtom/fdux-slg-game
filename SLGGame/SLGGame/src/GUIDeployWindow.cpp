@@ -3,21 +3,21 @@
 #include "StringTable.h"
 #include "BattleDeployState.h"
 
+
 GUIDeployWindows::GUIDeployWindows(MyGUI::Window* window,int Width,int Height)
 :GUISubWindows(window,Width,Height),mWindow(window),mState(NULL)
 {
-	assignWidget(mDeployList,"DeployList");
+	MyGUI::ItemBox* baseList;
+	assignWidget(baseList,"DeployList");
 	assignWidget(mConfirm,"DeployConfirm");
+	mDeployList=new DeployItemBox(baseList);
+	mDeployList->getItemBox()->eventMouseItemActivate+= MyGUI::newDelegate(this, &GUIDeployWindows::onSelect);
 	setAllowConfirm(false);
-	mDeployList->setColumnResizingPolicyAt(0,MyGUI::ResizingPolicy::Fixed);
-	mDeployList->setColumnResizingPolicyAt(1,MyGUI::ResizingPolicy::Fixed);
-	mDeployList->setColumnWidthAt(0,200);
-	mDeployList->setColumnWidthAt(1,90);
 
 	mWindow->setCaption(StringTable::getSingleton().getString("DeployWindow"));
 	mConfirm->setCaption(StringTable::getSingleton().getString("DeployConfirm"));
 
-	mDeployList->eventListChangePosition  += MyGUI::newDelegate(this, &GUIDeployWindows::onSelect);
+	//mDeployList->eventListChangePosition  += MyGUI::newDelegate(this, &GUIDeployWindows::onSelect);
 	mConfirm->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIDeployWindows::onConfirm);
 }
 
@@ -46,12 +46,11 @@ bool GUIDeployWindows::GridInputEvent(int x,int y)
 	return false;
 }
 
-void GUIDeployWindows::initList(std::vector<std::string> squadlist)
+void GUIDeployWindows::initList(std::vector<BattleSquad*>& list)
 {
-	for(unsigned int n = 0; n < squadlist.size(); n++)
+	for(std::vector<BattleSquad*>::iterator it=list.begin();it!=list.end();it++)
 	{
-		mDeployList->addItem(squadlist[n]);
-		mDeployList->setSubItemNameAt(1, n ,StringTable::getSingleton().getString("NotDeploy"));
+		mDeployList->addItem(new DeployItemData((*it)->getSquadType(),(*it)->getName(),StringTable::getSingleton().getString("NotDeploy")));
 	}
 }
 
@@ -60,9 +59,9 @@ void GUIDeployWindows::setAllowConfirm(bool allow)
 	mConfirm->setEnabled(allow);
 }
 
-void GUIDeployWindows::onSelect(MyGUI::MultiListBox* _sender, size_t _index)
+void GUIDeployWindows::onSelect(MyGUI::ItemBox* _sender, size_t _index)
 {
-	if(mState)
+	if(mState && _index!=-1)
 	{
 		mState->selectIndex(_index);
 	}
@@ -83,5 +82,10 @@ void GUIDeployWindows::setDeployState(BattleDeployState* state)
 
 void GUIDeployWindows::setDeployInfo(int index, std::string info)
 {
-	mDeployList->setSubItemNameAt(1, index ,info);
+	if(index!=-1)
+	{
+		DeployItemData* item=*(mDeployList->getItemDataAt<DeployItemData*>(index));
+		item->setDeployState(info);
+		mDeployList->setItemData(index,item);
+	}
 }

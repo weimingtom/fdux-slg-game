@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<MyGUI type="Layout" version="3.2.0">
+    <Widget type="Widget" skin="Default" position="0 0 230 50" align="Stretch" name="_Main">
+        <Property key="NeedMouse" value="false"/>
+        <Property key="NeedKey" value="false"/>
+        <Widget type="ImageBox" skin="ImageBox" position="0 0 230 50" align="Stretch" name="image_Back">
+            <Widget type="ImageBox" skin="ImageBox" position="0 0 230 50" align="Stretch" name="image_Border">
+                <Widget type="ImageBox" skin="ImageBox" position="10 10 30 30" align="Stretch" name="image_Item"/>
+                <Widget type="TextBox" skin="TextBox" position="55 28 171 20" align="Stretch" name="text_Back">
+                    <Property key="TextAlign" value="Center"/>
+                    <Property key="TextColour" value="1 0.796875 0"/>
+                    <Property key="Caption" value="1223"/>
+                    <Property key="FontHeight" value="20"/>
+                </Widget>
+                <Widget type="TextBox" skin="TextBox" position="55 5 170 23" align="Stretch" name="text_Front">
+                    <Property key="TextAlign" value="Center"/>
+                    <Property key="TextColour" value="1 1 1"/>
+                    <Property key="FontHeight" value="22"/>
+                    <Property key="Caption" value="123123"/>
+                </Widget>
+            </Widget>
+        </Widget>
+    </Widget>
+</MyGUI>

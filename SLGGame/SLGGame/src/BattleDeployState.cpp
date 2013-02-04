@@ -56,7 +56,7 @@ BattleDeployState::BattleDeployState()
 				mDeployList.push_back(ite->second);
 			}
 		}
-		mDeployWindow->initList(squadlist);
+		mDeployWindow->initList(mDeployList);
 	}
 	else
 		mDeployWindow->setAllowConfirm(true);
@@ -149,6 +149,7 @@ bool BattleDeployState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 				squadgrap->setGrid(GX,GY);
 				mSelectSquad->setGridX(GX);
 				mSelectSquad->setGridY(GY);
+				mDeployWindow->setDeployInfo(mSelectIndex,StringTable::getSingleton().getString("DeployConfirm"));
 				if(BattleSquadManager::getSingleton().allDeployed())
 					mDeployWindow->setAllowConfirm(true);
 			}

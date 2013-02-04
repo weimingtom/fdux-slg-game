@@ -1,6 +1,8 @@
 #pragma once
 
 #include "GUISubWindows.h"
+#include "DeployItemBox.h"
+#include "BattleSquad.h"
 
 #include <string>
 #include <vector>
@@ -30,16 +32,16 @@ public:
 		return "DeployWindow";
 	}
 
-	void initList(std::vector<std::string> squadlist);
+	void initList(std::vector<BattleSquad*>& list);
 	void setAllowConfirm(bool allow);
 	void setDeployState(BattleDeployState* state);
 	void setDeployInfo(int index, std::string info);
 private:
 	MyGUI::Window* mWindow;
-	MyGUI::MultiListBox* mDeployList;
+	DeployItemBox* mDeployList;
 	MyGUI::Button* mConfirm;
 
-	void onSelect(MyGUI::MultiListBox* _sender, size_t _index);
+	void onSelect(MyGUI::ItemBox* _sender, size_t _index);
 	void onConfirm(MyGUI::Widget* _sender);
 
 	BattleDeployState* mState;

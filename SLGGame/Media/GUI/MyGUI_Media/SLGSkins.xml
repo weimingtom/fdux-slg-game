@@ -171,8 +171,8 @@
         </BasisSkin>
     </Resource>
     <Resource type="ResourceSkin" name="SLGListSkin" size="344 381" texture="MyGUI_UISkins.png">
-        <BasisSkin type="SubSkin" offset="0 0 344 381" align="Center">
-            <State name="normal" offset="38 525 344 381"/>
+        <BasisSkin type="SubSkin" offset="0 0 0 0" align="Center">
+            <State name="normal" offset="0 0 0 0"/>
         </BasisSkin>
     </Resource>
     <Resource type="ResourceSkin" name="SLGListItemSkin" size="109 46" texture="MyGUI_UISkins.png">

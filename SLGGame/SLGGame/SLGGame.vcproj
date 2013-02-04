@@ -892,6 +892,30 @@
 								RelativePath=".\src\GUITipsWindow.h"
 								>
 							</File>
+							<Filter
+								Name="DeployItemBox"
+								>
+								<File
+									RelativePath=".\src\DeployCellView.cpp"
+									>
+								</File>
+								<File
+									RelativePath=".\src\DeployCellView.h"
+									>
+								</File>
+								<File
+									RelativePath=".\src\DeployItemBox.cpp"
+									>
+								</File>
+								<File
+									RelativePath=".\src\DeployItemBox.h"
+									>
+								</File>
+								<File
+									RelativePath=".\src\DeployItemData.h"
+									>
+								</File>
+							</Filter>
 						</Filter>
 					</Filter>
 				</Filter>
