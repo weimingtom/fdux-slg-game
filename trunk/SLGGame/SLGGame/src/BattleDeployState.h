@@ -13,6 +13,7 @@ class GUIMenuWindow;
 class BattleSquad;
 class AreaGrap;
 class GUISquadWindows;
+class DeployItemBox;
 
 class BattleDeployState:public SubBattleState, public InputListener
 {

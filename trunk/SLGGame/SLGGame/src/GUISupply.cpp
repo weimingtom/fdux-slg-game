@@ -483,15 +483,19 @@ void GUISupply::showItem(int type)
 
 	itemBox->removeAllItems();
 	std::vector<std::string> child=DataLibrary::getSingletonPtr()->getChildList(path);
-	int equipSubType;
+	int equipSubType=0;
 	for(std::vector<std::string>::iterator it=child.begin();it!=child.end();it++)
 	{
+		std::string temppath = path+"/"+ (*it) + std::string("/Type");
+		DataLibrary::getSingletonPtr()->getData(temppath,equipSubType);
+		if(equipSubType==EQUIP_PWEAPON_STAVES)
+			return;
+
+
 		WeaponItemData* data=new WeaponItemData(equipType,(*it),army->getUnitNum());
 		
 		if(type==EQUIP_PWEAPON || type==EQUIP_SWEAPON || type==EQUIP_ARMOR)
 		{
-			std::string temppath = path+"/"+ (*it) + std::string("/Type");
-			DataLibrary::getSingletonPtr()->getData(temppath,equipSubType);
 			data->setSubType(equipSubType);
 
 			std::map<std::string,enumtype> skillmap;
