@@ -70,7 +70,7 @@ GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),m
 	assignWidget(mSystemButton,"SystemButton");
 	assignWidget(mHistoryButton,"HistoryButton");
 	assignWidget(mAutoButton,"AutoButton");
-	assignWidget(mSupplyButton,"TEXT_Supprot");
+	assignWidget(mSupplyButton,"Supprot");
 
 #ifndef SCRIPT_EDITOR
 	mSaveButton->setCaption(StringTable::getSingletonPtr()->getString("SaveButton"));
