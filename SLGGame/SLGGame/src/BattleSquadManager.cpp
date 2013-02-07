@@ -873,8 +873,8 @@ bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* 
 	GUISquadWindows* squadGUI=(GUISquadWindows*)guibattle->getSubWindow("SquadWindow");
 	squadGUI->updateSquad();
 
-	if(defenesquad->getUnitNum() > 0)
-		cutscenebuilder->addCutScene(new DirectionCutScene(defenesquad->getSquadId(),dd));
+	//if(defenesquad->getUnitNum() > 0)
+		//cutscenebuilder->addCutScene(new DirectionCutScene(defenesquad->getSquadId(),dd));
 
 	return true;
 }
