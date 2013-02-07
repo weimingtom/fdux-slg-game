@@ -10,7 +10,6 @@ ShowValueCutScene::ShowValueCutScene(std::string id,std::string value,Ogre::Colo
 
 ShowValueCutScene::~ShowValueCutScene(void)
 {
-	mSquadGraphics->stopShowValue();
 }
 
 void ShowValueCutScene::startCutScence()
@@ -25,7 +24,7 @@ bool ShowValueCutScene::endCutScene()
 
 void ShowValueCutScene::skipCutScene()
 {
-	mSquadGraphics->stopShowValue();
+	mSquadGraphics->showValue(mValue,mColor);
 }
 
 void ShowValueCutScene::updateCutScene( unsigned int deltaTime )
