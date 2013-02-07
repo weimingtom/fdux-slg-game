@@ -1233,39 +1233,35 @@ void SquadGraphics::doDeathStep()
 	case playAni:
 		{
 			//等待死亡动画结束
-			if (mDeathUnits.begin()->first->mAniBlender->complete)
+
+			if(mDeathUnits.begin()->second==NULL)
+			{
+				if (mDeathUnits.begin()->first->mIsAnimationComplete)
+				{
+					mDeathStep=moveUnit;
+				}
+			}
+			else
 			{
 				mDeathStep=moveUnit;
 			}
 
 			break;
 		}
-	//case changeMat://废弃
-	//	{
-	//		if (mReliefUnit!=NULL)//需要替补?
-	//		{
-	//			mDeathStep=moveUnit;
-	//		}
-	//		else
-	//		{
-	//			mDeathStep=resetAni;//终止
-	//		}
-	//		break;
-	//	}
 	case moveUnit:
 		{
 			int i=0;
+			mNodeAnimation = mSceneMgr->createAnimation(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i), RELIEF_MOVE_TIME);
+			mNodeAnimationState = mSceneMgr->createAnimationState(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i));
+			bool haveMove=false;
 			for (std::map<UnitGrap*,UnitGrap*>::iterator it=mDeathUnits.begin();it!=mDeathUnits.end();it++)
 			{
 				if (it->second!=NULL)
 				{
-					mReliefAniName=it->second->mAniBlender->getSource()->getAnimationName();
-					mReliefAniLoop=it->second->mAniBlender->getSource()->getLoop();
-					
+					haveMove=true;
 					//设置节点动画
-					mNodeAnimation = mSceneMgr->createAnimation(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i), RELIEF_MOVE_TIME);
 					mNodeAnimation->setInterpolationMode(Ogre::Animation::IM_LINEAR);
-					Ogre::NodeAnimationTrack* track = mNodeAnimation->createNodeTrack(1, it->second->mNode);
+					Ogre::NodeAnimationTrack* track = mNodeAnimation->createNodeTrack(i, it->second->mNode);
 
 					Ogre::TransformKeyFrame* kf = track->createNodeKeyFrame(0);
 					kf->setTranslate( it->second->mNode->getPosition());
@@ -1277,11 +1273,10 @@ void SquadGraphics::doDeathStep()
 					kf->setRotation(it->second->mNode->getOrientation());
 					kf->setScale( it->second->mNode->getScale());
 
-					mNodeAnimationState = mSceneMgr->createAnimationState(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i));
+					
 
 					//setCheckUnitHeight(true);
-					mNodeAnimationState->setLoop(false);
-					mNodeAnimationState->setEnabled(true);
+
 
 					mReturnInitAni=false;
 
@@ -1291,7 +1286,20 @@ void SquadGraphics::doDeathStep()
 				}
 
 			}
-			
+
+			if(!haveMove)
+			{
+				mSceneMgr->destroyAnimation(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i));
+				mSceneMgr->destroyAnimationState(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i));
+				mNodeAnimation=NULL;
+				mNodeAnimationState=NULL;
+			}
+			else
+			{
+				mNodeAnimationState->setLoop(false);
+				mNodeAnimationState->setEnabled(true);
+			}
+
 			mDeathStep=resetAni;
 
 			break;
@@ -1306,7 +1314,11 @@ void SquadGraphics::doDeathStep()
 					if(it->second!=NULL)
 					{
 						//回复原来动画
-						it->second->setAnimation(mReliefAniName,mReliefAniLoop,false);
+						it->second->mAniBlender->BackToInit();
+						if (it->second->mHorseAniBlender!=NULL)
+						{
+							it->second->mHorseAniBlender->BackToInit();
+						}
 					}
 
 					if (it->first==mCommanderUnit)
@@ -1315,12 +1327,12 @@ void SquadGraphics::doDeathStep()
 					}
 
 					delete it->first;
-					if(mSceneMgr->hasAnimation(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i)))
-					{
-						mSceneMgr->destroyAnimation(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i));
-						mSceneMgr->destroyAnimationState(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i));
-					}
-					i++;
+				}
+
+				if(mSceneMgr->hasAnimation(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i)))
+				{
+					mSceneMgr->destroyAnimation(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i));
+					mSceneMgr->destroyAnimationState(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i));
 				}
 
 				mDeathUnits.clear();

@@ -266,6 +266,21 @@ void UnitGrap::setAniGroup(std::string anigroup)
 		mAttackName = std::string("Attack1H2");
 		mIdleName = std::string("Ready1H");
 	}
+	else if(anigroup == "1H")
+	{
+		if(mHorseEntity==NULL)
+		{
+			mWalkName = std::string("Run1H");;
+			mAttackName = std::string("Attack1H2");
+			mIdleName = std::string("Ready1H");
+		}
+		else
+		{
+			mWalkName = std::string("Run1H");;
+			mAttackName = std::string("Attack1H");
+			mIdleName = std::string("Ready1H");
+		}
+	}
 	else if(anigroup == "1H3")
 	{
 		mWalkName = std::string("Run1H");;

@@ -929,7 +929,7 @@
 			<Mat type="String" value="soul" />
 			<PU type="String" value="none" />
 			<PUVector type="String" value="0,0,0" />
-			<AniGroup type="String" value="1H2" />
+			<AniGroup type="String" value="1H" />
 			<Icon type="String" value="OneHandSword" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
@@ -953,7 +953,7 @@
 			<Mat type="String" value="soul" />
 			<PU type="String" value="none" />
 			<PUVector type="String" value="0,0,0" />
-			<AniGroup type="String" value="1H2" />
+			<AniGroup type="String" value="1H" />
 			<Icon type="String" value="OneHandSword" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
@@ -977,7 +977,7 @@
 			<Mat type="String" value="soul" />
 			<PU type="String" value="none" />
 			<PUVector type="String" value="0,0,0" />
-			<AniGroup type="String" value="1H2" />
+			<AniGroup type="String" value="1H" />
 			<Icon type="String" value="OneHandSword" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
@@ -1001,7 +1001,7 @@
 			<Mat type="String" value="soul" />
 			<PU type="String" value="none" />
 			<PUVector type="String" value="0,0,0" />
-			<AniGroup type="String" value="1H2" />
+			<AniGroup type="String" value="1H" />
 			<Icon type="String" value="OneHandSword" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
@@ -1025,7 +1025,7 @@
 			<Mat type="String" value="soul" />
 			<PU type="String" value="none" />
 			<PUVector type="String" value="0,0,0" />
-			<AniGroup type="String" value="1H2" />
+			<AniGroup type="String" value="1H" />
 			<Icon type="String" value="OneHandSword" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
