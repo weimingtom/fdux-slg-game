@@ -39,7 +39,9 @@ bool DefenseCutScene::endCutScene()
 
 void DefenseCutScene::skipCutScene()
 {
-
+	if(!mStarted && mDeadCount!=0)
+		mDefenseSG->setDeath(mDeadCount);
+	mDefenseSG->stopDeath();
 }
 
 void DefenseCutScene::updateCutScene( unsigned int deltaTime )
