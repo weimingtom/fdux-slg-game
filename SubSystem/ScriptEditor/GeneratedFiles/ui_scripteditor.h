@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'scripteditor.ui'
 **
-** Created: Mon Nov 12 01:10:58 2012
-**      by: Qt User Interface Compiler version 4.6.3
+** Created: Sun Jan 27 12:50:42 2013
+**      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -42,6 +42,7 @@ public:
     QAction *actionSaveLua;
     QAction *actionLoadScript;
     QAction *actionLoadLua;
+    QAction *actionQuickMake;
     QWidget *centralWidget;
     QGridLayout *gridLayout_3;
     QTabWidget *tabWidget;
@@ -148,6 +149,8 @@ public:
         actionLoadScript->setObjectName(QString::fromUtf8("actionLoadScript"));
         actionLoadLua = new QAction(ScriptEditorClass);
         actionLoadLua->setObjectName(QString::fromUtf8("actionLoadLua"));
+        actionQuickMake = new QAction(ScriptEditorClass);
+        actionQuickMake->setObjectName(QString::fromUtf8("actionQuickMake"));
         centralWidget = new QWidget(ScriptEditorClass);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         gridLayout_3 = new QGridLayout(centralWidget);
@@ -620,6 +623,7 @@ public:
         mainToolBar->addAction(actionSaveLua);
         mainToolBar->addAction(actionLoadScript);
         mainToolBar->addAction(actionLoadLua);
+        mainToolBar->addAction(actionQuickMake);
 
         retranslateUi(ScriptEditorClass);
 
@@ -636,6 +640,7 @@ public:
         actionSaveLua->setText(QApplication::translate("ScriptEditorClass", "\344\277\235\345\255\230Lua", 0, QApplication::UnicodeUTF8));
         actionLoadScript->setText(QApplication::translate("ScriptEditorClass", "\350\257\273\345\217\226\350\204\232\346\234\254", 0, QApplication::UnicodeUTF8));
         actionLoadLua->setText(QApplication::translate("ScriptEditorClass", "\350\257\273\345\217\226Lua", 0, QApplication::UnicodeUTF8));
+        actionQuickMake->setText(QApplication::translate("ScriptEditorClass", "\346\211\271\351\207\217\350\275\254\346\215\242", 0, QApplication::UnicodeUTF8));
         label_19->setText(QApplication::translate("ScriptEditorClass", "\350\204\232\346\234\254\347\252\227\345\217\243", 0, QApplication::UnicodeUTF8));
         label_21->setText(QApplication::translate("ScriptEditorClass", "LUA\344\273\243\347\240\201\347\252\227\345\217\243", 0, QApplication::UnicodeUTF8));
         ClearButton->setText(QApplication::translate("ScriptEditorClass", "\346\270\205\347\251\272\345\267\246\350\276\271", 0, QApplication::UnicodeUTF8));

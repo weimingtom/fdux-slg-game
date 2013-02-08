@@ -551,6 +551,7 @@
    <addaction name="actionSaveLua"/>
    <addaction name="actionLoadScript"/>
    <addaction name="actionLoadLua"/>
+   <addaction name="actionQuickMake"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionSaveScript">
@@ -571,6 +572,11 @@
   <action name="actionLoadLua">
    <property name="text">
     <string>读取Lua</string>
+   </property>
+  </action>
+  <action name="actionQuickMake">
+   <property name="text">
+    <string>批量转换</string>
    </property>
   </action>
  </widget>

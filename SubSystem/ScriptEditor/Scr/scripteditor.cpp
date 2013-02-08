@@ -8,6 +8,7 @@
 #include <QSettings>
 #include <QFileDialog>
 #include <QTextStream>
+#include <QDir>
 
 ScriptEditor::ScriptEditor(QWidget *parent, Qt::WFlags flags)
 	: QMainWindow(parent, flags)
@@ -32,6 +33,7 @@ ScriptEditor::ScriptEditor(QWidget *parent, Qt::WFlags flags)
 	this->connect(ui.actionSaveLua,SIGNAL(triggered(bool)),this,SLOT(actionSaveLua()));
 	this->connect(ui.actionLoadScript,SIGNAL(triggered(bool)),this,SLOT(actionLoadScript()));
 	this->connect(ui.actionLoadLua,SIGNAL(triggered(bool)),this,SLOT(actionLoadLua()));
+	this->connect(ui.actionQuickMake,SIGNAL(triggered(bool)),this,SLOT(actionQuickMake()));
 
 	QSettings settings("config.ini", QSettings::IniFormat);
 	ui.DialogXEdit->setText(settings.value("DialogLeft").toString());
@@ -317,4 +319,48 @@ void ScriptEditor::actionLoadLua()
 	ui.luaEdit->setText(s.readAll());
 
 	file.close();
+}
+
+void ScriptEditor::actionQuickMake()
+{
+	QString path =QFileDialog::getExistingDirectory(this, tr("打开脚本文件目录.."));
+
+	if (path.isEmpty()) return;
+
+	QDir dir(path);
+	dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
+	dir.setSorting(QDir::Name);
+
+	QFileInfoList list = dir.entryInfoList();
+	for (int i = 0; i < list.size(); ++i) 
+	{
+		QFileInfo fileInfo = list.at(i);
+
+		QFile file(fileInfo.filePath());
+		if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+			return;
+
+		QTextStream s(&file);
+
+		QString lua=mScriptParse.parse(s.readAll());
+		if (mScriptParse.hasError())
+		{
+			QMessageBox::critical(this,"Error",lua);
+		}
+		else
+		{
+			QString save=fileInfo.filePath().replace(".txt",".lua");
+			QFile savefile(save);
+			if (!savefile.open(QIODevice::WriteOnly | QIODevice::Text))
+				return;
+
+			QTextStream saveS(&savefile);
+			saveS<<lua;
+			savefile.close();
+		}
+
+		file.close();
+	}
+
+
 }

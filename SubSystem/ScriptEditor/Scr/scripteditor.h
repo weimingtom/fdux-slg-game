@@ -44,6 +44,7 @@ public slots:
 	void actionSaveLua();
 	void actionLoadScript();
 	void actionLoadLua();
+	void actionQuickMake();
 private:
 	Ui::ScriptEditorClass ui;
 	GUIDialogAttribute mDialogAttribute;
