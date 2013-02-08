@@ -34,6 +34,10 @@ public:
 
 	void onMissionButton(MyGUI::Widget* _sender);
 
+	void hideAllWindows();
+
+	void showAllWindows();
+
 	MyGUI::Button* mMissionButton;
 	
 private:
