@@ -38,13 +38,13 @@
         <Widget type="ImageBox" skin="SLGImageBox" position="33 120 105 135" name="SquadImageSkin">
             <Widget type="ImageBox" skin="ImageBox" position="5 4 96 128" name="SquadImage"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="140 95 100 20" name="SquadLeadName">
+        <Widget type="TextBox" skin="TextBox" position="150 95 90 20" name="SquadLeadName">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
             <Property key="NeedToolTip" value="true"/>
             <Property key="TextAlign" value="Center"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="35 95 100 20" name="SquadType">
+        <Widget type="TextBox" skin="TextBox" position="35 95 115 20" name="SquadType">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
             <Property key="TextAlign" value="Center"/>
@@ -292,11 +292,11 @@
         <Widget type="ImageBox" skin="ImageBox" position="45 35 40 60" name="TargetFactionImage">
             <Property key="Alpha" value="1"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="145 95 95 20" name="TargetLeadName">
+        <Widget type="TextBox" skin="TextBox" position="155 95 85 20" name="TargetLeadName">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="35 95 105 20" name="TargetType">
+        <Widget type="TextBox" skin="TextBox" position="35 95 120 20" name="TargetType">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
@@ -625,7 +625,7 @@
         </Widget>
     </Widget>
     <Widget type="Window" skin="SLGWindow" position="265 505 350 205" layer="Main" name="CommandWindow">
-        <Widget type="TextBox" skin="TextBox" position="50 50 105 25" name="APLabel">
+        <Widget type="TextBox" skin="TextBox" position="50 50 135 25" name="APLabel">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="24"/>
         </Widget>

@@ -84,6 +84,33 @@ void GUIBattle::hideScene()
 	}
 }
 
+void GUIBattle::hideAllWindows()
+{
+	for(std::list<GUISubWindows*>::iterator it=mSubWindows.begin();it!=mSubWindows.end();it++)
+	{
+		if ((*it)->getName()=="CommandWindow"
+			||(*it)->getName()=="SquadWindow"
+			||(*it)->getName()=="TargetWindow"
+			||(*it)->getName()=="Terrain"
+			||(*it)->getName()=="GameState")
+		{
+			(*it)->hideScene();
+		}
+	}
+}
+
+void GUIBattle::showAllWindows()
+{
+	for(std::list<GUISubWindows*>::iterator it=mSubWindows.begin();it!=mSubWindows.end();it++)
+	{
+		if ((*it)->getName()=="Terrain"
+			||(*it)->getName()=="GameState")
+		{
+			(*it)->showScene("");
+		}
+	}
+}
+
 void GUIBattle::FrameEvent()
 {
 	std::list<GUISubWindows*>::iterator it;
