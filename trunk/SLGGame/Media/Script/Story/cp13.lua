@@ -2,7 +2,7 @@ GUI.ShowImage("cp13.png",4,2000);
 GUI.ShowText(" ",1);
 GUI.Wait(2000);
 GUI.ShowImage("black.png",4,1500);
-GUI.Music("≥©Ã∏.mp3",1000);
+GUI.Music("peaceful.ogg",1000);
 GUI.ShowImage("tingyuanw.png",4,1500);
 GUI.SetDialogVisible(1);
 
@@ -498,10 +498,10 @@ GUI.ShowRoleName("ø®¡’ƒ»");
 GUI.ShowText("∞›Õ–¡À°£",1);
 GUI.ClearText();
 GUI.ShowRoleName("");
-GUI.ShowImage("",right,500);
-GUI.ShowImage("",left,500);
-GUI.CM(3000);
 GUI.SetDialogVisible(0);
+GUI.ShowImage("",right,600);
+GUI.ShowImage("",left,600);
+GUI.CM(3000);
 GUI.ShowImage("black.png",4,3000);
 
 GUI.NextScene("cp14.lua");

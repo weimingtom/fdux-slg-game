@@ -1,9 +1,8 @@
-GUI.ShowText("那接下来就交给你们了，",1);
 GUI.ShowImage("cp18.png",4,2000);
 GUI.ShowText(" ",1);
 GUI.Wait(2000);
 GUI.ShowImage("black.png",4,1500);
-GUI.Music("normal2.mp3",1000);
+GUI.Music("peaceful.ogg",1000);
 GUI.ShowImage("shulinw.png",4,1500);
 GUI.SetDialogVisible(1);
 
@@ -413,10 +412,10 @@ GUI.ShowText("还有……",2);
 GUI.ShowText("也是齐塔.佛雷斯特的青梅竹马。",1);
 GUI.ClearText();
 GUI.ShowRoleName("");
-GUI.ShowImage("",left,500);
-GUI.ShowImage("",right,500);
-GUI.CM(3000);
 GUI.SetDialogVisible(0);
-GUI.ShowImage("black.png",4,2000);
+GUI.ShowImage("",left,600);
+GUI.ShowImage("",right,600);
+GUI.CM(3000);
+GUI.ShowImage("black.png",4,3000);
 
 GUI.NextScene("cp19.lua");

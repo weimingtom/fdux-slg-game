@@ -40,7 +40,7 @@ GUI.ClearText();
 GUI.ShowText("温菲尔德的英灵，请接引我前往圣灵所在之处吧！",1);
 GUI.ClearText();
 GUI.ShowRoleName("");
-GUI.SE("dao1.wav");
+GUI.SE("dao1.ogg");
 GUI.ShowImage("",left,300);
 GUI.ShowImage("kasite_zc.png",right,10);
 GUI.ShowRoleName("卡斯特");

@@ -2,7 +2,7 @@ GUI.ShowImage("cp9.png",4,2000);
 GUI.ShowText(" ",1);
 GUI.Wait(2000);
 GUI.ShowImage("black.png",4,1500);
-GUI.Music("紧张.mp3",1000);
+GUI.Music("nervous.ogg",1000);
 GUI.ShowImage("shanmai.png",4,1500);
 GUI.SetDialogVisible(1);
 
@@ -177,10 +177,9 @@ GUI.ShowRoleName("卡斯特");
 GUI.ShowText("你究竟想做什么？",1);
 GUI.ClearText();
 GUI.ShowRoleName("");
-GUI.ShowImage("",right,1000);
-GUI.ShowImage("",left,1000);
-GUI.CM(3000);
 GUI.SetDialogVisible(0);
+GUI.ShowImage("",right,1000);
+GUI.CM(3000);
 GUI.ShowImage("black.png",4,3000);
 
 GUI.NextScene("cp10.lua");

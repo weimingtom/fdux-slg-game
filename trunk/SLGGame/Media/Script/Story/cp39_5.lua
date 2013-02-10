@@ -94,7 +94,7 @@ GUI.ClearText();
 GUI.ShowRoleName("");
 GUI.ShowImage("",right,300);
 GUI.ShowImage("",left,300);
-GUI.SE("huo.wav");
+GUI.SE("huo.ogg");
 GUI.ShowText("火焰在东港四处蔓延开来。",1);
 GUI.ClearText();
 GUI.ShowImage("weier_cj.png",left,300);

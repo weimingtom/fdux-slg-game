@@ -31,7 +31,7 @@ GUI.ShowRoleName("军官");
 GUI.ShowText("这这这……",1);
 GUI.ClearText();
 GUI.ShowRoleName("");
-GUI.SE("号角.wav");
+GUI.SE("haojiao.ogg");
 GUI.ShowText("…………",1);
 GUI.ClearText();
 GUI.ShowRoleName("斥候");
