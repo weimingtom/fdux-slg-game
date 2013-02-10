@@ -71,7 +71,7 @@ void GUIMenu::showScene( std::string arg )
 		mOpiton->setAlpha(0);
 		mExit->setAlpha(0);
 		FadeIn(FadeTime,mMenuImage);
-		AudioSystem::getSingletonPtr()->playStream("op.mp3",true,0);
+		AudioSystem::getSingletonPtr()->playStream("op.ogg",true,0);
 	}
 	
 }

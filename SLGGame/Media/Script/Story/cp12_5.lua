@@ -1,3 +1,4 @@
+GUI.ButtonLock();
 GUI.SetDialogVisible(1);
 GUI.ShowImage("fuguan_zi.png",left,300);
 GUI.ShowRoleName("∑®Œ¿∂”≥§");
@@ -70,3 +71,4 @@ GUI.ShowRoleName("");
 GUI.ShowImage("",right,300);
 GUI.ShowImage("",left,300);
 GUI.SetDialogVisible(0);
+GUI.StoryOver();

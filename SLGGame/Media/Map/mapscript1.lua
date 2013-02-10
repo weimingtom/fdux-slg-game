@@ -3,7 +3,7 @@ function initmap()
 	MapLib.ActiveMapTrigger(trigerid);
 	ScriptCommonLib.SetString("finishdeploytriger",trigerid);
 	
-	ScriptCommonLib.PlayMusic("battle1.mp3");
+	ScriptCommonLib.PlayMusic("battle1.ogg");
 	MapLib.SetCamera(0,4);
 end
 
@@ -24,10 +24,13 @@ function finishdeploy()
 	BattleLib.AssignAIGroup(2, "Team2Squad_2", "DuxRaider");
 	BattleLib.CreateAIMission(2, "EliminateTeam1", 1, 1);
 	BattleLib.AssignAIMission(2, "DuxRaider", "EliminateTeam1");
+    
+    BattleLib.Story("cp12_5.lua");
 end
 
 function unitdead()
 	squad = ScriptCommonLib.GetTempString("squadid");
+	
 	if squad == "Cheetah" or squad == "Dandelion" then
 		BattleLib.ChangeState(2,"GameOver.lua");
 	end
@@ -36,10 +39,6 @@ end
 function turnend()
 	turn = ScriptCommonLib.GetTempInt("trun");
 	team = ScriptCommonLib.GetTempInt("team");
-	
-	if team == 1 and turn == 2 then
-		BattleLib.Story("battlestory1.lua");
-	end
 	
 	if team == 1 then
 		if BattleLib.TeamSquadLeft(2) == 2 then

@@ -2,7 +2,7 @@ GUI.ShowImage("cp25.png",4,2000);
 GUI.ShowText(" ",1);
 GUI.Wait(2000);
 GUI.ShowImage("black.png",4,1500);
-GUI.Music("Àä¾²Ïµ.mp3",1000);
+GUI.Music("shadow.ogg",1000);
 GUI.ShowImage("yingdiw.png",4,1500);
 GUI.SetDialogVisible(1);
 
@@ -303,10 +303,10 @@ GUI.ShowRoleName("°¢É¯ÄÝÑÅ");
 GUI.ShowText("¡­¡­¡­¡­",1);
 GUI.ClearText();
 GUI.ShowRoleName("");
-GUI.ShowImage("",right,500);
-GUI.ShowImage("",left,500);
-GUI.CM(3000);
 GUI.SetDialogVisible(0);
-GUI.ShowImage("black.png",4,2000);
+GUI.ShowImage("",right,600);
+GUI.ShowImage("",left,600);
+GUI.CM(3000);
+GUI.ShowImage("black.png",4,3000);
 
 GUI.NextScene("cp26.lua");

@@ -40,7 +40,7 @@ GUI.ShowRoleName("¸±¹Ù");
 GUI.ShowText("µ«ÊÇ¡­¡­",1);
 GUI.ClearText();
 GUI.ShowRoleName("");
-GUI.SE("ºÅ½Ç.wav");
+GUI.SE("haojiao.ogg");
 GUI.ShowText("¡­¡­¡­¡­",1);
 GUI.ClearText();
 GUI.ShowImage("feiw_cj.png",right,300);
