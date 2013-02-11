@@ -13,14 +13,19 @@
 		</Dandelion>
 		<Olivia>
 			<Picture type="String" value="aoliwa.png" />
-			<Mesh type="String" value="Warmage.mesh"/>
-			<Mat type="String" value="Warmage"/>
+			<Mesh type="String" value="Saint.mesh"/>
+			<Mat type="String" value="Saint"/>
 		</Olivia>
 		<Cossa>
 			<Picture type="String" value="kesa.png" />
 			<Mesh type="String" value="LightCavalry.mesh"/>
 			<Mat type="String" value="LightCavalry"/>
 		</Cossa>
+		<Fay>
+			<Picture type="String" value="fei.png" />
+			<Mesh type="String" value="Warmage.mesh"/>
+			<Mat type="String" value="Warmage"/>
+		</Fay>
 		<WingsLightCavalry>
 			<Picture type="String" value="qingbu.png" />
 			<Mesh type="String" value="LightCavalry.mesh"/>
@@ -76,6 +81,11 @@
 			<Mesh type="String" value="HeavyInfOf.mesh"/>
 			<Mat type="String" value="HeavyInfOf"/>
 		</GuardHeavySpear>
+		<Elementalist>
+			<Picture type="String" value="aofa.png" />
+			<Mesh type="String" value="Elementalist.mesh"/>
+			<Mat type="String" value="Elementalist"/>
+		</Elementalist>
 		<UlvaLightHSword>
 			<Picture type="String" value="zhongbu1.png" />
 			<Mesh type="String" value="LightInfOf.mesh"/>
@@ -91,6 +101,11 @@
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
 		</UlvaCrossBow>
+		<Pirate>
+			<Picture type="String" value="qingbu.png" />
+			<Mesh type="String" value="Pirate.mesh"/>
+			<Mat type="String" value="Pirate"/>
+		</Pirate>
 		<FNothLightHSword>
 			<Picture type="String" value="zhongbu1.png" />
 			<Mesh type="String" value="LightInfOf.mesh"/>
@@ -106,6 +121,46 @@
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
 		</FNothLightBow>
+		<James>
+			<Picture type="String" value="zhanmu.png" />
+			<Mesh type="String" value="HeavyCavalry.mesh"/>
+			<Mat type="String" value="HeavyCavalry"/>
+		</James>
+		<WinfredHeavyHalberd>
+			<Picture type="String" value="fuguan3.png" />
+			<Mesh type="String" value="HeavyInfOf.mesh"/>
+			<Mat type="String" value="HeavyInfOf"/>
+		</WinfredHeavyHalberd>
+		<WinfredLightHalberd>
+			<Picture type="String" value="zhongbu3.png" />
+			<Mesh type="String" value="LightInfOf.mesh"/>
+			<Mat type="String" value="LightInfOf"/>
+		</WinfredLightHalberd>
+		<WinfredLightBow>
+			<Picture type="String" value="qingbu.png" />
+			<Mesh type="String" value="LightInfOf.mesh"/>
+			<Mat type="String" value="LightInfOf"/>
+		</WinfredLightBow>
+		<NothLightBow>
+			<Picture type="String" value="qingbu.png" />
+			<Mesh type="String" value="LightInfOf.mesh"/>
+			<Mat type="String" value="LightInfOf"/>
+		</NothLightBow>
+		<NothLightHSword>
+			<Picture type="String" value="zhongbu1.png" />
+			<Mesh type="String" value="LightInfOf.mesh"/>
+			<Mat type="String" value="LightInfOf"/>
+		</NothLightHSword>
+		<NothHeavyCrossBow>
+			<Picture type="String" value="fuguan1.png" />
+			<Mesh type="String" value="HeavyInfOf.mesh"/>
+			<Mat type="String" value="HeavyInfOf"/>
+		</NothHeavyCrossBow>	
+		<NothHeavyHSword>
+			<Picture type="String" value="fuguan1.png" />
+			<Mesh type="String" value="HeavyInfOf.mesh"/>
+			<Mat type="String" value="HeavyInfOf"/>
+		</NothHeavyHSword>
 	</LeaderDate>
 	<SquadData>
 		<CheetahSquad>
@@ -240,7 +295,7 @@
 			<SquadType type="Int" value="2"/>
 			<SoilderId type="String" value="Magician"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="Staves2"/>
+			<PweaponId type="String" value="Staves1"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor1"/>
@@ -295,6 +350,62 @@
 			<UnitMat type="String" value="LightCavalry"/>
 			<MoveSound type="String" value="LightCavalry.ogg"/>
 		</Cossa>
+		<Fay>
+			<Type type="Int" value="1"/>
+			<SquadType type="Int" value="2"/>
+			<SoilderId type="String" value="Magician"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="Staves2"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="LightArmor1"/>
+			<SkillTable>
+				<Faith type="Int" value="0"/>
+				<StrengthenSprite type="Int" value="0"/>
+				<Heal type="Int" value="1"/>
+				<MagicShield type="Int" value="1"/>
+				<Pray type="Int" value="1" />
+			</SkillTable>
+			<LeaderId type="String" value="Fay"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="4" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="Puppet.mesh"/>
+			<UnitMat type="String" value="Puppet"/>
+			<MoveSound type="String" value="Olivia.ogg"/>
+		</Fay>
+		<Elementalist>
+			<Type type="Int" value="1"/>
+			<SquadType type="Int" value="2"/>
+			<SoilderId type="String" value="Magician"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="Staves3"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="LightArmor1"/>
+			<SkillTable>
+				<Faith type="Int" value="0"/>
+				<StrengthenSprite type="Int" value="0"/>
+				<Heal type="Int" value="1"/>
+				<MagicShield type="Int" value="1"/>
+				<Pray type="Int" value="1" />
+			</SkillTable>
+			<LeaderId type="String" value="Elementalist"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="4" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="Puppet.mesh"/>
+			<UnitMat type="String" value="Puppet"/>
+			<MoveSound type="String" value="Olivia.ogg"/>
+		</Elementalist>
 		<WingsLightCavalry>
 			<Type type="Int" value="0"/>
 			<SquadType type="Int" value="1"/>
@@ -415,10 +526,10 @@
 			<Type type="Int" value="0"/>
 			<SquadType type="Int" value="0"/>
 			<SoilderId type="String" value="DuxSoilder"/>
-			<HorseId type="String" value="HeavyHorse3"/>
+			<HorseId type="String" value="HeavyHorse2"/>
 			<PweaponId type="String" value="ShortSpear3"/>
 			<SweaponId type="String" value="none"/>
-			<ShieldId type="String" value="Shield3"/>
+			<ShieldId type="String" value="Shield2"/>
 			<ArmorId type="String" value="HeavyArmor2"/>
 			<SkillTable>
 				<DefenceTrain1 type="Int" value="0"/>
@@ -475,7 +586,7 @@
 			<PweaponId type="String" value="Halberd2"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="none"/>
-			<ArmorId type="String" value="LightArmor1"/>
+			<ArmorId type="String" value="MidArmor2"/>
 			<SkillTable>
 				<RangedAttackTrain1 type="Int" value="0"/>
 				<RangedAttackTrain2 type="Int" value="0"/>
@@ -507,7 +618,7 @@
 			<PweaponId type="String" value="ShortSword1"/>
 			<SweaponId type="String" value="Bow2"/>
 			<ShieldId type="String" value="none"/>
-			<ArmorId type="String" value="LightArmor1"/>
+			<ArmorId type="String" value="LightArmor2"/>
 			<SkillTable>
 				<RangedAttackTrain1 type="Int" value="0"/>
 				<RangedAttackTrain2 type="Int" value="0"/>
@@ -536,10 +647,10 @@
 			<SquadType type="Int" value="0"/>
 			<SoilderId type="String" value="TowerGuard"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="ShortSpear2"/>
+			<PweaponId type="String" value="ShortSpear3"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="Shield2"/>
-			<ArmorId type="String" value="HeavyArmor1"/>
+			<ArmorId type="String" value="HeavyArmor2"/>
 			<SkillTable>
 				<DefenceTrain1 type="Int" value="0"/>
 				<Defence type="Int" value="1"/>
@@ -559,12 +670,40 @@
 			<UnitMat type="String" value="HeavyInf"/>
 			<MoveSound type="String" value="HeavyInf.ogg"/>
 		</GuardHeavySpear>
+		<Pirate>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="0"/>
+			<SoilderId type="String" value="UlvaSoilder"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="ShortAxe1"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="LightArmor1"/>
+			<SkillTable>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<ShortSpear type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="Pirate"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="3" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="Pirate.mesh"/>
+			<UnitMat type="String" value="Pirate"/>
+			<MoveSound type="String" value="LightInf.ogg"/>
+		</Pirate>
 		<UlvaLightHSword>
 			<Type type="Int" value="0"/>
 			<SquadType type="Int" value="0"/>
 			<SoilderId type="String" value="UlvaSoilder"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="HeavySword1"/>
+			<PweaponId type="String" value="HeavySword2"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="MidArmor1"/>
@@ -593,7 +732,7 @@
 			<SoilderId type="String" value="UlvaSoilder"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="ShortAxe1"/>
-			<SweaponId type="String" value="Bow1"/>
+			<SweaponId type="String" value="Bow2"/>
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor1"/>
 			<SkillTable>
@@ -621,7 +760,7 @@
 			<SoilderId type="String" value="UlvaSoilder"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="ShortSword1"/>
-			<SweaponId type="String" value="CrossBow1"/>
+			<SweaponId type="String" value="CrossBow2"/>
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor1"/>
 			<SkillTable>
@@ -727,6 +866,230 @@
 			<UnitMat type="String" value="LightInf"/>
 			<MoveSound type="String" value="LightInf.ogg"/>
 		</FNothLightBow>
+		<James>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="0"/>
+			<SoilderId type="String" value="WinfredSoilder"/>
+			<HorseId type="String" value="HeavyHorse4"/>
+			<PweaponId type="String" value="ShortSword4"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="Shield4"/>
+			<ArmorId type="String" value="HeavyArmor4"/>
+			<SkillTable>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<ShortSpear type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="James"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="3" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="HeavyCavalry.mesh"/>
+			<UnitMat type="String" value="HeavyCavalry"/>
+			<MoveSound type="String" value="HeavyCavalry.ogg"/>
+		</James>
+		<WinfredHeavyHalberd>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="0"/>
+			<SoilderId type="String" value="WinfredSoilder"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="Halberd3"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="HeavyArmor2"/>
+			<SkillTable>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<ShortSpear type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="WinfredHeavyHalberd"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="3" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="HeavyInf.mesh"/>
+			<UnitMat type="String" value="HeavyInf"/>
+			<MoveSound type="String" value="HeavyInf.ogg"/>
+		</WinfredHeavyHalberd>
+		<WinfredLightHalberd>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="0"/>
+			<SoilderId type="String" value="WinfredSoilder"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="Halberd2"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="MidArmor2"/>
+			<SkillTable>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<ShortSpear type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="WinfredLightHalberd"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="3" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="LightInf.mesh"/>
+			<UnitMat type="String" value="LightInf"/>
+			<MoveSound type="String" value="LightInf.ogg"/>
+		</WinfredLightHalberd>
+		<WinfredLightBow>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="0"/>
+			<SoilderId type="String" value="WinfredSoilder"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="ShortSword2"/>
+			<SweaponId type="String" value="Bow2"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="LightArmor2"/>
+			<SkillTable>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<ShortSpear type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="WinfredLightBow"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="3" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="LightInf.mesh"/>
+			<UnitMat type="String" value="LightInf"/>
+			<MoveSound type="String" value="LightInf.ogg"/>
+		</WinfredLightBow>
+		<NothLightBow>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="0"/>
+			<SoilderId type="String" value="NothSoilder"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="ShortSword2"/>
+			<SweaponId type="String" value="Bow3"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="LightArmor3"/>
+			<SkillTable>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<ShortSpear type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="NothLightBow"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="3" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="LightInf.mesh"/>
+			<UnitMat type="String" value="LightInf"/>
+			<MoveSound type="String" value="LightInf.ogg"/>
+		</NothLightBow>
+		<NothLightHSword>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="0"/>
+			<SoilderId type="String" value="NothSoilder"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="HeavySword3"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="MidArmor2"/>
+			<SkillTable>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<ShortSpear type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="NothLightHSword"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="3" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="LightInf.mesh"/>
+			<UnitMat type="String" value="LightInf"/>
+			<MoveSound type="String" value="LightInf.ogg"/>
+		</NothLightHSword>
+		<NothHeavyCrossBow>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="0"/>
+			<SoilderId type="String" value="NothSoilder"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="ShortSword3"/>
+			<SweaponId type="String" value="CrossBow3"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="HeavyArmor3"/>
+			<SkillTable>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<ShortSpear type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="NothHeavyCrossBow"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="3" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="HeavyInf.mesh"/>
+			<UnitMat type="String" value="HeavyInf"/>
+			<MoveSound type="String" value="HeavyInf.ogg"/>
+		</NothHeavyCrossBow>
+		<NothHeavyHSword>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="0"/>
+			<SoilderId type="String" value="NothSoilder"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="HeavySword4"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="HeavyArmor3"/>
+			<SkillTable>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<ShortSpear type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="NothHeavyHSword"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="3" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="HeavyInf.mesh"/>
+			<UnitMat type="String" value="HeavyInf"/>
+			<MoveSound type="String" value="HeavyInf.ogg"/>
+		</NothHeavyHSword>
 	</SquadData>
 	<SoilderData>
 		<WingsSoilder>
@@ -1077,7 +1440,7 @@
 			<Icon type="String" value="eqp_twosword" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="13.0" />
+				<Attack type="Float" value="12.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="0.0" />
 				<Formation type="Float" value="-2.0" />
@@ -2505,7 +2868,7 @@
 			<Icon type="String" value="eqp_heavyarmor" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="-2.0" />
+				<Attack type="Float" value="0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="4.0" />
 				<Formation type="Float" value="0.0" />
@@ -2524,7 +2887,7 @@
 			<Icon type="String" value="eqp_heavyarmor" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="-2.0" />
+				<Attack type="Float" value="0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="5.0" />
 				<Formation type="Float" value="0.0" />
@@ -2543,7 +2906,7 @@
 			<Icon type="String" value="eqp_heavyarmor" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="-2.0" />
+				<Attack type="Float" value="0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="6.0" />
 				<Formation type="Float" value="0.0" />
@@ -2562,7 +2925,7 @@
 			<Icon type="String" value="eqp_heavyarmor" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="-2.0" />
+				<Attack type="Float" value="0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="7.0" />
 				<Formation type="Float" value="0.0" />
@@ -2581,7 +2944,7 @@
 			<Icon type="String" value="eqp_heavyarmor" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="-2.0" />
+				<Attack type="Float" value="0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="8.0" />
 				<Formation type="Float" value="0.0" />
