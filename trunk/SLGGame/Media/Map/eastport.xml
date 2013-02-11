@@ -111,8 +111,8 @@
     <ForestLow1_15 Type="ForestLow" GridX="11" GridY="12" Mesh="ForestLow1.mesh" Direction="0" />
     <ForestLow2_31 Type="ForestLow" GridX="11" GridY="13" Mesh="ForestLow2.mesh" Direction="0" />
     <ForestLow2_32 Type="ForestLow" GridX="11" GridY="14" Mesh="ForestLow2.mesh" Direction="0" />
-    <Bridge_0 Type="" GridX="11" GridY="7" Mesh="Bridge.mesh" Direction="0" />
-    <Bridge_1 Type="" GridX="2" GridY="6" Mesh="Bridge.mesh" Direction="2" />
+    <Bridge_0 Type="Bridge" GridX="11" GridY="7" Mesh="Bridge.mesh" Direction="0" />
+    <Bridge_1 Type="Bridge" GridX="2" GridY="6" Mesh="Bridge.mesh" Direction="2" />
     <ForestLow2_33 Type="ForestLow" GridX="10" GridY="4" Mesh="ForestLow2.mesh" Direction="0" />
     <ForestLow2_34 Type="ForestLow" GridX="10" GridY="5" Mesh="ForestLow2.mesh" Direction="0" />
     <ForestLow1_16 Type="ForestLow" GridX="9" GridY="5" Mesh="ForestLow1.mesh" Direction="0" />

@@ -143,8 +143,8 @@
     <ForestLowWithRoad3_4 Type="ForestLow" GridX="16" GridY="14" Mesh="ForestLowWithRoad3.mesh" Direction="3" />
     <LittleOutpost_0 Type="Outpost" GridX="11" GridY="7" Mesh="LittleOutpost.mesh" Direction="2" />
     <LittleOutpost_1 Type="Outpost" GridX="16" GridY="2" Mesh="LittleOutpost.mesh" Direction="1" />
-    <Bridge_0 Type="" GridX="4" GridY="17" Mesh="Bridge.mesh" Direction="2" />
-    <Bridge_1 Type="" GridX="5" GridY="8" Mesh="Bridge.mesh" Direction="2" />
+    <Bridge_0 Type="Bridge" GridX="4" GridY="17" Mesh="Bridge.mesh" Direction="2" />
+    <Bridge_1 Type="Bridge" GridX="5" GridY="8" Mesh="Bridge.mesh" Direction="2" />
 </MapObject>
 <MapEffect />
 <MapSquad>
