@@ -5,7 +5,7 @@
     <Team3 TeamType="none" TeamFaction="none" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
-<MapScript>mapscript3.lua</MapScript>
+<MapScript>mapscript10.lua</MapScript>
 <MapInfo>mapinfo1</MapInfo>
 <MapLoadBG>map1.png</MapLoadBG>
 <MapSize>20</MapSize>
@@ -43,7 +43,7 @@
     <ForestLow2_6 Type="ForestLow" GridX="19" GridY="18" Mesh="ForestLow2.mesh" Direction="0" />
     <ForestLow1_7 Type="ForestLow" GridX="18" GridY="10" Mesh="ForestLow1.mesh" Direction="0" />
     <ForestLow2_7 Type="ForestLow" GridX="13" GridY="15" Mesh="ForestLow2.mesh" Direction="0" />
-    <ForestLow2_8 Type="ForestLow" GridX="12" GridY="14" Mesh="ForestLow2.mesh" Direction="0" />
+    <ForestLow2_8 Type="ForestLow" GridX="12" GridY="13" Mesh="ForestLow2.mesh" Direction="0" />
     <ForestLow2_9 Type="ForestLow" GridX="17" GridY="6" Mesh="ForestLow2.mesh" Direction="0" />
     <ForestLow1_8 Type="ForestLow" GridX="13" GridY="14" Mesh="ForestLow1.mesh" Direction="0" />
     <ForestLow1_9 Type="ForestLow" GridX="7" GridY="18" Mesh="ForestLow1.mesh" Direction="0" />
@@ -58,7 +58,7 @@
     <ForestLow1_14 Type="ForestLow" GridX="7" GridY="15" Mesh="ForestLow1.mesh" Direction="0" />
     <ForestLow1_15 Type="ForestLow" GridX="13" GridY="13" Mesh="ForestLow1.mesh" Direction="0" />
     <ForestLow2_10 Type="ForestLow" GridX="10" GridY="14" Mesh="ForestLow2.mesh" Direction="0" />
-    <ForestLow2_11 Type="ForestLow" GridX="8" GridY="15" Mesh="ForestLow2.mesh" Direction="0" />
+    <ForestLow2_11 Type="ForestLow" GridX="12" GridY="14" Mesh="ForestLow2.mesh" Direction="0" />
     <ForestLowWithRoad3_0 Type="ForestLow" GridX="16" GridY="10" Mesh="ForestLowWithRoad3.mesh" Direction="0" />
     <ForestLow1_16 Type="ForestLow" GridX="9" GridY="4" Mesh="ForestLow1.mesh" Direction="0" />
     <ForestLow1_17 Type="ForestLow" GridX="8" GridY="4" Mesh="ForestLow1.mesh" Direction="0" />
@@ -148,30 +148,41 @@
 </MapObject>
 <MapEffect />
 <MapSquad>
-    <Team1 />
+    <Team1>
+        <Team1Squad_0 Type="James" GridX="8" GridY="10" Direction="1" UnitNum="0" />
+        <Team1Squad_1 Type="WinfredHeavyHalberd" GridX="8" GridY="11" Direction="1" UnitNum="0" />
+        <Team1Squad_2 Type="WinfredHeavyHalberd" GridX="7" GridY="16" Direction="1" UnitNum="0" />
+        <Team1Squad_3 Type="WinfredLightHalberd" GridX="7" GridY="17" Direction="1" UnitNum="0" />
+        <Team1Squad_4 Type="WinfredLightBow" GridX="6" GridY="17" Direction="1" UnitNum="0" />
+        <Team1Squad_5 Type="WinfredLightHalberd" GridX="6" GridY="16" Direction="1" UnitNum="0" />
+    </Team1>
     <Team2>
-        <Team2Squad_0 Type="Pirate" GridX="12" GridY="15" Direction="1" UnitNum="0" />
-        <Team2Squad_1 Type="Pirate" GridX="11" GridY="16" Direction="1" UnitNum="0" />
-        <Team2Squad_2 Type="Pirate" GridX="13" GridY="16" Direction="1" UnitNum="0" />
-        <Team2Squad_3 Type="UlvaLightHSword" GridX="13" GridY="17" Direction="1" UnitNum="0" />
-        <Team2Squad_4 Type="UlvaLightBow" GridX="14" GridY="19" Direction="1" UnitNum="0" />
-        <Team2Squad_5 Type="UlvaCrossBow" GridX="15" GridY="19" Direction="1" UnitNum="0" />
-        <Team2Squad_6 Type="Pirate" GridX="16" GridY="18" Direction="1" UnitNum="0" />
-        <Team2Squad_7 Type="UlvaLightHSword" GridX="14" GridY="18" Direction="1" UnitNum="0" />
-        <Team2Squad_8 Type="Pirate" GridX="15" GridY="17" Direction="1" UnitNum="0" />
-        <Team2Squad_9 Type="UlvaLightHSword" GridX="12" GridY="17" Direction="1" UnitNum="0" />
+        <Team2Squad_0 Type="NothLightHSword" GridX="12" GridY="16" Direction="1" UnitNum="0" />
+        <Team2Squad_1 Type="NothLightHSword" GridX="10" GridY="12" Direction="1" UnitNum="0" />
+        <Team2Squad_2 Type="NothHeavyCrossBow" GridX="12" GridY="14" Direction="1" UnitNum="0" />
+        <Team2Squad_3 Type="NothLightBow" GridX="10" GridY="15" Direction="1" UnitNum="0" />
+        <Team2Squad_4 Type="NothLightBow" GridX="12" GridY="12" Direction="1" UnitNum="0" />
+        <Team2Squad_5 Type="NothLightHSword" GridX="11" GridY="13" Direction="1" UnitNum="0" />
+        <Team2Squad_6 Type="NothHeavyHSword" GridX="9" GridY="15" Direction="1" UnitNum="0" />
+        <Team2Squad_7 Type="NothHeavyHSword" GridX="11" GridY="15" Direction="1" UnitNum="0" />
+        <Team2Squad_8 Type="NothHeavyCrossBow" GridX="10" GridY="16" Direction="1" UnitNum="0" />
+        <Team2Squad_9 Type="NothHeavyCrossBow" GridX="11" GridY="11" Direction="1" UnitNum="0" />
+        <Team2Squad_10 Type="NothHeavyHSword" GridX="10" GridY="11" Direction="1" UnitNum="0" />
     </Team2>
     <Team3 />
     <Team4 />
 </MapSquad>
 <MapArea>
     <DeployArea>
-        <c0 X="15" Y="8" />
-        <c1 X="15" Y="9" />
-        <c2 X="15" Y="10" />
-        <c3 X="16" Y="9" />
-        <c4 X="16" Y="8" />
-        <c5 X="17" Y="8" />
-        <c6 X="17" Y="9" />
+        <c0 X="15" Y="19" />
+        <c1 X="16" Y="19" />
+        <c2 X="16" Y="18" />
+        <c3 X="15" Y="18" />
+        <c4 X="17" Y="18" />
+        <c5 X="17" Y="19" />
+        <c6 X="18" Y="18" />
+        <c7 X="18" Y="19" />
+        <c8 X="16" Y="17" />
+        <c9 X="15" Y="17" />
     </DeployArea>
 </MapArea>
