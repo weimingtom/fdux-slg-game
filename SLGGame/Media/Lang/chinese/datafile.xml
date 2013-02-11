@@ -17,6 +17,10 @@
 			<Name type="String" value="柯萨"/>
 			<Describe type="String" value="柯萨"/>
 		</Cossa>
+		<Fay>
+			<Name type="String" value="菲"/>
+			<Describe type="String" value="菲"/>
+		</Fay>
 		<WingsLightCavalry>
 			<Name type="String" value="翼骑团指挥官"/>
 			<Describe type="String" value="翼骑团指挥官"/>
@@ -61,6 +65,14 @@
 			<Name type="String" value="法卫队军士长"/>
 			<Describe type="String" value="法卫队军士长"/>
 		</GuardLightHalberd>
+		<Elementalist>
+			<Name type="String" value="一级法师"/>
+			<Describe type="String" value="一级法师"/>
+		</Elementalist>
+		<Pirate>
+			<Name type="String" value="流寇"/>
+			<Describe type="String" value="流寇"/>
+		</Pirate>
 		<UlvaLightHSword>
 			<Name type="String" value="复国团中级军官"/>
 			<Describe type="String" value="复国团中级军官"/>
@@ -85,6 +97,38 @@
 			<Name type="String" value="不明军官"/>
 			<Describe type="String" value="不明军官"/>
 		</FNothLightBow>
+		<James>
+			<Name type="String" value="詹姆"/>
+			<Describe type="String" value="詹姆"/>
+		</James>
+		<WinfredHeavyHalberd>
+			<Name type="String" value="温菲尔德骑士"/>
+			<Describe type="String" value="温菲尔德骑士"/>
+		</WinfredHeavyHalberd>
+		<WinfredLightHalberd>
+			<Name type="String" value="温菲尔德侍从"/>
+			<Describe type="String" value="温菲尔德侍从"/>
+		</WinfredLightHalberd>
+		<WinfredLightBow>
+			<Name type="String" value="温菲尔德侍从"/>
+			<Describe type="String" value="温菲尔德侍从"/>
+		</WinfredLightBow>
+		<NothLightBow>
+			<Name type="String" value="诺斯侍从"/>
+			<Describe type="String" value="诺斯侍从"/>
+		</NothLightBow>
+		<NothLightHSword>
+			<Name type="String" value="诺斯侍从"/>
+			<Describe type="String" value="诺斯侍从"/>
+		</NothLightHSword>
+		<NothHeavyCrossBow>
+			<Name type="String" value="诺斯骑士"/>
+			<Describe type="String" value="诺斯骑士"/>
+		</NothHeavyCrossBow>
+		<NothHeavyHSword>
+			<Name type="String" value="诺斯精锐骑士"/>
+			<Describe type="String" value="诺斯精锐骑士"/>
+		</NothHeavyHSword>	
 	</LeaderDate>
 	<SquadData>
 		<CheetahSquad>
@@ -104,13 +148,17 @@
 			<Describe type="String" value="翼骑团轻装弩兵"/>
 		</WingsCrossBow>
 		<Olivia>
-			<Name type="String" value="奥莉瓦"/>
-			<Describe type="String" value="奥莉瓦"/>
+			<Name type="String" value="神圣法师"/>
+			<Describe type="String" value="神圣法师"/>
 		</Olivia>
 		<Cossa>
 			<Name type="String" value="柯萨轻骑兵队"/>
 			<Describe type="String" value="柯萨轻骑兵队"/>
 		</Cossa>
+		<Fay>
+			<Name type="String" value="战术法师"/>
+			<Describe type="String" value="战术法师"/>
+		</Fay>
 		<WingsLightCavalry>
 			<Name type="String" value="翼骑团轻装弓骑兵"/>
 			<Describe type="String" value="翼骑团轻装弓骑兵"/>
@@ -147,6 +195,14 @@
 			<Name type="String" value="法卫队重装矛兵"/>
 			<Describe type="String" value="法卫队重装矛兵"/>
 		</GuardHeavySpear>
+		<Elementalist>
+			<Name type="String" value="奥术法师"/>
+			<Describe type="String" value="奥术法师"/>
+		</Elementalist>
+		<Pirate>
+			<Name type="String" value="流寇队"/>
+			<Describe type="String" value="流寇队"/>
+		</Pirate>
 		<UlvaLightHSword>
 			<Name type="String" value="复国团轻装巨剑兵"/>
 			<Describe type="String" value="复国团轻装巨剑兵"/>
@@ -171,6 +227,38 @@
 			<Name type="String" value="不明弓兵"/>
 			<Describe type="String" value="不明弓兵"/>
 		</FNothLightBow>
+		<James>
+			<Name type="String" value="詹姆重骑兵队"/>
+			<Describe type="String" value="詹姆重骑兵队"/>
+		</James>
+		<WinfredHeavyHalberd>
+			<Name type="String" value="温菲尔德重戟兵"/>
+			<Describe type="String" value="温菲尔德重戟兵"/>
+		</WinfredHeavyHalberd>
+		<WinfredLightHalberd>
+			<Name type="String" value="温菲尔德轻戟兵"/>
+			<Describe type="String" value="温菲尔德轻戟兵"/>
+		</WinfredLightHalberd>
+		<WinfredLightBow>
+			<Name type="String" value="温菲尔德轻弓兵"/>
+			<Describe type="String" value="温菲尔德轻弓兵"/>
+		</WinfredLightBow>
+		<NothLightBow>
+			<Name type="String" value="诺斯轻装弓兵"/>
+			<Describe type="String" value="诺斯轻装弓兵"/>
+		</NothLightBow>
+		<NothLightHSword>
+			<Name type="String" value="诺斯轻装巨剑兵"/>
+			<Describe type="String" value="诺斯轻装巨剑兵"/>
+		</NothLightHSword>
+		<NothHeavyCrossBow>
+			<Name type="String" value="诺斯重装弩手"/>
+			<Describe type="String" value="诺斯重装弩手"/>
+		</NothHeavyCrossBow>
+		<NothHeavyHSword>
+			<Name type="String" value="诺斯重装巨剑兵"/>
+			<Describe type="String" value="诺斯重装巨剑兵"/>
+		</NothHeavyHSword>	
 	</SquadData>
 	<SoilderData>
 		<WingsSoilder>
@@ -326,15 +414,15 @@
 			<Describe type="String" value="在锡盟教廷圣法师的法杖和神圣卫队的长戟是任何人都不感挑衅的东西，它们一起组成了教廷最核心的战斗力" />
 		</Halberd5>
 		<Staves1>
-			<Name type="String" value="神圣之仗" />
+			<Name type="String" value="神圣之杖" />
 			<Describe type="String" value="" />
 		</Staves1>
 		<Staves2>
-			<Name type="String" value="魔力之仗" />
+			<Name type="String" value="魔力之杖" />
 			<Describe type="String" value="" />
 		</Staves2>
 		<Staves3>
-			<Name type="String" value="元素之仗" />
+			<Name type="String" value="元素之杖" />
 			<Describe type="String" value="" />
 		</Staves3>
 	</PweaponData>
