@@ -61,14 +61,18 @@
 			<Name type="String" value="法卫队斥候长"/>
 			<Describe type="String" value="法卫队斥候长"/>
 		</GuardLightBow>
-		<GuardLightHalberd>
+		<GuardLightSword>
 			<Name type="String" value="法卫队军士长"/>
 			<Describe type="String" value="法卫队军士长"/>
-		</GuardLightHalberd>
+		</GuardLightSword>
 		<Elementalist>
 			<Name type="String" value="一级法师"/>
 			<Describe type="String" value="一级法师"/>
 		</Elementalist>
+		<Kareena>
+			<Name type="String" value="卡琳娜"/>
+			<Describe type="String" value="卡琳娜"/>
+		</Kareena>
 		<Pirate>
 			<Name type="String" value="流寇"/>
 			<Describe type="String" value="流寇"/>
@@ -183,10 +187,10 @@
 			<Name type="String" value="凡塔斯重骑兵"/>
 			<Describe type="String" value="凡塔斯重骑兵"/>
 		</FantasyHeavyCavalry>
-		<GuardLightHalberd>
-			<Name type="String" value="法卫队轻装长戟兵"/>
-			<Describe type="String" value="法卫队轻装长戟兵"/>
-		</GuardLightHalberd>
+		<GuardLightSword>
+			<Name type="String" value="法卫队轻装剑盾兵"/>
+			<Describe type="String" value="法卫队轻装剑盾兵"/>
+		</GuardLightSword>
 		<GuardLightBow>
 			<Name type="String" value="法卫队轻装弓兵"/>
 			<Describe type="String" value="法卫队轻装弓兵"/>
@@ -199,6 +203,10 @@
 			<Name type="String" value="奥术法师"/>
 			<Describe type="String" value="奥术法师"/>
 		</Elementalist>
+		<Kareena>
+			<Name type="String" value="大法师"/>
+			<Describe type="String" value="大法师"/>
+		</Kareena>
 		<Pirate>
 			<Name type="String" value="流寇队"/>
 			<Describe type="String" value="流寇队"/>
