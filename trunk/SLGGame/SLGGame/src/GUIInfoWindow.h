@@ -29,7 +29,7 @@ public:
 	void onOtherSceneNotify(std::string arg);
 private:
 	MyGUI::Window* mWindow;
-	MyGUI::TextBox* mCaption;
+	MyGUI::ImageBox* mCaption;
 	MyGUI::Timer mTimer;//¶¨Ê±Æ÷
 	bool isStart;
 	bool isWait;

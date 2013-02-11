@@ -337,7 +337,7 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 		else if(ite->skillid == "turn")
 		{
 			mSkill[n]->setCaption("");
-			mSkill[n]->setUserString("Tips",StringTable::getSingleton().getString("Tips_Move"));
+			mSkill[n]->setUserString("Tips",StringTable::getSingleton().getString("Tips_Turn"));
 			mSkill[n]->setUserString("Discribe",StringTable::getSingleton().getString("TurnSquad"));
 			mSkill[n]->setImageResource("ac");
 			mSkill[n]->setImageGroup("ac_turn");
@@ -379,6 +379,8 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 		}
 		mSkill[n]->setVisible(true);
 		mSkill[n]->setEnabled((*ite).available);
+		mSkill[n]->setNeedToolTip(true);
+		GUITipsWindow::getSingletonPtr()->addToolTipEvent(mSkill[n]);
 		mSkillId[n] = (*ite).skillid;
 		n++;
 	}
@@ -386,6 +388,7 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 	{
 		mSkill[n]->setImageResource("");
 		mSkill[n]->setVisible(false);
+		mSkill[n]->setNeedToolTip(false);
 		mSkillId[n] = "none";
 	}
 	showScene("");

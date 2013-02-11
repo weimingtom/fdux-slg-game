@@ -137,7 +137,7 @@
 			<UnitNum value="50" type="Int" />
 			<UnitMesh type="String" value="HeavyInf.mesh"/>
 			<UnitMat type="String" value="HeavyInf"/>
-			<MoveSound type="String" value="HeavyInf.mp3"/>
+			<MoveSound type="String" value="HeavyInf.ogg"/>
 		</CheetahSquad>
 		<DandelionSquad>
 			<Type type="Int" value="0"/>
@@ -169,7 +169,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
-			<MoveSound type="String" value="BowMan.mp3"/>
+			<MoveSound type="String" value="BowMan.ogg"/>
 		</DandelionSquad>
 		<WingsLightInf>
 			<Type type="Int" value="0"/>
@@ -201,7 +201,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
-			<MoveSound type="String" value="LightInf.mp3"/>
+			<MoveSound type="String" value="LightInf.ogg"/>
 		</WingsLightInf>
 		<WingsCrossBow>
 			<Type type="Int" value="0"/>
@@ -233,7 +233,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
-			<MoveSound type="String" value="BowMan.mp3"/>
+			<MoveSound type="String" value="BowMan.ogg"/>
 		</WingsCrossBow>
 		<Olivia>
 			<Type type="Int" value="1"/>
@@ -261,7 +261,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="HolySpirit.mesh"/>
 			<UnitMat type="String" value="HolySpirit"/>
-			<MoveSound type="String" value="Olivia.mp3"/>
+			<MoveSound type="String" value="Olivia.ogg"/>
 		</Olivia>
 		<Cossa>
 			<Type type="Int" value="0"/>
@@ -293,7 +293,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightCavalry.mesh"/>
 			<UnitMat type="String" value="LightCavalry"/>
-			<MoveSound type="String" value="LightCavalry.mp3"/>
+			<MoveSound type="String" value="LightCavalry.ogg"/>
 		</Cossa>
 		<WingsLightCavalry>
 			<Type type="Int" value="0"/>
@@ -325,7 +325,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightCavalry.mesh"/>
 			<UnitMat type="String" value="LightCavalry"/>
-			<MoveSound type="String" value="LightCavalry.mp3"/>
+			<MoveSound type="String" value="LightCavalry.ogg"/>
 		</WingsLightCavalry>
 		<DuxLightSpear>
 			<Type type="Int" value="0"/>
@@ -353,7 +353,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInfDux"/>
-			<MoveSound type="String" value="LightInf.mp3"/>
+			<MoveSound type="String" value="LightInf.ogg"/>
 		</DuxLightSpear>
 		<DuxLightBow>
 			<Type type="Int" value="0"/>
@@ -381,7 +381,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInfDux"/>
-			<MoveSound type="String" value="LightInf.mp3"/>
+			<MoveSound type="String" value="LightInf.ogg"/>
 		</DuxLightBow>
 		<DuxHeavySpear>
 			<Type type="Int" value="0"/>
@@ -409,7 +409,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="HeavyInf.mesh"/>
 			<UnitMat type="String" value="HeavyInf"/>
-			<MoveSound type="String" value="HeavyInf.mp3"/>
+			<MoveSound type="String" value="HeavyInf.ogg"/>
 		</DuxHeavySpear>
 		<DuxHeavyCavalry>
 			<Type type="Int" value="0"/>
@@ -437,7 +437,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="HeavyCavalry.mesh"/>
 			<UnitMat type="String" value="HeavyCavalry."/>
-			<MoveSound type="String" value="HeavyCavalry.mp3"/>
+			<MoveSound type="String" value="HeavyCavalry.ogg"/>
 		</DuxHeavyCavalry>
 		<FantasyHeavyCavalry>
 			<Type type="Int" value="0"/>
@@ -465,7 +465,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="HeavyCavalry.mesh"/>
 			<UnitMat type="String" value="HeavyCavalry."/>
-			<MoveSound type="String" value="HeavyCavalry.mp3"/>
+			<MoveSound type="String" value="HeavyCavalry.ogg"/>
 		</FantasyCavalry>
 		<GuardLightHalberd>
 			<Type type="Int" value="0"/>
@@ -497,7 +497,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
-			<MoveSound type="String" value="LightInf.mp3"/>
+			<MoveSound type="String" value="LightInf.ogg"/>
 		</GuardLightHalberd>
 		<GuardLightBow>
 			<Type type="Int" value="0"/>
@@ -529,7 +529,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
-			<MoveSound type="String" value="BowMan.mp3"/>
+			<MoveSound type="String" value="BowMan.ogg"/>
 		</GuardLightBow>
 		<GuardHeavySpear>
 			<Type type="Int" value="0"/>
@@ -557,7 +557,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="HeavyInf.mesh"/>
 			<UnitMat type="String" value="HeavyInf"/>
-			<MoveSound type="String" value="HeavyInf.mp3"/>
+			<MoveSound type="String" value="HeavyInf.ogg"/>
 		</GuardHeavySpear>
 		<UlvaLightHSword>
 			<Type type="Int" value="0"/>
@@ -585,7 +585,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
-			<MoveSound type="String" value="LightInf.mp3"/>
+			<MoveSound type="String" value="LightInf.ogg"/>
 		</UlvaLightHSword>
 		<UlvaLightBow>
 			<Type type="Int" value="0"/>
@@ -613,7 +613,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
-			<MoveSound type="String" value="LightInf.mp3"/>
+			<MoveSound type="String" value="LightInf.ogg"/>
 		</UlvaLightBow>
 		<UlvaCrossBow>
 			<Type type="Int" value="0"/>
@@ -641,7 +641,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
-			<MoveSound type="String" value="LightInf.mp3"/>
+			<MoveSound type="String" value="LightInf.ogg"/>
 		</UlvaCrossBow>
 		<FNothHeavyHSword>
 			<Type type="Int" value="0"/>
@@ -669,7 +669,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="HeavyInf.mesh"/>
 			<UnitMat type="String" value="HeavyInf"/>
-			<MoveSound type="String" value="HeavyInf.mp3"/>
+			<MoveSound type="String" value="HeavyInf.ogg"/>
 		</FNothHeavyHSword>
 		<FNothLightHSword>
 			<Type type="Int" value="0"/>
@@ -697,7 +697,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
-			<MoveSound type="String" value="LightInf.mp3"/>
+			<MoveSound type="String" value="LightInf.ogg"/>
 		</FNothLightHSword>
 		<FNothLightBow>
 			<Type type="Int" value="0"/>
@@ -725,7 +725,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
-			<MoveSound type="String" value="LightInf.mp3"/>
+			<MoveSound type="String" value="LightInf.ogg"/>
 		</FNothLightBow>
 	</SquadData>
 	<SoilderData>

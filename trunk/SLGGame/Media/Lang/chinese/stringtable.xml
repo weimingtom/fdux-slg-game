@@ -159,7 +159,10 @@
 		<GUITerrainInfAp type="String" value="步兵消耗"/>
 		
 		<!--GUITips-->
-		<Tips_SquadLeadName type="String" value="队伍名称队伍名称队伍名称队伍名称队伍名啊队伍名称队伍名称队伍名称队伍名称队伍名啊队伍名称队伍名称队伍名称队伍名称队伍名啊"/>
-		
+		<Tips_Move type="String" value="部队从一个地块移动到临近的可通行地块，根据地块消耗行动值"/>
+		<Tips_Turn type="String" value="改变部队的朝向"/>
+		<Tips_FormationLoosButton type="String" value="改变部队的阵型为散阵，通常用于部队躲避远程攻击伤害，无阵列加成"/>
+		<Tips_FormationLineButton type="String" value="改变部队的阵型为线型阵，通常用于结阵防御或者正面攻击敌方阵型，部队正面获得较高阵列加成，侧面和背面较少。当部队受到远程攻击或者特殊攻击时，受到较高的伤害"/>
+		<Tips_FormationCircButton type="String" value="改变部队的阵型为圆阵，通常用于单独或突出的部队防御敌方进攻。部队各面受到相同的阵列加成。当部队受到远程攻击或者特殊攻击时，受到非常高的伤害"/>
 	</StringTable>
 </StaticData>
