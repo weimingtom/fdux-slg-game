@@ -19,10 +19,10 @@ function StoryInit()
 	mid=2;
 	right=3;
 	all=5;
-	GUI.SetTextBgRect(200,200,349,146);
+	GUI.SetTextBgRect(197,481,897,194);
 	GUI.SetTextBgImage("BattleTextBox.png");
-	GUI.SetTextRect(10,30,349,140);
-	GUI.SetRoleNameRect(30,0,80,50);
+	GUI.SetTextRect(50,57,840,125);
+	GUI.SetRoleNameRect(50,15,300,80);
 	GUI.SetUITextColor(0,0,0);
 	GUI.SetRoleNameColor(0,0,0);
 	GUI.SetFont("fireflysung","fireflysung");

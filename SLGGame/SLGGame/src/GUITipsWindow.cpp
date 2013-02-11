@@ -53,7 +53,7 @@ void GUITipsWindow::setTips(std::string text)
 	}
 	else
 	{
-		mWindow->setSize(LINE_TEXT_NUM*(FONT_SIZE-4),FONT_SIZE*(3+(textlength/LINE_TEXT_NUM)-1));
+		mWindow->setSize(LINE_TEXT_NUM*(FONT_SIZE-4),FONT_SIZE*(3+(textlength/LINE_TEXT_NUM)));
 
 		for (int i=0;i<textlength/LINE_TEXT_NUM;i++)
 		{
@@ -61,9 +61,10 @@ void GUITipsWindow::setTips(std::string text)
 			mTipsTextBox->addText("\n");
 			s.erase(0,LINE_TEXT_NUM);
 		}
-
-		int length=mTipsTextBox->getTextLength();
-		mTipsTextBox->eraseText(length-1);
+		
+		mTipsTextBox->addText(s);
+		//int length=mTipsTextBox->getTextLength();
+		//mTipsTextBox->eraseText(length-1);
 	}
 }
 

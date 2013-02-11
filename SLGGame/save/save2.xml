@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GameData>
 	<StoryData>
-		<GameState type="String" value="AVG"/>
+		<GameState type="String" value="Battle"/>
 		<BackGroundName type="String" value="caoyuan.png"/>
 		<BackGroundPosition type="Vector3" value="0,0,0"/>
 		<BackGroundSize type="Vector3" value="1280,720,0"/>
-		<LeftName type="String" value="chihou_lan.png"/>
+		<LeftName type="String" value=""/>
 		<LeftPosition type="Vector3" value="-100,0,0"/>
 		<LeftSize type="Vector3" value="640,720,0"/>
 		<MidName type="String" value=""/>
 		<MidPosition type="Vector3" value="295,25,0"/>
 		<MidSize type="Vector3" value="245,480,0"/>
-		<RightName type="String" value="qitaw_zc.png"/>
+		<RightName type="String" value=""/>
 		<RightPosition type="Vector3" value="700,0,0"/>
 		<RightSize type="Vector3" value="640,720,0"/>
-		<Text type="String" value="那么是时候去给这些家伙的庆典泼泼冷水了。"/>
-		<RoleName type="String" value="齐塔"/>
+		<Text type="String" value=""/>
+		<RoleName type="String" value=""/>
 		<TextCursorType type="Int" value="0"/>
 		<ScriptName type="String" value="cp1.lua"/>
-		<ScriptLine type="Int" value="306"/>
-		<MusicName type="String" value="nervous.mp3"/>
+		<ScriptLine type="Int" value="7"/>
+		<MusicName type="String" value="battle1.ogg"/>
 		<SquadData>
 			<Cheetah>
 				<Type type="Int" value="0"/>
@@ -223,5 +223,3643 @@
 		</SquadData>
 		<Faction type="String" value="Wing"/>
 	</StoryData>
+	<BattleData>
+		<MapData>
+			<MapName type="String" value="双河平原之战 前篇"/>
+			<MapScript type="String" value="mapscript1.lua">
+				<ScriptContext>
+					<finishdeploytriger type="String" value="T0"/>
+					<unitdeadtriger type="String" value="T0"/>
+					<turnendtriger type="String" value="T1"/>
+				</ScriptContext>
+			</MapScript>
+			<MapInfo type="String" value="mapinfo1"/>
+			<MapLoadBG type="String" value="map1.png"/>
+			<MapSize type="Int" value="12"/>
+			<Ground>
+				<G0 type="String" value="Grass"/>
+				<G0Tex type="String" value="Grass1Blur.dds"/>
+				<G1 type="String" value="Soil"/>
+				<G1Tex type="String" value="Dirt1.dds"/>
+				<G2 type="String" value="Cobble"/>
+				<G2Tex type="String" value="GrassLargeRoadTemp.dds"/>
+				<G3 type="String" value="Road"/>
+				<G3Tex type="String" value="GrassLargeRoadTemp.dds"/>
+			</Ground>
+			<Map>
+				<M15>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M15>
+				<M16>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M16>
+				<M17>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M17>
+				<M18>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M18>
+				<M19>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow1_17"/>
+					</MapObjType>
+				</M19>
+				<M20>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow1_16"/>
+					</MapObjType>
+				</M20>
+				<M21>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow1_18"/>
+					</MapObjType>
+				</M21>
+				<M22>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M22>
+				<M23>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M23>
+				<M24>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M24>
+				<M25>
+					<TerrainType type="Int" value="0"/>
+					<GroundType type="Int" value="0"/>
+				</M25>
+				<M26>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M26>
+				<M29>
+					<TerrainType type="Int" value="0"/>
+					<GroundType type="Int" value="0"/>
+				</M29>
+				<M30>
+					<TerrainType type="Int" value="0"/>
+					<GroundType type="Int" value="0"/>
+				</M30>
+				<M31>
+					<TerrainType type="Int" value="0"/>
+					<GroundType type="Int" value="0"/>
+				</M31>
+				<M32>
+					<TerrainType type="Int" value="0"/>
+					<GroundType type="Int" value="0"/>
+				</M32>
+				<M33>
+					<TerrainType type="Int" value="0"/>
+					<GroundType type="Int" value="0"/>
+				</M33>
+				<M34>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M34>
+				<M35>
+					<TerrainType type="Int" value="0"/>
+					<GroundType type="Int" value="0"/>
+				</M35>
+				<M36>
+					<TerrainType type="Int" value="0"/>
+					<GroundType type="Int" value="0"/>
+				</M36>
+				<M37>
+					<TerrainType type="Int" value="0"/>
+					<GroundType type="Int" value="0"/>
+				</M37>
+				<M38>
+					<TerrainType type="Int" value="0"/>
+					<GroundType type="Int" value="0"/>
+				</M38>
+				<M39>
+					<TerrainType type="Int" value="0"/>
+					<GroundType type="Int" value="0"/>
+				</M39>
+				<M40>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M40>
+				<M43>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M43>
+				<M44>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M44>
+				<M45>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M45>
+				<M46>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow1_12"/>
+					</MapObjType>
+				</M46>
+				<M47>
+					<TerrainType type="Int" value="0"/>
+					<GroundType type="Int" value="0"/>
+				</M47>
+				<M48>
+					<TerrainType type="Int" value="0"/>
+					<GroundType type="Int" value="0"/>
+				</M48>
+				<M49>
+					<TerrainType type="Int" value="0"/>
+					<GroundType type="Int" value="0"/>
+				</M49>
+				<M50>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M50>
+				<M51>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M51>
+				<M52>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M52>
+				<M53>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M53>
+				<M54>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M54>
+				<M57>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M57>
+				<M58>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M58>
+				<M59>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow2_12"/>
+					</MapObjType>
+				</M59>
+				<M60>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow1_4"/>
+					</MapObjType>
+				</M60>
+				<M61>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow2_11"/>
+					</MapObjType>
+				</M61>
+				<M62>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="Forest">
+						<MapObjModuleId type="String" value="forest3_4"/>
+					</MapObjType>
+				</M62>
+				<M63>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="Forest">
+						<MapObjModuleId type="String" value="Forest2_3"/>
+					</MapObjType>
+				</M63>
+				<M64>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="Forest">
+						<MapObjModuleId type="String" value="Forest1_9"/>
+					</MapObjType>
+				</M64>
+				<M65>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLowWithRoad3_0"/>
+					</MapObjType>
+				</M65>
+				<M66>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+				</M66>
+				<M67>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+				</M67>
+				<M68>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+				</M68>
+				<M71>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M71>
+				<M72>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M72>
+				<M73>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M73>
+				<M74>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="Forest">
+						<MapObjModuleId type="String" value="Forest1_0"/>
+					</MapObjType>
+				</M74>
+				<M75>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="Forest">
+						<MapObjModuleId type="String" value="Forest1_1"/>
+					</MapObjType>
+				</M75>
+				<M76>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="Forest">
+						<MapObjModuleId type="String" value="Forest1_2"/>
+					</MapObjType>
+				</M76>
+				<M77>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow1_10"/>
+					</MapObjType>
+				</M77>
+				<M78>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="Forest">
+						<MapObjModuleId type="String" value="forest3_5"/>
+					</MapObjType>
+				</M78>
+				<M79>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="Outpost">
+						<MapObjModuleId type="String" value="LittleOutpost_0"/>
+					</MapObjType>
+				</M79>
+				<M80>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow2_3"/>
+					</MapObjType>
+				</M80>
+				<M81>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow1_5"/>
+					</MapObjType>
+				</M81>
+				<M82>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M82>
+				<M85>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M85>
+				<M86>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M86>
+				<M87>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="Forest">
+						<MapObjModuleId type="String" value="Forest2_0"/>
+					</MapObjType>
+				</M87>
+				<M88>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="Outpost">
+						<MapObjModuleId type="String" value="LittleOutpost_3"/>
+					</MapObjType>
+				</M88>
+				<M89>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLowWithRoad3_1"/>
+					</MapObjType>
+				</M89>
+				<M90>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="Forest">
+						<MapObjModuleId type="String" value="forest3_2"/>
+					</MapObjType>
+				</M90>
+				<M91>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow2_1"/>
+					</MapObjType>
+				</M91>
+				<M92>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="Forest">
+						<MapObjModuleId type="String" value="Forest2_5"/>
+					</MapObjType>
+				</M92>
+				<M93>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLowWithRoad1_2"/>
+					</MapObjType>
+				</M93>
+				<M94>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow1_3"/>
+					</MapObjType>
+				</M94>
+				<M95>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow1_6"/>
+					</MapObjType>
+				</M95>
+				<M96>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M96>
+				<M99>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M99>
+				<M100>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M100>
+				<M101>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="Forest">
+						<MapObjModuleId type="String" value="Forest2_1"/>
+					</MapObjType>
+				</M101>
+				<M102>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="Forest">
+						<MapObjModuleId type="String" value="forest3_0"/>
+					</MapObjType>
+				</M102>
+				<M103>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLowWithRoad1_1"/>
+					</MapObjType>
+				</M103>
+				<M104>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow1_15"/>
+					</MapObjType>
+				</M104>
+				<M105>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="Camp">
+						<MapObjModuleId type="String" value="BigCamp_0"/>
+					</MapObjType>
+				</M105>
+				<M106>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow2_13"/>
+					</MapObjType>
+				</M106>
+				<M107>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLowWithRoad2_3"/>
+					</MapObjType>
+				</M107>
+				<M108>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="Forest">
+						<MapObjModuleId type="String" value="Forest1_7"/>
+					</MapObjType>
+				</M108>
+				<M109>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="Forest">
+						<MapObjModuleId type="String" value="Forest1_4"/>
+					</MapObjType>
+				</M109>
+				<M110>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="Forest">
+						<MapObjModuleId type="String" value="forest3_3"/>
+					</MapObjType>
+				</M110>
+				<M113>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M113>
+				<M114>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow2_10"/>
+					</MapObjType>
+				</M114>
+				<M115>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLowWithRoad3_2"/>
+					</MapObjType>
+				</M115>
+				<M116>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLowWithRoad2_0"/>
+					</MapObjType>
+				</M116>
+				<M117>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLowWithRoad2_2"/>
+					</MapObjType>
+				</M117>
+				<M118>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLowWithRoad2_6"/>
+					</MapObjType>
+				</M118>
+				<M119>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+				</M119>
+				<M120>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLowWithRoad1_6"/>
+					</MapObjType>
+				</M120>
+				<M121>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLowWithRoad2_5"/>
+					</MapObjType>
+				</M121>
+				<M122>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLowWithRoad1_5"/>
+					</MapObjType>
+				</M122>
+				<M123>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLowWithRoad1_4"/>
+					</MapObjType>
+				</M123>
+				<M124>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+				</M124>
+				<M127>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow1_11"/>
+					</MapObjType>
+				</M127>
+				<M128>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow1_9"/>
+					</MapObjType>
+				</M128>
+				<M129>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="Outpost">
+						<MapObjModuleId type="String" value="LittleOutpost_4"/>
+					</MapObjType>
+				</M129>
+				<M130>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow1_0"/>
+					</MapObjType>
+				</M130>
+				<M131>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow2_2"/>
+					</MapObjType>
+				</M131>
+				<M132>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="Forest">
+						<MapObjModuleId type="String" value="forest3_1"/>
+					</MapObjType>
+				</M132>
+				<M133>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLowWithRoad2_1"/>
+					</MapObjType>
+				</M133>
+				<M134>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow1_2"/>
+					</MapObjType>
+				</M134>
+				<M135>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="Forest">
+						<MapObjModuleId type="String" value="Forest1_3"/>
+					</MapObjType>
+				</M135>
+				<M136>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="Outpost">
+						<MapObjModuleId type="String" value="LittleOutpost_1"/>
+					</MapObjType>
+				</M136>
+				<M137>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow2_5"/>
+					</MapObjType>
+				</M137>
+				<M138>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M138>
+				<M141>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M141>
+				<M142>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow2_9"/>
+					</MapObjType>
+				</M142>
+				<M143>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLowWithRoad1_3"/>
+					</MapObjType>
+				</M143>
+				<M144>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow2_4"/>
+					</MapObjType>
+				</M144>
+				<M145>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow1_8"/>
+					</MapObjType>
+				</M145>
+				<M146>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="Forest">
+						<MapObjModuleId type="String" value="Forest2_4"/>
+					</MapObjType>
+				</M146>
+				<M147>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="Outpost">
+						<MapObjModuleId type="String" value="LittleOutpost_2"/>
+					</MapObjType>
+				</M147>
+				<M148>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="Forest">
+						<MapObjModuleId type="String" value="Forest1_5"/>
+					</MapObjType>
+				</M148>
+				<M149>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow2_0"/>
+					</MapObjType>
+				</M149>
+				<M150>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="Forest">
+						<MapObjModuleId type="String" value="Forest2_2"/>
+					</MapObjType>
+				</M150>
+				<M151>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M151>
+				<M152>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M152>
+				<M155>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M155>
+				<M156>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M156>
+				<M157>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLowWithRoad2_4"/>
+					</MapObjType>
+				</M157>
+				<M158>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M158>
+				<M159>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow1_14"/>
+					</MapObjType>
+				</M159>
+				<M160>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow1_13"/>
+					</MapObjType>
+				</M160>
+				<M161>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLowWithRoad1_0"/>
+					</MapObjType>
+				</M161>
+				<M162>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow1_7"/>
+					</MapObjType>
+				</M162>
+				<M163>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="Forest">
+						<MapObjModuleId type="String" value="Forest1_8"/>
+					</MapObjType>
+				</M163>
+				<M164>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M164>
+				<M165>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M165>
+				<M166>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M166>
+				<M169>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M169>
+				<M170>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M170>
+				<M171>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+				</M171>
+				<M172>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M172>
+				<M173>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M173>
+				<M174>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M174>
+				<M175>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="3"/>
+				</M175>
+				<M176>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+					<MapObjType type="String" value="ForestLow">
+						<MapObjModuleId type="String" value="ForestLow1_1"/>
+					</MapObjType>
+				</M176>
+				<M177>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M177>
+				<M178>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M178>
+				<M179>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M179>
+				<M180>
+					<TerrainType type="Int" value="1"/>
+					<GroundType type="Int" value="0"/>
+				</M180>
+			</Map>
+			<MapObjModleInfo>
+				<BigCamp_0>
+					<GridX type="Int" value="6"/>
+					<GridY type="Int" value="6"/>
+					<Mesh type="String" value="BigCamp.mesh"/>
+					<Direction type="Int" value="1"/>
+					<Index type="Int" value="1"/>
+				</BigCamp_0>
+				<Forest1_0>
+					<GridX type="Int" value="3"/>
+					<GridY type="Int" value="4"/>
+					<Mesh type="String" value="Forest1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="2"/>
+				</Forest1_0>
+				<Forest1_1>
+					<GridX type="Int" value="4"/>
+					<GridY type="Int" value="4"/>
+					<Mesh type="String" value="Forest1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="3"/>
+				</Forest1_1>
+				<Forest2_0>
+					<GridX type="Int" value="2"/>
+					<GridY type="Int" value="5"/>
+					<Mesh type="String" value="Forest2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="4"/>
+				</Forest2_0>
+				<forest3_0>
+					<GridX type="Int" value="3"/>
+					<GridY type="Int" value="6"/>
+					<Mesh type="String" value="forest3.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="5"/>
+				</forest3_0>
+				<Forest2_1>
+					<GridX type="Int" value="2"/>
+					<GridY type="Int" value="6"/>
+					<Mesh type="String" value="Forest2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="6"/>
+				</Forest2_1>
+				<Forest1_2>
+					<GridX type="Int" value="5"/>
+					<GridY type="Int" value="4"/>
+					<Mesh type="String" value="Forest1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="7"/>
+				</Forest1_2>
+				<Forest1_3>
+					<GridX type="Int" value="8"/>
+					<GridY type="Int" value="8"/>
+					<Mesh type="String" value="Forest1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="8"/>
+				</Forest1_3>
+				<Forest1_4>
+					<GridX type="Int" value="10"/>
+					<GridY type="Int" value="6"/>
+					<Mesh type="String" value="Forest1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="9"/>
+				</Forest1_4>
+				<Forest1_5>
+					<GridX type="Int" value="7"/>
+					<GridY type="Int" value="9"/>
+					<Mesh type="String" value="Forest1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="10"/>
+				</Forest1_5>
+				<Forest1_6>
+					<GridX type="Int" value="9"/>
+					<GridY type="Int" value="9"/>
+					<Mesh type="String" value="Forest1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="11"/>
+				</Forest1_6>
+				<Forest1_7>
+					<GridX type="Int" value="9"/>
+					<GridY type="Int" value="6"/>
+					<Mesh type="String" value="Forest1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="12"/>
+				</Forest1_7>
+				<Forest1_8>
+					<GridX type="Int" value="8"/>
+					<GridY type="Int" value="10"/>
+					<Mesh type="String" value="Forest1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="13"/>
+				</Forest1_8>
+				<Forest2_2>
+					<GridX type="Int" value="9"/>
+					<GridY type="Int" value="9"/>
+					<Mesh type="String" value="Forest2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="14"/>
+				</Forest2_2>
+				<ForestLow1_0>
+					<GridX type="Int" value="3"/>
+					<GridY type="Int" value="8"/>
+					<Mesh type="String" value="ForestLow1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="15"/>
+				</ForestLow1_0>
+				<ForestLow1_1>
+					<GridX type="Int" value="7"/>
+					<GridY type="Int" value="11"/>
+					<Mesh type="String" value="ForestLow1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="16"/>
+				</ForestLow1_1>
+				<ForestLow1_2>
+					<GridX type="Int" value="7"/>
+					<GridY type="Int" value="8"/>
+					<Mesh type="String" value="ForestLow1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="17"/>
+				</ForestLow1_2>
+				<ForestLow1_3>
+					<GridX type="Int" value="9"/>
+					<GridY type="Int" value="5"/>
+					<Mesh type="String" value="ForestLow1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="18"/>
+				</ForestLow1_3>
+				<ForestLow1_4>
+					<GridX type="Int" value="3"/>
+					<GridY type="Int" value="3"/>
+					<Mesh type="String" value="ForestLow1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="19"/>
+				</ForestLow1_4>
+				<ForestLow1_5>
+					<GridX type="Int" value="10"/>
+					<GridY type="Int" value="4"/>
+					<Mesh type="String" value="ForestLow1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="20"/>
+				</ForestLow1_5>
+				<ForestLow1_6>
+					<GridX type="Int" value="10"/>
+					<GridY type="Int" value="5"/>
+					<Mesh type="String" value="ForestLow1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="21"/>
+				</ForestLow1_6>
+				<LittleOutpost_0>
+					<GridX type="Int" value="8"/>
+					<GridY type="Int" value="4"/>
+					<Mesh type="String" value="LittleOutpost.mesh"/>
+					<Direction type="Int" value="2"/>
+					<Index type="Int" value="22"/>
+				</LittleOutpost_0>
+				<LittleOutpost_1>
+					<GridX type="Int" value="9"/>
+					<GridY type="Int" value="8"/>
+					<Mesh type="String" value="LittleOutpost.mesh"/>
+					<Direction type="Int" value="2"/>
+					<Index type="Int" value="23"/>
+				</LittleOutpost_1>
+				<LittleOutpost_2>
+					<GridX type="Int" value="6"/>
+					<GridY type="Int" value="9"/>
+					<Mesh type="String" value="LittleOutpost.mesh"/>
+					<Direction type="Int" value="2"/>
+					<Index type="Int" value="24"/>
+				</LittleOutpost_2>
+				<LittleOutpost_3>
+					<GridX type="Int" value="3"/>
+					<GridY type="Int" value="5"/>
+					<Mesh type="String" value="LittleOutpost.mesh"/>
+					<Direction type="Int" value="1"/>
+					<Index type="Int" value="25"/>
+				</LittleOutpost_3>
+				<LittleOutpost_4>
+					<GridX type="Int" value="2"/>
+					<GridY type="Int" value="8"/>
+					<Mesh type="String" value="LittleOutpost.mesh"/>
+					<Direction type="Int" value="2"/>
+					<Index type="Int" value="26"/>
+				</LittleOutpost_4>
+				<ForestLowWithRoad1_0>
+					<GridX type="Int" value="6"/>
+					<GridY type="Int" value="10"/>
+					<Mesh type="String" value="ForestLowWithRoad1.mesh"/>
+					<Direction type="Int" value="2"/>
+					<Index type="Int" value="27"/>
+				</ForestLowWithRoad1_0>
+				<ForestLowWithRoad3_0>
+					<GridX type="Int" value="8"/>
+					<GridY type="Int" value="3"/>
+					<Mesh type="String" value="ForestLowWithRoad3.mesh"/>
+					<Direction type="Int" value="2"/>
+					<Index type="Int" value="28"/>
+				</ForestLowWithRoad3_0>
+				<ForestLowWithRoad1_1>
+					<GridX type="Int" value="4"/>
+					<GridY type="Int" value="6"/>
+					<Mesh type="String" value="ForestLowWithRoad1.mesh"/>
+					<Direction type="Int" value="2"/>
+					<Index type="Int" value="29"/>
+				</ForestLowWithRoad1_1>
+				<ForestLowWithRoad3_1>
+					<GridX type="Int" value="4"/>
+					<GridY type="Int" value="5"/>
+					<Mesh type="String" value="ForestLowWithRoad3.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="30"/>
+				</ForestLowWithRoad3_1>
+				<ForestLowWithRoad3_2>
+					<GridX type="Int" value="2"/>
+					<GridY type="Int" value="7"/>
+					<Mesh type="String" value="ForestLowWithRoad3.mesh"/>
+					<Direction type="Int" value="2"/>
+					<Index type="Int" value="31"/>
+				</ForestLowWithRoad3_2>
+				<ForestLowWithRoad2_0>
+					<GridX type="Int" value="3"/>
+					<GridY type="Int" value="7"/>
+					<Mesh type="String" value="ForestLowWithRoad2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="32"/>
+				</ForestLowWithRoad2_0>
+				<ForestLow2_0>
+					<GridX type="Int" value="8"/>
+					<GridY type="Int" value="9"/>
+					<Mesh type="String" value="ForestLow2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="33"/>
+				</ForestLow2_0>
+				<ForestLowWithRoad2_1>
+					<GridX type="Int" value="6"/>
+					<GridY type="Int" value="8"/>
+					<Mesh type="String" value="ForestLowWithRoad2.mesh"/>
+					<Direction type="Int" value="2"/>
+					<Index type="Int" value="34"/>
+				</ForestLowWithRoad2_1>
+				<ForestLowWithRoad2_2>
+					<GridX type="Int" value="4"/>
+					<GridY type="Int" value="7"/>
+					<Mesh type="String" value="ForestLowWithRoad2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="35"/>
+				</ForestLowWithRoad2_2>
+				<ForestLowWithRoad1_2>
+					<GridX type="Int" value="8"/>
+					<GridY type="Int" value="5"/>
+					<Mesh type="String" value="ForestLowWithRoad1.mesh"/>
+					<Direction type="Int" value="2"/>
+					<Index type="Int" value="36"/>
+				</ForestLowWithRoad1_2>
+				<ForestLowWithRoad2_3>
+					<GridX type="Int" value="8"/>
+					<GridY type="Int" value="6"/>
+					<Mesh type="String" value="ForestLowWithRoad2.mesh"/>
+					<Direction type="Int" value="2"/>
+					<Index type="Int" value="37"/>
+				</ForestLowWithRoad2_3>
+				<ForestLow2_1>
+					<GridX type="Int" value="6"/>
+					<GridY type="Int" value="5"/>
+					<Mesh type="String" value="ForestLow2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="38"/>
+				</ForestLow2_1>
+				<forest3_1>
+					<GridX type="Int" value="5"/>
+					<GridY type="Int" value="8"/>
+					<Mesh type="String" value="forest3.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="39"/>
+				</forest3_1>
+				<ForestLow1_7>
+					<GridX type="Int" value="7"/>
+					<GridY type="Int" value="10"/>
+					<Mesh type="String" value="ForestLow1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="40"/>
+				</ForestLow1_7>
+				<ForestLow1_8>
+					<GridX type="Int" value="4"/>
+					<GridY type="Int" value="9"/>
+					<Mesh type="String" value="ForestLow1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="41"/>
+				</ForestLow1_8>
+				<ForestLow2_2>
+					<GridX type="Int" value="4"/>
+					<GridY type="Int" value="8"/>
+					<Mesh type="String" value="ForestLow2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="42"/>
+				</ForestLow2_2>
+				<forest3_2>
+					<GridX type="Int" value="5"/>
+					<GridY type="Int" value="5"/>
+					<Mesh type="String" value="forest3.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="43"/>
+				</forest3_2>
+				<ForestLow2_3>
+					<GridX type="Int" value="9"/>
+					<GridY type="Int" value="4"/>
+					<Mesh type="String" value="ForestLow2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="44"/>
+				</ForestLow2_3>
+				<ForestLow1_9>
+					<GridX type="Int" value="1"/>
+					<GridY type="Int" value="8"/>
+					<Mesh type="String" value="ForestLow1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="45"/>
+				</ForestLow1_9>
+				<ForestLowWithRoad2_4>
+					<GridX type="Int" value="2"/>
+					<GridY type="Int" value="10"/>
+					<Mesh type="String" value="ForestLowWithRoad2.mesh"/>
+					<Direction type="Int" value="2"/>
+					<Index type="Int" value="46"/>
+				</ForestLowWithRoad2_4>
+				<ForestLowWithRoad1_3>
+					<GridX type="Int" value="2"/>
+					<GridY type="Int" value="9"/>
+					<Mesh type="String" value="ForestLowWithRoad1.mesh"/>
+					<Direction type="Int" value="2"/>
+					<Index type="Int" value="47"/>
+				</ForestLowWithRoad1_3>
+				<forest3_3>
+					<GridX type="Int" value="11"/>
+					<GridY type="Int" value="6"/>
+					<Mesh type="String" value="forest3.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="48"/>
+				</forest3_3>
+				<ForestLow2_4>
+					<GridX type="Int" value="3"/>
+					<GridY type="Int" value="9"/>
+					<Mesh type="String" value="ForestLow2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="49"/>
+				</ForestLow2_4>
+				<ForestLow1_10>
+					<GridX type="Int" value="6"/>
+					<GridY type="Int" value="4"/>
+					<Mesh type="String" value="ForestLow1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="50"/>
+				</ForestLow1_10>
+				<ForestLow2_5>
+					<GridX type="Int" value="10"/>
+					<GridY type="Int" value="8"/>
+					<Mesh type="String" value="ForestLow2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="51"/>
+				</ForestLow2_5>
+				<ForestLow2_6>
+					<GridX type="Int" value="1"/>
+					<GridY type="Int" value="9"/>
+					<Mesh type="String" value="ForestLow2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="52"/>
+				</ForestLow2_6>
+				<ForestLow2_7>
+					<GridX type="Int" value="1"/>
+					<GridY type="Int" value="9"/>
+					<Mesh type="String" value="ForestLow2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="53"/>
+				</ForestLow2_7>
+				<ForestLow2_8>
+					<GridX type="Int" value="1"/>
+					<GridY type="Int" value="9"/>
+					<Mesh type="String" value="ForestLow2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="54"/>
+				</ForestLow2_8>
+				<ForestLow2_9>
+					<GridX type="Int" value="1"/>
+					<GridY type="Int" value="9"/>
+					<Mesh type="String" value="ForestLow2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="55"/>
+				</ForestLow2_9>
+				<ForestLow2_10>
+					<GridX type="Int" value="1"/>
+					<GridY type="Int" value="7"/>
+					<Mesh type="String" value="ForestLow2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="56"/>
+				</ForestLow2_10>
+				<ForestLow1_11>
+					<GridX type="Int" value="0"/>
+					<GridY type="Int" value="8"/>
+					<Mesh type="String" value="ForestLow1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="57"/>
+				</ForestLow1_11>
+				<Forest1_9>
+					<GridX type="Int" value="7"/>
+					<GridY type="Int" value="3"/>
+					<Mesh type="String" value="Forest1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="58"/>
+				</Forest1_9>
+				<Forest2_3>
+					<GridX type="Int" value="6"/>
+					<GridY type="Int" value="3"/>
+					<Mesh type="String" value="Forest2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="59"/>
+				</Forest2_3>
+				<forest3_4>
+					<GridX type="Int" value="5"/>
+					<GridY type="Int" value="3"/>
+					<Mesh type="String" value="forest3.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="60"/>
+				</forest3_4>
+				<ForestLow2_11>
+					<GridX type="Int" value="4"/>
+					<GridY type="Int" value="3"/>
+					<Mesh type="String" value="ForestLow2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="61"/>
+				</ForestLow2_11>
+				<ForestLow1_12>
+					<GridX type="Int" value="3"/>
+					<GridY type="Int" value="2"/>
+					<Mesh type="String" value="ForestLow1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="62"/>
+				</ForestLow1_12>
+				<ForestLow2_12>
+					<GridX type="Int" value="2"/>
+					<GridY type="Int" value="3"/>
+					<Mesh type="String" value="ForestLow2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="63"/>
+				</ForestLow2_12>
+				<Forest2_4>
+					<GridX type="Int" value="5"/>
+					<GridY type="Int" value="9"/>
+					<Mesh type="String" value="Forest2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="64"/>
+				</Forest2_4>
+				<ForestLow1_13>
+					<GridX type="Int" value="5"/>
+					<GridY type="Int" value="10"/>
+					<Mesh type="String" value="ForestLow1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="65"/>
+				</ForestLow1_13>
+				<ForestLow1_14>
+					<GridX type="Int" value="4"/>
+					<GridY type="Int" value="10"/>
+					<Mesh type="String" value="ForestLow1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="66"/>
+				</ForestLow1_14>
+				<Forest2_5>
+					<GridX type="Int" value="7"/>
+					<GridY type="Int" value="5"/>
+					<Mesh type="String" value="Forest2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="67"/>
+				</Forest2_5>
+				<forest3_5>
+					<GridX type="Int" value="7"/>
+					<GridY type="Int" value="4"/>
+					<Mesh type="String" value="forest3.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="68"/>
+				</forest3_5>
+				<ForestLowWithRoad1_4>
+					<GridX type="Int" value="10"/>
+					<GridY type="Int" value="7"/>
+					<Mesh type="String" value="ForestLowWithRoad1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="69"/>
+				</ForestLowWithRoad1_4>
+				<ForestLowWithRoad1_5>
+					<GridX type="Int" value="9"/>
+					<GridY type="Int" value="7"/>
+					<Mesh type="String" value="ForestLowWithRoad1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="70"/>
+				</ForestLowWithRoad1_5>
+				<ForestLowWithRoad1_6>
+					<GridX type="Int" value="7"/>
+					<GridY type="Int" value="7"/>
+					<Mesh type="String" value="ForestLowWithRoad1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="71"/>
+				</ForestLowWithRoad1_6>
+				<ForestLowWithRoad2_5>
+					<GridX type="Int" value="8"/>
+					<GridY type="Int" value="7"/>
+					<Mesh type="String" value="ForestLowWithRoad2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="72"/>
+				</ForestLowWithRoad2_5>
+				<ForestLowWithRoad2_6>
+					<GridX type="Int" value="5"/>
+					<GridY type="Int" value="7"/>
+					<Mesh type="String" value="ForestLowWithRoad2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="73"/>
+				</ForestLowWithRoad2_6>
+				<ForestLow1_15>
+					<GridX type="Int" value="5"/>
+					<GridY type="Int" value="6"/>
+					<Mesh type="String" value="ForestLow1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="74"/>
+				</ForestLow1_15>
+				<ForestLow2_13>
+					<GridX type="Int" value="7"/>
+					<GridY type="Int" value="6"/>
+					<Mesh type="String" value="ForestLow2.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="75"/>
+				</ForestLow2_13>
+				<ForestLow1_16>
+					<GridX type="Int" value="5"/>
+					<GridY type="Int" value="0"/>
+					<Mesh type="String" value="ForestLow1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="76"/>
+				</ForestLow1_16>
+				<ForestLow1_17>
+					<GridX type="Int" value="4"/>
+					<GridY type="Int" value="0"/>
+					<Mesh type="String" value="ForestLow1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="77"/>
+				</ForestLow1_17>
+				<ForestLow1_18>
+					<GridX type="Int" value="6"/>
+					<GridY type="Int" value="0"/>
+					<Mesh type="String" value="ForestLow1.mesh"/>
+					<Direction type="Int" value="0"/>
+					<Index type="Int" value="78"/>
+				</ForestLow1_18>
+			</MapObjModleInfo>
+			<Area>
+				<DeployArea>
+					<CoordList>
+						<c0>
+							<X type="Int" value="0"/>
+							<Y type="Int" value="2"/>
+						</c0>
+						<c1>
+							<X type="Int" value="0"/>
+							<Y type="Int" value="3"/>
+						</c1>
+						<c2>
+							<X type="Int" value="0"/>
+							<Y type="Int" value="4"/>
+						</c2>
+						<c3>
+							<X type="Int" value="0"/>
+							<Y type="Int" value="5"/>
+						</c3>
+						<c4>
+							<X type="Int" value="0"/>
+							<Y type="Int" value="6"/>
+						</c4>
+						<c5>
+							<X type="Int" value="1"/>
+							<Y type="Int" value="4"/>
+						</c5>
+						<c6>
+							<X type="Int" value="1"/>
+							<Y type="Int" value="3"/>
+						</c6>
+						<c7>
+							<X type="Int" value="1"/>
+							<Y type="Int" value="2"/>
+						</c7>
+					</CoordList>
+				</DeployArea>
+			</Area>
+		</MapData>
+		<Team>
+			<Team2>
+				<FactionId type="String" value="Dux"/>
+				<Relation type="String" value="enemy1"/>
+			</Team2>
+			<Team3>
+				<FactionId type="String" value="none"/>
+			</Team3>
+			<Team4>
+				<FactionId type="String" value="none"/>
+			</Team4>
+			<Team1>
+				<FactionId type="String" value="Wing"/>
+				<Relation type="String" value="player"/>
+			</Team1>
+		</Team>
+		<SquadList>
+			<Team2Squad_0>
+				<Name type="String" value="达克斯轻装矛兵"/>
+				<Describe type="String" value="达克斯轻装矛兵"/>
+				<Type type="Int" value="0"/>
+				<SquadType type="Int" value="0"/>
+				<Level type="Int" value="2"/>
+				<Exp type="Int" value="0"/>
+				<SkillPointAction type="Int" value="0"/>
+				<SkillPointPassive type="Int" value="0"/>
+				<SkillPointEquip type="Int" value="0"/>
+				<UnitNum value="50" type="Int"/>
+				<UnitMesh type="String" value="LightInf.mesh"/>
+				<UnitMat type="String" value="LightInfDux"/>
+				<MoveSound type="String" value="LightInf.mp3"/>
+				<SoilderId type="String" value="DuxSoilder">
+					<Modifierid type="String" value="m0"/>
+				</SoilderId>
+				<ModifierList>
+					<m0>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="3.0"/>
+						<RangedAttack type="Float" value="1.0"/>
+						<Defence type="Float" value="3.0"/>
+						<Formation type="Float" value="2.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="8.0"/>
+						<Detection type="Float" value="5.0"/>
+						<Covert type="Float" value="1.0"/>
+						<Toughness type="Float" value="3.0"/>
+						<Conter type="Float" value="2.0"/>
+					</m0>
+					<m1>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="1.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="1.0"/>
+						<Initiative type="Float" value="0.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="0.0"/>
+					</m1>
+					<m2>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="1.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="1.0"/>
+					</m2>
+					<m3>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="1.0"/>
+						<Initiative type="Float" value="0.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="1.0"/>
+					</m3>
+					<m4>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="0"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="1"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m4>
+					<m5>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="1"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="0"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m5>
+				</ModifierList>
+				<HorseId type="String" value="none"/>
+				<PweaponId type="String" value="ShortSpear1">
+					<Modifierid type="String" value="m1"/>
+				</PweaponId>
+				<SweaponId type="String" value="none"/>
+				<ArmorId type="String" value="LightArmor1">
+					<Modifierid type="String" value="m2"/>
+				</ArmorId>
+				<ShieldId type="String" value="Shield1">
+					<Modifierid type="String" value="m3"/>
+				</ShieldId>
+				<LeaderId type="String" value="DuxLightSpear"/>
+				<RetainerId type="String" value="Scout">
+					<EffectId type="String" value="e0"/>
+				</RetainerId>
+				<Effect>
+					<e0 type="Int" value="1">
+						<EffectId type="String" value="DetectionTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m4"/>
+						</ScriptContext>
+					</e0>
+					<e1 type="Int" value="1">
+						<EffectId type="String" value="DefenceTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m5"/>
+						</ScriptContext>
+					</e1>
+				</Effect>
+				<Skill>
+					<Attack type="Int" value="1"/>
+					<Rest type="Int" value="1"/>
+					<Defence type="Int" value="1"/>
+				</Skill>
+				<SkillTable>
+					<DefenceTrain1 type="Int" value="0">
+						<EffectId type="String" value="e1"/>
+					</DefenceTrain1>
+					<Defence type="Int" value="1"/>
+					<ShortSpear type="Int" value="2"/>
+					<Shield type="Int" value="2"/>
+					<LightArmor type="Int" value="2"/>
+				</SkillTable>
+				<Team type="Int" value="2"/>
+				<GridX type="Int" value="3"/>
+				<GridY type="Int" value="5"/>
+				<Direction type="Int" value="1"/>
+				<UnitMaxNum type="Int" value="50"/>
+				<Formation type="Int" value="0"/>
+				<ViewbyPlayer type="Int" value="0"/>
+				<ViewbyEnemy1 type="Int" value="1"/>
+				<ViewbyEnemy2 type="Int" value="0"/>
+				<ViewbyEnemy3 type="Int" value="0"/>
+				<AmbushPlayer type="Int" value="0"/>
+				<AmbushEnemy1 type="Int" value="0"/>
+				<AmbushEnemy2 type="Int" value="0"/>
+				<AmbushEnemy3 type="Int" value="0"/>
+				<ActionPoint type="Float" value="0"/>
+				<APSetup type="Float" value="0"/>
+				<APBattle type="Float" value="0"/>
+			</Team2Squad_0>
+			<Team2Squad_1>
+				<Name type="String" value="达克斯重装矛兵"/>
+				<Describe type="String" value="达克斯重装矛兵"/>
+				<Type type="Int" value="0"/>
+				<SquadType type="Int" value="0"/>
+				<Level type="Int" value="3"/>
+				<Exp type="Int" value="0"/>
+				<SkillPointAction type="Int" value="0"/>
+				<SkillPointPassive type="Int" value="0"/>
+				<SkillPointEquip type="Int" value="0"/>
+				<UnitNum value="50" type="Int"/>
+				<UnitMesh type="String" value="HeavyInf.mesh"/>
+				<UnitMat type="String" value="HeavyInf"/>
+				<MoveSound type="String" value="HeavyInf.mp3"/>
+				<SoilderId type="String" value="DuxSoilder">
+					<Modifierid type="String" value="m0"/>
+				</SoilderId>
+				<ModifierList>
+					<m0>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="3.0"/>
+						<RangedAttack type="Float" value="1.0"/>
+						<Defence type="Float" value="3.0"/>
+						<Formation type="Float" value="2.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="8.0"/>
+						<Detection type="Float" value="5.0"/>
+						<Covert type="Float" value="1.0"/>
+						<Toughness type="Float" value="3.0"/>
+						<Conter type="Float" value="2.0"/>
+					</m0>
+					<m1>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="2.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="2.0"/>
+						<Initiative type="Float" value="0.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="0.0"/>
+					</m1>
+					<m2>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="-2.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="4.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="0.0"/>
+						<ActionPoint type="Float" value="-1.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="-1.0"/>
+						<Toughness type="Float" value="2.0"/>
+						<Conter type="Float" value="0.0"/>
+					</m2>
+					<m3>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="1.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="2.0"/>
+						<Formation type="Float" value="2.0"/>
+						<Initiative type="Float" value="0.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="1.0"/>
+					</m3>
+					<m4>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="0"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="1"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m4>
+					<m5>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="1"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="0"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m5>
+				</ModifierList>
+				<HorseId type="String" value="none"/>
+				<PweaponId type="String" value="ShortSpear2">
+					<Modifierid type="String" value="m1"/>
+				</PweaponId>
+				<SweaponId type="String" value="none"/>
+				<ArmorId type="String" value="HeavyArmor1">
+					<Modifierid type="String" value="m2"/>
+				</ArmorId>
+				<ShieldId type="String" value="Shield3">
+					<Modifierid type="String" value="m3"/>
+				</ShieldId>
+				<LeaderId type="String" value="DuxHeavySpear"/>
+				<RetainerId type="String" value="Scout">
+					<EffectId type="String" value="e0"/>
+				</RetainerId>
+				<Effect>
+					<e0 type="Int" value="1">
+						<EffectId type="String" value="DetectionTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m4"/>
+						</ScriptContext>
+					</e0>
+					<e1 type="Int" value="1">
+						<EffectId type="String" value="DefenceTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m5"/>
+						</ScriptContext>
+					</e1>
+				</Effect>
+				<Skill>
+					<Attack type="Int" value="1"/>
+					<Rest type="Int" value="1"/>
+					<Defence type="Int" value="1"/>
+				</Skill>
+				<SkillTable>
+					<DefenceTrain1 type="Int" value="0">
+						<EffectId type="String" value="e1"/>
+					</DefenceTrain1>
+					<Defence type="Int" value="1"/>
+					<ShortSpear type="Int" value="2"/>
+					<Shield type="Int" value="2"/>
+					<LightArmor type="Int" value="2"/>
+				</SkillTable>
+				<Team type="Int" value="2"/>
+				<GridX type="Int" value="6"/>
+				<GridY type="Int" value="7"/>
+				<Direction type="Int" value="1"/>
+				<UnitMaxNum type="Int" value="50"/>
+				<Formation type="Int" value="0"/>
+				<ViewbyPlayer type="Int" value="1"/>
+				<ViewbyEnemy1 type="Int" value="1"/>
+				<ViewbyEnemy2 type="Int" value="1"/>
+				<ViewbyEnemy3 type="Int" value="1"/>
+				<AmbushPlayer type="Int" value="0"/>
+				<AmbushEnemy1 type="Int" value="0"/>
+				<AmbushEnemy2 type="Int" value="0"/>
+				<AmbushEnemy3 type="Int" value="0"/>
+				<ActionPoint type="Float" value="0"/>
+				<APSetup type="Float" value="0"/>
+				<APBattle type="Float" value="0"/>
+			</Team2Squad_1>
+			<Team2Squad_2>
+				<Name type="String" value="达克斯轻装矛兵"/>
+				<Describe type="String" value="达克斯轻装矛兵"/>
+				<Type type="Int" value="0"/>
+				<SquadType type="Int" value="0"/>
+				<Level type="Int" value="2"/>
+				<Exp type="Int" value="0"/>
+				<SkillPointAction type="Int" value="0"/>
+				<SkillPointPassive type="Int" value="0"/>
+				<SkillPointEquip type="Int" value="0"/>
+				<UnitNum value="50" type="Int"/>
+				<UnitMesh type="String" value="LightInf.mesh"/>
+				<UnitMat type="String" value="LightInfDux"/>
+				<MoveSound type="String" value="LightInf.mp3"/>
+				<SoilderId type="String" value="DuxSoilder">
+					<Modifierid type="String" value="m0"/>
+				</SoilderId>
+				<ModifierList>
+					<m0>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="3.0"/>
+						<RangedAttack type="Float" value="1.0"/>
+						<Defence type="Float" value="3.0"/>
+						<Formation type="Float" value="2.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="8.0"/>
+						<Detection type="Float" value="5.0"/>
+						<Covert type="Float" value="1.0"/>
+						<Toughness type="Float" value="3.0"/>
+						<Conter type="Float" value="2.0"/>
+					</m0>
+					<m1>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="1.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="1.0"/>
+						<Initiative type="Float" value="0.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="0.0"/>
+					</m1>
+					<m2>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="1.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="1.0"/>
+					</m2>
+					<m3>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="1.0"/>
+						<Initiative type="Float" value="0.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="1.0"/>
+					</m3>
+					<m4>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="0"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="1"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m4>
+					<m5>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="1"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="0"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m5>
+				</ModifierList>
+				<HorseId type="String" value="none"/>
+				<PweaponId type="String" value="ShortSpear1">
+					<Modifierid type="String" value="m1"/>
+				</PweaponId>
+				<SweaponId type="String" value="none"/>
+				<ArmorId type="String" value="LightArmor1">
+					<Modifierid type="String" value="m2"/>
+				</ArmorId>
+				<ShieldId type="String" value="Shield1">
+					<Modifierid type="String" value="m3"/>
+				</ShieldId>
+				<LeaderId type="String" value="DuxLightSpear"/>
+				<RetainerId type="String" value="Scout">
+					<EffectId type="String" value="e0"/>
+				</RetainerId>
+				<Effect>
+					<e0 type="Int" value="1">
+						<EffectId type="String" value="DetectionTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m4"/>
+						</ScriptContext>
+					</e0>
+					<e1 type="Int" value="1">
+						<EffectId type="String" value="DefenceTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m5"/>
+						</ScriptContext>
+					</e1>
+				</Effect>
+				<Skill>
+					<Attack type="Int" value="1"/>
+					<Rest type="Int" value="1"/>
+					<Defence type="Int" value="1"/>
+				</Skill>
+				<SkillTable>
+					<DefenceTrain1 type="Int" value="0">
+						<EffectId type="String" value="e1"/>
+					</DefenceTrain1>
+					<Defence type="Int" value="1"/>
+					<ShortSpear type="Int" value="2"/>
+					<Shield type="Int" value="2"/>
+					<LightArmor type="Int" value="2"/>
+				</SkillTable>
+				<Team type="Int" value="2"/>
+				<GridX type="Int" value="2"/>
+				<GridY type="Int" value="8"/>
+				<Direction type="Int" value="1"/>
+				<UnitMaxNum type="Int" value="50"/>
+				<Formation type="Int" value="0"/>
+				<ViewbyPlayer type="Int" value="0"/>
+				<ViewbyEnemy1 type="Int" value="1"/>
+				<ViewbyEnemy2 type="Int" value="0"/>
+				<ViewbyEnemy3 type="Int" value="0"/>
+				<AmbushPlayer type="Int" value="0"/>
+				<AmbushEnemy1 type="Int" value="0"/>
+				<AmbushEnemy2 type="Int" value="0"/>
+				<AmbushEnemy3 type="Int" value="0"/>
+				<ActionPoint type="Float" value="0"/>
+				<APSetup type="Float" value="0"/>
+				<APBattle type="Float" value="0"/>
+			</Team2Squad_2>
+			<Team2Squad_3>
+				<Name type="String" value="达克斯轻装矛兵"/>
+				<Describe type="String" value="达克斯轻装矛兵"/>
+				<Type type="Int" value="0"/>
+				<SquadType type="Int" value="0"/>
+				<Level type="Int" value="2"/>
+				<Exp type="Int" value="0"/>
+				<SkillPointAction type="Int" value="0"/>
+				<SkillPointPassive type="Int" value="0"/>
+				<SkillPointEquip type="Int" value="0"/>
+				<UnitNum value="50" type="Int"/>
+				<UnitMesh type="String" value="LightInf.mesh"/>
+				<UnitMat type="String" value="LightInfDux"/>
+				<MoveSound type="String" value="LightInf.mp3"/>
+				<SoilderId type="String" value="DuxSoilder">
+					<Modifierid type="String" value="m0"/>
+				</SoilderId>
+				<ModifierList>
+					<m0>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="3.0"/>
+						<RangedAttack type="Float" value="1.0"/>
+						<Defence type="Float" value="3.0"/>
+						<Formation type="Float" value="2.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="8.0"/>
+						<Detection type="Float" value="5.0"/>
+						<Covert type="Float" value="1.0"/>
+						<Toughness type="Float" value="3.0"/>
+						<Conter type="Float" value="2.0"/>
+					</m0>
+					<m1>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="1.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="1.0"/>
+						<Initiative type="Float" value="0.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="0.0"/>
+					</m1>
+					<m2>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="1.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="1.0"/>
+					</m2>
+					<m3>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="1.0"/>
+						<Initiative type="Float" value="0.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="1.0"/>
+					</m3>
+					<m4>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="0"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="1"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m4>
+					<m5>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="1"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="0"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m5>
+				</ModifierList>
+				<HorseId type="String" value="none"/>
+				<PweaponId type="String" value="ShortSpear1">
+					<Modifierid type="String" value="m1"/>
+				</PweaponId>
+				<SweaponId type="String" value="none"/>
+				<ArmorId type="String" value="LightArmor1">
+					<Modifierid type="String" value="m2"/>
+				</ArmorId>
+				<ShieldId type="String" value="Shield1">
+					<Modifierid type="String" value="m3"/>
+				</ShieldId>
+				<LeaderId type="String" value="DuxLightSpear"/>
+				<RetainerId type="String" value="Scout">
+					<EffectId type="String" value="e0"/>
+				</RetainerId>
+				<Effect>
+					<e0 type="Int" value="1">
+						<EffectId type="String" value="DetectionTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m4"/>
+						</ScriptContext>
+					</e0>
+					<e1 type="Int" value="1">
+						<EffectId type="String" value="DefenceTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m5"/>
+						</ScriptContext>
+					</e1>
+				</Effect>
+				<Skill>
+					<Attack type="Int" value="1"/>
+					<Rest type="Int" value="1"/>
+					<Defence type="Int" value="1"/>
+				</Skill>
+				<SkillTable>
+					<DefenceTrain1 type="Int" value="0">
+						<EffectId type="String" value="e1"/>
+					</DefenceTrain1>
+					<Defence type="Int" value="1"/>
+					<ShortSpear type="Int" value="2"/>
+					<Shield type="Int" value="2"/>
+					<LightArmor type="Int" value="2"/>
+				</SkillTable>
+				<Team type="Int" value="2"/>
+				<GridX type="Int" value="4"/>
+				<GridY type="Int" value="7"/>
+				<Direction type="Int" value="1"/>
+				<UnitMaxNum type="Int" value="50"/>
+				<Formation type="Int" value="0"/>
+				<ViewbyPlayer type="Int" value="0"/>
+				<ViewbyEnemy1 type="Int" value="1"/>
+				<ViewbyEnemy2 type="Int" value="0"/>
+				<ViewbyEnemy3 type="Int" value="0"/>
+				<AmbushPlayer type="Int" value="0"/>
+				<AmbushEnemy1 type="Int" value="0"/>
+				<AmbushEnemy2 type="Int" value="0"/>
+				<AmbushEnemy3 type="Int" value="0"/>
+				<ActionPoint type="Float" value="0"/>
+				<APSetup type="Float" value="0"/>
+				<APBattle type="Float" value="0"/>
+			</Team2Squad_3>
+			<Team2Squad_4>
+				<Name type="String" value="达克斯轻装弓兵"/>
+				<Describe type="String" value="达克斯轻装弓兵"/>
+				<Type type="Int" value="0"/>
+				<SquadType type="Int" value="1"/>
+				<Level type="Int" value="2"/>
+				<Exp type="Int" value="0"/>
+				<SkillPointAction type="Int" value="0"/>
+				<SkillPointPassive type="Int" value="0"/>
+				<SkillPointEquip type="Int" value="0"/>
+				<UnitNum value="50" type="Int"/>
+				<UnitMesh type="String" value="LightInf.mesh"/>
+				<UnitMat type="String" value="LightInfDux"/>
+				<MoveSound type="String" value="LightInf.mp3"/>
+				<SoilderId type="String" value="DuxSoilder">
+					<Modifierid type="String" value="m0"/>
+				</SoilderId>
+				<ModifierList>
+					<m0>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="3.0"/>
+						<RangedAttack type="Float" value="1.0"/>
+						<Defence type="Float" value="3.0"/>
+						<Formation type="Float" value="2.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="8.0"/>
+						<Detection type="Float" value="5.0"/>
+						<Covert type="Float" value="1.0"/>
+						<Toughness type="Float" value="3.0"/>
+						<Conter type="Float" value="2.0"/>
+					</m0>
+					<m1>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="3.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="2.0"/>
+					</m1>
+					<m2>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="4.0"/>
+						<Defence type="Float" value="0.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="0.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="0.0"/>
+					</m2>
+					<m3>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="1.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="1.0"/>
+					</m3>
+					<m4>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="0"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="1"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m4>
+					<m5>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="1"/>
+						<Defence type="Float" value="0"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="0"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m5>
+				</ModifierList>
+				<HorseId type="String" value="none"/>
+				<PweaponId type="String" value="ShortSword1">
+					<Modifierid type="String" value="m1"/>
+				</PweaponId>
+				<SweaponId type="String" value="Bow1">
+					<Modifierid type="String" value="m2"/>
+				</SweaponId>
+				<ArmorId type="String" value="LightArmor1">
+					<Modifierid type="String" value="m3"/>
+				</ArmorId>
+				<ShieldId type="String" value="none"/>
+				<LeaderId type="String" value="DuxLightBow"/>
+				<RetainerId type="String" value="Scout">
+					<EffectId type="String" value="e0"/>
+				</RetainerId>
+				<Effect>
+					<e0 type="Int" value="1">
+						<EffectId type="String" value="DetectionTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m4"/>
+						</ScriptContext>
+					</e0>
+					<e1 type="Int" value="1">
+						<EffectId type="String" value="RangedAttackTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m5"/>
+						</ScriptContext>
+					</e1>
+				</Effect>
+				<Skill>
+					<Attack type="Int" value="1"/>
+					<Rest type="Int" value="1"/>
+					<RangedAttack type="Int" value="1"/>
+					<SuppressAttack type="Int" value="1"/>
+				</Skill>
+				<SkillTable>
+					<RangedAttackTrain1 type="Int" value="0">
+						<EffectId type="String" value="e1"/>
+					</RangedAttackTrain1>
+					<SuppressAttack type="Int" value="1"/>
+					<OneHandSword type="Int" value="2"/>
+					<Bow type="Int" value="2"/>
+					<LightArmor type="Int" value="2"/>
+				</SkillTable>
+				<Team type="Int" value="2"/>
+				<GridX type="Int" value="6"/>
+				<GridY type="Int" value="6"/>
+				<Direction type="Int" value="1"/>
+				<UnitMaxNum type="Int" value="50"/>
+				<Formation type="Int" value="0"/>
+				<ViewbyPlayer type="Int" value="0"/>
+				<ViewbyEnemy1 type="Int" value="1"/>
+				<ViewbyEnemy2 type="Int" value="0"/>
+				<ViewbyEnemy3 type="Int" value="0"/>
+				<AmbushPlayer type="Int" value="0"/>
+				<AmbushEnemy1 type="Int" value="0"/>
+				<AmbushEnemy2 type="Int" value="0"/>
+				<AmbushEnemy3 type="Int" value="0"/>
+				<ActionPoint type="Float" value="0"/>
+				<APSetup type="Float" value="0"/>
+				<APBattle type="Float" value="0"/>
+			</Team2Squad_4>
+			<Team2Squad_5>
+				<Name type="String" value="达克斯轻装弓兵"/>
+				<Describe type="String" value="达克斯轻装弓兵"/>
+				<Type type="Int" value="0"/>
+				<SquadType type="Int" value="1"/>
+				<Level type="Int" value="2"/>
+				<Exp type="Int" value="0"/>
+				<SkillPointAction type="Int" value="0"/>
+				<SkillPointPassive type="Int" value="0"/>
+				<SkillPointEquip type="Int" value="0"/>
+				<UnitNum value="50" type="Int"/>
+				<UnitMesh type="String" value="LightInf.mesh"/>
+				<UnitMat type="String" value="LightInfDux"/>
+				<MoveSound type="String" value="LightInf.mp3"/>
+				<SoilderId type="String" value="DuxSoilder">
+					<Modifierid type="String" value="m0"/>
+				</SoilderId>
+				<ModifierList>
+					<m0>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="3.0"/>
+						<RangedAttack type="Float" value="1.0"/>
+						<Defence type="Float" value="3.0"/>
+						<Formation type="Float" value="2.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="8.0"/>
+						<Detection type="Float" value="5.0"/>
+						<Covert type="Float" value="1.0"/>
+						<Toughness type="Float" value="3.0"/>
+						<Conter type="Float" value="2.0"/>
+					</m0>
+					<m1>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="3.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="2.0"/>
+					</m1>
+					<m2>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="4.0"/>
+						<Defence type="Float" value="0.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="0.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="0.0"/>
+					</m2>
+					<m3>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="1.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="1.0"/>
+					</m3>
+					<m4>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="0"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="1"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m4>
+					<m5>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="1"/>
+						<Defence type="Float" value="0"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="0"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m5>
+				</ModifierList>
+				<HorseId type="String" value="none"/>
+				<PweaponId type="String" value="ShortSword1">
+					<Modifierid type="String" value="m1"/>
+				</PweaponId>
+				<SweaponId type="String" value="Bow1">
+					<Modifierid type="String" value="m2"/>
+				</SweaponId>
+				<ArmorId type="String" value="LightArmor1">
+					<Modifierid type="String" value="m3"/>
+				</ArmorId>
+				<ShieldId type="String" value="none"/>
+				<LeaderId type="String" value="DuxLightBow"/>
+				<RetainerId type="String" value="Scout">
+					<EffectId type="String" value="e0"/>
+				</RetainerId>
+				<Effect>
+					<e0 type="Int" value="1">
+						<EffectId type="String" value="DetectionTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m4"/>
+						</ScriptContext>
+					</e0>
+					<e1 type="Int" value="1">
+						<EffectId type="String" value="RangedAttackTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m5"/>
+						</ScriptContext>
+					</e1>
+				</Effect>
+				<Skill>
+					<Attack type="Int" value="1"/>
+					<Rest type="Int" value="1"/>
+					<RangedAttack type="Int" value="1"/>
+					<SuppressAttack type="Int" value="1"/>
+				</Skill>
+				<SkillTable>
+					<RangedAttackTrain1 type="Int" value="0">
+						<EffectId type="String" value="e1"/>
+					</RangedAttackTrain1>
+					<SuppressAttack type="Int" value="1"/>
+					<OneHandSword type="Int" value="2"/>
+					<Bow type="Int" value="2"/>
+					<LightArmor type="Int" value="2"/>
+				</SkillTable>
+				<Team type="Int" value="2"/>
+				<GridX type="Int" value="8"/>
+				<GridY type="Int" value="4"/>
+				<Direction type="Int" value="1"/>
+				<UnitMaxNum type="Int" value="50"/>
+				<Formation type="Int" value="0"/>
+				<ViewbyPlayer type="Int" value="0"/>
+				<ViewbyEnemy1 type="Int" value="1"/>
+				<ViewbyEnemy2 type="Int" value="0"/>
+				<ViewbyEnemy3 type="Int" value="0"/>
+				<AmbushPlayer type="Int" value="0"/>
+				<AmbushEnemy1 type="Int" value="0"/>
+				<AmbushEnemy2 type="Int" value="0"/>
+				<AmbushEnemy3 type="Int" value="0"/>
+				<ActionPoint type="Float" value="0"/>
+				<APSetup type="Float" value="0"/>
+				<APBattle type="Float" value="0"/>
+			</Team2Squad_5>
+			<Team2Squad_6>
+				<Name type="String" value="达克斯轻装弓兵"/>
+				<Describe type="String" value="达克斯轻装弓兵"/>
+				<Type type="Int" value="0"/>
+				<SquadType type="Int" value="1"/>
+				<Level type="Int" value="2"/>
+				<Exp type="Int" value="0"/>
+				<SkillPointAction type="Int" value="0"/>
+				<SkillPointPassive type="Int" value="0"/>
+				<SkillPointEquip type="Int" value="0"/>
+				<UnitNum value="50" type="Int"/>
+				<UnitMesh type="String" value="LightInf.mesh"/>
+				<UnitMat type="String" value="LightInfDux"/>
+				<MoveSound type="String" value="LightInf.mp3"/>
+				<SoilderId type="String" value="DuxSoilder">
+					<Modifierid type="String" value="m0"/>
+				</SoilderId>
+				<ModifierList>
+					<m0>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="3.0"/>
+						<RangedAttack type="Float" value="1.0"/>
+						<Defence type="Float" value="3.0"/>
+						<Formation type="Float" value="2.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="8.0"/>
+						<Detection type="Float" value="5.0"/>
+						<Covert type="Float" value="1.0"/>
+						<Toughness type="Float" value="3.0"/>
+						<Conter type="Float" value="2.0"/>
+					</m0>
+					<m1>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="3.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="2.0"/>
+					</m1>
+					<m2>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="4.0"/>
+						<Defence type="Float" value="0.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="0.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="0.0"/>
+					</m2>
+					<m3>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="1.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="1.0"/>
+					</m3>
+					<m4>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="0"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="1"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m4>
+					<m5>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="1"/>
+						<Defence type="Float" value="0"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="0"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m5>
+				</ModifierList>
+				<HorseId type="String" value="none"/>
+				<PweaponId type="String" value="ShortSword1">
+					<Modifierid type="String" value="m1"/>
+				</PweaponId>
+				<SweaponId type="String" value="Bow1">
+					<Modifierid type="String" value="m2"/>
+				</SweaponId>
+				<ArmorId type="String" value="LightArmor1">
+					<Modifierid type="String" value="m3"/>
+				</ArmorId>
+				<ShieldId type="String" value="none"/>
+				<LeaderId type="String" value="DuxLightBow"/>
+				<RetainerId type="String" value="Scout">
+					<EffectId type="String" value="e0"/>
+				</RetainerId>
+				<Effect>
+					<e0 type="Int" value="1">
+						<EffectId type="String" value="DetectionTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m4"/>
+						</ScriptContext>
+					</e0>
+					<e1 type="Int" value="1">
+						<EffectId type="String" value="RangedAttackTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m5"/>
+						</ScriptContext>
+					</e1>
+				</Effect>
+				<Skill>
+					<Attack type="Int" value="1"/>
+					<Rest type="Int" value="1"/>
+					<RangedAttack type="Int" value="1"/>
+					<SuppressAttack type="Int" value="1"/>
+				</Skill>
+				<SkillTable>
+					<RangedAttackTrain1 type="Int" value="0">
+						<EffectId type="String" value="e1"/>
+					</RangedAttackTrain1>
+					<SuppressAttack type="Int" value="1"/>
+					<OneHandSword type="Int" value="2"/>
+					<Bow type="Int" value="2"/>
+					<LightArmor type="Int" value="2"/>
+				</SkillTable>
+				<Team type="Int" value="2"/>
+				<GridX type="Int" value="7"/>
+				<GridY type="Int" value="5"/>
+				<Direction type="Int" value="1"/>
+				<UnitMaxNum type="Int" value="50"/>
+				<Formation type="Int" value="0"/>
+				<ViewbyPlayer type="Int" value="0"/>
+				<ViewbyEnemy1 type="Int" value="1"/>
+				<ViewbyEnemy2 type="Int" value="0"/>
+				<ViewbyEnemy3 type="Int" value="0"/>
+				<AmbushPlayer type="Int" value="0"/>
+				<AmbushEnemy1 type="Int" value="0"/>
+				<AmbushEnemy2 type="Int" value="0"/>
+				<AmbushEnemy3 type="Int" value="0"/>
+				<ActionPoint type="Float" value="0"/>
+				<APSetup type="Float" value="0"/>
+				<APBattle type="Float" value="0"/>
+			</Team2Squad_6>
+			<Cheetah>
+				<Name type="String" value="齐塔重步兵队"/>
+				<Describe type="String" value="齐塔重步兵队"/>
+				<Type type="Int" value="0"/>
+				<SquadType type="Int" value="0"/>
+				<Level type="Int" value="5"/>
+				<Exp type="Int" value="0"/>
+				<SkillPointAction type="Int" value="0"/>
+				<SkillPointPassive type="Int" value="0"/>
+				<SkillPointEquip type="Int" value="0"/>
+				<UnitNum value="50" type="Int"/>
+				<UnitMesh type="String" value="HeavyInf.mesh"/>
+				<UnitMat type="String" value="HeavyInf"/>
+				<MoveSound type="String" value="HeavyInf.mp3"/>
+				<SoilderId type="String" value="WingsSoilder">
+					<Modifierid type="String" value="m0"/>
+				</SoilderId>
+				<ModifierList>
+					<m0>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="4.0"/>
+						<RangedAttack type="Float" value="2.0"/>
+						<Defence type="Float" value="4.0"/>
+						<Formation type="Float" value="1.0"/>
+						<Initiative type="Float" value="5.0"/>
+						<ActionPoint type="Float" value="8.0"/>
+						<Detection type="Float" value="6.0"/>
+						<Covert type="Float" value="2.0"/>
+						<Toughness type="Float" value="3.0"/>
+						<Conter type="Float" value="3.0"/>
+					</m0>
+					<m1>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="3.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="2.0"/>
+					</m1>
+					<m2>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="-2.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="4.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="0.0"/>
+						<ActionPoint type="Float" value="-1.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="-1.0"/>
+						<Toughness type="Float" value="2.0"/>
+						<Conter type="Float" value="0.0"/>
+					</m2>
+					<m3>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="1.0"/>
+						<Initiative type="Float" value="0.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="1.0"/>
+					</m3>
+					<m4>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="1"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="0"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="0"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m4>
+					<m5>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="2"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="0"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m5>
+				</ModifierList>
+				<HorseId type="String" value="none"/>
+				<PweaponId type="String" value="ShortSword1">
+					<Modifierid type="String" value="m1"/>
+				</PweaponId>
+				<SweaponId type="String" value="none"/>
+				<ArmorId type="String" value="HeavyArmor1">
+					<Modifierid type="String" value="m2"/>
+				</ArmorId>
+				<ShieldId type="String" value="Shield1">
+					<Modifierid type="String" value="m3"/>
+				</ShieldId>
+				<LeaderId type="String" value="Cheetah"/>
+				<RetainerId type="String" value="Test">
+					<SkillId type="String" value="Inspire"/>
+				</RetainerId>
+				<Skill>
+					<Inspire type="Int" value="1"/>
+					<Attack type="Int" value="1"/>
+					<Rest type="Int" value="1"/>
+					<Defence type="Int" value="1"/>
+					<Break type="Int" value="1"/>
+				</Skill>
+				<Effect>
+					<e0 type="Int" value="1">
+						<EffectId type="String" value="AttackTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m4"/>
+						</ScriptContext>
+					</e0>
+					<e1 type="Int" value="2">
+						<EffectId type="String" value="DefenceTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m5"/>
+						</ScriptContext>
+					</e1>
+				</Effect>
+				<SkillTable>
+					<AttackTrain1 type="Int" value="0">
+						<EffectId type="String" value="e0"/>
+					</AttackTrain1>
+					<DefenceTrain1 type="Int" value="0">
+						<EffectId type="String" value="e1"/>
+					</DefenceTrain1>
+					<DefenceTrain2 type="Int" value="0">
+						<EffectId type="String" value="e1"/>
+					</DefenceTrain2>
+					<Defence type="Int" value="1"/>
+					<Break type="Int" value="1"/>
+					<MiddleArmor type="Int" value="2"/>
+					<Shield type="Int" value="2"/>
+					<OneHandSword type="Int" value="2"/>
+				</SkillTable>
+				<Team type="Int" value="1"/>
+				<GridX type="Int" value="0"/>
+				<GridY type="Int" value="6"/>
+				<Direction type="Int" value="0"/>
+				<Formation type="Int" value="0"/>
+				<UnitMaxNum type="Int" value="50"/>
+				<ViewbyPlayer type="Int" value="1"/>
+				<ViewbyEnemy1 type="Int" value="0"/>
+				<ViewbyEnemy2 type="Int" value="0"/>
+				<ViewbyEnemy3 type="Int" value="0"/>
+				<AmbushPlayer type="Int" value="0"/>
+				<AmbushEnemy1 type="Int" value="0"/>
+				<AmbushEnemy2 type="Int" value="0"/>
+				<AmbushEnemy3 type="Int" value="0"/>
+				<ActionPoint type="Float" value="7"/>
+				<APSetup type="Float" value="0"/>
+				<APBattle type="Float" value="0"/>
+			</Cheetah>
+			<Dandelion>
+				<Name type="String" value="丹德来恩弓兵队"/>
+				<Describe type="String" value="丹德来恩弓兵队"/>
+				<Type type="Int" value="0"/>
+				<SquadType type="Int" value="1"/>
+				<Level type="Int" value="5"/>
+				<Exp type="Int" value="0"/>
+				<SkillPointAction type="Int" value="0"/>
+				<SkillPointPassive type="Int" value="0"/>
+				<SkillPointEquip type="Int" value="0"/>
+				<UnitNum value="50" type="Int"/>
+				<UnitMesh type="String" value="LightInf.mesh"/>
+				<UnitMat type="String" value="LightInf"/>
+				<MoveSound type="String" value="BowMan.mp3"/>
+				<SoilderId type="String" value="WingsSoilder">
+					<Modifierid type="String" value="m0"/>
+				</SoilderId>
+				<ModifierList>
+					<m0>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="4.0"/>
+						<RangedAttack type="Float" value="2.0"/>
+						<Defence type="Float" value="4.0"/>
+						<Formation type="Float" value="1.0"/>
+						<Initiative type="Float" value="5.0"/>
+						<ActionPoint type="Float" value="8.0"/>
+						<Detection type="Float" value="6.0"/>
+						<Covert type="Float" value="2.0"/>
+						<Toughness type="Float" value="3.0"/>
+						<Conter type="Float" value="3.0"/>
+					</m0>
+					<m1>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="3.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="2.0"/>
+					</m1>
+					<m2>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="4.0"/>
+						<Defence type="Float" value="0.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="0.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="0.0"/>
+					</m2>
+					<m3>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="1.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="1.0"/>
+					</m3>
+					<m4>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="0"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="1"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m4>
+					<m5>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="2"/>
+						<Defence type="Float" value="0"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="0"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m5>
+					<m6>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="1"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="0"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m6>
+				</ModifierList>
+				<HorseId type="String" value="none"/>
+				<PweaponId type="String" value="ShortSword1">
+					<Modifierid type="String" value="m1"/>
+				</PweaponId>
+				<SweaponId type="String" value="Bow1">
+					<Modifierid type="String" value="m2"/>
+				</SweaponId>
+				<ArmorId type="String" value="LightArmor1">
+					<Modifierid type="String" value="m3"/>
+				</ArmorId>
+				<ShieldId type="String" value="none"/>
+				<LeaderId type="String" value="Dandelion"/>
+				<RetainerId type="String" value="Scout">
+					<EffectId type="String" value="e0"/>
+				</RetainerId>
+				<Effect>
+					<e0 type="Int" value="1">
+						<EffectId type="String" value="DetectionTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m4"/>
+						</ScriptContext>
+					</e0>
+					<e1 type="Int" value="2">
+						<EffectId type="String" value="RangedAttackTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m5"/>
+						</ScriptContext>
+					</e1>
+					<e2 type="Int" value="1">
+						<EffectId type="String" value="DefenceTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m6"/>
+						</ScriptContext>
+					</e2>
+				</Effect>
+				<Skill>
+					<Attack type="Int" value="1"/>
+					<Rest type="Int" value="1"/>
+					<RangedAttack type="Int" value="1"/>
+					<Defence type="Int" value="1"/>
+					<SuppressAttack type="Int" value="1"/>
+				</Skill>
+				<SkillTable>
+					<RangedAttackTrain1 type="Int" value="0">
+						<EffectId type="String" value="e1"/>
+					</RangedAttackTrain1>
+					<RangedAttackTrain2 type="Int" value="0">
+						<EffectId type="String" value="e1"/>
+					</RangedAttackTrain2>
+					<DefenceTrain1 type="Int" value="0">
+						<EffectId type="String" value="e2"/>
+					</DefenceTrain1>
+					<Defence type="Int" value="1"/>
+					<SuppressAttack type="Int" value="1"/>
+					<OneHandSword type="Int" value="2"/>
+					<Bow type="Int" value="2"/>
+					<Shield type="Int" value="2"/>
+					<LightArmor type="Int" value="2"/>
+				</SkillTable>
+				<Team type="Int" value="1"/>
+				<GridX type="Int" value="0"/>
+				<GridY type="Int" value="5"/>
+				<Direction type="Int" value="0"/>
+				<Formation type="Int" value="0"/>
+				<UnitMaxNum type="Int" value="50"/>
+				<ViewbyPlayer type="Int" value="1"/>
+				<ViewbyEnemy1 type="Int" value="0"/>
+				<ViewbyEnemy2 type="Int" value="0"/>
+				<ViewbyEnemy3 type="Int" value="0"/>
+				<AmbushPlayer type="Int" value="0"/>
+				<AmbushEnemy1 type="Int" value="0"/>
+				<AmbushEnemy2 type="Int" value="0"/>
+				<AmbushEnemy3 type="Int" value="0"/>
+				<ActionPoint type="Float" value="9"/>
+				<APSetup type="Float" value="0"/>
+				<APBattle type="Float" value="0"/>
+			</Dandelion>
+			<WingsLightInf>
+				<Name type="String" value="翼骑团轻装斧兵"/>
+				<Describe type="String" value="翼骑团轻装斧兵"/>
+				<Type type="Int" value="0"/>
+				<SquadType type="Int" value="1"/>
+				<Level type="Int" value="5"/>
+				<Exp type="Int" value="0"/>
+				<SkillPointAction type="Int" value="0"/>
+				<SkillPointPassive type="Int" value="0"/>
+				<SkillPointEquip type="Int" value="0"/>
+				<UnitNum value="50" type="Int"/>
+				<UnitMesh type="String" value="LightInf.mesh"/>
+				<UnitMat type="String" value="LightInf"/>
+				<MoveSound type="String" value="LightInf.mp3"/>
+				<SoilderId type="String" value="WingsSoilder">
+					<Modifierid type="String" value="m0"/>
+				</SoilderId>
+				<ModifierList>
+					<m0>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="4.0"/>
+						<RangedAttack type="Float" value="2.0"/>
+						<Defence type="Float" value="4.0"/>
+						<Formation type="Float" value="1.0"/>
+						<Initiative type="Float" value="5.0"/>
+						<ActionPoint type="Float" value="8.0"/>
+						<Detection type="Float" value="6.0"/>
+						<Covert type="Float" value="2.0"/>
+						<Toughness type="Float" value="3.0"/>
+						<Conter type="Float" value="3.0"/>
+					</m0>
+					<m1>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="12.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="-3.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="0.0"/>
+					</m1>
+					<m2>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="1.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="1.0"/>
+					</m2>
+					<m3>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="0"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="1"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m3>
+					<m4>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="2"/>
+						<Defence type="Float" value="0"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="0"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m4>
+					<m5>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="1"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="0"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m5>
+				</ModifierList>
+				<HorseId type="String" value="none"/>
+				<PweaponId type="String" value="HeavyAxe1">
+					<Modifierid type="String" value="m1"/>
+				</PweaponId>
+				<SweaponId type="String" value="none"/>
+				<ArmorId type="String" value="LightArmor1">
+					<Modifierid type="String" value="m2"/>
+				</ArmorId>
+				<ShieldId type="String" value="none"/>
+				<LeaderId type="String" value="WingsLightInf"/>
+				<RetainerId type="String" value="Scout">
+					<EffectId type="String" value="e0"/>
+				</RetainerId>
+				<Effect>
+					<e0 type="Int" value="1">
+						<EffectId type="String" value="DetectionTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m3"/>
+						</ScriptContext>
+					</e0>
+					<e1 type="Int" value="2">
+						<EffectId type="String" value="RangedAttackTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m4"/>
+						</ScriptContext>
+					</e1>
+					<e2 type="Int" value="1">
+						<EffectId type="String" value="DefenceTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m5"/>
+						</ScriptContext>
+					</e2>
+				</Effect>
+				<Skill>
+					<Attack type="Int" value="1"/>
+					<Rest type="Int" value="1"/>
+					<RangedAttack type="Int" value="1"/>
+					<Defence type="Int" value="1"/>
+					<SuppressAttack type="Int" value="1"/>
+				</Skill>
+				<SkillTable>
+					<RangedAttackTrain1 type="Int" value="0">
+						<EffectId type="String" value="e1"/>
+					</RangedAttackTrain1>
+					<RangedAttackTrain2 type="Int" value="0">
+						<EffectId type="String" value="e1"/>
+					</RangedAttackTrain2>
+					<DefenceTrain1 type="Int" value="0">
+						<EffectId type="String" value="e2"/>
+					</DefenceTrain1>
+					<Defence type="Int" value="1"/>
+					<SuppressAttack type="Int" value="1"/>
+					<OneHandSword type="Int" value="2"/>
+					<Bow type="Int" value="2"/>
+					<Shield type="Int" value="2"/>
+					<LightArmor type="Int" value="2"/>
+				</SkillTable>
+				<Team type="Int" value="1"/>
+				<GridX type="Int" value="1"/>
+				<GridY type="Int" value="2"/>
+				<Direction type="Int" value="0"/>
+				<Formation type="Int" value="0"/>
+				<UnitMaxNum type="Int" value="50"/>
+				<ViewbyPlayer type="Int" value="1"/>
+				<ViewbyEnemy1 type="Int" value="0"/>
+				<ViewbyEnemy2 type="Int" value="0"/>
+				<ViewbyEnemy3 type="Int" value="0"/>
+				<AmbushPlayer type="Int" value="0"/>
+				<AmbushEnemy1 type="Int" value="0"/>
+				<AmbushEnemy2 type="Int" value="0"/>
+				<AmbushEnemy3 type="Int" value="0"/>
+				<ActionPoint type="Float" value="9"/>
+				<APSetup type="Float" value="0"/>
+				<APBattle type="Float" value="0"/>
+			</WingsLightInf>
+			<WingsCrossBow>
+				<Name type="String" value="翼骑团轻装弩兵"/>
+				<Describe type="String" value="翼骑团轻装弩兵"/>
+				<Type type="Int" value="0"/>
+				<SquadType type="Int" value="1"/>
+				<Level type="Int" value="5"/>
+				<Exp type="Int" value="0"/>
+				<SkillPointAction type="Int" value="0"/>
+				<SkillPointPassive type="Int" value="0"/>
+				<SkillPointEquip type="Int" value="0"/>
+				<UnitNum value="50" type="Int"/>
+				<UnitMesh type="String" value="LightInf.mesh"/>
+				<UnitMat type="String" value="LightInf"/>
+				<MoveSound type="String" value="BowMan.mp3"/>
+				<SoilderId type="String" value="WingsSoilder">
+					<Modifierid type="String" value="m0"/>
+				</SoilderId>
+				<ModifierList>
+					<m0>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="4.0"/>
+						<RangedAttack type="Float" value="2.0"/>
+						<Defence type="Float" value="4.0"/>
+						<Formation type="Float" value="1.0"/>
+						<Initiative type="Float" value="5.0"/>
+						<ActionPoint type="Float" value="8.0"/>
+						<Detection type="Float" value="6.0"/>
+						<Covert type="Float" value="2.0"/>
+						<Toughness type="Float" value="3.0"/>
+						<Conter type="Float" value="3.0"/>
+					</m0>
+					<m1>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="5.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="-1.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="1.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="0.0"/>
+					</m1>
+					<m2>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="6.0"/>
+						<Defence type="Float" value="0.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="0.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="0.0"/>
+					</m2>
+					<m3>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="1.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="1.0"/>
+					</m3>
+					<m4>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="0"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="1"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m4>
+					<m5>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="2"/>
+						<Defence type="Float" value="0"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="0"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m5>
+					<m6>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="1"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="0"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m6>
+				</ModifierList>
+				<HorseId type="String" value="none"/>
+				<PweaponId type="String" value="ShortAxe1">
+					<Modifierid type="String" value="m1"/>
+				</PweaponId>
+				<SweaponId type="String" value="CrossBow1">
+					<Modifierid type="String" value="m2"/>
+				</SweaponId>
+				<ArmorId type="String" value="LightArmor1">
+					<Modifierid type="String" value="m3"/>
+				</ArmorId>
+				<ShieldId type="String" value="none"/>
+				<LeaderId type="String" value="WingsCrossBow"/>
+				<RetainerId type="String" value="Scout">
+					<EffectId type="String" value="e0"/>
+				</RetainerId>
+				<Effect>
+					<e0 type="Int" value="1">
+						<EffectId type="String" value="DetectionTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m4"/>
+						</ScriptContext>
+					</e0>
+					<e1 type="Int" value="2">
+						<EffectId type="String" value="RangedAttackTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m5"/>
+						</ScriptContext>
+					</e1>
+					<e2 type="Int" value="1">
+						<EffectId type="String" value="DefenceTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m6"/>
+						</ScriptContext>
+					</e2>
+				</Effect>
+				<Skill>
+					<Attack type="Int" value="1"/>
+					<Rest type="Int" value="1"/>
+					<RangedAttack type="Int" value="1"/>
+					<Defence type="Int" value="1"/>
+					<SuppressAttack type="Int" value="1"/>
+				</Skill>
+				<SkillTable>
+					<RangedAttackTrain1 type="Int" value="0">
+						<EffectId type="String" value="e1"/>
+					</RangedAttackTrain1>
+					<RangedAttackTrain2 type="Int" value="0">
+						<EffectId type="String" value="e1"/>
+					</RangedAttackTrain2>
+					<DefenceTrain1 type="Int" value="0">
+						<EffectId type="String" value="e2"/>
+					</DefenceTrain1>
+					<Defence type="Int" value="1"/>
+					<SuppressAttack type="Int" value="1"/>
+					<OneHandSword type="Int" value="2"/>
+					<Bow type="Int" value="2"/>
+					<Shield type="Int" value="2"/>
+					<LightArmor type="Int" value="2"/>
+				</SkillTable>
+				<Team type="Int" value="1"/>
+				<GridX type="Int" value="0"/>
+				<GridY type="Int" value="3"/>
+				<Direction type="Int" value="0"/>
+				<Formation type="Int" value="0"/>
+				<UnitMaxNum type="Int" value="50"/>
+				<ViewbyPlayer type="Int" value="1"/>
+				<ViewbyEnemy1 type="Int" value="0"/>
+				<ViewbyEnemy2 type="Int" value="0"/>
+				<ViewbyEnemy3 type="Int" value="0"/>
+				<AmbushPlayer type="Int" value="0"/>
+				<AmbushEnemy1 type="Int" value="0"/>
+				<AmbushEnemy2 type="Int" value="0"/>
+				<AmbushEnemy3 type="Int" value="0"/>
+				<ActionPoint type="Float" value="9"/>
+				<APSetup type="Float" value="0"/>
+				<APBattle type="Float" value="0"/>
+			</WingsCrossBow>
+			<Olivia>
+				<Name type="String" value="奥莉瓦"/>
+				<Describe type="String" value="奥莉瓦"/>
+				<Type type="Int" value="1"/>
+				<SquadType type="Int" value="2"/>
+				<Level type="Int" value="4"/>
+				<Exp type="Int" value="0"/>
+				<SkillPointAction type="Int" value="0"/>
+				<SkillPointPassive type="Int" value="0"/>
+				<SkillPointEquip type="Int" value="0"/>
+				<UnitNum value="20" type="Int"/>
+				<UnitMesh type="String" value="HolySpirit.mesh"/>
+				<UnitMat type="String" value="HolySpirit"/>
+				<MoveSound type="String" value="Olivia.mp3"/>
+				<SoilderId type="String" value="Magician">
+					<Modifierid type="String" value="m0"/>
+				</SoilderId>
+				<ModifierList>
+					<m0>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="3.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="4.0"/>
+						<ActionPoint type="Float" value="8.0"/>
+						<Detection type="Float" value="4.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="1.0"/>
+					</m0>
+					<m1>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="0.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="0.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="0.0"/>
+					</m1>
+					<m2>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="1.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="1.0"/>
+					</m2>
+					<m3>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="0"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="1"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m3>
+					<m4>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="1"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="0"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m4>
+				</ModifierList>
+				<HorseId type="String" value="none"/>
+				<PweaponId type="String" value="Staves2">
+					<Modifierid type="String" value="m1"/>
+				</PweaponId>
+				<SweaponId type="String" value="none"/>
+				<ArmorId type="String" value="LightArmor1">
+					<Modifierid type="String" value="m2"/>
+				</ArmorId>
+				<ShieldId type="String" value="none"/>
+				<LeaderId type="String" value="Olivia"/>
+				<RetainerId type="String" value="Scout">
+					<EffectId type="String" value="e0"/>
+				</RetainerId>
+				<Effect>
+					<e0 type="Int" value="1">
+						<EffectId type="String" value="DetectionTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m3"/>
+						</ScriptContext>
+					</e0>
+					<e1 type="Int" value="1">
+						<EffectId type="String" value="Faith"/>
+					</e1>
+					<e2 type="Int" value="1">
+						<EffectId type="String" value="StrengthenSprite"/>
+						<ScriptContext>
+							<modifierid type="String" value="m4"/>
+						</ScriptContext>
+					</e2>
+				</Effect>
+				<SkillTable>
+					<Faith type="Int" value="0">
+						<EffectId type="String" value="e1"/>
+					</Faith>
+					<StrengthenSprite type="Int" value="0">
+						<EffectId type="String" value="e2"/>
+					</StrengthenSprite>
+					<Heal type="Int" value="1"/>
+					<MagicShield type="Int" value="1"/>
+					<Pray type="Int" value="1"/>
+				</SkillTable>
+				<Skill>
+					<Heal type="Int" value="1"/>
+					<MagicShield type="Int" value="1"/>
+					<Pray type="Int" value="1"/>
+				</Skill>
+				<Team type="Int" value="1"/>
+				<GridX type="Int" value="0"/>
+				<GridY type="Int" value="4"/>
+				<Direction type="Int" value="0"/>
+				<Formation type="Int" value="2"/>
+				<UnitMaxNum type="Int" value="20"/>
+				<ViewbyPlayer type="Int" value="1"/>
+				<ViewbyEnemy1 type="Int" value="1"/>
+				<ViewbyEnemy2 type="Int" value="1"/>
+				<ViewbyEnemy3 type="Int" value="1"/>
+				<AmbushPlayer type="Int" value="0"/>
+				<AmbushEnemy1 type="Int" value="0"/>
+				<AmbushEnemy2 type="Int" value="0"/>
+				<AmbushEnemy3 type="Int" value="0"/>
+				<ActionPoint type="Float" value="9"/>
+				<APSetup type="Float" value="0"/>
+				<APBattle type="Float" value="0"/>
+			</Olivia>
+			<WingsLightCavalry>
+				<Name type="String" value="翼骑团轻装弓骑兵"/>
+				<Describe type="String" value="翼骑团轻装弓骑兵"/>
+				<Type type="Int" value="0"/>
+				<SquadType type="Int" value="1"/>
+				<Level type="Int" value="4"/>
+				<Exp type="Int" value="0"/>
+				<SkillPointAction type="Int" value="0"/>
+				<SkillPointPassive type="Int" value="0"/>
+				<SkillPointEquip type="Int" value="0"/>
+				<UnitNum value="50" type="Int"/>
+				<UnitMesh type="String" value="LightCavalry.mesh"/>
+				<UnitMat type="String" value="LightCavalry"/>
+				<MoveSound type="String" value="LightCavalry.mp3"/>
+				<SoilderId type="String" value="WingsSoilder">
+					<Modifierid type="String" value="m0"/>
+				</SoilderId>
+				<ModifierList>
+					<m0>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="4.0"/>
+						<RangedAttack type="Float" value="2.0"/>
+						<Defence type="Float" value="4.0"/>
+						<Formation type="Float" value="1.0"/>
+						<Initiative type="Float" value="5.0"/>
+						<ActionPoint type="Float" value="8.0"/>
+						<Detection type="Float" value="6.0"/>
+						<Covert type="Float" value="2.0"/>
+						<Toughness type="Float" value="3.0"/>
+						<Conter type="Float" value="3.0"/>
+					</m0>
+					<m1>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="1.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="-3.0"/>
+						<Formation type="Float" value="-5.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="3.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="-3.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="-3.0"/>
+					</m1>
+					<m2>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="4.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="1.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="2.0"/>
+					</m2>
+					<m3>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="7.0"/>
+						<Defence type="Float" value="0.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="0.0"/>
+						<ActionPoint type="Float" value="0.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="0.0"/>
+						<Conter type="Float" value="0.0"/>
+					</m3>
+					<m4>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0.0"/>
+						<RangedAttack type="Float" value="0.0"/>
+						<Defence type="Float" value="3.0"/>
+						<Formation type="Float" value="0.0"/>
+						<Initiative type="Float" value="2.0"/>
+						<ActionPoint type="Float" value="1.0"/>
+						<Detection type="Float" value="0.0"/>
+						<Covert type="Float" value="0.0"/>
+						<Toughness type="Float" value="1.0"/>
+						<Conter type="Float" value="1.0"/>
+					</m4>
+					<m5>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="0"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="1"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m5>
+					<m6>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="2"/>
+						<Defence type="Float" value="0"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="0"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m6>
+					<m7>
+						<Type type="Int" value="0"/>
+						<Attack type="Float" value="0"/>
+						<RangedAttack type="Float" value="0"/>
+						<Defence type="Float" value="1"/>
+						<Formation type="Float" value="0"/>
+						<Initiative type="Float" value="0"/>
+						<ActionPoint type="Float" value="0"/>
+						<Detection type="Float" value="0"/>
+						<Covert type="Float" value="0"/>
+						<Toughness type="Float" value="0"/>
+						<Conter type="Float" value="0"/>
+					</m7>
+				</ModifierList>
+				<HorseId type="String" value="LightHorse3">
+					<Modifierid type="String" value="m1"/>
+				</HorseId>
+				<PweaponId type="String" value="ShortSword2">
+					<Modifierid type="String" value="m2"/>
+				</PweaponId>
+				<SweaponId type="String" value="Bow3">
+					<Modifierid type="String" value="m3"/>
+				</SweaponId>
+				<ArmorId type="String" value="LightArmor3">
+					<Modifierid type="String" value="m4"/>
+				</ArmorId>
+				<ShieldId type="String" value="none"/>
+				<LeaderId type="String" value="WingsLightCavalry"/>
+				<RetainerId type="String" value="Scout">
+					<EffectId type="String" value="e0"/>
+				</RetainerId>
+				<Effect>
+					<e0 type="Int" value="1">
+						<EffectId type="String" value="DetectionTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m5"/>
+						</ScriptContext>
+					</e0>
+					<e1 type="Int" value="2">
+						<EffectId type="String" value="RangedAttackTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m6"/>
+						</ScriptContext>
+					</e1>
+					<e2 type="Int" value="1">
+						<EffectId type="String" value="DefenceTrain"/>
+						<ScriptContext>
+							<modifierid type="String" value="m7"/>
+						</ScriptContext>
+					</e2>
+				</Effect>
+				<Skill>
+					<Attack type="Int" value="1"/>
+					<Rest type="Int" value="1"/>
+					<RangedAttack type="Int" value="1"/>
+					<Defence type="Int" value="1"/>
+					<SuppressAttack type="Int" value="1"/>
+				</Skill>
+				<SkillTable>
+					<RangedAttackTrain1 type="Int" value="0">
+						<EffectId type="String" value="e1"/>
+					</RangedAttackTrain1>
+					<RangedAttackTrain2 type="Int" value="0">
+						<EffectId type="String" value="e1"/>
+					</RangedAttackTrain2>
+					<DefenceTrain1 type="Int" value="0">
+						<EffectId type="String" value="e2"/>
+					</DefenceTrain1>
+					<Defence type="Int" value="1"/>
+					<SuppressAttack type="Int" value="1"/>
+					<OneHandSword type="Int" value="2"/>
+					<Bow type="Int" value="2"/>
+					<Shield type="Int" value="2"/>
+					<LightArmor type="Int" value="2"/>
+				</SkillTable>
+				<Team type="Int" value="1"/>
+				<GridX type="Int" value="0"/>
+				<GridY type="Int" value="2"/>
+				<Direction type="Int" value="0"/>
+				<Formation type="Int" value="0"/>
+				<UnitMaxNum type="Int" value="50"/>
+				<ViewbyPlayer type="Int" value="1"/>
+				<ViewbyEnemy1 type="Int" value="1"/>
+				<ViewbyEnemy2 type="Int" value="1"/>
+				<ViewbyEnemy3 type="Int" value="1"/>
+				<AmbushPlayer type="Int" value="0"/>
+				<AmbushEnemy1 type="Int" value="0"/>
+				<AmbushEnemy2 type="Int" value="0"/>
+				<AmbushEnemy3 type="Int" value="0"/>
+				<ActionPoint type="Float" value="12"/>
+				<APSetup type="Float" value="0"/>
+				<APBattle type="Float" value="0"/>
+			</WingsLightCavalry>
+		</SquadList>
+		<BattleState>
+			<Ture type="Int" value="1"/>
+			<CurTeam type="Int" value="1"/>
+		</BattleState>
+		<Trigger>
+			<T0 type="Int" value="1">
+				<type type="String" value="SquadAnnihilated"/>
+				<file type="String" value="mapscript1.lua"/>
+				<func type="String" value="unitdead"/>
+				<context type="String" value="GameData/BattleData/MapData/MapScript/ScriptContext"/>
+			</T0>
+			<T1 type="Int" value="1">
+				<type type="String" value="TurnEnd"/>
+				<file type="String" value="mapscript1.lua"/>
+				<func type="String" value="turnend"/>
+				<context type="String" value="GameData/BattleData/MapData/MapScript/ScriptContext"/>
+			</T1>
+		</Trigger>
+		<AIData>
+			<Team2>
+				<Group>
+					<DuxRaider>
+						<SquadList>
+							<Team2Squad_0 type="Int" value="1"/>
+							<Team2Squad_1 type="Int" value="1"/>
+							<Team2Squad_2 type="Int" value="1"/>
+						</SquadList>
+						<Mission type="String" value="EliminateTeam1"/>
+					</DuxRaider>
+				</Group>
+				<Mission>
+					<EliminateTeam1 type="Int" value="1">
+						<TargetTeam type="Int" value="1"/>
+					</EliminateTeam1>
+				</Mission>
+			</Team2>
+		</AIData>
+	</BattleData>
 </GameData>
 

@@ -416,14 +416,9 @@
             <Property key="ImageResource" value="state"/>
         </Widget>
     </Widget>
-    <Widget type="Window" skin="SLGMiniWindowSkin" position="430 280 470 100" layer="Popup" name="InfoWindow">
+    <Widget type="Window" skin="ImageBox" position="415 235 515 155" layer="Popup" name="InfoWindow">
         <Property key="Visible" value="false"/>
-        <Widget type="TextBox" skin="TextBox" position="52 20 365 60" align="Center" name="Caption">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="TextAlign" value="Center"/>
-            <Property key="Caption" value="Player Turn"/>
-            <Property key="TextColour" value="0 0 1"/>
-        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="10 5 500 150" name="Caption"/>
     </Widget>
     <Widget type="Window" skin="SLGMiniWindowSkin" position="710 135 245 105" layer="ToolTip" name="TipsWindow">
         <Property key="Visible" value="false"/>

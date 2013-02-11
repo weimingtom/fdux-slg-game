@@ -41,11 +41,15 @@ void GUIEffectWindow::setEffectList(std::vector<std::string> list)
 	int i=0;
 	std::string effectPath="StaticData/EffectData/";
 	std::string data;
+	std::string skillTips;
 	for (std::vector<std::string>::iterator it=list.begin();it!=list.end();it++)
 	{
 		DataLibrary::getSingletonPtr()->getData(effectPath+(*it)+std::string("/Icon"),data);
+		DataLibrary::getSingletonPtr()->getData(effectPath+(*it)+std::string("/Describe"),skillTips);
 		mEffect[i]->setImageResource("skillpass");
 		mEffect[i]->setImageGroup(data);
+		mEffect[i]->setUserString("Tips",skillTips);
+		mEffect[i]->setNeedToolTip(true);
 		i++;
 	}
 
@@ -53,6 +57,7 @@ void GUIEffectWindow::setEffectList(std::vector<std::string> list)
 	{
 		mEffect[i]->setImageResource("");
 		mEffect[i]->setImageGroup("");
+		mEffect[i]->setNeedToolTip(false);
 	}
 
 

@@ -60,6 +60,5 @@ bool GUIInfoWindow::GridInputEvent( int x,int y )
 
 void GUIInfoWindow::setCaption( std::string text,MyGUI::Colour c )
 {
-	mCaption->setCaption(text);
-	mCaption->setTextColour(c);
+	mCaption->setImageTexture(text);
 }
