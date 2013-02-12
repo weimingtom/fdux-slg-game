@@ -132,7 +132,11 @@
 		<NothHeavyHSword>
 			<Name type="String" value="诺斯精锐骑士"/>
 			<Describe type="String" value="诺斯精锐骑士"/>
-		</NothHeavyHSword>	
+		</NothHeavyHSword>
+		<Nothfate>
+			<Name type="String" value="诺斯菲特"/>
+			<Describe type="String" value="诺斯菲特"/>
+		</Nothfate>	
 	</LeaderDate>
 	<SquadData>
 		<CheetahSquad>
@@ -267,6 +271,10 @@
 			<Name type="String" value="诺斯重装巨剑兵"/>
 			<Describe type="String" value="诺斯重装巨剑兵"/>
 		</NothHeavyHSword>	
+		<Nothfate>
+			<Name type="String" value="诺斯皇家卫队"/>
+			<Describe type="String" value="诺斯皇家卫队"/>
+		</Nothfate>	
 	</SquadData>
 	<SoilderData>
 		<WingsSoilder>

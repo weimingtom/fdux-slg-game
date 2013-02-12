@@ -166,6 +166,11 @@
 			<Mesh type="String" value="HeavyInfOf.mesh"/>
 			<Mat type="String" value="HeavyInfOf"/>
 		</NothHeavyHSword>
+		<Nothfate>
+			<Picture type="String" value="nuosi.png" />
+			<Mesh type="String" value="HeavyInfOf.mesh"/>
+			<Mat type="String" value="HeavyInfOf"/>
+		</Nothfate>
 	</LeaderDate>
 	<SquadData>
 		<CheetahSquad>
@@ -504,7 +509,7 @@
 			<SquadType type="Int" value="0"/>
 			<SoilderId type="String" value="DuxSoilder"/>
 			<HorseId type="String" value="HeavyHorse2"/>
-			<PweaponId type="String" value="ShortSpear3"/>
+			<PweaponId type="String" value="ShortSword3"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="Shield2"/>
 			<ArmorId type="String" value="HeavyArmor2"/>
@@ -532,7 +537,7 @@
 			<SquadType type="Int" value="0"/>
 			<SoilderId type="String" value="FantasySoilder"/>
 			<HorseId type="String" value="HeavyHorse1"/>
-			<PweaponId type="String" value="ShortSword3"/>
+			<PweaponId type="String" value="ShortSpear3"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="Shield3"/>
 			<ArmorId type="String" value="HeavyArmor2"/>
@@ -1123,6 +1128,34 @@
 			<UnitMat type="String" value="HeavyInf"/>
 			<MoveSound type="String" value="HeavyInf.ogg"/>
 		</NothHeavyHSword>
+		<Nothfate>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="0"/>
+			<SoilderId type="String" value="NothSoilder"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="HeavySword5"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="HeavyArmor5"/>
+			<SkillTable>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<ShortSpear type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="Nothfate"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int" />
+			<Level type="Int" value="3" />
+			<Exp type="Int" value="0" />
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="HeavyInf.mesh"/>
+			<UnitMat type="String" value="HeavyInf"/>
+			<MoveSound type="String" value="HeavyInf.ogg"/>
+		</Nothfate>
 	</SquadData>
 	<SoilderData>
 		<WingsSoilder>
