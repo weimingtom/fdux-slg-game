@@ -2105,6 +2105,7 @@
 			<PUVector type="String" value="0,0,0" />
 			<AniGroup type="String" value="1H" />
 			<Icon type="String" value="none" />
+			<SoilderHaveWeapon type="Int" value="0"/>
 			<AttrModifer>
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="0.0" />
