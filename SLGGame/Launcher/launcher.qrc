@@ -1,5 +1,6 @@
 <RCC>
-    <qresource prefix="/Launcher">
-        <file>Resources/Demo.png</file>
-    </qresource>
+  <qresource prefix="/Launcher">
+    <file>Resources/weibo.png</file>
+    <file>Resources/Demo.png</file>
+  </qresource>
 </RCC>

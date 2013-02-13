@@ -2,24 +2,24 @@
 <GameData>
 	<StoryData>
 		<GameState type="String" value="AVG"/>
-		<BackGroundName type="String" value="shanmai.png"/>
+		<BackGroundName type="String" value="caoyuan.png"/>
 		<BackGroundPosition type="Vector3" value="0,0,0"/>
 		<BackGroundSize type="Vector3" value="1280,720,0"/>
 		<LeftName type="String" value=""/>
-		<LeftPosition type="Vector3" value="5,25,0"/>
-		<LeftSize type="Vector3" value="275,480,0"/>
+		<LeftPosition type="Vector3" value="-100,0,0"/>
+		<LeftSize type="Vector3" value="640,720,0"/>
 		<MidName type="String" value=""/>
 		<MidPosition type="Vector3" value="295,25,0"/>
 		<MidSize type="Vector3" value="245,480,0"/>
 		<RightName type="String" value=""/>
-		<RightPosition type="Vector3" value="545,25,0"/>
-		<RightSize type="Vector3" value="250,480,0"/>
+		<RightPosition type="Vector3" value="700,0,0"/>
+		<RightSize type="Vector3" value="640,720,0"/>
 		<Text type="String" value=""/>
 		<RoleName type="String" value=""/>
-		<TextCursorType type="Int" value="205"/>
-		<ScriptName type="String" value="cp0.lua"/>
-		<ScriptLine type="Int" value="6"/>
-		<MusicName type="String" value="serious.ogg"/>
+		<TextCursorType type="Int" value="0"/>
+		<ScriptName type="String" value="cp1.lua"/>
+		<ScriptLine type="Int" value="7"/>
+		<MusicName type="String" value="grasslands.ogg"/>
 	</StoryData>
 </GameData>
 

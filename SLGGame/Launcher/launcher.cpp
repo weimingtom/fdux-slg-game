@@ -1,28 +1,36 @@
 #include "launcher.h"
 
 #include <windows.h>
+
+#include <QDomDocument>
 Launcher::Launcher(QWidget *parent, Qt::WFlags flags)
 	: QMainWindow(parent, flags)
 {
 	ui.setupUi(this);
-	bgimage.load("../Media/UI/menubg.png");
+	bgimage.load("menubg.png");
 	this->connect(ui.commandLinkButton,SIGNAL(clicked(bool)),this,SLOT(windowRunGame()));
 	this->connect(ui.commandLinkButton_2,SIGNAL(clicked(bool)),this,SLOT(fullSceneRunGame()));
 	this->connect(ui.commandLinkButton_3,SIGNAL(clicked(bool)),this,SLOT(gameManual()));
 	this->connect(ui.commandLinkButton_4,SIGNAL(clicked(bool)),this,SLOT(readMe()));
 	this->connect(ui.commandLinkButton_5,SIGNAL(clicked(bool)),this,SLOT(setupDirectx()));
 	this->connect(ui.commandLinkButton_6,SIGNAL(clicked(bool)),this,SLOT(visitWebSite()));
-	this->connect(ui.commandLinkButton_7,SIGNAL(clicked(bool)),this,SLOT(sendFeedback()));
+	this->connect(ui.label,SIGNAL(linkActivated (QString)),this,SLOT(openRss(QString)));
+	this->connect(ui.label_2,SIGNAL(linkActivated (QString)),this,SLOT(openRss(QString)));
+	this->connect(ui.label_3,SIGNAL(linkActivated (QString)),this,SLOT(openRss(QString)));
+	this->connect(ui.label_4,SIGNAL(linkActivated (QString)),this,SLOT(openRss(QString)));
+	this->connect(ui.label_5,SIGNAL(linkActivated (QString)),this,SLOT(openRss(QString)));
+	this->connect(ui.pushButton,SIGNAL(clicked(bool)),this,SLOT(weibo()));
 
-	manager = NULL;
-	request = NULL;
-	params = NULL;
-	data = NULL;
+	reply = manager.get(QNetworkRequest(QUrl("http://fdux.xoom.it/?cat=20&feed=rss2")));
+	connect(reply, SIGNAL(finished()),
+		this, SLOT(httpFinished()));
+	connect(reply, SIGNAL(readyRead()),
+		this, SLOT(httpReadyRead()));
 }
 
 Launcher::~Launcher()
 {
-	releaseNetworkResource();
+
 }
 
 void Launcher::resizeEvent( QResizeEvent *event )
@@ -38,16 +46,12 @@ void Launcher::resizeEvent( QResizeEvent *event )
 
 void Launcher::windowRunGame()
 {
-	firstRunCheck();
-
 	WinExec("ForgottenBattlefield.exe",SW_NORMAL);
 	this->close();
 }
 
 void Launcher::fullSceneRunGame()
 {
-	firstRunCheck();
-
 	WinExec("ForgottenBattlefield.exe -FullScene",SW_NORMAL);
 	this->close();
 }
@@ -72,61 +76,62 @@ void Launcher::visitWebSite()
 	ShellExecute(NULL, L"open",L"http://fdux.xoom.it/ ", NULL, NULL, SW_SHOWNORMAL);  
 }
 
-void Launcher::sendFeedback()
+void Launcher::httpFinished()
 {
-	WinExec("Feedback.exe",SW_NORMAL);
+	parseXML();
 }
 
-void Launcher::firstRunCheck()
+void Launcher::httpReadyRead()
 {
-	QFile firstRun("firstRun");
-	if (!firstRun.exists())
-	{
-		releaseNetworkResource();
-
-		manager = new QNetworkAccessManager(this);
-		request = new QNetworkRequest(QUrl("http://localhost/send_count.php"));
-		request->setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-
-		QString date = QDate::currentDate().toString("yyyy.MM.dd");
-
-		params = new QUrl();
-		params->addQueryItem("date", date);
-		data = new QByteArray(params->encodedQuery());
-
-		connect(manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(sendCountFinished(QNetworkReply*)));
-		manager->post(*request, *data);
-
-		firstRun.open(QIODevice::WriteOnly);
-		firstRun.close();
-	}
+	rss+=QString::fromUtf8(reply->readAll());
 }
 
-void Launcher::releaseNetworkResource()
+void Launcher::parseXML()
 {
-	if (data != NULL)
+	QDomDocument doc;
+	doc.setContent(rss);
+	QDomElement docElem = doc.documentElement();
+	QDomElement channel=docElem.firstChildElement("channel");
+	
+	int i=0;
+	QDomNodeList itemList=channel.elementsByTagName("item");
+	int a=itemList.length();
+	
+	for (i=0;i<itemList.size();i++)
 	{
-		delete data;
-		data = NULL;
-	}
-	if (params != NULL)
-	{
-		delete params;
-		params = NULL;
-	}
-	if (request != NULL)
-	{
-		delete request;
-		request = NULL;
-	}
-	if (manager != NULL)
-	{
-		delete manager;
-		manager = NULL;
+		QString titleString=itemList.at(i).firstChildElement("title").text();
+		switch(i)
+		{
+		case 0:
+			ui.label->setText("<a href='"+itemList.at(i).firstChildElement("link").text()+"'>"+titleString+"</a>");
+			break;
+		case 1:
+			ui.label_2->setText("<a href='"+itemList.at(i).firstChildElement("link").text()+"'>"+titleString+"</a>");
+			break;
+		case 2:
+			ui.label_3->setText("<a href='"+itemList.at(i).firstChildElement("link").text()+"'>"+titleString+"</a>");
+			break;
+		case 3:
+			ui.label_4->setText("<a href='"+itemList.at(i).firstChildElement("link").text()+"'>"+titleString+"</a>");
+			break;
+		case 4:
+			ui.label_5->setText("<a href='"+itemList.at(i).firstChildElement("link").text()+"'>"+titleString+"</a>");
+			break;
+		}
+
+		
 	}
 }
 
-void Launcher::sendCountFinished(QNetworkReply *reply)
+void Launcher::openRss(QString link)
 {
-	reply->deleteLater();
+	wchar_t c[200];
+	int a=link.toWCharArray(c);
+	c[a]=0;
+	ShellExecute(NULL, L"open",c, NULL, NULL, SW_SHOWNORMAL); 
+}
+
+void Launcher::weibo()
+{
+	ShellExecute(NULL, L"open",L"http://weibo.com/u/2891329060", NULL, NULL, SW_SHOWNORMAL);  
 }

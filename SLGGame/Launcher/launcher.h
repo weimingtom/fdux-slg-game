@@ -15,7 +15,6 @@
 #include <QDate>
 #include <QFile>
 #include <QMessageBox>
-
 class Launcher : public QMainWindow
 {
 	Q_OBJECT
@@ -28,8 +27,7 @@ private:
 	Ui::LauncherClass ui;
 	QPixmap bgimage;
 	void resizeEvent(QResizeEvent *event);
-	void firstRunCheck();
-	void releaseNetworkResource();
+	void parseXML();
 
 public slots:
 	void windowRunGame();
@@ -38,15 +36,16 @@ public slots:
 	void readMe();
 	void setupDirectx();
 	void visitWebSite();
-	void sendFeedback();
+	void openRss(QString link);
+	void weibo();
 
-	void sendCountFinished(QNetworkReply *reply);
-
+	void httpFinished();
+	void httpReadyRead();
 private:
-	QUrl *params;
-	QByteArray *data;
-	QNetworkAccessManager *manager;
-	QNetworkRequest *request;
+	QNetworkAccessManager manager;
+	QNetworkReply *reply;
+
+	QString rss;
 };
 
 #endif // LAUNCHER_H
