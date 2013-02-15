@@ -42,7 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\ticpp;&quot;..\..\lua-5.1.4\include&quot;;&quot;..\..\audiere-1.9.4-win32\include&quot;;..\..\SubSystem\SubSystem\src;..\..\MyGUI_3.2.0_RC1\MyGUIEngine\include;..\..\MyGUI_3.2.0_RC1\Platforms\Ogre\OgrePlatform\include;..\..\MyGUI_3.2.0_RC1\Common;&quot;..\..\Particle Universe\Particle Universe Plugin\VCBuild\sdk\include\ParticleUniverse&quot;;&quot;$(OGRE_HOME)\boost_1_44&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;&quot;$(OGRE_HOME)\include\OGRE&quot;;..\..\boost_1_45_0;$(NOINHERIT)"
+				AdditionalIncludeDirectories="&quot;$(DXSDK_DIR)\Include&quot;;..\..\ticpp;&quot;..\..\lua-5.1.4\include&quot;;&quot;..\..\audiere-1.9.4-win32\include&quot;;..\..\SubSystem\SubSystem\src;..\..\MyGUI_3.2.0_RC1\MyGUIEngine\include;..\..\MyGUI_3.2.0_RC1\Platforms\Ogre\OgrePlatform\include;..\..\MyGUI_3.2.0_RC1\Common;&quot;..\..\Particle Universe\Particle Universe Plugin\VCBuild\sdk\include\ParticleUniverse&quot;;&quot;$(OGRE_HOME)\boost_1_44&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;&quot;$(OGRE_HOME)\include\OGRE&quot;;..\..\boost_1_45_0;$(NOINHERIT)"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -64,10 +64,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="ticppd.lib OgreMain_d.lib OIS_d.lib SubSystem.lib MyGUI.OgrePlatform_d.lib MyGUIEngine_d.lib audiere.lib lua51.lib ParticleUniverse_d.lib"
+				AdditionalDependencies="ticppd.lib OgreMain_d.lib OIS_d.lib SubSystem.lib MyGUI.OgrePlatform_d.lib MyGUIEngine_d.lib audiere.lib lua51.lib ParticleUniverse_d.lib strmiids.lib"
 				OutputFile="$(OutDir)\ForgottenBattlefield.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;$(OGRE_HOME)\lib\debug\&quot;;&quot;$(OGRE_HOME)\boost_1_44\lib&quot;;&quot;..\..\audiere-1.9.4-win32\lib&quot;;..\debug;&quot;..\..\lua-5.1.4\bin&quot;;..\..\MyGUI3.2\lib\Debug;..\..\ticpp\lib;&quot;..\..\Particle Universe\Particle Universe Plugin\VCBuild\lib\Debug&quot;"
+				AdditionalLibraryDirectories="&quot;$(OGRE_HOME)\lib\debug\&quot;;&quot;$(OGRE_HOME)\boost_1_44\lib&quot;;&quot;..\..\audiere-1.9.4-win32\lib&quot;;..\debug;&quot;..\..\lua-5.1.4\bin&quot;;..\..\MyGUI3.2\lib\Debug;..\..\ticpp\lib;&quot;..\..\Particle Universe\Particle Universe Plugin\VCBuild\lib\Debug&quot;;&quot;$(DXSDK_DIR)\Lib\x86&quot;"
 				IgnoreAllDefaultLibraries="false"
 				GenerateDebugInformation="true"
 				SubSystem="1"
@@ -122,7 +122,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\CrashRpt\include;..\..\ticpp;&quot;..\..\lua-5.1.4\include&quot;;&quot;..\..\audiere-1.9.4-win32\include&quot;;..\..\SubSystem\SubSystem\src;..\..\MyGUI_3.2.0_RC1\MyGUIEngine\include;..\..\MyGUI_3.2.0_RC1\Platforms\Ogre\OgrePlatform\include;..\..\MyGUI_3.2.0_RC1\Common;&quot;..\..\Particle Universe\Particle Universe Plugin\VCBuild\sdk\include\ParticleUniverse&quot;;&quot;$(OGRE_HOME)\boost_1_44&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;&quot;$(OGRE_HOME)\include\OGRE&quot;;..\..\boost_1_45_0"
+				AdditionalIncludeDirectories="&quot;$(DXSDK_DIR)\Include&quot;;..\..\CrashRpt\include;..\..\ticpp;&quot;..\..\lua-5.1.4\include&quot;;&quot;..\..\audiere-1.9.4-win32\include&quot;;..\..\SubSystem\SubSystem\src;..\..\MyGUI_3.2.0_RC1\MyGUIEngine\include;..\..\MyGUI_3.2.0_RC1\Platforms\Ogre\OgrePlatform\include;..\..\MyGUI_3.2.0_RC1\Common;&quot;..\..\Particle Universe\Particle Universe Plugin\VCBuild\sdk\include\ParticleUniverse&quot;;&quot;$(OGRE_HOME)\boost_1_44&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;&quot;$(OGRE_HOME)\include\OGRE&quot;;..\..\boost_1_45_0"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -141,10 +141,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="ticpp.lib OgreMain.lib OIS.lib SubSystem.lib MyGUI.OgrePlatform.lib MyGUIEngine.lib audiere.lib lua51.lib ParticleUniverse.lib CrashRpt.lib"
+				AdditionalDependencies="ticpp.lib OgreMain.lib OIS.lib SubSystem.lib MyGUI.OgrePlatform.lib MyGUIEngine.lib audiere.lib lua51.lib ParticleUniverse.lib CrashRpt.lib strmiids.lib"
 				OutputFile="$(OutDir)\ForgottenBattlefield.exe"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="..\..\CrashRpt\lib;&quot;$(OGRE_HOME)\lib\release\&quot;;&quot;$(OGRE_HOME)\boost_1_44\lib&quot;;&quot;..\..\audiere-1.9.4-win32\lib&quot;;..\release;&quot;..\..\lua-5.1.4\bin&quot;;..\..\MyGUI3.2\lib\Release;..\..\ticpp\lib;&quot;..\..\Particle Universe\Particle Universe Plugin\VCBuild\lib\Release&quot;"
+				AdditionalLibraryDirectories="..\..\CrashRpt\lib;&quot;$(OGRE_HOME)\lib\release\&quot;;&quot;$(OGRE_HOME)\boost_1_44\lib&quot;;&quot;..\..\audiere-1.9.4-win32\lib&quot;;..\release;&quot;..\..\lua-5.1.4\bin&quot;;..\..\MyGUI3.2\lib\Release;..\..\ticpp\lib;&quot;..\..\Particle Universe\Particle Universe Plugin\VCBuild\lib\Release&quot;;&quot;$(DXSDK_DIR)\Lib\x86&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"
@@ -225,6 +225,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\h-genutils.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\h-genutils.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\iiexception.cpp"
 				>
 			</File>
@@ -258,6 +266,18 @@
 			</File>
 			<File
 				RelativePath=".\src\timer.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\UtilsOgreDshow.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\UtilsOgreDshow.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\UtilsOgreDshow_private.h"
 				>
 			</File>
 		</Filter>
