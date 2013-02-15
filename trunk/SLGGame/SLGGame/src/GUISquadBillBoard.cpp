@@ -79,7 +79,7 @@ void GUISquadBillBoard::setName( std::string name,MyGUI::Colour c)
 }
 
 
-void GUISquadBillBoard::setIcon( enumtype type )
+void GUISquadBillBoard::setIcon( int type )
 {
 	mBIcon->setItemResource("kind");
 	switch(type)

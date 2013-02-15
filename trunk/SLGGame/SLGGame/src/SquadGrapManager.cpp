@@ -90,7 +90,7 @@ void SquadGrapManager::update(unsigned int deltaTime)
 // }
 
 
-bool SquadGrapManager::createSquadGrap(std::string squadid, std::string datapath, int gridx, int gridy, enumtype direction, enumtype formation, int soldierCount)
+bool SquadGrapManager::createSquadGrap(std::string squadid, std::string datapath, int gridx, int gridy, int direction, int formation, int soldierCount)
 {
 	std::map<std::string, SquadGraphics*>::iterator ite;
 	ite = mSquadGrapMap.find(squadid);

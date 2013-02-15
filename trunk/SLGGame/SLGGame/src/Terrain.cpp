@@ -958,7 +958,7 @@ void Terrain::calculateGrid( float x,float y,int& GX, int& GY )
 	*/
 }
 
-int Terrain::createMapObj(int x, int y, std::string meshname, enumtype dir)
+int Terrain::createMapObj(int x, int y, std::string meshname, int dir)
 {
 	stTileEntityData* entitydata = new stTileEntityData;
 	entitydata->mTileEntity = Core::getSingleton().mSceneMgr->createEntity(meshname);

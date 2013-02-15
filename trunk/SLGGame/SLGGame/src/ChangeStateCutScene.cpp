@@ -2,7 +2,7 @@
 
 #include "StateManager.h"
 
-ChangeStateCutScene::ChangeStateCutScene(enumtype nextstate, std::string arg)
+ChangeStateCutScene::ChangeStateCutScene(int nextstate, std::string arg)
 :mNextState(nextstate), mArg(arg)
 {
 

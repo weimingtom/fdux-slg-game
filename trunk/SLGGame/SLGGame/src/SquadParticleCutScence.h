@@ -8,7 +8,7 @@
 class SquadParticleCutScence : public CutScene
 {
 public:
-	SquadParticleCutScence(std::string squadid, std::string particleid, std::string particlename, enumtype affectunit);
+	SquadParticleCutScence(std::string squadid, std::string particleid, std::string particlename, int affectunit);
 	SquadParticleCutScence(std::string squadid, std::string particleid);
 	virtual ~SquadParticleCutScence();
 
@@ -20,6 +20,6 @@ private:
 	std::string mSquadId;
 	std::string mParticleId;
 	std::string mParticleName;
-	enumtype mAffectUnit;
+	int mAffectUnit;
 	bool mRemove;
 };

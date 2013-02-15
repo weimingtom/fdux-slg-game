@@ -37,7 +37,7 @@ public:
 	void setDirection(Direction d,bool isAnim);
 	Direction getDirection();
 	bool isDirectionOver();
-	void setFormation(enumtype f,bool isAnim);
+	void setFormation(int f,bool isAnim);
 	bool isFormationOrDirectionOver();
 	bool isTransformOver();
 	void stopTransform();
@@ -65,7 +65,7 @@ public:
 	bool getVisible() {return mVisibale;}
 	void setParticleVisible(bool visible);
 
-	bool addParticle(std::string id,std::string name,enumtype object);
+	bool addParticle(std::string id,std::string name,int object);
 	void startParticle(std::string id);
 	void stopParticle(std::string id);
 	void delParticle(std::string id);
@@ -81,7 +81,7 @@ public:
 
 private:
 	//SquadGraphics(std::string squadName, std::string datapath, Ogre::Vector2& grid,Direction direction,Formation f,unsigned int index,int soldierCount);
-	SquadGraphics(std::string squadid, std::string datapath, int gridx, int gridy, enumtype direction, enumtype formation, int soldierCount);
+	SquadGraphics(std::string squadid, std::string datapath, int gridx, int gridy, int direction, int formation, int soldierCount);
 
 	void update(unsigned int deltaTime);
 
@@ -91,7 +91,7 @@ private:
 
 	UnitGrap* createSoldier();
 
-	void getFormationPosition(enumtype f,enumtype d,Ogre::Vector3& CommanderVector,Ogre::Vector3 SoldierVector[]);
+	void getFormationPosition(int f,int d,Ogre::Vector3& CommanderVector,Ogre::Vector3 SoldierVector[]);
 
 	void updateBB();
 
@@ -131,10 +131,10 @@ private:
 	std::string mFactionTexture;
 	std::vector<UnitGrap*> mSoldierUnits;
 	int mSoldierIndex;
-	enumtype mFormation;
-	enumtype mDirection;
-	enumtype mIdleDirection;
-	enumtype mNextDirection;
+	int mFormation;
+	int mDirection;
+	int mIdleDirection;
+	int mNextDirection;
 	std::string mMoveSound;
 
 	enum DeathStep

@@ -26,7 +26,7 @@ function finishdeploy()
 	BattleLib.AssignAIGroup(2, "Team2Squad_4", "DuxRaider");
 	BattleLib.AssignAIGroup(2, "Team2Squad_5", "DuxRaider");
 	BattleLib.AssignAIGroup(2, "Team2Squad_6", "DuxRaider");
-	BattleLib.CreateAIMission(2, "DefendCamp", 0, "CameArea");
+	BattleLib.CreateAIMission(2, "DefendCamp", 0, "CampArea");
 	BattleLib.AssignAIMission(2, "DuxRaider", "DefendCamp");
 end
 

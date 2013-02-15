@@ -38,7 +38,7 @@ void SquadStateCutScene::startCutScence()
 			if(mStateValue == 1 || mStateValue == 4 )
 			{
 				std::string name;
-				enumtype object;
+				int object;
 				DataLibrary::getSingleton().getData(str(boost::format("%1%/ParticleList/%2%/Particle")%mSquad->getPath()%mStateId),name);
 				DataLibrary::getSingleton().getData(str(boost::format("%1%/ParticleList/%2%/UnitType")%mSquad->getPath()%mStateId),object);
 				mSquadGraphics->addParticle(mStateId,name,object);

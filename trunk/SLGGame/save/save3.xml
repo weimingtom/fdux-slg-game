@@ -5,20 +5,20 @@
 		<BackGroundName type="String" value="caoyuan.png"/>
 		<BackGroundPosition type="Vector3" value="0,0,0"/>
 		<BackGroundSize type="Vector3" value="1280,720,0"/>
-		<LeftName type="String" value="chihou_lan.png"/>
+		<LeftName type="String" value=""/>
 		<LeftPosition type="Vector3" value="-100,0,0"/>
 		<LeftSize type="Vector3" value="640,720,0"/>
 		<MidName type="String" value=""/>
 		<MidPosition type="Vector3" value="295,25,0"/>
 		<MidSize type="Vector3" value="245,480,0"/>
-		<RightName type="String" value="qitaw_zc.png"/>
+		<RightName type="String" value=""/>
 		<RightPosition type="Vector3" value="700,0,0"/>
 		<RightSize type="Vector3" value="640,720,0"/>
-		<Text type="String" value="那么是时候去给这些家伙的庆典泼泼冷水了。"/>
-		<RoleName type="String" value="齐塔"/>
+		<Text type="String" value=""/>
+		<RoleName type="String" value=""/>
 		<TextCursorType type="Int" value="0"/>
 		<ScriptName type="String" value="cp1.lua"/>
-		<ScriptLine type="Int" value="306"/>
+		<ScriptLine type="Int" value="7"/>
 		<MusicName type="String" value="battle1.mp3"/>
 		<SquadData>
 			<Cheetah>
@@ -226,7 +226,7 @@
 	<BattleData>
 		<MapData>
 			<MapName type="String" value="双河平原之战 前篇"/>
-			<MapScript type="String" value="mapscript1.lua">
+			<MapScript type="String" value="battle1script.lua">
 				<ScriptContext>
 					<finishdeploytriger type="String" value="T0"/>
 					<unitdeadtriger type="String" value="T0"/>
@@ -1631,6 +1631,142 @@
 						</c7>
 					</CoordList>
 				</DeployArea>
+				<CampArea>
+					<CoordList>
+						<c0>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="4"/>
+						</c0>
+						<c1>
+							<X type="Int" value="8"/>
+							<Y type="Int" value="4"/>
+						</c1>
+						<c2>
+							<X type="Int" value="3"/>
+							<Y type="Int" value="5"/>
+						</c2>
+						<c3>
+							<X type="Int" value="4"/>
+							<Y type="Int" value="5"/>
+						</c3>
+						<c4>
+							<X type="Int" value="5"/>
+							<Y type="Int" value="5"/>
+						</c4>
+						<c5>
+							<X type="Int" value="6"/>
+							<Y type="Int" value="5"/>
+						</c5>
+						<c6>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="5"/>
+						</c6>
+						<c7>
+							<X type="Int" value="8"/>
+							<Y type="Int" value="5"/>
+						</c7>
+						<c8>
+							<X type="Int" value="3"/>
+							<Y type="Int" value="6"/>
+						</c8>
+						<c9>
+							<X type="Int" value="4"/>
+							<Y type="Int" value="6"/>
+						</c9>
+						<c10>
+							<X type="Int" value="5"/>
+							<Y type="Int" value="6"/>
+						</c10>
+						<c11>
+							<X type="Int" value="6"/>
+							<Y type="Int" value="6"/>
+						</c11>
+						<c12>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="6"/>
+						</c12>
+						<c13>
+							<X type="Int" value="8"/>
+							<Y type="Int" value="6"/>
+						</c13>
+						<c14>
+							<X type="Int" value="2"/>
+							<Y type="Int" value="7"/>
+						</c14>
+						<c15>
+							<X type="Int" value="3"/>
+							<Y type="Int" value="7"/>
+						</c15>
+						<c16>
+							<X type="Int" value="4"/>
+							<Y type="Int" value="7"/>
+						</c16>
+						<c17>
+							<X type="Int" value="5"/>
+							<Y type="Int" value="7"/>
+						</c17>
+						<c18>
+							<X type="Int" value="6"/>
+							<Y type="Int" value="7"/>
+						</c18>
+						<c19>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="7"/>
+						</c19>
+						<c20>
+							<X type="Int" value="8"/>
+							<Y type="Int" value="7"/>
+						</c20>
+						<c21>
+							<X type="Int" value="9"/>
+							<Y type="Int" value="7"/>
+						</c21>
+						<c22>
+							<X type="Int" value="2"/>
+							<Y type="Int" value="8"/>
+						</c22>
+						<c23>
+							<X type="Int" value="3"/>
+							<Y type="Int" value="8"/>
+						</c23>
+						<c24>
+							<X type="Int" value="4"/>
+							<Y type="Int" value="8"/>
+						</c24>
+						<c25>
+							<X type="Int" value="5"/>
+							<Y type="Int" value="8"/>
+						</c25>
+						<c26>
+							<X type="Int" value="6"/>
+							<Y type="Int" value="8"/>
+						</c26>
+						<c27>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="8"/>
+						</c27>
+						<c28>
+							<X type="Int" value="8"/>
+							<Y type="Int" value="8"/>
+						</c28>
+						<c29>
+							<X type="Int" value="9"/>
+							<Y type="Int" value="8"/>
+						</c29>
+						<c30>
+							<X type="Int" value="5"/>
+							<Y type="Int" value="9"/>
+						</c30>
+						<c31>
+							<X type="Int" value="6"/>
+							<Y type="Int" value="9"/>
+						</c31>
+						<c32>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="9"/>
+						</c32>
+					</CoordList>
+				</CampArea>
 			</Area>
 		</MapData>
 		<Team>
@@ -1796,7 +1932,7 @@
 				<Direction type="Int" value="1"/>
 				<UnitMaxNum type="Int" value="50"/>
 				<Formation type="Int" value="0"/>
-				<ViewbyPlayer type="Int" value="0"/>
+				<ViewbyPlayer type="Int" value="1"/>
 				<ViewbyEnemy1 type="Int" value="1"/>
 				<ViewbyEnemy2 type="Int" value="0"/>
 				<ViewbyEnemy3 type="Int" value="0"/>
@@ -1804,7 +1940,7 @@
 				<AmbushEnemy1 type="Int" value="0"/>
 				<AmbushEnemy2 type="Int" value="0"/>
 				<AmbushEnemy3 type="Int" value="0"/>
-				<ActionPoint type="Float" value="0"/>
+				<ActionPoint type="Float" value="9"/>
 				<APSetup type="Float" value="0"/>
 				<APBattle type="Float" value="0"/>
 			</Team2Squad_0>
@@ -1956,13 +2092,13 @@
 				<Formation type="Int" value="0"/>
 				<ViewbyPlayer type="Int" value="1"/>
 				<ViewbyEnemy1 type="Int" value="1"/>
-				<ViewbyEnemy2 type="Int" value="1"/>
-				<ViewbyEnemy3 type="Int" value="1"/>
+				<ViewbyEnemy2 type="Int" value="0"/>
+				<ViewbyEnemy3 type="Int" value="0"/>
 				<AmbushPlayer type="Int" value="0"/>
 				<AmbushEnemy1 type="Int" value="0"/>
 				<AmbushEnemy2 type="Int" value="0"/>
 				<AmbushEnemy3 type="Int" value="0"/>
-				<ActionPoint type="Float" value="0"/>
+				<ActionPoint type="Float" value="7"/>
 				<APSetup type="Float" value="0"/>
 				<APBattle type="Float" value="0"/>
 			</Team2Squad_1>
@@ -2120,7 +2256,7 @@
 				<AmbushEnemy1 type="Int" value="0"/>
 				<AmbushEnemy2 type="Int" value="0"/>
 				<AmbushEnemy3 type="Int" value="0"/>
-				<ActionPoint type="Float" value="0"/>
+				<ActionPoint type="Float" value="9"/>
 				<APSetup type="Float" value="0"/>
 				<APBattle type="Float" value="0"/>
 			</Team2Squad_2>
@@ -2270,7 +2406,7 @@
 				<Direction type="Int" value="1"/>
 				<UnitMaxNum type="Int" value="50"/>
 				<Formation type="Int" value="0"/>
-				<ViewbyPlayer type="Int" value="0"/>
+				<ViewbyPlayer type="Int" value="1"/>
 				<ViewbyEnemy1 type="Int" value="1"/>
 				<ViewbyEnemy2 type="Int" value="0"/>
 				<ViewbyEnemy3 type="Int" value="0"/>
@@ -2278,7 +2414,7 @@
 				<AmbushEnemy1 type="Int" value="0"/>
 				<AmbushEnemy2 type="Int" value="0"/>
 				<AmbushEnemy3 type="Int" value="0"/>
-				<ActionPoint type="Float" value="0"/>
+				<ActionPoint type="Float" value="9"/>
 				<APSetup type="Float" value="0"/>
 				<APBattle type="Float" value="0"/>
 			</Team2Squad_3>
@@ -2429,7 +2565,7 @@
 				<Direction type="Int" value="1"/>
 				<UnitMaxNum type="Int" value="50"/>
 				<Formation type="Int" value="0"/>
-				<ViewbyPlayer type="Int" value="0"/>
+				<ViewbyPlayer type="Int" value="1"/>
 				<ViewbyEnemy1 type="Int" value="1"/>
 				<ViewbyEnemy2 type="Int" value="0"/>
 				<ViewbyEnemy3 type="Int" value="0"/>
@@ -2437,7 +2573,7 @@
 				<AmbushEnemy1 type="Int" value="0"/>
 				<AmbushEnemy2 type="Int" value="0"/>
 				<AmbushEnemy3 type="Int" value="0"/>
-				<ActionPoint type="Float" value="0"/>
+				<ActionPoint type="Float" value="9"/>
 				<APSetup type="Float" value="0"/>
 				<APBattle type="Float" value="0"/>
 			</Team2Squad_4>
@@ -2588,7 +2724,7 @@
 				<Direction type="Int" value="1"/>
 				<UnitMaxNum type="Int" value="50"/>
 				<Formation type="Int" value="0"/>
-				<ViewbyPlayer type="Int" value="0"/>
+				<ViewbyPlayer type="Int" value="1"/>
 				<ViewbyEnemy1 type="Int" value="1"/>
 				<ViewbyEnemy2 type="Int" value="0"/>
 				<ViewbyEnemy3 type="Int" value="0"/>
@@ -2596,7 +2732,7 @@
 				<AmbushEnemy1 type="Int" value="0"/>
 				<AmbushEnemy2 type="Int" value="0"/>
 				<AmbushEnemy3 type="Int" value="0"/>
-				<ActionPoint type="Float" value="0"/>
+				<ActionPoint type="Float" value="9"/>
 				<APSetup type="Float" value="0"/>
 				<APBattle type="Float" value="0"/>
 			</Team2Squad_5>
@@ -2755,7 +2891,7 @@
 				<AmbushEnemy1 type="Int" value="0"/>
 				<AmbushEnemy2 type="Int" value="0"/>
 				<AmbushEnemy3 type="Int" value="0"/>
-				<ActionPoint type="Float" value="0"/>
+				<ActionPoint type="Float" value="9"/>
 				<APSetup type="Float" value="0"/>
 				<APBattle type="Float" value="0"/>
 			</Team2Squad_6>
@@ -2911,7 +3047,7 @@
 				<Team type="Int" value="1"/>
 				<GridX type="Int" value="0"/>
 				<GridY type="Int" value="6"/>
-				<Direction type="Int" value="0"/>
+				<Direction type="Int" value="3"/>
 				<Formation type="Int" value="0"/>
 				<UnitMaxNum type="Int" value="50"/>
 				<ViewbyPlayer type="Int" value="1"/>
@@ -3097,8 +3233,8 @@
 				</SkillTable>
 				<Team type="Int" value="1"/>
 				<GridX type="Int" value="0"/>
-				<GridY type="Int" value="2"/>
-				<Direction type="Int" value="0"/>
+				<GridY type="Int" value="5"/>
+				<Direction type="Int" value="3"/>
 				<Formation type="Int" value="0"/>
 				<UnitMaxNum type="Int" value="50"/>
 				<ViewbyPlayer type="Int" value="1"/>
@@ -3270,7 +3406,7 @@
 				<Team type="Int" value="1"/>
 				<GridX type="Int" value="1"/>
 				<GridY type="Int" value="4"/>
-				<Direction type="Int" value="0"/>
+				<Direction type="Int" value="3"/>
 				<Formation type="Int" value="0"/>
 				<UnitMaxNum type="Int" value="50"/>
 				<ViewbyPlayer type="Int" value="1"/>
@@ -3455,9 +3591,9 @@
 					<LightArmor type="Int" value="2"/>
 				</SkillTable>
 				<Team type="Int" value="1"/>
-				<GridX type="Int" value="1"/>
+				<GridX type="Int" value="0"/>
 				<GridY type="Int" value="3"/>
-				<Direction type="Int" value="0"/>
+				<Direction type="Int" value="3"/>
 				<Formation type="Int" value="0"/>
 				<UnitMaxNum type="Int" value="50"/>
 				<ViewbyPlayer type="Int" value="1"/>
@@ -3604,14 +3740,14 @@
 				</Skill>
 				<Team type="Int" value="1"/>
 				<GridX type="Int" value="0"/>
-				<GridY type="Int" value="3"/>
-				<Direction type="Int" value="0"/>
+				<GridY type="Int" value="4"/>
+				<Direction type="Int" value="3"/>
 				<Formation type="Int" value="2"/>
 				<UnitMaxNum type="Int" value="20"/>
 				<ViewbyPlayer type="Int" value="1"/>
 				<ViewbyEnemy1 type="Int" value="1"/>
-				<ViewbyEnemy2 type="Int" value="1"/>
-				<ViewbyEnemy3 type="Int" value="1"/>
+				<ViewbyEnemy2 type="Int" value="0"/>
+				<ViewbyEnemy3 type="Int" value="0"/>
 				<AmbushPlayer type="Int" value="0"/>
 				<AmbushEnemy1 type="Int" value="0"/>
 				<AmbushEnemy2 type="Int" value="0"/>
@@ -3805,15 +3941,15 @@
 					<LightArmor type="Int" value="2"/>
 				</SkillTable>
 				<Team type="Int" value="1"/>
-				<GridX type="Int" value="0"/>
-				<GridY type="Int" value="4"/>
-				<Direction type="Int" value="0"/>
+				<GridX type="Int" value="5"/>
+				<GridY type="Int" value="3"/>
+				<Direction type="Int" value="3"/>
 				<Formation type="Int" value="0"/>
 				<UnitMaxNum type="Int" value="50"/>
 				<ViewbyPlayer type="Int" value="1"/>
 				<ViewbyEnemy1 type="Int" value="1"/>
-				<ViewbyEnemy2 type="Int" value="1"/>
-				<ViewbyEnemy3 type="Int" value="1"/>
+				<ViewbyEnemy2 type="Int" value="0"/>
+				<ViewbyEnemy3 type="Int" value="0"/>
 				<AmbushPlayer type="Int" value="0"/>
 				<AmbushEnemy1 type="Int" value="0"/>
 				<AmbushEnemy2 type="Int" value="0"/>
@@ -3824,19 +3960,19 @@
 			</WingsLightCavalry>
 		</SquadList>
 		<BattleState>
-			<Ture type="Int" value="1"/>
+			<Ture type="Int" value="3"/>
 			<CurTeam type="Int" value="1"/>
 		</BattleState>
 		<Trigger>
 			<T0 type="Int" value="1">
 				<type type="String" value="SquadAnnihilated"/>
-				<file type="String" value="mapscript1.lua"/>
+				<file type="String" value="battle1script.lua"/>
 				<func type="String" value="unitdead"/>
 				<context type="String" value="GameData/BattleData/MapData/MapScript/ScriptContext"/>
 			</T0>
 			<T1 type="Int" value="1">
 				<type type="String" value="TurnEnd"/>
-				<file type="String" value="mapscript1.lua"/>
+				<file type="String" value="battle1script.lua"/>
 				<func type="String" value="turnend"/>
 				<context type="String" value="GameData/BattleData/MapData/MapScript/ScriptContext"/>
 			</T1>
@@ -3849,16 +3985,612 @@
 							<Team2Squad_0 type="Int" value="1"/>
 							<Team2Squad_1 type="Int" value="1"/>
 							<Team2Squad_2 type="Int" value="1"/>
+							<Team2Squad_3 type="Int" value="1"/>
+							<Team2Squad_4 type="Int" value="1"/>
+							<Team2Squad_5 type="Int" value="1"/>
+							<Team2Squad_6 type="Int" value="1"/>
 						</SquadList>
-						<Mission type="String" value="EliminateTeam1"/>
+						<Mission type="String" value="DefendCamp"/>
 					</DuxRaider>
 				</Group>
 				<Mission>
-					<EliminateTeam1 type="Int" value="1">
-						<TargetTeam type="Int" value="1"/>
-					</EliminateTeam1>
+					<DefendCamp type="Int" value="0">
+						<AreaId type="String" value="CampArea"/>
+						<CommanderInfo>
+							<SquadGroupList type="Int" value="0"/>
+							<Threatens>
+								<t0 type="Int" value="0"/>
+								<t1 type="Int" value="1"/>
+							</Threatens>
+						</CommanderInfo>
+					</DefendCamp>
 				</Mission>
+				<OtherSquadGroup type="Int" value="2">
+					<sg0>
+						<IsEnemy type="Int" value="1"/>
+						<CenterCrood>
+							<X type="Int" value="0"/>
+							<Y type="Int" value="4"/>
+						</CenterCrood>
+						<SquadList>
+							<Cheetah type="Int" value="1"/>
+							<Dandelion type="Int" value="1"/>
+							<Olivia type="Int" value="1"/>
+							<WingsCrossBow type="Int" value="1"/>
+							<WingsLightCavalry type="Int" value="1"/>
+							<WingsLightInf type="Int" value="1"/>
+						</SquadList>
+						<CurMission>
+							<Type type="Int" value="1"/>
+							<Area type="String" value="CampArea"/>
+							<Possibility type="Float" value="60"/>
+						</CurMission>
+					</sg0>
+					<sg1>
+						<IsEnemy type="Int" value="1"/>
+						<CenterCrood>
+							<X type="Int" value="5"/>
+							<Y type="Int" value="3"/>
+						</CenterCrood>
+						<SquadList>
+							<WingsLightCavalry type="Int" value="1"/>
+						</SquadList>
+						<CurMission>
+							<Type type="Int" value="1"/>
+							<Area type="String" value="CampArea"/>
+							<Possibility type="Float" value="50"/>
+						</CurMission>
+					</sg1>
+				</OtherSquadGroup>
 			</Team2>
+			<MapAnalyze type="Int" value="1">
+				<Area0 type="Int" value="2">
+					<Area>
+						<c0>
+							<X type="Int" value="0"/>
+							<Y type="Int" value="0"/>
+						</c0>
+						<c1>
+							<X type="Int" value="1"/>
+							<Y type="Int" value="0"/>
+						</c1>
+						<c2>
+							<X type="Int" value="2"/>
+							<Y type="Int" value="0"/>
+						</c2>
+						<c3>
+							<X type="Int" value="3"/>
+							<Y type="Int" value="0"/>
+						</c3>
+						<c4>
+							<X type="Int" value="4"/>
+							<Y type="Int" value="0"/>
+						</c4>
+						<c5>
+							<X type="Int" value="5"/>
+							<Y type="Int" value="0"/>
+						</c5>
+						<c6>
+							<X type="Int" value="6"/>
+							<Y type="Int" value="0"/>
+						</c6>
+						<c7>
+							<X type="Int" value="5"/>
+							<Y type="Int" value="1"/>
+						</c7>
+						<c8>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="0"/>
+						</c8>
+						<c9>
+							<X type="Int" value="8"/>
+							<Y type="Int" value="0"/>
+						</c9>
+						<c10>
+							<X type="Int" value="9"/>
+							<Y type="Int" value="0"/>
+						</c10>
+					</Area>
+				</Area0>
+				<Area1 type="Int" value="2">
+					<Area>
+						<c0>
+							<X type="Int" value="11"/>
+							<Y type="Int" value="0"/>
+						</c0>
+						<c1>
+							<X type="Int" value="11"/>
+							<Y type="Int" value="1"/>
+						</c1>
+					</Area>
+					<ConnectedArea>
+						<a0 type="Int" value="2"/>
+					</ConnectedArea>
+				</Area1>
+				<Area2 type="Int" value="0">
+					<Area>
+						<c0>
+							<X type="Int" value="11"/>
+							<Y type="Int" value="2"/>
+						</c0>
+						<c1>
+							<X type="Int" value="10"/>
+							<Y type="Int" value="2"/>
+						</c1>
+						<c2>
+							<X type="Int" value="11"/>
+							<Y type="Int" value="3"/>
+						</c2>
+						<c3>
+							<X type="Int" value="9"/>
+							<Y type="Int" value="2"/>
+						</c3>
+						<c4>
+							<X type="Int" value="10"/>
+							<Y type="Int" value="3"/>
+						</c4>
+						<c5>
+							<X type="Int" value="11"/>
+							<Y type="Int" value="4"/>
+						</c5>
+						<c6>
+							<X type="Int" value="8"/>
+							<Y type="Int" value="2"/>
+						</c6>
+						<c7>
+							<X type="Int" value="9"/>
+							<Y type="Int" value="3"/>
+						</c7>
+						<c8>
+							<X type="Int" value="10"/>
+							<Y type="Int" value="4"/>
+						</c8>
+						<c9>
+							<X type="Int" value="11"/>
+							<Y type="Int" value="5"/>
+						</c9>
+						<c10>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="2"/>
+						</c10>
+						<c11>
+							<X type="Int" value="8"/>
+							<Y type="Int" value="3"/>
+						</c11>
+						<c12>
+							<X type="Int" value="9"/>
+							<Y type="Int" value="4"/>
+						</c12>
+						<c13>
+							<X type="Int" value="10"/>
+							<Y type="Int" value="5"/>
+						</c13>
+						<c14>
+							<X type="Int" value="11"/>
+							<Y type="Int" value="6"/>
+						</c14>
+						<c15>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="3"/>
+						</c15>
+						<c16>
+							<X type="Int" value="8"/>
+							<Y type="Int" value="4"/>
+						</c16>
+						<c17>
+							<X type="Int" value="9"/>
+							<Y type="Int" value="5"/>
+						</c17>
+						<c18>
+							<X type="Int" value="10"/>
+							<Y type="Int" value="6"/>
+						</c18>
+						<c19>
+							<X type="Int" value="11"/>
+							<Y type="Int" value="7"/>
+						</c19>
+						<c20>
+							<X type="Int" value="6"/>
+							<Y type="Int" value="3"/>
+						</c20>
+						<c21>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="4"/>
+						</c21>
+						<c22>
+							<X type="Int" value="8"/>
+							<Y type="Int" value="5"/>
+						</c22>
+						<c23>
+							<X type="Int" value="9"/>
+							<Y type="Int" value="6"/>
+						</c23>
+						<c24>
+							<X type="Int" value="10"/>
+							<Y type="Int" value="7"/>
+						</c24>
+						<c25>
+							<X type="Int" value="11"/>
+							<Y type="Int" value="8"/>
+						</c25>
+						<c26>
+							<X type="Int" value="5"/>
+							<Y type="Int" value="3"/>
+						</c26>
+						<c27>
+							<X type="Int" value="6"/>
+							<Y type="Int" value="4"/>
+						</c27>
+						<c28>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="5"/>
+						</c28>
+						<c29>
+							<X type="Int" value="8"/>
+							<Y type="Int" value="6"/>
+						</c29>
+						<c30>
+							<X type="Int" value="9"/>
+							<Y type="Int" value="7"/>
+						</c30>
+						<c31>
+							<X type="Int" value="10"/>
+							<Y type="Int" value="8"/>
+						</c31>
+						<c32>
+							<X type="Int" value="11"/>
+							<Y type="Int" value="9"/>
+						</c32>
+						<c33>
+							<X type="Int" value="4"/>
+							<Y type="Int" value="3"/>
+						</c33>
+						<c34>
+							<X type="Int" value="5"/>
+							<Y type="Int" value="4"/>
+						</c34>
+						<c35>
+							<X type="Int" value="6"/>
+							<Y type="Int" value="5"/>
+						</c35>
+						<c36>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="6"/>
+						</c36>
+						<c37>
+							<X type="Int" value="8"/>
+							<Y type="Int" value="7"/>
+						</c37>
+						<c38>
+							<X type="Int" value="9"/>
+							<Y type="Int" value="8"/>
+						</c38>
+						<c39>
+							<X type="Int" value="10"/>
+							<Y type="Int" value="9"/>
+						</c39>
+						<c40>
+							<X type="Int" value="11"/>
+							<Y type="Int" value="10"/>
+						</c40>
+						<c41>
+							<X type="Int" value="3"/>
+							<Y type="Int" value="3"/>
+						</c41>
+						<c42>
+							<X type="Int" value="4"/>
+							<Y type="Int" value="4"/>
+						</c42>
+						<c43>
+							<X type="Int" value="5"/>
+							<Y type="Int" value="5"/>
+						</c43>
+						<c44>
+							<X type="Int" value="6"/>
+							<Y type="Int" value="6"/>
+						</c44>
+						<c45>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="7"/>
+						</c45>
+						<c46>
+							<X type="Int" value="8"/>
+							<Y type="Int" value="8"/>
+						</c46>
+						<c47>
+							<X type="Int" value="9"/>
+							<Y type="Int" value="9"/>
+						</c47>
+						<c48>
+							<X type="Int" value="10"/>
+							<Y type="Int" value="10"/>
+						</c48>
+						<c49>
+							<X type="Int" value="11"/>
+							<Y type="Int" value="11"/>
+						</c49>
+						<c50>
+							<X type="Int" value="2"/>
+							<Y type="Int" value="3"/>
+						</c50>
+						<c51>
+							<X type="Int" value="3"/>
+							<Y type="Int" value="4"/>
+						</c51>
+						<c52>
+							<X type="Int" value="4"/>
+							<Y type="Int" value="5"/>
+						</c52>
+						<c53>
+							<X type="Int" value="5"/>
+							<Y type="Int" value="6"/>
+						</c53>
+						<c54>
+							<X type="Int" value="6"/>
+							<Y type="Int" value="7"/>
+						</c54>
+						<c55>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="8"/>
+						</c55>
+						<c56>
+							<X type="Int" value="8"/>
+							<Y type="Int" value="9"/>
+						</c56>
+						<c57>
+							<X type="Int" value="9"/>
+							<Y type="Int" value="10"/>
+						</c57>
+						<c58>
+							<X type="Int" value="10"/>
+							<Y type="Int" value="11"/>
+						</c58>
+						<c59>
+							<X type="Int" value="1"/>
+							<Y type="Int" value="3"/>
+						</c59>
+						<c60>
+							<X type="Int" value="2"/>
+							<Y type="Int" value="4"/>
+						</c60>
+						<c61>
+							<X type="Int" value="3"/>
+							<Y type="Int" value="5"/>
+						</c61>
+						<c62>
+							<X type="Int" value="4"/>
+							<Y type="Int" value="6"/>
+						</c62>
+						<c63>
+							<X type="Int" value="5"/>
+							<Y type="Int" value="7"/>
+						</c63>
+						<c64>
+							<X type="Int" value="6"/>
+							<Y type="Int" value="8"/>
+						</c64>
+						<c65>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="9"/>
+						</c65>
+						<c66>
+							<X type="Int" value="8"/>
+							<Y type="Int" value="10"/>
+						</c66>
+						<c67>
+							<X type="Int" value="9"/>
+							<Y type="Int" value="11"/>
+						</c67>
+						<c68>
+							<X type="Int" value="0"/>
+							<Y type="Int" value="3"/>
+						</c68>
+						<c69>
+							<X type="Int" value="1"/>
+							<Y type="Int" value="4"/>
+						</c69>
+						<c70>
+							<X type="Int" value="2"/>
+							<Y type="Int" value="5"/>
+						</c70>
+						<c71>
+							<X type="Int" value="3"/>
+							<Y type="Int" value="6"/>
+						</c71>
+						<c72>
+							<X type="Int" value="4"/>
+							<Y type="Int" value="7"/>
+						</c72>
+						<c73>
+							<X type="Int" value="5"/>
+							<Y type="Int" value="8"/>
+						</c73>
+						<c74>
+							<X type="Int" value="6"/>
+							<Y type="Int" value="9"/>
+						</c74>
+						<c75>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="10"/>
+						</c75>
+						<c76>
+							<X type="Int" value="8"/>
+							<Y type="Int" value="11"/>
+						</c76>
+						<c77>
+							<X type="Int" value="0"/>
+							<Y type="Int" value="4"/>
+						</c77>
+						<c78>
+							<X type="Int" value="1"/>
+							<Y type="Int" value="5"/>
+						</c78>
+						<c79>
+							<X type="Int" value="2"/>
+							<Y type="Int" value="6"/>
+						</c79>
+						<c80>
+							<X type="Int" value="3"/>
+							<Y type="Int" value="7"/>
+						</c80>
+						<c81>
+							<X type="Int" value="4"/>
+							<Y type="Int" value="8"/>
+						</c81>
+						<c82>
+							<X type="Int" value="5"/>
+							<Y type="Int" value="9"/>
+						</c82>
+						<c83>
+							<X type="Int" value="6"/>
+							<Y type="Int" value="10"/>
+						</c83>
+						<c84>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="11"/>
+						</c84>
+						<c85>
+							<X type="Int" value="0"/>
+							<Y type="Int" value="5"/>
+						</c85>
+						<c86>
+							<X type="Int" value="1"/>
+							<Y type="Int" value="6"/>
+						</c86>
+						<c87>
+							<X type="Int" value="2"/>
+							<Y type="Int" value="7"/>
+						</c87>
+						<c88>
+							<X type="Int" value="3"/>
+							<Y type="Int" value="8"/>
+						</c88>
+						<c89>
+							<X type="Int" value="4"/>
+							<Y type="Int" value="9"/>
+						</c89>
+						<c90>
+							<X type="Int" value="5"/>
+							<Y type="Int" value="10"/>
+						</c90>
+						<c91>
+							<X type="Int" value="6"/>
+							<Y type="Int" value="11"/>
+						</c91>
+						<c92>
+							<X type="Int" value="0"/>
+							<Y type="Int" value="6"/>
+						</c92>
+						<c93>
+							<X type="Int" value="1"/>
+							<Y type="Int" value="7"/>
+						</c93>
+						<c94>
+							<X type="Int" value="2"/>
+							<Y type="Int" value="8"/>
+						</c94>
+						<c95>
+							<X type="Int" value="3"/>
+							<Y type="Int" value="9"/>
+						</c95>
+						<c96>
+							<X type="Int" value="4"/>
+							<Y type="Int" value="10"/>
+						</c96>
+						<c97>
+							<X type="Int" value="5"/>
+							<Y type="Int" value="11"/>
+						</c97>
+						<c98>
+							<X type="Int" value="0"/>
+							<Y type="Int" value="7"/>
+						</c98>
+						<c99>
+							<X type="Int" value="1"/>
+							<Y type="Int" value="8"/>
+						</c99>
+						<c100>
+							<X type="Int" value="2"/>
+							<Y type="Int" value="9"/>
+						</c100>
+						<c101>
+							<X type="Int" value="3"/>
+							<Y type="Int" value="10"/>
+						</c101>
+						<c102>
+							<X type="Int" value="4"/>
+							<Y type="Int" value="11"/>
+						</c102>
+						<c103>
+							<X type="Int" value="0"/>
+							<Y type="Int" value="8"/>
+						</c103>
+						<c104>
+							<X type="Int" value="1"/>
+							<Y type="Int" value="9"/>
+						</c104>
+						<c105>
+							<X type="Int" value="2"/>
+							<Y type="Int" value="10"/>
+						</c105>
+						<c106>
+							<X type="Int" value="3"/>
+							<Y type="Int" value="11"/>
+						</c106>
+						<c107>
+							<X type="Int" value="0"/>
+							<Y type="Int" value="9"/>
+						</c107>
+						<c108>
+							<X type="Int" value="1"/>
+							<Y type="Int" value="10"/>
+						</c108>
+						<c109>
+							<X type="Int" value="2"/>
+							<Y type="Int" value="11"/>
+						</c109>
+						<c110>
+							<X type="Int" value="0"/>
+							<Y type="Int" value="10"/>
+						</c110>
+						<c111>
+							<X type="Int" value="1"/>
+							<Y type="Int" value="11"/>
+						</c111>
+						<c112>
+							<X type="Int" value="0"/>
+							<Y type="Int" value="11"/>
+						</c112>
+					</Area>
+					<ConnectedArea>
+						<a0 type="Int" value="1"/>
+						<a1 type="Int" value="3"/>
+					</ConnectedArea>
+				</Area2>
+				<Area3 type="Int" value="2">
+					<Area>
+						<c0>
+							<X type="Int" value="3"/>
+							<Y type="Int" value="2"/>
+						</c0>
+						<c1>
+							<X type="Int" value="2"/>
+							<Y type="Int" value="2"/>
+						</c1>
+						<c2>
+							<X type="Int" value="1"/>
+							<Y type="Int" value="2"/>
+						</c2>
+						<c3>
+							<X type="Int" value="0"/>
+							<Y type="Int" value="2"/>
+						</c3>
+					</Area>
+					<ConnectedArea>
+						<a0 type="Int" value="2"/>
+					</ConnectedArea>
+				</Area3>
+			</MapAnalyze>
 		</AIData>
 	</BattleData>
 </GameData>

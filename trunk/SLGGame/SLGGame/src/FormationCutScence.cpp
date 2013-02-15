@@ -3,7 +3,7 @@
 #include "SquadGrapManager.h"
 #include "SquadGraphics.h"
 
-FormationCutScene::FormationCutScene(std::string id,enumtype formation)
+FormationCutScene::FormationCutScene(std::string id,int formation)
 {
 	mSquadGraphics=SquadGrapManager::getSingletonPtr()->getSquad(id);
 	mForm=formation;

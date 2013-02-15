@@ -19,7 +19,7 @@
 		<TextCursorType type="Int" value="0"/>
 		<ScriptName type="String" value="cp1.lua"/>
 		<ScriptLine type="Int" value="7"/>
-		<MusicName type="String" value="battle1.ogg"/>
+		<MusicName type="String" value="battle1.mp3"/>
 		<SquadData>
 			<Cheetah>
 				<Type type="Int" value="0"/>
@@ -226,7 +226,7 @@
 	<BattleData>
 		<MapData>
 			<MapName type="String" value="双河平原之战 前篇"/>
-			<MapScript type="String" value="mapscript1.lua">
+			<MapScript type="String" value="battle1script.lua">
 				<ScriptContext>
 					<finishdeploytriger type="String" value="T0"/>
 					<unitdeadtriger type="String" value="T0"/>
@@ -1631,6 +1631,142 @@
 						</c7>
 					</CoordList>
 				</DeployArea>
+				<CampArea>
+					<CoordList>
+						<c0>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="4"/>
+						</c0>
+						<c1>
+							<X type="Int" value="8"/>
+							<Y type="Int" value="4"/>
+						</c1>
+						<c2>
+							<X type="Int" value="3"/>
+							<Y type="Int" value="5"/>
+						</c2>
+						<c3>
+							<X type="Int" value="4"/>
+							<Y type="Int" value="5"/>
+						</c3>
+						<c4>
+							<X type="Int" value="5"/>
+							<Y type="Int" value="5"/>
+						</c4>
+						<c5>
+							<X type="Int" value="6"/>
+							<Y type="Int" value="5"/>
+						</c5>
+						<c6>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="5"/>
+						</c6>
+						<c7>
+							<X type="Int" value="8"/>
+							<Y type="Int" value="5"/>
+						</c7>
+						<c8>
+							<X type="Int" value="3"/>
+							<Y type="Int" value="6"/>
+						</c8>
+						<c9>
+							<X type="Int" value="4"/>
+							<Y type="Int" value="6"/>
+						</c9>
+						<c10>
+							<X type="Int" value="5"/>
+							<Y type="Int" value="6"/>
+						</c10>
+						<c11>
+							<X type="Int" value="6"/>
+							<Y type="Int" value="6"/>
+						</c11>
+						<c12>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="6"/>
+						</c12>
+						<c13>
+							<X type="Int" value="8"/>
+							<Y type="Int" value="6"/>
+						</c13>
+						<c14>
+							<X type="Int" value="2"/>
+							<Y type="Int" value="7"/>
+						</c14>
+						<c15>
+							<X type="Int" value="3"/>
+							<Y type="Int" value="7"/>
+						</c15>
+						<c16>
+							<X type="Int" value="4"/>
+							<Y type="Int" value="7"/>
+						</c16>
+						<c17>
+							<X type="Int" value="5"/>
+							<Y type="Int" value="7"/>
+						</c17>
+						<c18>
+							<X type="Int" value="6"/>
+							<Y type="Int" value="7"/>
+						</c18>
+						<c19>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="7"/>
+						</c19>
+						<c20>
+							<X type="Int" value="8"/>
+							<Y type="Int" value="7"/>
+						</c20>
+						<c21>
+							<X type="Int" value="9"/>
+							<Y type="Int" value="7"/>
+						</c21>
+						<c22>
+							<X type="Int" value="2"/>
+							<Y type="Int" value="8"/>
+						</c22>
+						<c23>
+							<X type="Int" value="3"/>
+							<Y type="Int" value="8"/>
+						</c23>
+						<c24>
+							<X type="Int" value="4"/>
+							<Y type="Int" value="8"/>
+						</c24>
+						<c25>
+							<X type="Int" value="5"/>
+							<Y type="Int" value="8"/>
+						</c25>
+						<c26>
+							<X type="Int" value="6"/>
+							<Y type="Int" value="8"/>
+						</c26>
+						<c27>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="8"/>
+						</c27>
+						<c28>
+							<X type="Int" value="8"/>
+							<Y type="Int" value="8"/>
+						</c28>
+						<c29>
+							<X type="Int" value="9"/>
+							<Y type="Int" value="8"/>
+						</c29>
+						<c30>
+							<X type="Int" value="5"/>
+							<Y type="Int" value="9"/>
+						</c30>
+						<c31>
+							<X type="Int" value="6"/>
+							<Y type="Int" value="9"/>
+						</c31>
+						<c32>
+							<X type="Int" value="7"/>
+							<Y type="Int" value="9"/>
+						</c32>
+					</CoordList>
+				</CampArea>
 			</Area>
 		</MapData>
 		<Team>
@@ -2911,7 +3047,7 @@
 				<Team type="Int" value="1"/>
 				<GridX type="Int" value="0"/>
 				<GridY type="Int" value="6"/>
-				<Direction type="Int" value="0"/>
+				<Direction type="Int" value="3"/>
 				<Formation type="Int" value="0"/>
 				<UnitMaxNum type="Int" value="50"/>
 				<ViewbyPlayer type="Int" value="1"/>
@@ -3098,7 +3234,7 @@
 				<Team type="Int" value="1"/>
 				<GridX type="Int" value="0"/>
 				<GridY type="Int" value="5"/>
-				<Direction type="Int" value="0"/>
+				<Direction type="Int" value="3"/>
 				<Formation type="Int" value="0"/>
 				<UnitMaxNum type="Int" value="50"/>
 				<ViewbyPlayer type="Int" value="1"/>
@@ -3269,8 +3405,8 @@
 				</SkillTable>
 				<Team type="Int" value="1"/>
 				<GridX type="Int" value="1"/>
-				<GridY type="Int" value="2"/>
-				<Direction type="Int" value="0"/>
+				<GridY type="Int" value="4"/>
+				<Direction type="Int" value="3"/>
 				<Formation type="Int" value="0"/>
 				<UnitMaxNum type="Int" value="50"/>
 				<ViewbyPlayer type="Int" value="1"/>
@@ -3457,7 +3593,7 @@
 				<Team type="Int" value="1"/>
 				<GridX type="Int" value="0"/>
 				<GridY type="Int" value="3"/>
-				<Direction type="Int" value="0"/>
+				<Direction type="Int" value="3"/>
 				<Formation type="Int" value="0"/>
 				<UnitMaxNum type="Int" value="50"/>
 				<ViewbyPlayer type="Int" value="1"/>
@@ -3605,7 +3741,7 @@
 				<Team type="Int" value="1"/>
 				<GridX type="Int" value="0"/>
 				<GridY type="Int" value="4"/>
-				<Direction type="Int" value="0"/>
+				<Direction type="Int" value="3"/>
 				<Formation type="Int" value="2"/>
 				<UnitMaxNum type="Int" value="20"/>
 				<ViewbyPlayer type="Int" value="1"/>
@@ -3805,9 +3941,9 @@
 					<LightArmor type="Int" value="2"/>
 				</SkillTable>
 				<Team type="Int" value="1"/>
-				<GridX type="Int" value="0"/>
-				<GridY type="Int" value="2"/>
-				<Direction type="Int" value="0"/>
+				<GridX type="Int" value="1"/>
+				<GridY type="Int" value="3"/>
+				<Direction type="Int" value="3"/>
 				<Formation type="Int" value="0"/>
 				<UnitMaxNum type="Int" value="50"/>
 				<ViewbyPlayer type="Int" value="1"/>
@@ -3830,13 +3966,13 @@
 		<Trigger>
 			<T0 type="Int" value="1">
 				<type type="String" value="SquadAnnihilated"/>
-				<file type="String" value="mapscript1.lua"/>
+				<file type="String" value="battle1script.lua"/>
 				<func type="String" value="unitdead"/>
 				<context type="String" value="GameData/BattleData/MapData/MapScript/ScriptContext"/>
 			</T0>
 			<T1 type="Int" value="1">
 				<type type="String" value="TurnEnd"/>
-				<file type="String" value="mapscript1.lua"/>
+				<file type="String" value="battle1script.lua"/>
 				<func type="String" value="turnend"/>
 				<context type="String" value="GameData/BattleData/MapData/MapScript/ScriptContext"/>
 			</T1>
@@ -3849,14 +3985,18 @@
 							<Team2Squad_0 type="Int" value="1"/>
 							<Team2Squad_1 type="Int" value="1"/>
 							<Team2Squad_2 type="Int" value="1"/>
+							<Team2Squad_3 type="Int" value="1"/>
+							<Team2Squad_4 type="Int" value="1"/>
+							<Team2Squad_5 type="Int" value="1"/>
+							<Team2Squad_6 type="Int" value="1"/>
 						</SquadList>
-						<Mission type="String" value="EliminateTeam1"/>
+						<Mission type="String" value="DefendCamp"/>
 					</DuxRaider>
 				</Group>
 				<Mission>
-					<EliminateTeam1 type="Int" value="1">
-						<TargetTeam type="Int" value="1"/>
-					</EliminateTeam1>
+					<DefendCamp type="Int" value="0">
+						<AreaId type="String" value="CampArea"/>
+					</DefendCamp>
 				</Mission>
 			</Team2>
 		</AIData>

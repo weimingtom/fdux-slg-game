@@ -21,7 +21,7 @@ extern "C"
 
 static int ChangeState(lua_State* L)
 {
-	enumtype nextstate = luaL_checkint(L, 1);
+	int nextstate = luaL_checkint(L, 1);
 	std::string arg(luaL_checkstring(L, 2));
 	CutSceneBuilder::getSingleton().addCutScene(new ChangeStateCutScene(nextstate, arg));
 	return 0;
@@ -102,27 +102,11 @@ static int CreateAIMission(lua_State* L)
 	int team = luaL_checkint(L, 1);
 	std::string missionname(luaL_checkstring(L, 2));
 	int missiontype = luaL_checkint(L, 3);
-	switch(missiontype)
-	{
-	case 0:
-		{
-			std::string areaid(luaL_checkstring(L, 4));
-			DataLibrary::getSingleton().setData(
-				str(boost::format("GameData/BattleData/AIData/Team%1%/Mission/%2%")%team%missionname), missiontype);
-			DataLibrary::getSingleton().setData(
-				str(boost::format("GameData/BattleData/AIData/Team%1%/Mission/%2%/AreaId")%team%missionname), areaid);
-		}
-		break;
-	case 1:
-		{
-			int targetteam = luaL_checkint(L, 4);
-			DataLibrary::getSingleton().setData(
-				str(boost::format("GameData/BattleData/AIData/Team%1%/Mission/%2%")%team%missionname), missiontype);
-			DataLibrary::getSingleton().setData(
-				str(boost::format("GameData/BattleData/AIData/Team%1%/Mission/%2%/TargetTeam")%team%missionname), targetteam);
-		}
-		break;
-	}
+	std::string areaid(luaL_checkstring(L, 4));
+	DataLibrary::getSingleton().setData(
+		str(boost::format("GameData/BattleData/AIData/Team%1%/Mission/%2%")%team%missionname), missiontype);
+	DataLibrary::getSingleton().setData(
+		str(boost::format("GameData/BattleData/AIData/Team%1%/Mission/%2%/AreaId")%team%missionname), areaid);
 	return 0;
 }
 

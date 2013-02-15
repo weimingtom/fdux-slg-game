@@ -66,7 +66,7 @@ public:
 	//获取格子的高度
 	float getHeight(float x, float y);
 	
-	int createMapObj(int x, int y, std::string meshname, enumtype dir);
+	int createMapObj(int x, int y, std::string meshname, int dir);
 	void deleteMapObj(int index);
 
 	int createMapParticle(int x, int y,std::string particlename);

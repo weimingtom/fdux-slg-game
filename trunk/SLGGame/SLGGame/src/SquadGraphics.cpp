@@ -170,7 +170,7 @@ const Ogre::Vector3 LooseVector[5]={Ogre::Vector3(0,0,0),Ogre::Vector3(-5,0,5),O
 // 	std::vector<std::string>::iterator ite;
 // 	for(ite = particlelist.begin(); ite != particlelist.end(); ite++)
 // 	{
-// 		enumtype unittype;
+// 		int unittype;
 // 		datalib->getData(datapath + std::string("/ParticleList/")+ (*ite) +std::string("/UnitType"),unittype);
 // 		datalib->getData(datapath + std::string("/ParticleList/")+ (*ite) +std::string("/Particle"),tempid);
 // 		addParticle((*ite),tempid,unittype);
@@ -178,7 +178,7 @@ const Ogre::Vector3 LooseVector[5]={Ogre::Vector3(0,0,0),Ogre::Vector3(-5,0,5),O
 // 	}
 // }
 
-SquadGraphics::SquadGraphics(std::string squadid, std::string datapath, int gridx, int gridy, enumtype direction, enumtype formation, int soldierCount)
+SquadGraphics::SquadGraphics(std::string squadid, std::string datapath, int gridx, int gridy, int direction, int formation, int soldierCount)
 :mNextDirection(-1),
 mNodeAnimation(NULL),
 mNodeAnimationState(NULL),
@@ -342,7 +342,7 @@ mDirection(direction)
  	std::vector<std::string>::iterator ite;
  	for(ite = particlelist.begin(); ite != particlelist.end(); ite++)
  	{
- 		enumtype unittype;
+ 		int unittype;
  		datalib->getData(datapath + std::string("/ParticleList/")+ (*ite) +std::string("/AffectUnit"),unittype);
  		datalib->getData(datapath + std::string("/ParticleList/")+ (*ite) +std::string("/ParticleName"),tempid);
  		addParticle((*ite),tempid,unittype);
@@ -648,7 +648,7 @@ bool SquadGraphics::isAnimationOver(UnitType object)
 // 	}
 // }
 
-void SquadGraphics::getFormationPosition(enumtype f,enumtype d,Ogre::Vector3& CommanderVector,Ogre::Vector3 SoldierVector[])
+void SquadGraphics::getFormationPosition(int f,int d,Ogre::Vector3& CommanderVector,Ogre::Vector3 SoldierVector[])
 {
 	switch(f)//确定各个位置
 	{
@@ -753,7 +753,7 @@ void SquadGraphics::getFormationPosition(enumtype f,enumtype d,Ogre::Vector3& Co
 	}
 }
 
-void SquadGraphics::setFormation( enumtype f,bool isAnim )
+void SquadGraphics::setFormation( int f,bool isAnim )
 {
 	mFormation=f;
 	Ogre::Vector3 CommanderVector;
@@ -1532,7 +1532,7 @@ void SquadGraphics::setParticleVisible(bool visible)
 	}
 }
 
-bool SquadGraphics::addParticle(std::string id,std::string name,enumtype object)
+bool SquadGraphics::addParticle(std::string id,std::string name,int object)
 {
 	bool re = false;
 	switch(object)

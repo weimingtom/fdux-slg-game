@@ -59,8 +59,8 @@ void AVGSquadManager::dumpSquad(std::string squadid, Squad* squad)
 	
 	//复制技能数据
 	datalib->delNode(path + "SkillTable");
-	std::map<std::string, enumtype> skilltable = squad->getSkillTable();
-	std::map<std::string, enumtype>::iterator ite1;
+	std::map<std::string, int> skilltable = squad->getSkillTable();
+	std::map<std::string, int>::iterator ite1;
 	for(ite1 = skilltable.begin(); ite1 != skilltable.end(); ite1++)
 	{
 		datalib->setData(path + "SkillTable/" + ite1->first, ite1->second );
