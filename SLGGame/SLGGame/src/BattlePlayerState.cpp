@@ -305,7 +305,7 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 			{
 				int GX,GY;
 				Terrain::getSingletonPtr()->coordinateToGrid(arg.state.X.abs,arg.state.Y.abs,GX,GY);
-				enumtype d = GetDirection(mSelectSquad->getGridX(), mSelectSquad->getGridY(), GX, GY);
+				int d = GetDirection(mSelectSquad->getGridX(), mSelectSquad->getGridY(), GX, GY);
 				BattleSquadManager::getSingleton().setDirection(mSelectSquad, d);
 				if(CutSceneBuilder::getSingleton().hasCutScenes())
 				{

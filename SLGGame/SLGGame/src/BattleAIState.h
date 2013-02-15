@@ -5,6 +5,12 @@
 
 #include "SubBattleState.h"
 
+#include "Area.h"
+
+#include "DecisionMapFactor.h"
+
+class BattleSquad;
+
 class BattleAIState:public SubBattleState
 {
 public:
@@ -25,89 +31,275 @@ private:
 	AIState mState;
 
 	//地图区域信息
-	struct MapCrood
-	{
-		int x;
-		int y;
-		MapCrood()
-		:x(0),y(0)
-		{
-		}
-		MapCrood(int inx, int iny)
-		:x(inx),y(iny)
-		{
-		}
-	};
-
 	enum AreaType
 	{	
-		AreaType_Plane,
-		AreaType_Narrow,
-		AreaType_DeadCorner
+		AREATYPE_PLANE,
+		AREATYPE_NARROW,
+		AREATYPE_DEADCRORNER
 	};
 
 	class MapArea
 	{
 	public:
-		MapArea();
-		~MapArea();
+		MapArea(std::string path);
+		MapArea(int areatype, std::vector<Crood> croodVec);
 
-		void AddCrood(int x, int y);
+		void writeMapArea(std::string path);
 
 		int mType;
-		std::vector<MapCrood> mArea;
+		Area mArea;
 		std::vector<int> mConnectedArea;
 	private:
 
 	};
 
-	std::map<int, MapArea*> mAreaVec;
+	std::map<int, MapArea> mAreaVec;
 
 	bool AnalyzeMap();
 	bool ReadMap();
 	bool CreateMap();
 	
 	//他队活动信息
-	enum TargetType
+	enum OtherSquadGroupMissionType
 	{
-		TargetType_Move,
-		TargetType_Attack,
-		TargetType_Defence,
-		TargetType_Flank,
-		TargetType_Contain,
-		TargetType_PassThrough,
-		TargetType_Scout,
-		TargetType_Join	
+		OSGM_IDLE,
+		OSGM_ATTACK,
+		OSGM_MOVE_ATTACK,
+		OSGM_DEFEND,
+		OSGM_MOVE_DEFEND
 	};
 
-	struct SquadGroupTarget
+	struct OtherSquadGroupMission
 	{
-		int type;
-		int areaId;
-		int groupId;
-		MapCrood targetPos;
-		int possibility;
+		int missionType;
+		std::string missionArea;
+		float possibility;
 	};
 
-	class SquadGroup
+	class OtherSquadGroupInfo
 	{
 	public:
-		std::vector<std::string> mSquadList;
-		std::vector<SquadGroupTarget> mTargetList;
-		
-		MapCrood mCenterCrood;
-		int mStrength;
+		OtherSquadGroupInfo(std::string path);
+		OtherSquadGroupInfo(bool isenemy);
 
-		int ReCalcStrength();
-		MapCrood  ReCalcCenterCrood();
+		void writeOtherSquadGroupInfo(std::string path);
+
+		float getSquadGroupStrength();
+
+		bool mIsEnemy;
+		std::vector<std::string> mSquadList;
+
+		OtherSquadGroupMission mCurMission;
+
+		Crood mCenterCrood;
+		Crood mLastCenterCrood;
+		Area mArea;
 	private:
 
 	};
+	std::map<int, OtherSquadGroupInfo> mOtherSquadGroupVec;
 
-	std::map<int, SquadGroup*> mSquadGroupVec;
+	void findOtherSquadGroup();
+	void saveOtherSquadGroup();
+	
+	//DecisionMapFactors
+	class OSGStrengthFactor : public DecisionMapFactor<int>
+	{
+	public:	
+		OSGStrengthFactor(float scale, std::map<int, OtherSquadGroupInfo>* othersquadgroup);
 
-	void AnalyzeOtherTeam();
-	void SaveOtherTeamInfo();
+		virtual void calcDecision(std::vector<DecisionInfo<int>> &decisionVec);
+	private:
+		std::map<int, OtherSquadGroupInfo>* mOtherSquadGroup;
+		float mMaxStrength;
+	};
 
-	//己队任务分配
+	class OSGCloseToAreaFactor : public DecisionMapFactor<int>
+	{
+	public:	
+		OSGCloseToAreaFactor(float scale, std::map<int, OtherSquadGroupInfo>* othersquadgroup, Area* area);
+
+		virtual void calcDecision(std::vector<DecisionInfo<int>> &decisionVec);
+	private:
+		std::map<int, OtherSquadGroupInfo>* mOtherSquadGroup;
+		Area* mArea;
+	};
+
+	class OSGMoveToAreaFactor : public DecisionMapFactor<int>
+	{
+	public:	
+		OSGMoveToAreaFactor(float scale, std::map<int, OtherSquadGroupInfo>* othersquadgroup, Area* area);
+
+		virtual void calcDecision(std::vector<DecisionInfo<int>> &decisionVec);
+	private:
+		std::map<int, OtherSquadGroupInfo>* mOtherSquadGroup;
+		Area* mArea;
+	};
+
+	//部队AI
+	enum SquadGroupMissionType
+	{
+		SGM_WAIT,
+		SGM_MOVE,
+		SGM_RALLY,
+		SGM_DEFEND,
+		SGM_ATTACK,
+		SGM_SUPPORT_RANGE,
+		SGM_SUPPORT_CLOSE
+	};
+
+	class SquadAI
+	{
+	public:
+		SquadAI(BattleSquad* squad);
+
+		bool update();
+		void setTarget(int targettype, Crood tragetcrood);
+
+		BattleSquad* mSquad;
+	private:
+		enum SquadAIState
+		{
+			SAS_MOVE,
+			SAS_FORMATION,
+			SAS_SKILL,
+			SAS_DIRECTION,
+			SAS_WAIT
+		};
+		SquadAIState mState;
+
+		int mTargetType;
+		Crood mTargetCrood;
+
+		float mLastActiveAP;
+
+		void updateMove();
+		void updateFormation();
+		void updateSkill();
+		void updateDirection();
+	};
+
+	//分组指挥
+	enum SquadGroupType
+	{
+		SG_MAIN,
+		SG_SUPPORT_RANGE,
+		SG_SUPPORT_CLOSE
+	};
+
+	class SquadGroupCommander
+	{
+	public:
+		SquadGroupCommander(std::string path, std::vector<std::string> squadlist);
+		SquadGroupCommander(int type, std::vector<BattleSquad*> squadlist);
+
+		bool update();
+		void setTarget(int targettype, Crood tragetcrood);
+		void getTarget(int &targettype, Crood &tragetcrood);
+		
+		void writeSquadGroupCommander(std::string path);
+
+		float getSquadGroupStrength();
+		bool isRallied();
+
+		int mType;
+		std::vector<SquadAI> mSquadList;
+	private:
+		int mTargetType;
+		Crood mTargetCrood;
+	};
+
+	//任务指挥
+	enum MissionType
+	{
+		MISSIONTYPE_DEFEND,
+		MISSIONTYPE_ATTACK,
+		MISSIONTYPE_MOVE
+	};
+
+	class MissionCommander
+	{
+	public:
+		MissionCommander(std::string path, std::vector<std::string> squadlist);
+
+		bool update(std::map<int, OtherSquadGroupInfo>& othersquadgroup);
+		virtual void analyzeMission(OtherSquadGroupInfo& othersquadgroup, 
+			std::vector<OtherSquadGroupMission>& missionlist) = 0;
+
+		void writeMissionCommander(std::string path);
+	protected:
+		std::vector<std::string> mSquadList;
+		std::string mMissionAreaId;
+		Area mMissionArea;
+		int mVaildId;
+		std::map<int, SquadGroupCommander> mSquadGroupList;
+
+		enum MissionCommanderState
+		{
+			MCS_PLAN,
+			MCS_EXECUTE
+		};
+		MissionCommanderState mState;
+
+		std::vector<BattleSquad*> getFreeSquads();
+		int createSquadGroup(int type, std::vector<BattleSquad*> squadlist);
+	
+		virtual void plan(std::map<int, OtherSquadGroupInfo>& othersquadgroup) = 0;
+		virtual void write(std::string path) = 0;
+
+		//辅助函数
+		void chooseSquads(std::vector<BattleSquad*>& choosefrom,
+			std::vector<BattleSquad*>& choosed, 
+			std::vector<BattleSquad*>::iterator& choosedends);
+	};
+
+	class DefendCommander: public MissionCommander
+	{
+	public:
+		DefendCommander(std::string path, std::vector<std::string> squadlist);
+		
+		virtual void analyzeMission(OtherSquadGroupInfo& othersquadgroup, 
+			std::vector<OtherSquadGroupMission>& missionlist);
+	private:
+		virtual void plan(std::map<int, OtherSquadGroupInfo>& othersquadgroup);
+		virtual void write(std::string path);
+
+		struct Threaten
+		{
+			int otherSquadGroupIndex;
+			std::vector<int> assignSquadGroupVec;
+		};
+		std::vector<Threaten> mThreatensVec;
+
+		//辅助函数
+	};
+		
+	class AttackCommander: public MissionCommander
+	{
+	public:
+		AttackCommander(std::string path, std::vector<std::string> squadlist);
+
+		virtual void analyzeMission(OtherSquadGroupInfo& othersquadgroup, 
+			std::vector<OtherSquadGroupMission>& missionlist);
+	private:
+		virtual void plan(std::map<int, OtherSquadGroupInfo>& othersquadgroup);
+		virtual void write(std::string path);
+	};
+	
+	class MoveCommander: public MissionCommander
+	{
+	public:
+		MoveCommander(std::string path, std::vector<std::string> squadlist);
+
+		virtual void analyzeMission(OtherSquadGroupInfo& othersquadgroup, 
+			std::vector<OtherSquadGroupMission>& missionlist);
+	private:
+		virtual void plan(std::map<int, OtherSquadGroupInfo>& othersquadgroup);
+		virtual void write(std::string path);
+	};
+
+	//总指挥
+	void createMissionCommanders();
+	void writeMissionCommanders();
+	std::map<std::string, MissionCommander*> mMissionCmdMap;
 };

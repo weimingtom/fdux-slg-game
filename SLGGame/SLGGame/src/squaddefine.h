@@ -1,7 +1,5 @@
 #pragma once
 
-typedef int enumtype;
-
 enum EquipmentType
 {
 	EQUIP_SOILDER = 0,
@@ -64,7 +62,7 @@ enum AttrType
 
 struct AttrModifier
 {
-	enumtype Type;
+	int Type;
 	float	Attack;
 	float	RangedAttack;
 	float	Defence;
@@ -218,4 +216,11 @@ struct AttackInfo
 		Atk = 0.0f;
 		Randomness = 0;
 	}
+};
+
+enum RoleType
+{
+	ROLETYPE_MAINFORCE = 0x0001,
+	ROLETYPE_SUPPORT_RANGE = 0x0002,
+	ROLETYPE_SUPPORT_CLOSE = 0x0004,
 };

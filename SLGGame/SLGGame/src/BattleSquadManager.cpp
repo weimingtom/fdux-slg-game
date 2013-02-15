@@ -156,6 +156,62 @@ void BattleSquadManager::turnEnd(int team)
 		{
 			ite->second->turnEnd();
 		}
+		int faction = ite->second->getFaction();
+		bool needrecalc = false;
+		if(faction != 0)
+		{
+			needrecalc = ite->second->getViewbyPlayer();
+		}
+		if(!needrecalc && faction != 1)
+		{
+			needrecalc = ite->second->getViewbyEnemy1();
+		}
+		if(!needrecalc && faction != 2)
+		{
+			needrecalc = ite->second->getViewbyEnemy2();
+		}
+		if(!needrecalc && faction != 3)
+		{
+			needrecalc = ite->second->getViewbyEnemy3();
+		}
+		if(needrecalc)
+		{
+			bool veiwbyfaction[4] = { false, false, false, false};
+			veiwbyfaction[faction] = true;
+			int x = ite->second->getGridX();
+			int y = ite->second->getGridY();
+			BattleSquadIte ite1 = mSquadList.begin();
+			for(;ite1 != mSquadList.end(); ite1++)
+			{
+				if(veiwbyfaction[ite1->second->getFaction()])
+					continue;
+
+				int range = GetDistance(x, y, ite1->second->getGridX(), ite1->second->getGridY());
+				int ditectrange = (int)ite1->second->getAttr(ATTR_DETECTION,ATTRCALC_FULL) + 2;
+				int covert = (int)ite->second->getAttr(ATTR_COVERT,ATTRCALC_FULL);
+				if(range <= ditectrange - covert)
+				{
+					veiwbyfaction[ite1->second->getFaction()] = true;
+				}
+			}
+			if(veiwbyfaction[0] == false)
+			{
+				ite->second->setViewbyPlayer(0);
+				CutSceneBuilder::getSingleton().addCutScene(new SquadStateCutScene(ite->second,SQUAD_STATE_VISIBLE,"none",0));
+			}
+			if(veiwbyfaction[1] == false)
+			{
+				ite->second->setViewbyEnemy1(0);
+			}
+			if(veiwbyfaction[2] == false)
+			{
+				ite->second->setViewbyEnemy2(0);
+			}
+			if(veiwbyfaction[3] == false)
+			{
+				ite->second->setViewbyEnemy3(0);
+			}
+		}
 	}
 }
 
@@ -228,6 +284,81 @@ std::vector<BattleSquadManager::MoveNode> BattleSquadManager::getMovePath(Battle
 			nodelist.push_back(ite->second);
 			ite = movrarea.find(mapdatamanager->getGridId(ite->second.lastx , ite->second.lasty));
 		}
+	}
+	return nodelist;
+}
+
+std::map<int, BattleSquadManager::MoveNode> BattleSquadManager::getFullPath(BattleSquad* squad, Crood tatget)
+{
+	MapDataManager* mapdatamanager = MapDataManager::getSingletonPtr();
+	std::map<int, MoveNode> movrarea;
+	std::vector<int> idlist; 
+	MoveNode movenode;
+	movenode.x = squad->getGridX();
+	movenode.y = squad->getGridY();
+	movenode.lastx = squad->getGridX();
+	movenode.lasty = squad->getGridY();
+	movenode.apleft = 0.0f;
+	movenode.eventflag = 0;
+	movrarea.insert(std::make_pair(mapdatamanager->getGridId(movenode.x, movenode.y), movenode));
+	idlist.push_back(mapdatamanager->getGridId(movenode.x, movenode.y));
+	//寻找可以移动的路径
+	std::map<int, MoveNode>::iterator ite = movrarea.end();
+	unsigned int idnum = 0;
+	while(idnum < idlist.size())
+	{
+		ite = movrarea.find(idlist[idnum]);
+		int x[4] = {ite->second.x - 1, ite->second.x + 1, ite->second.x, ite->second.x};
+		int y[4] = {ite->second.y, ite->second.y, ite->second.y - 1, ite->second.y + 1};
+		for(unsigned int n = 0; n < 4; n++)
+		{
+			if(mapdatamanager->getPassable(x[n], y[n], -1) && 
+				(getBattleSquadAt(x[n], y[n], squad->getFaction(), true) == NULL||
+				getBattleSquadAt(x[n], y[n], squad->getFaction(), true) == squad))
+			{
+				std::map<int, MoveNode>::iterator ite1 = movrarea.find(mapdatamanager->getGridId(x[n], y[n]));
+				if(ite1 == movrarea.end())
+				{
+					movenode.x = x[n];
+					movenode.y = y[n];
+					movenode.lastx = ite->second.x;
+					movenode.lasty = ite->second.y;
+					movenode.apleft = ite->second.apleft + 1.0f;
+					movrarea.insert(std::make_pair(mapdatamanager->getGridId(x[n], y[n]), movenode));
+					idlist.push_back(mapdatamanager->getGridId(x[n], y[n]));
+				}
+				else
+				{
+					if(ite->second.apleft < ite1->second.apleft)
+					{
+						ite1->second.lastx = ite->second.x;
+						ite1->second.lasty = ite->second.y;
+						ite1->second.apleft = ite->second.apleft + 1.0f;
+					}
+				}
+			}
+		}
+		idnum++;
+	}
+	std::map<int, MoveNode> nodelist;
+	ite = movrarea.find(mapdatamanager->getGridId(tatget.mX , tatget.mY));
+	if(ite == movrarea.end())
+	{
+		std::map<int, MoveNode>::iterator closeite = movrarea.begin();
+		ite = movrarea.begin();
+		for( ; closeite != movrarea.end(); closeite++)
+		{
+			if(GetDistance(closeite->second.x, closeite->second.y, tatget.mX, tatget.mY) 
+				< GetDistance(ite->second.x, ite->second.y, tatget.mX, tatget.mY))
+			{
+				ite = closeite;
+			}
+		}
+	}
+	while(ite->second.x != squad->getGridX() || ite->second.y != squad->getGridY())
+	{
+		nodelist.insert(std::make_pair(ite->first, ite->second));
+		ite = movrarea.find(mapdatamanager->getGridId(ite->second.lastx , ite->second.lasty));
 	}
 	return nodelist;
 }
@@ -329,7 +460,7 @@ void BattleSquadManager::InterruptMove()
 	m_moveInterrupt = true;
 }
 
-void BattleSquadManager::changeFormation(BattleSquad* squad, enumtype formation, bool costap)
+void BattleSquadManager::changeFormation(BattleSquad* squad, int formation, bool costap)
 {
 	if(squad->changeFormation(formation, costap))
 	{
@@ -737,8 +868,8 @@ void BattleSquadManager::useSkill(BattleSquad* squad, std::string skillid, int x
 							bool charge = false;
 							if(eventflag & MOVEEVENT_CHARGE)
 							{
-								enumtype chagedir = GetChargeDir(eventflag);
-								enumtype targetdir = GetDirection(squad->getGridX(), squad->getGridY(),
+								int chagedir = GetChargeDir(eventflag);
+								int targetdir = GetDirection(squad->getGridX(), squad->getGridY(),
 									targetsquad->getGridX(), targetsquad->getGridY());
 								if(targetdir == chagedir)
 								{
@@ -975,7 +1106,7 @@ void BattleSquadManager::setUnitNum(BattleSquad* squad, int unitnum)
 	}
 }
 
-void BattleSquadManager::setDirection(BattleSquad* squad, enumtype direction)
+void BattleSquadManager::setDirection(BattleSquad* squad, int direction)
 {
 	if(squad->getDirection() != direction)
 	{

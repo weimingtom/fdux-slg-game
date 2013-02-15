@@ -12,26 +12,26 @@ public:
 	BattleSquad(std::string path);
 	virtual ~BattleSquad();
 
-	virtual bool init(std::string srcpath, int team, int unitnum, int x, int y, enumtype d);
+	virtual bool init(std::string srcpath, int team, int unitnum, int x, int y, int d);
 	virtual bool init(std::string srcpath, int team);
 	virtual bool init();
 public:
-	virtual float getAttr(enumtype attrtype , enumtype calctype);
+	virtual float getAttr(int attrtype , int calctype);
 
-	AttackInfo getAttackRolls(bool rangedattack,bool asdefender, enumtype d);
-	void applyAttackRolls(bool rangedattack, enumtype d, AttackInfo &attackinfo);
+	AttackInfo getAttackRolls(bool rangedattack,bool asdefender, int d);
+	void applyAttackRolls(bool rangedattack, int d, AttackInfo &attackinfo);
 
 	//移动
 	bool tryMove(int srcx, int srcy, int tgx, int tgy, float &apleft, unsigned int &eventflag);
 	bool move(int tgx, int tgy, unsigned int &eventflag);
 	//阵型
-	bool changeFormation(enumtype formation, bool costap);
+	bool changeFormation(int formation, bool costap);
 	//技能
 	bool useSkillOn(BattleSquad* targetsquad, std::string skillid);
 	bool useSkillAt(int x, int y, std::string skillid);
 
 	//粒子特效(数据)
-	bool addParticle(std::string particlename, enumtype object, std::string &particleid);
+	bool addParticle(std::string particlename, int object, std::string &particleid);
 	void removeParticle(std::string particleid);
 
 	//各种触发器 
@@ -56,6 +56,8 @@ public:
 
 	int getUnitGrapNum();
 
+	float getSquadStrength();
+
 	struct ActiveSkillInfo
 	{
 		std::string skillid;
@@ -71,14 +73,14 @@ public:
 		SKILLSTATE_AVAILABLE =2
 	};
 	SkillState canMove();
-	SkillState canChangeFormation(enumtype formation);
+	SkillState canChangeFormation(int formation);
 	SkillState canUseSkill(std::string skillid);
 
-	float getChangeFormationApCost(enumtype formation);
+	float getChangeFormationApCost(int formation);
 	float getSkillApCost(std::string skillid);
 
-	float getAPTypeCostModify(enumtype aptype);
-	void setAPTypeCostModify(enumtype aptype, float val);
+	float getAPTypeCostModify(int aptype);
+	void setAPTypeCostModify(int aptype, float val);
 
 	void setUnitNum(int val); //重载Squad::setUnitNum
 public:

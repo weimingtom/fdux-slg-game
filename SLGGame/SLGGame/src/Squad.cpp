@@ -55,7 +55,7 @@ bool Squad::init(std::string srcpath)
 	RETURNFALSEONERR(datalib->getData(srcpath + std::string("/RetainerId"), tempstr, true));
 	RETURNFALSEONERR(hireRetainer(tempstr));
 
-	enumtype squadtype;
+	int squadtype;
 	datalib->getData(mPath + std::string("/SquadType"), squadtype);
 	std::string defaultskillpath;
 	switch(squadtype)
@@ -80,7 +80,7 @@ bool Squad::init(std::string srcpath)
 
 	skilltable.clear();
 	skilltable = datalib->getChildList(srcpath + std::string("/SkillTable"));
-	enumtype type = 0;
+	int type = 0;
 	for(ite = skilltable.begin(); ite != skilltable.end(); ite++)
 	{	
 		RETURNFALSEONERR(datalib->getData(srcpath + std::string("/SkillTable/") + (*ite), type, true));
@@ -146,7 +146,7 @@ void Squad::removeModifier(std::string modifierid)
 	DataLibrary::getSingleton().delNode(particlepath);
 }
 
-bool Squad::equipEquipment(enumtype equiptype, std::string equipid)
+bool Squad::equipEquipment(int equiptype, std::string equipid)
 {
 	unloadEquipment(equiptype);
 	if(equipid == "none")
@@ -208,7 +208,7 @@ bool Squad::equipEquipment(enumtype equiptype, std::string equipid)
 	return true;
 }
 
-void Squad::unloadEquipment(enumtype equiptype)
+void Squad::unloadEquipment(int equiptype)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	std::string distpath;
@@ -274,7 +274,7 @@ void Squad::unloadEquipment(enumtype equiptype)
 	datalib->setData(distpath, std::string("none"), true);
 }
 
-std::string Squad::getEquipment(enumtype equiptype)
+std::string Squad::getEquipment(int equiptype)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	std::string equip("none");
@@ -302,10 +302,10 @@ std::string Squad::getEquipment(enumtype equiptype)
 	return equip;
 }
 
-bool Squad::learnSkill(enumtype skilltype, std::string skillid)
+bool Squad::learnSkill(int skilltype, std::string skillid)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
-	enumtype squadtype;
+	int squadtype;
 	datalib->getData(mPath + std::string("/SquadType"), squadtype);
 	std::string defaultskillpath;
 	switch(squadtype)
@@ -380,7 +380,7 @@ bool Squad::learnSkill(enumtype skilltype, std::string skillid)
 void Squad::forgetSkill(std::string skillid)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
-	enumtype skilltype;
+	int skilltype;
 	datalib->getData(str(boost::format("%1%/SkillTable/%2%")%mPath%skillid), skilltype);
 	switch(skilltype)
 	{
@@ -404,6 +404,79 @@ void Squad::forgetSkill(std::string skillid)
 	}
 }
 
+void Squad::addExp(int exp)
+{
+	int squadtype = getType() ;
+	int maxlv = (squadtype == SQUAD_NORMAL)?10:8;
+	int expperlv = 1000;
+	int curlevel = getLevel();
+	if(exp < 0 || curlevel == maxlv)
+		return;
+	int curexp = getExp();
+	curexp += exp;
+	while(curexp > expperlv)
+	{
+		curlevel += 1;
+		if(curlevel == maxlv)
+			curexp = 0;
+		else
+			curexp -= expperlv;
+		int skillpoint = 0;
+		if(squadtype == SQUAD_SPECIAL)
+		{
+			switch(curlevel)
+			{
+			case 2:
+			case 4:
+			case 6:
+			case 8:
+				skillpoint = getSkillPointPassive();
+				skillpoint += 1;
+				setSkillPointPassive(skillpoint);
+				break;
+			case 1:
+			case 3:
+			case 5:
+			case 7:
+				skillpoint = getSkillPointAction();
+				skillpoint += 1;
+				setSkillPointAction(skillpoint);
+				break;
+			}
+		}
+		else
+		{
+			switch(curlevel)
+			{
+			case 2:
+			case 5:
+			case 8:
+			case 10:
+				skillpoint = getSkillPointAction();
+				skillpoint += 1;
+				setSkillPointAction(skillpoint);
+				break;
+			case 1:
+			case 3:
+			case 4:
+			case 7:
+			case 9:
+				skillpoint = getSkillPointPassive();
+				skillpoint += 1;
+				setSkillPointPassive(skillpoint);
+				break;
+			case 6:
+				skillpoint = getSkillPointEquip();
+				skillpoint += 1;
+				setSkillPointEquip(skillpoint);
+				break;
+			}
+		}
+	}
+	setExp(curexp);
+	setLevel(curlevel);
+}
+
 bool Squad::hireRetainer(std::string retainerid)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
@@ -420,7 +493,7 @@ bool Squad::hireRetainer(std::string retainerid)
 	srcpath = str(boost::format("%1%/%2%")%srcpath%retainerid);
 	std::string skillid;
 	datalib->getData(srcpath + std::string("/Skill"), skillid);
-	enumtype skilltype;
+	int skilltype;
 	datalib->getData(srcpath + std::string("/SkillType"), skilltype);
 	switch(skilltype)
 	{
@@ -507,7 +580,7 @@ void Squad::removeSkill(std::string skillid)
 bool Squad::applyEffect(std::string effectid, std::string &eid)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
-	enumtype effecttype;
+	int effecttype;
 	bool re  = datalib->getData(str(boost::format("StaticData/EffectData/%1%/Type")%effectid), effecttype);
 	if(re)
 	{
@@ -584,7 +657,7 @@ void Squad::removeEffect(std::string eid)
 	{
 		std::string effectid;
 		datalib->getData(str(boost::format("%1%/EffectId")%distpath), effectid);
-		enumtype effecttype;
+		int effecttype;
 		bool re  = datalib->getData(str(boost::format("StaticData/EffectData/%1%/Type")%effectid), effecttype);
 		std::string scriptpath;
 		datalib->getData(str(boost::format("StaticData/EffectData/%1%/Script")%effectid), scriptpath);
@@ -621,7 +694,7 @@ int Squad::getEffectLevel(std::string eid)
 	return lv;
 }
 
-float Squad::getAttr(enumtype attrtype , enumtype calctype)
+float Squad::getAttr(int attrtype , int calctype)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	std::vector<std::string> modifierlist = datalib->getChildList(mPath + std::string("/ModifierList"));
@@ -638,7 +711,7 @@ float Squad::getAttr(enumtype attrtype , enumtype calctype)
 	std::vector<std::string>::iterator ite;
 	for(ite = modifierlist.begin(); ite != modifierlist.end(); ite++)
 	{
-		enumtype type = ATTRMODIFIER_BASE;
+		int type = ATTRMODIFIER_BASE;
 		float attrval = 0.0f;
 		std::string datapath = mPath + std::string("/ModifierList/") + (*ite);
 		datalib->getData(datapath + std::string("/Type"), type);
@@ -791,12 +864,12 @@ void Squad::Trigger(std::string triggertype, LuaTempContext * tempcontext)
 	}
 }
 
-std::map<std::string, enumtype> Squad::getSkillTable()
+std::map<std::string, int> Squad::getSkillTable()
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	std::map<std::string, int> skilllist;
 	std::vector<std::string> skilltable = datalib->getChildList(mPath + std::string("/SkillTable"));
-	enumtype type = 0;
+	int type = 0;
 	std::vector<std::string>::iterator ite;
 	for(ite = skilltable.begin(); ite != skilltable.end(); ite++)
 	{	

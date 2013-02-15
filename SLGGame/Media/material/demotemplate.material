@@ -125,7 +125,7 @@ material NotSkinned/CastShadow/OneTexture
             fragment_program_ref ColorOnlyFP/OneTexture
             {
             }
-			texture_unit Diffuse
+			texture_unit Material
 			{
 				filtering trilinear
 				texture defaultmat.dds

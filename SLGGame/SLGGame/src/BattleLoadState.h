@@ -38,6 +38,6 @@ private:
 	LoadScene* mLoadScene;
 	bool mLoadFromMap;
 	std::string mMapFile;
-	enumtype mState;
+	int mState;
 	bool mIsPressKey;
 };

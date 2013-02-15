@@ -13,7 +13,7 @@
     <G0 Type="Grass" Texture="Grass1Blur.dds" />
     <G1 Type="Soil" Texture="Dirt1.dds" />
     <G2 Type="Cobble" Texture="GrassLargeRoadTemp.dds" />
-    <G3 Type="Road" Texture="GrassLargeRoadTemp.dds" />
+    <G3 Type="Road" Texture="GrassLargeStoneRoadTemp.dds" />
 </MapGround>
 <MapData>lglglglglglglglglglgwglgwgwgwgwgwglgwgwgwgwgwglglglglglgwgwgwglglglglglglglglglglglglglglslslslslglglglglglglglglslglglglglglglslslglglglslglglglglglglglslglslglslglglglglglslslslslslslslslslslglglslglglglslglglslglglglglslglglglslglglglglglglglslglglglslglglglglglglglslglglglslglglglglg</MapData>
 <MapObject>

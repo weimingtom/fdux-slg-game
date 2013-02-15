@@ -8,7 +8,7 @@
 class ChangeStateCutScene : public CutScene
 {
 public:
-	ChangeStateCutScene(enumtype nextstate, std::string arg);
+	ChangeStateCutScene(int nextstate, std::string arg);
 	virtual ~ChangeStateCutScene(void);
 
 	void startCutScence();
@@ -16,7 +16,7 @@ public:
 	void skipCutScene();
 	void updateCutScene(unsigned int deltaTime);
 
-	enumtype mNextState;
+	int mNextState;
 	std::string mArg;
 
 };

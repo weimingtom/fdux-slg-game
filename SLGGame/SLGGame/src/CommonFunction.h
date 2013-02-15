@@ -3,7 +3,7 @@
 
 int GetSide(Direction d1, Direction d2);
 
-float GetFormationBonus(int side, enumtype formtype);
+float GetFormationBonus(int side, int formtype);
 
 Direction GetDirection(int sx, int sy, int x, int y);
 

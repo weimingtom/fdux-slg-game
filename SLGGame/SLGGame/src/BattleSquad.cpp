@@ -24,7 +24,7 @@ BattleSquad::~BattleSquad()
 
 }
 
-bool BattleSquad::init(std::string srcpath, int team, int unitnum, int x, int y, enumtype d)
+bool BattleSquad::init(std::string srcpath, int team, int unitnum, int x, int y, int d)
 {
 	if(!Squad::init(srcpath))
 		return false;
@@ -35,7 +35,7 @@ bool BattleSquad::init(std::string srcpath, int team, int unitnum, int x, int y,
 	setDirection(d);
 
 	setUnitNum(unitnum);
-	enumtype squadtype2;
+	int squadtype2;
 	datalib->getData(srcpath + std::string("/Type"), squadtype2);
 	if(squadtype2 == SQUAD_NORMAL)
 	{
@@ -110,7 +110,7 @@ bool BattleSquad::init(std::string srcpath, int team)
 	setDirection(North);
 
 	int unitnum;
-	enumtype squadtype2;
+	int squadtype2;
 	datalib->getData(srcpath + std::string("/Type"), squadtype2);
 	if(squadtype2 == SQUAD_NORMAL)
 	{
@@ -182,7 +182,7 @@ bool BattleSquad::init()
 	return Squad::init();
 }
 
-float BattleSquad::getAttr(enumtype attrtype , enumtype calctype)
+float BattleSquad::getAttr(int attrtype , int calctype)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	std::vector<std::string> modifierlist = datalib->getChildList(mPath + std::string("/ModifierList"));
@@ -199,7 +199,7 @@ float BattleSquad::getAttr(enumtype attrtype , enumtype calctype)
 	std::vector<std::string>::iterator ite;
 	for(ite = modifierlist.begin(); ite != modifierlist.end(); ite++)
 	{
-		enumtype type = ATTRMODIFIER_BASE;
+		int type = ATTRMODIFIER_BASE;
 		float attrval = 0.0f;
 		std::string datapath = mPath + std::string("/ModifierList/") + (*ite);
 		datalib->getData(datapath + std::string("/Type"), type);
@@ -302,7 +302,7 @@ float BattleSquad::getAttr(enumtype attrtype , enumtype calctype)
 	return 0.0f;
 }
 
-AttackInfo BattleSquad::getAttackRolls(bool rangedattack,bool asdefender, enumtype d)
+AttackInfo BattleSquad::getAttackRolls(bool rangedattack,bool asdefender, int d)
 {
 	DataLibrary *datalib = DataLibrary::getSingletonPtr();
 	AttackInfo attackinfo;
@@ -328,8 +328,8 @@ AttackInfo BattleSquad::getAttackRolls(bool rangedattack,bool asdefender, enumty
 		float formation;
 		formation = getAttr(ATTR_FORM, ATTRCALC_FULL);
 		formation = formation * soildernum / 50.0f;
-		enumtype formtype = getFormation();
-		enumtype mydir = getDirection();
+		int formtype = getFormation();
+		int mydir = getDirection();
 		int side = GetSide(mydir,d);
 		formation *= GetFormationBonus(side, formtype);
 		atkf += formation;
@@ -344,7 +344,7 @@ AttackInfo BattleSquad::getAttackRolls(bool rangedattack,bool asdefender, enumty
 	return attackinfo;
 }
 
-void BattleSquad::applyAttackRolls(bool rangedattack, enumtype d, AttackInfo &attackinfo)
+void BattleSquad::applyAttackRolls(bool rangedattack, int d, AttackInfo &attackinfo)
 {
 	DataLibrary *datalib = DataLibrary::getSingletonPtr();
 
@@ -377,8 +377,8 @@ void BattleSquad::applyAttackRolls(bool rangedattack, enumtype d, AttackInfo &at
 		float formation;
 		formation = getAttr(ATTR_FORM, ATTRCALC_FULL);
 		formation = formation * soildernum / 50.0f;
-		enumtype formtype = getFormation();
-		enumtype mydir = getDirection();
+		int formtype = getFormation();
+		int mydir = getDirection();
 		int side = GetSide(mydir,d);
 		formation *= GetFormationBonus(side, formtype);
 		deff += formation;
@@ -404,7 +404,7 @@ void BattleSquad::applyAttackRolls(bool rangedattack, enumtype d, AttackInfo &at
 	setUnitMaxNum(maxnum);
 }
 
-bool BattleSquad::changeFormation(enumtype formation, bool costap)
+bool BattleSquad::changeFormation(int formation, bool costap)
 {
 	if(canChangeFormation(formation) != SKILLSTATE_AVAILABLE)
 		return false;
@@ -511,7 +511,7 @@ bool BattleSquad::tryMove(int srcx, int srcy, int tgx, int tgy, float &apleft, u
 			if(mapapcost <= 2)
 			{
 				eventflag |= MOVEEVENT_CHARGE;
-				enumtype curdir = GetDirection(srcx, srcy, tgx, tgy);
+				int curdir = GetDirection(srcx, srcy, tgx, tgy);
 				eventflag |= SetChargeDir(curdir);
 			}
 			else
@@ -544,7 +544,7 @@ bool BattleSquad::move(int tgx, int tgy, unsigned int &eventflag)
 			if(mapapcost <= 2)
 			{
 				eventflag |= MOVEEVENT_CHARGE;
-				enumtype curdir = GetDirection(getGridX(), getGridY(), tgx, tgy);
+				int curdir = GetDirection(getGridX(), getGridY(), tgx, tgy);
 				eventflag |= SetChargeDir(curdir);
 			}
 			else
@@ -558,7 +558,7 @@ bool BattleSquad::move(int tgx, int tgy, unsigned int &eventflag)
 	return false;
 }
 
-bool BattleSquad::addParticle(std::string particlename, enumtype object, std::string &particleid)
+bool BattleSquad::addParticle(std::string particlename, int object, std::string &particleid)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	std::string distpath = mPath + std::string("/ParticleList");
@@ -745,7 +745,7 @@ void BattleSquad::setAmbushFaction(int faction, bool ambush)
 
 int BattleSquad::getUnitGrapNum()
 {
-	enumtype squadtype = getType();
+	int squadtype = getType();
 	int unitnum = getUnitNum();
 	if(unitnum == 0)
 		return 0;
@@ -756,6 +756,21 @@ int BattleSquad::getUnitGrapNum()
 	else
 	{
 		return (unitnum+9)/10;
+	}
+}
+
+float BattleSquad::getSquadStrength()
+{
+	int squadtype = getType();
+	int unitnum = getUnitNum();
+	int level = getLevel();
+	if(squadtype == SQUAD_NORMAL)
+	{
+		return unitnum * level;
+	}
+	else
+	{
+		return unitnum * 3.125f * level;
 	}
 }
 
@@ -860,7 +875,7 @@ BattleSquad::SkillState BattleSquad::canMove()
 	return SKILLSTATE_AVAILABLE;
 }
 
-BattleSquad::SkillState BattleSquad::canChangeFormation(enumtype formation)
+BattleSquad::SkillState BattleSquad::canChangeFormation(int formation)
 {
 	if(getType() != SQUAD_NORMAL)
 		return SKILLSTATE_NOSKILL;
@@ -885,7 +900,7 @@ BattleSquad::SkillState BattleSquad::canUseSkill(std::string skillid)
 	return SKILLSTATE_NOTAVAILABLE;
 }
 
-float BattleSquad::getChangeFormationApCost(enumtype formation)
+float BattleSquad::getChangeFormationApCost(int formation)
 {
 	return getAPTypeCostModify(SKILLAPTYPE_SETUP);
 }
@@ -899,7 +914,7 @@ float BattleSquad::getSkillApCost(std::string skillid)
 	ite = std::find(skilllist.begin(), skilllist.end(), skillid);
 	if(ite == skilllist.end())
 		return 0.0f;
-	enumtype skillaptype;
+	int skillaptype;
 	float skillapcost;
 	datalib->getData(str(boost::format("StaticData/SkillData/%1%/APType")%skillid),skillaptype);
 	datalib->getData(str(boost::format("StaticData/SkillData/%1%/APCost")%skillid),skillapcost);
@@ -918,7 +933,7 @@ float BattleSquad::getSkillApCost(std::string skillid)
 }
 
 
-float BattleSquad::getAPTypeCostModify(enumtype aptype)
+float BattleSquad::getAPTypeCostModify(int aptype)
 {
 	switch(aptype)
 	{
@@ -930,7 +945,7 @@ float BattleSquad::getAPTypeCostModify(enumtype aptype)
 	return 0.0f;
 }
 
-void BattleSquad::setAPTypeCostModify(enumtype aptype, float val)
+void BattleSquad::setAPTypeCostModify(int aptype, float val)
 {
 	switch(aptype)
 	{

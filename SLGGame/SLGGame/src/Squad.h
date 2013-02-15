@@ -63,14 +63,16 @@ public:
 
 //补给：装备更换
 public:
-	bool equipEquipment(enumtype equiptype, std::string equipid);
-	void unloadEquipment(enumtype equiptype);
-	std::string getEquipment(enumtype equiptype);
+	bool equipEquipment(int equiptype, std::string equipid);
+	void unloadEquipment(int equiptype);
+	std::string getEquipment(int equiptype);
 
 //补给：技能升级
 public:
-	bool learnSkill(enumtype skilltype, std::string skillid);
+	bool learnSkill(int skilltype, std::string skillid);
 	void forgetSkill(std::string skillid);
+
+	void addExp(int exp);
 
 //补给：随从更换
 public:
@@ -91,7 +93,7 @@ public:
 	int getEffectLevel(std::string eid);
 
 public:
-	virtual float getAttr(enumtype attrtype , enumtype calctype);
+	virtual float getAttr(int attrtype , int calctype);
 
 //触发器
 public:
@@ -107,7 +109,7 @@ protected:
 
 //获取属性
 public:
-	std::map<std::string, enumtype> getSkillTable();
+	std::map<std::string, int> getSkillTable();
 
 public:
 	INTVAL(Type);

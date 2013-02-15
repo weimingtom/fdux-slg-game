@@ -390,14 +390,14 @@ void GUISupply::showAttribute(int index,int itemType,std::string itemID)
 	m_SquadPassiveSkillNum=0;
 	m_SquadUseEquipNum=0;
 	m_SquadEffectNum=0;
-	std::map<std::string,enumtype> skillmap;
+	std::map<std::string,int> skillmap;
 	if(itemID!="")
 		skillmap=copySquad->getSkillTable();
 	else
 		skillmap=army->getSkillTable();
 
 	MyGUI::ResourceManager& manager = MyGUI::ResourceManager::getInstance();
-	for(std::map<std::string,enumtype>::iterator it=skillmap.begin();it!=skillmap.end();it++)
+	for(std::map<std::string,int>::iterator it=skillmap.begin();it!=skillmap.end();it++)
 	{
 		std::string icon;
 		if(it->second==SKILLTYPE_ACTIVE)
@@ -498,7 +498,7 @@ void GUISupply::showItem(int type)
 		{
 			data->setSubType(equipSubType);
 
-			std::map<std::string,enumtype> skillmap;
+			std::map<std::string,int> skillmap;
 			skillmap=army->getSkillTable();
 			if(skillmap.find(gEquipTypeName[type][equipSubType])!=skillmap.end())
 				data->setIsHaveSkill(true);
@@ -966,7 +966,7 @@ void GUISupply::showSkillItem(int type,std::string skillListPath)
 	}
 
 	itemBox->removeAllItems();
-	std::map<std::string,enumtype> skillmap;
+	std::map<std::string,int> skillmap;
 	skillmap=army->getSkillTable();
 	std::vector<std::string> child=DataLibrary::getSingletonPtr()->getChildList(path);
 	for(std::vector<std::string>::iterator it=child.begin();it!=child.end();it++)

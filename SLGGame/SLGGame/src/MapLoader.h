@@ -28,7 +28,7 @@ private:
 		int team;
 		int x,y;
 		int unitNum;
-		enumtype dir;
+		int dir;
 	};
 	std::queue<MapSquadInfo> mMapSquadInfo;
 };

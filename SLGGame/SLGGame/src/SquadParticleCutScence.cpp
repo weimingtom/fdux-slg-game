@@ -3,7 +3,7 @@
 #include "SquadGrapManager.h"
 #include "SquadGraphics.h"
 
-SquadParticleCutScence::SquadParticleCutScence(std::string squadid, std::string particleid, std::string particlename, enumtype affectunit)
+SquadParticleCutScence::SquadParticleCutScence(std::string squadid, std::string particleid, std::string particlename, int affectunit)
 :mSquadId(squadid),mParticleId(particleid),mParticleName(particlename),mAffectUnit(affectunit),mRemove(false)
 {
 

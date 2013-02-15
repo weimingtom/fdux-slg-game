@@ -10,6 +10,7 @@ using namespace izayoi;
 #include <Ogre.h>
 
 #include "squaddefine.h"
+#include "Area.h"
 
 class BattleSquad;
 class CutScene;
@@ -50,6 +51,7 @@ public:
 	};
 	std::map<int, MoveNode> getMoveArea(BattleSquad* squad);
 	std::vector<MoveNode> getMovePath(BattleSquad* squad, int x, int y);
+	std::map<int, MoveNode> getFullPath(BattleSquad* squad, Crood tatget);
 	void moveSquad(BattleSquad* squad, std::vector<int> pointlist, unsigned int &stopedpoint, unsigned int &eventflag);
 	void InterruptMove();
 
@@ -61,10 +63,10 @@ private:
 
 	//切换阵型
 public:
-	void changeFormation(BattleSquad* squad, enumtype formation, bool costap);
+	void changeFormation(BattleSquad* squad, int formation, bool costap);
 
 public:
-	void setDirection(BattleSquad* squad, enumtype direction);
+	void setDirection(BattleSquad* squad, int direction);
 
 	//技能相关
 public:
@@ -75,7 +77,7 @@ public:
 		int x;
 		int y;
 		bool validTarget;
-		enumtype direction;
+		int direction;
 	};
 	std::vector<SkillNode> getSkillArea(BattleSquad* squad, std::string skillid);
 	std::vector<SkillNode> getSkillTargetArea(BattleSquad* squad, std::string skillid, int x, int y);
