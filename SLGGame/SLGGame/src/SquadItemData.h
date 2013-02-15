@@ -27,24 +27,39 @@ public:
 		  std::string type;
 		  switch(squadType)
 		  {
-		  case SQUADTYPE_LightInf:
+		  case SQUADTYPE_MISSILEINFANTRY:
 			  {
 				 mResourceImage="kind_lightinf";
 				 break;
 			  }
-		  case SQUADTYPE_HeavyInf:
+		  case SQUADTYPE_INFANTRY:
 			  {
 				  mResourceImage="kind_heavyinf";
 				  break;
 			  }
-		  case SQUADTYPE_Saint:
+		  case SQUADTYPE_CAVALRY:
 			  {
-				  mResourceImage="kind_mage";
+				  mResourceImage="kind_heavyrid";
 				  break;
 			  }
-		  case SQUADTYPE_Bowman:
+		  case SQUADTYPE_MISSILECAVALRY:
 			  {
-				  mResourceImage="kind_lightinf";
+				  mResourceImage="kind_lightrid";
+				  break;
+			  }
+		  case SQUADTYPE_BATTLEMAGE:
+			  {
+				  mResourceImage="kind_warlock";
+				  break;
+			  }
+		  case SQUADTYPE_ARCANEMAGE:
+			  {
+				  mResourceImage="kind_priest";
+				  break;
+			  }
+		  case SQUADTYPE_SAINT:
+			  {
+				  mResourceImage="kind_mage";
 				  break;
 			  }
 		  }

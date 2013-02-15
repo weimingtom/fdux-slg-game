@@ -84,27 +84,41 @@ void GUISquadBillBoard::setIcon( enumtype type )
 	mBIcon->setItemResource("kind");
 	switch(type)
 	{
-	case SQUADTYPE_LightInf:
-		 {
+	case SQUADTYPE_MISSILEINFANTRY:
+		{
 			mBIcon->setItemGroup("kind_lightinf");
 			break;
-		 }
-	case SQUADTYPE_HeavyInf:
-		  {
-			  mBIcon->setItemGroup("kind_heavyinf");
-			
-			  break;
-		  }
-	case SQUADTYPE_Saint:
-		  {
-			  mBIcon->setItemGroup("kind_mage");
-			  break;
-		  }
-	case SQUADTYPE_Bowman:
-		  {
-			  mBIcon->setItemGroup("kind_lightinf");
-			  break;
-		  }
+		}
+	case SQUADTYPE_INFANTRY:
+		{
+			mBIcon->setItemGroup("kind_heavyinf");
+			break;
+		}
+	case SQUADTYPE_CAVALRY:
+		{
+			mBIcon->setItemGroup("kind_heavyrid");
+			break;
+		}
+	case SQUADTYPE_MISSILECAVALRY:
+		{
+			mBIcon->setItemGroup("kind_lightrid");
+			break;
+		}
+	case SQUADTYPE_BATTLEMAGE:
+		{
+			mBIcon->setItemGroup("kind_warlock");
+			break;
+		}
+	case SQUADTYPE_ARCANEMAGE:
+		{
+			mBIcon->setItemGroup("kind_priest");
+			break;
+		}
+	case SQUADTYPE_SAINT:
+		{
+			mBIcon->setItemGroup("kind_mage");
+			break;
+		}
 	}
 
 }

@@ -10,6 +10,7 @@
 
 #include "StateManager.h"
 #include "AudioSystem.h"
+#include "UtilsOgreDshow.h"
 
 #include <iostream>
 
@@ -57,7 +58,14 @@ void GUIMenu::showScene( std::string arg )
 		mLogoImage->setAlpha(0);
 		mLogoImage->setVisible(true);
 		FadeIn(FadeTime,mLogoImage);
-	} 
+	}
+	else if(arg=="avi")
+	{
+		mMenuState=OPState;
+		mIsSkipOP=false;
+		OgreUtils::DirectShowManager::getSingleton().createDirectshowControl("videotest","../Media/movie/op.wmv",1280,720);
+		GUISystem::getSingletonPtr()->setFrameUpdateScene(MenuScene);
+	}
 	else
 	{
 		mMenuState=MainMenuState;
@@ -117,7 +125,7 @@ void GUIMenu::onOtherSceneNotify(std::string arg)
 		{
 		case LogoState:
 			 {
-				showScene("");
+				showScene("avi");
 				break;
 			 }
 		case NewState:
@@ -158,6 +166,21 @@ void GUIMenu::FrameEvent()
 				}
 			}
 		}
+	}
+
+	if ((mMenuState==OPState && OgreUtils::DirectShowManager::getSingleton().isPlayOver()) || (mMenuState==OPState && mIsSkipOP))
+	{
+		GUISystem::getSingletonPtr()->setFrameUpdateScene(NoneScene);
+		OgreUtils::DirectShowManager::getSingleton().DestroyAll();
+		showScene("");
+	}
+}
+
+void GUIMenu::keyPressed(const OIS::KeyEvent &arg)
+{
+	if(arg.key==OIS::KC_ESCAPE && mMenuState==OPState)
+	{
+		mIsSkipOP=true;
 	}
 }
 

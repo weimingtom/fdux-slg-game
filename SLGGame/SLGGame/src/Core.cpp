@@ -34,6 +34,7 @@
 #include "LuaBattle.h"
 #include "GUISLWindow.h"
 #include "Framerate.h"
+#include "UtilsOgreDshow.h"
 
 #include <ParticleUniverseSystemManager.h> 
 
@@ -107,6 +108,8 @@ bool Core::initialize(bool isFullScene)
 	initializeResource();
 
 	Ogre::ResourceGroupManager::getSingletonPtr()->initialiseAllResourceGroups();
+
+	mRoot->addFrameListener(new OgreUtils::DirectShowManager(vp));
 
 	//初始化数据文件
 	mLuaSystem=new LuaSystem();

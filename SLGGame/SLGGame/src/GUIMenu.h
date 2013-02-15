@@ -30,10 +30,13 @@ private:
 
 	void setButtonLock(bool isLock);
 	void onOtherSceneNotify(std::string arg);
+
+	void keyPressed(const OIS::KeyEvent &arg);
 	enum MenuStateEnum
 	{
 		NoneState,
 		LogoState,
+		OPState,
 		NewState,
 		WaitState,
 		ExitState,
@@ -62,6 +65,7 @@ private:
 
 	MyGUI::Timer mTimer;//定时器
 	float mTickTime;//单次触发时间
+	bool mIsSkipOP;
 
 };
 
