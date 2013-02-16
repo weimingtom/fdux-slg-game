@@ -15,6 +15,7 @@ public:
 	void changeArea(std::vector<int> coordlist);
 private:
 	std::vector<int> mCoordList;
+	int mMaxCroodNum;
 
 	void creatArea(std::string mat);
 

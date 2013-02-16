@@ -106,9 +106,9 @@ private:
 	class OSGStrengthFactor : public DecisionMapFactor<int>
 	{
 	public:	
-		OSGStrengthFactor(float scale, std::map<int, OtherSquadGroupInfo>* othersquadgroup);
+		OSGStrengthFactor(std::map<int, OtherSquadGroupInfo>* othersquadgroup);
 
-		virtual void calcDecision(std::vector<DecisionInfo<int>> &decisionVec);
+		virtual float calcDecision(int &decision);
 	private:
 		std::map<int, OtherSquadGroupInfo>* mOtherSquadGroup;
 		float mMaxStrength;
@@ -117,9 +117,9 @@ private:
 	class OSGCloseToAreaFactor : public DecisionMapFactor<int>
 	{
 	public:	
-		OSGCloseToAreaFactor(float scale, std::map<int, OtherSquadGroupInfo>* othersquadgroup, Area* area);
+		OSGCloseToAreaFactor(std::map<int, OtherSquadGroupInfo>* othersquadgroup, Area* area);
 
-		virtual void calcDecision(std::vector<DecisionInfo<int>> &decisionVec);
+		virtual float calcDecision(int &decision);
 	private:
 		std::map<int, OtherSquadGroupInfo>* mOtherSquadGroup;
 		Area* mArea;
@@ -128,9 +128,9 @@ private:
 	class OSGMoveToAreaFactor : public DecisionMapFactor<int>
 	{
 	public:	
-		OSGMoveToAreaFactor(float scale, std::map<int, OtherSquadGroupInfo>* othersquadgroup, Area* area);
+		OSGMoveToAreaFactor(std::map<int, OtherSquadGroupInfo>* othersquadgroup, Area* area);
 
-		virtual void calcDecision(std::vector<DecisionInfo<int>> &decisionVec);
+		virtual float calcDecision(int &decision);
 	private:
 		std::map<int, OtherSquadGroupInfo>* mOtherSquadGroup;
 		Area* mArea;
