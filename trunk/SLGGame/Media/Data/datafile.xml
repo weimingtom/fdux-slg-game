@@ -22,11 +22,21 @@
 			<Mesh type="String" value="LightCavalry.mesh"/>
 			<Mat type="String" value="LightCavalry"/>
 		</Cossa>
+		<Caster>
+			<Picture type="String" value="kasit.png"/>
+			<Mesh type="String" value="HeavyCavalry.mesh"/>
+			<Mat type="String" value="HeavyCavalry"/>
+		</Caster>
 		<Fay>
 			<Picture type="String" value="fei.png"/>
 			<Mesh type="String" value="Warmage.mesh"/>
 			<Mat type="String" value="Warmage"/>
 		</Fay>
+		<Azaria>
+			<Picture type="String" value="ashaniya.png"/>
+			<Mesh type="String" value="Elementalist.mesh"/>
+			<Mat type="String" value="Elementalist"/>
+		</Azaria>
 		<WingsLightCavalry>
 			<Picture type="String" value="qingbu.png"/>
 			<Mesh type="String" value="LightCavalry.mesh"/>
@@ -72,6 +82,11 @@
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
 		</GuardLightBow>
+		<GuardCrossBow>
+			<Picture type="String" value="qingbu.png"/>
+			<Mesh type="String" value="LightInfOf.mesh"/>
+			<Mat type="String" value="LightInfOf"/>
+		</GuardCrossBow>
 		<GuardLightSword>
 			<Picture type="String" value="zhongbu4.png"/>
 			<Mesh type="String" value="LightInfOf.mesh"/>
@@ -87,11 +102,21 @@
 			<Mesh type="String" value="Elementalist.mesh"/>
 			<Mat type="String" value="Elementalist"/>
 		</Kareena>
+		<Welvss>
+			<Picture type="String" value="weier.png"/>
+			<Mesh type="String" value="Elementalist.mesh"/>
+			<Mat type="String" value="Elementalist"/>
+		</Welvss>
 		<Elementalist>
 			<Picture type="String" value="aofa.png"/>
 			<Mesh type="String" value="Elementalist.mesh"/>
 			<Mat type="String" value="Elementalist"/>
 		</Elementalist>
+		<Warmage>
+			<Picture type="String" value="zhanfa.png"/>
+			<Mesh type="String" value="Warmage.mesh"/>
+			<Mat type="String" value="Warmage"/>
+		</Warmage>
 		<UlvaLightHSword>
 			<Picture type="String" value="zhongbu1.png"/>
 			<Mesh type="String" value="LightInfOf.mesh"/>
@@ -147,6 +172,16 @@
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
 		</WinfredLightBow>
+		<WinfredHeavyCavalry>
+			<Picture type="String" value="fuguan3.png"/>
+			<Mesh type="String" value="HeavyCavalry.mesh"/>
+			<Mat type="String" value="HeavyCavalry"/>
+		</WinfredHeavyCavalry>
+		<WinfredLightCavalry>
+			<Picture type="String" value="qingbu.png"/>
+			<Mesh type="String" value="LightCavalry.mesh"/>
+			<Mat type="String" value="LightCavalry"/>
+		</WinfredLightCavalry>
 		<NothLightBow>
 			<Picture type="String" value="qingbu.png"/>
 			<Mesh type="String" value="LightInfOf.mesh"/>
@@ -172,6 +207,21 @@
 			<Mesh type="String" value="HeavyInfOf.mesh"/>
 			<Mat type="String" value="HeavyInfOf"/>
 		</Nothfate>
+		<DarkKnight>
+			<Picture type="String" value="heiqishi.png"/>
+			<Mesh type="String" value="HeavyInfOf.mesh"/>
+			<Mat type="String" value="HeavyInfOf"/>
+		</DarkKnight>
+		<Datura>
+			<Picture type="String" value="datana.png"/>
+			<Mesh type="String" value="HeavyInfOf.mesh"/>
+			<Mat type="String" value="HeavyInfOf"/>
+		</Datura>
+		<Syrin>
+			<Picture type="String" value="xiwen.png"/>
+			<Mesh type="String" value="Elementalist.mesh"/>
+			<Mat type="String" value="Elementalist"/>
+		</Syrin>
 	</LeaderDate>
 	<SquadData>
 		<CheetahSquad>
@@ -319,7 +369,7 @@
 			</SkillTable>
 			<LeaderId type="String" value="Olivia"/>
 			<RetainerId type="String" value="Scout"/>
-			<UnitNum value="50" type="Int"/>
+			<UnitNum value="20" type="Int"/>
 			<Level type="Int" value="4"/>
 			<Exp type="Int" value="0"/>
 			<SkillPointAction type="Int" value="0"/>
@@ -331,12 +381,12 @@
 		</Olivia>
 		<Cossa>
 			<Type type="Int" value="0"/>
-			<SquadType type="Int" value="1"/>
+			<SquadType type="Int" value="3"/>
 			<SoilderId type="String" value="WingsSoilder"/>
-			<HorseId type="String" value="LightHorse3"/>
+			<HorseId type="String" value="LightHorse4"/>
 			<PweaponId type="String" value="ShortSword4"/>
 			<SweaponId type="String" value="none"/>
-			<ShieldId type="String" value="Shield3"/>
+			<ShieldId type="String" value="Shield4"/>
 			<ArmorId type="String" value="MidArmor4"/>
 			<SkillTable>
 				<RangedAttackTrain1 type="Int" value="0"/>
@@ -361,6 +411,34 @@
 			<UnitMat type="String" value="LightCavalry"/>
 			<MoveSound type="String" value="LightCavalry.ogg"/>
 		</Cossa>
+		<Caster>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="2"/>
+			<SoilderId type="String" value="WingsSoilder"/>
+			<HorseId type="String" value="HeavyHorse2"/>
+			<PweaponId type="String" value="ShortSword3"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="Shield2"/>
+			<ArmorId type="String" value="HeavyArmor2"/>
+			<SkillTable>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<ShortSpear type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="Caster"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int"/>
+			<Level type="Int" value="5"/>
+			<Exp type="Int" value="0"/>
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="HeavyCavalry.mesh"/>
+			<UnitMat type="String" value="HeavyCavalry."/>
+			<MoveSound type="String" value="HeavyCavalry.ogg"/>
+		</Caster>
 		<Fay>
 			<Type type="Int" value="1"/>
 			<SquadType type="Int" value="5"/>
@@ -379,7 +457,7 @@
 			</SkillTable>
 			<LeaderId type="String" value="Fay"/>
 			<RetainerId type="String" value="Scout"/>
-			<UnitNum value="50" type="Int"/>
+			<UnitNum value="20" type="Int"/>
 			<Level type="Int" value="4"/>
 			<Exp type="Int" value="0"/>
 			<SkillPointAction type="Int" value="0"/>
@@ -389,6 +467,34 @@
 			<UnitMat type="String" value="Puppet"/>
 			<MoveSound type="String" value="Olivia.ogg"/>
 		</Fay>
+		<Azaria>
+			<Type type="Int" value="1"/>
+			<SquadType type="Int" value="6"/>
+			<SoilderId type="String" value="Magician"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="Staves3"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="LightArmor1"/>
+			<SkillTable>
+				<Faith type="Int" value="0"/>
+				<StrengthenSprite type="Int" value="0"/>
+				<Heal type="Int" value="1"/>
+				<MagicShield type="Int" value="1"/>
+				<Pray type="Int" value="1"/>
+			</SkillTable>
+			<LeaderId type="String" value="Azaria"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="20" type="Int"/>
+			<Level type="Int" value="4"/>
+			<Exp type="Int" value="0"/>
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="Puppet.mesh"/>
+			<UnitMat type="String" value="Puppet"/>
+			<MoveSound type="String" value="Olivia.ogg"/>
+		</Azaria>
 		<WingsLightCavalry>
 			<Type type="Int" value="0"/>
 			<SquadType type="Int" value="3"/>
@@ -507,7 +613,7 @@
 		</DuxHeavySpear>
 		<DuxHeavyCavalry>
 			<Type type="Int" value="0"/>
-			<SquadType type="Int" value="0"/>
+			<SquadType type="Int" value="2"/>
 			<SoilderId type="String" value="DuxSoilder"/>
 			<HorseId type="String" value="HeavyHorse2"/>
 			<PweaponId type="String" value="ShortSword3"/>
@@ -625,6 +731,38 @@
 			<UnitMat type="String" value="LightInf"/>
 			<MoveSound type="String" value="BowMan.ogg"/>
 		</GuardLightBow>
+		<GuardCrossBow>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="1"/>
+			<SoilderId type="String" value="TowerGuard"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="ShortSword3"/>
+			<SweaponId type="String" value="CrossBow4"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="LightArmor3"/>
+			<SkillTable>
+				<RangedAttackTrain1 type="Int" value="0"/>
+				<RangedAttackTrain2 type="Int" value="0"/>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<SuppressAttack type="Int" value="1"/>
+				<OneHandSword type="Int" value="2"/>
+				<Bow type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="GuardCrossBow"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int"/>
+			<Level type="Int" value="5"/>
+			<Exp type="Int" value="0"/>
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="LightInf.mesh"/>
+			<UnitMat type="String" value="LightInf"/>
+			<MoveSound type="String" value="BowMan.ogg"/>
+		</GuardCrossBow>
 		<GuardHeavySpear>
 			<Type type="Int" value="0"/>
 			<SquadType type="Int" value="0"/>
@@ -633,7 +771,7 @@
 			<PweaponId type="String" value="ShortSpear3"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="Shield2"/>
-			<ArmorId type="String" value="HeavyArmor2"/>
+			<ArmorId type="String" value="HeavyArmor3"/>
 			<SkillTable>
 				<DefenceTrain1 type="Int" value="0"/>
 				<Defence type="Int" value="1"/>
@@ -661,7 +799,7 @@
 			<PweaponId type="String" value="Staves3"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="none"/>
-			<ArmorId type="String" value="LightArmor1"/>
+			<ArmorId type="String" value="LightArmor3"/>
 			<SkillTable>
 				<Faith type="Int" value="0"/>
 				<StrengthenSprite type="Int" value="0"/>
@@ -671,7 +809,7 @@
 			</SkillTable>
 			<LeaderId type="String" value="Elementalist"/>
 			<RetainerId type="String" value="Scout"/>
-			<UnitNum value="50" type="Int"/>
+			<UnitNum value="20" type="Int"/>
 			<Level type="Int" value="4"/>
 			<Exp type="Int" value="0"/>
 			<SkillPointAction type="Int" value="0"/>
@@ -699,8 +837,8 @@
 			</SkillTable>
 			<LeaderId type="String" value="Kareena"/>
 			<RetainerId type="String" value="Scout"/>
-			<UnitNum value="50" type="Int"/>
-			<Level type="Int" value="4"/>
+			<UnitNum value="20" type="Int"/>
+			<Level type="Int" value="20"/>
 			<Exp type="Int" value="0"/>
 			<SkillPointAction type="Int" value="0"/>
 			<SkillPointPassive type="Int" value="0"/>
@@ -709,6 +847,62 @@
 			<UnitMat type="String" value="Puppet"/>
 			<MoveSound type="String" value="Olivia.ogg"/>
 		</Kareena>
+		<Welvss>
+			<Type type="Int" value="1"/>
+			<SquadType type="Int" value="6"/>
+			<SoilderId type="String" value="Magician"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="Staves3"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="LightArmor5"/>
+			<SkillTable>
+				<Faith type="Int" value="0"/>
+				<StrengthenSprite type="Int" value="0"/>
+				<Heal type="Int" value="1"/>
+				<MagicShield type="Int" value="1"/>
+				<Pray type="Int" value="1"/>
+			</SkillTable>
+			<LeaderId type="String" value="Welvss"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="20" type="Int"/>
+			<Level type="Int" value="20"/>
+			<Exp type="Int" value="0"/>
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="Puppet.mesh"/>
+			<UnitMat type="String" value="Puppet"/>
+			<MoveSound type="String" value="Olivia.ogg"/>
+		</Welvss>
+		<Warmage>
+			<Type type="Int" value="1"/>
+			<SquadType type="Int" value="5"/>
+			<SoilderId type="String" value="Magician"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="Staves3"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="LightArmor4"/>
+			<SkillTable>
+				<Faith type="Int" value="0"/>
+				<StrengthenSprite type="Int" value="0"/>
+				<Heal type="Int" value="1"/>
+				<MagicShield type="Int" value="1"/>
+				<Pray type="Int" value="1"/>
+			</SkillTable>
+			<LeaderId type="String" value="Warmage"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="20" type="Int"/>
+			<Level type="Int" value="4"/>
+			<Exp type="Int" value="0"/>
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="Puppet.mesh"/>
+			<UnitMat type="String" value="Puppet"/>
+			<MoveSound type="String" value="Olivia.ogg"/>
+		</Warmage>
 		<Pirate>
 			<Type type="Int" value="0"/>
 			<SquadType type="Int" value="1"/>
@@ -907,7 +1101,7 @@
 		</FNothLightBow>
 		<James>
 			<Type type="Int" value="0"/>
-			<SquadType type="Int" value="0"/>
+			<SquadType type="Int" value="2"/>
 			<SoilderId type="String" value="WinfredSoilder"/>
 			<HorseId type="String" value="HeavyHorse4"/>
 			<PweaponId type="String" value="ShortSword4"/>
@@ -1017,6 +1211,66 @@
 			<UnitMat type="String" value="LightInf"/>
 			<MoveSound type="String" value="LightInf.ogg"/>
 		</WinfredLightBow>
+		<WinfredHeavyCavalry>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="2"/>
+			<SoilderId type="String" value="WinfredSoilder"/>
+			<HorseId type="String" value="HeavyHorse3"/>
+			<PweaponId type="String" value="ShortSpear4"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="Shield4"/>
+			<ArmorId type="String" value="HeavyArmor3"/>
+			<SkillTable>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<ShortSpear type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="WinfredHeavyCavalry"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int"/>
+			<Level type="Int" value="3"/>
+			<Exp type="Int" value="0"/>
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="HeavyCavalry.mesh"/>
+			<UnitMat type="String" value="HeavyCavalry"/>
+			<MoveSound type="String" value="HeavyCavalry.ogg"/>
+		</WinfredHeavyCavalry>
+		<WinfredLightCavalry>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="3"/>
+			<SoilderId type="String" value="WinfredSoilder"/>
+			<HorseId type="String" value="LightHorse3"/>
+			<PweaponId type="String" value="ShortSpear3"/>
+			<SweaponId type="String" value="Bow3"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="LightArmor3"/>
+			<SkillTable>
+				<RangedAttackTrain1 type="Int" value="0"/>
+				<RangedAttackTrain2 type="Int" value="0"/>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<SuppressAttack type="Int" value="1"/>
+				<OneHandSword type="Int" value="2"/>
+				<Bow type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="WinfredLightCavalry"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int"/>
+			<Level type="Int" value="4"/>
+			<Exp type="Int" value="0"/>
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="LightCavalry.mesh"/>
+			<UnitMat type="String" value="LightCavalry"/>
+			<MoveSound type="String" value="LightCavalry.ogg"/>
+		</WinfredLightCavalry>
 		<NothLightBow>
 			<Type type="Int" value="0"/>
 			<SquadType type="Int" value="1"/>
@@ -1157,6 +1411,90 @@
 			<UnitMat type="String" value="HeavyInf"/>
 			<MoveSound type="String" value="HeavyInf.ogg"/>
 		</Nothfate>
+		<DarkKnight>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="2"/>
+			<SoilderId type="String" value="DarkKnight"/>
+			<HorseId type="String" value="HeavyHorse5"/>
+			<PweaponId type="String" value="ShortAxe5"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="Shield5"/>
+			<ArmorId type="String" value="HeavyArmor5"/>
+			<SkillTable>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<ShortSpear type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="DarkKnight"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int"/>
+			<Level type="Int" value="20"/>
+			<Exp type="Int" value="0"/>
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="HeavyCavalry.mesh"/>
+			<UnitMat type="String" value="HeavyCavalry."/>
+			<MoveSound type="String" value="HeavyCavalry.ogg"/>
+		</DarkKnight>
+		<Datura>
+			<Type type="Int" value="0"/>
+			<SquadType type="Int" value="2"/>
+			<SoilderId type="String" value="DarkKnight"/>
+			<HorseId type="String" value="HeavyHorse5"/>
+			<PweaponId type="String" value="ShortSword5"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="Shield5"/>
+			<ArmorId type="String" value="HeavyArmor5"/>
+			<SkillTable>
+				<DefenceTrain1 type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<ShortSpear type="Int" value="2"/>
+				<Shield type="Int" value="2"/>
+				<LightArmor type="Int" value="2"/>
+			</SkillTable>
+			<LeaderId type="String" value="Datura"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="50" type="Int"/>
+			<Level type="Int" value="20"/>
+			<Exp type="Int" value="0"/>
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="HeavyCavalry.mesh"/>
+			<UnitMat type="String" value="HeavyCavalry."/>
+			<MoveSound type="String" value="HeavyCavalry.ogg"/>
+		</Datura>
+		<Syrin>
+			<Type type="Int" value="1"/>
+			<SquadType type="Int" value="6"/>
+			<SoilderId type="String" value="Magician"/>
+			<HorseId type="String" value="none"/>
+			<PweaponId type="String" value="Staves3"/>
+			<SweaponId type="String" value="none"/>
+			<ShieldId type="String" value="none"/>
+			<ArmorId type="String" value="LightArmor5"/>
+			<SkillTable>
+				<Faith type="Int" value="0"/>
+				<StrengthenSprite type="Int" value="0"/>
+				<Heal type="Int" value="1"/>
+				<MagicShield type="Int" value="1"/>
+				<Pray type="Int" value="1"/>
+			</SkillTable>
+			<LeaderId type="String" value="Syrin"/>
+			<RetainerId type="String" value="Scout"/>
+			<UnitNum value="20" type="Int"/>
+			<Level type="Int" value="20"/>
+			<Exp type="Int" value="0"/>
+			<SkillPointAction type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointEquip type="Int" value="0"/>
+			<UnitMesh type="String" value="Puppet.mesh"/>
+			<UnitMat type="String" value="Puppet"/>
+			<MoveSound type="String" value="Olivia.ogg"/>
+		</Syrin>
 	</SquadData>
 	<SoilderData>
 		<WingsSoilder>
@@ -1337,9 +1675,9 @@
 			<Randomness type="Int" value="20"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
-				<Attack type="Float" value="5.0"/>
+				<Attack type="Float" value="7.0"/>
 				<RangedAttack type="Float" value="1.0"/>
-				<Defence type="Float" value="5.0"/>
+				<Defence type="Float" value="7.0"/>
 				<Formation type="Float" value="2.0"/>
 				<Initiative type="Float" value="6.0"/>
 				<ActionPoint type="Float" value="9.0"/>
