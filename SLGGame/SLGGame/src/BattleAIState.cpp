@@ -12,6 +12,7 @@
 #include "DecisionMap.h"
 #include "SquadRoleFactor.h"
 #include "SquadMoveFactor.h"
+#include "SquadSkillFactor.h"
 
 BattleAIState::BattleAIState(int team)
 :mTeam(team),mState(AISTATE_INIT)
@@ -150,9 +151,9 @@ bool BattleAIState::CreateMap()
 		{
 			int px,py;
 			mapdata->getCrood(ite->first, px, py);
-			for(int x = px - 2; x <= px + 2; x++)
+			for(int x = px - 1; x <= px + 1; x++)
 			{
-				for(int y = py - 2; y <= py + 2; y++)
+				for(int y = py - 1; y <= py + 1; y++)
 				{
 					if(!mapdata->getPassable(x, y, -1))
 					{
@@ -177,9 +178,9 @@ bool BattleAIState::CreateMap()
 			int px,py;
 			mapdata->getCrood(ite->first, px, py);
 			bool added = false;
-			for(int x = (px - 2 < 0)?0:px - 2; x <= ((px + 2 > mapsize - 1)?(mapsize - 1):(px + 2)); x++)
+			for(int x = (px - 1 < 0)?0:px - 1; x <= ((px + 1 > mapsize - 1)?(mapsize - 1):(px + 1)); x++)
 			{
-				for(int y = (py - 2 < 0)?0:py - 2; y <= ((py + 2 > mapsize - 1)?(mapsize - 1):(py + 2)); y++)
+				for(int y = (py - 1 < 0)?0:py - 1; y <= ((py + 1 > mapsize - 1)?(mapsize - 1):(py + 1)); y++)
 				{
 					std::map<int, bool>::iterator ite2 = passablemap.find(mapdata->getGridId(x, y));
 					if(ite2->second)
@@ -693,8 +694,8 @@ void BattleAIState::saveOtherSquadGroup()
 }
 //DecisionMapFactors---------------------------------------------
 //OSGStrengthFactor
-BattleAIState::OSGStrengthFactor::OSGStrengthFactor(float scale, std::map<int, OtherSquadGroupInfo>* othersquadgroup)
-:DecisionMapFactor(scale),mOtherSquadGroup(othersquadgroup),mMaxStrength(1.0f)
+BattleAIState::OSGStrengthFactor::OSGStrengthFactor(std::map<int, OtherSquadGroupInfo>* othersquadgroup)
+:mOtherSquadGroup(othersquadgroup),mMaxStrength(1.0f)
 {
 	std::map<int, OtherSquadGroupInfo>::iterator ite = mOtherSquadGroup->begin();
 	for( ; ite != mOtherSquadGroup->end(); ite++)
@@ -706,78 +707,66 @@ BattleAIState::OSGStrengthFactor::OSGStrengthFactor(float scale, std::map<int, O
 	}
 }
 
-void BattleAIState::OSGStrengthFactor::calcDecision(std::vector<DecisionInfo<int>> &decisionVec)
+float BattleAIState::OSGStrengthFactor::calcDecision(int &decision)
 {
-	std::vector<DecisionInfo<int>>::iterator decite = decisionVec.begin();
-	std::map<int, OtherSquadGroupInfo>::iterator osgite = mOtherSquadGroup->end();
-	for( ; decite != decisionVec.end(); decite++)
+	std::map<int, OtherSquadGroupInfo>::iterator osgite = mOtherSquadGroup->find(decision);
+	if(osgite != mOtherSquadGroup->end())
 	{
-		osgite = mOtherSquadGroup->find((*decite).decision);
-		if(osgite != mOtherSquadGroup->end())
+		float strength = osgite->second.getSquadGroupStrength();
+		if(strength > 0.0f)
 		{
-			float strength = osgite->second.getSquadGroupStrength();
-			if(strength > 0.0f)
-			{
-				(*decite).possibility += strength / mMaxStrength * 100.0f * mScale;
-			}
+			return strength / mMaxStrength * 100.0f;
 		}
 	}
+	return 0.0f;
 }
 //OSGCloseToAreaFactor
-BattleAIState::OSGCloseToAreaFactor::OSGCloseToAreaFactor(float scale, std::map<int, OtherSquadGroupInfo>* othersquadgroup, Area* area)
-:DecisionMapFactor(scale),mOtherSquadGroup(othersquadgroup),mArea(area)
+BattleAIState::OSGCloseToAreaFactor::OSGCloseToAreaFactor(std::map<int, OtherSquadGroupInfo>* othersquadgroup, Area* area)
+:mOtherSquadGroup(othersquadgroup),mArea(area)
 {
 
 }
 
-void BattleAIState::OSGCloseToAreaFactor::calcDecision(std::vector<DecisionInfo<int>> &decisionVec)
+float BattleAIState::OSGCloseToAreaFactor::calcDecision(int &decision)
 {
-	std::vector<DecisionInfo<int>>::iterator decite = decisionVec.begin();
-	std::map<int, OtherSquadGroupInfo>::iterator osgite = mOtherSquadGroup->end();
-	for( ; decite != decisionVec.end(); decite++)
+	std::map<int, OtherSquadGroupInfo>::iterator osgite = mOtherSquadGroup->find(decision);
+	if(osgite != mOtherSquadGroup->end())
 	{
-		osgite = mOtherSquadGroup->find((*decite).decision);
-		if(osgite != mOtherSquadGroup->end())
+		float strength = 100.0f;
+		Crood crood1 = mArea->getCenter();
+		int rad1 = mArea->getRadius();
+		Crood crood2 = osgite->second.mArea.getCenter();
+		int rad2 = osgite->second.mArea.getRadius();
+		float rad = sqrt(pow(float(crood1.mX - crood2.mX), 2) + pow(float(crood1.mY - crood2.mY), 2));
+		if(rad -  rad1 - rad2 > 0.0f)
 		{
-			float strength = 100.0f;
-			Crood crood1 = mArea->getCenter();
-			int rad1 = mArea->getRadius();
-			Crood crood2 = osgite->second.mArea.getCenter();
-			int rad2 = osgite->second.mArea.getRadius();
-			float rad = sqrt(pow(float(crood1.mX - crood2.mX), 2) + pow(float(crood1.mY - crood2.mY), 2));
-			if(rad -  rad1 - rad2 > 0.0f)
-			{
-				strength -= 10.0f * (rad -  rad1 - rad2);
-			}
-			(*decite).possibility += strength * mScale;
+			strength -= 10.0f * (rad -  rad1 - rad2);
 		}
+		return strength;
 	}
+	return 0.0f;
 }
 
 //OSGCloseToAreaFactor
-BattleAIState::OSGMoveToAreaFactor::OSGMoveToAreaFactor(float scale, std::map<int, OtherSquadGroupInfo>* othersquadgroup, Area* area)
-:DecisionMapFactor(scale),mOtherSquadGroup(othersquadgroup),mArea(area)
+BattleAIState::OSGMoveToAreaFactor::OSGMoveToAreaFactor(std::map<int, OtherSquadGroupInfo>* othersquadgroup, Area* area)
+:mOtherSquadGroup(othersquadgroup),mArea(area)
 {
 
 }
 
-void BattleAIState::OSGMoveToAreaFactor::calcDecision(std::vector<DecisionInfo<int>> &decisionVec)
+float BattleAIState::OSGMoveToAreaFactor::calcDecision(int &decision)
 {
-	std::vector<DecisionInfo<int>>::iterator decite = decisionVec.begin();
-	std::map<int, OtherSquadGroupInfo>::iterator osgite = mOtherSquadGroup->end();
-	for( ; decite != decisionVec.end(); decite++)
+	std::map<int, OtherSquadGroupInfo>::iterator osgite = mOtherSquadGroup->find(decision);
+	if(osgite != mOtherSquadGroup->end())
 	{
-		osgite = mOtherSquadGroup->find((*decite).decision);
-		if(osgite != mOtherSquadGroup->end())
-		{
-			Ogre::Vector2 vec1(osgite->second.mCenterCrood.mX - osgite->second.mLastCenterCrood.mX,
-				osgite->second.mCenterCrood.mY - osgite->second.mLastCenterCrood.mY);
-			Ogre::Vector2 vec2(mArea->getCenter().mX - osgite->second.mCenterCrood.mX,
-				mArea->getCenter().mY - osgite->second.mCenterCrood.mY);
-			float strength = vec1.dotProduct(vec2) * 100.0f;
-			(*decite).possibility += strength * mScale;
-		}
+		Ogre::Vector2 vec1(osgite->second.mCenterCrood.mX - osgite->second.mLastCenterCrood.mX,
+			osgite->second.mCenterCrood.mY - osgite->second.mLastCenterCrood.mY);
+		Ogre::Vector2 vec2(mArea->getCenter().mX - osgite->second.mCenterCrood.mX,
+			mArea->getCenter().mY - osgite->second.mCenterCrood.mY);
+		float strength = vec1.dotProduct(vec2) * 100.0f;
+		return strength;
 	}
+	return 0.0f;
 }
 
 
@@ -838,7 +827,26 @@ void BattleAIState::SquadAI::updateMove()
 		return;
 	}
 	DecisionMap<Crood> targetdecision(croodlist);
-	targetdecision.addFactor(new SquadMoveClosetoPathFactor(1.0f, &moveareaold, &fullpath));
+	/*
+	switch(mTargetType)
+	{
+	case SGM_WAIT:
+		break;
+	case SGM_MOVE:
+		break;
+	case SGM_RALLY:
+		break;
+	case SGM_DEFEND:
+		break;
+	case SGM_ATTACK:
+		break;
+	case SGM_SUPPORT_RANGE:
+		break;
+	case SGM_SUPPORT_CLOSE:
+		break;
+	}
+	*/
+	targetdecision.addFactor(new SquadMoveClosetoPathFactor(&moveareaold, &fullpath), 1.0f);
 	targetdecision.calcDecision();
 	Crood target = targetdecision.getHighest();
 
@@ -862,11 +870,74 @@ void BattleAIState::SquadAI::updateMove()
 }
 void BattleAIState::SquadAI::updateFormation()
 {
-
 	mState = SAS_SKILL;
 }
 void BattleAIState::SquadAI::updateSkill()
 {
+	BattleSquadManager* squadmgr = BattleSquadManager::getSingletonPtr();
+	std::vector<BattleSquad::ActiveSkillInfo> skilllist = mSquad->GetActiveSkillList();
+	std::vector<BattleSquad::ActiveSkillInfo>::iterator ite = skilllist.begin();
+	std::vector<UseSkillInfo> useskillvec;
+	UseSkillInfo useskill;
+	for( ; ite != skilllist.end(); ite++)
+	{
+		if((*ite).available == false)
+			continue;
+		if((*ite).skillid == "move" || 
+			(*ite).skillid == "turn" || 
+			(*ite).skillid == "looseformation" ||
+			(*ite).skillid == "lineformation" ||
+			(*ite).skillid == "circularformation")
+		{
+			continue;
+		}
+		std::vector<BattleSquadManager::SkillNode> skillnodes = squadmgr->getSkillArea(mSquad, (*ite).skillid);
+		std::vector<BattleSquadManager::SkillNode>::iterator skillcroodite = skillnodes.begin();
+		for(; skillcroodite != skillnodes.end(); skillcroodite++)
+		{
+			if((*skillcroodite).validTarget)
+			{
+				useskill.skillid = (*ite).skillid;
+				useskill.targetCrood.mX = (*skillcroodite).x;
+				useskill.targetCrood.mY = (*skillcroodite).y;
+				useskillvec.push_back(useskill);
+			}
+		}
+	}
+	if(useskillvec.size() > 0)
+	{
+		useskill.skillid = "none";
+		useskillvec.push_back(useskill);
+		DecisionMap<UseSkillInfo> skilldecision(useskillvec);
+		/*
+		switch(mTargetType)
+		{
+		case SGM_WAIT:
+			break;
+		case SGM_MOVE:
+			break;
+		case SGM_RALLY:
+			break;
+		case SGM_DEFEND:
+			break;
+		case SGM_ATTACK:
+			break;
+		case SGM_SUPPORT_RANGE:
+			break;
+		case SGM_SUPPORT_CLOSE:
+			break;
+		}
+		*/
+		skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 1.0f);
+		skilldecision.calcDecision();
+		useskill = skilldecision.getHighest();
+		if(useskill.skillid != "none")
+		{
+			unsigned int evt = 0;
+			squadmgr->useSkill(mSquad, useskill.skillid, useskill.targetCrood.mX, useskill.targetCrood.mY, evt);
+			return;
+		}
+	}
 	mState = SAS_DIRECTION;
 }
 void BattleAIState::SquadAI::updateDirection()
@@ -1121,12 +1192,17 @@ BattleAIState::DefendCommander::DefendCommander(std::string path, std::vector<st
 void BattleAIState::DefendCommander::analyzeMission(OtherSquadGroupInfo& othersquadgroup, 
 			std::vector<OtherSquadGroupMission>& missionlist)
 {
+	std::map<int, OtherSquadGroupInfo> temposgmap;
+	int decision = 1;
+	temposgmap.insert(std::make_pair(decision, othersquadgroup));
+	OSGCloseToAreaFactor osgclosetoarea(&temposgmap, &mMissionArea);
+	OSGMoveToAreaFactor osgmovetoarea(&temposgmap, &mMissionArea);
 	if(othersquadgroup.mIsEnemy)
 	{
 		OtherSquadGroupMission osgm;
 		osgm.missionArea = mMissionAreaId;
 		osgm.missionType = OSGM_ATTACK;
-		osgm.possibility = 50.0f;
+		osgm.possibility = osgclosetoarea.calcDecision(decision) * 0.5f + osgmovetoarea.calcDecision(decision) * 0.5f;
 		std::vector<OtherSquadGroupMission>::iterator ite = missionlist.begin();
 		for(; ite != missionlist.end(); ite++)
 		{
@@ -1143,7 +1219,7 @@ void BattleAIState::DefendCommander::analyzeMission(OtherSquadGroupInfo& othersq
 			missionlist.push_back(osgm);
 		}
 		osgm.missionType = OSGM_MOVE_ATTACK;
-		osgm.possibility = 25.0f;
+		osgm.possibility = osgclosetoarea.calcDecision(decision) * 0.25f + osgmovetoarea.calcDecision(decision) * 0.75f;
 		ite = missionlist.begin();
 		for(; ite != missionlist.end(); ite++)
 		{
@@ -1165,7 +1241,7 @@ void BattleAIState::DefendCommander::analyzeMission(OtherSquadGroupInfo& othersq
 		OtherSquadGroupMission osgm;
 		osgm.missionArea = mMissionAreaId;
 		osgm.missionType = OSGM_DEFEND;
-		osgm.possibility = 50.0f;
+		osgm.possibility = osgclosetoarea.calcDecision(decision) * 0.5f + osgmovetoarea.calcDecision(decision) * 0.5f;
 		std::vector<OtherSquadGroupMission>::iterator ite = missionlist.begin();
 		for(; ite != missionlist.end(); ite++)
 		{
@@ -1182,7 +1258,7 @@ void BattleAIState::DefendCommander::analyzeMission(OtherSquadGroupInfo& othersq
 			missionlist.push_back(osgm);
 		}
 		osgm.missionType = OSGM_MOVE_DEFEND;
-		osgm.possibility = 25.0f;
+		osgm.possibility = osgclosetoarea.calcDecision(decision) * 0.25f + osgmovetoarea.calcDecision(decision) * 0.75f;
 		ite = missionlist.begin();
 		for(; ite != missionlist.end(); ite++)
 		{
@@ -1253,6 +1329,10 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 	osgite = othersquadgroup.begin();
 	for( ; osgite != othersquadgroup.end(); osgite++)
 	{
+		if(!osgite->second.mIsEnemy)
+		{
+			continue;
+		}
 		if(osgite->second.getSquadGroupStrength() < 0.01f)
 		{
 			continue;
@@ -1284,9 +1364,9 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 	}
 
 	DecisionMap<int> threatendecision(osgvec);
-	threatendecision.addFactor(new OSGStrengthFactor(0.25f, &othersquadgroup));
-	threatendecision.addFactor(new OSGMoveToAreaFactor(0.25f, &othersquadgroup, &mMissionArea));
-	threatendecision.addFactor(new OSGCloseToAreaFactor(0.5f, &othersquadgroup, &mMissionArea));
+	threatendecision.addFactor(new OSGStrengthFactor(&othersquadgroup), 0.25f);
+	threatendecision.addFactor(new OSGMoveToAreaFactor(&othersquadgroup, &mMissionArea), 0.25f);
+	threatendecision.addFactor(new OSGCloseToAreaFactor(&othersquadgroup, &mMissionArea), 0.5f);
 	threatendecision.calcDecision();
 	osgvec = threatendecision.getSortedDecisions();
 
@@ -1374,7 +1454,7 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 			if(freeSquads.size() > 0 && curmainstrength < threatenstrength * 0.5f)
 			{
 				DecisionMap<BattleSquad*> formgroupdecision(freeSquads);
-				formgroupdecision.addFactor(new SquadRolebyTypeFactor(1.0f, ROLETYPE_MAINFORCE));
+				formgroupdecision.addFactor(new SquadRolebyTypeFactor(ROLETYPE_MAINFORCE), 1.0f);
 				formgroupdecision.calcDecision();
 				std::vector<BattleSquad*> choosesquads = formgroupdecision.getHigherThan(30.0f);
 				squadsite = choosesquads.begin();
@@ -1409,7 +1489,7 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 			if(freeSquads.size() > 0 && currangestrength < threatenstrength * 0.4f)
 			{
 				DecisionMap<BattleSquad*> formgroupdecision(freeSquads);
-				formgroupdecision.addFactor(new SquadRolebyTypeFactor(1.0f, ROLETYPE_SUPPORT_RANGE));
+				formgroupdecision.addFactor(new SquadRolebyTypeFactor(ROLETYPE_SUPPORT_RANGE), 1.0f);
 				formgroupdecision.calcDecision();
 				std::vector<BattleSquad*> choosesquads = formgroupdecision.getHigherThan(30.0f);
 				squadsite = choosesquads.begin();

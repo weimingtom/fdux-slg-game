@@ -43,6 +43,7 @@ void AreaGrap::creatArea(std::string mat)
 	float startpos;
 	terrain->getWorldCoords(0,0,startpos,startpos);
 	startpos -= TILESIZE /2.0f;
+	mAreaObj->setDynamic(true);
 	mAreaObj->begin(mat);
 	for(unsigned int n = 0; n < mCoordList.size() / 2 ; n++)
 	{
@@ -82,15 +83,84 @@ void AreaGrap::creatArea(std::string mat)
 	mAreaObj->end();
 	mAreaObj->setVisibilityFlags(VISMASK_TRANSPARENT);
 	mNode->attachObject(mAreaObj);
+	mMaxCroodNum = mCoordList.size() / 2;
 }
 
 void AreaGrap::changeArea(std::vector<int> coordlist)
 {
-	mNode->detachObject(mAreaObj);
-	Core::getSingleton().mSceneMgr->destroyManualObject(mAreaObj);
-	Core::getSingleton().mSceneMgr->destroySceneNode(mNode);
+	float startpos;
+	Terrain* terrain = Terrain::getSingletonPtr();
+	terrain->getWorldCoords(0,0,startpos,startpos);
+	startpos -= TILESIZE /2.0f;
 	mCoordList = coordlist;
-	creatArea(mMat);
+	if(coordlist.size() / 2 <= mMaxCroodNum)
+	{
+		mAreaObj->beginUpdate(0);
+		unsigned int n = 0;
+		for(; n < coordlist.size() / 2 ; n++)
+		{
+			int x = mCoordList[n * 2];
+			int y = mCoordList[n * 2 + 1];
+			float xx = startpos + x * TILESIZE;
+			float yy = startpos + y * TILESIZE;
+			mAreaObj->position(xx, terrain->getHeight(xx,yy) + mHeight, yy);
+			xx = startpos + (x+1) * TILESIZE;
+			yy = startpos + (y+1) * TILESIZE;
+			mAreaObj->position(xx, terrain->getHeight(xx,yy) + mHeight, yy);
+			xx = startpos + (x+1) * TILESIZE;
+			yy = startpos + y * TILESIZE;
+			mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);
+			xx = startpos + (x+1) * TILESIZE;
+			yy = startpos + (y+1) * TILESIZE;
+			mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);
+			xx = startpos + x * TILESIZE;
+			yy = startpos + y * TILESIZE;
+			mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);
+			xx = startpos + x * TILESIZE;
+			yy = startpos + (y+1) * TILESIZE;
+			mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);	
+		}
+		for(; n < mMaxCroodNum ; n++)
+		{
+			mAreaObj->position(startpos, terrain->getHeight(startpos,startpos) + mHeight, startpos);
+			mAreaObj->position(startpos, terrain->getHeight(startpos,startpos) + mHeight, startpos);
+			mAreaObj->position(startpos, terrain->getHeight(startpos, startpos) + mHeight, startpos);
+			mAreaObj->position(startpos, terrain->getHeight(startpos, startpos) + mHeight, startpos);
+			mAreaObj->position(startpos, terrain->getHeight(startpos, startpos) + mHeight, startpos);
+			mAreaObj->position(startpos, terrain->getHeight(startpos, startpos) + mHeight, startpos);	
+		}
+		mAreaObj->end();
+	}
+	else
+	{
+		mMaxCroodNum = mCoordList.size() / 2;
+		mAreaObj->beginUpdate(0);
+		mAreaObj->estimateVertexCount(mMaxCroodNum * 6);
+		for(unsigned int n = 0; n < mCoordList.size() / 2 ; n++)
+		{
+			int x = mCoordList[n * 2];
+			int y = mCoordList[n * 2 + 1];
+			float xx = startpos + x * TILESIZE;
+			float yy = startpos + y * TILESIZE;
+			mAreaObj->position(xx, terrain->getHeight(xx,yy) + mHeight, yy);
+			xx = startpos + (x+1) * TILESIZE;
+			yy = startpos + (y+1) * TILESIZE;
+			mAreaObj->position(xx, terrain->getHeight(xx,yy) + mHeight, yy);
+			xx = startpos + (x+1) * TILESIZE;
+			yy = startpos + y * TILESIZE;
+			mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);
+			xx = startpos + (x+1) * TILESIZE;
+			yy = startpos + (y+1) * TILESIZE;
+			mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);
+			xx = startpos + x * TILESIZE;
+			yy = startpos + y * TILESIZE;
+			mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);
+			xx = startpos + x * TILESIZE;
+			yy = startpos + (y+1) * TILESIZE;
+			mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);	
+		}
+		mAreaObj->end();
+	}
 }
 
 bool AreaGrap::inArea(int x, int y)

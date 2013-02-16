@@ -11,14 +11,19 @@ public:
 	DecisionMap(std::vector<T>& decisionVec);
 	~DecisionMap();
 
-	void addFactor(DecisionMapFactor<T> *factor);
+	void addFactor(DecisionMapFactor<T> *factor, float scale);
 	void calcDecision();
 
 	T getHighest();
 	std::vector<T> getHigherThan(float possibility);
 	std::vector<T> getSortedDecisions();
 private:
-	std::vector<DecisionMapFactor<T>*> mFactorVec;
+	struct FactorInfo
+	{
+		DecisionMapFactor<T>* factor;
+		float scale;
+	};
+	std::vector<FactorInfo> mFactorVec;
 
 	std::vector<DecisionInfo<T>> mDecisionVec;
 };
@@ -39,18 +44,21 @@ DecisionMap<T>::DecisionMap(std::vector<T>& decisionVec)
 template <typename T>
 DecisionMap<T>::~DecisionMap()
 {
-	std::vector<DecisionMapFactor<T>*>::iterator ite = mFactorVec.begin();
+	std::vector<FactorInfo>::iterator ite = mFactorVec.begin();
 	for( ; ite != mFactorVec.end(); ite++)
 	{
-		delete (*ite);
+		delete (*ite).factor;
 	}
 	mFactorVec.clear();
 }
 
 template <typename T>
-void DecisionMap<T>::addFactor(DecisionMapFactor<T> *factor)
+void DecisionMap<T>::addFactor(DecisionMapFactor<T> *factor, float scale)
 {
-	mFactorVec.push_back(factor);
+	FactorInfo factorinfo;
+	factorinfo.factor = factor;
+	factorinfo.scale = scale;
+	mFactorVec.push_back(factorinfo);
 }
 
 template <typename T>
@@ -62,10 +70,14 @@ bool DGreater(DecisionInfo<T> elem1, DecisionInfo<T> elem2)
 template <typename T>
 void DecisionMap<T>::calcDecision()
 {
-	std::vector<DecisionMapFactor<T>*>::iterator ite = mFactorVec.begin();
+	std::vector<FactorInfo>::iterator ite = mFactorVec.begin();
+	std::vector<DecisionInfo<T>>::iterator ite1 = mDecisionVec.begin();
 	for( ; ite != mFactorVec.end(); ite++)
 	{
-		(*ite)->calcDecision(mDecisionVec);
+		for(ite1 = mDecisionVec.begin() ; ite1 != mDecisionVec.end(); ite1++)
+		{
+			(*ite1).possibility += (*ite).factor->calcDecision((*ite1).decision) * (*ite).scale;
+		}
 	}
 	std::sort(mDecisionVec.begin(), mDecisionVec.end(), DGreater<T>);
 }

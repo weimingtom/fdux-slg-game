@@ -10,11 +10,10 @@ class BattleSquad;
 class SquadMoveClosetoPathFactor: public DecisionMapFactor<Crood>
 {
 public:
-	SquadMoveClosetoPathFactor(float scale,
-		std::map<int, BattleSquadManager::MoveNode>* area,
+	SquadMoveClosetoPathFactor(std::map<int, BattleSquadManager::MoveNode>* area,
 		std::map<int, BattleSquadManager::MoveNode>* path);
 
-	virtual void calcDecision(std::vector<DecisionInfo<Crood>> &decisionVec);
+	virtual float calcDecision(Crood &decision);
 private:
 	float mClose;
 	float mHighAP;

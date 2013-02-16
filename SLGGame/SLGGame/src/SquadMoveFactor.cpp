@@ -4,10 +4,9 @@
 #include "MapDataManager.h"
 
 //SquadMoveClosetoPathFactor
-SquadMoveClosetoPathFactor::SquadMoveClosetoPathFactor(float scale,
-													   std::map<int, BattleSquadManager::MoveNode>* area,
+SquadMoveClosetoPathFactor::SquadMoveClosetoPathFactor(std::map<int, BattleSquadManager::MoveNode>* area,
 													   std::map<int, BattleSquadManager::MoveNode>* path)
-:DecisionMapFactor(scale), mArea(area), mPath(path),mClose(0.0f),mHighAP(0.0f)
+:mArea(area), mPath(path),mClose(0.0f),mHighAP(0.0f)
 {
 	std::map<int, BattleSquadManager::MoveNode>::iterator ite = path->begin();
 	for( ; ite!= mPath->end(); ite++ )
@@ -22,32 +21,28 @@ SquadMoveClosetoPathFactor::SquadMoveClosetoPathFactor(float scale,
 	}
 }
 
-void SquadMoveClosetoPathFactor::calcDecision(std::vector<DecisionInfo<Crood>> &decisionVec)
+float SquadMoveClosetoPathFactor::calcDecision(Crood &decision)
 {
 	MapDataManager* mapdatamanager = MapDataManager::getSingletonPtr();
-	std::vector<DecisionInfo<Crood>>::iterator decite = decisionVec.begin();
-	std::map<int, BattleSquadManager::MoveNode>::iterator ite = mPath->end();
-	for( ; decite != decisionVec.end(); decite++)
+
+	float possibility = 0.0f;
+	int croodid = mapdatamanager->getGridId(decision.mX, decision.mY);
+	std::map<int, BattleSquadManager::MoveNode>::iterator ite = mPath->find(croodid);
+	if(ite != mPath->end())
 	{
-		float possibility = 0.0f;
-		int croodid = mapdatamanager->getGridId((*decite).decision.mX, (*decite).decision.mY);
-		ite = mPath->find(croodid);
-		if(ite != mPath->end())
+		possibility = 100.0f - 10.0f * (mClose - ite->second.apleft); 
+	}
+	else
+	{
+		ite = mArea->find(croodid);
+		if(ite != mArea->end())
 		{
-			possibility = 100.0f - 10.0f * (mClose - ite->second.apleft); 
+			possibility = 0.0f - 5.0f * (mHighAP - ite->second.apleft);
 		}
 		else
 		{
-			ite = mArea->find(croodid);
-			if(ite != mArea->end())
-			{
-				possibility = 0.0f - 5.0f * (mHighAP - ite->second.apleft);
-			}
-			else
-			{
-				possibility = -100.0f;
-			}
+			possibility = -100.0f;
 		}
-		(*decite).possibility += possibility * mScale;
 	}
+	return possibility;
 }
