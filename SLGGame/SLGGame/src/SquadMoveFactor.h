@@ -17,6 +17,7 @@ public:
 	virtual void calcDecision(std::vector<DecisionInfo<Crood>> &decisionVec);
 private:
 	float mClose;
+	float mHighAP;
 	std::map<int, BattleSquadManager::MoveNode>* mArea;
 	std::map<int, BattleSquadManager::MoveNode>* mPath;
 };

@@ -3,7 +3,7 @@ function initmap()
 	MapLib.ActiveMapTrigger(trigerid);
 	ScriptCommonLib.SetString("finishdeploytriger",trigerid);
 	
-	ScriptCommonLib.PlayMusic("battle1.mp3");
+	ScriptCommonLib.PlayMusic("battle1.ogg");
 	MapLib.SetCamera(0,4);
 end
 

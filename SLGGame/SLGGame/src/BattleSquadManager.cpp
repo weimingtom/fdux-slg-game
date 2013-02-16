@@ -312,9 +312,7 @@ std::map<int, BattleSquadManager::MoveNode> BattleSquadManager::getFullPath(Batt
 		int y[4] = {ite->second.y, ite->second.y, ite->second.y - 1, ite->second.y + 1};
 		for(unsigned int n = 0; n < 4; n++)
 		{
-			if(mapdatamanager->getPassable(x[n], y[n], -1) && 
-				(getBattleSquadAt(x[n], y[n], squad->getFaction(), true) == NULL||
-				getBattleSquadAt(x[n], y[n], squad->getFaction(), true) == squad))
+			if(mapdatamanager->getPassable(x[n], y[n], -1))
 			{
 				std::map<int, MoveNode>::iterator ite1 = movrarea.find(mapdatamanager->getGridId(x[n], y[n]));
 				if(ite1 == movrarea.end())
