@@ -5,7 +5,7 @@
     <Team3 TeamType="none" TeamFaction="none" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
-<MapScript>mapscript.lua</MapScript>
+<MapScript>mapscript20.lua</MapScript>
 <MapInfo>mapinfo1</MapInfo>
 <MapLoadBG>map1.png</MapLoadBG>
 <MapSize>15</MapSize>
@@ -51,7 +51,7 @@
     <ForestLow2_3 Type="ForestLow" GridX="3" GridY="10" Mesh="ForestLow2.mesh" Direction="0" />
     <ForestLow2_4 Type="ForestLow" GridX="3" GridY="9" Mesh="ForestLow2.mesh" Direction="0" />
     <ForestLow2_5 Type="ForestLow" GridX="4" GridY="10" Mesh="ForestLow2.mesh" Direction="0" />
-    <ForestLow2_6 Type="ForestLow" GridX="5" GridY="10" Mesh="ForestLow2.mesh" Direction="0" />
+    <ForestLow2_6 Type="ForestLow" GridX="5" GridY="12" Mesh="ForestLow2.mesh" Direction="0" />
     <ForestLow2_7 Type="ForestLow" GridX="4" GridY="11" Mesh="ForestLow2.mesh" Direction="0" />
     <ForestLow2_8 Type="ForestLow" GridX="4" GridY="12" Mesh="ForestLow2.mesh" Direction="0" />
     <ForestLow1_0 Type="ForestLow" GridX="13" GridY="14" Mesh="ForestLow1.mesh" Direction="0" />
@@ -127,8 +127,36 @@
 <MapEffect />
 <MapSquad>
     <Team1 />
-    <Team2 />
+    <Team2>
+        <Team2Squad_0 Type="Welvss" GridX="0" GridY="5" Direction="1" UnitNum="0" />
+        <Team2Squad_1 Type="Warmage" GridX="6" GridY="7" Direction="1" UnitNum="0" />
+        <Team2Squad_2 Type="Warmage" GridX="5" GridY="9" Direction="1" UnitNum="0" />
+        <Team2Squad_3 Type="GuardCrossBow" GridX="4" GridY="9" Direction="1" UnitNum="0" />
+        <Team2Squad_4 Type="Elementalist" GridX="4" GridY="8" Direction="1" UnitNum="0" />
+        <Team2Squad_5 Type="GuardCrossBow" GridX="5" GridY="10" Direction="1" UnitNum="0" />
+        <Team2Squad_6 Type="GuardHeavySpear" GridX="6" GridY="10" Direction="1" UnitNum="0" />
+        <Team2Squad_7 Type="GuardHeavySpear" GridX="6" GridY="9" Direction="1" UnitNum="0" />
+        <Team2Squad_8 Type="GuardHeavySpear" GridX="6" GridY="8" Direction="1" UnitNum="0" />
+        <Team2Squad_9 Type="GuardHeavySpear" GridX="6" GridY="11" Direction="1" UnitNum="0" />
+        <Team2Squad_10 Type="GuardCrossBow" GridX="5" GridY="8" Direction="1" UnitNum="0" />
+    </Team2>
     <Team3 />
     <Team4 />
 </MapSquad>
-<MapArea />
+<MapArea>
+    <DeployArea>
+        <c0 X="10" Y="8" />
+        <c1 X="11" Y="8" />
+        <c2 X="11" Y="9" />
+        <c3 X="11" Y="10" />
+        <c4 X="10" Y="10" />
+        <c5 X="10" Y="9" />
+        <c6 X="9" Y="10" />
+        <c7 X="9" Y="9" />
+        <c8 X="9" Y="8" />
+        <c9 X="10" Y="6" />
+        <c10 X="11" Y="6" />
+        <c11 X="11" Y="5" />
+        <c12 X="10" Y="5" />
+    </DeployArea>
+</MapArea>

@@ -17,10 +17,18 @@
 			<Name type="String" value="柯萨"/>
 			<Describe type="String" value="柯萨"/>
 		</Cossa>
+		<Caster>
+			<Name type="String" value="卡斯特"/>
+			<Describe type="String" value="卡斯特"/>
+		</Caster>
 		<Fay>
 			<Name type="String" value="菲"/>
 			<Describe type="String" value="菲"/>
 		</Fay>
+		<Azaria>
+			<Name type="String" value="阿莎尼娅"/>
+			<Describe type="String" value="阿莎尼娅"/>
+		</Azaria>
 		<WingsLightCavalry>
 			<Name type="String" value="翼骑团指挥官"/>
 			<Describe type="String" value="翼骑团指挥官"/>
@@ -61,18 +69,30 @@
 			<Name type="String" value="法卫队斥候长"/>
 			<Describe type="String" value="法卫队斥候长"/>
 		</GuardLightBow>
+		<GuardCrossBow>
+			<Name type="String" value="法卫队军士长"/>
+			<Describe type="String" value="法卫队军士长"/>
+		</GuardCrossBow>
 		<GuardLightSword>
 			<Name type="String" value="法卫队军士长"/>
 			<Describe type="String" value="法卫队军士长"/>
 		</GuardLightSword>
 		<Elementalist>
-			<Name type="String" value="一级法师"/>
-			<Describe type="String" value="一级法师"/>
+			<Name type="String" value="无名法师"/>
+			<Describe type="String" value="无名法师"/>
 		</Elementalist>
 		<Kareena>
 			<Name type="String" value="卡琳娜"/>
 			<Describe type="String" value="卡琳娜"/>
 		</Kareena>
+		<Welvss>
+			<Name type="String" value="威尔维斯"/>
+			<Describe type="String" value="威尔维斯"/>
+		</Welvss>	
+		<Warmage>
+			<Name type="String" value="无名法师"/>
+			<Describe type="String" value="无名法师"/>
+		</Warmage>
 		<Pirate>
 			<Name type="String" value="流寇"/>
 			<Describe type="String" value="流寇"/>
@@ -117,6 +137,14 @@
 			<Name type="String" value="温菲尔德侍从"/>
 			<Describe type="String" value="温菲尔德侍从"/>
 		</WinfredLightBow>
+		<WinfredHeavyCavalry>
+			<Name type="String" value="温菲尔德高阶骑士"/>
+			<Describe type="String" value="温菲尔德高阶骑士"/>
+		</WinfredHeavyCavalry>
+		<WinfredLightCavalry>
+			<Name type="String" value="温菲尔德骑士"/>
+			<Describe type="String" value="温菲尔德骑士"/>
+		</WinfredLightCavalry>
 		<NothLightBow>
 			<Name type="String" value="诺斯侍从"/>
 			<Describe type="String" value="诺斯侍从"/>
@@ -137,6 +165,18 @@
 			<Name type="String" value="诺斯菲特"/>
 			<Describe type="String" value="诺斯菲特"/>
 		</Nothfate>	
+		<DarkKnight>
+			<Name type="String" value="不明骑士"/>
+			<Describe type="String" value="不明骑士"/>
+		</DarkKnight>
+		<Datura>
+			<Name type="String" value="达特娜"/>
+			<Describe type="String" value="达特娜"/>
+		</Datura>
+		<Syrin>
+			<Name type="String" value="希雯"/>
+			<Describe type="String" value="希雯"/>
+		</Syrin>
 	</LeaderDate>
 	<SquadData>
 		<CheetahSquad>
@@ -156,20 +196,28 @@
 			<Describe type="String" value="翼骑团轻装弩兵"/>
 		</WingsCrossBow>
 		<Olivia>
-			<Name type="String" value="神圣法师"/>
-			<Describe type="String" value="神圣法师"/>
+			<Name type="String" value="神圣法师奥莉瓦"/>
+			<Describe type="String" value="奥莉瓦"/>
 		</Olivia>
 		<Cossa>
 			<Name type="String" value="柯萨轻骑兵队"/>
 			<Describe type="String" value="柯萨轻骑兵队"/>
 		</Cossa>
+		<Caster>
+			<Name type="String" value="卡斯特重骑兵队"/>
+			<Describe type="String" value="卡斯特重骑兵队"/>
+		</Caster>
 		<Fay>
-			<Name type="String" value="战术法师"/>
-			<Describe type="String" value="战术法师"/>
+			<Name type="String" value="战术法师菲"/>
+			<Describe type="String" value="战术法师菲"/>
 		</Fay>
+		<Azaria>
+			<Name type="String" value="奥术法师阿莎尼娅"/>
+			<Describe type="String" value="奥术法师阿莎尼娅"/>
+		</Azaria>
 		<WingsLightCavalry>
-			<Name type="String" value="翼骑团轻装弓骑兵"/>
-			<Describe type="String" value="翼骑团轻装弓骑兵"/>
+			<Name type="String" value="翼骑团轻弓骑兵"/>
+			<Describe type="String" value="翼骑团轻弓骑兵"/>
 		</WingsLightCavalry>
 		<DuxLightSpear>
 			<Name type="String" value="达克斯轻装矛兵"/>
@@ -199,6 +247,10 @@
 			<Name type="String" value="法卫队轻装弓兵"/>
 			<Describe type="String" value="法卫队轻装弓兵"/>
 		</GuardLightBow>
+		<GuardCrossBow>
+			<Name type="String" value="法卫队连击弩兵"/>
+			<Describe type="String" value="法卫队连击弩兵"/>
+		</GuardCrossBow>
 		<GuardHeavySpear>
 			<Name type="String" value="法卫队重装矛兵"/>
 			<Describe type="String" value="法卫队重装矛兵"/>
@@ -208,9 +260,17 @@
 			<Describe type="String" value="奥术法师"/>
 		</Elementalist>
 		<Kareena>
-			<Name type="String" value="大法师"/>
-			<Describe type="String" value="大法师"/>
+			<Name type="String" value="大法师卡琳娜"/>
+			<Describe type="String" value="大法师卡琳娜"/>
 		</Kareena>
+		<Welvss>
+			<Name type="String" value="指挥法师威尔维斯"/>
+			<Describe type="String" value="指挥法师威尔维斯"/>
+		</Welvss>	
+		<Warmage>
+			<Name type="String" value="战术法师"/>
+			<Describe type="String" value="战术法师"/>
+		</Warmage>
 		<Pirate>
 			<Name type="String" value="流寇队"/>
 			<Describe type="String" value="流寇队"/>
@@ -255,6 +315,14 @@
 			<Name type="String" value="温菲尔德轻弓兵"/>
 			<Describe type="String" value="温菲尔德轻弓兵"/>
 		</WinfredLightBow>
+		<WinfredHeavyCavalry>
+			<Name type="String" value="温菲尔德重骑兵"/>
+			<Describe type="String" value="温菲尔德重骑兵"/>
+		</WinfredHeavyCavalry>
+		<WinfredLightCavalry>
+			<Name type="String" value="温菲尔德轻骑兵"/>
+			<Describe type="String" value="温菲尔德轻骑兵"/>
+		</WinfredLightCavalry>
 		<NothLightBow>
 			<Name type="String" value="诺斯轻装弓兵"/>
 			<Describe type="String" value="诺斯轻装弓兵"/>
@@ -275,6 +343,18 @@
 			<Name type="String" value="诺斯皇家卫队"/>
 			<Describe type="String" value="诺斯皇家卫队"/>
 		</Nothfate>	
+		<DarkKnight>
+			<Name type="String" value="黑骑士斧骑兵"/>
+			<Describe type="String" value="黑骑士斧骑兵"/>
+		</DarkKnight>
+		<Datura>
+			<Name type="String" value="黑骑士达特娜"/>
+			<Describe type="String" value="黑骑士达特娜"/>
+		</Datura>
+		<Syrin>
+			<Name type="String" value="黑法师希雯"/>
+			<Describe type="String" value="黑法师希雯"/>
+		</Syrin>
 	</SquadData>
 	<SoilderData>
 		<WingsSoilder>
@@ -305,7 +385,7 @@
 			<Name type="String" value="温菲尔德士兵" />
 		</WinfredSoilder>
 		<DarkKnight>
-			<Name type="String" value="黑骑士" />
+			<Name type="String" value="黑骑士士兵"/>
 		</DarkKnight>
 	</SoilderData>
 	<PweaponData>
