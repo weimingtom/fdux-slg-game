@@ -794,21 +794,21 @@ bool BattleAIState::SquadAI::update()
 	{
 	case SAS_MOVE:
 		updateMove();
-		return false;
+		return true;
 	case SAS_FORMATION:
 		updateFormation();
-		return false;
+		return true;
 	case SAS_SKILL:
 		updateSkill();
-		return false;
+		return true;
 	case SAS_DIRECTION:
 		updateDirection();
-		return false;
+		return true;
 	}
 	if(mLastActiveAP <= mSquad->getActionPoint())
-		return true;
+		return false;
 	mState = SAS_MOVE;
-	return false;
+	return true;
 }
 void BattleAIState::SquadAI::setTarget(int targettype, Crood tragetcrood)
 {
@@ -832,6 +832,11 @@ void BattleAIState::SquadAI::updateMove()
 		croodlist.push_back(Crood(movenodeite->second.x, movenodeite->second.y));
 	}
 	std::map<int, BattleSquadManager::MoveNode> fullpath = squadmgr->getFullPath(mSquad, mTargetCrood);
+	if(fullpath.size() == 0)
+	{
+		mState = SAS_FORMATION;
+		return;
+	}
 	DecisionMap<Crood> targetdecision(croodlist);
 	targetdecision.addFactor(new SquadMoveClosetoPathFactor(1.0f, &moveareaold, &fullpath));
 	targetdecision.calcDecision();
