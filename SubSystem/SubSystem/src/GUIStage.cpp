@@ -662,10 +662,10 @@ bool GUIStage::isCanFastForward()
 	{
 		return false;
 	}
-	else if (!mTextBoxVisible)
+/*	else if (!mTextBoxVisible)
 	{
 		return false;
-	}
+	}*/
 	else if (SLWindow!=NULL)
 	{
 		return false;

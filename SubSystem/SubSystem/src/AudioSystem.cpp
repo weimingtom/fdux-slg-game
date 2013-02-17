@@ -74,6 +74,7 @@ bool AudioSystem::playStream( std::string name,bool isLoop,int time)
 		mStream->setVolume(0);
 		mTimer.reset();
 		mIsFadeIn=true;
+		mIsFadeOut=false;
 		mTickTime=time/(mStreamVol/0.05);
 		mCurStreamVol=0;
 	}
@@ -94,6 +95,7 @@ bool AudioSystem::stopStream(int time)
 		{
 			mTimer.reset();
 			mIsFadeOut=true;
+			mIsFadeIn=false;
 			mTickTime=time/(mStreamVol/0.05);
 			mCurStreamVol=mStreamVol;
 		}
