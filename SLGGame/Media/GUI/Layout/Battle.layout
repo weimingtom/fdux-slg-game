@@ -51,6 +51,7 @@
         </Widget>
         <Widget type="ImageBox" skin="ImageBox" position="40 35 40 60" name="SquadFactionImage">
             <Property key="Alpha" value="1"/>
+            <Property key="Visible" value="false"/>
         </Widget>
         <Widget type="TextBox" skin="TextBox" position="195 45 15 20">
             <Property key="FontName" value="fireflysung"/>
@@ -257,7 +258,7 @@
             <Property key="ImageGroup" value="state_ap"/>
         </Widget>
     </Widget>
-    <Widget type="Window" skin="ImageBox" position="610 310 339 376" layer="Popup" name="DeployWindow">
+    <Widget type="Window" skin="ImageBox" position="645 335 339 376" layer="Popup" name="DeployWindow">
         <Property key="Caption" value="DeployWindow"/>
         <Property key="FontName" value="fireflysung"/>
         <Property key="Visible" value="false"/>
@@ -291,6 +292,7 @@
         </Widget>
         <Widget type="ImageBox" skin="ImageBox" position="45 35 40 60" name="TargetFactionImage">
             <Property key="Alpha" value="1"/>
+            <Property key="Visible" value="false"/>
         </Widget>
         <Widget type="TextBox" skin="TextBox" position="155 95 85 20" name="TargetLeadName">
             <Property key="FontName" value="fireflysung"/>
@@ -704,6 +706,32 @@
             <Property key="ImageResource" value="state"/>
             <Property key="ImageName" value="normal"/>
             <Property key="ImageGroup" value="state_ap"/>
+        </Widget>
+    </Widget>
+    <Widget type="Window" skin="SLGWindow" position="415 130 550 360" layer="Main" name="GameOverWindow">
+        <Property key="Visible" value="false"/>
+        <Widget type="ImageBox" skin="ImageBox" position="25 60 500 150" name="InfoImage"/>
+        <Widget type="Button" skin="SLGButtonSkin2" position="160 290 235 45" name="TEXT_YesButton">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+            <Property key="TextAlign" value="Center"/>
+            <Property key="TextColour" value="1 1 1"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="30 225 155 25" name="TEXT_GetMoney">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="200 225 325 25" name="GetMoney">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="30 260 155 25" name="TEXT_GetExp">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="200 260 325 25" name="GetExp">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
         </Widget>
     </Widget>
 </MyGUI>

@@ -24,7 +24,8 @@ bool ShowValueCutScene::endCutScene()
 
 void ShowValueCutScene::skipCutScene()
 {
-	mSquadGraphics->showValue(mValue,mColor);
+	if(!mStarted)
+		mSquadGraphics->showValue(mValue,mColor);
 }
 
 void ShowValueCutScene::updateCutScene( unsigned int deltaTime )

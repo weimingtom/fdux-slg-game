@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SystemConfig>
-	<MusicVolume value="0" type="UInt"/>
+	<MusicVolume value="60" type="UInt"/>
 	<SEVolume value="99" type="UInt"/>
 	<TextSpeed value="99" type="UInt"/>
 	<Save>
-		<Save1 value="AutoSave 2013-2-7 21:50:23" type="String"/>
-		<Save2 value="Test2 2013-2-13 18:54:34" type="String"/>
+		<Save1 value="AutoSave 2013-2-17 18:47:23" type="String"/>
+		<Save2 value="Test2 2013-2-17 0:52:0" type="String"/>
 		<Save3 value="Test1 2013-2-13 18:58:1" type="String"/>
 	</Save>
 </SystemConfig>

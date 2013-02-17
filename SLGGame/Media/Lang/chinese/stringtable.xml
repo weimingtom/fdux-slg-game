@@ -158,6 +158,10 @@
 		<GUITerrainCavAp type="String" value="骑兵消耗"/>
 		<GUITerrainInfAp type="String" value="步兵消耗"/>
 		
+		<TEXT_GetMoney type="String" value="获得金钱"/>
+		<TEXT_GetExp type="String" value="获得经验"/>
+		<ReturnMainWindow type="String" value="返回主菜单"/>
+		
 		<!--GUITips-->
 		<Tips_Move type="String" value="部队从一个地块移动到临近的可通行地块，根据地块消耗行动值"/>
 		<Tips_Turn type="String" value="改变部队的朝向"/>

@@ -10,6 +10,7 @@
 #include "GUITipsWindow.h"
 #include "GUIMissionWindow.h"
 #include "GUIEffectWindow.h"
+#include "GUIGameOver.h"
 
 #include "Terrain.h"
 
@@ -44,6 +45,8 @@ GUIBattle::GUIBattle(int Width,int Height):GUIScene("Battle.layout",Width,Height
 	mSubWindows.push_back(new GUIDeployWindows(window,Width,Height));
 	assignWidget(window,"InfoWindow");
 	mSubWindows.push_back(new GUIInfoWindow(window,Width,Height));
+	assignWidget(window,"GameOverWindow");
+	mSubWindows.push_back(new GUIGameOver(window,Width,Height));
 	assignWidget(mMissionButton,"MissionButton");
 	mMissionButton->setCaption(StringTable::getSingletonPtr()->getString("MissionButton"));
 	mMissionButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIBattle::onMissionButton);

@@ -40,6 +40,7 @@
 
 #include "resource.h"
 #include <windows.h>
+#include <Shiny.h>
 
 Core::Core(void):isRun(false)
 {
