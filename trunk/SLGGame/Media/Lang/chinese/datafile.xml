@@ -33,10 +33,10 @@
 			<Name type="String" value="翼骑团指挥官"/>
 			<Describe type="String" value="翼骑团指挥官"/>
 		</WingsLightCavalry>
-		<WingsLightInf>
+		<WingsHeavyInf>
 			<Name type="String" value="翼骑团指挥官"/>
 			<Describe type="String" value="翼骑团指挥官"/>
-		</WingsLightInf>
+		</WingsHeavyInf>
 		<WingsCrossBow>
 			<Name type="String" value="翼骑团指挥官"/>
 			<Describe type="String" value="翼骑团指挥官"/>
@@ -187,10 +187,10 @@
 			<Name type="String" value="丹德来恩弓兵队"/>
 			<Describe type="String" value="丹德来恩弓兵队"/>
 		</DandelionSquad>
-		<WingsLightInf>
-			<Name type="String" value="翼骑团轻装斧兵"/>
-			<Describe type="String" value="翼骑团轻装斧兵"/>
-		</WingsLightInf>
+		<WingsHeavyInf>
+			<Name type="String" value="翼骑团重步兵"/>
+			<Describe type="String" value="翼骑团重步兵"/>
+		</WingsHeavyInf>
 		<WingsCrossBow>
 			<Name type="String" value="翼骑团轻装弩兵"/>
 			<Describe type="String" value="翼骑团轻装弩兵"/>
@@ -200,8 +200,8 @@
 			<Describe type="String" value="奥莉瓦"/>
 		</Olivia>
 		<Cossa>
-			<Name type="String" value="柯萨轻骑兵队"/>
-			<Describe type="String" value="柯萨轻骑兵队"/>
+			<Name type="String" value="柯萨骑兵队"/>
+			<Describe type="String" value="柯萨骑兵队"/>
 		</Cossa>
 		<Caster>
 			<Name type="String" value="卡斯特重骑兵队"/>
