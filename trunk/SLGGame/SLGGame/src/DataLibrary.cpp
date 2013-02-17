@@ -7,6 +7,9 @@
 
 #include <fstream>
 
+#include <boost/algorithm/string.hpp>
+#include <boost/algorithm/string/split.hpp>
+
 DataLibrary::DataLibrary(void)
 {
 	LuaSystem::getSingletonPtr()->registerCLib("DataLib",DataLib);
@@ -529,7 +532,7 @@ bool DataLibrary::getData( std::string path,Ogre::Vector3& value,bool testExist 
 		{
 			char* v=valueAttr->value();
 			std::queue<std::string> vl;
-			split(v,',',vl);
+			split(std::string(v),",",vl);
 			if (vl.size()!=3)
 			{
 				Ogre::LogManager::getSingletonPtr()->logMessage(path+" has a bad format",Ogre::LML_CRITICAL);
@@ -662,9 +665,9 @@ rapidxml::xml_node<>* DataLibrary::findNode(rapidxml::xml_node<>* parent,std::qu
 
 }
 
-void DataLibrary::split(const std::string& s, char c,std::queue<std::string>& v) 
+void DataLibrary::split(std::string& s, std::string c,std::queue<std::string>& v) 
 {
-	std::string::size_type i = 0;
+	/*std::string::size_type i = 0;
 	std::string::size_type j = s.find(c);
 
 	while (j != std::string::npos) 
@@ -675,6 +678,12 @@ void DataLibrary::split(const std::string& s, char c,std::queue<std::string>& v)
 
 		if (j == std::string::npos)
 			v.push(s.substr(i, s.length( )));
+	}*/
+	std::vector<std::string> a;
+	boost::algorithm::split(a,s, boost::is_any_of(c));
+	for(std::vector<std::string>::iterator it=a.begin();it!=a.end();it++)
+	{
+		v.push((*it));
 	}
 }
 
@@ -682,7 +691,7 @@ rapidxml::xml_node<>* DataLibrary::getNode( std::string path,bool createpath)
 {
 	mCreateState=CreateState_None;
 	std::queue<std::string> pathQueue;
-	split(path,'/',pathQueue);
+	split(path,"/",pathQueue);
 	if (pathQueue.size()>=2)
 	{
 		rapidxml::xml_node<>* parent=NULL;

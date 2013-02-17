@@ -19,6 +19,10 @@ extern "C"
 #include "ChangeStateCutScene.h"
 #include "StoryCutScene.h"
 
+#include "GUIBattle.h"
+#include "GUIGameOver.h"
+#include "GUIMissionWindow.h"
+
 static int ChangeState(lua_State* L)
 {
 	int nextstate = luaL_checkint(L, 1);
@@ -120,6 +124,56 @@ static int AssignAIMission(lua_State* L)
 	return 0;
 }
 
+static int Win(lua_State* L)
+{
+	std::string next(luaL_checkstring(L, 1));
+	std::string gold(luaL_checkstring(L, 2));
+	std::string exp(luaL_checkstring(L, 3));
+
+	GUIBattle* guibattle=static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
+	GUIGameOver* GameOver=(GUIGameOver*)guibattle->getSubWindow("GameOverWindow");
+	GameOver->setData(gold,exp);
+	GameOver->setNext(next);
+
+	GameOver->showScene("win");
+	return 0;
+}
+
+static int Lost(lua_State* L)
+{
+	std::string next(luaL_checkstring(L, 1));
+	std::string gold(luaL_checkstring(L, 2));
+	std::string exp(luaL_checkstring(L, 3));
+
+	GUIBattle* guibattle=static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
+	GUIGameOver* GameOver=(GUIGameOver*)guibattle->getSubWindow("GameOverWindow");
+	GameOver->setData(gold,exp);
+	GameOver->setNext(next);
+
+	GameOver->showScene("lost");
+	return 0;
+}
+
+static int AddPlayerMission(lua_State* L)
+{
+	GUIBattle* guibattle=static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
+	GUIMissionWindow* mission=(GUIMissionWindow*)guibattle->getSubWindow("MissionWindow");
+
+	std::string caption(luaL_checkstring(L, 1));
+	int state = luaL_checkint(L, 2);
+	mission->addMission(caption,(MissionState)state);
+	return 0;
+}
+
+static int SetPlayerMission(lua_State* L)
+{
+	GUIBattle* guibattle=static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
+	GUIMissionWindow* mission=(GUIMissionWindow*)guibattle->getSubWindow("MissionWindow");
+	int index=luaL_checkint(L, 1);
+	int state = luaL_checkint(L, 2);
+	mission->changeMission(index,(MissionState)state);
+	return 0;
+}
 static const struct luaL_Reg BattleLib[] =
 {
 	{"ChangeState",ChangeState},
@@ -132,5 +186,9 @@ static const struct luaL_Reg BattleLib[] =
 	{"AssignAIGroup",AssignAIGroup},
 	{"CreateAIMission",CreateAIMission},
 	{"AssignAIMission",AssignAIMission},
+	{"Win",Win},
+	{"Lost",Lost},
+	{"AddPlayerMission",AddPlayerMission},
+	{"SetPlayerMission",SetPlayerMission},
 	{NULL,NULL}
 };

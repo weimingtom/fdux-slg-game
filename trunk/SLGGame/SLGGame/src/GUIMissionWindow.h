@@ -3,10 +3,10 @@
 
 enum MissionState
 {
-	MS_New,
-	MS_Complete,
-	MS_Fail,
-	MS_NULL
+	MS_New=0,
+	MS_Complete=1,
+	MS_Fail=2,
+	MS_NULL=3
 };
 
 class GUIMissionWindow :

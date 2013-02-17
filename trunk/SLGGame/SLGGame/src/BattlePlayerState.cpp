@@ -43,7 +43,7 @@ BattlePlayerState::BattlePlayerState()
 	mGUICommand->setSquad(NULL);
 	mGUICommand->setPlayerState(this);
 	GUIInfoWindow* infoWindow=(GUIInfoWindow*)mGUIBattle->getSubWindow("InfoWindow");
-	infoWindow->setCaption(StringTable::getSingletonPtr()->getString("PlayerTurn.png"),MyGUI::Colour::White);
+	infoWindow->setCaption("PlayerTurn.png",MyGUI::Colour::White);
 	infoWindow->showScene("");
 
 	Core::getSingleton().mInputControl->pushListener(this);

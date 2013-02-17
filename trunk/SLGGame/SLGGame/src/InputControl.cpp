@@ -7,6 +7,7 @@
 #include "Core.h"
 
 #include <iostream>
+#include <Shiny.h>
 
 InputControl::InputControl(void)
 {
@@ -30,6 +31,8 @@ bool InputControl::keyPressed( const OIS::KeyEvent &arg )
 		{
 			Core::getSingletonPtr()->mDebugOverlay->show();
 		}
+
+		PROFILER_OUTPUT();
 	}
 
 	if (!mGUISystem->keyPressed(arg))

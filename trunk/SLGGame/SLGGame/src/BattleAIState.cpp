@@ -14,10 +14,16 @@
 #include "SquadMoveFactor.h"
 #include "SquadSkillFactor.h"
 
+#include "GUIInfoWindow.h"
+#include "GUIBattle.h"
+
 BattleAIState::BattleAIState(int team)
 :mTeam(team),mState(AISTATE_INIT)
 {
-
+	GUIBattle* mGUIBattle = static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
+	GUIInfoWindow* infoWindow=(GUIInfoWindow*)mGUIBattle->getSubWindow("InfoWindow");
+	infoWindow->setCaption("EnemyTurn.png",MyGUI::Colour::White);
+	infoWindow->showScene("");
 }
 BattleAIState::~BattleAIState()
 {
