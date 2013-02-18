@@ -3263,12 +3263,16 @@
 				</DefenceTrain2>
 			</Passive>
 			<Equip>
-				<OneHandSword type="Int" value="7"/>
-				<ShortSpear type="Int" value="7"/>
-				<Shield type="Int" value="7"/>
-				<LightArmor type="Int" value="7"/>
-				<MiddleArmor type="Int" value="7"/>
-				<HeavyArmor type="Int" value="7"/>
+				<OneHandSword type="Int" value="6"/>
+				<OneHandBlunt type="Int" value="6"/>
+				<TwoHandSword type="Int" value="6"/>
+				<TwoHandBlunt type="Int" value="6"/>
+				<ShortSpear type="Int" value="6"/>
+				<Long type="Int" value="6"/>
+				<Shield type="Int" value="6"/>
+				<LightArmor type="Int" value="6"/>
+				<MiddleArmor type="Int" value="6"/>
+				<HeavyArmor type="Int" value="6"/>
 			</Equip>
 		</Infantry>
 		<MissileInfantry type="Int" value="1">
@@ -3302,15 +3306,60 @@
 				</RangedAttackTrain2>
 			</Passive>
 			<Equip>
-				<OneHandSword type="Int" value="7"/>
-				<Bow type="Int" value="7"/>
-				<LXBox type="Int" value="7"/>
-				<Shield type="Int" value="7"/>
-				<LightArmor type="Int" value="7"/>
-				<MiddleArmor type="Int" value="7"/>
+				<OneHandSword type="Int" value="6"/>
+				<OneHandBlunt type="Int" value="6"/>
+				<ShortSpear type="Int" value="6"/>
+				<Bow type="Int" value="6"/>
+				<XBox type="Int" value="6"/>
+				<Shield type="Int" value="6"/>
+				<LightArmor type="Int" value="6"/>
+				<MiddleArmor type="Int" value="6"/>
 			</Equip>
-		</MissileInfantry>
-		<Saint type="Int" value="2">
+		</MissileInfantry type="Int" value="2">
+		<Cavalry>
+			<Default>
+				<Attack type="Int" value="1"/>
+				<Rest type="Int" value="1"/>
+			</Default>
+			<Active>
+			</Active>
+			<Passive>
+			</Passive>
+			<Equip>
+				<OneHandSword type="Int" value="6"/>
+				<OneHandBlunt type="Int" value="6"/>
+				<ShortSpear type="Int" value="6"/>
+				<Shield type="Int" value="6"/>
+				<LightArmor type="Int" value="6"/>
+				<MiddleArmor type="Int" value="6"/>
+				<HeavyArmor type="Int" value="6"/>
+				<LightHorse type="Int" value="6"/>
+				<HeavyHorse type="Int" value="6"/>
+			</Equip>
+		</Cavalry>
+		<MissileCavalry type="Int" value="3">
+			<Default>
+				<Attack type="Int" value="1"/>
+				<Rest type="Int" value="1"/>
+				<RangedAttack type="Int" value="1"/>
+			</Default>
+			<Active>
+			</Active>
+			<Passive>
+			</Passive>
+			<Equip>
+				<OneHandSword type="Int" value="6"/>
+				<OneHandBlunt type="Int" value="6"/>
+				<ShortSpear type="Int" value="6"/>
+				<Bow type="Int" value="6"/>
+				<XBox type="Int" value="6"/>
+				<Shield type="Int" value="6"/>
+				<LightArmor type="Int" value="6"/>
+				<MiddleArmor type="Int" value="6"/>
+				<LightHorse type="Int" value="6"/>
+			</Equip>
+		</MissileCavalry>
+		<Saint type="Int" value="4">
 			<Default>
 				<Heal type="Int" value="1"/>
 				<MagicShield type="Int" value="3"/>
@@ -3330,6 +3379,22 @@
 				</StrengthenSprite>
 			</Passive>
 		</Saint>
+		<BattleMage type="Int" value="5">
+			<Default>
+			</Default>
+			<Active>
+			</Active>
+			<Passive>
+			</Passive>
+		</BattleMage>
+		<ArcaneMage type="Int" value="6">
+			<Default>
+			</Default>
+			<Active>
+			</Active>
+			<Passive>
+			</Passive>
+		</ArcaneMage>
 	</SkillListData>
 	<SkillData>
 		<Attack>
