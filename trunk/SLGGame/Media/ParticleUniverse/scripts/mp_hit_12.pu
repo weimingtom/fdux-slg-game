@@ -1,0 +1,50 @@
+system mp_hit_12
+{
+    keep_local                                  true
+    scale_velocity                              0.1
+    scale                                       0.1 0.1 0.1
+    category                                    MyGame
+    technique 
+    {
+        visual_particle_quota                   110
+        material                                mp_hit_glow_05
+        renderer                                Billboard
+        {
+            billboard_rotation_type             vertex
+        }
+        emitter                                 Point 
+        {
+            emission_rate                       1000
+            angle                               360
+            time_to_live                        dyn_random
+            {
+                min                             0.2
+                max                             0.4
+            }
+            velocity                            dyn_random
+            {
+                min                             400
+                max                             800
+            }
+            duration                            0.1
+            all_particle_dimensions             dyn_random
+            {
+                min                             200
+                max                             300
+            }
+            colour                              0.262745 0.501961 0.580392 1
+        }
+        affector                                Colour 
+        {
+            time_colour                         0    1 1 1 1
+            time_colour                         1    0 0 0 1
+            colour_operation                    multiply
+        }
+        observer                                OnClear 
+        {
+            handler                             DoStopSystem 
+            {
+            }
+        }
+    }
+}
