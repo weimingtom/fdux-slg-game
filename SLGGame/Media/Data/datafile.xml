@@ -11,7 +11,7 @@
 		<Dandelion>
 			<Picture type="String" value="dande.png"/>
 			<Mesh type="String" value="LightInfOf.mesh"/>
-			<Mat type="String" value="LightInfOf"/>o
+			<Mat type="String" value="LightInfOf"/>
 		</Dandelion>
 		<Olivia>
 			<Picture type="String" value="aoliwa.png"/>
@@ -312,7 +312,7 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor1"/>
 			<SkillTable>
-				<OneHandSword type="Int" value="2"/>
+				<OneHandBlunt type="Int" value="2"/>
 				<XBow type="Int" value="2"/>
 				<LightArmor type="Int" value="2"/>
 			</SkillTable>
