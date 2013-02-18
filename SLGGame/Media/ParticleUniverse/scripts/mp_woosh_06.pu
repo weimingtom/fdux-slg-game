@@ -1,0 +1,65 @@
+system mp_woosh_06
+{
+    keep_local                                  true
+    scale_velocity                              0.1
+    scale                                       0.1 0.1 0.1
+    category                                    MyGame
+    technique 
+    {
+        visual_particle_quota                   60
+        material                                mp_woosh_flare
+        renderer                                Billboard
+        {
+            billboard_type                      oriented_self
+            billboard_rotation_type             vertex
+        }
+        emitter                                 Point 
+        {
+            emission_rate                       60
+            angle                               360
+            time_to_live                        dyn_random
+            {
+                min                             0.4
+                max                             1
+            }
+            velocity                            dyn_random
+            {
+                min                             50
+                max                             100
+            }
+            duration                            0.5
+            all_particle_dimensions             dyn_random
+            {
+                min                             5
+                max                             10
+            }
+            colour                              0.392157 0.54902 0.968627 1
+        }
+        affector                                Colour 
+        {
+            time_colour                         0    0 0 0 1
+            time_colour                         0.6  1 1 1 1
+            time_colour                         1    0 0 0 1
+            colour_operation                    multiply
+        }
+        affector                                Scale 
+        {
+            x_scale                             dyn_random
+            {
+                min                             100
+                max                             200
+            }
+            y_scale                             dyn_random
+            {
+                min                             400
+                max                             800
+            }
+        }
+        observer                                OnClear 
+        {
+            handler                             DoStopSystem 
+            {
+            }
+        }
+    }
+}
