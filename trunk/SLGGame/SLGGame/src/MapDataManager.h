@@ -1,8 +1,11 @@
 #pragma once
 
+#include <map>
 #include <string>
 #include "iisingleton.hpp"
 using namespace izayoi;
+
+#include "Area.h"
 
 typedef int GroundType;
 static const int	GreenLand = 0;
@@ -50,4 +53,15 @@ public:
 	void Trigger(std::string triggertype, LuaTempContext * tempcontext);
 private:
 	int mMapSize;
+
+//µØÍ¼ÇøÓò
+public:
+	std::string createArea(std::vector<Crood> croodvec);
+	void removeArea(std::string areaid);
+	
+	void inArea(Crood crood, std::vector<std::string>& inArea);
+	void inOutArea(Crood fromcrood, Crood tocrood, std::vector<std::string>& inArea, std::vector<std::string>& outArea);
+	
+private:
+	std::map<std::string, Area> mMapArea;
 };

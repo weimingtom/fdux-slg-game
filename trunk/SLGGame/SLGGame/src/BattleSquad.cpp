@@ -505,6 +505,19 @@ bool BattleSquad::tryMove(int srcx, int srcy, int tgx, int tgy, float &apleft, u
 			mapapcost = mapdatamanager->getCavApCost(tgx, tgy, getFaction());
 		else
 			mapapcost = mapdatamanager->getInfApCost(tgx, tgy, getFaction());
+
+		LuaTempContext* luatempcontext = new LuaTempContext();
+		luatempcontext->strMap["squadid"] = getSquadId();
+		luatempcontext->intMap["srcx"] = srcx;
+		luatempcontext->intMap["srcy"] = srcy;
+		luatempcontext->intMap["tgtx"] = tgx;
+		luatempcontext->intMap["tgty"] = tgy;
+		luatempcontext->floatMap["apcost"] = mapapcost;
+		Trigger("TryMove", luatempcontext);
+		mapdatamanager->Trigger("TryMove", luatempcontext);
+		mapapcost = luatempcontext->floatMap["apcost"];
+		delete luatempcontext;
+
 		if(mapapcost <= apleft)
 		{
 			apleft -= mapapcost;
@@ -536,6 +549,19 @@ bool BattleSquad::move(int tgx, int tgy, unsigned int &eventflag)
 			mapapcost = mapdatamanager->getCavApCost(tgx, tgy, getFaction());
 		else
 			mapapcost = mapdatamanager->getInfApCost(tgx, tgy, getFaction());
+
+		LuaTempContext* luatempcontext = new LuaTempContext();
+		luatempcontext->strMap["squadid"] = getSquadId();
+		luatempcontext->intMap["srcx"] = getGridX();
+		luatempcontext->intMap["srcy"] = getGridY();
+		luatempcontext->intMap["tgtx"] = tgx;
+		luatempcontext->intMap["tgty"] = tgy;
+		luatempcontext->floatMap["apcost"] = mapapcost;
+		Trigger("MoveTo", luatempcontext);
+		mapdatamanager->Trigger("TryMove", luatempcontext);
+		mapapcost = luatempcontext->floatMap["apcost"];
+		delete luatempcontext;
+
 		float ap = getActionPoint();
 		if(mapapcost <= ap)
 		{
@@ -643,6 +669,18 @@ void BattleSquad::afterCharge()
 	LuaTempContext* luatempcontext = new LuaTempContext();
 	luatempcontext->strMap["squadid"] = getSquadId();
 	Trigger("AfterCharge", luatempcontext);
+	delete luatempcontext;
+}
+
+void BattleSquad::moveIn(int srcx, int srcy, int tgx, int tgy)
+{
+	LuaTempContext* luatempcontext = new LuaTempContext();
+	luatempcontext->strMap["squadid"] = getSquadId();
+	luatempcontext->intMap["srcx"] = srcx;
+	luatempcontext->intMap["srcy"] = srcy;
+	luatempcontext->intMap["tgtx"] = tgx;
+	luatempcontext->intMap["tgty"] = tgy;
+	Trigger("MoveIn", luatempcontext);
 	delete luatempcontext;
 }
 

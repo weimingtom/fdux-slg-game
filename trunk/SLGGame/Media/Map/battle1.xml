@@ -5,7 +5,7 @@
     <Team3 TeamType="none" TeamFaction="none" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
-<MapScript>battle1script.lua</MapScript>
+<MapScript>mapscript1.lua</MapScript>
 <MapInfo>mapinfo1</MapInfo>
 <MapLoadBG>map1.png</MapLoadBG>
 <MapSize>12</MapSize>

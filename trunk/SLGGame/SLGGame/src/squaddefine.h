@@ -25,8 +25,7 @@ enum PweaponType
 enum SweaponType
 {
 	EQUIP_SWEAPON_BOW = 0,
-	EQUIP_SWEAPON_LXBOW = 1,
-	EQUIP_SWEAPON_HXBOW = 2
+	EQUIP_SWEAPON_XBOW = 1
 };
 
 enum ArmorType
@@ -34,6 +33,12 @@ enum ArmorType
 	EQUIP_ARMOR_LIGHT = 0,
 	EQUIP_ARMOR_MIDDLE = 1,
 	EQUIP_ARMOR_HEAVY = 2
+};
+
+enum HorseType
+{
+	EQUIP_HORSE_LIGHT = 0,
+	EQUIP_HORSE_HEAVY = 1
 };
 
 enum AttrModifierType

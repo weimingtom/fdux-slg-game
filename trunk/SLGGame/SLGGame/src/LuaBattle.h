@@ -14,6 +14,7 @@ extern "C"
 #include "SquadDefine.h"
 #include "DataLibrary.h"
 #include "BattleSquadManager.h"
+#include "AVGSquadManager.h"
 
 #include "CutSceneBuilder.h"
 #include "ChangeStateCutScene.h"
@@ -161,8 +162,11 @@ static int AddPlayerMission(lua_State* L)
 
 	std::string caption(luaL_checkstring(L, 1));
 	int state = luaL_checkint(L, 2);
-	mission->addMission(caption,(MissionState)state);
-	return 0;
+	int index = mission->addMission(caption,(MissionState)state);
+
+	lua_pushnumber(L, index);
+
+	return 1;
 }
 
 static int SetPlayerMission(lua_State* L)
@@ -174,6 +178,31 @@ static int SetPlayerMission(lua_State* L)
 	mission->changeMission(index,(MissionState)state);
 	return 0;
 }
+
+static int AddStorySquad(lua_State* L)
+{
+	std::string templetid(luaL_checkstring(L, 1));
+	std::string squadid(luaL_checkstring(L, 2));
+	int x = luaL_checkint(L, 3);
+	int y = luaL_checkint(L, 4);
+	bool re = BattleSquadManager::getSingleton().createStorySquad(squadid, templetid, x, y);
+	re?lua_pushnumber(L, 1):lua_pushnumber(L, 0);
+	return 1;
+}
+
+static int AddBattleSquad(lua_State* L)
+{
+	std::string templetid(luaL_checkstring(L, 1));
+	std::string squadid(luaL_checkstring(L, 2));
+	int x = luaL_checkint(L, 3);
+	int y = luaL_checkint(L, 4);
+	int team = luaL_checkint(L, 5);
+	int unitnum = luaL_checkint(L, 6);
+	bool re = BattleSquadManager::getSingleton().createNormalSquad(squadid, templetid, x, y, team, unitnum);
+	re?lua_pushnumber(L, 1):lua_pushnumber(L, 0);
+	return 1;
+}
+
 static const struct luaL_Reg BattleLib[] =
 {
 	{"ChangeState",ChangeState},
@@ -190,5 +219,7 @@ static const struct luaL_Reg BattleLib[] =
 	{"Lost",Lost},
 	{"AddPlayerMission",AddPlayerMission},
 	{"SetPlayerMission",SetPlayerMission},
+	{"AddStorySquad", AddStorySquad},
+	{"AddBattleSquad", AddBattleSquad},
 	{NULL,NULL}
 };
