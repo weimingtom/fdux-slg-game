@@ -288,7 +288,7 @@
 			<ArmorId type="String" value="MidArmor2"/>
 			<SkillTable>
 				<Long type="Int" value="2"/>
-				<MidArmor type="Int" value="2"/>
+				<MiddleArmor type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="WingsHeavyInf"/>
 			<RetainerId type="String" value="Scout"/>
@@ -363,7 +363,7 @@
 			<SkillTable>
 				<OneHandSword type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
-				<MidArmor type="Int" value="2"/>
+				<MiddleArmor type="Int" value="2"/>
 				<HeavyHorse type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="Cossa"/>
@@ -415,11 +415,6 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="none"/>
 			<SkillTable>
-				<Faith type="Int" value="0"/>
-				<StrengthenSprite type="Int" value="0"/>
-				<Heal type="Int" value="1"/>
-				<MagicShield type="Int" value="1"/>
-				<Pray type="Int" value="1"/>
 			</SkillTable>
 			<LeaderId type="String" value="Fay"/>
 			<RetainerId type="String" value="Scout"/>
@@ -443,11 +438,6 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="none"/>
 			<SkillTable>
-				<Faith type="Int" value="0"/>
-				<StrengthenSprite type="Int" value="0"/>
-				<Heal type="Int" value="1"/>
-				<MagicShield type="Int" value="1"/>
-				<Pray type="Int" value="1"/>
 			</SkillTable>
 			<LeaderId type="String" value="Azaria"/>
 			<RetainerId type="String" value="Scout"/>
@@ -632,7 +622,7 @@
 			<SkillTable>
 				<OneHandSword type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
-				<MidArmor type="Int" value="2"/>
+				<MiddleArmor type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="GuardLightSword"/>
 			<RetainerId type="String" value="Scout"/>
@@ -734,11 +724,6 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="none"/>
 			<SkillTable>
-				<Faith type="Int" value="0"/>
-				<StrengthenSprite type="Int" value="0"/>
-				<Heal type="Int" value="1"/>
-				<MagicShield type="Int" value="1"/>
-				<Pray type="Int" value="1"/>
 			</SkillTable>
 			<LeaderId type="String" value="Elementalist"/>
 			<RetainerId type="String" value="Scout"/>
@@ -762,11 +747,6 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="none"/>
 			<SkillTable>
-				<Faith type="Int" value="0"/>
-				<StrengthenSprite type="Int" value="0"/>
-				<Heal type="Int" value="1"/>
-				<MagicShield type="Int" value="1"/>
-				<Pray type="Int" value="1"/>
 			</SkillTable>
 			<LeaderId type="String" value="Kareena"/>
 			<RetainerId type="String" value="Scout"/>
@@ -790,11 +770,6 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="none"/>
 			<SkillTable>
-				<Faith type="Int" value="0"/>
-				<StrengthenSprite type="Int" value="0"/>
-				<Heal type="Int" value="1"/>
-				<MagicShield type="Int" value="1"/>
-				<Pray type="Int" value="1"/>
 			</SkillTable>
 			<LeaderId type="String" value="Welvss"/>
 			<RetainerId type="String" value="Scout"/>
@@ -818,11 +793,6 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="none"/>
 			<SkillTable>
-				<Faith type="Int" value="0"/>
-				<StrengthenSprite type="Int" value="0"/>
-				<Heal type="Int" value="1"/>
-				<MagicShield type="Int" value="1"/>
-				<Pray type="Int" value="1"/>
 			</SkillTable>
 			<LeaderId type="String" value="Warmage"/>
 			<RetainerId type="String" value="Scout"/>
@@ -872,7 +842,7 @@
 			<ArmorId type="String" value="MidArmor1"/>
 			<SkillTable>
 				<TwoHandSword type="Int" value="2"/>
-				<MidArmor type="Int" value="2"/>
+				<MiddleArmor type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="UlvaLightHSword"/>
 			<RetainerId type="String" value="Scout"/>
@@ -974,7 +944,7 @@
 			<ArmorId type="String" value="MidArmor1"/>
 			<SkillTable>
 				<TwoHandSword type="Int" value="2"/>
-				<MidArmor type="Int" value="2"/>
+				<MiddleArmor type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="FNothLightHSword"/>
 			<RetainerId type="String" value="Scout"/>
@@ -1077,7 +1047,7 @@
 			<ArmorId type="String" value="MidArmor2"/>
 			<SkillTable>
 				<Long type="Int" value="2"/>
-				<MidArmor type="Int" value="2"/>
+				<MiddleArmor type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="WinfredLightHalberd"/>
 			<RetainerId type="String" value="Scout"/>
