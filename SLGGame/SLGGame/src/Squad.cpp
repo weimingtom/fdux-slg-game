@@ -3,9 +3,10 @@
 #include <boost/format.hpp>
 
 #include "LuaSystem.h"
+#include <OgreLogManager.h>
 
-#define RETURNONERR(a) if(!a) return;
-#define RETURNFALSEONERR(a) if(!a) return false;
+#define RETURNONERR(a) if(!a) {Ogre::LogManager::getSingletonPtr()->stream()<<__FILE__<<","<<__LINE__<<":RETURNONERR!"; return;}
+#define RETURNFALSEONERR(a) if(!a) {Ogre::LogManager::getSingletonPtr()->stream()<<__FILE__<<","<<__LINE__<<":RETURNFALSEONERR!"; return false;}
 
 Squad::Squad(std::string path)
 {
