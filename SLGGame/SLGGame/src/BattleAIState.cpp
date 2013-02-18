@@ -1167,10 +1167,7 @@ void BattleAIState::MissionCommander::chooseSquads(std::vector<BattleSquad*>& ch
 		ite2 = std::find(choosefrom.begin(), choosefrom.end(), *ite1);
 		choosefrom.erase(ite2);
 	}
-	while(choosedends != choosed.end())
-	{
-		choosed.pop_back();
-	}
+	choosed.erase(choosedends, choosed.end());
 }
 
 //DefendCommander------------------------------------------------
