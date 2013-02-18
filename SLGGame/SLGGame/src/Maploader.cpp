@@ -15,6 +15,8 @@
 #include "AudioSystem.h"
 #include "boost/format.hpp"
 
+#include "Area.h"
+
 MapLoader::MapLoader()
 {
 
@@ -201,6 +203,18 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 		datalibrary->setData(datapath + "/Mesh", meshname);
 		datalibrary->setData(datapath + "/Direction", objdir);
 		//物品类型脚本
+		std::string mapobjscript("none");
+		datalibrary->getData(str(boost::format("StaticData/MapObjType/%1%/Script")%objtype), mapobjscript);
+		if(mapobjscript != "none")
+		{
+			MapObjScriptInfo scriptinfo;
+			scriptinfo.x = objx;
+			scriptinfo.y = objy;
+			scriptinfo.script = mapobjscript;
+			scriptinfo.path = datapath + "/ScriptContext";
+			mMapObjScriptInfo.push(scriptinfo);
+		}
+
 		datapath = std::string("GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(MapDataManager::getSingleton().getGridId(objx, objy)) + std::string("/MapObjType");
 		datalibrary->setData(datapath, objtype);
 		datalibrary->setData(datapath + "/MapObjModuleId", objname);
@@ -245,6 +259,8 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 		//child->GetValue(&areaname);
 		areaname = child->name();
 		datapath = std::string("GameData/BattleData/MapData/Area/") + areaname;
+		Area area(datapath + "/CoordList");
+		std::vector<Crood> croodVec;
 		//ticpp::Iterator<ticpp::Element> childchild;
 		rapidxml::xml_node<> *childchild = child->first_node();
 		//for(childchild = childchild.begin(child.Get()); childchild != childchild.end(); childchild++)
@@ -261,9 +277,10 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 			//childchild->GetAttribute("Y",&y);
 			attr = childchild->first_attribute("Y");
 			y = Ogre::StringConverter::parseInt(attr->value());
-			datalibrary->setData(datapath + std::string("/CoordList/") + coordname + std::string("/X"),x );
-			datalibrary->setData(datapath + std::string("/CoordList/") + coordname + std::string("/Y"),y );
+			croodVec.push_back(Crood(x, y));
 		}
+		area.setCroodVec(croodVec);
+		MapDataManager::getSingleton().mMapArea.insert(std::make_pair(areaname, area));
 
 	}
 	//delete element;
@@ -370,12 +387,20 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 }
 bool MapLoader::loadMapFormSave()
 {
+	DataLibrary* datalibrary = DataLibrary::getSingletonPtr();
 	int mapsize;
-	DataLibrary::getSingleton().getData("GameData/BattleData/MapData/MapSize", mapsize);
+	datalibrary->getData("GameData/BattleData/MapData/MapSize", mapsize);
 	MapDataManager::getSingleton().mMapSize = mapsize;
+	std::vector<std::string> arealist = datalibrary->getChildList("GameData/BattleData/MapData/Area");
+	std::vector<std::string>::iterator ite = arealist.begin();
+	for( ; ite != arealist.end(); ite++)
+	{
+		Area area(str(boost::format("GameData/BattleData/MapData/Area/%1%/CoordList")%(*ite)));
+		MapDataManager::getSingleton().mMapArea.insert(std::make_pair(*ite, area));
+	}
 	Terrain::getSingleton().createTerrain();
 	std::string music;
-	DataLibrary::getSingleton().getData("GameData/StoryData/MusicName", music);
+	datalibrary->getData("GameData/StoryData/MusicName", music);
 	AudioSystem::getSingleton().playStream(music,true,2000);
 	return true;
 }
@@ -570,6 +595,18 @@ void MapLoader::initBattleSquad(bool loadfrommap)
 
 void MapLoader::initMapScript()
 {
+	//运行场景物件脚本
+	while(mMapObjScriptInfo.size() > 0)
+	{
+		MapObjScriptInfo& mapscriptinfo = mMapObjScriptInfo.front();
+		LuaTempContext *tempcontext = new LuaTempContext();
+		tempcontext->intMap.insert(std::make_pair("x", mapscriptinfo.x));
+		tempcontext->intMap.insert(std::make_pair("y", mapscriptinfo.y));
+		LuaSystem::getSingleton().executeFunction(mapscriptinfo.script, "onmap", mapscriptinfo.path, tempcontext);
+		delete tempcontext;
+		mMapObjScriptInfo.pop();
+	}
+
 	DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/Ture",0);
 	DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/CurTeam",4);
 

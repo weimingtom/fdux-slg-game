@@ -385,6 +385,14 @@ void BattleSquadManager::moveSquad(BattleSquad* squad,std::vector<int> pointlist
 		if(m_moveInterrupt)
 			return;
 
+		//计算突袭
+
+		if(m_moveInterrupt)
+		{
+			eventflag |= MOVEEVENT_AMBUSH;
+			return;
+		}
+
 		int lastx = squad->getGridX();
 		int lasty = squad->getGridY();
 		squad->setGridX(x);
@@ -392,6 +400,34 @@ void BattleSquadManager::moveSquad(BattleSquad* squad,std::vector<int> pointlist
 		squad->setDirection(GetDirection(lastx, lasty, x, y));
 
 		m_moveList.push_back(Ogre::Vector2(x, y));
+
+		//触发地图事件
+		squad->moveIn(lastx, lasty, x, y);
+		std::vector<std::string> inarea;
+		std::vector<std::string> outarea;
+		mapdata->inOutArea(Crood(lastx, lasty), Crood(x, y), inarea, outarea);
+		std::vector<std::string>::iterator areaite = inarea.begin();
+		for( ; areaite != inarea.end(); areaite++)
+		{
+			LuaTempContext * tempcontext = new LuaTempContext();;
+			tempcontext->strMap["squadid"] = squad->getSquadId();
+			tempcontext->strMap["areaid"] = *areaite;
+			mapdata->Trigger("GetInArea", tempcontext);
+			delete tempcontext;
+		}
+		for(areaite = outarea.begin(); areaite != outarea.end(); areaite++)
+		{
+			LuaTempContext * tempcontext = new LuaTempContext();
+			tempcontext->strMap["squadid"] = squad->getSquadId();
+			tempcontext->strMap["areaid"] = *areaite;
+			mapdata->Trigger("GetOutArea", tempcontext);
+			delete tempcontext;
+		}
+		if(m_moveInterrupt)
+		{
+			eventflag |= MOVEEVENT_MAPEVENT;
+			return;
+		}
 
 		int faction = squad->getFaction();
 		BattleSquadIte ite = mSquadList.begin();
@@ -1170,4 +1206,53 @@ void BattleSquadManager::rangedCutScene(BattleSquad* attacksquad, int x, int y, 
 		}
 	}
 	cutscenebuilder->addCutScene(ccs);
+}
+
+bool BattleSquadManager::createStorySquad(std::string squadid, std::string suqadtypeid, int x, int y)
+{
+	if(getBattleSquadAt(x, y, 0, false) != NULL)
+		return false;
+	AVGSquadManager::getSingleton().addNewSquad(squadid, suqadtypeid);
+
+	SquadGrapManager* suqadgrapmanager = SquadGrapManager::getSingletonPtr();
+
+	std::string path = "GameData/BattleData/SquadList";
+	BattleSquad* battlesquad = new BattleSquad(str(boost::format("%1%/%2%")%path%squadid));
+	mSquadList.insert(std::make_pair(battlesquad->getSquadId(),battlesquad));
+	if(!battlesquad->init(str(boost::format("GameData/StoryData/SquadData/%1%")%squadid), 1))
+	{
+		BattleSquadIte ite = mSquadList.find(battlesquad->getSquadId());
+		delete battlesquad;
+		mSquadList.erase(ite);
+		return false;
+	}
+	suqadgrapmanager->createSquadGrap(battlesquad->getSquadId(), battlesquad->getPath(), battlesquad->getGridX(), battlesquad->getGridY(), 
+										battlesquad->getDirection(), battlesquad->getFormation(), battlesquad->getUnitGrapNum());
+	SquadGraphics* grap = suqadgrapmanager->getSquad(battlesquad->getSquadId());
+	grap->setVisible(false);
+	CutSceneBuilder::getSingleton().addCutScene(new SquadStateCutScene(battlesquad, SQUAD_STATE_VISIBLE, "none",1));
+	return true;
+}
+bool BattleSquadManager::createNormalSquad(std::string squadid, std::string suqadtypeid, int x, int y, int team, int unitnum)
+{
+	if(getBattleSquadAt(x, y, 0, false) != NULL)
+		return false;
+	SquadGrapManager* suqadgrapmanager = SquadGrapManager::getSingletonPtr();
+	std::string path = "GameData/BattleData/SquadList";
+	BattleSquad* battlesquad = new BattleSquad(str(boost::format("%1%/%2%")%path%squadid));
+	mSquadList.insert(std::make_pair(battlesquad->getSquadId(), battlesquad));
+	if(!battlesquad->init(str(boost::format("StaticData/SquadData/%1%")%suqadtypeid),
+							team, unitnum, x, y, 0))
+	{
+		BattleSquadIte ite = mSquadList.find(battlesquad->getSquadId());
+		delete battlesquad;
+		mSquadList.erase(ite);
+		return false;
+	}
+	suqadgrapmanager->createSquadGrap(battlesquad->getSquadId(), battlesquad->getPath(), battlesquad->getGridX(), battlesquad->getGridY(), 
+										battlesquad->getDirection(), battlesquad->getFormation(), battlesquad->getUnitGrapNum());
+	SquadGraphics* grap = suqadgrapmanager->getSquad(battlesquad->getSquadId());
+	grap->setVisible(false);
+	CutSceneBuilder::getSingleton().addCutScene(new SquadStateCutScene(battlesquad, SQUAD_STATE_VISIBLE, "none",1));
+	return true;
 }

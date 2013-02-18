@@ -268,3 +268,52 @@ void MapDataManager::Trigger(std::string triggertype, LuaTempContext * tempconte
 		LuaSystem::getSingleton().executeFunction(filename,funcname,context,tempcontext);
 	}
 }
+
+std::string MapDataManager::createArea(std::vector<Crood> croodvec)
+{
+	int newid = 0;
+	std::string areaid = str(boost::format("Area%1%")%newid);
+	std::map<std::string, Area>::iterator ite = mMapArea.find(areaid);
+	while(ite != mMapArea.end())
+	{
+		newid++;
+		areaid = str(boost::format("Area%1%")%newid);
+		ite = mMapArea.find(areaid);
+	}
+	Area area(str(boost::format("GameData/BattleData/MapData/Area/%1%/CoordList")%areaid));
+	area.setCroodVec(croodvec);
+	mMapArea.insert(std::make_pair(areaid, area));
+	return areaid;
+}
+
+void MapDataManager::removeArea(std::string areaid)
+{
+	std::map<std::string, Area>::iterator ite = mMapArea.find(areaid);
+	if(ite != mMapArea.end())
+	{
+		DataLibrary::getSingleton().delNode(str(boost::format("GameData/BattleData/MapData/Area/%1%")%ite->first));
+		mMapArea.erase(ite);
+	}
+}
+
+void MapDataManager::inArea(Crood crood, std::vector<std::string>& inArea)
+{
+	std::map<std::string, Area>::iterator ite = mMapArea.begin();
+	for( ;ite != mMapArea.end(); ite++)
+	{	
+		if(ite->second.inArea(crood))
+			inArea.push_back(ite->first);
+	}
+}
+
+void MapDataManager::inOutArea(Crood fromcrood, Crood tocrood, std::vector<std::string>& inArea, std::vector<std::string>& outArea)
+{
+	std::map<std::string, Area>::iterator ite = mMapArea.begin();
+	for( ;ite != mMapArea.end(); ite++)
+	{
+		if(ite->second.inArea(fromcrood) && !ite->second.inArea(tocrood))
+			outArea.push_back(ite->first);
+		if(!ite->second.inArea(fromcrood) && ite->second.inArea(tocrood))
+			inArea.push_back(ite->first);
+	}
+}

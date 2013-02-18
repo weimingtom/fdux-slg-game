@@ -42,6 +42,7 @@ public:
 	void afterMeleeAttack(BattleSquad* targetsquad, bool asdefender = false);
 	void onCharge();
 	void afterCharge();
+	void moveIn(int srcx, int srcy, int tgx, int tgy);
 
 	//ªÒ»° Ù–‘
 public:

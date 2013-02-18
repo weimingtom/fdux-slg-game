@@ -31,4 +31,13 @@ private:
 		int dir;
 	};
 	std::queue<MapSquadInfo> mMapSquadInfo;
+
+	struct MapObjScriptInfo
+	{
+		std::string script;
+		std::string path;
+		int x;
+		int y;
+	};
+	std::queue<MapObjScriptInfo> mMapObjScriptInfo;
 };
