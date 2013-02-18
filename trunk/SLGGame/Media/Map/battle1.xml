@@ -157,4 +157,7 @@
 		<c31 X="6" Y="9" />
 		<c32 X="7" Y="9" />
 	</CampArea>
+	<BigCamp>
+		<c0 X="7" Y="4" />
+	</BigCamp>
 </MapArea>
