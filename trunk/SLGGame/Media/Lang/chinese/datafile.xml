@@ -62,20 +62,20 @@
 			<Describe type="String" value="凡塔斯子爵"/>
 		</FantasyHeavyCavalry>
 		<GuardHeavySpear>
-			<Name type="String" value="法卫队队长"/>
-			<Describe type="String" value="法卫队队长"/>
+			<Name type="String" value="法卫队长"/>
+			<Describe type="String" value="法卫队长"/>
 		</GuardHeavySpear>
 		<GuardLightBow>
-			<Name type="String" value="法卫队斥候长"/>
-			<Describe type="String" value="法卫队斥候长"/>
+			<Name type="String" value="法卫斥候长"/>
+			<Describe type="String" value="法卫斥候长"/>
 		</GuardLightBow>
 		<GuardCrossBow>
-			<Name type="String" value="法卫队军士长"/>
-			<Describe type="String" value="法卫队军士长"/>
+			<Name type="String" value="法卫军士长"/>
+			<Describe type="String" value="法卫军士长"/>
 		</GuardCrossBow>
 		<GuardLightSword>
-			<Name type="String" value="法卫队军士长"/>
-			<Describe type="String" value="法卫队军士长"/>
+			<Name type="String" value="法卫军士长"/>
+			<Describe type="String" value="法卫军士长"/>
 		</GuardLightSword>
 		<Elementalist>
 			<Name type="String" value="无名法师"/>
@@ -98,16 +98,16 @@
 			<Describe type="String" value="流寇"/>
 		</Pirate>
 		<UlvaLightHSword>
-			<Name type="String" value="复国团中级军官"/>
-			<Describe type="String" value="复国团中级军官"/>
+			<Name type="String" value="复国团军官"/>
+			<Describe type="String" value="复国团军官"/>
 		</UlvaLightHSword>
 		<UlvaLightBow>
-			<Name type="String" value="复国团低级军官"/>
-			<Describe type="String" value="复国团低级军官"/>
+			<Name type="String" value="复国团军官"/>
+			<Describe type="String" value="复国团军官"/>
 		</UlvaLightBow>
 		<UlvaCrossBow>
-			<Name type="String" value="复国团低级军官"/>
-			<Describe type="String" value="复国团低级军官"/>
+			<Name type="String" value="复国团军官"/>
+			<Describe type="String" value="复国团军官"/>
 		</UlvaCrossBow>
 		<FNothHeavyHSword>
 			<Name type="String" value="不明军官"/>
@@ -138,8 +138,8 @@
 			<Describe type="String" value="温菲尔德侍从"/>
 		</WinfredLightBow>
 		<WinfredHeavyCavalry>
-			<Name type="String" value="温菲尔德高阶骑士"/>
-			<Describe type="String" value="温菲尔德高阶骑士"/>
+			<Name type="String" value="温菲尔德男爵"/>
+			<Describe type="String" value="温菲尔德男爵"/>
 		</WinfredHeavyCavalry>
 		<WinfredLightCavalry>
 			<Name type="String" value="温菲尔德骑士"/>
