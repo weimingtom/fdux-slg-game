@@ -1,0 +1,39 @@
+system mp_woosh_10
+{
+    scale_velocity                              0.1
+    scale                                       0.1 0.1 0.1
+    category                                    MyGame
+    technique 
+    {
+        visual_particle_quota                   100
+        material                                mp_woosh_circle_06
+        renderer                                Billboard
+        {
+            billboard_type                      oriented_self
+            billboard_rotation_type             vertex
+        }
+        emitter                                 Point 
+        {
+            emission_rate                       100
+            angle                               0
+            time_to_live                        dyn_random
+            {
+                min                             0.2
+                max                             0.3
+            }
+            velocity                            0.0001
+            duration                            0.1
+            colour                              1 0.482353 0.235294 1
+        }
+        affector                                Colour 
+        {
+            time_colour                         0    1 1 1 1
+            time_colour                         1    0 0 0 1
+            colour_operation                    multiply
+        }
+        affector                                Scale 
+        {
+            xyz_scale                           500
+        }
+    }
+}
