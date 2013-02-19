@@ -6,7 +6,7 @@ GUI.ShowText("敌人在树林之中隐蔽着一些部队，我军行军时发现它们将被迫停止行军，而
 GUI.ClearText();
 GUI.ShowText("为了避免遭到突袭打击，请先使用侦察值更高的轻装步兵前往探查。",1);
 GUI.ClearText();
-GUI.ShowText("同时我们也可以利用突袭效果对地方低侦察值单位进行突袭打击。",1);
+GUI.ShowText("同时我们也可以利用突袭效果对敌军低侦察值单位进行突袭打击。",1);
 GUI.ClearText();
 GUI.ShowRoleName("");
 GUI.ShowImage("",right,300);
