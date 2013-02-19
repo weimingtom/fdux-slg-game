@@ -183,12 +183,12 @@ void GUITargetWindows::updateSquad()
 	}
 
 	float tempfloat;
-	tempfloat = mSelectSquad->getAttr(ATTR_ATTACK,ATTRCALC_FULL);
+	tempfloat = mSelectSquad->getAtk(0);
 	float tempfloat1;
-	tempfloat1 = mSelectSquad->getAttr(ATTR_RANGEDATTACK,ATTRCALC_FULL);
+	tempfloat1 = mSelectSquad->getRangedAtk();
 	mSquadAttack->setCaption(str(boost::format("%1%/%2%")%floor(tempfloat+0.5f)%floor(tempfloat1+0.5f)));
-	tempfloat = mSelectSquad->getAttr(ATTR_DEFENCE,ATTRCALC_FULL);
-	tempfloat1 = mSelectSquad->getAttr(ATTR_RANGEDDEFENCE,ATTRCALC_FULL);
+	tempfloat = mSelectSquad->getDef(0);
+	tempfloat1 = mSelectSquad->getRangedDef();
 	mSquadDefence->setCaption(str(boost::format("%1%/%2%")%floor(tempfloat+0.5f)%floor(tempfloat1+0.5f)));
 
 	x = mSelectSquad->getUnitMaxNum();

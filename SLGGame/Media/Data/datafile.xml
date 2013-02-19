@@ -486,7 +486,7 @@
 			<PweaponId type="String" value="ShortSpear1"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="Shield1"/>
-			<ArmorId type="String" value="MiddleArmor1"/>
+			<ArmorId type="String" value="MidArmor1"/>
 			<SkillTable>
 				<ShortSpear type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
@@ -3556,7 +3556,7 @@
 		</Suppressed>
 		<Waver>
 			<Type type="Int" value="0"/>
-			<Icon type="String" value="waver.jpg"/>
+			<Icon type="String" value="skill_pass_shake"/>
 			<Script type="String" value="waver.lua"/>
 		</Waver>
 		<AntiCav>
@@ -3566,7 +3566,7 @@
 		</AntiCav>
 		<Inspired>
 			<Type type="Int" value="2"/>
-			<Icon type="String" value="Inspired.jpg"/>
+			<Icon type="String" value="skill_pass_AtkcUp"/>
 			<Script type="String" value="Inspire.lua"/>
 		</Inspired>
 	</EffectData>

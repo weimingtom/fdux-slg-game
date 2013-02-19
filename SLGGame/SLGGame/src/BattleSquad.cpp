@@ -344,6 +344,22 @@ AttackInfo BattleSquad::getAttackRolls(bool rangedattack,bool asdefender, int d)
 	return attackinfo;
 }
 
+float BattleSquad::getRangedAtk()
+{
+	float atk = getAttr(ATTR_RANGEDATTACK, ATTRCALC_FULL);
+	return atk;
+}
+float BattleSquad::getAtk(int side)
+{
+	float atk = getAttr(ATTR_ATTACK, ATTRCALC_FULL);
+	float formation = getAttr(ATTR_FORM, ATTRCALC_FULL);
+	int soildernum = getUnitNum();
+	formation = formation * soildernum / 50.0f;
+	formation *= GetFormationBonus(side, getFormation());
+	atk += formation;
+	return atk;
+}
+
 void BattleSquad::applyAttackRolls(bool rangedattack, int d, AttackInfo &attackinfo)
 {
 	DataLibrary *datalib = DataLibrary::getSingletonPtr();
@@ -395,6 +411,19 @@ void BattleSquad::applyAttackRolls(bool rangedattack, int d, AttackInfo &attacki
 		if(rand() % 100 < attackinfo.Randomness)
 			kill = 1;
 	}
+
+	float pec = (float)kill/soildernum;
+	if(pec > 0.2f)
+	{
+		std::string eid;
+		applyEffect("Waver", eid);
+	}
+	if(pec > 0.5f)
+	{
+		std::string eid;
+		applyEffect("Waver", eid);
+	}
+
 	soildernum -= kill;
 	soildernum = (soildernum < 0)? 0: soildernum;
 	setUnitNum(soildernum);
@@ -402,6 +431,39 @@ void BattleSquad::applyAttackRolls(bool rangedattack, int d, AttackInfo &attacki
 	int maxnum = getUnitMaxNum();
 	maxnum -= kill * (1.0f - getAttr(ATTR_TOUGHNESS, ATTRCALC_FULL) / 10.0f);
 	setUnitMaxNum(maxnum);
+}
+
+float BattleSquad::getRangedDef()
+{
+	float deff = getAttr(ATTR_RANGEDDEFENCE, ATTRCALC_FULL);
+	deff += RANGEDDEFENCEBONUS;
+	float formation = getAttr(ATTR_FORM, ATTRCALC_FULL);
+	int soildernum = getUnitNum();
+	formation = formation * soildernum / 50.0f;
+	switch(getFormation())
+	{
+	case Line:
+		formation *= FORMBONSE_LINE_RANGED;
+		break;
+	case Circular:
+		formation *= FORMBONSE_CIRC_RANGED;
+		break;
+	default:
+		formation *= FORMBONSE_LOOS_RANGED;
+		break;
+	}
+	deff -= formation;
+	return deff; 
+}
+float BattleSquad::getDef(int side)
+{
+	float deff = getAttr(ATTR_DEFENCE, ATTRCALC_FULL);
+	float formation = getAttr(ATTR_FORM, ATTRCALC_FULL);
+	int soildernum = getUnitNum();
+	formation = formation * soildernum / 50.0f;
+	formation *= GetFormationBonus(side, getFormation());
+	deff += formation;
+	return deff;
 }
 
 bool BattleSquad::changeFormation(int formation, bool costap)

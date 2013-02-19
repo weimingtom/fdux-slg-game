@@ -157,61 +157,62 @@ void BattleSquadManager::turnEnd(int team)
 		if(ite->second->getTeam() == team)
 		{
 			ite->second->turnEnd();
-		}
-		int faction = ite->second->getFaction();
-		bool needrecalc = false;
-		if(faction != 0)
-		{
-			needrecalc = ite->second->getViewbyPlayer();
-		}
-		if(!needrecalc && faction != 1)
-		{
-			needrecalc = ite->second->getViewbyEnemy1();
-		}
-		if(!needrecalc && faction != 2)
-		{
-			needrecalc = ite->second->getViewbyEnemy2();
-		}
-		if(!needrecalc && faction != 3)
-		{
-			needrecalc = ite->second->getViewbyEnemy3();
-		}
-		if(needrecalc)
-		{
-			bool veiwbyfaction[4] = { false, false, false, false};
-			veiwbyfaction[faction] = true;
-			int x = ite->second->getGridX();
-			int y = ite->second->getGridY();
-			BattleSquadIte ite1 = mSquadList.begin();
-			for(;ite1 != mSquadList.end(); ite1++)
+			//ÖØÐÂ¼ÆËãÒþ²Ø
+			int faction = ite->second->getFaction();
+			bool needrecalc = false;
+			if(faction != 0)
 			{
-				if(veiwbyfaction[ite1->second->getFaction()])
-					continue;
-
-				int range = GetDistance(x, y, ite1->second->getGridX(), ite1->second->getGridY());
-				int ditectrange = (int)ite1->second->getAttr(ATTR_DETECTION,ATTRCALC_FULL) + 2;
-				int covert = (int)ite->second->getAttr(ATTR_COVERT,ATTRCALC_FULL);
-				if(range <= ditectrange - covert)
+				needrecalc = ite->second->getViewbyPlayer();
+			}
+			if(!needrecalc && faction != 1)
+			{
+				needrecalc = ite->second->getViewbyEnemy1();
+			}
+			if(!needrecalc && faction != 2)
+			{
+				needrecalc = ite->second->getViewbyEnemy2();
+			}
+			if(!needrecalc && faction != 3)
+			{
+				needrecalc = ite->second->getViewbyEnemy3();
+			}
+			if(needrecalc)
+			{
+				bool veiwbyfaction[4] = { false, false, false, false};
+				veiwbyfaction[faction] = true;
+				int x = ite->second->getGridX();
+				int y = ite->second->getGridY();
+				BattleSquadIte ite1 = mSquadList.begin();
+				for(;ite1 != mSquadList.end(); ite1++)
 				{
-					veiwbyfaction[ite1->second->getFaction()] = true;
+					if(veiwbyfaction[ite1->second->getFaction()])
+						continue;
+
+					int range = GetDistance(x, y, ite1->second->getGridX(), ite1->second->getGridY());
+					int ditectrange = (int)ite1->second->getAttr(ATTR_DETECTION,ATTRCALC_FULL) + 2;
+					int covert = (int)ite->second->getAttr(ATTR_COVERT,ATTRCALC_FULL);
+					if(range <= ditectrange - covert)
+					{
+						veiwbyfaction[ite1->second->getFaction()] = true;
+					}
 				}
-			}
-			if(veiwbyfaction[0] == false)
-			{
-				ite->second->setViewbyPlayer(0);
-				CutSceneBuilder::getSingleton().addCutScene(new SquadStateCutScene(ite->second,SQUAD_STATE_VISIBLE,"none",0));
-			}
-			if(veiwbyfaction[1] == false)
-			{
-				ite->second->setViewbyEnemy1(0);
-			}
-			if(veiwbyfaction[2] == false)
-			{
-				ite->second->setViewbyEnemy2(0);
-			}
-			if(veiwbyfaction[3] == false)
-			{
-				ite->second->setViewbyEnemy3(0);
+				if(veiwbyfaction[0] == false)
+				{
+					ite->second->setViewbyPlayer(0);
+					CutSceneBuilder::getSingleton().addCutScene(new SquadStateCutScene(ite->second,SQUAD_STATE_VISIBLE,"none",0));
+				}
+				if(veiwbyfaction[1] == false)
+				{
+					ite->second->setViewbyEnemy1(0);
+				}
+				if(veiwbyfaction[2] == false)
+				{
+					ite->second->setViewbyEnemy2(0);
+				}
+				if(veiwbyfaction[3] == false)
+				{
+					ite->second->setViewbyEnemy3(0);
+				}
 			}
 		}
 	}
@@ -385,7 +386,24 @@ void BattleSquadManager::moveSquad(BattleSquad* squad,std::vector<int> pointlist
 		if(m_moveInterrupt)
 			return;
 
-		//¼ÆËãÍ»Ï®
+		//¼ÆËãÂñ·ü
+		int faction = squad->getFaction();
+		BattleSquad* squadonpoint = getBattleSquadAt(x, y, faction, false);
+		if(squadonpoint)
+		{
+			InterruptMove();
+			if(squadonpoint->getViewByFaction(faction) == 0)
+			{
+				squadonpoint->setViewByFaction(faction, true);
+				if(faction == 0)
+				{
+					CutSceneBuilder::getSingleton().addCutScene(new SquadStateCutScene(squadonpoint,SQUAD_STATE_VISIBLE,"none",1));
+				}
+			}
+			squad->setActionPoint(0.0f);
+			std::string eid;
+			squad->applyEffect("Waver", eid);
+		}
 
 		if(m_moveInterrupt)
 		{
@@ -429,7 +447,6 @@ void BattleSquadManager::moveSquad(BattleSquad* squad,std::vector<int> pointlist
 			return;
 		}
 
-		int faction = squad->getFaction();
 		BattleSquadIte ite = mSquadList.begin();
 		for(;ite != mSquadList.end(); ite++)
 		{
@@ -899,7 +916,7 @@ void BattleSquadManager::useSkill(BattleSquad* squad, std::string skillid, int x
 					}
 					unsigned int stoppoint;
 					moveSquad(squad, pathlist, stoppoint, eventflag);
-					if(!(eventflag & MOVEEVENT_WRONG))
+					if(!(eventflag & (MOVEEVENT_WRONG | MOVEEVENT_AMBUSH | MOVEEVENT_SPOT)))
 					{
 						BattleSquad* targetsquad = getBattleSquadAt(x, y, squad->getFaction(), true);
 						if(targetsquad)
@@ -934,6 +951,26 @@ bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* 
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	CutSceneBuilder* cutscenebuilder = CutSceneBuilder::getSingletonPtr();
+
+	//¼ÆËãÍ»Ï®
+	int deffaction = defenesquad->getFaction();
+	if(attacksquad->getViewByFaction(deffaction) == 0)
+	{
+		attacksquad->setViewByFaction(deffaction, true);
+		attacksquad->setAmbushFaction(deffaction, true);
+		if(deffaction == 0)
+		{
+			cutscenebuilder->addCutScene(new SquadStateCutScene(attacksquad,SQUAD_STATE_VISIBLE,"none",1));
+		}
+	}
+	if(attacksquad->getAmbushFaction(deffaction) == 1)
+	{
+		defenesquad->setActionPoint(0.0f);
+		std::string eid;
+		defenesquad->applyEffect("Waver", eid);
+		attacksquad->setAmbushFaction(deffaction, false);
+	}
+
 	Direction d,dd;
 	int defenderx, defendery, attackerx,attackery;
 	attackerx = attacksquad->getGridX();
@@ -976,20 +1013,28 @@ bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* 
 		{
 			squad->onMeleeAttack(defenesquad, false);
 			atkinfo = squad->getAttackRolls(false,false,d);
-			switch(defenesquad->getFormation())
+			if(attacksquad->getFormation() == Line)
 			{
-			case Line:
-				if(GetSide(dd,temp[d]) != 0)
+				switch(defenesquad->getFormation())
 				{
-//				}
-//				else if(GetSide(dd,temp[d]) == 2)
-//				{
-					std::string eid;
-					defenesquad->applyEffect("Waver", eid);
+				case Line:
+					if(GetSide(dd,temp[d]) != 0)
+					{
+						std::string eid;
+						defenesquad->applyEffect("Waver", eid);
+						//if(GetSide(dd,temp[d]) == 2)
+						//{
+						//	defenesquad->applyEffect("Waver", eid);
+						//}
+					}
+					break;
+				case Loose:
+					{
+						std::string eid;
+						defenesquad->applyEffect("Waver", eid);
+					}
+					break;
 				}
-				break;
-			case Loose:
-				break;
 			}
 			squad = defenesquad;
 		}
@@ -1043,8 +1088,8 @@ bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* 
 	GUISquadWindows* squadGUI=(GUISquadWindows*)guibattle->getSubWindow("SquadWindow");
 	squadGUI->updateSquad();
 
-	//if(defenesquad->getUnitNum() > 0)
-		//cutscenebuilder->addCutScene(new DirectionCutScene(defenesquad->getSquadId(),dd));
+	if(defenesquad->getUnitNum() > 0)
+		cutscenebuilder->addCutScene(new DirectionCutScene(defenesquad->getSquadId(),dd));
 
 	return true;
 }
@@ -1053,6 +1098,24 @@ bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* 
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	CutSceneBuilder* cutscenebuilder = CutSceneBuilder::getSingletonPtr();
+
+	int deffaction = defenesquad->getFaction();
+	if(attacksquad->getViewByFaction(deffaction) == 0)
+	{
+		attacksquad->setViewByFaction(deffaction, true);
+		attacksquad->setAmbushFaction(deffaction, true);
+		if(deffaction == 0)
+		{
+			cutscenebuilder->addCutScene(new SquadStateCutScene(attacksquad,SQUAD_STATE_VISIBLE,"none",1));
+		}
+	}
+	if(attacksquad->getAmbushFaction(deffaction) == 1)
+	{
+		defenesquad->setActionPoint(0.0f);
+		std::string eid;
+		defenesquad->applyEffect("Waver", eid);
+		attacksquad->setAmbushFaction(deffaction, false);
+	}
 
 	AttackInfo atkinfo;
 	atkinfo.Atk = atk;
@@ -1080,7 +1143,11 @@ bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* 
 	{
 		cutscenebuilder->addCutScene(new SquadStateCutScene(defenesquad, SQUAD_STATE_VISIBLE, "none", 0));
 	}
-
+	else if(defenesquad->getFormation() == Circular)
+	{
+		std::string eid;
+		defenesquad->applyEffect("Waver", eid);
+	}
 	return true;
 }
 
@@ -1088,6 +1155,24 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	CutSceneBuilder* cutscenebuilder = CutSceneBuilder::getSingletonPtr();
+
+	int deffaction = defenesquad->getFaction();
+	if(attacksquad->getViewByFaction(deffaction) == 0)
+	{
+		attacksquad->setViewByFaction(deffaction, true);
+		attacksquad->setAmbushFaction(deffaction, true);
+		if(deffaction == 0)
+		{
+			cutscenebuilder->addCutScene(new SquadStateCutScene(attacksquad,SQUAD_STATE_VISIBLE,"none",1));
+		}
+	}
+	if(attacksquad->getAmbushFaction(deffaction) == 1)
+	{
+		defenesquad->setActionPoint(0.0f);
+		std::string eid;
+		defenesquad->applyEffect("Waver", eid);
+		attacksquad->setAmbushFaction(deffaction, false);
+	}
 
 	int x = defenesquad->getGridX();
 	int y = defenesquad->getGridY();
@@ -1117,6 +1202,11 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 	if(defenesquad->getUnitNum() == 0)
 	{
 		cutscenebuilder->addCutScene(new SquadStateCutScene(defenesquad, SQUAD_STATE_VISIBLE, "none", 0));
+	}
+	else if(defenesquad->getFormation() == Circular)
+	{
+		std::string eid;
+		defenesquad->applyEffect("Waver", eid);
 	}
 
 	return true;
