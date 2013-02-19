@@ -18,6 +18,10 @@ function finishdeploy()
 	trigerid = MapLib.AddMapTrigger("TurnEnd","turnend");
 	MapLib.ActiveMapTrigger(trigerid);
 	ScriptCommonLib.SetString("turnendtriger",trigerid);
+	--创建回合开始触发器
+	trigerid = MapLib.AddMapTrigger("TurnStart","turnstart");
+	MapLib.ActiveMapTrigger(trigerid);
+	ScriptCommonLib.SetString("turnstarttriger",trigerid);
 	--创建进入区域触发器
 	trigerid = MapLib.AddMapTrigger("GetOutArea","outarea");
 	MapLib.ActiveMapTrigger(trigerid);
@@ -69,6 +73,23 @@ function unitdead()
 	end
 end
 
+function turnstart()
+	turn = ScriptCommonLib.GetTempInt("turn");
+	team = ScriptCommonLib.GetTempInt("team");
+	if team == 1 and turn == 1 then
+	    BattleLib.Story("cp1_1.lua");
+		ScriptCommonLib.SetInt("battlestory", 1);
+	end
+	if team == 1 and turn == 2 then
+	    BattleLib.Story("cp1_3.lua");
+		ScriptCommonLib.SetInt("battlestory", 1);
+	end
+	if team == 1 and turn == 3 then
+	    BattleLib.Story("cp1_4.lua");
+		ScriptCommonLib.SetInt("battlestory", 1);
+	end
+end	
+		
 --回合结束触发器
 function turnend()
 	turn = ScriptCommonLib.GetTempInt("turn");
@@ -106,7 +127,7 @@ function outarea()
 			bs = ScriptCommonLib.GetInt("battlestory");
 			if bs == 0 then
 				--战斗剧情
-				BattleLib.Story("cp12_5.lua");
+				BattleLib.Story("cp1_2.lua");
 				ScriptCommonLib.SetInt("battlestory", 1);
 			end
 		end
