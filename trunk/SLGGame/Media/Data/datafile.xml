@@ -3316,7 +3316,7 @@
 				<MiddleArmor type="Int" value="6"/>
 			</Equip>
 		</MissileInfantry>
-		<Cavalry>
+		<Cavalry type="Int" value="2">
 			<Default>
 				<Attack type="Int" value="1"/>
 				<Rest type="Int" value="1"/>
