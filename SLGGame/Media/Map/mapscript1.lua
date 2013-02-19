@@ -41,14 +41,15 @@ function finishdeploy()
 	BattleLib.AssignAIMission(2, "DuxRaider", "DefendCamp");
 	
 	--创建任务(missionname,missionstate)
-	mainmission = BattleLib.AddPlayerMission("（主要）消灭所有敌军",0);
+	mainmission = BattleLib.AddPlayerMission("map1mission1",0);
 	ScriptCommonLib.SetInt("mainmission", mainmission);
-	mission1 = BattleLib.AddPlayerMission("（次要）占领中央的营地（500金币）",0);
+	mission1 = BattleLib.AddPlayerMission("map1mission2",0);
 	ScriptCommonLib.SetInt("mission1", mission1);
 	ScriptCommonLib.SetInt("mission1state", 0);
 	
 	ScriptCommonLib.SetInt("addedgold", 0);
 	ScriptCommonLib.SetInt("battlestory", 0);
+	ScriptCommonLib.SetInt("Squad7",0);
 end
 
 --部队被歼灭触发器
@@ -100,7 +101,7 @@ function outarea()
 	area = ScriptCommonLib.GetTempString("areaid");
 	
 	if area == "DeployArea" then
-		faction = SquadLib.GetFaction(squadid);
+		faction = SquadLib.GetFaction(squad);
 		if faction == 0 then
 			bs = ScriptCommonLib.GetInt("battlestory");
 			if bs == 0 then
@@ -118,7 +119,7 @@ function inarea()
 	area = ScriptCommonLib.GetTempString("areaid");
 	
 	if area == "BigCamp" then
-		faction = SquadLib.GetFaction(squadid);
+		faction = SquadLib.GetFaction(squad);
 		if faction == 0 then
 			mission1state = ScriptCommonLib.GetInt("mission1state");
 			if mission1state == 0 then

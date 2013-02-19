@@ -13,6 +13,7 @@ extern "C"
 
 #include "SquadDefine.h"
 #include "DataLibrary.h"
+#include "StringTable.h"
 #include "BattleSquadManager.h"
 #include "AVGSquadManager.h"
 
@@ -161,8 +162,9 @@ static int AddPlayerMission(lua_State* L)
 	GUIMissionWindow* mission=(GUIMissionWindow*)guibattle->getSubWindow("MissionWindow");
 
 	std::string caption(luaL_checkstring(L, 1));
+	std::string utf8 = StringTable::getSingleton().getString(caption);
 	int state = luaL_checkint(L, 2);
-	int index = mission->addMission(caption,(MissionState)state);
+	int index = mission->addMission(utf8,(MissionState)state);
 
 	lua_pushnumber(L, index);
 

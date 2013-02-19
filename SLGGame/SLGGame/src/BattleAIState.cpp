@@ -13,6 +13,8 @@
 #include "SquadRoleFactor.h"
 #include "SquadMoveFactor.h"
 #include "SquadSkillFactor.h"
+#include "CutSceneBuilder.h"
+#include "cutscenediretor.h"
 
 #include "GUIInfoWindow.h"
 #include "GUIBattle.h"
@@ -56,7 +58,14 @@ void BattleAIState::update(unsigned int deltaTime)
 			for( ; mcmdite != mMissionCmdMap.end(); mcmdite++)
 			{
 				if(mcmdite->second->update(mOtherSquadGroupVec))
+				{
+					if(CutSceneBuilder::getSingleton().hasCutScenes())
+					{
+						CutSceneDirector* cutscenedirector = new CutSceneDirector(CutSceneBuilder::getSingleton().getCutScenes());
+						mMainState->PushState(cutscenedirector);
+					}
 					return;
+				}
 			}
 			mState = AISTATE_SHUTDOWN;
 		}
