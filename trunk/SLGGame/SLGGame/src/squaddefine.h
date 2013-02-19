@@ -121,12 +121,12 @@ enum AttrCalcType
 
 
 const float FORMBONSE_LINE_FRONT = 1.0f;
-const float FORMBONSE_LINE_SIDE = 0.4f;
+const float FORMBONSE_LINE_SIDE = 0.6f;
 const float FORMBONSE_LINE_BACK = 0.0f;
 const float FORMBONSE_LINE_RANGED = 1.0f;
-const float FORMBONSE_CIRC_FRONT = 0.6f;
-const float FORMBONSE_CIRC_SIDE = 0.6f;
-const float FORMBONSE_CIRC_BACK = 0.6f;
+const float FORMBONSE_CIRC_FRONT = 0.8f;
+const float FORMBONSE_CIRC_SIDE = 0.8f;
+const float FORMBONSE_CIRC_BACK = 0.8f;
 const float FORMBONSE_CIRC_RANGED = 2.0f;
 const float FORMBONSE_LOOS_FRONT = 0.0f;
 const float FORMBONSE_LOOS_SIDE = 0.0f;

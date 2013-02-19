@@ -3,17 +3,42 @@ function useskill()
 	tgtx = ScriptCommonLib.GetTempInt("targetx");
 	tgty = ScriptCommonLib.GetTempInt("targety");
 	sf = SquadLib.GetFaction(sid);
-	for x = tgtx - 1, tgtx + 1, 1 do
-		for y = tgty - 1, tgty + 1, 1 do
-			tgtsid = BattleLib.GetSquadAt(x, y, 1, sf);
-			if tgtsid ~= "" then 
-				tgtf = SquadLib.GetFaction(sid);
-				if sf == tgtf then
-					SquadLib.ApplyEffect(tgtsid, "Inspired");
-				end
-			end
-		end
+	x = tgtx;
+	y = tgty;
+	tgtsid = BattleLib.GetSquadAt(x, y, 1, sf);
+	tgtf = SquadLib.GetFaction(tgtsid);
+	if sf == tgtf then
+		SquadLib.ApplyEffect(tgtsid, "Inspired");
 	end
+	x = tgtx - 1;
+	y = tgty;
+	tgtsid = BattleLib.GetSquadAt(x, y, 1, sf);
+	tgtf = SquadLib.GetFaction(tgtsid);
+	if sf == tgtf then
+		SquadLib.ApplyEffect(tgtsid, "Inspired");
+	end
+	x = tgtx;
+	y = tgty - 1;
+	tgtsid = BattleLib.GetSquadAt(x, y, 1, sf);
+	tgtf = SquadLib.GetFaction(tgtsid);
+	if sf == tgtf then
+		SquadLib.ApplyEffect(tgtsid, "Inspired");
+	end
+	x = tgtx + 1;
+	y = tgty;
+	tgtsid = BattleLib.GetSquadAt(x, y, 1, sf);
+	tgtf = SquadLib.GetFaction(tgtsid);
+	if sf == tgtf then
+		SquadLib.ApplyEffect(tgtsid, "Inspired");
+	end
+	x = tgtx;
+	y = tgty + 1;
+	tgtsid = BattleLib.GetSquadAt(x, y, 1, sf);
+	tgtf = SquadLib.GetFaction(tgtsid);
+	if sf == tgtf then
+		SquadLib.ApplyEffect(tgtsid, "Inspired");
+	end
+
 	ScriptCommonLib.SetTempInt("castsuccess", 1);
 end
 

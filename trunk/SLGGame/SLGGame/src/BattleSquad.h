@@ -18,7 +18,11 @@ public:
 public:
 	virtual float getAttr(int attrtype , int calctype);
 
+	float getRangedAtk();
+	float getAtk(int side);
 	AttackInfo getAttackRolls(bool rangedattack,bool asdefender, int d);
+	float getRangedDef();
+	float getDef(int side);
 	void applyAttackRolls(bool rangedattack, int d, AttackInfo &attackinfo);
 
 	//ÒÆ¶¯
