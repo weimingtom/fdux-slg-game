@@ -1,0 +1,17 @@
+GUI.ButtonLock();
+GUI.SetDialogVisible(1);
+GUI.ShowImage("qitaw_zc.png",left,300);
+GUI.ShowRoleName("齐塔");
+GUI.ShowText("部队遭到近身攻击后将进行反击，反击值将决定反击能力的强弱。",1);
+GUI.ClearText();
+GUI.ShowText("而部队受到的伤害将分为受伤和死亡，受伤的人员可以通过休整恢复战斗力，而死亡部分只能通过战后的补给恢复。",1);
+GUI.ClearText();
+GUI.ShowText("坚韧属性将决定受伤和死亡的比例，高坚韧部队遭到攻击后的死亡比例更低，因此持续作战能力更强。",1);
+GUI.ClearText();
+GUI.ShowText("人员的减少将带来战斗能力的下降，在大量伤员存在的情况下，请及时休整部队。",1);
+GUI.ClearText();
+GUI.ShowRoleName("");
+GUI.ShowImage("",right,300);
+GUI.ShowImage("",left,300);
+GUI.SetDialogVisible(0);
+GUI.StoryOver();
