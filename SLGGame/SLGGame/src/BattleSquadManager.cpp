@@ -478,8 +478,8 @@ void BattleSquadManager::moveSquad(BattleSquad* squad,std::vector<int> pointlist
 				int covert = (int)ite->second->getAttr(ATTR_COVERT,ATTRCALC_FULL);
 				if(range <= ditectrange - covert)
 				{
-					squad->setViewByFaction(faction,true);
-					squad->setAmbushFaction(faction,true);
+					squad->setViewByFaction(ite->second->getFaction(),true);
+					squad->setAmbushFaction(ite->second->getFaction(),true);
 					if(faction != 0)
 					{
 						InterruptMove();

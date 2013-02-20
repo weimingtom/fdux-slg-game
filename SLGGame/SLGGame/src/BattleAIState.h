@@ -272,6 +272,10 @@ private:
 		std::vector<Threaten> mThreatensVec;
 
 		//¸¨Öúº¯Êý
+		void rallySquadGroup(SquadGroupCommander& sg, int osgindex, 
+			std::map<int, OtherSquadGroupInfo>& othersquadgroup);
+		void updateMission(SquadGroupCommander& sg, int osgindex, 
+			std::map<int, OtherSquadGroupInfo>& othersquadgroup);
 	};
 		
 	class AttackCommander: public MissionCommander
