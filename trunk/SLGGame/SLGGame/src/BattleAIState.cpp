@@ -1409,18 +1409,7 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 			sgcite = mSquadGroupList.find((*tite).assignSquadGroupVec[m]);
 			if(sgcite != mSquadGroupList.end())
 			{
-				int targettype = 0;
-				Crood targetcrood;
-				sgcite->second.getTarget(targettype, targetcrood);
-				switch(targettype)
-				{
-				case SGM_RALLY:
-					break;
-				case SGM_ATTACK:
-					break;
-				case SGM_DEFEND:
-					break;
-				}
+				updateMission(sgcite->second, osgite->first, othersquadgroup);
 			}
 		}
 	}
@@ -1484,15 +1473,13 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 				{	
 					//是否需要集合
 					if(!sgcite->second.isRallied() &&
-						osgite->second.mArea.crossed(mMissionArea))
+						!osgite->second.mArea.crossed(mMissionArea))
 					{
-						Crood targetcrood = mMissionArea.getCenter();
-						sgcite->second.setTarget(SGM_RALLY, targetcrood);						
+						rallySquadGroup(sgcite->second, (*tite).otherSquadGroupIndex, othersquadgroup);
 					}
 					else 
 					{
-						Crood targetcrood = mMissionArea.getCenter();
-						sgcite->second.setTarget(SGM_ATTACK, targetcrood);
+						updateMission(sgcite->second, (*tite).otherSquadGroupIndex, othersquadgroup);
 					}
 					(*tite).assignSquadGroupVec.push_back(createdsg);
 				}
@@ -1521,13 +1508,11 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 					if(!sgcite->second.isRallied() &&
 						!osgite->second.mArea.crossed(mMissionArea))
 					{
-						Crood targetcrood = mMissionArea.getCenter();
-						sgcite->second.setTarget(SGM_RALLY, targetcrood);						
+						rallySquadGroup(sgcite->second, (*tite).otherSquadGroupIndex, othersquadgroup);
 					}
 					else 
 					{
-						Crood targetcrood = mMissionArea.getCenter();
-						sgcite->second.setTarget(SGM_DEFEND, targetcrood);
+						updateMission(sgcite->second, (*tite).otherSquadGroupIndex, othersquadgroup);
 					}
 					(*tite).assignSquadGroupVec.push_back(createdsg);
 				}
@@ -1556,6 +1541,19 @@ void BattleAIState::DefendCommander::write(std::string path)
 			datalib->setData(str(boost::format("%1%/CommanderInfo/Threatens/t%2%/sg%3%")%path%n%mThreatensVec[n].assignSquadGroupVec[m]), 1);
 		}
 	}
+}
+
+void BattleAIState::DefendCommander::rallySquadGroup(SquadGroupCommander& sg, int osgindex, 
+													std::map<int, OtherSquadGroupInfo>& othersquadgroup)
+{
+	Crood targetcrood = mMissionArea.getCenter();
+	sg.setTarget(SGM_RALLY, targetcrood);
+}
+void BattleAIState::DefendCommander::updateMission(SquadGroupCommander& sg, int osgindex, 
+												std::map<int, OtherSquadGroupInfo>& othersquadgroup)
+{
+	Crood targetcrood = mMissionArea.getCenter();
+	sg.setTarget(SGM_DEFEND, targetcrood);
 }
 //AttackCommander------------------------------------------------
 BattleAIState::AttackCommander::AttackCommander(std::string path, std::vector<std::string> squadlist)
