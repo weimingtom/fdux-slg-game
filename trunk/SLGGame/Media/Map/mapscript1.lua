@@ -78,15 +78,12 @@ function turnstart()
 	team = ScriptCommonLib.GetTempInt("team");
 	if team == 1 and turn == 1 then
 	    BattleLib.Story("cp1_1.lua");
-		ScriptCommonLib.SetInt("battlestory", 1);
 	end
 	if team == 1 and turn == 2 then
 	    BattleLib.Story("cp1_3.lua");
-		ScriptCommonLib.SetInt("battlestory", 1);
 	end
 	if team == 1 and turn == 3 then
 	    BattleLib.Story("cp1_4.lua");
-		ScriptCommonLib.SetInt("battlestory", 1);
 	end
 end	
 		
@@ -96,23 +93,11 @@ function turnend()
 	team = ScriptCommonLib.GetTempInt("team");
 	
 	if team == 1 and BattleLib.TeamSquadLeft(2) == 0 then
-		BattleLib.AddGold(2500);
+		BattleLib.AddGold(1500);
 		BattleLib.DumpSquadData();
 		addedgold = ScriptCommonLib.GetInt("addedgold");
 		--胜利(storyscript,gold,exp)
-		BattleLib.Win("Chapter2.lua", "0", "0");
-	end
-	if team == 1 and turn > 1 then
-		squad7 = ScriptCommonLib.GetInt("Squad7");
-		if squad7 == 0 then
-			--创建部队(templetid,squadid,x,y,team,num)
-			--同时创建玩家AVG部分部队AddStorySquad参数相同
-			re = BattleLib.AddBattleSquad("DuxHeavySpear", "Team2Squad_7", -1, 5, 2, 50);
-			if re == 1 then
-				BattleLib.AssignAIGroup(2, "Team2Squad_7", "DuxRaider");
-				ScriptCommonLib.SetInt("Squad7", 1);
-			end
-		end
+		BattleLib.Win("cp2.lua", "0", "0");
 	end
 end
 
