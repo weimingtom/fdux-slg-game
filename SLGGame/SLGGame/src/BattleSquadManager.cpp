@@ -965,7 +965,6 @@ bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* 
 	}
 	if(attacksquad->getAmbushFaction(deffaction) == 1)
 	{
-		defenesquad->setActionPoint(0.0f);
 		std::string eid;
 		defenesquad->applyEffect("Waver", eid);
 		attacksquad->setAmbushFaction(deffaction, false);
@@ -1111,7 +1110,6 @@ bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* 
 	}
 	if(attacksquad->getAmbushFaction(deffaction) == 1)
 	{
-		defenesquad->setActionPoint(0.0f);
 		std::string eid;
 		defenesquad->applyEffect("Waver", eid);
 		attacksquad->setAmbushFaction(deffaction, false);
@@ -1168,7 +1166,6 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 	}
 	if(attacksquad->getAmbushFaction(deffaction) == 1)
 	{
-		defenesquad->setActionPoint(0.0f);
 		std::string eid;
 		defenesquad->applyEffect("Waver", eid);
 		attacksquad->setAmbushFaction(deffaction, false);

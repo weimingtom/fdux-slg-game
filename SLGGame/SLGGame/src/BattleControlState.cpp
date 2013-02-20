@@ -74,6 +74,7 @@ void BattleControlState::update(unsigned int deltaTime)
 				{
 				case 1:
 					{
+						turn += 1;
 						LuaTempContext* luatempcontext = new LuaTempContext();
 						luatempcontext->intMap["turn"] = turn;
 						luatempcontext->intMap["team"] = team;
@@ -91,11 +92,12 @@ void BattleControlState::update(unsigned int deltaTime)
 							CutSceneDirector* cutscenedirector = new CutSceneDirector(CutSceneBuilder::getSingleton().getCutScenes());
 							mMainState->PushState(cutscenedirector);
 							mCurState = ControlState_TurnStart;
+							DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/Ture",turn);
+							DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/CurTeam",team);
 							return;
 						}
 						BattlePlayerState* playerstate = new BattlePlayerState();
 						mMainState->PushState(playerstate);
-						turn = turn + 1;
 						nextteam = true;
 					}
 					break;
@@ -130,6 +132,8 @@ void BattleControlState::update(unsigned int deltaTime)
 								CutSceneDirector* cutscenedirector = new CutSceneDirector(CutSceneBuilder::getSingleton().getCutScenes());
 								mMainState->PushState(cutscenedirector);
 								mCurState = ControlState_TurnStart;
+								DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/Ture",turn);
+								DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/CurTeam",team);
 								return;
 							}
 							BattleAIState* aistate = new BattleAIState(team);
