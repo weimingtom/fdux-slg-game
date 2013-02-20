@@ -43,13 +43,20 @@ private:
 	MyGUI::TextBox* mSquadShield;
 	MyGUI::TextBox* mSquadArmor;
 	MyGUI::TextBox* mSquadUnitNum;
-	MyGUI::TextBox* mSquadAp;
-	MyGUI::TextBox* mSquadAttack;
-	MyGUI::TextBox* mSquadDefence;
 	MyGUI::TextBox* mSquadDirection;
 	MyGUI::TextBox* mSquadFormation;
 	MyGUI::ImageBox* mSquadImage;
 	MyGUI::ImageBox* mSquadFactionImage;
+	MyGUI::TextBox* mSquadLevel;
+	MyGUI::TextBox* mSquadExp;
+	MyGUI::TextBox* mSquadAttackFront;
+	MyGUI::TextBox* mSquadAttackFlank;
+	MyGUI::TextBox* mSquadAttackBack;
+	MyGUI::TextBox* mSquadAttackRA;
+	MyGUI::TextBox* mSquadDefenceFront;
+	MyGUI::TextBox* mSquadDefenceFlank;
+	MyGUI::TextBox* mSquadDefenceBack;
+	MyGUI::TextBox* mSquadDefenceRA;
 
 	BattleSquad* mSelectSquad;
 	GUIEffectWindow* mEffectWindow;

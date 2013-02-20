@@ -30,6 +30,7 @@ GUIGameStateWindows::~GUIGameStateWindows(void)
 void GUIGameStateWindows::showScene( std::string arg )
 {
 	mWindow->setVisible(true);
+	update();
 }
 
 void GUIGameStateWindows::hideScene()
