@@ -92,50 +92,10 @@ void AreaGrap::changeArea(std::vector<int> coordlist)
 	Terrain* terrain = Terrain::getSingletonPtr();
 	terrain->getWorldCoords(0,0,startpos,startpos);
 	startpos -= TILESIZE /2.0f;
-	mCoordList = coordlist;
-	if(coordlist.size() / 2 <= mMaxCroodNum)
+	if(mMaxCroodNum == 0)
 	{
-		mAreaObj->beginUpdate(0);
-		unsigned int n = 0;
-		for(; n < coordlist.size() / 2 ; n++)
-		{
-			int x = mCoordList[n * 2];
-			int y = mCoordList[n * 2 + 1];
-			float xx = startpos + x * TILESIZE;
-			float yy = startpos + y * TILESIZE;
-			mAreaObj->position(xx, terrain->getHeight(xx,yy) + mHeight, yy);
-			xx = startpos + (x+1) * TILESIZE;
-			yy = startpos + (y+1) * TILESIZE;
-			mAreaObj->position(xx, terrain->getHeight(xx,yy) + mHeight, yy);
-			xx = startpos + (x+1) * TILESIZE;
-			yy = startpos + y * TILESIZE;
-			mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);
-			xx = startpos + (x+1) * TILESIZE;
-			yy = startpos + (y+1) * TILESIZE;
-			mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);
-			xx = startpos + x * TILESIZE;
-			yy = startpos + y * TILESIZE;
-			mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);
-			xx = startpos + x * TILESIZE;
-			yy = startpos + (y+1) * TILESIZE;
-			mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);	
-		}
-		for(; n < mMaxCroodNum ; n++)
-		{
-			mAreaObj->position(startpos, terrain->getHeight(startpos,startpos) + mHeight, startpos);
-			mAreaObj->position(startpos, terrain->getHeight(startpos,startpos) + mHeight, startpos);
-			mAreaObj->position(startpos, terrain->getHeight(startpos, startpos) + mHeight, startpos);
-			mAreaObj->position(startpos, terrain->getHeight(startpos, startpos) + mHeight, startpos);
-			mAreaObj->position(startpos, terrain->getHeight(startpos, startpos) + mHeight, startpos);
-			mAreaObj->position(startpos, terrain->getHeight(startpos, startpos) + mHeight, startpos);	
-		}
-		mAreaObj->end();
-	}
-	else
-	{
-		mMaxCroodNum = mCoordList.size() / 2;
-		mAreaObj->beginUpdate(0);
-		mAreaObj->estimateVertexCount(mMaxCroodNum * 6);
+		mCoordList = coordlist;
+		mAreaObj->begin(mMat);
 		for(unsigned int n = 0; n < mCoordList.size() / 2 ; n++)
 		{
 			int x = mCoordList[n * 2];
@@ -143,23 +103,108 @@ void AreaGrap::changeArea(std::vector<int> coordlist)
 			float xx = startpos + x * TILESIZE;
 			float yy = startpos + y * TILESIZE;
 			mAreaObj->position(xx, terrain->getHeight(xx,yy) + mHeight, yy);
+			mAreaObj->colour(1.0f,1.0f,1.0f);
+			mAreaObj->normal(0.0f,1.0f,0.0f);
 			xx = startpos + (x+1) * TILESIZE;
 			yy = startpos + (y+1) * TILESIZE;
 			mAreaObj->position(xx, terrain->getHeight(xx,yy) + mHeight, yy);
+			mAreaObj->colour(1.0f,1.0f,1.0f);
+			mAreaObj->normal(0.0f,1.0f,0.0f);
 			xx = startpos + (x+1) * TILESIZE;
 			yy = startpos + y * TILESIZE;
 			mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);
+			mAreaObj->colour(1.0f,1.0f,1.0f);
+			mAreaObj->normal(0.0f,1.0f,0.0f);
 			xx = startpos + (x+1) * TILESIZE;
 			yy = startpos + (y+1) * TILESIZE;
 			mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);
+			mAreaObj->colour(1.0f,1.0f,1.0f);
+			mAreaObj->normal(0.0f,1.0f,0.0f);
 			xx = startpos + x * TILESIZE;
 			yy = startpos + y * TILESIZE;
 			mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);
+			mAreaObj->colour(1.0f,1.0f,1.0f);
+			mAreaObj->normal(0.0f,1.0f,0.0f);
 			xx = startpos + x * TILESIZE;
 			yy = startpos + (y+1) * TILESIZE;
-			mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);	
+			mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);
+			mAreaObj->colour(1.0f,1.0f,1.0f);
+			mAreaObj->normal(0.0f,1.0f,0.0f);		
 		}
 		mAreaObj->end();
+		mMaxCroodNum = mCoordList.size() / 2;
+	}
+	else
+	{
+		mCoordList = coordlist;
+		if(coordlist.size() / 2 <= mMaxCroodNum)
+		{
+			mAreaObj->beginUpdate(0);
+			unsigned int n = 0;
+			for(; n < coordlist.size() / 2 ; n++)
+			{
+				int x = mCoordList[n * 2];
+				int y = mCoordList[n * 2 + 1];
+				float xx = startpos + x * TILESIZE;
+				float yy = startpos + y * TILESIZE;
+				mAreaObj->position(xx, terrain->getHeight(xx,yy) + mHeight, yy);
+				xx = startpos + (x+1) * TILESIZE;
+				yy = startpos + (y+1) * TILESIZE;
+				mAreaObj->position(xx, terrain->getHeight(xx,yy) + mHeight, yy);
+				xx = startpos + (x+1) * TILESIZE;
+				yy = startpos + y * TILESIZE;
+				mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);
+				xx = startpos + (x+1) * TILESIZE;
+				yy = startpos + (y+1) * TILESIZE;
+				mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);
+				xx = startpos + x * TILESIZE;
+				yy = startpos + y * TILESIZE;
+				mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);
+				xx = startpos + x * TILESIZE;
+				yy = startpos + (y+1) * TILESIZE;
+				mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);	
+			}
+			for(; n < mMaxCroodNum ; n++)
+			{
+				mAreaObj->position(startpos, terrain->getHeight(startpos,startpos) + mHeight, startpos);
+				mAreaObj->position(startpos, terrain->getHeight(startpos,startpos) + mHeight, startpos);
+				mAreaObj->position(startpos, terrain->getHeight(startpos, startpos) + mHeight, startpos);
+				mAreaObj->position(startpos, terrain->getHeight(startpos, startpos) + mHeight, startpos);
+				mAreaObj->position(startpos, terrain->getHeight(startpos, startpos) + mHeight, startpos);
+				mAreaObj->position(startpos, terrain->getHeight(startpos, startpos) + mHeight, startpos);	
+			}
+			mAreaObj->end();
+		}
+		else
+		{
+			mMaxCroodNum = mCoordList.size() / 2;
+			mAreaObj->beginUpdate(0);
+			mAreaObj->estimateVertexCount(mMaxCroodNum * 6);
+			for(unsigned int n = 0; n < mCoordList.size() / 2 ; n++)
+			{
+				int x = mCoordList[n * 2];
+				int y = mCoordList[n * 2 + 1];
+				float xx = startpos + x * TILESIZE;
+				float yy = startpos + y * TILESIZE;
+				mAreaObj->position(xx, terrain->getHeight(xx,yy) + mHeight, yy);
+				xx = startpos + (x+1) * TILESIZE;
+				yy = startpos + (y+1) * TILESIZE;
+				mAreaObj->position(xx, terrain->getHeight(xx,yy) + mHeight, yy);
+				xx = startpos + (x+1) * TILESIZE;
+				yy = startpos + y * TILESIZE;
+				mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);
+				xx = startpos + (x+1) * TILESIZE;
+				yy = startpos + (y+1) * TILESIZE;
+				mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);
+				xx = startpos + x * TILESIZE;
+				yy = startpos + y * TILESIZE;
+				mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);
+				xx = startpos + x * TILESIZE;
+				yy = startpos + (y+1) * TILESIZE;
+				mAreaObj->position(xx, terrain->getHeight(xx, yy) + mHeight, yy);	
+			}
+			mAreaObj->end();
+		}
 	}
 }
 
