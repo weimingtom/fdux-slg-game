@@ -100,6 +100,11 @@ void GUIBattle::hideAllWindows()
 			(*it)->hideScene();
 		}
 	}
+
+	if(((GUIMissionWindow*)getSubWindow("MissionWindow"))->mIsShow)
+	{
+		((GUIMissionWindow*)getSubWindow("MissionWindow"))->onMissionClose(NULL);
+	}
 }
 
 void GUIBattle::showAllWindows()

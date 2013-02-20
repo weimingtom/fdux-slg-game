@@ -1833,7 +1833,15 @@ bool SquadGraphics::isDefenseActionOver()
 void SquadGraphics::updateBB()
 {
 	BattleSquad* squad=BattleSquadManager::getSingletonPtr()->getBattleSquad(mNode->getName());
-	float v=((float)squad->getUnitNum())/((float)squad->getUnitMaxNum());
+	float v;
+	if(squad->getType()==0)
+	{
+		v=((float)squad->getUnitNum())/50.0f;
+	}
+	else
+	{
+		v=((float)squad->getUnitNum())/20.0f;
+	}
 	v*=100;
 	mSquadBB->setBar(v);
 }

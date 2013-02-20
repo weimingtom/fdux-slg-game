@@ -22,9 +22,16 @@ GUISquadWindows::GUISquadWindows(MyGUI::Window* window,int Width,int Height):GUI
 	assignWidget(mSquadShield,"SquadShield");
 	assignWidget(mSquadArmor,"SquadArmor");
 	assignWidget(mSquadUnitNum,"SquadUnitNum");
-//	assignWidget(mSquadAp,"SquadAp");
-	assignWidget(mSquadAttack,"SquadAttack");
-	assignWidget(mSquadDefence,"SquadDefence");
+	assignWidget(mSquadLevel,"SquadLevel");
+	assignWidget(mSquadExp,"SquadExp");
+	assignWidget(mSquadAttackFront,"SquadAttackFront");
+	assignWidget(mSquadDefenceFront,"SquadDefenceFront");
+	assignWidget(mSquadAttackFlank,"SquadAttackFlank");
+	assignWidget(mSquadDefenceFlank,"SquadDefenceFlank");
+	assignWidget(mSquadAttackBack,"SquadAttackBack");
+	assignWidget(mSquadDefenceBack,"SquadDefenceBack");
+	assignWidget(mSquadAttackRA,"SquadAttackRA");
+	assignWidget(mSquadDefenceRA,"SquadDefenceRA");
 
 	//MyGUI::TextBox* textBox;
 	//assignWidget(textBox,"FormationLabel");
@@ -198,38 +205,91 @@ void GUISquadWindows::updateSquad()
 	switch(y)
 	{
 	case Line:
-		mSquadFormation->setCaption(StringTable::getSingleton().getString("FormationLine"));
+		mSquadFormation->setCaption(str(boost::format("%1%(%2%)")%StringTable::getSingleton().getString("FormationLine")%mSelectSquad->getAttr(ATTR_FORM,ATTRCALC_FULL)));
 		break;
 	case Circular:
-		mSquadFormation->setCaption(StringTable::getSingleton().getString("FormationCirc"));
+		mSquadFormation->setCaption(str(boost::format("%1%(%2%)")%StringTable::getSingleton().getString("FormationCirc")%mSelectSquad->getAttr(ATTR_FORM,ATTRCALC_FULL)));
 		break;
 	case Loose:
-		mSquadFormation->setCaption(StringTable::getSingleton().getString("FormationLoos"));
+		mSquadFormation->setCaption(str(boost::format("%1%(%2%)")%StringTable::getSingleton().getString("FormationLoos")%mSelectSquad->getAttr(ATTR_FORM,ATTRCALC_FULL)));
 		break;
 	}
 
-	float tempfloat;
-	tempfloat = mSelectSquad->getAtk(0);
-	float tempfloat1;
-	tempfloat1 = mSelectSquad->getRangedAtk();
-	mSquadAttack->setCaption(str(boost::format("%1%/%2%")%floor(tempfloat+0.5f)%floor(tempfloat1+0.5f)));
-	tempfloat = mSelectSquad->getDef(0);
-	tempfloat1 = mSelectSquad->getRangedDef();
-	mSquadDefence->setCaption(str(boost::format("%1%/%2%")%floor(tempfloat+0.5f)%floor(tempfloat1+0.5f)));
+	mSquadAttackFront->setCaption(str(boost::format("%1%")%floor(mSelectSquad->getAtk(0)+0.5f)));
+	mSquadAttackFlank->setCaption(str(boost::format("%1%")%floor(mSelectSquad->getAtk(1)+0.5f)));
+	mSquadAttackBack->setCaption(str(boost::format("%1%")%floor(mSelectSquad->getAtk(2)+0.5f)));
+	mSquadAttackRA->setCaption(str(boost::format("%1%")%floor(mSelectSquad->getRangedAtk()+0.5f)));
+
+	mSquadDefenceFront->setCaption(str(boost::format("%1%")%floor(mSelectSquad->getDef(0)+0.5f)));
+	mSquadDefenceFlank->setCaption(str(boost::format("%1%")%floor(mSelectSquad->getDef(1)+0.5f)));
+	mSquadDefenceBack->setCaption(str(boost::format("%1%")%floor(mSelectSquad->getDef(2)+0.5f)));
+	mSquadDefenceRA->setCaption(str(boost::format("%1%")%floor(mSelectSquad->getRangedDef()+0.5f)));
 
 	x = mSelectSquad->getUnitMaxNum();
 	y = mSelectSquad->getUnitNum();
-// 	int morale;
-// 	re = DataLibrary::getSingletonPtr()->getData(datapath+"/SoilderId",tempstr);
-// 	re = DataLibrary::getSingletonPtr()->getData(std::string("StaticData/SoilderData/") + tempstr + std::string("/Morale"),morale);
-// 	if(morale == 1)
-// 	{
-// 		re = DataLibrary::getSingletonPtr()->getData(datapath+"/Morale",morale);
-// 	}
-	mSquadUnitNum->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("SquadUnitNumNoInjSimple"))%y%x));
+	std::string xc,yc;
+	if(mSelectSquad->getType()==0)
+	{
+		if(y<=50 && y>=35)
+		{
+			yc="#00FF00";
+		}
+		else if(y<=35 && y>=20)
+		{
+			yc="#FFFF00";
+		}
+		else if(y<=20)
+		{
+			yc="#FF5700";
+		}
 
-	//x = mSelectSquad->getActionPoint();
-	//mSquadAp->setCaption(Ogre::StringConverter::toString(x));
+		if(x<=50 && x>=35)
+		{
+			xc="#00FF00";
+		}
+		else if(x<=35 && x>=20)
+		{
+			xc="#FFFF00";
+		}
+		else if(x<=20)
+		{
+			xc="#FF5700";
+		}
+	}
+	else
+	{
+		if(y<=20 && y>=12)
+		{
+			yc="#00FF00";
+		}
+		else if(y<=12 && y>=5)
+		{
+			yc="#FFFF00";
+		}
+		else if(y<=5)
+		{
+			yc="#FF5700";
+		}
+
+		if(x<=20 && x>=12)
+		{
+			xc="#00FF00";
+		}
+		else if(x<=12 && x>=5)
+		{
+			xc="#FFFF00";
+		}
+		else if(x<=5)
+		{
+			xc="#FF5700";
+		}
+	}
+	mSquadUnitNum->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("SquadUnitNumNoInjSimple"))%y%x%yc%xc));
+
+//	mSquadF->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("SquadF"))%mSelectSquad->getAttr(ATTR_FORM,ATTRCALC_FULL)));
+
+	mSquadLevel->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("Level"))%mSelectSquad->getLevel()));
+	mSquadExp->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("Exp"))%mSelectSquad->getExp()));
 
 	tempstr = mSelectSquad->getPweaponId();
 	if(tempstr == "none")
