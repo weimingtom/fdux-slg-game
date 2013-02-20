@@ -2,7 +2,7 @@ GUI.ButtonLock();
 GUI.SetDialogVisible(1);
 GUI.ShowImage("qitaw_zc.png",left,300);
 GUI.ShowRoleName("齐塔");
-GUI.ShowText("部队遭到近身攻击后将进行反击，反击值将决定反击能力的强弱。",1);
+GUI.ShowText("部队遭到近身攻击后将进行反击，部队的反击值将决定反击能力的强弱。",1);
 GUI.ClearText();
 GUI.ShowText("而部队受到的伤害将分为受伤和死亡，受伤的人员可以通过休整恢复战斗力，而死亡部分只能通过战后的补给恢复。",1);
 GUI.ClearText();

@@ -6,7 +6,9 @@ GUI.ShowText("凡塔斯的部队就在前方的树林中，利用好地形的特点谨慎地靠近他们。",1)
 GUI.ClearText();
 GUI.ShowText("在林间小道和平原等地形上移动消耗的AP值将会更少，但是获得的防御加成也更少。",1);
 GUI.ClearText();
-GUI.ShowText("你可以在右上角查看鼠标选中区域的各项属性。",1);
+GUI.ShowText("你可以在右上角的窗口中查看被鼠标选中区域的详细属性。",1);
+GUI.ClearText();
+GUI.ShowText("那么点击移动命令，开始行军吧！",1);
 GUI.ClearText();
 GUI.ShowRoleName("");
 GUI.ShowImage("",right,300);
