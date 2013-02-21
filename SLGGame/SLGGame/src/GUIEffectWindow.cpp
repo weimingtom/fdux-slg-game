@@ -36,7 +36,7 @@ void GUIEffectWindow::FrameEvent()
 
 }
 
-void GUIEffectWindow::setEffectList(std::vector<std::string> list)
+void GUIEffectWindow::setEffectList(std::vector<std::string> list,std::vector<int> level)
 {
 	int i=0;
 	std::string effectPath="StaticData/EffectData/";
@@ -50,6 +50,8 @@ void GUIEffectWindow::setEffectList(std::vector<std::string> list)
 		mEffect[i]->setImageGroup(data);
 		mEffect[i]->setUserString("Tips",skillTips);
 		mEffect[i]->setNeedToolTip(true);
+		if(level[i]!=0)
+			mEffect[i]->setCaption(Ogre::StringConverter::toString(level[i]+1));
 		i++;
 	}
 
@@ -58,6 +60,7 @@ void GUIEffectWindow::setEffectList(std::vector<std::string> list)
 		mEffect[i]->setImageResource("");
 		mEffect[i]->setImageGroup("");
 		mEffect[i]->setNeedToolTip(false);
+		mEffect[i]->setCaption("");
 	}
 
 

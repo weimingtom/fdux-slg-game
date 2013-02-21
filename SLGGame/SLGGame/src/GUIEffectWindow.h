@@ -27,7 +27,7 @@ public:
 	void hideScene();
 	void FrameEvent();
 
-	void setEffectList(std::vector<std::string> list);
+	void setEffectList(std::vector<std::string> list,std::vector<int> level);
 
 	int mIndex;
 	MyGUI::Window* mWindow;
