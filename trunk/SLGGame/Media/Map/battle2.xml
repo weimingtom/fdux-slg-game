@@ -6,7 +6,7 @@
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
 <MapScript>mapscript2.lua</MapScript>
-<MapInfo>mapinfo1</MapInfo>
+<MapInfo>mapinfo2</MapInfo>
 <MapLoadBG>map1.png</MapLoadBG>
 <MapSize>12</MapSize>
 <MapGround>
