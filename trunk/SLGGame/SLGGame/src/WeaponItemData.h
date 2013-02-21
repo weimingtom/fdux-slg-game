@@ -81,13 +81,13 @@ public:
 	  {
 		  if(!mIsHaveSkill)
 		  {
-			return "#FFFF00"+StringTable::getSingleton().getString("NoSkillEquip");
+			return "#C0C0C0"+StringTable::getSingleton().getString("NoSkillEquip");
 		  }
 		  else if(!mIsEquip)
 		  {
 			  int price=getPriceValue();
 			  int money=0;
-			  DataLibrary::getSingletonPtr()->getData("GameData/StoryData/Money",money);
+			  DataLibrary::getSingletonPtr()->getData("GameData/StoryData/Gold",money);
 			  if(money-price<0)
 			  {
 				  mIsCanBuy=false;
@@ -158,7 +158,7 @@ public:
 	  {
 		  int price;
 		  DataLibrary::getSingletonPtr()->getData(mTypeString+mID+"/Value",price);
-		  return price*mPeopleNum;
+		  return price*50;
 	  }
 
 	  int getOnePrice()

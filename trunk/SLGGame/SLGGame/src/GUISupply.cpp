@@ -280,13 +280,23 @@ void GUISupply::showArmy( int index )
 	}
 
 	showAttribute(index,0,"");
-	if(army->getUnitNum()!=50)
+	int p=0;
+	if(army->getType()==0)
+	{
+		p=50;
+	}
+	else
+	{
+		p=20;
+	}
+
+	if(army->getUnitNum()!=p)
 	{
 		tempstr = army->getSoilderId();
 		temppath = str(boost::format("StaticData/SoilderData/%1%/Value")%tempstr);
 		int value;
 		DataLibrary::getSingletonPtr()->getData(temppath, value);
-		int money=(50-army->getUnitNum())*value;
+		int money=(50-army->getUnitNum())*value+army->getLevel()*5;
 		mSoilderButtonText->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("TEXT_SoldierSupplyNeed"))%money));
 	}
 	else
@@ -494,7 +504,7 @@ void GUISupply::showItem(int type)
 
 		WeaponItemData* data=new WeaponItemData(equipType,(*it),army->getUnitNum());
 		
-		if(type==EQUIP_PWEAPON || type==EQUIP_SWEAPON || type==EQUIP_ARMOR)
+		if(type==EQUIP_PWEAPON || type==EQUIP_SWEAPON || type==EQUIP_ARMOR || type==EQUIP_SHIELD || type==EQUIP_HORSE)
 		{
 			data->setSubType(equipSubType);
 
@@ -630,7 +640,7 @@ void GUISupply::setItemInfo(WeaponItemData* item)
 	{
 		Squad* army=mBattleSquad.at(m_CurrSquadIndex);
 		mTextItemName->setCaption(item->getName());
-		mTextItemPrice->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("ItemPrice"))%item->getPriceValue()%item->getOnePrice()%army->getUnitNum()));
+		mTextItemPrice->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("ItemPrice"))%item->getPriceValue()%item->getOnePrice()%50));
 		mItemIcon->setItemResource("eqp");
 		mItemIcon->setItemGroup(item->getImage());
 		mItemIcon->setVisible(true);

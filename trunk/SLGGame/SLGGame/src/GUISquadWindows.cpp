@@ -332,6 +332,7 @@ void GUISquadWindows::updateSquad()
 
 	std::string distpath = mSelectSquad->getPath() + std::string("/Effect");
 	std::vector<std::string> effectName;
+	std::vector<int> effectLevel;
 	std::vector<std::string> effectlist = datalib->getChildList(distpath);
 	for(std::vector<std::string>::iterator it=effectlist.begin();it!=effectlist.end();it++)
 	{
@@ -340,7 +341,8 @@ void GUISquadWindows::updateSquad()
 		DataLibrary::getSingletonPtr()->getData(p,data);
 
 		effectName.push_back(data);
+		effectLevel.push_back(mSelectSquad->getEffectLevel(data));
 	}
 
-	mEffectWindow->setEffectList(effectName);
+	mEffectWindow->setEffectList(effectName,effectLevel);
 }
