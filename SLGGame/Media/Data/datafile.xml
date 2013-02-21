@@ -2351,8 +2351,8 @@
 			<PUVector type="String" value="0,0,0"/>
 			<AniGroup type="String" value="Bow"/>
 			<Icon type="String" value="Bow"/>
-			<MaxRange type="Int" value="1"/>
-			<MinRange type="Int" value="2"/>
+			<MaxRange type="Int" value="2"/>
+			<MinRange type="Int" value="1"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="0.0"/>
@@ -2377,8 +2377,8 @@
 			<PUVector type="String" value="0,0,0"/>
 			<AniGroup type="String" value="Bow"/>
 			<Icon type="String" value="Bow"/>
-			<MaxRange type="Int" value="1"/>
-			<MinRange type="Int" value="3"/>
+			<MaxRange type="Int" value="3"/>
+			<MinRange type="Int" value="1"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="0.0"/>
@@ -2403,8 +2403,8 @@
 			<PUVector type="String" value="0,0,0"/>
 			<AniGroup type="String" value="Bow"/>
 			<Icon type="String" value="Bow"/>
-			<MaxRange type="Int" value="1"/>
-			<MinRange type="Int" value="2"/>
+			<MaxRange type="Int" value="2"/>
+			<MinRange type="Int" value="1"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="0.0"/>
@@ -2429,8 +2429,8 @@
 			<PUVector type="String" value="0,0,0"/>
 			<AniGroup type="String" value="Bow"/>
 			<Icon type="String" value="Bow"/>
-			<MaxRange type="Int" value="1"/>
-			<MinRange type="Int" value="3"/>
+			<MaxRange type="Int" value="3"/>
+			<MinRange type="Int" value="1"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="0.0"/>
@@ -2455,8 +2455,8 @@
 			<PUVector type="String" value="0,0,0"/>
 			<AniGroup type="String" value="Bow"/>
 			<Icon type="String" value="Bow"/>
-			<MaxRange type="Int" value="1"/>
-			<MinRange type="Int" value="3"/>
+			<MaxRange type="Int" value="3"/>
+			<MinRange type="Int" value="1"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="0.0"/>
@@ -2481,8 +2481,8 @@
 			<PUVector type="String" value="0,0,0"/>
 			<AniGroup type="String" value="Crossbow"/>
 			<Icon type="String" value="LXBox"/>
-			<MaxRange type="Int" value="1"/>
-			<MinRange type="Int" value="2"/>
+			<MaxRange type="Int" value="2"/>
+			<MinRange type="Int" value="1"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="0.0"/>
@@ -2507,8 +2507,8 @@
 			<PUVector type="String" value="0,0,0"/>
 			<AniGroup type="String" value="Crossbow"/>
 			<Icon type="String" value="LXBox"/>
-			<MaxRange type="Int" value="1"/>
-			<MinRange type="Int" value="2"/>
+			<MaxRange type="Int" value="2"/>
+			<MinRange type="Int" value="1"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="0.0"/>
@@ -2533,8 +2533,8 @@
 			<PUVector type="String" value="0,0,0"/>
 			<AniGroup type="String" value="Crossbow"/>
 			<Icon type="String" value="LXBox"/>
-			<MaxRange type="Int" value="1"/>
-			<MinRange type="Int" value="2"/>
+			<MaxRange type="Int" value="2"/>
+			<MinRange type="Int" value="1"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="0.0"/>
@@ -2585,8 +2585,8 @@
 			<PUVector type="String" value="0,0,0"/>
 			<AniGroup type="String" value="Crossbow"/>
 			<Icon type="String" value="LXBox"/>
-			<MaxRange type="Int" value="1"/>
-			<MinRange type="Int" value="2"/>
+			<MaxRange type="Int" value="2"/>
+			<MinRange type="Int" value="1"/>
 			<AttrModifer>
 				<Type type="Int" value="0"/>
 				<Attack type="Float" value="0.0"/>
