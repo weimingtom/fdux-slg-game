@@ -9,6 +9,8 @@
 		<map2 type="String" value = "双河平原之战 后篇"/>
 		<mapinfo2 type="String" value = "圣法师是教廷所属的特殊战斗单位。在战场上，圣法师不仅能提高己方战斗力，其忏悔技能还可使敌方人员陷入低战斗力状态，以此提高我军杀敌效率。&#x0D;#FFFF00任务目标:歼灭所有敌军
 "/>
+		<map2mission1 type="String" value = "(主要)歼灭敌军"/>
+		<map2mission2 type="String" value = "(次要)中央营地不能失守(500金币)"/>
 		
 		<!--LeaderName-->
 		<Cheetah type="String" value="齐塔"/>
