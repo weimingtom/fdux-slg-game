@@ -462,6 +462,14 @@
 						Name="BattleAIState"
 						>
 						<File
+							RelativePath=".\src\CroodFactor.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\src\CroodFactor.h"
+							>
+						</File>
+						<File
 							RelativePath=".\src\DecisionMap.h"
 							>
 						</File>

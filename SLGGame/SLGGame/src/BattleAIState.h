@@ -152,8 +152,9 @@ private:
 	{
 	public:
 		SquadAI(BattleSquad* squad);
+		SquadAI();
 
-		bool update();
+		bool update(std::vector<SquadAI>& squadlist);
 		void setTarget(int targettype, Crood tragetcrood);
 
 		BattleSquad* mSquad;
@@ -185,6 +186,16 @@ private:
 		SG_MAIN,
 		SG_SUPPORT_RANGE,
 		SG_SUPPORT_CLOSE
+	};
+
+	class SquadClosetoFactor : public DecisionMapFactor<SquadAI>
+	{
+	public:	
+		SquadClosetoFactor(Crood targetCrood);
+
+		virtual float calcDecision(SquadAI &decision);
+	private:
+		Crood mTargetCrood;
 	};
 
 	class SquadGroupCommander
@@ -272,10 +283,14 @@ private:
 		std::vector<Threaten> mThreatensVec;
 
 		//¸¨Öúº¯Êý
-		void rallySquadGroup(SquadGroupCommander& sg, int osgindex, 
-			std::map<int, OtherSquadGroupInfo>& othersquadgroup);
 		void updateMission(SquadGroupCommander& sg, int osgindex, 
 			std::map<int, OtherSquadGroupInfo>& othersquadgroup);
+		void rallySquadGroup(SquadGroupCommander& sg, int osgindex, 
+			std::map<int, OtherSquadGroupInfo>& othersquadgroup, 
+			Crood &midcrood);
+		void createMission(SquadGroupCommander& sg, int osgindex, 
+			std::map<int, OtherSquadGroupInfo>& othersquadgroup,
+			Crood &midcrood);
 	};
 		
 	class AttackCommander: public MissionCommander

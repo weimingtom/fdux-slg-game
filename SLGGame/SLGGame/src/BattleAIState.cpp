@@ -13,6 +13,7 @@
 #include "SquadRoleFactor.h"
 #include "SquadMoveFactor.h"
 #include "SquadSkillFactor.h"
+#include "CroodFactor.h"
 #include "CutSceneBuilder.h"
 #include "cutscenediretor.h"
 
@@ -792,7 +793,12 @@ BattleAIState::SquadAI::SquadAI(BattleSquad* squad)
 
 }
 
-bool BattleAIState::SquadAI::update()
+BattleAIState::SquadAI::SquadAI()
+:mSquad(NULL),mState(SAS_MOVE),mTargetType(SGM_WAIT)
+{
+}
+
+bool BattleAIState::SquadAI::update(std::vector<SquadAI>& squadlist)
 {
 	switch(mState)
 	{
@@ -943,7 +949,8 @@ void BattleAIState::SquadAI::updateSkill()
 			break;
 		}
 		*/
-		skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 1.0f);
+		skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.9f);
+		skilldecision.addFactor(new RandomFactor<UseSkillInfo>(-100.0f, 100.0f) , 0.1f);
 		skilldecision.calcDecision();
 		useskill = skilldecision.getHighest();
 		if(useskill.skillid != "none")
@@ -1004,7 +1011,7 @@ bool BattleAIState::SquadGroupCommander::update()
 	{
 		if((*saite).mSquad->getUnitNum() > 0)
 		{
-			if((*saite).update())
+			if((*saite).update(mSquadList))
 				return true;
 			saite++;
 		}
@@ -1058,8 +1065,26 @@ float BattleAIState::SquadGroupCommander::getSquadGroupStrength()
 
 bool BattleAIState::SquadGroupCommander::isRallied()
 {
-
-	return false;
+	std::vector<SquadAI>::iterator saite = mSquadList.begin();
+	for(; saite != mSquadList.end(); saite++)
+	{
+		Crood squadcrood((*saite).mSquad->getGridX(), (*saite).mSquad->getGridY());
+		if(GetDistance(squadcrood.mX, squadcrood.mY, mTargetCrood.mX, mTargetCrood.mY) > 3)
+			return false;
+	}
+	return true;
+}
+//SquadClosetoFactor
+BattleAIState::SquadClosetoFactor::SquadClosetoFactor(Crood targetCrood)
+:mTargetCrood(targetCrood)
+{
+}
+float BattleAIState::SquadClosetoFactor::calcDecision(SquadAI &decision)
+{
+	float possibility = 100.0f;
+	possibility -= 10.0f * GetDistance(mTargetCrood.mY, mTargetCrood.mY,
+		decision.mSquad->getGridX(), decision.mSquad->getGridY());
+	return possibility;
 }
 
 //MissionCommander-----------------------------------------------
@@ -1471,16 +1496,7 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 				sgcite = mSquadGroupList.find(createdsg);
 				if(sgcite != mSquadGroupList.end())
 				{	
-					//是否需要集合
-					if(!sgcite->second.isRallied() &&
-						!osgite->second.mArea.crossed(mMissionArea))
-					{
-						rallySquadGroup(sgcite->second, (*tite).otherSquadGroupIndex, othersquadgroup);
-					}
-					else 
-					{
-						updateMission(sgcite->second, (*tite).otherSquadGroupIndex, othersquadgroup);
-					}
+					updateMission(sgcite->second, (*tite).otherSquadGroupIndex, othersquadgroup);
 					(*tite).assignSquadGroupVec.push_back(createdsg);
 				}
 			}
@@ -1504,16 +1520,7 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 				sgcite = mSquadGroupList.find(createdsg);
 				if(sgcite != mSquadGroupList.end())
 				{	
-					//是否需要集合
-					if(!sgcite->second.isRallied() &&
-						!osgite->second.mArea.crossed(mMissionArea))
-					{
-						rallySquadGroup(sgcite->second, (*tite).otherSquadGroupIndex, othersquadgroup);
-					}
-					else 
-					{
-						updateMission(sgcite->second, (*tite).otherSquadGroupIndex, othersquadgroup);
-					}
+					updateMission(sgcite->second, (*tite).otherSquadGroupIndex, othersquadgroup);
 					(*tite).assignSquadGroupVec.push_back(createdsg);
 				}
 			}
@@ -1543,18 +1550,142 @@ void BattleAIState::DefendCommander::write(std::string path)
 	}
 }
 
-void BattleAIState::DefendCommander::rallySquadGroup(SquadGroupCommander& sg, int osgindex, 
-													std::map<int, OtherSquadGroupInfo>& othersquadgroup)
-{
-	Crood targetcrood = mMissionArea.getCenter();
-	sg.setTarget(SGM_RALLY, targetcrood);
-}
 void BattleAIState::DefendCommander::updateMission(SquadGroupCommander& sg, int osgindex, 
 												std::map<int, OtherSquadGroupInfo>& othersquadgroup)
 {
-	Crood targetcrood = mMissionArea.getCenter();
-	sg.setTarget(SGM_DEFEND, targetcrood);
+	int missiontype;
+	Crood tgtcrood;
+	sg.getTarget(missiontype, tgtcrood);
+	Crood midcrood;
+	std::vector<SquadAI>::iterator saite = sg.mSquadList.begin();
+	for(; saite != sg.mSquadList.end(); saite++)
+	{
+		midcrood.mX += (*saite).mSquad->getGridX();
+		midcrood.mY += (*saite).mSquad->getGridY();
+	}
+	midcrood.mX /= sg.mSquadList.size();
+	midcrood.mY /= sg.mSquadList.size();
+	std::map<int, OtherSquadGroupInfo>::iterator osgite = othersquadgroup.find(osgindex);
+	switch(missiontype)
+	{
+	case SGM_RALLY:
+		{
+			if(sg.isRallied() || osgite->second.mArea.crossed(mMissionArea))
+			{
+				createMission(sg, osgindex, othersquadgroup, midcrood);
+			}
+		}
+		break;
+	case SGM_ATTACK:
+		{
+
+		}
+		break;
+	case SGM_DEFEND:
+		{
+
+		}
+		break;
+	case SGM_SUPPORT_RANGE:
+		{
+
+		}
+		break;
+	case SGM_SUPPORT_CLOSE:
+		{
+
+		}
+		break;
+	default:
+		{
+			if(!sg.isRallied() && !osgite->second.mArea.crossed(mMissionArea))
+			{
+				rallySquadGroup(sg, osgindex, othersquadgroup, midcrood);
+			}
+			else
+			{
+				createMission(sg, osgindex, othersquadgroup, midcrood);
+			}
+		}
+	}
+	//对小队行动进行排序
+	sg.getTarget(missiontype, tgtcrood);
+	DecisionMap<SquadAI> decision(sg.mSquadList);
+	decision.addFactor(new SquadClosetoFactor(tgtcrood),1.0f);
+	decision.calcDecision();
+	sg.mSquadList = decision.getSortedDecisions();
 }
+
+void BattleAIState::DefendCommander::rallySquadGroup(SquadGroupCommander& sg, int osgindex, 
+													std::map<int, OtherSquadGroupInfo>& othersquadgroup, 
+													Crood &midcrood)
+{
+	std::map<int, OtherSquadGroupInfo>::iterator osgite = othersquadgroup.find(osgindex);
+	DecisionMap<Crood> decision(mMissionArea.getCroodVec());
+	decision.addFactor(new ClosetoCroodFactor(mMissionArea.getCenter()), 0.2f);
+	decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter()), 0.3f);
+	decision.addFactor(new ClosetoCroodFactor(midcrood), 0.4f);
+	decision.addFactor(new RandomFactor<Crood>(-100.0f, 100.0f), 0.1f);
+	decision.calcDecision();
+	Crood targetcrood = decision.getHighest();
+	sg.setTarget(SGM_RALLY, targetcrood);
+}
+
+void BattleAIState::DefendCommander::createMission(SquadGroupCommander& sg, int osgindex, 
+													std::map<int, OtherSquadGroupInfo>& othersquadgroup,
+													Crood &midcrood)
+{
+	std::map<int, OtherSquadGroupInfo>::iterator osgite = othersquadgroup.find(osgindex);
+	Crood tgtcrood(mMissionArea.getCenter());
+	int missiontype = SGM_WAIT;
+	DecisionMap<Crood> decision(mMissionArea.getCroodVec());
+	if(osgite->second.mArea.crossed(mMissionArea))
+	{
+		if(sg.mType == SG_MAIN)
+		{
+			decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter()), 0.7f);
+			decision.addFactor(new ClosetoCroodFactor(midcrood), 0.2f);
+			decision.addFactor(new RandomFactor<Crood>(-100.0f, 100.0f), 0.1f);
+			missiontype = SGM_ATTACK;
+		}
+		else if(sg.mType == SG_SUPPORT_RANGE)
+		{
+			decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter()), 0.7f);
+			decision.addFactor(new ClosetoCroodFactor(midcrood), 0.2f);
+			decision.addFactor(new RandomFactor<Crood>(-100.0f, 100.0f), 0.1f);
+			missiontype = SGM_SUPPORT_RANGE;
+		}
+		else
+		{
+			decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter()), 0.6f);
+			decision.addFactor(new ClosetoCroodFactor(midcrood), 0.1f);
+			decision.addFactor(new RandomFactor<Crood>(-100.0f, 100.0f), 0.3f);
+			missiontype = SGM_SUPPORT_CLOSE;
+		}
+	}
+	else
+	{
+		if(sg.mType == SG_MAIN)
+		{
+			missiontype = SGM_DEFEND;
+		}
+		else if(sg.mType == SG_SUPPORT_RANGE)
+		{
+			missiontype = SGM_SUPPORT_RANGE;
+		}
+		else
+		{
+			missiontype = SGM_SUPPORT_CLOSE;
+		}
+		decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter()), 1.0f);
+		decision.addFactor(new ClosetoBorderFactor(mMissionArea), -0.1f);
+		decision.addFactor(new RandomFactor<Crood>(-100.0f, 100.0f), 0.1f);
+	}
+	decision.calcDecision();
+	tgtcrood = decision.getHighest();
+	sg.setTarget(missiontype, tgtcrood);
+}
+
 //AttackCommander------------------------------------------------
 BattleAIState::AttackCommander::AttackCommander(std::string path, std::vector<std::string> squadlist)
 :MissionCommander(path, squadlist)

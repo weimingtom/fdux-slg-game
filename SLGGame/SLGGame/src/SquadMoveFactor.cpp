@@ -2,6 +2,7 @@
 
 #include "BattleSquad.h"
 #include "MapDataManager.h"
+#include "CommonFunction.h"
 
 //SquadMoveClosetoPathFactor
 SquadMoveClosetoPathFactor::SquadMoveClosetoPathFactor(std::map<int, BattleSquadManager::MoveNode>* area,
@@ -12,7 +13,11 @@ SquadMoveClosetoPathFactor::SquadMoveClosetoPathFactor(std::map<int, BattleSquad
 	for( ; ite!= mPath->end(); ite++ )
 	{	
 		if(ite->second.apleft > mClose)
+		{
 			mClose = ite->second.apleft;
+			mCloseCrood.mX = ite->second.x;
+			mCloseCrood.mY = ite->second.y;
+		}
 	}
 	for(ite =  mArea->begin(); ite!= mArea->end(); ite++ )
 	{	
@@ -34,15 +39,8 @@ float SquadMoveClosetoPathFactor::calcDecision(Crood &decision)
 	}
 	else
 	{
-		ite = mArea->find(croodid);
-		if(ite != mArea->end())
-		{
-			possibility = 0.0f - 5.0f * (mHighAP - ite->second.apleft);
-		}
-		else
-		{
-			possibility = -100.0f;
-		}
+		possibility = 100.0f - 15.0f * GetDistance(mCloseCrood.mX, mCloseCrood.mY, 
+			decision.mX, decision.mY);
 	}
 	return possibility;
 }
