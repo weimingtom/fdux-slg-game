@@ -1,0 +1,15 @@
+GUI.ButtonLock();
+GUI.SetDialogVisible(1);
+GUI.ShowImage("kesa_ys.png",left,300);
+GUI.ShowRoleName("柯萨");
+GUI.ShowText("齐塔他们果然遇到麻烦了啊！",1);
+GUI.ClearText();
+GUI.ShowText("大伙准备好！让我们给达克斯的家伙们一点颜色看看！",1);
+GUI.ClearText();
+GUI.ShowText("翼骑团！突击！",1);
+GUI.ClearText();
+GUI.ShowRoleName("");
+GUI.ShowImage("",right,300);
+GUI.ShowImage("",left,300);
+GUI.SetDialogVisible(0);
+GUI.StoryOver();

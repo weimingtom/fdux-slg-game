@@ -1,5 +1,4 @@
 GUI.ShowImage("cp2.png",4,2000);
-GUI.ShowText(" ",1);
 GUI.Wait(2000);
 GUI.ShowImage("black.png",4,1500);
 GUI.Music("warning.ogg",1000);
@@ -441,5 +440,7 @@ GUI.ShowImage("",right,600);
 GUI.ShowImage("",left,600);
 GUI.CM(3000);
 GUI.ShowImage("black.png",4,3000);
-
-GUI.NextScene("cp3.lua");
+AVGLib.AddSquad("Olivia","Olivia");
+AVGLib.SetPlayerFaction("Wing");
+StateLib.BattleState("battle2.xml");
+#GUI.NextScene("cp3.lua");

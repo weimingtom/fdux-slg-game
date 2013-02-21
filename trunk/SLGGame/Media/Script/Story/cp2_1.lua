@@ -1,0 +1,15 @@
+GUI.ButtonLock();
+GUI.SetDialogVisible(1);
+GUI.ShowImage("qitaw_ys.png",left,300);
+GUI.ShowRoleName("齐塔");
+GUI.ShowText("骑兵单位拥有极高的行动能力和攻击能力，但防御力和反击能力较弱，在崎岖地形的AP消耗也更高。",1);
+GUI.ClearText();
+GUI.ShowText("另外需要注意，骑兵在移动两格之后会触发冲锋效果，大幅增加攻击力，所以请利用好森林地带对骑兵的高消耗，避免遭到冲锋打击。",1);
+GUI.ClearText();
+GUI.ShowText("本次战斗我方处于绝对劣势，请以自保为主要目标。",1);
+GUI.ClearText();
+GUI.ShowRoleName("");
+GUI.ShowImage("",right,300);
+GUI.ShowImage("",left,300);
+GUI.SetDialogVisible(0);
+GUI.StoryOver();
