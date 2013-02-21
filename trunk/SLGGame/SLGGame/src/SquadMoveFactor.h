@@ -17,6 +17,7 @@ public:
 private:
 	float mClose;
 	float mHighAP;
+	Crood mCloseCrood;
 	std::map<int, BattleSquadManager::MoveNode>* mArea;
 	std::map<int, BattleSquadManager::MoveNode>* mPath;
 };
