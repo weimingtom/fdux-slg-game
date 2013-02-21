@@ -38,7 +38,6 @@ function finishdeploy()
 	BattleLib.AssignAIGroup(2, "Team2Squad_3", "DuxRaider");
 	BattleLib.AssignAIGroup(2, "Team2Squad_4", "DuxRaider");
 	BattleLib.AssignAIGroup(2, "Team2Squad_5", "DuxRaider");
-	BattleLib.AssignAIGroup(2, "Team2Squad_6", "DuxRaider");
 	--创建AI任务(team,missionname,missiontype,missiontargetarea)
 	BattleLib.CreateAIMission(2, "DefendCamp", 0, "CampArea");
 	--指派AI分组任务(team,groupname,missionname)
@@ -96,6 +95,8 @@ function turnend()
 		BattleLib.AddGold(1500);
 		BattleLib.DumpSquadData();
 		addedgold = ScriptCommonLib.GetInt("addedgold");
+		addedgold = addedgold + 1500;
+		ScriptCommonLib.SetInt("addedgold", addedgold);
 		--胜利(storyscript,gold,exp)
 		BattleLib.Win("cp2.lua", "0", "0");
 	end
