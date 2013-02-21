@@ -33,6 +33,7 @@ void GUIMissionWindow::showScene(std::string arg)
 	if(arg!="")
 	{
 		FadeIn(300,mWindow);
+		mWindow->setVisible(true);
 		mIsShow=true;
 	}
 
@@ -41,6 +42,7 @@ void GUIMissionWindow::showScene(std::string arg)
 void GUIMissionWindow::hideScene()
 {
 	FadeOut(300,mWindow);
+	mWindow->setVisible(false);
 	mIsShow=false;
 }
 
