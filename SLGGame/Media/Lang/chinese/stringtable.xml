@@ -11,6 +11,11 @@
 "/>
 		<map2mission1 type="String" value = "(主要)歼灭敌军"/>
 		<map2mission2 type="String" value = "(次要)中央营地不能失守(500金币)"/>
+		<map3 type="String" value = "锐脊河谷剿匪战"/>
+		<mapinfo3 type="String" value = "奥术法师和战术法师虽然在战场中的定位完全不同，但他们都使用傀儡进行防御，在战场上一定要注意他们的傀儡数量，没有傀儡保护的法师是不堪一击的。&#x0D;#FFFF00任务目标:歼灭所有敌军
+"/>
+		<map3mission1 type="String" value = "(主要)歼灭敌军"/>
+		<map3mission2 type="String" value = "(次要)敌方逃走部队不超过3支(700金币)"/>
 		
 		<!--LeaderName-->
 		<Cheetah type="String" value="齐塔"/>
