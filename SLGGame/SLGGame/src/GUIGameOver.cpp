@@ -16,7 +16,6 @@ GUIGameOver::GUIGameOver(MyGUI::Window* window,int Width,int Height):GUISubWindo
 	mWindow=window;
 	assignWidget(mCaption,"InfoImage");
 	assignWidget(mGold,"GetMoney");
-	assignWidget(mExp,"GetExp");
 	assignWidget(mButton,"TEXT_YesButton");
 
 	mButton->setCaption(StringTable::getSingleton().getString("YesButton"));
@@ -79,10 +78,9 @@ bool GUIGameOver::GridInputEvent( int x,int y )
 	return true;
 }
 
-void GUIGameOver::setData(std::string gold,std::string exp)
+void GUIGameOver::setData(int gold)
 {
-	mGold->setCaption(gold);
-	mExp->setCaption(exp);
+	mGold->setCaption(Ogre::StringConverter::toString(gold));
 }
 
 void GUIGameOver::setNext(std::string name)

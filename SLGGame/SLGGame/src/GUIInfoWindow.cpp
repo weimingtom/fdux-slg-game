@@ -45,7 +45,7 @@ void GUIInfoWindow::FrameEvent()
 {
 	if (isWait)
 	{
-		if (mTimer.getMilliseconds()>=WAITTIME)
+		if (mTimer.getMilliseconds()>=WAITTIME && mWindow->getVisible())
 		{
 			isWait=false;
 			FadeOut(FADETIME,mWindow);

@@ -129,12 +129,11 @@ static int AssignAIMission(lua_State* L)
 static int Win(lua_State* L)
 {
 	std::string next(luaL_checkstring(L, 1));
-	std::string gold(luaL_checkstring(L, 2));
-	std::string exp(luaL_checkstring(L, 3));
+	int gold(luaL_checkint(L, 2));
 
 	GUIBattle* guibattle=static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
 	GUIGameOver* GameOver=(GUIGameOver*)guibattle->getSubWindow("GameOverWindow");
-	GameOver->setData(gold,exp);
+	GameOver->setData(gold);
 	GameOver->setNext(next);
 
 	GameOver->showScene("win");
@@ -144,12 +143,11 @@ static int Win(lua_State* L)
 static int Lost(lua_State* L)
 {
 	std::string next(luaL_checkstring(L, 1));
-	std::string gold(luaL_checkstring(L, 2));
-	std::string exp(luaL_checkstring(L, 3));
+	int gold(luaL_checkint(L, 2));
 
 	GUIBattle* guibattle=static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
 	GUIGameOver* GameOver=(GUIGameOver*)guibattle->getSubWindow("GameOverWindow");
-	GameOver->setData(gold,exp);
+	GameOver->setData(gold);
 	GameOver->setNext(next);
 
 	GameOver->showScene("lost");

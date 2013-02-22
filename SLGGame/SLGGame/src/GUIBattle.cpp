@@ -95,7 +95,8 @@ void GUIBattle::hideAllWindows()
 			||(*it)->getName()=="SquadWindow"
 			||(*it)->getName()=="TargetWindow"
 			||(*it)->getName()=="Terrain"
-			||(*it)->getName()=="GameState")
+			||(*it)->getName()=="GameState"
+			||(*it)->getName()=="InfoWindow")
 		{
 			(*it)->hideScene();
 		}

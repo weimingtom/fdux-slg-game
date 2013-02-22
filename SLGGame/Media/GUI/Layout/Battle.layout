@@ -848,10 +848,10 @@
             <Property key="ImageGroup" value="state_ap"/>
         </Widget>
     </Widget>
-    <Widget type="Window" skin="SLGMiniWindowSkin" position="415 190 550 305" layer="Main" name="GameOverWindow">
+    <Widget type="Window" skin="SLGMiniWindowSkin" position="375 205 550 260" layer="Main" name="GameOverWindow">
         <Property key="Visible" value="false"/>
         <Widget type="ImageBox" skin="ImageBox" position="25 15 500 150" name="InfoImage"/>
-        <Widget type="Button" skin="SLGButtonSkin2" position="160 245 235 45" name="TEXT_YesButton">
+        <Widget type="Button" skin="SLGButtonSkin2" position="160 205 235 45" name="TEXT_YesButton">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
             <Property key="TextAlign" value="Center"/>
@@ -862,14 +862,6 @@
             <Property key="FontHeight" value="20"/>
         </Widget>
         <Widget type="TextBox" skin="TextBox" position="195 175 325 25" name="GetMoney">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="30 210 155 25" name="TEXT_GetExp">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="195 210 325 25" name="GetExp">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>

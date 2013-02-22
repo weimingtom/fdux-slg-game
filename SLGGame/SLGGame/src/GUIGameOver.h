@@ -27,7 +27,7 @@ public:
 
 	void onOtherSceneNotify(std::string arg);
 
-	void setData(std::string gold,std::string exp);
+	void setData(int gold);
 
 	void setNext(std::string name);
 
@@ -36,7 +36,6 @@ private:
 	MyGUI::Window* mWindow;
 	MyGUI::ImageBox* mCaption;
 	MyGUI::TextBox* mGold;
-	MyGUI::TextBox* mExp;
 	MyGUI::Button* mButton;
 	bool isWin;
 	std::string mNext;
