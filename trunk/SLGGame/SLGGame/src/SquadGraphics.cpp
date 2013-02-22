@@ -837,6 +837,7 @@ void SquadGraphics::setFormation( int f,bool isAnim )
 	}
 	else
 	{
+		setGrid(mX,mY);
 		mCommanderUnit->setPositionOffset(CommanderVector.x,CommanderVector.z);
 		
 		int i=0;
@@ -930,6 +931,8 @@ bool SquadGraphics::isFormationOrDirectionOver()
 
 void SquadGraphics::setGrid(int x,int y)
 {
+	mX=x;
+	mY=y;
 	float wx,wy=0;
 	Terrain::getSingletonPtr()->getWorldCoords(x,y,wx,wy);
 	
@@ -1068,6 +1071,7 @@ void SquadGraphics::setDirection( Direction d,bool isAnim )
 		}
 		//x'=xcos-ysin y'=ycos+xsin
 
+		setGrid(mX,mY);
 		mCommanderUnit->setPositionOffset(CommanderVector.x,CommanderVector.z);
 		mCommanderUnit->mNode->setOrientation(q);
 
@@ -1445,6 +1449,7 @@ void SquadGraphics::setRecover(int num)
 			Ogre::Vector3 CommanderVector;
 			Ogre::Vector3 SoldierVector[4];
 
+			setGrid(mX,mY);
 			getFormationPosition(mFormation,mDirection,CommanderVector,SoldierVector);
 			unit->setPositionOffset(SoldierVector[unit->mFormationPosition].x,SoldierVector[unit->mFormationPosition].z);
 

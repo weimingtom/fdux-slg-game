@@ -51,9 +51,9 @@ BattlePlayerState::BattlePlayerState()
 	DataLibrary::getSingletonPtr()->getData("GameData/BattleData/MapData/MapName",temp);
 	int val;
 	DataLibrary::getSingletonPtr()->getData("GameData/BattleData/BattleState/Ture",val);
-	DataLibrary::getSingletonPtr()->setData("SystemConfig/Save/Save1",std::string("AutoSave ")+temp+" "+str(boost::format(StringTable::getSingletonPtr()->getString("RoundNum"))%val));
+	DataLibrary::getSingletonPtr()->setData("SystemConfig/Save/Save2",std::string("AutoSave ")+temp+" "+str(boost::format(StringTable::getSingletonPtr()->getString("RoundNum"))%val));
 	DataLibrary::getSingletonPtr()->saveXmlData(DataLibrary::SystemConfig,std::string("..\\save")+std::string("\\Config.xml"));
-	StateManager::getSingletonPtr()->saveState(std::string("..\\save")+std::string("\\save1.xml"));
+	StateManager::getSingletonPtr()->saveState(std::string("..\\save")+std::string("\\save2.xml"));
 
 	Core::getSingleton().mInputControl->pushListener(this);
 	mMouseX = 640;

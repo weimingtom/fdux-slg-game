@@ -74,6 +74,13 @@ void GUISLWindow::showScene( std::string arg )
 		assignWidget(mTextBox,"SaveText1");
 		mTextBox->setEnabled(false);
 		mTextBox->setTextColour(MyGUI::Colour(0.5,0.5,0.5));
+		assignWidget(mTextBox,"SaveText2");
+		if(mTextBox->getCaption()=="")
+		{
+			mTextBox->setCaption("BattleAutoSave");
+		}
+		mTextBox->setEnabled(false);
+		mTextBox->setTextColour(MyGUI::Colour(0.5,0.5,0.5));
 		isSave=true;
 	}
 	else

@@ -27,10 +27,28 @@ static int SetPlayerFaction(lua_State* L)
 	return 0;
 }
 
+static int SetCanSupply(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	int canSupply=luaL_checkint(L, 2);
+	if(canSupply==0)
+	{
+		DataLibrary::getSingleton().copyNode(std::string("GameData/StoryData/SquadData/")+squadid,std::string("GameData/StoryData/NoSupplySquadData/")+squadid);
+		DataLibrary::getSingleton().delNode(std::string("GameData/StoryData/SquadData/")+squadid);
+	}
+	else
+	{
+		DataLibrary::getSingleton().copyNode(std::string("GameData/StoryData/NoSupplySquadData/")+squadid,std::string("GameData/StoryData/SquadData/")+squadid);
+		DataLibrary::getSingleton().delNode(std::string("GameData/StoryData/NoSupplySquadData/")+squadid);
+	}
+	return 0;
+}
+
 
 static const struct luaL_Reg AVGLib[] =
 {
 	{"AddSquad",AddSquad},
 	{"SetPlayerFaction",SetPlayerFaction},
+	{"SetCanSupply",SetCanSupply},
 	{NULL,NULL}
 };

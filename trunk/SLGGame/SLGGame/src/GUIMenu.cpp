@@ -13,9 +13,20 @@
 #include "UtilsOgreDshow.h"
 
 #include <iostream>
+#include <Windows.h>
 
 #define FadeTime 1500
 #define WaitTime 2000
+
+BOOL FindFirstFileExists(LPCTSTR lpPath, DWORD dwFilter)
+{
+	WIN32_FIND_DATA fd;
+	HANDLE hFind = FindFirstFile(lpPath, &fd);
+	BOOL bFilter = (FALSE == dwFilter) ? TRUE : fd.dwFileAttributes & dwFilter;
+	BOOL RetValue = ((hFind != INVALID_HANDLE_VALUE) && bFilter) ? TRUE : FALSE;
+	FindClose(hFind);
+	return RetValue;
+}
 
 GUIMenu::GUIMenu(int width,int height):GUIScene("MainMenu.layout",width,height),mMenuState(NoneState),SLWindow(NULL),mOptionWindow(NULL)
 {
@@ -63,7 +74,14 @@ void GUIMenu::showScene( std::string arg )
 	{
 		mMenuState=OPState;
 		mIsSkipOP=false;
-		OgreUtils::DirectShowManager::getSingleton().createDirectshowControl("videotest","../Media/movie/op.wmv",1280,720);
+		if(FindFirstFileExists(L"../Media/movie/op.avi", FALSE))
+		{
+			OgreUtils::DirectShowManager::getSingleton().createDirectshowControl("videotest","../Media/movie/op.avi",1280,720);
+		}
+		else
+		{
+			OgreUtils::DirectShowManager::getSingleton().createDirectshowControl("videotest","../Media/movie/op.wmv",1280,720);
+		}
 		GUISystem::getSingletonPtr()->setFrameUpdateScene(MenuScene);
 	}
 	else

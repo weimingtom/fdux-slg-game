@@ -67,6 +67,7 @@
 		<NewGame type="String" value = "开始游戏"/>
 		<Restart type="String" value ="继续"/>
 		<LoadGame type="String" value = "载入游戏"/>
+		<AutoSaveCapture type="String" value="AutoSave 第%1%幕"/>
 		<Opition type="String" value = "游戏设置"/>
 		<OpitionButton type="String" value = "游戏设置"/>
 		<MusicVolume type="String" value = "音乐音量"/>
