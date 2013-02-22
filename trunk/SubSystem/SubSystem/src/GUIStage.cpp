@@ -1038,7 +1038,14 @@ void GUIStage::saveData(bool isAutoSave)
 		GetLocalTime(&systm);
 		std::string timeString=str(boost::format(" %1%-%2%-%3% %4%:%5%:%6%")%systm.wYear%systm.wMonth%systm.wDay%systm.wHour%systm.wMinute%systm.wSecond);
 
-		DataLibrary::getSingletonPtr()->setData("SystemConfig/Save/Save1",std::string("AutoSave")+timeString);
+		std::string mScriptName;
+		DataLibrary::getSingletonPtr()->getData("GameData/StoryData/ScriptName",mScriptName);
+		std::string::size_type j = mScriptName.find(".");
+		mScriptName=mScriptName.substr(2, j-2);
+
+		std::string  AutoSaveCapture=str(boost::format(StringTable::getSingletonPtr()->getString("AutoSaveCapture"))%mScriptName);
+
+		DataLibrary::getSingletonPtr()->setData("SystemConfig/Save/Save1",AutoSaveCapture+timeString);
 		DataLibrary::getSingletonPtr()->saveXmlData(DataLibrary::SystemConfig,std::string(SAVE_PATH)+std::string("\\Config.xml"));
 		DataLibrary::getSingletonPtr()->saveXmlData(DataLibrary::GameData,std::string(SAVE_PATH)+std::string("\\save1.xml"));
 	}
