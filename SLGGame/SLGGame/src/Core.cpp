@@ -42,6 +42,8 @@
 #include <windows.h>
 #include <Shiny.h>
 
+#define VER "V1.0a "
+
 Core::Core(void):isRun(false)
 {
 }
@@ -70,7 +72,9 @@ bool Core::initialize(bool isFullScene)
 	mRoot->initialise(false);
 
 	std::string title = "ÍüÈ´µÄÕ½³¡";//StringTable::getSingleton().getAnsiString("gamename");
-	
+	title+=" ";
+	title+=VER;
+
 	Ogre::NameValuePairList list;
 
 	list["outerDimensions"]="true";
