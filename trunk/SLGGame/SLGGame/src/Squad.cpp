@@ -6,7 +6,7 @@
 #include <OgreLogManager.h>
 
 #define RETURNONERR(a) if(!a) {Ogre::LogManager::getSingletonPtr()->stream()<<__FILE__<<","<<__LINE__<<":RETURNONERR!"; return;}
-#define RETURNFALSEONERR(a) if(!a) {Ogre::LogManager::getSingletonPtr()->stream()<<__FILE__<<","<<__LINE__<<":RETURNFALSEONERR!"; return false;}
+#define RETURNFALSEONERR(a,details) if(!a) {Ogre::LogManager::getSingletonPtr()->stream()<<"Squad Data Error!:"<<__LINE__<<":RETURNFALSEONERR! details:"<<details; MessageBoxA(NULL,std::string(details).c_str(), "Squad Data Error!", MB_ICONERROR | MB_TASKMODAL); return false;}
 
 Squad::Squad(std::string path)
 {
@@ -24,37 +24,37 @@ Squad::~Squad()
 bool Squad::init(std::string srcpath)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
-	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/Name"), mPath + std::string("/Name"), true));
-	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/Describe"), mPath + std::string("/Describe"), true));
-	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/Type"), mPath + std::string("/Type"), true));
-	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/SquadType"), mPath + std::string("/SquadType"), true));
-	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/Level"), mPath + std::string("/Level"), true));
-	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/Exp"), mPath + std::string("/Exp"), true));
-	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/SkillPointAction"), mPath + std::string("/SkillPointAction"), true));
-	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/SkillPointPassive"), mPath + std::string("/SkillPointPassive"), true));
-	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/SkillPointEquip"), mPath + std::string("/SkillPointEquip"), true));
-	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/UnitNum"), mPath + std::string("/UnitNum"), true));
-	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/UnitMesh"), mPath + std::string("/UnitMesh"), true));
-	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/UnitMat"), mPath + std::string("/UnitMat"), true));
-	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/MoveSound"), mPath + std::string("/MoveSound"), true));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/Name"), mPath + std::string("/Name"), true),srcpath + std::string("/Name"));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/Describe"), mPath + std::string("/Describe"), true),srcpath + std::string("/Describe"));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/Type"), mPath + std::string("/Type"), true),srcpath + std::string("/Type"));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/SquadType"), mPath + std::string("/SquadType"), true),srcpath + std::string("/SquadType"));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/Level"), mPath + std::string("/Level"), true),srcpath + std::string("/Level"));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/Exp"), mPath + std::string("/Exp"), true),srcpath + std::string("/Exp"));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/SkillPointAction"), mPath + std::string("/SkillPointAction"), true),srcpath + std::string("/SkillPointAction"));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/SkillPointPassive"), mPath + std::string("/SkillPointPassive"), true),srcpath + std::string("/SkillPointPassive"));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/SkillPointEquip"), mPath + std::string("/SkillPointEquip"), true),srcpath + std::string("/SkillPointEquip"));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/UnitNum"), mPath + std::string("/UnitNum"), true),srcpath + std::string("/UnitNum"));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/UnitMesh"), mPath + std::string("/UnitMesh"), true),srcpath + std::string("/UnitMesh"));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/UnitMat"), mPath + std::string("/UnitMat"), true),srcpath + std::string("/UnitMat"));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/MoveSound"), mPath + std::string("/MoveSound"), true),srcpath + std::string("/MoveSound"));
 
 	std::string tempstr;
-	RETURNFALSEONERR(datalib->getData(srcpath + std::string("/SoilderId"), tempstr, true));
-	RETURNFALSEONERR(equipEquipment(EQUIP_SOILDER, tempstr));
-	RETURNFALSEONERR(datalib->getData(srcpath + std::string("/HorseId"), tempstr, true));
-	RETURNFALSEONERR(equipEquipment(EQUIP_HORSE, tempstr));
-	RETURNFALSEONERR(datalib->getData(srcpath + std::string("/PweaponId"), tempstr, true));
-	RETURNFALSEONERR(equipEquipment(EQUIP_PWEAPON, tempstr));
-	RETURNFALSEONERR(datalib->getData(srcpath + std::string("/SweaponId"), tempstr, true));
-	RETURNFALSEONERR(equipEquipment(EQUIP_SWEAPON, tempstr));
-	RETURNFALSEONERR(datalib->getData(srcpath + std::string("/ArmorId"), tempstr, true));
-	RETURNFALSEONERR(equipEquipment(EQUIP_ARMOR, tempstr));
-	RETURNFALSEONERR(datalib->getData(srcpath + std::string("/ShieldId"), tempstr, true));
-	RETURNFALSEONERR(equipEquipment(EQUIP_SHIELD, tempstr));
+	RETURNFALSEONERR(datalib->getData(srcpath + std::string("/SoilderId"), tempstr, true),srcpath + std::string("/SoilderId"));
+	RETURNFALSEONERR(equipEquipment(EQUIP_SOILDER, tempstr),std::string("equipEquipment->")+tempstr);
+	RETURNFALSEONERR(datalib->getData(srcpath + std::string("/HorseId"), tempstr, true),srcpath + std::string("/HorseId"));
+	RETURNFALSEONERR(equipEquipment(EQUIP_HORSE, tempstr),std::string("equipEquipment->")+tempstr);
+	RETURNFALSEONERR(datalib->getData(srcpath + std::string("/PweaponId"), tempstr, true),srcpath + std::string("/PweaponId"));
+	RETURNFALSEONERR(equipEquipment(EQUIP_PWEAPON, tempstr),std::string("equipEquipment->")+tempstr);
+	RETURNFALSEONERR(datalib->getData(srcpath + std::string("/SweaponId"), tempstr, true),srcpath + std::string("/SweaponId"));
+	RETURNFALSEONERR(equipEquipment(EQUIP_SWEAPON, tempstr),std::string("equipEquipment->")+tempstr);
+	RETURNFALSEONERR(datalib->getData(srcpath + std::string("/ArmorId"), tempstr, true),srcpath + std::string("/ArmorId"));
+	RETURNFALSEONERR(equipEquipment(EQUIP_ARMOR, tempstr),std::string("equipEquipment->")+tempstr);
+	RETURNFALSEONERR(datalib->getData(srcpath + std::string("/ShieldId"), tempstr, true),srcpath + std::string("/ShieldId"));
+	RETURNFALSEONERR(equipEquipment(EQUIP_SHIELD, tempstr),std::string("equipEquipment->")+tempstr);
 
-	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/LeaderId"), mPath + std::string("/LeaderId"), true));
-	RETURNFALSEONERR(datalib->getData(srcpath + std::string("/RetainerId"), tempstr, true));
-	RETURNFALSEONERR(hireRetainer(tempstr));
+	RETURNFALSEONERR(datalib->copyNode(srcpath + std::string("/LeaderId"), mPath + std::string("/LeaderId"), true),srcpath + std::string("/LeaderId"));
+	RETURNFALSEONERR(datalib->getData(srcpath + std::string("/RetainerId"), tempstr, true),srcpath + std::string("/RetainerId"));
+	RETURNFALSEONERR(hireRetainer(tempstr),std::string("hireRetainer->")+tempstr);
 
 	int squadtype;
 	datalib->getData(mPath + std::string("/SquadType"), squadtype);
@@ -67,8 +67,20 @@ bool Squad::init(std::string srcpath)
 	case SQUADTYPE_MISSILEINFANTRY:
 		defaultskillpath = "StaticData/SkillListData/MissileInfantry/Default";
 		break;
+	case SQUADTYPE_CAVALRY:
+		defaultskillpath = "StaticData/SkillListData/Cavalry/Default";
+		break;
+	case SQUADTYPE_MISSILECAVALRY:
+		defaultskillpath = "StaticData/SkillListData/MissileCavalry/Default";
+		break;
 	case SQUADTYPE_SAINT:
 		defaultskillpath = "StaticData/SkillListData/Saint/Default";
+		break;
+	case SQUADTYPE_BATTLEMAGE:
+		defaultskillpath = "StaticData/SkillListData/BattleMage/Default";
+		break;
+	case SQUADTYPE_ARCANEMAGE:
+		defaultskillpath = "StaticData/SkillListData/ArcaneMage/Default";
 		break;
 	}
 	std::vector<std::string> skilltable = datalib->getChildList(defaultskillpath);
@@ -76,7 +88,7 @@ bool Squad::init(std::string srcpath)
 	for(ite = skilltable.begin(); ite != skilltable.end(); ite++)
 	{	
 		//RETURNONERR(datalib->getData(defaultskillpath + std::string("/") + (*ite), tempstr, true));
-		RETURNFALSEONERR(addSkill((*ite)));
+		RETURNFALSEONERR(addSkill((*ite)),std::string("addSkill->")+(*ite));
 	}
 
 	skilltable.clear();
@@ -84,8 +96,8 @@ bool Squad::init(std::string srcpath)
 	int type = 0;
 	for(ite = skilltable.begin(); ite != skilltable.end(); ite++)
 	{	
-		RETURNFALSEONERR(datalib->getData(srcpath + std::string("/SkillTable/") + (*ite), type, true));
-		RETURNFALSEONERR(learnSkill(type, (*ite)));
+		RETURNFALSEONERR(datalib->getData(srcpath + std::string("/SkillTable/") + (*ite), type, true),srcpath + std::string("/SkillTable/") + (*ite));
+		RETURNFALSEONERR(learnSkill(type, (*ite)),std::string("learnSkill->")+(*ite));
 	}
 	return true;
 }
