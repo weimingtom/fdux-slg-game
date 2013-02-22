@@ -5,7 +5,11 @@ GUI.ShowImage("black.png",4,1500);
 GUI.Music("warning.ogg",1000);
 GUI.ShowImage("qiuling.png",4,1500);
 GUI.SetDialogVisible(1);
-
+AVGLib.SetCanSupply("Cheetah",0);
+AVGLib.SetCanSupply("Dandelion",0);
+AVGLib.SetCanSupply("WingsHeavyInf",0);
+AVGLib.SetCanSupply("WingsCrossBow",0);
+AVGLib.SetCanSupply("Olivia",0);
 GUI.AutoSave();
 GUI.ShowImage("aofa.png",right,300);
 GUI.ShowRoleName("°ÂÊõ·¨Ê¦");
@@ -291,5 +295,9 @@ GUI.ShowImage("",right,600);
 GUI.ShowImage("",left,600);
 GUI.CM(3000);
 GUI.ShowImage("black.png",4,3000);
-
-GUI.NextScene("cp7.lua");
+AVGLib.AddSquad("GuardHeavySpear","GuardHeavySpear");
+AVGLib.AddSquad("GuardLightBow","GuardLightBow");
+AVGLib.AddSquad("GuardLightSword","GuardLightSword");
+AVGLib.SetPlayerFaction("Wing");
+StateLib.BattleState("battle3.xml");
+#GUI.NextScene("cp7.lua");

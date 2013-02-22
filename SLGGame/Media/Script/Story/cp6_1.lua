@@ -1,0 +1,13 @@
+GUI.ButtonLock();
+GUI.SetDialogVisible(1);
+GUI.ShowImage("feiw_cj.png",left,300);
+GUI.ShowRoleName("菲");
+GUI.ShowText("敌军已经进入到预定位置！",1);
+GUI.ClearText();
+GUI.ShowText("法师队召唤傀儡！从背后突袭敌军！",1);
+GUI.ClearText();
+GUI.ShowRoleName("");
+GUI.ShowImage("",right,300);
+GUI.ShowImage("",left,300);
+GUI.SetDialogVisible(0);
+GUI.StoryOver();
