@@ -4,222 +4,222 @@
 <StaticData>
 	<LeaderDate>
 		<Cheetah>
-			<Picture type="String" value="qita.png"/>
+			<Picture type="String" value="qitah.png"/>
 			<Mesh type="String" value="HeavyInfOf.mesh"/>
 			<Mat type="String" value="HeavyInfOf"/>
 		</Cheetah>
 		<Dandelion>
-			<Picture type="String" value="dande.png"/>
+			<Picture type="String" value="dandeh.png"/>
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
 		</Dandelion>
 		<Olivia>
-			<Picture type="String" value="aoliwa.png"/>
+			<Picture type="String" value="aoliwah.png"/>
 			<Mesh type="String" value="Saint.mesh"/>
 			<Mat type="String" value="Saint"/>
 		</Olivia>
 		<Cossa>
-			<Picture type="String" value="kesa.png"/>
+			<Picture type="String" value="kesah.png"/>
 			<Mesh type="String" value="HeavyCavalry.mesh"/>
 			<Mat type="String" value="HeavyCavalry"/>
 		</Cossa>
 		<Caster>
-			<Picture type="String" value="kasit.png"/>
+			<Picture type="String" value="kasiteh.png"/>
 			<Mesh type="String" value="HeavyCavalry.mesh"/>
 			<Mat type="String" value="HeavyCavalry"/>
 		</Caster>
 		<Fay>
-			<Picture type="String" value="fei.png"/>
+			<Picture type="String" value="feih.png"/>
 			<Mesh type="String" value="Warmage.mesh"/>
 			<Mat type="String" value="Warmage"/>
 		</Fay>
 		<Azaria>
-			<Picture type="String" value="ashaniya.png"/>
+			<Picture type="String" value="ashaniyah.png"/>
 			<Mesh type="String" value="Elementalist.mesh"/>
 			<Mat type="String" value="Elementalist"/>
 		</Azaria>
 		<WingsLightCavalry>
-			<Picture type="String" value="qingbu.png"/>
+			<Picture type="String" value="qingbuh.png"/>
 			<Mesh type="String" value="LightCavalry.mesh"/>
 			<Mat type="String" value="LightCavalry"/>
 		</WingsLightCavalry>
 		<WingsHeavyInf>
-			<Picture type="String" value="zhongbu2.png"/>
+			<Picture type="String" value="zhongbu2h.png"/>
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
 		</WingsHeavyInf>
 		<WingsCrossBow>
-			<Picture type="String" value="qingbu.png"/>
+			<Picture type="String" value="qingbuh.png"/>
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
 		</WingsCrossBow>
 		<DuxLightSpear>
-			<Picture type="String" value="zhongbu1.png"/>
+			<Picture type="String" value="zhongbu1h.png"/>
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
 		</DuxLightSpear>
 		<DuxLightBow>
-			<Picture type="String" value="qingbu.png"/>
+			<Picture type="String" value="qingbuh.png"/>
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
 		</DuxLightBow>
 		<DuxHeavySpear>
-			<Picture type="String" value="fuguan1.png"/>
+			<Picture type="String" value="fuguan1h.png"/>
 			<Mesh type="String" value="HeavyInfOf.mesh"/>
 			<Mat type="String" value="HeavyInfOf"/>
 		</DuxHeavySpear>
 		<DuxHeavyCavalry>
-			<Picture type="String" value="fuguan1.png"/>
+			<Picture type="String" value="fuguan1h.png"/>
 			<Mesh type="String" value="HeavyCavalry.mesh"/>
 			<Mat type="String" value="HeavyCavalry"/>
 		</DuxHeavyCavalry>
 		<FantasyHeavyCavalry>
-			<Picture type="String" value="fuguan3.png"/>
+			<Picture type="String" value="fuguan3h.png"/>
 			<Mesh type="String" value="HeavyCavalry.mesh"/>
 			<Mat type="String" value="HeavyCavalry"/>
 		</FantasyHeavyCavalry>
 		<GuardLightBow>
-			<Picture type="String" value="qingbu.png"/>
+			<Picture type="String" value="qingbuh.png"/>
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
 		</GuardLightBow>
 		<GuardCrossBow>
-			<Picture type="String" value="qingbu.png"/>
+			<Picture type="String" value="qingbuh.png"/>
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
 		</GuardCrossBow>
 		<GuardLightSword>
-			<Picture type="String" value="zhongbu4.png"/>
+			<Picture type="String" value="zhongbu4h.png"/>
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
 		</GuardLightSword>
 		<GuardHeavySpear>
-			<Picture type="String" value="fuguan4.png"/>
+			<Picture type="String" value="fuguan4h.png"/>
 			<Mesh type="String" value="HeavyInfOf.mesh"/>
 			<Mat type="String" value="HeavyInfOf"/>
 		</GuardHeavySpear>
 		<Kareena>
-			<Picture type="String" value="kalinna.png"/>
+			<Picture type="String" value="kalinnah.png"/>
 			<Mesh type="String" value="Elementalist.mesh"/>
 			<Mat type="String" value="Elementalist"/>
 		</Kareena>
 		<Welvss>
-			<Picture type="String" value="weier.png"/>
+			<Picture type="String" value="weierh.png"/>
 			<Mesh type="String" value="Elementalist.mesh"/>
 			<Mat type="String" value="Elementalist"/>
 		</Welvss>
 		<Elementalist>
-			<Picture type="String" value="aofa.png"/>
+			<Picture type="String" value="aofah.png"/>
 			<Mesh type="String" value="Elementalist.mesh"/>
 			<Mat type="String" value="Elementalist"/>
 		</Elementalist>
 		<Warmage>
-			<Picture type="String" value="zhanfa.png"/>
+			<Picture type="String" value="zhanfah.png"/>
 			<Mesh type="String" value="Warmage.mesh"/>
 			<Mat type="String" value="Warmage"/>
 		</Warmage>
 		<UlvaLightHSword>
-			<Picture type="String" value="zhongbu1.png"/>
+			<Picture type="String" value="zhongbu1h.png"/>
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
 		</UlvaLightHSword>
 		<UlvaLightBow>
-			<Picture type="String" value="qingbu.png"/>
+			<Picture type="String" value="qingbuh.png"/>
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
 		</UlvaLightBow>
 		<UlvaCrossBow>
-			<Picture type="String" value="qingbu.png"/>
+			<Picture type="String" value="qingbuh.png"/>
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
 		</UlvaCrossBow>
 		<Pirate>
-			<Picture type="String" value="qingbu.png"/>
+			<Picture type="String" value="qingbuh.png"/>
 			<Mesh type="String" value="Pirate.mesh"/>
 			<Mat type="String" value="Pirate"/>
 		</Pirate>
 		<FNothLightHSword>
-			<Picture type="String" value="zhongbu1.png"/>
+			<Picture type="String" value="zhongbu1h.png"/>
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
 		</FNothLightHSword>
 		<FNothHeavyHSword>
-			<Picture type="String" value="fuguan1.png"/>
+			<Picture type="String" value="fuguan1h.png"/>
 			<Mesh type="String" value="HeavyInfOf.mesh"/>
 			<Mat type="String" value="HeavyInfOf"/>
 		</FNothHeavyHSword>
 		<FNothLightBow>
-			<Picture type="String" value="qingbu.png"/>
+			<Picture type="String" value="qingbuh.png"/>
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
 		</FNothLightBow>
 		<James>
-			<Picture type="String" value="zhanmu.png"/>
+			<Picture type="String" value="zhanmuh.png"/>
 			<Mesh type="String" value="HeavyCavalry.mesh"/>
 			<Mat type="String" value="HeavyCavalry"/>
 		</James>
 		<WinfredHeavyHalberd>
-			<Picture type="String" value="fuguan3.png"/>
+			<Picture type="String" value="fuguan3h.png"/>
 			<Mesh type="String" value="HeavyInfOf.mesh"/>
 			<Mat type="String" value="HeavyInfOf"/>
 		</WinfredHeavyHalberd>
 		<WinfredLightHalberd>
-			<Picture type="String" value="zhongbu3.png"/>
+			<Picture type="String" value="zhongbu3h.png"/>
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
 		</WinfredLightHalberd>
 		<WinfredLightBow>
-			<Picture type="String" value="qingbu.png"/>
+			<Picture type="String" value="qingbuh.png"/>
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
 		</WinfredLightBow>
 		<WinfredHeavyCavalry>
-			<Picture type="String" value="fuguan3.png"/>
+			<Picture type="String" value="fuguan3h.png"/>
 			<Mesh type="String" value="HeavyCavalry.mesh"/>
 			<Mat type="String" value="HeavyCavalry"/>
 		</WinfredHeavyCavalry>
 		<WinfredLightCavalry>
-			<Picture type="String" value="qingbu.png"/>
+			<Picture type="String" value="qingbuh.png"/>
 			<Mesh type="String" value="LightCavalry.mesh"/>
 			<Mat type="String" value="LightCavalry"/>
 		</WinfredLightCavalry>
 		<NothLightBow>
-			<Picture type="String" value="qingbu.png"/>
+			<Picture type="String" value="qingbuh.png"/>
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
 		</NothLightBow>
 		<NothLightHSword>
-			<Picture type="String" value="zhongbu1.png"/>
+			<Picture type="String" value="zhongbu1h.png"/>
 			<Mesh type="String" value="LightInfOf.mesh"/>
 			<Mat type="String" value="LightInfOf"/>
 		</NothLightHSword>
 		<NothHeavyCrossBow>
-			<Picture type="String" value="fuguan1.png"/>
+			<Picture type="String" value="fuguan1h.png"/>
 			<Mesh type="String" value="HeavyInfOf.mesh"/>
 			<Mat type="String" value="HeavyInfOf"/>
 		</NothHeavyCrossBow>
 		<NothHeavyHSword>
-			<Picture type="String" value="fuguan1.png"/>
+			<Picture type="String" value="fuguan1h.png"/>
 			<Mesh type="String" value="HeavyInfOf.mesh"/>
 			<Mat type="String" value="HeavyInfOf"/>
 		</NothHeavyHSword>
 		<Nothfate>
-			<Picture type="String" value="nuosi.png"/>
+			<Picture type="String" value="nuosih.png"/>
 			<Mesh type="String" value="HeavyInfOf.mesh"/>
 			<Mat type="String" value="HeavyInfOf"/>
 		</Nothfate>
 		<DarkKnight>
-			<Picture type="String" value="heiqishi.png"/>
+			<Picture type="String" value="heiqishih.png"/>
 			<Mesh type="String" value="HeavyInfOf.mesh"/>
 			<Mat type="String" value="HeavyInfOf"/>
 		</DarkKnight>
 		<Datura>
-			<Picture type="String" value="datana.png"/>
+			<Picture type="String" value="datanah.png"/>
 			<Mesh type="String" value="HeavyInfOf.mesh"/>
 			<Mat type="String" value="HeavyInfOf"/>
 		</Datura>
 		<Syrin>
-			<Picture type="String" value="xiwen.png"/>
+			<Picture type="String" value="xiwenh.png"/>
 			<Mesh type="String" value="Elementalist.mesh"/>
 			<Mat type="String" value="Elementalist"/>
 		</Syrin>
@@ -809,13 +809,13 @@
 		<Pirate>
 			<Type type="Int" value="0"/>
 			<SquadType type="Int" value="0"/>
-			<SoilderId type="String" value="UlvaSoilder"/>
+			<SoilderId type="String" value="Bandits"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="HeavyAxe1"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor1"/>
-			<SkillTable>>
+			<SkillTable>
 				<TwoHandBlunt type="Int" value="2"/>
 				<LightArmor type="Int" value="2"/>
 			</SkillTable>
