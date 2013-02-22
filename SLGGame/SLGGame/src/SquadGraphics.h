@@ -136,6 +136,8 @@ private:
 	int mIdleDirection;
 	int mNextDirection;
 	std::string mMoveSound;
+	int mX;
+	int mY;
 
 	enum DeathStep
 	{

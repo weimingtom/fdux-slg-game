@@ -329,8 +329,20 @@ bool Squad::learnSkill(int skilltype, std::string skillid)
 	case SQUADTYPE_MISSILEINFANTRY:
 		defaultskillpath = "StaticData/SkillListData/MissileInfantry/";
 		break;
+	case SQUADTYPE_CAVALRY:
+		defaultskillpath = "StaticData/SkillListData/Cavalry/";
+		break;
+	case SQUADTYPE_MISSILECAVALRY:
+		defaultskillpath = "StaticData/SkillListData/MissileCavalry/";
+		break;
 	case SQUADTYPE_SAINT:
 		defaultskillpath = "StaticData/SkillListData/Saint/";
+		break;
+	case SQUADTYPE_BATTLEMAGE:
+		defaultskillpath = "StaticData/SkillListData/BattleMage/";
+		break;
+	case SQUADTYPE_ARCANEMAGE:
+		defaultskillpath = "StaticData/SkillListData/ArcaneMage/";
 		break;
 	}
 	switch(skilltype)
