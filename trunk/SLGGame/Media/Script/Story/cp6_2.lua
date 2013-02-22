@@ -1,0 +1,13 @@
+GUI.ButtonLock();
+GUI.SetDialogVisible(1);
+GUI.ShowImage("chihou_lv.png",left,300);
+GUI.ShowRoleName("匪军");
+GUI.ShowText("我们被包围了！完……完蛋了！",1);
+GUI.ClearText();
+GUI.ShowText("大家快跑！",1);
+GUI.ClearText();
+GUI.ShowRoleName("");
+GUI.ShowImage("",right,300);
+GUI.ShowImage("",left,300);
+GUI.SetDialogVisible(0);
+GUI.StoryOver();
