@@ -2,6 +2,7 @@
 <MyGUI type="Layout" version="3.2.0">
     <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Info" name="BlackGround">
         <Property key="Visible" value="false"/>
+        <Property key="ImageTexture" value="SystemMenuBG.png"/>
         <Widget type="Window" skin="SLGWindow" position="510 160 210 315" align="Center" layer="Info" name="Menu">
             <Property key="Visible" value="true"/>
             <Property key="Caption" value="Menu"/>

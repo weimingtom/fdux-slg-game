@@ -1,6 +1,7 @@
 #include "InputControl.h"
 
 #include "GUISystem.h"
+#include "GUIDebugWindow.h"
 #include "CameraContral.h"
 #include "InputListener.h"
 #include "Terrain.h"
@@ -26,10 +27,15 @@ bool InputControl::keyPressed( const OIS::KeyEvent &arg )
 		if (Core::getSingletonPtr()->mDebugOverlay->isVisible())
 		{
 			Core::getSingletonPtr()->mDebugOverlay->hide();
+			GUIDebugWindow* debug=(GUIDebugWindow*)GUISystem::getSingletonPtr()->getScene(DebugWindowsScene);
+			debug->hideScene();
+			GUISystem::getSingletonPtr()->destoryScene(DebugWindowsScene);
 		}
 		else
 		{
 			Core::getSingletonPtr()->mDebugOverlay->show();
+			GUIDebugWindow* debug=(GUIDebugWindow*)GUISystem::getSingletonPtr()->createScene(DebugWindowsScene);
+			debug->showScene("");
 		}
 
 		PROFILER_OUTPUT();
