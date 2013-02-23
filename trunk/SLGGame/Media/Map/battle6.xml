@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<MapName>newmap</MapName>
+<MapName>map6</MapName>
 <MapTeam>
-    <Team2 TeamType="none" TeamFaction="none" />
-    <Team3 TeamType="none" TeamFaction="none" />
+    <Team2 TeamType="enemy1" TeamFaction="none" />
+    <Team3 TeamType="aliiance" TeamFaction="none" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
 <MapScript>mapscript6.lua</MapScript>
-<MapInfo>mapinfo1</MapInfo>
-<MapLoadBG>map1.png</MapLoadBG>
+<MapInfo>mapinfo6</MapInfo>
+<MapLoadBG>map2.png</MapLoadBG>
 <MapSize>20</MapSize>
 <MapGround>
     <G0 Type="Grass" Texture="Grass1Blur.dds" />

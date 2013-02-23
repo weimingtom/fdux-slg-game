@@ -65,9 +65,9 @@ function unitdead()
 	end
 	faction = SquadLib.GetFaction(squad);
 	if faction == 1 then
-		BattleLib.AddGold(200);
+		BattleLib.AddGold(100);
 		addedgold = ScriptCommonLib.GetInt("addedgold");
-		addedgold = addedgold + 200;
+		addedgold = addedgold + 100;
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 	end
 end
