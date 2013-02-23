@@ -2,7 +2,7 @@
 <MapName>map6</MapName>
 <MapTeam>
     <Team2 TeamType="enemy1" TeamFaction="流寇军" />
-    <Team3 TeamType="aliiance" TeamFaction="温菲尔德军" />
+    <Team3 TeamType="alliance" TeamFaction="温菲尔德军" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
 <MapScript>mapscript6.lua</MapScript>

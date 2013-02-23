@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<MapName>newmap</MapName>
+<MapName>map9</MapName>
 <MapTeam>
-    <Team2 TeamType="none" TeamFaction="none" />
+    <Team2 TeamType="enemy1" TeamFaction="none" />
     <Team3 TeamType="none" TeamFaction="none" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
 <MapScript>mapscript9.lua</MapScript>
-<MapInfo>mapinfo1</MapInfo>
-<MapLoadBG>map1.png</MapLoadBG>
+<MapInfo>mapinfo9</MapInfo>
+<MapLoadBG>map4.png</MapLoadBG>
 <MapSize>20</MapSize>
 <MapGround>
     <G0 Type="Grass" Texture="Grass1Blur.dds" />
@@ -222,13 +222,13 @@
     <Team2>
         <Team2Squad_0 Type="NothHeavyCrossBow" GridX="11" GridY="6" Direction="1" UnitNum="0" />
         <Team2Squad_1 Type="NothLightHSword" GridX="12" GridY="6" Direction="1" UnitNum="0" />
-        <Team2Squad_3 Type="NothLightHSword" GridX="10" GridY="6" Direction="1" UnitNum="0" />
-        <Team2Squad_4 Type="NothHeavyHSword" GridX="11" GridY="7" Direction="1" UnitNum="0" />
-        <Team2Squad_5 Type="NothHeavyHSword" GridX="9" GridY="7" Direction="1" UnitNum="0" />
-        <Team2Squad_6 Type="NothLightHSword" GridX="8" GridY="6" Direction="1" UnitNum="0" />
-        <Team2Squad_7 Type="NothLightBow" GridX="11" GridY="5" Direction="1" UnitNum="0" />
-        <Team2Squad_8 Type="NothLightBow" GridX="9" GridY="5" Direction="1" UnitNum="0" />
-        <Team2Squad_9 Type="NothHeavyCrossBow" GridX="9" GridY="6" Direction="1" UnitNum="0" />
+        <Team2Squad_2 Type="NothLightHSword" GridX="10" GridY="6" Direction="1" UnitNum="0" />
+        <Team2Squad_3 Type="NothHeavyHSword" GridX="11" GridY="7" Direction="1" UnitNum="0" />
+        <Team2Squad_4 Type="NothHeavyHSword" GridX="9" GridY="7" Direction="1" UnitNum="0" />
+        <Team2Squad_5 Type="NothLightHSword" GridX="8" GridY="6" Direction="1" UnitNum="0" />
+        <Team2Squad_6 Type="NothLightBow" GridX="11" GridY="5" Direction="1" UnitNum="0" />
+        <Team2Squad_7 Type="NothLightBow" GridX="9" GridY="5" Direction="1" UnitNum="0" />
+        <Team2Squad_8 Type="NothHeavyCrossBow" GridX="9" GridY="6" Direction="1" UnitNum="0" />
     </Team2>
     <Team3 />
     <Team4 />
@@ -244,5 +244,25 @@
         <c6 X="8" Y="12" />
         <c7 X="8" Y="10" />
         <c8 X="9" Y="10" />
+        <c9 X="7" Y="11" />
+        <c10 X="7" Y="10" />
+        <c11 X="7" Y="9" />
+        <c12 X="8" Y="9" />
+        <c13 X="9" Y="9" />
+        <c14 X="10" Y="9" />
+        <c15 X="11" Y="9" />
+        <c16 X="11" Y="10" />
+        <c17 X="11" Y="11" />
     </DeployArea>
+    <Moontown>
+        <c0 X="8" Y="10" />
+        <c1 X="8" Y="11" />
+        <c2 X="8" Y="12" />
+        <c3 X="9" Y="12" />
+        <c4 X="10" Y="12" />
+        <c5 X="10" Y="11" />
+        <c6 X="9" Y="11" />
+        <c7 X="9" Y="10" />
+        <c8 X="10" Y="10" />
+    </Moontown>
 </MapArea>

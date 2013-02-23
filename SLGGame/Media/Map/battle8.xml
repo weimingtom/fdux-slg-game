@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<MapName>newmap</MapName>
+<MapName>map8</MapName>
 <MapTeam>
-    <Team2 TeamType="none" TeamFaction="none" />
-    <Team3 TeamType="none" TeamFaction="none" />
+    <Team2 TeamType="enemy1" TeamFaction="诺斯突袭部队" />
+    <Team3 TeamType="alliance" TeamFaction="首席大法师卫队" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
 <MapScript>mapscript8.lua</MapScript>
-<MapInfo>mapinfo1</MapInfo>
-<MapLoadBG>map1.png</MapLoadBG>
+<MapInfo>mapinfo8</MapInfo>
+<MapLoadBG>map4.png</MapLoadBG>
 <MapSize>20</MapSize>
 <MapGround>
     <G0 Type="Grass" Texture="Grass1Blur.dds" />
@@ -218,11 +218,7 @@
 </MapObject>
 <MapEffect />
 <MapSquad>
-    <Team1>
-        <Team1Squad_0 Type="GuardLightSword" GridX="19" GridY="17" Direction="1" UnitNum="0" />
-        <Team1Squad_1 Type="Kareena" GridX="19" GridY="16" Direction="1" UnitNum="0" />
-        <Team1Squad_2 Type="GuardHeavySpear" GridX="18" GridY="16" Direction="1" UnitNum="0" />
-    </Team1>
+    <Team1 />
     <Team2>
         <Team2Squad_0 Type="UlvaCrossBow" GridX="15" GridY="18" Direction="1" UnitNum="0" />
         <Team2Squad_1 Type="FNothHeavyHSword" GridX="16" GridY="18" Direction="1" UnitNum="0" />
@@ -234,7 +230,11 @@
         <Team2Squad_7 Type="FNothLightBow" GridX="15" GridY="17" Direction="1" UnitNum="0" />
         <Team2Squad_8 Type="UlvaLightHSword" GridX="17" GridY="14" Direction="1" UnitNum="0" />
     </Team2>
-    <Team3 />
+    <Team3>
+        <Team3Squad_0 Type="GuardLightSword" GridX="19" GridY="17" Direction="1" UnitNum="0" />
+        <Team3Squad_1 Type="Kareena" GridX="19" GridY="16" Direction="1" UnitNum="0" />
+        <Team3Squad_2 Type="GuardHeavySpear" GridX="18" GridY="16" Direction="1" UnitNum="0" />
+    </Team3>
     <Team4 />
 </MapSquad>
 <MapArea>
@@ -249,4 +249,10 @@
         <c7 X="15" Y="11" />
         <c8 X="15" Y="12" />
     </DeployArea>
+    <KeyArea>
+        <c0 X="18" Y="16" />
+        <c1 X="18" Y="17" />
+        <c2 X="19" Y="17" />
+        <c3 X="19" Y="16" />
+    </KeyArea>
 </MapArea>
