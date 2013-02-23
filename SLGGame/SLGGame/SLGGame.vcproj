@@ -356,6 +356,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\GUIDebugWindow.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\GUIDebugWindow.h"
+					>
+				</File>
+				<File
 					RelativePath=".\src\LuaAVG.h"
 					>
 				</File>

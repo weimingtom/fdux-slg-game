@@ -10,6 +10,7 @@
 #include "GUIMessageBox.h"
 #include "GUIOptionWindow.h"
 #include "GUISupply.h"
+#include "GUIDebugWindow.h"
 
 #include "LuaSystem.h"
 #include "AudioSystem.h"
@@ -137,6 +138,7 @@ bool Core::initialize(bool isFullScene)
 	mGUISystem->registerSceneFactory(MessageBoxScene, new GUIMessageBoxFactory());
 	mGUISystem->registerSceneFactory(OptionWindowScene, new GUIOptionWindowFactory());
 	mGUISystem->registerSceneFactory(SupplyScene, new GUISupplywFactory());
+	mGUISystem->registerSceneFactory(DebugWindowsScene, new GUIDebugWindowFactory());
 	
 	mAudioSystem=new AudioSystem();
 

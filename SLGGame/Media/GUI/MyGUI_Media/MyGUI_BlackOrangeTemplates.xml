@@ -551,7 +551,7 @@
     </Resource>
     <Resource type="ResourceLayout" name="ListBoxItem" version="3.2.0">
         <Widget type="Widget" skin="ListBoxItemSkin" position="20 20 43 13" name="Root">
-            <Property key="FontName" value="Default"/>
+            <Property key="FontName" value="fireflysung.17"/>
             <Property key="TextAlign" value="Left VCenter"/>
             <UserString key="LE_TargetWidgetType" value="Button"/>
         </Widget>
