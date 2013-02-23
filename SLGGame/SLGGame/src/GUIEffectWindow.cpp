@@ -51,7 +51,7 @@ void GUIEffectWindow::setEffectList(std::vector<std::string> list,std::vector<in
 		mEffect[i]->setUserString("Tips",skillTips);
 		mEffect[i]->setNeedToolTip(true);
 		if(level[i]!=0)
-			mEffect[i]->setCaption(Ogre::StringConverter::toString(level[i]+1));
+			mEffect[i]->setCaption(Ogre::StringConverter::toString(level[i]));
 		i++;
 	}
 

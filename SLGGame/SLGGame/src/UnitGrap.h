@@ -10,6 +10,7 @@
 #include <ParticleUniverseSystemListener.h>
 
 #include "Bezier.h"
+#include "squaddefine.h"
 
 #include "WeaponGrap.h"
 
@@ -46,7 +47,7 @@ public:
 
 	void setAniGroup(std::string anigroup);
 
-	void setMovePath(std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions,float MoveSpeed=1.0,bool NotBezier=false);
+	void setMovePath(std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions,std::map<int,Direction>& directions,float MoveSpeed=1.0,bool NotBezier=false);
 
 	void setPosition(float x,float z);
 

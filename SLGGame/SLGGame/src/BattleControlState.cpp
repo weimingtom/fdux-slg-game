@@ -17,6 +17,9 @@
 #include "GUIBattle.h"
 #include "GUIGameStateWindows.h"
 
+#include "StringTable.h"
+#include "StateManager.h"
+
 #include <boost/format.hpp>
 
 
@@ -78,6 +81,15 @@ void BattleControlState::update(unsigned int deltaTime)
 						LuaTempContext* luatempcontext = new LuaTempContext();
 						luatempcontext->intMap["turn"] = turn;
 						luatempcontext->intMap["team"] = team;
+
+						std::string temp;
+						DataLibrary::getSingletonPtr()->getData("GameData/BattleData/MapData/MapName",temp);
+						//int val;
+						//DataLibrary::getSingletonPtr()->getData("GameData/BattleData/BattleState/Ture",val);
+						DataLibrary::getSingletonPtr()->setData("SystemConfig/Save/Save2",std::string("AutoSave ")+temp+" "+str(boost::format(StringTable::getSingletonPtr()->getString("RoundNum"))%(turn)));
+						DataLibrary::getSingletonPtr()->saveXmlData(DataLibrary::SystemConfig,std::string("..\\save")+std::string("\\Config.xml"));
+						StateManager::getSingletonPtr()->saveState(std::string("..\\save")+std::string("\\save2.xml"));
+
 						MapDataManager::getSingleton().Trigger("TurnStart", luatempcontext);
 						delete luatempcontext;
 						BattleSquadManager* battlesquadmanager = BattleSquadManager::getSingletonPtr();

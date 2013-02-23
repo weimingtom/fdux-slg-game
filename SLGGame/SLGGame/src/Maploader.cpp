@@ -458,6 +458,8 @@ void MapLoader::initBattleSquad(bool loadfrommap)
 		while(mMapSquadInfo.size() > 0)
 		{
 			MapSquadInfo squadinfo = mMapSquadInfo.front();
+			if(squadinfo.unitNum==0)
+				DataLibrary::getSingletonPtr()->getData(str(boost::format("StaticData/SquadData/%1%/UnitNum")%squadinfo.squadTempId),squadinfo.unitNum);
 			BattleSquad* battlesquad = new BattleSquad(str(boost::format("%1%/%2%")%path%squadinfo.squadId));
 			battlesuqadmanager->mSquadList.insert(std::make_pair(battlesquad->getSquadId(),battlesquad));
 			if(!battlesquad->init(str(boost::format("StaticData/SquadData/%1%")%squadinfo.squadTempId),
