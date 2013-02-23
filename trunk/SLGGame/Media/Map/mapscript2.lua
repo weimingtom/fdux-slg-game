@@ -107,6 +107,7 @@ function turnend()
 		BattleLib.DumpSquadData();
 		addedgold = ScriptCommonLib.GetInt("addedgold");
 		addedgold = addedgold + 1500;
+		mission1state = ScriptCommonLib.GetInt("mission1state");
 		if mission1state == 1 then
 			BattleLib.AddGold(500);
 			addedgold = addedgold + 500;

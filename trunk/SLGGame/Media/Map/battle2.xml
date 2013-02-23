@@ -2,7 +2,7 @@
 <MapName>map2</MapName>
 <MapTeam>
     <Team2 TeamType="enemy1" TeamFaction="达克斯西征军" />
-    <Team3 TeamType="aliiance" TeamFaction="凡塔斯援军" />
+    <Team3 TeamType="alliance" TeamFaction="凡塔斯援军" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
 <MapScript>mapscript2.lua</MapScript>

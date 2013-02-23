@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<MapName>newmap</MapName>
+<MapName>map10</MapName>
 <MapTeam>
-    <Team2 TeamType="none" TeamFaction="none" />
-    <Team3 TeamType="none" TeamFaction="none" />
+    <Team2 TeamType="enemy1" TeamFaction="none" />
+    <Team3 TeamType="alliance" TeamFaction="none" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
 <MapScript>mapscript10.lua</MapScript>
-<MapInfo>mapinfo1</MapInfo>
-<MapLoadBG>map1.png</MapLoadBG>
+<MapInfo>mapinfo10</MapInfo>
+<MapLoadBG>map2.png</MapLoadBG>
 <MapSize>20</MapSize>
 <MapGround>
     <G0 Type="Grass" Texture="Grass1Blur.dds" />
@@ -148,14 +148,7 @@
 </MapObject>
 <MapEffect />
 <MapSquad>
-    <Team1>
-        <Team1Squad_0 Type="James" GridX="8" GridY="10" Direction="1" UnitNum="0" />
-        <Team1Squad_1 Type="WinfredHeavyHalberd" GridX="8" GridY="11" Direction="1" UnitNum="0" />
-        <Team1Squad_2 Type="WinfredHeavyHalberd" GridX="7" GridY="16" Direction="1" UnitNum="0" />
-        <Team1Squad_3 Type="WinfredLightHalberd" GridX="7" GridY="17" Direction="1" UnitNum="0" />
-        <Team1Squad_4 Type="WinfredLightBow" GridX="6" GridY="17" Direction="1" UnitNum="0" />
-        <Team1Squad_5 Type="WinfredLightHalberd" GridX="6" GridY="16" Direction="1" UnitNum="0" />
-    </Team1>
+    <Team1 />
     <Team2>
         <Team2Squad_0 Type="NothLightHSword" GridX="12" GridY="16" Direction="1" UnitNum="0" />
         <Team2Squad_1 Type="NothLightHSword" GridX="10" GridY="12" Direction="1" UnitNum="0" />
@@ -169,7 +162,13 @@
         <Team2Squad_9 Type="NothHeavyCrossBow" GridX="11" GridY="11" Direction="1" UnitNum="0" />
         <Team2Squad_10 Type="NothHeavyHSword" GridX="10" GridY="11" Direction="1" UnitNum="0" />
     </Team2>
-    <Team3 />
+    <Team3>
+        <Team3Squad_0 Type="WinfredHeavyHalberd" GridX="7" GridY="18" Direction="1" UnitNum="0" />
+        <Team3Squad_1 Type="WinfredHeavyHalberd" GridX="7" GridY="16" Direction="1" UnitNum="0" />
+        <Team3Squad_2 Type="WinfredLightHalberd" GridX="7" GridY="17" Direction="1" UnitNum="0" />
+        <Team3Squad_3 Type="WinfredLightBow" GridX="6" GridY="17" Direction="1" UnitNum="0" />
+        <Team3Squad_4 Type="WinfredLightHalberd" GridX="6" GridY="16" Direction="1" UnitNum="0" />
+    </Team3>
     <Team4 />
 </MapSquad>
 <MapArea>
@@ -185,4 +184,12 @@
         <c8 X="16" Y="17" />
         <c9 X="15" Y="17" />
     </DeployArea>
+    <KeyArea>
+        <c0 X="6" Y="16" />
+        <c1 X="6" Y="17" />
+        <c2 X="6" Y="18" />
+        <c3 X="7" Y="18" />
+        <c4 X="7" Y="17" />
+        <c5 X="7" Y="16" />
+    </KeyArea>
 </MapArea>
