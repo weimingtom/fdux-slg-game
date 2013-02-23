@@ -132,7 +132,7 @@ function turnend()
 		end
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		--Ê¤Àû(storyscript,gold,exp)
-		BattleLib.Win("cp12.lua", "0", "0");
+		BattleLib.Win("cp13.lua", "0", "0");
 	end
 end
 
