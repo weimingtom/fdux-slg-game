@@ -5,7 +5,6 @@ GUI.ShowImage("black.png",4,1500);
 GUI.Music("rest.ogg",1000);
 GUI.ShowImage("shanmai.png",4,1500);
 GUI.SetDialogVisible(1);
-
 GUI.AutoSave();
 GUI.ShowText("æ≈ÃÏ∫Û°≠°≠",1);
 GUI.ClearText();
@@ -379,5 +378,7 @@ GUI.ShowImage("",right,600);
 GUI.ShowImage("",left,600);
 GUI.CM(3000);
 GUI.ShowImage("black.png",4,3000);
-
-GUI.NextScene("cp9.lua");
+AVGLib.SetCanSupply("Cheetah",0);
+AVGLib.SetPlayerFaction("Wing");
+StateLib.BattleState("battle4.xml");
+#GUI.NextScene("cp9.lua");
