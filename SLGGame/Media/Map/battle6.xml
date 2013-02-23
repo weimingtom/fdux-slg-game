@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <MapName>map6</MapName>
 <MapTeam>
-    <Team2 TeamType="enemy1" TeamFaction="none" />
-    <Team3 TeamType="aliiance" TeamFaction="none" />
+    <Team2 TeamType="enemy1" TeamFaction="流寇军" />
+    <Team3 TeamType="aliiance" TeamFaction="温菲尔德军" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
 <MapScript>mapscript6.lua</MapScript>
