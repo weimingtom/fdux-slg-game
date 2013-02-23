@@ -423,5 +423,6 @@ GUI.SetDialogVisible(0);
 GUI.ShowImage("",left,1000);
 GUI.CM(3000);
 GUI.ShowImage("black.png",4,3000);
-
-GUI.NextScene("cp23.lua");
+AVGLib.SetPlayerFaction("Wing");
+StateLib.BattleState("battle11.xml");
+#GUI.NextScene("cp23.lua");

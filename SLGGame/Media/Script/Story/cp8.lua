@@ -5,6 +5,7 @@ GUI.ShowImage("black.png",4,1500);
 GUI.Music("rest.ogg",1000);
 GUI.ShowImage("shanmai.png",4,1500);
 GUI.SetDialogVisible(1);
+AVGLib.AddSquad("Caster","Caster");
 GUI.AutoSave();
 GUI.ShowText("æ≈ÃÏ∫Û°≠°≠",1);
 GUI.ClearText();
