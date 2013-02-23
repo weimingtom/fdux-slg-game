@@ -21,7 +21,7 @@ bool SquadRecoverCutScene::endCutScene()
 }
 void SquadRecoverCutScene::skipCutScene()
 {
-	mSquad->stopTransform();
+	//mSquad->stopTransform();
 }
 void SquadRecoverCutScene::updateCutScene(unsigned int deltaTime)
 {

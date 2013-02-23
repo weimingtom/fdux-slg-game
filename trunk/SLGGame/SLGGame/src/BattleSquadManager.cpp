@@ -465,6 +465,7 @@ void BattleSquadManager::moveSquad(BattleSquad* squad,std::vector<int> pointlist
 					if(faction == 0)
 					{
 						InterruptMove();
+						CutSceneBuilder::getSingleton().addCutScene(new ShowValueCutScene(squad->getSquadId(),StringTable::getSingletonPtr()->getString("SquadFindEnemy"),Ogre::ColourValue(1,1,0,1)));
 						CutSceneBuilder::getSingleton().addCutScene(new SquadStateCutScene(ite->second,SQUAD_STATE_VISIBLE,"none",1));
 						return;
 					}
@@ -1295,11 +1296,12 @@ void BattleSquadManager::rangedCutScene(BattleSquad* attacksquad, int x, int y, 
 	cutscenebuilder->addCutScene(ccs);
 }
 
-bool BattleSquadManager::createStorySquad(std::string squadid, std::string suqadtypeid, int x, int y)
+bool BattleSquadManager::createStorySquad(std::string squadid, std::string suqadtypeid, int x, int y,bool NoCreate)
 {
 	if(getBattleSquadAt(x, y, 0, false) != NULL)
 		return false;
-	AVGSquadManager::getSingleton().addNewSquad(squadid, suqadtypeid);
+	if(!NoCreate)
+		AVGSquadManager::getSingleton().addNewSquad(squadid, suqadtypeid);
 
 	SquadGrapManager* suqadgrapmanager = SquadGrapManager::getSingletonPtr();
 

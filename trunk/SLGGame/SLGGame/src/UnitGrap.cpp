@@ -361,7 +361,7 @@ void UnitGrap::createWeapon( std::string mesh, std::string mat,std::string weapo
 	}
 }
 
-void UnitGrap::setMovePath( std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions,float MoveSpeed,bool NotBezier)
+void UnitGrap::setMovePath( std::map<int,Ogre::Vector3>& vectors,std::map<int,Ogre::Quaternion>& quaternions,std::map<int,Direction>& directions,float MoveSpeed,bool NotBezier)
 {
 	std::cout<<mNode->getName()+"_Ani"<<" Created"<<std::endl;
 	mNodeAnimation = Core::getSingletonPtr()->mSceneMgr->createAnimation(mNode->getName()+"_Ani", (vectors.size()-1)*MOVE_KEYFRAME_TIME*20*MoveSpeed);
@@ -401,8 +401,34 @@ void UnitGrap::setMovePath( std::map<int,Ogre::Vector3>& vectors,std::map<int,Og
 			mBezier.P0.x=itr->second.x;
 			mBezier.P0.y=itr->second.z;
 
-			mBezier.P1.x=itr->second.x;
-			mBezier.P1.y=itrr->second.z;
+			switch(directions[itr->first])
+			{
+			case North:
+				{
+					mBezier.P1.x=itr->second.x;
+					mBezier.P1.y=itrr->second.z;
+					break;
+				}
+			case South:
+				{
+					mBezier.P1.x=itr->second.x;
+					mBezier.P1.y=itrr->second.z;
+					break;
+				}
+			case West:
+				{
+					mBezier.P1.x=itrr->second.x;
+					mBezier.P1.y=itr->second.z;
+					break;
+				}
+			case East:
+				{
+					mBezier.P1.x=itrr->second.x;
+					mBezier.P1.y=itr->second.z;
+					break;
+				}
+			}
+
 
 			mBezier.P2.x=itrr->second.x;
 			mBezier.P2.y=itrr->second.z;

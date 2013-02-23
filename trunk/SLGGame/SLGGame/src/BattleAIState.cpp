@@ -23,10 +23,13 @@
 BattleAIState::BattleAIState(int team)
 :mTeam(team),mState(AISTATE_INIT)
 {
-	GUIBattle* mGUIBattle = static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
-	GUIInfoWindow* infoWindow=(GUIInfoWindow*)mGUIBattle->getSubWindow("InfoWindow");
-	infoWindow->setCaption("EnemyTurn.png",MyGUI::Colour::White);
-	infoWindow->showScene("");
+	if(!CutSceneBuilder::getSingleton().hasCutScenes())
+	{
+		GUIBattle* mGUIBattle = static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
+		GUIInfoWindow* infoWindow=(GUIInfoWindow*)mGUIBattle->getSubWindow("InfoWindow");
+		infoWindow->setCaption("EnemyTurn.png",MyGUI::Colour::White);
+		infoWindow->showScene("");
+	}
 }
 BattleAIState::~BattleAIState()
 {

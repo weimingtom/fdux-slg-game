@@ -96,6 +96,6 @@ public:
 	void rangedCutScene(BattleSquad* attacksquad, int x, int y, UnitType castunit , std::string castparticle, std::string castaction, std::string castsound, int missiletype, std::string missileres, std::string hitparticle,std::string hitsound);
 
 	//创建新部队
-	bool createStorySquad(std::string squadid, std::string suqadtypeid, int x, int y);
+	bool createStorySquad(std::string squadid, std::string suqadtypeid, int x, int y,bool NoCreate);
 	bool createNormalSquad(std::string squadid, std::string suqadtypeid, int x, int y, int team, int unitnum);
 };

@@ -46,6 +46,7 @@ private:
 	void GridInputEvent(int x,int y);
 	
 	BattleState* mBattleState;
+	bool mShowMission;
 
 	//MyGUI::Button* mButton;
 };

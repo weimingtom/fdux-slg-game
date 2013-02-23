@@ -82,8 +82,8 @@ function turnstart()
 	team = ScriptCommonLib.GetTempInt("team");
 	if team == 1 and turn == 3 then
 	    BattleLib.Story("cp6_1.lua");
-		BattleLib.AddBattleSquad("Fay", "Fay", 18, 16, 1, 50);
-		BattleLib.AddBattleSquad("Elementalist", "Elementalist", 8, 15, 1, 50);
+		BattleLib.AddBattleSquad("Fay", "Fay", 18, 16, 1, 20);
+		BattleLib.AddBattleSquad("Elementalist", "Elementalist", 8, 15, 1, 20);
 	end
 	if team == 1 and turn == 4 then
 	    BattleLib.Story("cp6_2.lua");

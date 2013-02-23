@@ -185,7 +185,8 @@ static int AddStorySquad(lua_State* L)
 	std::string squadid(luaL_checkstring(L, 2));
 	int x = luaL_checkint(L, 3);
 	int y = luaL_checkint(L, 4);
-	bool re = BattleSquadManager::getSingleton().createStorySquad(squadid, templetid, x, y);
+	int create = luaL_checkint(L, 5);
+	bool re = BattleSquadManager::getSingleton().createStorySquad(squadid, templetid, x, y,create);
 	re?lua_pushnumber(L, 1):lua_pushnumber(L, 0);
 	return 1;
 }

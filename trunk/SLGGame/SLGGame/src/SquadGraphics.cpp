@@ -424,7 +424,7 @@ void SquadGraphics::setMovePath(std::map<int,Ogre::Vector3>& vectors,std::map<in
 	getFormationPosition(mFormation,mDirection,CommanderVector,SoldierVector);
 
 	std::map<int,Ogre::Vector3>* newVectors=getUnitMovePath(mCommanderUnit,vectors,directions,true);
-	mCommanderUnit->setMovePath(*newVectors,quaternions);
+	mCommanderUnit->setMovePath(*newVectors,quaternions,directions);
 	mCommanderUnit->mOffsetX=CommanderVector.x;
 	mCommanderUnit->mOffsetY=CommanderVector.z;
 	delete newVectors;
@@ -432,7 +432,7 @@ void SquadGraphics::setMovePath(std::map<int,Ogre::Vector3>& vectors,std::map<in
 	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 	{
 		newVectors=getUnitMovePath((*it),vectors,directions,false);
-		(*it)->setMovePath(*newVectors,quaternions);
+		(*it)->setMovePath(*newVectors,quaternions,directions);
 		(*it)->mOffsetX=SoldierVector[(*it)->mFormationPosition].x;
 		(*it)->mOffsetY=SoldierVector[(*it)->mFormationPosition].z;
 		delete newVectors;
@@ -1098,6 +1098,7 @@ void SquadGraphics::setWeaponMode( WeaponMode mode )
 	UnitGrap::WeaponType type;
 	UnitGrap::BoneType bonetype;
 	std::string anigroup;
+	mWeapenMode=mode;
 	if (mode==MainWepon)
 	{
 		type=UnitGrap::MainWepon;
@@ -1403,14 +1404,20 @@ bool SquadGraphics::isDeathOver()
 bool SquadGraphics::isRecoverOver()
 {
 	bool over=true;
-	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
+	for (std::vector<UnitGrap*>::iterator it=mRecoverUnits.begin();it!=mRecoverUnits.end();it++)
 	{
-		if((*it)->mAniBlender->getSource()->getAnimationName()==(*it)->mRecoverName)
+		if(!(*it)->mIsAnimationComplete)
 		{
 			over=false;
 			break;
 		}
 	}
+	if(over)
+	{
+		setWeaponMode(mWeapenMode);
+		mRecoverUnits.clear();
+	}
+
 	return over;
 }
 
@@ -1422,9 +1429,9 @@ void SquadGraphics::setRecover(int num)
 	{
 		for (int i=0;i<num;i++)
 		{
-			int findIndex=-1;
+			int findIndex=0;
 			
-			for (int j=0;j<mSoldierUnits.size();j++)
+			for (int j=0;j<mSoldierUnits.size()+1;j++)
 			{
 				bool flag=false;
 				for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
@@ -1449,14 +1456,16 @@ void SquadGraphics::setRecover(int num)
 			Ogre::Vector3 CommanderVector;
 			Ogre::Vector3 SoldierVector[4];
 
-			setGrid(mX,mY);
 			getFormationPosition(mFormation,mDirection,CommanderVector,SoldierVector);
 			unit->setPositionOffset(SoldierVector[unit->mFormationPosition].x,SoldierVector[unit->mFormationPosition].z);
 
 			unit->setAnimation(unit->mRecoverName,false,true);
+			mRecoverUnits.push_back(unit);
 
 		}
 	}
+	setGrid(mX,mY);
+	setDirection(mDirection,false);
 }
 
 bool SquadGraphics::isDirectionOver()

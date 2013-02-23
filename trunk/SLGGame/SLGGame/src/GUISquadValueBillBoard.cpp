@@ -69,6 +69,7 @@ void GUISquadValueBillBoard::showScene( std::string arg )
 void GUISquadValueBillBoard::hideScene()
 {
 	mBText->setVisible(false);
+	stopShow();
 }
 
 void GUISquadValueBillBoard::stopShow()

@@ -314,7 +314,7 @@ void GUITargetWindows::updateSquad()
 		DataLibrary::getSingletonPtr()->getData(p,data);
 
 		effectName.push_back(data);
-		effectLevel.push_back(mSelectSquad->getEffectLevel(data));
+		effectLevel.push_back(mSelectSquad->getEffectLevel(*it));
 	}
 
 	mEffectWindow->setEffectList(effectName,effectLevel);

@@ -138,6 +138,8 @@ private:
 	std::string mMoveSound;
 	int mX;
 	int mY;
+	WeaponMode mWeapenMode;
+	std::vector<UnitGrap*> mRecoverUnits;
 
 	enum DeathStep
 	{

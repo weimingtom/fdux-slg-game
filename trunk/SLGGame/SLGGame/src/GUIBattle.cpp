@@ -105,6 +105,7 @@ void GUIBattle::hideAllWindows()
 	if(((GUIMissionWindow*)getSubWindow("MissionWindow"))->mIsShow)
 	{
 		((GUIMissionWindow*)getSubWindow("MissionWindow"))->onMissionClose(NULL);
+		mShowMission=true;
 	}
 }
 
@@ -117,6 +118,12 @@ void GUIBattle::showAllWindows()
 		{
 			(*it)->showScene("");
 		}
+	}
+
+	if(mShowMission)
+	{
+		onMissionButton(NULL);
+		mShowMission=false;
 	}
 }
 
