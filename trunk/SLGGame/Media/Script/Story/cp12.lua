@@ -169,5 +169,11 @@ GUI.ShowImage("",right,600);
 GUI.ShowImage("",left,600);
 GUI.CM(3000);
 GUI.ShowImage("black.png",4,3000);
-
-GUI.NextScene("cp13.lua");
+AVGLib.SetCanSupply("GuardHeavySpear",0);
+AVGLib.SetCanSupply("GuardLightBow",1);
+AVGLib.SetCanSupply("GuardLightSword",1);
+AVGLib.SetCanSupply("Fay",0);
+AVGLib.SetCanSupply("Elementalist",1);
+AVGLib.SetPlayerFaction("Wing");
+StateLib.BattleState("battle6.xml");
+#GUI.NextScene("cp13.lua");

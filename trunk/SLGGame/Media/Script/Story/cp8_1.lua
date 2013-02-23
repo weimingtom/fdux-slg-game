@@ -1,0 +1,15 @@
+GUI.ButtonLock();
+GUI.SetDialogVisible(1);
+GUI.ShowImage("kasite_cj.png",left,300);
+GUI.ShowRoleName("卡斯特");
+GUI.ShowText("敌军封锁了前方的狭口！正面恐怕难以突破！",1);
+GUI.ClearText();
+GUI.ShowText("骑兵队拥有极高的行动力，派遣骑兵队绕道攻击敌军将是个不错的选择！",1);
+GUI.ClearText
+GUI.ShowText("开始作战！",1);
+GUI.ClearText();
+GUI.ShowRoleName("");
+GUI.ShowImage("",right,300);
+GUI.ShowImage("",left,300);
+GUI.SetDialogVisible(0);
+GUI.StoryOver();

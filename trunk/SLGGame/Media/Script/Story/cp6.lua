@@ -10,6 +10,8 @@ AVGLib.SetCanSupply("Dandelion",0);
 AVGLib.SetCanSupply("WingsHeavyInf",0);
 AVGLib.SetCanSupply("WingsCrossBow",0);
 AVGLib.SetCanSupply("Olivia",0);
+AVGLib.SetCanSupply("Cossa",0);
+AVGLib.SetCanSupply("WingsLightCavalry",0);
 GUI.AutoSave();
 GUI.ShowImage("aofa.png",right,300);
 GUI.ShowRoleName("°ÂÊõ·¨Ê¦");
