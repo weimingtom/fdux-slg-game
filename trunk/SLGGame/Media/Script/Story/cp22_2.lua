@@ -1,0 +1,17 @@
+GUI.ButtonLock();
+GUI.SetDialogVisible(1);
+GUI.ShowImage("chihou_lv.png",left,300);
+GUI.ShowRoleName("诺斯斥候");
+GUI.ShowText("报告，在西南方向发现了不明敌军！",1);
+GUI.ClearText();
+GUI.ShowImage("fuguan_lv.png",right,300);
+GUI.ShowRoleName("诺斯指挥官");
+GUI.ShowText("什么！他们竟然到这里来了？",1);
+GUI.ClearText
+GUI.ShowText("全军停止休整！立刻将来袭敌军歼灭！",1);
+GUI.ClearText
+GUI.ShowRoleName("");
+GUI.ShowImage("",right,300);
+GUI.ShowImage("",left,300);
+GUI.SetDialogVisible(0);
+GUI.StoryOver();

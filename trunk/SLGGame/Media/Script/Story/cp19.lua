@@ -347,5 +347,10 @@ GUI.ShowImage("",left,600);
 GUI.ShowImage("",right,600);
 GUI.CM(3000);
 GUI.ShowImage("black.png",4,3000);
-
-GUI.NextScene("cp20.lua");
+AVGLib.SetCanSupply("GuardHeavySpear",0);
+AVGLib.SetCanSupply("GuardLightBow",0);
+AVGLib.SetCanSupply("GuardLightSword",0);
+AVGLib.SetCanSupply("Elementalist",0);
+AVGLib.SetPlayerFaction("Wing");
+StateLib.BattleState("battle9.xml");
+#GUI.NextScene("cp20.lua");

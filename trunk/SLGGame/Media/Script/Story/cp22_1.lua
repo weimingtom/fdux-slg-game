@@ -1,0 +1,15 @@
+GUI.ButtonLock();
+GUI.SetDialogVisible(1);
+GUI.ShowImage("qitaw_ys.png",left,300);
+GUI.ShowRoleName("齐塔");
+GUI.ShowText("诺斯似乎在山口区域布置了大量防守，最好不要尝试直接突破。",1);
+GUI.ClearText();
+GUI.ShowText("据斥候报告，有一条小道可以到达诺斯驻扎区域，通过那条小道袭击诺斯西北方的营地吧！",1);
+GUI.ClearText
+GUI.ShowText("速度要快，诺斯人一旦发现我们，肯定会立刻发起大规模攻击。",1);
+GUI.ClearText
+GUI.ShowRoleName("");
+GUI.ShowImage("",right,300);
+GUI.ShowImage("",left,300);
+GUI.SetDialogVisible(0);
+GUI.StoryOver();

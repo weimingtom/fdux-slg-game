@@ -1,3 +1,4 @@
+GUI.ButtonLock();
 GUI.SetDialogVisible(1);
 GUI.ShowImage("chihou_bai.png",right,300);
 GUI.ShowImage("fuguan_bai.png",left,300);
@@ -56,3 +57,4 @@ GUI.ShowRoleName("");
 GUI.ShowImage("",left,500);
 GUI.ShowImage("",right,500);
 GUI.SetDialogVisible(0);
+GUI.StoryOver();
