@@ -59,6 +59,8 @@ public:
 	std::vector<std::string> getChildList(std::string path);
 
 	DataType getDataType(std::string path);
+
+	void split(std::string& s, std::string c,std::queue<std::string>& v);
 private:
 	rapidxml::xml_document<> mSystemConfig;
 	rapidxml::xml_document<> mGameData;
@@ -75,7 +77,6 @@ private:
 	void appendXmlDate( rapidxml::xml_document<>* currentDoc,std::string fileName, std::string resGroup);
 	rapidxml::xml_node<>* getNode(std::string path,bool createpath);
 	rapidxml::xml_node<>* findNode(rapidxml::xml_node<>* parent,std::queue<std::string>* path,bool createpath);
-	void split(std::string& s, std::string c,std::queue<std::string>& v);
 };
 
 extern "C"

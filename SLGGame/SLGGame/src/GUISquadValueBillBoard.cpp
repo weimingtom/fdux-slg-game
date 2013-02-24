@@ -63,7 +63,7 @@ void GUISquadValueBillBoard::setValue( std::string value,MyGUI::Colour c)
 
 void GUISquadValueBillBoard::showScene( std::string arg )
 {
-	mBText->setVisible(true);
+	//mBText->setVisible(true);
 }
 
 void GUISquadValueBillBoard::hideScene()
