@@ -1007,9 +1007,9 @@ bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* 
 	{
 		//¹¥»÷¶¯×÷
 		if(squad->getType() == SQUAD_NORMAL)
-			cutscenebuilder->addCutScene(new AnimationCutScene(squad->getSquadId(),UNITTYPE_ALL,"Attack","attack.ogg","none",false,true));
+			cutscenebuilder->addCutScene(new AnimationCutScene(squad->getSquadId(),UNITTYPE_ALL,"Attack","0","none",false,true));
 		else
-			cutscenebuilder->addCutScene(new AnimationCutScene(squad->getSquadId(),UNITTYPE_SOLIDER,"Attack","attack.ogg","none",false,true));
+			cutscenebuilder->addCutScene(new AnimationCutScene(squad->getSquadId(),UNITTYPE_SOLIDER,"Attack","0","none",false,true));
 		AttackInfo atkinfo;
 		if(squad == attacksquad)
 		{
@@ -1176,7 +1176,7 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 
 	int x = defenesquad->getGridX();
 	int y = defenesquad->getGridY();
-	rangedCutScene(attacksquad, x, y, UNITTYPE_ALL, "none","Attack","Ranged.ogg",0,"none","none","none");
+	rangedCutScene(attacksquad, x, y, UNITTYPE_ALL, "none","Attack","1",0,"none","none","none");
 
 	AttackInfo atkinfo;
 	atkinfo = attacksquad->getAttackRolls(true, false, attacksquad->getDirection());

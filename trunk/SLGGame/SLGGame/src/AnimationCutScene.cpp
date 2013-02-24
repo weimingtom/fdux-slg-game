@@ -36,7 +36,23 @@ void AnimationCutScene::startCutScence()
 	}
 	if(mSound != "none")
 	{
-		AudioSystem::getSingleton().playSample(mSound,false);
+		int t=mSquadGraphics->getMainWeaponType();
+
+		if(t!=-1)
+		{
+			if(mSound == "0")
+			{
+				AudioSystem::getSingleton().playSample(std::string("0-")+Ogre::StringConverter::toString(t),false,true);
+			}
+			else if(mSound == "1")
+			{
+				AudioSystem::getSingleton().playSample(std::string("1-")+Ogre::StringConverter::toString(t),false,true);
+			}
+			else
+			{
+				AudioSystem::getSingleton().playSample(mSound,false);
+			}
+		}
 	}
 }
 

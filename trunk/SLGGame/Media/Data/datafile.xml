@@ -502,7 +502,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInfDux"/>
-			<MoveSound type="String" value="LightInf.ogg"/>
+			<MoveSound type="String" value="LightInf.wav"/>
 		</DuxLightSpear>
 		<DuxLightBow>
 			<Type type="Int" value="0"/>
@@ -528,7 +528,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInfDux"/>
-			<MoveSound type="String" value="LightInf.ogg"/>
+			<MoveSound type="String" value="LightInf.wav"/>
 		</DuxLightBow>
 		<DuxHeavySpear>
 			<Type type="Int" value="0"/>
@@ -634,7 +634,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
-			<MoveSound type="String" value="LightInf.ogg"/>
+			<MoveSound type="String" value="LightInf.wav"/>
 		</GuardLightSword>
 		<GuardLightBow>
 			<Type type="Int" value="0"/>
@@ -829,7 +829,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="Pirate.mesh"/>
 			<UnitMat type="String" value="Pirate"/>
-			<MoveSound type="String" value="LightInf.ogg"/>
+			<MoveSound type="String" value="LightInf.wav"/>
 		</Pirate>
 		<UlvaLightHSword>
 			<Type type="Int" value="0"/>
@@ -854,7 +854,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
-			<MoveSound type="String" value="LightInf.ogg"/>
+			<MoveSound type="String" value="LightInf.wav"/>
 		</UlvaLightHSword>
 		<UlvaLightBow>
 			<Type type="Int" value="0"/>
@@ -880,7 +880,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
-			<MoveSound type="String" value="LightInf.ogg"/>
+			<MoveSound type="String" value="LightInf.wav"/>
 		</UlvaLightBow>
 		<UlvaCrossBow>
 			<Type type="Int" value="0"/>
@@ -906,7 +906,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
-			<MoveSound type="String" value="LightInf.ogg"/>
+			<MoveSound type="String" value="LightInf.wav"/>
 		</UlvaCrossBow>
 		<FNothHeavyHSword>
 			<Type type="Int" value="0"/>
@@ -956,7 +956,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
-			<MoveSound type="String" value="LightInf.ogg"/>
+			<MoveSound type="String" value="LightInf.wav"/>
 		</FNothLightHSword>
 		<FNothLightBow>
 			<Type type="Int" value="0"/>
@@ -982,7 +982,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
-			<MoveSound type="String" value="LightInf.ogg"/>
+			<MoveSound type="String" value="LightInf.wav"/>
 		</FNothLightBow>
 		<James>
 			<Type type="Int" value="0"/>
@@ -1059,7 +1059,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
-			<MoveSound type="String" value="LightInf.ogg"/>
+			<MoveSound type="String" value="LightInf.wav"/>
 		</WinfredLightHalberd>
 		<WinfredLightBow>
 			<Type type="Int" value="0"/>
@@ -1085,7 +1085,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
-			<MoveSound type="String" value="LightInf.ogg"/>
+			<MoveSound type="String" value="LightInf.wav"/>
 		</WinfredLightBow>
 		<WinfredHeavyCavalry>
 			<Type type="Int" value="0"/>
@@ -1165,7 +1165,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
-			<MoveSound type="String" value="LightInf.ogg"/>
+			<MoveSound type="String" value="LightInf.wav"/>
 		</NothLightBow>
 		<NothLightHSword>
 			<Type type="Int" value="0"/>
@@ -1190,7 +1190,7 @@
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
-			<MoveSound type="String" value="LightInf.ogg"/>
+			<MoveSound type="String" value="LightInf.wav"/>
 		</NothLightHSword>
 		<NothHeavyCrossBow>
 			<Type type="Int" value="0"/>
@@ -3778,4 +3778,64 @@
 			</ShieldList>
 		</TestCity>
 	</CityData>
+	<SEData>
+		<Pweapon type="Int" value="0">
+			<ShortSword type="Int" value="0">
+				<SE1 type="String" value="metal_high_high_01.ogg"/>
+				<SE2 type="String" value="metal_high_high_02.ogg"/>
+				<SE3 type="String" value="metal_high_high_03.ogg"/>
+				<SE4 type="String" value="metal_high_high_04.ogg"/>
+				<SE5 type="String" value="metal_high_high_05.ogg"/>
+			</ShortSword>
+			<HeavySword type="Int" value="2">
+				<SE1 type="String" value="metal_high_high_06.ogg"/>
+				<SE2 type="String" value="metal_high_high_07.ogg"/>
+				<SE3 type="String" value="metal_high_high_08.ogg"/>
+				<SE4 type="String" value="metal_high_high_09.ogg"/>
+				<SE5 type="String" value="metal_high_high_10.ogg"/>
+			</HeavySword>
+			<ShortAxe type="Int" value="1">
+				<SE1 type="String" value="metal_high_high_11.ogg"/>
+				<SE2 type="String" value="metal_high_high_12.ogg"/>
+				<SE3 type="String" value="metal_high_high_13.ogg"/>
+				<SE4 type="String" value="metal_high_high_14.ogg"/>
+				<SE5 type="String" value="metal_high_high_15.ogg"/>
+			</ShortAxe>
+			<HeavyAxe type="Int" value="3">
+				<SE1 type="String" value="metal_high_high_16.ogg"/>
+				<SE2 type="String" value="metal_high_high_17.ogg"/>
+				<SE3 type="String" value="metal_high_high_18.ogg"/>
+				<SE4 type="String" value="metal_high_high_19.ogg"/>
+				<SE5 type="String" value="metal_high_high_20.ogg"/>
+			</HeavyAxe>
+			<ShortSpear type="Int" value="4">
+				<SE1 type="String" value="metal_high_high_21.ogg"/>
+				<SE2 type="String" value="metal_high_high_22.ogg"/>
+				<SE3 type="String" value="metal_high_high_23.ogg"/>
+				<SE4 type="String" value="metal_high_high_24.ogg"/>
+				<SE5 type="String" value="metal_high_high_25.ogg"/>
+			</ShortSpear>
+			<Halberd type="Int" value="5">
+				<SE1 type="String" value="metal_high_high_26.ogg"/>
+				<SE2 type="String" value="metal_high_high_27.ogg"/>
+				<SE3 type="String" value="metal_high_high_28.ogg"/>
+				<SE4 type="String" value="metal_high_high_29.ogg"/>
+				<SE5 type="String" value="metal_high_high_30.ogg"/>
+			</Halberd>
+		</Pweapon>
+		<Sweapon type="Int" value="1">
+			<Bow type="Int" value="0">
+				<SE1 type="String" value="bolt_pass_01.ogg"/>
+				<SE2 type="String" value="bolt_pass_02.ogg"/>
+				<SE3 type="String" value="bolt_pass_03.ogg"/>
+				<SE4 type="String" value="bolt_pass_04.ogg"/>
+			</Bow>
+			<CrossBow type="Int" value="1">
+				<SE1 type="String" value="bolt_pass_05.ogg"/>
+				<SE2 type="String" value="bolt_pass_06.ogg"/>
+				<SE3 type="String" value="bolt_pass_07.ogg"/>
+				<SE4 type="String" value="bolt_pass_08.ogg"/>
+			</CrossBow>
+		</Sweapon>
+	</SEData>
 </StaticData>

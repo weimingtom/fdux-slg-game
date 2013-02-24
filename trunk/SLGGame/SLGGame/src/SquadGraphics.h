@@ -57,6 +57,7 @@ public:
 	void stopDeath();
 
 	void setWeaponMode(WeaponMode mode);
+	int getMainWeaponType();
 
 	void defenseAction(SquadGraphics* enemy,bool isMove);
 	bool isDefenseActionOver();
@@ -111,11 +112,13 @@ private:
 	std::string mSoilderMesh;
 	std::string mSoilderMat;
 	int mSoilderHaveWeapon;
+	std::string mPWeaponID;
 	std::string mPWeaponMesh;
 	std::string mPWeaponMat;
 	std::string mPWeaponAniGroup;
 	std::string mPWeaponPU;
 	Ogre::Vector3 mPWeaponPUVector;
+	std::string mSWeaponID;
 	std::string mSWeaponMesh;
 	std::string mSWeaponMat;
 	std::string mSWeaponPU;

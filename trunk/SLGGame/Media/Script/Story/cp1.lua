@@ -4,6 +4,7 @@ GUI.ShowImage("black.png",4,1500);
 GUI.Music("grasslands.ogg",1000);
 GUI.ShowImage("caoyuan.png",4,1500);
 GUI.SetDialogVisible(1);
+GUI.SetShowSupplyButton(0);
 
 GUI.AutoSave();
 GUI.ShowImage("aoliwan_zc.png",left,300);

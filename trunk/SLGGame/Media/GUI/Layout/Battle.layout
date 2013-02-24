@@ -585,15 +585,15 @@
         <Property key="Visible" value="true"/>
         <Property key="ModeImage" value="true"/>
     </Widget>
-    <Widget type="Window" skin="SLGMiniWindowSkin" position="220 0 300 205" layer="Main" name="MissionWindow">
+    <Widget type="Window" skin="SLGMiniWindowSkin" position="220 0 385 205" layer="Main" name="MissionWindow">
         <Property key="Visible" value="false"/>
-        <Widget type="TextBox" skin="TextBox" position="70 10 160 25" name="TEXT_MissionList">
+        <Widget type="TextBox" skin="TextBox" position="115 10 160 25" name="TEXT_MissionList">
             <Property key="Caption" value="TEXT_MissionList"/>
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="25"/>
             <Property key="TextAlign" value="Center"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="45 41 235 20" name="Mission1Caption">
+        <Widget type="TextBox" skin="TextBox" position="45 41 325 20" name="Mission1Caption">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
@@ -617,23 +617,23 @@
             <Property key="ImageResource" value="MissionStateIcon"/>
             <Property key="ImageGroup" value="States"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="45 140 235 20" name="Mission5Caption">
+        <Widget type="TextBox" skin="TextBox" position="45 140 325 20" name="Mission5Caption">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="45 65 235 20" name="Mission2Caption">
+        <Widget type="TextBox" skin="TextBox" position="45 65 325 20" name="Mission2Caption">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="45 90 235 20" name="Mission3Caption">
+        <Widget type="TextBox" skin="TextBox" position="45 90 325 20" name="Mission3Caption">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="TextBox" skin="TextBox" position="45 115 235 20" name="Mission4Caption">
+        <Widget type="TextBox" skin="TextBox" position="45 115 325 20" name="Mission4Caption">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
         </Widget>
-        <Widget type="Button" skin="SLGButton1" position="95 165 110 30" name="TEXT_Close"/>
+        <Widget type="Button" skin="SLGButton1" position="140 165 110 30" name="TEXT_Close"/>
     </Widget>
     <Widget type="Window" skin="ImageBox" position="0 230 265 120" layer="Main" name="EffectWindow1">
         <Property key="Visible" value="false"/>
