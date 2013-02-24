@@ -45,8 +45,8 @@
 		</WingsLightCavalry>
 		<WingsHeavyInf>
 			<Picture type="String" value="zhongbu2h.png"/>
-			<Mesh type="String" value="LightInfOf.mesh"/>
-			<Mat type="String" value="LightInfOf"/>
+			<Mesh type="String" value="HeavyInfOf.mesh"/>
+			<Mat type="String" value="HeavyInfOf"/>
 		</WingsHeavyInf>
 		<WingsCrossBow>
 			<Picture type="String" value="qingbuh.png"/>
@@ -257,10 +257,10 @@
 			<SquadType type="Int" value="1"/>
 			<SoilderId type="String" value="WingsSoilder"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="ShortSword1"/>
-			<SweaponId type="String" value="Bow2"/>
+			<PweaponId type="String" value="ShortSword3"/>
+			<SweaponId type="String" value="Bow4"/>
 			<ShieldId type="String" value="none"/>
-			<ArmorId type="String" value="LightArmor2"/>
+			<ArmorId type="String" value="LightArmor4"/>
 			<SkillTable>
 				<OneHandSword type="Int" value="2"/>
 				<Bow type="Int" value="2"/>
