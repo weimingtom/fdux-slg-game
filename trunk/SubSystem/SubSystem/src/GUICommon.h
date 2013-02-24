@@ -65,5 +65,6 @@ enum GUISceneType
 	SLScene,
 	MenuWindowsScene,
 	MessageBoxScene,
-	OptionWindowScene
+	OptionWindowScene,
+	DebugWindowsScene
 };
