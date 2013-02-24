@@ -996,6 +996,9 @@ void GUIStage::saveData(bool isAutoSave)
 	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/RightPosition",Ogre::Vector3(mRightLayer->getLeft(),mRightLayer->getTop(),0));
 	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/RightSize",Ogre::Vector3(mRightLayer->getWidth(),mRightLayer->getHeight(),0));
 
+	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/ShowSupply",mSupplyButton->getVisible(),0);
+
+
 	//记录文本
 	if (mTimerWork==PrinterWork)
 	{
@@ -1148,6 +1151,10 @@ void GUIStage::load()
 	mRightLayer->setImageTexture(ImageName);
 	mRightLayer->setPosition(LayerPosition.x,LayerPosition.y);
 	mRightLayer->setSize(LayerSize.x,LayerSize.y);
+
+	int showSupply=1;
+	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/ShowSupply",showSupply);
+	mSupplyButton->setVisible(showSupply);
 
 	//设置文本
 	mTextBuffer.clear();
