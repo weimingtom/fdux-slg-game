@@ -107,9 +107,9 @@
         <Team2Squad_4 Type="DuxLightBow" GridX="11" GridY="2" Direction="1" UnitNum="50" />
         <Team2Squad_5 Type="DuxLightBow" GridX="11" GridY="8" Direction="1" UnitNum="50" />
         <Team2Squad_6 Type="DuxLightBow" GridX="11" GridY="3" Direction="1" UnitNum="50" />
-        <Team2Squad_7 Type="DuxHeavySpear" GridX="10" GridY="7" Direction="1" UnitNum="0" />
-        <Team2Squad_8 Type="DuxHeavyCavalry" GridX="0" GridY="5" Direction="1" UnitNum="0" />
-        <Team2Squad_9 Type="DuxHeavyCavalry" GridX="0" GridY="6" Direction="1" UnitNum="0" />
+        <Team2Squad_7 Type="DuxHeavySpear" GridX="10" GridY="7" Direction="1" UnitNum="50" />
+        <Team2Squad_8 Type="DuxHeavyCavalry" GridX="0" GridY="5" Direction="1" UnitNum="50" />
+        <Team2Squad_9 Type="DuxHeavyCavalry" GridX="0" GridY="6" Direction="1" UnitNum="50" />
     </Team2>
     <Team3 />
     <Team4 />

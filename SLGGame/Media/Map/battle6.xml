@@ -150,15 +150,15 @@
 <MapSquad>
     <Team1 />
     <Team2>
-        <Team2Squad_0 Type="Pirate" GridX="14" GridY="17" Direction="1" UnitNum="0" />
-        <Team2Squad_1 Type="UlvaCrossBow" GridX="15" GridY="19" Direction="1" UnitNum="0" />
-        <Team2Squad_2 Type="Pirate" GridX="14" GridY="18" Direction="1" UnitNum="0" />
-        <Team2Squad_3 Type="FNothHeavyHSword" GridX="11" GridY="12" Direction="1" UnitNum="0" />
-        <Team2Squad_4 Type="FNothLightBow" GridX="11" GridY="11" Direction="1" UnitNum="0" />
-        <Team2Squad_5 Type="FNothHeavyHSword" GridX="8" GridY="16" Direction="1" UnitNum="0" />
-        <Team2Squad_6 Type="FNothLightBow" GridX="7" GridY="17" Direction="1" UnitNum="0" />
-        <Team2Squad_7 Type="UlvaLightHSword" GridX="15" GridY="17" Direction="1" UnitNum="0" />
-        <Team2Squad_8 Type="FNothLightHSword" GridX="10" GridY="11" Direction="1" UnitNum="0" />
+        <Team2Squad_0 Type="Pirate" GridX="14" GridY="17" Direction="1" UnitNum="50" />
+        <Team2Squad_1 Type="UlvaCrossBow" GridX="15" GridY="19" Direction="1" UnitNum="50" />
+        <Team2Squad_2 Type="Pirate" GridX="14" GridY="18" Direction="1" UnitNum="50" />
+        <Team2Squad_3 Type="FNothHeavyHSword" GridX="11" GridY="12" Direction="1" UnitNum="50" />
+        <Team2Squad_4 Type="FNothLightBow" GridX="11" GridY="11" Direction="1" UnitNum="50" />
+        <Team2Squad_5 Type="FNothHeavyHSword" GridX="8" GridY="16" Direction="1" UnitNum="50" />
+        <Team2Squad_6 Type="FNothLightBow" GridX="7" GridY="17" Direction="1" UnitNum="50" />
+        <Team2Squad_7 Type="UlvaLightHSword" GridX="15" GridY="17" Direction="1" UnitNum="50" />
+        <Team2Squad_8 Type="FNothLightHSword" GridX="10" GridY="11" Direction="1" UnitNum="50" />
     </Team2>
     <Team3 />
     <Team4 />

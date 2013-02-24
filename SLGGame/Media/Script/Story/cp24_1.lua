@@ -1,0 +1,13 @@
+GUI.ButtonLock();
+GUI.SetDialogVisible(1);
+GUI.ShowImage("qitaw_ys.png",left,300);
+GUI.ShowRoleName("齐塔");
+GUI.ShowText("不要跟敌军多做纠缠，以最快速度突破敌方的包围，回到锐脊河谷！",1);
+GUI.ClearText();
+GUI.ShowText("全军！向西南方的山口突围！",1);
+GUI.ClearText
+GUI.ShowRoleName("");
+GUI.ShowImage("",right,300);
+GUI.ShowImage("",left,300);
+GUI.SetDialogVisible(0);
+GUI.StoryOver();

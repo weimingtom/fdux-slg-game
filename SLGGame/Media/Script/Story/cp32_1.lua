@@ -1,0 +1,13 @@
+GUI.ButtonLock();
+GUI.SetDialogVisible(1);
+GUI.ShowImage("kesa_ys.png",right,300);
+GUI.ShowRoleName("柯萨");
+GUI.ShowText("敌军人多势众还有法师跟随，不要跟他们硬拼。",1);
+GUI.ClearText();
+GUI.ShowText("根据丹德带回来的消息，齐塔正在赶来，等他们到达之后再发动反攻。",1);
+GUI.ClearText();
+GUI.ShowRoleName("");
+GUI.ShowImage("",right,300);
+GUI.ShowImage("",left,300);
+GUI.SetDialogVisible(0);
+GUI.StoryOver();

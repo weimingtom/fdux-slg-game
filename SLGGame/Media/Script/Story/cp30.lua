@@ -5,7 +5,9 @@ GUI.ShowImage("black.png",4,1500);
 GUI.Music("shadow.ogg",1000);
 GUI.ShowImage("gelou.png",4,1500);
 GUI.SetDialogVisible(1);
-
+AVGLib.SetCanSupply("Cossa",0);
+AVGLib.SetCanSupply("WingsLightCavalry",0);
+AVGLib.SetCanSupply("Dandelion",0);
 GUI.AutoSave();
 GUI.SE("qiaomen.ogg");
 GUI.ShowRoleName("√≈Õ‚»À");
@@ -407,5 +409,9 @@ GUI.SetDialogVisible(0);
 GUI.ShowImage("",right,1000);
 GUI.CM(3000);
 GUI.ShowImage("black.png",4,3000);
-
-GUI.NextScene("cp31.lua");
+AVGLib.SetCanSupply("Azaria",1);
+AVGLib.SetCanSupply("Caster",1);
+AVGLib.SetCanSupply("Olivia",1);
+AVGLib.SetPlayerFaction("Wing");
+StateLib.BattleState("battle15.xml");
+#GUI.NextScene("cp31.lua");

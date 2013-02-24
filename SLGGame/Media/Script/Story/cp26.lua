@@ -267,5 +267,10 @@ GUI.SetDialogVisible(0);
 GUI.ShowImage("",left,1000);
 GUI.CM(3000);
 GUI.ShowImage("black.png",4,3000);
-
-GUI.NextScene("cp27.lua");
+AVGLib.SetCanSupply("Olivia",0);
+AVGLib.SetCanSupply("Fay",0);
+AVGLib.SetCanSupply("Caster",0);
+AVGLib.SetCanSupply("Azaria",0);
+AVGLib.SetPlayerFaction("Wing");
+StateLib.BattleState("battle13.xml");
+#GUI.NextScene("cp27.lua");

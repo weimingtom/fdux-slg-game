@@ -220,10 +220,10 @@
 <MapSquad>
     <Team1 />
     <Team2>
-        <Team2Squad_0 Type="UlvaCrossBow" GridX="1" GridY="12" Direction="1" UnitNum="0" />
-        <Team2Squad_1 Type="Pirate" GridX="2" GridY="15" Direction="1" UnitNum="0" />
-        <Team2Squad_2 Type="Pirate" GridX="3" GridY="14" Direction="1" UnitNum="0" />
-        <Team2Squad_3 Type="UlvaLightHSword" GridX="1" GridY="13" Direction="1" UnitNum="0" />
+        <Team2Squad_0 Type="UlvaCrossBow" GridX="1" GridY="12" Direction="1" UnitNum="50" />
+        <Team2Squad_1 Type="Pirate" GridX="2" GridY="15" Direction="1" UnitNum="50" />
+        <Team2Squad_2 Type="Pirate" GridX="3" GridY="14" Direction="1" UnitNum="50" />
+        <Team2Squad_3 Type="UlvaLightHSword" GridX="1" GridY="13" Direction="1" UnitNum="50" />
     </Team2>
     <Team3 />
     <Team4 />

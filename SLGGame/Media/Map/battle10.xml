@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <MapName>map10</MapName>
 <MapTeam>
-    <Team2 TeamType="enemy1" TeamFaction="none" />
-    <Team3 TeamType="alliance" TeamFaction="none" />
+    <Team2 TeamType="enemy1" TeamFaction="诺斯军" />
+    <Team3 TeamType="alliance" TeamFaction="温菲尔德军" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
 <MapScript>mapscript10.lua</MapScript>
@@ -150,24 +150,24 @@
 <MapSquad>
     <Team1 />
     <Team2>
-        <Team2Squad_0 Type="NothLightHSword" GridX="12" GridY="16" Direction="1" UnitNum="0" />
-        <Team2Squad_1 Type="NothLightHSword" GridX="10" GridY="12" Direction="1" UnitNum="0" />
-        <Team2Squad_2 Type="NothHeavyCrossBow" GridX="12" GridY="14" Direction="1" UnitNum="0" />
-        <Team2Squad_3 Type="NothLightBow" GridX="10" GridY="15" Direction="1" UnitNum="0" />
-        <Team2Squad_4 Type="NothLightBow" GridX="12" GridY="12" Direction="1" UnitNum="0" />
-        <Team2Squad_5 Type="NothLightHSword" GridX="11" GridY="13" Direction="1" UnitNum="0" />
-        <Team2Squad_6 Type="NothHeavyHSword" GridX="9" GridY="15" Direction="1" UnitNum="0" />
-        <Team2Squad_7 Type="NothHeavyHSword" GridX="11" GridY="15" Direction="1" UnitNum="0" />
-        <Team2Squad_8 Type="NothHeavyCrossBow" GridX="10" GridY="16" Direction="1" UnitNum="0" />
-        <Team2Squad_9 Type="NothHeavyCrossBow" GridX="11" GridY="11" Direction="1" UnitNum="0" />
-        <Team2Squad_10 Type="NothHeavyHSword" GridX="10" GridY="11" Direction="1" UnitNum="0" />
+        <Team2Squad_0 Type="NothLightHSword" GridX="12" GridY="16" Direction="1" UnitNum="50" />
+        <Team2Squad_1 Type="NothLightHSword" GridX="10" GridY="12" Direction="1" UnitNum="50" />
+        <Team2Squad_2 Type="NothHeavyCrossBow" GridX="12" GridY="14" Direction="1" UnitNum="50" />
+        <Team2Squad_3 Type="NothLightBow" GridX="10" GridY="15" Direction="1" UnitNum="50" />
+        <Team2Squad_4 Type="NothLightBow" GridX="12" GridY="12" Direction="1" UnitNum="50" />
+        <Team2Squad_5 Type="NothLightHSword" GridX="11" GridY="13" Direction="1" UnitNum="50" />
+        <Team2Squad_6 Type="NothHeavyHSword" GridX="9" GridY="15" Direction="1" UnitNum="50" />
+        <Team2Squad_7 Type="NothHeavyHSword" GridX="11" GridY="15" Direction="1" UnitNum="50" />
+        <Team2Squad_8 Type="NothHeavyCrossBow" GridX="10" GridY="16" Direction="1" UnitNum="50" />
+        <Team2Squad_9 Type="NothHeavyCrossBow" GridX="11" GridY="11" Direction="1" UnitNum="50" />
+        <Team2Squad_10 Type="NothHeavyHSword" GridX="10" GridY="11" Direction="1" UnitNum="50" />
     </Team2>
     <Team3>
-        <Team3Squad_0 Type="WinfredHeavyHalberd" GridX="7" GridY="18" Direction="1" UnitNum="0" />
-        <Team3Squad_1 Type="WinfredHeavyHalberd" GridX="7" GridY="16" Direction="1" UnitNum="0" />
-        <Team3Squad_2 Type="WinfredLightHalberd" GridX="7" GridY="17" Direction="1" UnitNum="0" />
-        <Team3Squad_3 Type="WinfredLightBow" GridX="6" GridY="17" Direction="1" UnitNum="0" />
-        <Team3Squad_4 Type="WinfredLightHalberd" GridX="6" GridY="16" Direction="1" UnitNum="0" />
+        <Team3Squad_0 Type="WinfredHeavyHalberd" GridX="7" GridY="18" Direction="1" UnitNum="50" />
+        <Team3Squad_1 Type="WinfredHeavyHalberd" GridX="7" GridY="16" Direction="1" UnitNum="50" />
+        <Team3Squad_2 Type="WinfredLightHalberd" GridX="7" GridY="17" Direction="1" UnitNum="50" />
+        <Team3Squad_3 Type="WinfredLightBow" GridX="6" GridY="17" Direction="1" UnitNum="50" />
+        <Team3Squad_4 Type="WinfredLightHalberd" GridX="6" GridY="16" Direction="1" UnitNum="50" />
     </Team3>
     <Team4 />
 </MapSquad>

@@ -5,7 +5,9 @@ GUI.ShowImage("black.png",4,1500);
 GUI.Music("sad.ogg",1000);
 GUI.ShowImage("shanmai.png",4,1500);
 GUI.SetDialogVisible(1);
-
+AVGLib.SetCanSupply("Azaria",0);
+AVGLib.SetCanSupply("Caster",0);
+AVGLib.SetCanSupply("Olivia",0);
 GUI.AutoSave();
 GUI.ShowImage("feiw_sx.png",right,300);
 GUI.ShowImage("qitaw_ys.png",left,300);
@@ -267,5 +269,6 @@ GUI.ShowImage("",right,600);
 GUI.ShowImage("",left,600);
 GUI.CM(3000);
 GUI.ShowImage("black.png",4,3000);
-
-GUI.NextScene("cp28.lua");
+AVGLib.SetPlayerFaction("Wing");
+StateLib.BattleState("battle14.xml");
+#GUI.NextScene("cp28.lua");

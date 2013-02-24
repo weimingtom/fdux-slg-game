@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <MapName>map8</MapName>
 <MapTeam>
-    <Team2 TeamType="enemy1" TeamFaction="诺斯突袭部队" />
+    <Team2 TeamType="enemy1" TeamFaction="突袭部队" />
     <Team3 TeamType="alliance" TeamFaction="首席大法师卫队" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
@@ -220,20 +220,20 @@
 <MapSquad>
     <Team1 />
     <Team2>
-        <Team2Squad_0 Type="UlvaCrossBow" GridX="15" GridY="18" Direction="1" UnitNum="0" />
-        <Team2Squad_1 Type="FNothHeavyHSword" GridX="16" GridY="18" Direction="1" UnitNum="0" />
-        <Team2Squad_2 Type="FNothHeavyHSword" GridX="15" GridY="16" Direction="1" UnitNum="0" />
-        <Team2Squad_3 Type="Pirate" GridX="17" GridY="17" Direction="1" UnitNum="0" />
-        <Team2Squad_4 Type="Pirate" GridX="16" GridY="15" Direction="1" UnitNum="0" />
-        <Team2Squad_5 Type="UlvaLightHSword" GridX="18" GridY="14" Direction="1" UnitNum="0" />
-        <Team2Squad_6 Type="FNothLightBow" GridX="15" GridY="15" Direction="1" UnitNum="0" />
-        <Team2Squad_7 Type="FNothLightBow" GridX="15" GridY="17" Direction="1" UnitNum="0" />
-        <Team2Squad_8 Type="UlvaLightHSword" GridX="17" GridY="14" Direction="1" UnitNum="0" />
+        <Team2Squad_0 Type="UlvaCrossBow" GridX="15" GridY="18" Direction="1" UnitNum="50" />
+        <Team2Squad_1 Type="FNothHeavyHSword" GridX="16" GridY="18" Direction="1" UnitNum="50" />
+        <Team2Squad_2 Type="FNothHeavyHSword" GridX="15" GridY="16" Direction="1" UnitNum="50" />
+        <Team2Squad_3 Type="Pirate" GridX="17" GridY="17" Direction="1" UnitNum="50" />
+        <Team2Squad_4 Type="Pirate" GridX="16" GridY="15" Direction="1" UnitNum="50" />
+        <Team2Squad_5 Type="UlvaLightHSword" GridX="18" GridY="14" Direction="1" UnitNum="50" />
+        <Team2Squad_6 Type="FNothLightBow" GridX="15" GridY="15" Direction="1" UnitNum="50" />
+        <Team2Squad_7 Type="FNothLightBow" GridX="15" GridY="17" Direction="1" UnitNum="50" />
+        <Team2Squad_8 Type="UlvaLightHSword" GridX="17" GridY="14" Direction="1" UnitNum="50" />
     </Team2>
     <Team3>
-        <Team3Squad_0 Type="GuardLightSword" GridX="19" GridY="17" Direction="1" UnitNum="0" />
-        <Team3Squad_1 Type="Kareena" GridX="19" GridY="16" Direction="1" UnitNum="0" />
-        <Team3Squad_2 Type="GuardHeavySpear" GridX="18" GridY="16" Direction="1" UnitNum="0" />
+        <Team3Squad_0 Type="GuardLightSword" GridX="19" GridY="17" Direction="1" UnitNum="50" />
+        <Team3Squad_1 Type="Kareena" GridX="19" GridY="16" Direction="1" UnitNum="50" />
+        <Team3Squad_2 Type="GuardHeavySpear" GridX="18" GridY="16" Direction="1" UnitNum="50" />
     </Team3>
     <Team4 />
 </MapSquad>
