@@ -30,7 +30,7 @@
             <Property key="FontName" value="fireflysung.17"/>
             <Property key="FontHeight" value="17"/>
         </Widget>
-        <Widget type="Button" skin="Button" position="215 195 135 30" name="JumpCP">
+        <Widget type="Button" skin="Button" position="215 205 135 30" name="JumpCP">
             <Property key="Caption" value="Jump CP"/>
             <Property key="FontName" value="fireflysung.17"/>
             <Property key="FontHeight" value="17"/>
@@ -52,6 +52,11 @@
         <Widget type="EditBox" skin="EditBox" position="260 45 135 23" name="SquadLeader">
             <Property key="FontName" value="fireflysung.17"/>
             <Property key="FontHeight" value="17"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="215 170 135 30" name="Win">
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="17"/>
+            <Property key="Caption" value="Win"/>
         </Widget>
     </Widget>
 </MyGUI>

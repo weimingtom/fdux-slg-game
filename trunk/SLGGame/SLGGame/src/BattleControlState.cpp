@@ -20,6 +20,9 @@
 #include "StringTable.h"
 #include "StateManager.h"
 
+#include "GUIInfoWindow.h"
+#include "GUIBattle.h"
+
 #include <boost/format.hpp>
 
 
@@ -108,6 +111,19 @@ void BattleControlState::update(unsigned int deltaTime)
 							StateManager::getSingletonPtr()->saveState(std::string("..\\save")+std::string("\\save2.xml"));
 							return;
 						}
+						else
+						{
+							DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/Ture",turn);
+							DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/CurTeam",team);
+
+							std::string temp;
+							DataLibrary::getSingletonPtr()->getData("GameData/BattleData/MapData/MapName",temp);
+							//int val;
+							//DataLibrary::getSingletonPtr()->getData("GameData/BattleData/BattleState/Ture",val);
+							DataLibrary::getSingletonPtr()->setData("SystemConfig/Save/Save2",std::string("AutoSave ")+temp+" "+str(boost::format(StringTable::getSingletonPtr()->getString("RoundNum"))%(turn)));
+							DataLibrary::getSingletonPtr()->saveXmlData(DataLibrary::SystemConfig,std::string("..\\save")+std::string("\\Config.xml"));
+							StateManager::getSingletonPtr()->saveState(std::string("..\\save")+std::string("\\save2.xml"));
+						}
 						BattlePlayerState* playerstate = new BattlePlayerState();
 						mMainState->PushState(playerstate);
 						nextteam = true;
@@ -147,6 +163,13 @@ void BattleControlState::update(unsigned int deltaTime)
 								DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/Ture",turn);
 								DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/CurTeam",team);
 								return;
+							}
+							else
+							{
+								GUIBattle* mGUIBattle = static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
+								GUIInfoWindow* infoWindow=(GUIInfoWindow*)mGUIBattle->getSubWindow("InfoWindow");
+								infoWindow->setCaption("EnemyTurn.png",MyGUI::Colour::White);
+								infoWindow->showScene("");
 							}
 							BattleAIState* aistate = new BattleAIState(team);
 							mMainState->PushState(aistate);

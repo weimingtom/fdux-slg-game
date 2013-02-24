@@ -542,7 +542,7 @@ namespace OgreUtils
 	{
 		mOverlay = Ogre::OverlayManager::getSingleton().create(mName);
 
-		Ogre::OverlayContainer *mContainer = (Ogre::OverlayContainer*)
+		mContainer = (Ogre::OverlayContainer*)
 			(Ogre::OverlayManager::getSingleton().createOverlayElement("Panel", "Ogre/DebugTexPanel" +mName));
 
 		mContainer->setMetricsMode(Ogre::GMM_PIXELS);
@@ -583,6 +583,7 @@ namespace OgreUtils
 	{
 		if(mOverlay!=NULL)
 		{
+			Ogre::OverlayManager::getSingleton().destroyOverlayElement(mContainer);
 			Ogre::OverlayManager::getSingleton().destroy(mOverlay);
 		}
 		delete mDirectshowTexture;

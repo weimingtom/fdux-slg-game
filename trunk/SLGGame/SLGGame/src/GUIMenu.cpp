@@ -18,7 +18,7 @@
 #define FadeTime 1500
 #define WaitTime 2000
 
-BOOL FindFirstFileExists(LPCTSTR lpPath, DWORD dwFilter)
+BOOL GUIMenu::FindFirstFileExists(LPCTSTR lpPath, DWORD dwFilter)
 {
 	WIN32_FIND_DATA fd;
 	HANDLE hFind = FindFirstFile(lpPath, &fd);

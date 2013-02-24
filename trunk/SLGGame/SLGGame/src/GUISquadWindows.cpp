@@ -164,10 +164,10 @@ void GUISquadWindows::updateSquad()
 	bool re = datalib->getData(temppath, tempstr);
 	mSquadImage->setImageTexture(tempstr);
 
-	tempstr = mSelectSquad->getFactionId();
+	/*tempstr = mSelectSquad->getFactionId();
 	temppath = str(boost::format("StaticData/FactionData/%1%/LittlePicture")%tempstr);
 	re = datalib->getData(temppath,tempstr);
-	mSquadFactionImage->setImageTexture(tempstr);
+	mSquadFactionImage->setImageTexture(tempstr);*/
 
 	tempstr = mSelectSquad->getLeaderId();
 	temppath = str(boost::format("StaticData/LeaderDate/%1%/Name")%tempstr);

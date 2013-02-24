@@ -36,7 +36,7 @@ public:
 		return "MissionWindow";
 	}
 
-	int addMission(std::string caption,MissionState state);
+	int addMission(std::string caption,MissionState state,bool addToXml=true);
 	void changeMission(int index,MissionState state,std::string caption="");
 	void clearMission();
 

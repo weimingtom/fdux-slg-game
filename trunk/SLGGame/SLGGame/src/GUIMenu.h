@@ -32,6 +32,8 @@ private:
 	void onOtherSceneNotify(std::string arg);
 
 	void keyPressed(const OIS::KeyEvent &arg);
+
+	BOOL FindFirstFileExists(LPCTSTR lpPath, DWORD dwFilter);
 	enum MenuStateEnum
 	{
 		NoneState,

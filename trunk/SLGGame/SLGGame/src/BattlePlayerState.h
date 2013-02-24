@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Core.h"
 #include "SubBattleState.h"
 #include "InputListener.h"
 
@@ -31,6 +32,12 @@ public:
 	virtual bool mouseMoved(const OIS::MouseEvent &arg);
 	virtual bool mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id);
 	virtual bool mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id);
+
+	void createSelectPlane();
+	void setSelectPlanePosition(int GX,int GY,float height);
+	void setSelectPlanePosition();
+	void hideSelectPlane();
+	Ogre::SceneNode* planeNode;
 
 	void useSkill(std::string skillid);
 private:
