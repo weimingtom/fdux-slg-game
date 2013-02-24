@@ -46,13 +46,18 @@ void GUIEffectWindow::setEffectList(std::vector<std::string> list,std::vector<in
 	{
 		DataLibrary::getSingletonPtr()->getData(effectPath+(*it)+std::string("/Icon"),data);
 		DataLibrary::getSingletonPtr()->getData(effectPath+(*it)+std::string("/Describe"),skillTips);
-		mEffect[i]->setImageResource("skillpass");
-		mEffect[i]->setImageGroup(data);
-		mEffect[i]->setUserString("Tips",skillTips);
-		mEffect[i]->setNeedToolTip(true);
-		if(level[i]!=0)
-			mEffect[i]->setCaption(Ogre::StringConverter::toString(level[i]));
-		i++;
+		int showonbattlesquad = 0;
+		DataLibrary::getSingletonPtr()->getData(effectPath+(*it)+std::string("/ShowOnBattleSquad"),showonbattlesquad);
+		if(showonbattlesquad == 1)
+		{
+			mEffect[i]->setImageResource("skillpass");
+			mEffect[i]->setImageGroup(data);
+			mEffect[i]->setUserString("Tips",skillTips);
+			mEffect[i]->setNeedToolTip(true);
+			if(level[i]!=0)
+				mEffect[i]->setCaption(Ogre::StringConverter::toString(level[i]));
+			i++;
+		}
 	}
 
 	for (;i<10;i++)

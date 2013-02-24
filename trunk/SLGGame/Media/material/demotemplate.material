@@ -6,8 +6,6 @@ material Skinned/CastShadow/OneTexture
 		pass
 		{
 			cull_hardware none
-			depth_write off
-			depth_check on
 		    vertex_program_ref ColorOnlyVP/Skinned/OneTexture
             {
             }
@@ -22,25 +20,29 @@ material Skinned/CastShadow/OneTexture
 			}
 		}
 	}
-	technique specular
+	technique gbuffer
 	{
-		scheme SpecularEmissive
+		scheme GBuffer
 		pass 
         {
 			cull_hardware none
-			depth_write off
-			depth_check on
-		    vertex_program_ref ColorOnlyVP/Skinned/OneTexture
+		    vertex_program_ref GBufferVP/Skinned/OneTexture
             {
             }
-            fragment_program_ref ColorOnlyFP/OneTexture
+            fragment_program_ref GBufferFP/OneTexture
             {
             }
+			texture_unit Diffuse
+			{
+				filtering anisotropic
+				max_anisotropy 2
+				texture MRAMOR6X6.jpg
+			}
 			texture_unit Material
 			{
 				filtering anisotropic
 				max_anisotropy 2
-				texture defaultmat.dds
+				texture defaultmat.png
 			}
 		}
 	}
@@ -64,28 +66,6 @@ material Skinned/CastShadow/OneTexture
 			}
         }
     }
-	technique normaldepth
-	{
-		scheme NormalDepth
-		pass 
-        {
-			cull_hardware none
-			depth_write on
-			depth_check on
-            vertex_program_ref NormalDepthVP/Skinned/OneTexture
-            {
-            }
-            fragment_program_ref NormalDepthFP/OneTexture
-            {
-            }
-			texture_unit Diffuse
-			{
-				filtering anisotropic
-				max_anisotropy 2
-				texture MRAMOR6X6.jpg
-			}
-        }
-	}
 }
 
 material NotSkinned/CastShadow/OneTexture
@@ -96,8 +76,6 @@ material NotSkinned/CastShadow/OneTexture
 		pass
 		{
 			cull_hardware none
-			depth_write off
-			depth_check on
 			vertex_program_ref ColorOnlyVP/NotSkinned/OneTexture
             {
             }
@@ -111,24 +89,28 @@ material NotSkinned/CastShadow/OneTexture
 			}
 		}
 	}
-	technique specular
+	technique gbuffer
 	{
-		scheme SpecularEmissive
+		scheme GBuffer
 		pass
 		{
 			cull_hardware none
-			depth_write off
-			depth_check on
-			vertex_program_ref ColorOnlyVP/NotSkinned/OneTexture
+			vertex_program_ref GBufferVP/NotSkinned/OneTexture
             {
             }
-            fragment_program_ref ColorOnlyFP/OneTexture
+            fragment_program_ref GBufferFP/OneTexture
             {
             }
+			texture_unit Diffuse
+			{
+				filtering anisotropic
+				max_anisotropy 2
+				texture MRAMOR6X6.jpg
+			}			
 			texture_unit Material
 			{
 				filtering trilinear
-				texture defaultmat.dds
+				texture defaultmat.png
 			}
 		}
 	}
@@ -151,27 +133,6 @@ material NotSkinned/CastShadow/OneTexture
 			}
         }
     }
-	technique normaldepth
-	{
-		scheme NormalDepth
-		pass 
-        {
-			cull_hardware none
-			depth_write on
-			depth_check on
-            vertex_program_ref NormalDepthVP/NotSkinned/OneTexture
-            {
-            }
-            fragment_program_ref NormalDepthFP/OneTexture
-            {
-            }
-			texture_unit Diffuse
-			{
-				filtering trilinear
-				texture MRAMOR6X6.jpg
-			}
-        }
-	}
 }
 
 material NotSkinned/CastShadow/TwoTexture
@@ -181,8 +142,6 @@ material NotSkinned/CastShadow/TwoTexture
 		scheme Default
 		pass
 		{
-			depth_write off
-			depth_check on
             vertex_program_ref ColorOnlyVP/NotSkinned/TwoTexture
             {
             }
@@ -199,29 +158,38 @@ material NotSkinned/CastShadow/TwoTexture
 			}
 		}
 	}
-	technique specular
+	technique gbuffer
 	{
-		scheme SpecularEmissive
-		pass
-		{
-			depth_write off
-			depth_check on
-			diffuse 0.9 0.9 0.9
-			emissive 0.15 0.15 0.15
-			specular 0.2 0.2 0.2 10.0
-			vertex_program_ref SpecularEmissiveVP/NotSkinned/NoTexture
+		scheme GBuffer
+		pass 
+        {
+            vertex_program_ref GBufferVP/NotSkinned/TwoTexture
+            {
+            }
+            fragment_program_ref GBufferFP/TwoTexture
+            {
+            }
+			texture_unit Diffuse
 			{
+				texture GreenLand.dds
 			}
-			fragment_program_ref SpecularEmissiveFP/NoTexture
+			texture_unit Diffuse1
 			{
+				texture Cliff.dds
 			}
-		}
+			texture_unit Material
+			{
+				filtering trilinear
+				texture defaultmat.png
+			}
+        }
 	}
     technique shadowmap
     {
 		scheme WriteDepthMap
         pass 
         {
+			cull_hardware anticlockwise
             vertex_program_ref DepthShadowmapVP/NotSkinned/NoTexture
             {
             }
@@ -230,21 +198,6 @@ material NotSkinned/CastShadow/TwoTexture
             }
         }
     }
-	technique normaldepth
-	{
-		scheme NormalDepth
-		pass 
-        {
-			depth_write on
-			depth_check on
-            vertex_program_ref NormalDepthVP/NotSkinned/MultiTexture
-            {
-            }
-            fragment_program_ref NormalDepthFP/MultiTexture
-            {
-            }
-        }
-	}
 }
 
 material NotSkinned/CastShadow/FourTexture
@@ -254,8 +207,6 @@ material NotSkinned/CastShadow/FourTexture
 		scheme Default
 		pass
 		{
-			depth_write off
-			depth_check on
             vertex_program_ref ColorOnlyVP/NotSkinned/FourTexture
             {
             }
@@ -287,29 +238,53 @@ material NotSkinned/CastShadow/FourTexture
 			}
 		}
 	}
-	technique specular
+	technique gbuffer
 	{
-		scheme SpecularEmissive
-		pass
-		{
-			depth_write off
-			depth_check on
-			diffuse 0.9 0.9 0.9
-			emissive 0.15 0.15 0.15
-			specular 0.2 0.2 0.2 10.0
-			vertex_program_ref SpecularEmissiveVP/NotSkinned/NoTexture
+		scheme GBuffer
+		pass 
+        {
+            vertex_program_ref GBufferVP/NotSkinned/FourTexture
+            {
+            }
+            fragment_program_ref GBufferFP/FourTexture
+            {
+            }
+			texture_unit Diffuse
 			{
+				tex_coord_set 0
+				texture Desert.dds
 			}
-			fragment_program_ref SpecularEmissiveFP/NoTexture
+			texture_unit Diffuse1
 			{
+				tex_coord_set 1
+				texture GreenLand.dds
+				colour_op alpha_blend
 			}
-		}
+			texture_unit Diffuse2
+			{
+				tex_coord_set 2 
+				texture Swamp.dds 		
+				colour_op alpha_blend
+			}
+			texture_unit Diffuse3
+			{
+				tex_coord_set 3
+				texture Snow.dds
+				colour_op alpha_blend
+			}
+			texture_unit Material
+			{
+				filtering trilinear
+				texture defaultmat.png
+			}
+        }
 	}
     technique shadowmap
     {
 		scheme WriteDepthMap
         pass 
         {
+			cull_hardware anticlockwise
             vertex_program_ref DepthShadowmapVP/NotSkinned/NoTexture
             {
             }
@@ -318,19 +293,4 @@ material NotSkinned/CastShadow/FourTexture
             }
         }
     }
-	technique normaldepth
-	{
-		scheme NormalDepth
-		pass 
-        {
-			depth_write on
-			depth_check on
-            vertex_program_ref NormalDepthVP/NotSkinned/MultiTexture
-            {
-            }
-            fragment_program_ref NormalDepthFP/MultiTexture
-            {
-            }
-        }
-	}
 }

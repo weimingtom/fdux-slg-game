@@ -3524,72 +3524,84 @@
 			<Icon type="String" value="DetectionTrain.jpg"/>
 			<Script type="String" value="DetectionTrain.lua"/>
 			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="0"/>
 		</DetectionTrain>
 		<AttackTrain>
 			<Type type="Int" value="0"/>
 			<Icon type="String" value="AttacktTrain.jpg"/>
 			<Script type="String" value="AttacktTrain.lua"/>
 			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="0"/>
 		</AttackTrain>
 		<DefenceTrain>
 			<Type type="Int" value="0"/>
 			<Icon type="String" value="DefenceTrain.jpg"/>
 			<Script type="String" value="DefenceTrain.lua"/>
 			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="0"/>
 		</DefenceTrain>
 		<RangedAttackTrain>
 			<Type type="Int" value="0"/>
 			<Icon type="String" value="RangedAttackTrain.jpg"/>
 			<Script type="String" value="RangedAttackTrain.lua"/>
 			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="0"/>
 		</RangedAttackTrain>
 		<Faith>
 			<Type type="Int" value="0"/>
 			<Icon type="String" value="Faith.jpg"/>
 			<Script type="String" value="Faith.lua"/>
 			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
 		</Faith>
 		<StrengthenSprite>
 			<Type type="Int" value="0"/>
 			<Icon type="String" value="StrengthenSprite.jpg"/>
 			<Script type="String" value="StrengthenSprite.lua"/>
 			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="0"/>
 		</StrengthenSprite>
 		<MagicShield>
 			<Type type="Int" value="2"/>
 			<Icon type="String" value="magicshield.jpg"/>
 			<Script type="String" value="magicshield.lua"/>
 			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
 		</MagicShield>
 		<Defence>
 			<Type type="Int" value="2"/>
 			<Icon type="String" value="skill_pass_DefUp"/>
 			<Script type="String" value="defence.lua"/>
 			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
 		</Defence>
 		<Suppressed>
 			<Type type="Int" value="1"/>
 			<Icon type="String" value="suppressattack.jpg"/>
 			<Script type="String" value="suppressattack.lua"/>
 			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
 		</Suppressed>
 		<Waver>
 			<Type type="Int" value="0"/>
 			<Icon type="String" value="skill_pass_shake"/>
 			<Script type="String" value="waver.lua"/>
 			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
 		</Waver>
 		<AntiCav>
 			<Type type="Int" value="0"/>
 			<Icon type="String" value="anticav.jpg"/>
 			<Script type="String" value="anticav.lua"/>
 			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
 		</AntiCav>
 		<Inspired>
 			<Type type="Int" value="2"/>
 			<Icon type="String" value="skill_pass_AtkcUp"/>
 			<Script type="String" value="Inspire.lua"/>
 			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
 		</Inspired>
 	</EffectData>
 	<GroundData>

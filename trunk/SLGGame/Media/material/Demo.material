@@ -138,6 +138,11 @@ material FinalPass
 			}
 			texture_unit
 			{
+				tex_address_mode clamp
+				filtering none
+			}
+			texture_unit
+			{
 				texture fog.dds
 				tex_address_mode wrap 
 				filtering none

@@ -569,7 +569,9 @@ std::vector<BattleSquadManager::SkillNode> BattleSquadManager::getSkillArea(Batt
 			if(skilltype == SKILLTARGETTYPE_RANGED)
 			{
 				int weaponminrange = 1, weaponmaxrange = 3;
-
+				std::string sweapon = squad->getSweaponId();
+				datalib->getData(str(boost::format("StaticData/SweaponData/%1%/MinRange")%sweapon),weaponminrange);
+				datalib->getData(str(boost::format("StaticData/SweaponData/%1%/MaxRange")%sweapon),weaponmaxrange);
 				minrange = weaponminrange - minrange;
 				minrange = (minrange < 0)?0:minrange;
 				maxrange = weaponmaxrange + maxrange;
@@ -955,7 +957,7 @@ bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* 
 
 	//¼ÆËãÍ»Ï®
 	int deffaction = defenesquad->getFaction();
-	if(attacksquad->getViewByFaction(deffaction) == 0)
+	if(attacksquad->getViewByFaction(deffaction) == false)
 	{
 		attacksquad->setViewByFaction(deffaction, true);
 		attacksquad->setAmbushFaction(deffaction, true);
@@ -964,7 +966,7 @@ bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* 
 			cutscenebuilder->addCutScene(new SquadStateCutScene(attacksquad,SQUAD_STATE_VISIBLE,"none",1));
 		}
 	}
-	if(attacksquad->getAmbushFaction(deffaction) == 1)
+	if(attacksquad->getAmbushFaction(deffaction) == true)
 	{
 		std::string eid;
 		defenesquad->applyEffect("Waver", eid);
@@ -1100,7 +1102,7 @@ bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* 
 	CutSceneBuilder* cutscenebuilder = CutSceneBuilder::getSingletonPtr();
 
 	int deffaction = defenesquad->getFaction();
-	if(attacksquad->getViewByFaction(deffaction) == 0)
+	if(attacksquad->getViewByFaction(deffaction) == false)
 	{
 		attacksquad->setViewByFaction(deffaction, true);
 		attacksquad->setAmbushFaction(deffaction, true);
@@ -1109,7 +1111,7 @@ bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* 
 			cutscenebuilder->addCutScene(new SquadStateCutScene(attacksquad,SQUAD_STATE_VISIBLE,"none",1));
 		}
 	}
-	if(attacksquad->getAmbushFaction(deffaction) == 1)
+	if(attacksquad->getAmbushFaction(deffaction) == true)
 	{
 		std::string eid;
 		defenesquad->applyEffect("Waver", eid);
@@ -1156,7 +1158,7 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 	CutSceneBuilder* cutscenebuilder = CutSceneBuilder::getSingletonPtr();
 
 	int deffaction = defenesquad->getFaction();
-	if(attacksquad->getViewByFaction(deffaction) == 0)
+	if(attacksquad->getViewByFaction(deffaction) == false)
 	{
 		attacksquad->setViewByFaction(deffaction, true);
 		attacksquad->setAmbushFaction(deffaction, true);
@@ -1165,7 +1167,7 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 			cutscenebuilder->addCutScene(new SquadStateCutScene(attacksquad,SQUAD_STATE_VISIBLE,"none",1));
 		}
 	}
-	if(attacksquad->getAmbushFaction(deffaction) == 1)
+	if(attacksquad->getAmbushFaction(deffaction) == true)
 	{
 		std::string eid;
 		defenesquad->applyEffect("Waver", eid);

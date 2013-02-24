@@ -1,0 +1,34 @@
+void main(
+	float4	position	:	POSITION,
+	float3	normal		:	NORMAL,
+	float2	uv			:	TEXCOORD0,
+	float2	uv1			:	TEXCOORD1,
+	float2	uv2			:	TEXCOORD2,
+	float2	uv3			:	TEXCOORD3,
+
+	out	float4	oPosition	:	POSITION,
+	out	float3	oNormal		:	TEXCOORD0,
+	out	float3	oViewPos	:	TEXCOORD1,
+	out	float2	oUv			:	TEXCOORD2,
+	out	float2	oUv1		:	TEXCOORD3,
+	out	float2	oUv2		:	TEXCOORD4,
+	out	float2	oUv3		:	TEXCOORD5,
+
+	uniform	float4x4	worldViewProj,
+	uniform	float4x4	worldView,
+	uniform	float3x4	worldMatrix
+	)
+{
+	oPosition = mul(worldViewProj, position);
+	float4 viewpos = mul(worldView, position);
+	oViewPos =  viewpos.xyz / viewpos.w;
+	float3 viewnormal =  mul((float3x3)worldView, normal);
+	float normaldot = dot( normalize(viewpos.xyz), viewnormal);
+	oNormal = mul((float3x3)worldMatrix, normal);
+	if(normaldot > 0.0)
+		oNormal = -oNormal;
+	oUv = uv;
+	oUv1 = uv1;
+	oUv2 = uv2;
+	oUv3 = uv3;
+}
