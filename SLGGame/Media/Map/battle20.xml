@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<MapName>newmap</MapName>
+<MapName>map20</MapName>
 <MapTeam>
-    <Team2 TeamType="none" TeamFaction="none" />
-    <Team3 TeamType="none" TeamFaction="none" />
+    <Team2 TeamType="enemy1" TeamFaction="法卫队" />
+    <Team3 TeamType="enemy2" TeamFaction="黑骑士" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
 <MapScript>mapscript20.lua</MapScript>
-<MapInfo>mapinfo1</MapInfo>
-<MapLoadBG>map1.png</MapLoadBG>
+<MapInfo>mapinfo20</MapInfo>
+<MapLoadBG>map7.png</MapLoadBG>
 <MapSize>15</MapSize>
 <MapGround>
     <G0 Type="Grass" Texture="Grass1Blur.dds" />
@@ -159,4 +159,9 @@
         <c11 X="11" Y="5" />
         <c12 X="10" Y="5" />
     </DeployArea>
+    <KeyArea>
+        <c0 X="11" Y="8" />
+        <c1 X="11" Y="9" />
+        <c2 X="11" Y="6" />
+    </KeyArea>
 </MapArea>

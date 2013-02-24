@@ -402,4 +402,6 @@ GUI.ShowImage("",left,600);
 GUI.CM(3000);
 GUI.ShowImage("black.png",4,3000);
 
-GUI.NextScene("cp38.lua");
+AVGLib.SetPlayerFaction("Wing");
+StateLib.BattleState("battle19.xml");
+#GUI.NextScene("cp38.lua");

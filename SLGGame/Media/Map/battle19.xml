@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<MapName>newmap</MapName>
+<MapName>map19</MapName>
 <MapTeam>
-    <Team2 TeamType="none" TeamFaction="none" />
-    <Team3 TeamType="none" TeamFaction="none" />
+    <Team2 TeamType="enemy1" TeamFaction="法卫队" />
+    <Team3 TeamType="enemy2" TeamFaction="黑骑士" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
 <MapScript>mapscript19.lua</MapScript>
-<MapInfo>mapinfo1</MapInfo>
-<MapLoadBG>map1.png</MapLoadBG>
+<MapInfo>mapinfo19</MapInfo>
+<MapLoadBG>map7.png</MapLoadBG>
 <MapSize>15</MapSize>
 <MapGround>
     <G0 Type="Grass" Texture="Grass1Blur.dds" />
@@ -129,19 +129,20 @@
     <Team1 />
     <Team2>
         <Team2Squad_0 Type="GuardHeavySpear" GridX="10" GridY="6" Direction="1" UnitNum="0" />
-        <Team2Squad_1 Type="DarkKnight" GridX="7" GridY="10" Direction="1" UnitNum="0" />
-        <Team2Squad_2 Type="Warmage" GridX="8" GridY="9" Direction="1" UnitNum="0" />
-        <Team2Squad_3 Type="DarkKnight" GridX="7" GridY="8" Direction="1" UnitNum="0" />
-        <Team2Squad_4 Type="Datura" GridX="10" GridY="9" Direction="1" UnitNum="0" />
-        <Team2Squad_5 Type="Syrin" GridX="11" GridY="6" Direction="1" UnitNum="0" />
-        <Team2Squad_6 Type="GuardHeavySpear" GridX="7" GridY="9" Direction="1" UnitNum="0" />
-        <Team2Squad_7 Type="GuardCrossBow" GridX="11" GridY="4" Direction="1" UnitNum="0" />
-        <Team2Squad_8 Type="Elementalist" GridX="9" GridY="9" Direction="1" UnitNum="0" />
-        <Team2Squad_9 Type="GuardHeavySpear" GridX="6" GridY="9" Direction="1" UnitNum="0" />
-        <Team2Squad_10 Type="GuardCrossBow" GridX="9" GridY="8" Direction="1" UnitNum="0" />
-        <Team2Squad_11 Type="GuardCrossBow" GridX="9" GridY="10" Direction="1" UnitNum="0" />
+        <Team2Squad_1 Type="Warmage" GridX="8" GridY="9" Direction="1" UnitNum="0" />
+        <Team2Squad_2 Type="GuardHeavySpear" GridX="7" GridY="9" Direction="1" UnitNum="0" />
+        <Team2Squad_3 Type="GuardCrossBow" GridX="11" GridY="4" Direction="1" UnitNum="0" />
+        <Team2Squad_4 Type="Elementalist" GridX="9" GridY="9" Direction="1" UnitNum="0" />
+        <Team2Squad_5 Type="GuardHeavySpear" GridX="6" GridY="9" Direction="1" UnitNum="0" />
+        <Team2Squad_6 Type="GuardCrossBow" GridX="9" GridY="8" Direction="1" UnitNum="0" />
+        <Team2Squad_7 Type="GuardCrossBow" GridX="9" GridY="10" Direction="1" UnitNum="0" />
     </Team2>
-    <Team3 />
+    <Team3>
+		<Team3Squad_0 Type="DarkKnight" GridX="7" GridY="10" Direction="1" UnitNum="0" />
+		<Team3Squad_1 Type="Datura" GridX="10" GridY="9" Direction="1" UnitNum="0" />
+		<Team3Squad_2 Type="DarkKnight" GridX="7" GridY="8" Direction="1" UnitNum="0" /> 
+        <Team3Squad_3 Type="Syrin" GridX="11" GridY="6" Direction="1" UnitNum="0" />
+	</Team3>
     <Team4 />
 </MapSquad>
 <MapArea>
@@ -163,4 +164,21 @@
         <c14 X="0" Y="7" />
         <c15 X="1" Y="7" />
     </DeployArea>
+    <TargetArea>
+        <c0 X="11" Y="6" />
+    </TargetArea>
+    <KeyArea>
+        <c0 X="7" Y="8" />
+        <c1 X="7" Y="9" />
+        <c2 X="7" Y="10" />
+        <c3 X="8" Y="10" />
+        <c4 X="9" Y="10" />
+        <c5 X="9" Y="9" />
+        <c6 X="9" Y="8" />
+        <c7 X="8" Y="8" />
+        <c8 X="8" Y="9" />
+        <c9 X="6" Y="9" />
+        <c10 X="6" Y="10" />
+        <c11 X="6" Y="8" />
+    </KeyArea>
 </MapArea>

@@ -1,0 +1,13 @@
+GUI.ButtonLock();
+GUI.SetDialogVisible(1);
+GUI.ShowImage("qitaw_cj.png",left,300);
+GUI.ShowRoleName("齐塔");
+GUI.ShowText("港口被占领了！无法撤退！",1);
+GUI.ClearText();
+GUI.ShowText("我们注定命丧于此吗……",1);
+GUI.ClearText();
+GUI.ShowRoleName("");
+GUI.ShowImage("",right,500);
+GUI.ShowImage("",left,500);
+GUI.SetDialogVisible(0);
+GUI.StoryOver();

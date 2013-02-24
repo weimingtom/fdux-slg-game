@@ -1,3 +1,4 @@
+GUI.ButtonLock();
 GUI.SetDialogVisible(1);
 GUI.ShowImage("qitaw_sx.png",left,300);
 GUI.ShowRoleName("ÆëËþ");
@@ -226,3 +227,4 @@ GUI.ShowRoleName("");
 GUI.ShowImage("",left,600);
 GUI.ShowImage("",right,600);
 GUI.SetDialogVisible(0);
+GUI.StoryOver();

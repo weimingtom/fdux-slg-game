@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<MapName>newmap</MapName>
+<MapName>map17</MapName>
 <MapTeam>
-    <Team2 TeamType="none" TeamFaction="none" />
+    <Team2 TeamType="enemy1" TeamFaction="温菲尔德军" />
     <Team3 TeamType="none" TeamFaction="none" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
 <MapScript>mapscript17.lua</MapScript>
-<MapInfo>mapinfo1</MapInfo>
-<MapLoadBG>map1.png</MapLoadBG>
+<MapInfo>mapinfo17</MapInfo>
+<MapLoadBG>map6.png</MapLoadBG>
 <MapSize>20</MapSize>
 <MapGround>
     <G0 Type="Grass" Texture="Grass1Blur.dds" />
@@ -308,4 +308,24 @@
         <c14 X="17" Y="8" />
         <c15 X="18" Y="8" />
     </DeployArea>
+    <KeyArea1>
+        <c0 X="6" Y="5" />
+        <c1 X="6" Y="6" />
+        <c2 X="6" Y="7" />
+        <c3 X="7" Y="7" />
+        <c4 X="7" Y="6" />
+        <c5 X="7" Y="5" />
+        <c6 X="5" Y="4" />
+        <c7 X="5" Y="5" />
+        <c8 X="5" Y="6" />
+        <c9 X="5" Y="7" />
+        <c10 X="5" Y="8" />
+    </KeyArea1>
+    <KeyArea2>
+        <c0 X="0" Y="7" />
+        <c1 X="0" Y="6" />
+        <c2 X="0" Y="5" />
+        <c3 X="0" Y="4" />
+        <c4 X="0" Y="8" />
+    </KeyArea2>
 </MapArea>
