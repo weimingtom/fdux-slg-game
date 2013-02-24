@@ -89,7 +89,8 @@ extern "C"
 	static int SetDialogAttribute(lua_State* L)//提交改变
 	{
 		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
-		stage->setTextDialog(mAttribute);
+		if(stage!=NULL)
+			stage->setTextDialog(mAttribute);
 
 		return 1;
 	}
@@ -97,6 +98,8 @@ extern "C"
 	static void ShowTextBreakup()//文本直接模式回调
 	{
 		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+		if(stage==NULL)
+			return ;
 
 		if(stage->CheckMouseState())
 		{
@@ -120,6 +123,8 @@ extern "C"
 	static void ShowWaitTextBreakup()//文本等待模式回调
 	{
 		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+		if(stage==NULL)
+			return ;
 
 		if(stage->CheckMouseState())
 		{
@@ -145,6 +150,8 @@ extern "C"
 	static void ShowImageBreakup()//图片回调
 	{
 		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+		if(stage==NULL)
+			return ;
 		if (stage->mTimerWork==GUIStage::NoneWork)
 		{
 			LuaSystem::getSingletonPtr()->LuaBreakupFun=NULL;
@@ -154,6 +161,8 @@ extern "C"
 	static void ClearTextBreakup()
 	{
 		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+		if(stage==NULL)
+			return ;
 		if (stage->CheckMouseState() || stage->mIsFastForward)
 		{
 			stage->hideTextCursor();
@@ -165,6 +174,8 @@ extern "C"
 	static int SetDialogVisible(lua_State* L)//设置对话框的显隐,1表示显,0表示隐
 	{
 		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+		if(stage==NULL)
+			return 0;
 		if (luaL_checkint(L, 1)==1)
 		{
 			stage->setTextDialogVisible(true);
@@ -200,6 +211,8 @@ extern "C"
 		float time =(float)luaL_checkint(L, 3);
 
 		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+		if(stage==NULL)
+			return 0;
 
 		unsigned int left=0;
 		unsigned int top=0;
@@ -241,6 +254,8 @@ extern "C"
 		float amplitudeY =(float)luaL_checknumber(L, 4);
 
 		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+		if(stage==NULL)
+			return 0;
 
 		stage->shockImage((GUIImageLayer)imageLayer,durationTime/1000.0,amplitudeX,amplitudeY);
 
@@ -257,6 +272,8 @@ extern "C"
 		int top =luaL_checkint(L, 4);
 
 		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+		if(stage==NULL)
+			return 0;
 
 		stage->moveImage((GUIImageLayer)imageLayer,time,left,top);
 
@@ -271,6 +288,8 @@ extern "C"
 		int imageLayer =luaL_checkint(L, 2);
 
 		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+		if(stage==NULL)
+			return 0;
 
 		unsigned int left=0;
 		unsigned int top=0;
@@ -317,6 +336,8 @@ extern "C"
 		MultiByteToWideChar (CP_ACP, 0, text, -1, pwText, dwNum);
 
 		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+		if(stage==NULL)
+			return 0;
 		if (mPrinter)
 		{
 			stage->showText(std::wstring(pwText),DefaultShowTextTime);
@@ -357,7 +378,8 @@ extern "C"
 	static int ClearText(lua_State* L)//清空文本
 	{
 		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
-		
+		if(stage==NULL)
+			return 0;
 		stage->showTextCursor(false);
 		stage->setCheckMouseDown();
 		LuaSystem::getSingletonPtr()->LuaBreakupFun=ClearTextBreakup;
@@ -369,6 +391,8 @@ extern "C"
 		float time=(float)luaL_checkint(L, 1);
 
 		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+		if(stage==NULL)
+			return 0;
 		stage->waitTime(time);
 		LuaSystem::getSingletonPtr()->LuaBreakupFun=ShowImageBreakup;
 		return 1;
@@ -387,6 +411,8 @@ extern "C"
 		MultiByteToWideChar (CP_ACP, 0, text, -1, pwText, dwNum);
 
 		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+		if(stage==NULL)
+			return 0;
 		stage->showRoleName(std::wstring(pwText));
 
 		delete []pwText;
@@ -414,6 +440,8 @@ extern "C"
 		}
 
 		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+		if(stage==NULL)
+			return 0;
 		stage->setTextDialog(mAttribute);
 
 		return 1;
@@ -468,6 +496,8 @@ extern "C"
 	static int AutoSave(lua_State* L)
 	{
 		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+		if(stage==NULL)
+			return 0;
 		stage->saveData(true);
 
 		return 1;
@@ -485,6 +515,8 @@ extern "C"
 	static int ButtonLock(lua_State* L)
 	{
 		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+		if(stage==NULL)
+			return 0;
 		stage->setButtonLock(false);
 
 		return 1;
@@ -494,6 +526,8 @@ extern "C"
 	{
 		int v=luaL_checkint(L, 1);
 		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+		if(stage==NULL)
+			return 0;
 		if(v==1)
 			stage->setIsShowSupplyButton(true);
 		else

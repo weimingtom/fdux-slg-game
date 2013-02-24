@@ -22,11 +22,39 @@ AudioSystem::AudioSystem(void):mStreamName("none"),mStream(NULL),mSample(NULL)
 
 AudioSystem::~AudioSystem(void)
 {
-
+	for (std::map<int,std::map<int,std::vector<std::string>>*>::iterator it=mSEList.begin();it!=mSEList.end();it++)
+	{
+		delete it->second;
+	}
 }
 
 bool AudioSystem::init()
 {
+	std::vector<std::string> oneList=DataLibrary::getSingletonPtr()->getChildList("StaticData/SEData");
+	for (std::vector<std::string>::iterator it=oneList.begin();it!=oneList.end();it++)
+	{
+		int oneType=0;
+		DataLibrary::getSingletonPtr()->getData(std::string("StaticData/SEData/")+(*it),oneType);
+		mSEList[oneType]=new std::map<int,std::vector<std::string>>();
+
+		std::vector<std::string> twoList=DataLibrary::getSingletonPtr()->getChildList(std::string("StaticData/SEData/")+(*it));
+		for (std::vector<std::string>::iterator itt=twoList.begin();itt!=twoList.end();itt++)
+		{
+			int twoType=0;
+			DataLibrary::getSingletonPtr()->getData(std::string("StaticData/SEData/")+(*it)+"/"+(*itt),twoType);
+			
+			std::vector<std::string> thrList=DataLibrary::getSingletonPtr()->getChildList(std::string("StaticData/SEData/")+(*it)+"/"+(*itt));
+			std::vector<std::string> se;
+			for (std::vector<std::string>::iterator ittr=thrList.begin();ittr!=thrList.end();ittr++)
+			{
+				std::string temp;
+				DataLibrary::getSingletonPtr()->getData(std::string("StaticData/SEData/")+(*it)+"/"+(*itt)+"/"+(*ittr),temp);
+				se.push_back(temp);
+			}
+			mSEList[oneType]->operator [](twoType)=se;
+		}
+	}
+
 	mDevice=OpenDevice();
 	changeVolume();
 	if (!mDevice) {
@@ -105,10 +133,29 @@ bool AudioSystem::stopStream(int time)
 	return true;
 }
 
-bool AudioSystem::playSample( std::string name,bool isLoop)
+bool AudioSystem::playSample( std::string name,bool isLoop,bool isList)
 {
 	std::string path=SE_PATH;
-	path+=name;
+
+	if(isList)
+	{
+		std::queue<std::string> s;
+		DataLibrary::getSingletonPtr()->split(name,"-",s);
+
+		int first=Ogre::StringConverter::parseInt(s.front());
+		s.pop();
+		int second=Ogre::StringConverter::parseInt(s.front());
+
+		std::vector<std::string> selist=mSEList[first]->operator [](second);
+		srand((int)time(NULL));
+		int r=rand()%selist.size();
+		path+=selist[r];
+	}
+	else
+	{
+		path+=name;
+	}
+
 
 	mSample=OpenSound(mDevice, path.c_str(), false);
 	mSample->setRepeat(isLoop);

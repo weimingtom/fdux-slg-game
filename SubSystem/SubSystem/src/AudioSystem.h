@@ -24,7 +24,7 @@ public:
 
 	bool stopStream(int time);
 
-	bool playSample(std::string name,bool isLoop);
+	bool playSample(std::string name,bool isLoop,bool isList=false);
 
 	bool stopSample();
 
@@ -44,4 +44,6 @@ private:
 	bool mIsFadeOut;
 	int mTickTime;//定时器单次时间
 	float mCurStreamVol;
+
+	std::map<int,std::map<int,std::vector<std::string>>*> mSEList;
 };
