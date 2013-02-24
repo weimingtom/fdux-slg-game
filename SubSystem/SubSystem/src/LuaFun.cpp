@@ -11,6 +11,10 @@
 #define DefaultShowTextTime 0.1//默认打字效果速度
 #define DefaultCursorTime 0.01//默认光标闪烁频率
 
+#include <Windows.h>
+
+#include "UtilsOgreDshow.h"
+
 extern "C"
 {
 
@@ -536,6 +540,48 @@ extern "C"
 		return 1;
 	}
 
+	BOOL FindFirstFileExists(LPCTSTR lpPath, DWORD dwFilter)
+	{
+		WIN32_FIND_DATA fd;
+		HANDLE hFind = FindFirstFile(lpPath, &fd);
+		BOOL bFilter = (FALSE == dwFilter) ? TRUE : fd.dwFileAttributes & dwFilter;
+		BOOL RetValue = ((hFind != INVALID_HANDLE_VALUE) && bFilter) ? TRUE : FALSE;
+		FindClose(hFind);
+		return RetValue;
+	}
+
+	static void PlayMovieBreakup()
+	{
+		if (OgreUtils::DirectShowManager::getSingleton().isPlayOver())
+		{
+			OgreUtils::DirectShowManager::getSingleton().DestroyAll();
+			LuaSystem::getSingletonPtr()->LuaBreakupFun=NULL;
+		}
+	}
+
+	static int PlayMovie(lua_State* L)
+	{
+		const char* name=luaL_checkstring(L, 1);
+
+		DWORD dwNum = MultiByteToWideChar (CP_ACP, 0, name, -1, NULL, 0);
+		wchar_t *pwText;
+		pwText = new wchar_t[dwNum];
+
+		MultiByteToWideChar (CP_ACP, 0, name, -1, pwText, dwNum);
+
+		if(FindFirstFileExists(pwText, FALSE))
+		{
+			OgreUtils::DirectShowManager::getSingleton().createDirectshowControl("videotest1",name,1280,720);
+		}
+		else
+		{
+			OgreUtils::DirectShowManager::getSingleton().createDirectshowControl("videotest1","../Media/movie/op.wmv",1280,720);
+		}
+
+		LuaSystem::getSingletonPtr()->LuaBreakupFun=PlayMovieBreakup;
+		return 1;
+	}
+
 	static const struct luaL_Reg GUILib[] =
 	{
 		{"Music",Music},
@@ -568,6 +614,8 @@ extern "C"
 		{"ButtonLock",ButtonLock},
 		{"StoryOver",StoryOver},
 		{"SetShowSupplyButton",SetShowSupplyButton},
+
+		{"PlayMovie",PlayMovie},
 
 		{NULL,NULL}
 	};
