@@ -25,6 +25,8 @@ extern "C"
 #include "GUIGameOver.h"
 #include "GUIMissionWindow.h"
 
+#include "WinLostCutScene.h"
+
 static int ChangeState(lua_State* L)
 {
 	int nextstate = luaL_checkint(L, 1);
@@ -136,7 +138,7 @@ static int Win(lua_State* L)
 	GameOver->setData(gold);
 	GameOver->setNext(next);
 
-	GameOver->showScene("win");
+	CutSceneBuilder::getSingletonPtr()->addCutScene(new WinLostCutScene(true));
 	return 0;
 }
 
@@ -150,7 +152,7 @@ static int Lost(lua_State* L)
 	GameOver->setData(gold);
 	GameOver->setNext(next);
 
-	GameOver->showScene("lost");
+	CutSceneBuilder::getSingletonPtr()->addCutScene(new WinLostCutScene(false));
 	return 0;
 }
 

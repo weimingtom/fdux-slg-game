@@ -773,6 +773,14 @@
 							RelativePath=".\src\WeapenCutScene.h"
 							>
 						</File>
+						<File
+							RelativePath=".\src\WinLostCutScene.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\src\WinLostCutScene.h"
+							>
+						</File>
 					</Filter>
 					<Filter
 						Name="Billboard"

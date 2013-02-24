@@ -2,6 +2,7 @@
 
 #include "GUIBattle.h"
 #include "boost/format.hpp"
+#include "DataLibrary.h"
 
 #define MAX_MISSION_NUM 5
 
@@ -12,11 +13,24 @@ GUIMissionWindow::GUIMissionWindow(MyGUI::Window* window,int Width,int Height):G
 	mClose->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMissionWindow::onMissionClose);
 
 	clearMission();
+
+	std::vector<std::string> list=DataLibrary::getSingletonPtr()->getChildList("GameData/BattleData/MissionList");
+	for (std::vector<std::string>::iterator it=list.begin();it!=list.end();it++)
+	{
+		std::string name;
+		DataLibrary::getSingletonPtr()->getData(std::string("GameData/BattleData/MissionList/")+(*it)+"/Name",name);
+		int state;
+		DataLibrary::getSingletonPtr()->getData(std::string("GameData/BattleData/MissionList/")+(*it)+"/State",state);
+
+		addMission(name,(MissionState)state,false);
+	}
+
 }
 
 GUIMissionWindow::~GUIMissionWindow(void)
 {
-	
+	clearMission();
+	DataLibrary::getSingletonPtr()->delNode("GameData/BattleData/MissionList");
 }
 
 void GUIMissionWindow::onMissionClose(MyGUI::Widget* _sender)
@@ -46,7 +60,7 @@ void GUIMissionWindow::hideScene()
 	mIsShow=false;
 }
 
-int GUIMissionWindow::addMission( std::string caption,MissionState state )
+int GUIMissionWindow::addMission( std::string caption,MissionState state,bool addToXml)
 {
 	if(mIndex<=MAX_MISSION_NUM)
 	{
@@ -54,12 +68,19 @@ int GUIMissionWindow::addMission( std::string caption,MissionState state )
 
 		mIndex++;
 
-		if(!mIsShow)
+		if(!mIsShow && addToXml)
 		{
 			GUIScene* s=GUISystem::getSingletonPtr()->getScene(BattleScene);
 
 			((GUIBattle*)s)->onMissionButton(NULL);
 		}
+
+		if(addToXml)
+		{
+			DataLibrary::getSingletonPtr()->setData(std::string("GameData/BattleData/MissionList/M")+Ogre::StringConverter::toString(mIndex)+"/Name",caption);
+			DataLibrary::getSingletonPtr()->setData(std::string("GameData/BattleData/MissionList/M")+Ogre::StringConverter::toString(mIndex)+"/State",(int)state);
+		}
+
 
 		return mIndex-1;
 	}
@@ -77,7 +98,7 @@ void GUIMissionWindow::changeMission( int index,MissionState state,std::string c
 
 	if(caption!="")
 	{
-		assignWidget(text,str(boost::format("Mission%1%Caption")%(mIndex+1)));
+		assignWidget(text,str(boost::format("Mission%1%Caption")%(index+1)));
 
 		if(caption!="clear")
 		{

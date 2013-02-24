@@ -4,6 +4,7 @@ GUI.ShowImage("black.png",4,1500);
 GUI.Music("warning.ogg",1000);
 GUI.ShowImage("shulin.png",4,1500);
 GUI.SetDialogVisible(1);
+GUI.SetShowSupplyButton(1);
 
 GUI.AutoSave();
 GUI.ShowImage("fuguan_lan.png",left,300);

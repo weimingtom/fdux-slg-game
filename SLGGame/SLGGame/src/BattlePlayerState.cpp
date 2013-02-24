@@ -62,6 +62,8 @@ BattlePlayerState::BattlePlayerState()
 	mTargetAreaGrap = NULL;
 	mLastTargetX = -1;
 	mLastTargetY = -1;	
+
+	createSelectPlane();
 }
 BattlePlayerState::~BattlePlayerState()
 {
@@ -207,6 +209,54 @@ bool BattlePlayerState::mouseMoved(const OIS::MouseEvent &arg)
 	}
 	return false;
 }
+
+void BattlePlayerState::createSelectPlane()
+{
+	Ogre::Entity* planeEnt=NULL;
+
+	if (!Core::getSingletonPtr()->mSceneMgr->hasEntity("SelectSquadPlane"))
+	{
+		Ogre::Plane plane;
+		plane.normal = Ogre::Vector3::UNIT_Y;
+		plane.d = 0;
+
+		Ogre::MeshManager::getSingleton().createPlane("Myplane",
+			Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane,
+			24,24,1,1,true,1,1,1,Ogre::Vector3::UNIT_Z);
+		planeEnt=Core::getSingletonPtr()->mSceneMgr->createEntity( "SelectSquadPlane", "Myplane" );
+		planeEnt->setVisibilityFlags(VISMASK_TRANSPARENT);
+
+		planeEnt->setMaterialName("SelectSquadPlane");
+		planeNode=Core::getSingletonPtr()->mSceneMgr->getRootSceneNode()->createChildSceneNode("SelectSquadPlaneNode");
+
+		planeNode->attachObject(planeEnt);
+		planeNode->setVisible(false);
+	}
+	else
+	{
+		planeNode=Core::getSingletonPtr()->mSceneMgr->getSceneNode("SelectSquadPlaneNode");
+		planeNode->setVisible(false);
+	}
+}
+
+void BattlePlayerState::setSelectPlanePosition( int GX,int GY,float height )
+{
+	float wx,wy;
+	Terrain::getSingletonPtr()->getWorldCoords(GX,GY,wx,wy);
+	planeNode->setPosition(wx,height,wy);
+	planeNode->setVisible(true);
+}
+
+void BattlePlayerState::setSelectPlanePosition()
+{	
+	setSelectPlanePosition(mSelectSquad->getGridX(),mSelectSquad->getGridY(),Terrain::getSingletonPtr()->getHeight(mSelectSquad->getGridX(),mSelectSquad->getGridY())+1.0);
+}
+
+void BattlePlayerState::hideSelectPlane()
+{
+	planeNode->setVisible(false);
+}
+
 bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
 {
 	int GX,GY;
@@ -226,6 +276,8 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 						mGUISquad->setSquad(mSelectSquad);
 						mGUICommand->setSquad(mSelectSquad);
 						mControlState = PLAYERCONTROL_CHOOSESKILL;
+
+						setSelectPlanePosition();
 					}
 				}
 			}
@@ -240,6 +292,8 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 						mSelectSquad = squad;
 						mGUISquad->setSquad(mSelectSquad);
 						mGUICommand->setSquad(mSelectSquad);
+
+						setSelectPlanePosition();
 					}
 				}
 			}
@@ -325,6 +379,7 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 		switch(mControlState)
 		{
 		case PLAYERCONTROL_CHOOSESKILL:
+			hideSelectPlane();
 			mSelectSquad = NULL;
 			mGUISquad->setSquad(NULL);
 			mGUICommand->setSquad(NULL);

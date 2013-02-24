@@ -29,7 +29,7 @@ bool StoryCutScene::endCutScene()
 
 void StoryCutScene::skipCutScene()
 {
-	StateManager::getSingletonPtr()->removeAffixationState();
+	//StateManager::getSingletonPtr()->removeAffixationState();
 }
 
 void StoryCutScene::updateCutScene( unsigned int deltaTime )

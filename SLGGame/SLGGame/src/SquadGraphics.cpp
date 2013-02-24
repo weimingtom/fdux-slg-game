@@ -163,8 +163,8 @@ mDirection(direction)
 	}
 	else if (tempid=="alliance")
 	{
-		mSquadBB->setName(name,MyGUI::Colour::Green);
-		mSquadBB->mHasApColor=MyGUI::Colour::Green;
+		mSquadBB->setName(name,MyGUI::Colour(0.0143634,0.614035,0.0307607));
+		mSquadBB->mHasApColor=MyGUI::Colour(0.0143634,0.614035,0.0307607);
 		mSquadBB->mNoneApColor=MyGUI::Colour(0,0.5,0);
 	}
 	else

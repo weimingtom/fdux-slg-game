@@ -6,6 +6,9 @@
 #include "AVGSquadManager.h"
 #include "LuaSystem.h"
 
+#include "GUIBattle.h"
+#include "GUIGameOver.h"
+
 GUIDebugWindow::GUIDebugWindow(int Width,int Height):GUIScene("DebugWindow.layout",Width,Height)
 {
 	assignWidget(mWindow,"DEBUG");
@@ -17,11 +20,13 @@ GUIDebugWindow::GUIDebugWindow(int Width,int Height):GUIScene("DebugWindow.layou
 	assignWidget(mJump,"Jump");
 	assignWidget(mSquadLeader,"SquadLeader");
 	assignWidget(mSquadList,"SquadList");
+	assignWidget(mWin,"Win");
 
 	mAddSquad->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIDebugWindow::onAddSquad);
 	mDeleteSquad->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIDebugWindow::onDeleteSquad);
 	mRefreshList->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIDebugWindow::onRefreshList);
 	mJumpCP->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIDebugWindow::onJumpCP);
+	mWin->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIDebugWindow::onWin);
 }
 
 GUIDebugWindow::~GUIDebugWindow(void)
@@ -41,6 +46,16 @@ void GUIDebugWindow::showScene( std::string arg )
 void GUIDebugWindow::hideScene()
 {
 	mWindow->setVisible(false);
+}
+
+void GUIDebugWindow::onWin(MyGUI::Widget* _sender)
+{
+	GUIBattle* guibattle=static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
+	GUIGameOver* GameOver=(GUIGameOver*)guibattle->getSubWindow("GameOverWindow");
+	GameOver->setData(2000);
+	GameOver->setNext(mJump->getCaption());
+
+	GameOver->showScene("win");
 }
 
 void GUIDebugWindow::onAddSquad(MyGUI::Widget* _sender)

@@ -23,12 +23,14 @@ private:
 	void onDeleteSquad(MyGUI::Widget* _sender);
 	void onRefreshList(MyGUI::Widget* _sender);
 	void onJumpCP(MyGUI::Widget* _sender);
+	void onWin(MyGUI::Widget* _sender);
 
 	MyGUI::Window* mWindow;
 	MyGUI::Button* mAddSquad;
 	MyGUI::Button* mDeleteSquad;
 	MyGUI::Button* mRefreshList;
 	MyGUI::Button* mJumpCP;
+	MyGUI::Button* mWin;
 	MyGUI::EditBox* mSquadName;
 	MyGUI::EditBox* mSquadLeader;
 	MyGUI::EditBox* mJump;
