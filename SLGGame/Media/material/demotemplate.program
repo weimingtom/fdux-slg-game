@@ -1,6 +1,6 @@
-vertex_program NormalDepthVP/Skinned/OneTexture cg
+vertex_program GBufferVP/Skinned/OneTexture cg
 {
-    source NormalDepth_VP_S_1T.cg
+    source GBuffer_VP_S_1T.cg
     entry_point main
     profiles arbvp1 vs_2_0
  
@@ -13,9 +13,9 @@ vertex_program NormalDepthVP/Skinned/OneTexture cg
     }
 }
 
-vertex_program NormalDepthVP/NotSkinned/OneTexture cg
+vertex_program GBufferVP/NotSkinned/OneTexture cg
 {
-    source NormalDepth_VP_NS_1T.cg
+    source GBuffer_VP_NS_1T.cg
     entry_point main
     profiles arbvp1 vs_2_0
  
@@ -27,9 +27,23 @@ vertex_program NormalDepthVP/NotSkinned/OneTexture cg
     }
 }
 
-vertex_program NormalDepthVP/NotSkinned/MultiTexture cg
+vertex_program GBufferVP/NotSkinned/TwoTexture cg
 {
-    source NormalDepth_VP_NS_MT.cg
+    source GBuffer_VP_NS_2T.cg
+    entry_point main
+    profiles arbvp1 vs_2_0
+ 
+    default_params
+    {
+		param_named_auto worldViewProj worldviewproj_matrix
+		param_named_auto worldView worldview_matrix 
+		param_named_auto worldMatrix world_matrix
+    }
+}
+
+vertex_program GBufferVP/NotSkinned/FourTexture cg
+{
+    source GBuffer_VP_NS_4T.cg
     entry_point main
     profiles arbvp1 vs_2_0
  
@@ -41,9 +55,9 @@ vertex_program NormalDepthVP/NotSkinned/MultiTexture cg
     }
 }
  
-fragment_program NormalDepthFP/OneTexture cg
+fragment_program GBufferFP/OneTexture cg
 {
-    source NormalDepth_FP_1T.cg
+    source GBuffer_FP_1T.cg
     entry_point main
     profiles arbfp1 ps_2_0 fp20
  
@@ -53,9 +67,9 @@ fragment_program NormalDepthFP/OneTexture cg
     }
 }
 
-fragment_program NormalDepthFP/MultiTexture cg
+fragment_program GBufferFP/TwoTexture cg
 {
-    source NormalDepth_FP_MT.cg
+    source GBuffer_FP_2T.cg
     entry_point main
     profiles arbfp1 ps_2_0 fp20
  
@@ -64,6 +78,19 @@ fragment_program NormalDepthFP/MultiTexture cg
 		param_named_auto farChip far_clip_distance 
     }
 }
+
+fragment_program GBufferFP/FourTexture cg
+{
+    source GBuffer_FP_4T.cg
+    entry_point main
+    profiles arbfp1 ps_2_0 fp20
+ 
+    default_params
+    {
+		param_named_auto farChip far_clip_distance 
+    }
+}
+
 
 vertex_program ColorOnlyVP/Skinned/OneTexture cg
 {

@@ -16,6 +16,7 @@ vertex_program LightQuadVP cg
 shared_params TestSharedParamsName
 {
 	shared_param_named viewInv matrix4x4
+	shared_param_named border float
 }
 
 shared_params ShadowSharedParamsName
@@ -106,7 +107,6 @@ fragment_program FinalPassFP cg
 		param_named_auto cameraPos camera_position
 		param_named_auto timeVal time 0.05
 		param_named bloomArg float4  1.8 1.0 1.0 1.0
-		param_named border float 192.0
 		shared_params_ref TestSharedParamsName 
     }
 }

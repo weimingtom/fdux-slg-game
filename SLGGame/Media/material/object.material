@@ -7,6 +7,7 @@ material soul : NotSkinned/CastShadow/OneTexture
 material SceneObj : NotSkinned/CastShadow/OneTexture
 {
     set_texture_alias Diffuse 512.dds
+	set_texture_alias Material 512mat.png
 }
 
 material Pike : NotSkinned/CastShadow/OneTexture

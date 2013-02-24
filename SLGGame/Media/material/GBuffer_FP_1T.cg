@@ -1,0 +1,26 @@
+void main(
+	float3	normal	:	TEXCOORD0,
+	float3	viewpos	:	TEXCOORD1,
+	float2	uv		:	TEXCOORD2,
+	
+	
+	out float4 oColour1	: COLOR0,
+	out float4 oColour2 : COLOR1,
+	out float4 oColour3 : COLOR2,
+	
+	uniform	sampler2D	diffuseMap	:	register(s0),
+	uniform	sampler2D	matMap	:	register(s1),
+	uniform	float	farChip
+	)
+{
+	float4 color = tex2D(diffuseMap, uv);
+	float4 mat = tex2D(matMap, uv);
+	clip(color.a - 0.5);
+	float depth = -viewpos.z / farChip;
+	float depthl = frac(depth * 256.0);
+	depth = depth - depthl / 256.0;
+	float3 worldnormal = normal * 0.5 + 0.5;
+	oColour1 = float4(worldnormal, depth);
+	oColour2 = float4(color.rgb, depthl);
+	oColour3 = mat;
+}

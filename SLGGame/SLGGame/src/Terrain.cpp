@@ -35,10 +35,12 @@ bool Terrain::createTerrain()
 
 	Core::getSingleton().mSceneMgr->setSkyBox(true, "SkyBox",200);
 
-
+	Ogre::GpuSharedParametersPtr sharedparams = Ogre::GpuProgramManager::getSingleton().getSharedParameters("TestSharedParamsName");
+	float border = mMapData->getMapSize() * 12.0f;
+	sharedparams->setNamedConstant("border", border);
 
 	//´´½¨µÆ¹â
-	Core::getSingleton().mSceneMgr->setAmbientLight(Ogre::ColourValue(0.1f, 0.1f, 0.1f));
+	Core::getSingleton().mSceneMgr->setAmbientLight(Ogre::ColourValue(0.3f, 0.3f, 0.3f));
 	mLight = Core::getSingleton().mSceneMgr->createLight("TerrainLight");
 	mLight->setType(Ogre::Light::LT_DIRECTIONAL);
 	mLight->setPosition(-500.0f,500.0f, 500.0f);
