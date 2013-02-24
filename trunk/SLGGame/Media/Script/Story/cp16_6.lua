@@ -1,0 +1,13 @@
+GUI.ButtonLock();
+GUI.SetDialogVisible(1);
+GUI.ShowImage("fuguan_lv.png",left,300);
+GUI.ShowRoleName("敌军指挥官");
+GUI.ShowText("啧……对面的援军怎么来的这么快，这跟说好的不一样啊。",1);
+GUI.ClearText();
+GUI.ShowText("不管了！大家撤吧！没必要在这里送死！",1);
+GUI.ClearText();
+GUI.ShowRoleName("");
+GUI.ShowImage("",right,300);
+GUI.ShowImage("",left,300);
+GUI.SetDialogVisible(0);
+GUI.StoryOver();

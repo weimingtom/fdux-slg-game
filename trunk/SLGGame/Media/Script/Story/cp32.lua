@@ -5,6 +5,13 @@ GUI.ShowImage("black.png",4,1500);
 GUI.Music("nervous.ogg",1000);
 GUI.ShowImage("yingdiw.png",4,1500);
 GUI.SetDialogVisible(1);
+AVGLib.SetCanSupply("Azaria",0);
+AVGLib.SetCanSupply("Caster",0);
+AVGLib.SetCanSupply("Olivia",0);
+AVGLib.SetCanSupply("WingsHeavyInf",0);
+AVGLib.SetCanSupply("WingsCrossBow",0);
+AVGLib.SetCanSupply("Fay",0);
+AVGLib.SetCanSupply("Cheetah",0);
 
 GUI.AutoSave();
 GUI.ShowImage("weier_xr.png",left,300);
@@ -301,4 +308,9 @@ GUI.ShowImage("",left,600);
 GUI.CM(3000);
 GUI.ShowImage("black.png",4,3000);
 
-GUI.NextScene("cp33.lua");
+AVGLib.SetCanSupply("Cossa",1);
+AVGLib.SetCanSupply("WingsLightCavalry",1);
+AVGLib.SetCanSupply("Dandelion",1);
+AVGLib.SetPlayerFaction("Wing");
+StateLib.BattleState("battle16.xml");
+#GUI.NextScene("cp33.lua");

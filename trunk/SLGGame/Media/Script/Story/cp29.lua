@@ -5,7 +5,13 @@ GUI.ShowImage("black.png",4,1500);
 GUI.Music("rest.ogg",1000);
 GUI.ShowImage("qiuling.png",4,1500);
 GUI.SetDialogVisible(1);
-
+AVGLib.SetCanSupply("Cossa",1);
+AVGLib.SetCanSupply("WingsLightCavalry",1);
+AVGLib.SetCanSupply("Dandelion",1);
+AVGLib.SetCanSupply("Fay",0);
+AVGLib.SetCanSupply("Cheetah",0);
+AVGLib.SetCanSupply("WingsHeavyInf",0);
+AVGLib.SetCanSupply("WingsCrossBow",0);
 GUI.AutoSave();
 GUI.ShowText("ÊýÌìÇ°¡­¡­",1);
 GUI.ClearText();

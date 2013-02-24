@@ -3,59 +3,154 @@ function initmap()
 	MapLib.ActiveMapTrigger(trigerid);
 	ScriptCommonLib.SetString("finishdeploytriger",trigerid);
 	
-	ScriptCommonLib.PlayMusic("battle1.mp3");
+	ScriptCommonLib.PlayMusic("battle1.ogg");
 	MapLib.SetCamera(0,4);
 end
 
 function finishdeploy()
 	trigerid = ScriptCommonLib.GetString("finishdeploytriger");
 	MapLib.RemoveMapTrigger(trigerid);
-	
+	--创建部队被歼灭触发器
 	trigerid = MapLib.AddMapTrigger("SquadAnnihilated","unitdead");
 	MapLib.ActiveMapTrigger(trigerid);
 	ScriptCommonLib.SetString("unitdeadtriger",trigerid);
+	--创建回合结束触发器
 	trigerid = MapLib.AddMapTrigger("TurnEnd","turnend");
 	MapLib.ActiveMapTrigger(trigerid);
 	ScriptCommonLib.SetString("turnendtriger",trigerid);
+	--创建回合开始触发器
+	trigerid = MapLib.AddMapTrigger("TurnStart","turnstart");
+	MapLib.ActiveMapTrigger(trigerid);
+	ScriptCommonLib.SetString("turnstarttriger",trigerid);
+	--创建进入区域触发器
+	trigerid = MapLib.AddMapTrigger("GetOutArea","outarea");
+	MapLib.ActiveMapTrigger(trigerid);
+	ScriptCommonLib.SetString("outareatriger",trigerid);
+	--创建离开区域触发器
+	trigerid = MapLib.AddMapTrigger("GetInArea","inarea");
+	MapLib.ActiveMapTrigger(trigerid);
+	ScriptCommonLib.SetString("inareatriger",trigerid);
 	
-	--BattleLib.CreateAIGroup(2, "DuxRaider");
-	BattleLib.AssignAIGroup(2, "Team2Squad_0", "DuxRaider");
-	BattleLib.AssignAIGroup(2, "Team2Squad_1", "DuxRaider");
-	BattleLib.AssignAIGroup(2, "Team2Squad_2", "DuxRaider");
-	BattleLib.CreateAIMission(2, "EliminateTeam1", 1, 1);
-	BattleLib.AssignAIMission(2, "DuxRaider", "EliminateTeam1");
+	--创建AI分组(team,squadid,groupname)
+	BattleLib.AssignAIGroup(2, "Team2Squad_0", "Noth");
+	BattleLib.AssignAIGroup(2, "Team2Squad_1", "Noth");
+	BattleLib.AssignAIGroup(2, "Team2Squad_2", "Noth1");
+	BattleLib.AssignAIGroup(2, "Team2Squad_3", "Noth");
+	BattleLib.AssignAIGroup(2, "Team2Squad_4", "Noth");
+	BattleLib.AssignAIGroup(2, "Team2Squad_5", "Noth");
+	BattleLib.AssignAIGroup(2, "Team2Squad_6", "Noth");
+	BattleLib.AssignAIGroup(2, "Team2Squad_7", "Noth1");
+	BattleLib.AssignAIGroup(2, "Team2Squad_8", "Noth1");
+	BattleLib.AssignAIGroup(2, "Team2Squad_9", "Noth");
+	BattleLib.AssignAIGroup(2, "Team2Squad_10", "Noth");
+	--创建AI任务(team,missionname,missiontype,missiontargetarea)
+	BattleLib.CreateAIMission(2, "Defend1", 0, "KeyArea1");
+	BattleLib.CreateAIMission(2, "Defend2", 0, "KeyArea2");
+	--指派AI分组任务(team,groupname,missionname)
+	BattleLib.AssignAIMission(2,"Noth1", "Defend1");
+	BattleLib.AssignAIMission(2,"Noth", "Defend2");
+	
+	--创建任务(missionname,missionstate)
+	mainmission = BattleLib.AddPlayerMission("map12mission1",0);
+	ScriptCommonLib.SetInt("mainmission", mainmission);
+	mission1 = BattleLib.AddPlayerMission("map12mission2",0);
+	ScriptCommonLib.SetInt("mission1", mission1);
+	ScriptCommonLib.SetInt("mission1state", 1);
+	ScriptCommonLib.SetInt("win", 0);
+	ScriptCommonLib.SetInt("addedgold", 0);
 end
 
+--部队被歼灭触发器
 function unitdead()
 	squad = ScriptCommonLib.GetTempString("squadid");
-	if squad == "Cheetah" or squad == "Dandelion" then
-		BattleLib.ChangeState(2,"GameOver.lua");
+	
+	if BattleLib.TeamSquadLeft(1) == 0  then
+		--失败(storyscript,gold,exp)
+		BattleLib.Lost("GameOver.lua","0","0");
+	end
+	faction = SquadLib.GetFaction(squad);
+	if faction == 1 then
+		BattleLib.AddGold(100);
+		addedgold = ScriptCommonLib.GetInt("addedgold");
+		addedgold = addedgold + 100;
+		ScriptCommonLib.SetInt("addedgold", addedgold);
 	end
 end
 
-function turnend()
-	turn = ScriptCommonLib.GetTempInt("trun");
+function turnstart()
+	turn = ScriptCommonLib.GetTempInt("turn");
 	team = ScriptCommonLib.GetTempInt("team");
-	
-	if team == 1 and turn == 2 then
-		BattleLib.Story("battlestory1.lua");
+	if team == 1 and turn == 1 then
+	    BattleLib.Story("cp24_1.lua");
 	end
+end	
+		
+--回合结束触发器
+function turnend()
+	turn = ScriptCommonLib.GetTempInt("turn");
+	team = ScriptCommonLib.GetTempInt("team");
+	win = ScriptCommonLib.GetTempInt("win");
 	
-	if team == 1 then
-		if BattleLib.TeamSquadLeft(2) == 2 then
-			if turn < 6 then
-				BattleLib.AddGold(500);
+	if team == 1 and turn > 8 then
+			mission1state = ScriptCommonLib.GetInt("mission1state");
+			if mission1state == 1 then
+				mission1 = ScriptCommonLib.GetInt("mission1");
+				--完成任务(missionindex, missionstate)
+				BattleLib.SetPlayerMission(mission1, 2);
+				ScriptCommonLib.SetInt("mission1state", 0);
 			end
-			BattleLib.AddGold(2000);
-			BattleLib.DumpSquadData();
-			BattleLib.ChangeState(2,"Chapter2.lua");
-		elseif BattleLib.TeamSquadLeft(2) == 0 then
-			if turn < 6 then
-				BattleLib.AddGold(500);
-			end
-			BattleLib.AddGold(2500);
-			BattleLib.DumpSquadData();
-			BattleLib.ChangeState(2,"Chapter2.lua");
+	end
+	if team == 1 and win == 1 then
+		BattleLib.Story("cp24_5.lua");
+		BattleLib.AddGold(1500);
+		BattleLib.DumpSquadData();
+		addedgold = ScriptCommonLib.GetInt("addedgold");
+		addedgold = addedgold + 1500;
+		mission1state = ScriptCommonLib.GetInt("mission1state");
+		if mission1state == 1 then
+			BattleLib.AddGold(700);
+			addedgold = addedgold + 700;
+		end
+		ScriptCommonLib.SetInt("addedgold", addedgold);
+		--胜利(storyscript,gold,exp)
+		BattleLib.Win("cp25.lua", "0", "0");
+	end
+end
+
+--离开区域触发器
+function outarea()
+	squad = ScriptCommonLib.GetTempString("squadid");
+	area = ScriptCommonLib.GetTempString("areaid");
+end
+
+--进入区域触发器
+function inarea()
+	squad = ScriptCommonLib.GetTempString("squadid");
+	area = ScriptCommonLib.GetTempString("areaid");
+	
+	if area == TargetArea then
+		faction = SquadLib.GetFaction(squad);
+		if faction == 0 then
+			ScriptCommonLib.SetInt("win", 1);
+			BattleLib.Story("cp24_2.lua");
+			BattleLib.AddBattleSquad("Nothfate", "Team2Squad_11", 9, 18, 2, 50);
+			BattleLib.AddBattleSquad("NothHeavyHSword", "Team2Squad_12", 8, 19, 2, 50);
+			BattleLib.AddBattleSquad("NothHeavyHSword", "Team2Squad_13", 10, 19, 2, 50);
+			BattleLib.AddBattleSquad("NothHeavyHSword", "Team2Squad_14", 1, 12, 2, 50);
+			BattleLib.AddBattleSquad("NothHeavyHSword", "Team2Squad_15", 1, 14, 2, 50);
+			BattleLib.AddBattleSquad("NothHeavyCrossBow", "Team2Squad_16", 9, 19, 2, 50);
+			BattleLib.AddBattleSquad("NothHeavyCrossBow", "Team2Squad_17", 0, 12, 2, 50);
+			BattleLib.AddBattleSquad("NothHeavyCrossBow", "Team2Squad_18", 0, 13, 2, 50);
+			BattleLib.AddBattleSquad("NothHeavyCrossBow", "Team2Squad_19", 0, 14, 2, 50);
+			BattleLib.AssignAIGroup(2, "Team2Squad_11", "Noth");
+			BattleLib.AssignAIGroup(2, "Team2Squad_12", "Noth");
+			BattleLib.AssignAIGroup(2, "Team2Squad_13", "Noth");
+			BattleLib.AssignAIGroup(2, "Team2Squad_14", "Noth");
+			BattleLib.AssignAIGroup(2, "Team2Squad_15", "Noth");
+			BattleLib.AssignAIGroup(2, "Team2Squad_16", "Noth");
+			BattleLib.AssignAIGroup(2, "Team2Squad_17", "Noth");
+			BattleLib.AssignAIGroup(2, "Team2Squad_18", "Noth");
+			BattleLib.AssignAIGroup(2, "Team2Squad_19", "Noth");
 		end
 	end
 end

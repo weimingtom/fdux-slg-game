@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <MapName>map9</MapName>
 <MapTeam>
-    <Team2 TeamType="enemy1" TeamFaction="none" />
+    <Team2 TeamType="enemy1" TeamFaction="诺斯军" />
     <Team3 TeamType="none" TeamFaction="none" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
@@ -220,15 +220,15 @@
 <MapSquad>
     <Team1 />
     <Team2>
-        <Team2Squad_0 Type="NothHeavyCrossBow" GridX="11" GridY="6" Direction="1" UnitNum="0" />
-        <Team2Squad_1 Type="NothLightHSword" GridX="12" GridY="6" Direction="1" UnitNum="0" />
-        <Team2Squad_2 Type="NothLightHSword" GridX="10" GridY="6" Direction="1" UnitNum="0" />
-        <Team2Squad_3 Type="NothHeavyHSword" GridX="11" GridY="7" Direction="1" UnitNum="0" />
-        <Team2Squad_4 Type="NothHeavyHSword" GridX="9" GridY="7" Direction="1" UnitNum="0" />
-        <Team2Squad_5 Type="NothLightHSword" GridX="8" GridY="6" Direction="1" UnitNum="0" />
-        <Team2Squad_6 Type="NothLightBow" GridX="11" GridY="5" Direction="1" UnitNum="0" />
-        <Team2Squad_7 Type="NothLightBow" GridX="9" GridY="5" Direction="1" UnitNum="0" />
-        <Team2Squad_8 Type="NothHeavyCrossBow" GridX="9" GridY="6" Direction="1" UnitNum="0" />
+        <Team2Squad_0 Type="NothHeavyCrossBow" GridX="11" GridY="6" Direction="1" UnitNum="50" />
+        <Team2Squad_1 Type="NothLightHSword" GridX="12" GridY="6" Direction="1" UnitNum="50" />
+        <Team2Squad_2 Type="NothLightHSword" GridX="10" GridY="6" Direction="1" UnitNum="50" />
+        <Team2Squad_3 Type="NothHeavyHSword" GridX="11" GridY="7" Direction="1" UnitNum="50" />
+        <Team2Squad_4 Type="NothHeavyHSword" GridX="9" GridY="7" Direction="1" UnitNum="50" />
+        <Team2Squad_5 Type="NothLightHSword" GridX="8" GridY="6" Direction="1" UnitNum="50" />
+        <Team2Squad_6 Type="NothLightBow" GridX="11" GridY="5" Direction="1" UnitNum="50" />
+        <Team2Squad_7 Type="NothLightBow" GridX="9" GridY="5" Direction="1" UnitNum="50" />
+        <Team2Squad_8 Type="NothHeavyCrossBow" GridX="9" GridY="6" Direction="1" UnitNum="50" />
     </Team2>
     <Team3 />
     <Team4 />

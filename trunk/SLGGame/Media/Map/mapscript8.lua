@@ -66,14 +66,9 @@ end
 function unitdead()
 	squad = ScriptCommonLib.GetTempString("squadid");
 	
-	if BattleLib.TeamSquadLeft(1) == 0  then
+	if BattleLib.TeamSquadLeft(1) == 0 or squad == Kareena then
 		--失败(storyscript,gold,exp)
 		BattleLib.Lost("GameOver.lua","0","0");
-	end
-	
-	if squad == Kareena then
-		ScriptCommonLib.SetInt("mission1state", 0);
-		BattleLib.SetPlayerMission(mission1, 2);
 	end
 	
 	faction = SquadLib.GetFaction(squad);
@@ -113,11 +108,11 @@ function turnstart()
 		AVGLib.SetCanSupply("GuardLightSword",1);
 		AVGLib.SetCanSupply("Fay",1);
 		AVGLib.SetCanSupply("Elementalist",1);
-		BattleLib.CreateStorySquad ("Fay", "Fay", 12, 14, true);
-		BattleLib.CreateStorySquad ("GuardHeavySpear", "GuardHeavySpear", 13, 15, true);
-		BattleLib.CreateStorySquad ("GuardLightBow", "GuardHeavySpear", 13, 14, true);
-		BattleLib.CreateStorySquad ("GuardLightSword", "GuardHeavySpear", 12, 15, true);
-		BattleLib.CreateStorySquad ("Elementalist", "GuardHeavySpear", 14, 15, true);
+		BattleLib.CreateStorySquad ("Fay", "Fay", 12, 14, false);
+		BattleLib.CreateStorySquad ("GuardHeavySpear", "GuardHeavySpear", 13, 15, false);
+		BattleLib.CreateStorySquad ("GuardLightBow", "GuardLightBow", 13, 14, false);
+		BattleLib.CreateStorySquad ("GuardLightSword", "GuardLightSword", 12, 15, false);
+		BattleLib.CreateStorySquad ("Elementalist", "Elementalist", 14, 15, false);
 	end
 end	
 		
@@ -126,7 +121,15 @@ function turnend()
 	turn = ScriptCommonLib.GetTempInt("turn");
 	team = ScriptCommonLib.GetTempInt("team");
 	
+	if team == 1 and turn >= 10 then
+		mission1 = ScriptCommonLib.GetInt("mission1");
+		--完成任务(missionindex, missionstate)
+		BattleLib.SetPlayerMission(mission1, 2);
+		ScriptCommonLib.SetInt("mission1state", 0);
+	end
+	
 	if team == 2 and turn>=10 then
+		BattleLib.Story("cp16_6.lua");
 		BattleLib.AddGold(1500);
 		BattleLib.DumpSquadData();
 		addedgold = ScriptCommonLib.GetInt("addedgold");

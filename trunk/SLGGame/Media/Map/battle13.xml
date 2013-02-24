@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<MapName>newmap</MapName>
+<MapName>map13</MapName>
 <MapTeam>
-    <Team2 TeamType="none" TeamFaction="none" />
+    <Team2 TeamType="enemy1" TeamFaction="诺斯军" />
     <Team3 TeamType="none" TeamFaction="none" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
 <MapScript>mapscript13.lua</MapScript>
-<MapInfo>mapinfo1</MapInfo>
-<MapLoadBG>map1.png</MapLoadBG>
+<MapInfo>mapinfo13</MapInfo>
+<MapLoadBG>map5.png</MapLoadBG>
 <MapSize>20</MapSize>
 <MapGround>
     <G0 Type="Grass" Texture="Grass1Blur.dds" />
@@ -15,7 +15,7 @@
     <G2 Type="Cobble" Texture="DirtRoadTemp.dds" />
     <G3 Type="Road" Texture="GrassLargeRoadTemp.dds" />
 </MapGround>
-<MapData>hdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhwhwhwhwhwhwhwhdhdhwhdhdhwhdhdhdhwhwhwhdhdhdhdhdhdhdhdhwhdhwhdhdhwhdhdhdhwhdhwhdhdldldrdldldhdhdhwhwhwhwhwhdhdhdhwhdhdhdldldlglslgldldhdhdhwhdhdhwhdhdhwhwhdhdldldlglglslglgldhdhdhwhdhdhdhdhdhdhdhdhdldlslslslslglgldldhdhwhdhdhdhdhdhwhdhwhdldldldlglslslslsldhdhwhdhdhdhdhdhwhwhwhdhdhdldlglslglgldldhdhwhwhdhdhdhdhdhdhdhdhdldldlglglglgldhdhdhdhwhdhdhdldldldhdhdldldlglglslslgldldhdhdhwhdhdhdlglgldldrdldlglslslglglslgldldhdhdhdldldlglglglglglglslslglglglslslsldldhdldldlglslslslslslslslgldldrdldlglslgldldldlglglglglglglglslgldldhdhdldldlglslslslslslsrdldlglglglslgldhdhdhdhdldlglslglglglglghdldldldlglslsldldhdhdldldlglslgldrdldldhdhdhdldldlglslgldrdldldlglslgldldhdhdhdhdhdhdhdldldlslslslslslslslgldldhdhdhdhdhdhdhdhdhdldldlglglglslglgldldhdhdhdhdhd</MapData>
+<MapData>hdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhwhwhwhwhwhwhwhdhdhwhdhdhwhdhdhdhwhwhwhdhdhdhdhdhdhdhdhwhdhwhdhdhwhdhdhdhwhdhwhdhdldldrdldldhdhdhwhwhwhwhwhdhdhdhwhdhdhdldldlglslgldldhdhdhwhdhdhwhdhdhwhwhdhdldldlglglslglgldhdhdhwhdhdhdhdhdhdhdhdhdldlslslslslglgldldhdhwhdhdhdhdhdhwhdhwhdldldldlglslslslsldhdhwhdhdhdhdhdhwhwhwhdhdhdldlglslglgldldhdhwhwhdhdhdhdhdhdhdhdhdldldlglglglgldhdhdhdhwhdhdhdldldldhdhdldldlglglslslgldldhdhdhwhdhdhdlglgldldrdldlglslslglglslgldldhdhdhdldldlglglglglglglslslglglglslslsldldhdldldlglslslslslslslslgldldrdldlglslgldrdldlglglglglglglglslgldldhdhdldldlglslslslslslsrdldlglglglslgldhdhdhdhdldlglslglglglglghdldldldlglslsldldhdhdldldlglslgldrdldldhdhdhdldldlglslgldrdldldlglslgldldhdhdhdhdhdhdhdldldlslslslslslslslgldldhdhdhdhdhdhdhdhdhdldldlglglglslglgldldhdhdhdhdhd</MapData>
 <MapObject>
     <Stone1_0 Type="Stone" GridX="4" GridY="6" Mesh="Stone1.mesh" Direction="0" />
     <Stone1_1 Type="Stone" GridX="3" GridY="6" Mesh="Stone1.mesh" Direction="2" />
@@ -222,21 +222,21 @@
 <MapSquad>
     <Team1 />
     <Team2>
-        <Team2Squad_0 Type="Nothfate" GridX="9" GridY="10" Direction="1" UnitNum="0" />
-        <Team2Squad_1 Type="NothHeavyHSword" GridX="8" GridY="9" Direction="1" UnitNum="0" />
-        <Team2Squad_2 Type="NothHeavyHSword" GridX="10" GridY="9" Direction="1" UnitNum="0" />
-        <Team2Squad_3 Type="NothHeavyHSword" GridX="9" GridY="11" Direction="1" UnitNum="0" />
-        <Team2Squad_4 Type="NothHeavyHSword" GridX="9" GridY="9" Direction="1" UnitNum="0" />
-        <Team2Squad_5 Type="NothHeavyCrossBow" GridX="8" GridY="12" Direction="1" UnitNum="0" />
-        <Team2Squad_6 Type="NothHeavyCrossBow" GridX="10" GridY="12" Direction="1" UnitNum="0" />
-        <Team2Squad_7 Type="NothHeavyCrossBow" GridX="10" GridY="10" Direction="1" UnitNum="0" />
-        <Team2Squad_8 Type="NothHeavyCrossBow" GridX="8" GridY="10" Direction="1" UnitNum="0" />
-        <Team2Squad_9 Type="NothLightBow" GridX="7" GridY="11" Direction="1" UnitNum="0" />
-        <Team2Squad_10 Type="NothLightBow" GridX="6" GridY="12" Direction="1" UnitNum="0" />
-        <Team2Squad_11 Type="NothLightHSword" GridX="5" GridY="12" Direction="1" UnitNum="0" />
-        <Team2Squad_12 Type="NothLightBow" GridX="11" GridY="11" Direction="1" UnitNum="0" />
-        <Team2Squad_13 Type="NothLightBow" GridX="12" GridY="12" Direction="1" UnitNum="0" />
-        <Team2Squad_14 Type="NothLightHSword" GridX="13" GridY="12" Direction="1" UnitNum="0" />
+        <Team2Squad_0 Type="Nothfate" GridX="9" GridY="10" Direction="1" UnitNum="50" />
+        <Team2Squad_1 Type="NothHeavyHSword" GridX="8" GridY="9" Direction="1" UnitNum="50" />
+        <Team2Squad_2 Type="NothHeavyHSword" GridX="10" GridY="9" Direction="1" UnitNum="50" />
+        <Team2Squad_3 Type="NothHeavyHSword" GridX="15" GridY="14" Direction="1" UnitNum="50" />
+        <Team2Squad_4 Type="NothHeavyHSword" GridX="9" GridY="9" Direction="1" UnitNum="50" />
+        <Team2Squad_5 Type="NothHeavyCrossBow" GridX="6" GridY="13" Direction="1" UnitNum="50" />
+        <Team2Squad_6 Type="NothHeavyCrossBow" GridX="13" GridY="13" Direction="1" UnitNum="50" />
+        <Team2Squad_7 Type="NothHeavyCrossBow" GridX="10" GridY="10" Direction="1" UnitNum="50" />
+        <Team2Squad_8 Type="NothHeavyCrossBow" GridX="8" GridY="10" Direction="1" UnitNum="50" />
+        <Team2Squad_9 Type="NothLightBow" GridX="7" GridY="11" Direction="1" UnitNum="50" />
+        <Team2Squad_10 Type="NothLightBow" GridX="4" GridY="8" Direction="1" UnitNum="50" />
+        <Team2Squad_11 Type="NothLightHSword" GridX="3" GridY="8" Direction="1" UnitNum="50" />
+        <Team2Squad_12 Type="NothLightBow" GridX="11" GridY="11" Direction="1" UnitNum="50" />
+        <Team2Squad_13 Type="NothLightBow" GridX="15" GridY="15" Direction="1" UnitNum="50" />
+        <Team2Squad_14 Type="NothLightHSword" GridX="4" GridY="9" Direction="1" UnitNum="50" />
     </Team2>
     <Team3 />
     <Team4 />
@@ -246,11 +246,63 @@
         <c0 X="8" Y="6" />
         <c1 X="9" Y="6" />
         <c2 X="10" Y="6" />
-        <c3 X="10" Y="7" />
-        <c4 X="9" Y="7" />
-        <c5 X="8" Y="7" />
-        <c6 X="9" Y="5" />
-        <c7 X="8" Y="5" />
-        <c8 X="10" Y="5" />
+        <c3 X="9" Y="5" />
+        <c4 X="8" Y="5" />
+        <c5 X="10" Y="5" />
+        <c6 X="8" Y="4" />
+        <c7 X="9" Y="4" />
+        <c8 X="10" Y="4" />
     </DeployArea>
+    <TargetArea>
+        <c0 X="18" Y="15" />
+        <c1 X="19" Y="15" />
+        <c2 X="19" Y="14" />
+        <c3 X="18" Y="14" />
+        <c4 X="18" Y="13" />
+        <c5 X="19" Y="13" />
+        <c6 X="19" Y="12" />
+    </TargetArea>
+    <KeyArea1>
+        <c0 X="6" Y="1" />
+        <c1 X="7" Y="1" />
+        <c2 X="8" Y="1" />
+        <c3 X="9" Y="1" />
+        <c4 X="10" Y="1" />
+        <c5 X="11" Y="1" />
+        <c6 X="12" Y="1" />
+        <c7 X="12" Y="0" />
+        <c8 X="11" Y="0" />
+        <c9 X="10" Y="0" />
+        <c10 X="9" Y="0" />
+        <c11 X="8" Y="0" />
+        <c12 X="7" Y="0" />
+        <c13 X="6" Y="0" />
+    </KeyArea1>
+    <KeyArea2>
+        <c0 X="3" Y="9" />
+        <c1 X="3" Y="10" />
+        <c2 X="4" Y="10" />
+        <c3 X="4" Y="9" />
+        <c4 X="4" Y="12" />
+        <c5 X="4" Y="13" />
+        <c6 X="3" Y="12" />
+        <c7 X="3" Y="13" />
+        <c8 X="4" Y="14" />
+        <c9 X="3" Y="14" />
+    </KeyArea2>
+    <KeyArea3>
+        <c0 X="16" Y="15" />
+        <c1 X="16" Y="14" />
+        <c2 X="17" Y="14" />
+        <c3 X="15" Y="14" />
+        <c4 X="15" Y="15" />
+        <c5 X="17" Y="15" />
+        <c6 X="15" Y="11" />
+        <c7 X="16" Y="11" />
+        <c8 X="17" Y="11" />
+        <c9 X="16" Y="12" />
+        <c10 X="15" Y="10" />
+        <c11 X="16" Y="10" />
+        <c12 X="17" Y="10" />
+    </KeyArea3>
 </MapArea>

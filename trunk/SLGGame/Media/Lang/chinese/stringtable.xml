@@ -9,13 +9,93 @@
 		<map2 type="String" value = "双河平原之战 后篇"/>
 		<mapinfo2 type="String" value = "圣法师是教廷所属的特殊战斗单位。在战场上，圣法师不仅能提高己方战斗力，其忏悔技能还可使敌方人员陷入低战斗力状态，以此提高我军杀敌效率。&#x0D;#FFFF00任务目标:歼灭所有敌军
 "/>
-		<map2mission1 type="String" value = "(主要)歼灭敌军"/>
+		<map2mission1 type="String" value = "(主要)击退达克斯的反攻"/>
 		<map2mission2 type="String" value = "(次要)中央营地不能失守(500金币)"/>
 		<map3 type="String" value = "锐脊河谷剿匪战"/>
 		<mapinfo3 type="String" value = "奥术法师和战术法师虽然在战场中的定位完全不同，但他们都使用傀儡进行防御，在战场上一定要注意他们的傀儡数量，没有傀儡保护的法师是不堪一击的。&#x0D;#FFFF00任务目标:歼灭所有敌军
 "/>
 		<map3mission1 type="String" value = "(主要)歼灭敌军"/>
-		<map3mission2 type="String" value = "(次要)敌方逃走部队不超过3支(700金币)"/>
+		<map3mission2 type="String" value = "(次要)敌方逃走部队不能超过3支(700金币)"/>	
+		<map4 type="String" value = "山岳间的突袭"/>
+		<mapinfo4 type="String" value = "法师塔是由初代安萨斯特的胞弟在千年前创建的，从建立开始它就很少插手世俗的争斗，甚至在教会和皇家直接对抗的大战中也安然自得的隔岸观火，虽然他们名义上向皇室效忠。&#x0D;#FFFF00任务目标:歼灭所有敌军
+"/>
+		<map4mission1 type="String" value = "(主要)歼灭敌军"/>
+		<map4mission2 type="String" value = "(次要)己方部队不能溃散(700金币)"/>
+		<map4mission3 type="String" value = "(次要)10回合内结束战斗(800金币)"/>
+		
+		<map5 type="String" value = "月曜平原剿匪战"/>
+		<mapinfo5 type="String" value = "月曜镇是法师塔下属的四个主要城市之一，位于法师塔西北部的月曜平原，是规模仅次于主塔的第二大城市，也是法师塔主要的人口聚居地之一。&#x0D;#FFFF00任务目标:歼灭所有敌军
+"/>
+		<map5mission1 type="String" value = "(主要)歼灭敌军"/>
+		<map5mission2 type="String" value = "(次要)10合内结束战斗(700金币)"/>
+				
+		<map6 type="String" value = "河谷的援军"/>
+		<mapinfo6 type="String" value = "锐脊河谷位于法师塔、诺斯和温菲尔德的交界区域，地势险要。跟猎熊关一样，这个可能成为诺斯南侵途径的河谷也在温菲尔德军的严密监视下，但由于其不适合大军行动，重要度并不及猎熊关。&#x0D;#FFFF00任务目标:歼灭所有敌军
+"/>
+		<map6mission1 type="String" value = "(主要)歼灭敌军"/>
+		<map6mission2 type="String" value = "(次要)奥术法师不能阵亡(700金币)"/>
+		
+		<map7 type="String" value = "锐脊河谷防守战"/>
+		<mapinfo7 type="String" value = "诺斯立国于凡达克大陆北方的群山之中，以民风彪悍著称。在千年之前安萨斯特家族征服大陆的那场战争中，安萨斯特家族最强大的将领、被誉为圣灵骑士的西斯.安萨斯特也在北国军队的突袭中丧生。在付出极大代价征服北国后，安萨斯特在其南下的要道上修筑了著名的猎熊关，并将北国一分为二，即诺斯和乌尔瓦，并交给两个互相仇视的本地大贵族分别统治，&#x0D;#FFFF00任务目标:坚守15回合
+"/>
+		<map7mission1 type="String" value = "(主要)坚守15回合(城堡不能失守)"/>
+		<map7mission2 type="String" value = "(次要)歼灭敌军(1000金币)"/>
+		
+		<map8 type="String" value = "被围困的大法师"/>
+		<mapinfo8 type="String" value = "法师塔的核心决策机构是由十五名大法师组成的法师议会，其中首席大法师担任议长职务，为法师塔最高管理者。而法师塔的二号人物则并不十分明确，管理法卫队的首席指挥法师和管理法师学院的首席教导师都有自称二号人物的实力。&#x0D;#FFFF00任务目标:击退敌方袭击
+"/>
+		<map8mission1 type="String" value = "(主要)击退敌方袭击"/>
+		<map8mission2 type="String" value = "(次要)10回合内击溃敌军(1000金币)"/>
+		
+		<map9 type="String" value = "月曜平原之战"/>
+		<mapinfo9 type="String" value = "自从安萨斯特将北之国一分为二，重新统一北方一直是诺斯和乌尔瓦历代王侯的夙愿，但在安萨斯特的统治下双方都不敢做出任何实质行动。直到教会势力脱离皇室控制后，一个强大的北国更符合其对抗皇室的需求，所以锡盟教廷默许了跟教会关系更紧密的乌尔瓦数次入侵诺斯，从此挑起了北国战乱的序幕，&#x0D;#FFFF00任务目标:坚守月曜镇（15回合）
+"/>
+		<map9mission1 type="String" value = "(主要)坚守月曜镇（15回合）"/>
+		<map9mission2 type="String" value = "(次要)击溃敌军(1000金币)"/>
+		<map9mission3 type="String" value = "(次要)敌军不能进入月曜镇(600金币)"/>
+		
+		<map10 type="String" value = "河谷中的反击"/>
+		<mapinfo10 type="String" value = "虽然温菲尔德一贯被认为是教会联盟中的强大势力，但它并不是传统意义上的强国，因为无论是它的兵力和经济都并不十分显眼，但因为它紧邻锡盟教皇国并长期虔诚的扮演着教会卫士的角色，其政治影响力不可小觑。&#x0D;#FFFF00任务目标:歼灭敌军
+"/>
+		<map10mission1 type="String" value = "(主要)歼灭敌军"/>
+		<map10mission2 type="String" value = "(次要)温菲尔德损失不超过3支(1000金币)"/>
+		
+		<map11 type="String" value = "突袭锐脊山"/>
+		<mapinfo11 type="String" value = "锐脊山以异常陡峭的山脊著称，它是诺斯和南方的天然分界线，唯一适宜大规模军队南下的只有被猎熊关扼守住的锐脊走廊，除此之外，从锐脊河谷和荒废多年的锐脊古道虽也可以翻译锐脊山，但通道狭长险峻，难以保障大规模部队的补给运输，&#x0D;#FFFF00任务目标:到达西北方营地
+"/>
+		<map11mission1 type="String" value = "(主要)到达西北方营地"/>
+		<map11mission2 type="String" value = "(次要)消灭8支以上敌军(1000金币)"/>
+		
+		<map12 type="String" value = "锐脊山之围.一"/>
+		<mapinfo12 type="String" value = "诺斯菲特是诺斯先王的第三个儿子，原本应该与王位无关的他却因为二十年前诺斯与乌尔瓦的战争成为了王位的唯一继承人，他的两个哥哥在那场战争中被温菲尔德偷袭丧生，而他也成为乌尔瓦的人质，在那里度过了漫长而艰辛的童年，直到他父亲去世，诺斯菲特才被乌尔瓦当做傀儡送回国。&#x0D;#FFFF00任务目标:向西南方突围
+"/>
+		<map12mission1 type="String" value = "(主要)向西南方突围"/>
+		<map12mission2 type="String" value = "(次要)8回合内到达指定位置(700金币)"/>
+		
+		<map13 type="String" value = "锐脊山之围.二"/>
+		<mapinfo13 type="String" value = "十三年前，通过一系列强硬手段摆脱乌尔瓦的控制后，诺斯菲特向乌尔瓦发起了复仇的战争，同年十二月，双方主力在湖面结冰的北冰湖进行决战，此役诺斯军不到乌尔瓦军的一半，但战局却发生了戏剧性转变：原本应该厚实无比的湖冰突然裂开，乌尔瓦大量重步兵落水溺毙，余部在混乱之中被诺斯全歼。主力被歼灭的乌尔瓦于次年被诺斯征服。&#x0D;#FFFF00任务目标:掩护卡斯特向东南突围
+"/>
+		<map13mission1 type="String" value = "(主要)掩护卡斯特向东南突围"/>
+		<map13mission2 type="String" value = "(次要)消灭4支以上敌军(1000金币)"/>
+		
+		<map14 type="String" value = "锐脊山之围.三"/>
+		<mapinfo14 type="String" value = "翼骑团是由来自骏马之国西提的流放贵族柯萨.雷金特创建的，最初以精锐雇佣骑兵闻名大陆。经过二十年的征战，翼骑团已经成为大陆上实力顶尖的佣兵团之一，但由于柯萨本人推行精兵策略和终身奉养制度，翼骑团在规模上则远远小于大部分知名佣兵团。&#x0D;#FFFF00任务目标:坚守营地
+"/>
+		<map14mission1 type="String" value = "(主要)坚守营地（8回合）"/>
+		<map14mission2 type="String" value = "(次要)所有部队不溃散(1000金币)"/>
+		
+		<map15 type="String" value = "日晖林地遇袭"/>
+		<mapinfo15 type="String" value = "日晖镇是法师塔下属四镇中人口最少的城市，它坐落于法师塔东部的日晖林地之中。日晖纸以造纸闻名，它的建立是安萨斯特在凡达克大陆上推行造纸技术的起点，时至今日，日晖纸的外销依旧是法师塔的重要财政收入来源。&#x0D;#FFFF00任务目标:歼灭敌军
+"/>
+		<map15mission1 type="String" value = "(主要)歼灭敌军"/>
+		<map15mission2 type="String" value = "(次要)8回合内歼灭敌军(1000金币)"/>
+		<map15mission3 type="String" value = "(主要)向东部的森林撤退"/>
+		
+		<map16 type="String" value = "翼骑团的反击"/>
+		<mapinfo15 type="String" value = "骏马之国西提位于大陆的最西端，肩负着抵抗化外蛮族的使命。在大陆陷入混战的现在，坐拥数千精锐骑兵的西提人依旧忠实的履行着自己的职责，从不参与任何权力之争。也正因为如此，每年都有不少渴望建功立业的西提人独自前往大陆中央追逐功名，其中就包括了出生在西提小贵族家族的柯萨.雷金特。&#x0D;#FFFF00任务目标:歼灭敌军
+"/>
+		<map15mission1 type="String" value = "(主要)歼灭敌军"/>
+		<map15mission2 type="String" value = "(次要)所有部队不溃散(1000金币)"/>
 		
 		<!--LeaderName-->
 		<Cheetah type="String" value="齐塔"/>

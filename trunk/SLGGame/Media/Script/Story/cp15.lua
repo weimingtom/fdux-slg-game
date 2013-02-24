@@ -257,5 +257,9 @@ GUI.ShowImage("",left,600);
 GUI.ShowImage("",right,600);
 GUI.CM(3000);
 GUI.ShowImage("black.png",4,3000);
-
+AVGLib.SetCanSupply("GuardHeavySpear",0);
+AVGLib.SetCanSupply("GuardLightBow",0);
+AVGLib.SetCanSupply("GuardLightSword",0);
+AVGLib.SetCanSupply("Fay",0);
+AVGLib.SetCanSupply("Elementalist",0);
 GUI.NextScene("cp16.lua");

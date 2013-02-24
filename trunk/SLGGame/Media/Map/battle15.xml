@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<MapName>newmap</MapName>
+<MapName>map15</MapName>
 <MapTeam>
-    <Team2 TeamType="none" TeamFaction="none" />
-    <Team3 TeamType="none" TeamFaction="none" />
+    <Team2 TeamType="enemy1" TeamFaction="法卫队" />
+    <Team3 TeamType="enemy2" TeamFaction="温菲尔德军" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
 <MapScript>battle15script.lua</MapScript>
-<MapInfo>mapinfo1</MapInfo>
-<MapLoadBG>map1.png</MapLoadBG>
+<MapInfo>mapinfo15</MapInfo>
+<MapLoadBG>map6.png</MapLoadBG>
 <MapSize>20</MapSize>
 <MapGround>
     <G0 Type="Grass" Texture="Grass1Blur.dds" />
@@ -269,16 +269,16 @@
 <MapSquad>
     <Team1 />
     <Team2>
-        <Team2Squad_0 Type="GuardHeavySpear" GridX="11" GridY="6" Direction="1" UnitNum="0" />
-        <Team2Squad_1 Type="Elementalist" GridX="13" GridY="6" Direction="1" UnitNum="0" />
-        <Team2Squad_2 Type="Warmage" GridX="12" GridY="6" Direction="1" UnitNum="0" />
-        <Team2Squad_3 Type="GuardCrossBow" GridX="12" GridY="5" Direction="1" UnitNum="0" />
-        <Team2Squad_4 Type="GuardCrossBow" GridX="12" GridY="7" Direction="1" UnitNum="0" />
+        <Team2Squad_0 Type="GuardHeavySpear" GridX="11" GridY="6" Direction="1" UnitNum="50" />
+        <Team2Squad_1 Type="Elementalist" GridX="13" GridY="6" Direction="1" UnitNum="50" />
+        <Team2Squad_2 Type="Warmage" GridX="12" GridY="6" Direction="1" UnitNum="50" />
+        <Team2Squad_3 Type="GuardCrossBow" GridX="12" GridY="5" Direction="1" UnitNum="50" />
+        <Team2Squad_4 Type="GuardCrossBow" GridX="12" GridY="7" Direction="1" UnitNum="50" />
     </Team2>
     <Team3>
-        <Team3Squad_0 Type="WinfredHeavyCavalry" GridX="1" GridY="6" Direction="1" UnitNum="0" />
-        <Team3Squad_1 Type="WinfredHeavyHalberd" GridX="0" GridY="5" Direction="1" UnitNum="0" />
-        <Team3Squad_2 Type="WinfredHeavyHalberd" GridX="0" GridY="7" Direction="1" UnitNum="0" />
+        <Team3Squad_0 Type="WinfredHeavyCavalry" GridX="1" GridY="6" Direction="1" UnitNum="50" />
+        <Team3Squad_1 Type="WinfredHeavyHalberd" GridX="0" GridY="5" Direction="1" UnitNum="50" />
+        <Team3Squad_2 Type="WinfredHeavyHalberd" GridX="0" GridY="7" Direction="1" UnitNum="50" />
     </Team3>
     <Team4 />
 </MapSquad>
@@ -294,4 +294,27 @@
         <c7 X="6" Y="4" />
         <c8 X="7" Y="4" />
     </DeployArea>
+    <TargetArea>
+        <c0 X="16" Y="5" />
+        <c1 X="17" Y="5" />
+        <c2 X="17" Y="6" />
+        <c3 X="16" Y="6" />
+        <c4 X="16" Y="7" />
+        <c5 X="16" Y="8" />
+        <c6 X="16" Y="9" />
+        <c7 X="17" Y="9" />
+        <c8 X="17" Y="8" />
+        <c9 X="17" Y="7" />
+        <c10 X="16" Y="10" />
+        <c11 X="17" Y="10" />
+        <c12 X="16" Y="4" />
+        <c13 X="17" Y="4" />
+        <c14 X="18" Y="4" />
+        <c15 X="18" Y="5" />
+        <c16 X="18" Y="6" />
+        <c17 X="18" Y="7" />
+        <c18 X="18" Y="8" />
+        <c19 X="18" Y="9" />
+        <c20 X="18" Y="10" />
+    </TargetArea>
 </MapArea>

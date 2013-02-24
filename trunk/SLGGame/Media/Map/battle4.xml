@@ -270,12 +270,12 @@
 <MapSquad>
     <Team1 />
     <Team2>
-        <Team2Squad_0 Type="FNothHeavyHSword" GridX="7" GridY="14" Direction="1" UnitNum="0" />
-        <Team2Squad_1 Type="FNothLightHSword" GridX="8" GridY="14" Direction="1" UnitNum="0" />
-        <Team2Squad_2 Type="FNothLightBow" GridX="8" GridY="13" Direction="1" UnitNum="0" />
-        <Team2Squad_3 Type="FNothLightBow" GridX="7" GridY="12" Direction="1" UnitNum="0" />
-        <Team2Squad_4 Type="FNothLightBow" GridX="6" GridY="13" Direction="1" UnitNum="0" />
-        <Team2Squad_5 Type="FNothLightHSword" GridX="7" GridY="13" Direction="1" UnitNum="0" />
+        <Team2Squad_0 Type="FNothHeavyHSword" GridX="7" GridY="14" Direction="1" UnitNum="50" />
+        <Team2Squad_1 Type="FNothLightHSword" GridX="8" GridY="14" Direction="1" UnitNum="50" />
+        <Team2Squad_2 Type="FNothLightBow" GridX="8" GridY="13" Direction="1" UnitNum="50" />
+        <Team2Squad_3 Type="FNothLightBow" GridX="7" GridY="12" Direction="1" UnitNum="50" />
+        <Team2Squad_4 Type="FNothLightBow" GridX="6" GridY="13" Direction="1" UnitNum="50" />
+        <Team2Squad_5 Type="FNothLightHSword" GridX="7" GridY="13" Direction="1" UnitNum="50" />
     </Team2>
     <Team3 />
     <Team4 />
