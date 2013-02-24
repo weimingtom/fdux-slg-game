@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<MapName>newmap</MapName>
+<MapName>map18</MapName>
 <MapTeam>
-    <Team2 TeamType="none" TeamFaction="none" />
-    <Team3 TeamType="none" TeamFaction="none" />
+    <Team2 TeamType="enemy1" TeamFaction="黑骑士" />
+    <Team3 TeamType="enemy2" TeamFaction="法卫队" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
 <MapScript>mapscript18.lua</MapScript>
-<MapInfo>mapinfo1</MapInfo>
+<MapInfo>mapinfo18</MapInfo>
 <MapLoadBG>map1.png</MapLoadBG>
 <MapSize>20</MapSize>
 <MapGround>
@@ -274,7 +274,13 @@
         <Team2Squad_2 Type="DarkKnight" GridX="16" GridY="13" Direction="1" UnitNum="0" />
         <Team2Squad_3 Type="Syrin" GridX="17" GridY="14" Direction="1" UnitNum="0" />
     </Team2>
-    <Team3 />
+    <Team3>
+	    <Team3Squad_0 Type="GuardHeavySpear" GridX="15" GridY="14" Direction="1" UnitNum="0" />
+        <Team3Squad_1 Type="Warmage" GridX="19" GridY="14" Direction="1" UnitNum="0" />
+        <Team3Squad_2 Type="GuardCrossBow" GridX="16" GridY="15" Direction="1" UnitNum="0" />
+        <Team3Squad_3 Type="GuardCrossBow" GridX="18" GridY="15" Direction="1" UnitNum="0" />
+		<Team3Squad_4 Type="Elementalist" GridX="18" GridY="16" Direction="1" UnitNum="0" />
+	</Team3>
     <Team4 />
 </MapSquad>
 <MapArea>

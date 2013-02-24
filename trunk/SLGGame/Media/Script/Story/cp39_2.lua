@@ -1,0 +1,13 @@
+GUI.ButtonLock();
+GUI.SetDialogVisible(1);
+GUI.ShowImage("weier_cj.png",left,300);
+GUI.ShowRoleName("威尔维斯");
+GUI.ShowText("一群废物！",1);
+GUI.ClearText();
+GUI.ShowText("让后备军立即出动！给我尽快拿下东港！",1);
+GUI.ClearText();
+GUI.ShowRoleName("");
+GUI.ShowImage("",right,500);
+GUI.ShowImage("",left,500);
+GUI.SetDialogVisible(0);
+GUI.StoryOver();

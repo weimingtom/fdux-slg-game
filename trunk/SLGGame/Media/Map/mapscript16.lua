@@ -70,7 +70,7 @@ function unitdead()
 		BattleLib.Lost("GameOver.lua","0","0");
 	end
 	faction = SquadLib.GetFaction(squad);
-	if faction == 1 then
+	if faction == 1 or faction == 0 then
 		BattleLib.AddGold(100);
 		addedgold = ScriptCommonLib.GetInt("addedgold");
 		addedgold = addedgold + 100;

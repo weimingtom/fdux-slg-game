@@ -128,6 +128,7 @@ function inarea()
 			mission1state = ScriptCommonLib.GetInt("mission1state");
 		    mission1state = mission1state + 1;
 			ScriptCommonLib.SetInt("mission1state", mission1state);
+			BattleLib.RemoveBattleSquad(squad);
 			if mission1state > 3 then
 				mission1 = ScriptCommonLib.GetInt("mission1");
 				--任务成功(missionindex, missionstate)
