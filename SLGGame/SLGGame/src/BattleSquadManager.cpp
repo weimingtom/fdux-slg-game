@@ -465,8 +465,10 @@ void BattleSquadManager::moveSquad(BattleSquad* squad,std::vector<int> pointlist
 					if(faction == 0)
 					{
 						InterruptMove();
-						CutSceneBuilder::getSingleton().addCutScene(new ShowValueCutScene(squad->getSquadId(),StringTable::getSingletonPtr()->getString("SquadFindEnemy"),Ogre::ColourValue(1,1,0,1)));
-						CutSceneBuilder::getSingleton().addCutScene(new SquadStateCutScene(ite->second,SQUAD_STATE_VISIBLE,"none",1));
+						CombineCutScene* showValueCutScenes=new CombineCutScene();
+						showValueCutScenes->addCutScene(new ShowValueCutScene(squad->getSquadId(),StringTable::getSingletonPtr()->getString("SquadFindEnemy"),Ogre::ColourValue(1,1,0,1)));
+						showValueCutScenes->addCutScene(new SquadStateCutScene(ite->second,SQUAD_STATE_VISIBLE,"none",1));
+						CutSceneBuilder::getSingleton().addCutScene(showValueCutScenes);
 						return;
 					}
 				}
@@ -486,7 +488,6 @@ void BattleSquadManager::moveSquad(BattleSquad* squad,std::vector<int> pointlist
 						InterruptMove();
 						CutSceneBuilder::getSingleton().addCutScene(new SquadStateCutScene(squad, SQUAD_STATE_VISIBLE,"none",1));
 						m_moveInterrupt = false;
-						m_moveList.clear();
 						m_startPoint.x = squad->getGridX();
 						m_startPoint.y = squad->getGridY();
 					}
@@ -513,6 +514,7 @@ void BattleSquadManager::InterruptMove()
 	{
 		MoveCutScene* movecutscne = new MoveCutScene(m_moveSquad->getSquadId(), m_moveList, m_startPoint);
 		CutSceneBuilder::getSingleton().addCutScene(movecutscne);
+		m_moveList.clear();
 	}
 	m_moveInterrupt = true;
 }
@@ -1118,6 +1120,8 @@ bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* 
 		attacksquad->setAmbushFaction(deffaction, false);
 	}
 
+	defenesquad->onUnderMagicAttack(attacksquad);
+
 	AttackInfo atkinfo;
 	atkinfo.Atk = atk;
 	atkinfo.AtkTime = attacktime;
@@ -1148,6 +1152,7 @@ bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* 
 	{
 		std::string eid;
 		defenesquad->applyEffect("Waver", eid);
+		defenesquad->afterUnderMagicAttack(attacksquad);
 	}
 	return true;
 }
@@ -1174,6 +1179,9 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 		attacksquad->setAmbushFaction(deffaction, false);
 	}
 
+	attacksquad->onRangedAttack(defenesquad);
+	defenesquad->onUnderRangedAttack(attacksquad);
+
 	int x = defenesquad->getGridX();
 	int y = defenesquad->getGridY();
 	rangedCutScene(attacksquad, x, y, UNITTYPE_ALL, "none","Attack","1",0,"none","none","none");
@@ -1199,6 +1207,7 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 		cutscenebuilder->addCutScene(new ShowValueCutScene(defenesquad->getSquadId(),str(boost::format(StringTable::getSingletonPtr()->getString("BattleInfo"))%(squadRealNumB-squadRealNumA)),Ogre::ColourValue::Red));
 	}
 
+	attacksquad->afterRangedAttack(defenesquad);
 	if(defenesquad->getUnitNum() == 0)
 	{
 		cutscenebuilder->addCutScene(new SquadStateCutScene(defenesquad, SQUAD_STATE_VISIBLE, "none", 0));
@@ -1207,6 +1216,7 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 	{
 		std::string eid;
 		defenesquad->applyEffect("Waver", eid);
+		defenesquad->afterUnderRangedAttack(attacksquad);
 	}
 
 	return true;
@@ -1346,4 +1356,14 @@ bool BattleSquadManager::createNormalSquad(std::string squadid, std::string suqa
 	grap->setVisible(false);
 	CutSceneBuilder::getSingleton().addCutScene(new SquadStateCutScene(battlesquad, SQUAD_STATE_VISIBLE, "none",1));
 	return true;
+}
+
+void BattleSquadManager::removeSquad(std::string squadid)
+{
+	BattleSquad* battlesquad = getBattleSquad(squadid);
+	if(battlesquad)
+	{
+		battlesquad->setUnitNum(0);
+		CutSceneBuilder::getSingleton().addCutScene(new SquadStateCutScene(battlesquad, SQUAD_STATE_VISIBLE, "none",0));
+	}
 }

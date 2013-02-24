@@ -1486,21 +1486,24 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 				formgroupdecision.addFactor(new SquadRolebyTypeFactor(ROLETYPE_MAINFORCE), 1.0f);
 				formgroupdecision.calcDecision();
 				std::vector<BattleSquad*> choosesquads = formgroupdecision.getHigherThan(30.0f);
-				squadsite = choosesquads.begin();
-				for( ; squadsite != choosesquads.end(); squadsite++)
+				if(choosesquads.size() > 0)
 				{
-					if(curmainstrength > threatenstrength * 0.5f)
-						break;
-					curmainstrength += (*squadsite)->getSquadStrength();
-					curdefendstrength += (*squadsite)->getSquadStrength();
-				}
-				chooseSquads(freeSquads, choosesquads, squadsite);
-				int createdsg = createSquadGroup(SG_MAIN, choosesquads);
-				sgcite = mSquadGroupList.find(createdsg);
-				if(sgcite != mSquadGroupList.end())
-				{	
-					updateMission(sgcite->second, (*tite).otherSquadGroupIndex, othersquadgroup);
-					(*tite).assignSquadGroupVec.push_back(createdsg);
+					squadsite = choosesquads.begin();
+					for( ; squadsite != choosesquads.end(); squadsite++)
+					{
+						if(curmainstrength > threatenstrength * 0.5f)
+							break;
+						curmainstrength += (*squadsite)->getSquadStrength();
+						curdefendstrength += (*squadsite)->getSquadStrength();
+					}
+					chooseSquads(freeSquads, choosesquads, squadsite);
+					int createdsg = createSquadGroup(SG_MAIN, choosesquads);
+					sgcite = mSquadGroupList.find(createdsg);
+					if(sgcite != mSquadGroupList.end())
+					{	
+						updateMission(sgcite->second, (*tite).otherSquadGroupIndex, othersquadgroup);
+						(*tite).assignSquadGroupVec.push_back(createdsg);
+					}
 				}
 			}
 			//创建远程支援分组
@@ -1510,21 +1513,24 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 				formgroupdecision.addFactor(new SquadRolebyTypeFactor(ROLETYPE_SUPPORT_RANGE), 1.0f);
 				formgroupdecision.calcDecision();
 				std::vector<BattleSquad*> choosesquads = formgroupdecision.getHigherThan(30.0f);
-				squadsite = choosesquads.begin();
-				for( ; squadsite != choosesquads.end(); squadsite++)
+				if(choosesquads.size() > 0)
 				{
-					if(currangestrength > threatenstrength * 0.4f)
-						break;
-					curmainstrength += (*squadsite)->getSquadStrength();
-					currangestrength += (*squadsite)->getSquadStrength();
-				}
-				chooseSquads(freeSquads, choosesquads, squadsite);
-				int createdsg = createSquadGroup(SG_SUPPORT_RANGE, choosesquads);
-				sgcite = mSquadGroupList.find(createdsg);
-				if(sgcite != mSquadGroupList.end())
-				{	
-					updateMission(sgcite->second, (*tite).otherSquadGroupIndex, othersquadgroup);
-					(*tite).assignSquadGroupVec.push_back(createdsg);
+					squadsite = choosesquads.begin();
+					for( ; squadsite != choosesquads.end(); squadsite++)
+					{
+						if(currangestrength > threatenstrength * 0.4f)
+							break;
+						curmainstrength += (*squadsite)->getSquadStrength();
+						currangestrength += (*squadsite)->getSquadStrength();
+					}
+					chooseSquads(freeSquads, choosesquads, squadsite);
+					int createdsg = createSquadGroup(SG_SUPPORT_RANGE, choosesquads);
+					sgcite = mSquadGroupList.find(createdsg);
+					if(sgcite != mSquadGroupList.end())
+					{	
+						updateMission(sgcite->second, (*tite).otherSquadGroupIndex, othersquadgroup);
+						(*tite).assignSquadGroupVec.push_back(createdsg);
+					}
 				}
 			}
 			//创建应急分组

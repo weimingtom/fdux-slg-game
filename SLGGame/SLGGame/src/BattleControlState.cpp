@@ -82,14 +82,6 @@ void BattleControlState::update(unsigned int deltaTime)
 						luatempcontext->intMap["turn"] = turn;
 						luatempcontext->intMap["team"] = team;
 
-						std::string temp;
-						DataLibrary::getSingletonPtr()->getData("GameData/BattleData/MapData/MapName",temp);
-						//int val;
-						//DataLibrary::getSingletonPtr()->getData("GameData/BattleData/BattleState/Ture",val);
-						DataLibrary::getSingletonPtr()->setData("SystemConfig/Save/Save2",std::string("AutoSave ")+temp+" "+str(boost::format(StringTable::getSingletonPtr()->getString("RoundNum"))%(turn)));
-						DataLibrary::getSingletonPtr()->saveXmlData(DataLibrary::SystemConfig,std::string("..\\save")+std::string("\\Config.xml"));
-						StateManager::getSingletonPtr()->saveState(std::string("..\\save")+std::string("\\save2.xml"));
-
 						MapDataManager::getSingleton().Trigger("TurnStart", luatempcontext);
 						delete luatempcontext;
 						BattleSquadManager* battlesquadmanager = BattleSquadManager::getSingletonPtr();
@@ -106,6 +98,14 @@ void BattleControlState::update(unsigned int deltaTime)
 							mCurState = ControlState_TurnStart;
 							DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/Ture",turn);
 							DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/CurTeam",team);
+
+							std::string temp;
+							DataLibrary::getSingletonPtr()->getData("GameData/BattleData/MapData/MapName",temp);
+							//int val;
+							//DataLibrary::getSingletonPtr()->getData("GameData/BattleData/BattleState/Ture",val);
+							DataLibrary::getSingletonPtr()->setData("SystemConfig/Save/Save2",std::string("AutoSave ")+temp+" "+str(boost::format(StringTable::getSingletonPtr()->getString("RoundNum"))%(turn)));
+							DataLibrary::getSingletonPtr()->saveXmlData(DataLibrary::SystemConfig,std::string("..\\save")+std::string("\\Config.xml"));
+							StateManager::getSingletonPtr()->saveState(std::string("..\\save")+std::string("\\save2.xml"));
 							return;
 						}
 						BattlePlayerState* playerstate = new BattlePlayerState();
@@ -165,6 +165,16 @@ void BattleControlState::update(unsigned int deltaTime)
 			DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/CurTeam",team);
 			mGUIState->showScene("");
 			mGUIState->update();
+			if(team == 1)
+			{
+				std::string temp;
+				DataLibrary::getSingletonPtr()->getData("GameData/BattleData/MapData/MapName",temp);
+				//int val;
+				//DataLibrary::getSingletonPtr()->getData("GameData/BattleData/BattleState/Ture",val);
+				DataLibrary::getSingletonPtr()->setData("SystemConfig/Save/Save2",std::string("AutoSave ")+temp+" "+str(boost::format(StringTable::getSingletonPtr()->getString("RoundNum"))%(turn)));
+				DataLibrary::getSingletonPtr()->saveXmlData(DataLibrary::SystemConfig,std::string("..\\save")+std::string("\\Config.xml"));
+				StateManager::getSingletonPtr()->saveState(std::string("..\\save")+std::string("\\save2.xml"));
+			}
 		}
 		break;
 	case ControlState_TurnEnd:

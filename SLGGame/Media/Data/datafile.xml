@@ -235,6 +235,7 @@
 			<ShieldId type="String" value="Shield2"/>
 			<ArmorId type="String" value="MidArmor2"/>
 			<SkillTable>
+				<Defence type="Int" value="1" />
 				<MiddleArmor type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
 				<OneHandSword type="Int" value="2"/>
@@ -402,7 +403,7 @@
 			<SkillPointPassive type="Int" value="0"/>
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="HeavyCavalry.mesh"/>
-			<UnitMat type="String" value="HeavyCavalry."/>
+			<UnitMat type="String" value="HeavyCavalry"/>
 			<MoveSound type="String" value="HeavyCavalry.ogg"/>
 		</Caster>
 		<Fay>
@@ -580,7 +581,7 @@
 			<SkillPointPassive type="Int" value="0"/>
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="HeavyCavalry.mesh"/>
-			<UnitMat type="String" value="HeavyCavalry."/>
+			<UnitMat type="String" value="HeavyCavalry"/>
 			<MoveSound type="String" value="HeavyCavalry.ogg"/>
 		</DuxHeavyCavalry>
 		<FantasyHeavyCavalry>
@@ -607,7 +608,7 @@
 			<SkillPointPassive type="Int" value="0"/>
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="HeavyCavalry.mesh"/>
-			<UnitMat type="String" value="HeavyCavalry."/>
+			<UnitMat type="String" value="HeavyCavalry"/>
 			<MoveSound type="String" value="HeavyCavalry.ogg"/>
 		</FantasyHeavyCavalry>
 		<GuardLightSword>
@@ -1292,7 +1293,7 @@
 			<SkillPointPassive type="Int" value="0"/>
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="HeavyCavalry.mesh"/>
-			<UnitMat type="String" value="HeavyCavalry."/>
+			<UnitMat type="String" value="HeavyCavalry"/>
 			<MoveSound type="String" value="HeavyCavalry.ogg"/>
 		</DarkKnight>
 		<Datura>
@@ -1319,7 +1320,7 @@
 			<SkillPointPassive type="Int" value="0"/>
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="HeavyCavalry.mesh"/>
-			<UnitMat type="String" value="HeavyCavalry."/>
+			<UnitMat type="String" value="HeavyCavalry"/>
 			<MoveSound type="String" value="HeavyCavalry.ogg"/>
 		</Datura>
 		<Syrin>

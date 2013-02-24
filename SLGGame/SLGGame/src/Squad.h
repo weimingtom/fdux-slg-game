@@ -86,6 +86,7 @@ public:
 	
 	bool addSkill(std::string skillid);
 	void removeSkill(std::string skillid);
+	int getSkillLevel(std::string skillid);
 
 
 	bool applyEffect(std::string effectid, std::string &eid);

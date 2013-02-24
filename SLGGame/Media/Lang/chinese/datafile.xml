@@ -702,8 +702,8 @@
 	</RetainerData>
 	<SkillData>
 		<Attack>
-			<Name type="String" value="攻击"/>
-			<Describe type="String" value="攻击"/>
+			<Name type="String" value="进攻"/>
+			<Describe type="String" value="向敌部队突击，尝试通过近距离的战斗消灭敌人"/>
 		</Attack>
 		<MagicShield>
 			<Name type="String" value="圣灵护盾"/>
@@ -711,15 +711,15 @@
 		</MagicShield>
 		<RangedAttack>
 			<Name type="String" value="射击"/>
-			<Describe type="String" value="射击"/>
+			<Describe type="String" value="尝试通过长距离武器消灭敌人"/>
 		</RangedAttack>
 		<Defence>
 			<Name type="String" value="防御"/>
-			<Describe type="String" value="防御"/>
+			<Describe type="String" value="部队在原地部署防御，以减少受到攻击时的伤亡"/>
 		</Defence>
 		<Rest>
 			<Name type="String" value="休整"/>
-			<Describe type="String" value="休整"/>
+			<Describe type="String" value="部队原地休整，尝试为伤员稳定伤势，使之能继续作战"/>
 		</Rest>	
 		<Heal>
 			<Name type="String" value="生命赐福"/>

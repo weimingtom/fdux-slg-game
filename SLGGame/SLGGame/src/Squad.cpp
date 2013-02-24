@@ -602,6 +602,15 @@ void Squad::removeSkill(std::string skillid)
 	}
 }
 
+int Squad::getSkillLevel(std::string skillid)
+{
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::string distpath = mPath + std::string("/Skill/") + skillid;
+	int skilllev = 0;
+	datalib->getData(distpath, skilllev,true);
+	return skilllev;
+}
+
 bool Squad::applyEffect(std::string effectid, std::string &eid)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
@@ -633,6 +642,19 @@ bool Squad::applyEffect(std::string effectid, std::string &eid)
 						datalib->setData(str(boost::format("%1%/%2%")%distpath%(*ite)), effectlevel);
 						//调用效果脚本
 						std::string contexpath = str(boost::format("%1%/%2%/ScriptContext")%distpath%eid);
+
+						//判断是否可以被附着
+						LuaTempContext* luatempcontext = new LuaTempContext;
+						luatempcontext->strMap["squadid"] = mSquadId;
+						luatempcontext->intMap["affect"] = 0;
+						LuaSystem::getSingleton().executeFunction(scriptpath, "canaffect", contexpath, luatempcontext);
+						if(luatempcontext->intMap["affect"] == 0)
+						{
+							delete luatempcontext;
+							return false;
+						}
+						delete luatempcontext;
+
 						LuaTempContext* tempcontext = new LuaTempContext;
 						tempcontext->strMap.insert(std::make_pair("squadid", mSquadId));
 						tempcontext->strMap.insert(std::make_pair("effectid", eid));
@@ -662,6 +684,19 @@ bool Squad::applyEffect(std::string effectid, std::string &eid)
 			datalib->setData(str(boost::format("%1%/%2%/EffectId")%distpath%eid), effectid);
 			//调用效果脚本
 			std::string contexpath = str(boost::format("%1%/%2%/ScriptContext")%distpath%eid);
+			
+			//判断是否可以被附着
+			LuaTempContext* luatempcontext = new LuaTempContext;
+			luatempcontext->strMap["squadid"] = mSquadId;
+			luatempcontext->intMap["affect"] = 0;
+			LuaSystem::getSingleton().executeFunction(scriptpath, "canaffect", contexpath, luatempcontext);
+			if(luatempcontext->intMap["affect"] == 0)
+			{
+				delete luatempcontext;
+				return false;
+			}
+			delete luatempcontext;
+
 			LuaTempContext* tempcontext = new LuaTempContext;
 			tempcontext->strMap.insert(std::make_pair("squadid", mSquadId));
 			tempcontext->strMap.insert(std::make_pair("effectid", eid));

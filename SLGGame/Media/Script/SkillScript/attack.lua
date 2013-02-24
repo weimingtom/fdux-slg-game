@@ -3,6 +3,13 @@ function useskill()
 	target  = ScriptCommonLib.GetTempString("targetsquadid");
 	re = SkillLib.MeleeCombat(caster,target);
 	if re>0 then
+		casterlv = SquadLib.GetSquadLevel(caster);
+		targetlv = SquadLib.GetSquadLevel(target);
+		ep = 100;
+		if targetlv > casterlv then
+			ep = ep + (targetlv - casterlv) * 10;
+		end
+		SquadLib.AddExp(caster, ep);
 		ScriptCommonLib.SetTempInt("castsuccess", 1);
 	end
 end

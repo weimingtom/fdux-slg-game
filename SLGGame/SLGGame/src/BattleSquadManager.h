@@ -98,4 +98,5 @@ public:
 	//创建新部队
 	bool createStorySquad(std::string squadid, std::string suqadtypeid, int x, int y,bool NoCreate);
 	bool createNormalSquad(std::string squadid, std::string suqadtypeid, int x, int y, int team, int unitnum);
+	void removeSquad(std::string squadid);
 };
