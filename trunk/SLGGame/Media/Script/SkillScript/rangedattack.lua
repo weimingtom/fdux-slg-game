@@ -4,7 +4,16 @@ function useskill()
 	x, y = SquadLib.GetSquadCoord(target);
 	if x >  -1 then
 		re = SkillLib.RangedAttack(caster,target);
-		ScriptCommonLib.SetTempInt("castsuccess", 1);
+		if re > 0 then
+			casterlv = SquadLib.GetSquadLevel(caster);
+			targetlv = SquadLib.GetSquadLevel(target);
+			ep = 80;
+			if targetlv > casterlv then
+				ep = ep + (targetlv - casterlv) * 8;
+			end
+			SquadLib.AddExp(caster, ep);			
+			ScriptCommonLib.SetTempInt("castsuccess", 1);
+		end
 	end
 end
 

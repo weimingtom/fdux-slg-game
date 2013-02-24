@@ -17,3 +17,6 @@ function onremove()
 		SquadLib.RemoveModifier(sid, mid);
 	end
 end
+function canaffect()
+	ScriptCommonLib.SetTempInt("affect", 1);
+end

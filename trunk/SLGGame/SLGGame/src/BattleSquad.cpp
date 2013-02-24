@@ -717,6 +717,54 @@ void BattleSquad::afterMeleeAttack(BattleSquad* targetsquad, bool asdefender)
 	Trigger("AfterMeleeAttack", luatempcontext);
 	delete luatempcontext;
 }
+void BattleSquad::onRangedAttack(BattleSquad* targetsquad)
+{
+	LuaTempContext* luatempcontext = new LuaTempContext();
+	luatempcontext->strMap["squadid"] = getSquadId();
+	luatempcontext->strMap["targetsquadid"] = targetsquad->getSquadId();
+	Trigger("OnRangedAttack", luatempcontext);
+	delete luatempcontext;
+}
+void BattleSquad::afterRangedAttack(BattleSquad* targetsquad)
+{
+	LuaTempContext* luatempcontext = new LuaTempContext();
+	luatempcontext->strMap["squadid"] = getSquadId();
+	luatempcontext->strMap["targetsquadid"] = targetsquad->getSquadId();
+	Trigger("AfterRangedAttack", luatempcontext);
+	delete luatempcontext;
+}
+void BattleSquad::onUnderRangedAttack(BattleSquad* targetsquad)
+{
+	LuaTempContext* luatempcontext = new LuaTempContext();
+	luatempcontext->strMap["squadid"] = getSquadId();
+	luatempcontext->strMap["targetsquadid"] = targetsquad->getSquadId();
+	Trigger("OnUnderRangedAttack", luatempcontext);
+	delete luatempcontext;
+}
+void BattleSquad::afterUnderRangedAttack(BattleSquad* targetsquad)
+{
+	LuaTempContext* luatempcontext = new LuaTempContext();
+	luatempcontext->strMap["squadid"] = getSquadId();
+	luatempcontext->strMap["targetsquadid"] = targetsquad->getSquadId();
+	Trigger("AfterUnderRangedAttack", luatempcontext);
+	delete luatempcontext;
+}
+void BattleSquad::onUnderMagicAttack(BattleSquad* targetsquad)
+{
+	LuaTempContext* luatempcontext = new LuaTempContext();
+	luatempcontext->strMap["squadid"] = getSquadId();
+	luatempcontext->strMap["targetsquadid"] = targetsquad->getSquadId();
+	Trigger("OnUnderMagicAttack", luatempcontext);
+	delete luatempcontext;
+}
+void BattleSquad::afterUnderMagicAttack(BattleSquad* targetsquad)
+{
+	LuaTempContext* luatempcontext = new LuaTempContext();
+	luatempcontext->strMap["squadid"] = getSquadId();
+	luatempcontext->strMap["targetsquadid"] = targetsquad->getSquadId();
+	Trigger("AfterUnderMagicAttack", luatempcontext);
+	delete luatempcontext;
+}
 
 void BattleSquad::onCharge()
 {

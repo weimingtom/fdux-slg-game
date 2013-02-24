@@ -9,6 +9,8 @@ extern "C"
 
 #include <string>
 
+#include <boost/format.hpp>
+
 #include "SquadDefine.h"
 #include "StateManager.h"
 #include "BattleSquadManager.h"
@@ -17,6 +19,7 @@ extern "C"
 
 #include "CutSceneBuilder.h"
 #include "SquadParticleCutScence.h"
+#include "ShowValueCutScene.h"
 
 static int GetSquadCoord(lua_State* L)
 {
@@ -343,6 +346,84 @@ static int AddExp(lua_State* L)
 	return 1;
 }
 
+static int GetSquadLevel(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	int level = 0;
+	Squad* squad = NULL;
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+	{
+		squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+	}
+	else
+	{
+
+	}
+	if(squad)
+	{
+		level = squad->getLevel();
+	}
+	lua_pushnumber(L, level);
+	return 1;
+};
+
+static int ShowValue(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	std::string stringkey(luaL_checkstring(L, 2));
+	float colorr = luaL_checknumber(L, 3);
+	float colorg = luaL_checknumber(L, 4);
+	float colorb = luaL_checknumber(L, 5);
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+	{
+		BattleSquad* squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+		if(squad)
+		{
+			std::string value = StringTable::getSingleton().getString(stringkey);
+			CutSceneBuilder::getSingleton().addCutScene(new ShowValueCutScene(squadid, value, Ogre::ColourValue(colorr, colorg, colorb)));
+		}
+	}
+	return 0;
+};
+
+static int ShowValue1(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	std::string stringkey(luaL_checkstring(L, 2));
+	float num = luaL_checknumber(L,3);
+	float colorr = luaL_checknumber(L, 4);
+	float colorg = luaL_checknumber(L, 5);
+	float colorb = luaL_checknumber(L, 6);
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+	{
+		BattleSquad* squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+		if(squad)
+		{
+			std::string value = StringTable::getSingleton().getString(stringkey);
+			value = str(boost::format(value)%num);
+			CutSceneBuilder::getSingleton().addCutScene(new ShowValueCutScene(squadid, value, Ogre::ColourValue(colorr, colorg, colorb)));
+		}
+	}
+	return 0;
+};
+
+static int GetSkillLevel(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	std::string id(luaL_checkstring(L, 2));
+	Squad* squad = NULL;
+	int lv = 0;
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+		squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+	else
+		squad = NULL;
+	if(squad)
+		lv = squad->getSkillLevel(id);
+	lua_pushnumber(L,lv);
+	return 1;
+}
+
+
 static const struct luaL_Reg SquadLib[] =
 {
 	{"GetSquadCoord",GetSquadCoord},
@@ -365,5 +446,9 @@ static const struct luaL_Reg SquadLib[] =
 	{"DelParticle",DelParticle},
 	{"GetEquip",GetEquip},
 	{"AddExp",AddExp},
+	{"GetSquadLevel",GetSquadLevel},
+	{"ShowValue",ShowValue},
+	{"ShowValue1",ShowValue1},
+	{"GetSkillLevel",GetSkillLevel},
 	{NULL,NULL}
 };

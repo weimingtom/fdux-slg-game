@@ -101,3 +101,7 @@ function onturnstart()
 		ScriptCommonLib.SetInt("turn", turn + 1);
 	end
 end
+
+function canaffect()
+	ScriptCommonLib.SetTempInt("affect", 1);
+end

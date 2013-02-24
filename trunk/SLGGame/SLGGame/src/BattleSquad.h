@@ -44,6 +44,12 @@ public:
 	void turnEnd();
 	void onMeleeAttack(BattleSquad* targetsquad, bool asdefender = false);
 	void afterMeleeAttack(BattleSquad* targetsquad, bool asdefender = false);
+	void onRangedAttack(BattleSquad* targetsquad);
+	void afterRangedAttack(BattleSquad* targetsquad);
+	void onUnderRangedAttack(BattleSquad* targetsquad);
+	void afterUnderRangedAttack(BattleSquad* targetsquad);
+	void onUnderMagicAttack(BattleSquad* targetsquad);
+	void afterUnderMagicAttack(BattleSquad* targetsquad);
 	void onCharge();
 	void afterCharge();
 	void moveIn(int srcx, int srcy, int tgx, int tgy);

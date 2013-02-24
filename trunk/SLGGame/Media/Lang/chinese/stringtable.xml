@@ -267,5 +267,8 @@
 		<Tips_FormationLoosButton type="String" value="改变部队的阵型为散阵，通常用于部队躲避远程攻击伤害，无阵列加成"/>
 		<Tips_FormationLineButton type="String" value="改变部队的阵型为线型阵，通常用于结阵防御或者正面攻击敌方阵型，部队正面获得较高阵列加成，侧面和背面较少。当部队受到远程攻击或者特殊攻击时，受到较高的伤害"/>
 		<Tips_FormationCircButton type="String" value="改变部队的阵型为圆阵，通常用于单独或突出的部队防御敌方进攻。部队各面受到相同的阵列加成。当部队受到远程攻击或者特殊攻击时，受到非常高的伤害"/>
+		
+		<!--Skills-->
+		<Skills_DefendEffect type="String" value="防御+%1%"/>
 	</StringTable>
 </StaticData>

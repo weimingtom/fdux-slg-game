@@ -204,6 +204,19 @@ static int AddBattleSquad(lua_State* L)
 	return 1;
 }
 
+static int RemoveBattleSquad(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	BattleSquadManager::getSingleton().removeSquad(squadid);
+	return 0;
+}
+
+static int InterruptMove(lua_State* L)
+{
+	BattleSquadManager::getSingleton().InterruptMove();
+	return 0;
+}
+
 static const struct luaL_Reg BattleLib[] =
 {
 	{"ChangeState",ChangeState},
@@ -222,5 +235,7 @@ static const struct luaL_Reg BattleLib[] =
 	{"SetPlayerMission",SetPlayerMission},
 	{"AddStorySquad", AddStorySquad},
 	{"AddBattleSquad", AddBattleSquad},
+	{"RemoveBattleSquad", RemoveBattleSquad},
+	{"InterruptMove",InterruptMove},
 	{NULL,NULL}
 };

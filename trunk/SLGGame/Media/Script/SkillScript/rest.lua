@@ -1,9 +1,6 @@
 function useskill()
 	caster  = ScriptCommonLib.GetTempString("squadid");
 	ap = SquadLib.GetActionPoint(caster);
-	if ap > 5 then
-		defence = 5;
-	end
 	maxnum = SquadLib.GetUnitMaxNum(caster);
 	num = SquadLib.GetUnitNum(caster);
 	num = num + ap;
@@ -11,6 +8,8 @@ function useskill()
 		num = maxnum;
 	end
 	SquadLib.SetUnitNum(caster, num);
+	ep = 10 * num;
+	SquadLib.AddExp(caster, ep);	
 	ScriptCommonLib.SetTempInt("castsuccess", 1);
 end
 

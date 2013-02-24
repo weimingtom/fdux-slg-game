@@ -27,12 +27,10 @@ material SelectSquadPlane
 		scheme Default
 		pass
 		{
-			vertex_program_ref ColorOnlyVP/NotSkinned/OneTexture
-            {
-            }
-            fragment_program_ref ColorOnlyFP/OneTexture
-            {
-            }
+			lighting off
+			scene_blend add
+			depth_write off
+			
 			texture_unit
 			{
 				texture SelectSquad.dds
