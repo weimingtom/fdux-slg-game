@@ -1355,7 +1355,7 @@
 	<SoilderData>
 		<WingsSoilder>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="40" />
+			<Value type="Int" value="20" />
 			<Script type="String" value="none" />
 			<Randomness type="Int" value="20" />
 			<AttrModifer>
@@ -1374,7 +1374,7 @@
 		</WingsSoilder>
 		<FantasyiSoilder>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="40" />
+			<Value type="Int" value="20" />
 			<Script type="String" value="none" />
 			<Randomness type="Int" value="40" />
 			<AttrModifer>
@@ -1393,7 +1393,7 @@
 		</FantasyiSoilder>
 		<DuxSoilder>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="40" />
+			<Value type="Int" value="20" />
 			<Script type="String" value="none" />
 			<Randomness type="Int" value="40" />
 			<AttrModifer>
@@ -1412,7 +1412,7 @@
 		</DuxSoilder>
 		<Bandits>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="40" />
+			<Value type="Int" value="20" />
 			<Script type="String" value="none" />
 			<Randomness type="Int" value="50" />
 			<AttrModifer>
@@ -1431,7 +1431,7 @@
 		</Bandits>
 		<TowerGuard>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="40" />
+			<Value type="Int" value="20" />
 			<Script type="String" value="none" />
 			<Randomness type="Int" value="30" />
 			<AttrModifer>
@@ -1450,7 +1450,7 @@
 		</TowerGuard>
 		<Magician>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="40" />
+			<Value type="Int" value="20" />
 			<Script type="String" value="none" />
 			<Randomness type="Int" value="10" />
 			<AttrModifer>
@@ -1469,7 +1469,7 @@
 		</Magician>
 		<NothSoilder>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="40" />
+			<Value type="Int" value="20" />
 			<Script type="String" value="none" />
 			<Randomness type="Int" value="40" />
 			<AttrModifer>
@@ -1488,7 +1488,7 @@
 		</NothSoilder>
 		<UlvaSoilder>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="40" />
+			<Value type="Int" value="20" />
 			<Script type="String" value="none" />
 			<Randomness type="Int" value="40" />
 			<AttrModifer>
@@ -1507,7 +1507,7 @@
 		</UlvaSoilder>
 		<WinfredSoilder>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="40" />
+			<Value type="Int" value="20" />
 			<Script type="String" value="none" />
 			<Randomness type="Int" value="30" />
 			<AttrModifer>
@@ -1526,7 +1526,7 @@
 		</WinfredSoilder>
 		<DarkKnight>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="40" />
+			<Value type="Int" value="20" />
 			<Script type="String" value="none" />
 			<Randomness type="Int" value="20" />
 			<AttrModifer>
@@ -1547,7 +1547,7 @@
 	<PweaponData>
 		<ShortSword1>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="20" />
+			<Value type="Int" value="10" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="soul.mesh" />
 			<Mat type="String" value="soul" />
@@ -1571,7 +1571,7 @@
 		</ShortSword1>
 		<ShortSword2>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="30" />
+			<Value type="Int" value="15" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="soul.mesh" />
 			<Mat type="String" value="soul" />
@@ -1595,7 +1595,7 @@
 		</ShortSword2>
 		<ShortSword3>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="48" />
+			<Value type="Int" value="24" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="soul.mesh" />
 			<Mat type="String" value="soul" />
@@ -1619,7 +1619,7 @@
 		</ShortSword3>
 		<ShortSword4>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="70" />
+			<Value type="Int" value="35" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="soul.mesh" />
 			<Mat type="String" value="soul" />
@@ -1643,7 +1643,7 @@
 		</ShortSword4>
 		<ShortSword5>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="95" />
+			<Value type="Int" value="48" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="soul.mesh" />
 			<Mat type="String" value="soul" />
@@ -1667,7 +1667,7 @@
 		</ShortSword5>
 		<HeavySword1>
 			<Type type="Int" value="2" />
-			<Value type="Int" value="35" />
+			<Value type="Int" value="18" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="twosword.mesh" />
 			<Mat type="String" value="twosword" />
@@ -1691,7 +1691,7 @@
 		</HeavySword1>
 		<HeavySword2>
 			<Type type="Int" value="2" />
-			<Value type="Int" value="60" />
+			<Value type="Int" value="30" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="twosword.mesh" />
 			<Mat type="String" value="twosword" />
@@ -1715,7 +1715,7 @@
 		</HeavySword2>
 		<HeavySword3>
 			<Type type="Int" value="2" />
-			<Value type="Int" value="80" />
+			<Value type="Int" value="46" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="twosword.mesh" />
 			<Mat type="String" value="twosword" />
@@ -1739,7 +1739,7 @@
 		</HeavySword3>
 		<HeavySword4>
 			<Type type="Int" value="2" />
-			<Value type="Int" value="110" />
+			<Value type="Int" value="64" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="twosword.mesh" />
 			<Mat type="String" value="twosword" />
@@ -1763,7 +1763,7 @@
 		</HeavySword4>
 		<HeavySword5>
 			<Type type="Int" value="2" />
-			<Value type="Int" value="150" />
+			<Value type="Int" value="82" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="twosword.mesh" />
 			<Mat type="String" value="twosword" />
@@ -1787,7 +1787,7 @@
 		</HeavySword5>
 		<ShortAxe1>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="18" />
+			<Value type="Int" value="9" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="Axes.mesh" />
 			<Mat type="String" value="axes" />
@@ -1811,7 +1811,7 @@
 		</ShortAxe1>
 		<ShortAxe2>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="28" />
+			<Value type="Int" value="14" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="Axes.mesh" />
 			<Mat type="String" value="axes" />
@@ -1835,7 +1835,7 @@
 		</ShortAxe2>
 		<ShortAxe3>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="40" />
+			<Value type="Int" value="20" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="Axes.mesh" />
 			<Mat type="String" value="axes" />
@@ -1859,7 +1859,7 @@
 		</ShortAxe3>
 		<ShortAxe4>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="65" />
+			<Value type="Int" value="33" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="Axes.mesh" />
 			<Mat type="String" value="axes" />
@@ -1883,7 +1883,7 @@
 		</ShortAxe4>
 		<ShortAxe5>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="90" />
+			<Value type="Int" value="45" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="Axes.mesh" />
 			<Mat type="String" value="axes" />
@@ -1907,7 +1907,7 @@
 		</ShortAxe5>
 		<HeavyAxe1>
 			<Type type="Int" value="3" />
-			<Value type="Int" value="32" />
+			<Value type="Int" value="16" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="DAxes.mesh" />
 			<Mat type="String" value="axes" />
@@ -1931,7 +1931,7 @@
 		</HeavyAxe1>
 		<HeavyAxe2>
 			<Type type="Int" value="3" />
-			<Value type="Int" value="55" />
+			<Value type="Int" value="28" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="DAxes.mesh" />
 			<Mat type="String" value="axes" />
@@ -1955,7 +1955,7 @@
 		</HeavyAxe2>
 		<HeavyAxe3>
 			<Type type="Int" value="3" />
-			<Value type="Int" value="75" />
+			<Value type="Int" value="38" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="DAxes.mesh" />
 			<Mat type="String" value="axes" />
@@ -1979,7 +1979,7 @@
 		</HeavyAxe3>
 		<HeavyAxe4>
 			<Type type="Int" value="3" />
-			<Value type="Int" value="105" />
+			<Value type="Int" value="56" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="DAxes.mesh" />
 			<Mat type="String" value="axes" />
@@ -2003,7 +2003,7 @@
 		</HeavyAxe4>
 		<HeavyAxe5>
 			<Type type="Int" value="3" />
-			<Value type="Int" value="145" />
+			<Value type="Int" value="78" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="DAxes.mesh" />
 			<Mat type="String" value="axes" />
@@ -2027,7 +2027,7 @@
 		</HeavyAxe5>
 		<ShortSpear1>
 			<Type type="Int" value="4" />
-			<Value type="Int" value="16" />
+			<Value type="Int" value="8" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="Pike.mesh" />
 			<Mat type="String" value="Pike" />
@@ -2051,7 +2051,7 @@
 		</ShortSpear1>
 		<ShortSpear2>
 			<Type type="Int" value="4" />
-			<Value type="Int" value="25" />
+			<Value type="Int" value="12" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="Pike.mesh" />
 			<Mat type="String" value="Pike" />
@@ -2075,7 +2075,7 @@
 		</ShortSpear2>
 		<ShortSpear3>
 			<Type type="Int" value="4" />
-			<Value type="Int" value="38" />
+			<Value type="Int" value="19" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="Pike.mesh" />
 			<Mat type="String" value="Pike" />
@@ -2099,7 +2099,7 @@
 		</ShortSpear3>
 		<ShortSpear4>
 			<Type type="Int" value="4" />
-			<Value type="Int" value="60" />
+			<Value type="Int" value="30" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="Pike.mesh" />
 			<Mat type="String" value="Pike" />
@@ -2123,7 +2123,7 @@
 		</ShortSpear4>
 		<ShortSpear5>
 			<Type type="Int" value="4" />
-			<Value type="Int" value="85" />
+			<Value type="Int" value="42" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="Pike.mesh" />
 			<Mat type="String" value="Pike" />
@@ -2147,7 +2147,7 @@
 		</ShortSpear5>
 		<Halberd1>
 			<Type type="Int" value="5" />
-			<Value type="Int" value="30" />
+			<Value type="Int" value="15" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="halberd.mesh" />
 			<Mat type="String" value="halberd" />
@@ -2171,7 +2171,7 @@
 		</Halberd1>
 		<Halberd2>
 			<Type type="Int" value="5" />
-			<Value type="Int" value="48" />
+			<Value type="Int" value="24" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="halberd.mesh" />
 			<Mat type="String" value="halberd" />
@@ -2195,7 +2195,7 @@
 		</Halberd2>
 		<Halberd3>
 			<Type type="Int" value="5" />
-			<Value type="Int" value="70" />
+			<Value type="Int" value="35" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="halberd.mesh" />
 			<Mat type="String" value="halberd" />
@@ -2219,7 +2219,7 @@
 		</Halberd3>
 		<Halberd4>
 			<Type type="Int" value="5" />
-			<Value type="Int" value="100" />
+			<Value type="Int" value="54" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="halberd.mesh" />
 			<Mat type="String" value="halberd" />
@@ -2243,7 +2243,7 @@
 		</Halberd4>
 		<Halberd5>
 			<Type type="Int" value="5" />
-			<Value type="Int" value="135" />
+			<Value type="Int" value="76" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="halberd.mesh" />
 			<Mat type="String" value="halberd" />
@@ -2341,7 +2341,7 @@
 	<SweaponData>
 		<Bow1>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="25" />
+			<Value type="Int" value="13" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="bow.mesh" />
 			<Mat type="String" value="Bow" />
@@ -2367,7 +2367,7 @@
 		</Bow1>
 		<Bow2>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="44" />
+			<Value type="Int" value="22" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="bow.mesh" />
 			<Mat type="String" value="Bow" />
@@ -2393,7 +2393,7 @@
 		</Bow2>
 		<Bow3>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="68" />
+			<Value type="Int" value="34" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="bow.mesh" />
 			<Mat type="String" value="Bow" />
@@ -2419,7 +2419,7 @@
 		</Bow3>
 		<Bow4>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="100" />
+			<Value type="Int" value="50" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="bow.mesh" />
 			<Mat type="String" value="Bow" />
@@ -2445,7 +2445,7 @@
 		</Bow4>
 		<Bow5>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="138" />
+			<Value type="Int" value="68" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="bow.mesh" />
 			<Mat type="String" value="Bow" />
@@ -2471,7 +2471,7 @@
 		</Bow5>
 		<CrossBow1>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="30" />
+			<Value type="Int" value="15" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="crossbow.mesh" />
 			<Mat type="String" value="crossbow" />
@@ -2497,7 +2497,7 @@
 		</CrossBow1>
 		<CrossBow2>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="48" />
+			<Value type="Int" value="24" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="crossbow.mesh" />
 			<Mat type="String" value="crossbow" />
@@ -2523,7 +2523,7 @@
 		</CrossBow2>
 		<CrossBow3>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="75" />
+			<Value type="Int" value="38" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="crossbow.mesh" />
 			<Mat type="String" value="crossbow" />
@@ -2549,7 +2549,7 @@
 		</CrossBow3>
 		<CrossBow4>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="108" />
+			<Value type="Int" value="54" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="crossbow.mesh" />
 			<Mat type="String" value="crossbow" />
@@ -2575,7 +2575,7 @@
 		</CrossBow4>
 		<CrossBow5>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="150" />
+			<Value type="Int" value="75" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="crossbow.mesh" />
 			<Mat type="String" value="crossbow" />
@@ -2603,7 +2603,7 @@
 	<HorseData>
 		<LightHorse1>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="30" />
+			<Value type="Int" value="15" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="LightCavalryHorse.mesh" />
 			<Mat type="String" value="LightCavalryHorse" />
@@ -2624,7 +2624,7 @@
 		</LightHorse1>
 		<LightHorse2>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="55" />
+			<Value type="Int" value="27" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="LightCavalryHorse.mesh" />
 			<Mat type="String" value="LightCavalryHorse" />
@@ -2645,7 +2645,7 @@
 		</LightHorse2>
 		<LightHorse3>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="82" />
+			<Value type="Int" value="42" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="LightCavalryHorse.mesh" />
 			<Mat type="String" value="LightCavalryHorse" />
@@ -2666,7 +2666,7 @@
 		</LightHorse3>
 		<LightHorse4>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="124" />
+			<Value type="Int" value="62" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="LightCavalryHorse.mesh" />
 			<Mat type="String" value="LightCavalryHorse" />
@@ -2687,7 +2687,7 @@
 		</LightHorse4>
 		<LightHorse5>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="170" />
+			<Value type="Int" value="85" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="LightCavalryHorse.mesh" />
 			<Mat type="String" value="LightCavalryHorse" />
@@ -2708,7 +2708,7 @@
 		</LightHorse5>
 		<HeavyHorse1>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="35" />
+			<Value type="Int" value="16" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="HeavyCavalryHorse.mesh" />
 			<Mat type="String" value="HeavyCavalryHorse" />
@@ -2729,7 +2729,7 @@
 		</HeavyHorse1>
 		<HeavyHorse2>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="60" />
+			<Value type="Int" value="30" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="HeavyCavalryHorse.mesh" />
 			<Mat type="String" value="HeavyCavalryHorse" />
@@ -2750,7 +2750,7 @@
 		</HeavyHorse2>
 		<HeavyHorse3>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="90" />
+			<Value type="Int" value="45" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="HeavyCavalryHorse.mesh" />
 			<Mat type="String" value="HeavyCavalryHorse" />
@@ -2771,7 +2771,7 @@
 		</HeavyHorse3>
 		<HeavyHorse4>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="132" />
+			<Value type="Int" value="66" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="HeavyCavalryHorse.mesh" />
 			<Mat type="String" value="HeavyCavalryHorse" />
@@ -2792,7 +2792,7 @@
 		</HeavyHorse4>
 		<HeavyHorse5>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="180" />
+			<Value type="Int" value="90" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="HeavyCavalryHorse.mesh" />
 			<Mat type="String" value="HeavyCavalryHorse" />
@@ -2815,7 +2815,7 @@
 	<ShieldData>
 		<Shield1>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="15" />
+			<Value type="Int" value="8" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="RoundShield.mesh" />
 			<Mat type="String" value="RoundShield" />
@@ -2838,7 +2838,7 @@
 		</Shield1>
 		<Shield2>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="28" />
+			<Value type="Int" value="14" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="LargeShield.mesh" />
 			<Mat type="String" value="LargeShield" />
@@ -2861,7 +2861,7 @@
 		</Shield2>
 		<Shield3>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="40" />
+			<Value type="Int" value="20" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="LargeShield.mesh" />
 			<Mat type="String" value="LargeShield" />
@@ -2884,7 +2884,7 @@
 		</Shield3>
 		<Shield4>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="55" />
+			<Value type="Int" value="28" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="LargeShield.mesh" />
 			<Mat type="String" value="LargeShield" />
@@ -2907,7 +2907,7 @@
 		</Shield4>
 		<Shield5>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="70" />
+			<Value type="Int" value="36" />
 			<Script type="String" value="none" />
 			<Mesh type="String" value="LargeShield.mesh" />
 			<Mat type="String" value="LargeShield" />
@@ -2932,7 +2932,7 @@
 	<ArmorData>
 		<LightArmor1>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="28" />
+			<Value type="Int" value="14" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_lightarmor" />
 			<AttrModifer>
@@ -2951,7 +2951,7 @@
 		</LightArmor1>
 		<LightArmor2>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="40" />
+			<Value type="Int" value="20" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_lightarmor" />
 			<AttrModifer>
@@ -2970,7 +2970,7 @@
 		</LightArmor2>
 		<LightArmor3>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="66" />
+			<Value type="Int" value="34" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_lightarmor" />
 			<AttrModifer>
@@ -2989,7 +2989,7 @@
 		</LightArmor3>
 		<LightArmor4>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="98" />
+			<Value type="Int" value="50" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_lightarmor" />
 			<AttrModifer>
@@ -3008,7 +3008,7 @@
 		</LightArmor4>
 		<LightArmor5>
 			<Type type="Int" value="0" />
-			<Value type="Int" value="140" />
+			<Value type="Int" value="70" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_lightarmor" />
 			<AttrModifer>
@@ -3027,7 +3027,7 @@
 		</LightArmor5>
 		<MidArmor1>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="32" />
+			<Value type="Int" value="16" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_midarmor" />
 			<AttrModifer>
@@ -3046,7 +3046,7 @@
 		</MidArmor1>
 		<MidArmor2>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="48" />
+			<Value type="Int" value="24" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_midarmor" />
 			<AttrModifer>
@@ -3065,7 +3065,7 @@
 		</MidArmor2>
 		<MidArmor3>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="72" />
+			<Value type="Int" value="36" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_midarmor" />
 			<AttrModifer>
@@ -3084,7 +3084,7 @@
 		</MidArmor3>
 		<MidArmor4>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="110" />
+			<Value type="Int" value="55" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_midarmor" />
 			<AttrModifer>
@@ -3103,7 +3103,7 @@
 		</MidArmor4>
 		<MidArmor5>
 			<Type type="Int" value="1" />
-			<Value type="Int" value="160" />
+			<Value type="Int" value="80" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_midarmor" />
 			<AttrModifer>
@@ -3122,7 +3122,7 @@
 		</MidArmor5>
 		<HeavyArmor1>
 			<Type type="Int" value="2" />
-			<Value type="Int" value="38" />
+			<Value type="Int" value="19" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_heavyarmor" />
 			<AttrModifer>
@@ -3141,7 +3141,7 @@
 		</HeavyArmor1>
 		<HeavyArmor2>
 			<Type type="Int" value="2" />
-			<Value type="Int" value="64" />
+			<Value type="Int" value="32" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_heavyarmor" />
 			<AttrModifer>
@@ -3160,7 +3160,7 @@
 		</HeavyArmor2>
 		<HeavyArmor3>
 			<Type type="Int" value="2" />
-			<Value type="Int" value="92" />
+			<Value type="Int" value="46" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_heavyarmor" />
 			<AttrModifer>
@@ -3179,7 +3179,7 @@
 		</HeavyArmor3>
 		<HeavyArmor4>
 			<Type type="Int" value="2" />
-			<Value type="Int" value="132" />
+			<Value type="Int" value="66" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_heavyarmor" />
 			<AttrModifer>
@@ -3198,7 +3198,7 @@
 		</HeavyArmor4>
 		<HeavyArmor5>
 			<Type type="Int" value="2" />
-			<Value type="Int" value="180" />
+			<Value type="Int" value="90" />
 			<Script type="String" value="none" />
 			<Icon type="String" value="eqp_heavyarmor" />
 			<AttrModifer>
