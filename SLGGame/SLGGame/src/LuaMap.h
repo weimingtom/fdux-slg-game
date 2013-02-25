@@ -12,6 +12,8 @@ extern "C"
 #include "CameraContral.h"
 #include "Terrain.h"
 #include "MapDataManager.h"
+#include "CutSceneBuilder.h"
+#include "CameraCutScene.h"
 
 static int SetCamera(lua_State* L)
 {
@@ -20,6 +22,16 @@ static int SetCamera(lua_State* L)
 	float xx,yy;
 	Terrain::getSingleton().getWorldCoords(x,y,xx,yy);
 	CameraContral::getSingleton().moveCameraTo(xx,yy);
+	return 0;
+}
+
+static int MoveCameraTo(lua_State* L)
+{
+	int x =  luaL_checknumber(L,1);
+	int y =  luaL_checknumber(L,2);
+
+	CutSceneBuilder::getSingletonPtr()->addCutScene(new CameraCutScene(x,y,true));
+	
 	return 0;
 }
 
@@ -58,6 +70,7 @@ static int DisableMapTrigger(lua_State* L)
 static const struct luaL_Reg MapLib[] =
 {
 	{"SetCamera",SetCamera},
+	{"MoveCameraTo",MoveCameraTo},
 	{"AddMapTrigger",AddMapTrigger},
 	{"RemoveMapTrigger",RemoveMapTrigger},
 	{"ActiveMapTrigger",ActiveMapTrigger},

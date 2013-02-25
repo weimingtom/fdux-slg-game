@@ -35,7 +35,7 @@ public:
 	void setPlayerState(BattlePlayerState* playerstate);
 private:
 	MyGUI::Window* mWindow;
-	MyGUI::Button* mSkill[12];
+	MyGUI::Button* mSkill[18];
 	MyGUI::TextBox* mAPLabel;
 	MyGUI::TextBox* mSkillName;
 

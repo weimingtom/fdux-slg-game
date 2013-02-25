@@ -640,7 +640,10 @@ void GUISupply::setItemInfo(WeaponItemData* item)
 	{
 		Squad* army=mBattleSquad.at(m_CurrSquadIndex);
 		mTextItemName->setCaption(item->getName());
-		mTextItemPrice->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("ItemPrice"))%item->getPriceValue()%item->getOnePrice()%50));
+		if(item->getType()!=EQUIP_RETAINER)
+			mTextItemPrice->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("ItemPrice"))%item->getPriceValue()%item->getOnePrice()%50));
+		else
+			mTextItemPrice->setCaption("");
 		mItemIcon->setItemResource("eqp");
 		mItemIcon->setItemGroup(item->getImage());
 		mItemIcon->setVisible(true);
@@ -907,13 +910,13 @@ void GUISupply::trainSkill(SkillItemData* skill)
 	switch(skill->getType())
 	{
 	case SKILLTYPE_PASSIVE:
-		army->setSkillPointPassive(army->getSkillPointPassive()-skill->getPoint());
+		army->setSkillPointPassive(army->getSkillPointPassive()-1);
 		break;
 	case SKILLTYPE_ACTIVE:
-		army->setSkillPointAction(army->getSkillPointAction()-skill->getPoint());
+		army->setSkillPointAction(army->getSkillPointAction()-1);
 		break;
 	case SKILLTYPE_EQUIP:
-		army->setSkillPointEquip(army->getSkillPointEquip()-skill->getPoint());
+		army->setSkillPointEquip(army->getSkillPointEquip()-1);
 		break;
 	}
 
@@ -981,18 +984,18 @@ void GUISupply::showSkillItem(int type,std::string skillListPath)
 	std::vector<std::string> child=DataLibrary::getSingletonPtr()->getChildList(path);
 	for(std::vector<std::string>::iterator it=child.begin();it!=child.end();it++)
 	{
-		int point;
-		DataLibrary::getSingletonPtr()->getData(path+"/"+(*it),point);
+		int level;
+		DataLibrary::getSingletonPtr()->getData(path+"/"+(*it),level);
 		SkillItemData* data;
 		if(type==SKILLTYPE_PASSIVE)
 		{
 			std::string effectName;
 			DataLibrary::getSingletonPtr()->getData(path+"/"+(*it)+"/Effect",effectName);
-			data=new SkillItemData(type,effectName,point,(*it),totalPoint);
+			data=new SkillItemData(type,effectName,level,army->getLevel(),(*it),totalPoint);
 		}
 		else
 		{
-			data=new SkillItemData(type,(*it),point,(*it),totalPoint);
+			data=new SkillItemData(type,(*it),level,army->getLevel(),(*it),totalPoint);
 		}
 	
 		if(skillmap.find((*it))!=skillmap.end())

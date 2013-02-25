@@ -32,6 +32,7 @@
 #include "AnimationCutScene.h"
 #include "RangedCutScene.h"
 #include "MapPUCutScene.h"
+#include "CameraContral.h"
 
 #include "MapDataManager.h"
 
@@ -957,6 +958,10 @@ bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* 
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	CutSceneBuilder* cutscenebuilder = CutSceneBuilder::getSingletonPtr();
 
+	float wx,wy;
+	Terrain::getSingletonPtr()->getWorldCoords(attacksquad->getGridX(),attacksquad->getGridY(),wx,wy);
+	CameraContral::getSingletonPtr()->moveCameraTo(wx,wy);
+
 	//¼ÆËãÍ»Ï®
 	int deffaction = defenesquad->getFaction();
 	if(attacksquad->getViewByFaction(deffaction) == false)
@@ -1103,6 +1108,10 @@ bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* 
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	CutSceneBuilder* cutscenebuilder = CutSceneBuilder::getSingletonPtr();
 
+	float wx,wy;
+	Terrain::getSingletonPtr()->getWorldCoords(attacksquad->getGridX(),attacksquad->getGridY(),wx,wy);
+	CameraContral::getSingletonPtr()->moveCameraTo(wx,wy);
+
 	int deffaction = defenesquad->getFaction();
 	if(attacksquad->getViewByFaction(deffaction) == false)
 	{
@@ -1161,6 +1170,10 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	CutSceneBuilder* cutscenebuilder = CutSceneBuilder::getSingletonPtr();
+
+	float wx,wy;
+	Terrain::getSingletonPtr()->getWorldCoords(attacksquad->getGridX(),attacksquad->getGridY(),wx,wy);
+	CameraContral::getSingletonPtr()->moveCameraTo(wx,wy);
 
 	int deffaction = defenesquad->getFaction();
 	if(attacksquad->getViewByFaction(deffaction) == false)

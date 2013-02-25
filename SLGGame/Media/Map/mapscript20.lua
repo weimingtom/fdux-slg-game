@@ -118,9 +118,9 @@ function turnstart()
 	
 	if team == 1 and turn == 13 then
 	    BattleLib.Story("cp39_4.lua");
-		LuaBattle.CreateMapParticle(10, 8, "mapfire");
-		LuaBattle.CreateMapParticle(10, 9, "mapfire");
-		LuaBattle.CreateMapParticle(10, 9, "mapfire");
+		BattleLib.CreateMapParticle(10, 8, "mapfire");
+		BattleLib.CreateMapParticle(10, 9, "mapfire");
+		BattleLib.CreateMapParticle(10, 9, "mapfire");
 	end
 	
 	if team == 1 and turn == 15 then

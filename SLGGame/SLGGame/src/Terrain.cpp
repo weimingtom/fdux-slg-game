@@ -1018,6 +1018,12 @@ int Terrain::createMapParticle(int x, int y,std::string particlename)
 	pudata->mTileNode->setPosition(xx ,getHeight(xx,yy),yy);
 	mPUId ++;
 	mMapPUMap.insert(std::map<int, stTilePUData*>::value_type(mPUId,pudata ));
+
+	std::string datapath = "GameData/BattleData/MapData/MapParticleInfo";
+	DataLibrary::getSingletonPtr()->getData(datapath + std::string("/MP") + Ogre::StringConverter::toString(mPUId) + std::string("/Script"),particlename);
+	DataLibrary::getSingletonPtr()->getData(datapath + std::string("/MP") + Ogre::StringConverter::toString(mPUId) + std::string("/GridX"),x);
+	DataLibrary::getSingletonPtr()->getData(datapath + std::string("/MP") + Ogre::StringConverter::toString(mPUId) + std::string("/GridY"),y);
+
 	return mPUId;
 }
 void Terrain::deleteMapParticle(int index)

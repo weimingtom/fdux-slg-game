@@ -321,6 +321,13 @@ void Core::run()
 		timer.reset();
 		RenderingFrame(t);
 		t=timer.getMilliseconds();
+
+		if(t<15)//ÏÞÖÆµ½60Ö¡
+		{
+			Sleep(15-t);
+			t=15;
+		}
+
 		updateStats();
 	}
 

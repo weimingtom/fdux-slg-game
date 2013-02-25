@@ -96,6 +96,7 @@ void BattlePlayerState::reactiveState()
 	case PLAYERCONTROL_CHOOSESKILL:
 		mGUISquad->setSquad(mSelectSquad);
 		mGUICommand->setSquad(mSelectSquad);
+		setSelectPlanePosition();
 		break;
 	case PLAYERCONTROL_CHOOSETARGET:
 		mGUISquad->setSquad(mSelectSquad);
@@ -352,6 +353,7 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 						delete mTargetAreaGrap;
 						mTargetAreaGrap = NULL;
 					}
+					hideSelectPlane();
 					mControlState = PLAYERCONTROL_CHOOSESKILL;
 				}
 			}
@@ -518,7 +520,7 @@ void BattlePlayerState::useSkill(std::string skillid)
 
 				if(mRangeGrap)
 					delete mRangeGrap;
-				mRangeGrap = new AreaGrap(skillarealist, "CUBE_BLUE");
+				mRangeGrap = new AreaGrap(skillarealist, "CUBE_RED");
 				if(mTargetAreaGrap)
 				{
 					delete mTargetAreaGrap;

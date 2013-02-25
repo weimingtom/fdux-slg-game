@@ -39,6 +39,12 @@ GUICommandWindows::GUICommandWindows(MyGUI::Window* window,int Width,int Height)
 	assignWidget(mSkill[9],"Skill_10");
 	assignWidget(mSkill[10],"Skill_11");
 	assignWidget(mSkill[11],"Skill_12");
+	assignWidget(mSkill[12],"Skill_13");
+	assignWidget(mSkill[13],"Skill_14");
+	assignWidget(mSkill[14],"Skill_15");
+	assignWidget(mSkill[15],"Skill_16");
+	assignWidget(mSkill[16],"Skill_17");
+	assignWidget(mSkill[17],"Skill_18");
 	assignWidget(mAPLabel,"APLabel");
 	assignWidget(mSkillName,"SkillName");
 
@@ -280,7 +286,7 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 	if(mSelectSquad == NULL)
 	{
 		mSkillPage = 1;
-		for(int n =0; n <9; n++)
+		for(int n =0; n <18; n++)
 		{
 			mSkill[n]->setVisible(false);
 			mSkill[n]->setImageResource("");
@@ -294,9 +300,9 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 	mAPLabel->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("APLabel"))%(int)apleft%mSelectSquad->getAttr(ATTR_ACTIONPOINT,ATTRCALC_FULL)));
 	std::vector<BattleSquad::ActiveSkillInfo> skilllist = mSelectSquad->GetActiveSkillList();
 	std::vector<BattleSquad::ActiveSkillInfo>::iterator ite = skilllist.begin();
-	int maxn = 9;
+	int maxn = 18;
 	std::vector<BattleSquad::ActiveSkillInfo>::iterator endite = skilllist.end();
-	if(skilllist.size() > 9)
+	/*if(skilllist.size() > 9)
 	{
 		maxn = 8;
 		mSkill[8]->setVisible(true);
@@ -319,7 +325,7 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 		}
 	}
 	else
-		mSkillPage = 1;
+		mSkillPage = 1;*/
 	int n = 0;
 	std::string skillname;
 	std::string skillTips;

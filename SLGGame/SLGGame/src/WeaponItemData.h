@@ -158,7 +158,10 @@ public:
 	  {
 		  int price;
 		  DataLibrary::getSingletonPtr()->getData(mTypeString+mID+"/Value",price);
-		  return price*50;
+		  if(mType==EQUIP_RETAINER)
+			return price;
+		  else
+			return price*50;
 	  }
 
 	  int getOnePrice()
