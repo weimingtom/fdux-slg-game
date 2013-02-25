@@ -7,9 +7,9 @@ function useskill()
 		if re > 0 then
 			casterlv = SquadLib.GetSquadLevel(caster);
 			targetlv = SquadLib.GetSquadLevel(target);
-			ep = 80;
+			ep = 40;
 			if targetlv > casterlv then
-				ep = ep + (targetlv - casterlv) * 8;
+				ep = ep + (targetlv - casterlv) * 4;
 			end
 			SquadLib.AddExp(caster, ep);			
 			ScriptCommonLib.SetTempInt("castsuccess", 1);

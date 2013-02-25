@@ -703,28 +703,36 @@
 	<SkillData>
 		<Attack>
 			<Name type="String" value="进攻"/>
-			<Describe type="String" value="向敌部队突击，尝试通过近距离的战斗消灭敌人"/>
+			<Describe type="String" value="向敌部队突击，尝试通过近距离的战斗消灭敌人（进行一次近战攻击）"/>
 		</Attack>
-		<MagicShield>
-			<Name type="String" value="圣灵护盾"/>
-			<Describe type="String" value="圣灵护盾"/>
-		</MagicShield>
 		<RangedAttack>
 			<Name type="String" value="射击"/>
-			<Describe type="String" value="尝试通过长距离武器消灭敌人"/>
+			<Describe type="String" value="使用远距离武器攻击敌部队（进行一次远程攻击）"/>
 		</RangedAttack>
 		<Defence>
 			<Name type="String" value="防御"/>
-			<Describe type="String" value="部队在原地部署防御，以减少受到攻击时的伤亡"/>
+			<Describe type="String" value="部队在原地部署防御，以减少受到攻击时的伤亡（消耗所有行动值，防御力根据消耗掉的行动值增加）"/>
 		</Defence>
 		<Rest>
 			<Name type="String" value="休整"/>
-			<Describe type="String" value="部队原地休整，尝试为伤员稳定伤势，使之能继续作战"/>
+			<Describe type="String" value="部队原地休整，尝试为伤员稳定伤势，使之能继续作战（消耗所有行动值，根据消耗掉的行动值恢复一定量的伤员）"/>
 		</Rest>	
+		<Inspire>
+			<Name type="String" value="激励"/>
+			<Describe type="String" value="部队的指挥官鼓动士兵奋力作战（提升自己及周围友方部队的攻击力和远程攻击力）"/>
+		</Inspire>
+		<MagicShield>
+			<Name type="String" value="圣灵守护"/>
+			<Describe type="String" value="使用圣灵的力量保护友方士兵免受伤害（牺牲2个圣灵守卫，目标友方部队防御力增加）"/>
+		</MagicShield>
 		<Heal>
 			<Name type="String" value="生命赐福"/>
-			<Describe type="String" value="生命赐福"/>
+			<Describe type="String" value="使用圣灵的力量为友方士兵治疗伤害（牺牲2个圣灵守卫，目标友方部队恢复一定数量的伤员）"/>
 		</Heal>	
+		<Pray>
+			<Name type="String" value="祷告"/>
+			<Describe type="String" value="祷告（召唤一定数量的圣灵守卫）"/>
+		</Pray>
 		<Break>
 			<Name type="String" value="破阵"/>
 			<Describe type="String" value="破阵"/>
@@ -733,32 +741,60 @@
 			<Name type="String" value="压制射击"/>
 			<Describe type="String" value="压制射击"/>
 		</SuppressAttack>
-		<Pray>
-			<Name type="String" value="祷告"/>
-			<Describe type="String" value="祷告"/>
-		</Pray>
-		<Inspire>
-			<Name type="String" value="激励"/>
-			<Describe type="String" value="激励"/>
-		</Inspire>
 	</SkillData>
 	<EffectData>
 		<DetectionTrain>
 			<Name type="String" value="侦查训练"/>
-			<Describe type="String" value="侦查训练"/>
+			<Describe type="String" value="部队士兵接受过一定的侦查训练，可以更快的发现敌军的踪迹（侦查值增加）"/>
 		</DetectionTrain>
 		<AttackTrain>
-			<Name type="String" value="攻击训练"/>
-			<Describe type="String" value="攻击训练"/>
+			<Name type="String" value="进攻训练"/>
+			<Describe type="String" value="部队士兵接受过一定的进攻训练，可以更有效的在近战中杀伤敌军（攻击力增加）"/>
 		</AttackTrain>
 		<DefenceTrain>
 			<Name type="String" value="防御训练"/>
-			<Describe type="String" value="防御训练"/>
+			<Describe type="String" value="部队士兵接受过一定的防御训练，可以更有效的在战斗中保护自己（防御力增加）"/>
 		</DefenceTrain>
 		<RangedAttackTrain>
 			<Name type="String" value="射击训练"/>
-			<Describe type="String" value="射击训练"/>
+			<Describe type="String" value="部队士兵接受过一定的射击训练，可以更有效的使用远程武器杀伤敌军（远程攻击力增加）"/>
 		</RangedAttackTrain>
+		<FormationTrain>
+			<Name type="String" value="列阵训练"/>
+			<Describe type="String" value="部队士兵接受过一定的列阵训练，部队可以更好的发挥阵型优势（阵列值增加）"/>
+		</FormationTrain>
+		<ConterAttackTrain>
+			<Name type="String" value="反击训练"/>
+			<Describe type="String" value="部队士兵接受过一定的反击训练，部队在受到攻击时能更好的组织反击（反击值增加）"/>			
+		</ConterAttackTrain>
+		<MarchingTrain>
+			<Name type="String" value="行军训练"/>
+			<Describe type="String" value="部队士兵接受过一定的行军训练，部队可以以更快的速度行动（行动值增加）"/>			
+		</MarchingTrain>
+		<HidingTrain>
+			<Name type="String" value="隐蔽训练"/>
+			<Describe type="String" value="部队士兵接受过一定的隐蔽训练，部队在行动中更不容易被敌部队发现（隐蔽值增加）"/>			
+		</HidingTrain>		
+		<Defence>
+			<Name type="String" value="防御"/>
+			<Describe type="String" value="部队处于防御状态（防御力增加）"/>
+		</Defence>
+		<Inspired>
+			<Name type="String" value="被激励"/>
+			<Describe type="String" value="部队受到鼓舞（攻击力，远程攻击力增加）"/>
+		</Inspired>
+		<Waver>
+			<Name type="String" value="动摇"/>
+			<Describe type="String" value="部队士气受挫，战斗力开始下降（各项数值随动摇等级下降，4级以后会向周围部队蔓延）"/>
+		</Waver>
+		<Charge>
+			<Name type="String" value="冲锋"/>
+			<Describe type="String" value="部队可以通过一段助跑冲向敌人加强进攻的威力（部队如果在进攻之前直线移动一格，则攻击力增加）"/>
+		</Charge>
+		<MagicShield>
+			<Name type="String" value="圣灵守护"/>
+			<Describe type="String" value="该部队受到圣灵守护效果保护（防御力增加）"/>
+		</MagicShield>
 		<Faith>
 			<Name type="String" value="信念"/>
 			<Describe type="String" value="信念"/>
@@ -767,30 +803,14 @@
 			<Name type="String" value="加强圣灵"/>
 			<Describe type="String" value="加强圣灵"/>
 		</StrengthenSprite>
-		<MagicShield>
-			<Name type="String" value="魔法盾"/>
-			<Describe type="String" value="魔法盾"/>
-		</MagicShield>
-		<Defence>
-			<Name type="String" value="防御"/>
-			<Describe type="String" value="防御"/>
-		</Defence>
 		<Suppressed>
 			<Name type="String" value="压制"/>
 			<Describe type="String" value="压制"/>
 		</Suppressed>
-		<Waver>
-			<Name type="String" value="动摇"/>
-			<Describe type="String" value="动摇"/>
-		</Waver>
 		<AntiCav>
 			<Name type="String" value="对抗骑兵"/>
 			<Describe type="String" value="对抗骑兵"/>
 		</AntiCav>
-		<Inspired>
-			<Name type="String" value="被激励"/>
-			<Describe type="String" value="被激励"/>
-		</Inspired>
 	</EffectData>
 	<GroundData>
 		<Grass>
@@ -856,7 +876,11 @@
 		<ForestLow>
 			<Name type="String" value="森林"/>
 			<Describe type="String" value="森林"/>		
-		</ForestLow>		
+		</ForestLow>	
+		<Bridge>
+			<Name type="String" value="桥梁"/>
+			<Describe type="String" value="桥梁"/>		
+		</Bridge>				
 	</MapObjType>
 	<FactionData>
 		<Wing>

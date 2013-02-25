@@ -435,7 +435,7 @@ void MapLoader::loadMapObj()
 		{
 			std::string particlename;
 			int x,y;
-			datalibrary->getData(datapath + std::string("/") + childlist[n] + std::string("/Script"),particlename);
+			datalibrary->getData(datapath + std::string("/") + childlist[n] + std::string("/Particle"),particlename);
 			datalibrary->getData(datapath + std::string("/") +childlist[n] + std::string("/GridX"),x);
 			datalibrary->getData(datapath + std::string("/") +childlist[n] + std::string("/GridY"),y);
 			int index;

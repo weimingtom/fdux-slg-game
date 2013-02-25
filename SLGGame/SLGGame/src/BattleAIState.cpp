@@ -577,13 +577,13 @@ void BattleAIState::findOtherSquadGroup()
 			}
 			else if(connectvec[n] == connectvec[m] || connectvec[n + 1] == connectvec[m])
 			{
-				connectvect.push_back(connectvec[m]);
+				connectvect.push_back(connectvec[m + 1]);
 				connectvec[m] = -1;
 				connectvec[m + 1] = -1;
 			}
 			else if(connectvec[n] == connectvec[m + 1] || connectvec[n + 1] == connectvec[m + 1])
 			{
-				connectvect.push_back(connectvec[m + 1]);
+				connectvect.push_back(connectvec[m]);
 				connectvec[m] = -1;
 				connectvec[m + 1] = -1;
 			}
@@ -608,11 +608,14 @@ void BattleAIState::findOtherSquadGroup()
 					mOtherSquadGroupVec.find(connectvect[m]);
 				std::map<int, OtherSquadGroupInfo>::iterator tempite1 = 
 					mOtherSquadGroupVec.find(connectvect[maxstrengthgroup]);
-				for(unsigned int l = 0; l < tempite->second.mSquadList.size(); l++)
+				if(tempite != tempite1)
 				{
-					tempite1->second.mSquadList.push_back(tempite->second.mSquadList[l]);
+					for(unsigned int l = 0; l < tempite->second.mSquadList.size(); l++)
+					{
+						tempite1->second.mSquadList.push_back(tempite->second.mSquadList[l]);
+					}
+					mOtherSquadGroupVec.erase(tempite);
 				}
-				mOtherSquadGroupVec.erase(tempite);
 			}
 		}
 	}

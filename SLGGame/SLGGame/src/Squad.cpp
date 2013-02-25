@@ -754,6 +754,24 @@ int Squad::getEffectLevel(std::string eid)
 	return lv;
 }
 
+int Squad::getEffectLevelByName(std::string effectname)
+{
+	int lv = 0;
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::vector<std::string> effectlist = datalib->getChildList(mPath + "/Effect");
+	std::vector<std::string>::iterator ite;
+	std::string tempeffectid;
+	for(ite = effectlist.begin(); ite != effectlist.end(); ite++)
+	{
+		datalib->getData(str(boost::format("%1%/Effect/%2%/EffectId")%mPath%(*ite)), tempeffectid);
+		if(tempeffectid == effectname)
+		{
+			datalib->getData(str(boost::format("%1%/Effect/%2%")%mPath%(*ite)), lv);
+		}
+	}
+	return lv;
+}
+
 float Squad::getAttr(int attrtype , int calctype)
 {
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();

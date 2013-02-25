@@ -52,7 +52,10 @@ void AVGSquadManager::dumpSquad(std::string squadid, Squad* squad)
 	datalib->setData(path + "ArmorId", squad->getArmorId());
 	datalib->setData(path + "Level", squad->getLevel());
 	datalib->setData(path + "Exp", squad->getExp());
-	datalib->setData(path + "UnitNum", squad->getUnitNum());
+	int unitnum = squad->getUnitNum();
+	if(unitnum == 0)
+		unitnum = 1;
+	datalib->setData(path + "UnitNum", unitnum);
 	datalib->setData(path + "SkillPointAction", squad->getSkillPointAction());
 	datalib->setData(path + "SkillPointPassive", squad->getSkillPointPassive());
 	datalib->setData(path + "SkillPointEquip", squad->getSkillPointEquip());

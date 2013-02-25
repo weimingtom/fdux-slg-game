@@ -83,9 +83,9 @@ function onunderrangedattack()
 	tsid = ScriptCommonLib.GetTempString("targetsquadid");
 	casterlv = SquadLib.GetSquadLevel(sid);
 	targetlv = SquadLib.GetSquadLevel(tsid);
-	ep = 50;
+	ep = 25;
 	if targetlv > casterlv then
-		ep = ep + (targetlv - casterlv) * 5;
+		ep = ep + (targetlv - casterlv) * 3;
 	end
 	SquadLib.AddExp(sid, ep);	
 end
@@ -95,9 +95,9 @@ function onundermagicattack()
 	tsid = ScriptCommonLib.GetTempString("targetsquadid");
 	casterlv = SquadLib.GetSquadLevel(sid);
 	targetlv = SquadLib.GetSquadLevel(tsid);
-	ep = 50;
+	ep = 25;
 	if targetlv > casterlv then
-		ep = ep + (targetlv - casterlv) * 5;
+		ep = ep + (targetlv - casterlv) * 3;
 	end
 	SquadLib.AddExp(sid, ep);	
 end
@@ -109,9 +109,9 @@ function onmeleeattack()
 	if isdefender == 1 then
 		casterlv = SquadLib.GetSquadLevel(sid);
 		targetlv = SquadLib.GetSquadLevel(tsid);
-		ep = 50;
+		ep = 25;
 		if targetlv > casterlv then
-			ep = ep + (targetlv - casterlv) * 5;
+			ep = ep + (targetlv - casterlv) * 3;
 		end
 		SquadLib.AddExp(sid, ep);	
 	end
