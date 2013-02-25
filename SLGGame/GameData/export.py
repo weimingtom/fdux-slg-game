@@ -78,8 +78,8 @@ def SweaponData(table,xmlTree,stringTree):
         SubElement(item,  'PUVector', {'type' : "String",'value':str(table.cell(i,22).value)})
         SubElement(item,  'AniGroup', {'type' : "String",'value':str(table.cell(i,23).value)})
         SubElement(item,  'Icon', {'type' : "String",'value':str(table.cell(i,24).value)})
-        SubElement(item,  'MaxRange', {'type' : "Int",'value':str(int(table.cell(i,13).value))})
-        SubElement(item,  'MinRange', {'type' : "Int",'value':str(int(table.cell(i,14).value))})
+        SubElement(item,  'MaxRange', {'type' : "Int",'value':str(int(table.cell(i,14).value))})
+        SubElement(item,  'MinRange', {'type' : "Int",'value':str(int(table.cell(i,13).value))})
 
         attr=Element('AttrModifer')
         item.append(attr)
