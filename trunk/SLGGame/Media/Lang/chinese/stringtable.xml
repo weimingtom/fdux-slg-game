@@ -293,5 +293,8 @@
 		
 		<!--Skills-->
 		<Skills_DefendEffect type="String" value="防御+%1%"/>
+		<Skills_Waver type="String" value="动摇"/>
+		<Skills_Inspire type="String" value="攻击力+%1%&#x0D;远程攻击力+%1%"/>
+		<Skills_NotEnoughGuard type="String" value="圣灵守卫不足"/>
 	</StringTable>
 </StaticData>

@@ -20,6 +20,7 @@ extern "C"
 #include "CutSceneBuilder.h"
 #include "SquadParticleCutScence.h"
 #include "ShowValueCutScene.h"
+#include "AnimationCutScene.h"
 
 static int GetSquadCoord(lua_State* L)
 {
@@ -423,6 +424,74 @@ static int GetSkillLevel(lua_State* L)
 	return 1;
 }
 
+static int GetEffectLevelByName(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	std::string effectname(luaL_checkstring(L, 2));
+	Squad* squad = NULL;
+	int lv = 0;
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+		squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+	else
+		squad = NULL;
+	if(squad)
+		lv = squad->getEffectLevelByName(effectname);	
+	lua_pushnumber(L,lv);
+	return 1;
+}
+
+static int GetType(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	Squad* squad = NULL;
+	int squantype = 0;
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+		squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+	else
+		squad = NULL;
+	if(squad)
+		squantype = squad->getType();	
+	lua_pushnumber(L,squantype);
+	return 1;
+}
+
+static int GetSquadType(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	Squad* squad = NULL;
+	int squantype = 0;
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+		squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+	else
+		squad = NULL;
+	if(squad)
+		squantype = squad->getSquadType();	
+	lua_pushnumber(L,squantype);
+	return 1;
+}
+
+static int Animation(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	int unittype = luaL_checkinteger(L, 2);
+	std::string animationame(luaL_checkstring(L, 3));
+	std::string soundname(luaL_checkstring(L, 4));
+	std::string particlename(luaL_checkstring(L, 5));
+	int loop = luaL_checkinteger(L, 6);
+	int backtoidle = luaL_checkinteger(L, 7);
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+	{
+		BattleSquad* squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+		if(squad)
+		{
+			CutSceneBuilder::getSingleton().addCutScene(
+				new AnimationCutScene(squad->getSquadId(), (UnitType)unittype, 
+				animationame, soundname, particlename, loop == 1,
+				backtoidle == 1));
+		}
+	}
+	return 0;
+}
 
 static const struct luaL_Reg SquadLib[] =
 {
@@ -450,5 +519,9 @@ static const struct luaL_Reg SquadLib[] =
 	{"ShowValue",ShowValue},
 	{"ShowValue1",ShowValue1},
 	{"GetSkillLevel",GetSkillLevel},
+	{"GetEffectLevelByName",GetEffectLevelByName},
+	{"GetType",GetType},
+	{"GetSquadType",GetSquadType},
+	{"Animation",Animation},
 	{NULL,NULL}
 };
