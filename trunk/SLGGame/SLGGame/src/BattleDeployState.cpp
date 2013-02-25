@@ -63,6 +63,14 @@ BattleDeployState::BattleDeployState()
 
 
 	mAreaGrap = new AreaGrap(std::string("GameData/BattleData/MapData/Area/DeployArea/CoordList"),"CUBE_BLUE");
+	
+	int x,y;
+	DataLibrary::getSingletonPtr()->getData("GameData/BattleData/MapData/Area/DeployArea/CoordList/c0/X",x);
+	DataLibrary::getSingletonPtr()->getData("GameData/BattleData/MapData/Area/DeployArea/CoordList/c0/Y",y);
+
+	float wx,wy;
+	Terrain::getSingletonPtr()->getWorldCoords(x,y,wx,wy);
+	CameraContral::getSingletonPtr()->moveCameraTo(wx,wy);
 
 	//int k=1;
 	//for (int i=8;i<14;i++)

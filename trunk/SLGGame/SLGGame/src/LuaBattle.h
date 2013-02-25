@@ -24,6 +24,7 @@ extern "C"
 #include "GUIBattle.h"
 #include "GUIGameOver.h"
 #include "GUIMissionWindow.h"
+#include "Terrain.h"
 
 #include "WinLostCutScene.h"
 
@@ -219,6 +220,17 @@ static int InterruptMove(lua_State* L)
 	return 0;
 }
 
+static int CreateMapParticle(lua_State* L)
+{
+	int x = luaL_checkint(L, 1);
+	int y = luaL_checkint(L, 2);
+	std::string pu(luaL_checkstring(L,3));
+	
+	Terrain::getSingletonPtr()->createMapParticle(x,y,pu);
+
+	return 0;
+}
+
 static const struct luaL_Reg BattleLib[] =
 {
 	{"ChangeState",ChangeState},
@@ -239,5 +251,6 @@ static const struct luaL_Reg BattleLib[] =
 	{"AddBattleSquad", AddBattleSquad},
 	{"RemoveBattleSquad", RemoveBattleSquad},
 	{"InterruptMove",InterruptMove},
+	{"CreateMapParticle",CreateMapParticle},
 	{NULL,NULL}
 };

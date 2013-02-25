@@ -1,0 +1,17 @@
+material mp2_smoke_hot_cold_e
+{
+    technique
+    {
+        pass
+        {
+            lighting off
+            scene_blend alpha_blend
+            depth_write off
+
+            texture_unit
+            {
+                texture mp2_smoke_hot_cold_e.dds
+            }
+        }
+    }
+}

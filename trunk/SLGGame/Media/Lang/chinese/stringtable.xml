@@ -250,8 +250,10 @@
         <SquadActivePoint type="String" value="可用主动技能点:%1%"/>
         <SquadEquipPoint type="String" value="可用装备技能点:%1%"/>
         <Trained type="String" value="已训练"/>
+        <CanTraine type="String" value="可以学习"/>
         <point type="String" value="点数:"/>
-        <NoEnoughPoint type="String" value="(点数不足)"/>
+        <NoEnoughLevel type="String" value="需要达到等级"/>
+        <NoEnoughPoint type="String" value="点数不足"/>
         <NoSkillEquip type="String" value="没有装备技能"/>
         
 		

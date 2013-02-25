@@ -622,6 +622,14 @@
 							>
 						</File>
 						<File
+							RelativePath=".\src\CameraCutScene.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\src\CameraCutScene.h"
+							>
+						</File>
+						<File
 							RelativePath=".\src\ChangeStateCutScene.cpp"
 							>
 						</File>

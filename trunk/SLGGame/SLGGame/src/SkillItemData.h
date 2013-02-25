@@ -14,16 +14,18 @@ public:
 	  mType(0),
 	  mID(""),
 	  mName(""),
-		  mPoint(0),
+		  mLevel(0),
+		  mNowLevel(0),
 		  mTotalPoint(0),
 		  mResourceInfo(nullptr),
 		  mGroup("")
 	  {
 	  }
 
-	  SkillItemData(int type,const std::string& id,int point,std::string name,int totalPoint) :
+	  SkillItemData(int type,const std::string& id,int level,int NowLevel,std::string name,int totalPoint) :
 	  mType(type),
-		  mPoint(point),
+		  mLevel(level),
+		  mNowLevel(NowLevel),
 		  mID(id),
 		  mTotalPoint(totalPoint),
 		  mName(name),
@@ -48,6 +50,35 @@ public:
 		  case SKILLTYPE_EQUIP:
 			  mTypeString = "";
 			  mGroup=id;
+			  if(id=="OneHandBlunt")
+				  mGroup="eqp_oneaxe";
+			  else if(id=="OneHandSword")
+				  mGroup="OneHandSword";
+			  else if(id=="TwoHandSword")
+				  mGroup="eqp_twosword";
+			  else if(id=="TwoHandBlunt")
+				  mGroup="eqp_twoaxe";
+			  else if(id=="ShortSpear")
+				  mGroup="ShortSpear";
+			  else if(id=="Long")
+				  mGroup="eqp_halberd";
+			  else if(id=="Shield")
+				  mGroup="Shield";
+			  else if(id=="LightArmor")
+				  mGroup="eqp_lightarmor";
+			  else if(id=="MiddleArmor")
+				  mGroup="eqp_midarmor";
+			  else if(id=="HeavyArmor")
+				  mGroup="eqp_heavyarmor";
+			  else if(id=="Bow")
+				  mGroup="Bow";
+			  else if(id=="XBow")
+				  mGroup="LXBox";
+			  else if(id=="LightHorse")
+				  mGroup="eqp_heavyhorse";
+			  else if(id=="HeavyHorse")
+				  mGroup="eqp_lightarmor";
+
 			  mResoure="eqp";
 			  StringTable::getSingletonPtr()->getString(mName);
 			  break;
@@ -67,7 +98,8 @@ public:
 		  mType=0;
 		  mTypeString="";
 		  mIsCanTrain=false;
-		  mPoint=0;
+		  mLevel=0;
+		  mNowLevel=0;
 	  }
 
 	  demo::ResourceItemInfoPtr getInfo() const
@@ -89,17 +121,25 @@ public:
 	  {
 		  if(mIsCanTrain)
 		  {
-			  int point=getPoint();
-			  if(mTotalPoint-point<0)
+			  if(mNowLevel>=mLevel)
 			  {
-				  mIsHaveEnoughPoint=false;
-				  return "#C0C0C0"+StringTable::getSingleton().getString("point")+Ogre::StringConverter::toString(point)+StringTable::getSingleton().getString("NoEnoughPoint");
+				  if(mTotalPoint-1<0)
+				  {
+					  mIsHaveEnoughPoint=false;
+					  return "#C0C0C0"+StringTable::getSingleton().getString("NoEnoughPoint");
+				  }
+				  else
+				  {
+					  mIsHaveEnoughPoint=true;
+					  return "#FFFF00"+StringTable::getSingleton().getString("CanTraine");
+				  }
 			  }
 			  else
 			  {
-				  mIsHaveEnoughPoint=true;
-				  return "#FFFF00"+StringTable::getSingleton().getString("point")+Ogre::StringConverter::toString(point);
+					mIsHaveEnoughPoint=false;
+					return "#C0C0C0"+StringTable::getSingleton().getString("NoEnoughLevel")+Ogre::StringConverter::toString(mLevel);
 			  }
+
 		  }
 		  else
 		  {
@@ -139,9 +179,9 @@ public:
 		  return mType;
 	  }
 
-	  int getPoint()
+	  int getLevel()
 	  {
-		return mPoint;
+		return mLevel;
 	  }
 
 	  bool getHaveEnoughPoint()
@@ -154,7 +194,8 @@ private:
 	std::string mID;
 	std::string mName;
 	int mType;
-	int mPoint;
+	int mLevel;
+	int mNowLevel;
 	int mTotalPoint;
 	std::string mTypeString;
 	bool mIsCanTrain;

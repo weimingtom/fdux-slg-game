@@ -20,6 +20,8 @@ public:
 	void riseCameraTo(float h);
 	void resetCamera();
 
+	void getCameraXY(float& x,float& y){x=mX;y=mY;}
+
 	void setMoveRect(float minx, float miny);
 
 	Ogre::Camera* getShadowMapCamera() {return mShadowMapCamera;}
