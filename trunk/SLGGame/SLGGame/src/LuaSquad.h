@@ -21,6 +21,7 @@ extern "C"
 #include "SquadParticleCutScence.h"
 #include "ShowValueCutScene.h"
 #include "AnimationCutScene.h"
+#include "EffectCutScene.h"
 
 static int GetSquadCoord(lua_State* L)
 {
@@ -429,15 +430,17 @@ static int GetEffectLevelByName(lua_State* L)
 	std::string squadid(luaL_checkstring(L, 1));
 	std::string effectname(luaL_checkstring(L, 2));
 	Squad* squad = NULL;
+	std::string effectid("");
 	int lv = 0;
 	if(StateManager::getSingleton().curState() == StateManager::Battle)
 		squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
 	else
 		squad = NULL;
 	if(squad)
-		lv = squad->getEffectLevelByName(effectname);	
+		lv = squad->getEffectLevelByName(effectname, effectid);	
 	lua_pushnumber(L,lv);
-	return 1;
+	lua_pushstring(L, effectid.c_str());
+	return 2;
 }
 
 static int GetType(lua_State* L)
@@ -492,6 +495,174 @@ static int Animation(lua_State* L)
 	}
 	return 0;
 }
+static int AddSkill(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	std::string skillid(luaL_checkstring(L, 2));
+	Squad* squad = NULL;
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+		squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+	else
+		squad = NULL;
+	if(squad)
+		squad->addSkill(skillid);	
+	return 0;
+}
+static int RemoveSkill(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	std::string skillid(luaL_checkstring(L, 2));
+	Squad* squad = NULL;
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+		squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+	else
+		squad = NULL;
+	if(squad)
+		squad->removeSkill(skillid);	
+	return 0;
+}
+
+static int GetSquadAttr(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	int attrtype = luaL_checkinteger(L, 2);
+	int clactype = luaL_checkinteger(L, 3);
+	float attr = 0.0f;
+	Squad* squad = NULL;
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+		squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+	else
+		squad = NULL;
+	if(squad)
+		attr = squad->getAttr(attrtype, clactype);
+	lua_pushnumber(L,attr);
+	return 1;
+}
+
+static int GetEquipAttr(lua_State* L)
+{
+	int equiptype = luaL_checkinteger(L, 1);
+	std::string equipid(luaL_checkstring(L, 2));
+	int attrtype = luaL_checkinteger(L, 3);
+	float value = 0.0f;
+	DataLibrary* datalib = DataLibrary::getSingletonPtr();
+	std::string srcpath;
+	switch(equiptype)
+	{
+	case EQUIP_ARMOR:
+		srcpath = "StaticData/ArmorData";
+		break;
+	case EQUIP_HORSE:
+		srcpath = "StaticData/HorseData";
+		break;
+	case EQUIP_SOILDER:
+		srcpath = "StaticData/SoilderData";
+		break;
+	case EQUIP_SHIELD:
+		srcpath = "StaticData/ShieldData";
+		break;
+	case EQUIP_PWEAPON:
+		srcpath = "StaticData/PweaponData";
+		break;
+	case EQUIP_SWEAPON:
+		srcpath = "StaticData/SweaponData";
+		break;
+	}
+	std::vector<std::string> srcequiplist = datalib->getChildList(srcpath);
+	std::vector<std::string>::iterator ite = std::find(srcequiplist.begin(), srcequiplist.end(), equipid);
+	if(ite != srcequiplist.end())
+	{
+		srcpath = srcpath + std::string("/") + equipid + std::string("/AttrModifer");
+		switch(attrtype)
+		{
+		case ATTR_ATTACK:
+			datalib->getData(srcpath + std::string("/Attack"), value);
+			break;
+		case ATTR_RANGEDATTACK:
+			datalib->getData(srcpath + std::string("/RangedAttack"), value);
+			break;
+		case ATTR_DEFENCE:
+			datalib->getData(srcpath + std::string("/Defence"), value);
+			break;
+		case ATTR_FORM:
+			datalib->getData(srcpath + std::string("/Formation"), value);
+			break;
+		case ATTR_INITIATIVE:
+			datalib->getData(srcpath + std::string("/Initiative"), value);
+			break;
+		case ATTR_ACTIONPOINT:
+			datalib->getData(srcpath + std::string("/ActionPoint"), value);
+			break;
+		case ATTR_DETECTION:
+			datalib->getData(srcpath + std::string("/Detection"), value);
+			break;
+		case ATTR_COVERT:
+			datalib->getData(srcpath + std::string("/Covert"), value);
+			break;
+		case ATTR_TOUGHNESS:
+			datalib->getData(srcpath + std::string("/Toughness"), value);
+			break;
+		case ATTR_CONTER:
+			datalib->getData(srcpath + std::string("/Conter"), value);
+			break;
+		}
+	}
+	lua_pushnumber(L,value);
+	return 1;
+}
+
+static int PlayParticle(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	int unittype = luaL_checkinteger(L, 2);
+	std::string particlename(luaL_checkstring(L, 3));
+	std::string soundname(luaL_checkstring(L, 4));
+	int lasttime = luaL_checkinteger(L, 5);
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+	{
+		BattleSquad* squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+		if(squad)
+		{
+			CutSceneBuilder::getSingleton().addCutScene(
+				new EffectCutScene(squad->getSquadId(), (UnitType)unittype, 
+				particlename, soundname, lasttime));
+		}
+	}
+	return 0;
+}
+
+static int MoveSquad(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	int x =  luaL_checknumber(L,2);
+	int y =  luaL_checknumber(L,3);
+	unsigned int eventflag = MOVEEVENT_WRONG;
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+	{
+		BattleSquad* squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+		if(squad)
+		{
+			eventflag = 0;
+			BattleSquadManager::getSingleton().forceMoveSquad(squad, Crood(x, y), eventflag);
+		}
+	}
+	lua_pushnumber(L, eventflag);
+	return 1;
+}
+static int ChangeDirection(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	int dir = luaL_checknumber(L,2);
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+	{
+		BattleSquad* squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+		if(squad)
+		{
+			BattleSquadManager::getSingleton().setDirection(squad, dir);
+		}
+	}
+	return 0;
+}
 
 static const struct luaL_Reg SquadLib[] =
 {
@@ -523,5 +694,12 @@ static const struct luaL_Reg SquadLib[] =
 	{"GetType",GetType},
 	{"GetSquadType",GetSquadType},
 	{"Animation",Animation},
+	{"AddSkill",AddSkill},
+	{"RemoveSkill",RemoveSkill},
+	{"GetSquadAttr", GetSquadAttr},
+	{"GetEquipAttr", GetEquipAttr},
+	{"PlayParticle", PlayParticle},
+	{"MoveSquad", MoveSquad},
+	{"ChangeDirection", ChangeDirection},
 	{NULL,NULL}
 };

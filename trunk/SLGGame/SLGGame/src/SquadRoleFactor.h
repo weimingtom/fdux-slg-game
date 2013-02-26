@@ -15,3 +15,13 @@ public:
 private:
 	int mSquadRole;
 };
+
+class SquadRolebyAttrFactor: public DecisionMapFactor<BattleSquad*>
+{
+public:
+	SquadRolebyAttrFactor(int squadrole);
+
+	virtual float calcDecision(BattleSquad* &decision);
+private:
+	int mSquadRole;
+};

@@ -21,3 +21,24 @@ private:
 	std::map<int, BattleSquadManager::MoveNode>* mArea;
 	std::map<int, BattleSquadManager::MoveNode>* mPath;
 };
+
+class HighTerrainAttrFactor: public DecisionMapFactor<Crood>
+{
+public:
+	HighTerrainAttrFactor(int attrtype);
+	
+	virtual float calcDecision(Crood &crood);
+private:
+	int mAttrType;
+};
+
+class CloseToEnemyFactor: public DecisionMapFactor<Crood>
+{
+public:
+	CloseToEnemyFactor(int faction, bool avoidsurround);
+
+	virtual float calcDecision(Crood &crood);
+private:
+	int mFaction;
+	bool mAvoidSurround;
+};

@@ -13,7 +13,7 @@ end
 function onremove()
 	mid = ScriptCommonLib.GetString("modifierid");
 	sid = ScriptCommonLib.GetTempString("squadid");
-		if mid ~= "" then
+	if mid ~= "" then
 		SquadLib.RemoveModifier(sid, mid);
 	end
 end

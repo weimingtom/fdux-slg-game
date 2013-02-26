@@ -846,26 +846,38 @@ void BattleAIState::SquadAI::updateMove()
 		return;
 	}
 	DecisionMap<Crood> targetdecision(croodlist);
-	/*
 	switch(mTargetType)
 	{
 	case SGM_WAIT:
+		targetdecision.addFactor(new SquadMoveClosetoPathFactor(&moveareaold, &fullpath), 1.0f);
 		break;
 	case SGM_MOVE:
+		targetdecision.addFactor(new SquadMoveClosetoPathFactor(&moveareaold, &fullpath), 1.0f);
 		break;
 	case SGM_RALLY:
+		targetdecision.addFactor(new SquadMoveClosetoPathFactor(&moveareaold, &fullpath), 1.0f);
 		break;
 	case SGM_DEFEND:
+		targetdecision.addFactor(new SquadMoveClosetoPathFactor(&moveareaold, &fullpath), 0.8f);
+		targetdecision.addFactor(new HighTerrainAttrFactor(0), 0.1f);
+		targetdecision.addFactor(new CloseToEnemyFactor(mSquad->getFaction(), true), 0.1f);
 		break;
 	case SGM_ATTACK:
+		targetdecision.addFactor(new SquadMoveClosetoPathFactor(&moveareaold, &fullpath), 0.4f);
+		targetdecision.addFactor(new CloseToEnemyFactor(mSquad->getFaction(), true), 0.5f);
+		targetdecision.addFactor(new ClosetoCroodFactor(Crood(mSquad->getGridX(), mSquad->getGridY())), 0.1f);
 		break;
 	case SGM_SUPPORT_RANGE:
+		targetdecision.addFactor(new SquadMoveClosetoPathFactor(&moveareaold, &fullpath), 0.9f);
+		targetdecision.addFactor(new HighTerrainAttrFactor(0), 0.3f);
+		targetdecision.addFactor(new CloseToEnemyFactor(mSquad->getFaction(), false), -0.2f);
 		break;
 	case SGM_SUPPORT_CLOSE:
+		targetdecision.addFactor(new SquadMoveClosetoPathFactor(&moveareaold, &fullpath), 0.8f);
+		targetdecision.addFactor(new RandomFactor<Crood>(-100.0f, 100.0f), 0.4f);
+		targetdecision.addFactor(new CloseToEnemyFactor(mSquad->getFaction(), false), -0.2f);
 		break;
 	}
-	*/
-	targetdecision.addFactor(new SquadMoveClosetoPathFactor(&moveareaold, &fullpath), 1.0f);
 	targetdecision.calcDecision();
 	Crood target = targetdecision.getHighest();
 
@@ -889,6 +901,22 @@ void BattleAIState::SquadAI::updateMove()
 }
 void BattleAIState::SquadAI::updateFormation()
 {
+	if(mSquad->getType() == 0 && mSquad->getFormation() != Line)
+	{
+		std::vector<BattleSquad::ActiveSkillInfo> skilllist = mSquad->GetActiveSkillList();
+		std::vector<BattleSquad::ActiveSkillInfo>::iterator ite = skilllist.begin();
+		for( ; ite != skilllist.end(); ite++)
+		{
+			if((*ite).skillid != "lineformation")
+				continue;
+			if((*ite).available == false)
+				break;
+			if((*ite).apcost < 2.0f)
+			{
+				BattleSquadManager::getSingleton().changeFormation(mSquad, Line, true);
+			}
+		}
+	}
 	mState = SAS_SKILL;
 }
 void BattleAIState::SquadAI::updateSkill()
@@ -928,33 +956,52 @@ void BattleAIState::SquadAI::updateSkill()
 		useskill.skillid = "none";
 		useskillvec.push_back(useskill);
 		DecisionMap<UseSkillInfo> skilldecision(useskillvec);
-		/*
 		switch(mTargetType)
 		{
 		case SGM_WAIT:
+			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.2f);
+			skilldecision.addFactor(new SquadSkillbySptEffectiveFactor(mSquad) , 0.7f);
+			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(-100.0f, 100.0f) , 0.1f);
 			break;
 		case SGM_MOVE:
+			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.2f);
+			skilldecision.addFactor(new SquadSkillbySptEffectiveFactor(mSquad) , 0.7f);
+			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(-100.0f, 100.0f) , 0.1f);
 			break;
 		case SGM_RALLY:
+			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.2f);
+			skilldecision.addFactor(new SquadSkillbySptEffectiveFactor(mSquad) , 0.7f);
+			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(-100.0f, 100.0f) , 0.1f);
 			break;
 		case SGM_DEFEND:
+			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.3f);
+			skilldecision.addFactor(new SquadSkillbySptEffectiveFactor(mSquad) , 0.4f);
+			skilldecision.addFactor(new SquadSkillbyRoleFactor(mSquad, ROLETYPE_MAINFORCE | ROLETYPE_SUPPORT_DEF | ROLETYPE_SUPPORT_WOUND | ROLETYPE_SUPPORT_WAVER) , 0.2f);
+			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(-100.0f, 100.0f) , 0.1f);
 			break;
 		case SGM_ATTACK:
+			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.7f);
+			skilldecision.addFactor(new SquadSkillbyRoleFactor(mSquad, ROLETYPE_MAINFORCE | ROLETYPE_ANTI_HIGHARMOR | ROLETYPE_ANTI_CAV | ROLETYPE_SUPPORT_AP), 0.2f);
+			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(-100.0f, 100.0f) , 0.1f);
 			break;
 		case SGM_SUPPORT_RANGE:
+			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.7f);
+			skilldecision.addFactor(new SquadSkillbyRoleFactor(mSquad, ROLETYPE_MAINFORCE | ROLETYPE_ANTI_HIGHFORM ), 0.2f);
+			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(-100.0f, 100.0f) , 0.1f);
 			break;
 		case SGM_SUPPORT_CLOSE:
+			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.7f);
+			skilldecision.addFactor(new SquadSkillbyRoleFactor(mSquad, ROLETYPE_MAINFORCE | ROLETYPE_ANTI_MAGE | ROLETYPE_SUPPORT_AP), 0.2f);
+			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(-100.0f, 100.0f) , 0.1f);
 			break;
 		}
-		*/
-		skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.9f);
-		skilldecision.addFactor(new RandomFactor<UseSkillInfo>(-100.0f, 100.0f) , 0.1f);
 		skilldecision.calcDecision();
 		useskill = skilldecision.getHighest();
 		if(useskill.skillid != "none")
 		{
 			unsigned int evt = 0;
 			squadmgr->useSkill(mSquad, useskill.skillid, useskill.targetCrood.mX, useskill.targetCrood.mY, evt);
+			mState = SAS_MOVE;
 			return;
 		}
 	}
@@ -1475,10 +1522,11 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 			}
 			//创建新的分组并指派任务
 			//创建主战分组
-			if(freeSquads.size() > 0 && curmainstrength < threatenstrength * 0.5f)
+			if(freeSquads.size() > 0 && curmainstrength < threatenstrength * 0.7f)
 			{
 				DecisionMap<BattleSquad*> formgroupdecision(freeSquads);
-				formgroupdecision.addFactor(new SquadRolebyTypeFactor(ROLETYPE_MAINFORCE), 1.0f);
+				formgroupdecision.addFactor(new SquadRolebyTypeFactor(ROLETYPE_MAINFORCE), 0.5f);
+				formgroupdecision.addFactor(new SquadRolebyAttrFactor(ROLETYPE_MAINFORCE), 0.5f);
 				formgroupdecision.calcDecision();
 				std::vector<BattleSquad*> choosesquads = formgroupdecision.getHigherThan(30.0f);
 				if(choosesquads.size() > 0)
@@ -1502,10 +1550,11 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 				}
 			}
 			//创建远程支援分组
-			if(freeSquads.size() > 0 && currangestrength < threatenstrength * 0.4f)
+			if(freeSquads.size() > 0 && currangestrength < threatenstrength * 0.6f)
 			{
 				DecisionMap<BattleSquad*> formgroupdecision(freeSquads);
-				formgroupdecision.addFactor(new SquadRolebyTypeFactor(ROLETYPE_SUPPORT_RANGE), 1.0f);
+				formgroupdecision.addFactor(new SquadRolebyTypeFactor(ROLETYPE_SUPPORT_RANGE), 0.5f);
+				formgroupdecision.addFactor(new SquadRolebyAttrFactor(ROLETYPE_SUPPORT_RANGE), 0.5f);
 				formgroupdecision.calcDecision();
 				std::vector<BattleSquad*> choosesquads = formgroupdecision.getHigherThan(30.0f);
 				if(choosesquads.size() > 0)
@@ -1581,23 +1630,22 @@ void BattleAIState::DefendCommander::updateMission(SquadGroupCommander& sg, int 
 		}
 		break;
 	case SGM_ATTACK:
+	case SGM_SUPPORT_RANGE:
+	case SGM_SUPPORT_CLOSE:
 		{
-
+			createMission(sg, osgindex, othersquadgroup, midcrood);
 		}
 		break;
 	case SGM_DEFEND:
 		{
-
-		}
-		break;
-	case SGM_SUPPORT_RANGE:
-		{
-
-		}
-		break;
-	case SGM_SUPPORT_CLOSE:
-		{
-
+			DecisionMap<Crood> decision(mMissionArea.getCroodVec());
+			decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter()), 0.6f);
+			decision.addFactor(new HighTerrainAttrAreaFactor(0), 0.2f);
+			decision.addFactor(new ClosetoCroodFactor(tgtcrood), 0.3f);
+			decision.addFactor(new ClosetoBorderFactor(mMissionArea), -0.1f);
+			decision.calcDecision();
+			tgtcrood = decision.getHighest();
+			sg.setTarget(SGM_DEFEND, tgtcrood);
 		}
 		break;
 	default:
@@ -1647,23 +1695,20 @@ void BattleAIState::DefendCommander::createMission(SquadGroupCommander& sg, int 
 	{
 		if(sg.mType == SG_MAIN)
 		{
-			decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter()), 0.7f);
-			decision.addFactor(new ClosetoCroodFactor(midcrood), 0.2f);
+			decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter(), 0), 0.9f);
 			decision.addFactor(new RandomFactor<Crood>(-100.0f, 100.0f), 0.1f);
 			missiontype = SGM_ATTACK;
 		}
 		else if(sg.mType == SG_SUPPORT_RANGE)
 		{
-			decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter()), 0.7f);
-			decision.addFactor(new ClosetoCroodFactor(midcrood), 0.2f);
+			decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter(), 2), 0.9f);
 			decision.addFactor(new RandomFactor<Crood>(-100.0f, 100.0f), 0.1f);
 			missiontype = SGM_SUPPORT_RANGE;
 		}
 		else
 		{
-			decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter()), 0.6f);
-			decision.addFactor(new ClosetoCroodFactor(midcrood), 0.1f);
-			decision.addFactor(new RandomFactor<Crood>(-100.0f, 100.0f), 0.3f);
+			decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter(), 2), 0.8f);
+			decision.addFactor(new RandomFactor<Crood>(-100.0f, 100.0f), 0.2f);
 			missiontype = SGM_SUPPORT_CLOSE;
 		}
 	}
@@ -1681,7 +1726,8 @@ void BattleAIState::DefendCommander::createMission(SquadGroupCommander& sg, int 
 		{
 			missiontype = SGM_SUPPORT_CLOSE;
 		}
-		decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter()), 1.0f);
+		decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter()), 0.8f);
+		decision.addFactor(new HighTerrainAttrAreaFactor(0), 0.2f);
 		decision.addFactor(new ClosetoBorderFactor(mMissionArea), -0.1f);
 		decision.addFactor(new RandomFactor<Crood>(-100.0f, 100.0f), 0.1f);
 	}

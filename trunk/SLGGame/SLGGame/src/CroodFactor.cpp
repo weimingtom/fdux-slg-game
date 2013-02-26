@@ -37,7 +37,7 @@ ClosetoBorderFactor::ClosetoBorderFactor(Area &area)
 
 float ClosetoBorderFactor::calcDecision(Crood &crood)
 {
-	int close = 2;
+	int close = 5;
 	MapDataManager* mapdata = MapDataManager::getSingletonPtr();
 	int mapsize = mapdata->getMapSize();
 	for(int x = crood.mX - 2; x <= crood.mX + 2; x++)
@@ -58,10 +58,48 @@ float ClosetoBorderFactor::calcDecision(Crood &crood)
 					out = true;
 				}
 			}
-			int dist = GetDistance(x, y, crood.mX, crood.mY);
-			if(dist < close )
-				close = dist;
+			if(out)
+			{
+				int dist = GetDistance(x, y, crood.mX, crood.mY);
+				if(dist < close )
+					close = dist;
+			}
 		}
 	}
-	return 100.0f - 50.0f * close;
+	return 100.0f - 25.0f * close;
+}
+
+//HighTerrainAttrAreaFactor
+HighTerrainAttrAreaFactor::HighTerrainAttrAreaFactor(int attrtype)
+:mAttrType(attrtype)
+{
+}
+
+float HighTerrainAttrAreaFactor::calcDecision(Crood &crood)
+{
+	float possibility = 0.0f;
+	MapDataManager* mapdata = MapDataManager::getSingletonPtr();
+	for(int x = crood.mX - 2; x <= crood.mX + 2; x++)
+	{
+		for(int y = crood.mY- 2; y <= crood.mY + 2; y++)
+		{
+			int dist = 4 - GetDistance(x, y, crood.mX, crood.mY);
+			switch(mAttrType)
+			{
+			case 0:
+				possibility += 0.83f * dist * mapdata->getDefModify(x, y, -1);
+				break;
+			case 1:
+				possibility += 0.83f * dist * mapdata->getCovert(x, y, -1);
+				break;
+			case 2:
+				possibility += 0.83f * dist * (mapdata->getInfApCost(x, y, -1) - 2.0f);
+				break;
+			case 3:
+				possibility += 0.83f * dist * (mapdata->getCavApCost(x, y, -1) - 2.0f);
+				break;
+			}
+		}
+	}
+	return possibility;
 }

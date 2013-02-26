@@ -21,3 +21,24 @@ public:
 private:
 	BattleSquad* mSquad;
 };
+
+class SquadSkillbySptEffectiveFactor: public DecisionMapFactor<UseSkillInfo>
+{
+public:
+	SquadSkillbySptEffectiveFactor(BattleSquad* squad);
+
+	virtual float calcDecision(UseSkillInfo &decision);
+private:
+	BattleSquad* mSquad;
+};
+
+class SquadSkillbyRoleFactor: public DecisionMapFactor<UseSkillInfo>
+{
+public:
+	SquadSkillbyRoleFactor(BattleSquad* squad, int role);
+
+	virtual float calcDecision(UseSkillInfo &decision);
+private:
+	BattleSquad* mSquad;
+	int mRole;
+};

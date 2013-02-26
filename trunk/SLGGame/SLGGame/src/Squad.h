@@ -92,7 +92,7 @@ public:
 	bool applyEffect(std::string effectid, std::string &eid);
 	void removeEffect(std::string eid);
 	int getEffectLevel(std::string eid);
-	int getEffectLevelByName(std::string effectname);
+	int getEffectLevelByName(std::string effectname, std::string& effectid);
 
 public:
 	virtual float getAttr(int attrtype , int calctype);

@@ -42,7 +42,8 @@ void GUIEffectWindow::setEffectList(std::vector<std::string> list,std::vector<in
 	std::string effectPath="StaticData/EffectData/";
 	std::string data;
 	std::string skillTips;
-	for (std::vector<std::string>::iterator it=list.begin();it!=list.end();it++)
+	int skilllvindex = 0;
+	for (std::vector<std::string>::iterator it=list.begin();it!=list.end();it++,skilllvindex++)
 	{
 		DataLibrary::getSingletonPtr()->getData(effectPath+(*it)+std::string("/Icon"),data);
 		DataLibrary::getSingletonPtr()->getData(effectPath+(*it)+std::string("/Describe"),skillTips);
@@ -54,8 +55,8 @@ void GUIEffectWindow::setEffectList(std::vector<std::string> list,std::vector<in
 			mEffect[i]->setImageGroup(data);
 			mEffect[i]->setUserString("Tips",skillTips);
 			mEffect[i]->setNeedToolTip(true);
-			if(level[i]!=0)
-				mEffect[i]->setCaption(Ogre::StringConverter::toString(level[i]));
+			if(level[skilllvindex]!=0)
+				mEffect[i]->setCaption(Ogre::StringConverter::toString(level[skilllvindex]));
 			i++;
 		}
 	}

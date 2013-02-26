@@ -218,6 +218,14 @@ bool Squad::equipEquipment(int equiptype, std::string equipid)
 		delete tempcontext;
 	}
 
+	//装备装备触发器
+	LuaTempContext* tempcontext = new LuaTempContext;
+	tempcontext->strMap.insert(std::make_pair("squadid", mSquadId));
+	tempcontext->intMap.insert(std::make_pair("equiptype", equiptype));
+	tempcontext->strMap.insert(std::make_pair("equipid", equipid));
+	Trigger("OnEquip", tempcontext);
+	delete tempcontext;
+
 	return true;
 }
 
@@ -282,6 +290,14 @@ void Squad::unloadEquipment(int equiptype)
 		LuaSystem::getSingleton().executeFunction(scriptpath ,"onunload",contexpath, tempcontext);
 		delete tempcontext;
 	}
+
+	//卸载装备触发器
+	LuaTempContext* tempcontext = new LuaTempContext;
+	tempcontext->strMap.insert(std::make_pair("squadid", mSquadId));
+	tempcontext->intMap.insert(std::make_pair("equiptype", equiptype));
+	tempcontext->strMap.insert(std::make_pair("equipid", itemID));
+	Trigger("RemoveEquip", tempcontext);
+	delete tempcontext;
 
 	datalib->delNode(distpath);
 	datalib->setData(distpath, std::string("none"), true);
@@ -754,7 +770,7 @@ int Squad::getEffectLevel(std::string eid)
 	return lv;
 }
 
-int Squad::getEffectLevelByName(std::string effectname)
+int Squad::getEffectLevelByName(std::string effectname, std::string& effectid)
 {
 	int lv = 0;
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
@@ -767,6 +783,7 @@ int Squad::getEffectLevelByName(std::string effectname)
 		if(tempeffectid == effectname)
 		{
 			datalib->getData(str(boost::format("%1%/Effect/%2%")%mPath%(*ite)), lv);
+			effectid = (*ite);
 		}
 	}
 	return lv;

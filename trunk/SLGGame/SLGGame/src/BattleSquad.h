@@ -27,7 +27,7 @@ public:
 
 	//移动
 	bool tryMove(int srcx, int srcy, int tgx, int tgy, float &apleft, unsigned int &eventflag);
-	bool move(int tgx, int tgy, unsigned int &eventflag);
+	bool move(int tgx, int tgy, unsigned int &eventflag, bool costap = true);
 	//阵型
 	bool changeFormation(int formation, bool costap);
 	//技能

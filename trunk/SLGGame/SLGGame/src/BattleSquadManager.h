@@ -53,6 +53,7 @@ public:
 	std::vector<MoveNode> getMovePath(BattleSquad* squad, int x, int y);
 	std::map<int, MoveNode> getFullPath(BattleSquad* squad, Crood tatget);
 	void moveSquad(BattleSquad* squad, std::vector<int> pointlist, unsigned int &stopedpoint, unsigned int &eventflag);
+	void forceMoveSquad(BattleSquad* squad, Crood target, unsigned int &eventflag);
 	void InterruptMove();
 
 private:
