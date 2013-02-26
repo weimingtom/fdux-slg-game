@@ -80,7 +80,7 @@ public:
 				  mGroup="eqp_lightarmor";
 
 			  mResoure="eqp";
-			  StringTable::getSingletonPtr()->getString(mName);
+			  mName=StringTable::getSingletonPtr()->getString(mName);
 			  break;
 		  }
 	  }

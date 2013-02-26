@@ -258,7 +258,20 @@
         <NoEnoughPoint type="String" value="点数不足"/>
         <NoSkillEquip type="String" value="没有装备技能"/>
         <ConfirmBuyItem type="Syting" value="你确定以%1%的价格购买%2%吗?原装备将以8折出售.&#x0D;(双手剑与盾牌不可同时装备,将会卖掉多余的装备)"/>
-        
+        <OneHandBlunt type="String" value="单手斧" />
+        <OneHandSword type="String" value="单手剑" />
+        <TwoHandSword type="String" value="双手剑" />
+        <TwoHandBlunt type="String" value="双手斧" />
+		<ShortSpear type="String" value="短矛" />
+		<Long type="String" value="戟" />
+		<Shield type="String" value="盾" />
+		<LightArmor type="String" value="轻甲" />
+		<MiddleArmor type="String" value="中甲" />
+		<HeavyArmor type="String" value="重甲" />
+		<Bow type="String" value="弓" />
+		<XBow type="String" value="弩" />
+		<LightHorse type="String" value="轻装马" />
+		<HeavyHorse type="String" value="重装马" />
 		
 		<GameTurn type="String" value="回合数:"/>
 		<CurTeam type="String" value="当前队伍:"/>
