@@ -5,7 +5,7 @@
         <Widget type="Window" skin="SLGWindow" position="0 0 235 580" name="ArmyWindow">
             <Widget type="ItemBox" skin="ItemBox" position="22 55 190 500" name="ArmyList"/>
         </Widget>
-        <Widget type="Window" skin="SLGMiniWindowSkin" position="230 5 820 305" name="AttributeWindow">
+        <Widget type="Window" skin="SLGMiniWindowSkin" position="325 5 920 305" name="AttributeWindow">
             <Widget type="ImageBox" skin="SLGImageBox" position="16 13 105 135" name="SquadImageSkin"/>
             <Widget type="TextBox" skin="TextBox" position="15 185 105 20" name="SquadLeadName">
                 <Property key="FontName" value="fireflysung"/>
@@ -155,6 +155,21 @@
             <Widget type="ImageBox" skin="ImageBox" position="670 105 35 35" name="SquadPassiveSkillIcon5">
                 <Property key="ImageGroup" value="Button"/>
             </Widget>
+            <Widget type="ImageBox" skin="ImageBox" position="710 105 35 35" name="SquadPassiveSkillIcon6">
+                <Property key="ImageGroup" value="Button"/>
+            </Widget>
+            <Widget type="ImageBox" skin="ImageBox" position="750 105 35 35" name="SquadPassiveSkillIcon7">
+                <Property key="ImageGroup" value="Button"/>
+            </Widget>
+            <Widget type="ImageBox" skin="ImageBox" position="790 105 35 35" name="SquadPassiveSkillIcon8">
+                <Property key="ImageGroup" value="Button"/>
+            </Widget>
+            <Widget type="ImageBox" skin="ImageBox" position="830 105 35 35" name="SquadPassiveSkillIcon9">
+                <Property key="ImageGroup" value="Button"/>
+            </Widget>
+            <Widget type="ImageBox" skin="ImageBox" position="870 105 35 35" name="SquadPassiveSkillIcon10">
+                <Property key="ImageGroup" value="Button"/>
+            </Widget>
             <Widget type="TextBox" skin="TextBox" position="510 150 60 20" name="TEXT_SquadUseEquip">
                 <Property key="FontHeight" value="20"/>
             </Widget>
@@ -206,8 +221,23 @@
             <Widget type="ImageBox" skin="ImageBox" position="630 40 35 35" name="SquadSkillIcon4"/>
             <Widget type="ImageBox" skin="ImageBox" position="630 175 35 35" name="SquadUseEquipIcon4"/>
             <Widget type="ImageBox" skin="ImageBox" position="670 175 35 35" name="SquadUseEquipIcon5"/>
+            <Widget type="ImageBox" skin="ImageBox" position="710 175 35 35" name="SquadUseEquipIcon6"/>
+            <Widget type="ImageBox" skin="ImageBox" position="750 175 35 35" name="SquadUseEquipIcon7"/>
+            <Widget type="ImageBox" skin="ImageBox" position="790 175 35 35" name="SquadUseEquipIcon8"/>
+            <Widget type="ImageBox" skin="ImageBox" position="830 175 35 35" name="SquadUseEquipIcon9"/>
+            <Widget type="ImageBox" skin="ImageBox" position="870 175 35 35" name="SquadUseEquipIcon10"/>
             <Widget type="ImageBox" skin="ImageBox" position="670 240 35 35" name="SquadEffectIcon5"/>
+            <Widget type="ImageBox" skin="ImageBox" position="710 240 35 35" name="SquadEffectIcon6"/>
+            <Widget type="ImageBox" skin="ImageBox" position="750 240 35 35" name="SquadEffectIcon7"/>
+            <Widget type="ImageBox" skin="ImageBox" position="790 240 35 35" name="SquadEffectIcon8"/>
+            <Widget type="ImageBox" skin="ImageBox" position="830 240 35 35" name="SquadEffectIcon9"/>
+            <Widget type="ImageBox" skin="ImageBox" position="870 240 35 35" name="SquadEffectIcon10"/>
             <Widget type="ImageBox" skin="ImageBox" position="670 40 35 35" name="SquadSkillIcon5"/>
+            <Widget type="ImageBox" skin="ImageBox" position="710 40 35 35" name="SquadSkillIcon6"/>
+            <Widget type="ImageBox" skin="ImageBox" position="750 40 35 35" name="SquadSkillIcon7"/>
+            <Widget type="ImageBox" skin="ImageBox" position="790 40 35 35" name="SquadSkillIcon8"/>
+            <Widget type="ImageBox" skin="ImageBox" position="830 40 35 35" name="SquadSkillIcon9"/>
+            <Widget type="ImageBox" skin="ImageBox" position="870 40 35 35" name="SquadSkillIcon10"/>
             <Widget type="ImageBox" skin="ImageBox" position="125 25 20 20">
                 <Property key="ImageResource" value="state"/>
                 <Property key="ImageName" value="normal"/>
@@ -398,24 +428,19 @@
             </Widget>
         </Widget>
         <Widget type="Window" skin="SLGMiniWindowSkin" position="980 310 291 410" name="ItemAttributeWindow">
-            <Widget type="ImageBox" skin="ImageBox" position="20 20 48 48" name="ItemIcon"/>
-            <Widget type="TextBox" skin="TextBox" position="80 30 195 30" name="ItemName">
+            <Widget type="TextBox" skin="TextBox" position="20 20 255 30" name="ArmyInfo">
                 <Property key="FontHeight" value="25"/>
             </Widget>
-            <Widget type="TextBox" skin="TextBox" position="20 80 255 25" name="ItemPrice">
+            <Widget type="ImageBox" skin="ImageBox" position="20 60 48 48" name="ItemIcon"/>
+            <Widget type="TextBox" skin="TextBox" position="75 70 195 30" name="ItemName">
+                <Property key="FontHeight" value="25"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="20 120 255 25" name="ItemPrice">
                 <Property key="FontHeight" value="22"/>
             </Widget>
-            <Widget type="EditBox" skin="EditBoxEmpty" position="20 115 255 270" name="ItemInfo">
+            <Widget type="EditBox" skin="EditBoxEmpty" position="20 150 255 245" name="ItemInfo">
                 <Property key="FontHeight" value="22"/>
                 <Property key="WordWrap" value="true"/>
-            </Widget>
-        </Widget>
-        <Widget type="Window" skin="SLGMiniWindowSkin" position="1050 5 220 305" name="TemaWindow">
-            <Widget type="TextBox" skin="TextBox" position="30 20 165 30" name="TEXT_ArmyInfoName">
-                <Property key="TextAlign" value="Center"/>
-            </Widget>
-            <Widget type="TextBox" skin="TextBox" position="15 65 190 230" name="ArmyInfo">
-                <Property key="FontHeight" value="22"/>
             </Widget>
         </Widget>
     </Widget>
