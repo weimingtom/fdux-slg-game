@@ -85,7 +85,7 @@ function turnstart()
 	    BattleLib.Story("cp2_1.lua");
 	end
 	if team == 1 and turn == 3 then
-	    BattleLib.Story("cp2_2.lua");
+		MapLib.MoveCameraTo( 2, 11);
 		BattleLib.AddBattleSquad("Cossa", "Cossa", 2, 11, 1, 50);
 		BattleLib.AddBattleSquad("WingsLightCavalry", "WingsLightCavalry", 3, 11, 1, 50);
 		BattleLib.AddBattleSquad("FantasyHeavyCavalry", "Team3Squad_0", 1, 8, 3, 50);
@@ -94,6 +94,7 @@ function turnstart()
 		BattleLib.AssignAIGroup(3, "Team3Squad_0", "Fantasy");
 		BattleLib.AssignAIGroup(3, "Team3Squad_1", "Fantasy");
 		BattleLib.AssignAIGroup(3, "Team3Squad_2", "Fantasy");
+		BattleLib.Story("cp2_2.lua");
 	end
 end	
 		
@@ -109,8 +110,8 @@ function turnend()
 		addedgold = addedgold + 1500;
 		mission1state = ScriptCommonLib.GetInt("mission1state");
 		if mission1state == 1 then
-			BattleLib.AddGold(500);
-			addedgold = addedgold + 500;
+			BattleLib.AddGold(900);
+			addedgold = addedgold + 900;
 		end
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		--Ê¤Àû(storyscript,gold,exp)

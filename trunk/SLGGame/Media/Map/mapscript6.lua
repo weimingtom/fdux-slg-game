@@ -67,9 +67,9 @@ function unitdead()
 	end
 	faction = SquadLib.GetFaction(squad);
 	if faction == 1 then
-		BattleLib.AddGold(100);
+		BattleLib.AddGold(130);
 		addedgold = ScriptCommonLib.GetInt("addedgold");
-		addedgold = addedgold + 100;
+		addedgold = addedgold + 130;
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 	end
 	if squad == Elementalist then
@@ -87,14 +87,15 @@ function turnstart()
 	    BattleLib.Story("cp12_1.lua");
 	end
 	if team == 1 and turn == 2 then
-	    BattleLib.Story("cp12_2.lua");
+		MapLib.MoveCameraTo( 17, 18);
 		AVGLib.SetCanSupply("Fay",1);
 		AVGLib.SetCanSupply("GuardHeavySpear",1);
 		BattleLib.CreateStorySquad ("Fay", "Fay", 17, 18, true);
 		BattleLib.CreateStorySquad ("GuardHeavySpear", "GuardHeavySpear", 16, 18, true);
+		BattleLib.Story("cp12_2.lua");
 	end
 	if team == 1 and turn == 4 then
-	    BattleLib.Story("cp12_5.lua");
+		MapLib.MoveCameraTo( 8, 11);
 		BattleLib.AddBattleSquad("James", "Team3Squad_0", 8, 11, 3, 50);
 		BattleLib.AddBattleSquad("WinfredHeavyHalberd", "Team3Squad_1", 6, 16, 3, 50);
 		BattleLib.AddBattleSquad("WinfredHeavyHalberd", "Team3Squad_2", 8, 10, 3, 50);
@@ -103,6 +104,7 @@ function turnstart()
 		BattleLib.AddBattleSquad("WinfredLightBow", "Team3Squad_5", 5, 16, 3, 50);
 		BattleLib.AddBattleSquad("WinfredLightBow", "Team3Squad_6", 7, 11, 3, 50);
 		BattleLib.AddBattleSquad("WinfredLightBow", "Team3Squad_7", 7, 10, 3, 50);
+		BattleLib.Story("cp12_5.lua");
 			
 		BattleLib.AssignAIGroup(3, "Team2Squad_0", "Winfred");
 		BattleLib.AssignAIGroup(3, "Team2Squad_1", "Winfred");
@@ -121,14 +123,14 @@ function turnend()
 	team = ScriptCommonLib.GetTempInt("team");
 	
 	if team == 1 and BattleLib.TeamSquadLeft(2) == 0 then
-		BattleLib.AddGold(1500);
+		BattleLib.AddGold(2200);
 		BattleLib.DumpSquadData();
 		addedgold = ScriptCommonLib.GetInt("addedgold");
-		addedgold = addedgold + 1500;
+		addedgold = addedgold + 2200;
 		mission1state = ScriptCommonLib.GetInt("mission1state");
 		if mission1state == 1 then
-			BattleLib.AddGold(700);
-			addedgold = addedgold + 700;
+			BattleLib.AddGold(1350);
+			addedgold = addedgold + 1350;
 		end
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		--Ê¤Àû(storyscript,gold,exp)

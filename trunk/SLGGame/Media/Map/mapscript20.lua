@@ -65,16 +65,16 @@ function unitdead()
 	end
 	faction = SquadLib.GetFaction(squad);
 	if faction == 1 then
-		BattleLib.AddGold(100);
+		BattleLib.AddGold(500);
 		addedgold = ScriptCommonLib.GetInt("addedgold");
-		addedgold = addedgold + 100;
+		addedgold = addedgold + 500;
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		mission1state = ScriptCommonLib.GetInt("mission1state");
 		if BattleLib.TeamSquadLeft(2) == 0 and BattleLib.TeamSquadLeft(3) == 0 then
-			BattleLib.AddGold(1500);
+			BattleLib.AddGold(10000);
 			BattleLib.DumpSquadData();
 			addedgold = ScriptCommonLib.GetInt("addedgold");
-			addedgold = addedgold + 1500;
+			addedgold = addedgold + 10000;
 			ScriptCommonLib.SetInt("addedgold", addedgold);
 			--Ê¤Àû(storyscript,gold,exp)
 			BattleLib.Win("cp40.lua", "0", "0");
@@ -89,7 +89,7 @@ function turnstart()
 	    BattleLib.Story("cp39_1.lua");
 	end
 	if team == 1 and turn == 6 then
-	    BattleLib.Story("cp39_2.lua");
+		MapLib.MoveCameraTo( 1, 5);
 		BattleLib.AddBattleSquad("GuardHeavySpear", "Team2Squad_11", 1, 5, 2, 50);
 		BattleLib.AddBattleSquad("GuardHeavySpear", "Team2Squad_12", 1, 7, 2, 50);
 		BattleLib.AddBattleSquad("GuardCrossBow", "Team2Squad_13", 0, 5, 2, 50);
@@ -100,11 +100,12 @@ function turnstart()
 		BattleLib.AssignAIGroup(2, "Team3Squad_2", "Guard");
 		BattleLib.AssignAIGroup(2, "Team3Squad_3", "Guard");
 		BattleLib.AssignAIGroup(2, "Team3Squad_3", "Guard");
+		BattleLib.Story("cp39_2.lua");
 		
 	end
 	
 	if team == 1 and turn == 9 then
-	    BattleLib.Story("cp39_3.lua");
+		MapLib.MoveCameraTo( 5, 13);
 		BattleLib.AddBattleSquad("Datura", "Team3Squad_0", 5, 13, 3, 50);
 		BattleLib.AddBattleSquad("Syrin", "Team3Squad_1", 5, 14, 3, 50);
 		BattleLib.AddBattleSquad("DarkKnight", "Team3Squad_2", 6, 13, 3, 50);
@@ -114,9 +115,11 @@ function turnstart()
 		BattleLib.AssignAIGroup(3, "Team3Squad_2", "DarkKnight");
 		BattleLib.AssignAIGroup(3, "Team3Squad_3", "DarkKnight");
 		BattleLib.AssignAIMission(3,"DarkKnight", "Attack2");
+		BattleLib.Story("cp39_3.lua");
 	end
 	
 	if team == 1 and turn == 13 then
+		MapLib.MoveCameraTo( 10, 8);
 	    BattleLib.Story("cp39_4.lua");
 		BattleLib.CreateMapParticle(10, 8, "mapfire");
 		BattleLib.CreateMapParticle(10, 9, "mapfire");
@@ -136,10 +139,10 @@ function turnstart()
 	
 	if team == 2 and turn == 15 then
 	    BattleLib.Story("cp39_8.lua");
-		BattleLib.AddGold(1500);
+		BattleLib.AddGold(10000);
 		BattleLib.DumpSquadData();
 		addedgold = ScriptCommonLib.GetInt("addedgold");
-		addedgold = addedgold + 1500;
+		addedgold = addedgold + 10000;
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		--Ê¤Àû(storyscript,gold,exp)
 		BattleLib.Win("cp40.lua", "0", "0");

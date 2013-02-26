@@ -77,19 +77,19 @@ function unitdead()
 	end
 	faction = SquadLib.GetFaction(squad);
 	if faction == 1 then
-		BattleLib.AddGold(100);
+		BattleLib.AddGold(150);
 		addedgold = ScriptCommonLib.GetInt("addedgold");
-		addedgold = addedgold + 100;
+		addedgold = addedgold + 150;
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		if BattleLib.TeamSquadLeft(2) == 0  then
-			BattleLib.AddGold(1500);
+			BattleLib.AddGold(3300);
 			BattleLib.DumpSquadData();
 			addedgold = ScriptCommonLib.GetInt("addedgold");
-			addedgold = addedgold + 1500;
+			addedgold = addedgold + 3300;
 			mission1state = ScriptCommonLib.GetInt("mission1state");
 			if mission1state == 1 then
-				BattleLib.AddGold(1000);
-				addedgold = addedgold + 1000;
+				BattleLib.AddGold(1900);
+				addedgold = addedgold + 1900;
 			end
 			ScriptCommonLib.SetInt("addedgold", addedgold);
 			--Ê¤Àû(storyscript,gold,exp)
