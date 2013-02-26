@@ -407,7 +407,7 @@ void BattleSquadManager::moveSquad(BattleSquad* squad,std::vector<int> pointlist
 			}
 			squad->setActionPoint(0.0f);
 			std::string eid;
-			squad->applyEffect("Waver", eid);
+			squad->applyEffect("Chaos", eid);
 		}
 
 		if(m_moveInterrupt)
@@ -548,7 +548,7 @@ void BattleSquadManager::forceMoveSquad(BattleSquad* squad, Crood target, unsign
 		}
 		squad->setActionPoint(0.0f);
 		std::string eid;
-		squad->applyEffect("Waver", eid);
+		squad->applyEffect("Chaos", eid);
 	}
 
 	if(m_moveInterrupt)
@@ -1115,7 +1115,7 @@ bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* 
 			CutSceneBuilder::getSingleton().addCutScene(new ShowValueCutScene(defenesquad->getSquadId(),StringTable::getSingletonPtr()->getString("SquadAmbush1"),Ogre::ColourValue(1,1,0,1)));
 		}
 		std::string eid;
-		defenesquad->applyEffect("Waver", eid);
+		defenesquad->applyEffect("Chaos", eid);
 		attacksquad->setAmbushFaction(deffaction, false);
 	}
 
@@ -1268,7 +1268,7 @@ bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* 
 			CutSceneBuilder::getSingleton().addCutScene(new ShowValueCutScene(defenesquad->getSquadId(),StringTable::getSingletonPtr()->getString("SquadAmbush1"),Ogre::ColourValue(1,1,0,1)));
 		}
 		std::string eid;
-		defenesquad->applyEffect("Waver", eid);
+		defenesquad->applyEffect("Chaos", eid);
 		attacksquad->setAmbushFaction(deffaction, false);
 	}
 
@@ -1335,7 +1335,7 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 			CutSceneBuilder::getSingleton().addCutScene(new ShowValueCutScene(defenesquad->getSquadId(),StringTable::getSingletonPtr()->getString("SquadAmbush1"),Ogre::ColourValue(1,1,0,1)));
 		}
 		std::string eid;
-		defenesquad->applyEffect("Waver", eid);
+		defenesquad->applyEffect("Chaos", eid);
 		attacksquad->setAmbushFaction(deffaction, false);
 	}
 
