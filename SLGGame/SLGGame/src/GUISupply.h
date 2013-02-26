@@ -164,6 +164,11 @@ private:
 
 	bool mIsHideScene;
 
+	bool mIsRequestMsgBox;
+	bool mMsgBoxReturn;
+	MyGUI::ItemBox* mItem_Sender;
+	int mItem_Index;
+
 	std::map<int,std::string> mSquadTypeMap;
 };
 

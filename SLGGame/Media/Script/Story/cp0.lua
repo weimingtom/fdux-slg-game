@@ -3,8 +3,8 @@ GUI.Wait(2000);
 GUI.ShowImage("black.png",4,1500);
 GUI.Music("serious.ogg",1000);
 GUI.ShowImage("shanmai.png",4,1500);
-GUI.SetDialogVisible(1);
 GUI.SetShowSupplyButton(0);
+GUI.SetDialogVisible(1);
 
 GUI.AutoSave();
 GUI.ShowImage("shibing_lv.png",left,300);

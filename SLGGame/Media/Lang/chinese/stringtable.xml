@@ -257,6 +257,7 @@
         <NoEnoughLevel type="String" value="需要达到等级"/>
         <NoEnoughPoint type="String" value="点数不足"/>
         <NoSkillEquip type="String" value="没有装备技能"/>
+        <ConfirmBuyItem type="Syting" value="你确定以%1%的价格购买%2%吗?原装备将以8折出售.&#x0D;(双手剑与盾牌不可同时装备,将会卖掉多余的装备)"/>
         
 		
 		<GameTurn type="String" value="回合数:"/>

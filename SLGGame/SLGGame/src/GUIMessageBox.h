@@ -13,6 +13,8 @@ public:
 
 	void FrameEvent();
 
+	void setNotify(GUIScene* scene){mNotifyScene=scene;}
+
 	GUISceneType getType()
 	{
 		return MessageBoxScene;
@@ -27,6 +29,8 @@ private:
 	MyGUI::TextBox* mCaption;
 	MyGUI::ImageBox* mBG;
 	MyGUI::Window* mWindow;
+
+	GUIScene* mNotifyScene;
 
 	void onYes(MyGUI::Widget* _sender);
 	void onNo(MyGUI::Widget* _sender);

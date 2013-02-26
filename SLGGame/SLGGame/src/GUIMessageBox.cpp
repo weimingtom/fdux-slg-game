@@ -43,6 +43,7 @@ void GUIMessageBox::onYes( MyGUI::Widget* _sender )
 	mIsReturn=true;
 	mYesNo=true;
 	hideScene();
+	mNotifyScene->onOtherSceneNotify("MessageBoxYes");
 }
 
 void GUIMessageBox::onNo( MyGUI::Widget* _sender )
@@ -50,4 +51,5 @@ void GUIMessageBox::onNo( MyGUI::Widget* _sender )
 	mIsReturn=true;
 	mYesNo=false;
 	hideScene();
+	mNotifyScene->onOtherSceneNotify("MessageBoxNo");
 }

@@ -70,6 +70,7 @@ BattlePlayerState::~BattlePlayerState()
 	Core::getSingleton().mInputControl->popListener();
 	//mGUIState->setBattleState(NULL);
 	mGUICommand->setPlayerState(NULL);
+	hideSelectPlane();
 }
 
 void BattlePlayerState::update(unsigned int deltaTime)

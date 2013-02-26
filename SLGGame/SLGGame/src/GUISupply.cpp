@@ -5,6 +5,8 @@
 #include "StateManager.h"
 #include "AVGSquadManager.h"
 
+#include "GUIMessageBox.h"
+
 #include "boost/format.hpp"
 #include <string>
 #include <map>
@@ -14,11 +16,11 @@
 const char* gEquipTypeName[EQUIP_RETAINER+1][6] =
 {
 	"","","","","","",
-	"","","","","","",
+	"LightHorse","HeavyHorse","","","","",
 	"LightArmor","MiddleArmor","HeavyArmor","","","",
-	"","","","","","",
+	"Shield","","","","","",
 	"OneHandSword","OneHandBlunt","TwoHandSword","TwoHandBlunt","ShortSpear","Long",
-	"Box","LXBox","HXBox","","","",
+	"Bow","XBow","","","","",
 	"","","","","",""
 };
 
@@ -192,6 +194,8 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 		mSquadTypeMap[type]=(*it);
 	}
 	showArmyInfo();
+
+	mIsRequestMsgBox=false;
 }
 
 GUISupply::~GUISupply(void)
@@ -256,23 +260,30 @@ void GUISupply::showArmy( int index )
 	if(army->getRetainerId()!="none")
 	{
 		tempstr = army->getRetainerId();
+		std::string p;
 		temppath = str(boost::format("StaticData/RetainerData/%1%/Picture")%tempstr);
-		DataLibrary::getSingletonPtr()->getData(temppath, tempstr);
-		mRetainerImage->setImageTexture(tempstr);
+		DataLibrary::getSingletonPtr()->getData(temppath, p);
+		mRetainerImage->setImageTexture(p);
 
+		
 		temppath=str(boost::format("StaticData/RetainerData/%1%/Skill")%tempstr);
-		DataLibrary::getSingletonPtr()->getData(temppath, tempstr);
+		DataLibrary::getSingletonPtr()->getData(temppath, p);
 		if(tempstr!="none")
 		{
-			temppath=str(boost::format("StaticData/SkillData/%1%/Icon")%tempstr);
-			std::string temppath2=str(boost::format("StaticData/EffectData/%1%/Icon")%tempstr);
-			if(DataLibrary::getSingletonPtr()->getData(temppath, tempstr))
+			temppath=str(boost::format("StaticData/SkillData/%1%/Icon")%p);
+			std::string temppath2=str(boost::format("StaticData/EffectData/%1%/Icon")%p);
+			std::string skillIcon;
+			if(DataLibrary::getSingletonPtr()->getData(temppath, skillIcon))
 			{
-				mRetainerSkill1->setItemResource(tempstr);
+				mRetainerSkill1->setItemResource("skill");
+				mRetainerSkill1->setItemGroup(skillIcon);
+				mRetainerSkill1->setItemName("normal");
 			}
-			else if(DataLibrary::getSingletonPtr()->getData(temppath2, tempstr))
+			else if(DataLibrary::getSingletonPtr()->getData(temppath2, skillIcon))
 			{
-				mRetainerSkill1->setItemResource(tempstr);
+				mRetainerSkill1->setItemResource("skillpass");
+				mRetainerSkill1->setItemGroup(skillIcon);
+				mRetainerSkill1->setItemName("normal");
 			}
 		}
 	}
@@ -366,7 +377,25 @@ void GUISupply::eventSelectItemAccept(MyGUI::ItemBox* _sender, size_t _index)
 	if(_index!=-1)
 	{
 		WeaponItemData* item=*(_sender->getItemDataAt<WeaponItemData*>(_index));
-		buyItem(m_CurrSquadIndex,item);
+		if(mIsRequestMsgBox && mMsgBoxReturn)
+		{
+			mIsRequestMsgBox=false;
+			GUISystem::getSingletonPtr()->destoryScene(MessageBoxScene);
+			buyItem(m_CurrSquadIndex,item);
+		}
+		else if(mIsRequestMsgBox && !mMsgBoxReturn)
+		{
+			mIsRequestMsgBox=false;
+		}
+		else
+		{
+			mIsRequestMsgBox=true;
+			mItem_Sender=_sender;
+			mItem_Index=_index;
+			GUIMessageBox* messagebox=(GUIMessageBox*)GUISystem::getSingletonPtr()->createScene(MessageBoxScene);
+			messagebox->setNotify(this);
+			messagebox->showScene(str(boost::format(StringTable::getSingletonPtr()->getString("ConfirmBuyItem"))%item->getPriceValue()%item->getName()));
+		}
 	}
 }
 
@@ -546,23 +575,17 @@ void GUISupply::showItem(int type)
 		if(equipSubType==EQUIP_PWEAPON_STAVES)
 			return;
 
+		std::map<std::string,int> skillmap;
+		skillmap=army->getSkillTable();
+		if(skillmap.find(gEquipTypeName[type][equipSubType])==skillmap.end())
+			continue;
 
 		WeaponItemData* data=new WeaponItemData(equipType,(*it),army->getUnitNum());
+		data->setIsHaveSkill(true);
 		
 		if(type==EQUIP_PWEAPON || type==EQUIP_SWEAPON || type==EQUIP_ARMOR || type==EQUIP_SHIELD || type==EQUIP_HORSE)
 		{
-			data->setSubType(equipSubType);
-
-			std::map<std::string,int> skillmap;
-			skillmap=army->getSkillTable();
-			if(skillmap.find(gEquipTypeName[type][equipSubType])!=skillmap.end())
-				data->setIsHaveSkill(true);
-			else
-				data->setIsHaveSkill(false);
-		}
-		else
-		{
-			data->setIsHaveSkill(true);
+			data->setSubType(equipSubType);	
 		}
 
 		if((*it)==equipID)
@@ -590,7 +613,7 @@ void GUISupply::buyItem(int index,WeaponItemData* item)
 					std::string path="StaticData/ShieldData/"+army->getShieldId()+"/Value";
 					DataLibrary::getSingletonPtr()->getData(path,value);
 					
-					m_Money+=(value*army->getUnitNum())/2;
+					m_Money+=(value*50)*0.8;
 
 					army->unloadEquipment(EQUIP_SHIELD);
 				}
@@ -606,7 +629,7 @@ void GUISupply::buyItem(int index,WeaponItemData* item)
 					path="StaticData/PweaponData/"+army->getPweaponId()+"/Value";
 					DataLibrary::getSingletonPtr()->getData(path,value);
 					
-					m_Money+=(value*army->getUnitNum())/2;
+					m_Money+=(value*50)*0.8;
 
 					army->unloadEquipment(EQUIP_PWEAPON);
 				}
@@ -628,7 +651,7 @@ void GUISupply::buyItem(int index,WeaponItemData* item)
 		m_Money-=item->getPriceValue();
 
 		if(m_CurrSquadEquipItem!=NULL && item->getType()!=EQUIP_RETAINER)
-			m_Money+=m_CurrSquadEquipItem->getPriceValue()/2;
+			m_Money+=m_CurrSquadEquipItem->getPriceValue()*0.8;
 
 		DataLibrary::getSingletonPtr()->setData("GameData/StoryData/Gold",m_Money);
 		showArmyInfo();
@@ -894,6 +917,16 @@ void GUISupply::onOtherSceneNotify( std::string arg )
 			StateManager::getSingletonPtr()->removeAffixationState();
 		}
 	}
+	else if(arg=="MessageBoxYes")
+	{
+		mMsgBoxReturn=true;
+		eventSelectItemAccept(mItem_Sender,mItem_Index);
+	}
+	else if(arg=="MessageBoxNo")
+	{
+		mMsgBoxReturn=false;
+		eventSelectItemAccept(mItem_Sender,mItem_Index);
+	}
 }
 
 
@@ -977,15 +1010,15 @@ void GUISupply::showSkill(int type)
 	{
 	case SKILLTYPE_PASSIVE:
 		mSquadPassivePoint->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("SquadPassivePoint"))%(army->getSkillPointPassive())));
-		showSkillItem(SKILLTYPE_PASSIVE,"StaticData/SkillListData/"+mSquadTypeMap[army->getType()]);
+		showSkillItem(SKILLTYPE_PASSIVE,"StaticData/SkillListData/"+mSquadTypeMap[army->getSquadType()]);
 		break;
 	case SKILLTYPE_ACTIVE:
 		mSquadActivePoint->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("SquadActivePoint"))%(army->getSkillPointAction())));
-		showSkillItem(SKILLTYPE_ACTIVE,"StaticData/SkillListData/"+mSquadTypeMap[army->getType()]);
+		showSkillItem(SKILLTYPE_ACTIVE,"StaticData/SkillListData/"+mSquadTypeMap[army->getSquadType()]);
 		break;
 	case SKILLTYPE_EQUIP:
 		mSquadEquipPoint->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("SquadEquipPoint"))%(army->getSkillPointEquip())));
-		showSkillItem(SKILLTYPE_EQUIP,"StaticData/SkillListData/"+mSquadTypeMap[army->getType()]);
+		showSkillItem(SKILLTYPE_EQUIP,"StaticData/SkillListData/"+mSquadTypeMap[army->getSquadType()]);
 		break;
 	}
 }
