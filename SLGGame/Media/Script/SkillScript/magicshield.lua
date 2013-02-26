@@ -3,6 +3,7 @@ function useskill()
 	target  = ScriptCommonLib.GetTempString("targetsquadid");
 	unitnum = SquadLib.GetUnitNum(caster);
 	if unitnum > 3 then
+		SquadLib.Animation(caster, 1, "Skill", "none", "mp_seal_08", 0, 1);
 		eid = SquadLib.ApplyEffect(target, "MagicShield");
 		unitnum = unitnum - 2;
 		SquadLib.SetUnitNum(caster, unitnum);

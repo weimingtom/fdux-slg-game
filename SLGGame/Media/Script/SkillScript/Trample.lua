@@ -34,8 +34,8 @@ function onmeleeattack()
 	eid = ScriptCommonLib.GetString("effectid");
 	lv = SquadLib.GetEffectLevel(sid, eid);
 	house = SquadLib.GetEquip(tsid, 1);
-	if house ~= "none" then
-		mid = SquadLib.ApplyModifier(sid, 0, lv * 2 + 1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+	if house == "none" then
+		mid = SquadLib.ApplyModifier(sid, 0, lv + 1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 		ScriptCommonLib.SetString("modifierid", mid);
 	end
 end

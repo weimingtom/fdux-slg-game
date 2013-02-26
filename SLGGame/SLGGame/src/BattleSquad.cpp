@@ -411,14 +411,12 @@ void BattleSquad::applyAttackRolls(bool rangedattack, int d, AttackInfo &attacki
 		if(rand() % 100 < attackinfo.Randomness)
 			kill = 1;
 	}
-
-	float pec = (float)kill/soildernum;
-	if(pec > 0.2f)
+	if(kill > 9)
 	{
 		std::string eid;
 		applyEffect("Waver", eid);
 	}
-	if(pec > 0.5f)
+	if(kill > 18)
 	{
 		std::string eid;
 		applyEffect("Waver", eid);
@@ -601,7 +599,7 @@ bool BattleSquad::tryMove(int srcx, int srcy, int tgx, int tgy, float &apleft, u
 }
 
 
-bool BattleSquad::move(int tgx, int tgy, unsigned int &eventflag)
+bool BattleSquad::move(int tgx, int tgy, unsigned int &eventflag, bool costap)
 {
 	MapDataManager* mapdatamanager = MapDataManager::getSingletonPtr();
 	if(mapdatamanager->getPassable(tgx, tgy, getFaction()))
@@ -620,25 +618,32 @@ bool BattleSquad::move(int tgx, int tgy, unsigned int &eventflag)
 		luatempcontext->intMap["tgty"] = tgy;
 		luatempcontext->floatMap["apcost"] = mapapcost;
 		Trigger("MoveTo", luatempcontext);
-		mapdatamanager->Trigger("TryMove", luatempcontext);
+		mapdatamanager->Trigger("MoveTo", luatempcontext);
 		mapapcost = luatempcontext->floatMap["apcost"];
 		delete luatempcontext;
 
-		float ap = getActionPoint();
-		if(mapapcost <= ap)
+		if(costap)
 		{
-			ap -= mapapcost;
-			setActionPoint(ap);
-			if(mapapcost <= 2)
+			float ap = getActionPoint();
+			if(mapapcost <= ap)
 			{
-				eventflag |= MOVEEVENT_CHARGE;
-				int curdir = GetDirection(getGridX(), getGridY(), tgx, tgy);
-				eventflag |= SetChargeDir(curdir);
+				ap -= mapapcost;
+				setActionPoint(ap);
+				if(mapapcost <= 2)
+				{
+					eventflag |= MOVEEVENT_CHARGE;
+					int curdir = GetDirection(getGridX(), getGridY(), tgx, tgy);
+					eventflag |= SetChargeDir(curdir);
+				}
+				else
+				{
+					eventflag &= ~MOVEEVENT_CHARGE;
+				}
+				return true;
 			}
-			else
-			{
-				eventflag &= ~MOVEEVENT_CHARGE;
-			}
+		}
+		else
+		{
 			return true;
 		}
 	}

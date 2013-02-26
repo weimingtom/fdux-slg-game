@@ -731,16 +731,20 @@
 		</Heal>	
 		<Pray>
 			<Name type="String" value="祷告"/>
-			<Describe type="String" value="祷告（召唤一定数量的圣灵守卫）"/>
+			<Describe type="String" value="向圣灵祈求帮助（恢复一定数量的圣灵守卫）"/>
 		</Pray>
 		<Break>
 			<Name type="String" value="破阵"/>
-			<Describe type="String" value="破阵"/>
+			<Describe type="String" value="部队尝试强行将敌部队阵型切分开（进行一次近战攻击，有一定几率将敌部队变为散阵）"/>
 		</Break>
 		<SuppressAttack>
 			<Name type="String" value="压制射击"/>
-			<Describe type="String" value="压制射击"/>
+			<Describe type="String" value="向敌部队行动方向上射击，干扰敌部队的行动计划（进行一次远程攻击，有一定几率使目标攻击值和行动值降低）"/>
 		</SuppressAttack>
+		<FastAttack>
+			<Name type="String" value="快速突击"/>
+			<Describe type="String" value="向敌部队发起一起突然袭击（进行一次近战攻击）"/>
+		</FastAttack>
 	</SkillData>
 	<EffectData>
 		<DetectionTrain>
@@ -795,22 +799,34 @@
 			<Name type="String" value="圣灵守护"/>
 			<Describe type="String" value="该部队受到圣灵守护效果保护（防御力增加）"/>
 		</MagicShield>
+		<Suppressed>
+			<Name type="String" value="受到压制"/>
+			<Describe type="String" value="行动受到一定的干扰（攻击力和行动值降低）"/>
+		</Suppressed>
 		<Faith>
 			<Name type="String" value="信念"/>
-			<Describe type="String" value="信念"/>
+			<Describe type="String" value="坚定的信念能使圣法师更容易施展她的才能（增加祷告恢复的圣灵守卫上限）"/>
 		</Faith>
 		<StrengthenSprite>
 			<Name type="String" value="加强圣灵"/>
-			<Describe type="String" value="加强圣灵"/>
+			<Describe type="String" value="强化圣灵守卫，使之能更好的保护圣法师（防御力增加）"/>
 		</StrengthenSprite>
-		<Suppressed>
-			<Name type="String" value="压制"/>
-			<Describe type="String" value="压制"/>
-		</Suppressed>
 		<AntiCav>
 			<Name type="String" value="对抗骑兵"/>
-			<Describe type="String" value="对抗骑兵"/>
+			<Describe type="String" value="部队受过对抗骑兵的特殊训练或者使用适合对抗骑兵的武器（与骑兵进行近距离作战时，攻击力增加）"/>
 		</AntiCav>
+		<MoveThroughCover>
+			<Name type="String" value="穿越障碍"/>
+			<Describe type="String" value="部队擅长在复杂地形中行军（移动通过障碍地形消耗的行动值降低）"/>
+		</MoveThroughCover>
+		<Trample>
+			<Name type="String" value="践踏"/>
+			<Describe type="String" value="部队士兵擅长控制坐骑攻击敌步行的士兵（与对非骑兵单位进行近距离作战时，攻击力增加）"/>
+		</Trample>
+		<Camp>
+			<Name type="String" value="营地"/>
+			<Describe type="String" value="部队部署在一个营地之中，可以更好的进行休整（休整，祷告等自身恢复技能效果增强）"/>
+		</Camp>
 	</EffectData>
 	<GroundData>
 		<Grass>
@@ -874,8 +890,8 @@
 			<Describe type="String" value="森林"/>
 		</Forest>
 		<ForestLow>
-			<Name type="String" value="森林"/>
-			<Describe type="String" value="森林"/>		
+			<Name type="String" value="树林"/>
+			<Describe type="String" value="树林"/>		
 		</ForestLow>	
 		<Bridge>
 			<Name type="String" value="桥梁"/>

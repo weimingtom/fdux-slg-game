@@ -205,6 +205,7 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 		//物品类型脚本
 		std::string mapobjscript("none");
 		datalibrary->getData(str(boost::format("StaticData/MapObjType/%1%/Script")%objtype), mapobjscript);
+		datapath = std::string("GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(MapDataManager::getSingleton().getGridId(objx, objy)) + std::string("/MapObjType");
 		if(mapobjscript != "none")
 		{
 			MapObjScriptInfo scriptinfo;
@@ -214,8 +215,6 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 			scriptinfo.path = datapath + "/ScriptContext";
 			mMapObjScriptInfo.push(scriptinfo);
 		}
-
-		datapath = std::string("GameData/BattleData/MapData/Map/M") + Ogre::StringConverter::toString(MapDataManager::getSingleton().getGridId(objx, objy)) + std::string("/MapObjType");
 		datalibrary->setData(datapath, objtype);
 		datalibrary->setData(datapath + "/MapObjModuleId", objname);
 	}
@@ -539,7 +538,10 @@ void MapLoader::initBattleSquad(bool loadfrommap)
 				suqadgrapmanager->createSquadGrap(battlesquad->getSquadId(), battlesquad->getPath(), battlesquad->getGridX(), battlesquad->getGridY(), 
 					battlesquad->getDirection(), battlesquad->getFormation(), battlesquad->getUnitGrapNum());
 				SquadGraphics* grap = suqadgrapmanager->getSquad(battlesquad->getSquadId());
-				grap->setVisible(battlesquad->getViewbyPlayer());
+				if(battlesquad->getUnitNum() > 0)
+					grap->setVisible(battlesquad->getViewbyPlayer());
+				else
+					grap->setVisible(false);
 			}
 		}
 	}

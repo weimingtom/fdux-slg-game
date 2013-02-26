@@ -9,11 +9,13 @@ extern "C"
 
 #include <string>
 
+#include "CommonFunction.h"
 #include "CameraContral.h"
 #include "Terrain.h"
 #include "MapDataManager.h"
 #include "CutSceneBuilder.h"
 #include "CameraCutScene.h"
+#include "Area.h"
 
 static int SetCamera(lua_State* L)
 {
@@ -67,6 +69,36 @@ static int DisableMapTrigger(lua_State* L)
 	return 0;
 }
 
+static int AddMapArea(lua_State* L)
+{
+	int x =  luaL_checknumber(L,1);
+	int y =  luaL_checknumber(L,2);
+	Crood crood(x, y);
+	std::vector<Crood> croodvec;
+	croodvec.push_back(Crood(x, y));
+	std::string areaid = MapDataManager::getSingleton().createArea(croodvec);
+	lua_pushstring(L,areaid.c_str());
+	return 1;
+}
+
+static int RemoveMapArea(lua_State* L)
+{
+	std::string areaid(luaL_checkstring(L, 1));
+	MapDataManager::getSingleton().removeArea(areaid);
+	return 0;
+}
+
+static int LuaGetDirection(lua_State* L)
+{
+	int x1 =  luaL_checknumber(L,1);
+	int y1 =  luaL_checknumber(L,2);
+	int x2 =  luaL_checknumber(L,3);
+	int y2 =  luaL_checknumber(L,4);
+	int dir = GetDirection(x1, y1, x2, y2);
+	lua_pushnumber(L, dir);
+	return 1;
+}
+
 static const struct luaL_Reg MapLib[] =
 {
 	{"SetCamera",SetCamera},
@@ -75,5 +107,8 @@ static const struct luaL_Reg MapLib[] =
 	{"RemoveMapTrigger",RemoveMapTrigger},
 	{"ActiveMapTrigger",ActiveMapTrigger},
 	{"DisableMapTrigger",DisableMapTrigger},
+	{"AddMapArea", AddMapArea},
+	{"RemoveMapArea", RemoveMapArea},
+	{"GetDirection",LuaGetDirection},
 	{NULL,NULL}
 };

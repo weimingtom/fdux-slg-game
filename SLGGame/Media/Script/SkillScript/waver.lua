@@ -26,15 +26,15 @@ function onaffect()
 	-- ScriptCommonLib.SetInt("curlevel", lv);
 	
 	--´«²¥¶¯Ò¡
+	ScriptCommonLib.SetInt("spread", 1);
 	if lv > 4 then
-		ScriptCommonLib.SetInt("spread", 1);
 		sf = SquadLib.GetFaction(sid);
 		croodx, croody = SquadLib.GetSquadCoord(sid);
 		croodlist = {
 			{croodx - 1, croody},
 			{croodx, croody - 1},
-			{croodx + 1, croody},
 			{croodx, croody + 1},
+			{croodx + 1, croody},
 		};
 		for i = 1, 4 do
 			tgtsid = BattleLib.GetSquadAt(croodlist[i][1], croodlist[i][2], 1, sf);
@@ -45,8 +45,8 @@ function onaffect()
 				end
 			end
 		end
-		ScriptCommonLib.SetInt("spread", 0);
 	end
+	ScriptCommonLib.SetInt("spread", 0);
 end
 
 function onremove()
@@ -70,7 +70,7 @@ end
 function canaffect()
 	squadid = ScriptCommonLib.GetTempString("squadid");
 	spread = ScriptCommonLib.GetInt("spread");
-	unshakable = SquadLib.GetEffectLevelByName(squadid, "Unshakable");
+	unshakable, eid = SquadLib.GetEffectLevelByName(squadid, "Unshakable");
 	if unshakable > 0 or spread == 1 then
 		ScriptCommonLib.SetTempInt("affect", 0);
 	else

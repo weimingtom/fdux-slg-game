@@ -162,6 +162,8 @@
 		<SquadUnitNumNoInjSimple type="String" value="人数%3%%1%#FFFFFF/%4%%2%"/>
 		<APLabel type="String" value="队伍AP值:#FFFF00%1%#FFFFFF/#00FF00%2%"/>
 		<IsContinueMove type="String" value="发现敌人,是否继续移动?"/>
+		<SquadAmbush1 type="String" value="遭到突袭"/>
+		<SquadAmbush2 type="String" value="遭到伏击"/>
 		
 		<!--GUI-->
 		<gamename type="String" value = "忘却的战场"/>
@@ -295,7 +297,7 @@
 		
 		<!--Skills-->
 		<Skills_DefendEffect type="String" value="防御+%1%"/>
-		<Skills_Waver type="String" value="动摇"/>
+		<Skills_Suppressed type="String" value="被压制"/>
 		<Skills_Inspire type="String" value="攻击力+%1%&#x0D;远程攻击力+%1%"/>
 		<Skills_NotEnoughGuard type="String" value="圣灵守卫不足"/>
 	</StringTable>

@@ -6,7 +6,7 @@ function useskill()
 		SquadLib.Animation(caster, 1, "Skill", "none", "mp_seal_08", 0, 1);
 		unitnum = unitnum - 2;
 		SquadLib.SetUnitNum(caster, unitnum);
-		SquadLib.Animation(target, 3, "Skill", "none", "mp_streak_01", 0, 1);
+		SquadLib.PlayParticle(target, 3, "mp_streak_01", "none", 2500);
 		maxnum = SquadLib.GetUnitMaxNum(target);
 		num = SquadLib.GetUnitNum(target);
 		num = num + 12;

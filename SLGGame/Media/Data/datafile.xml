@@ -235,6 +235,8 @@
 			<ShieldId type="String" value="Shield2"/>
 			<ArmorId type="String" value="MidArmor2"/>
 			<SkillTable>
+				<AttackTrain type="Int" value="0" />
+				<FormationTrain type="Int" value="0" />
 				<Defence type="Int" value="1" />
 				<MiddleArmor type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
@@ -243,7 +245,7 @@
 			<LeaderId type="String" value="Cheetah"/>
 			<RetainerId type="String" value="Test"/>
 			<Level type="Int" value="4"/>
-			<Exp type="Int" value="500"/>
+			<Exp type="Int" value="700"/>
 			<SkillPointAction type="Int" value="0"/>
 			<SkillPointPassive type="Int" value="0"/>
 			<SkillPointEquip type="Int" value="0"/>
@@ -262,6 +264,10 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor4"/>
 			<SkillTable>
+				<RangedAttackTrain type="Int" value="0" />
+				<MarchingTrain type="Int" value="0" />
+				<MoveThroughCover type="Int" value="0" />
+				<SuppressAttack type="Int" value="1" />
 				<OneHandSword type="Int" value="2"/>
 				<Bow type="Int" value="2"/>
 				<LightArmor type="Int" value="2"/>
@@ -288,6 +294,7 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="MidArmor1"/>
 			<SkillTable>
+				<DefenceTrain type="Int" value="0" />
 				<Defence type="Int" value="1" />
 				<Long type="Int" value="2"/>
 				<MiddleArmor type="Int" value="2"/>
@@ -314,6 +321,7 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor1"/>
 			<SkillTable>
+				<RangedAttackTrain type="Int" value="0" />
 				<OneHandBlunt type="Int" value="2"/>
 				<XBow type="Int" value="2"/>
 				<LightArmor type="Int" value="2"/>
@@ -321,8 +329,8 @@
 			<LeaderId type="String" value="WingsCrossBow"/>
 			<RetainerId type="String" value="Scout"/>
 			<UnitNum value="50" type="Int"/>
-			<Level type="Int" value="2"/>
-			<Exp type="Int" value="500"/>
+			<Level type="Int" value="1"/>
+			<Exp type="Int" value="700"/>
 			<SkillPointAction type="Int" value="0"/>
 			<SkillPointPassive type="Int" value="0"/>
 			<SkillPointEquip type="Int" value="0"/>
@@ -340,6 +348,7 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="none"/>
 			<SkillTable>
+				<StrengthenSprite type="Int" value="0" />
 				<Heal type="Int" value="1" />
 				<MagicShield type="Int" value="1" />
 			</SkillTable>
@@ -364,7 +373,13 @@
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="Shield4"/>
 			<ArmorId type="String" value="MidArmor5"/>
-			<SkillTable>
+			<SkillTable>	
+				<DefenceTrain type="Int" value="0" />
+				<MarchingTrain type="Int" value="0" />
+				<Trample type="Int" value="0" />
+				<Charge type="Int" value="0" />
+				<Inspire type="Int" value="1" />
+				<Break type="Int" value="1" />
 				<OneHandSword type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
 				<MiddleArmor type="Int" value="2"/>
@@ -465,6 +480,9 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor4"/>
 			<SkillTable>
+				<DetectionTrain type="Int" value="0" />
+				<RangedAttackTrain type="Int" value="0" />
+				<FastAttack type="Int" value="1" />
 				<OneHandSword type="Int" value="2"/>
 				<Bow type="Int" value="2"/>
 				<LightArmor type="Int" value="2"/>
@@ -492,6 +510,8 @@
 			<ShieldId type="String" value="Shield1"/>
 			<ArmorId type="String" value="MidArmor1"/>
 			<SkillTable>
+				<DefenceTrain type="Int" value="0" />
+				<Defence type="Int" value="1" />
 				<ShortSpear type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
 				<MiddleArmor type="Int" value="2"/>
@@ -518,6 +538,7 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor1"/>
 			<SkillTable>
+				<RangedAttackTrain type="Int" value="0" />
 				<OneHandSword type="Int" value="2"/>
 				<Bow type="Int" value="2"/>
 				<LightArmor type="Int" value="2"/>
@@ -544,6 +565,9 @@
 			<ShieldId type="String" value="Shield2"/>
 			<ArmorId type="String" value="HeavyArmor1"/>
 			<SkillTable>
+				<DefenceTrain type="Int" value="0" />
+				<Defence type="Int" value="1" />
+				<FormationTrain type="Int" value="0" />
 				<ShortSpear type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
 				<HeavyArmor type="Int" value="2"/>
@@ -2031,7 +2055,7 @@
 		<ShortSpear1>
 			<Type type="Int" value="4" />
 			<Value type="Int" value="8" />
-			<Script type="String" value="none" />
+			<Script type="String" value="anticavweapon1.lua" />
 			<Mesh type="String" value="Pike.mesh" />
 			<Mat type="String" value="Pike" />
 			<PU type="String" value="none" />
@@ -2055,7 +2079,7 @@
 		<ShortSpear2>
 			<Type type="Int" value="4" />
 			<Value type="Int" value="12" />
-			<Script type="String" value="none" />
+			<Script type="String" value="anticavweapon1.lua" />
 			<Mesh type="String" value="Pike.mesh" />
 			<Mat type="String" value="Pike" />
 			<PU type="String" value="none" />
@@ -2079,7 +2103,7 @@
 		<ShortSpear3>
 			<Type type="Int" value="4" />
 			<Value type="Int" value="19" />
-			<Script type="String" value="none" />
+			<Script type="String" value="anticavweapon1.lua" />
 			<Mesh type="String" value="Pike.mesh" />
 			<Mat type="String" value="Pike" />
 			<PU type="String" value="none" />
@@ -2103,7 +2127,7 @@
 		<ShortSpear4>
 			<Type type="Int" value="4" />
 			<Value type="Int" value="30" />
-			<Script type="String" value="none" />
+			<Script type="String" value="anticavweapon1.lua" />
 			<Mesh type="String" value="Pike.mesh" />
 			<Mat type="String" value="Pike" />
 			<PU type="String" value="none" />
@@ -2127,7 +2151,7 @@
 		<ShortSpear5>
 			<Type type="Int" value="4" />
 			<Value type="Int" value="42" />
-			<Script type="String" value="none" />
+			<Script type="String" value="anticavweapon1.lua" />
 			<Mesh type="String" value="Pike.mesh" />
 			<Mat type="String" value="Pike" />
 			<PU type="String" value="none" />
@@ -2151,7 +2175,7 @@
 		<Halberd1>
 			<Type type="Int" value="5" />
 			<Value type="Int" value="15" />
-			<Script type="String" value="none" />
+			<Script type="String" value="anticavweapon1.lua" />
 			<Mesh type="String" value="halberd.mesh" />
 			<Mat type="String" value="halberd" />
 			<PU type="String" value="none" />
@@ -2175,7 +2199,7 @@
 		<Halberd2>
 			<Type type="Int" value="5" />
 			<Value type="Int" value="24" />
-			<Script type="String" value="none" />
+			<Script type="String" value="anticavweapon1.lua" />
 			<Mesh type="String" value="halberd.mesh" />
 			<Mat type="String" value="halberd" />
 			<PU type="String" value="none" />
@@ -2199,7 +2223,7 @@
 		<Halberd3>
 			<Type type="Int" value="5" />
 			<Value type="Int" value="35" />
-			<Script type="String" value="none" />
+			<Script type="String" value="anticavweapon1.lua" />
 			<Mesh type="String" value="halberd.mesh" />
 			<Mat type="String" value="halberd" />
 			<PU type="String" value="none" />
@@ -2223,7 +2247,7 @@
 		<Halberd4>
 			<Type type="Int" value="5" />
 			<Value type="Int" value="54" />
-			<Script type="String" value="none" />
+			<Script type="String" value="anticavweapon1.lua" />
 			<Mesh type="String" value="halberd.mesh" />
 			<Mat type="String" value="halberd" />
 			<PU type="String" value="none" />
@@ -2247,7 +2271,7 @@
 		<Halberd5>
 			<Type type="Int" value="5" />
 			<Value type="Int" value="76" />
-			<Script type="String" value="none" />
+			<Script type="String" value="anticavweapon1.lua" />
 			<Mesh type="String" value="halberd.mesh" />
 			<Mat type="String" value="halberd" />
 			<PU type="String" value="none" />
@@ -3247,6 +3271,7 @@
 			</Default>
 			<Active>
 				<Defence type="Int" value="2"/>
+				<Break type="Int" value="5"/>
 			</Active>
 			<Passive>
 				<AttackTrain type="Int" value="1">
@@ -3282,6 +3307,8 @@
 				<RangedAttack type="Int" value="1"/>
 			</Default>
 			<Active>
+				<FastAttack type="Int" value="2"/>
+				<SuppressAttack type="Int" value="5"/>
 			</Active>
 			<Passive>
 				<AttackTrain type="Int" value="1">
@@ -3296,6 +3323,9 @@
 				<HidingTrain type="Int" value="3">
 					<Effect type="String" value="HidingTrain"/>
 				</HidingTrain>
+				<MoveThroughCover type="Int" value="4">
+					<Effect type="String" value="MoveThroughCover"/>
+				</MoveThroughCover>
 			</Passive>
 			<Equip>
 				<OneHandSword type="Int" value="6"/>
@@ -3315,6 +3345,7 @@
 			</Default>
 			<Active>
 				<Inspire type="Int" value="2"/>
+				<Break type="Int" value="2"/>
 			</Active>
 			<Passive>
 				<AttackTrain type="Int" value="1">
@@ -3323,6 +3354,15 @@
 				<DefenceTrain type="Int" value="1">
 					<Effect type="String" value="DefenceTrain"/>
 				</DefenceTrain>
+				<Charge type="Int" value="3">
+					<Effect type="String" value="Charge"/>
+				</Charge>
+				<MarchingTrain type="Int" value="3">
+					<Effect type="String" value="MarchingTrain"/>
+				</MarchingTrain>
+				<Trample type="Int" value="4">
+					<Effect type="String" value="Trample"/>
+				</Trample>
 			</Passive>
 			<Equip>
 				<OneHandSword type="Int" value="6"/>
@@ -3343,8 +3383,15 @@
 				<RangedAttack type="Int" value="1"/>
 			</Default>
 			<Active>
+				<FastAttack type="Int" value="2"/>
 			</Active>
 			<Passive>
+				<MarchingTrain type="Int" value="1">
+					<Effect type="String" value="MarchingTrain"/>
+				</MarchingTrain>
+				<DetectionTrain type="Int" value="1">
+					<Effect type="String" value="DetectionTrain"/>
+				</DetectionTrain>
 				<AttackTrain type="Int" value="3">
 					<Effect type="String" value="AttackTrain"/>
 				</AttackTrain>
@@ -3357,7 +3404,7 @@
 				<OneHandBlunt type="Int" value="6"/>
 				<ShortSpear type="Int" value="6"/>
 				<Bow type="Int" value="6"/>
-				<XBox type="Int" value="6"/>
+				<XBow type="Int" value="6"/>
 				<Shield type="Int" value="6"/>
 				<LightArmor type="Int" value="6"/>
 				<MiddleArmor type="Int" value="6"/>
@@ -3373,6 +3420,12 @@
 				<MagicShield type="Int" value="3"/>
 			</Active>
 			<Passive>
+				<Faith type="Int" value="2">
+					<Effect type="String" value="Faith"/>
+				</Faith>
+				<StrengthenSprite type="Int" value="2">
+					<Effect type="String" value="StrengthenSprite"/>
+				</StrengthenSprite>
 			</Passive>
 		</Saint>
 		<BattleMage type="Int" value="5">
@@ -3403,7 +3456,7 @@
 			<CoolDown type="Int" value="0"/>
 			<Icon type="String" value="ac_atkc"/>
 			<Script type="String" value="attack.lua"/>
-			<SkillRole type="Int" value="1"/>
+			<SkillRole type="Int" value="5"/>
 		</Attack>
 		<RangedAttack>
 			<Type type="Int" value="3"/>
@@ -3415,7 +3468,7 @@
 			<CoolDown type="Int" value="0"/>
 			<Icon type="String" value="ac_atkr"/>
 			<Script type="String" value="rangedattack.lua"/>
-			<SkillRole type="Int" value="2"/>
+			<SkillRole type="Int" value="10"/>
 		</RangedAttack>
 		<Defence>
 			<Type type="Int" value="0"/>
@@ -3427,7 +3480,7 @@
 			<CoolDown type="Int" value="0"/>
 			<Icon type="String" value="skill_act1_def"/>
 			<Script type="String" value="defence.lua"/>
-			<SkillRole type="Int" value="1"/>
+			<SkillRole type="Int" value="513"/>
 		</Defence>
 		<Rest>
 			<Type type="Int" value="0"/>
@@ -3439,7 +3492,7 @@
 			<CoolDown type="Int" value="0"/>
 			<Icon type="String" value="ac_rest"/>
 			<Script type="String" value="rest.lua"/>
-			<SkillRole type="Int" value="1"/>
+			<SkillRole type="Int" value="129"/>
 		</Rest>
 		<Inspire>
 			<Type type="Int" value="1"/>
@@ -3451,19 +3504,19 @@
 			<CoolDown type="Int" value="2"/>
 			<Icon type="String" value="skill_act1_inspire"/>
 			<Script type="String" value="Inspire.lua"/>
-			<SkillRole type="Int" value="1"/>
+			<SkillRole type="Int" value="5"/>
 		</Inspire>
 		<MagicShield>
 			<Type type="Int" value="0"/>
 			<MaxRange type="Int" value="2"/>
-			<MinRange type="Int" value="1"/>
+			<MinRange type="Int" value="0"/>
 			<Area type="Int" value="1"/>
 			<APType type="Int" value="0"/>
 			<APCost type="float" value="3.0"/>
 			<CoolDown type="Int" value="0"/>
 			<Icon type="String" value="skill_act2_firm"/>
 			<Script type="String" value="magicshield.lua"/>
-			<SkillRole type="Int" value="1"/>
+			<SkillRole type="Int" value="517"/>
 		</MagicShield>
 		<Heal>
 			<Type type="Int" value="0"/>
@@ -3475,7 +3528,7 @@
 			<CoolDown type="Int" value="0"/>
 			<Icon type="String" value="skill_act2_heal"/>
 			<Script type="String" value="heal.lua"/>
-			<SkillRole type="Int" value="1"/>
+			<SkillRole type="Int" value="133"/>
 		</Heal>
 		<Pray>
 			<Type type="Int" value="0"/>
@@ -3487,7 +3540,7 @@
 			<CoolDown type="Int" value="0"/>
 			<Icon type="String" value="skill_act2_sumspirit"/>
 			<Script type="String" value="pray.lua"/>
-			<SkillRole type="Int" value="1"/>
+			<SkillRole type="Int" value="129"/>
 		</Pray>
 		<Break>
 			<Type type="Int" value="4"/>
@@ -3499,7 +3552,7 @@
 			<CoolDown type="Int" value="1"/>
 			<Icon type="String" value="skill_act1_break"/>
 			<Script type="String" value="break.lua"/>
-			<SkillRole type="Int" value="1"/>
+			<SkillRole type="Int" value="13"/>
 		</Break>
 		<SuppressAttack>
 			<Type type="Int" value="3"/>
@@ -3511,8 +3564,20 @@
 			<CoolDown type="Int" value="1"/>
 			<Icon type="String" value="skill_act1_suppress"/>
 			<Script type="String" value="suppressattack.lua"/>
-			<SkillRole type="Int" value="2"/>
+			<SkillRole type="Int" value="10"/>
 		</SuppressAttack>
+		<FastAttack>
+			<Type type="Int" value="4"/>
+			<MaxRange type="Int" value="1"/>
+			<MinRange type="Int" value="1"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="1"/>
+			<APCost type="float" value="0.0"/>
+			<CoolDown type="Int" value="2"/>
+			<Icon type="String" value="ac_atkc"/>
+			<Script type="String" value="attack.lua"/>
+			<SkillRole type="Int" value="5"/>
+		</FastAttack>
 	</SkillData>
 	<EffectData>
 		<DetectionTrain>
@@ -3531,7 +3596,7 @@
 		</AttackTrain>
 		<DefenceTrain>
 			<Type type="Int" value="0"/>
-			<Icon type="String" value="skill_pass_DefUp.jpg"/>
+			<Icon type="String" value="skill_pass_DefUp"/>
 			<Script type="String" value="DefenceTrain.lua"/>
 			<EffectRole type="Int" value="1"/>
 			<ShowOnBattleSquad type="Int" value="0"/>
@@ -3606,34 +3671,55 @@
 			<EffectRole type="Int" value="1"/>
 			<ShowOnBattleSquad type="Int" value="1"/>
 		</MagicShield>
-		<Faith>
-			<Type type="Int" value="0"/>
-			<Icon type="String" value="Faith.jpg"/>
-			<Script type="String" value="Faith.lua"/>
-			<EffectRole type="Int" value="1"/>
-			<ShowOnBattleSquad type="Int" value="1"/>
-		</Faith>
-		<StrengthenSprite>
-			<Type type="Int" value="0"/>
-			<Icon type="String" value="StrengthenSprite.jpg"/>
-			<Script type="String" value="StrengthenSprite.lua"/>
-			<EffectRole type="Int" value="1"/>
-			<ShowOnBattleSquad type="Int" value="0"/>
-		</StrengthenSprite>
 		<Suppressed>
-			<Type type="Int" value="1"/>
-			<Icon type="String" value="suppressattack.jpg"/>
+			<Type type="Int" value="2"/>
+			<Icon type="String" value="skill_pass_APDown"/>
 			<Script type="String" value="suppressattack.lua"/>
 			<EffectRole type="Int" value="1"/>
 			<ShowOnBattleSquad type="Int" value="1"/>
 		</Suppressed>
+		<Faith>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_upspirit"/>
+			<Script type="String" value="Faith.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="0"/>
+		</Faith>
+		<StrengthenSprite>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_DefUp"/>
+			<Script type="String" value="StrengthenSprite.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="0"/>
+		</StrengthenSprite>
 		<AntiCav>
 			<Type type="Int" value="0"/>
-			<Icon type="String" value="anticav.jpg"/>
+			<Icon type="String" value="skill_pass_vsrider"/>
 			<Script type="String" value="anticav.lua"/>
 			<EffectRole type="Int" value="1"/>
 			<ShowOnBattleSquad type="Int" value="1"/>
 		</AntiCav>
+		<MoveThroughCover>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_upcharge"/>
+			<Script type="String" value="MoveThroughCover.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
+		</MoveThroughCover>
+		<Trample>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_trample"/>
+			<Script type="String" value="Trample.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
+		</Trample>
+		<Camp>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_ToughfUp"/>
+			<Script type="String" value="Camp.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
+		</Camp>
 	</EffectData>
 	<GroundData>
 		<Grass>
@@ -3722,7 +3808,7 @@
 	</TerrainData>
 	<MapObjType>
 		<Camp>
-			<Script type="String" value="none"/>
+			<Script type="String" value="CampArea.lua"/>
 			<GroundModifier>
 				<Passable type="Int" value="1"/>
 				<Covert type="Float" value="1.0"/>
@@ -3732,7 +3818,7 @@
 			</GroundModifier>
 		</Camp>
 		<Outpost>
-			<Script type="String" value="none"/>
+			<Script type="String" value="CampArea.lua"/>
 			<GroundModifier>
 				<Passable type="Int" value="1"/>
 				<Covert type="Float" value="1.0"/>
@@ -3742,7 +3828,7 @@
 			</GroundModifier>
 		</Outpost>
 		<Castle>
-			<Script type="String" value="none"/>
+			<Script type="String" value="CampArea.lua"/>
 			<GroundModifier>
 				<Passable type="Int" value="1"/>
 				<Covert type="Float" value="1.0"/>

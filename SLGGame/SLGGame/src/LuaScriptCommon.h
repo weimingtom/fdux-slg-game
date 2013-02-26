@@ -49,6 +49,25 @@ static int SetString(lua_State* L)
 	return 0;
 }
 
+static int SetFloat(lua_State* L)
+{
+	std::string id(luaL_checkstring(L, 1));
+	float val = luaL_checknumber(L, 2);
+	std::string contextpath = LuaSystem::getSingleton().getContext();
+	DataLibrary::getSingleton().setData(contextpath + std::string("/")+ id, val);
+	return 0;
+}
+
+static int GetFloat(lua_State* L)
+{
+	std::string id(luaL_checkstring(L, 1));
+	std::string contextpath = LuaSystem::getSingleton().getContext();
+	float val;
+	DataLibrary::getSingleton().getData(contextpath + std::string("/")+ id, val);
+	lua_pushnumber(L,val);
+	return 1;
+}
+
 static int GetTempInt(lua_State* L)
 {
 	std::string id(luaL_checkstring(L, 1));
@@ -92,6 +111,45 @@ static int GetTempString(lua_State* L)
 	return 1;
 }
 
+static int SetTempString(lua_State* L)
+{
+	std::string id(luaL_checkstring(L, 1));
+	std::string val(luaL_checkstring(L, 2));
+	LuaTempContext* tempcontext = LuaSystem::getSingleton().getTempContext();
+	if(tempcontext)
+	{
+		tempcontext->strMap[id] = val;
+	}
+	return 0;
+}
+
+static int GetTempFloat(lua_State* L)
+{
+	std::string id(luaL_checkstring(L, 1));
+	float val = 0;
+	LuaTempContext* tempcontext = LuaSystem::getSingleton().getTempContext();
+	if(tempcontext)
+	{
+		std::map<std::string, float>::iterator ite = tempcontext->floatMap.find(id);
+		if(ite != tempcontext->floatMap.end())
+			val = ite->second;
+	}
+	lua_pushnumber(L,val);
+	return 1;
+}
+
+static int SetTempFloat(lua_State* L)
+{
+	std::string id(luaL_checkstring(L, 1));
+	float val = luaL_checknumber(L, 2);
+	LuaTempContext* tempcontext = LuaSystem::getSingleton().getTempContext();
+	if(tempcontext)
+	{
+		tempcontext->floatMap[id] = val;
+	}
+	return 0;
+}
+
 static int PlayMusic(lua_State* L)
 {
 	std::string music(luaL_checkstring(L, 1));
@@ -115,9 +173,14 @@ static const struct luaL_Reg ScriptCommonLib[] =
 	{"GetInt", GetInt},
 	{"GetString", GetString},
 	{"SetString", SetString},
+	{"SetFloat", SetFloat},
+	{"GetFloat", GetFloat},
 	{"GetTempInt", GetTempInt},
 	{"SetTempInt", SetTempInt},
 	{"GetTempString", GetTempString},
+	{"SetTempString", SetTempString},
+	{"GetTempFloat", GetTempFloat},
+	{"SetTempFloat", SetTempFloat},
 	{"PlayMusic", PlayMusic},
 	{"GetRand", GetRand},
 	{NULL,NULL}

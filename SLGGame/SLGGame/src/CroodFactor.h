@@ -26,3 +26,13 @@ public:
 private:
 	std::set<int> mAreaSet;
 };
+
+class HighTerrainAttrAreaFactor: public DecisionMapFactor<Crood>
+{
+public:
+	HighTerrainAttrAreaFactor(int attrtype);
+	
+	virtual float calcDecision(Crood &crood);
+private:
+	int mAttrType;
+};

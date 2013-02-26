@@ -5,6 +5,12 @@ function useskill()
 	if x >  -1 then
 		re = SkillLib.RangedAttack(caster,target);
 		if re > 0 then
+			effectlv, eid = SquadLib.GetEffectLevelByName(caster, "DoubleShoot");
+			if effectlv > 0 then
+				if SquadLib.GetUnitNum(target) > 0 then
+					SkillLib.RangedAttack(caster,target);
+				end
+			end
 			casterlv = SquadLib.GetSquadLevel(caster);
 			targetlv = SquadLib.GetSquadLevel(target);
 			ep = 40;
