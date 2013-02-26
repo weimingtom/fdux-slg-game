@@ -11,10 +11,10 @@
 
 #include <vector>
 
-#define SQUAD_SKILL_NUM 5
-#define SQUAD_PASSIVE_SKILL_NUM 5
-#define SQUAD_USE_EQUIP_NUM 5
-#define SQUAD_EFFECT_NUM 5
+#define SQUAD_SKILL_NUM 10
+#define SQUAD_PASSIVE_SKILL_NUM 10
+#define SQUAD_USE_EQUIP_NUM 10
+#define SQUAD_EFFECT_NUM 10
 
 class ItemBox;
 

@@ -28,8 +28,8 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 
 	assignWidget(mSupplyBG,"SupplyBG");
 
-	assignWidget(mSaveButton,"T_SupplySave");
-	assignWidget(mLoadButton,"T_SupplyLoad");
+	//assignWidget(mSaveButton,"T_SupplySave");
+	//assignWidget(mLoadButton,"T_SupplyLoad");
 	assignWidget(mExitButton,"T_SupplyExit");
 	assignWidget(mEquipmentButton,"Button_Equipment");
 	assignWidget(mSkillButton,"Button_Skill");
@@ -37,8 +37,8 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	assignWidget(mSoilderButtonText,"TEXT_SoldierSupply");
 
 
-	mSaveButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUISupply::onSave);
-	mLoadButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUISupply::onLoad);
+	//mSaveButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUISupply::onSave);
+	//mLoadButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUISupply::onLoad);
 	mExitButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUISupply::onExit);
 	mEquipmentButton->eventMouseButtonClick+=MyGUI::newDelegate(this, &GUISupply::onEquipment);
 	mSkillButton->eventMouseButtonClick+=MyGUI::newDelegate(this, &GUISupply::onSkill);
@@ -111,14 +111,12 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	assignWidget(mControlWindow,"ControlWindow");
 	assignWidget(mAttributeWindow,"AttributeWindow");
 	assignWidget(mItemWindow,"ItemWindow");
-	assignWidget(mTemaWindow,"TemaWindow");
 	assignWidget(mItemAttributeWindow,"ItemAttributeWindow");
 
 	mArmyWindow->setPosition(-235,0);
-	mAttributeWindow->setPosition(240,-310);
-	mControlWindow->setPosition(-230,480);
+	mAttributeWindow->setPosition(295,-310);
+	mControlWindow->setPosition(-230,575);
 	mItemWindow->setPosition(240,800);
-	mTemaWindow->setPosition(1280,5);
 	mItemAttributeWindow->setPosition(1280,310);
 	mIsHideScene=false;
 
@@ -423,17 +421,64 @@ void GUISupply::showAttribute(int index,int itemType,std::string itemID)
 		{
 			DataLibrary::getSingletonPtr()->getData(str(boost::format("StaticData/EffectData/%1%/Icon")%it->first),icon);
 
-			mSquadPassiveSkillIcon[m_SquadPassiveSkillNum]->setItemResource("skill");
+			mSquadPassiveSkillIcon[m_SquadPassiveSkillNum]->setItemResource("skillpass");
 			mSquadPassiveSkillIcon[m_SquadPassiveSkillNum]->setItemGroup(icon);
 			mSquadPassiveSkillIcon[m_SquadPassiveSkillNum]->setItemName("normal");
 			m_SquadPassiveSkillNum++;
 		}
 		else if (it->second==SKILLTYPE_EQUIP)
 		{
-			//mSquadUseEquipIcon[m_SquadUseEquipNum]->setItemResourcePtr(image);
-			//mSquadUseEquipIcon[m_SquadUseEquipNum]->setItemGroup("States");
-			//m_SquadUseEquipNum++;
+			std::string id=it->first;
+			std::string mGroup=id;
+			  if(id=="OneHandBlunt")
+				  mGroup="eqp_oneaxe";
+			  else if(id=="OneHandSword")
+				  mGroup="OneHandSword";
+			  else if(id=="TwoHandSword")
+				  mGroup="eqp_twosword";
+			  else if(id=="TwoHandBlunt")
+				  mGroup="eqp_twoaxe";
+			  else if(id=="ShortSpear")
+				  mGroup="ShortSpear";
+			  else if(id=="Long")
+				  mGroup="eqp_halberd";
+			  else if(id=="Shield")
+				  mGroup="Shield";
+			  else if(id=="LightArmor")
+				  mGroup="eqp_lightarmor";
+			  else if(id=="MiddleArmor")
+				  mGroup="eqp_midarmor";
+			  else if(id=="HeavyArmor")
+				  mGroup="eqp_heavyarmor";
+			  else if(id=="Bow")
+				  mGroup="Bow";
+			  else if(id=="XBow")
+				  mGroup="LXBox";
+			  else if(id=="LightHorse")
+				  mGroup="eqp_heavyhorse";
+			  else if(id=="HeavyHorse")
+				  mGroup="eqp_lightarmor";
+
+			mSquadUseEquipIcon[m_SquadUseEquipNum]->setItemResource("eqp");
+			mSquadUseEquipIcon[m_SquadUseEquipNum]->setItemGroup(mGroup);
+			mSquadUseEquipIcon[m_SquadUseEquipNum]->setItemName("normal");
+			m_SquadUseEquipNum++;
 		}
+	}
+
+	for(int i=m_SquadSkillNum;i<SQUAD_SKILL_NUM;i++)
+	{
+		mSquadSkillIcon[i]->setItemGroup("");
+	}
+
+	for(int i=m_SquadPassiveSkillNum;i<SQUAD_SKILL_NUM;i++)
+	{
+		mSquadPassiveSkillIcon[i]->setItemGroup("");
+	}
+
+	for(int i=m_SquadUseEquipNum;i<SQUAD_SKILL_NUM;i++)
+	{
+		mSquadUseEquipIcon[i]->setItemGroup("");
 	}
 
 	if(itemID!="")
@@ -813,10 +858,9 @@ void GUISupply::hideScene()
 	mIsHideScene=true;
 
 	MoveTo(-235,0,1000,mArmyWindow);
-	MoveTo(240,-310,1000,mAttributeWindow);
-	MoveTo(-230,480,1000,mControlWindow);
+	MoveTo(295,-310,1000,mAttributeWindow);
+	MoveTo(-230,575,1000,mControlWindow);
 	MoveTo(240,800,1000,mItemWindow);
-	MoveTo(1280,5,1000,mTemaWindow);
 	MoveTo(1280,310,1000,mItemAttributeWindow);
 }
 
@@ -830,10 +874,9 @@ void GUISupply::onOtherSceneNotify( std::string arg )
 	if(arg=="FadeInOver")
 	{
 		MoveTo(0,0,1000,mArmyWindow);
-		MoveTo(230,5,1000,mAttributeWindow);
-		MoveTo(5,500,1000,mControlWindow);
+		MoveTo(295,5,1000,mAttributeWindow);
+		MoveTo(5,575,1000,mControlWindow);
 		MoveTo(230,310,1000,mItemWindow);
-		MoveTo(980,5,1000,mTemaWindow);
 		MoveTo(980,310,1000,mItemAttributeWindow);
 	}
 	else if(arg=="MoveToOver" && mIsHideScene)
@@ -920,10 +963,7 @@ void GUISupply::trainSkill(SkillItemData* skill)
 		break;
 	}
 
-	if(skill->getType()==SKILLTYPE_PASSIVE)
-		army->learnSkill(skill->getType(),skill->getName());
-	else
-		army->learnSkill(skill->getType(),skill->getID());
+	army->learnSkill(skill->getType(),skill->getID());
 
 	showAttribute(m_CurrSquadIndex,0,"");
 	showSkill(skill->getType());
