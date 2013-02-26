@@ -2,6 +2,7 @@
 
 #include "boost/format.hpp"
 #include "DataLibrary.h"
+#include "GUITipsWindow.h"
 
 GUIEffectWindow::GUIEffectWindow( MyGUI::Window* window,int Width,int Height,int index):GUISubWindows(window,Width,Height),mWindow(window),mIndex(index)
 {
@@ -55,6 +56,7 @@ void GUIEffectWindow::setEffectList(std::vector<std::string> list,std::vector<in
 			mEffect[i]->setImageGroup(data);
 			mEffect[i]->setUserString("Tips",skillTips);
 			mEffect[i]->setNeedToolTip(true);
+			GUITipsWindow::getSingletonPtr()->addToolTipEvent(mEffect[i]);
 			if(level[skilllvindex]!=0)
 				mEffect[i]->setCaption(Ogre::StringConverter::toString(level[skilllvindex]));
 			i++;
