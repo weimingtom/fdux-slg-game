@@ -981,17 +981,20 @@ void BattleAIState::SquadAI::updateSkill()
 			break;
 		case SGM_ATTACK:
 			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.7f);
-			skilldecision.addFactor(new SquadSkillbyRoleFactor(mSquad, ROLETYPE_MAINFORCE | ROLETYPE_ANTI_HIGHARMOR | ROLETYPE_ANTI_CAV | ROLETYPE_SUPPORT_AP), 0.2f);
+			skilldecision.addFactor(new SquadSkillbySptEffectiveFactor(mSquad) , 0.05f);
+			skilldecision.addFactor(new SquadSkillbyRoleFactor(mSquad, ROLETYPE_MAINFORCE | ROLETYPE_ANTI_HIGHARMOR | ROLETYPE_ANTI_CAV | ROLETYPE_SUPPORT_AP), 0.15f);
 			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(-100.0f, 100.0f) , 0.1f);
 			break;
 		case SGM_SUPPORT_RANGE:
 			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.7f);
-			skilldecision.addFactor(new SquadSkillbyRoleFactor(mSquad, ROLETYPE_MAINFORCE | ROLETYPE_ANTI_HIGHFORM ), 0.2f);
+			skilldecision.addFactor(new SquadSkillbySptEffectiveFactor(mSquad) , 0.05f);
+			skilldecision.addFactor(new SquadSkillbyRoleFactor(mSquad, ROLETYPE_SUPPORT_RANGE | ROLETYPE_ANTI_HIGHFORM ), 0.15f);
 			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(-100.0f, 100.0f) , 0.1f);
 			break;
 		case SGM_SUPPORT_CLOSE:
 			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.7f);
-			skilldecision.addFactor(new SquadSkillbyRoleFactor(mSquad, ROLETYPE_MAINFORCE | ROLETYPE_ANTI_MAGE | ROLETYPE_SUPPORT_AP), 0.2f);
+			skilldecision.addFactor(new SquadSkillbySptEffectiveFactor(mSquad) , 0.05f);
+			skilldecision.addFactor(new SquadSkillbyRoleFactor(mSquad, ROLETYPE_SUPPORT_CLOSE | ROLETYPE_ANTI_MAGE | ROLETYPE_SUPPORT_AP), 0.15f);
 			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(-100.0f, 100.0f) , 0.1f);
 			break;
 		}
@@ -1534,7 +1537,7 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 					squadsite = choosesquads.begin();
 					for( ; squadsite != choosesquads.end(); squadsite++)
 					{
-						if(curmainstrength > threatenstrength * 0.5f)
+						if(curmainstrength > threatenstrength * 0.7f)
 							break;
 						curmainstrength += (*squadsite)->getSquadStrength();
 						curdefendstrength += (*squadsite)->getSquadStrength();
@@ -1562,9 +1565,9 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 					squadsite = choosesquads.begin();
 					for( ; squadsite != choosesquads.end(); squadsite++)
 					{
-						if(currangestrength > threatenstrength * 0.4f)
+						if(curdefendstrength > threatenstrength * 0.6f)
 							break;
-						curmainstrength += (*squadsite)->getSquadStrength();
+						curdefendstrength += (*squadsite)->getSquadStrength();
 						currangestrength += (*squadsite)->getSquadStrength();
 					}
 					chooseSquads(freeSquads, choosesquads, squadsite);
@@ -1578,12 +1581,33 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 				}
 			}
 			//创建应急分组
-			/*
-			while(freeSquads.size() > 0 && curdefendstrength <　threatenstrength * 0.75f)
+			while(freeSquads.size() > 0 && curdefendstrength < threatenstrength * 0.75f)
 			{
-
+				DecisionMap<BattleSquad*> formgroupdecision(freeSquads);
+				formgroupdecision.addFactor(new SquadRolebyTypeFactor(ROLETYPE_SUPPORT_CLOSE), 0.5f);
+				formgroupdecision.addFactor(new SquadRolebyAttrFactor(ROLETYPE_SUPPORT_CLOSE), 0.5f);
+				formgroupdecision.calcDecision();
+				std::vector<BattleSquad*> choosesquads = formgroupdecision.getSortedDecisions();
+				if(choosesquads.size() > 0)
+				{
+					squadsite = choosesquads.begin();
+					for( ; squadsite != choosesquads.end(); squadsite++)
+					{
+						if(curdefendstrength > threatenstrength * 0.75f)
+							break;
+						curdefendstrength += (*squadsite)->getSquadStrength();
+						curclosestrength += (*squadsite)->getSquadStrength();
+					}
+					chooseSquads(freeSquads, choosesquads, squadsite);
+					int createdsg = createSquadGroup(SG_SUPPORT_CLOSE, choosesquads);
+					sgcite = mSquadGroupList.find(createdsg);
+					if(sgcite != mSquadGroupList.end())
+					{	
+						updateMission(sgcite->second, (*tite).otherSquadGroupIndex, othersquadgroup);
+						(*tite).assignSquadGroupVec.push_back(createdsg);
+					}
+				}
 			}
-			*/
 		}
 	}
 

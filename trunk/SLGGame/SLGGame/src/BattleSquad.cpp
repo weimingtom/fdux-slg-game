@@ -327,6 +327,7 @@ AttackInfo BattleSquad::getAttackRolls(bool rangedattack,bool asdefender, int d)
 		atkf = getAttr(ATTR_ATTACK, ATTRCALC_FULL);
 		float formation;
 		formation = getAttr(ATTR_FORM, ATTRCALC_FULL);
+		formation = (formation < 0.0f)?0.0f:formation;
 		formation = formation * soildernum / 50.0f;
 		int formtype = getFormation();
 		int mydir = getDirection();
@@ -353,6 +354,7 @@ float BattleSquad::getAtk(int side)
 {
 	float atk = getAttr(ATTR_ATTACK, ATTRCALC_FULL);
 	float formation = getAttr(ATTR_FORM, ATTRCALC_FULL);
+	formation = (formation < 0.0f)?0.0f:formation;
 	int soildernum = getUnitNum();
 	formation = formation * soildernum / 50.0f;
 	formation *= GetFormationBonus(side, getFormation());
@@ -372,6 +374,7 @@ void BattleSquad::applyAttackRolls(bool rangedattack, int d, AttackInfo &attacki
 		deff += RANGEDDEFENCEBONUS;
 		float formation;
 		formation = getAttr(ATTR_FORM, ATTRCALC_FULL);
+		formation = (formation < 0.0f)?0.0f:formation;
 		formation = formation * soildernum / 50.0f;
 		switch(getFormation())
 		{
@@ -392,6 +395,7 @@ void BattleSquad::applyAttackRolls(bool rangedattack, int d, AttackInfo &attacki
 		deff = getAttr(ATTR_DEFENCE, ATTRCALC_FULL);
 		float formation;
 		formation = getAttr(ATTR_FORM, ATTRCALC_FULL);
+		formation = (formation < 0.0f)?0.0f:formation;
 		formation = formation * soildernum / 50.0f;
 		int formtype = getFormation();
 		int mydir = getDirection();
@@ -436,6 +440,7 @@ float BattleSquad::getRangedDef()
 	float deff = getAttr(ATTR_RANGEDDEFENCE, ATTRCALC_FULL);
 	deff += RANGEDDEFENCEBONUS;
 	float formation = getAttr(ATTR_FORM, ATTRCALC_FULL);
+	formation = (formation < 0.0f)?0.0f:formation;
 	int soildernum = getUnitNum();
 	formation = formation * soildernum / 50.0f;
 	switch(getFormation())
@@ -457,6 +462,7 @@ float BattleSquad::getDef(int side)
 {
 	float deff = getAttr(ATTR_DEFENCE, ATTRCALC_FULL);
 	float formation = getAttr(ATTR_FORM, ATTRCALC_FULL);
+	formation = (formation < 0.0f)?0.0f:formation;
 	int soildernum = getUnitNum();
 	formation = formation * soildernum / 50.0f;
 	formation *= GetFormationBonus(side, getFormation());
@@ -469,6 +475,11 @@ bool BattleSquad::changeFormation(int formation, bool costap)
 	if(canChangeFormation(formation) != SKILLSTATE_AVAILABLE)
 		return false;
 	setFormation(formation);
+	LuaTempContext* luatempcontext = new LuaTempContext();
+	luatempcontext->strMap["squadid"] = getSquadId();
+	luatempcontext->intMap["formation"] = formation;
+	Trigger("ChangeFormation", luatempcontext);
+	delete luatempcontext;
 	if(costap)
 	{
 		float ap = getActionPoint();
@@ -547,8 +558,9 @@ bool BattleSquad::useSkillAt(int x, int y, std::string skillid)
 				apcost += 1.0f;
 				setAPTypeCostModify(aptype, apcost);
 			}
-			datalib->getData(skillinfopath + "/CoolDown", apcost);
-			datalib->setData(skillpath + "/CoolDown", apcost);
+			int cooldown;
+			datalib->getData(skillinfopath + "/CoolDown", cooldown);
+			datalib->setData(skillpath + "/CoolDown", cooldown);
 		}
 	}
 	delete context;
