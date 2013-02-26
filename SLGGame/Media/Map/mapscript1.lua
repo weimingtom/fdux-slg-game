@@ -135,9 +135,9 @@ function inarea()
 				BattleLib.SetPlayerMission(mission1, 1);
 				ScriptCommonLib.SetInt("mission1state", 1);
 				
-				BattleLib.AddGold(500);
+				BattleLib.AddGold(800);
 				addedgold = ScriptCommonLib.GetInt("addedgold");
-				addedgold = addedgold + 500;
+				addedgold = addedgold + 800;
 				ScriptCommonLib.SetInt("addedgold", addedgold);
 			end
 		end

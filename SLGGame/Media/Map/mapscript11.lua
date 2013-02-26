@@ -74,9 +74,9 @@ function unitdead()
 	end
 	faction = SquadLib.GetFaction(squad);
 	if faction == 1 then
-		BattleLib.AddGold(100);
+		BattleLib.AddGold(160);
 		addedgold = ScriptCommonLib.GetInt("addedgold");
-		addedgold = addedgold + 100;
+		addedgold = addedgold + 160;
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		mission1state = ScriptCommonLib.GetInt("mission1state");
 		mission1state = mission1state + 1;
@@ -120,14 +120,14 @@ function inarea()
 	if area == TargetArea then
 		faction = SquadLib.GetFaction(squad);
 		if faction == 0 then
-		    BattleLib.AddGold(1500);
+		    BattleLib.AddGold(3600);
 			BattleLib.DumpSquadData();
 			addedgold = ScriptCommonLib.GetInt("addedgold");
-			addedgold = addedgold + 1500;
+			addedgold = addedgold + 3600;
 			mission1state = ScriptCommonLib.GetInt("mission1state");
 			if mission1state >= 8 then
-				BattleLib.AddGold(700);
-				addedgold = addedgold + 700;
+				BattleLib.AddGold(2200);
+				addedgold = addedgold + 2200;
 			end
 			ScriptCommonLib.SetInt("addedgold", addedgold);
 			--Ê¤Àû(storyscript,gold,exp)

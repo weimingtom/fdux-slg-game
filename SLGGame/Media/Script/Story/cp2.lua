@@ -7,6 +7,10 @@ GUI.SetDialogVisible(1);
 GUI.SetShowSupplyButton(1);
 
 GUI.AutoSave();
+GUI.ShowImage("qitaw_ys.png",right,300);
+GUI.ShowRoleName("齐塔");
+GUI.ShowText("战斗胜利，请及时对部队进行补给，以便下次的战斗部队能以最优状态出击。",2);
+GUI.ShowText("要进行补给请点击右方的武器图标，不要问武器和士兵是哪里来的……",1);
 GUI.ShowImage("fuguan_lan.png",left,300);
 GUI.ShowRoleName("副官");
 GUI.ShowText("成编制的敌人已经全部被我方击溃，其残余部队正逃向东方的平原地区。",1);

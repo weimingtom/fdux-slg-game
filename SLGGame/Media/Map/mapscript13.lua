@@ -75,9 +75,9 @@ function unitdead()
 	end
 	faction = SquadLib.GetFaction(squad);
 	if faction == 1 then
-		BattleLib.AddGold(100);
+		BattleLib.AddGold(240);
 		addedgold = ScriptCommonLib.GetInt("addedgold");
-		addedgold = addedgold + 100;
+		addedgold = addedgold + 240;
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		mission1state = ScriptCommonLib.GetInt("mission1state");
 		mission1state = mission1state + 1;
@@ -97,18 +97,20 @@ function turnstart()
 	    BattleLib.Story("cp26_1.lua");
 	end
 	if team == 1 and turn == 4 then
-	    BattleLib.Story("cp26_2.lua");
+		MapLib.MoveCameraTo( 18, 8);
 		AVGLib.SetCanSupply("Azaria",1);
 		AVGLib.SetCanSupply("Caster",1);
 		AVGLib.SetCanSupply("Olivia",1);
 		BattleLib.CreateStorySquad ("Azaria", "Azaria", 18, 8, false);
 		BattleLib.CreateStorySquad ("Caster", "Caster", 17, 7, false);
 		BattleLib.CreateStorySquad ("Olivia", "Olivia", 18, 7, false);
+		BattleLib.Story("cp26_2.lua");
 	end
 	if team == 1 and turn == 5 then
-	    BattleLib.Story("cp26_5.lua");
+		MapLib.MoveCameraTo( 14, 3);
 		AVGLib.SetCanSupply("Fay",1);
 		BattleLib.CreateStorySquad ("Fay", "Fay", 14, 3, false);
+		BattleLib.Story("cp26_5.lua");
 	end
 end	
 		
@@ -133,14 +135,14 @@ function inarea()
 		faction = SquadLib.GetFaction(squad);
 		if faction == 0 then
 			BattleLib.Story("cp26_6.lua");
-			BattleLib.AddGold(1500);
+			BattleLib.AddGold(4400);
 			BattleLib.DumpSquadData();
 			addedgold = ScriptCommonLib.GetInt("addedgold");
-			addedgold = addedgold + 1500;
+			addedgold = addedgold + 4400;
 			mission1state = ScriptCommonLib.GetInt("mission1state");
 			if mission1state >= 4 then
-				BattleLib.AddGold(1000);
-				addedgold = addedgold + 1000;
+				BattleLib.AddGold(2700);
+				addedgold = addedgold + 2700;
 			end
 			ScriptCommonLib.SetInt("addedgold", addedgold);
 			--Ê¤Àû(storyscript,gold,exp)

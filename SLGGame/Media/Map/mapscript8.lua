@@ -73,19 +73,19 @@ function unitdead()
 	
 	faction = SquadLib.GetFaction(squad);
 	if faction == 1 then
-		BattleLib.AddGold(100);
+		BattleLib.AddGold(130);
 		addedgold = ScriptCommonLib.GetInt("addedgold");
-		addedgold = addedgold + 100;
+		addedgold = addedgold + 130;
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		if BattleLib.TeamSquadLeft(2) == 0  then
-			BattleLib.AddGold(1500);
+			BattleLib.AddGold(2700);
 			BattleLib.DumpSquadData();
 			addedgold = ScriptCommonLib.GetInt("addedgold");
-			addedgold = addedgold + 1500;
+			addedgold = addedgold + 2700;
 			mission1state = ScriptCommonLib.GetInt("mission1state");
 			if mission1state == 1 then
-				BattleLib.AddGold(1000);
-				addedgold = addedgold + 1000;
+				BattleLib.AddGold(1650);
+				addedgold = addedgold + 1650;
 			end
 			ScriptCommonLib.SetInt("addedgold", addedgold);
 			--Ê¤Àû(storyscript,gold,exp)
@@ -102,7 +102,7 @@ function turnstart()
 	end
 	
 	if team == 1 and turn == 4 then
-	    BattleLib.Story("cp16_5.lua");
+		MapLib.MoveCameraTo( 12, 14);
 		AVGLib.SetCanSupply("GuardHeavySpear",1);
 		AVGLib.SetCanSupply("GuardLightBow",1);
 		AVGLib.SetCanSupply("GuardLightSword",1);
@@ -113,6 +113,7 @@ function turnstart()
 		BattleLib.CreateStorySquad ("GuardLightBow", "GuardLightBow", 13, 14, false);
 		BattleLib.CreateStorySquad ("GuardLightSword", "GuardLightSword", 12, 15, false);
 		BattleLib.CreateStorySquad ("Elementalist", "Elementalist", 14, 15, false);
+		BattleLib.Story("cp16_5.lua");
 	end
 end	
 		
@@ -130,14 +131,15 @@ function turnend()
 	
 	if team == 2 and turn>=10 then
 		BattleLib.Story("cp16_6.lua");
-		BattleLib.AddGold(1500);
+		BattleLib.AddGold(2700);
 		BattleLib.DumpSquadData();
 		addedgold = ScriptCommonLib.GetInt("addedgold");
+		addedgold = addedgold + 2700;
 		--Ê¤Àû(storyscript,gold,exp)
 		BattleLib.Win("cp17.lua", "0", "0");
 			if mission1state == 1 then
-				BattleLib.AddGold(1000);
-				addedgold = addedgold + 1000;
+				BattleLib.AddGold(1650);
+				addedgold = addedgold + 1650;
 			end
 		ScriptCommonLib.SetInt("addedgold", addedgold);	
 	end

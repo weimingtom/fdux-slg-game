@@ -70,9 +70,9 @@ function unitdead()
 	end
 	faction = SquadLib.GetFaction(squad);
 	if faction == 1 then
-		BattleLib.AddGold(100);
+		BattleLib.AddGold(200);
 		addedgold = ScriptCommonLib.GetInt("addedgold");
-		addedgold = addedgold + 100;
+		addedgold = addedgold + 200;
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 	end
 end
@@ -102,14 +102,14 @@ function turnend()
 	end
 	if team == 1 and win == 1 then
 		BattleLib.Story("cp24_5.lua");
-		BattleLib.AddGold(1500);
+		BattleLib.AddGold(4000);
 		BattleLib.DumpSquadData();
 		addedgold = ScriptCommonLib.GetInt("addedgold");
-		addedgold = addedgold + 1500;
+		addedgold = addedgold + 4000;
 		mission1state = ScriptCommonLib.GetInt("mission1state");
 		if mission1state == 1 then
-			BattleLib.AddGold(700);
-			addedgold = addedgold + 700;
+			BattleLib.AddGold(2400);
+			addedgold = addedgold + 2400;
 		end
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		--Ê¤Àû(storyscript,gold,exp)
@@ -131,8 +131,8 @@ function inarea()
 	if area == TargetArea then
 		faction = SquadLib.GetFaction(squad);
 		if faction == 0 then
+			MapLib.MoveCameraTo( 9, 18);
 			ScriptCommonLib.SetInt("win", 1);
-			BattleLib.Story("cp24_2.lua");
 			BattleLib.AddBattleSquad("Nothfate", "Team2Squad_11", 9, 18, 2, 50);
 			BattleLib.AddBattleSquad("NothHeavyHSword", "Team2Squad_12", 8, 19, 2, 50);
 			BattleLib.AddBattleSquad("NothHeavyHSword", "Team2Squad_13", 10, 19, 2, 50);
@@ -151,6 +151,7 @@ function inarea()
 			BattleLib.AssignAIGroup(2, "Team2Squad_17", "Noth");
 			BattleLib.AssignAIGroup(2, "Team2Squad_18", "Noth");
 			BattleLib.AssignAIGroup(2, "Team2Squad_19", "Noth");
+			BattleLib.Story("cp24_2.lua");
 		end
 	end
 end

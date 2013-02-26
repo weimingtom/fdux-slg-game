@@ -71,19 +71,19 @@ function unitdead()
 	end
 	faction = SquadLib.GetFaction(squad);
 	if faction == 1 or faction == 0 then
-		BattleLib.AddGold(100);
+		BattleLib.AddGold(300);
 		addedgold = ScriptCommonLib.GetInt("addedgold");
-		addedgold = addedgold + 100;
+		addedgold = addedgold + 300;
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		if BattleLib.TeamSquadLeft(2) == 0 and BattleLib.TeamSquadLeft(3) == 0 then
-		BattleLib.AddGold(1500);
+		BattleLib.AddGold(6000);
 		BattleLib.DumpSquadData();
 		addedgold = ScriptCommonLib.GetInt("addedgold");
-		addedgold = addedgold + 1500;
+		addedgold = addedgold + 6000;
 		mission1state = ScriptCommonLib.GetInt("mission1state");
 		if mission1state == 1 then
-			BattleLib.AddGold(1000);
-			addedgold = addedgold + 1000;
+			BattleLib.AddGold(3500);
+			addedgold = addedgold + 3500;
 		end
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		--Ê¤Àû(storyscript,gold,exp)
@@ -108,7 +108,7 @@ function turnstart()
 	    BattleLib.Story("cp32_1.lua");
 	end
 	if team == 1 and turn == 3 then
-		BattleLib.Story("cp32_2.lua");
+		MapLib.MoveCameraTo( 18, 2);
 		AVGLib.SetCanSupply("WingsHeavyInf",1);
 		AVGLib.SetCanSupply("WingsCrossBow",1);
 		AVGLib.SetCanSupply("Azaria",1);
@@ -121,6 +121,7 @@ function turnstart()
 		BattleLib.CreateStorySquad ("Caster", "Caster", 17, 2, false);
 		BattleLib.CreateStorySquad ("Olivia", "Olivia", 19, 3, false);
 		BattleLib.CreateStorySquad ("Cheetah", "Cheetah", 18, 2, false);
+		BattleLib.Story("cp32_2.lua");
 	end
 end	
 		
