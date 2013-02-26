@@ -1538,7 +1538,10 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 					for( ; squadsite != choosesquads.end(); squadsite++)
 					{
 						if(curmainstrength > threatenstrength * 0.7f)
+						{
+							squadsite++;
 							break;
+						}
 						curmainstrength += (*squadsite)->getSquadStrength();
 						curdefendstrength += (*squadsite)->getSquadStrength();
 					}
@@ -1566,7 +1569,10 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 					for( ; squadsite != choosesquads.end(); squadsite++)
 					{
 						if(curdefendstrength > threatenstrength * 0.6f)
+						{
+							squadsite++;
 							break;
+						}
 						curdefendstrength += (*squadsite)->getSquadStrength();
 						currangestrength += (*squadsite)->getSquadStrength();
 					}
@@ -1594,7 +1600,10 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 					for( ; squadsite != choosesquads.end(); squadsite++)
 					{
 						if(curdefendstrength > threatenstrength * 0.75f)
+						{
+							squadsite++;
 							break;
+						}
 						curdefendstrength += (*squadsite)->getSquadStrength();
 						curclosestrength += (*squadsite)->getSquadStrength();
 					}

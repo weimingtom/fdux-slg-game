@@ -430,9 +430,12 @@ void BattleSquad::applyAttackRolls(bool rangedattack, int d, AttackInfo &attacki
 	soildernum = (soildernum < 0)? 0: soildernum;
 	setUnitNum(soildernum);
 
-	int maxnum = getUnitMaxNum();
-	maxnum -= kill * (1.0f - getAttr(ATTR_TOUGHNESS, ATTRCALC_FULL) / 10.0f);
-	setUnitMaxNum(maxnum);
+	if(getType() == SQUAD_NORMAL)
+	{
+		int maxnum = getUnitMaxNum();
+		maxnum -= kill * (1.0f - getAttr(ATTR_TOUGHNESS, ATTRCALC_FULL) / 10.0f);
+		setUnitMaxNum(maxnum);
+	}
 }
 
 float BattleSquad::getRangedDef()
@@ -520,8 +523,9 @@ bool BattleSquad::useSkillOn(BattleSquad* targetsquad, std::string skillid)
 				apcost += 1.0f;
 				setAPTypeCostModify(aptype, apcost);
 			}
-			datalib->getData(skillinfopath + "/CoolDown", apcost);
-			datalib->setData(skillpath + "/CoolDown", apcost);
+			int cooldown;
+			datalib->getData(skillinfopath + "/CoolDown", cooldown);
+			datalib->setData(skillpath + "/CoolDown", cooldown);
 		}
 	}
 	delete context;
@@ -1060,9 +1064,13 @@ BattleSquad::SkillState BattleSquad::canUseSkill(std::string skillid)
 	ite = std::find(activeskills.begin(), activeskills.end(), skillid);
 	if(ite == activeskills.end())
 		return SKILLSTATE_NOSKILL;
-	if(getActionPoint() >= getSkillApCost(skillid))
-		return SKILLSTATE_AVAILABLE;
-	return SKILLSTATE_NOTAVAILABLE;
+	if(getActionPoint() < getSkillApCost(skillid))
+		return SKILLSTATE_NOTAVAILABLE;
+	int cooldown = 0;
+	datalib->getData(mPath + "/Skill/" + skillid + "/CoolDown", cooldown);
+	if(cooldown > 0)
+		return SKILLSTATE_NOTAVAILABLE;
+	return SKILLSTATE_AVAILABLE;
 }
 
 float BattleSquad::getChangeFormationApCost(int formation)

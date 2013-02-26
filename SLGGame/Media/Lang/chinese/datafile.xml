@@ -711,15 +711,15 @@
 		</RangedAttack>
 		<Defence>
 			<Name type="String" value="防御"/>
-			<Describe type="String" value="部队在原地部署防御，以减少受到攻击时的伤亡（消耗所有行动值，防御力根据消耗掉的行动值增加）"/>
+			<Describe type="String" value="在原地部署防御，以减少受到攻击时的伤亡（消耗所有行动值，防御力根据消耗掉的行动值增加）"/>
 		</Defence>
 		<Rest>
 			<Name type="String" value="休整"/>
-			<Describe type="String" value="部队原地休整，尝试为伤员稳定伤势，使之能继续作战（消耗所有行动值，根据消耗掉的行动值恢复一定量的伤员）"/>
+			<Describe type="String" value="原地休整，尝试为伤员稳定伤势，使之能继续作战（消耗所有行动值，根据消耗掉的行动值恢复一定量的伤员）"/>
 		</Rest>	
 		<Inspire>
 			<Name type="String" value="激励"/>
-			<Describe type="String" value="部队的指挥官鼓动士兵奋力作战（提升自己及周围友方部队的攻击力和远程攻击力）"/>
+			<Describe type="String" value="部队指挥官鼓动士兵奋力作战（提升自己及周围友方部队的攻击力和远程攻击力）"/>
 		</Inspire>
 		<MagicShield>
 			<Name type="String" value="圣灵守护"/>
@@ -735,7 +735,7 @@
 		</Pray>
 		<Break>
 			<Name type="String" value="破阵"/>
-			<Describe type="String" value="部队尝试强行将敌部队阵型切分开（进行一次近战攻击，有一定几率将敌部队变为散阵）"/>
+			<Describe type="String" value="尝试强行将敌部队阵型切分开（进行一次近战攻击，有一定几率将敌部队变为散阵）"/>
 		</Break>
 		<SuppressAttack>
 			<Name type="String" value="压制射击"/>
@@ -745,6 +745,14 @@
 			<Name type="String" value="快速突击"/>
 			<Describe type="String" value="向敌部队发起一起突然袭击（进行一次近战攻击）"/>
 		</FastAttack>
+		<Fusillade>
+			<Name type="String" value="齐射"/>
+			<Describe type="String" value="使用远距离武器进行一次整齐的射击（进行一次远程攻击，远程攻击力增加当前阵列值）"/>
+		</Fusillade>
+		<Prepare>
+			<Name type="String" value="战斗准备"/>
+			<Describe type="String" value="进行战斗准备（部队下回合起始行动值增加）"/>
+		</Prepare>
 	</SkillData>
 	<EffectData>
 		<DetectionTrain>
@@ -827,6 +835,18 @@
 			<Name type="String" value="营地"/>
 			<Describe type="String" value="部队部署在一个营地之中，可以更好的进行休整（休整，祷告等自身恢复技能效果增强）"/>
 		</Camp>
+		<Unshakable>
+			<Name type="String" value="不可动摇"/>
+			<Describe type="String" value="部队士兵拥有坚定的意志（部队不会被动摇效果所影响）"/>
+		</Unshakable>
+		<Chaos>
+			<Name type="String" value="混乱"/>
+			<Describe type="String" value="部队指挥陷入混乱（行动值降低）"/>
+		</Chaos>
+		<Prepare>
+			<Name type="String" value="战斗准备"/>
+			<Describe type="String" value="部队做好开始作战的准备（部队下回合起始行动值增加）"/>
+		</Prepare>
 	</EffectData>
 	<GroundData>
 		<Grass>

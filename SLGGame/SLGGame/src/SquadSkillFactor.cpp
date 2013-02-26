@@ -51,7 +51,10 @@ float SquadSkillbyAtkEffectiveFactor::calcDecision(UseSkillInfo &decision)
 			}
 			if(skillrole & ROLETYPE_ANTI_HIGHFORM)
 			{
-				possibility += 5 * (tgtsquad->getAtk(0) - tgtsquad->getAtk(2));
+				if(tgtsquad->getFormation() != Loose)
+				{
+					possibility += 5 * (tgtsquad->getAttr(ATTR_FORM, ATTRCALC_FULL) * tgtsquad->getUnitNum() / 50.0f);
+				}
 			}
 			if(skillrole & ROLETYPE_ANTI_MAGE)
 			{

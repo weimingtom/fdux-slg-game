@@ -4,7 +4,7 @@ function useskill()
 	maxnum = SquadLib.GetUnitMaxNum(caster);
 	num = SquadLib.GetUnitNum(caster);
 	sklv = SquadLib.GetSkillLevel(caster, "Rest");
-	camp, eid = SquadLib.GetEffectLevelByName(squadid, "Camp");
+	camp, eid = SquadLib.GetEffectLevelByName(caster, "Camp");
 	if ap > 1 + sklv + camp then
 	 ap = 1 + sklv + camp;
 	end

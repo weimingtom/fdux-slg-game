@@ -99,6 +99,32 @@ static int LuaGetDirection(lua_State* L)
 	return 1;
 }
 
+static int GetGroundAttr(lua_State* L)
+{
+	int x =  luaL_checknumber(L,1);
+	int y =  luaL_checknumber(L,2);
+	int attrtype = luaL_checknumber(L,3);
+	float attr = 0.0f;
+	MapDataManager* mapdata = MapDataManager::getSingletonPtr();
+	switch(attrtype)
+	{
+	case 0:
+		attr = mapdata->getDefModify(x, y, -1);
+		break;
+	case 1:
+		attr = mapdata->getCovert(x, y, -1);
+		break;
+	case 2:
+		attr = mapdata->getInfApCost(x, y, -1);
+		break;
+	case 3:
+		attr = mapdata->getCavApCost(x, y, -1);
+		break;
+	}
+	lua_pushnumber(L, attr);
+	return 1;
+}
+
 static const struct luaL_Reg MapLib[] =
 {
 	{"SetCamera",SetCamera},
@@ -110,5 +136,6 @@ static const struct luaL_Reg MapLib[] =
 	{"AddMapArea", AddMapArea},
 	{"RemoveMapArea", RemoveMapArea},
 	{"GetDirection",LuaGetDirection},
+	{"GetGroundAttr",GetGroundAttr},
 	{NULL,NULL}
 };

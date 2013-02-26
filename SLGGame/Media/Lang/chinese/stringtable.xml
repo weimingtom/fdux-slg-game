@@ -310,9 +310,10 @@
 		<Tips_FormationCircButton type="String" value="改变部队的阵型为圆阵，通常用于单独或突出的部队防御敌方进攻。部队各面受到相同的阵列加成。当部队受到远程攻击或者特殊攻击时，受到非常高的伤害"/>
 		
 		<!--Skills-->
-		<Skills_DefendEffect type="String" value="防御+%1%"/>
+		<Skills_DefendEffect type="String" value="防御力+%1%"/>
+		<Skills_Prepare type="String" value="行动值+%1%"/>
 		<Skills_Suppressed type="String" value="被压制"/>
-		<Skills_Inspire type="String" value="攻击力+%1%&#x0D;远程攻击力+%1%"/>
+		<Skills_Inspire type="String" value="攻击力+%1% 远程攻击力+%1%"/>
 		<Skills_NotEnoughGuard type="String" value="圣灵守卫不足"/>
 	</StringTable>
 </StaticData>

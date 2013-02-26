@@ -30,7 +30,17 @@ function validarea()
 end
 
 function validaffectarea()
-	ScriptCommonLib.SetTempInt("validaffectarea", 1);
+	sid = ScriptCommonLib.GetTempString("squadid");
+	tgtx = ScriptCommonLib.GetTempInt("targetx");
+	tgty = ScriptCommonLib.GetTempInt("targety");
+	sf = SquadLib.GetFaction(sid);
+	tgtsid = BattleLib.GetSquadAt(targetx, targety, 1, sf);
+	if tgtsid ~= "" then
+		tgtf = SquadLib.GetFaction(tgtsid);
+		if tgtf == sf then
+			ScriptCommonLib.SetTempInt("validaffectarea", 1);
+		end
+	end
 end
 
 function onaffect()
