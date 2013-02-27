@@ -2,6 +2,7 @@
 
 #include "BattleState.h"
 
+#include <set>
 #include <boost/format.hpp>
 
 #include "DataLibrary.h"
@@ -562,9 +563,9 @@ void BattleAIState::findOtherSquadGroup()
 	{
 		if(connectvec[n] < 0)
 			continue;
-		std::vector<int> connectvect;
-		connectvect.push_back(connectvec[n]);
-		connectvect.push_back(connectvec[n+1]);
+		std::set<int> connectvect;
+		connectvect.insert(connectvec[n]);
+		connectvect.insert(connectvec[n+1]);
 		for(unsigned int m = n + 2; m < connectvec.size(); m += 2)
 		{
 			if(connectvec[m] < 0)
@@ -577,37 +578,37 @@ void BattleAIState::findOtherSquadGroup()
 			}
 			else if(connectvec[n] == connectvec[m] || connectvec[n + 1] == connectvec[m])
 			{
-				connectvect.push_back(connectvec[m + 1]);
+				connectvect.insert(connectvec[m + 1]);
 				connectvec[m] = -1;
 				connectvec[m + 1] = -1;
 			}
 			else if(connectvec[n] == connectvec[m + 1] || connectvec[n + 1] == connectvec[m + 1])
 			{
-				connectvect.push_back(connectvec[m]);
+				connectvect.insert(connectvec[m]);
 				connectvec[m] = -1;
 				connectvec[m + 1] = -1;
 			}
 		}
 		unsigned int maxstrength = 0;
-		int maxstrengthgroup = 0;
-		for(unsigned int m = 0; m < connectvect.size(); m++)
+		std::set<int>::iterator maxstrengthgroup = connectvect.begin();
+		for(std::set<int>::iterator m = connectvect.begin(); m != connectvect.end(); m++)
 		{
 			std::map<int, OtherSquadGroupInfo>::iterator tempite = 
-				mOtherSquadGroupVec.find(connectvect[m]);
+				mOtherSquadGroupVec.find(*m);
 			if(tempite->second.mSquadList.size() > maxstrength)
 			{
 				maxstrength = tempite->second.mSquadList.size();
 				maxstrengthgroup = m;
 			}
 		}
-		for(unsigned int m = 0; m < connectvect.size(); m++)
+		for(std::set<int>::iterator m = connectvect.begin(); m != connectvect.end(); m++)
 		{
 			if(maxstrengthgroup != m)
 			{
 				std::map<int, OtherSquadGroupInfo>::iterator tempite = 
-					mOtherSquadGroupVec.find(connectvect[m]);
+					mOtherSquadGroupVec.find(*m);
 				std::map<int, OtherSquadGroupInfo>::iterator tempite1 = 
-					mOtherSquadGroupVec.find(connectvect[maxstrengthgroup]);
+					mOtherSquadGroupVec.find(*maxstrengthgroup);
 				if(tempite != tempite1)
 				{
 					for(unsigned int l = 0; l < tempite->second.mSquadList.size(); l++)
@@ -813,7 +814,7 @@ bool BattleAIState::SquadAI::update(std::vector<SquadAI>& squadlist)
 		updateDirection();
 		return true;
 	}
-	if(mLastActiveAP <= mSquad->getActionPoint())
+	if(mLastActiveAP >= mSquad->getActionPoint())
 		return false;
 	mState = SAS_MOVE;
 	return true;

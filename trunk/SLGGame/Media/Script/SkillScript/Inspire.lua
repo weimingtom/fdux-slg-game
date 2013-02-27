@@ -21,7 +21,7 @@ function useskill()
 			end
 		end
 	end	
-	SquadLib.AddExp(caster, ep);
+	SquadLib.AddExp(sid, ep);
 	ScriptCommonLib.SetTempInt("castsuccess", 1);
 end
 
@@ -34,7 +34,7 @@ function validaffectarea()
 	tgtx = ScriptCommonLib.GetTempInt("targetx");
 	tgty = ScriptCommonLib.GetTempInt("targety");
 	sf = SquadLib.GetFaction(sid);
-	tgtsid = BattleLib.GetSquadAt(targetx, targety, 1, sf);
+	tgtsid = BattleLib.GetSquadAt(tgtx, tgty, 1, sf);
 	if tgtsid ~= "" then
 		tgtf = SquadLib.GetFaction(tgtsid);
 		if tgtf == sf then
