@@ -1487,6 +1487,8 @@ bool BattleSquadManager::createStorySquad(std::string squadid, std::string suqad
 		mSquadList.erase(ite);
 		return false;
 	}
+	battlesquad->setGridX(x);
+	battlesquad->setGridY(y);
 	suqadgrapmanager->createSquadGrap(battlesquad->getSquadId(), battlesquad->getPath(), battlesquad->getGridX(), battlesquad->getGridY(), 
 										battlesquad->getDirection(), battlesquad->getFormation(), battlesquad->getUnitGrapNum());
 	SquadGraphics* grap = suqadgrapmanager->getSquad(battlesquad->getSquadId());
