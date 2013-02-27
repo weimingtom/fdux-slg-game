@@ -595,10 +595,13 @@ void BattleAIState::findOtherSquadGroup()
 		{
 			std::map<int, OtherSquadGroupInfo>::iterator tempite = 
 				mOtherSquadGroupVec.find(*m);
-			if(tempite->second.mSquadList.size() > maxstrength)
+			if(tempite != mOtherSquadGroupVec.end())
 			{
-				maxstrength = tempite->second.mSquadList.size();
-				maxstrengthgroup = m;
+				if(tempite->second.mSquadList.size() > maxstrength)
+				{
+					maxstrength = tempite->second.mSquadList.size();
+					maxstrengthgroup = m;
+				}
 			}
 		}
 		for(std::set<int>::iterator m = connectvect.begin(); m != connectvect.end(); m++)
@@ -609,13 +612,16 @@ void BattleAIState::findOtherSquadGroup()
 					mOtherSquadGroupVec.find(*m);
 				std::map<int, OtherSquadGroupInfo>::iterator tempite1 = 
 					mOtherSquadGroupVec.find(*maxstrengthgroup);
-				if(tempite != tempite1)
+				if(tempite != mOtherSquadGroupVec.end() && tempite1 != mOtherSquadGroupVec.end())
 				{
-					for(unsigned int l = 0; l < tempite->second.mSquadList.size(); l++)
+					if(tempite != tempite1)
 					{
-						tempite1->second.mSquadList.push_back(tempite->second.mSquadList[l]);
+						for(unsigned int l = 0; l < tempite->second.mSquadList.size(); l++)
+						{
+							tempite1->second.mSquadList.push_back(tempite->second.mSquadList[l]);
+						}
+						mOtherSquadGroupVec.erase(tempite);
 					}
-					mOtherSquadGroupVec.erase(tempite);
 				}
 			}
 		}
