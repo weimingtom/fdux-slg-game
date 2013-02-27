@@ -260,7 +260,7 @@
 			<SoilderId type="String" value="WingsSoilder"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="ShortSword3"/>
-			<SweaponId type="String" value="Bow4"/>
+			<SweaponId type="String" value="Bow3"/>
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor4"/>
 			<SkillTable>
@@ -478,7 +478,7 @@
 			<SoilderId type="String" value="WingsSoilder"/>
 			<HorseId type="String" value="LightHorse3"/>
 			<PweaponId type="String" value="ShortSword2"/>
-			<SweaponId type="String" value="Bow4"/>
+			<SweaponId type="String" value="Bow3"/>
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor4"/>
 			<SkillTable>
