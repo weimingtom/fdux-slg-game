@@ -700,6 +700,19 @@ void BattleSquad::turnStart()
 	setActionPoint(ap);
 	setAPSetup(0.0f);
 	setAPBattle(0.0f);
+
+	std::vector<std::string> activeskills;
+	activeskills = datalib->getChildList(mPath + "/Skill");
+	std::vector<std::string>::iterator ite;
+	for(ite = activeskills.begin(); ite != activeskills.end(); ite++)
+	{
+		int cooldown = 0;
+		datalib->getData(mPath + "/Skill/" + (*ite) + "/CoolDown", cooldown);
+		if(cooldown > 0)
+			cooldown -= 1;
+		datalib->setData(mPath + "/Skill/" + (*ite) + "/CoolDown", cooldown);
+	}	
+
 	LuaTempContext* luatempcontext = new LuaTempContext();
 	luatempcontext->strMap["squadid"] = getSquadId();
 	Trigger("TurnStart", luatempcontext);
