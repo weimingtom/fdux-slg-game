@@ -36,6 +36,7 @@ private:
 	MyGUI::Window* mWindow;
 	MyGUI::ImageBox* mCaption;
 	MyGUI::TextBox* mGold;
+	MyGUI::TextBox* mSquadWage;
 	MyGUI::Button* mButton;
 	bool isWin;
 	std::string mNext;

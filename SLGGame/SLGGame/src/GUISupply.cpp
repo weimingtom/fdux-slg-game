@@ -396,7 +396,14 @@ void GUISupply::eventSelectItemAccept(MyGUI::ItemBox* _sender, size_t _index)
 			mItem_Index=_index;
 			GUIMessageBox* messagebox=(GUIMessageBox*)GUISystem::getSingletonPtr()->createScene(MessageBoxScene);
 			messagebox->setNotify(this);
-			messagebox->showScene(str(boost::format(StringTable::getSingletonPtr()->getString("ConfirmBuyItem"))%item->getPriceValue()%item->getName()));
+			if(m_CurrSelectType!=EQUIP_RETAINER)
+				messagebox->showScene(str(boost::format(StringTable::getSingletonPtr()->getString("ConfirmBuyItem"))%item->getPriceValue()%item->getName()));
+			else
+			{
+				int wage=0;
+				DataLibrary::getSingletonPtr()->getData(str(boost::format("StaticData/RetainerData/%1%/Wage")%item->getID()),wage);
+				messagebox->showScene(str(boost::format(StringTable::getSingletonPtr()->getString("ConfirmHireItem"))%item->getPriceValue()%item->getName()%wage));
+			}
 		}
 	}
 }

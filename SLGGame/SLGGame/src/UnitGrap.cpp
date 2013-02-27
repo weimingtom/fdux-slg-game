@@ -80,6 +80,11 @@ mIsAnimationComplete(true)
 	mParticleVisible = true;
 	mParticleNode = mNode->createChildSceneNode();
 	mParticleNode->setPosition(0.0f,3.0f,0.0f);
+
+	if(!mUnitEntity->getAllAnimationStates()->hasAnimationState("Recover"))
+	{
+		mRecoverName="Ready1H";
+	}
 }
 
 UnitGrap::~UnitGrap(void)

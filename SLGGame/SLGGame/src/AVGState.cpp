@@ -53,6 +53,7 @@ void AVGState::initialize( std::string arg )
 
 void AVGState::uninitialize()
 {
+	LuaSystem::getSingletonPtr()->clearAvgState();
 	GUISystem::getSingletonPtr()->destoryScene(StageScene);
 }
 

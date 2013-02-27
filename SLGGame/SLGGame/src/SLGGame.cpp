@@ -12,10 +12,10 @@ int main(int argc,char* argv[])
 		CR_INSTALL_INFO info;
 		memset(&info, 0, sizeof(CR_INSTALL_INFO));
 		info.cb = sizeof(CR_INSTALL_INFO);             // Size of the structure
-		info.pszAppName = _T("忘却的战场"); // App name
-		info.pszAppVersion = _T("1.0.1");              // App version
-		info.pszEmailSubject = _T("忘却的战场 1.0.1 错误报告"); // Email subject
-		info.pszEmailTo = _T("393441320@qq.com");      // Email recipient address
+		info.pszAppName = _T("ForgottenBattlefield"); // App name
+		info.pszAppVersion = _T("0.1a");              // App version
+		info.pszEmailSubject = _T("ForgottenBattlefield 0.1a Error Report"); // Email subject
+		info.pszEmailTo = _T("fduxslggame@gmail.com");      // Email recipient address
 
 		// Install crash handlers
 		int nInstResult = crInstall(&info);            
