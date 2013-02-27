@@ -672,13 +672,12 @@ void GUISupply::buyItem(int index,WeaponItemData* item)
 			army->hireRetainer(item->getID());
 		}
 
-		showArmy(m_CurrSquadIndex);
-		showItem(item->getType());
-
-		m_Money-=item->getPriceValue();
-
 		if(m_CurrSquadEquipItem!=NULL && item->getType()!=EQUIP_RETAINER)
 			m_Money+=m_CurrSquadEquipItem->getPriceValue()*0.8;
+		m_Money-=item->getPriceValue();
+
+		showArmy(m_CurrSquadIndex);
+		showItem(item->getType());
 
 		DataLibrary::getSingletonPtr()->setData("GameData/StoryData/Gold",m_Money);
 		showArmyInfo();
