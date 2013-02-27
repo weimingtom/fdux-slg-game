@@ -220,3 +220,9 @@ void LuaSystem::clearLuaSystem()
 	mFileNameStack.clear();
 	mScriptBuffer.clear();
 }
+
+void LuaSystem::clearAvgState()
+{
+	LuaBreakupFun=NULL;
+	mScriptBuffer.clear();
+}

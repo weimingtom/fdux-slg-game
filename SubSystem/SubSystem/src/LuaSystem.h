@@ -36,6 +36,8 @@ public:
 
 	void clearLuaSystem();
 
+	void clearAvgState();
+
 	void onFrameUpdate();
 
 	void runScriptFromFile(const std::string& filename,int lineNum);
