@@ -329,7 +329,7 @@ GUI.ShowRoleName("");
 GUI.ShowImage("chihou_lan.png",left,300);
 GUI.ShowRoleName("斥候");
 GUI.ShowText("确认敌方骑兵队，",2);
-GUI.ShowText("人数约一百！",1);
+GUI.ShowText("人数约两百！",1);
 GUI.ClearText();
 GUI.ShowRoleName("");
 GUI.SE("haojiao.ogg");
