@@ -381,6 +381,7 @@
 				<Charge type="Int" value="0" />
 				<Inspire type="Int" value="1" />
 				<Break type="Int" value="1" />
+				<UrgentOrder type="Int" value="1"/>
 				<OneHandSword type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
 				<MiddleArmor type="Int" value="2"/>
@@ -3278,6 +3279,7 @@
 				<Defence type="Int" value="2"/>
 				<Prepare type="Int" value="2"/>
 				<Break type="Int" value="5"/>
+				<ForcedMarch type="Int" value="8"/>
 			</Active>
 			<Passive>
 				<AttackTrain type="Int" value="1">
@@ -3356,6 +3358,7 @@
 			<Active>
 				<Inspire type="Int" value="2"/>
 				<Break type="Int" value="2"/>
+				<UrgentOrder type="Int" value="5"/>
 			</Active>
 			<Passive>
 				<AttackTrain type="Int" value="1">
@@ -3394,6 +3397,7 @@
 			</Default>
 			<Active>
 				<FastAttack type="Int" value="2"/>
+				<ForcedMarch type="Int" value="2"/>
 			</Active>
 			<Passive>
 				<MarchingTrain type="Int" value="1">
@@ -3607,11 +3611,35 @@
 			<Area type="Int" value="1"/>
 			<APType type="Int" value="2"/>
 			<APCost type="float" value="2.0"/>
-			<CoolDown type="Int" value="0"/>
+			<CoolDown type="Int" value="2"/>
 			<Icon type="String" value="skill_act1_ready"/>
 			<Script type="String" value="Prepare.lua"/>
 			<SkillRole type="Int" value="1029"/>
 		</Prepare>
+		<ForcedMarch>
+			<Type type="Int" value="0"/>
+			<MaxRange type="Int" value="0"/>
+			<MinRange type="Int" value="0"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="2"/>
+			<APCost type="float" value="2.0"/>
+			<CoolDown type="Int" value="3"/>
+			<Icon type="String" value="skill_act1_dispatch"/>
+			<Script type="String" value="ForcedMarch.lua"/>
+			<SkillRole type="Int" value="1029"/>
+		</ForcedMarch>
+		<UrgentOrder>
+			<Type type="Int" value="0"/>
+			<MaxRange type="Int" value="2"/>
+			<MinRange type="Int" value="0"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="0"/>
+			<APCost type="float" value="2.0"/>
+			<CoolDown type="Int" value="2"/>
+			<Icon type="String" value="skill_act1_dispatch"/>
+			<Script type="String" value="UrgentOrder.lua"/>
+			<SkillRole type="Int" value="1029"/>
+		</UrgentOrder>
 	</SkillData>
 	<EffectData>
 		<DetectionTrain>
@@ -3775,6 +3803,13 @@
 			<EffectRole type="Int" value="1"/>
 			<ShowOnBattleSquad type="Int" value="1"/>
 		</Prepare>
+		<ForcedMarch>
+			<Type type="Int" value="2"/>
+			<Icon type="String" value="skill_pass_upcharge"/>
+			<Script type="String" value="ForcedMarch.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="0"/>
+		</ForcedMarch>
 	</EffectData>
 	<GroundData>
 		<Grass>

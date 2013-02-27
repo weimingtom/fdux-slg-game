@@ -2,24 +2,150 @@
 <GameData>
 	<StoryData>
 		<GameState type="String" value="AVG"/>
-		<BackGroundName type="String" value="caoyuan.png"/>
+		<BackGroundName type="String" value="shulin.png"/>
 		<BackGroundPosition type="Vector3" value="0,0,0"/>
 		<BackGroundSize type="Vector3" value="1280,720,0"/>
 		<LeftName type="String" value=""/>
-		<LeftPosition type="Vector3" value="-100,0,0"/>
-		<LeftSize type="Vector3" value="640,720,0"/>
+		<LeftPosition type="Vector3" value="5,25,0"/>
+		<LeftSize type="Vector3" value="275,480,0"/>
 		<MidName type="String" value=""/>
 		<MidPosition type="Vector3" value="295,25,0"/>
 		<MidSize type="Vector3" value="245,480,0"/>
 		<RightName type="String" value=""/>
-		<RightPosition type="Vector3" value="700,0,0"/>
-		<RightSize type="Vector3" value="640,720,0"/>
+		<RightPosition type="Vector3" value="545,25,0"/>
+		<RightSize type="Vector3" value="250,480,0"/>
 		<Text type="String" value=""/>
 		<RoleName type="String" value=""/>
-		<TextCursorType type="Int" value="0"/>
-		<ScriptName type="String" value="cp1.lua"/>
+		<TextCursorType type="Int" value="240"/>
+		<ScriptName type="String" value="cp2.lua"/>
 		<ScriptLine type="Int" value="7"/>
-		<MusicName type="String" value="grasslands.ogg"/>
+		<MusicName type="String" value="warning.ogg"/>
+		<SquadData>
+			<Cheetah>
+				<Type type="Int" value="0"/>
+				<SquadType type="Int" value="0"/>
+				<SoilderId type="String" value="WingsSoilder"/>
+				<HorseId type="String" value="none"/>
+				<PweaponId type="String" value="ShortSword1"/>
+				<SweaponId type="String" value="none"/>
+				<ShieldId type="String" value="Shield2"/>
+				<ArmorId type="String" value="MidArmor2"/>
+				<LeaderId type="String" value="Cheetah"/>
+				<RetainerId type="String" value="Test"/>
+				<Level type="Int" value="5"/>
+				<Exp type="Int" value="60"/>
+				<SkillPointAction type="Int" value="1"/>
+				<SkillPointPassive type="Int" value="0"/>
+				<SkillPointEquip type="Int" value="0"/>
+				<UnitNum value="42" type="Int"/>
+				<UnitMesh type="String" value="HeavyInf.mesh"/>
+				<UnitMat type="String" value="HeavyInf"/>
+				<MoveSound type="String" value="HeavyInf.ogg"/>
+				<Name type="String" value="齐塔重步兵队"/>
+				<Describe type="String" value="齐塔重步兵队"/>
+				<SkillTable>
+					<AttackTrain type="Int" value="0"/>
+					<FormationTrain type="Int" value="0"/>
+					<MiddleArmor type="Int" value="2"/>
+					<OneHandSword type="Int" value="2"/>
+					<Prepare type="Int" value="1"/>
+					<Shield type="Int" value="2"/>
+				</SkillTable>
+			</Cheetah>
+			<Dandelion>
+				<Type type="Int" value="0"/>
+				<SquadType type="Int" value="1"/>
+				<SoilderId type="String" value="WingsSoilder"/>
+				<HorseId type="String" value="none"/>
+				<PweaponId type="String" value="ShortSword3"/>
+				<SweaponId type="String" value="Bow4"/>
+				<ShieldId type="String" value="none"/>
+				<ArmorId type="String" value="LightArmor4"/>
+				<LeaderId type="String" value="Dandelion"/>
+				<RetainerId type="String" value="Scout"/>
+				<UnitNum value="49" type="Int"/>
+				<Level type="Int" value="5"/>
+				<Exp type="Int" value="730"/>
+				<SkillPointAction type="Int" value="0"/>
+				<SkillPointPassive type="Int" value="0"/>
+				<SkillPointEquip type="Int" value="0"/>
+				<UnitMesh type="String" value="LightInf.mesh"/>
+				<UnitMat type="String" value="LightInf"/>
+				<MoveSound type="String" value="BowMan.ogg"/>
+				<Name type="String" value="丹德来恩弓兵队"/>
+				<Describe type="String" value="丹德来恩弓兵队"/>
+				<SkillTable>
+					<Bow type="Int" value="2"/>
+					<Fusillade type="Int" value="1"/>
+					<LightArmor type="Int" value="2"/>
+					<MarchingTrain type="Int" value="0"/>
+					<MoveThroughCover type="Int" value="0"/>
+					<OneHandSword type="Int" value="2"/>
+					<RangedAttackTrain type="Int" value="0"/>
+					<SuppressAttack type="Int" value="1"/>
+				</SkillTable>
+			</Dandelion>
+			<WingsHeavyInf>
+				<Type type="Int" value="0"/>
+				<SquadType type="Int" value="0"/>
+				<SoilderId type="String" value="WingsSoilder"/>
+				<HorseId type="String" value="none"/>
+				<PweaponId type="String" value="Halberd1"/>
+				<SweaponId type="String" value="none"/>
+				<ShieldId type="String" value="none"/>
+				<ArmorId type="String" value="MidArmor1"/>
+				<LeaderId type="String" value="WingsHeavyInf"/>
+				<RetainerId type="String" value="Scout"/>
+				<UnitNum value="36" type="Int"/>
+				<Level type="Int" value="2"/>
+				<Exp type="Int" value="855"/>
+				<SkillPointAction type="Int" value="0"/>
+				<SkillPointPassive type="Int" value="0"/>
+				<SkillPointEquip type="Int" value="0"/>
+				<UnitMesh type="String" value="HeavyInf.mesh"/>
+				<UnitMat type="String" value="HeavyInf"/>
+				<MoveSound type="String" value="HeavyInf.ogg"/>
+				<Name type="String" value="翼骑团重步兵"/>
+				<Describe type="String" value="翼骑团重步兵"/>
+				<SkillTable>
+					<Defence type="Int" value="1"/>
+					<DefenceTrain type="Int" value="0"/>
+					<Long type="Int" value="2"/>
+					<MiddleArmor type="Int" value="2"/>
+				</SkillTable>
+			</WingsHeavyInf>
+			<WingsCrossBow>
+				<Type type="Int" value="0"/>
+				<SquadType type="Int" value="1"/>
+				<SoilderId type="String" value="WingsSoilder"/>
+				<HorseId type="String" value="none"/>
+				<PweaponId type="String" value="ShortAxe1"/>
+				<SweaponId type="String" value="CrossBow1"/>
+				<ShieldId type="String" value="none"/>
+				<ArmorId type="String" value="LightArmor1"/>
+				<LeaderId type="String" value="WingsCrossBow"/>
+				<RetainerId type="String" value="Scout"/>
+				<UnitNum value="46" type="Int"/>
+				<Level type="Int" value="2"/>
+				<Exp type="Int" value="64"/>
+				<SkillPointAction type="Int" value="1"/>
+				<SkillPointPassive type="Int" value="0"/>
+				<SkillPointEquip type="Int" value="0"/>
+				<UnitMesh type="String" value="LightInf.mesh"/>
+				<UnitMat type="String" value="LightInf"/>
+				<MoveSound type="String" value="BowMan.ogg"/>
+				<Name type="String" value="翼骑团轻装弩兵"/>
+				<Describe type="String" value="翼骑团轻装弩兵"/>
+				<SkillTable>
+					<LightArmor type="Int" value="2"/>
+					<OneHandBlunt type="Int" value="2"/>
+					<RangedAttackTrain type="Int" value="0"/>
+					<XBow type="Int" value="2"/>
+				</SkillTable>
+			</WingsCrossBow>
+		</SquadData>
+		<Faction type="String" value="Wing"/>
+		<Gold type="Int" value="2900"/>
 	</StoryData>
 </GameData>
 

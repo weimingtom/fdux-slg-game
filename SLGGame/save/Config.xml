@@ -4,9 +4,11 @@
 	<SEVolume value="99" type="UInt"/>
 	<TextSpeed value="99" type="UInt"/>
 	<Save>
-		<Save1 value="AutoSave 第1幕 2013-2-24 21:9:20" type="String"/>
-		<Save2 value="AutoSave 双河平原之战 前篇 第8回合" type="String"/>
-		<Save3 value="Test1 2013-2-13 18:58:1" type="String"/>
+		<Save1 value="AutoSave 第2幕 2013-2-27 2:54:27" type="String"/>
+		<Save2 value="AutoSave 双河平原之战 后篇 第3回合" type="String"/>
+		<Save3 value="Test1 2013-2-27 2:33:53" type="String"/>
+		<Save4 type="String" value="Test2 2013-2-26 16:27:56"/>
+		<Save5 type="String" value="Test3 2013-2-26 15:19:52"/>
 	</Save>
 </SystemConfig>
 
