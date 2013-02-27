@@ -10,6 +10,8 @@
 #include "boost/format.hpp"
 #include <string>
 #include <map>
+#include <boost/algorithm/string.hpp>
+#include <boost/algorithm/string/split.hpp>
 
 #include "conversion.h"
 
@@ -581,6 +583,28 @@ void GUISupply::showItem(int type)
 			skillmap=army->getSkillTable();
 			if(skillmap.find(gEquipTypeName[type][equipSubType])==skillmap.end())
 				continue;
+		}
+		else
+		{
+			std::string p = path+"/"+ (*it) + std::string("/SquadType");
+			std::string squadType;
+			DataLibrary::getSingletonPtr()->getData(p,squadType);
+
+			std::vector<std::string> squad;
+			boost::algorithm::split(squad,squadType, boost::is_any_of(","));
+			bool isFind=false;
+			for(std::vector<std::string>::iterator it=squad.begin();it!=squad.end();it++)
+			{
+				if(Ogre::StringConverter::parseInt((*it))==army->getSquadType())
+				{
+					isFind=true;
+					break;
+				}
+			}
+			if(!isFind)
+			{
+				continue;
+			}
 		}
 
 		WeaponItemData* data=new WeaponItemData(equipType,(*it),army->getUnitNum());
