@@ -9,6 +9,7 @@ AVGLib.SetCanSupply("Cheetah",1);
 AVGLib.SetCanSupply("WingsHeavyInf",1);
 AVGLib.SetCanSupply("WingsCrossBow",1);
 AVGLib.SetCanSupply("Olivia",1);
+AVGLib.SetCanSupply("WingsLightCavalry",1);
 AVGLib.SetCanSupply("GuardHeavySpear",0);
 AVGLib.SetCanSupply("GuardLightBow",0);
 AVGLib.SetCanSupply("GuardLightSword",0);

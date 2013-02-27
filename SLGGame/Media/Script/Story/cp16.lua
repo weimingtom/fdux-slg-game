@@ -483,6 +483,7 @@ AVGLib.SetCanSupply("WingsHeavyInf",1);
 AVGLib.SetCanSupply("WingsCrossBow",1);
 AVGLib.SetCanSupply("Olivia",1);
 AVGLib.SetCanSupply("Caster",1);
+AVGLib.SetCanSupply("WingsLightCavalry",1);
 AVGLib.AddSquad("Azaria","Azaria");
 AVGLib.SetPlayerFaction("Wing");
 StateLib.BattleState("battle8.xml");

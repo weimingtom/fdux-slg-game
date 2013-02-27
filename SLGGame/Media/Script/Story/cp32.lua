@@ -10,6 +10,7 @@ AVGLib.SetCanSupply("Caster",0);
 AVGLib.SetCanSupply("Olivia",0);
 AVGLib.SetCanSupply("WingsHeavyInf",0);
 AVGLib.SetCanSupply("WingsCrossBow",0);
+AVGLib.SetCanSupply("WingsLightCavalry",0);
 AVGLib.SetCanSupply("Fay",0);
 AVGLib.SetCanSupply("Cheetah",0);
 
@@ -309,7 +310,6 @@ GUI.CM(3000);
 GUI.ShowImage("black.png",4,3000);
 
 AVGLib.SetCanSupply("Cossa",1);
-AVGLib.SetCanSupply("WingsLightCavalry",1);
 AVGLib.SetCanSupply("Dandelion",1);
 AVGLib.SetPlayerFaction("Wing");
 StateLib.BattleState("battle16.xml");

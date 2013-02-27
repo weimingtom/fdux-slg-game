@@ -90,8 +90,8 @@ function turnstart()
 		MapLib.MoveCameraTo( 17, 18);
 		AVGLib.SetCanSupply("Fay",1);
 		AVGLib.SetCanSupply("GuardHeavySpear",1);
-		BattleLib.CreateStorySquad ("Fay", "Fay", 17, 18, true);
-		BattleLib.CreateStorySquad ("GuardHeavySpear", "GuardHeavySpear", 16, 18, true);
+		BattleLib.AddStorySquad ("Fay", "Fay", 17, 18, 1);
+		BattleLib.AddStorySquad ("GuardHeavySpear", "GuardHeavySpear", 16, 18, 1);
 		BattleLib.Story("cp12_2.lua");
 	end
 	if team == 1 and turn == 4 then

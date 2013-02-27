@@ -88,8 +88,8 @@ function turnstart()
 	end
 	if team == 1 and turn == 3 then
 		MapLib.MoveCameraTo( 2, 11);
-		BattleLib.AddBattleSquad("Cossa", "Cossa", 2, 11, 1, 50);
-		BattleLib.AddBattleSquad("WingsLightCavalry", "WingsLightCavalry", 3, 11, 1, 50);
+		BattleLib.AddStorySquad("Cossa", "Cossa", 2, 11, 0);
+		BattleLib.AddStorySquad("WingsLightCavalry", "WingsLightCavalry", 3, 11, 0);
 		BattleLib.AddBattleSquad("FantasyHeavyCavalry", "Team3Squad_0", 1, 8, 3, 50);
 		BattleLib.AddBattleSquad("FantasyHeavyCavalry", "Team3Squad_1", 1, 9, 3, 50);
 		BattleLib.AddBattleSquad("FantasyHeavyCavalry", "Team3Squad_2", 1, 10, 3, 50);
