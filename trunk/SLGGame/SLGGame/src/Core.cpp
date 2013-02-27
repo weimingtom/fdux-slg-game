@@ -312,9 +312,11 @@ void Core::RenderingFrame(unsigned int deltaTime)
 void Core::run()
 {
 	Timer timer;
+	//Timer waitTimer;
 	unsigned long t=0;
 
 	timer.reset();
+	//waitTimer.reset();
 	while(isRun)
 	{
 		mFramerate->SetSpeedFactor();
@@ -324,8 +326,15 @@ void Core::run()
 
 		if(t<15)//ÏÞÖÆµ½60Ö¡
 		{
-			Sleep(15-t);
-			t=15;
+			//waitTimer.reset();
+			while (true)
+			{
+				if(timer.getMilliseconds()>=15)
+				{
+					t=timer.getMilliseconds();
+					break;
+				}
+			}
 		}
 
 		updateStats();

@@ -257,7 +257,8 @@
         <NoEnoughLevel type="String" value="需要达到等级"/>
         <NoEnoughPoint type="String" value="点数不足"/>
         <NoSkillEquip type="String" value="没有装备技能"/>
-        <ConfirmBuyItem type="Syting" value="你确定以%1%的价格购买%2%吗?原装备将以8折出售.&#x0D;(双手剑与盾牌不可同时装备,将会卖掉多余的装备)"/>
+        <ConfirmBuyItem type="Syting" value="你确定以%1%的价格购买%2%吗?原装备将以8折出售.&#x0D;(双手武器与盾牌不可同时装备,将会卖掉多余的装备)"/>
+        <ConfirmHireItem type="Syting" value="你确定以%1%的价格雇佣%2%吗?&#x0D;%2%每次战斗的佣金是%3%"/>
         <OneHandBlunt type="String" value="单手斧" />
         <OneHandSword type="String" value="单手剑" />
         <TwoHandSword type="String" value="双手剑" />
@@ -300,6 +301,7 @@
 		
 		<TEXT_GetMoney type="String" value="获得金钱"/>
 		<TEXT_GetExp type="String" value="获得经验"/>
+		<TEXT_SquadWage type="String" value="扣除副官佣金"/>
 		<ReturnMainWindow type="String" value="返回主菜单"/>
 		
 		<!--GUITips-->

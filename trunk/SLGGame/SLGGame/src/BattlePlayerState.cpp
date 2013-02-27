@@ -284,6 +284,10 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 						mControlState = PLAYERCONTROL_CHOOSESKILL;
 
 						setSelectPlanePosition();
+						float wx;
+						float wy;
+						Terrain::getSingletonPtr()->getWorldCoords(mSelectSquad->getGridX(),mSelectSquad->getGridY(),wx,wy);
+						CameraContral::getSingleton().moveCameraTo(wx,wy);
 					}
 				}
 			}
@@ -300,6 +304,10 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 						mGUICommand->setSquad(mSelectSquad);
 
 						setSelectPlanePosition();
+						float wx;
+						float wy;
+						Terrain::getSingletonPtr()->getWorldCoords(mSelectSquad->getGridX(),mSelectSquad->getGridY(),wx,wy);
+						CameraContral::getSingleton().moveCameraTo(wx,wy);
 					}
 				}
 			}
