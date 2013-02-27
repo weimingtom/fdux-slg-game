@@ -570,19 +570,22 @@ void BattleAIState::findOtherSquadGroup()
 		{
 			if(connectvec[m] < 0)
 				continue;
-			if((connectvec[n] == connectvec[m] && connectvec[n + 1] == connectvec[m + 1]) ||
-				(connectvec[n + 1] == connectvec[m] && connectvec[n] == connectvec[m + 1]))
+			//if((connectvec[n] == connectvec[m] && connectvec[n + 1] == connectvec[m + 1]) ||
+			//	(connectvec[n + 1] == connectvec[m] && connectvec[n] == connectvec[m + 1]))
+			if(connectvect.find(connectvec[m]) != connectvect.end() && connectvect.find(connectvec[m+1]) != connectvect.end())
 			{
 				connectvec[m] = -1;
 				connectvec[m + 1] = -1;
 			}
-			else if(connectvec[n] == connectvec[m] || connectvec[n + 1] == connectvec[m])
+			//else if(connectvec[n] == connectvec[m] || connectvec[n + 1] == connectvec[m])
+			else if(connectvect.find(connectvec[m]) != connectvect.end() && connectvect.find(connectvec[m+1]) == connectvect.end())
 			{
 				connectvect.insert(connectvec[m + 1]);
 				connectvec[m] = -1;
 				connectvec[m + 1] = -1;
 			}
-			else if(connectvec[n] == connectvec[m + 1] || connectvec[n + 1] == connectvec[m + 1])
+			//else if(connectvec[n] == connectvec[m + 1] || connectvec[n + 1] == connectvec[m + 1])
+			if(connectvect.find(connectvec[m]) == connectvect.end() && connectvect.find(connectvec[m+1]) != connectvect.end())
 			{
 				connectvect.insert(connectvec[m]);
 				connectvec[m] = -1;

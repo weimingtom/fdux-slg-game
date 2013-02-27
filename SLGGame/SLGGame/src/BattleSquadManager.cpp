@@ -1516,7 +1516,10 @@ bool BattleSquadManager::createNormalSquad(std::string squadid, std::string suqa
 										battlesquad->getDirection(), battlesquad->getFormation(), battlesquad->getUnitGrapNum());
 	SquadGraphics* grap = suqadgrapmanager->getSquad(battlesquad->getSquadId());
 	grap->setVisible(false);
-	CutSceneBuilder::getSingleton().addCutScene(new SquadStateCutScene(battlesquad, SQUAD_STATE_VISIBLE, "none",1));
+	if(battlesquad->getViewbyPlayer())
+	{
+		CutSceneBuilder::getSingleton().addCutScene(new SquadStateCutScene(battlesquad, SQUAD_STATE_VISIBLE, "none",1));
+	}
 	return true;
 }
 
