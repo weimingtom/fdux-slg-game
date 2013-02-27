@@ -753,6 +753,14 @@
 			<Name type="String" value="战斗准备"/>
 			<Describe type="String" value="进行战斗准备（部队下回合起始行动值增加）"/>
 		</Prepare>
+		<ForcedMarch>
+			<Name type="String" value="强行军"/>
+			<Describe type="String" value="部队将不计代价的进行行军（部队该回合获得穿越障碍效果）"/>
+		</ForcedMarch>
+		<UrgentOrder>
+			<Name type="String" value="紧急调遣"/>
+			<Describe type="String" value="情况发生改变，命令一支部队立即作出行动（将部队行动值补充到一个定值）"/>
+		</UrgentOrder>
 	</SkillData>
 	<EffectData>
 		<DetectionTrain>
@@ -847,6 +855,10 @@
 			<Name type="String" value="战斗准备"/>
 			<Describe type="String" value="部队做好开始作战的准备（部队下回合起始行动值增加）"/>
 		</Prepare>
+		<ForcedMarch>
+			<Name type="String" value="强行军"/>
+			<Describe type="String" value="部队做好强制行军的准备（部队该会合获得穿越障碍效果）"/>
+		</ForcedMarch>
 	</EffectData>
 	<GroundData>
 		<Grass>
