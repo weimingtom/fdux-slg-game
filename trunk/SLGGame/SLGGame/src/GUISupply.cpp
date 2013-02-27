@@ -575,10 +575,13 @@ void GUISupply::showItem(int type)
 		if(equipSubType==EQUIP_PWEAPON_STAVES)
 			return;
 
-		std::map<std::string,int> skillmap;
-		skillmap=army->getSkillTable();
-		if(skillmap.find(gEquipTypeName[type][equipSubType])==skillmap.end())
-			continue;
+		if(type!=EQUIP_RETAINER)
+		{
+			std::map<std::string,int> skillmap;
+			skillmap=army->getSkillTable();
+			if(skillmap.find(gEquipTypeName[type][equipSubType])==skillmap.end())
+				continue;
+		}
 
 		WeaponItemData* data=new WeaponItemData(equipType,(*it),army->getUnitNum());
 		data->setIsHaveSkill(true);
