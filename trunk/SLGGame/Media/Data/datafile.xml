@@ -3252,20 +3252,20 @@
 	<RetainerData>
 		<Scout>
 			<Type type="Int" value="0"/>
-			<Valve type="Int" value="10"/>
+			<Value type="Int" value="10"/>
 			<Wage type="Int" value="10"/>
 			<Skill type="String" value="DetectionTrain"/>
 			<SkillType type="Int" value="0"/>
-			<Picture type="String" value="Scout.png"/>
+			<Picture type="String" value="qingbuh.png"/>
 			<Icon type="String" value="eqp_soldier"/>
 		</Scout>
 		<Test>
 			<Type type="Int" value="0"/>
-			<Valve type="Int" value="10"/>
+			<Value type="Int" value="10"/>
 			<Wage type="Int" value="10"/>
 			<Skill type="String" value="Inspire"/>
 			<SkillType type="Int" value="1"/>
-			<Picture type="String" value="Scout.png"/>
+			<Picture type="String" value="qingbuh.png"/>
 			<Icon type="String" value="eqp_soldier"/>
 		</Test>
 	</RetainerData>
