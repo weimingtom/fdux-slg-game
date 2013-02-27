@@ -525,7 +525,7 @@
 	<SweaponData>
 		<Bow1>
 			<Name type="String" value="短弓" />
-			<Describe type="String" value="这种短小轻便的弓箭是猎人们的最爱，即使它射不了太远，但是用来对付猎物已经足够了（攻击距离2格）" />
+			<Describe type="String" value="这种短小轻便的弓箭是猎人们的最爱，即使它射不了太远，但是用来对付猎物已经足够了（攻击距离3格）" />
 		</Bow1>
 		<Bow2>
 			<Name type="String" value="长弓" />
@@ -533,7 +533,7 @@
 		</Bow2>
 		<Bow3>
 			<Name type="String" value="反曲弓" />
-			<Describe type="String" value="这种弓身反曲的弓箭拥有强大的杀伤力，但是由于拉弓时太过费力，它的准头稍微有点低（攻击距离2格）" />
+			<Describe type="String" value="这种弓身反曲的弓箭拥有强大的杀伤力，但是由于拉弓时太过费力，它的准头稍微有点低（攻击距离3格）" />
 		</Bow3>
 		<Bow4>
 			<Name type="String" value="复合弓" />
@@ -557,7 +557,7 @@
 		</CrossBow3>
 		<CrossBow4>
 			<Name type="String" value="连击弩" />
-			<Describe type="String" value="这种经过精巧组装的机关弩能够对敌人进行两次打击，但上箭缓慢且射程有限（攻击距离1格）" />
+			<Describe type="String" value="这种经过精巧组装的机关弩能够对敌人进行两次打击，但上箭缓慢且射程有限（攻击距离2格）" />
 		</CrossBow4>
 		<CrossBow5>
 			<Name type="String" value="猎鲨弩" />

@@ -1393,10 +1393,10 @@
 			<Randomness type="Int" value="20" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="5.0" />
+				<Attack type="Float" value="4.0" />
 				<RangedAttack type="Float" value="3.0" />
-				<Defence type="Float" value="5.0" />
-				<Formation type="Float" value="1.0" />
+				<Defence type="Float" value="4.0" />
+				<Formation type="Float" value="2.0" />
 				<Initiative type="Float" value="5.0" />
 				<ActionPoint type="Float" value="7.0" />
 				<Detection type="Float" value="6.0" />
@@ -1415,7 +1415,7 @@
 				<Attack type="Float" value="4.0" />
 				<RangedAttack type="Float" value="1.0" />
 				<Defence type="Float" value="3.0" />
-				<Formation type="Float" value="0.0" />
+				<Formation type="Float" value="1.0" />
 				<Initiative type="Float" value="4.0" />
 				<ActionPoint type="Float" value="7.0" />
 				<Detection type="Float" value="5.0" />
@@ -1490,7 +1490,7 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="0.0" />
 				<RangedAttack type="Float" value="0.0" />
-				<Defence type="Float" value="3.0" />
+				<Defence type="Float" value="8.0" />
 				<Formation type="Float" value="0.0" />
 				<Initiative type="Float" value="4.0" />
 				<ActionPoint type="Float" value="7.0" />
@@ -1640,8 +1640,8 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="7.0" />
 				<RangedAttack type="Float" value="0.0" />
-				<Defence type="Float" value="1.0" />
-				<Formation type="Float" value="1.0" />
+				<Defence type="Float" value="0.0" />
+				<Formation type="Float" value="0.0" />
 				<Initiative type="Float" value="2.0" />
 				<ActionPoint type="Float" value="0.0" />
 				<Detection type="Float" value="0.0" />
@@ -1662,9 +1662,9 @@
 			<Icon type="String" value="OneHandSword" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="7.0" />
+				<Attack type="Float" value="6.0" />
 				<RangedAttack type="Float" value="0.0" />
-				<Defence type="Float" value="2.0" />
+				<Defence type="Float" value="1.0" />
 				<Formation type="Float" value="1.0" />
 				<Initiative type="Float" value="2.0" />
 				<ActionPoint type="Float" value="0.0" />
@@ -1686,7 +1686,7 @@
 			<Icon type="String" value="OneHandSword" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="8.0" />
+				<Attack type="Float" value="7.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="2.0" />
 				<Formation type="Float" value="1.0" />
@@ -1695,7 +1695,7 @@
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="3.0" />
+				<Conter type="Float" value="2.0" />
 			</AttrModifer>
 		</ShortSword5>
 		<HeavySword1>
@@ -2193,7 +2193,7 @@
 				<Attack type="Float" value="6.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="0.0" />
-				<Formation type="Float" value="3.0" />
+				<Formation type="Float" value="2.0" />
 				<Initiative type="Float" value="1.0" />
 				<ActionPoint type="Float" value="0.0" />
 				<Detection type="Float" value="0.0" />
@@ -2217,7 +2217,7 @@
 				<Attack type="Float" value="6.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="0.0" />
-				<Formation type="Float" value="4.0" />
+				<Formation type="Float" value="3.0" />
 				<Initiative type="Float" value="1.0" />
 				<ActionPoint type="Float" value="0.0" />
 				<Detection type="Float" value="0.0" />
@@ -2265,7 +2265,7 @@
 				<Attack type="Float" value="8.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="0.0" />
-				<Formation type="Float" value="5.0" />
+				<Formation type="Float" value="4.0" />
 				<Initiative type="Float" value="1.0" />
 				<ActionPoint type="Float" value="0.0" />
 				<Detection type="Float" value="0.0" />
@@ -2420,7 +2420,7 @@
 				<Defence type="Float" value="0.0" />
 				<Formation type="Float" value="0.0" />
 				<Initiative type="Float" value="0.0" />
-				<ActionPoint type="Float" value="-1.0" />
+				<ActionPoint type="Float" value="0.0" />
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="0.0" />
@@ -2598,7 +2598,7 @@
 			<AttrModifer>
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="0.0" />
-				<RangedAttack type="Float" value="5.0" />
+				<RangedAttack type="Float" value="4.0" />
 				<Defence type="Float" value="0.0" />
 				<Formation type="Float" value="0.0" />
 				<Initiative type="Float" value="0.0" />
@@ -2751,10 +2751,10 @@
 			<Icon type="String" value="eqp_heavyhorse" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="0.0" />
+				<Attack type="Float" value="1.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="-3.0" />
-				<Formation type="Float" value="-4.0" />
+				<Formation type="Float" value="-3.0" />
 				<Initiative type="Float" value="0.0" />
 				<ActionPoint type="Float" value="2.0" />
 				<Detection type="Float" value="0.0" />
@@ -2775,7 +2775,7 @@
 				<Attack type="Float" value="1.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="-3.0" />
-				<Formation type="Float" value="-3.0" />
+				<Formation type="Float" value="-2.0" />
 				<Initiative type="Float" value="1.0" />
 				<ActionPoint type="Float" value="2.0" />
 				<Detection type="Float" value="0.0" />
@@ -2793,10 +2793,10 @@
 			<Icon type="String" value="eqp_heavyhorse" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="1.0" />
+				<Attack type="Float" value="2.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="-2.0" />
-				<Formation type="Float" value="-3.0" />
+				<Formation type="Float" value="-2.0" />
 				<Initiative type="Float" value="1.0" />
 				<ActionPoint type="Float" value="2.0" />
 				<Detection type="Float" value="0.0" />
@@ -2814,7 +2814,7 @@
 			<Icon type="String" value="eqp_heavyhorse" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="2.0" />
+				<Attack type="Float" value="3.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="-2.0" />
 				<Formation type="Float" value="-2.0" />
@@ -2835,10 +2835,10 @@
 			<Icon type="String" value="eqp_heavyhorse" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="2.0" />
+				<Attack type="Float" value="3.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="-2.0" />
-				<Formation type="Float" value="-2.0" />
+				<Formation type="Float" value="-1.0" />
 				<Initiative type="Float" value="2.0" />
 				<ActionPoint type="Float" value="3.0" />
 				<Detection type="Float" value="0.0" />
@@ -2869,7 +2869,7 @@
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="2.0" />
+				<Conter type="Float" value="1.0" />
 			</AttrModifer>
 		</Shield1>
 		<Shield2>
@@ -2886,13 +2886,13 @@
 				<Attack type="Float" value="0.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="2.0" />
-				<Formation type="Float" value="2.0" />
+				<Formation type="Float" value="1.0" />
 				<Initiative type="Float" value="0.0" />
 				<ActionPoint type="Float" value="0.0" />
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="1.0" />
+				<Conter type="Float" value="0.0" />
 			</AttrModifer>
 		</Shield2>
 		<Shield3>
@@ -2915,7 +2915,7 @@
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="2.0" />
+				<Conter type="Float" value="0.0" />
 			</AttrModifer>
 		</Shield3>
 		<Shield4>
@@ -2931,7 +2931,7 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="1.0" />
 				<RangedAttack type="Float" value="0.0" />
-				<Defence type="Float" value="5.0" />
+				<Defence type="Float" value="4.0" />
 				<Formation type="Float" value="0.0" />
 				<Initiative type="Float" value="0.0" />
 				<ActionPoint type="Float" value="0.0" />
