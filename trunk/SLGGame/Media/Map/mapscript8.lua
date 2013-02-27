@@ -108,11 +108,11 @@ function turnstart()
 		AVGLib.SetCanSupply("GuardLightSword",1);
 		AVGLib.SetCanSupply("Fay",1);
 		AVGLib.SetCanSupply("Elementalist",1);
-		BattleLib.CreateStorySquad ("Fay", "Fay", 12, 14, false);
-		BattleLib.CreateStorySquad ("GuardHeavySpear", "GuardHeavySpear", 13, 15, false);
-		BattleLib.CreateStorySquad ("GuardLightBow", "GuardLightBow", 13, 14, false);
-		BattleLib.CreateStorySquad ("GuardLightSword", "GuardLightSword", 12, 15, false);
-		BattleLib.CreateStorySquad ("Elementalist", "Elementalist", 14, 15, false);
+		BattleLib.AddStorySquad ("Fay", "Fay", 12, 14, 1);
+		BattleLib.AddStorySquad ("GuardHeavySpear", "GuardHeavySpear", 13, 15, 1);
+		BattleLib.AddStorySquad ("GuardLightBow", "GuardLightBow", 13, 14, 1);
+		BattleLib.AddStorySquad ("GuardLightSword", "GuardLightSword", 12, 15, 1);
+		BattleLib.AddStorySquad ("Elementalist", "Elementalist", 14, 15, 1);
 		BattleLib.Story("cp16_5.lua");
 	end
 end	

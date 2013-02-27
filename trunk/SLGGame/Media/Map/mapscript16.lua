@@ -115,12 +115,14 @@ function turnstart()
 		AVGLib.SetCanSupply("Caster",1);
 		AVGLib.SetCanSupply("Olivia",1);
 		AVGLib.SetCanSupply("Cheetah",1);
-		BattleLib.CreateStorySquad ("WingsHeavyInf", "WingsHeavyInf", 18, 3, false);
-		BattleLib.CreateStorySquad ("WingsCrossBow", "WingsCrossBow", 19, 1, false);
-		BattleLib.CreateStorySquad ("Azaria", "Azaria", 19, 2, false);
-		BattleLib.CreateStorySquad ("Caster", "Caster", 17, 2, false);
-		BattleLib.CreateStorySquad ("Olivia", "Olivia", 19, 3, false);
-		BattleLib.CreateStorySquad ("Cheetah", "Cheetah", 18, 2, false);
+		AVGLib.SetCanSupply("WingsLightCavalry",1);
+		BattleLib.AddStorySquad ("WingsHeavyInf", "WingsHeavyInf", 18, 3, 1);
+		BattleLib.AddStorySquad ("WingsCrossBow", "WingsCrossBow", 19, 1, 1);
+		BattleLib.AddStorySquad ("Azaria", "Azaria", 19, 2, 1);
+		BattleLib.AddStorySquad ("Caster", "Caster", 17, 2, 1);
+		BattleLib.AddStorySquad ("Olivia", "Olivia", 19, 3, 1);
+		BattleLib.AddStorySquad ("Cheetah", "Cheetah", 18, 2, 1);
+		BattleLib.AddStorySquad ("WingsLightCavalry", "WingsLightCavalry", 17, 1, 1);
 		BattleLib.Story("cp32_2.lua");
 	end
 end	

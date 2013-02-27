@@ -6,7 +6,7 @@ GUI.Music("rest.ogg",1000);
 GUI.ShowImage("qiuling.png",4,1500);
 GUI.SetDialogVisible(1);
 AVGLib.SetCanSupply("Cossa",1);
-AVGLib.SetCanSupply("WingsLightCavalry",1);
+AVGLib.SetCanSupply("WingsLightCavalry",0);
 AVGLib.SetCanSupply("Dandelion",1);
 AVGLib.SetCanSupply("Fay",0);
 AVGLib.SetCanSupply("Cheetah",0);

@@ -6,7 +6,6 @@ GUI.Music("shadow.ogg",1000);
 GUI.ShowImage("gelou.png",4,1500);
 GUI.SetDialogVisible(1);
 AVGLib.SetCanSupply("Cossa",0);
-AVGLib.SetCanSupply("WingsLightCavalry",0);
 AVGLib.SetCanSupply("Dandelion",0);
 GUI.AutoSave();
 GUI.SE("qiaomen.ogg");

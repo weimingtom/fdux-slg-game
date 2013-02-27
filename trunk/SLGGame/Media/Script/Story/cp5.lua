@@ -440,5 +440,6 @@ GUI.SetDialogVisible(0);
 GUI.ShowImage("",right,1000);
 GUI.CM(3000);
 GUI.ShowImage("black.png",4,3000);
-
-GUI.NextScene("cp6.lua");
+GUI.ShowImage("end.png",4,2000);
+GUI.Wait(30000);
+StateLib.MenuState("");

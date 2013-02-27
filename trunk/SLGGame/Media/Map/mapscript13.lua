@@ -101,15 +101,15 @@ function turnstart()
 		AVGLib.SetCanSupply("Azaria",1);
 		AVGLib.SetCanSupply("Caster",1);
 		AVGLib.SetCanSupply("Olivia",1);
-		BattleLib.CreateStorySquad ("Azaria", "Azaria", 18, 8, false);
-		BattleLib.CreateStorySquad ("Caster", "Caster", 17, 7, false);
-		BattleLib.CreateStorySquad ("Olivia", "Olivia", 18, 7, false);
+		BattleLib.AddStorySquad ("Azaria", "Azaria", 18, 8, 1);
+		BattleLib.AddStorySquad ("Caster", "Caster", 17, 7, 1);
+		BattleLib.AddStorySquad ("Olivia", "Olivia", 18, 7, 1);
 		BattleLib.Story("cp26_2.lua");
 	end
 	if team == 1 and turn == 5 then
 		MapLib.MoveCameraTo( 14, 3);
 		AVGLib.SetCanSupply("Fay",1);
-		BattleLib.CreateStorySquad ("Fay", "Fay", 14, 3, false);
+		BattleLib.AddStorySquad ("Fay", "Fay", 14, 3, 0);
 		BattleLib.Story("cp26_5.lua");
 	end
 end	

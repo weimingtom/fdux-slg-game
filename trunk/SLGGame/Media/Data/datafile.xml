@@ -476,11 +476,11 @@
 			<Type type="Int" value="0"/>
 			<SquadType type="Int" value="3"/>
 			<SoilderId type="String" value="WingsSoilder"/>
-			<HorseId type="String" value="LightHorse3"/>
-			<PweaponId type="String" value="ShortSword2"/>
-			<SweaponId type="String" value="Bow3"/>
+			<HorseId type="String" value="LightHorse1"/>
+			<PweaponId type="String" value="ShortSword1"/>
+			<SweaponId type="String" value="Bow2"/>
 			<ShieldId type="String" value="none"/>
-			<ArmorId type="String" value="LightArmor4"/>
+			<ArmorId type="String" value="LightArmor2"/>
 			<SkillTable>
 				<DetectionTrain type="Int" value="0" />
 				<RangedAttackTrain type="Int" value="0" />
