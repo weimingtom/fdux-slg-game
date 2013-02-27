@@ -102,6 +102,10 @@ void BattlePlayerState::reactiveState()
 	case PLAYERCONTROL_CHOOSETARGET:
 		mGUISquad->setSquad(mSelectSquad);
 		break;
+	case PLAYERCONTROL_TURNSQUAD:
+		mGUICommand->setSquad(mSelectSquad);
+		mControlState = PLAYERCONTROL_CHOOSESKILL;
+		break;
 	case PLAYERCONTROL_MENU:
 		break;
 	}
