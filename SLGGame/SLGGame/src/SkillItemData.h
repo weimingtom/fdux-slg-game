@@ -75,9 +75,9 @@ public:
 			  else if(id=="XBow")
 				  mGroup="LXBox";
 			  else if(id=="LightHorse")
-				  mGroup="eqp_heavyhorse";
+				  mGroup="eqp_lighthorse";
 			  else if(id=="HeavyHorse")
-				  mGroup="eqp_lightarmor";
+				  mGroup="eqp_heavyhorse";
 
 			  mResoure="eqp";
 			  mName=StringTable::getSingletonPtr()->getString(mName);
@@ -150,7 +150,7 @@ public:
 	  std::string getDescribe()
 	  {
 		  std::string des;
-		  DataLibrary::getSingletonPtr()->getData(mTypeString+mID+"/Describe",des);
+		  DataLibrary::getSingletonPtr()->getData(mTypeString+"/Describe",des);
 		  return des;
 	  }
 
