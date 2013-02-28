@@ -17,12 +17,13 @@
 #include "CroodFactor.h"
 #include "CutSceneBuilder.h"
 #include "cutscenediretor.h"
+#include "GUISystem.h"
 
 
 BattleAIState::BattleAIState(int team)
 :mTeam(team),mState(AISTATE_INIT)
 {
-
+	GUISystem::getSingletonPtr()->setFrameUpdateScene(BattleScene);
 }
 BattleAIState::~BattleAIState()
 {
