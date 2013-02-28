@@ -907,6 +907,10 @@ void BattleAIState::SquadAI::updateMove()
 	unsigned int evt = 0;
 	unsigned intstopindex = 0;
 	squadmgr->moveSquad(mSquad, pathlist, intstopindex, evt);
+	if(evt == 0)
+	{
+		mState = SAS_FORMATION;
+	}
 	return;
 }
 void BattleAIState::SquadAI::updateFormation()
@@ -1535,7 +1539,7 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 			}
 			//创建新的分组并指派任务
 			//创建主战分组
-			if(freeSquads.size() > 0 && curmainstrength < threatenstrength * 0.7f)
+			if(freeSquads.size() > 0 && curmainstrength < threatenstrength * 0.6f)
 			{
 				DecisionMap<BattleSquad*> formgroupdecision(freeSquads);
 				formgroupdecision.addFactor(new SquadRolebyTypeFactor(ROLETYPE_MAINFORCE), 0.5f);
@@ -1547,7 +1551,7 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 					squadsite = choosesquads.begin();
 					for( ; squadsite != choosesquads.end(); squadsite++)
 					{
-						if(curmainstrength > threatenstrength * 0.7f)
+						if(curmainstrength > threatenstrength * 0.6f)
 						{
 							squadsite++;
 							break;
@@ -1597,7 +1601,7 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 				}
 			}
 			//创建应急分组
-			while(freeSquads.size() > 0 && curdefendstrength < threatenstrength * 0.75f)
+			while(freeSquads.size() > 0 && curdefendstrength < threatenstrength * 1.2f)
 			{
 				DecisionMap<BattleSquad*> formgroupdecision(freeSquads);
 				formgroupdecision.addFactor(new SquadRolebyTypeFactor(ROLETYPE_SUPPORT_CLOSE), 0.5f);
@@ -1609,7 +1613,7 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 					squadsite = choosesquads.begin();
 					for( ; squadsite != choosesquads.end(); squadsite++)
 					{
-						if(curdefendstrength > threatenstrength * 0.75f)
+						if(curdefendstrength > threatenstrength * 1.2f)
 						{
 							squadsite++;
 							break;
