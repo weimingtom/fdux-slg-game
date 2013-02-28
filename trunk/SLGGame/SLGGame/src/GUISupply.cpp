@@ -837,7 +837,7 @@ void GUISupply::showArmyInfo()
 	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/Gold",m_Money);
 	std::string info;
 	info+=str(boost::format(StringTable::getSingletonPtr()->getString("ArmyInfo_Money"))%m_Money);
-	info+=" ";
+	info+="\n";
 
 	int totalWage=0;
 	for(std::vector<Squad*>::iterator it=mBattleSquad.begin();it!=mBattleSquad.end();it++)
