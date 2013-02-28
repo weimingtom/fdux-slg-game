@@ -495,7 +495,7 @@
 		</Halberd1>
 		<Halberd2>
 			<Name type="String" value="三叉戟" />
-			<Describe type="String" value="这种长戟前端分为个矛尖，这是它杀伤面积更大，也更容易将贵族骑士们挑下马活捉" />
+			<Describe type="String" value="这种长戟前端分为个矛尖，这使它杀伤面积更大，也更容易将贵族骑士们挑下马活捉" />
 		</Halberd2>
 		<Halberd3>
 			<Name type="String" value="月牙戟" />
