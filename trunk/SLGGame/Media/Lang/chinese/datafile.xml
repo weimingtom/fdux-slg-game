@@ -699,6 +699,10 @@
 			<Name type="String" value="旗手"/>
 			<Describe type="String" value="旗手"/>
 		</Test>
+		<Medic>
+			<Name type="String" value="医官"/>
+			<Describe type="String" value="医官"/>		
+		</Medic>
 	</RetainerData>
 	<SkillData>
 		<Attack>

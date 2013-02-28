@@ -69,9 +69,9 @@ float SquadRolebyAttrFactor::calcDecision(BattleSquad* &decision)
 	if(mSquadRole & ROLETYPE_MAINFORCE)
 	{
 		possibility +=  decision->getAttr(ATTR_ATTACK, ATTRCALC_FULL);
-		possibility +=  2 * decision->getAttr(ATTR_DEFENCE, ATTRCALC_FULL);
+		possibility +=  3 * decision->getAttr(ATTR_DEFENCE, ATTRCALC_FULL);
 		possibility +=  2 * decision->getAttr(ATTR_FORM, ATTRCALC_FULL);
-		possibility +=  3 * decision->getAttr(ATTR_TOUGHNESS, ATTRCALC_FULL);
+		possibility +=  2 * decision->getAttr(ATTR_TOUGHNESS, ATTRCALC_FULL);
 	}
 	if(mSquadRole & ROLETYPE_SUPPORT_RANGE)
 	{
