@@ -5,7 +5,7 @@ GUI.ShowImage("black.png",4,1500);
 GUI.Music("rest.ogg",1000);
 GUI.ShowImage("caoyuan.png",4,1500);
 GUI.SetDialogVisible(1);
-
+AVGLib.SetCanSupply("Cossa",0);
 GUI.AutoSave();
 GUI.ShowImage("kesa_xr.png",left,300);
 GUI.ShowRoleName("¿ÂÈø");
