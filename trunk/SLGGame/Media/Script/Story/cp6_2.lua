@@ -7,6 +7,8 @@ GUI.ClearText();
 GUI.ShowText("大家快跑！",1);
 GUI.ClearText();
 GUI.ShowRoleName("");
+GUI.ShowText("部分敌军开始逃跑！尽可能拦下他们，防止匪军流窜至境内！",1);
+GUI.ClearText();
 GUI.ShowImage("",right,300);
 GUI.ShowImage("",left,300);
 GUI.SetDialogVisible(0);
