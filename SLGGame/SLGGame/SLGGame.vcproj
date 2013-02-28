@@ -141,7 +141,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="ticpp.lib OgreMain.lib OIS.lib SubSystem.lib MyGUI.OgrePlatform.lib MyGUIEngine.lib audiere.lib lua51.lib ParticleUniverse.lib CrashRpt.lib strmiids.lib Shiny.lib"
+				AdditionalDependencies="ticpp.lib OgreMain.lib OIS.lib SubSystem.lib MyGUI.OgrePlatform.lib MyGUIEngine.lib audiere.lib lua51.lib ParticleUniverse.lib CrashRpt1401.lib strmiids.lib Shiny.lib"
 				OutputFile="$(OutDir)\ForgottenBattlefield.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="..\..\CrashRpt\lib;&quot;$(OGRE_HOME)\lib\release\&quot;;&quot;$(OGRE_HOME)\boost_1_44\lib&quot;;&quot;..\..\audiere-1.9.4-win32\lib&quot;;..\release;&quot;..\..\lua-5.1.4\bin&quot;;..\..\MyGUI3.2\lib\Release;..\..\ticpp\lib;&quot;..\..\Particle Universe\Particle Universe Plugin\VCBuild\lib\Release&quot;;&quot;$(DXSDK_DIR)\Lib\x86&quot;;..\Shiny\lib"
