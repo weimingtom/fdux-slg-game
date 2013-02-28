@@ -71,6 +71,20 @@ function unitdead()
 		addedgold = ScriptCommonLib.GetInt("addedgold");
 		addedgold = addedgold + 130;
 		ScriptCommonLib.SetInt("addedgold", addedgold);
+		if BattleLib.TeamSquadLeft(2) == 0 then
+			BattleLib.AddGold(2200);
+			BattleLib.DumpSquadData();
+			addedgold = ScriptCommonLib.GetInt("addedgold");
+			addedgold = addedgold + 2200;
+			mission1state = ScriptCommonLib.GetInt("mission1state");
+			if mission1state == 1 then
+				BattleLib.AddGold(1350);
+				addedgold = addedgold + 1350;
+			end
+			ScriptCommonLib.SetInt("addedgold", addedgold);
+			--Ê¤Àû(storyscript,gold,exp)
+			BattleLib.Win("cp13.lua", "0", "0");
+		end
 	end
 	if squad == Elementalist then
 	    mission1 = ScriptCommonLib.GetInt("mission1");

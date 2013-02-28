@@ -74,6 +74,20 @@ function unitdead()
 		addedgold = ScriptCommonLib.GetInt("addedgold");
 		addedgold = addedgold + 120;
 		ScriptCommonLib.SetInt("addedgold", addedgold);
+		if  BattleLib.TeamSquadLeft(2) == 0 then
+			BattleLib.AddGold(1700);
+			BattleLib.DumpSquadData();
+			addedgold = ScriptCommonLib.GetInt("addedgold");
+			addedgold = addedgold + 1700;
+			mission1state = ScriptCommonLib.GetInt("mission1state");
+			if mission1state <= 3 then
+				BattleLib.AddGold(1000);
+				addedgold = addedgold + 1000;
+			end
+			ScriptCommonLib.SetInt("addedgold", addedgold);
+			--Ê¤Àû(storyscript,gold,exp)
+			BattleLib.Win("cp7.lua", "0", "0");
+		end
 	end
 end
 
