@@ -28,9 +28,6 @@ int main(int argc,char* argv[])
 		crAddFile2(L"MyGUI.log",L"MyGUI.log",L"Mygui",CR_AF_TAKE_ORIGINAL_FILE);
 	#endif
 
-	int* a=NULL;
-	(*a)=1;
-
 	bool isFullScene=false;
 	if (argc==1)
 	{
