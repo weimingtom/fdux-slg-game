@@ -837,7 +837,23 @@ void GUISupply::showArmyInfo()
 	DataLibrary::getSingletonPtr()->getData("GameData/StoryData/Gold",m_Money);
 	std::string info;
 	info+=str(boost::format(StringTable::getSingletonPtr()->getString("ArmyInfo_Money"))%m_Money);
-	info+="\n";
+	info+=" ";
+
+	int totalWage=0;
+	for(std::vector<Squad*>::iterator it=mBattleSquad.begin();it!=mBattleSquad.end();it++)
+	{
+		std::string retainerId=(*it)->getRetainerId();
+		
+		if(retainerId!="none")
+		{
+			int wage;
+			DataLibrary::getSingletonPtr()->getData(str(boost::format("StaticData/RetainerData/%1%/Wage")%retainerId),wage);
+
+			totalWage+=wage;
+		}
+	}
+	info+=str(boost::format(StringTable::getSingletonPtr()->getString("ArmyInfo_RetainerId"))%totalWage);
+
 	mTextArmyInfo->setCaption(info);
 }
 
