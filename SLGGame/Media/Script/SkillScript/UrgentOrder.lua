@@ -7,7 +7,7 @@ function useskill()
 	ep = 0;
 	lv = SquadLib.GetSkillLevel(caster, "UrgentOrder");
 	ap = SquadLib.GetActionPoint(target);
-	apmax = 1 + 2 * lv;
+	apmax = 2 + 2 * lv;
 	if ap <  apmax then
 		SquadLib.ShowValue1(target, "Skills_Prepare", apmax - ap, 1.0, 1.0, 1.0);
 		ep = ep + 10 * (apmax - ap);

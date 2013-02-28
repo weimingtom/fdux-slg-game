@@ -1310,8 +1310,8 @@ bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* 
 	{
 		std::string eid;
 		defenesquad->applyEffect("Waver", eid);
-		defenesquad->afterUnderMagicAttack(attacksquad);
 	}
+	defenesquad->afterUnderMagicAttack(attacksquad);
 	return true;
 }
 
@@ -1385,8 +1385,8 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 	{
 		std::string eid;
 		defenesquad->applyEffect("Waver", eid);
-		defenesquad->afterUnderRangedAttack(attacksquad);
 	}
+	defenesquad->afterUnderRangedAttack(attacksquad);
 
 	return true;
 }

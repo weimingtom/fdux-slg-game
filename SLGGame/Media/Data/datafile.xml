@@ -235,9 +235,6 @@
 			<ShieldId type="String" value="Shield2"/>
 			<ArmorId type="String" value="MidArmor2"/>
 			<SkillTable>
-				<AttackTrain type="Int" value="0" />
-				<FormationTrain type="Int" value="0" />
-				<Prepare type="Int" value="1" />
 				<MiddleArmor type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
 				<OneHandSword type="Int" value="2"/>
@@ -245,9 +242,9 @@
 			<LeaderId type="String" value="Cheetah"/>
 			<RetainerId type="String" value="Test"/>
 			<Level type="Int" value="4"/>
-			<Exp type="Int" value="700"/>
-			<SkillPointAction type="Int" value="0"/>
-			<SkillPointPassive type="Int" value="0"/>
+			<Exp type="Int" value="750"/>
+			<SkillPointAction type="Int" value="2"/>
+			<SkillPointPassive type="Int" value="2"/>
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitNum value="50" type="Int"/>
 			<UnitMesh type="String" value="HeavyInf.mesh"/>
@@ -304,7 +301,7 @@
 			<RetainerId type="String" value="Scout"/>
 			<UnitNum value="50" type="Int"/>
 			<Level type="Int" value="2"/>
-			<Exp type="Int" value="500"/>
+			<Exp type="Int" value="700"/>
 			<SkillPointAction type="Int" value="0"/>
 			<SkillPointPassive type="Int" value="0"/>
 			<SkillPointEquip type="Int" value="0"/>
@@ -322,7 +319,6 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor1"/>
 			<SkillTable>
-				<RangedAttackTrain type="Int" value="0" />
 				<OneHandBlunt type="Int" value="2"/>
 				<XBow type="Int" value="2"/>
 				<LightArmor type="Int" value="2"/>
@@ -333,7 +329,7 @@
 			<Level type="Int" value="1"/>
 			<Exp type="Int" value="700"/>
 			<SkillPointAction type="Int" value="0"/>
-			<SkillPointPassive type="Int" value="0"/>
+			<SkillPointPassive type="Int" value="1"/>
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="LightInf.mesh"/>
 			<UnitMat type="String" value="LightInf"/>
@@ -2061,7 +2057,7 @@
 		<ShortSpear1>
 			<Type type="Int" value="4" />
 			<Value type="Int" value="8" />
-			<Script type="String" value="none" />
+			<Script type="String" value="anticavweapon1.lua" />
 			<Mesh type="String" value="Pike.mesh" />
 			<Mat type="String" value="Pike" />
 			<PU type="String" value="none" />
@@ -2085,7 +2081,7 @@
 		<ShortSpear2>
 			<Type type="Int" value="4" />
 			<Value type="Int" value="15" />
-			<Script type="String" value="none" />
+			<Script type="String" value="anticavweapon1.lua" />
 			<Mesh type="String" value="Pike.mesh" />
 			<Mat type="String" value="Pike" />
 			<PU type="String" value="none" />
@@ -2109,7 +2105,7 @@
 		<ShortSpear3>
 			<Type type="Int" value="4" />
 			<Value type="Int" value="25" />
-			<Script type="String" value="none" />
+			<Script type="String" value="anticavweapon1.lua" />
 			<Mesh type="String" value="Pike.mesh" />
 			<Mat type="String" value="Pike" />
 			<PU type="String" value="none" />
@@ -2133,7 +2129,7 @@
 		<ShortSpear4>
 			<Type type="Int" value="4" />
 			<Value type="Int" value="50" />
-			<Script type="String" value="none" />
+			<Script type="String" value="anticavweapon1.lua" />
 			<Mesh type="String" value="Pike.mesh" />
 			<Mat type="String" value="Pike" />
 			<PU type="String" value="none" />
@@ -2157,7 +2153,7 @@
 		<ShortSpear5>
 			<Type type="Int" value="4" />
 			<Value type="Int" value="90" />
-			<Script type="String" value="none" />
+			<Script type="String" value="anticavweapon1.lua" />
 			<Mesh type="String" value="Pike.mesh" />
 			<Mat type="String" value="Pike" />
 			<PU type="String" value="none" />
@@ -2181,7 +2177,7 @@
 		<Halberd1>
 			<Type type="Int" value="5" />
 			<Value type="Int" value="13" />
-			<Script type="String" value="none" />
+			<Script type="String" value="anticavweapon1.lua" />
 			<Mesh type="String" value="halberd.mesh" />
 			<Mat type="String" value="halberd" />
 			<PU type="String" value="none" />
@@ -2205,7 +2201,7 @@
 		<Halberd2>
 			<Type type="Int" value="5" />
 			<Value type="Int" value="26" />
-			<Script type="String" value="none" />
+			<Script type="String" value="anticavweapon1.lua" />
 			<Mesh type="String" value="halberd.mesh" />
 			<Mat type="String" value="halberd" />
 			<PU type="String" value="none" />
@@ -2229,7 +2225,7 @@
 		<Halberd3>
 			<Type type="Int" value="5" />
 			<Value type="Int" value="42" />
-			<Script type="String" value="none" />
+			<Script type="String" value="anticavweapon1.lua" />
 			<Mesh type="String" value="halberd.mesh" />
 			<Mat type="String" value="halberd" />
 			<PU type="String" value="none" />
@@ -2253,7 +2249,7 @@
 		<Halberd4>
 			<Type type="Int" value="5" />
 			<Value type="Int" value="80" />
-			<Script type="String" value="none" />
+			<Script type="String" value="anticavweapon1.lua" />
 			<Mesh type="String" value="halberd.mesh" />
 			<Mat type="String" value="halberd" />
 			<PU type="String" value="none" />
@@ -2277,7 +2273,7 @@
 		<Halberd5>
 			<Type type="Int" value="5" />
 			<Value type="Int" value="130" />
-			<Script type="String" value="none" />
+			<Script type="String" value="anticavweapon1.lua" />
 			<Mesh type="String" value="halberd.mesh" />
 			<Mat type="String" value="halberd" />
 			<PU type="String" value="none" />
@@ -3255,24 +3251,34 @@
 	<RetainerData>
 		<Scout>
 			<Type type="Int" value="0"/>
-			<Value type="Int" value="10"/>
-			<Wage type="Int" value="10"/>
+			<Value type="Int" value="100"/>
+			<Wage type="Int" value="0"/>
 			<Skill type="String" value="DetectionTrain"/>
 			<SkillType type="Int" value="0"/>
 			<Picture type="String" value="qingbuh.png"/>
 			<Icon type="String" value="eqp_soldier"/>
-			<SquadType type="String" value="0,1,2,3"/>
+			<SquadType type="String" value="0,1,2,3,4,5,6"/>
 		</Scout>
 		<Test>
 			<Type type="Int" value="0"/>
-			<Value type="Int" value="10"/>
-			<Wage type="Int" value="10"/>
+			<Value type="Int" value="500"/>
+			<Wage type="Int" value="200"/>
 			<Skill type="String" value="Inspire"/>
 			<SkillType type="Int" value="1"/>
 			<Picture type="String" value="qingbuh.png"/>
 			<Icon type="String" value="eqp_soldier"/>
-			<SquadType type="String" value="0,1"/>
+			<SquadType type="String" value="0,1,2,3"/>
 		</Test>
+		<Medic>
+			<Type type="Int" value="0"/>
+			<Value type="Int" value="500"/>
+			<Wage type="Int" value="200"/>
+			<Skill type="String" value="Rest"/>
+			<SkillType type="Int" value="1"/>
+			<Picture type="String" value="qingbuh.png"/>
+			<Icon type="String" value="eqp_soldier"/>
+			<SquadType type="String" value="0,1,2,3"/>
+		</Medic>
 	</RetainerData>
 	<SkillListData>
 		<Infantry type="Int" value="0">
