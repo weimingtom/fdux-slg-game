@@ -68,7 +68,8 @@ BattlePlayerState::BattlePlayerState()
 BattlePlayerState::~BattlePlayerState()
 {
 	Core::getSingleton().mInputControl->popListener();
-	//mGUIState->setBattleState(NULL);
+	mGUISquad->setSquad(NULL);
+	mGUICommand->setSquad(NULL);
 	mGUICommand->setPlayerState(NULL);
 	hideSelectPlane();
 }

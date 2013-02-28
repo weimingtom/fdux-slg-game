@@ -10,8 +10,11 @@ StoryCutScene::StoryCutScene( std::string scriptName ):mScriptName(scriptName)
 
 StoryCutScene::~StoryCutScene( void )
 {
-	GUIBattle* mGUIBattle = static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
-	mGUIBattle->showAllWindows();
+	if(mStarted)
+	{
+		GUIBattle* mGUIBattle = static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
+		mGUIBattle->showAllWindows();
+	}
 }
 
 void StoryCutScene::startCutScence()
