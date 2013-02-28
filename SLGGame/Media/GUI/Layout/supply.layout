@@ -428,17 +428,17 @@
             </Widget>
         </Widget>
         <Widget type="Window" skin="SLGMiniWindowSkin" position="980 310 291 410" name="ItemAttributeWindow">
-            <Widget type="TextBox" skin="TextBox" position="20 20 255 30" name="ArmyInfo">
-                <Property key="FontHeight" value="25"/>
-            </Widget>
-            <Widget type="ImageBox" skin="ImageBox" position="20 60 48 48" name="ItemIcon"/>
-            <Widget type="TextBox" skin="TextBox" position="75 70 195 30" name="ItemName">
-                <Property key="FontHeight" value="25"/>
-            </Widget>
-            <Widget type="TextBox" skin="TextBox" position="20 120 255 25" name="ItemPrice">
+            <Widget type="TextBox" skin="TextBox" position="20 20 255 75" name="ArmyInfo">
                 <Property key="FontHeight" value="22"/>
             </Widget>
-            <Widget type="EditBox" skin="EditBoxEmpty" position="20 150 255 245" name="ItemInfo">
+            <Widget type="ImageBox" skin="ImageBox" position="20 90 48 48" name="ItemIcon"/>
+            <Widget type="TextBox" skin="TextBox" position="75 100 195 30" name="ItemName">
+                <Property key="FontHeight" value="25"/>
+            </Widget>
+            <Widget type="TextBox" skin="TextBox" position="20 145 255 25" name="ItemPrice">
+                <Property key="FontHeight" value="22"/>
+            </Widget>
+            <Widget type="EditBox" skin="EditBoxEmpty" position="20 180 255 215" name="ItemInfo">
                 <Property key="FontHeight" value="22"/>
                 <Property key="WordWrap" value="true"/>
             </Widget>
