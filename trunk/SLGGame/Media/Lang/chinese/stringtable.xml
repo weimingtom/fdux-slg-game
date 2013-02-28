@@ -248,6 +248,7 @@
         <TEXT_Equipment type="String" value="装备"/>
         <TEXT_Skill type="String" value="技能"/>
         <ArmyInfo_Money type="String" value="军团资金:%1%"/>
+        <ArmyInfo_RetainerId type="String" value="军团副官总佣金:%1%(每场战斗支付)"/>
         <SquadPassivePoint type="String" value="可用被动技能点:%1%"/>
         <SquadActivePoint type="String" value="可用主动技能点:%1%"/>
         <SquadEquipPoint type="String" value="可用装备技能点:%1%"/>
@@ -315,7 +316,7 @@
 		<Skills_DefendEffect type="String" value="防御力+%1%"/>
 		<Skills_Prepare type="String" value="行动值+%1%"/>
 		<Skills_Suppressed type="String" value="被压制"/>
-		<Skills_Inspire type="String" value="攻击力+%1% 远程攻击力+%1%"/>
+		<Skills_Inspire type="String" value="攻击力+%1%&#x0D;远程攻击力+%1%"/>
 		<Skills_NotEnoughGuard type="String" value="圣灵守卫不足"/>
 	</StringTable>
 </StaticData>
