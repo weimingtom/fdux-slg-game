@@ -120,15 +120,8 @@ function turnend()
 	team = ScriptCommonLib.GetTempInt("team");
 	
 	if team == 1 and BattleLib.TeamSquadLeft(2) == 0 then
-		BattleLib.AddGold(1500);
 		BattleLib.DumpSquadData();
 		addedgold = ScriptCommonLib.GetInt("addedgold");
-		addedgold = addedgold + 1500;
-		mission1state = ScriptCommonLib.GetInt("mission1state");
-		if mission1state == 1 then
-			BattleLib.AddGold(900);
-			addedgold = addedgold + 900;
-		end
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		--Ê¤Àû(storyscript,gold,exp)
 		BattleLib.Win("cp3.lua", addedgold);
