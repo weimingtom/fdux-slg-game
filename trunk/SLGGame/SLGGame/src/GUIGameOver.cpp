@@ -32,7 +32,6 @@ GUIGameOver::~GUIGameOver(void)
 
 void GUIGameOver::showScene( std::string arg )
 {
-	mBattleState->ChangeState(new BattleOverState(""));
 
 	GUIBattle* guibattle=static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
 
@@ -80,7 +79,6 @@ void GUIGameOver::showScene( std::string arg )
 	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/Gold",gold);
 	mSquadWage->setCaption(Ogre::StringConverter::toString(totalWage));
 
-	mWindow->setAlpha(0);
 	mWindow->setVisible(true);
 	FadeIn(FADETIME,mWindow);
 }
@@ -94,7 +92,7 @@ void GUIGameOver::onOtherSceneNotify(std::string arg)
 {
 	if (arg=="FadeInOver")
 	{
-		
+		mBattleState->ChangeState(new BattleOverState(""));
 	}
 	else if(arg=="FadeOutOver")
 	{

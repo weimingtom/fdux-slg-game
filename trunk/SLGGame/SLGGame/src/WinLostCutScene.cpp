@@ -29,7 +29,7 @@ bool WinLostCutScene::endCutScene()
 
 void WinLostCutScene::skipCutScene()
 {
-	
+	startCutScence();
 }
 
 void WinLostCutScene::updateCutScene( unsigned int deltaTime )
