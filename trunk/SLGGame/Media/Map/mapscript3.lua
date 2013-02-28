@@ -111,8 +111,15 @@ function turnend()
 	turn = ScriptCommonLib.GetTempInt("turn");
 	team = ScriptCommonLib.GetTempInt("team");
 	if team == 1 and BattleLib.TeamSquadLeft(2) == 0 then
+		BattleLib.AddGold(1700);
 		BattleLib.DumpSquadData();
 		addedgold = ScriptCommonLib.GetInt("addedgold");
+		addedgold = addedgold + 1700;
+		mission1state = ScriptCommonLib.GetInt("mission1state");
+		if mission1state <= 3 then
+			BattleLib.AddGold(1000);
+			addedgold = addedgold + 1000;
+		end
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		--胜利(storyscript,gold,exp)
 		BattleLib.Win("cp7.lua", "0", "0");
@@ -137,6 +144,7 @@ function inarea()
 		    mission1state = mission1state + 1;
 			ScriptCommonLib.SetInt("mission1state", mission1state);
 			BattleLib.RemoveBattleSquad(squad);
+			BattleLib.Story("cp6_3.lua");
 			if mission1state > 3 then
 				mission1 = ScriptCommonLib.GetInt("mission1");
 				--任务成功(missionindex, missionstate)
