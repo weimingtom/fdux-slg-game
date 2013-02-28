@@ -1734,7 +1734,7 @@
 			<Icon type="String" value="eqp_twosword" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="11.0" />
+				<Attack type="Float" value="12.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="0.0" />
 				<Formation type="Float" value="-2.0" />
@@ -1758,7 +1758,7 @@
 			<Icon type="String" value="eqp_twosword" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="11.0" />
+				<Attack type="Float" value="12.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="0.0" />
 				<Formation type="Float" value="-2.0" />
@@ -1806,7 +1806,7 @@
 			<Icon type="String" value="eqp_twosword" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="14.0" />
+				<Attack type="Float" value="15.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="0.0" />
 				<Formation type="Float" value="-2.0" />
@@ -1998,7 +1998,7 @@
 			<Icon type="String" value="eqp_twoaxe" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="14.0" />
+				<Attack type="Float" value="13.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="-2.0" />
 				<Formation type="Float" value="0.0" />
@@ -2022,7 +2022,7 @@
 			<Icon type="String" value="eqp_twoaxe" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="15.0" />
+				<Attack type="Float" value="14.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="-2.0" />
 				<Formation type="Float" value="0.0" />
@@ -2214,7 +2214,7 @@
 			<Icon type="String" value="eqp_halberd" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="6.0" />
+				<Attack type="Float" value="7.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="0.0" />
 				<Formation type="Float" value="3.0" />
@@ -2262,7 +2262,7 @@
 			<Icon type="String" value="eqp_halberd" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="8.0" />
+				<Attack type="Float" value="9.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="0.0" />
 				<Formation type="Float" value="4.0" />
@@ -2286,7 +2286,7 @@
 			<Icon type="String" value="eqp_halberd" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="9.0" />
+				<Attack type="Float" value="10.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="0.0" />
 				<Formation type="Float" value="5.0" />
@@ -2647,7 +2647,7 @@
 			<AttrModifer>
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="0.0" />
-				<RangedAttack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="-3.0" />
 				<Defence type="Float" value="-4.0" />
 				<Formation type="Float" value="-6.0" />
 				<Initiative type="Float" value="1.0" />
@@ -2667,8 +2667,8 @@
 			<Icon type="String" value="eqp_lighthorse" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="0.0" />
-				<RangedAttack type="Float" value="0.0" />
+				<Attack type="Float" value="1.0" />
+				<RangedAttack type="Float" value="-3.0" />
 				<Defence type="Float" value="-4.0" />
 				<Formation type="Float" value="-5.0" />
 				<Initiative type="Float" value="2.0" />
@@ -2689,7 +2689,7 @@
 			<AttrModifer>
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="1.0" />
-				<RangedAttack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="-2.0" />
 				<Defence type="Float" value="-3.0" />
 				<Formation type="Float" value="-5.0" />
 				<Initiative type="Float" value="2.0" />
@@ -2709,8 +2709,8 @@
 			<Icon type="String" value="eqp_lighthorse" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="1.0" />
-				<RangedAttack type="Float" value="0.0" />
+				<Attack type="Float" value="2.0" />
+				<RangedAttack type="Float" value="-2.0" />
 				<Defence type="Float" value="-3.0" />
 				<Formation type="Float" value="-4.0" />
 				<Initiative type="Float" value="3.0" />
@@ -2730,8 +2730,8 @@
 			<Icon type="String" value="eqp_lighthorse" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="1.0" />
-				<RangedAttack type="Float" value="0.0" />
+				<Attack type="Float" value="2.0" />
+				<RangedAttack type="Float" value="-2.0" />
 				<Defence type="Float" value="-3.0" />
 				<Formation type="Float" value="-4.0" />
 				<Initiative type="Float" value="4.0" />
@@ -2752,7 +2752,7 @@
 			<AttrModifer>
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="1.0" />
-				<RangedAttack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="-3.0" />
 				<Defence type="Float" value="-3.0" />
 				<Formation type="Float" value="-3.0" />
 				<Initiative type="Float" value="0.0" />
@@ -2773,7 +2773,7 @@
 			<AttrModifer>
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="1.0" />
-				<RangedAttack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="-3.0" />
 				<Defence type="Float" value="-3.0" />
 				<Formation type="Float" value="-2.0" />
 				<Initiative type="Float" value="1.0" />
@@ -2794,7 +2794,7 @@
 			<AttrModifer>
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="2.0" />
-				<RangedAttack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="-3.0" />
 				<Defence type="Float" value="-2.0" />
 				<Formation type="Float" value="-2.0" />
 				<Initiative type="Float" value="1.0" />
@@ -2815,7 +2815,7 @@
 			<AttrModifer>
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="3.0" />
-				<RangedAttack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="-3.0" />
 				<Defence type="Float" value="-2.0" />
 				<Formation type="Float" value="-2.0" />
 				<Initiative type="Float" value="2.0" />
@@ -2836,7 +2836,7 @@
 			<AttrModifer>
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="3.0" />
-				<RangedAttack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="-3.0" />
 				<Defence type="Float" value="-2.0" />
 				<Formation type="Float" value="-1.0" />
 				<Initiative type="Float" value="2.0" />
