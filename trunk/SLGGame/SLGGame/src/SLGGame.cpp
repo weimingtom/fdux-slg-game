@@ -15,7 +15,10 @@ int main(int argc,char* argv[])
 		info.pszAppName = _T("ForgottenBattlefield"); // App name
 		info.pszAppVersion = _T("0.1a");              // App version
 		info.pszEmailSubject = _T("ForgottenBattlefield 0.1a Error Report"); // Email subject
-		info.pszEmailTo = _T("fduxslggame@gmail.com");      // Email recipient address
+		info.pszEmailTo = _T("fduxslggame@163.com");      // Email recipient address
+		info.pszSmtpProxy = _T("smtp.163.com:25");
+		info.pszSmtpLogin = _T("fduxslggame@163.com");
+		info.pszSmtpPassword = _T("680068");
 
 		// Install crash handlers
 		int nInstResult = crInstall(&info);            
@@ -24,6 +27,9 @@ int main(int argc,char* argv[])
 		crAddFile2(L"log.txt",L"log.txt",L"Ogre",CR_AF_TAKE_ORIGINAL_FILE);
 		crAddFile2(L"MyGUI.log",L"MyGUI.log",L"Mygui",CR_AF_TAKE_ORIGINAL_FILE);
 	#endif
+
+	int* a=NULL;
+	(*a)=1;
 
 	bool isFullScene=false;
 	if (argc==1)
