@@ -53,7 +53,7 @@ float SquadSkillbyAtkEffectiveFactor::calcDecision(UseSkillInfo &decision)
 			{
 				if(tgtsquad->getFormation() != Loose)
 				{
-					possibility += 5 * (tgtsquad->getAttr(ATTR_FORM, ATTRCALC_FULL) * tgtsquad->getUnitNum() / 50.0f);
+					possibility += 7 * (tgtsquad->getAttr(ATTR_FORM, ATTRCALC_FULL) * tgtsquad->getUnitNum() / 50.0f);
 				}
 			}
 			if(skillrole & ROLETYPE_ANTI_MAGE)

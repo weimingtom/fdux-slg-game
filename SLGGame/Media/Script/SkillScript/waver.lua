@@ -3,6 +3,7 @@ function onaffect()
 	sid = ScriptCommonLib.GetTempString("squadid");
 	eid = ScriptCommonLib.GetTempString("effectid");
 	tid = ScriptCommonLib.GetString("triggerid");
+	ScriptCommonLib.SetInt("spread", 1);
 	if mid ~= "" then
 		SquadLib.RemoveModifier(sid, mid);
 	end
@@ -26,7 +27,6 @@ function onaffect()
 	-- ScriptCommonLib.SetInt("curlevel", lv);
 	
 	--´«²¥¶¯Ò¡
-	ScriptCommonLib.SetInt("spread", 1);
 	if lv > 4 then
 		sf = SquadLib.GetFaction(sid);
 		croodx, croody = SquadLib.GetSquadCoord(sid);
