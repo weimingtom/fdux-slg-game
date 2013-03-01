@@ -4,7 +4,7 @@
 
 #include "GUICommon.h"
 
-#include <audiere.h>
+#include <irrKlang.h>
 
 #include <MyGUI.h>
 
@@ -34,9 +34,10 @@ public:
 
 	std::string mStreamName;
 private:
-	audiere::AudioDevicePtr mDevice;
-	audiere::OutputStreamPtr mStream;
-	audiere::OutputStreamPtr mSample;
+	//audiere::AudioDevicePtr mDevice;
+	irrklang::ISound* mStream;
+	irrklang::ISound* mSample;
+	irrklang::ISoundEngine* mEngine;
 	float mStreamVol;
 	float mSampleVol;
 	MyGUI::Timer mTimer;
