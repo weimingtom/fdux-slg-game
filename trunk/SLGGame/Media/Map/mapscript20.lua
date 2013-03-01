@@ -1,5 +1,5 @@
 function initmap()
-	trigerid = MapLib.AddMapTrigger("FinishDeploy","finishdeploy");
+	local trigerid = MapLib.AddMapTrigger("FinishDeploy","finishdeploy");
 	MapLib.ActiveMapTrigger(trigerid);
 	ScriptCommonLib.SetString("finishdeploytriger",trigerid);
 	
@@ -8,7 +8,7 @@ function initmap()
 end
 
 function finishdeploy()
-	trigerid = ScriptCommonLib.GetString("finishdeploytriger");
+	local trigerid = ScriptCommonLib.GetString("finishdeploytriger");
 	MapLib.RemoveMapTrigger(trigerid);
 	--创建部队被歼灭触发器
 	trigerid = MapLib.AddMapTrigger("SquadAnnihilated","unitdead");
@@ -51,25 +51,25 @@ function finishdeploy()
 	BattleLib.AssignAIMission(2,"Guard", "Attack1");
 
 	--创建任务(missionname,missionstate)
-	mainmission = BattleLib.AddPlayerMission("map20mission1",0);
+	local mainmission = BattleLib.AddPlayerMission("map20mission1",0);
 	ScriptCommonLib.SetInt("mainmission", mainmission);
 end
 
 --部队被歼灭触发器
 function unitdead()
-	squad = ScriptCommonLib.GetTempString("squadid");
+	local squad = ScriptCommonLib.GetTempString("squadid");
 	
 	if BattleLib.TeamSquadLeft(1) == 0  then
 		--失败(storyscript,gold,exp)
 		BattleLib.Lost("GameOver.lua","0","0");
 	end
-	faction = SquadLib.GetFaction(squad);
+	local faction = SquadLib.GetFaction(squad);
 	if faction == 1 then
 		BattleLib.AddGold(500);
-		addedgold = ScriptCommonLib.GetInt("addedgold");
+		local addedgold = ScriptCommonLib.GetInt("addedgold");
 		addedgold = addedgold + 500;
 		ScriptCommonLib.SetInt("addedgold", addedgold);
-		mission1state = ScriptCommonLib.GetInt("mission1state");
+		local mission1state = ScriptCommonLib.GetInt("mission1state");
 		if BattleLib.TeamSquadLeft(2) == 0 and BattleLib.TeamSquadLeft(3) == 0 then
 			BattleLib.AddGold(10000);
 			BattleLib.DumpSquadData();
@@ -83,8 +83,8 @@ function unitdead()
 end
 
 function turnstart()
-	turn = ScriptCommonLib.GetTempInt("turn");
-	team = ScriptCommonLib.GetTempInt("team");
+	local turn = ScriptCommonLib.GetTempInt("turn");
+	local team = ScriptCommonLib.GetTempInt("team");
 	if team == 1 and turn == 1 then
 	    BattleLib.Story("cp39_1.lua");
 	end
@@ -141,7 +141,7 @@ function turnstart()
 	    BattleLib.Story("cp39_8.lua");
 		BattleLib.AddGold(10000);
 		BattleLib.DumpSquadData();
-		addedgold = ScriptCommonLib.GetInt("addedgold");
+		local addedgold = ScriptCommonLib.GetInt("addedgold");
 		addedgold = addedgold + 10000;
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		--胜利(storyscript,gold,exp)
@@ -151,21 +151,21 @@ end
 		
 --回合结束触发器
 function turnend()
-	turn = ScriptCommonLib.GetTempInt("turn");
-	team = ScriptCommonLib.GetTempInt("team");
+	local turn = ScriptCommonLib.GetTempInt("turn");
+	local team = ScriptCommonLib.GetTempInt("team");
 end
 
 --离开区域触发器
 function outarea()
-	squad = ScriptCommonLib.GetTempString("squadid");
-	area = ScriptCommonLib.GetTempString("areaid");
+	local squad = ScriptCommonLib.GetTempString("squadid");
+	local area = ScriptCommonLib.GetTempString("areaid");
 end
 
 --进入区域触发器
 function inarea()
-	squad = ScriptCommonLib.GetTempString("squadid");
-	area = ScriptCommonLib.GetTempString("areaid");
-	faction = SquadLib.GetFaction(squad);
+	local squad = ScriptCommonLib.GetTempString("squadid");
+	local area = ScriptCommonLib.GetTempString("areaid");
+	local faction = SquadLib.GetFaction(squad);
 	if area == "KeyArea" then
 		if faction == 1 or faction == 2 then
 			BattleLib.Story("cp39_6.lua");

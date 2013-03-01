@@ -1,5 +1,5 @@
 function initmap()
-	trigerid = MapLib.AddMapTrigger("FinishDeploy","finishdeploy");
+	local trigerid = MapLib.AddMapTrigger("FinishDeploy","finishdeploy");
 	MapLib.ActiveMapTrigger(trigerid);
 	ScriptCommonLib.SetString("finishdeploytriger",trigerid);
 	
@@ -8,7 +8,7 @@ function initmap()
 end
 
 function finishdeploy()
-	trigerid = ScriptCommonLib.GetString("finishdeploytriger");
+	local trigerid = ScriptCommonLib.GetString("finishdeploytriger");
 	MapLib.RemoveMapTrigger(trigerid);
 	--创建部队被歼灭触发器
 	trigerid = MapLib.AddMapTrigger("SquadAnnihilated","unitdead");
@@ -51,9 +51,9 @@ function finishdeploy()
 	BattleLib.AssignAIMission(2,"Noth", "Defend2");
 	
 	--创建任务(missionname,missionstate)
-	mainmission = BattleLib.AddPlayerMission("map12mission1",0);
+	local mainmission = BattleLib.AddPlayerMission("map12mission1",0);
 	ScriptCommonLib.SetInt("mainmission", mainmission);
-	mission1 = BattleLib.AddPlayerMission("map12mission2",0);
+	local mission1 = BattleLib.AddPlayerMission("map12mission2",0);
 	ScriptCommonLib.SetInt("mission1", mission1);
 	ScriptCommonLib.SetInt("mission1state", 1);
 	ScriptCommonLib.SetInt("win", 0);
@@ -62,24 +62,24 @@ end
 
 --部队被歼灭触发器
 function unitdead()
-	squad = ScriptCommonLib.GetTempString("squadid");
+	local squad = ScriptCommonLib.GetTempString("squadid");
 	
 	if BattleLib.TeamSquadLeft(1) == 0  then
 		--失败(storyscript,gold,exp)
 		BattleLib.Lost("GameOver.lua","0","0");
 	end
-	faction = SquadLib.GetFaction(squad);
+	local faction = SquadLib.GetFaction(squad);
 	if faction == 1 then
 		BattleLib.AddGold(200);
-		addedgold = ScriptCommonLib.GetInt("addedgold");
+		local addedgold = ScriptCommonLib.GetInt("addedgold");
 		addedgold = addedgold + 200;
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 	end
 end
 
 function turnstart()
-	turn = ScriptCommonLib.GetTempInt("turn");
-	team = ScriptCommonLib.GetTempInt("team");
+	local turn = ScriptCommonLib.GetTempInt("turn");
+	local team = ScriptCommonLib.GetTempInt("team");
 	if team == 1 and turn == 1 then
 	    BattleLib.Story("cp24_1.lua");
 	end
@@ -87,14 +87,14 @@ end
 		
 --回合结束触发器
 function turnend()
-	turn = ScriptCommonLib.GetTempInt("turn");
-	team = ScriptCommonLib.GetTempInt("team");
-	win = ScriptCommonLib.GetTempInt("win");
+	local turn = ScriptCommonLib.GetTempInt("turn");
+	local team = ScriptCommonLib.GetTempInt("team");
+	local win = ScriptCommonLib.GetTempInt("win");
 	
 	if team == 1 and turn > 8 then
-			mission1state = ScriptCommonLib.GetInt("mission1state");
+			local mission1state = ScriptCommonLib.GetInt("mission1state");
 			if mission1state == 1 then
-				mission1 = ScriptCommonLib.GetInt("mission1");
+				local mission1 = ScriptCommonLib.GetInt("mission1");
 				--完成任务(missionindex, missionstate)
 				BattleLib.SetPlayerMission(mission1, 2);
 				ScriptCommonLib.SetInt("mission1state", 0);
@@ -104,9 +104,9 @@ function turnend()
 		BattleLib.Story("cp24_5.lua");
 		BattleLib.AddGold(4000);
 		BattleLib.DumpSquadData();
-		addedgold = ScriptCommonLib.GetInt("addedgold");
+		local addedgold = ScriptCommonLib.GetInt("addedgold");
 		addedgold = addedgold + 4000;
-		mission1state = ScriptCommonLib.GetInt("mission1state");
+		local mission1state = ScriptCommonLib.GetInt("mission1state");
 		if mission1state == 1 then
 			BattleLib.AddGold(2400);
 			addedgold = addedgold + 2400;
@@ -119,17 +119,17 @@ end
 
 --离开区域触发器
 function outarea()
-	squad = ScriptCommonLib.GetTempString("squadid");
-	area = ScriptCommonLib.GetTempString("areaid");
+	local squad = ScriptCommonLib.GetTempString("squadid");
+	local area = ScriptCommonLib.GetTempString("areaid");
 end
 
 --进入区域触发器
 function inarea()
-	squad = ScriptCommonLib.GetTempString("squadid");
-	area = ScriptCommonLib.GetTempString("areaid");
+	local squad = ScriptCommonLib.GetTempString("squadid");
+	local area = ScriptCommonLib.GetTempString("areaid");
 	
 	if area == TargetArea then
-		faction = SquadLib.GetFaction(squad);
+		local faction = SquadLib.GetFaction(squad);
 		if faction == 0 then
 			MapLib.MoveCameraTo( 9, 18);
 			ScriptCommonLib.SetInt("win", 1);

@@ -1,5 +1,5 @@
 function initmap()
-	trigerid = MapLib.AddMapTrigger("FinishDeploy","finishdeploy");
+	local trigerid = MapLib.AddMapTrigger("FinishDeploy","finishdeploy");
 	MapLib.ActiveMapTrigger(trigerid);
 	ScriptCommonLib.SetString("finishdeploytriger",trigerid);
 	
@@ -8,7 +8,7 @@ function initmap()
 end
 
 function finishdeploy()
-	trigerid = ScriptCommonLib.GetString("finishdeploytriger");
+	local trigerid = ScriptCommonLib.GetString("finishdeploytriger");
 	MapLib.RemoveMapTrigger(trigerid);
 	--创建部队被歼灭触发器
 	trigerid = MapLib.AddMapTrigger("SquadAnnihilated","unitdead");
@@ -47,10 +47,10 @@ function finishdeploy()
 	BattleLib.AssignAIMission(2, "Noth", "Attack");
 	
 	--创建任务(missionname,missionstate)
-	mainmission = BattleLib.AddPlayerMission("map9mission1",0);
+	local mainmission = BattleLib.AddPlayerMission("map9mission1",0);
 	ScriptCommonLib.SetInt("mainmission", mainmission);
-	mission1 = BattleLib.AddPlayerMission("map9mission2",0);
-	mission2 = BattleLib.AddPlayerMission("map9mission3",0);
+	local mission1 = BattleLib.AddPlayerMission("map9mission2",0);
+	local mission2 = BattleLib.AddPlayerMission("map9mission3",0);
 	ScriptCommonLib.SetInt("mission1", mission1);
 	ScriptCommonLib.SetInt("mission2", mission2);
 	ScriptCommonLib.SetInt("mission1state", 0);
@@ -60,28 +60,28 @@ end
 
 --部队被歼灭触发器
 function unitdead()
-	squad = ScriptCommonLib.GetTempString("squadid");
+	local squad = ScriptCommonLib.GetTempString("squadid");
 	
 	if BattleLib.TeamSquadLeft(1) == 0  then
 		--失败(storyscript,gold,exp)
 		BattleLib.Lost("GameOver.lua","0","0");
 	end
-	faction = SquadLib.GetFaction(squad);
+	local faction = SquadLib.GetFaction(squad);
 	if faction == 1 then
 		BattleLib.AddGold(140);
-		addedgold = ScriptCommonLib.GetInt("addedgold");
+		local addedgold = ScriptCommonLib.GetInt("addedgold");
 		addedgold = addedgold + 140;
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 	if BattleLib.TeamSquadLeft(2) == 0  then
-		mission1 = ScriptCommonLib.GetInt("mission1");
+		local mission1 = ScriptCommonLib.GetInt("mission1");
 		ScriptCommonLib.SetInt("mission1state", 1);
 		BattleLib.SetPlayerMission(mission1, 1);
 		BattleLib.AddGold(3000);
 		BattleLib.DumpSquadData();
-		addedgold = ScriptCommonLib.GetInt("addedgold");
+		local addedgold = ScriptCommonLib.GetInt("addedgold");
 		addedgold = addedgold + 3000;
-		mission1state = ScriptCommonLib.GetInt("mission1state");
-		mission2state = ScriptCommonLib.GetInt("mission2state");
+		local mission1state = ScriptCommonLib.GetInt("mission1state");
+		local mission2state = ScriptCommonLib.GetInt("mission2state");
 		if mission1state == 1 then
 			BattleLib.AddGold(1000);
 			addedgold = addedgold + 1000;
@@ -110,10 +110,10 @@ function turnend()
 	if team == 1 and turn >= 15 then
 		BattleLib.AddGold(3000);
 		BattleLib.DumpSquadData();
-		addedgold = ScriptCommonLib.GetInt("addedgold");
+		local addedgold = ScriptCommonLib.GetInt("addedgold");
 		addedgold = addedgold + 3000;
-		mission1state = ScriptCommonLib.GetInt("mission1state");
-		mission2state = ScriptCommonLib.GetInt("mission2state");
+		local mission1state = ScriptCommonLib.GetInt("mission1state");
+		local mission2state = ScriptCommonLib.GetInt("mission2state");
 		if mission1state == 1 then
 			BattleLib.AddGold(1000);
 			addedgold = addedgold + 1000;
@@ -130,22 +130,22 @@ end
 
 --离开区域触发器
 function outarea()
-	squad = ScriptCommonLib.GetTempString("squadid");
-	area = ScriptCommonLib.GetTempString("areaid");
+	local squad = ScriptCommonLib.GetTempString("squadid");
+	local area = ScriptCommonLib.GetTempString("areaid");
 end
 
 --进入区域触发器
 function inarea()
-	squad = ScriptCommonLib.GetTempString("squadid");
-	area = ScriptCommonLib.GetTempString("areaid");
+	local squad = ScriptCommonLib.GetTempString("squadid");
+	local area = ScriptCommonLib.GetTempString("areaid");
 	
 		
 	if area == "Moontown" then
-		faction = SquadLib.GetFaction(squad);
+		local faction = SquadLib.GetFaction(squad);
 		if faction == 1 then
-			mission2state = ScriptCommonLib.GetInt("mission2state");
+			local mission2state = ScriptCommonLib.GetInt("mission2state");
 			if mission2state == 1 then
-				mission2 = ScriptCommonLib.GetInt("mission2");
+				local mission2 = ScriptCommonLib.GetInt("mission2");
 				--任务成功(missionindex, missionstate)
 				BattleLib.SetPlayerMission(mission2, 2);
 				ScriptCommonLib.SetInt("mission2state", 0);
