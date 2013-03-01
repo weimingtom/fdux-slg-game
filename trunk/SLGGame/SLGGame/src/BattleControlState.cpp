@@ -133,6 +133,18 @@ void BattleControlState::update(unsigned int deltaTime)
 				case 3:
 				case 4:
 					{
+						std::string tempid;
+						std::string tempInfo;
+						DataLibrary::getSingletonPtr()->getData(str(boost::format("GameData/BattleData/Team/Team%1%/Relation")%team), tempid);
+						if (tempid=="enemy1" || tempid=="enemy2" ||tempid=="enemy3")
+						{
+							tempInfo="EnemyTurn.png";
+						}
+						else if (tempid=="alliance")
+						{
+							tempInfo="FriendlyTurn.png";
+						}
+
 						std::string teamstr;
 						std::string teampath =str(boost::format("GameData/BattleData/Team/Team%1%/FactionId")%team);
 						DataLibrary::getSingleton().getData(teampath,teamstr);
@@ -168,7 +180,7 @@ void BattleControlState::update(unsigned int deltaTime)
 							{
 								GUIBattle* mGUIBattle = static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
 								GUIInfoWindow* infoWindow=(GUIInfoWindow*)mGUIBattle->getSubWindow("InfoWindow");
-								infoWindow->setCaption("EnemyTurn.png",MyGUI::Colour::White);
+								infoWindow->setCaption(tempInfo,MyGUI::Colour::White);
 								infoWindow->showScene("");
 							}
 							BattleAIState* aistate = new BattleAIState(team);
