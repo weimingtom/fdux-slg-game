@@ -135,6 +135,12 @@ bool AudioSystem::stopStream(int time)
 
 bool AudioSystem::playSample( std::string name,bool isLoop,bool isList)
 {
+	if(mSample!=NULL)
+	{
+		mSample->stop();
+		mSample=NULL;
+	}
+
 	std::string path=SE_PATH;
 
 	if(isList)
