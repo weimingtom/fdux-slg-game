@@ -1402,7 +1402,7 @@
 				<Detection type="Float" value="6.0" />
 				<Covert type="Float" value="2.0" />
 				<Toughness type="Float" value="3.0" />
-				<Conter type="Float" value="3.0" />
+				<Conter type="Float" value="2.0" />
 			</AttrModifer>
 		</WingsSoilder>
 		<FantasySoilder>
@@ -2648,14 +2648,14 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="0.0" />
 				<RangedAttack type="Float" value="-3.0" />
-				<Defence type="Float" value="-4.0" />
-				<Formation type="Float" value="-6.0" />
+				<Defence type="Float" value="-3.0" />
+				<Formation type="Float" value="-5.0" />
 				<Initiative type="Float" value="1.0" />
 				<ActionPoint type="Float" value="3.0" />
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="-4.0" />
 				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="-3.0" />
+				<Conter type="Float" value="-2.0" />
 			</AttrModifer>
 		</LightHorse1>
 		<LightHorse2>
@@ -2669,14 +2669,14 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="1.0" />
 				<RangedAttack type="Float" value="-3.0" />
-				<Defence type="Float" value="-4.0" />
-				<Formation type="Float" value="-5.0" />
+				<Defence type="Float" value="-3.0" />
+				<Formation type="Float" value="-4.0" />
 				<Initiative type="Float" value="2.0" />
 				<ActionPoint type="Float" value="3.0" />
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="-3.0" />
 				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="-3.0" />
+				<Conter type="Float" value="-2.0" />
 			</AttrModifer>
 		</LightHorse2>
 		<LightHorse3>
@@ -2690,14 +2690,14 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="1.0" />
 				<RangedAttack type="Float" value="-2.0" />
-				<Defence type="Float" value="-3.0" />
-				<Formation type="Float" value="-5.0" />
+				<Defence type="Float" value="-2.0" />
+				<Formation type="Float" value="-4.0" />
 				<Initiative type="Float" value="2.0" />
 				<ActionPoint type="Float" value="3.0" />
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="-3.0" />
 				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="-3.0" />
+				<Conter type="Float" value="-2.0" />
 			</AttrModifer>
 		</LightHorse3>
 		<LightHorse4>
@@ -2711,14 +2711,14 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="2.0" />
 				<RangedAttack type="Float" value="-2.0" />
-				<Defence type="Float" value="-3.0" />
-				<Formation type="Float" value="-4.0" />
+				<Defence type="Float" value="-2.0" />
+				<Formation type="Float" value="-3.0" />
 				<Initiative type="Float" value="3.0" />
 				<ActionPoint type="Float" value="4.0" />
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="-3.0" />
 				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="-2.0" />
+				<Conter type="Float" value="-1.0" />
 			</AttrModifer>
 		</LightHorse4>
 		<LightHorse5>
@@ -2732,14 +2732,14 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="2.0" />
 				<RangedAttack type="Float" value="-2.0" />
-				<Defence type="Float" value="-3.0" />
-				<Formation type="Float" value="-4.0" />
+				<Defence type="Float" value="-2.0" />
+				<Formation type="Float" value="-3.0" />
 				<Initiative type="Float" value="4.0" />
 				<ActionPoint type="Float" value="4.0" />
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="-2.0" />
 				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="-2.0" />
+				<Conter type="Float" value="-1.0" />
 			</AttrModifer>
 		</LightHorse5>
 		<HeavyHorse1>
@@ -2753,14 +2753,14 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="1.0" />
 				<RangedAttack type="Float" value="-3.0" />
-				<Defence type="Float" value="-3.0" />
+				<Defence type="Float" value="-2.0" />
 				<Formation type="Float" value="-3.0" />
 				<Initiative type="Float" value="0.0" />
 				<ActionPoint type="Float" value="2.0" />
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="-5.0" />
 				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="-5.0" />
+				<Conter type="Float" value="-4.0" />
 			</AttrModifer>
 		</HeavyHorse1>
 		<HeavyHorse2>
@@ -2774,14 +2774,14 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="1.0" />
 				<RangedAttack type="Float" value="-3.0" />
-				<Defence type="Float" value="-3.0" />
+				<Defence type="Float" value="-2.0" />
 				<Formation type="Float" value="-2.0" />
 				<Initiative type="Float" value="1.0" />
 				<ActionPoint type="Float" value="2.0" />
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="-5.0" />
 				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="-4.0" />
+				<Conter type="Float" value="-3.0" />
 			</AttrModifer>
 		</HeavyHorse2>
 		<HeavyHorse3>
@@ -2795,14 +2795,14 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="2.0" />
 				<RangedAttack type="Float" value="-3.0" />
-				<Defence type="Float" value="-2.0" />
+				<Defence type="Float" value="-1.0" />
 				<Formation type="Float" value="-2.0" />
 				<Initiative type="Float" value="1.0" />
 				<ActionPoint type="Float" value="2.0" />
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="-4.0" />
 				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="-4.0" />
+				<Conter type="Float" value="-3.0" />
 			</AttrModifer>
 		</HeavyHorse3>
 		<HeavyHorse4>
@@ -2816,14 +2816,14 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="3.0" />
 				<RangedAttack type="Float" value="-3.0" />
-				<Defence type="Float" value="-2.0" />
+				<Defence type="Float" value="-1.0" />
 				<Formation type="Float" value="-2.0" />
 				<Initiative type="Float" value="2.0" />
 				<ActionPoint type="Float" value="2.0" />
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="-4.0" />
 				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="-4.0" />
+				<Conter type="Float" value="-3.0" />
 			</AttrModifer>
 		</HeavyHorse4>
 		<HeavyHorse5>
@@ -2837,14 +2837,14 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="3.0" />
 				<RangedAttack type="Float" value="-3.0" />
-				<Defence type="Float" value="-2.0" />
+				<Defence type="Float" value="-1.0" />
 				<Formation type="Float" value="-1.0" />
 				<Initiative type="Float" value="2.0" />
 				<ActionPoint type="Float" value="3.0" />
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="-4.0" />
 				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="-3.0" />
+				<Conter type="Float" value="-2.0" />
 			</AttrModifer>
 		</HeavyHorse5>
 	</HorseData>
@@ -2932,7 +2932,7 @@
 				<Attack type="Float" value="1.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="4.0" />
-				<Formation type="Float" value="0.0" />
+				<Formation type="Float" value="1.0" />
 				<Initiative type="Float" value="0.0" />
 				<ActionPoint type="Float" value="0.0" />
 				<Detection type="Float" value="0.0" />
@@ -2954,7 +2954,7 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="1.0" />
 				<RangedAttack type="Float" value="0.0" />
-				<Defence type="Float" value="3.0" />
+				<Defence type="Float" value="4.0" />
 				<Formation type="Float" value="2.0" />
 				<Initiative type="Float" value="0.0" />
 				<ActionPoint type="Float" value="0.0" />
@@ -2982,7 +2982,7 @@
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="1.0" />
+				<Conter type="Float" value="0.0" />
 			</AttrModifer>
 		</LightArmor1>
 		<LightArmor2>
@@ -3001,7 +3001,7 @@
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="0.0" />
-				<Conter type="Float" value="1.0" />
+				<Conter type="Float" value="0.0" />
 			</AttrModifer>
 		</LightArmor2>
 		<LightArmor3>
@@ -3020,7 +3020,7 @@
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="1.0" />
-				<Conter type="Float" value="1.0" />
+				<Conter type="Float" value="0.0" />
 			</AttrModifer>
 		</LightArmor3>
 		<LightArmor4>
@@ -3039,7 +3039,7 @@
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="1.0" />
-				<Conter type="Float" value="1.0" />
+				<Conter type="Float" value="0.0" />
 			</AttrModifer>
 		</LightArmor4>
 		<LightArmor5>
@@ -3058,7 +3058,7 @@
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="1.0" />
-				<Conter type="Float" value="1.0" />
+				<Conter type="Float" value="0.0" />
 			</AttrModifer>
 		</LightArmor5>
 		<MidArmor1>
@@ -3077,7 +3077,7 @@
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="1.0" />
-				<Conter type="Float" value="2.0" />
+				<Conter type="Float" value="1.0" />
 			</AttrModifer>
 		</MidArmor1>
 		<MidArmor2>
@@ -3096,7 +3096,7 @@
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="1.0" />
-				<Conter type="Float" value="2.0" />
+				<Conter type="Float" value="1.0" />
 			</AttrModifer>
 		</MidArmor2>
 		<MidArmor3>
@@ -3115,7 +3115,7 @@
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="1.0" />
-				<Conter type="Float" value="2.0" />
+				<Conter type="Float" value="1.0" />
 			</AttrModifer>
 		</MidArmor3>
 		<MidArmor4>
@@ -3134,7 +3134,7 @@
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="2.0" />
-				<Conter type="Float" value="2.0" />
+				<Conter type="Float" value="1.0" />
 			</AttrModifer>
 		</MidArmor4>
 		<MidArmor5>
@@ -3153,7 +3153,7 @@
 				<Detection type="Float" value="0.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="2.0" />
-				<Conter type="Float" value="2.0" />
+				<Conter type="Float" value="1.0" />
 			</AttrModifer>
 		</MidArmor5>
 		<HeavyArmor1>
