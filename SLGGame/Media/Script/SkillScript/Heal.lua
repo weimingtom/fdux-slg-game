@@ -15,6 +15,8 @@ function useskill()
 		end
 		SquadLib.SetUnitNum(target, num);
 		local ep = 50;
+		local casterlv = SquadLib.GetSquadLevel(caster);
+		local targetlv = SquadLib.GetSquadLevel(target);
 		if casterlv > targetlv then
 			ep = ep + (targetlv - casterlv) * 5;
 		end		

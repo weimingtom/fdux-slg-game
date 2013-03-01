@@ -1070,7 +1070,7 @@ void BattleAIState::SquadAI::updateDirection()
 			highth = closethreaten[n];
 		}
 	}
-	if(highdir != mSquad->getDirection())
+	if(highdir != mSquad->getDirection() && threatenfrom > 0)
 	{
 		BattleSquadManager::getSingleton().setDirection(mSquad, highdir);
 	}

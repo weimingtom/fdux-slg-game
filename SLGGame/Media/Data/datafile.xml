@@ -243,7 +243,7 @@
 			<RetainerId type="String" value="Test"/>
 			<Level type="Int" value="4"/>
 			<Exp type="Int" value="750"/>
-			<SkillPointAction type="Int" value="2"/>
+			<SkillPointAction type="Int" value="1"/>
 			<SkillPointPassive type="Int" value="2"/>
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitNum value="50" type="Int"/>
@@ -425,16 +425,19 @@
 		<Fay>
 			<Type type="Int" value="1"/>
 			<SquadType type="Int" value="5"/>
-			<SoilderId type="String" value="Magician"/>
+			<SoilderId type="String" value="Magician2"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="Staves2"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="none"/>
 			<SkillTable>
+				<StrengthenPuppet type="Int" value="0" />
+				<BattlePuppet type="Int" value="0" />
+				<Attack type="Int" value="1" />		
 			</SkillTable>
 			<LeaderId type="String" value="Fay"/>
-			<RetainerId type="String" value="Scout"/>
+			<RetainerId type="String" value="BattlePuppet"/>
 			<UnitNum value="20" type="Int"/>
 			<Level type="Int" value="3"/>
 			<Exp type="Int" value="0"/>
@@ -455,6 +458,10 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="none"/>
 			<SkillTable>
+				<StrengthenPuppet type="Int" value="0" />
+				<EnchantWImprove type="Int" value="0" />
+				<EnchantWeapon type="Int" value="1" />		
+				<EnchantArmor type="Int" value="1" />					
 			</SkillTable>
 			<LeaderId type="String" value="Azaria"/>
 			<RetainerId type="String" value="Scout"/>
@@ -758,6 +765,11 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="none"/>
 			<SkillTable>
+				<StrengthenPuppet type="Int" value="0" />
+				<EnchantWImprove type="Int" value="0" />
+				<EnchantAImprove type="Int" value="0" />
+				<EnchantWeapon type="Int" value="1" />		
+				<EnchantArmor type="Int" value="1" />	
 			</SkillTable>
 			<LeaderId type="String" value="Elementalist"/>
 			<RetainerId type="String" value="Scout"/>
@@ -1490,16 +1502,35 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="0.0" />
 				<RangedAttack type="Float" value="0.0" />
-				<Defence type="Float" value="8.0" />
+				<Defence type="Float" value="10.0" />
 				<Formation type="Float" value="0.0" />
-				<Initiative type="Float" value="4.0" />
+				<Initiative type="Float" value="0.0" />
+				<ActionPoint type="Float" value="7.0" />
+				<Detection type="Float" value="4.0" />
+				<Covert type="Float" value="0.0" />
+				<Toughness type="Float" value="0.0" />
+				<Conter type="Float" value="0.0" />
+			</AttrModifer>
+		</Magician>
+		<Magician2>
+			<Type type="Int" value="0" />
+			<Value type="Int" value="20" />
+			<Script type="String" value="none" />
+			<Randomness type="Int" value="10" />
+			<AttrModifer>
+				<Type type="Int" value="0" />
+				<Attack type="Float" value="8.0" />
+				<RangedAttack type="Float" value="0.0" />
+				<Defence type="Float" value="12.0" />
+				<Formation type="Float" value="0.0" />
+				<Initiative type="Float" value="5.0" />
 				<ActionPoint type="Float" value="7.0" />
 				<Detection type="Float" value="4.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="1.0" />
 			</AttrModifer>
-		</Magician>
+		</Magician2>
 		<NothSoilder>
 			<Type type="Int" value="0" />
 			<Value type="Int" value="20" />
@@ -3283,6 +3314,16 @@
 			<Icon type="String" value="eqp_soldier"/>
 			<SquadType type="String" value="0,1,2,3"/>
 		</Medic>
+		<BattlePuppet>
+			<Type type="Int" value="0"/>
+			<Value type="Int" value="500"/>
+			<Wage type="Int" value="200"/>
+			<Skill type="String" value="BattlePuppet"/>
+			<SkillType type="Int" value="0"/>
+			<Picture type="String" value="qingbuh.png"/>
+			<Icon type="String" value="eqp_soldier"/>
+			<SquadType type="String" value="5"/>
+		</BattlePuppet>
 	</RetainerData>
 	<SkillListData>
 		<Infantry type="Int" value="0">
@@ -3459,18 +3500,39 @@
 		</Saint>
 		<BattleMage type="Int" value="5">
 			<Default>
+				<MagicRest type="Int" value="1"/>
+				<SummonPuppetB type="Int" value="1"/>
 			</Default>
 			<Active>
+				<Attack type="Int" value="3"/>
 			</Active>
 			<Passive>
+				<StrengthenPuppet type="Int" value="2">
+					<Effect type="String" value="StrengthenPuppet"/>
+				</StrengthenPuppet>
+				<BattlePuppet type="Int" value="2">
+					<Effect type="String" value="BattlePuppet"/>
+				</BattlePuppet>
 			</Passive>
 		</BattleMage>
 		<ArcaneMage type="Int" value="6">
 			<Default>
+				<SummonPuppetA type="Int" value="1" />
 			</Default>
 			<Active>
+				<EnchantArmor type="Int" value="1"/>
+				<EnchantWeapon type="Int" value="3"/>
 			</Active>
 			<Passive>
+				<EnchantAImprove type="Int" value="2">
+					<Effect type="String" value="EnchantAImprove"/>
+				</EnchantAImprove>
+				<StrengthenPuppet type="Int" value="2">
+					<Effect type="String" value="StrengthenPuppet"/>
+				</StrengthenPuppet>
+				<EnchantWImprove type="Int" value="4">
+					<Effect type="String" value="EnchantWImprove"/>
+				</EnchantWImprove>
 			</Passive>
 		</ArcaneMage>
 	</SkillListData>
@@ -3655,6 +3717,66 @@
 			<Script type="String" value="UrgentOrder.lua"/>
 			<SkillRole type="Int" value="1029"/>
 		</UrgentOrder>
+		<MagicRest>
+			<Type type="Int" value="0"/>
+			<MaxRange type="Int" value="0"/>
+			<MinRange type="Int" value="0"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="2"/>
+			<APCost type="float" value="2.0"/>
+			<CoolDown type="Int" value="0"/>
+			<Icon type="String" value="ac_rest"/>
+			<Script type="String" value="MagicRest.lua"/>
+			<SkillRole type="Int" value="1025"/>
+		</MagicRest>
+		<SummonPuppetA>
+			<Type type="Int" value="0"/>
+			<MaxRange type="Int" value="0"/>
+			<MinRange type="Int" value="0"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="0"/>
+			<APCost type="float" value="4.0"/>
+			<CoolDown type="Int" value="1"/>
+			<Icon type="String" value="skill_act3_sumpuppet"/>
+			<Script type="String" value="SummonPuppetA.lua"/>
+			<SkillRole type="Int" value="129"/>
+		</SummonPuppetA>
+		<SummonPuppetB>
+			<Type type="Int" value="0"/>
+			<MaxRange type="Int" value="0"/>
+			<MinRange type="Int" value="0"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="0"/>
+			<APCost type="float" value="3.0"/>
+			<CoolDown type="Int" value="1"/>
+			<Icon type="String" value="skill_act3_sumpuppet"/>
+			<Script type="String" value="SummonPuppetB.lua"/>
+			<SkillRole type="Int" value="129"/>
+		</SummonPuppetB>
+		<EnchantWeapon>
+			<Type type="Int" value="0"/>
+			<MaxRange type="Int" value="2"/>
+			<MinRange type="Int" value="0"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="0"/>
+			<APCost type="float" value="3.0"/>
+			<CoolDown type="Int" value="0"/>
+			<Icon type="String" value="skill_act3_enweapon"/>
+			<Script type="String" value="EnchantWeapon.lua"/>
+			<SkillRole type="Int" value="3"/>
+		</EnchantWeapon>
+		<EnchantArmor>
+			<Type type="Int" value="0"/>
+			<MaxRange type="Int" value="2"/>
+			<MinRange type="Int" value="0"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="0"/>
+			<APCost type="float" value="3.0"/>
+			<CoolDown type="Int" value="0"/>
+			<Icon type="String" value="skill_act3_enarmor"/>
+			<Script type="String" value="EnchantArmor.lua"/>
+			<SkillRole type="Int" value="515"/>
+		</EnchantArmor>
 	</SkillData>
 	<EffectData>
 		<DetectionTrain>
@@ -3825,6 +3947,55 @@
 			<EffectRole type="Int" value="1"/>
 			<ShowOnBattleSquad type="Int" value="0"/>
 		</ForcedMarch>
+		<Tired>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_APDown"/>
+			<Script type="String" value="Tired.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
+		</Tired>
+		<StrengthenPuppet>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_uppuppetA"/>
+			<Script type="String" value="StrengthenSprite.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="0"/>
+		</StrengthenPuppet>
+		<EnchantWeapon>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_AtkcUp"/>
+			<Script type="String" value="EnchantWeapon.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
+		</EnchantWeapon>
+		<EnchantArmor>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_DefUp"/>
+			<Script type="String" value="EnchantArmor.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
+		</EnchantArmor>
+		<EnchantWImprove>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_AtkcUp"/>
+			<Script type="String" value="CommonMark.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="0"/>
+		</EnchantWImprove>
+		<EnchantAImprove>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_DefUp"/>
+			<Script type="String" value="CommonMark.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="0"/>
+		</EnchantAImprove>
+		<BattlePuppet>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_AtkcUp"/>
+			<Script type="String" value="BattlePuppet.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="0"/>
+		</BattlePuppet>
 	</EffectData>
 	<GroundData>
 		<Grass>

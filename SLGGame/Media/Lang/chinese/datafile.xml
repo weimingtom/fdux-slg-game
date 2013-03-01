@@ -375,6 +375,9 @@
 		<Magician>
 			<Name type="String" value="法师" />
 		</Magician>
+		<Magician2>
+			<Name type="String" value="法师" />
+		</Magician2>
 		<NothSoilder>
 			<Name type="String" value="诺斯士兵" />
 		</NothSoilder>
@@ -703,6 +706,10 @@
 			<Name type="String" value="医官"/>
 			<Describe type="String" value="医官"/>		
 		</Medic>
+		<BattlePuppet>
+			<Name type="String" value="战斗傀儡助手"/>
+			<Describe type="String" value="战斗傀儡助手"/>		
+		</BattlePuppet>
 	</RetainerData>
 	<SkillData>
 		<Attack>
@@ -765,6 +772,26 @@
 			<Name type="String" value="紧急调遣"/>
 			<Describe type="String" value="情况发生改变，命令一支部队立即作出行动（将部队行动值补充到一个定值）"/>
 		</UrgentOrder>
+		<MagicRest>
+			<Name type="String" value="魔法恢复"/>
+			<Describe type="String" value="（消除一定的魔法疲劳效果）"/>
+		</MagicRest>
+		<SummonPuppetA>
+			<Name type="String" value="召唤傀儡（奥）"/>
+			<Describe type="String" value="（召唤一定数量的傀儡）"/>
+		</SummonPuppetA>
+		<SummonPuppetB>
+			<Name type="String" value="召唤傀儡（战）"/>
+			<Describe type="String" value="（召唤一定数量的傀儡，产生一层魔法疲劳）"/>
+		</SummonPuppetB>
+		<EnchantWeapon>
+			<Name type="String" value="魔化武器"/>
+			<Describe type="String" value="（目标部队攻击力增加）"/>	
+		</EnchantWeapon>
+		<EnchantArmor>
+			<Name type="String" value="魔化盔甲"/>
+			<Describe type="String" value="（目标部队防御力增加）"/>	
+		</EnchantArmor>
 	</SkillData>
 	<EffectData>
 		<DetectionTrain>
@@ -863,6 +890,34 @@
 			<Name type="String" value="强行军"/>
 			<Describe type="String" value="部队做好强制行军的准备（部队该会合获得穿越障碍效果）"/>
 		</ForcedMarch>
+		<Tired>
+			<Name type="String" value="魔法疲劳"/>
+			<Describe type="String" value="（行动值降低）"/>	
+		</Tired>
+		<StrengthenPuppet>
+			<Name type="String" value="硬化傀儡"/>
+			<Describe type="String" value="（防御值增加）"/>	
+		</StrengthenPuppet>
+		<EnchantWeapon>
+			<Name type="String" value="魔化武器"/>
+			<Describe type="String" value="（攻击力增加）"/>	
+		</EnchantWeapon>
+		<EnchantArmor>
+			<Name type="String" value="魔化盔甲"/>
+			<Describe type="String" value="（防御力增加）"/>	
+		</EnchantArmor>
+		<EnchantWImprove>
+			<Name type="String" value="武器附魔强化"/>
+			<Describe type="String" value="（魔化武器和魔化箭矢效果加强）"/>	
+		</EnchantWImprove>
+		<EnchantAImprove>
+			<Name type="String" value="防具附魔强化"/>
+			<Describe type="String" value="（魔化盔甲和魔化盾牌效果加强）"/>	
+		</EnchantAImprove>
+		<BattlePuppet>
+			<Name type="String" value="战斗傀儡"/>
+			<Describe type="String" value="（攻击力和反击值增加）"/>	
+		</BattlePuppet>
 	</EffectData>
 	<GroundData>
 		<Grass>
