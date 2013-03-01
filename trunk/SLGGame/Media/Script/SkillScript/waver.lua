@@ -11,7 +11,7 @@ function onaffect()
 	if lv > 4 then
 		apdown = -lv + 4;
 	end
-	local mid = SquadLib.ApplyModifier(sid, 1, -lv * 0.5, -lv * 0.5, -lv * 0.5, 0.0, 0.0, apdown, 0.0, 0.0, 0.0, 0.0);
+	mid = SquadLib.ApplyModifier(sid, 1, -lv * 0.5, -lv * 0.5, -lv * 0.5, 0.0, 0.0, apdown, 0.0, 0.0, 0.0, 0.0);
 	ScriptCommonLib.SetString("modifierid", mid);
 	if tid == "" then
 		tid = SquadLib.AddSquadTrigger(sid, "TurnStart", "onturnstart");

@@ -5,9 +5,11 @@ function useskill()
 	local squad2num = SquadLib.GetUnitNum(target);
 	local re = SkillLib.MeleeCombat(caster,target);
 	if re>0 then
-		local ep = 60;
+		local ep = 50;
+		local casterlv = SquadLib.GetSquadLevel(caster);
+		local targetlv = SquadLib.GetSquadLevel(target);
 		if targetlv > casterlv then
-			ep = ep + (targetlv - casterlv) * 6;
+			ep = ep + (targetlv - casterlv) * 5;
 		end
 		local squad1lost = squad1num - SquadLib.GetUnitNum(caster);
 		local squad2lost = squad2num - SquadLib.GetUnitNum(target);
