@@ -1,10 +1,10 @@
 function onaffect()
-	sid = ScriptCommonLib.GetTempString("squadid");
+	local sid = ScriptCommonLib.GetTempString("squadid");
 	SquadLib.AddSkill(sid, "Pray");
 end
 
 function onremove()
-	sid = ScriptCommonLib.GetTempString("squadid");
+	local sid = ScriptCommonLib.GetTempString("squadid");
 	SquadLib.RemoveSkill(sid, "Pray");
 end
 

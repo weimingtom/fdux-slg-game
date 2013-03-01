@@ -1,5 +1,5 @@
 function useskill()
-	caster  = ScriptCommonLib.GetTempString("squadid");
+	local caster  = ScriptCommonLib.GetTempString("squadid");
 	eid = SquadLib.ApplyEffect(caster, "Prepare");
 	ScriptCommonLib.SetTempInt("castsuccess", 1);
 end
@@ -13,19 +13,19 @@ function validtarget()
 end
 
 function onaffect()
-	mid = ScriptCommonLib.GetString("modifierid");
-	sid = ScriptCommonLib.GetTempString("squadid");
-	eid = ScriptCommonLib.GetTempString("effectid");
-	tid = ScriptCommonLib.GetString("triggerid");
+	local mid = ScriptCommonLib.GetString("modifierid");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local eid = ScriptCommonLib.GetTempString("effectid");
+	local tid = ScriptCommonLib.GetString("triggerid");
 	if mid ~= "" then
 		SquadLib.RemoveModifier(sid, mid);
 	end
-	lv = SquadLib.GetSkillLevel(sid, "Prepare");
-	ap = SquadLib.GetActionPoint(sid);
+	local lv = SquadLib.GetSkillLevel(sid, "Prepare");
+	local ap = SquadLib.GetActionPoint(sid);
 	if ap > 1 + 2 * lv then
 		ap = 1 + 2 * lv;
 	end
-	ep = 15 * ap;
+	local ep = 15 * ap;
 	SquadLib.AddExp(sid, ep);
 	mid = SquadLib.ApplyModifier(sid, 0, 0.0, 0.0, 0.0, 0.0, 0.0, ap, 0.0, 0.0, 0.0, 0.0);
 	ScriptCommonLib.SetString("modifierid", mid);
@@ -40,9 +40,9 @@ function onaffect()
 end
 
 function onremove()
-	mid = ScriptCommonLib.GetString("modifierid");
-	sid = ScriptCommonLib.GetTempString("squadid");
-	tid = ScriptCommonLib.GetString("triggerid");
+	local mid = ScriptCommonLib.GetString("modifierid");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local tid = ScriptCommonLib.GetString("triggerid");
 	if mid ~= "" then
 		SquadLib.RemoveModifier(sid, mid);
 	end
@@ -52,8 +52,8 @@ function onremove()
 end
 
 function onturnstart()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	eid = ScriptCommonLib.GetString("effectid");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local eid = ScriptCommonLib.GetString("effectid");
 	SquadLib.RemoveEffect(sid, eid);
 end
 

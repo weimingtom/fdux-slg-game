@@ -1,23 +1,23 @@
 function useskill()
-	caster  = ScriptCommonLib.GetTempString("squadid");
-	eid = SquadLib.ApplyEffect(caster, "Defence");
+	local caster  = ScriptCommonLib.GetTempString("squadid");
+	local eid = SquadLib.ApplyEffect(caster, "Defence");
 	ScriptCommonLib.SetTempInt("castsuccess", 1);
 end
 
 function onaffect()
-	mid = ScriptCommonLib.GetString("modifierid");
-	sid = ScriptCommonLib.GetTempString("squadid");
-	eid = ScriptCommonLib.GetTempString("effectid");
-	tid = ScriptCommonLib.GetString("triggerid");
-	tid1 = ScriptCommonLib.GetString("triggerid1");
-	tid2 = ScriptCommonLib.GetString("triggerid2");
-	tid3 = ScriptCommonLib.GetString("triggerid3");
+	local mid = ScriptCommonLib.GetString("modifierid");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local eid = ScriptCommonLib.GetTempString("effectid");
+	local tid = ScriptCommonLib.GetString("triggerid");
+	local tid1 = ScriptCommonLib.GetString("triggerid1");
+	local tid2 = ScriptCommonLib.GetString("triggerid2");
+	local tid3 = ScriptCommonLib.GetString("triggerid3");
 	if mid ~= "" then
 		SquadLib.RemoveModifier(sid, mid);
 	end
-	lv = SquadLib.GetEffectLevel(sid, eid);
-	ap = SquadLib.GetActionPoint(sid);
-	defence = lv + (ap - 2) / 2;
+	local lv = SquadLib.GetEffectLevel(sid, eid);
+	local ap = SquadLib.GetActionPoint(sid);
+	local defence = lv + (ap - 2) / 2;
 	if defence > 2 + lv then
 		defence = 2 + lv;
 	end
@@ -49,12 +49,12 @@ function onaffect()
 end
 
 function onremove()
-	mid = ScriptCommonLib.GetString("modifierid");
-	sid = ScriptCommonLib.GetTempString("squadid");
-	tid = ScriptCommonLib.GetString("triggerid");
-	tid1 = ScriptCommonLib.GetString("triggerid1");
-	tid2 = ScriptCommonLib.GetString("triggerid2");
-	tid3 = ScriptCommonLib.GetString("triggerid3");
+	local mid = ScriptCommonLib.GetString("modifierid");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local tid = ScriptCommonLib.GetString("triggerid");
+	local tid1 = ScriptCommonLib.GetString("triggerid1");
+	local tid2 = ScriptCommonLib.GetString("triggerid2");
+	local tid3 = ScriptCommonLib.GetString("triggerid3");
 	if mid ~= "" then
 		SquadLib.RemoveModifier(sid, mid);
 	end
@@ -73,17 +73,17 @@ function onremove()
 end
 
 function onturnstart()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	eid = ScriptCommonLib.GetString("effectid");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local eid = ScriptCommonLib.GetString("effectid");
 	SquadLib.RemoveEffect(sid, eid);
 end
 
 function onunderrangedattack()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	tsid = ScriptCommonLib.GetTempString("targetsquadid");
-	casterlv = SquadLib.GetSquadLevel(sid);
-	targetlv = SquadLib.GetSquadLevel(tsid);
-	ep = 25;
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local tsid = ScriptCommonLib.GetTempString("targetsquadid");
+	local casterlv = SquadLib.GetSquadLevel(sid);
+	local targetlv = SquadLib.GetSquadLevel(tsid);
+	local ep = 25;
 	if targetlv > casterlv then
 		ep = ep + (targetlv - casterlv) * 3;
 	end
@@ -91,11 +91,11 @@ function onunderrangedattack()
 end
 
 function onundermagicattack()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	tsid = ScriptCommonLib.GetTempString("targetsquadid");
-	casterlv = SquadLib.GetSquadLevel(sid);
-	targetlv = SquadLib.GetSquadLevel(tsid);
-	ep = 25;
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local tsid = ScriptCommonLib.GetTempString("targetsquadid");
+	local casterlv = SquadLib.GetSquadLevel(sid);
+	local targetlv = SquadLib.GetSquadLevel(tsid);
+	local ep = 25;
 	if targetlv > casterlv then
 		ep = ep + (targetlv - casterlv) * 3;
 	end
@@ -103,13 +103,13 @@ function onundermagicattack()
 end
 
 function onmeleeattack()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	tsid = ScriptCommonLib.GetTempString("targetsquadid");
-	isdefender = ScriptCommonLib.GetTempInt("asdefender");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local tsid = ScriptCommonLib.GetTempString("targetsquadid");
+	local isdefender = ScriptCommonLib.GetTempInt("asdefender");
 	if isdefender == 1 then
-		casterlv = SquadLib.GetSquadLevel(sid);
-		targetlv = SquadLib.GetSquadLevel(tsid);
-		ep = 25;
+		local casterlv = SquadLib.GetSquadLevel(sid);
+		local targetlv = SquadLib.GetSquadLevel(tsid);
+		local ep = 25;
 		if targetlv > casterlv then
 			ep = ep + (targetlv - casterlv) * 3;
 		end

@@ -1,20 +1,20 @@
 function useskill()
-	caster  = ScriptCommonLib.GetTempString("squadid");
-	target  = ScriptCommonLib.GetTempString("targetsquadid");
-	unitnum = SquadLib.GetUnitNum(caster);
+	local caster  = ScriptCommonLib.GetTempString("squadid");
+	local target  = ScriptCommonLib.GetTempString("targetsquadid");
+	local unitnum = SquadLib.GetUnitNum(caster);
 	if unitnum > 3 then
 		SquadLib.Animation(caster, 1, "Skill", "none", "mp_seal_08", 0, 1);
 		unitnum = unitnum - 2;
 		SquadLib.SetUnitNum(caster, unitnum);
 		SquadLib.PlayParticle(target, 3, "mp_streak_01", "none", 2500);
-		maxnum = SquadLib.GetUnitMaxNum(target);
-		num = SquadLib.GetUnitNum(target);
+		local maxnum = SquadLib.GetUnitMaxNum(target);
+		local num = SquadLib.GetUnitNum(target);
 		num = num + 12;
 		if num > maxnum then
 			num = maxnum;
 		end
 		SquadLib.SetUnitNum(target, num);
-		ep = 50;
+		local ep = 50;
 		if casterlv > targetlv then
 			ep = ep + (targetlv - casterlv) * 5;
 		end		
@@ -31,12 +31,12 @@ function validarea()
 end
 
 function validtarget()
-	caster  = ScriptCommonLib.GetTempString("squadid");
-	target  = ScriptCommonLib.GetTempString("targetsquadid");
-	casterfaction = SquadLib.GetFaction(caster);
-	targetfaction = SquadLib.GetFaction(target);
+	local caster  = ScriptCommonLib.GetTempString("squadid");
+	local target  = ScriptCommonLib.GetTempString("targetsquadid");
+	local casterfaction = SquadLib.GetFaction(caster);
+	local targetfaction = SquadLib.GetFaction(target);
 	if casterfaction == targetfaction then
-		squadtype = SquadLib.GetType(target);
+		local squadtype = SquadLib.GetType(target);
 		if squadtype == 0 then
 			ScriptCommonLib.SetTempInt("validtarget", 1);
 		else

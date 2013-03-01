@@ -1,10 +1,10 @@
 function useskill()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	ep = 0;
-	tgtx = ScriptCommonLib.GetTempInt("targetx");
-	tgty = ScriptCommonLib.GetTempInt("targety");
-	sf = SquadLib.GetFaction(sid);
-	croodlist = {
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local ep = 0;
+	local tgtx = ScriptCommonLib.GetTempInt("targetx");
+	local tgty = ScriptCommonLib.GetTempInt("targety");
+	local sf = SquadLib.GetFaction(sid);
+	local croodlist = {
 		{tgtx, tgty},
 		{tgtx - 1, tgty},
 		{tgtx, tgty - 1},
@@ -12,9 +12,9 @@ function useskill()
 		{tgtx, tgty + 1},
 	};
 	for i = 1, 5 do
-		tgtsid = BattleLib.GetSquadAt(croodlist[i][1], croodlist[i][2], 1, sf);
+		local tgtsid = BattleLib.GetSquadAt(croodlist[i][1], croodlist[i][2], 1, sf);
 		if tgtsid ~= "" then
-			tgtf = SquadLib.GetFaction(tgtsid);
+			local tgtf = SquadLib.GetFaction(tgtsid);
 			if tgtf == sf then
 				SquadLib.ApplyEffect(tgtsid, "Inspired");
 				ep = ep + 20;
@@ -30,13 +30,13 @@ function validarea()
 end
 
 function validaffectarea()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	tgtx = ScriptCommonLib.GetTempInt("targetx");
-	tgty = ScriptCommonLib.GetTempInt("targety");
-	sf = SquadLib.GetFaction(sid);
-	tgtsid = BattleLib.GetSquadAt(tgtx, tgty, 1, sf);
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local tgtx = ScriptCommonLib.GetTempInt("targetx");
+	local tgty = ScriptCommonLib.GetTempInt("targety");
+	local sf = SquadLib.GetFaction(sid);
+	local tgtsid = BattleLib.GetSquadAt(tgtx, tgty, 1, sf);
 	if tgtsid ~= "" then
-		tgtf = SquadLib.GetFaction(tgtsid);
+		local tgtf = SquadLib.GetFaction(tgtsid);
 		if tgtf == sf then
 			ScriptCommonLib.SetTempInt("validaffectarea", 1);
 		end
@@ -44,15 +44,15 @@ function validaffectarea()
 end
 
 function onaffect()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	eid = ScriptCommonLib.GetTempString("effectid");
-	mid = ScriptCommonLib.GetString("modifierid");
-	tid = ScriptCommonLib.GetString("triggerid");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local eid = ScriptCommonLib.GetTempString("effectid");
+	local mid = ScriptCommonLib.GetString("modifierid");
+	local tid = ScriptCommonLib.GetString("triggerid");
 	--pid = ScriptCommonLib.GetString("particleid");
 	if mid ~= "" then
 		SquadLib.RemoveModifier(sid, mid);
 	end
-	lv = SquadLib.GetEffectLevel(sid, eid);
+	local lv = SquadLib.GetEffectLevel(sid, eid);
 	mid = SquadLib.ApplyModifier(sid, 1, lv, lv, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 	ScriptCommonLib.SetString("modifierid", mid);
 	if tid == "" then
@@ -72,9 +72,9 @@ function onaffect()
 end
 
 function onremove()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	mid = ScriptCommonLib.GetString("modifierid");
-	tid = ScriptCommonLib.GetString("triggerid");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local mid = ScriptCommonLib.GetString("modifierid");
+	local tid = ScriptCommonLib.GetString("triggerid");
 	--pid = ScriptCommonLib.GetString("particleid");
 	if mid ~= "" then
 		SquadLib.RemoveModifier(sid, mid);
@@ -88,10 +88,10 @@ function onremove()
 end
 
 function onturnstart()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	turn = ScriptCommonLib.GetInt("turn");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local turn = ScriptCommonLib.GetInt("turn");
 	if turn == 2 then
-		eid = ScriptCommonLib.GetString("effectid");
+		local eid = ScriptCommonLib.GetString("effectid");
 		SquadLib.RemoveEffect(sid, eid);
 	else
 		ScriptCommonLib.SetInt("turn", turn + 1);

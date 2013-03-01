@@ -1,15 +1,15 @@
 function useskill()
-	caster  = ScriptCommonLib.GetTempString("squadid");
-	target  = ScriptCommonLib.GetTempString("targetsquadid");
-	unitnum = SquadLib.GetUnitNum(caster);
+	local caster  = ScriptCommonLib.GetTempString("squadid");
+	local target  = ScriptCommonLib.GetTempString("targetsquadid");
+	local unitnum = SquadLib.GetUnitNum(caster);
 	if unitnum > 3 then
 		SquadLib.Animation(caster, 1, "Skill", "none", "mp_seal_08", 0, 1);
-		eid = SquadLib.ApplyEffect(target, "MagicShield");
+		local eid = SquadLib.ApplyEffect(target, "MagicShield");
 		unitnum = unitnum - 2;
 		SquadLib.SetUnitNum(caster, unitnum);
-		casterlv = SquadLib.GetSquadLevel(caster);
-		targetlv = SquadLib.GetSquadLevel(target);
-		ep = 50;
+		local casterlv = SquadLib.GetSquadLevel(caster);
+		local targetlv = SquadLib.GetSquadLevel(target);
+		local ep = 50;
 		if casterlv > targetlv then
 			ep = ep + (targetlv - casterlv) * 5;
 		end		
@@ -25,10 +25,10 @@ function validarea()
 end
 
 function validtarget()
-	caster  = ScriptCommonLib.GetTempString("squadid");
-	target  = ScriptCommonLib.GetTempString("targetsquadid");
-	casterfaction = SquadLib.GetFaction(caster);
-	targetfaction = SquadLib.GetFaction(target);
+	local caster  = ScriptCommonLib.GetTempString("squadid");
+	local target  = ScriptCommonLib.GetTempString("targetsquadid");
+	local casterfaction = SquadLib.GetFaction(caster);
+	local targetfaction = SquadLib.GetFaction(target);
 	if casterfaction == targetfaction then
 		ScriptCommonLib.SetTempInt("validtarget", 1);
     else
@@ -37,15 +37,15 @@ function validtarget()
 end
 
 function onaffect()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	eid = ScriptCommonLib.GetTempString("effectid");
-	mid = ScriptCommonLib.GetString("modifierid");
-	tid = ScriptCommonLib.GetString("triggerid");
-	pid = ScriptCommonLib.GetString("particleid");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local eid = ScriptCommonLib.GetTempString("effectid");
+	local mid = ScriptCommonLib.GetString("modifierid");
+	local tid = ScriptCommonLib.GetString("triggerid");
+	local pid = ScriptCommonLib.GetString("particleid");
 	if mid ~= "" then
 		SquadLib.RemoveModifier(sid, mid);
 	end
-	lv = SquadLib.GetEffectLevel(sid, eid);
+	local lv = SquadLib.GetEffectLevel(sid, eid);
 	mid = SquadLib.ApplyModifier(sid, 2, 0.0, 0.0, 1 + lv, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 	ScriptCommonLib.SetString("modifierid", mid);
 	if tid == "" then
@@ -62,10 +62,10 @@ function onaffect()
 end
 
 function onremove()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	mid = ScriptCommonLib.GetString("modifierid");
-	tid = ScriptCommonLib.GetString("triggerid");
-	pid = ScriptCommonLib.GetString("particleid");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local mid = ScriptCommonLib.GetString("modifierid");
+	local tid = ScriptCommonLib.GetString("triggerid");
+	local pid = ScriptCommonLib.GetString("particleid");
 	if mid ~= "" then
 		SquadLib.RemoveModifier(sid, mid);
 	end
@@ -78,10 +78,10 @@ function onremove()
 end
 
 function onturnstart()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	turn = ScriptCommonLib.GetInt("turn");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local turn = ScriptCommonLib.GetInt("turn");
 	if turn == 2 then
-		eid = ScriptCommonLib.GetString("effectid");
+		local eid = ScriptCommonLib.GetString("effectid");
 		SquadLib.RemoveEffect(sid, eid);
 	else
 		ScriptCommonLib.SetInt("turn", turn + 1);
