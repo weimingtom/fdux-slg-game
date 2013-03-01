@@ -10,7 +10,7 @@
 #include "Framerate.h"
 #endif
 
-using namespace audiere;
+//using namespace audiere;
 
 AudioSystem::AudioSystem(void):mStreamName("none"),mStream(NULL),mSample(NULL)
 {
@@ -26,6 +26,8 @@ AudioSystem::~AudioSystem(void)
 	{
 		delete it->second;
 	}
+
+	mEngine->drop();
 }
 
 bool AudioSystem::init()
@@ -55,9 +57,10 @@ bool AudioSystem::init()
 		}
 	}
 
-	mDevice=OpenDevice();
+	//mDevice=OpenDevice();
+	mEngine=irrklang::createIrrKlangDevice();
 	changeVolume();
-	if (!mDevice) {
+	if (!mEngine) {
 		return false;
 	}
 	return true;
@@ -91,8 +94,17 @@ bool AudioSystem::playStream( std::string name,bool isLoop,int time)
 	path+=name;
 	mStreamName=name;
 
-	mStream=OpenSound(mDevice, path.c_str(), true);
-	mStream->setRepeat(isLoop);
+	if (mStream!=NULL)
+	{
+		mStream->stop();
+		mStream->drop();
+		mStream=NULL;
+	}
+
+	//mStream=OpenSound(mDevice, path.c_str(), true);
+	//mStream->setRepeat(isLoop);
+	mStream=mEngine->play2D(path.c_str(),isLoop,false,true);
+
 	if(time==0)
 	{
 		mStream->setVolume(mStreamVol);
@@ -106,7 +118,6 @@ bool AudioSystem::playStream( std::string name,bool isLoop,int time)
 		mTickTime=time/(mStreamVol/0.05);
 		mCurStreamVol=0;
 	}
-	mStream->play();
 
 	return true;
 }
@@ -118,6 +129,8 @@ bool AudioSystem::stopStream(int time)
 		if(time==0)
 		{
 			mStream->stop();
+			mStream->drop();
+			mStream=NULL;
 		}
 		else
 		{
@@ -138,6 +151,7 @@ bool AudioSystem::playSample( std::string name,bool isLoop,bool isList)
 	if(mSample!=NULL)
 	{
 		mSample->stop();
+		mSample->drop();
 		mSample=NULL;
 	}
 
@@ -155,18 +169,19 @@ bool AudioSystem::playSample( std::string name,bool isLoop,bool isList)
 		std::vector<std::string> selist=mSEList[first]->operator [](second);
 		srand((int)time(NULL));
 		int r=rand()%selist.size();
+		if(r>=selist.size())
+			r=selist.size()-1;
 		path+=selist[r];
+
+		Ogre::LogManager::getSingletonPtr()->logMessage(std::string("Audio play:")+path,Ogre::LML_NORMAL);
 	}
 	else
 	{
 		path+=name;
 	}
 
-
-	mSample=OpenSound(mDevice, path.c_str(), false);
-	mSample->setRepeat(isLoop);
+	mSample=mEngine->play2D(path.c_str(),isLoop,false,true);
 	mSample->setVolume(mSampleVol);
-	mSample->play();
 
 	return true;
 }
@@ -215,6 +230,7 @@ bool AudioSystem::stopSample()
 	if (mSample!=NULL)
 	{
 		mSample->stop();
+		mSample->drop();
 		mSample=NULL;
 	}
 	return true;

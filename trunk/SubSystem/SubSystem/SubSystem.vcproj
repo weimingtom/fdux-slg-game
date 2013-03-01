@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(OGRE_HOME)\boost_1_44&quot;;&quot;$(OGRE_HOME)\include\ogre&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;..\..\ticpp;..\..\SLGGame\SLGGame\src;..\..\MyGUI_3.2.0_RC1\MyGUIEngine\include\;..\..\MyGUI_3.2.0_RC1\Platforms\Ogre\OgrePlatform\include;&quot;..\..\audiere-1.9.4-win32\include&quot;;&quot;..\..\lua-5.1.4\include&quot;;..\..\boost_1_45_0"
+				AdditionalIncludeDirectories="&quot;..\..\irrKlang-1.4.0\include&quot;;&quot;$(OGRE_HOME)\boost_1_44&quot;;&quot;$(OGRE_HOME)\include\ogre&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;..\..\ticpp;..\..\SLGGame\SLGGame\src;..\..\MyGUI_3.2.0_RC1\MyGUIEngine\include\;..\..\MyGUI_3.2.0_RC1\Platforms\Ogre\OgrePlatform\include;&quot;..\..\lua-5.1.4\include&quot;;..\..\boost_1_45_0"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -106,7 +106,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="&quot;$(OGRE_HOME)\boost_1_44&quot;;&quot;$(OGRE_HOME)\include\ogre&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;..\..\ticpp;..\..\SLGGame\SLGGame\src;..\..\MyGUI_3.2.0_RC1\MyGUIEngine\include\;..\..\MyGUI_3.2.0_RC1\Platforms\Ogre\OgrePlatform\include;&quot;..\..\audiere-1.9.4-win32\include&quot;;&quot;..\..\lua-5.1.4\include&quot;;..\..\boost_1_45_0"
+				AdditionalIncludeDirectories="&quot;..\..\irrKlang-1.4.0\include&quot;;&quot;$(OGRE_HOME)\boost_1_44&quot;;&quot;$(OGRE_HOME)\include\ogre&quot;;&quot;$(OGRE_HOME)\include\OIS&quot;;..\..\ticpp;..\..\SLGGame\SLGGame\src;..\..\MyGUI_3.2.0_RC1\MyGUIEngine\include\;..\..\MyGUI_3.2.0_RC1\Platforms\Ogre\OgrePlatform\include;&quot;..\..\lua-5.1.4\include&quot;;..\..\boost_1_45_0"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
