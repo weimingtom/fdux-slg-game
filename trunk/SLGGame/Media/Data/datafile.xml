@@ -623,6 +623,10 @@
 			<ShieldId type="String" value="Shield3"/>
 			<ArmorId type="String" value="HeavyArmor2"/>
 			<SkillTable>
+				<AttackTrain type="Int" value="0" />
+				<MarchingTrain type="Int" value="0" />
+				<Trample  type="Int" value="0" />
+				<Break type="Int" value="1" />
 				<ShortSpear type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
 				<HeavyArmor type="Int" value="2"/>
@@ -3613,7 +3617,7 @@
 			<CoolDown type="Int" value="1"/>
 			<Icon type="String" value="skill_act1_snipe"/>
 			<Script type="String" value="Fusillade.lua"/>
-			<SkillRole type="Int" value="10"/>
+			<SkillRole type="Int" value="26"/>
 		</Fusillade>
 		<Prepare>
 			<Type type="Int" value="0"/>

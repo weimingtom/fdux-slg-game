@@ -879,14 +879,16 @@ void BattleAIState::SquadAI::updateMove()
 		targetdecision.addFactor(new ClosetoCroodFactor(Crood(mSquad->getGridX(), mSquad->getGridY())), 0.1f);
 		break;
 	case SGM_SUPPORT_RANGE:
-		targetdecision.addFactor(new SquadMoveClosetoPathFactor(&moveareaold, &fullpath), 0.9f);
+		targetdecision.addFactor(new SquadMoveClosetoPathFactor(&moveareaold, &fullpath), 0.7f);
 		targetdecision.addFactor(new HighTerrainAttrFactor(0), 0.3f);
 		targetdecision.addFactor(new CloseToEnemyFactor(mSquad->getFaction(), false), -0.2f);
+		targetdecision.addFactor(new ClosetoCroodFactor(Crood(mSquad->getGridX(), mSquad->getGridY())), 0.2f);
 		break;
 	case SGM_SUPPORT_CLOSE:
-		targetdecision.addFactor(new SquadMoveClosetoPathFactor(&moveareaold, &fullpath), 0.9f);
-		targetdecision.addFactor(new RandomFactor<Crood>(0.0f, 100.0f), 0.2f);
+		targetdecision.addFactor(new SquadMoveClosetoPathFactor(&moveareaold, &fullpath), 0.95f);
+		targetdecision.addFactor(new RandomFactor<Crood>(0.0f, 100.0f), 0.05f);
 		targetdecision.addFactor(new CloseToEnemyFactor(mSquad->getFaction(), false), -0.1f);
+		targetdecision.addFactor(new ClosetoCroodFactor(Crood(mSquad->getGridX(), mSquad->getGridY())), 0.1f);
 		break;
 	}
 	targetdecision.calcDecision();
@@ -965,43 +967,43 @@ void BattleAIState::SquadAI::updateSkill()
 		switch(mTargetType)
 		{
 		case SGM_WAIT:
-			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.2f);
+			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.25f);
 			skilldecision.addFactor(new SquadSkillbySptEffectiveFactor(mSquad) , 0.7f);
-			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(0.0f, 100.0f) , 0.1f);
+			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(0.0f, 100.0f) , 0.05f);
 			break;
 		case SGM_MOVE:
-			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.2f);
+			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.25f);
 			skilldecision.addFactor(new SquadSkillbySptEffectiveFactor(mSquad) , 0.7f);
-			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(0.0f, 100.0f) , 0.1f);
+			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(0.0f, 100.0f) , 0.05f);
 			break;
 		case SGM_RALLY:
-			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.2f);
+			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.25f);
 			skilldecision.addFactor(new SquadSkillbySptEffectiveFactor(mSquad) , 0.7f);
-			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(0.0f, 100.0f) , 0.1f);
+			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(0.0f, 100.0f) , 0.05f);
 			break;
 		case SGM_DEFEND:
-			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.3f);
+			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.35f);
 			skilldecision.addFactor(new SquadSkillbySptEffectiveFactor(mSquad) , 0.4f);
 			skilldecision.addFactor(new SquadSkillbyRoleFactor(mSquad, ROLETYPE_MAINFORCE | ROLETYPE_SUPPORT_DEF | ROLETYPE_SUPPORT_WOUND | ROLETYPE_SUPPORT_WAVER) , 0.2f);
-			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(0.0f, 100.0f) , 0.1f);
+			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(0.0f, 100.0f) , 0.05f);
 			break;
 		case SGM_ATTACK:
-			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.7f);
+			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.75f);
 			skilldecision.addFactor(new SquadSkillbySptEffectiveFactor(mSquad) , 0.05f);
 			skilldecision.addFactor(new SquadSkillbyRoleFactor(mSquad, ROLETYPE_MAINFORCE | ROLETYPE_ANTI_HIGHARMOR | ROLETYPE_ANTI_CAV | ROLETYPE_SUPPORT_AP), 0.15f);
-			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(0.0f, 100.0f) , 0.1f);
+			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(0.0f, 100.0f) , 0.05f);
 			break;
 		case SGM_SUPPORT_RANGE:
-			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.7f);
+			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.75f);
 			skilldecision.addFactor(new SquadSkillbySptEffectiveFactor(mSquad) , 0.05f);
 			skilldecision.addFactor(new SquadSkillbyRoleFactor(mSquad, ROLETYPE_SUPPORT_RANGE | ROLETYPE_ANTI_HIGHFORM ), 0.15f);
-			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(0.0f, 100.0f) , 0.1f);
+			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(0.0f, 100.0f) , 0.05f);
 			break;
 		case SGM_SUPPORT_CLOSE:
-			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.7f);
+			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.75f);
 			skilldecision.addFactor(new SquadSkillbySptEffectiveFactor(mSquad) , 0.05f);
 			skilldecision.addFactor(new SquadSkillbyRoleFactor(mSquad, ROLETYPE_SUPPORT_CLOSE | ROLETYPE_ANTI_MAGE | ROLETYPE_SUPPORT_AP), 0.15f);
-			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(0.0f, 100.0f) , 0.1f);
+			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(0.0f, 100.0f) , 0.05f);
 			break;
 		}
 		skilldecision.calcDecision();
@@ -1760,10 +1762,10 @@ void BattleAIState::DefendCommander::updateMission(SquadGroupCommander& sg, int 
 	case SGM_DEFEND:
 		{
 			DecisionMap<Crood> decision(mMissionArea.getCroodVec());
-			decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter()), 0.6f);
+			decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter()), 0.65f);
 			decision.addFactor(new HighTerrainAttrAreaFactor(0), 0.2f);
 			decision.addFactor(new ClosetoCroodFactor(tgtcrood), 0.3f);
-			decision.addFactor(new ClosetoBorderFactor(mMissionArea), -0.1f);
+			decision.addFactor(new ClosetoBorderFactor(mMissionArea), -0.05f);
 			decision.calcDecision();
 			tgtcrood = decision.getHighest();
 			sg.setTarget(SGM_DEFEND, tgtcrood);
@@ -1795,10 +1797,10 @@ void BattleAIState::DefendCommander::rallySquadGroup(SquadGroupCommander& sg, in
 {
 	std::map<int, OtherSquadGroupInfo>::iterator osgite = othersquadgroup.find(osgindex);
 	DecisionMap<Crood> decision(mMissionArea.getCroodVec());
-	decision.addFactor(new ClosetoCroodFactor(mMissionArea.getCenter()), 0.2f);
-	decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter()), 0.3f);
+	decision.addFactor(new ClosetoCroodFactor(mMissionArea.getCenter()), 0.1f);
+	decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter()), 0.55f);
 	decision.addFactor(new ClosetoCroodFactor(midcrood), 0.4f);
-	decision.addFactor(new RandomFactor<Crood>(0.0f, 100.0f), 0.1f);
+	decision.addFactor(new RandomFactor<Crood>(0.0f, 100.0f), 0.05f);
 	decision.calcDecision();
 	Crood targetcrood = decision.getHighest();
 	sg.setTarget(SGM_RALLY, targetcrood);
@@ -1816,20 +1818,20 @@ void BattleAIState::DefendCommander::createMission(SquadGroupCommander& sg, int 
 	{
 		if(sg.mType == SG_MAIN)
 		{
-			decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter(), 0), 0.9f);
-			decision.addFactor(new RandomFactor<Crood>(0.0f, 100.0f), 0.1f);
+			decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter(), 0), 0.95f);
+			decision.addFactor(new RandomFactor<Crood>(0.0f, 100.0f), 0.05f);
 			missiontype = SGM_ATTACK;
 		}
 		else if(sg.mType == SG_SUPPORT_RANGE)
 		{
-			decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter(), 2), 0.9f);
-			decision.addFactor(new RandomFactor<Crood>(0.0f, 100.0f), 0.1f);
+			decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter(), 1), 0.95f);
+			decision.addFactor(new RandomFactor<Crood>(0.0f, 100.0f), 0.05f);
 			missiontype = SGM_SUPPORT_RANGE;
 		}
 		else
 		{
-			decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter(), 1), 0.9f);
-			decision.addFactor(new RandomFactor<Crood>(0.0f, 100.0f), 0.1f);
+			decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter(), 1), 0.95f);
+			decision.addFactor(new RandomFactor<Crood>(0.0f, 100.0f), 0.05f);
 			missiontype = SGM_SUPPORT_CLOSE;
 		}
 	}
@@ -1849,8 +1851,8 @@ void BattleAIState::DefendCommander::createMission(SquadGroupCommander& sg, int 
 		}
 		decision.addFactor(new ClosetoCroodFactor(osgite->second.mArea.getCenter()), 0.8f);
 		decision.addFactor(new HighTerrainAttrAreaFactor(0), 0.2f);
-		decision.addFactor(new ClosetoBorderFactor(mMissionArea), -0.1f);
-		decision.addFactor(new RandomFactor<Crood>(0.0f, 100.0f), 0.1f);
+		decision.addFactor(new ClosetoBorderFactor(mMissionArea), -0.05f);
+		decision.addFactor(new RandomFactor<Crood>(0.0f, 100.0f), 0.05f);
 	}
 	decision.calcDecision();
 	tgtcrood = decision.getHighest();

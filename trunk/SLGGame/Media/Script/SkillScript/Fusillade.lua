@@ -8,6 +8,7 @@ function useskill()
 	end
 	atk = form * squadnum / 50.0;
 	mid = SquadLib.ApplyModifier(caster, 0, 0.0, atk, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+	ScriptCommonLib.SetTempString("modifierid", mid);
 	x, y = SquadLib.GetSquadCoord(target);
 	if x >  -1 then
 		re = SkillLib.RangedAttack(caster,target);
@@ -28,6 +29,7 @@ function useskill()
 			ScriptCommonLib.SetTempInt("castsuccess", 1);
 		end
 	end
+	mid = ScriptCommonLib.GetTempString("modifierid");
 	SquadLib.RemoveModifier(caster, mid);
 end
 
