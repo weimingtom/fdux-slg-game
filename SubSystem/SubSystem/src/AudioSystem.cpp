@@ -215,6 +215,7 @@ bool AudioSystem::stopSample()
 	if (mSample!=NULL)
 	{
 		mSample->stop();
+		mSample=NULL;
 	}
 	return true;
 }
