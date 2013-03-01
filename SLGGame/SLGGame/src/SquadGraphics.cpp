@@ -176,7 +176,7 @@ mDirection(direction)
 	mSName=name;
 	BillboardManager::getSingletonPtr()->addBillBoard(mSquadBB);
 
-	mSquadValueBB=new GUISquadValueBillBoard(mCommanderUnit->mNode);
+	mSquadValueBB=new GUISquadValueBillBoard(mNode);
 	BillboardManager::getSingletonPtr()->addBillBoard(mSquadValueBB);
 
 	//ÉèÖÃ²ÎÊı
