@@ -1,18 +1,17 @@
 function onaffect()
-	mid = ScriptCommonLib.GetString("modifierid");
-	sid = ScriptCommonLib.GetTempString("squadid");
-	eid = ScriptCommonLib.GetTempString("effectid");
-	tid = ScriptCommonLib.GetString("triggerid");
-	ScriptCommonLib.SetInt("spread", 1);
+	local mid = ScriptCommonLib.GetString("modifierid");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local eid = ScriptCommonLib.GetTempString("effectid");
+	local tid = ScriptCommonLib.GetString("triggerid");
 	if mid ~= "" then
 		SquadLib.RemoveModifier(sid, mid);
 	end
-	lv = SquadLib.GetEffectLevel(sid, eid);
-	apdown = 0;
+	local lv = SquadLib.GetEffectLevel(sid, eid);
+	local apdown = 0;
 	if lv > 4 then
 		apdown = -lv + 4;
 	end
-	mid = SquadLib.ApplyModifier(sid, 1, -lv * 0.5, -lv * 0.5, -lv * 0.5, 0.0, 0.0, apdown, 0.0, 0.0, 0.0, 0.0);
+	local mid = SquadLib.ApplyModifier(sid, 1, -lv * 0.5, -lv * 0.5, -lv * 0.5, 0.0, 0.0, apdown, 0.0, 0.0, 0.0, 0.0);
 	ScriptCommonLib.SetString("modifierid", mid);
 	if tid == "" then
 		tid = SquadLib.AddSquadTrigger(sid, "TurnStart", "onturnstart");
@@ -27,19 +26,20 @@ function onaffect()
 	-- ScriptCommonLib.SetInt("curlevel", lv);
 	
 	--´«²¥¶¯Ò¡
+	ScriptCommonLib.SetInt("spread", 1);
 	if lv > 4 then
-		sf = SquadLib.GetFaction(sid);
-		croodx, croody = SquadLib.GetSquadCoord(sid);
-		croodlist = {
+		local sf = SquadLib.GetFaction(sid);
+		local croodx, croody = SquadLib.GetSquadCoord(sid);
+		local croodlist = {
 			{croodx - 1, croody},
 			{croodx, croody - 1},
 			{croodx, croody + 1},
 			{croodx + 1, croody},
 		};
 		for i = 1, 4 do
-			tgtsid = BattleLib.GetSquadAt(croodlist[i][1], croodlist[i][2], 1, sf);
+			local tgtsid = BattleLib.GetSquadAt(croodlist[i][1], croodlist[i][2], 1, sf);
 			if tgtsid ~= "" then
-				tgtf = SquadLib.GetFaction(tgtsid);
+				local tgtf = SquadLib.GetFaction(tgtsid);
 				if tgtf == sf then
 					SquadLib.ApplyEffect(tgtsid, "Waver");
 				end
@@ -50,9 +50,9 @@ function onaffect()
 end
 
 function onremove()
-	mid = ScriptCommonLib.GetString("modifierid");
-	sid = ScriptCommonLib.GetTempString("squadid");
-	tid = ScriptCommonLib.GetString("triggerid");
+	local mid = ScriptCommonLib.GetString("modifierid");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local tid = ScriptCommonLib.GetString("triggerid");
 	if mid ~= "" then
 		SquadLib.RemoveModifier(sid, mid);
 	end
@@ -62,15 +62,15 @@ function onremove()
 end
 
 function onturnstart()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	eid = ScriptCommonLib.GetString("effectid");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local eid = ScriptCommonLib.GetString("effectid");
 	SquadLib.RemoveEffect(sid, eid);
 end
 
 function canaffect()
-	squadid = ScriptCommonLib.GetTempString("squadid");
-	spread = ScriptCommonLib.GetInt("spread");
-	unshakable, eid = SquadLib.GetEffectLevelByName(squadid, "Unshakable");
+	local squadid = ScriptCommonLib.GetTempString("squadid");
+	local spread = ScriptCommonLib.GetInt("spread");
+	local unshakable, eid = SquadLib.GetEffectLevelByName(squadid, "Unshakable");
 	if unshakable > 0 or spread == 1 then
 		ScriptCommonLib.SetTempInt("affect", 0);
 	else

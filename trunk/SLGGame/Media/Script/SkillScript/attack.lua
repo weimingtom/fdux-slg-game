@@ -1,11 +1,11 @@
 function useskill()
-	caster  = ScriptCommonLib.GetTempString("squadid");
-	target  = ScriptCommonLib.GetTempString("targetsquadid");
-	re = SkillLib.MeleeCombat(caster,target);
+	local caster  = ScriptCommonLib.GetTempString("squadid");
+	local target  = ScriptCommonLib.GetTempString("targetsquadid");
+	local re = SkillLib.MeleeCombat(caster,target);
 	if re>0 then
-		casterlv = SquadLib.GetSquadLevel(caster);
-		targetlv = SquadLib.GetSquadLevel(target);
-		ep = 50;
+		local casterlv = SquadLib.GetSquadLevel(caster);
+		local targetlv = SquadLib.GetSquadLevel(target);
+		local ep = 50;
 		if targetlv > casterlv then
 			ep = ep + (targetlv - casterlv) * 5;
 		end
@@ -15,10 +15,10 @@ function useskill()
 end
 
 function validtarget()
-	caster  = ScriptCommonLib.GetTempString("squadid");
-	target  = ScriptCommonLib.GetTempString("targetsquadid");
-	casterfaction = SquadLib.GetFaction(caster);
-	targetfaction = SquadLib.GetFaction(target);
+	local caster  = ScriptCommonLib.GetTempString("squadid");
+	local target  = ScriptCommonLib.GetTempString("targetsquadid");
+	local casterfaction = SquadLib.GetFaction(caster);
+	local targetfaction = SquadLib.GetFaction(target);
 	if casterfaction ~= targetfaction then
 		ScriptCommonLib.SetTempInt("validtarget", 1);
 	end

@@ -1,17 +1,17 @@
 function useskill()
-	caster  = ScriptCommonLib.GetTempString("squadid");
-	target  = ScriptCommonLib.GetTempString("targetsquadid");
-	squad1num = SquadLib.GetUnitNum(caster);
-	squad2num = SquadLib.GetUnitNum(target);
-	re = SkillLib.MeleeCombat(caster,target);
+	local caster  = ScriptCommonLib.GetTempString("squadid");
+	local target  = ScriptCommonLib.GetTempString("targetsquadid");
+	local squad1num = SquadLib.GetUnitNum(caster);
+	local squad2num = SquadLib.GetUnitNum(target);
+	local re = SkillLib.MeleeCombat(caster,target);
 	if re>0 then
-		ep = 60;
+		local ep = 60;
 		if targetlv > casterlv then
 			ep = ep + (targetlv - casterlv) * 6;
 		end
-		squad1lost = squad1num - SquadLib.GetUnitNum(caster);
-		squad2lost = squad2num - SquadLib.GetUnitNum(target);
-		point = squad2lost - squad1lost + ScriptCommonLib.GetRand(0, 20);
+		local squad1lost = squad1num - SquadLib.GetUnitNum(caster);
+		local squad2lost = squad2num - SquadLib.GetUnitNum(target);
+		local point = squad2lost - squad1lost + ScriptCommonLib.GetRand(0, 20);
 		if point > 15 then
 			SquadLib.ChangeFormation(target, 2);
 			ep = ep + 20;
@@ -22,10 +22,10 @@ function useskill()
 end
 
 function validtarget()
-	caster  = ScriptCommonLib.GetTempString("squadid");
-	target  = ScriptCommonLib.GetTempString("targetsquadid");
-	casterfaction = SquadLib.GetFaction(caster);
-	targetfaction = SquadLib.GetFaction(target);
+	local caster  = ScriptCommonLib.GetTempString("squadid");
+	local target  = ScriptCommonLib.GetTempString("targetsquadid");
+	local casterfaction = SquadLib.GetFaction(caster);
+	local targetfaction = SquadLib.GetFaction(target);
 	if casterfaction ~= targetfaction then
 		ScriptCommonLib.SetTempInt("validtarget", 1);
 	end

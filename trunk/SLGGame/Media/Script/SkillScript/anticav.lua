@@ -1,8 +1,8 @@
 function onaffect()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	eid = ScriptCommonLib.GetTempString("effectid");
-	tid1 = ScriptCommonLib.GetString("triggerid1");
-	tid2 = ScriptCommonLib.GetString("triggerid2");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local eid = ScriptCommonLib.GetTempString("effectid");
+	local tid1 = ScriptCommonLib.GetString("triggerid1");
+	local tid2 = ScriptCommonLib.GetString("triggerid2");
 	if tid1 == "" then
 		tid1 = SquadLib.AddSquadTrigger(sid, "OnMeleeAttack", "onmeleeattack");
 		SquadLib.ActiveSquadTrigger(sid, tid1);
@@ -17,9 +17,9 @@ function onaffect()
 end
 
 function onremove()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	tid1 = ScriptCommonLib.GetString("triggerid1");
-	tid2 = ScriptCommonLib.GetString("triggerid2");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local tid1 = ScriptCommonLib.GetString("triggerid1");
+	local tid2 = ScriptCommonLib.GetString("triggerid2");
 	if tid1 ~= "" then
 		SquadLib.RemoveSquadTrigger(sid, tid1);
 	end
@@ -29,13 +29,13 @@ function onremove()
 end
 
 function onmeleeattack()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	tsid  = ScriptCommonLib.GetTempString("targetsquadid");
-	eid = ScriptCommonLib.GetString("effectid");
-	lv = SquadLib.GetEffectLevel(sid, eid);
-	house = SquadLib.GetEquip(tsid, 1);
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local tsid  = ScriptCommonLib.GetTempString("targetsquadid");
+	local eid = ScriptCommonLib.GetString("effectid");
+	local lv = SquadLib.GetEffectLevel(sid, eid);
+	local house = SquadLib.GetEquip(tsid, 1);
 	if house ~= "none" then
-		mid = SquadLib.ApplyModifier(sid, 0, lv * 2 + 1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+		local mid = SquadLib.ApplyModifier(sid, 0, lv * 2 + 1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 		ScriptCommonLib.SetString("modifierid", mid);
 	end
 end

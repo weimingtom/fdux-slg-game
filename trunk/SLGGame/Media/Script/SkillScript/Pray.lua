@@ -1,11 +1,11 @@
 function useskill()
-	caster  = ScriptCommonLib.GetTempString("squadid");
-	ap = SquadLib.GetActionPoint(caster);
-	maxnum = SquadLib.GetUnitMaxNum(caster);
+	local caster  = ScriptCommonLib.GetTempString("squadid");
+	local ap = SquadLib.GetActionPoint(caster);
+	local maxnum = SquadLib.GetUnitMaxNum(caster);
 	SquadLib.Animation(caster, 1, "Skill", "none", "mp_seal_08", 0, 1);
-	num = SquadLib.GetUnitNum(caster);
-	sklv = SquadLib.GetSkillLevel(caster, "Pray");
-	camp, eid = SquadLib.GetEffectLevelByName(caster, "Camp");
+	local num = SquadLib.GetUnitNum(caster);
+	local sklv = SquadLib.GetSkillLevel(caster, "Pray");
+	local camp, eid = SquadLib.GetEffectLevelByName(caster, "Camp");
 	if ap > 2 + sklv * 2 + camp then
 	 ap = 2 + sklv * 2 + camp;
 	end
@@ -14,7 +14,7 @@ function useskill()
 		num = maxnum;
 	end
 	SquadLib.SetUnitNum(caster, num);
-	ep = 8 * num;
+	local ep = 8 * num;
 	SquadLib.AddExp(caster, ep);	
 	ScriptCommonLib.SetTempInt("castsuccess", 1);
 end

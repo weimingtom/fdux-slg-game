@@ -1,10 +1,10 @@
 function useskill()
-	caster  = ScriptCommonLib.GetTempString("squadid");
-	ap = SquadLib.GetActionPoint(caster);
-	maxnum = SquadLib.GetUnitMaxNum(caster);
-	num = SquadLib.GetUnitNum(caster);
-	sklv = SquadLib.GetSkillLevel(caster, "Rest");
-	camp, eid = SquadLib.GetEffectLevelByName(caster, "Camp");
+	local caster  = ScriptCommonLib.GetTempString("squadid");
+	local ap = SquadLib.GetActionPoint(caster);
+	local maxnum = SquadLib.GetUnitMaxNum(caster);
+	local num = SquadLib.GetUnitNum(caster);
+	local sklv = SquadLib.GetSkillLevel(caster, "Rest");
+	local camp, eid = SquadLib.GetEffectLevelByName(caster, "Camp");
 	if ap > 3 + camp then
 	 ap = 3 + camp;
 	end
@@ -13,7 +13,7 @@ function useskill()
 		num = maxnum;
 	end
 	SquadLib.SetUnitNum(caster, num);
-	ep = 5 * num;
+	local ep = 5 * num;
 	SquadLib.AddExp(caster, ep);	
 	ScriptCommonLib.SetTempInt("castsuccess", 1);
 end

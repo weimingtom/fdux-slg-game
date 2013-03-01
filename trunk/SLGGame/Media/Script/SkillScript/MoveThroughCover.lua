@@ -1,8 +1,8 @@
 function onaffect()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	eid = ScriptCommonLib.GetTempString("effectid");
-	tid = ScriptCommonLib.GetString("triggerid");
-	tid1 = ScriptCommonLib.GetString("triggerid1");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local eid = ScriptCommonLib.GetTempString("effectid");
+	local tid = ScriptCommonLib.GetString("triggerid");
+	local tid1 = ScriptCommonLib.GetString("triggerid1");
 
 	if tid == "" then
 		tid = SquadLib.AddSquadTrigger(sid, "TryMove", "trymove");
@@ -18,9 +18,9 @@ function onaffect()
 end
 
 function onremove()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	tid = ScriptCommonLib.GetString("triggerid");
-	tid1 = ScriptCommonLib.GetString("triggerid1");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local tid = ScriptCommonLib.GetString("triggerid");
+	local tid1 = ScriptCommonLib.GetString("triggerid1");
 	if tid ~= "" then
 		SquadLib.RemoveSquadTrigger(sid, tid);
 	end
@@ -34,10 +34,10 @@ function canaffect()
 end
 
 function trymove()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	eid = ScriptCommonLib.GetString("effectid");
-	lv = SquadLib.GetEffectLevel(sid, eid);
-	apcost = ScriptCommonLib.GetTempFloat("apcost");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local eid = ScriptCommonLib.GetString("effectid");
+	local lv = SquadLib.GetEffectLevel(sid, eid);
+	local apcost = ScriptCommonLib.GetTempFloat("apcost");
 	apcost = apcost - lv; 
 	if apcost < 2 then
 		apcost = 2;
@@ -46,10 +46,10 @@ function trymove()
 end
 
 function moveto()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	eid = ScriptCommonLib.GetString("effectid");
-	lv = SquadLib.GetEffectLevel(sid, eid);
-	apcost = ScriptCommonLib.GetTempFloat("apcost");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local eid = ScriptCommonLib.GetString("effectid");
+	local lv = SquadLib.GetEffectLevel(sid, eid);
+	local apcost = ScriptCommonLib.GetTempFloat("apcost");
 	apcost = apcost - lv; 
 	if apcost < 2 then
 		apcost = 2;

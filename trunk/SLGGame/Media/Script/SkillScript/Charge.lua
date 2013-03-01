@@ -1,8 +1,8 @@
 function onaffect()
-	tid = ScriptCommonLib.GetString("triggerid");
-	tid1 = ScriptCommonLib.GetString("triggerid1");
-	sid = ScriptCommonLib.GetTempString("squadid");
-	eid = ScriptCommonLib.GetTempString("effectid");
+	local tid = ScriptCommonLib.GetString("triggerid");
+	local tid1 = ScriptCommonLib.GetString("triggerid1");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local eid = ScriptCommonLib.GetTempString("effectid");
 	if tid == "" then
 		tid = SquadLib.AddSquadTrigger(sid, "OnCharge", "oncharge");
 		SquadLib.ActiveSquadTrigger(sid, tid);
@@ -17,10 +17,10 @@ function onaffect()
 end
 
 function onremove()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	tid = ScriptCommonLib.GetString("triggerid");
-	tid1 = ScriptCommonLib.GetString("triggerid1");
-	mid = ScriptCommonLib.GetString("modifierid");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local tid = ScriptCommonLib.GetString("triggerid");
+	local tid1 = ScriptCommonLib.GetString("triggerid1");
+	local mid = ScriptCommonLib.GetString("modifierid");
 	if tid ~= "" then
 		SquadLib.RemoveSquadTrigger(sid, tid);
 	end
@@ -37,20 +37,20 @@ function canaffect()
 end
 
 function oncharge()
-	mid = ScriptCommonLib.GetString("modifierid");
-	sid = ScriptCommonLib.GetTempString("squadid");
-	eid = ScriptCommonLib.GetString("effectid");
+	local mid = ScriptCommonLib.GetString("modifierid");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local eid = ScriptCommonLib.GetString("effectid");
 	if mid ~= "" then
 		SquadLib.RemoveModifier(sid, mid);
 	end
-	lv = SquadLib.GetEffectLevel(sid, eid);
+	local lv = SquadLib.GetEffectLevel(sid, eid);
 	mid = SquadLib.ApplyModifier(sid, 0, lv, 0.0, 0.0, lv, lv, 0.0, 0.0, 0.0, 0.0, 0.0);
 	ScriptCommonLib.SetString("modifierid", mid);
 end
 
 function aftercharge()
-	mid = ScriptCommonLib.GetString("modifierid");
-	sid = ScriptCommonLib.GetTempString("squadid");
+	local mid = ScriptCommonLib.GetString("modifierid");
+	local sid = ScriptCommonLib.GetTempString("squadid");
 	if mid ~= "" then
 		SquadLib.RemoveModifier(sid, mid);
 		ScriptCommonLib.SetString("modifierid", "");

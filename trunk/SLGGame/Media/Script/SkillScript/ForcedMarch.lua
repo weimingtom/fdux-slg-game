@@ -1,6 +1,6 @@
 function useskill()
-	caster  = ScriptCommonLib.GetTempString("squadid");
-	eid = SquadLib.ApplyEffect(caster, "ForceMarch");
+	local caster  = ScriptCommonLib.GetTempString("squadid");
+	local eid = SquadLib.ApplyEffect(caster, "ForceMarch");
 	SquadLib.AddExp(caster, 50);
 	SquadLib.ShowValue1(caster, "Skills_ForceMarch", 1.0, 1.0, 1.0);
 	ScriptCommonLib.SetTempInt("castsuccess", 1);
@@ -15,10 +15,10 @@ function validtarget()
 end
 
 function onaffect()
-	eid1 = ScriptCommonLib.GetString("effectid1");
-	sid = ScriptCommonLib.GetTempString("squadid");
-	eid = ScriptCommonLib.GetTempString("effectid");
-	tid = ScriptCommonLib.GetString("triggerid");
+	local eid1 = ScriptCommonLib.GetString("effectid1");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local eid = ScriptCommonLib.GetTempString("effectid");
+	local tid = ScriptCommonLib.GetString("triggerid");
 	if eid1 ~= "" then
 		SquadLib.RemoveEffect(sid, eid1);
 	end
@@ -33,9 +33,9 @@ function onaffect()
 end
 
 function onremove()
-	eid1 = ScriptCommonLib.GetString("effectid1");
-	sid = ScriptCommonLib.GetTempString("squadid");
-	tid = ScriptCommonLib.GetString("triggerid");
+	local eid1 = ScriptCommonLib.GetString("effectid1");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local tid = ScriptCommonLib.GetString("triggerid");
 	if eid1 ~= "" then
 		SquadLib.RemoveEffect(sid, eid1);
 	end
@@ -45,8 +45,8 @@ function onremove()
 end
 
 function onturnend()
-	sid = ScriptCommonLib.GetTempString("squadid");
-	eid = ScriptCommonLib.GetString("effectid");
+	local sid = ScriptCommonLib.GetTempString("squadid");
+	local eid = ScriptCommonLib.GetString("effectid");
 	SquadLib.RemoveEffect(sid, eid);
 end
 
