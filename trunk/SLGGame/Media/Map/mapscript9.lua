@@ -107,7 +107,7 @@ function turnend()
 	turn = ScriptCommonLib.GetTempInt("turn");
 	team = ScriptCommonLib.GetTempInt("team");
 	
-	if team == 1 and turn >= 15 then
+	if team == 1 and turn >= 10 then
 		BattleLib.AddGold(3000);
 		BattleLib.DumpSquadData();
 		local addedgold = ScriptCommonLib.GetInt("addedgold");

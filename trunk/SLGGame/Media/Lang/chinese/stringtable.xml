@@ -45,13 +45,12 @@
 		<mapinfo8 type="String" value = "法师塔的核心决策机构是由十五名大法师组成的法师议会，其中首席大法师担任议长职务，为法师塔最高管理者。而法师塔的二号人物则并不十分明确，管理法卫队的首席指挥法师和管理法师学院的首席教导师都有自称二号人物的实力。&#x0D;#FFFF00任务目标:击退敌方袭击
 "/>
 		<map8mission1 type="String" value = "(主要)击退敌方袭击"/>
-		<map8mission2 type="String" value = "(次要)10回合内击溃敌军(1650金币)"/>
-		<map8mission3 type="String" value = "(次要)卡琳娜不能被击溃(1300金币)"/>
+		<map8mission2 type="String" value = "(次要)卡琳娜不能被击溃(1650金币)"/>
 		
 		<map9 type="String" value = "月曜平原之战"/>
 		<mapinfo9 type="String" value = "自从安萨斯特将北之国一分为二，重新统一北方一直是诺斯和乌尔瓦历代王侯的夙愿，但在安萨斯特的统治下双方都不敢做出任何实质行动。直到教会势力脱离皇室控制后，一个强大的北国更符合其对抗皇室的需求，所以锡盟教廷默许了跟教会关系更紧密的乌尔瓦数次入侵诺斯，从此挑起了北国战乱的序幕，&#x0D;#FFFF00任务目标:坚守月曜镇（15回合）
 "/>
-		<map9mission1 type="String" value = "(主要)坚守月曜镇（15回合）"/>
+		<map9mission1 type="String" value = "(主要)坚守月曜镇（10回合）"/>
 		<map9mission2 type="String" value = "(次要)击溃敌军(1000金币)"/>
 		<map9mission3 type="String" value = "(次要)敌军不能进入月曜镇(1000金币)"/>
 		
