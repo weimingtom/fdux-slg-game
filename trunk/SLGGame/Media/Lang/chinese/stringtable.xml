@@ -21,7 +21,7 @@
 "/>
 		<map4mission1 type="String" value = "(主要)歼灭敌军"/>
 		<map4mission2 type="String" value = "(次要)己方部队不能溃散(800金币)"/>
-		<map4mission3 type="String" value = "(次要)10回合内结束战斗(800金币)"/>
+		<map4mission3 type="String" value = "(次要)7回合内结束战斗(800金币)"/>
 		
 		<map5 type="String" value = "月曜平原剿匪战"/>
 		<mapinfo5 type="String" value = "月曜镇是法师塔下属的四个主要城市之一，位于法师塔西北部的月曜平原，是规模仅次于主塔的第二大城市，也是法师塔主要的人口聚居地之一。&#x0D;#FFFF00任务目标:歼灭所有敌军
@@ -106,7 +106,7 @@
 		<map18 type="String" value = "黑骑士"/>
 		<mapinfo18 type="String" value = "都文力是整个大陆上最大的国家，它是皇室直辖的领地。一千年前，安萨斯特的船队就是从都文力的东海岸登陆，拉开了征服的序幕。而在皇室的威望日渐衰弱的今天，都文力依旧以强大的实力捍卫着安萨斯特的权威。&#x0D;#FFFF00任务目标:坚守8回合
 "/>
-		<map18mission1 type="String" value = "(主要)坚守6回合"/>
+		<map18mission1 type="String" value = "(主要)坚守10回合"/>
 		<map18mission2 type="String" value = "(次要)击溃两支以上黑骑士队(4300金币)"/>
 		
 		<map19 type="String" value = "突袭东港"/>

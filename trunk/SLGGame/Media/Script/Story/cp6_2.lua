@@ -1,7 +1,15 @@
 GUI.ButtonLock();
 GUI.SetDialogVisible(1);
+GUI.ShowImage("aofa.png",left,300);
+GUI.ShowRoleName("奥术法师");
+GUI.ShowText("法卫队直属奥术法师！前来支援！",1);
+GUI.ShowText("尔等鼠辈！束手就擒吧！",1);
+GUI.ClearText();
+GUI.ShowRoleName("");
 GUI.ShowImage("chihou_lv.png",left,300);
 GUI.ShowRoleName("匪军");
+GUI.ShowText("援……援军！法卫队的援军又到了！",1);
+GUI.ClearText();
 GUI.ShowText("我们被包围了！完……完蛋了！",1);
 GUI.ClearText();
 GUI.ShowText("大家快跑！",1);

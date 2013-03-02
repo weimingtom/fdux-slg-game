@@ -4195,6 +4195,16 @@
 				<InfAp type="Float" value="0.0"/>
 			</GroundModifier>
 		</ForestLow>
+		<ForestWithRoad>
+			<Script type="String" value="none"/>
+			<GroundModifier>
+				<Passable type="Int" value="1"/>
+				<Covert type="Float" value="1.0"/>
+				<Defence type="Float" value="1.0"/>
+				<CavAp type="Float" value="0.0"/>
+				<InfAp type="Float" value="0.0"/>
+			</GroundModifier>
+		</ForestWithRoad>
 		<Bridge>
 			<Script type="String" value="none"/>
 			<GroundModifier>
