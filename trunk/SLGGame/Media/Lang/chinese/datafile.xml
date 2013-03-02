@@ -792,6 +792,10 @@
 			<Name type="String" value="魔化盔甲"/>
 			<Describe type="String" value="（目标部队防御力增加）"/>	
 		</EnchantArmor>
+		<EnchantArrow>
+			<Name type="String" value="魔化箭矢"/>
+			<Describe type="String" value="（目标部队远程攻击力增加）"/>	
+		</EnchantArrow>
 		<FuryPuppet>
 			<Name type="String" value="狂化傀儡"/>
 			<Describe type="String" value="（攻击值增加，并获得践踏效果）"/>	
@@ -808,6 +812,10 @@
 			<Name type="String" value="闪电链"/>
 			<Describe type="String" value="（消耗所有行动值，根据消耗掉的行动值对目标部队造成一次攻击次数等于它们人数的攻击）"/>
 		</LightningChain>
+		<Fire>
+			<Name type="String" value="纵火"/>
+			<Describe type="String" value="（消耗所有行动值，根据消耗掉的行动值对目标部队造成一次攻击次）"/>
+		</Fire>
 	</SkillData>
 	<EffectData>
 		<DetectionTrain>
@@ -918,6 +926,10 @@
 			<Name type="String" value="魔化武器"/>
 			<Describe type="String" value="（攻击力增加）"/>	
 		</EnchantWeapon>
+		<EnchantArrow>
+			<Name type="String" value="魔化箭矢"/>
+			<Describe type="String" value="（远程攻击力增加）"/>	
+		</EnchantArrow>
 		<EnchantArmor>
 			<Name type="String" value="魔化盔甲"/>
 			<Describe type="String" value="（防御力增加）"/>	
@@ -962,6 +974,14 @@
 			<Name type="String" value="骑射"/>
 			<Describe type="String" value="（抵消部分马匹造成的远程攻击降低效果）"/>	
 		</Horsemanship>
+		<AtkTimeImprove>
+			<Name type="String" value="魔法攻击次数增效"/>
+			<Describe type="String" value="（元素魔法攻击攻击次数增多）"/>	
+		</AtkTimeImprove>
+		<AtkImprove>
+			<Name type="String" value="魔法攻击增效"/>
+			<Describe type="String" value="（元素魔法攻击力增加）"/>	
+		</AtkImprove>
 	</EffectData>
 	<GroundData>
 		<Grass>
