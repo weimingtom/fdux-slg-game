@@ -1001,9 +1001,13 @@
 			<Describe type="String" value="森林"/>
 		</Forest>
 		<ForestLow>
-			<Name type="String" value="树林"/>
-			<Describe type="String" value="树林"/>		
+			<Name type="String" value="矮树林"/>
+			<Describe type="String" value="矮树林"/>		
 		</ForestLow>	
+		<ForestWithRoad>
+			<Name type="String" value="林道"/>
+			<Describe type="String" value="林道"/>		
+		</ForestWithRoad>
 		<Bridge>
 			<Name type="String" value="桥梁"/>
 			<Describe type="String" value="桥梁"/>		
