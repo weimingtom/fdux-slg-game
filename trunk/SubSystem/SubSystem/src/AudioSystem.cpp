@@ -60,8 +60,8 @@ bool AudioSystem::init()
 	//mDevice=OpenDevice();
 	mEngine=irrklang::createIrrKlangDevice();
 	changeVolume();
-	if (!mEngine) {
-		return false;
+	if (mEngine==NULL) {
+		mEngine=irrklang::createIrrKlangDevice(irrklang::ESOD_NULL);
 	}
 	return true;
 }
