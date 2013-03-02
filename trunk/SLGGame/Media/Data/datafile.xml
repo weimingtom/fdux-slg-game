@@ -1642,7 +1642,7 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="7.0" />
 				<RangedAttack type="Float" value="1.0" />
-				<Defence type="Float" value="5.0" />
+				<Defence type="Float" value="7.0" />
 				<Formation type="Float" value="2.0" />
 				<Initiative type="Float" value="6.0" />
 				<ActionPoint type="Float" value="8.0" />

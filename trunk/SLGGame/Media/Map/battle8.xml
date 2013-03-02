@@ -232,7 +232,7 @@
     </Team2>
     <Team3>
         <Team3Squad_0 Type="GuardLightSword" GridX="19" GridY="17" Direction="1" UnitNum="50" />
-        <Team3Squad_1 Type="Kareena" GridX="19" GridY="16" Direction="1" UnitNum="50" />
+        <Team3Squad_1 Type="Kareena" GridX="19" GridY="16" Direction="1" UnitNum="20" />
         <Team3Squad_2 Type="GuardHeavySpear" GridX="18" GridY="16" Direction="1" UnitNum="50" />
     </Team3>
     <Team4 />
