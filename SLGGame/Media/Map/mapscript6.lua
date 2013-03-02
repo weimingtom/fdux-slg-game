@@ -43,7 +43,7 @@ function finishdeploy()
 	BattleLib.AssignAIGroup(2, "Team2Squad_8", "Ulva");
 	--创建AI任务(team,missionname,missiontype,missiontargetarea)
 	BattleLib.CreateAIMission(2, "Attack", 0, "DeployArea");
-	BattleLib.CreateAIMission(2, "AttackUlva", 0, "DeployArea");
+	BattleLib.CreateAIMission(3, "AttackUlva", 0, "DeployArea");
 	--指派AI分组任务(team,groupname,missionname)
 	BattleLib.AssignAIMission(2, "Ulva", "Attack");
 	BattleLib.AssignAIMission(3, "Winfred", "AttackUlva");
@@ -108,7 +108,7 @@ function turnstart()
 		BattleLib.AddStorySquad ("GuardHeavySpear", "GuardHeavySpear", 16, 18, 1);
 		BattleLib.Story("cp12_2.lua");
 	end
-	if team == 1 and turn == 4 then
+	if team == 1 and turn == 3 then
 		MapLib.MoveCameraTo( 8, 11);
 		BattleLib.AddBattleSquad("James", "Team3Squad_0", 8, 11, 3, 50);
 		BattleLib.AddBattleSquad("WinfredHeavyHalberd", "Team3Squad_1", 6, 16, 3, 50);
@@ -120,14 +120,14 @@ function turnstart()
 		BattleLib.AddBattleSquad("WinfredLightBow", "Team3Squad_7", 7, 10, 3, 50);
 		BattleLib.Story("cp12_5.lua");
 			
-		BattleLib.AssignAIGroup(3, "Team2Squad_0", "Winfred");
-		BattleLib.AssignAIGroup(3, "Team2Squad_1", "Winfred");
-		BattleLib.AssignAIGroup(3, "Team2Squad_2", "Winfred");
-		BattleLib.AssignAIGroup(3, "Team2Squad_3", "Winfred");
-		BattleLib.AssignAIGroup(3, "Team2Squad_4", "Winfred");
-		BattleLib.AssignAIGroup(3, "Team2Squad_5", "Winfred");
-		BattleLib.AssignAIGroup(3, "Team2Squad_6", "Winfred");
-		BattleLib.AssignAIGroup(3, "Team2Squad_7", "Winfred");
+		BattleLib.AssignAIGroup(3, "Team3Squad_0", "Winfred");
+		BattleLib.AssignAIGroup(3, "Team3Squad_1", "Winfred");
+		BattleLib.AssignAIGroup(3, "Team3Squad_2", "Winfred");
+		BattleLib.AssignAIGroup(3, "Team3Squad_3", "Winfred");
+		BattleLib.AssignAIGroup(3, "Team3Squad_4", "Winfred");
+		BattleLib.AssignAIGroup(3, "Team3Squad_5", "Winfred");
+		BattleLib.AssignAIGroup(3, "Team3Squad_6", "Winfred");
+		BattleLib.AssignAIGroup(3, "Team3Squad_7", "Winfred");
 	end
 end	
 		

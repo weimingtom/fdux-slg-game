@@ -5,7 +5,7 @@ GUI.ShowRoleName("菲");
 GUI.ShowText("这么多敌军是从哪里钻出来的！",1);
 GUI.ClearText();
 GUI.ShowText("大家坚持住，想办法帮助指挥法师突围！",1);
-GUI.ClearText
+GUI.ClearText();
 GUI.ShowRoleName("");
 GUI.ShowImage("",right,300);
 GUI.ShowImage("",left,300);

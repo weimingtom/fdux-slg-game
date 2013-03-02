@@ -5,7 +5,7 @@ GUI.ShowRoleName("奥术法师");
 GUI.ShowText("被……被包围了……",1);
 GUI.ClearText();
 GUI.ShowText("我们注定命丧于此了吗？",1);
-GUI.ClearText
+GUI.ClearText();
 GUI.ShowRoleName("");
 GUI.ShowImage("",right,300);
 GUI.ShowImage("",left,300);
