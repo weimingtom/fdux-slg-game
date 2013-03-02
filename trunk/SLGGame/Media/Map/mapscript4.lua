@@ -61,7 +61,7 @@ function unitdead()
 	
 	if BattleLib.TeamSquadLeft(1) == 0  then
 		--Ê§°Ü(storyscript,gold,exp)
-		BattleLib.Lost("GameOver.lua","0","0");
+		BattleLib.Lost("GameOver.lua", "0");
 	end
 	local faction = SquadLib.GetFaction(squad);
 	if faction == 1 then
@@ -86,7 +86,7 @@ function unitdead()
 			end
 			ScriptCommonLib.SetInt("addedgold", addedgold);
 			--Ê¤Àû(storyscript,gold,exp)
-			BattleLib.Win("cp9.lua", "0", "0");
+			BattleLib.Win("cp9.lua", addedgold);
 		end
 	end
 	if faction == 0 then
@@ -99,7 +99,7 @@ end
 function turnstart()
 	local turn = ScriptCommonLib.GetTempInt("turn");
 	local team = ScriptCommonLib.GetTempInt("team");
-	if team == 1 and turn == 2 then
+	if team == 1 and turn == 1 then
 	    BattleLib.Story("cp8_1.lua");
 	end
 end	
@@ -112,11 +112,10 @@ function turnend()
 	if team == 1 and BattleLib.TeamSquadLeft(2) == 0 then
 		BattleLib.DumpSquadData();
 		local addedgold = ScriptCommonLib.GetInt("addedgold");
-		ScriptCommonLib.SetInt("addedgold", addedgold);
 		--Ê¤Àû(storyscript,gold,exp)
-		BattleLib.Win("cp9.lua", "0", "0");
+		BattleLib.Win("cp9.lua", addedgold);
 	end
-	if team == 1 and turn > 10 then
+	if team == 1 and turn > 7 then
 	    local mission2 = ScriptCommonLib.GetInt("mission2");
 		BattleLib.SetPlayerMission(mission2, 2);
 	    ScriptCommonLib.SetInt("mission2state", 0);

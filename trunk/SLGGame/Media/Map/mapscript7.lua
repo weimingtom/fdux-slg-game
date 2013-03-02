@@ -73,7 +73,7 @@ function unitdead()
 	
 	if BattleLib.TeamSquadLeft(1) == 0  then
 		--Ê§°Ü(storyscript,gold,exp)
-		BattleLib.Lost("GameOver.lua","0","0");
+		BattleLib.Lost("GameOver.lua", "0");
 	end
 	local faction = SquadLib.GetFaction(squad);
 	if faction == 1 then
@@ -96,7 +96,7 @@ function unitdead()
 			end
 			ScriptCommonLib.SetInt("addedgold", addedgold);
 			--Ê¤Àû(storyscript,gold,exp)
-			BattleLib.Win("cp15.lua", "0", "0");
+			BattleLib.Win("cp15.lua", addedgold);
 		end
 	end
 end
@@ -121,7 +121,7 @@ function turnend()
 		addedgold = addedgold + 2500;
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		--Ê¤Àû(storyscript,gold,exp)
-		BattleLib.Win("cp15.lua", "0", "0");
+		BattleLib.Win("cp15.lua", addedgold);
 	end
 end
 
@@ -135,4 +135,12 @@ end
 function inarea()
 	local squad = ScriptCommonLib.GetTempString("squadid");
 	local area = ScriptCommonLib.GetTempString("areaid");
+	local squad = ScriptCommonLib.GetTempString("squadid");
+
+	if area == "Castle" then
+		if faction == 1 then
+			BattleLib.Story("cp14_2.lua");
+			--Ê§°Ü(storyscript,gold,exp)
+			BattleLib.Lost("GameOver.lua","0","0");
+	end
 end

@@ -67,7 +67,7 @@ function unitdead()
 	
 	if BattleLib.TeamSquadLeft(1) == 0  then
 		--Ê§°Ü(storyscript,gold,exp)
-		BattleLib.Lost("GameOver.lua","0","0");
+		BattleLib.Lost("GameOver.lua", "0");
 	end
 	local faction = SquadLib.GetFaction(squad);
 	if faction == 1 or faction == 0 then
@@ -87,7 +87,7 @@ function unitdead()
 			end
 			ScriptCommonLib.SetInt("addedgold", addedgold);
 		--Ê¤Àû(storyscript,gold,exp)
-			BattleLib.Win("cp33.lua", "0", "0");
+			BattleLib.Win("cp33.lua", addedgold);
 		end
 	end
 	if faction == 0 then
