@@ -1296,7 +1296,6 @@
 			<SkillTable>
 				<OneHandSword type="Int" value="2"/>
 				<XBow type="Int" value="2"/>
-				<HeavyArmor type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="NothHeavyCrossBow"/>
 			<RetainerId type="String" value="Scout"/>

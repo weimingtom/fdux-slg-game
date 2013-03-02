@@ -142,5 +142,6 @@ function inarea()
 			BattleLib.Story("cp14_2.lua");
 			--Ê§°Ü(storyscript,gold,exp)
 			BattleLib.Lost("GameOver.lua","0","0");
+		end
 	end
 end
