@@ -7,7 +7,7 @@ function useskill()
 	local improvelv, improve = SquadLib.GetEffectLevelByName(caster, "EnchantWImprove");
 	sklv = sklv + improvelv;
 	for i = 1, sklv do
-		SquadLib.ApplyEffect(target, "EnchantArmor");
+		SquadLib.ApplyEffect(target, "EnchantWeapon");
 	end
 	SquadLib.PlayParticle(target, 3, "mp_spell_effect_01", "none", 2500);
 	local casterlv = SquadLib.GetSquadLevel(caster);

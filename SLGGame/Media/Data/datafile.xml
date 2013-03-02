@@ -436,6 +436,7 @@
 				<BattlePuppet type="Int" value="0" />
 				<Attack type="Int" value="1" />	
 				<FuryPuppet type="Int" value="1" />	
+				<LightningChain type="Int" value="1" />	
 			</SkillTable>
 			<LeaderId type="String" value="Fay"/>
 			<RetainerId type="String" value="BattlePuppet"/>
@@ -488,7 +489,8 @@
 			<SkillTable>
 				<DetectionTrain type="Int" value="0" />
 				<RangedAttackTrain type="Int" value="0" />
-				<FastAttack type="Int" value="1" />
+				<Horsemanship type="Int" value="0" />
+				<Chaos type="Int" value="1" />
 				<OneHandSword type="Int" value="2"/>
 				<Bow type="Int" value="2"/>
 				<LightArmor type="Int" value="2"/>
@@ -497,7 +499,7 @@
 			<LeaderId type="String" value="WingsLightCavalry"/>
 			<RetainerId type="String" value="Scout"/>
 			<UnitNum value="50" type="Int"/>
-			<Level type="Int" value="3"/>
+			<Level type="Int" value="4"/>
 			<Exp type="Int" value="0"/>
 			<SkillPointAction type="Int" value="0"/>
 			<SkillPointPassive type="Int" value="0"/>
@@ -3379,6 +3381,7 @@
 				<FastAttack type="Int" value="2"/>
 				<Fusillade type="Int" value="2"/>
 				<SuppressAttack type="Int" value="5"/>
+				<Chaos type="Int" value="5"/>
 			</Active>
 			<Passive>
 				<AttackTrain type="Int" value="1">
@@ -3456,6 +3459,7 @@
 			<Active>
 				<FastAttack type="Int" value="2"/>
 				<ForcedMarch type="Int" value="2"/>
+				<Chaos type="Int" value="5"/>
 			</Active>
 			<Passive>
 				<MarchingTrain type="Int" value="1">
@@ -3470,6 +3474,15 @@
 				<RangedAttackTrain type="Int" value="3">
 					<Effect type="String" value="RangedAttackTrain"/>
 				</RangedAttackTrain>
+				<Delay type="Int" value="4">
+					<Effect type="String" value="Delay"/>
+				</Delay>
+				<Horsemanship type="Int" value="4">
+					<Effect type="String" value="Horsemanship"/>
+				</Horsemanship>
+				<CloseShoot type="Int" value="7">
+					<Effect type="String" value="CloseShoot"/>
+				</CloseShoot>
 			</Passive>
 			<Equip>
 				<OneHandSword type="Int" value="6"/>
@@ -3508,6 +3521,7 @@
 			<Active>
 				<Attack type="Int" value="3"/>
 				<FuryPuppet type="Int" value="5"/>
+				<LightningChain type="Int" value="1"/>
 			</Active>
 			<Passive>
 				<StrengthenPuppet type="Int" value="2">
@@ -3808,6 +3822,30 @@
 			<Script type="String" value="Blind.lua"/>
 			<SkillRole type="Int" value="5"/>
 		</Blind>
+		<Chaos>
+			<Type type="Int" value="4"/>
+			<MaxRange type="Int" value="1"/>
+			<MinRange type="Int" value="1"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="1"/>
+			<APCost type="float" value="5.0"/>
+			<CoolDown type="Int" value="1"/>
+			<Icon type="String" value="skill_act1_check"/>
+			<Script type="String" value="Chaos.lua"/>
+			<SkillRole type="Int" value="5"/>
+		</Chaos>
+		<LightningChain>
+			<Type type="Int" value="0"/>
+			<MaxRange type="Int" value="1"/>
+			<MinRange type="Int" value="1"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="2"/>
+			<APCost type="float" value="3.0"/>
+			<CoolDown type="Int" value="1"/>
+			<Icon type="String" value="skill_act4_thunder"/>
+			<Script type="String" value="LightningChain.lua"/>
+			<SkillRole type="Int" value="1"/>
+		</LightningChain>
 	</SkillData>
 	<EffectData>
 		<DetectionTrain>
@@ -4048,6 +4086,34 @@
 			<EffectRole type="Int" value="1"/>
 			<ShowOnBattleSquad type="Int" value="1"/>
 		</Blind>
+		<DoubleShoot>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_AtkrUp"/>
+			<Script type="String" value="CommonMark.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
+		</DoubleShoot>
+		<CloseShoot>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_AtkrUp"/>
+			<Script type="String" value="CloseShoot.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
+		</CloseShoot>
+		<Delay>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_upcharge"/>
+			<Script type="String" value="Delay.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
+		</Delay>
+		<Horsemanship>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_AtkrUp"/>
+			<Script type="String" value="Horsemanship.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="0"/>
+		</Horsemanship>
 	</EffectData>
 	<GroundData>
 		<Grass>

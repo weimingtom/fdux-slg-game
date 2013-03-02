@@ -125,6 +125,17 @@ static int GetGroundAttr(lua_State* L)
 	return 1;
 }
 
+static int LuaGetDistance(lua_State* L)
+{
+	int x1 =  luaL_checknumber(L,1);
+	int y1 =  luaL_checknumber(L,2);
+	int x2 =  luaL_checknumber(L,3);
+	int y2 =  luaL_checknumber(L,4);
+	int dir = GetDistance(x1, y1, x2, y2);
+	lua_pushnumber(L, dir);
+	return 1;
+}
+
 static const struct luaL_Reg MapLib[] =
 {
 	{"SetCamera",SetCamera},
@@ -137,5 +148,6 @@ static const struct luaL_Reg MapLib[] =
 	{"RemoveMapArea", RemoveMapArea},
 	{"GetDirection",LuaGetDirection},
 	{"GetGroundAttr",GetGroundAttr},
+	{"GetDistance",LuaGetDistance},
 	{NULL,NULL}
 };
