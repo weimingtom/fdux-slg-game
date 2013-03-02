@@ -1239,9 +1239,9 @@
 			<SoilderId type="String" value="NothSoilder"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="ShortSword2"/>
-			<SweaponId type="String" value="Bow3"/>
+			<SweaponId type="String" value="Bow4"/>
 			<ShieldId type="String" value="none"/>
-			<ArmorId type="String" value="LightArmor3"/>
+			<ArmorId type="String" value="LightArmor4"/>
 			<SkillTable>
 				<OneHandSword type="Int" value="2"/>
 				<Bow type="Int" value="2"/>
@@ -1264,10 +1264,10 @@
 			<SquadType type="Int" value="0"/>
 			<SoilderId type="String" value="NothSoilder"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="HeavySword3"/>
+			<PweaponId type="String" value="HeavySword4"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="none"/>
-			<ArmorId type="String" value="MidArmor2"/>
+			<ArmorId type="String" value="MidArmor4"/>
 			<SkillTable>
 				<TwoHandSword type="Int" value="2"/>
 				<MiddleArmor type="Int" value="2"/>
@@ -1289,8 +1289,8 @@
 			<SquadType type="Int" value="1"/>
 			<SoilderId type="String" value="NothSoilder"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="ShortSword3"/>
-			<SweaponId type="String" value="CrossBow3"/>
+			<PweaponId type="String" value="ShortSword4"/>
+			<SweaponId type="String" value="CrossBow4"/>
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="HeavyArmor3"/>
 			<SkillTable>
@@ -1314,10 +1314,10 @@
 			<SquadType type="Int" value="0"/>
 			<SoilderId type="String" value="NothSoilder"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="HeavySword4"/>
+			<PweaponId type="String" value="HeavySword5"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="none"/>
-			<ArmorId type="String" value="HeavyArmor3"/>
+			<ArmorId type="String" value="HeavyArmor4"/>
 			<SkillTable>
 				<TwoHandSword type="Int" value="2"/>
 				<HeavyArmor type="Int" value="2"/>
@@ -1452,7 +1452,7 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="4.0" />
 				<RangedAttack type="Float" value="3.0" />
-				<Defence type="Float" value="4.0" />
+				<Defence type="Float" value="2.0" />
 				<Formation type="Float" value="2.0" />
 				<Initiative type="Float" value="5.0" />
 				<ActionPoint type="Float" value="7.0" />
@@ -1471,7 +1471,7 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="4.0" />
 				<RangedAttack type="Float" value="1.0" />
-				<Defence type="Float" value="3.0" />
+				<Defence type="Float" value="1.0" />
 				<Formation type="Float" value="1.0" />
 				<Initiative type="Float" value="4.0" />
 				<ActionPoint type="Float" value="7.0" />
@@ -1490,7 +1490,7 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="3.0" />
 				<RangedAttack type="Float" value="1.0" />
-				<Defence type="Float" value="3.0" />
+				<Defence type="Float" value="2.0" />
 				<Formation type="Float" value="3.0" />
 				<Initiative type="Float" value="2.0" />
 				<ActionPoint type="Float" value="7.0" />
@@ -1509,7 +1509,7 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="2.0" />
 				<RangedAttack type="Float" value="0.0" />
-				<Defence type="Float" value="3.0" />
+				<Defence type="Float" value="1.0" />
 				<Formation type="Float" value="0.0" />
 				<Initiative type="Float" value="2.0" />
 				<ActionPoint type="Float" value="6.0" />
@@ -1526,9 +1526,9 @@
 			<Randomness type="Int" value="30" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="2.0" />
+				<Attack type="Float" value="3.0" />
 				<RangedAttack type="Float" value="1.0" />
-				<Defence type="Float" value="5.0" />
+				<Defence type="Float" value="2.0" />
 				<Formation type="Float" value="2.0" />
 				<Initiative type="Float" value="3.0" />
 				<ActionPoint type="Float" value="7.0" />
@@ -1583,12 +1583,12 @@
 			<Randomness type="Int" value="40" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="6.0" />
+				<Attack type="Float" value="8.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="3.0" />
 				<Formation type="Float" value="1.0" />
 				<Initiative type="Float" value="5.0" />
-				<ActionPoint type="Float" value="7.0" />
+				<ActionPoint type="Float" value="8.0" />
 				<Detection type="Float" value="6.0" />
 				<Covert type="Float" value="3.0" />
 				<Toughness type="Float" value="3.0" />
@@ -1604,7 +1604,7 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="4.0" />
 				<RangedAttack type="Float" value="0.0" />
-				<Defence type="Float" value="3.0" />
+				<Defence type="Float" value="2.0" />
 				<Formation type="Float" value="1.0" />
 				<Initiative type="Float" value="4.0" />
 				<ActionPoint type="Float" value="7.0" />
@@ -1623,7 +1623,7 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="3.0" />
 				<RangedAttack type="Float" value="2.0" />
-				<Defence type="Float" value="4.0" />
+				<Defence type="Float" value="2.0" />
 				<Formation type="Float" value="2.0" />
 				<Initiative type="Float" value="4.0" />
 				<ActionPoint type="Float" value="7.0" />
@@ -1642,7 +1642,7 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="7.0" />
 				<RangedAttack type="Float" value="1.0" />
-				<Defence type="Float" value="7.0" />
+				<Defence type="Float" value="5.0" />
 				<Formation type="Float" value="2.0" />
 				<Initiative type="Float" value="6.0" />
 				<ActionPoint type="Float" value="8.0" />
@@ -2148,7 +2148,7 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="2.0" />
 				<RangedAttack type="Float" value="0.0" />
-				<Defence type="Float" value="1.0" />
+				<Defence type="Float" value="0.0" />
 				<Formation type="Float" value="1.0" />
 				<Initiative type="Float" value="0.0" />
 				<ActionPoint type="Float" value="0.0" />
@@ -2172,7 +2172,7 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="3.0" />
 				<RangedAttack type="Float" value="0.0" />
-				<Defence type="Float" value="1.0" />
+				<Defence type="Float" value="0.0" />
 				<Formation type="Float" value="2.0" />
 				<Initiative type="Float" value="0.0" />
 				<ActionPoint type="Float" value="0.0" />
@@ -2196,7 +2196,7 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="4.0" />
 				<RangedAttack type="Float" value="0.0" />
-				<Defence type="Float" value="1.0" />
+				<Defence type="Float" value="0.0" />
 				<Formation type="Float" value="2.0" />
 				<Initiative type="Float" value="0.0" />
 				<ActionPoint type="Float" value="0.0" />
@@ -2220,7 +2220,7 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="5.0" />
 				<RangedAttack type="Float" value="0.0" />
-				<Defence type="Float" value="1.0" />
+				<Defence type="Float" value="0.0" />
 				<Formation type="Float" value="3.0" />
 				<Initiative type="Float" value="0.0" />
 				<ActionPoint type="Float" value="0.0" />
@@ -2244,7 +2244,7 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="6.0" />
 				<RangedAttack type="Float" value="0.0" />
-				<Defence type="Float" value="1.0" />
+				<Defence type="Float" value="0.0" />
 				<Formation type="Float" value="3.0" />
 				<Initiative type="Float" value="0.0" />
 				<ActionPoint type="Float" value="0.0" />
