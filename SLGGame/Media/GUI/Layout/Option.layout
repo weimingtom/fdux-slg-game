@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout" version="3.2.0">
     <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Info" name="SLBG">
+        <Property key="ImageTexture" value="SystemMenuBG.png"/>
         <Widget type="Window" skin="SLGWindow" position="430 200 420 320" align="Center" name="OptionWindow">
             <Widget type="TextBox" skin="TextBox" position="145 75 150 30" name="OptionCaption">
                 <Property key="Caption" value="OptionCaption"/>

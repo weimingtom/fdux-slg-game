@@ -43,7 +43,7 @@
 #include <windows.h>
 #include <Shiny.h>
 
-#define VER "V0.1a "
+#define VER "V0.1c "
 
 Core::Core(void):isRun(false)
 {

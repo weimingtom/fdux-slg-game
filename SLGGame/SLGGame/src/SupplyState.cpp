@@ -1,3 +1,4 @@
+
 #include "SupplyState.h"
 
 #include "GUISystem.h"
@@ -41,6 +42,8 @@ void SupplyState::initialize( std::string arg )
 void SupplyState::uninitialize()
 {
 	GUISystem::getSingletonPtr()->destoryScene(SupplyScene);
+	GUIScene* scene=GUISystem::getSingletonPtr()->createScene(StageScene);
+	scene->onOtherSceneNotify("ReturnFromSupply");
 }
 
 void SupplyState::update( unsigned int deltaTime )

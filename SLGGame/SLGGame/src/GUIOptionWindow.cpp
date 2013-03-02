@@ -41,6 +41,11 @@ GUIOptionWindow::~GUIOptionWindow(void)
 
 void GUIOptionWindow::showScene( std::string arg )
 {
+	if(arg=="mainmenu")
+	{
+		returnToMainMenu=true;
+	}
+
 	mBG->setVisible(true);
 	//¶ÁÈ¡Öµ
 	int MusicVolume=0;
@@ -97,5 +102,11 @@ void GUIOptionWindow::onOtherSceneNotify(std::string arg)
 	if (arg=="FadeOutOver")
 	{
 		mBG->setVisible(false);
+
+		if(returnToMainMenu)
+		{
+			GUIScene* stage=GUISystem::getSingletonPtr()->getScene(MenuWindowsScene);
+			stage->showScene("");
+		}
 	}
 }
