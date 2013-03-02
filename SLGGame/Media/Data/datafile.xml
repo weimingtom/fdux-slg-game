@@ -2293,7 +2293,7 @@
 				<Attack type="Float" value="7.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="0.0" />
-				<Formation type="Float" value="3.0" />
+				<Formation type="Float" value="2.0" />
 				<Initiative type="Float" value="1.0" />
 				<ActionPoint type="Float" value="0.0" />
 				<Detection type="Float" value="0.0" />
@@ -2314,10 +2314,10 @@
 			<Icon type="String" value="eqp_halberd" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="7.0" />
+				<Attack type="Float" value="8.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="0.0" />
-				<Formation type="Float" value="4.0" />
+				<Formation type="Float" value="3.0" />
 				<Initiative type="Float" value="1.0" />
 				<ActionPoint type="Float" value="0.0" />
 				<Detection type="Float" value="0.0" />
@@ -2341,7 +2341,7 @@
 				<Attack type="Float" value="9.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="0.0" />
-				<Formation type="Float" value="4.0" />
+				<Formation type="Float" value="3.0" />
 				<Initiative type="Float" value="1.0" />
 				<ActionPoint type="Float" value="0.0" />
 				<Detection type="Float" value="0.0" />
@@ -2365,7 +2365,7 @@
 				<Attack type="Float" value="10.0" />
 				<RangedAttack type="Float" value="0.0" />
 				<Defence type="Float" value="0.0" />
-				<Formation type="Float" value="5.0" />
+				<Formation type="Float" value="4.0" />
 				<Initiative type="Float" value="1.0" />
 				<ActionPoint type="Float" value="0.0" />
 				<Detection type="Float" value="0.0" />
@@ -4365,6 +4365,16 @@
 				<InfAp type="Float" value="0.0"/>
 			</GroundModifier>
 		</ForestWithRoad>
+		<City>
+			<Script type="String" value="none"/>
+			<GroundModifier>
+				<Passable type="Int" value="1"/>
+				<Covert type="Float" value="1.0"/>
+				<Defence type="Float" value="3.0"/>
+				<CavAp type="Float" value="0.0"/>
+				<InfAp type="Float" value="0.0"/>
+			</GroundModifier>
+		</City>
 		<Bridge>
 			<Script type="String" value="none"/>
 			<GroundModifier>

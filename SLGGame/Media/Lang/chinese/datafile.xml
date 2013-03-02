@@ -1052,6 +1052,10 @@
 			<Name type="String" value="林道"/>
 			<Describe type="String" value="林道"/>		
 		</ForestWithRoad>
+		<City>
+			<Name type="String" value="城市"/>
+			<Describe type="String" value="城市"/>		
+		</City>
 		<Bridge>
 			<Name type="String" value="桥梁"/>
 			<Describe type="String" value="桥梁"/>		
