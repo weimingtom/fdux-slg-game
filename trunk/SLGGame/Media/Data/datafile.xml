@@ -4277,6 +4277,18 @@
 				<SE4 type="String" value="metal_high_high_29.ogg"/>
 				<SE5 type="String" value="metal_high_high_30.ogg"/>
 			</Halberd>
+			<Staves type="Int" value="6">
+				<SE1 type="String" value="blunt_low_high_01.ogg"/>
+				<SE2 type="String" value="blunt_low_high_02.ogg"/>
+				<SE3 type="String" value="blunt_low_high_03.ogg"/>
+				<SE4 type="String" value="blunt_low_high_04.ogg"/>
+				<SE5 type="String" value="blunt_low_high_05.ogg"/>
+				<SE6 type="String" value="blunt_low_high_06.ogg"/>
+				<SE7 type="String" value="blunt_low_high_07.ogg"/>
+				<SE8 type="String" value="blunt_low_high_08.ogg"/>
+				<SE9 type="String" value="blunt_low_high_09.ogg"/>
+				<SE10 type="String" value="blunt_low_high_10.ogg"/>
+			</Staves>
 		</Pweapon>
 		<Sweapon type="Int" value="1">
 			<Bow type="Int" value="0">

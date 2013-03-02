@@ -38,7 +38,7 @@ void AnimationCutScene::startCutScence()
 	{
 		int t=mSquadGraphics->getMainWeaponType();
 
-		if(t!=-1 && t!=6)
+		if(t!=-1)
 		{
 			if(mSound == "0")
 			{
