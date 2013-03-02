@@ -128,7 +128,7 @@ namespace OgreUtils
 		void PlayMovie();
 		void StopMovie();
 		 
-
+		bool isSucc;
 	protected:
 		void createOverlay(); //目前先针对全屏, 以后再扩展任意位置,大小
 		void createMaterial();

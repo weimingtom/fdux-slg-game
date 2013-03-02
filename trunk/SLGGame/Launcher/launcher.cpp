@@ -14,6 +14,7 @@ Launcher::Launcher(QWidget *parent, Qt::WFlags flags)
 	this->connect(ui.commandLinkButton_4,SIGNAL(clicked(bool)),this,SLOT(readMe()));
 	this->connect(ui.commandLinkButton_5,SIGNAL(clicked(bool)),this,SLOT(setupDirectx()));
 	this->connect(ui.commandLinkButton_6,SIGNAL(clicked(bool)),this,SLOT(visitWebSite()));
+	this->connect(ui.commandLinkButton_7,SIGNAL(clicked(bool)),this,SLOT(setupXP()));
 	this->connect(ui.label,SIGNAL(linkActivated (QString)),this,SLOT(openRss(QString)));
 	this->connect(ui.label_2,SIGNAL(linkActivated (QString)),this,SLOT(openRss(QString)));
 	this->connect(ui.label_3,SIGNAL(linkActivated (QString)),this,SLOT(openRss(QString)));
@@ -69,6 +70,11 @@ void Launcher::readMe()
 void Launcher::setupDirectx()
 {
 	WinExec("..\\Support\\DirectX\\DXSETUP.exe",SW_NORMAL);
+}
+
+void Launcher::setupXP()
+{
+	ShellExecute(NULL,NULL,L"..\\Support\\setup.bat",NULL,NULL,SW_SHOWNORMAL);
 }
 
 void Launcher::visitWebSite()

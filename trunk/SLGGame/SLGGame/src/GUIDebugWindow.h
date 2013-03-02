@@ -24,6 +24,8 @@ private:
 	void onRefreshList(MyGUI::Widget* _sender);
 	void onJumpCP(MyGUI::Widget* _sender);
 	void onWin(MyGUI::Widget* _sender);
+	void onAddGold(MyGUI::Widget* _sender);
+	void onCrash(MyGUI::Widget* _sender);
 
 	MyGUI::Window* mWindow;
 	MyGUI::Button* mAddSquad;
@@ -31,6 +33,8 @@ private:
 	MyGUI::Button* mRefreshList;
 	MyGUI::Button* mJumpCP;
 	MyGUI::Button* mWin;
+	MyGUI::Button* mAddGold;
+	MyGUI::Button* mCrash;
 	MyGUI::EditBox* mSquadName;
 	MyGUI::EditBox* mSquadLeader;
 	MyGUI::EditBox* mJump;
