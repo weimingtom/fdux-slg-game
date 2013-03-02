@@ -175,46 +175,6 @@ fragment_program ColorOnlyFP/FourTexture cg
     }
 }
 
-vertex_program SpecularEmissiveVP/Skinned/NoTexture cg
-{
-    source SpecularEmissive_VP_S_NT.cg
-    entry_point main
-    profiles arbvp1 vs_2_0
- 
-	includes_skeletal_animation true
-    default_params
-    {
-	   	param_named_auto worldMatrix3x4Array world_matrix_array_3x4
-		param_named_auto viewProjectionMatrix viewproj_matrix
-    }
-}
-
-vertex_program SpecularEmissiveVP/NotSkinned/NoTexture cg
-{
-    source SpecularEmissive_VP_NS_NT.cg
-    entry_point main
-    profiles arbvp1 vs_2_0
- 
-    default_params
-    {
-		param_named_auto worldViewProj worldviewproj_matrix
-    }
-}
- 
-fragment_program SpecularEmissiveFP/NoTexture cg
-{
-    source SpecularEmissive_FP_NT.cg
-    entry_point main
-    profiles arbfp1 ps_2_0 fp20
- 
-    default_params
-    {
-		param_named_auto sspecular surface_specular_colour
-		param_named_auto semissive surface_emissive_colour
-		param_named_auto sdiffuse surface_diffuse_colour 
-    }
-}
-
 vertex_program DepthShadowmapVP/Skinned/OneTexture cg
 {
     source DepthShadowmap_VP_S_OT.cg
