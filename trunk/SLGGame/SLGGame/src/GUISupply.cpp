@@ -879,6 +879,7 @@ void GUISupply::onExit(MyGUI::Widget* _sender)
 	}
 	
 	hideScene();
+	StateManager::getSingletonPtr()->removeAffixationState();
 }
 
 void GUISupply::onEquipment(MyGUI::Widget* _sender)

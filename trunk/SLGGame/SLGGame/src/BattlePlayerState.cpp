@@ -356,6 +356,7 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 	 				else
 	 				{
 	 					mGUICommand->setSquad(mSelectSquad);
+						mGUISquad->setSquad(mSelectSquad);
 	 				}
 					if(mRangeGrap)
 					{

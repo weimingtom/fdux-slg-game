@@ -36,6 +36,7 @@ private:
 
 	void SaveData();
 	void onOtherSceneNotify(std::string arg);
+	bool returnToMainMenu;
 };
 
 class GUIOptionWindowFactory:

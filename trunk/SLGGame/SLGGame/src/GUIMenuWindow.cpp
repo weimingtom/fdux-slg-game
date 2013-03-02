@@ -85,7 +85,8 @@ void GUIMenuWindow::onLoad( MyGUI::Widget* _sender )
 void GUIMenuWindow::onOption( MyGUI::Widget* _sender )
 {
 	GUIOptionWindow* OptionWindow= (GUIOptionWindow*)GUISystem::getSingletonPtr()->createScene(OptionWindowScene);
-	OptionWindow->showScene("");
+	OptionWindow->showScene("mainmenu");
+	mWindow->setVisible(false);
 }
 
 void GUIMenuWindow::onOtherSceneNotify(std::string arg)
