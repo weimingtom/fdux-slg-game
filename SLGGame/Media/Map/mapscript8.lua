@@ -57,8 +57,11 @@ function finishdeploy()
 	local mainmission = BattleLib.AddPlayerMission("map8mission1",0);
 	ScriptCommonLib.SetInt("mainmission", mainmission);
 	local mission1 = BattleLib.AddPlayerMission("map8mission2",0);
+	local mission2 = BattleLib.AddPlayerMission("map8mission3",0);
 	ScriptCommonLib.SetInt("mission1", mission1);
+	ScriptCommonLib.SetInt("mission2", mission2);
 	ScriptCommonLib.SetInt("mission1state", 1);
+	ScriptCommonLib.SetInt("mission2state", 1);
 	ScriptCommonLib.SetInt("addedgold", 0);
 end
 
@@ -66,9 +69,16 @@ end
 function unitdead()
 	local squad = ScriptCommonLib.GetTempString("squadid");
 	
-	if BattleLib.TeamSquadLeft(1) == 0 or squad == Kareena then
+	if BattleLib.TeamSquadLeft(1) == 0 then
 		--Ê§°Ü(storyscript,gold,exp)
-		BattleLib.Lost("GameOver.lua", "0");
+		BattleLib.Lost("GameOver.lua", "0"); 
+	end
+	
+	if squad == "Kareena" then
+		--Ê§°Ü(storyscript,gold,exp)
+       	local mission2 = ScriptCommonLib.GetInt("mission2");
+		BattleLib.SetPlayerMission(mission2, 2);
+	    ScriptCommonLib.SetInt("mission2state", 0);
 	end
 	
 	local faction = SquadLib.GetFaction(squad);
@@ -83,9 +93,14 @@ function unitdead()
 			addedgold = ScriptCommonLib.GetInt("addedgold");
 			addedgold = addedgold + 2700;
 			local mission1state = ScriptCommonLib.GetInt("mission1state");
+			local mission2state = ScriptCommonLib.GetInt("mission2state");
 			if mission1state == 1 then
 				BattleLib.AddGold(1650);
 				addedgold = addedgold + 1650;
+			end
+			if mission2state == 1 then
+				BattleLib.AddGold(1300);
+				addedgold = addedgold + 1300;
 			end
 			ScriptCommonLib.SetInt("addedgold", addedgold);
 			--Ê¤Àû(storyscript,gold,exp)
@@ -135,6 +150,11 @@ function turnend()
 		BattleLib.DumpSquadData();
 		local addedgold = ScriptCommonLib.GetInt("addedgold");
 		addedgold = addedgold + 2700;
+		local mission2state = ScriptCommonLib.GetInt("mission2state");
+		if mission2state == 1 then
+				BattleLib.AddGold(1300);
+				addedgold = addedgold + 1300;
+		end
 		--Ê¤Àû(storyscript,gold,exp)
 		ScriptCommonLib.SetInt("addedgold", addedgold);	
 		BattleLib.Win("cp17.lua", addedgold);

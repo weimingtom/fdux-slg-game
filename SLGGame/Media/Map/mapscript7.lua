@@ -36,11 +36,11 @@ function finishdeploy()
 	BattleLib.AssignAIGroup(2, "Team2Squad_1", "Noth");
 	BattleLib.AssignAIGroup(2, "Team2Squad_2", "Noth");
 	BattleLib.AssignAIGroup(2, "Team2Squad_3", "Noth");
-	BattleLib.AssignAIGroup(2, "Team2Squad_4", "Noth");
+	BattleLib.AssignAIGroup(2, "Team2Squad_4", "NothArcher");
 	BattleLib.AssignAIGroup(2, "Team2Squad_5", "Noth");
-	BattleLib.AssignAIGroup(2, "Team2Squad_6", "Noth");
-	BattleLib.AssignAIGroup(2, "Team2Squad_7", "Noth");
-	BattleLib.AssignAIGroup(2, "Team2Squad_8", "Noth");
+	BattleLib.AssignAIGroup(2, "Team2Squad_6", "NothArcher");
+	BattleLib.AssignAIGroup(2, "Team2Squad_7", "NothArcher");
+	BattleLib.AssignAIGroup(2, "Team2Squad_8", "NothArcher");
 	
 	BattleLib.AssignAIGroup(3, "Team3Squad_0", "Winfred");
 	BattleLib.AssignAIGroup(3, "Team3Squad_1", "Winfred");
@@ -53,9 +53,11 @@ function finishdeploy()
 	
 	--创建AI任务(team,missionname,missiontype,missiontargetarea)
 	BattleLib.CreateAIMission(2, "Attack", 0, "Castle");
+	BattleLib.CreateAIMission(2, "Cover", 0, "KeyArea");
 	BattleLib.CreateAIMission(3, "Defend", 0, "KeyArea");
 	--指派AI分组任务(team,groupname,missionname)
 	BattleLib.AssignAIMission(2,"Noth", "Attack");
+	BattleLib.AssignAIMission(2,"NothArcher", "Cover");
 	BattleLib.AssignAIMission(3,"Winfred", "Defend");
 	
 	--创建任务(missionname,missionstate)
@@ -114,7 +116,7 @@ function turnend()
 	local turn = ScriptCommonLib.GetTempInt("turn");
 	local team = ScriptCommonLib.GetTempInt("team");
 	
-	if team == 2 and turn >= 15 then
+	if team == 2 and turn >= 10 then
 		BattleLib.AddGold(2500);
 		BattleLib.DumpSquadData();
 		local addedgold = ScriptCommonLib.GetInt("addedgold");
