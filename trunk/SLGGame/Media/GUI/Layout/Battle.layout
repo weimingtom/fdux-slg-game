@@ -330,7 +330,7 @@
         <Property key="Caption" value="DeployWindow"/>
         <Property key="FontName" value="fireflysung"/>
         <Property key="Visible" value="false"/>
-        <Widget type="ImageBox" skin="ImageBox" position_real="1 0 0 1">
+        <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1">
             <Property key="ImageTexture" value="Deploy.png"/>
             <Widget type="ItemBox" skin="SLGItemBoxEmpty" position="30 45 275 250" name="DeployList">
                 <Widget type="MultiListItem" skin="" position="0 0 44 306">
