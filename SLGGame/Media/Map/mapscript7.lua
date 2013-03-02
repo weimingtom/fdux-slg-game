@@ -135,7 +135,7 @@ end
 function inarea()
 	local squad = ScriptCommonLib.GetTempString("squadid");
 	local area = ScriptCommonLib.GetTempString("areaid");
-	local squad = ScriptCommonLib.GetTempString("squadid");
+	local faction = SquadLib.GetFaction(squad);
 
 	if area == "Castle" then
 		if faction == 1 then
