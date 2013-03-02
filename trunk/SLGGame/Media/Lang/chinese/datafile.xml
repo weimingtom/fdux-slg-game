@@ -742,7 +742,7 @@
 		</Heal>	
 		<Pray>
 			<Name type="String" value="祷告"/>
-			<Describe type="String" value="向圣灵祈求帮助（恢复一定数量的圣灵守卫）"/>
+			<Describe type="String" value="向圣灵祈求帮助（消耗所有行动值，根据消耗掉的行动值恢复一定数量的圣灵守卫）"/>
 		</Pray>
 		<Break>
 			<Name type="String" value="破阵"/>
@@ -774,7 +774,7 @@
 		</UrgentOrder>
 		<MagicRest>
 			<Name type="String" value="魔法恢复"/>
-			<Describe type="String" value="（消除一定的魔法疲劳效果）"/>
+			<Describe type="String" value="（消耗所有行动值，根据消耗掉的行动值消除一定的魔法疲劳效果）"/>
 		</MagicRest>
 		<SummonPuppetA>
 			<Name type="String" value="召唤傀儡（奥）"/>
@@ -800,6 +800,14 @@
 			<Name type="String" value="致盲"/>
 			<Describe type="String" value="（目标部队攻击值和远程攻击值降低）"/>	
 		</Blind>
+		<Chaos>
+			<Name type="String" value="制造混乱"/>
+			<Describe type="String" value="（进行一次进攻，有一定几率造成混乱效果）"/>
+		</Chaos>
+		<LightningChain>
+			<Name type="String" value="闪电链"/>
+			<Describe type="String" value="（消耗所有行动值，根据消耗掉的行动值对目标部队造成一次攻击次数等于它们人数的攻击）"/>
+		</LightningChain>
 	</SkillData>
 	<EffectData>
 		<DetectionTrain>
@@ -938,6 +946,22 @@
 			<Name type="String" value="被致盲"/>
 			<Describe type="String" value="（攻击值和远程攻击值降低）"/>	
 		</Blind>
+		<DoubleShoot>
+			<Name type="String" value="双重射击"/>
+			<Describe type="String" value="（远程攻击时进行两次射击）"/>
+		</DoubleShoot>
+		<CloseShoot>
+			<Name type="String" value="近距离射击"/>
+			<Describe type="String" value="（进行远程攻击时,目标越近,远程攻击力越高）"/>	
+		</CloseShoot>
+		<Delay>
+			<Name type="String" value="拖延"/>
+			<Describe type="String" value="（受到进攻时，进攻部队行动值降低）"/>	
+		</Delay>
+		<Horsemanship>
+			<Name type="String" value="骑射"/>
+			<Describe type="String" value="（抵消部分马匹造成的远程攻击降低效果）"/>	
+		</Horsemanship>
 	</EffectData>
 	<GroundData>
 		<Grass>

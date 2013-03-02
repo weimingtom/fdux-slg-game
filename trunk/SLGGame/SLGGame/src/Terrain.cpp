@@ -118,7 +118,7 @@ bool Terrain::createTerrain()
 
 	int numVertices = terrainszie * terrainszie * VERTEX_QUAD;
 	int numIndex = terrainszie * terrainszie * VERTEX_PREQUAD;
-	mTerrainMesh = Ogre::MeshManager::getSingleton().createManual("TerrianMesh",
+	Ogre::MeshPtr mTerrainMesh = Ogre::MeshManager::getSingleton().createManual("TerrianMesh",
 		Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 	Ogre::SubMesh* subMesh  = mTerrainMesh->createSubMesh();
 	subMesh->useSharedVertices=false;
@@ -365,7 +365,8 @@ void Terrain::destoryTerrian()
 	mTerrainEntity = NULL;
 	core->mSceneMgr->destroySceneNode(mTerrainNode);
 	mTerrainNode = NULL;
-	Ogre::ResourceGroupManager::getSingleton().deleteResource("TerrianMesh");
+	//Ogre::ResourceGroupManager::getSingleton().deleteResource("TerrianMesh");
+	Ogre::MeshManager::getSingleton().remove("TerrianMesh");
 
 	//Ogre::RenderSystem *rSys = Core::getSingleton().mRoot->getRenderSystemByName("Direct3D9 Rendering Subsystem");
 	mReflectionTarget->removeAllListeners();

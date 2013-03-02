@@ -80,7 +80,7 @@ private:
 
 	Ogre::SceneNode* mTerrainNode;
 	Ogre::Entity* mTerrainEntity;
-	Ogre::MeshPtr mTerrainMesh;
+	//Ogre::MeshPtr mTerrainMesh;
 
 	Ogre::SceneNode* mWaterNode;
 	Ogre::ManualObject* mWaterObject;

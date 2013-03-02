@@ -1089,7 +1089,7 @@ void BattleAIState::SquadAI::updateDirection()
 	{
 		if(mSquad->canChangeFormation(Loose) && mSquad->getChangeFormationApCost(Loose) < 2.0f)
 		{
-			BattleSquadManager::getSingleton().changeFormation(mSquad, Circular, true);
+			BattleSquadManager::getSingleton().changeFormation(mSquad, Loose, true);
 			changeform = true;
 		}
 	}
