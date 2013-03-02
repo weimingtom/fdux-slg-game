@@ -373,10 +373,10 @@
 			<Name type="String" value="法卫队士兵" />
 		</TowerGuard>
 		<Magician>
-			<Name type="String" value="法师" />
+			<Name type="String" value="圣灵守卫" />
 		</Magician>
 		<Magician2>
-			<Name type="String" value="法师" />
+			<Name type="String" value="法术傀儡" />
 		</Magician2>
 		<NothSoilder>
 			<Name type="String" value="诺斯士兵" />
@@ -792,6 +792,14 @@
 			<Name type="String" value="魔化盔甲"/>
 			<Describe type="String" value="（目标部队防御力增加）"/>	
 		</EnchantArmor>
+		<FuryPuppet>
+			<Name type="String" value="狂化傀儡"/>
+			<Describe type="String" value="（攻击值增加，并获得践踏效果）"/>	
+		</FuryPuppet>
+		<Blind>
+			<Name type="String" value="致盲"/>
+			<Describe type="String" value="（目标部队攻击值和远程攻击值降低）"/>	
+		</Blind>
 	</SkillData>
 	<EffectData>
 		<DetectionTrain>
@@ -918,6 +926,18 @@
 			<Name type="String" value="战斗傀儡"/>
 			<Describe type="String" value="（攻击力和反击值增加）"/>	
 		</BattlePuppet>
+		<AutoRepair>
+			<Name type="String" value="自动修复"/>
+			<Describe type="String" value="（回合开始和结束各恢复一定数量的傀儡）"/>	
+		</AutoRepair>
+		<FuryPuppet>
+			<Name type="String" value="狂化傀儡"/>
+			<Describe type="String" value="（攻击值增加，并获得践踏效果）"/>	
+		</FuryPuppet>
+		<Blind>
+			<Name type="String" value="被致盲"/>
+			<Describe type="String" value="（攻击值和远程攻击值降低）"/>	
+		</Blind>
 	</EffectData>
 	<GroundData>
 		<Grass>

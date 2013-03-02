@@ -14,7 +14,7 @@ function useskill()
 	local targetlv = SquadLib.GetSquadLevel(target);
 	local ep = 50;
 	if casterlv > targetlv then
-		ep = ep + (targetlv - casterlv) * 5;
+		ep = ep + (casterlv - targetlv) * 5;
 	end	
 	SquadLib.AddExp(caster, ep);
 	ScriptCommonLib.SetTempInt("castsuccess", 1);
@@ -76,11 +76,17 @@ end
 
 function onturnstart()
 	local sid = ScriptCommonLib.GetTempString("squadid");
+	local eid = ScriptCommonLib.GetString("effectid");
 	local turn = ScriptCommonLib.GetInt("turn");
 	local lv = SquadLib.GetEffectLevel(sid, eid);
 	if turn > 2 - lv then
 		local eid = ScriptCommonLib.GetString("effectid");
 		SquadLib.RemoveEffect(sid, eid);
+		if lv > 3 then
+			for i = 1,lv - 3 do
+				SquadLib.RemoveEffect(sid, eid);
+			end
+		end
 	else
 		ScriptCommonLib.SetInt("turn", turn + 1);
 	end

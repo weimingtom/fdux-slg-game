@@ -432,14 +432,15 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="none"/>
 			<SkillTable>
-				<StrengthenPuppet type="Int" value="0" />
+				<AutoRepair type="Int" value="0" />
 				<BattlePuppet type="Int" value="0" />
-				<Attack type="Int" value="1" />		
+				<Attack type="Int" value="1" />	
+				<FuryPuppet type="Int" value="1" />	
 			</SkillTable>
 			<LeaderId type="String" value="Fay"/>
 			<RetainerId type="String" value="BattlePuppet"/>
 			<UnitNum value="20" type="Int"/>
-			<Level type="Int" value="3"/>
+			<Level type="Int" value="5"/>
 			<Exp type="Int" value="0"/>
 			<SkillPointAction type="Int" value="0"/>
 			<SkillPointPassive type="Int" value="0"/>
@@ -451,7 +452,7 @@
 		<Azaria>
 			<Type type="Int" value="1"/>
 			<SquadType type="Int" value="6"/>
-			<SoilderId type="String" value="Magician"/>
+			<SoilderId type="String" value="Magician2"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="Staves3"/>
 			<SweaponId type="String" value="none"/>
@@ -758,7 +759,7 @@
 		<Elementalist>
 			<Type type="Int" value="1"/>
 			<SquadType type="Int" value="6"/>
-			<SoilderId type="String" value="Magician"/>
+			<SoilderId type="String" value="Magician2"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="Staves3"/>
 			<SweaponId type="String" value="none"/>
@@ -769,12 +770,13 @@
 				<EnchantWImprove type="Int" value="0" />
 				<EnchantAImprove type="Int" value="0" />
 				<EnchantWeapon type="Int" value="1" />		
-				<EnchantArmor type="Int" value="1" />	
+				<EnchantArmor type="Int" value="1" />
+				<Blind type="Int" value="1" />
 			</SkillTable>
 			<LeaderId type="String" value="Elementalist"/>
 			<RetainerId type="String" value="Scout"/>
 			<UnitNum value="20" type="Int"/>
-			<Level type="Int" value="8"/>
+			<Level type="Int" value="6"/>
 			<Exp type="Int" value="0"/>
 			<SkillPointAction type="Int" value="0"/>
 			<SkillPointPassive type="Int" value="0"/>
@@ -786,7 +788,7 @@
 		<Kareena>
 			<Type type="Int" value="1"/>
 			<SquadType type="Int" value="6"/>
-			<SoilderId type="String" value="Magician"/>
+			<SoilderId type="String" value="Magician2"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="Staves3"/>
 			<SweaponId type="String" value="none"/>
@@ -809,7 +811,7 @@
 		<Welvss>
 			<Type type="Int" value="1"/>
 			<SquadType type="Int" value="6"/>
-			<SoilderId type="String" value="Magician"/>
+			<SoilderId type="String" value="Magician2"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="Staves3"/>
 			<SweaponId type="String" value="none"/>
@@ -832,7 +834,7 @@
 		<Warmage>
 			<Type type="Int" value="1"/>
 			<SquadType type="Int" value="5"/>
-			<SoilderId type="String" value="Magician"/>
+			<SoilderId type="String" value="Magician2"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="Staves3"/>
 			<SweaponId type="String" value="none"/>
@@ -1371,7 +1373,7 @@
 		<Syrin>
 			<Type type="Int" value="1"/>
 			<SquadType type="Int" value="6"/>
-			<SoilderId type="String" value="Magician"/>
+			<SoilderId type="String" value="Magician2"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="Staves3"/>
 			<SweaponId type="String" value="none"/>
@@ -1502,7 +1504,7 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="0.0" />
 				<RangedAttack type="Float" value="0.0" />
-				<Defence type="Float" value="10.0" />
+				<Defence type="Float" value="12.0" />
 				<Formation type="Float" value="0.0" />
 				<Initiative type="Float" value="0.0" />
 				<ActionPoint type="Float" value="7.0" />
@@ -1521,7 +1523,7 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="8.0" />
 				<RangedAttack type="Float" value="0.0" />
-				<Defence type="Float" value="12.0" />
+				<Defence type="Float" value="10.0" />
 				<Formation type="Float" value="0.0" />
 				<Initiative type="Float" value="5.0" />
 				<ActionPoint type="Float" value="7.0" />
@@ -3505,6 +3507,7 @@
 			</Default>
 			<Active>
 				<Attack type="Int" value="3"/>
+				<FuryPuppet type="Int" value="5"/>
 			</Active>
 			<Passive>
 				<StrengthenPuppet type="Int" value="2">
@@ -3513,6 +3516,9 @@
 				<BattlePuppet type="Int" value="2">
 					<Effect type="String" value="BattlePuppet"/>
 				</BattlePuppet>
+				<AutoRepair type="Int" value="4">
+					<Effect type="String" value="AutoRepair"/>
+				</AutoRepair>
 			</Passive>
 		</BattleMage>
 		<ArcaneMage type="Int" value="6">
@@ -3521,6 +3527,7 @@
 			</Default>
 			<Active>
 				<EnchantArmor type="Int" value="1"/>
+				<Blind type="Int" value="1"/>
 				<EnchantWeapon type="Int" value="3"/>
 			</Active>
 			<Passive>
@@ -3777,6 +3784,30 @@
 			<Script type="String" value="EnchantArmor.lua"/>
 			<SkillRole type="Int" value="515"/>
 		</EnchantArmor>
+		<FuryPuppet>
+			<Type type="Int" value="0"/>
+			<MaxRange type="Int" value="0"/>
+			<MinRange type="Int" value="0"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="0"/>
+			<APCost type="float" value="2.0"/>
+			<CoolDown type="Int" value="2"/>
+			<Icon type="String" value="skill_act3_sumpuppet"/>
+			<Script type="String" value="FuryPuppet.lua"/>
+			<SkillRole type="Int" value="1"/>
+		</FuryPuppet>
+		<Blind>
+			<Type type="Int" value="0"/>
+			<MaxRange type="Int" value="2"/>
+			<MinRange type="Int" value="1"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="1"/>
+			<APCost type="float" value="3.0"/>
+			<CoolDown type="Int" value="1"/>
+			<Icon type="String" value="skill_act3_weak"/>
+			<Script type="String" value="Blind.lua"/>
+			<SkillRole type="Int" value="5"/>
+		</Blind>
 	</SkillData>
 	<EffectData>
 		<DetectionTrain>
@@ -3922,7 +3953,7 @@
 		<Unshakable>
 			<Type type="Int" value="0"/>
 			<Icon type="String" value="skill_pass_upspirit"/>
-			<Script type="String" value="Unshakable.lua"/>
+			<Script type="String" value="CommonMark.lua"/>
 			<EffectRole type="Int" value="1"/>
 			<ShowOnBattleSquad type="Int" value="1"/>
 		</Unshakable>
@@ -3996,6 +4027,27 @@
 			<EffectRole type="Int" value="1"/>
 			<ShowOnBattleSquad type="Int" value="0"/>
 		</BattlePuppet>
+		<AutoRepair>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_uppuppetD"/>
+			<Script type="String" value="AutoRepair.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
+		</AutoRepair>
+		<FuryPuppet>
+			<Type type="Int" value="2"/>
+			<Icon type="String" value="skill_pass_uppuppetA"/>
+			<Script type="String" value="FuryPuppet.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
+		</FuryPuppet>
+		<Blind>
+			<Type type="Int" value="2"/>
+			<Icon type="String" value="skill_pass_AtkcDown"/>
+			<Script type="String" value="Blind.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
+		</Blind>
 	</EffectData>
 	<GroundData>
 		<Grass>
