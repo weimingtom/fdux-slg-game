@@ -22,7 +22,7 @@ void SupplyState::initialize( std::string arg )
 
 	GUIScene* supplyScene=GUISystem::getSingletonPtr()->createScene(SupplyScene);
 
-	DataLibrary::getSingletonPtr()->setData("GameData/StoryData/GameState",std::string("Supply"));
+	/*DataLibrary::getSingletonPtr()->setData("GameData/StoryData/GameState",std::string("Supply"));
 
 	std::string next;
 	if(arg=="save.xml")
@@ -33,9 +33,9 @@ void SupplyState::initialize( std::string arg )
 	{
 		next=arg;
 		DataLibrary::getSingletonPtr()->setData("GameData/StoryData/SupplyNextScene",arg);
-	}
+	}*/
 
-	supplyScene->showScene(next);
+	supplyScene->showScene("");
 }
 
 void SupplyState::uninitialize()

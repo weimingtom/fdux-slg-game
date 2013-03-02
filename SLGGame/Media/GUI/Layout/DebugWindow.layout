@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout" version="3.2.0">
-    <Widget type="Window" skin="WindowC" position="780 35 410 280" layer="Popup" name="DEBUG">
+    <Widget type="Window" skin="WindowC" position="780 35 410 325" layer="Popup" name="DEBUG">
         <Property key="Caption" value="DEBUG"/>
         <Property key="Visible" value="false"/>
         <Property key="FontName" value="fireflysung.17"/>
@@ -57,6 +57,16 @@
             <Property key="FontName" value="fireflysung.17"/>
             <Property key="FontHeight" value="17"/>
             <Property key="Caption" value="Win"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="215 240 135 30" name="AddGold">
+            <Property key="Caption" value="Add Gold"/>
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="17"/>
+        </Widget>
+        <Widget type="Button" skin="Button" position="5 235 45 30" name="Crash">
+            <Property key="Caption" value="Crash"/>
+            <Property key="FontName" value="fireflysung.17"/>
+            <Property key="FontHeight" value="17"/>
         </Widget>
     </Widget>
 </MyGUI>

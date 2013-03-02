@@ -21,12 +21,16 @@ GUIDebugWindow::GUIDebugWindow(int Width,int Height):GUIScene("DebugWindow.layou
 	assignWidget(mSquadLeader,"SquadLeader");
 	assignWidget(mSquadList,"SquadList");
 	assignWidget(mWin,"Win");
+	assignWidget(mAddGold,"AddGold");
+	assignWidget(mCrash,"Crash");
 
 	mAddSquad->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIDebugWindow::onAddSquad);
 	mDeleteSquad->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIDebugWindow::onDeleteSquad);
 	mRefreshList->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIDebugWindow::onRefreshList);
 	mJumpCP->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIDebugWindow::onJumpCP);
 	mWin->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIDebugWindow::onWin);
+	mAddGold->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIDebugWindow::onAddGold);
+	mCrash->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIDebugWindow::onCrash);
 }
 
 GUIDebugWindow::~GUIDebugWindow(void)
@@ -86,4 +90,17 @@ void GUIDebugWindow::onRefreshList(MyGUI::Widget* _sender)
 void GUIDebugWindow::onJumpCP(MyGUI::Widget* _sender)
 {
 	LuaSystem::getSingletonPtr()->runScriptFromFile(mJump->getCaption(),0);
+}
+
+void GUIDebugWindow::onAddGold(MyGUI::Widget* _sender)
+{
+	int curgold = 0;
+	DataLibrary::getSingleton().getData("GameData/StoryData/Gold", curgold);
+	curgold += Ogre::StringConverter::parseInt(mJump->getCaption());
+	DataLibrary::getSingleton().setData("GameData/StoryData/Gold", curgold);
+}
+void GUIDebugWindow::onCrash(MyGUI::Widget* _sender)
+{
+	int* i=NULL;
+	(*i)=1;
 }

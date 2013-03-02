@@ -75,7 +75,7 @@
      <rect>
       <x>410</x>
       <y>30</y>
-      <width>181</width>
+      <width>187</width>
       <height>341</height>
      </rect>
     </property>
@@ -147,6 +147,20 @@
        </property>
        <property name="text">
         <string>安装Directx9.0C</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCommandLinkButton" name="commandLinkButton_7">
+       <property name="styleSheet">
+        <string notr="true">QCommandLinkButton{
+	font: 75 12pt &quot;微软雅黑&quot;;
+	
+	color: rgb(0, 0, 0);
+}</string>
+       </property>
+       <property name="text">
+        <string>安装XP所需支持库</string>
        </property>
       </widget>
      </item>

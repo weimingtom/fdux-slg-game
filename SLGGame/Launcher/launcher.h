@@ -35,6 +35,7 @@ public slots:
 	void gameManual();
 	void readMe();
 	void setupDirectx();
+	void setupXP();
 	void visitWebSite();
 	void openRss(QString link);
 	void weibo();

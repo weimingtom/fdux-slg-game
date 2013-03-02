@@ -524,14 +524,21 @@ namespace OgreUtils
 		mName(name),mWidth(width),mHeight(height),mFilename(filename),mVp(vp),mOverlay(NULL)
 	{
 		mDirectshowTexture = new DirectShowMovieTexture(mWidth,mHeight,false);
-		mDirectshowTexture->loadMovie(mFilename);
-		
-		createMaterial();
-		 
-		if(isOverlay)
-			createOverlay();
-		 
-			
+		try
+		{
+			mDirectshowTexture->loadMovie(mFilename);
+
+			createMaterial();
+
+			if(isOverlay)
+				createOverlay();
+
+			isSucc=true;
+		}
+		catch (char* e)
+		{
+			isSucc=false;
+		}		
 	}
 
 	DirectShowControl::~DirectShowControl()
@@ -617,9 +624,16 @@ namespace OgreUtils
 	{
 		DirectShowControl *mContrl=new DirectShowControl(name,filename,VWidth,VHeight,mVP,overlay);
 
-		mDirectCtrlList.push_back(mContrl);
-
-		return mContrl;
+		if(mContrl->isSucc)
+		{
+			mDirectCtrlList.push_back(mContrl);
+			return mContrl;
+		}
+		else
+		{
+			return NULL;
+		}
+		
 	}
 
 	bool DirectShowManager::frameStarted( const Ogre::FrameEvent& evt )
@@ -631,7 +645,14 @@ namespace OgreUtils
 			DirectShowControl *con=*(it);
 			if(con)
 			{
-				con->mDirectshowTexture->updateMovieTexture();
+				try
+				{
+					con->mDirectshowTexture->updateMovieTexture();
+				}
+				catch(char* e)
+				{
+
+				}
 				
 				//if(!con->mDirectshowTexture->isPlayingMovie())//Ñ­»··Å
 				//	con->mDirectshowTexture->rewindMovie();
@@ -652,6 +673,7 @@ namespace OgreUtils
 				return !con->mDirectshowTexture->isPlayingMovie();
 			}
 		}
+		return true;
 	}
 
 	void DirectShowManager::DestroyAll()
