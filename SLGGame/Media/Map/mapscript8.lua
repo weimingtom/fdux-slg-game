@@ -68,7 +68,7 @@ function unitdead()
 	
 	if BattleLib.TeamSquadLeft(1) == 0 or squad == Kareena then
 		--Ê§°Ü(storyscript,gold,exp)
-		BattleLib.Lost("GameOver.lua","0","0");
+		BattleLib.Lost("GameOver.lua", "0");
 	end
 	
 	local faction = SquadLib.GetFaction(squad);
@@ -89,7 +89,7 @@ function unitdead()
 			end
 			ScriptCommonLib.SetInt("addedgold", addedgold);
 			--Ê¤Àû(storyscript,gold,exp)
-			BattleLib.Win("cp17.lua", "0", "0");
+			BattleLib.Win("cp17.lua", addedgold);
 		end
 	end
 end
@@ -137,7 +137,7 @@ function turnend()
 		addedgold = addedgold + 2700;
 		--Ê¤Àû(storyscript,gold,exp)
 		ScriptCommonLib.SetInt("addedgold", addedgold);	
-		BattleLib.Win("cp17.lua", "0", "0");
+		BattleLib.Win("cp17.lua", addedgold);
 	end
 end
 
