@@ -10,7 +10,7 @@ GUI.ShowText("请先对法卫队进行补给，保证下次战斗能以最佳状态出战。",1);
 GUI.ClearText();
 GUI.ShowText("剧情开始后，将自动切换到翼骑团剧情线，关闭法卫队补给。",1);
 GUI.ClearText();
-GUI.ShowText("补给完成之后点击继续进行剧情（法卫队补给将关闭）。",1);
+GUI.ShowText("补给完成之后点击鼠标继续剧情（法卫队补给将关闭）。",1);
 GUI.ClearText();
 AVGLib.SetCanSupply("Cheetah",1);
 AVGLib.SetCanSupply("WingsHeavyInf",1);
