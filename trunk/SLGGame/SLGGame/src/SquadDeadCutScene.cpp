@@ -13,7 +13,8 @@ SquadDeadCutScene::~SquadDeadCutScene()
 }
 void SquadDeadCutScene::startCutScence()
 {
-	mSquad->setDeath(mDeadNum);
+	if(mDeadNum!=0)
+		mSquad->setDeath(mDeadNum);
 }
 bool SquadDeadCutScene::endCutScene()
 {
@@ -21,7 +22,7 @@ bool SquadDeadCutScene::endCutScene()
 }
 void SquadDeadCutScene::skipCutScene()
 {
-	if(!mStarted)
+	if(!mStarted && mDeadNum!=0)
 		mSquad->setDeath(mDeadNum);
 	mSquad->stopDeath();
 }
