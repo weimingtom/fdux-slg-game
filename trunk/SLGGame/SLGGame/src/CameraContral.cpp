@@ -10,7 +10,7 @@ CameraContral::CameraContral()
 	mShadowMapCamera->setProjectionType(Ogre::PT_ORTHOGRAPHIC);
 	mShadowMapCamera->setOrthoWindow(136.0f,136.0f);
 	mShadowMapCamera->setFarClipDistance(300.0f);
-	mShadowMapCamera->setNearClipDistance(10.0f);
+	mShadowMapCamera->setNearClipDistance(1.0f);
 	Ogre::GpuSharedParametersPtr sharedparams = Ogre::GpuProgramManager::getSingleton().getSharedParameters("ShadowSharedParamsName");
 	Ogre::Matrix4 PROJECTIONCLIPSPACE2DTOIMAGESPACE_PERSPECTIVE(
 		0.5,    0,    0,  0.5, 

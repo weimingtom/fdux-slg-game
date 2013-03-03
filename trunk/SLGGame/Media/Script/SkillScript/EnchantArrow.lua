@@ -50,7 +50,7 @@ function onaffect()
 		SquadLib.RemoveModifier(sid, mid);
 	end
 	local lv = SquadLib.GetEffectLevel(sid, eid);
-	mid = SquadLib.ApplyModifier(sid, 2, 0.0, 1.0 + lv, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+	mid = SquadLib.ApplyModifier(sid, 2, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 	ScriptCommonLib.SetString("modifierid", mid);
 	if tid == "" then
 		tid = SquadLib.AddSquadTrigger(sid, "TurnStart", "onturnstart");

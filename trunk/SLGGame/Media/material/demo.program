@@ -41,7 +41,7 @@ fragment_program LightQuadFP cg
 		param_named_auto lightSpeColor light_specular_colour 0
 		param_named_auto cameraPos camera_position
 		param_named depthOffset float 0.001
-		param_named pcfOffset float 0.0005
+		param_named pcfOffset float 0.0002
 		shared_params_ref ShadowSharedParamsName
 		shared_params_ref TestSharedParamsName 
     }
@@ -102,7 +102,7 @@ fragment_program FinalPassFP cg
     default_params
     {
 		param_named_auto farChip far_clip_distance 
-		param_named_auto fogParam fog_params 
+		//param_named_auto fogParam fog_params 
 		param_named_auto fogColor fog_colour 
 		param_named_auto cameraPos camera_position
 		param_named_auto timeVal time 0.05

@@ -1,22 +1,45 @@
 import NotSkinned/CastShadow/TwoTexture from "demotemplate.material"
+import NotSkinned/CastShadow/TwoTexture2 from "demotemplate.material"
 material CliffMat1 : NotSkinned/CastShadow/TwoTexture
 {
 	set_texture_alias Diffuse GreenLand.dds
-	set_texture_alias Diffuse1 Cliff.dds
+	set_texture_alias Diffuse1 Cliff.tga
 }
 
 material CliffMat2 : NotSkinned/CastShadow/TwoTexture
 {
 	set_texture_alias Diffuse Desert.dds
-	set_texture_alias Diffuse1 Cliff.dds
+	set_texture_alias Diffuse1 Cliff.tga
 }
 material CliffMat3 : NotSkinned/CastShadow/TwoTexture
 {
 	set_texture_alias Diffuse GreenLand.dds
-	set_texture_alias Diffuse1 Cliff.dds
+	set_texture_alias Diffuse1 Cliff.tga
 }
 material CliffMat4 : NotSkinned/CastShadow/TwoTexture
 {
 	set_texture_alias Diffuse Desert.dds
-	set_texture_alias Diffuse1 Cliff.dds
+	set_texture_alias Diffuse1 Cliff.tga
+}
+
+material BankMat1 : NotSkinned/CastShadow/TwoTexture2
+{
+	set_texture_alias Diffuse GreenLand.dds
+	set_texture_alias Diffuse1 Cliff.tga
+}
+
+material BankMat2 : NotSkinned/CastShadow/TwoTexture2
+{
+	set_texture_alias Diffuse Desert.dds
+	set_texture_alias Diffuse1 Cliff.tga
+}
+material BankMat3 : NotSkinned/CastShadow/TwoTexture2
+{
+	set_texture_alias Diffuse GreenLand.dds
+	set_texture_alias Diffuse1 Cliff.tga
+}
+material BankMat4 : NotSkinned/CastShadow/TwoTexture2
+{
+	set_texture_alias Diffuse Desert.dds
+	set_texture_alias Diffuse1 Cliff.tga
 }

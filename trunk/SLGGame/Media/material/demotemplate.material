@@ -42,7 +42,7 @@ material Skinned/CastShadow/OneTexture
 			{
 				filtering anisotropic
 				max_anisotropy 2
-				texture defaultmat.png
+				texture defaultmat.tga
 			}
 		}
 	}
@@ -51,7 +51,6 @@ material Skinned/CastShadow/OneTexture
 		scheme WriteDepthMap
         pass 
         {
-			cull_hardware none
             vertex_program_ref DepthShadowmapVP/Skinned/OneTexture
             {
             }
@@ -110,7 +109,7 @@ material NotSkinned/CastShadow/OneTexture
 			texture_unit Material
 			{
 				filtering trilinear
-				texture defaultmat.png
+				texture defaultmat.tga
 			}
 		}
 	}
@@ -119,7 +118,6 @@ material NotSkinned/CastShadow/OneTexture
 		scheme WriteDepthMap
         pass 
         {
-			cull_hardware none
             vertex_program_ref DepthShadowmapVP/NotSkinned/OneTexture
             {
             }
@@ -180,7 +178,7 @@ material NotSkinned/CastShadow/TwoTexture
 			texture_unit Material
 			{
 				filtering trilinear
-				texture defaultmat.png
+				texture defaultmat.tga
 			}
         }
 	}
@@ -190,6 +188,71 @@ material NotSkinned/CastShadow/TwoTexture
         pass 
         {
 			cull_hardware anticlockwise
+			cull_software front
+            vertex_program_ref DepthShadowmapVP/NotSkinned/NoTexture
+            {
+            }
+            fragment_program_ref DepthShadowmapFP/NoTexture
+            {
+            }
+        }
+    }
+}
+
+material NotSkinned/CastShadow/TwoTexture2
+{ 
+	technique default
+	{
+		scheme Default
+		pass
+		{
+            vertex_program_ref ColorOnlyVP/NotSkinned/TwoTexture
+            {
+            }
+            fragment_program_ref ColorOnlyFP/TwoTexture
+            {
+            }
+			texture_unit Diffuse
+			{
+				texture GreenLand.dds
+			}
+			texture_unit Diffuse1
+			{
+				texture Cliff.dds
+			}
+		}
+	}
+	technique gbuffer
+	{
+		scheme GBuffer
+		pass 
+        {
+            vertex_program_ref GBufferVP/NotSkinned/TwoTexture
+            {
+            }
+            fragment_program_ref GBufferFP/TwoTexture
+            {
+            }
+			texture_unit Diffuse
+			{
+				texture GreenLand.dds
+			}
+			texture_unit Diffuse1
+			{
+				texture Cliff.dds
+			}
+			texture_unit Material
+			{
+				filtering trilinear
+				texture defaultmat.tga
+			}
+        }
+	}
+    technique shadowmap
+    {
+		scheme WriteDepthMap
+        pass 
+        {
             vertex_program_ref DepthShadowmapVP/NotSkinned/NoTexture
             {
             }
@@ -275,7 +338,7 @@ material NotSkinned/CastShadow/FourTexture
 			texture_unit Material
 			{
 				filtering trilinear
-				texture defaultmat.png
+				texture defaultmat.tga
 			}
         }
 	}
@@ -285,6 +348,7 @@ material NotSkinned/CastShadow/FourTexture
         pass 
         {
 			cull_hardware anticlockwise
+			cull_software front
             vertex_program_ref DepthShadowmapVP/NotSkinned/NoTexture
             {
             }
