@@ -205,7 +205,8 @@ mDirection(direction)
 
 SquadGraphics::~SquadGraphics(void)
 {
-	delete mCommanderUnit;
+	if(mCommanderUnit!=NULL)
+		delete mCommanderUnit;
 	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 	{
 		delete (*it);
@@ -336,6 +337,10 @@ std::map<int,Ogre::Vector3>* SquadGraphics::getUnitMovePath( UnitGrap* unit,std:
 
 bool SquadGraphics::isTransformOver()
 {
+	if (mCommanderUnit==NULL)
+	{
+		return true;
+	}
 	if (mCommanderUnit->mNodeAnimationState!=NULL)
 	{
 		return false;
@@ -365,7 +370,8 @@ void SquadGraphics::stopTransform()
 	{
 		(*it)->stopTransform();
 	}
-	mCommanderUnit->stopTransform();
+	if (mCommanderUnit!=NULL)
+		mCommanderUnit->stopTransform();
 	setCheckUnitHeight(false);
 	AudioSystem::getSingletonPtr()->stopSample();
 }
@@ -380,7 +386,8 @@ void SquadGraphics::setAnimation(std::string name,UnitType object,bool isLoop,bo
 		}
 	case UNITTYPE_LEADER:
 		{
-			mCommanderUnit->setAnimation(name,isLoop,returnInit);
+			if (mCommanderUnit!=NULL)
+				mCommanderUnit->setAnimation(name,isLoop,returnInit);
 			if (object!=UNITTYPE_ALL)
 			{
 				break;
@@ -436,6 +443,11 @@ void SquadGraphics::setInitAnimation( UnitType object )
 
 bool SquadGraphics::isAnimationOver(UnitType object)
 {
+	if (mCommanderUnit==NULL)
+	{
+		return true;
+	}
+
 	bool isCommandEnd=mCommanderUnit->mIsAnimationComplete;
 	bool isSoldierEnd=true;
 	if (mSoldierUnits.size()!=0)
@@ -791,7 +803,10 @@ void SquadGraphics::setGrid(int x,int y)
 	
 	mNode->setPosition(wx,0,wy);
 
-	mCommanderUnit->setPosition(wx,wy);
+	if (mCommanderUnit!=NULL)
+	{
+		mCommanderUnit->setPosition(wx,wy);
+	}
 	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 	{
 		(*it)->setPosition(wx,wy);
@@ -1416,7 +1431,10 @@ Direction SquadGraphics::getDirection()
 
 void SquadGraphics::setParticleVisible(bool visible)
 {
-	mCommanderUnit->setParticleVisible(visible);
+	if (mCommanderUnit!=NULL)
+	{
+		mCommanderUnit->setParticleVisible(visible);
+	}
 	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 	{
 		(*it)->setParticleVisible(visible);
@@ -1429,14 +1447,20 @@ bool SquadGraphics::addParticle(std::string id,std::string name,int object)
 	switch(object)
 	{
 	case UNITTYPE_ALL:
-		re |= mCommanderUnit->addParticle(id,name);
+		if (mCommanderUnit!=NULL)
+		{
+			re |= mCommanderUnit->addParticle(id,name);
+		}
 		for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 		{
 			re |= (*it)->addParticle(id,name);
 		}
 		break;
 	case UNITTYPE_LEADER:
-		re |= mCommanderUnit->addParticle(id,name);
+		if (mCommanderUnit!=NULL)
+		{
+			re |= mCommanderUnit->addParticle(id,name);
+		}
 		break;
 	case UNITTYPE_SOLIDER:
 		for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
@@ -1450,7 +1474,8 @@ bool SquadGraphics::addParticle(std::string id,std::string name,int object)
 void SquadGraphics::startParticle(std::string id)
 {
 	updateBB();
-	mCommanderUnit->startParticle(id);
+	if(mCommanderUnit!=NULL)
+		mCommanderUnit->startParticle(id);
 	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 	{
 		(*it)->startParticle(id);
@@ -1458,7 +1483,8 @@ void SquadGraphics::startParticle(std::string id)
 }
 void SquadGraphics::stopParticle(std::string id)
 {
-	mCommanderUnit->stopParticle(id);
+	if(mCommanderUnit!=NULL)
+		mCommanderUnit->stopParticle(id);
 	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 	{
 		(*it)->stopParticle(id);
@@ -1466,7 +1492,8 @@ void SquadGraphics::stopParticle(std::string id)
 }
 void SquadGraphics::delParticle(std::string id)
 {
-	mCommanderUnit->delParticle(id);
+	if(mCommanderUnit!=NULL)
+		mCommanderUnit->delParticle(id);
 	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 	{
 		(*it)->delParticle(id);
@@ -1644,7 +1671,10 @@ void SquadGraphics::defenseAction( SquadGraphics* enemy,bool isMove )
 
 	std::vector<UnitGrap*> defenseUnit;
 
-	defenseUnit.push_back(mCommanderUnit);
+	if (mCommanderUnit!=NULL)
+	{
+		defenseUnit.push_back(mCommanderUnit);
+	}
 
 	if (enemy->mSoldierUnits.size()+1<mSoldierUnits.size()+1)//如果进攻方数量小于防御方,则需要选择,否则不用
 	{
@@ -1713,6 +1743,11 @@ void SquadGraphics::defenseAction( SquadGraphics* enemy,bool isMove )
 
 bool SquadGraphics::isDefenseActionOver()
 {
+	if (mCommanderUnit==NULL)
+	{
+		return false;
+	}
+
 	if (mCommanderUnit->mIsPUEnd)
 	{
 		mCommanderUnit->mIsPUEnd=false;
