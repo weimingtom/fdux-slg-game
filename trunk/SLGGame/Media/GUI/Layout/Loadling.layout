@@ -23,9 +23,9 @@
                 <Property key="FontName" value="fireflysung"/>
             </Widget>
         </Widget>
-        <Widget type="Window" skin="SLGMiniWindowSkin" position="20 95 365 215">
+        <Widget type="Window" skin="SLGMiniWindowSkin" position="20 95 365 295">
             <Property key="FontName" value="fireflysung"/>
-            <Widget type="EditBox" skin="WordWrapEmpty" position="15 15 340 185" name="MapInfo">
+            <Widget type="EditBox" skin="WordWrapEmpty" position="15 15 340 270" name="MapInfo">
                 <Property key="TextAlign" value="Default"/>
                 <Property key="FontName" value="fireflysung"/>
                 <Property key="WordWrap" value="true"/>
