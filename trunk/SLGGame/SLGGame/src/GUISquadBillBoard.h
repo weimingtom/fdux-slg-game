@@ -30,6 +30,8 @@ public:
 
 	void changeColor(MyGUI::Colour c);
 
+	void setNode(Ogre::SceneNode* node){mNode=node;}
+
 	MyGUI::Colour mHasApColor;
 	MyGUI::Colour mNoneApColor;
 
