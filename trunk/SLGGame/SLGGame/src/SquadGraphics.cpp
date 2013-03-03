@@ -1004,7 +1004,7 @@ void SquadGraphics::setDeath(int num)
 	if (mSoldierUnits.size()!=0)//还有士兵?
 	{
 		//随机选择
-		if(num>=mSoldierUnits.size())
+		if(num<mSoldierUnits.size())
 		{
 			std::set<int> s;
 			while(1)
@@ -1250,7 +1250,6 @@ void SquadGraphics::stopDeath()
 
 		if (it->first==mCommanderUnit)
 		{
-			delete mCommanderUnit;
 			mCommanderUnit=NULL;
 		}
 
