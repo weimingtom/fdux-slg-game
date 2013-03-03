@@ -28,8 +28,8 @@ function onaffect()
 		if attr < 0 then
 			ratk = -attr;
 		end
-		if ratk > 2 + lv then
-			ratk = 2 + lv;
+		if ratk > 1 + lv then
+			ratk = 1 + lv;
 		end
 		mid = SquadLib.ApplyModifier(sid, 0, 0.0, ratk, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 		ScriptCommonLib.SetString("modifierid", mid);
