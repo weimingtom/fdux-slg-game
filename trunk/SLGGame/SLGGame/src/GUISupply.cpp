@@ -493,9 +493,9 @@ void GUISupply::showAttribute(int index,int itemType,std::string itemID)
 			  else if(id=="XBow")
 				  mGroup="LXBox";
 			  else if(id=="LightHorse")
-				  mGroup="eqp_heavyhorse";
+				  mGroup="eqp_lighthorse";
 			  else if(id=="HeavyHorse")
-				  mGroup="eqp_lightarmor";
+				  mGroup="eqp_heavyhorse";
 
 			mSquadUseEquipIcon[m_SquadUseEquipNum]->setItemResource("eqp");
 			mSquadUseEquipIcon[m_SquadUseEquipNum]->setItemGroup(mGroup);

@@ -252,13 +252,13 @@ void BattlePlayerState::setSelectPlanePosition( int GX,int GY,float height )
 {
 	float wx,wy;
 	Terrain::getSingletonPtr()->getWorldCoords(GX,GY,wx,wy);
-	planeNode->setPosition(wx,height,wy);
+	planeNode->setPosition(wx,Terrain::getSingletonPtr()->getHeight(wx,wy)+height,wy);
 	planeNode->setVisible(true);
 }
 
 void BattlePlayerState::setSelectPlanePosition()
 {	
-	setSelectPlanePosition(mSelectSquad->getGridX(),mSelectSquad->getGridY(),Terrain::getSingletonPtr()->getHeight(mSelectSquad->getGridX(),mSelectSquad->getGridY())+1.0);
+	setSelectPlanePosition(mSelectSquad->getGridX(),mSelectSquad->getGridY(),1.0);
 }
 
 void BattlePlayerState::hideSelectPlane()
