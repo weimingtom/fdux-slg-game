@@ -18,6 +18,7 @@
 #include "GUISquadWindows.h"
 #include "GUICommandWindows.h"
 #include "GUITargetWindow.h"
+#include "SquadGrapManager.h"
 
 #include "Terrain.h"
 #include "BattleSquadManager.h"
@@ -72,6 +73,7 @@ BattlePlayerState::~BattlePlayerState()
 	mGUICommand->setSquad(NULL);
 	mGUICommand->setPlayerState(NULL);
 	hideSelectPlane();
+	SquadGrapManager::getSingletonPtr()->clearBBState();
 }
 
 void BattlePlayerState::update(unsigned int deltaTime)

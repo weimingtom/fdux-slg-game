@@ -33,6 +33,7 @@ public:
 	bool createSquadGrap(std::string squadid, std::string datapath, int gridx, int gridy, int direction, int formation, int soldierCount);
 	void destorySquad(std::string squadid);
 	SquadGraphics* getSquad(std::string squadid);
+	void clearBBState();
 
 private:
 	std::map<std::string, SquadGraphics*> mSquadGrapMap;

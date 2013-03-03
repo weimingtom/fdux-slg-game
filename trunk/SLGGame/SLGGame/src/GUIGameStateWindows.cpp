@@ -66,5 +66,8 @@ void GUIGameStateWindows::update()
 void GUIGameStateWindows::onNextTurn(MyGUI::Widget* _sender)
 {
 	if(mBattleState)
+	{
+		mNextTurn->setEnabled(false);
 		mBattleState->PopState();
+	}
 }
