@@ -109,7 +109,7 @@ void Launcher::parseXML()
 		switch(i)
 		{
 		case 0:
-			ui.label->setText("<a href='"+itemList.at(i).firstChildElement("link").text()+"'>"+titleString+"</a>");
+			ui.label->setText("<font color='red'><a href='"+itemList.at(i).firstChildElement("link").text()+"'>"+titleString+"</a></font>");
 			break;
 		case 1:
 			ui.label_2->setText("<a href='"+itemList.at(i).firstChildElement("link").text()+"'>"+titleString+"</a>");
