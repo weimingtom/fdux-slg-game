@@ -8,6 +8,7 @@ CutScene::CutScene(unsigned int lasttime)
 	mLastTime = lasttime;
 	mStarted = false;
 	mEnded = false;
+	mCanSkip=true;
 	mNextScene = 0;
 	mPassedTime = 0;
 }
@@ -31,7 +32,7 @@ void CutScene::start()
 
 void CutScene::skip()
 {
-	if(mEnded == true)
+	if(mEnded == true || (!mCanSkip))
 		return;
 	skipCutScene();
 	mEnded = true;

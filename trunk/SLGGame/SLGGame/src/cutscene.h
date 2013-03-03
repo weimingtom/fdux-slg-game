@@ -22,6 +22,7 @@ protected:
 
 	bool mStarted;
 	bool mEnded;
+	bool mCanSkip;
 
 	virtual void startCutScence() = 0;
 	virtual bool endCutScene() = 0;

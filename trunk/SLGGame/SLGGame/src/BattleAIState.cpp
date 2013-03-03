@@ -18,12 +18,17 @@
 #include "CutSceneBuilder.h"
 #include "cutscenediretor.h"
 #include "GUISystem.h"
+#include "GUIBattle.h"
+#include "GUIGameStateWindows.h"
 
 
 BattleAIState::BattleAIState(int team)
 :mTeam(team),mState(AISTATE_INIT)
 {
 	GUISystem::getSingletonPtr()->setFrameUpdateScene(BattleScene);
+	GUIBattle* mGUIBattle = static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
+	GUIGameStateWindows* mGUIState = static_cast<GUIGameStateWindows *>(mGUIBattle->getSubWindow("GameState"));
+	mGUIState->setAllowNextTurn(false);
 }
 BattleAIState::~BattleAIState()
 {

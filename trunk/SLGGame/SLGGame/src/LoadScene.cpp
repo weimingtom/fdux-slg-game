@@ -14,6 +14,8 @@ LoadScene::LoadScene(int width,int height,std::string filename, std::string text
 	mBackgroundImage->setImageTexture(filename);
 	mBackgroundImage->eventMouseButtonClick+=MyGUI::newDelegate(this, &LoadScene::eventMouseButtonClick);
 	mLoadText->setCaption(text);
+
+	setSceneLanguage();
 }
 LoadScene::~LoadScene()
 {

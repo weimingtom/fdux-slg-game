@@ -8,6 +8,8 @@
 #include <algorithm>
 #include "StringTable.h"
 #include "GUITipsWindow.h"
+#include "SquadGrapManager.h"
+#include "SquadGraphics.h"
 
 void split(const std::string& s, std::string c,std::queue<std::string>& v) 
 {
@@ -297,6 +299,10 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 	}
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	float apleft = mSelectSquad->getActionPoint();
+	if(apleft<2)
+		SquadGrapManager::getSingletonPtr()->getSquad(mSelectSquad->getSquadId())->setSquadBillBoardState(false);
+	else
+		SquadGrapManager::getSingletonPtr()->getSquad(mSelectSquad->getSquadId())->setSquadBillBoardState(true);
 	mAPLabel->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("APLabel"))%(int)apleft%mSelectSquad->getAttr(ATTR_ACTIONPOINT,ATTRCALC_FULL)));
 	std::vector<BattleSquad::ActiveSkillInfo> skilllist = mSelectSquad->GetActiveSkillList();
 	std::vector<BattleSquad::ActiveSkillInfo>::iterator ite = skilllist.begin();

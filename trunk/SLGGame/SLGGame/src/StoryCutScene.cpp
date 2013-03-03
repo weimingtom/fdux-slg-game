@@ -21,6 +21,7 @@ void StoryCutScene::startCutScence()
 {
 	GUIBattle* mGUIBattle = static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
 	mGUIBattle->hideAllWindows();
+	mCanSkip=false;
 	
 	StateManager::getSingletonPtr()->addAffixationState(mScriptName+".StoryInit",StateManager::AVG);
 }

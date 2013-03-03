@@ -542,10 +542,14 @@ void UnitGrap::stopTransform()
 
 void UnitGrap::update( unsigned int deltaTime )
 {
-	mAniBlender->addTime(deltaTime/1000.0f);
 	if (mHorseAniBlender!=NULL)
 	{
-		mHorseAniBlender->addTime(deltaTime/1000.0f);
+		mAniBlender->addTime(deltaTime/1000.0f*1.5);
+		mHorseAniBlender->addTime(deltaTime/1000.0f*1.5);
+	}
+	else
+	{
+		mAniBlender->addTime(deltaTime/1000.0f);
 	}
 	
 	if ( !mIsAnimationComplete && mAniBlender->complete)

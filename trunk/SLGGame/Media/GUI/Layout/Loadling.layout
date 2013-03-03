@@ -32,5 +32,14 @@
                 <Property key="FontHeight" value="26"/>
             </Widget>
         </Widget>
+        <Widget type="TextBox" skin="TextBox" position="345 660 650 30" name="TEXT_GameTips">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="TextAlign" value="Center"/>
+            <Property key="FontHeight" value="26"/>
+            <Property key="TextColour" value="0 1 1"/>
+            <Property key="Caption" value="asdasdasdasdasd"/>
+            <Property key="TextShadowColour" value="0 0 0"/>
+            <Property key="TextShadow" value="true"/>
+        </Widget>
     </Widget>
 </MyGUI>

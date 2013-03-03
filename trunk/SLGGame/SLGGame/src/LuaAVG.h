@@ -43,12 +43,18 @@ static int SetCanSupply(lua_State* L)
 	}
 	return 0;
 }
-
+static int EE(lua_State* L)
+{
+	DataLibrary::getSingletonPtr()->setData("SystemConfig/AnswerToLifeTheUniverseAndEverything",42);
+	DataLibrary::getSingletonPtr()->saveXmlData(DataLibrary::SystemConfig,std::string("..\\save\\Config.xml"));
+	return 0;
+}
 
 static const struct luaL_Reg AVGLib[] =
 {
 	{"AddSquad",AddSquad},
 	{"SetPlayerFaction",SetPlayerFaction},
 	{"SetCanSupply",SetCanSupply},
+	{"EE",EE},
 	{NULL,NULL}
 };

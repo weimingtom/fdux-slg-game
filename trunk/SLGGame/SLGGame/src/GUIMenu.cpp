@@ -48,6 +48,15 @@ GUIMenu::GUIMenu(int width,int height):GUIScene("MainMenu.layout",width,height),
 	mOpiton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onOpiton);
 	mExit->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenu::onExit);
 	setButtonLock(false);
+
+	int answer=0;
+	if(DataLibrary::getSingletonPtr()->getData("SystemConfig/AnswerToLifeTheUniverseAndEverything",answer,true))
+	{
+		if (answer==42)
+		{
+			mLogoImage->setImageTexture("logo2.png");
+		}
+	}
 }
 
 GUIMenu::~GUIMenu(void)
