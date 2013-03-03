@@ -977,8 +977,9 @@ void BattleAIState::SquadAI::updateSkill()
 			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(0.0f, 100.0f) , 0.05f);
 			break;
 		case SGM_MOVE:
-			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.25f);
-			skilldecision.addFactor(new SquadSkillbySptEffectiveFactor(mSquad) , 0.7f);
+			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.35f);
+			skilldecision.addFactor(new SquadSkillbySptEffectiveFactor(mSquad) , 0.45f);
+			skilldecision.addFactor(new SquadSkillbyRoleFactor(mSquad, ROLETYPE_SUPPORT_AP), 0.15f);
 			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(0.0f, 100.0f) , 0.05f);
 			break;
 		case SGM_RALLY:
@@ -1890,7 +1891,20 @@ void BattleAIState::AttackCommander::write(std::string path)
 BattleAIState::MoveCommander::MoveCommander(std::string path, std::vector<std::string> squadlist)
 :MissionCommander(path, squadlist)
 {
-
+	std::vector<BattleSquad*> freeSquads = getFreeSquads();
+	if(freeSquads.size() > 0)
+	{
+		int createdsg = createSquadGroup(SG_MAIN, freeSquads);
+		std::map<int, SquadGroupCommander>::iterator sgcite = mSquadGroupList.find(createdsg);
+		if(sgcite != mSquadGroupList.end())
+		{
+			DecisionMap<SquadAI> decision(sgcite->second.mSquadList);
+			decision.addFactor(new SquadClosetoFactor(mMissionArea.getCenter()),1.0f);
+			decision.calcDecision();
+			sgcite->second.mSquadList = decision.getSortedDecisions();
+			sgcite->second.setTarget(MISSIONTYPE_MOVE, mMissionArea.getCenter());
+		}
+	}
 }
 
 void BattleAIState::MoveCommander::analyzeMission(OtherSquadGroupInfo& othersquadgroup, 
