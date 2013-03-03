@@ -4,6 +4,8 @@
 	#include "CrashRpt.h"
 	#include <tchar.h>
 	#pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" )
+	#define VER_Crash _T("0.1d")
+	#define VER_Subject _T("ForgottenBattlefield 0.1d Error Report")
 #endif
 
 int main(int argc,char* argv[])
@@ -13,8 +15,8 @@ int main(int argc,char* argv[])
 		memset(&info, 0, sizeof(CR_INSTALL_INFO));
 		info.cb = sizeof(CR_INSTALL_INFO);             // Size of the structure
 		info.pszAppName = _T("ForgottenBattlefield"); // App name
-		info.pszAppVersion = _T("0.1a");              // App version
-		info.pszEmailSubject = _T("ForgottenBattlefield 0.1a Error Report"); // Email subject
+		info.pszAppVersion = VER_Crash ;              // App version
+		info.pszEmailSubject = VER_Subject; // Email subject
 		info.pszEmailTo = _T("fduxslggame@163.com");      // Email recipient address
 		info.pszSmtpProxy = _T("smtp.163.com:25");
 		info.pszSmtpLogin = _T("fduxslggame@163.com");

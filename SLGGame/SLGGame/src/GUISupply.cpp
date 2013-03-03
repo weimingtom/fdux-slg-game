@@ -879,7 +879,6 @@ void GUISupply::onExit(MyGUI::Widget* _sender)
 	}
 	
 	hideScene();
-	StateManager::getSingletonPtr()->removeAffixationState();
 }
 
 void GUISupply::onEquipment(MyGUI::Widget* _sender)
@@ -959,13 +958,8 @@ void GUISupply::onOtherSceneNotify( std::string arg )
 	}
 	else if(arg=="FadeOutOver")
 	{
-		if(mNextScript!="AVG")
-			StateManager::getSingletonPtr()->changeState(mNextScript,StateManager::AVG);
-		else
-		{
-			GUISystem::getSingletonPtr()->getScene(StageScene)->onOtherSceneNotify("ReturnFromSupply");
-			StateManager::getSingletonPtr()->removeAffixationState();
-		}
+		GUISystem::getSingletonPtr()->getScene(StageScene)->onOtherSceneNotify("ReturnFromSupply");
+		StateManager::getSingletonPtr()->removeAffixationState();
 	}
 	else if(arg=="MessageBoxYes")
 	{

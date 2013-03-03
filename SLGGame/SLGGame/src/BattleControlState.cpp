@@ -101,6 +101,8 @@ void BattleControlState::update(unsigned int deltaTime)
 							mCurState = ControlState_TurnStart;
 							DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/Ture",turn);
 							DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/CurTeam",team);
+							mGUIState->showScene("");
+							mGUIState->update();
 
 							std::string temp;
 							DataLibrary::getSingletonPtr()->getData("GameData/BattleData/MapData/MapName",temp);
@@ -115,6 +117,8 @@ void BattleControlState::update(unsigned int deltaTime)
 						{
 							DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/Ture",turn);
 							DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/CurTeam",team);
+							mGUIState->showScene("");
+							mGUIState->update();
 
 							std::string temp;
 							DataLibrary::getSingletonPtr()->getData("GameData/BattleData/MapData/MapName",temp);
@@ -174,6 +178,8 @@ void BattleControlState::update(unsigned int deltaTime)
 								mCurState = ControlState_TurnStart;
 								DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/Ture",turn);
 								DataLibrary::getSingletonPtr()->setData("GameData/BattleData/BattleState/CurTeam",team);
+								mGUIState->showScene("");
+								mGUIState->update();
 								return;
 							}
 							else

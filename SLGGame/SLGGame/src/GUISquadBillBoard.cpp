@@ -17,7 +17,14 @@ GUISquadBillBoard::~GUISquadBillBoard(void)
 
 Ogre::Vector3 GUISquadBillBoard::getPosition()
 {
-	return mNode->getPosition();
+	if (mNode==NULL)
+	{
+		return Ogre::Vector3(0,-100,0);
+	}
+	else
+	{
+		return mNode->getPosition();
+	}
 }
 
 void GUISquadBillBoard::update( Ogre::Vector2 screen,unsigned int deltaTime)

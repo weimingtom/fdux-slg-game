@@ -22,7 +22,7 @@ Launcher::Launcher(QWidget *parent, Qt::WFlags flags)
 	this->connect(ui.label_5,SIGNAL(linkActivated (QString)),this,SLOT(openRss(QString)));
 	this->connect(ui.pushButton,SIGNAL(clicked(bool)),this,SLOT(weibo()));
 
-	reply = manager.get(QNetworkRequest(QUrl("http://fdux.xoom.it/?cat=20&feed=rss2")));
+	reply = manager.get(QNetworkRequest(QUrl("http://1.fdux.sinaapp.com/?cat=4&feed=rss2")));
 	connect(reply, SIGNAL(finished()),
 		this, SLOT(httpFinished()));
 	connect(reply, SIGNAL(readyRead()),
@@ -79,7 +79,7 @@ void Launcher::setupXP()
 
 void Launcher::visitWebSite()
 {
-	ShellExecute(NULL, L"open",L"http://fdux.xoom.it/ ", NULL, NULL, SW_SHOWNORMAL);  
+	ShellExecute(NULL, L"open",L"http://1.fdux.sinaapp.com/ ", NULL, NULL, SW_SHOWNORMAL);  
 }
 
 void Launcher::httpFinished()

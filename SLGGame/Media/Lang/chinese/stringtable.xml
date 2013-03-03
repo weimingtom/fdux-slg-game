@@ -198,6 +198,7 @@
 		<LoadingUnit type="String" value="读取单位.." />
 		<CreatingGrid type="String" value="构建地形.." />
 		<Finish type="String" value="按任意键继续.." />
+		<TEXT_GameTips type="String" value="每个玩家回合会自动保存进度,在游戏中按ESC可以打开系统菜单." />
         <T_SupplySave type="String" value="保存游戏" />
         <T_SupplyLoad type="String" value="读取游戏" />
         <T_SupplyExit type="String" value="补给结束" />

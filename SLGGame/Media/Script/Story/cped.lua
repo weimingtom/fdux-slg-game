@@ -325,5 +325,6 @@ GUI.SetDialogVisible(0);
 GUI.ShowImage("black.png",4,2000);
 GUI.SE("kaimen.ogg");
 GUI.Wait(3000);
+AVGLib.EE();
 GUI.PlayMovie("../Media/movie/ed.avi");
 StateLib.MenuState("");
