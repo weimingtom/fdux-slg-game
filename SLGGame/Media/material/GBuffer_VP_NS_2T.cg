@@ -21,8 +21,6 @@ void main(
 	float3 viewnormal =  mul((float3x3)worldView, normal);
 	float normaldot = dot( normalize(viewpos.xyz), viewnormal);
 	oNormal = mul((float3x3)worldMatrix, normal);
-	if(normaldot > 0.0)
-		oNormal = -oNormal;
 	oUv = uv;
 	oUv1 = uv1;
 }

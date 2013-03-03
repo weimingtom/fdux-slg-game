@@ -68,48 +68,68 @@ bool Terrain::createTerrain()
 	std::string texname;
 	datalib->getData("GameData/BattleData/MapData/Ground/G0Tex",texname);
 	texAliasList.insert(std::make_pair("Diffuse",texname));
-	//mat->applyTextureAliases(Ogre::AliasTextureNamePairList("Diffuse",texname));
 	datalib->getData("GameData/BattleData/MapData/Ground/G1Tex",texname);
 	texAliasList.insert(std::make_pair("Diffuse1",texname));
-	//mat->applyTextureAliases(Ogre::AliasTextureNamePairList("Diffuse1",texname));
 	datalib->getData("GameData/BattleData/MapData/Ground/G2Tex",texname);
 	texAliasList.insert(std::make_pair("Diffuse2",texname));
-	//mat->applyTextureAliases(Ogre::AliasTextureNamePairList("Diffuse2",texname));
 	datalib->getData("GameData/BattleData/MapData/Ground/G3Tex",texname);
 	texAliasList.insert(std::make_pair("Diffuse3",texname));
-	//mat->applyTextureAliases(Ogre::AliasTextureNamePairList("Diffuse3",texname));
 	mat->applyTextureAliases(texAliasList);
 	texAliasList.clear();
 
 	mat = Ogre::MaterialManager::getSingleton().getByName("CliffMat1");
 	datalib->getData("GameData/BattleData/MapData/Ground/G0Tex",texname);
-	//mat->applyTextureAliases(Ogre::AliasTextureNamePairList("Diffuse",texname));
 	texAliasList.insert(std::make_pair("Diffuse",texname));
-	texAliasList.insert(std::make_pair("Diffuse1","Cliff.dds"));
+	texAliasList.insert(std::make_pair("Diffuse1","Cliff.tga"));
 	mat->applyTextureAliases(texAliasList);
 	texAliasList.clear();
 
 	mat = Ogre::MaterialManager::getSingleton().getByName("CliffMat2");
 	datalib->getData("GameData/BattleData/MapData/Ground/G1Tex",texname);
-	//mat->applyTextureAliases(Ogre::AliasTextureNamePairList("Diffuse",texname));
 	texAliasList.insert(std::make_pair("Diffuse",texname));
-	texAliasList.insert(std::make_pair("Diffuse1","Cliff.dds"));
+	texAliasList.insert(std::make_pair("Diffuse1","Cliff.tga"));
 	mat->applyTextureAliases(texAliasList);
 	texAliasList.clear();
 
 	mat = Ogre::MaterialManager::getSingleton().getByName("CliffMat3");
 	datalib->getData("GameData/BattleData/MapData/Ground/G2Tex",texname);
-	//mat->applyTextureAliases(Ogre::AliasTextureNamePairList("Diffuse",texname));
 	texAliasList.insert(std::make_pair("Diffuse",texname));
-	texAliasList.insert(std::make_pair("Diffuse1","Cliff.dds"));
+	texAliasList.insert(std::make_pair("Diffuse1","Cliff.tga"));
 	mat->applyTextureAliases(texAliasList);
 	texAliasList.clear();
 
 	mat = Ogre::MaterialManager::getSingleton().getByName("CliffMat4");
 	datalib->getData("GameData/BattleData/MapData/Ground/G3Tex",texname);
-	//mat->applyTextureAliases(Ogre::AliasTextureNamePairList("Diffuse",texname));
 	texAliasList.insert(std::make_pair("Diffuse",texname));
-	texAliasList.insert(std::make_pair("Diffuse1","Cliff.dds"));
+	texAliasList.insert(std::make_pair("Diffuse1","Cliff.tga"));
+	mat->applyTextureAliases(texAliasList);
+	texAliasList.clear();
+
+	mat = Ogre::MaterialManager::getSingleton().getByName("BankMat1");
+	datalib->getData("GameData/BattleData/MapData/Ground/G0Tex",texname);
+	texAliasList.insert(std::make_pair("Diffuse",texname));
+	texAliasList.insert(std::make_pair("Diffuse1","Cliff.tga"));
+	mat->applyTextureAliases(texAliasList);
+	texAliasList.clear();
+
+	mat = Ogre::MaterialManager::getSingleton().getByName("BankMat2");
+	datalib->getData("GameData/BattleData/MapData/Ground/G1Tex",texname);
+	texAliasList.insert(std::make_pair("Diffuse",texname));
+	texAliasList.insert(std::make_pair("Diffuse1","Cliff.tga"));
+	mat->applyTextureAliases(texAliasList);
+	texAliasList.clear();
+
+	mat = Ogre::MaterialManager::getSingleton().getByName("BankMat3");
+	datalib->getData("GameData/BattleData/MapData/Ground/G2Tex",texname);
+	texAliasList.insert(std::make_pair("Diffuse",texname));
+	texAliasList.insert(std::make_pair("Diffuse1","Cliff.tga"));
+	mat->applyTextureAliases(texAliasList);
+	texAliasList.clear();
+
+	mat = Ogre::MaterialManager::getSingleton().getByName("BankMat4");
+	datalib->getData("GameData/BattleData/MapData/Ground/G3Tex",texname);
+	texAliasList.insert(std::make_pair("Diffuse",texname));
+	texAliasList.insert(std::make_pair("Diffuse1","Cliff.tga"));
 	mat->applyTextureAliases(texAliasList);
 	texAliasList.clear();
 
@@ -583,7 +603,7 @@ void Terrain::createTile(int x, int y,float sx, float sy, float *posbuffer, floa
 	{
 		usemesh = true;
 		meshName = "Cliff";
-		materialName = "Cliff";
+		materialName = "Bank";
 		meshindex = terrainindex[HighGround];
 	}
 	else if(terrainindex[Water] > 0 && terrainindex[Water] < 15)
