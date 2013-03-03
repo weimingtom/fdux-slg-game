@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <MapName>map12</MapName>
 <MapTeam>
-    <Team2 TeamType="enemy1" TeamFaction="诺斯军" />
+    <Team2 TeamType="enemy1" TeamFaction="ŵ˹��" />
     <Team3 TeamType="none" TeamFaction="none" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
@@ -23,31 +23,31 @@
     <Stone2_1 Type="Stone" GridX="3" GridY="5" Mesh="Stone2.mesh" Direction="0" />
     <Stone1_2 Type="Stone" GridX="4" GridY="5" Mesh="Stone1.mesh" Direction="3" />
     <Stone2_2 Type="Stone" GridX="3" GridY="4" Mesh="Stone2.mesh" Direction="0" />
-    <Stone2_4 Type="Stone" GridX="2" GridY="7" Mesh="Stone2.mesh" Direction="0" />
-    <Stone2_5 Type="Stone" GridX="0" GridY="4" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_3 Type="Stone" GridX="2" GridY="7" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_4 Type="Stone" GridX="0" GridY="4" Mesh="Stone2.mesh" Direction="0" />
     <Stone1_3 Type="Stone" GridX="1" GridY="4" Mesh="Stone1.mesh" Direction="0" />
     <Stone1_4 Type="Stone" GridX="5" GridY="0" Mesh="Stone1.mesh" Direction="0" />
-    <Stone2_6 Type="Stone" GridX="5" GridY="1" Mesh="Stone2.mesh" Direction="3" />
+    <Stone2_5 Type="Stone" GridX="5" GridY="1" Mesh="Stone2.mesh" Direction="3" />
     <Stone1_5 Type="Stone" GridX="4" GridY="1" Mesh="Stone1.mesh" Direction="0" />
-    <Stone2_7 Type="Stone" GridX="5" GridY="2" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_6 Type="Stone" GridX="5" GridY="2" Mesh="Stone2.mesh" Direction="0" />
     <Stone1_6 Type="Stone" GridX="13" GridY="0" Mesh="Stone1.mesh" Direction="0" />
     <Stone1_7 Type="Stone" GridX="14" GridY="1" Mesh="Stone1.mesh" Direction="0" />
-    <Stone2_8 Type="Stone" GridX="14" GridY="2" Mesh="Stone2.mesh" Direction="0" />
-    <Stone2_9 Type="Stone" GridX="13" GridY="1" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_7 Type="Stone" GridX="14" GridY="2" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_8 Type="Stone" GridX="13" GridY="1" Mesh="Stone2.mesh" Direction="0" />
     <Stone1_8 Type="Stone" GridX="9" GridY="14" Mesh="Stone1.mesh" Direction="0" />
     <Stone1_9 Type="Stone" GridX="17" GridY="6" Mesh="Stone1.mesh" Direction="0" />
     <Stone1_10 Type="Stone" GridX="19" GridY="7" Mesh="Stone1.mesh" Direction="0" />
     <Stone1_11 Type="Stone" GridX="19" GridY="5" Mesh="Stone1.mesh" Direction="0" />
-    <Stone2_10 Type="Stone" GridX="18" GridY="5" Mesh="Stone2.mesh" Direction="0" />
-    <Stone2_11 Type="Stone" GridX="18" GridY="6" Mesh="Stone2.mesh" Direction="0" />
-    <Stone2_12 Type="Stone" GridX="19" GridY="6" Mesh="Stone2.mesh" Direction="0" />
-    <Stone2_13 Type="Stone" GridX="16" GridY="6" Mesh="Stone2.mesh" Direction="0" />
-    <Stone2_14 Type="Stone" GridX="17" GridY="5" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_9 Type="Stone" GridX="18" GridY="5" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_10 Type="Stone" GridX="18" GridY="6" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_11 Type="Stone" GridX="19" GridY="6" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_12 Type="Stone" GridX="16" GridY="6" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_13 Type="Stone" GridX="17" GridY="5" Mesh="Stone2.mesh" Direction="0" />
     <Stone1_12 Type="Stone" GridX="17" GridY="4" Mesh="Stone1.mesh" Direction="0" />
-    <Stone2_15 Type="Stone" GridX="10" GridY="16" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_14 Type="Stone" GridX="10" GridY="16" Mesh="Stone2.mesh" Direction="0" />
     <Stone1_13 Type="Stone" GridX="16" GridY="18" Mesh="Stone1.mesh" Direction="0" />
-    <Stone2_16 Type="Stone" GridX="17" GridY="18" Mesh="Stone2.mesh" Direction="0" />
-    <Stone2_17 Type="Stone" GridX="18" GridY="18" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_15 Type="Stone" GridX="17" GridY="18" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_16 Type="Stone" GridX="18" GridY="18" Mesh="Stone2.mesh" Direction="0" />
     <Stone1_14 Type="Stone" GridX="1" GridY="17" Mesh="Stone1.mesh" Direction="0" />
     <Stone1_15 Type="Stone" GridX="1" GridY="18" Mesh="Stone1.mesh" Direction="0" />
     <BigCamp_0 Type="Camp" GridX="18" GridY="1" Mesh="BigCamp.mesh" Direction="1" />
@@ -222,33 +222,42 @@
 <MapSquad>
     <Team1 />
     <Team2>
-        <Team2Squad_0 Type="NothHeavyHSword" GridX="8" GridY="7" Direction="1" UnitNum="50" />
-        <Team2Squad_1 Type="NothHeavyHSword" GridX="10" GridY="7" Direction="1" UnitNum="50" />
+        <Team2Squad_0 Type="NothHeavyHSword" GridX="8" GridY="9" Direction="1" UnitNum="50" />
+        <Team2Squad_1 Type="NothHeavyHSword" GridX="11" GridY="10" Direction="1" UnitNum="50" />
         <Team2Squad_2 Type="NothHeavyHSword" GridX="2" GridY="8" Direction="1" UnitNum="50" />
-        <Team2Squad_3 Type="NothHeavyCrossBow" GridX="10" GridY="8" Direction="1" UnitNum="50" />
-        <Team2Squad_4 Type="NothHeavyCrossBow" GridX="9" GridY="9" Direction="1" UnitNum="50" />
-        <Team2Squad_5 Type="NothHeavyCrossBow" GridX="8" GridY="8" Direction="1" UnitNum="50" />
-        <Team2Squad_6 Type="NothLightBow" GridX="9" GridY="10" Direction="1" UnitNum="50" />
+        <Team2Squad_3 Type="NothHeavyCrossBow" GridX="10" GridY="11" Direction="1" UnitNum="50" />
+        <Team2Squad_4 Type="NothHeavyCrossBow" GridX="7" GridY="10" Direction="1" UnitNum="50" />
+        <Team2Squad_5 Type="NothHeavyCrossBow" GridX="8" GridY="11" Direction="1" UnitNum="50" />
+        <Team2Squad_6 Type="NothLightBow" GridX="9" GridY="11" Direction="1" UnitNum="50" />
         <Team2Squad_7 Type="NothLightBow" GridX="6" GridY="8" Direction="1" UnitNum="50" />
         <Team2Squad_8 Type="NothLightBow" GridX="3" GridY="7" Direction="1" UnitNum="50" />
-        <Team2Squad_9 Type="NothLightHSword" GridX="9" GridY="6" Direction="1" UnitNum="50" />
-        <Team2Squad_10 Type="NothLightHSword" GridX="9" GridY="7" Direction="1" UnitNum="50" />
+        <Team2Squad_9 Type="NothLightHSword" GridX="9" GridY="9" Direction="1" UnitNum="50" />
+        <Team2Squad_10 Type="NothLightHSword" GridX="10" GridY="9" Direction="1" UnitNum="50" />
     </Team2>
     <Team3 />
     <Team4 />
 </MapSquad>
 <MapArea>
     <DeployArea>
-        <c0 X="7" Y="0" />
-        <c1 X="7" Y="1" />
-        <c2 X="8" Y="1" />
-        <c3 X="9" Y="1" />
-        <c4 X="10" Y="1" />
-        <c5 X="11" Y="1" />
-        <c6 X="11" Y="0" />
-        <c7 X="10" Y="0" />
-        <c8 X="9" Y="0" />
-        <c9 X="8" Y="0" />
+        <c0 X="7" Y="1" />
+        <c1 X="8" Y="1" />
+        <c2 X="9" Y="1" />
+        <c3 X="10" Y="1" />
+        <c4 X="11" Y="1" />
+        <c5 X="8" Y="4" />
+        <c6 X="9" Y="4" />
+        <c7 X="10" Y="4" />
+        <c8 X="10" Y="5" />
+        <c9 X="9" Y="5" />
+        <c10 X="8" Y="5" />
+        <c11 X="7" Y="2" />
+        <c12 X="8" Y="2" />
+        <c13 X="9" Y="2" />
+        <c14 X="10" Y="2" />
+        <c15 X="11" Y="2" />
+        <c16 X="9" Y="3" />
+        <c17 X="7" Y="5" />
+        <c18 X="11" Y="5" />
     </DeployArea>
     <TargetArea>
         <c0 X="4" Y="12" />
@@ -263,6 +272,10 @@
         <c9 X="6" Y="13" />
         <c10 X="6" Y="14" />
         <c11 X="6" Y="15" />
+        <c12 X="3" Y="12" />
+        <c13 X="3" Y="13" />
+        <c14 X="3" Y="14" />
+        <c15 X="3" Y="15" />
     </TargetArea>
     <KeyArea1>
         <c0 X="3" Y="7" />
@@ -275,23 +288,52 @@
         <c7 X="4" Y="7" />
         <c8 X="6" Y="8" />
         <c9 X="2" Y="8" />
+        <c10 X="4" Y="10" />
+        <c11 X="2" Y="9" />
+        <c12 X="1" Y="8" />
     </KeyArea1>
     <KeyArea2>
-        <c0 X="8" Y="7" />
-        <c1 X="8" Y="8" />
-        <c2 X="8" Y="9" />
-        <c3 X="10" Y="9" />
-        <c4 X="9" Y="9" />
-        <c5 X="9" Y="8" />
-        <c6 X="10" Y="8" />
-        <c7 X="10" Y="7" />
-        <c8 X="9" Y="7" />
-        <c9 X="10" Y="6" />
-        <c10 X="9" Y="6" />
-        <c11 X="8" Y="6" />
-        <c12 X="11" Y="9" />
-        <c13 X="11" Y="8" />
-        <c14 X="11" Y="7" />
-        <c15 X="11" Y="6" />
+        <c0 X="8" Y="8" />
+        <c1 X="8" Y="9" />
+        <c2 X="10" Y="9" />
+        <c3 X="9" Y="9" />
+        <c4 X="9" Y="8" />
+        <c5 X="10" Y="8" />
+        <c6 X="11" Y="9" />
+        <c7 X="11" Y="8" />
+        <c8 X="7" Y="10" />
+        <c9 X="8" Y="10" />
+        <c10 X="9" Y="10" />
+        <c11 X="10" Y="10" />
+        <c12 X="11" Y="10" />
+        <c13 X="8" Y="11" />
+        <c14 X="8" Y="12" />
+        <c15 X="9" Y="12" />
+        <c16 X="10" Y="12" />
+        <c17 X="11" Y="12" />
+        <c18 X="11" Y="11" />
+        <c19 X="10" Y="11" />
+        <c20 X="9" Y="11" />
+        <c21 X="7" Y="11" />
+        <c22 X="7" Y="12" />
+        <c23 X="8" Y="7" />
+        <c24 X="9" Y="7" />
+        <c25 X="10" Y="7" />
+        <c26 X="11" Y="7" />
+        <c27 X="7" Y="6" />
+        <c28 X="9" Y="6" />
+        <c29 X="8" Y="6" />
+        <c30 X="10" Y="6" />
+        <c31 X="11" Y="6" />
+        <c32 X="11" Y="5" />
+        <c33 X="10" Y="5" />
+        <c34 X="8" Y="5" />
+        <c35 X="8" Y="4" />
+        <c36 X="9" Y="4" />
+        <c37 X="9" Y="5" />
+        <c38 X="10" Y="4" />
+        <c39 X="6" Y="6" />
+        <c40 X="7" Y="5" />
+        <c41 X="12" Y="7" />
     </KeyArea2>
 </MapArea>

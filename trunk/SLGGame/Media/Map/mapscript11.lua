@@ -49,7 +49,7 @@ function finishdeploy()
 	BattleLib.CreateAIMission(2, "Defend1", 0, "KeyArea1");
 	BattleLib.CreateAIMission(2, "Defend2", 0, "KeyArea2");
 	BattleLib.CreateAIMission(2, "Defend3", 0, "TargetArea");
-	BattleLib.CreateAIMission(2, "Attack", 0, "DeployArea");
+	BattleLib.CreateAIMission(2, "Attack", 0, "KeyArea2");
 	--指派AI分组任务(team,groupname,missionname)
 	BattleLib.AssignAIMission(2,"Noth", "Defend1");
 	BattleLib.AssignAIMission(2,"Noth1", "Defend2"); 
@@ -95,7 +95,7 @@ function turnstart()
 		MapLib.MoveCameraTo( 2, 2);
 	    BattleLib.Story("cp22_1.lua");
 	end
-	if team == 2 and turn == 4 then
+	if team == 2 and turn == 3 then
 	    BattleLib.Story("cp22_2.lua");
 		BattleLib.AssignAIMission(2,"Noth", "Attack");
 	end
@@ -118,7 +118,7 @@ function inarea()
 	local squad = ScriptCommonLib.GetTempString("squadid");
 	local area = ScriptCommonLib.GetTempString("areaid");
 	
-	if area == TargetArea then
+	if area == "TargetArea" then
 		local faction = SquadLib.GetFaction(squad);
 		if faction == 0 then
 		    BattleLib.AddGold(3600);

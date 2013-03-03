@@ -80,26 +80,12 @@ end
 function turnstart()
 	local turn = ScriptCommonLib.GetTempInt("turn");
 	local team = ScriptCommonLib.GetTempInt("team");
+	local win = ScriptCommonLib.GetTempInt("win");
 	if team == 1 and turn == 1 then
+		MapLib.MoveCameraTo( 0, 14);
 	    BattleLib.Story("cp24_1.lua");
 	end
-end	
-		
---回合结束触发器
-function turnend()
-	local turn = ScriptCommonLib.GetTempInt("turn");
-	local team = ScriptCommonLib.GetTempInt("team");
-	local win = ScriptCommonLib.GetTempInt("win");
 	
-	if team == 1 and turn > 8 then
-			local mission1state = ScriptCommonLib.GetInt("mission1state");
-			if mission1state == 1 then
-				local mission1 = ScriptCommonLib.GetInt("mission1");
-				--完成任务(missionindex, missionstate)
-				BattleLib.SetPlayerMission(mission1, 2);
-				ScriptCommonLib.SetInt("mission1state", 0);
-			end
-	end
 	if team == 1 and win == 1 then
 		BattleLib.Story("cp24_5.lua");
 		BattleLib.AddGold(4000);
@@ -115,6 +101,22 @@ function turnend()
 		--胜利(storyscript,gold,exp)
 		BattleLib.Win("cp25.lua",  addedgold);
 	end
+end	
+		
+--回合结束触发器
+function turnend()
+	local turn = ScriptCommonLib.GetTempInt("turn");
+	local team = ScriptCommonLib.GetTempInt("team");
+	
+	if team == 1 and turn > 8 then
+		local mission1state = ScriptCommonLib.GetInt("mission1state");
+		if mission1state == 1 then
+			local mission1 = ScriptCommonLib.GetInt("mission1");
+			--完成任务(missionindex, missionstate)
+			BattleLib.SetPlayerMission(mission1, 2);
+			ScriptCommonLib.SetInt("mission1state", 0);
+		end
+	end
 end
 
 --离开区域触发器
@@ -128,11 +130,15 @@ function inarea()
 	local squad = ScriptCommonLib.GetTempString("squadid");
 	local area = ScriptCommonLib.GetTempString("areaid");
 	
-	if area == TargetArea then
+	if area == "TargetArea" then
 		local faction = SquadLib.GetFaction(squad);
 		if faction == 0 then
 			MapLib.MoveCameraTo( 9, 18);
 			ScriptCommonLib.SetInt("win", 1);
+			local mission1 = ScriptCommonLib.GetInt("mission1");
+			--完成任务(missionindex, missionstate)
+			BattleLib.SetPlayerMission(mission1, 1);
+			ScriptCommonLib.SetInt("mission1state", 2);
 			BattleLib.AddBattleSquad("Nothfate", "Team2Squad_11", 9, 18, 2, 50);
 			BattleLib.AddBattleSquad("NothHeavyHSword", "Team2Squad_12", 8, 19, 2, 50);
 			BattleLib.AddBattleSquad("NothHeavyHSword", "Team2Squad_13", 10, 19, 2, 50);
