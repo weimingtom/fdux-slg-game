@@ -98,13 +98,17 @@ function turnstart()
 		BattleLib.Story("cp6_4.lua");
 	end
 	if team == 1 and turn == 3 then
-	    MapLib.MoveCameraTo( 18, 16);
-		BattleLib.AddStorySquad("Fay", "Fay", 18, 16, 0);
+	    MapLib.MoveCameraTo( 17, 17);
+		BattleLib.AddStorySquad("Fay", "Fay", 17, 17, 0);
 		BattleLib.Story("cp6_1.lua");
 	end
 	if team == 1 and turn == 4 then
-		MapLib.MoveCameraTo( 10, 12);
-		BattleLib.AddStorySquad("Elementalist", "Elementalist", 10, 12, 0);
+		if BattleLib.AddStorySquad("Elementalist", "Elementalist", 10, 12, 0) == 0 then
+            BattleLib.AddStorySquad("Elementalist", "Elementalist", 9, 11, 0)
+            MapLib.MoveCameraTo( 9, 11);
+        else
+            MapLib.MoveCameraTo( 10, 12);
+        end
 	    BattleLib.Story("cp6_2.lua");
 		BattleLib.AssignAIMission(2, "Pirate", "Run");
 	end
@@ -148,7 +152,9 @@ function inarea()
 		    mission1state = mission1state + 1;
 			ScriptCommonLib.SetInt("mission1state", mission1state);
 			BattleLib.RemoveBattleSquad(squad);
-			BattleLib.Story("cp6_3.lua");
+            if BattleLib.TeamSquadLeft(2) ~= 0 then
+                BattleLib.Story("cp6_3.lua");
+            end
 			if mission1state > 3 then
 				local mission1 = ScriptCommonLib.GetInt("mission1");
 				--任务成功(missionindex, missionstate)

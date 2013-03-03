@@ -7,7 +7,7 @@
 #include "Core.h"
 
 #define OFFEST_X 70
-#define OFFEST_Y 150
+#define OFFEST_Y 120
 
 BillboardManager::BillboardManager(Ogre::Camera* camera):mCamera(camera)
 {

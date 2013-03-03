@@ -119,3 +119,12 @@ SquadGraphics* SquadGrapManager::getSquad(std::string squadid)
 		return NULL;
 	return ite->second;
 }
+
+void SquadGrapManager::clearBBState()
+{
+	std::map<std::string, SquadGraphics*>::iterator ite;
+	for(ite = mSquadGrapMap.begin(); ite != mSquadGrapMap.end(); ite++)
+	{
+		ite->second->setSquadBillBoardState(true);
+	}
+}

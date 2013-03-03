@@ -77,16 +77,16 @@ void CameraContral::resetCamera()
 {
 	mX = 0.0f;
 	mY = 0.0f;
-	mHeight = 55.0f;
+	mHeight = 75.0f;
 	setCamera();
 }
 
 void CameraContral::setCamera()
 {
-	float height =mTerrain->getHeight(mX,mY);
+	//float height =mTerrain->getHeight(mX,mY);
 	float d = 0.6 * mHeight;//´ý¶¨¹«Ê½
-	mCamera->setPosition(mX + d, height +mHeight, mY +d);
-	mCamera->lookAt(mX,height, mY );
+	mCamera->setPosition(mX + d,mHeight, mY +d);
+	mCamera->lookAt(mX,0, mY );
 	mShadowMapCamera->setPosition(mX - 98.0f, 80.0f, mY + 62.0f);
 	mShadowMapCamera->lookAt(mX - 18.0f, 0.0f, mY - 18.0f );
 }
