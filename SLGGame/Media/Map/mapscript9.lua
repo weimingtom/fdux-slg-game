@@ -3,7 +3,7 @@ function initmap()
 	MapLib.ActiveMapTrigger(trigerid);
 	ScriptCommonLib.SetString("finishdeploytriger",trigerid);
 	
-	ScriptCommonLib.PlayMusic("battle3.ogg");
+	ScriptCommonLib.PlayMusic("battle4.ogg");
 	MapLib.SetCamera(0,4);
 end
 
@@ -40,7 +40,6 @@ function finishdeploy()
 	BattleLib.AssignAIGroup(2, "Team2Squad_5", "Noth");
 	BattleLib.AssignAIGroup(2, "Team2Squad_6", "Noth");
 	BattleLib.AssignAIGroup(2, "Team2Squad_7", "Noth");
-	BattleLib.AssignAIGroup(2, "Team2Squad_8", "Noth");
 	--创建AI任务(team,missionname,missiontype,missiontargetarea)
 	BattleLib.CreateAIMission(2, "Attack", 0, "Moontown");
 	--指派AI分组任务(team,groupname,missionname)
@@ -107,7 +106,7 @@ function turnend()
 	turn = ScriptCommonLib.GetTempInt("turn");
 	team = ScriptCommonLib.GetTempInt("team");
 	
-	if team == 1 and turn >= 10 then
+	if team == 1 and turn >= 8 then
 		BattleLib.AddGold(3000);
 		BattleLib.DumpSquadData();
 		local addedgold = ScriptCommonLib.GetInt("addedgold");

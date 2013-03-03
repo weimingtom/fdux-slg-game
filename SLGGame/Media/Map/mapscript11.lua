@@ -52,7 +52,7 @@ function finishdeploy()
 	BattleLib.CreateAIMission(2, "Attack", 0, "DeployArea");
 	--指派AI分组任务(team,groupname,missionname)
 	BattleLib.AssignAIMission(2,"Noth", "Defend1");
-	BattleLib.AssignAIMission(2,"Noth1", "Defend2");
+	BattleLib.AssignAIMission(2,"Noth1", "Defend2"); 
 	BattleLib.AssignAIMission(2,"Noth2", "Defend3");
 	
 	--创建任务(missionname,missionstate)
@@ -92,9 +92,10 @@ function turnstart()
 	local turn = ScriptCommonLib.GetTempInt("turn");
 	local team = ScriptCommonLib.GetTempInt("team");
 	if team == 1 and turn == 1 then
+		MapLib.MoveCameraTo( 2, 2);
 	    BattleLib.Story("cp22_1.lua");
 	end
-	if team == 2 and turn == 3 then
+	if team == 2 and turn == 4 then
 	    BattleLib.Story("cp22_2.lua");
 		BattleLib.AssignAIMission(2,"Noth", "Attack");
 	end

@@ -49,6 +49,9 @@ function finishdeploy()
 	BattleLib.AssignAIGroup(3, "Team3Squad_2", "Winfred");
 	BattleLib.AssignAIGroup(3, "Team3Squad_3", "Winfred");
 	BattleLib.AssignAIGroup(3, "Team3Squad_4", "Winfred");
+	BattleLib.AssignAIGroup(3, "Team3Squad_5", "Winfred");
+	BattleLib.AssignAIGroup(3, "Team3Squad_6", "Winfred");
+	BattleLib.AssignAIGroup(3, "Team3Squad_7", "Winfred");
 
 	
 	--创建AI任务(team,missionname,missiontype,missiontargetarea)
@@ -63,7 +66,7 @@ function finishdeploy()
 	ScriptCommonLib.SetInt("mainmission", mainmission);
 	local mission1 = BattleLib.AddPlayerMission("map10mission2",0);
 	ScriptCommonLib.SetInt("mission1", mission1);
-	ScriptCommonLib.SetInt("mission1state", 0);
+	ScriptCommonLib.SetInt("mission1state", 1);
 	ScriptCommonLib.SetInt("addedgold", 0);
 end
 
@@ -95,14 +98,13 @@ function unitdead()
 			--胜利(storyscript,gold,exp)
 			BattleLib.Win("cp22.lua", addedgold);
 		end
-		if faction == 2 then
-			if BattleLib.TeamSquadLeft(3) <= 2 then
-				local mission1 = ScriptCommonLib.GetInt("mission1");
-				--完成任务(missionindex, missionstate)
-				BattleLib.SetPlayerMission(mission1, 2);
-				ScriptCommonLib.SetInt("mission1state", 0);
-			end
-		end
+	end
+	if BattleLib.TeamSquadLeft(3) == 0 then
+		BattleLib.Story("cp21_6.lua");
+		local mission1 = ScriptCommonLib.GetInt("mission1");
+		--完成任务(missionindex, missionstate)
+		BattleLib.SetPlayerMission(mission1, 2);
+		ScriptCommonLib.SetInt("mission1state", 0);
 	end
 end
 
@@ -110,6 +112,7 @@ function turnstart()
 	local turn = ScriptCommonLib.GetTempInt("turn");
 	local team = ScriptCommonLib.GetTempInt("team");
 	if team == 1 and turn == 1 then
+		MapLib.MoveCameraTo( 7, 18);
 	    BattleLib.Story("cp21_5.lua");
 	end
 end	

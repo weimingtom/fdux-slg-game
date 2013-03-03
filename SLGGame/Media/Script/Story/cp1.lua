@@ -43,7 +43,7 @@ GUI.ShowText("凡塔斯的士兵？",1);
 GUI.ClearText();
 GUI.ShowImage("aoliwan_cj.png",left,10);
 GUI.ShowText("大战在即！",2);
-GUI.ShowText("你却在这里游荡，小心被挡逃兵论处！",1);
+GUI.ShowText("你却在这里游荡，小心被当逃兵论处！",1);
 GUI.ClearText();
 GUI.ShowRoleName("");
 GUI.ShowRoleName("士兵");
