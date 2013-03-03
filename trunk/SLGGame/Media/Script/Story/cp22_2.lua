@@ -7,9 +7,9 @@ GUI.ClearText();
 GUI.ShowImage("fuguan_lv.png",right,300);
 GUI.ShowRoleName("诺斯指挥官");
 GUI.ShowText("什么！他们竟然到这里来了？",1);
-GUI.ClearText
+GUI.ClearText();
 GUI.ShowText("全军停止休整！立刻将来袭敌军歼灭！",1);
-GUI.ClearText
+GUI.ClearText();
 GUI.ShowRoleName("");
 GUI.ShowImage("",right,300);
 GUI.ShowImage("",left,300);

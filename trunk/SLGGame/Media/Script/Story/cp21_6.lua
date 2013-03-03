@@ -1,0 +1,13 @@
+GUI.ButtonLock();
+GUI.SetDialogVisible(1);
+GUI.ShowImage("fuguan_bai.png",left,300);
+GUI.ShowRoleName("军官");
+GUI.ShowText("到此为止了吗……",1);
+GUI.ClearText();
+GUI.ShowText("愿圣灵庇护温菲尔德！吾等先行一步！",1);
+GUI.ClearText();
+GUI.ShowRoleName("");
+GUI.ShowImage("",left,500);
+GUI.ShowImage("",right,500);
+GUI.SetDialogVisible(0);
+GUI.StoryOver();
