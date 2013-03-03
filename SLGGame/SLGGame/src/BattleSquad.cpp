@@ -933,11 +933,26 @@ int BattleSquad::getUnitGrapNum()
 		return 0;
 	else if(squadtype == SQUAD_NORMAL)
 	{
-		return (unitnum-1)/10; 
+		return (unitnum+9)/10;
 	}
 	else
 	{
-		return (unitnum+9)/10;
+		if(unitnum<=20 && unitnum>=14)
+		{
+			return 3;
+		}
+		else if(unitnum<14 && unitnum>=8)
+		{
+			return 2;
+		}
+		else if (unitnum<8 && unitnum >=1)
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
 	}
 }
 

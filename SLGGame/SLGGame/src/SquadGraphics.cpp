@@ -1004,12 +1004,12 @@ void SquadGraphics::setDeath(int num)
 	if (mSoldierUnits.size()!=0)//还有士兵?
 	{
 		//随机选择
-		if (mSoldierUnits.size()!=num)
+		if(num>=mSoldierUnits.size())
 		{
 			std::set<int> s;
 			while(1)
 			{
-				int r = rand()%(mSoldierUnits.size()-1);
+				int r = rand()%mSoldierUnits.size();
 				s.insert(r);
 				if(s.size() == num)
 				{
@@ -1078,8 +1078,11 @@ void SquadGraphics::setDeath(int num)
 		}
 
 	}
-	else
+	
+	if (num>mSoldierUnits.size())
 	{
+		mSquadBB->setNode(NULL);
+		mSquadBB->setVisible(false);
 		mDeathUnits[mCommanderUnit]=NULL;
 	}
 
@@ -1247,6 +1250,7 @@ void SquadGraphics::stopDeath()
 
 		if (it->first==mCommanderUnit)
 		{
+			delete mCommanderUnit;
 			mCommanderUnit=NULL;
 		}
 
@@ -1393,7 +1397,8 @@ void SquadGraphics::update( unsigned int deltaTime )
 
 void SquadGraphics::setVisible(bool visible)
 {
-	mCommanderUnit->mNode->setVisible(visible);
+	if(mCommanderUnit!=NULL)
+		mCommanderUnit->mNode->setVisible(visible);
 
 	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 	{
@@ -1607,7 +1612,10 @@ void SquadGraphics::changeUnitPosition( Direction d,Ogre::Vector3 offsetVector,b
 
 Ogre::Vector3 SquadGraphics::getLeaderPosition()
 {
-	return mCommanderUnit->mNode->getPosition();
+	if(mCommanderUnit->mNode!=NULL)
+		return mCommanderUnit->mNode->getPosition();
+	else
+		return Ogre::Vector3(0,0,0);
 }
 
 std::vector<Ogre::Vector3> SquadGraphics::getSoiderPosition()

@@ -1221,7 +1221,6 @@ bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* 
 			}
 			if(squad->getUnitNum() == 0)
 			{
-				cutscenebuilder->addCutScene(new SquadStateCutScene(squad,SQUAD_STATE_VISIBLE,"none",0));
 				showValueCutScenes->addCutScene(new ShowValueCutScene(squad->getSquadId(),StringTable::getSingletonPtr()->getString("SquadDead"),Ogre::ColourValue::Red));
 			}
 			else
@@ -1232,6 +1231,14 @@ bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* 
 	}
 
 	cutscenebuilder->addCutScene(showValueCutScenes);
+	if (attacksquad->getUnitNum()==0)
+	{
+		cutscenebuilder->addCutScene(new SquadStateCutScene(attacksquad,SQUAD_STATE_VISIBLE,"none",0));
+	}
+	else if (defenesquad->getUnitNum()==0)
+	{
+		cutscenebuilder->addCutScene(new SquadStateCutScene(defenesquad,SQUAD_STATE_VISIBLE,"none",0));
+	}
 
 	GUIBattle* guibattle=static_cast<GUIBattle *>(GUISystem::getSingleton().createScene(BattleScene));
 	GUITargetWindows* targetGUI=(GUITargetWindows*)guibattle->getSubWindow("TargetWindow");
@@ -1290,17 +1297,13 @@ bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* 
 	int squaduga = defenesquad->getUnitGrapNum();
 	int squadRealNumA = defenesquad->getUnitNum();
 
-	if(squadugb - squaduga  > 0 )
-	{
 		CombineCutScene* showValueCutScenes=new CombineCutScene();
-		showValueCutScenes->addCutScene(new ShowValueCutScene(defenesquad->getSquadId(),str(boost::format(StringTable::getSingletonPtr()->getString("BattleInfo"))%(squadRealNumB-squadRealNumA)),Ogre::ColourValue::Red));
+		if(squaduga>0)
+			showValueCutScenes->addCutScene(new ShowValueCutScene(defenesquad->getSquadId(),str(boost::format(StringTable::getSingletonPtr()->getString("BattleInfo"))%(squadRealNumB-squadRealNumA)),Ogre::ColourValue::Red));
+		else
+			showValueCutScenes->addCutScene(new ShowValueCutScene(defenesquad->getSquadId(),StringTable::getSingletonPtr()->getString("SquadDead"),Ogre::ColourValue::Red));
 		showValueCutScenes->addCutScene(new SquadDeadCutScene(defenesquad->getSquadId(), squadugb - squaduga));
 		cutscenebuilder->addCutScene(showValueCutScenes);
-	}
-	else
-	{
-		cutscenebuilder->addCutScene(new ShowValueCutScene(defenesquad->getSquadId(),str(boost::format(StringTable::getSingletonPtr()->getString("BattleInfo"))%(squadRealNumB-squadRealNumA)),Ogre::ColourValue::Red));
-	}
 
 	if(defenesquad->getUnitNum() == 0)
 	{
@@ -1364,17 +1367,13 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 	int squaduga = defenesquad->getUnitGrapNum();
 	int squadRealNumA = defenesquad->getUnitNum();
 
-	if(squadugb - squaduga  > 0 )
-	{
-		CombineCutScene* showValueCutScenes=new CombineCutScene();
+	CombineCutScene* showValueCutScenes=new CombineCutScene();
+	if(squaduga>0)
 		showValueCutScenes->addCutScene(new ShowValueCutScene(defenesquad->getSquadId(),str(boost::format(StringTable::getSingletonPtr()->getString("BattleInfo"))%(squadRealNumB-squadRealNumA)),Ogre::ColourValue::Red));
-		showValueCutScenes->addCutScene(new SquadDeadCutScene(defenesquad->getSquadId(), squadugb - squaduga));
-		cutscenebuilder->addCutScene(showValueCutScenes);
-	}
 	else
-	{
-		cutscenebuilder->addCutScene(new ShowValueCutScene(defenesquad->getSquadId(),str(boost::format(StringTable::getSingletonPtr()->getString("BattleInfo"))%(squadRealNumB-squadRealNumA)),Ogre::ColourValue::Red));
-	}
+		showValueCutScenes->addCutScene(new ShowValueCutScene(defenesquad->getSquadId(),StringTable::getSingletonPtr()->getString("SquadDead"),Ogre::ColourValue::Red));
+	showValueCutScenes->addCutScene(new SquadDeadCutScene(defenesquad->getSquadId(), squadugb - squaduga));
+	cutscenebuilder->addCutScene(showValueCutScenes);
 
 	attacksquad->afterRangedAttack(defenesquad);
 	if(defenesquad->getUnitNum() == 0)
@@ -1499,7 +1498,7 @@ bool BattleSquadManager::createStorySquad(std::string squadid, std::string suqad
 	battlesquad->setGridX(x);
 	battlesquad->setGridY(y);
 	suqadgrapmanager->createSquadGrap(battlesquad->getSquadId(), battlesquad->getPath(), battlesquad->getGridX(), battlesquad->getGridY(), 
-										battlesquad->getDirection(), battlesquad->getFormation(), battlesquad->getUnitGrapNum());
+										battlesquad->getDirection(), battlesquad->getFormation(), battlesquad->getUnitGrapNum()-1);
 	SquadGraphics* grap = suqadgrapmanager->getSquad(battlesquad->getSquadId());
 	grap->setVisible(false);
 	CutSceneBuilder::getSingleton().addCutScene(new SquadStateCutScene(battlesquad, SQUAD_STATE_VISIBLE, "none",1));
@@ -1522,7 +1521,7 @@ bool BattleSquadManager::createNormalSquad(std::string squadid, std::string suqa
 		return false;
 	}
 	suqadgrapmanager->createSquadGrap(battlesquad->getSquadId(), battlesquad->getPath(), battlesquad->getGridX(), battlesquad->getGridY(), 
-										battlesquad->getDirection(), battlesquad->getFormation(), battlesquad->getUnitGrapNum());
+										battlesquad->getDirection(), battlesquad->getFormation(), battlesquad->getUnitGrapNum()-1);
 	SquadGraphics* grap = suqadgrapmanager->getSquad(battlesquad->getSquadId());
 	grap->setVisible(false);
 	if(battlesquad->getViewbyPlayer())

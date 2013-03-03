@@ -472,7 +472,7 @@ void MapLoader::initBattleSquad(bool loadfrommap)
 			else
 			{
 				suqadgrapmanager->createSquadGrap(battlesquad->getSquadId(), battlesquad->getPath(), battlesquad->getGridX(), battlesquad->getGridY(), 
-													battlesquad->getDirection(), battlesquad->getFormation(), battlesquad->getUnitGrapNum());
+													battlesquad->getDirection(), battlesquad->getFormation(), battlesquad->getUnitGrapNum()-1);
 				SquadGraphics* grap = suqadgrapmanager->getSquad(battlesquad->getSquadId());
 				grap->setVisible(battlesquad->getViewbyPlayer());
 			}
@@ -516,7 +516,7 @@ void MapLoader::initBattleSquad(bool loadfrommap)
 				else
 				{
 					suqadgrapmanager->createSquadGrap(battlesquad->getSquadId(), battlesquad->getPath(), battlesquad->getGridX(), battlesquad->getGridY(), 
-						battlesquad->getDirection(), battlesquad->getFormation(), battlesquad->getUnitGrapNum());
+						battlesquad->getDirection(), battlesquad->getFormation(), battlesquad->getUnitGrapNum()-1);
 				}
 //				battlesuqadmanager->mCurid ++;
 			}
@@ -536,7 +536,7 @@ void MapLoader::initBattleSquad(bool loadfrommap)
 				battlesquad->init();
 				battlesuqadmanager->mSquadList.insert(std::make_pair(battlesquad->getSquadId(),battlesquad));
 				suqadgrapmanager->createSquadGrap(battlesquad->getSquadId(), battlesquad->getPath(), battlesquad->getGridX(), battlesquad->getGridY(), 
-					battlesquad->getDirection(), battlesquad->getFormation(), battlesquad->getUnitGrapNum());
+					battlesquad->getDirection(), battlesquad->getFormation(), battlesquad->getUnitGrapNum()-1);
 				SquadGraphics* grap = suqadgrapmanager->getSquad(battlesquad->getSquadId());
 				if(battlesquad->getUnitNum() > 0)
 					grap->setVisible(battlesquad->getViewbyPlayer());
