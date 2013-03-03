@@ -391,12 +391,13 @@ void UnitGrap::setMovePath( std::map<int,Ogre::Vector3>& vectors,std::map<int,Og
 			timePosition+=MOVE_KEYFRAME_TIME;
 			kf = track->createNodeKeyFrame(timePosition);
 			kf->setRotation(quaternions[itr->first]);
-			kf->setTranslate(Ogre::Vector3(itr->second.x, mNode->getPosition().y,itr->second.z));
+
+			kf->setTranslate(Ogre::Vector3(itr->second.x, Terrain::getSingletonPtr()->getHeight(itr->second.x,itr->second.z),itr->second.z));
 
 			timePosition+=MOVE_KEYFRAME_TIME*19;
 			kf = track->createNodeKeyFrame(timePosition);
 			kf->setRotation(quaternions[itrr->first]);
-			kf->setTranslate(Ogre::Vector3(itrr->second.x, mNode->getPosition().y,itrr->second.z));
+			kf->setTranslate(Ogre::Vector3(itrr->second.x,Terrain::getSingletonPtr()->getHeight(itrr->second.x,itrr->second.z),itrr->second.z));
 
 		}
 		else
@@ -453,14 +454,15 @@ void UnitGrap::setMovePath( std::map<int,Ogre::Vector3>& vectors,std::map<int,Og
 		
 
 				kf->setRotation(dir.getRotationTo(Ogre::Vector3(0,0,1)));
-				kf->setTranslate(Ogre::Vector3(mBezier.CurX, mNode->getPosition().y,mBezier.CurY));
+
+				kf->setTranslate(Ogre::Vector3(mBezier.CurX,Terrain::getSingletonPtr()->getHeight(mBezier.CurX,mBezier.CurY),mBezier.CurY));
 			}
 		}
 	}
 
 	mNodeAnimationState = Core::getSingletonPtr()->mSceneMgr->createAnimationState(mNode->getName()+"_Ani");
 
-	mIsCheckHeight=true;
+	//mIsCheckHeight=true;
 	mNodeAnimationState->setLoop(false);
 	mNodeAnimationState->setEnabled(true);
 	setAnimation(mWalkName,true,false);

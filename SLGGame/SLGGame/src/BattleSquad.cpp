@@ -695,6 +695,11 @@ void BattleSquad::removeParticle(std::string particleid)
 
 void BattleSquad::turnStart()
 {
+	if (this->getUnitNum()==0)
+	{
+		return;
+	}
+
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
 	float ap = getAttr(ATTR_ACTIONPOINT,ATTRCALC_FULL);
 	setActionPoint(ap);
@@ -721,6 +726,11 @@ void BattleSquad::turnStart()
 
 void BattleSquad::turnEnd()
 {
+	if (this->getUnitNum()==0)
+	{
+		return;
+	}
+
 	LuaTempContext* luatempcontext = new LuaTempContext();
 	luatempcontext->strMap["squadid"] = getSquadId();
 	Trigger("TurnEnd", luatempcontext);
