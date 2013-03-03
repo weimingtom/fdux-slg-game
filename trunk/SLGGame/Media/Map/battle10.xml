@@ -165,9 +165,12 @@
     <Team3>
         <Team3Squad_0 Type="WinfredHeavyHalberd" GridX="7" GridY="18" Direction="1" UnitNum="50" />
         <Team3Squad_1 Type="WinfredHeavyHalberd" GridX="7" GridY="16" Direction="1" UnitNum="50" />
-        <Team3Squad_2 Type="WinfredLightHalberd" GridX="7" GridY="17" Direction="1" UnitNum="50" />
+        <Team3Squad_2 Type="WinfredHeavyHalberd" GridX="7" GridY="17" Direction="1" UnitNum="50" />
         <Team3Squad_3 Type="WinfredLightBow" GridX="6" GridY="17" Direction="1" UnitNum="50" />
-        <Team3Squad_4 Type="WinfredLightHalberd" GridX="6" GridY="16" Direction="1" UnitNum="50" />
+        <Team3Squad_4 Type="WinfredHeavyHalberd" GridX="6" GridY="16" Direction="1" UnitNum="50" />
+		<Team3Squad_5 Type="WinfredLightBow" GridX="6" GridY="18" Direction="1" UnitNum="50" />
+		<Team3Squad_6 Type="WinfredHeavyHalberd" GridX="7" GridY="15" Direction="1" UnitNum="50" />
+		<Team3Squad_7 Type="WinfredHeavyCavalry" GridX="6" GridY="15" Direction="1" UnitNum="50" />
     </Team3>
     <Team4 />
 </MapSquad>
@@ -183,6 +186,9 @@
         <c7 X="18" Y="19" />
         <c8 X="16" Y="17" />
         <c9 X="15" Y="17" />
+		<c10 X="14" Y="19" />
+        <c11 X="14" Y="18" />
+        <c12 X="14" Y="17" />
     </DeployArea>
     <KeyArea>
         <c0 X="6" Y="16" />

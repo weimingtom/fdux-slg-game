@@ -2,7 +2,7 @@ GUI.ShowImage("cp11.png",4,2000);
 GUI.ShowText(" ",1);
 GUI.Wait(2000);
 GUI.ShowImage("black.png",4,1500);
-GUI.Music("peaceful.ogg",1000);
+GUI.Music("city.ogg",1000);
 GUI.ShowImage("gelou.png",4,1500);
 GUI.SetDialogVisible(1);
 
