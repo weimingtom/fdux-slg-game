@@ -89,10 +89,10 @@ function turnstart()
 	if team == 1 and turn == 1 then
 	    BattleLib.Story("cp27_1.lua");
 	end
-	if team == 1 and turn == 5 then
+	if team == 1 and turn == 4 then
 	    BattleLib.Story("cp27_2.lua");
 	end
-	if team == 1 and turn == 9 then
+	if team == 1 and turn == 7 then
 	    BattleLib.Story("cp27_5.lua");
 		BattleLib.AddGold(4800);
 		BattleLib.DumpSquadData();
