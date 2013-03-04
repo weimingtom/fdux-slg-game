@@ -90,6 +90,11 @@
             <Property key="TextShadow" value="true"/>
             <Property key="TextShadowColour" value="0 0 0"/>
         </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="1250 370 22 50" name="SupplyTips">
+            <Property key="ImageGroup" value="Button"/>
+            <Property key="ImageResource" value="36"/>
+            <Property key="Visible" value="false"/>
+        </Widget>
     </Widget>
     <Widget type="ImageBox" skin="ImageBox" position_real="0 0 1 1" layer="Overlapped" name="EffectLayerGroup">
         <Property key="Visible" value="false"/>

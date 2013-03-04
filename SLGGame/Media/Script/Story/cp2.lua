@@ -9,6 +9,7 @@ GUI.SetShowSupplyButton(1);
 GUI.AutoSave();
 GUI.ShowImage("qitaw_ys.png",right,300);
 GUI.ShowRoleName("齐塔");
+GUI.SetSupplyTips();
 GUI.ShowText("战斗胜利，请及时对部队进行补给，以便下次的战斗部队能以最优状态出击。",2);
 GUI.ShowText("要进行补给请点击右方的武器图标，不要问武器和士兵是哪里来的……",1);
 GUI.ClearText();

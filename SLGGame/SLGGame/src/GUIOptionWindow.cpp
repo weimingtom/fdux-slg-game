@@ -45,6 +45,10 @@ void GUIOptionWindow::showScene( std::string arg )
 	{
 		returnToMainMenu=true;
 	}
+	else
+	{
+		returnToMainMenu=false;
+	}
 
 	mBG->setVisible(true);
 	//∂¡»°÷µ
