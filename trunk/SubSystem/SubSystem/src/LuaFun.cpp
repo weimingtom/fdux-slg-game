@@ -582,6 +582,17 @@ extern "C"
 		return 1;
 	}
 
+	static int SetSupplyTips(lua_State* L)
+	{
+		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+		if(stage==NULL)
+			return 0;
+		
+		stage->setSupplyTips();
+
+		return 1;
+	}
+
 	static const struct luaL_Reg GUILib[] =
 	{
 		{"Music",Music},
@@ -616,6 +627,7 @@ extern "C"
 		{"SetShowSupplyButton",SetShowSupplyButton},
 
 		{"PlayMovie",PlayMovie},
+		{"SetSupplyTips",SetSupplyTips},
 
 		{NULL,NULL}
 	};
