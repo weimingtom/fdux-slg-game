@@ -577,6 +577,7 @@ void GUISupply::showItem(int type)
 	itemBox->removeAllItems();
 	std::vector<std::string> child=DataLibrary::getSingletonPtr()->getChildList(path);
 	int equipSubType=0;
+	m_CurrSquadEquipItem=NULL;
 	for(std::vector<std::string>::iterator it=child.begin();it!=child.end();it++)
 	{
 		std::string temppath = path+"/"+ (*it) + std::string("/Type");
