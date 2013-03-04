@@ -13,7 +13,6 @@ GUI.ShowRoleName("");
 GUI.ShowRoleName("齐塔");
 GUI.ShowText("…………",1);
 GUI.ClearText();
-GUI.ShowRoleName("");
 GUI.ShowImage("qitaw_cj.png",left,10);
 GUI.ShowText("你为什么还在这里！？",1);
 GUI.ClearText();

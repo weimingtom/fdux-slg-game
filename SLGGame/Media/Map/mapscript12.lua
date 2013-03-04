@@ -63,12 +63,12 @@ end
 --部队被歼灭触发器
 function unitdead()
 	local squad = ScriptCommonLib.GetTempString("squadid");
+	local faction = SquadLib.GetFaction(squad);
 	
 	if BattleLib.TeamSquadLeft(1) == 0  then
 		--失败(storyscript,gold,exp)
 		BattleLib.Lost("GameOver.lua", "0");
 	end
-	local faction = SquadLib.GetFaction(squad);
 	if faction == 1 then
 		BattleLib.AddGold(200);
 		local addedgold = ScriptCommonLib.GetInt("addedgold");
@@ -80,13 +80,34 @@ end
 function turnstart()
 	local turn = ScriptCommonLib.GetTempInt("turn");
 	local team = ScriptCommonLib.GetTempInt("team");
-	local win = ScriptCommonLib.GetTempInt("win");
+	local win = ScriptCommonLib.GetInt("win");
+		
 	if team == 1 and turn == 1 then
 		MapLib.MoveCameraTo( 0, 14);
 	    BattleLib.Story("cp24_1.lua");
 	end
+	if win == 1  then
+		ScriptCommonLib.SetInt("win", 2);
+	end
+end	
+		
+--回合结束触发器
+function turnend()
+	local turn = ScriptCommonLib.GetTempInt("turn");
+	local team = ScriptCommonLib.GetTempInt("team");
+	local win = ScriptCommonLib.GetInt("win");
 	
-	if team == 1 and win == 1 then
+	if team == 1 and turn >= 8 and win == 0 then
+		local mission1state = ScriptCommonLib.GetInt("mission1state");
+		if mission1state == 1 then
+			local mission1 = ScriptCommonLib.GetInt("mission1");
+			--完成任务(missionindex, missionstate)
+			BattleLib.SetPlayerMission(mission1, 2);
+			ScriptCommonLib.SetInt("mission1state", 0);
+		end
+	end
+	
+	if team == 1 and win == 2 then
 		BattleLib.Story("cp24_5.lua");
 		BattleLib.AddGold(4000);
 		BattleLib.DumpSquadData();
@@ -99,23 +120,7 @@ function turnstart()
 		end
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		--胜利(storyscript,gold,exp)
-		BattleLib.Win("cp25.lua",  addedgold);
-	end
-end	
-		
---回合结束触发器
-function turnend()
-	local turn = ScriptCommonLib.GetTempInt("turn");
-	local team = ScriptCommonLib.GetTempInt("team");
-	
-	if team == 1 and turn > 8 then
-		local mission1state = ScriptCommonLib.GetInt("mission1state");
-		if mission1state == 1 then
-			local mission1 = ScriptCommonLib.GetInt("mission1");
-			--完成任务(missionindex, missionstate)
-			BattleLib.SetPlayerMission(mission1, 2);
-			ScriptCommonLib.SetInt("mission1state", 0);
-		end
+		BattleLib.Win("cp25.lua", addedgold);
 	end
 end
 
@@ -138,7 +143,6 @@ function inarea()
 			local mission1 = ScriptCommonLib.GetInt("mission1");
 			--完成任务(missionindex, missionstate)
 			BattleLib.SetPlayerMission(mission1, 1);
-			ScriptCommonLib.SetInt("mission1state", 2);
 			BattleLib.AddBattleSquad("Nothfate", "Team2Squad_11", 9, 18, 2, 50);
 			BattleLib.AddBattleSquad("NothHeavyHSword", "Team2Squad_12", 8, 19, 2, 50);
 			BattleLib.AddBattleSquad("NothHeavyHSword", "Team2Squad_13", 10, 19, 2, 50);

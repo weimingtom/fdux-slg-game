@@ -729,9 +729,9 @@
 			<SoilderId type="String" value="TowerGuard"/>
 			<HorseId type="String" value="none"/>
 			<PweaponId type="String" value="ShortSword3"/>
-			<SweaponId type="String" value="CrossBow4"/>
+			<SweaponId type="String" value="CrossBow5"/>
 			<ShieldId type="String" value="none"/>
-			<ArmorId type="String" value="LightArmor3"/>
+			<ArmorId type="String" value="LightArmor4"/>
 			<SkillTable>
 				<RangedAttackTrain type="Int" value="0"/>
 				<MarchingTrain type="Int" value="0"/>
@@ -1119,11 +1119,11 @@
 			<Type type="Int" value="0"/>
 			<SquadType type="Int" value="2"/>
 			<SoilderId type="String" value="WinfredSoilder"/>
-			<HorseId type="String" value="HeavyHorse4"/>
-			<PweaponId type="String" value="ShortSword4"/>
+			<HorseId type="String" value="HeavyHorse5"/>
+			<PweaponId type="String" value="ShortSword5"/>
 			<SweaponId type="String" value="none"/>
-			<ShieldId type="String" value="Shield4"/>
-			<ArmorId type="String" value="HeavyArmor4"/>
+			<ShieldId type="String" value="Shield5"/>
+			<ArmorId type="String" value="HeavyArmor5"/>
 			<SkillTable>
 				<AttackTrain type="Int" value="0"/>
 				<Charge type="Int" value="0"/>
@@ -1157,7 +1157,7 @@
 			<PweaponId type="String" value="Halberd3"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="none"/>
-			<ArmorId type="String" value="HeavyArmor2"/>
+			<ArmorId type="String" value="HeavyArmor3"/>
 			<SkillTable>
 				<DefenceTrain type="Int" value="0"/>
 				<FormationTrain type="Int" value="0"/>
@@ -1187,7 +1187,7 @@
 			<PweaponId type="String" value="Halberd2"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="none"/>
-			<ArmorId type="String" value="MidArmor2"/>
+			<ArmorId type="String" value="MidArmor3"/>
 			<SkillTable>
 				<DefenceTrain type="Int" value="0"/>
 				<FormationTrain type="Int" value="0"/>
@@ -1242,11 +1242,11 @@
 			<Type type="Int" value="0"/>
 			<SquadType type="Int" value="2"/>
 			<SoilderId type="String" value="WinfredSoilder"/>
-			<HorseId type="String" value="HeavyHorse4"/>
-			<PweaponId type="String" value="ShortSpear4"/>
+			<HorseId type="String" value="HeavyHorse5"/>
+			<PweaponId type="String" value="ShortSpear5"/>
 			<SweaponId type="String" value="none"/>
-			<ShieldId type="String" value="Shield4"/>
-			<ArmorId type="String" value="HeavyArmor4"/>
+			<ShieldId type="String" value="Shield5"/>
+			<ArmorId type="String" value="HeavyArmor5"/>
 			<SkillTable>
 				<AttackTrain type="Int" value="0"/>
 				<Charge type="Int" value="0"/>
@@ -1275,11 +1275,11 @@
 			<Type type="Int" value="0"/>
 			<SquadType type="Int" value="3"/>
 			<SoilderId type="String" value="WinfredSoilder"/>
-			<HorseId type="String" value="LightHorse3"/>
+			<HorseId type="String" value="LightHorse5"/>
 			<PweaponId type="String" value="ShortSpear3"/>
-			<SweaponId type="String" value="Bow3"/>
+			<SweaponId type="String" value="Bow5"/>
 			<ShieldId type="String" value="none"/>
-			<ArmorId type="String" value="LightArmor3"/>
+			<ArmorId type="String" value="LightArmor5"/>
 			<SkillTable>
 				<DetectionTrain type="Int" value="0"/>
 				<AttackTrain type="Int" value="0"/>
@@ -1650,7 +1650,7 @@
 			<AttrModifer>
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="3.0" />
-				<RangedAttack type="Float" value="1.0" />
+				<RangedAttack type="Float" value="2.0" />
 				<Defence type="Float" value="2.0" />
 				<Formation type="Float" value="2.0" />
 				<Initiative type="Float" value="3.0" />

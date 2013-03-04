@@ -2,10 +2,10 @@
 <MapName>map15</MapName>
 <MapTeam>
     <Team2 TeamType="enemy1" TeamFaction="法卫队" />
-    <Team3 TeamType="enemy2" TeamFaction="温菲尔德军" />
+    <Team3 TeamType="enemy1" TeamFaction="温菲尔德军" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
-<MapScript>battle15script.lua</MapScript>
+<MapScript>mapscript15.lua</MapScript>
 <MapInfo>mapinfo15</MapInfo>
 <MapLoadBG>map6.png</MapLoadBG>
 <MapSize>20</MapSize>
@@ -17,7 +17,9 @@
 </MapGround>
 <MapData>ldldldhdhdhdhdldlgwglgldhdhdhdhdhdhdhdldlsldldldhdhdhdldlgwglgldhdhdhdhdhdhdldldldlslsldldhdhdldlgwglgldldldldldldldldldlgldldlsldrdldldlgwglglgldldldldldldldlglglglgldlslsldldlgwglglglglglglglglglglglglglglgldlslglglgwglglglglglglglglglglglslslslslslslslslgwglglslslslslslslslglglglglglglglglglglgwglglglglglglglglslglglglglglglglglglglgwglglglglglglglglslglglglglglglglglglglgwglglglglglglglglslglglglglglglglglglglgwgwglglglglglglglslglglglglglglglglglglglgwglglglglglglglslglglglglglglglglglglglgwglglglglglglslslglglglglglglglglglglglgwglglglglglwlwlslglglglglglglglglglglglgwglglglglglwlwlslglglglglglglglglglglglgwgwgwglglglglglslslslglglglglglglglglglglglgwgwgwgwglglglglglglglglglglglglglglglglglglglgwgwgwglglglglglglglglglglglglglglglglglglglgwgwgwglglglglglglglglglglglglglglglglglglglglg</MapData>
 <MapObject>
-    <Bridge_0 Type="Bridge" GridX="9" GridY="6" Mesh="Bridge.mesh" Direction="2" />
+	<Bridge_0 Type="Bridge" GridX="9" GridY="6" Mesh="Bridge.mesh" Direction="2" />
+	<Bridge_1 Type="Bridge" GridX="9" GridY="5" Mesh="Bridge.mesh" Direction="2" />
+	<Bridge_2 Type="Bridge" GridX="9" GridY="7" Mesh="Bridge.mesh" Direction="2" />
     <BigCity1_0 Type="City" GridX="15" GridY="13" Mesh="BigCity1.mesh" Direction="1" />
     <EastPort1_0 Type="City" GridX="16" GridY="13" Mesh="EastPort1.mesh" Direction="1" />
     <EastPort3_0 Type="City" GridX="16" GridY="14" Mesh="EastPort3.mesh" Direction="1" />
@@ -270,8 +272,8 @@
     <Team1 />
     <Team2>
         <Team2Squad_0 Type="GuardHeavySpear" GridX="11" GridY="6" Direction="1" UnitNum="50" />
-        <Team2Squad_1 Type="Elementalist" GridX="13" GridY="6" Direction="1" UnitNum="50" />
-        <Team2Squad_2 Type="Warmage" GridX="12" GridY="6" Direction="1" UnitNum="50" />
+        <Team2Squad_1 Type="Elementalist" GridX="13" GridY="6" Direction="1" UnitNum="20" />
+        <Team2Squad_2 Type="Warmage" GridX="12" GridY="6" Direction="1" UnitNum="20" />
         <Team2Squad_3 Type="GuardCrossBow" GridX="12" GridY="5" Direction="1" UnitNum="50" />
         <Team2Squad_4 Type="GuardCrossBow" GridX="12" GridY="7" Direction="1" UnitNum="50" />
     </Team2>

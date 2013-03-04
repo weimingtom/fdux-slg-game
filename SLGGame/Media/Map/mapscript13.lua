@@ -3,7 +3,7 @@ function initmap()
 	MapLib.ActiveMapTrigger(trigerid);
 	ScriptCommonLib.SetString("finishdeploytriger",trigerid);
 	
-	ScriptCommonLib.PlayMusic("battle1.ogg");
+	ScriptCommonLib.PlayMusic("battle4.ogg");
 	MapLib.SetCamera(0,4);
 end
 
@@ -68,12 +68,11 @@ end
 --部队被歼灭触发器
 function unitdead()
 	local squad = ScriptCommonLib.GetTempString("squadid");
-	
+	local faction = SquadLib.GetFaction(squad);
 	if BattleLib.TeamSquadLeft(1) == 0 or squad == "Caster" then
 		--失败(storyscript,gold,exp)
 		BattleLib.Lost("GameOver.lua", "0");
 	end
-	faction = SquadLib.GetFaction(squad);
 	if faction == 1 then
 		BattleLib.AddGold(240);
 		local addedgold = ScriptCommonLib.GetInt("addedgold");
@@ -82,7 +81,7 @@ function unitdead()
 		local mission1state = ScriptCommonLib.GetInt("mission1state");
 		mission1state = mission1state + 1;
 		ScriptCommonLib.SetInt("mission1state", mission1state);
-		if mission1state >= 4  then
+		if mission1state >= 6  then
 			local mission1 = ScriptCommonLib.GetInt("mission1");
 			BattleLib.SetPlayerMission(mission1, 1);
 		end

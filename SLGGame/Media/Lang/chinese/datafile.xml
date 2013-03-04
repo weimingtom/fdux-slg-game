@@ -248,8 +248,8 @@
 			<Describe type="String" value="法卫队轻装弓兵"/>
 		</GuardLightBow>
 		<GuardCrossBow>
-			<Name type="String" value="法卫队连击弩兵"/>
-			<Describe type="String" value="法卫队连击弩兵"/>
+			<Name type="String" value="法卫队弩兵"/>
+			<Describe type="String" value="法卫队弩兵"/>
 		</GuardCrossBow>
 		<GuardHeavySpear>
 			<Name type="String" value="法卫队重装矛兵"/>

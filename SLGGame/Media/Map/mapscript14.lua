@@ -3,7 +3,7 @@ function initmap()
 	MapLib.ActiveMapTrigger(trigerid);
 	ScriptCommonLib.SetString("finishdeploytriger",trigerid);
 	
-	ScriptCommonLib.PlayMusic("battle2.ogg");
+	ScriptCommonLib.PlayMusic("battle4.ogg");
 	MapLib.SetCamera(0,4);
 end
 
@@ -92,7 +92,14 @@ function turnstart()
 	if team == 1 and turn == 4 then
 	    BattleLib.Story("cp27_2.lua");
 	end
-	if team == 1 and turn == 7 then
+end	
+		
+--回合结束触发器
+function turnend()
+	local turn = ScriptCommonLib.GetTempInt("turn");
+	local team = ScriptCommonLib.GetTempInt("team");
+	
+	if team == 1 and turn == 6 then
 	    BattleLib.Story("cp27_5.lua");
 		BattleLib.AddGold(4800);
 		BattleLib.DumpSquadData();
@@ -107,12 +114,6 @@ function turnstart()
 		--胜利(storyscript,gold,exp)
 		BattleLib.Win("cp28.lua",  addedgold);
 	end
-end	
-		
---回合结束触发器
-function turnend()
-	local turn = ScriptCommonLib.GetTempInt("turn");
-	local team = ScriptCommonLib.GetTempInt("team");
 end
 
 --离开区域触发器
