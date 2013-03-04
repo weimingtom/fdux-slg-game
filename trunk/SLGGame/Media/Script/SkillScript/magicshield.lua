@@ -2,10 +2,15 @@ function useskill()
 	local caster  = ScriptCommonLib.GetTempString("squadid");
 	local target  = ScriptCommonLib.GetTempString("targetsquadid");
 	local unitnum = SquadLib.GetUnitNum(caster);
-	if unitnum > 3 then
+	local cost = 3;
+	local improvelv, improve = SquadLib.GetEffectLevelByName(caster, "FaithImprove");
+	if improvelv > 0 then
+		cost = 2;
+	end
+	if unitnum >  cost + 1 then
 		SquadLib.Animation(caster, 1, "Skill", "none", "mp_seal_08", 0, 1);
 		local eid = SquadLib.ApplyEffect(target, "MagicShield");
-		unitnum = unitnum - 2;
+		unitnum = unitnum - cost;
 		SquadLib.SetUnitNum(caster, unitnum);
 		local casterlv = SquadLib.GetSquadLevel(caster);
 		local targetlv = SquadLib.GetSquadLevel(target);

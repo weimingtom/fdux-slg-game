@@ -6,7 +6,7 @@ function useskill()
 	local atlv, atid = SquadLib.GetEffectLevelByName(caster, "AtkTimeImprove");
 	local alv, aid = SquadLib.GetEffectLevelByName(caster, "AtkImprove");
 	atknum = atknum * 1.0 + (0.2 * atlv);
-	atk = atk + alv * 3;
+	atk = atk + alv * 4;
 	SquadLib.Animation(caster, 1, "Skill", "none", "mp_seal_05", 0, 1);
 	SquadLib.PlayParticle(target, 3, "mp_lightning", "none", 2500);
 	SkillLib.MagicAttack(caster, target, atknum , atk, 15);

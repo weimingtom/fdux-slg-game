@@ -1,11 +1,18 @@
 function useskill()
 	local caster  = ScriptCommonLib.GetTempString("squadid");
 	local target  = ScriptCommonLib.GetTempString("targetsquadid");
-	local atknum = SquadLib.GetActionPoint(caster) * 5;
+	local atknum = SquadLib.GetActionPoint(caster) * 6;
 	local atlv, atid = SquadLib.GetEffectLevelByName(caster, "AtkTimeImprove");
 	local alv, aid = SquadLib.GetEffectLevelByName(caster, "AtkImprove");
-	atknum = atknum + atlv * 5;
-	local atk  = 12 + alv * 4;
+	atknum = atknum + atlv * 6;
+	local atk  = 14 + alv * 6;
+	
+	local croodx, croody = SquadLib.GetSquadCoord(target);
+	local def = MapLib.GetGroundAttr(croodx, croody, 0);
+	if def > 0 then
+		atk = atk + def;
+	end
+	
 	SquadLib.Animation(caster, 1, "Skill", "none", "mp_seal_05", 0, 1);
 	SquadLib.PlayParticle(target, 1, "mp_explosion_02", "none", 2500);
 	SkillLib.MagicAttack(caster, target, atknum , atk, 20);
