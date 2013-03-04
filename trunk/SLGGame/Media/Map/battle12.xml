@@ -15,7 +15,7 @@
     <G2 Type="Cobble" Texture="DirtRoadTemp.dds" />
     <G3 Type="Road" Texture="GrassLargeRoadTemp.dds" />
 </MapGround>
-<MapData>hdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhwhwhwhwhwhwhwhdhdhwhdhdhwhdhdhdhwhwhwhdhdhdhdhdhdhdhdhwhdhwhdhdhwhdhdhdhwhdhwhdhdldldrdldldhdhdhwhwhwhwhwhdhdhdhwhdhdhdldldlglslgldldhdhdhwhdhdhwhdhdhwhwhdhdldldlglglslglgldhdhdhwhdhdhdhdhdhwhdhdhdldlslslslslglgldldhdhwhdhdhdhdhdhwhdhwhdldldldlglslslslsldhdhwhdhdhdhdhdhwhwhwhdhdhdldlglslglgldldhdhwhwhdhdhdhdhdhdhdhdhdldldlglglglgldhdhdhdhwhdhdhdldldldhdhdldldlglglslslgldldhdhdhwhdhdhdlglgldldrdldlglslslglglslgldldhdhdhdldldlglglglglglglslslglglglslslsldldhdldldlglslslslslslslslgldldrdldlglslgldldldlglglglglglglglslgldldhdhdldldlglslslslslslsrdldlglglglslgldhdhdhdhdldlglslglglglglghdldldldlglslsldldhdhdldldlglslgldrdldldhdhdhdldldlglslgldrdldldlglslgldldhdhdhdhdhdhdhdldldlslslslslslslslgldldhdhdhdhdhdhdhdhdhdldldlglglglslglgldldhdhdhdhdhd</MapData>
+<MapData>hdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhwhwhwhwhwhwhwhdhdhwhdhdhwhdhdhdhwhwhwhdhdhdhdhdhdhdhdhwhdhwhdhdhwhdhdhdhwhdhwhdhdldldrdldldhdhdhwhwhwhwhwhdhdhdhwhdhdhdldldlglslgldldhdhdhwhdhdhwhdhdhwhwhdhdldldlglglslglgldhdhdhwhdhdhdhdhdhwhdhdhdldlslslslslglgldldhdhwhdhdhdhdhdhwhdhwhdldldldlglslslslsldhdhwhdhdhdhdhdhwhwhwhdhdhdldlglslglgldldhdhwhwhdhdhdhdhdhdhdhdhdldldlglglglgldhdhdhdhwhdhdhdldldldhdhdldldlglglslslgldldhdhdhwhdhdhdlglgldldrdldlglslslglglslgldldhdhdhdldldlglglglglglglslslglglglslslsrdhdhdldldlglslslslslslslslgldldrdldlglsldldldldlglglglglglglglslgldldhdhdldldlglslslslslslsrdldlglglglslgldhdhdhdhdldlglslglglglglghdldldldlglslsldldhdhdldldlglslgldrdldldhdhdhdldldlglslgldrdldldlglslgldldhdhdhdhdhdhdhdldldlslslslslslslslgldldhdhdhdhdhdhdhdhdhdldldlglglglslglgldldhdhdhdhdhd</MapData>
 <MapObject>
     <Stone1_0 Type="Stone" GridX="4" GridY="6" Mesh="Stone1.mesh" Direction="0" />
     <Stone1_1 Type="Stone" GridX="3" GridY="6" Mesh="Stone1.mesh" Direction="2" />
@@ -30,7 +30,6 @@
     <Stone2_5 Type="Stone" GridX="5" GridY="1" Mesh="Stone2.mesh" Direction="3" />
     <Stone1_5 Type="Stone" GridX="4" GridY="1" Mesh="Stone1.mesh" Direction="0" />
     <Stone2_6 Type="Stone" GridX="5" GridY="2" Mesh="Stone2.mesh" Direction="0" />
-    <Stone1_6 Type="Stone" GridX="13" GridY="0" Mesh="Stone1.mesh" Direction="0" />
     <Stone1_7 Type="Stone" GridX="14" GridY="1" Mesh="Stone1.mesh" Direction="0" />
     <Stone2_7 Type="Stone" GridX="14" GridY="2" Mesh="Stone2.mesh" Direction="0" />
     <Stone2_8 Type="Stone" GridX="13" GridY="1" Mesh="Stone2.mesh" Direction="0" />

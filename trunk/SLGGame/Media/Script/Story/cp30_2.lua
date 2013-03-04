@@ -21,7 +21,7 @@ GUI.ShowRoleName("");
 GUI.ShowRoleName("齐塔");
 GUI.ShowText("不是什么好情况就是了！",1);
 GUI.ClearText();
-GUI.ShowText("我们去帮奥莉瓦！",1);
+GUI.ShowText("我们去帮他们！",1);
 GUI.ClearText();
 GUI.ShowRoleName("");
 GUI.ShowImage("",right,300);

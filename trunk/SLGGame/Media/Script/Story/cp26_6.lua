@@ -7,11 +7,11 @@ GUI.ClearText();
 GUI.ShowImage("aoliwa_ys.png",right,300);
 GUI.ShowRoleName("奥莉瓦");
 GUI.ShowText("但是齐塔……",1);
-GUI.ClearText
+GUI.ClearText();
 GUI.ShowImage("ashaniyaw_sx.png",left,300);
 GUI.ShowRoleName("阿莎尼娅");
 GUI.ShowText("我们现在能做的，只有为他祈祷了吗……",1);
-GUI.ClearText
+GUI.ClearText();
 GUI.ShowRoleName("");
 GUI.ShowImage("",right,300);
 GUI.ShowImage("",left,300);

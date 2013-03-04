@@ -17,7 +17,9 @@
 </MapGround>
 <MapData>ldldldhdhdhdhdldlgwglgldhdhdhdhdhdhdhdldlsldldldhdhdhdldlgwglgldhdhdhdhdhdhdldldldlslsldldhdhdldlgwglgldldldldldldldldldlgldldlsldrdldldlgwglglgldldldldldldldlglglglgldlslsldldlgwglglglglglglglglglglglglglglgldlslglglgwglglglglglglglglglglglslslslslslslslslgwglglslslslslslslslglglglglglglglglglglgwglglglglglglglglslglglglglglglglglglglgwglglglglglglglglslglglglglglglglglglglgwglglglglglglglglslglglglglglglglglglglgwgwglglglglglglglslglglglglglglglglglglglgwglglglglglglglslglglglglglglglglglglglgwglglglglglglslslglglglglglglglglglglglgwglglglglglwlwlslglglglglglglglglglglglgwglglglglglwlwlslglglglglglglglglglglglgwgwgwglglglglglslslslglglglglglglglglglglglgwgwgwgwglglglglglglglglglglglglglglglglglglglgwgwgwglglglglglglglglglglglglglglglglglglglgwgwgwglglglglglglglglglglglglglglglglglglglglg</MapData>
 <MapObject>
-    <Bridge_0 Type="Bridge" GridX="9" GridY="6" Mesh="Bridge.mesh" Direction="2" />
+	<Bridge_0 Type="Bridge" GridX="9" GridY="6" Mesh="Bridge.mesh" Direction="2" />
+	<Bridge_1 Type="Bridge" GridX="9" GridY="5" Mesh="Bridge.mesh" Direction="2" />
+	<Bridge_2 Type="Bridge" GridX="9" GridY="7" Mesh="Bridge.mesh" Direction="2" />
     <BigCity1_0 Type="City" GridX="15" GridY="13" Mesh="BigCity1.mesh" Direction="1" />
     <EastPort1_0 Type="City" GridX="16" GridY="13" Mesh="EastPort1.mesh" Direction="1" />
     <EastPort3_0 Type="City" GridX="16" GridY="14" Mesh="EastPort3.mesh" Direction="1" />

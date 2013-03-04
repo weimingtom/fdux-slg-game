@@ -15,7 +15,7 @@
     <G2 Type="Cobble" Texture="DirtRoadTemp.dds" />
     <G3 Type="Road" Texture="GrassLargeRoadTemp.dds" />
 </MapGround>
-<MapData>hdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhwhwhwhwhwhwhwhdhdhwhdhdhwhdhdhdhwhwhwhdhdhdhdhdhdhdhdhwhdhwhdhdhwhdhdhdhwhdhwhdhdldldrdldldhdhdhwhwhwhwhwhdhdhdhwhdhdhdldldlglslgldldhdhdhwhdhdhwhdhdhwhwhdhdldldlglglslglgldhdhdhwhdhdhdhdhdhwhdhdhdldlslslslslglgldldhdhwhdhdhdhdhdhwhdhwhdldldldlglslslslsldhdhwhdhdhdhdhdhwhwhwhdhdhdldlglslglgldldhdhwhwhdhdhdhdhdhdhdhdhdldldlglglglgldhdhdhdhwhdhdhdldldldhdhdldldlglglslslgldldhdhdhwhdhdhdlglgldldrdldlglslslglglslgldldhdhdhdldldlglglglglglglslslglglglslslsldldhdldldlglslslslslslslslgldldrdldlglslgldldldlglglglglglglglslgldldhdhdldldlglslslslslslsrdldlglglglslgldhdhdhdhdldlglslglglglglghdldldldlglslsldldhdhdldldlglslgldrdldldhdhdhdldldlglslgldrdldldlglslgldldhdhdhdhdhdhdhdldldlslslslslslslslgldldhdhdhdhdhdhdhdhdhdldldlglglglslglgldldhdhdhdhdhd</MapData>
+<MapData>hdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhdhwhwhwhwhwhwhwhdhdhwhdhdhwhdhdhdhwhwhwhdhdhdhdhdhdhdhdhwhdhwhdhdhwhdhdhdhwhdhwhdhdldldrdldldhdhdhwhwhwhwhwhdhdhdhwhdhdhdldldlglslgldldhdhdhwhdhdhwhdhdhwhwhdhdldldlglglslglgldhdhdhwhdhdhdhdhdhwhdhdhdldlslslslslglgldldhdhwhdhdhdhdhdhwhdhwhdldldldlglslslslsldhdhwhdhdhdhdhdhwhwhwhdhdhdldlglslglgldldhdhwhwhdhdhdhdhdhdhdhdhdldldlglglglgldhdhdhdhwhdhdhdldldldhdhdldldlglglslslgldldhdhdhwhdhdhdlglgldldrdldlglslslglglslgldldhdhdhdldldlglglglglglglslslglglglslslsrdhdhdldldlglslslslslslslslgldldrdldlglsldldldldlglglglglglglglslgldldhdhdldldlglslslslslslsrdldlglglglslgldhdhdhdhdldlglslglglglglghdldldldlglslsldldhdhdldldlglslgldrdldldhdhdhdldldlglslgldrdldldlglslgldldhdhdhdhdhdhdhdldldlslslslslslslslgldldhdhdhdhdhdhdhdhdhdldldlglglglslglgldldhdhdhdhdhd</MapData>
 <MapObject>
     <Stone1_0 Type="Stone" GridX="4" GridY="6" Mesh="Stone1.mesh" Direction="0" />
     <Stone1_1 Type="Stone" GridX="3" GridY="6" Mesh="Stone1.mesh" Direction="2" />
@@ -23,31 +23,30 @@
     <Stone2_1 Type="Stone" GridX="3" GridY="5" Mesh="Stone2.mesh" Direction="0" />
     <Stone1_2 Type="Stone" GridX="4" GridY="5" Mesh="Stone1.mesh" Direction="3" />
     <Stone2_2 Type="Stone" GridX="3" GridY="4" Mesh="Stone2.mesh" Direction="0" />
-    <Stone2_4 Type="Stone" GridX="2" GridY="7" Mesh="Stone2.mesh" Direction="0" />
-    <Stone2_5 Type="Stone" GridX="0" GridY="4" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_3 Type="Stone" GridX="2" GridY="7" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_4 Type="Stone" GridX="0" GridY="4" Mesh="Stone2.mesh" Direction="0" />
     <Stone1_3 Type="Stone" GridX="1" GridY="4" Mesh="Stone1.mesh" Direction="0" />
     <Stone1_4 Type="Stone" GridX="5" GridY="0" Mesh="Stone1.mesh" Direction="0" />
-    <Stone2_6 Type="Stone" GridX="5" GridY="1" Mesh="Stone2.mesh" Direction="3" />
+    <Stone2_5 Type="Stone" GridX="5" GridY="1" Mesh="Stone2.mesh" Direction="3" />
     <Stone1_5 Type="Stone" GridX="4" GridY="1" Mesh="Stone1.mesh" Direction="0" />
-    <Stone2_7 Type="Stone" GridX="5" GridY="2" Mesh="Stone2.mesh" Direction="0" />
-    <Stone1_6 Type="Stone" GridX="13" GridY="0" Mesh="Stone1.mesh" Direction="0" />
+    <Stone2_6 Type="Stone" GridX="5" GridY="2" Mesh="Stone2.mesh" Direction="0" />
     <Stone1_7 Type="Stone" GridX="14" GridY="1" Mesh="Stone1.mesh" Direction="0" />
-    <Stone2_8 Type="Stone" GridX="14" GridY="2" Mesh="Stone2.mesh" Direction="0" />
-    <Stone2_9 Type="Stone" GridX="13" GridY="1" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_7 Type="Stone" GridX="14" GridY="2" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_8 Type="Stone" GridX="13" GridY="1" Mesh="Stone2.mesh" Direction="0" />
     <Stone1_8 Type="Stone" GridX="9" GridY="14" Mesh="Stone1.mesh" Direction="0" />
     <Stone1_9 Type="Stone" GridX="17" GridY="6" Mesh="Stone1.mesh" Direction="0" />
     <Stone1_10 Type="Stone" GridX="19" GridY="7" Mesh="Stone1.mesh" Direction="0" />
     <Stone1_11 Type="Stone" GridX="19" GridY="5" Mesh="Stone1.mesh" Direction="0" />
-    <Stone2_10 Type="Stone" GridX="18" GridY="5" Mesh="Stone2.mesh" Direction="0" />
-    <Stone2_11 Type="Stone" GridX="18" GridY="6" Mesh="Stone2.mesh" Direction="0" />
-    <Stone2_12 Type="Stone" GridX="19" GridY="6" Mesh="Stone2.mesh" Direction="0" />
-    <Stone2_13 Type="Stone" GridX="16" GridY="6" Mesh="Stone2.mesh" Direction="0" />
-    <Stone2_14 Type="Stone" GridX="17" GridY="5" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_9 Type="Stone" GridX="18" GridY="5" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_10 Type="Stone" GridX="18" GridY="6" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_11 Type="Stone" GridX="19" GridY="6" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_12 Type="Stone" GridX="16" GridY="6" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_13 Type="Stone" GridX="17" GridY="5" Mesh="Stone2.mesh" Direction="0" />
     <Stone1_12 Type="Stone" GridX="17" GridY="4" Mesh="Stone1.mesh" Direction="0" />
-    <Stone2_15 Type="Stone" GridX="10" GridY="16" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_14 Type="Stone" GridX="10" GridY="16" Mesh="Stone2.mesh" Direction="0" />
     <Stone1_13 Type="Stone" GridX="16" GridY="18" Mesh="Stone1.mesh" Direction="0" />
-    <Stone2_16 Type="Stone" GridX="17" GridY="18" Mesh="Stone2.mesh" Direction="0" />
-    <Stone2_17 Type="Stone" GridX="18" GridY="18" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_15 Type="Stone" GridX="17" GridY="18" Mesh="Stone2.mesh" Direction="0" />
+    <Stone2_16 Type="Stone" GridX="18" GridY="18" Mesh="Stone2.mesh" Direction="0" />
     <Stone1_14 Type="Stone" GridX="1" GridY="17" Mesh="Stone1.mesh" Direction="0" />
     <Stone1_15 Type="Stone" GridX="1" GridY="18" Mesh="Stone1.mesh" Direction="0" />
     <BigCamp_0 Type="Camp" GridX="18" GridY="1" Mesh="BigCamp.mesh" Direction="1" />

@@ -18,6 +18,8 @@
 <MapData>ldldldhdhdhdhdldlgwglgldhdhdhdhdhdhdhdldlsldldldhdhdhdldlgwglgldhdhdhdhdhdhdldldldlslsldldhdhdldlgwglgldldldldldldldldldlgldldlsldrdldldlgwglglgldldldldldldldlglglglgldlslsldldlgwglglglglglglglglglglglglglglgldlslglglgwglglglglglglglglglglglslslslslslslslslgwglglslslslslslslslglglglglglglglglglglgwglglglglglglglglslglglglglglglglglglglgwglglglglglglglglslglglglglglglglglglglgwglglglglglglglglslglglglglglglglglglglgwgwglglglglglglglslglglglglglglglglglglglgwglglglglglglglslglglglglglglglglglglglgwglglglglglglslslglglglglglglglglglglglgwglglglglglwlwlslglglglglglglglglglglglgwglglglglglwlwlslglglglglglglglglglglglgwgwgwglglglglglslslslglglglglglglglglglglglgwgwgwgwglglglglglglglglglglglglglglglglglglglgwgwgwglglglglglglglglglglglglglglglglglglglgwgwgwglglglglglglglglglglglglglglglglglglglglg</MapData>
 <MapObject>
     <Bridge_0 Type="Bridge" GridX="9" GridY="6" Mesh="Bridge.mesh" Direction="2" />
+    <Bridge_1 Type="Bridge" GridX="9" GridY="5" Mesh="Bridge.mesh" Direction="2" />
+    <Bridge_2 Type="Bridge" GridX="9" GridY="7" Mesh="Bridge.mesh" Direction="2" />
     <BigCity1_0 Type="City" GridX="15" GridY="13" Mesh="BigCity1.mesh" Direction="1" />
     <EastPort1_0 Type="City" GridX="16" GridY="13" Mesh="EastPort1.mesh" Direction="1" />
     <EastPort3_0 Type="City" GridX="16" GridY="14" Mesh="EastPort3.mesh" Direction="1" />
@@ -285,6 +287,10 @@
         <Team2Squad_13 Type="WinfredLightBow" GridX="2" GridY="5" Direction="1" UnitNum="0" />
         <Team2Squad_14 Type="WinfredLightBow" GridX="2" GridY="3" Direction="1" UnitNum="0" />
         <Team2Squad_15 Type="WinfredLightBow" GridX="2" GridY="9" Direction="1" UnitNum="0" />
+        <Team2Squad_16 Type="WinfredHeavyCavalry" GridX="7" GridY="5" Direction="1" UnitNum="0" />
+        <Team2Squad_17 Type="WinfredHeavyCavalry" GridX="7" GridY="7" Direction="1" UnitNum="0" />
+		<Team2Squad_18 Type="WinfredLightCavalry" GridX="5" GridY="5" Direction="1" UnitNum="0" />
+		<Team2Squad_19 Type="WinfredLightCavalry" GridX="5" GridY="7" Direction="1" UnitNum="0" />
     </Team2>
     <Team3 />
     <Team4 />
@@ -300,26 +306,70 @@
         <c6 X="18" Y="7" />
         <c7 X="17" Y="7" />
         <c8 X="16" Y="7" />
-        <c9 X="15" Y="5" />
-        <c10 X="15" Y="6" />
-        <c11 X="15" Y="7" />
-        <c12 X="15" Y="8" />
+        <c9 X="19" Y="5" />
+        <c10 X="19" Y="6" />
+        <c11 X="19" Y="7" />
+        <c12 X="19" Y="8" />
         <c13 X="16" Y="8" />
         <c14 X="17" Y="8" />
         <c15 X="18" Y="8" />
     </DeployArea>
     <KeyArea1>
-        <c0 X="6" Y="5" />
-        <c1 X="6" Y="6" />
-        <c2 X="6" Y="7" />
-        <c3 X="7" Y="7" />
-        <c4 X="7" Y="6" />
-        <c5 X="7" Y="5" />
-        <c6 X="5" Y="4" />
-        <c7 X="5" Y="5" />
-        <c8 X="5" Y="6" />
-        <c9 X="5" Y="7" />
-        <c10 X="5" Y="8" />
+        <c0 X="10" Y="9" />
+        <c1 X="10" Y="7" />
+        <c2 X="10" Y="8" />
+        <c3 X="10" Y="6" />
+        <c4 X="10" Y="4" />
+        <c5 X="10" Y="5" />
+        <c6 X="11" Y="3" />
+        <c7 X="10" Y="3" />
+        <c8 X="12" Y="3" />
+        <c9 X="13" Y="4" />
+        <c10 X="13" Y="3" />
+        <c11 X="12" Y="4" />
+        <c12 X="11" Y="5" />
+        <c13 X="11" Y="6" />
+        <c14 X="11" Y="7" />
+        <c15 X="11" Y="8" />
+        <c16 X="11" Y="9" />
+        <c17 X="12" Y="9" />
+        <c18 X="12" Y="8" />
+        <c19 X="12" Y="7" />
+        <c20 X="12" Y="6" />
+        <c21 X="12" Y="5" />
+        <c22 X="13" Y="5" />
+        <c23 X="13" Y="6" />
+        <c24 X="13" Y="7" />
+        <c25 X="13" Y="8" />
+        <c26 X="13" Y="9" />
+        <c27 X="14" Y="8" />
+        <c28 X="14" Y="7" />
+        <c29 X="14" Y="6" />
+        <c30 X="15" Y="5" />
+        <c31 X="15" Y="6" />
+        <c32 X="15" Y="7" />
+        <c33 X="15" Y="8" />
+        <c34 X="16" Y="8" />
+        <c35 X="16" Y="7" />
+        <c36 X="16" Y="6" />
+        <c37 X="16" Y="5" />
+        <c38 X="14" Y="3" />
+        <c39 X="15" Y="3" />
+        <c40 X="16" Y="3" />
+        <c41 X="16" Y="4" />
+        <c42 X="16" Y="9" />
+        <c43 X="15" Y="9" />
+        <c44 X="12" Y="10" />
+        <c45 X="11" Y="10" />
+        <c46 X="16" Y="10" />
+        <c47 X="17" Y="9" />
+        <c48 X="17" Y="8" />
+        <c49 X="17" Y="7" />
+        <c50 X="17" Y="6" />
+        <c51 X="17" Y="5" />
+        <c52 X="17" Y="4" />
+        <c53 X="17" Y="3" />
+        <c54 X="17" Y="10" />
     </KeyArea1>
     <KeyArea2>
         <c0 X="0" Y="7" />

@@ -3,7 +3,7 @@ function initmap()
 	MapLib.ActiveMapTrigger(trigerid);
 	ScriptCommonLib.SetString("finishdeploytriger",trigerid);
 	
-	ScriptCommonLib.PlayMusic("battle1.ogg");
+	ScriptCommonLib.PlayMusic("battle3.ogg");
 	MapLib.SetCamera(0,4);
 end
 
@@ -46,7 +46,7 @@ function finishdeploy()
 	BattleLib.CreateAIMission(3, "Attack2", 0, "DeployArea");
 	BattleLib.CreateAIMission(3, "Attack3", 0, "TargetArea");
 	--指派AI分组任务(team,groupname,missionname)
-	BattleLib.AssignAIMission(2,"Noth", "Attack1");
+	BattleLib.AssignAIMission(2,"Guard", "Attack1");
 	BattleLib.AssignAIMission(3,"Winfred", "Attack2");
 	BattleLib.AssignAIMission(3,"Winfred2", "Attack3");
 	
@@ -75,17 +75,7 @@ function unitdead()
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		local mission1state = ScriptCommonLib.GetInt("mission1state");
 		if BattleLib.TeamSquadLeft(2) == 0 and BattleLib.TeamSquadLeft(3) == 0 and mission1state == 1 then
-			BattleLib.AddGold(5400);
-			BattleLib.DumpSquadData();
-			addedgold = ScriptCommonLib.GetInt("addedgold");
-			addedgold = addedgold + 5400;
-			if mission1state == 1 then
-				BattleLib.AddGold(3200);
-				addedgold = addedgold + 3200;
-			end
-			ScriptCommonLib.SetInt("addedgold", addedgold);
-			--胜利(storyscript,gold,exp)
-			BattleLib.Win("cp31.lua", addedgold);
+			BattleLib.Story("cp30_3.lua");
 		end
 	end
 end
@@ -112,15 +102,15 @@ function turnstart()
 	end
 	if team == 1 and turn == 9 then
 		MapLib.MoveCameraTo( 3, 6);
-	    BattleLib.AddBattleSquad("James", "Team3Squad_3", 3, 6, 3, 50);
-		BattleLib.AddBattleSquad("WinfredLightCavalry", "Team3Squad_4", 1, 5, 3, 50);
-		BattleLib.AddBattleSquad("WinfredLightCavalry", "Team3Squad_5", 1, 7, 3, 50);
-		BattleLib.AddBattleSquad("WinfredHeavyCavalry", "Team3Squad_6", 2, 5, 3, 50);
-		BattleLib.AddBattleSquad("WinfredHeavyCavalry", "Team3Squad_7", 2, 7, 3, 50);
-		BattleLib.AddBattleSquad("WinfredHeavyHalberd", "Team3Squad_8", 0, 5, 3, 50);
-		BattleLib.AddBattleSquad("WinfredHeavyHalberd", "Team3Squad_9", 0, 7, 3, 50);
+	    BattleLib.AddBattleSquad("James", "Team3Squad_3", 1, 6, 3, 50);
+		BattleLib.AddBattleSquad("WinfredLightCavalry", "Team3Squad_4", 0, 5, 3, 50);
+		BattleLib.AddBattleSquad("WinfredLightCavalry", "Team3Squad_5", 0, 6, 3, 50);
+		BattleLib.AddBattleSquad("WinfredHeavyCavalry", "Team3Squad_6", 1, 5, 3, 50);
+		BattleLib.AddBattleSquad("WinfredHeavyCavalry", "Team3Squad_7", 1, 7, 3, 50);
+		BattleLib.AddBattleSquad("WinfredHeavyHalberd", "Team3Squad_8", 1, 4, 3, 50);
+		BattleLib.AddBattleSquad("WinfredHeavyHalberd", "Team3Squad_9", 1, 8, 3, 50);
 		BattleLib.AddBattleSquad("WinfredLightBow", "Team3Squad_10", 0, 4, 3, 50);
-		BattleLib.AddBattleSquad("WinfredLightBow", "Team3Squad_11", 0, 8, 3, 50);
+		BattleLib.AddBattleSquad("WinfredLightBow", "Team3Squad_11", 0, 7, 3, 50);
 		
 		BattleLib.AssignAIGroup(3, "Team3Squad_3", "Winfred2");
 		BattleLib.AssignAIGroup(3, "Team3Squad_4", "Winfred2");
@@ -137,6 +127,9 @@ function turnstart()
 		--完成任务(missionindex, missionstate)
 		BattleLib.SetPlayerMission(mission1, 2);
 		ScriptCommonLib.SetInt("mission1state", 0);
+		local mainmission = ScriptCommonLib.GetInt("mainmission");
+		--完成任务(missionindex, missionstate)
+		BattleLib.SetPlayerMission(mainmission, 2);
 		local mainmission = BattleLib.AddPlayerMission("map15mission3",0);
 		ScriptCommonLib.SetInt("mainmission", mainmission);
 	end
@@ -147,6 +140,33 @@ end
 function turnend()
 	local turn = ScriptCommonLib.GetTempInt("turn");
 	local team = ScriptCommonLib.GetTempInt("team");
+	local mission1state = ScriptCommonLib.GetInt("mission1state");
+	
+	if BattleLib.TeamSquadLeft(2) == 0 and BattleLib.TeamSquadLeft(3) == 0 and mission1state == 1 then
+			MapLib.MoveCameraTo( 3, 6);
+			BattleLib.AddBattleSquad("James", "Team3Squad_3", 1, 6, 3, 50);
+			BattleLib.AddBattleSquad("WinfredLightCavalry", "Team3Squad_4", 0, 5, 3, 50);
+			BattleLib.AddBattleSquad("WinfredLightCavalry", "Team3Squad_5", 0, 6, 3, 50);
+			BattleLib.AddBattleSquad("WinfredHeavyCavalry", "Team3Squad_6", 1, 5, 3, 50);
+			BattleLib.AddBattleSquad("WinfredHeavyCavalry", "Team3Squad_7", 1, 7, 3, 50);
+			BattleLib.AddBattleSquad("WinfredHeavyHalberd", "Team3Squad_8", 1, 4, 3, 50);
+			BattleLib.AddBattleSquad("WinfredHeavyHalberd", "Team3Squad_9", 1, 8, 3, 50);
+			BattleLib.AddBattleSquad("WinfredLightBow", "Team3Squad_10", 0, 4, 3, 50);
+			BattleLib.AddBattleSquad("WinfredLightBow", "Team3Squad_11", 0, 7, 3, 50);
+			BattleLib.Story("cp30_5.lua");
+			BattleLib.AddGold(5400);
+			BattleLib.DumpSquadData();
+			local addedgold = ScriptCommonLib.GetInt("addedgold");
+			addedgold = ScriptCommonLib.GetInt("addedgold");
+			addedgold = addedgold + 5400;
+			if mission1state == 1 then
+				BattleLib.AddGold(3200);
+				addedgold = addedgold + 3200;
+			end
+			ScriptCommonLib.SetInt("addedgold", addedgold);
+			--胜利(storyscript,gold,exp)
+			BattleLib.Win("cp31.lua", addedgold);
+		end
 end
 
 --离开区域触发器

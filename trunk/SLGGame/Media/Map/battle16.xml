@@ -2,11 +2,11 @@
 <MapName>map16</MapName>
 <MapTeam>
     <Team2 TeamType="enemy1" TeamFaction="温菲尔德军" />
-    <Team3 TeamType="enemy2" TeamFaction="法卫队" />
+    <Team3 TeamType="enemy1" TeamFaction="法卫队" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
 <MapScript>mapscript16.lua</MapScript>
-<MapInfo>mapinfo15</MapInfo>
+<MapInfo>mapinfo16</MapInfo>
 <MapLoadBG>map3.png</MapLoadBG>
 <MapSize>20</MapSize>
 <MapGround>
