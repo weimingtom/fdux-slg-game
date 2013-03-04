@@ -954,7 +954,8 @@ void SquadGraphics::setDirection( Direction d,bool isAnim )
 
 void SquadGraphics::setCheckUnitHeight( bool enable )
 {
-	mCommanderUnit->mIsCheckHeight=enable;
+	if(mCommanderUnit!=NULL)
+		mCommanderUnit->mIsCheckHeight=enable;
 	for (std::vector<UnitGrap*>::iterator it=mSoldierUnits.begin();it!=mSoldierUnits.end();it++)
 	{
 		(*it)->mIsCheckHeight=enable;
