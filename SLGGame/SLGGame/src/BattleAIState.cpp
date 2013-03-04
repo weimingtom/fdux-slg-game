@@ -964,7 +964,7 @@ void BattleAIState::SquadAI::updateMove()
 	unsigned int evt = 0;
 	unsigned intstopindex = 0;
 	squadmgr->moveSquad(mSquad, pathlist, intstopindex, evt);
-	if(evt == 0)
+	if(~(evt &(MOVEEVENT_WRONG|MOVEEVENT_SPOT|MOVEEVENT_AMBUSH|MOVEEVENT_MAPEVENT|MOVEEVENT_SPOTBYPLAYER) ))
 	{
 		mState = SAS_FORMATION;
 	}
@@ -1045,7 +1045,7 @@ void BattleAIState::SquadAI::updateSkill()
 		case SGM_ATTACK:
 			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.75f);
 			skilldecision.addFactor(new SquadSkillbySptEffectiveFactor(mSquad) , 0.05f);
-			skilldecision.addFactor(new SquadSkillbyRoleFactor(mSquad, ROLETYPE_MAINFORCE | ROLETYPE_ANTI_HIGHARMOR | ROLETYPE_ANTI_CAV | ROLETYPE_SUPPORT_AP| ROLETYPE_SUPPORT_DEF), 0.15f);
+			skilldecision.addFactor(new SquadSkillbyRoleFactor(mSquad, ROLETYPE_MAINFORCE | ROLETYPE_ANTI_HIGHARMOR | ROLETYPE_ANTI_CAV | ROLETYPE_SUPPORT_DEF), 0.15f);
 			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(0.0f, 100.0f) , 0.05f);
 			break;
 		case SGM_SUPPORT_RANGE:

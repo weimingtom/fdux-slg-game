@@ -71,7 +71,6 @@ function canaffect()
 	local eid  = ScriptCommonLib.GetString("effectid");
 	local squadid = ScriptCommonLib.GetTempString("squadid");
 	local spread = ScriptCommonLib.GetInt("spread");
-	local lv = SquadLib.GetEffectLevel(sid, eid);
 	local unshakable, eid = SquadLib.GetEffectLevelByName(squadid, "Unshakable");
 	if unshakable > 0 or spread == 1  then
 		ScriptCommonLib.SetTempInt("affect", 0);
