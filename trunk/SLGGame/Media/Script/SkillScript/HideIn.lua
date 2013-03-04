@@ -69,7 +69,7 @@ function moveto()
 		end
 		
 		mid = SquadLib.ApplyModifier(sid, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, cov, 0.0, 0.0);
-		SquadLib.SetString("modifierid", mid);
+		ScriptCommonLib.SetString("modifierid", mid);
 		
 		eid1 = SquadLib.ApplyEffect(sid, "HideInMark");
 		ScriptCommonLib.SetString("effectid1", eid1);

@@ -41,8 +41,11 @@ void CutScene::skip()
 void CutScene::skipall()
 {
 	skip();
-	if(mNextScene)
-		mNextScene->skipall();
+	if(mEnded == true)
+	{
+		if(mNextScene)
+			mNextScene->skipall();
+	}
 }
 
 bool CutScene::end()

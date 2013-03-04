@@ -11,12 +11,14 @@ function useskill()
 		if targetlv > casterlv then
 			ep = ep + (targetlv - casterlv) * 5;
 		end
-		local squad1lost = squad1num - SquadLib.GetUnitNum(caster);
-		local squad2lost = squad2num - SquadLib.GetUnitNum(target);
-		local point = squad2lost - squad1lost + ScriptCommonLib.GetRand(0, 20);
-		if point > 15 then
-			SquadLib.ChangeFormation(target, 2);
-			ep = ep + 20;
+		if SquadLib.GetUnitNum(target) > 0 then
+			local squad1lost = squad1num - SquadLib.GetUnitNum(caster);
+			local squad2lost = squad2num - SquadLib.GetUnitNum(target);
+			local point = squad2lost - squad1lost + ScriptCommonLib.GetRand(0, 20);
+			if point > 15 then
+				SquadLib.ChangeFormation(target, 2);
+				ep = ep + 20;
+			end
 		end
 		SquadLib.AddExp(caster, ep);
 		ScriptCommonLib.SetTempInt("castsuccess", 1);
