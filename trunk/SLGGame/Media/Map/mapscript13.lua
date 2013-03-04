@@ -131,7 +131,7 @@ function inarea()
 	local squad = ScriptCommonLib.GetTempString("squadid");
 	local area = ScriptCommonLib.GetTempString("areaid");
 	
-	if area == TargetArea then
+	if area == "TargetArea" then
 		local faction = SquadLib.GetFaction(squad);
 		if faction == 0 then
 			BattleLib.Story("cp26_6.lua");
