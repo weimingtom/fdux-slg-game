@@ -54,6 +54,10 @@ public:
 
 	void setIsShowSupplyButton(bool visible);
 
+	void setSupplyTips();
+
+	void eventSupplyTipsFade(MyGUI::Widget* _sender);
+
 	GUISceneType getType()
 	{
 		return StageScene;
@@ -179,6 +183,10 @@ private:
 	MyGUI::Button* mAutoButton;
 	MyGUI::Button* mSupplyButton;
 	bool mIsShowSupplyButton;
+
+	MyGUI::ImageBox* mSupplyTips;
+	MyGUI::ControllerFadeAlpha* mTipsFadeController;
+	bool mIsSupplyTipsFade;
 
 	struct ShockParam
 	{

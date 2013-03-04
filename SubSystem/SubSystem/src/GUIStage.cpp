@@ -71,6 +71,8 @@ GUIStage::GUIStage(int width,int height):GUIScene("Stage.layout",width,height),m
 	assignWidget(mHistoryButton,"HistoryButton");
 	assignWidget(mAutoButton,"AutoButton");
 	assignWidget(mSupplyButton,"Supprot");
+	assignWidget(mSupplyTips,"SupplyTips");
+	mTipsFadeController=NULL;
 
 #ifndef SCRIPT_EDITOR
 	mSaveButton->setCaption(StringTable::getSingletonPtr()->getString("SaveButton"));
@@ -102,6 +104,9 @@ GUIStage::~GUIStage(void)
 		SLWindow->setCallScene(SLWindow);
 	}
 	//AudioSystem::getSingletonPtr()->stopStream(1000);
+
+	if(mTipsFadeController!=NULL)
+		MyGUI::ControllerManager::getInstance().removeItem(mSupplyTips); 
 #endif
 }
 
@@ -1104,6 +1109,12 @@ void GUIStage::onSystem( MyGUI::Widget* _sender )
 void GUIStage::onSupply( MyGUI::Widget* _sender )
 {
 #ifndef SCRIPT_EDITOR
+	if(mTipsFadeController!=NULL)
+	{
+		MyGUI::ControllerManager::getInstance().removeItem(mSupplyTips);
+		mTipsFadeController=NULL;
+		mSupplyTips->setVisible(false);
+	}
 	mInputGroup->setEnabled(false);
 	mInputGroup->setVisible(false);
 	StateManager::getSingletonPtr()->addAffixationState("AVG",StateManager::Supply);
@@ -1236,3 +1247,56 @@ void GUIStage::setIsShowSupplyButton( bool visible )
 	mIsShowSupplyButton=visible;
 }
 
+void GUIStage::setSupplyTips()
+{
+	MyGUI::ControllerItem* item = MyGUI::ControllerManager::getInstance().createItem(MyGUI::ControllerFadeAlpha::getClassTypeName());
+	mTipsFadeController = item->castType<MyGUI::ControllerFadeAlpha>();
+
+	mSupplyTips->setAlpha(0);
+	mSupplyTips->setVisible(true);
+
+	mTipsFadeController->setAlpha(1);
+	mTipsFadeController->setCoef(1/(500.f/1000));
+	mTipsFadeController->setEnabled(true);
+	mIsSupplyTipsFade=true;
+
+	mTipsFadeController->eventPostAction+=MyGUI::newDelegate(this, &GUIStage::eventSupplyTipsFade);
+
+	MyGUI::ControllerManager::getInstance().addItem(mSupplyTips,mTipsFadeController); 
+}
+
+void GUIStage::eventSupplyTipsFade(MyGUI::Widget* _sender)
+{
+	if(mIsSupplyTipsFade)
+	{
+		MyGUI::ControllerManager::getInstance().removeItem(mSupplyTips);
+		MyGUI::ControllerItem* item = MyGUI::ControllerManager::getInstance().createItem(MyGUI::ControllerFadeAlpha::getClassTypeName());
+		mTipsFadeController = item->castType<MyGUI::ControllerFadeAlpha>();
+
+		mTipsFadeController->setAlpha(0);
+		mTipsFadeController->setCoef(1/(500.0f/1000));
+		mTipsFadeController->setEnabled(true);
+		mIsSupplyTipsFade=false;
+
+		mTipsFadeController->eventPostAction+=MyGUI::newDelegate(this, &GUIStage::eventSupplyTipsFade);
+
+		
+		MyGUI::ControllerManager::getInstance().addItem(mSupplyTips,mTipsFadeController); 
+	}
+	else
+	{
+		MyGUI::ControllerManager::getInstance().removeItem(mSupplyTips);
+		MyGUI::ControllerItem* item = MyGUI::ControllerManager::getInstance().createItem(MyGUI::ControllerFadeAlpha::getClassTypeName());
+		mTipsFadeController = item->castType<MyGUI::ControllerFadeAlpha>();
+
+		mTipsFadeController->setAlpha(1);
+		mTipsFadeController->setCoef(1/(500.0f/1000));
+		mTipsFadeController->setEnabled(true);
+		mIsSupplyTipsFade=true;
+
+		mTipsFadeController->eventPostAction+=MyGUI::newDelegate(this, &GUIStage::eventSupplyTipsFade);
+
+		MyGUI::ControllerManager::getInstance().removeItem(mSupplyTips);
+		MyGUI::ControllerManager::getInstance().addItem(mSupplyTips,mTipsFadeController); 
+	}
+}
