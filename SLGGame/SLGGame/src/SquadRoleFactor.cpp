@@ -39,7 +39,9 @@ float SquadRolebyTypeFactor::calcDecision(BattleSquad* &decision)
 		break;
 	case SQUADTYPE_SAINT:
 		if(mSquadRole & ROLETYPE_MAINFORCE)
-			possibility += 100.0f;
+			possibility += 75.0f;
+		if(mSquadRole & ROLETYPE_SUPPORT_RANGE)
+			possibility += 75.0f;
 		break;
 	case SQUADTYPE_BATTLEMAGE:
 		if(mSquadRole & ROLETYPE_MAINFORCE)

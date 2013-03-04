@@ -294,6 +294,7 @@
 			<SkillTable>
 				<DefenceTrain type="Int" value="0" />
 				<Defence type="Int" value="1" />
+				<ShortSpear type="Int" value="2"/>
 				<Long type="Int" value="2"/>
 				<MiddleArmor type="Int" value="2"/>
 			</SkillTable>
@@ -374,13 +375,16 @@
 				<DefenceTrain type="Int" value="0" />
 				<MarchingTrain type="Int" value="0" />
 				<Trample type="Int" value="0" />
-				<Charge type="Int" value="0" />
+				<ArmorImprove type="Int" value="0" />
+				<FormUp type="Int" value="0" />
 				<Inspire type="Int" value="1" />
 				<Break type="Int" value="1" />
-				<UrgentOrder type="Int" value="1"/>
+				<TimeToAttack type="Int" value="1"/>
+				<JointAttack type="Int" value="1"/>
 				<OneHandSword type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
 				<MiddleArmor type="Int" value="2"/>
+				<HeavyArmor type="Int" value="2"/>
 				<HeavyHorse type="Int" value="2"/>
 			</SkillTable>
 			<LeaderId type="String" value="Cossa"/>
@@ -409,6 +413,7 @@
 				<Trample type="Int" value="0" />
 				<Charge type="Int" value="0" />
 				<Break type="Int" value="1" />
+				<TimeToAttack type="Int" value="1" />
 				<OneHandSword type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
 				<HeavyArmor type="Int" value="2"/>
@@ -417,7 +422,7 @@
 			<LeaderId type="String" value="Caster"/>
 			<RetainerId type="String" value="Scout"/>
 			<UnitNum value="50" type="Int"/>
-			<Level type="Int" value="5"/>
+			<Level type="Int" value="6"/>
 			<Exp type="Int" value="0"/>
 			<SkillPointAction type="Int" value="0"/>
 			<SkillPointPassive type="Int" value="0"/>
@@ -440,7 +445,7 @@
 				<BattlePuppet type="Int" value="0" />
 				<Attack type="Int" value="1" />	
 				<FuryPuppet type="Int" value="1" />	
-				<LightningChain type="Int" value="1" />	
+				<Earthquake type="Int" value="1" />	
 			</SkillTable>
 			<LeaderId type="String" value="Fay"/>
 			<RetainerId type="String" value="BattlePuppet"/>
@@ -466,8 +471,8 @@
 			<SkillTable>
 				<StrengthenPuppet type="Int" value="0" />
 				<EnchantWImprove type="Int" value="0" />
-				<EnchantWeapon type="Int" value="1" />		
-				<EnchantArmor type="Int" value="1" />					
+				<Blind type="Int" value="1" />		
+				<EnchantWeapon type="Int" value="1" />					
 			</SkillTable>
 			<LeaderId type="String" value="Azaria"/>
 			<RetainerId type="String" value="Scout"/>
@@ -670,6 +675,7 @@
 			<SkillTable>
 				<AttackTrain type="Int" value="0"/>
 				<FormationTrain type="Int" value="0"/>
+				<Fortification type="Int" value="0"/>
 				<Prepare type="Int" value="1"/>
 				<OneHandSword type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
@@ -698,7 +704,8 @@
 			<ArmorId type="String" value="LightArmor2"/>
 			<SkillTable>
 				<RangedAttackTrain type="Int" value="0"/>
-				<MarchingTrain type="Int" value="0"/>
+				<HidingTrain type="Int" value="0"/>
+				<HideIn type="Int" value="0"/>
 				<Fusillade type="Int" value="1"/>
 				<OneHandSword type="Int" value="2"/>
 				<Bow type="Int" value="2"/>
@@ -791,6 +798,7 @@
 				<StrengthenPuppet type="Int" value="0" />
 				<EnchantWImprove type="Int" value="0" />
 				<EnchantAImprove type="Int" value="0" />
+				<MagicImprove type="Int" value="0" />
 				<EnchantWeapon type="Int" value="1" />		
 				<EnchantArmor type="Int" value="1" />
 				<EnchantArrow type="Int" value="1" />
@@ -821,8 +829,11 @@
 				<StrengthenPuppet type="Int" value="0" />
 				<EnchantWImprove type="Int" value="0" />
 				<EnchantAImprove type="Int" value="0" />
+				<MagicImprove type="Int" value="0" />
+				<WeakImprove type="Int" value="0" />
 				<EnchantWeapon type="Int" value="1" />		
 				<EnchantArmor type="Int" value="1" />
+				<LighterArmor type="Int" value="1" />
 				<EnchantArrow type="Int" value="1" />
 				<Blind type="Int" value="1" />
 			</SkillTable>
@@ -851,8 +862,11 @@
 				<StrengthenPuppet type="Int" value="0" />
 				<EnchantWImprove type="Int" value="0" />
 				<EnchantAImprove type="Int" value="0" />
+				<MagicImprove type="Int" value="0" />
+				<WeakImprove type="Int" value="0" />
 				<EnchantWeapon type="Int" value="1" />		
 				<EnchantArmor type="Int" value="1" />
+				<LighterArmor type="Int" value="1" />
 				<EnchantArrow type="Int" value="1" />
 				<Blind type="Int" value="1" />
 			</SkillTable>
@@ -878,11 +892,11 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="none"/>
 			<SkillTable>
-				<AutoRepair type="Int" value="0" />
-				<BattlePuppet type="Int" value="0" />
 				<StrengthenPuppet type="Int" value="0" />
+				<AtkImprove type="Int" value="0" />
+				<AtkTimeImprove type="Int" value="0" />
 				<Attack type="Int" value="1" />	
-				<FuryPuppet type="Int" value="1" />	
+				<Earthquake type="Int" value="1" />	
 				<LightningChain type="Int" value="1" />
 				<Fire type="Int" value="1" />	
 			</SkillTable>
@@ -908,6 +922,9 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor1"/>
 			<SkillTable>
+				<AttackTrain type="Int" value="0"/>
+				<ConterAttackTrain type="Int" value="0"/>
+				<Prepare type="Int" value="1"/>
 				<TwoHandBlunt type="Int" value="2"/>
 				<LightArmor type="Int" value="2"/>
 			</SkillTable>
@@ -933,6 +950,10 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="MidArmor1"/>
 			<SkillTable>
+				<AttackTrain type="Int" value="0"/>
+				<FormationTrain type="Int" value="0"/>
+				<BreakFortification type="Int" value="0"/>
+				<Prepare type="Int" value="1"/>
 				<TwoHandSword type="Int" value="2"/>
 				<MiddleArmor type="Int" value="2"/>
 			</SkillTable>
@@ -958,6 +979,10 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor1"/>
 			<SkillTable>
+				<RangedAttackTrain type="Int" value="0"/>
+				<MarchingTrain type="Int" value="0"/>
+				<MoveThroughCover type="Int" value="0"/>
+				<Fusillade type="Int" value="1"/>
 				<OneHandBlunt type="Int" value="2"/>
 				<Bow type="Int" value="2"/>
 				<LightArmor type="Int" value="2"/>
@@ -984,6 +1009,10 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor1"/>
 			<SkillTable>
+				<RangedAttackTrain type="Int" value="0"/>
+				<MarchingTrain type="Int" value="0"/>
+				<MoveThroughCover type="Int" value="0"/>
+				<Fusillade type="Int" value="1"/>
 				<OneHandSword type="Int" value="2"/>
 				<XBow type="Int" value="2"/>
 				<LightArmor type="Int" value="2"/>
@@ -1010,6 +1039,10 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="HeavyArmor2"/>
 			<SkillTable>
+				<AttackTrain type="Int" value="0"/>
+				<ConterAttackTrain type="Int" value="0"/>
+				<BreakFortification type="Int" value="0"/>
+				<Prepare type="Int" value="1"/>
 				<TwoHandSword type="Int" value="2"/>
 				<HeavyArmor type="Int" value="2"/>
 			</SkillTable>
@@ -1035,6 +1068,9 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="MidArmor1"/>
 			<SkillTable>
+				<AttackTrain type="Int" value="0"/>
+				<ConterAttackTrain type="Int" value="0"/>
+				<Prepare type="Int" value="1"/>
 				<TwoHandSword type="Int" value="2"/>
 				<MiddleArmor type="Int" value="2"/>
 			</SkillTable>
@@ -1060,6 +1096,9 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor2"/>
 			<SkillTable>
+				<RangedAttackTrain type="Int" value="0"/>
+				<AttackTrain type="Int" value="0"/>
+				<Fusillade type="Int" value="1"/>				
 				<ShortSpear type="Int" value="2"/>
 				<XBow type="Int" value="2"/>
 				<LightArmor type="Int" value="2"/>
@@ -1086,6 +1125,13 @@
 			<ShieldId type="String" value="Shield4"/>
 			<ArmorId type="String" value="HeavyArmor4"/>
 			<SkillTable>
+				<AttackTrain type="Int" value="0"/>
+				<Charge type="Int" value="0"/>
+				<Trample type="Int" value="0"/>
+				<ArmorImprove type="Int" value="0"/>
+				<Break type="Int" value="1"/>
+				<TimeToAttack type="Int" value="1"/>
+				<JointAttack type="Int" value="1"/>
 				<OneHandSword type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
 				<HeavyArmor type="Int" value="2"/>
@@ -1113,6 +1159,11 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="HeavyArmor2"/>
 			<SkillTable>
+				<DefenceTrain type="Int" value="0"/>
+				<FormationTrain type="Int" value="0"/>
+				<Fortification type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
+				<Break type="Int" value="1"/>
 				<Long type="Int" value="2"/>
 				<HeavyArmor type="Int" value="2"/>
 			</SkillTable>
@@ -1138,6 +1189,10 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="MidArmor2"/>
 			<SkillTable>
+				<DefenceTrain type="Int" value="0"/>
+				<FormationTrain type="Int" value="0"/>
+				<Fortification type="Int" value="0"/>
+				<Defence type="Int" value="1"/>
 				<Long type="Int" value="2"/>
 				<MiddleArmor type="Int" value="2"/>
 			</SkillTable>
@@ -1163,6 +1218,10 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor2"/>
 			<SkillTable>
+				<RangedAttackTrain type="Int" value="0"/>
+				<HidingTrain type="Int" value="0"/>
+				<HideIn type="Int" value="0"/>
+				<Fusillade type="Int" value="1"/>
 				<OneHandSword type="Int" value="2"/>
 				<Bow type="Int" value="2"/>
 				<LightArmor type="Int" value="2"/>
@@ -1189,6 +1248,12 @@
 			<ShieldId type="String" value="Shield4"/>
 			<ArmorId type="String" value="HeavyArmor4"/>
 			<SkillTable>
+				<AttackTrain type="Int" value="0"/>
+				<Charge type="Int" value="0"/>
+				<Trample type="Int" value="0"/>
+				<ArmorImprove type="Int" value="0"/>
+				<Break type="Int" value="1"/>
+				<TimeToAttack type="Int" value="1"/>
 				<ShortSpear type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
 				<HeavyArmor type="Int" value="2"/>
@@ -1216,6 +1281,12 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor3"/>
 			<SkillTable>
+				<DetectionTrain type="Int" value="0"/>
+				<AttackTrain type="Int" value="0"/>
+				<Delay type="Int" value="0"/>
+				<HorseCombat type="Int" value="0"/>
+				<FastAttack type="Int" value="1"/>
+				<Chaos type="Int" value="1"/>
 				<ShortSpear type="Int" value="2"/>
 				<Bow type="Int" value="2"/>
 				<LightArmor type="Int" value="2"/>
@@ -1243,6 +1314,11 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor4"/>
 			<SkillTable>
+				<RangedAttackTrain type="Int" value="0"/>
+				<MarchingTrain type="Int" value="0"/>
+				<MoveThroughCover type="Int" value="0"/>
+				<Fusillade type="Int" value="1"/>
+				<SuppressAttack type="Int" value="1"/>
 				<OneHandSword type="Int" value="2"/>
 				<Bow type="Int" value="2"/>
 				<LightArmor type="Int" value="2"/>
@@ -1269,6 +1345,11 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="MidArmor3"/>
 			<SkillTable>
+				<AttackTrain type="Int" value="0"/>
+				<ConterAttackTrain type="Int" value="0"/>
+				<BreakFortification type="Int" value="0"/>
+				<Prepare type="Int" value="1"/>
+				<Break type="Int" value="1"/>
 				<TwoHandSword type="Int" value="2"/>
 				<MiddleArmor type="Int" value="2"/>
 			</SkillTable>
@@ -1294,6 +1375,11 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="HeavyArmor3"/>
 			<SkillTable>
+				<RangedAttackTrain type="Int" value="0"/>
+				<MarchingTrain type="Int" value="0"/>
+				<MoveThroughCover type="Int" value="0"/>
+				<SuppressAttack type="Int" value="1"/>
+				<Fusillade type="Int" value="1"/>
 				<OneHandSword type="Int" value="2"/>
 				<XBow type="Int" value="2"/>
 			</SkillTable>
@@ -1319,6 +1405,11 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="HeavyArmor4"/>
 			<SkillTable>
+				<AttackTrain type="Int" value="0"/>
+				<ConterAttackTrain type="Int" value="0"/>
+				<BreakFortification type="Int" value="0"/>
+				<Prepare type="Int" value="1"/>
+				<Break type="Int" value="1"/>
 				<TwoHandSword type="Int" value="2"/>
 				<HeavyArmor type="Int" value="2"/>
 			</SkillTable>
@@ -1344,6 +1435,15 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="HeavyArmor5"/>
 			<SkillTable>
+				<Unshakable type="Int" value="0"/>
+				<BreakFortification type="Int" value="0"/>
+				<ConterAttackTrain type="Int" value="0"/>
+				<AttackTrain type="Int" value="0"/>
+				<ArmorImprove type="Int" value="0"/>
+				<Break type="Int" value="1"/>
+				<Prepare type="Int" value="1"/>
+				<Overawe type="Int" value="1"/>
+				<ForcedMarch type="Int" value="1"/>
 				<TwoHandSword type="Int" value="2"/>
 				<HeavyArmor type="Int" value="2"/>
 			</SkillTable>
@@ -1369,6 +1469,14 @@
 			<ShieldId type="String" value="Shield5"/>
 			<ArmorId type="String" value="HeavyArmor5"/>
 			<SkillTable>
+				<AttackTrain type="Int" value="0"/>
+				<Charge type="Int" value="0"/>
+				<FormUp type="Int" value="0"/>
+				<Trample type="Int" value="0"/>
+				<ArmorImprove type="Int" value="0"/>
+				<Unshakable type="Int" value="0"/>
+				<Break type="Int" value="1"/>
+				<JointAttack type="Int" value="1"/>
 				<OneHandBlunt type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
 				<HeavyArmor type="Int" value="2"/>
@@ -1396,6 +1504,16 @@
 			<ShieldId type="String" value="Shield5"/>
 			<ArmorId type="String" value="HeavyArmor5"/>
 			<SkillTable>
+				<AttackTrain type="Int" value="0"/>
+				<Charge type="Int" value="0"/>
+				<FormUp type="Int" value="0"/>
+				<Trample type="Int" value="0"/>
+				<ArmorImprove type="Int" value="0"/>
+				<Unshakable type="Int" value="0"/>
+				<Break type="Int" value="1"/>
+				<JointAttack type="Int" value="1"/>
+				<TimeToAttack type="Int" value="1"/>
+				<Inspire type="Int" value="1"/>
 				<OneHandSword type="Int" value="2"/>
 				<Shield type="Int" value="2"/>
 				<HeavyArmor type="Int" value="2"/>
@@ -1423,11 +1541,16 @@
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="LightArmor5"/>
 			<SkillTable>
-				<Faith type="Int" value="0"/>
-				<StrengthenSprite type="Int" value="0"/>
-				<Heal type="Int" value="1"/>
-				<MagicShield type="Int" value="1"/>
-				<Pray type="Int" value="1"/>
+				<StrengthenPuppet type="Int" value="0" />
+				<EnchantWImprove type="Int" value="0" />
+				<EnchantAImprove type="Int" value="0" />
+				<MagicImprove type="Int" value="0" />
+				<WeakImprove type="Int" value="0" />
+				<EnchantWeapon type="Int" value="1" />		
+				<EnchantArmor type="Int" value="1" />
+				<LighterArmor type="Int" value="1" />
+				<EnchantArrow type="Int" value="1" />
+				<Blind type="Int" value="1" />
 			</SkillTable>
 			<LeaderId type="String" value="Syrin"/>
 			<RetainerId type="String" value="Scout"/>
@@ -1546,7 +1669,7 @@
 			<AttrModifer>
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="0.0" />
-				<RangedAttack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="12.0" />
 				<Defence type="Float" value="16.0" />
 				<Formation type="Float" value="0.0" />
 				<Initiative type="Float" value="0.0" />
@@ -1565,7 +1688,7 @@
 			<AttrModifer>
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="8.0" />
-				<RangedAttack type="Float" value="0.0" />
+				<RangedAttack type="Float" value="18.0" />
 				<Defence type="Float" value="14.0" />
 				<Formation type="Float" value="0.0" />
 				<Initiative type="Float" value="1.0" />
@@ -3690,7 +3813,7 @@
 			<CoolDown type="Int" value="0"/>
 			<Icon type="String" value="ac_atkc"/>
 			<Script type="String" value="attack.lua"/>
-			<SkillRole type="Int" value="5"/>
+			<SkillRole type="Int" value="1"/>
 		</Attack>
 		<RangedAttack>
 			<Type type="Int" value="3"/>
@@ -3738,7 +3861,7 @@
 			<CoolDown type="Int" value="2"/>
 			<Icon type="String" value="skill_act1_inspire"/>
 			<Script type="String" value="Inspire.lua"/>
-			<SkillRole type="Int" value="5"/>
+			<SkillRole type="Int" value="7"/>
 		</Inspire>
 		<MagicShield>
 			<Type type="Int" value="0"/>
@@ -3750,7 +3873,7 @@
 			<CoolDown type="Int" value="0"/>
 			<Icon type="String" value="skill_act2_firm"/>
 			<Script type="String" value="magicshield.lua"/>
-			<SkillRole type="Int" value="517"/>
+			<SkillRole type="Int" value="515"/>
 		</MagicShield>
 		<Heal>
 			<Type type="Int" value="0"/>
@@ -3762,7 +3885,7 @@
 			<CoolDown type="Int" value="0"/>
 			<Icon type="String" value="skill_act2_heal"/>
 			<Script type="String" value="heal.lua"/>
-			<SkillRole type="Int" value="133"/>
+			<SkillRole type="Int" value="131"/>
 		</Heal>
 		<Pray>
 			<Type type="Int" value="0"/>
@@ -3798,7 +3921,7 @@
 			<CoolDown type="Int" value="1"/>
 			<Icon type="String" value="skill_act1_suppress"/>
 			<Script type="String" value="suppressattack.lua"/>
-			<SkillRole type="Int" value="10"/>
+			<SkillRole type="Int" value="14"/>
 		</SuppressAttack>
 		<FastAttack>
 			<Type type="Int" value="4"/>
@@ -3858,7 +3981,7 @@
 			<CoolDown type="Int" value="2"/>
 			<Icon type="String" value="skill_act1_dispatch"/>
 			<Script type="String" value="UrgentOrder.lua"/>
-			<SkillRole type="Int" value="1029"/>
+			<SkillRole type="Int" value="1031"/>
 		</UrgentOrder>
 		<MagicRest>
 			<Type type="Int" value="0"/>
@@ -3870,7 +3993,7 @@
 			<CoolDown type="Int" value="0"/>
 			<Icon type="String" value="ac_rest"/>
 			<Script type="String" value="MagicRest.lua"/>
-			<SkillRole type="Int" value="1025"/>
+			<SkillRole type="Int" value="1024"/>
 		</MagicRest>
 		<SummonPuppetA>
 			<Type type="Int" value="0"/>
@@ -3906,7 +4029,7 @@
 			<CoolDown type="Int" value="0"/>
 			<Icon type="String" value="skill_act3_enweapon"/>
 			<Script type="String" value="EnchantWeapon.lua"/>
-			<SkillRole type="Int" value="3"/>
+			<SkillRole type="Int" value="6"/>
 		</EnchantWeapon>
 		<EnchantArrow>
 			<Type type="Int" value="0"/>
@@ -3918,7 +4041,7 @@
 			<CoolDown type="Int" value="0"/>
 			<Icon type="String" value="skill_act3_enweapon"/>
 			<Script type="String" value="EnchantArrow.lua"/>
-			<SkillRole type="Int" value="3"/>
+			<SkillRole type="Int" value="2"/>
 		</EnchantArrow>
 		<EnchantArmor>
 			<Type type="Int" value="0"/>
@@ -3942,7 +4065,7 @@
 			<CoolDown type="Int" value="2"/>
 			<Icon type="String" value="skill_act3_sumpuppet"/>
 			<Script type="String" value="FuryPuppet.lua"/>
-			<SkillRole type="Int" value="1"/>
+			<SkillRole type="Int" value="17"/>
 		</FuryPuppet>
 		<Blind>
 			<Type type="Int" value="0"/>
@@ -3966,7 +4089,7 @@
 			<CoolDown type="Int" value="1"/>
 			<Icon type="String" value="skill_act1_check"/>
 			<Script type="String" value="Chaos.lua"/>
-			<SkillRole type="Int" value="5"/>
+			<SkillRole type="Int" value="4"/>
 		</Chaos>
 		<LightningChain>
 			<Type type="Int" value="0"/>
@@ -3978,7 +4101,7 @@
 			<CoolDown type="Int" value="1"/>
 			<Icon type="String" value="skill_act4_thunder"/>
 			<Script type="String" value="LightningChain.lua"/>
-			<SkillRole type="Int" value="1"/>
+			<SkillRole type="Int" value="9"/>
 		</LightningChain>
 		<Fire>
 			<Type type="Int" value="0"/>
@@ -3990,7 +4113,7 @@
 			<CoolDown type="Int" value="1"/>
 			<Icon type="String" value="skill_act4_fire"/>
 			<Script type="String" value="Fire.lua"/>
-			<SkillRole type="Int" value="1"/>
+			<SkillRole type="Int" value="26"/>
 		</Fire>
 		<Overawe>
 			<Type type="Int" value="1"/>
@@ -4002,7 +4125,7 @@
 			<CoolDown type="Int" value="2"/>
 			<Icon type="String" value="skill_act1_break"/>
 			<Script type="String" value="Overawe.lua"/>
-			<SkillRole type="Int" value="1"/>
+			<SkillRole type="Int" value="5"/>
 		</Overawe>
 		<Penance>
 			<Type type="Int" value="0"/>
@@ -4014,7 +4137,7 @@
 			<CoolDown type="Int" value="1"/>
 			<Icon type="String" value="skill_act2_confession"/>
 			<Script type="String" value="Penance.lua"/>
-			<SkillRole type="Int" value="3"/>
+			<SkillRole type="Int" value="22"/>
 		</Penance>
 		<FireArrow>
 			<Type type="Int" value="3"/>
@@ -4038,7 +4161,7 @@
 			<CoolDown type="Int" value="0"/>
 			<Icon type="String" value="skill_act3_enarmor"/>
 			<Script type="String" value="LighterArmor.lua"/>
-			<SkillRole type="Int" value="515"/>
+			<SkillRole type="Int" value="129"/>
 		</LighterArmor>
 		<LifeGuard>
 			<Type type="Int" value="0"/>
@@ -4050,7 +4173,7 @@
 			<CoolDown type="Int" value="0"/>
 			<Icon type="String" value="skill_act2_firm"/>
 			<Script type="String" value="LifeGuard.lua"/>
-			<SkillRole type="Int" value="515"/>
+			<SkillRole type="Int" value="130"/>
 		</LifeGuard>
 		<HolyFury>
 			<Type type="Int" value="0"/>
@@ -4062,7 +4185,7 @@
 			<CoolDown type="Int" value="1"/>
 			<Icon type="String" value="skill_act2_sumspirit"/>
 			<Script type="String" value="HolyFury.lua"/>
-			<SkillRole type="Int" value="1"/>
+			<SkillRole type="Int" value="26"/>
 		</HolyFury>
 		<Assault>
 			<Type type="Int" value="4"/>
@@ -4086,7 +4209,7 @@
 			<CoolDown type="Int" value="3"/>
 			<Icon type="String" value="skill_act1_extrusion"/>
 			<Script type="String" value="TimeToAttack.lua"/>
-			<SkillRole type="Int" value="5"/>
+			<SkillRole type="Int" value="515"/>
 		</TimeToAttack>
 		<Regroup>
 			<Type type="Int" value="1"/>
@@ -4098,7 +4221,7 @@
 			<CoolDown type="Int" value="3"/>
 			<Icon type="String" value="skill_act1_inspire"/>
 			<Script type="String" value="Regroup.lua"/>
-			<SkillRole type="Int" value="5"/>
+			<SkillRole type="Int" value="259"/>
 		</Regroup>
 		<JointAttack>
 			<Type type="Int" value="4"/>
@@ -4110,7 +4233,7 @@
 			<CoolDown type="Int" value="3"/>
 			<Icon type="String" value="skill_act1_strike"/>
 			<Script type="String" value="JointAttack.lua"/>
-			<SkillRole type="Int" value="5"/>
+			<SkillRole type="Int" value="21"/>
 		</JointAttack>
 		<Chase>
 			<Type type="Int" value="4"/>
@@ -4122,7 +4245,7 @@
 			<CoolDown type="Int" value="2"/>
 			<Icon type="String" value="skill_act1_break"/>
 			<Script type="String" value="Chase.lua"/>
-			<SkillRole type="Int" value="5"/>
+			<SkillRole type="Int" value="1"/>
 		</Chase>
 		<Confidence>
 			<Type type="Int" value="0"/>
@@ -4134,7 +4257,7 @@
 			<CoolDown type="Int" value="0"/>
 			<Icon type="String" value="skill_act2_protect"/>
 			<Script type="String" value="Confidence.lua"/>
-			<SkillRole type="Int" value="515"/>
+			<SkillRole type="Int" value="256"/>
 		</Confidence>
 		<Earthquake>
 			<Type type="Int" value="0"/>
@@ -4146,7 +4269,7 @@
 			<CoolDown type="Int" value="1"/>
 			<Icon type="String" value="skill_act1_disturb"/>
 			<Script type="String" value="Earthquake.lua"/>
-			<SkillRole type="Int" value="1"/>
+			<SkillRole type="Int" value="26"/>
 		</Earthquake>
 	</SkillData>
 	<EffectData>

@@ -136,6 +136,17 @@ private:
 		Area* mArea;
 	};
 
+	class OSGIsThisMissionFactor : public DecisionMapFactor<int>
+	{
+	public:	
+		OSGIsThisMissionFactor(std::map<int, OtherSquadGroupInfo>* othersquadgroup, std::string missionid);
+
+		virtual float calcDecision(int &decision);
+	private:
+		std::map<int, OtherSquadGroupInfo>* mOtherSquadGroup;
+		std::string mMissionId;
+	};
+
 	//²¿¶ÓAI
 	enum SquadGroupMissionType
 	{
