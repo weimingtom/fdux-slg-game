@@ -814,8 +814,36 @@
 		</LightningChain>
 		<Fire>
 			<Name type="String" value="纵火"/>
-			<Describe type="String" value="（消耗所有行动值，根据消耗掉的行动值对目标部队造成一次攻击次）"/>
+			<Describe type="String" value="（消耗所有行动值，根据消耗掉的行动值对目标部队造成一次攻击次，忽视地形目标地形带来的防御加成）"/>
 		</Fire>
+		<Overawe>
+			<Name type="String" value="威慑"/>
+			<Describe type="String" value="（对周围敌军部队造成动摇）"/>
+		</Overawe>
+		<Penance>
+			<Name type="String" value="忏悔"/>
+			<Describe type="String" value="（对目标部队造成动摇）"/>
+		</Penance>
+		<FireArrow>
+			<Name type="String" value="火箭"/>
+			<Describe type="String" value="（对目标部队进行一次远程攻击，忽略目标地形防御）"/>
+		</FireArrow>
+		<LighterArmor>
+			<Name type="String" value="轻化盔甲"/>
+			<Describe type="String" value="（目标部队行动值主动性提高）"/>
+		</LighterArmor>
+		<LifeGuard>
+			<Name type="String" value="生命守护"/>
+			<Describe type="String" value="（目标部队坚韧值提高）"/>
+		</LifeGuard>
+		<HolyFury>
+			<Name type="String" value="圣灵之怒"/>
+			<Describe type="String" value="（消耗一定数量的圣灵，对目标造成魔法伤害）"/>
+		</HolyFury>
+		<Assault>
+			<Name type="String" value="乘乱袭击"/>
+			<Describe type="String" value="（进行一次近战攻击，攻击力根据目标动摇和混乱等级增加）"/>
+		</Assault>
 	</SkillData>
 	<EffectData>
 		<DetectionTrain>
@@ -940,7 +968,7 @@
 		</EnchantWImprove>
 		<EnchantAImprove>
 			<Name type="String" value="防具附魔强化"/>
-			<Describe type="String" value="（魔化盔甲和魔化盾牌效果加强）"/>	
+			<Describe type="String" value="（魔化盔甲和轻化盔甲效果加强）"/>	
 		</EnchantAImprove>
 		<BattlePuppet>
 			<Name type="String" value="战斗傀儡"/>
@@ -982,6 +1010,78 @@
 			<Name type="String" value="魔法攻击增效"/>
 			<Describe type="String" value="（元素魔法攻击力增加）"/>	
 		</AtkImprove>
+		<Fortification>
+			<Name type="String" value="坚守"/>
+			<Describe type="String" value="（获得的地形防御增加）"/>				
+		</Fortification>
+		<FortificationMark>
+			<Name type="String" value="坚守"/>
+			<Describe type="String" value="（获得的地形防御增加）"/>				
+		</FortificationMark>
+		<HideIn>
+			<Name type="String" value="地形隐藏"/>
+			<Describe type="String" value="（获得的地形隐蔽增加）"/>				
+		</HideIn>
+		<HideInMark>
+			<Name type="String" value="地形隐藏"/>
+			<Describe type="String" value="（获得的地形隐蔽增加）"/>				
+		</HideInMark>
+		<BreakFortification>
+			<Name type="String" value="攻坚"/>
+			<Describe type="String" value="（进行进攻时忽视目标部队地形防御）"/>	
+		</BreakFortification>
+		<HorseCombat>
+			<Name type="String" value="马上战斗"/>
+			<Describe type="String" value="（抵消部分马匹造成的防御和反击降低效果）"/>	
+		</HorseCombat>
+		<KindnessImprove>
+			<Name type="String" value="仁爱"/>
+			<Describe type="String" value="（生命赐福和生命守护消耗圣灵减少）"/>	
+		</KindnessImprove>
+		<FaithImprove>
+			<Name type="String" value="坚定"/>
+			<Describe type="String" value="（圣灵护盾和恢复信心消耗圣灵减少）"/>	
+		</FaithImprove>
+		<ReligiousnessImprove>
+			<Name type="String" value="虔诚"/>
+			<Describe type="String" value="（忏悔和圣灵之怒消耗圣灵减少）"/>	
+		</ReligiousnessImprove>
+		<ImprovedBlind>
+			<Name type="String" value="被致盲（增效）"/>
+			<Describe type="String" value="（攻击值和远程攻击值降低）"/>	
+		</ImprovedBlind>
+		<ImprovedInspired>
+			<Name type="String" value="被激励（增效）"/>
+			<Describe type="String" value="（攻击值和远程攻击值增加）"/>	
+		</ImprovedInspired>
+		<WeakImprove>
+			<Name type="String" value="干扰加强"/>
+			<Describe type="String" value="（致盲和盔甲削弱加强）"/>	
+		</WeakImprove>
+		<LighterArmor>
+			<Name type="String" value="轻化盔甲"/>
+			<Describe type="String" value="（行动值主动性提高）"/>
+		</LighterArmor>
+		<LifeGuard>
+			<Name type="String" value="生命守护"/>
+			<Describe type="String" value="（坚韧值提高）"/>
+		</LifeGuard>
+		<MagicImprove>
+			<Name type="String" value="魔法提升"/>
+			<Describe type="String" value="（行动值增加）"/>
+		</MagicImprove>
+		<BreakArmor>
+			<Name type="String" value="破甲"/>
+			<Describe type="String" value="（近战攻击时，根据对手盔甲防御增加攻击力）"/>
+		</BreakArmor>
+		<PuppetShield>
+			<Name type="String" value="傀儡护盾"/>
+			<Describe type="String" value="（每回合受到的头2/3次攻击防御力增加）"/>
+		</PuppetShield>
+		<PuppetShield1>
+			<Name type="String" value="傀儡护盾"/>
+			<Describe type="String" value="（防御力增加）"/>
+		</PuppetShield1>
 	</EffectData>
 	<GroundData>
 		<Grass>

@@ -1,31 +1,28 @@
 function useskill()
 	local caster  = ScriptCommonLib.GetTempString("squadid");
 	local target  = ScriptCommonLib.GetTempString("targetsquadid");
+	
 	local unitnum = SquadLib.GetUnitNum(caster);
-	local cost = 3;
-	local improvelv, improve = SquadLib.GetEffectLevelByName(caster, "KindnessImprove");
+	local cost = 5;
+	local improvelv, improve = SquadLib.GetEffectLevelByName(caster, "ReligiousnessImprove");
 	if improvelv > 0 then
-		cost = 2;
+		cost = 3;
 	end	
-	if unitnum > cost + 1 then
+	if unitnum > cost + 1 then	
 		SquadLib.Animation(caster, 1, "Skill", "none", "mp_seal_08", 0, 1);
 		unitnum = unitnum - cost;
 		SquadLib.SetUnitNum(caster, unitnum);
-		SquadLib.PlayParticle(target, 3, "mp_streak_01", "none", 2500);
-		local maxnum = SquadLib.GetUnitMaxNum(target);
-		local num = SquadLib.GetUnitNum(target);
-		num = num + 12;
-		if num > maxnum then
-			num = maxnum;
-		end
-		SquadLib.SetUnitNum(target, num);
-		local ep = 50;
+		
+		SquadLib.PlayParticle(target, 3, "mp_diabolique", "none", 2500);
+		SkillLib.MagicAttack(caster, target, 20 , 30, 20);
+	
 		local casterlv = SquadLib.GetSquadLevel(caster);
 		local targetlv = SquadLib.GetSquadLevel(target);
-		if casterlv > targetlv then
+		local ep = 50;
+		if targetlv > casterlv then
 			ep = ep + (targetlv - casterlv) * 5;
-		end		
-		SquadLib.AddExp(caster, ep);	
+		end	
+		SquadLib.AddExp(caster, ep);
 		ScriptCommonLib.SetTempInt("castsuccess", 1);
 	else
 		SquadLib.ShowValue(sid, "Skills_NotEnoughGuard", 1.0, 1.0, 1.0);
@@ -42,14 +39,9 @@ function validtarget()
 	local target  = ScriptCommonLib.GetTempString("targetsquadid");
 	local casterfaction = SquadLib.GetFaction(caster);
 	local targetfaction = SquadLib.GetFaction(target);
-	if casterfaction == targetfaction then
-		local squadtype = SquadLib.GetType(target);
-		if squadtype == 0 then
-			ScriptCommonLib.SetTempInt("validtarget", 1);
-		else
-			ScriptCommonLib.SetTempInt("validtarget", 0);
-		end
-	else
-		ScriptCommonLib.SetTempInt("validtarget", 0);
+	if casterfaction ~= targetfaction then
+		ScriptCommonLib.SetTempInt("validtarget", 1);
+    else
+        ScriptCommonLib.SetTempInt("validtarget", 0);
 	end
 end

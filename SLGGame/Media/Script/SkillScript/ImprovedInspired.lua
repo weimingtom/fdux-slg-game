@@ -1,53 +1,3 @@
-function useskill()
-	local sid = ScriptCommonLib.GetTempString("squadid");
-	local ep = 0;
-	local tgtx = ScriptCommonLib.GetTempInt("targetx");
-	local tgty = ScriptCommonLib.GetTempInt("targety");
-	local sf = SquadLib.GetFaction(sid);
-	local croodlist = {
-		{tgtx, tgty},
-		{tgtx - 1, tgty},
-		{tgtx, tgty - 1},
-		{tgtx + 1, tgty},
-		{tgtx, tgty + 1},
-	};
-	local lv = SquadLib.GetSkillLevel(caster, "Inspire");
-	for i = 1, 5 do
-		local tgtsid = BattleLib.GetSquadAt(croodlist[i][1], croodlist[i][2], 1, sf);
-		if tgtsid ~= "" then
-			local tgtf = SquadLib.GetFaction(tgtsid);
-			if tgtf == sf then
-				if lv > 1 then
-					SquadLib.ApplyEffect(tgtsid, "ImprovedInspired");
-				else
-					SquadLib.ApplyEffect(tgtsid, "Inspired");
-				end
-				ep = ep + 20;
-			end
-		end
-	end	
-	SquadLib.AddExp(sid, ep);
-	ScriptCommonLib.SetTempInt("castsuccess", 1);
-end
-
-function validarea()
-	ScriptCommonLib.SetTempInt("validarea", 1);
-end
-
-function validaffectarea()
-	local sid = ScriptCommonLib.GetTempString("squadid");
-	local tgtx = ScriptCommonLib.GetTempInt("targetx");
-	local tgty = ScriptCommonLib.GetTempInt("targety");
-	local sf = SquadLib.GetFaction(sid);
-	local tgtsid = BattleLib.GetSquadAt(tgtx, tgty, 1, sf);
-	if tgtsid ~= "" then
-		local tgtf = SquadLib.GetFaction(tgtsid);
-		if tgtf == sf then
-			ScriptCommonLib.SetTempInt("validaffectarea", 1);
-		end
-	end
-end
-
 function onaffect()
 	local sid = ScriptCommonLib.GetTempString("squadid");
 	local eid = ScriptCommonLib.GetTempString("effectid");
@@ -57,8 +7,7 @@ function onaffect()
 	if mid ~= "" then
 		SquadLib.RemoveModifier(sid, mid);
 	end
-	local lv = SquadLib.GetEffectLevel(sid, eid);
-	mid = SquadLib.ApplyModifier(sid, 1, lv, lv, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+	mid = SquadLib.ApplyModifier(sid, 1, 2.0, 2.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 	ScriptCommonLib.SetString("modifierid", mid);
 	if tid == "" then
 		tid = SquadLib.AddSquadTrigger(sid, "TurnStart", "onturnstart");
@@ -71,7 +20,7 @@ function onaffect()
 	--end
 	--ScriptCommonLib.SetString("particleid", pid);
 	
-	SquadLib.ShowValue1(sid, "Skills_Inspire", lv, 1.0, 1.0, 1.0);
+	SquadLib.ShowValue1(sid, "Skills_Inspire", 2.0, 1.0, 1.0, 1.0);
 	
 	ScriptCommonLib.SetInt("turn", 0);
 end

@@ -23,15 +23,23 @@ function onaffect()
 	local house = SquadLib.GetEquip(sid, 1);
 	if house ~= "none" then
 		local lv = SquadLib.GetEffectLevel(sid, eid);
-		local attr = SquadLib.GetEquipAttr(1, house, 1);
-		local ratk = 0;
+		local attr = SquadLib.GetEquipAttr(1, eqid, 2);
+		local def = 0;
 		if attr < 0 then
-			ratk = -attr;
+			def = -attr;
 		end
-		if ratk > 1 + lv then
-			ratk = 1 + lv;
+		if def > 1 + lv then
+			def = 1 + lv;
 		end
-		mid = SquadLib.ApplyModifier(sid, 0, 0.0, ratk, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+		attr = SquadLib.GetEquipAttr(1, eqid, 9);
+		local cot = 0;
+		if attr < 0 then
+			cot = -attr;
+		end
+		if cot > 2 + lv then
+			cot = 2 + lv;
+		end
+		mid = SquadLib.ApplyModifier(sid, 0, 0.0, 0.0, def, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, cot);
 		ScriptCommonLib.SetString("modifierid", mid);
 	end
 	
@@ -71,15 +79,23 @@ function onequip()
 		
 		if eqid ~= "none" then
 			local lv = SquadLib.GetEffectLevel(sid, eid);
-			local attr = SquadLib.GetEquipAttr(1, eqid, 1);
-			local ratk = 0;
+			local attr = SquadLib.GetEquipAttr(1, eqid, 2);
+			local def = 0;
 			if attr < 0 then
-				ratk = -attr;
+				def = -attr;
 			end
-			if ratk > 1 + lv then
-				ratk = 1 + lv;
+			if def > 1 + lv then
+				def = 1 + lv;
 			end
-			mid = SquadLib.ApplyModifier(sid, 0, 0.0, ratk, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+			attr = SquadLib.GetEquipAttr(1, eqid, 9);
+			local cot = 0;
+			if attr < 0 then
+				cot = -attr;
+			end
+			if cot > 2 + lv then
+				cot = 2 + lv;
+			end
+			mid = SquadLib.ApplyModifier(sid, 0, 0.0, 0.0, def, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, cot);
 			ScriptCommonLib.SetString("modifierid", mid);
 		end
 	end

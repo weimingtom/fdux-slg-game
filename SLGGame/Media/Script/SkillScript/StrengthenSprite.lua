@@ -6,7 +6,7 @@ function onaffect()
 		SquadLib.RemoveModifier(sid, mid);
 	end
 	local lv = SquadLib.GetEffectLevel(sid, eid);
-	mid = SquadLib.ApplyModifier(sid, 0, 0.0, 0.0, lv * 3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+	mid = SquadLib.ApplyModifier(sid, 0, 0.0, 0.0, lv * 4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 	ScriptCommonLib.SetString("modifierid", mid);
 end
 

@@ -3,7 +3,12 @@ function useskill()
 	local target  = ScriptCommonLib.GetTempString("targetsquadid");
 		
 	SquadLib.Animation(caster, 1, "Skill", "none", "mp_seal_04", 0, 1);
-	SquadLib.ApplyEffect(target, "Blind");
+	local improvelv, improve = SquadLib.GetEffectLevelByName(caster, "WeakImprove");
+	if improvelv > 1 then
+		SquadLib.ApplyEffect(target, "ImprovedBlind");
+	else
+		SquadLib.ApplyEffect(target, "Blind");
+	end
 	SquadLib.PlayParticle(target, 3, "mp_hit_07", "none", 2500);
 	
 	local casterlv = SquadLib.GetSquadLevel(caster);
