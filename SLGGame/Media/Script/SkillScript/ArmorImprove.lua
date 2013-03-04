@@ -20,26 +20,15 @@ function onaffect()
 		SquadLib.RemoveModifier(sid, mid);
 	end
 	
-	local house = SquadLib.GetEquip(sid, 1);
-	if house ~= "none" then
+	local armor = SquadLib.GetEquip(sid, 2);
+	if armor ~= "none" then
 		local lv = SquadLib.GetEffectLevel(sid, eid);
-		local attr = SquadLib.GetEquipAttr(1, house, 2);
-		local def = 0;
+		local attr = SquadLib.GetEquipAttr(2, armor, 5);
 		if attr < 0 then
-			def = -attr;
+			mid = SquadLib.ApplyModifier(sid, 0, 0.0, 0.0, 0.0, 0.0, 0.0, -attr, 0.0, 0.0, 0.0, 0.0);
 		end
-		if def > 1 + lv then
-			def = 1 + lv;
-		end
-		attr = SquadLib.GetEquipAttr(1, house, 9);
-		local cot = 0;
-		if attr < 0 then
-			cot = -attr;
-		end
-		if cot > 1 + lv then
-			cot = 1 + lv;
-		end
-		mid = SquadLib.ApplyModifier(sid, 0, 0.0, 0.0, def, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, cot);
+			mid = SquadLib.ApplyModifier(sid, 0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+		else		
 		ScriptCommonLib.SetString("modifierid", mid);
 	end
 	
@@ -72,30 +61,19 @@ function onequip()
 	local eqtype = ScriptCommonLib.GetTempInt("equiptype");
 	local eqid = ScriptCommonLib.GetTempString("equipid");
 	local mid = ScriptCommonLib.GetString("modifierid");
-	if eqtype == 1 then
+	if eqtype == 2 then
 		if mid ~= "" then
 			SquadLib.RemoveModifier(sid, mid);
 		end
 		
 		if eqid ~= "none" then
 			local lv = SquadLib.GetEffectLevel(sid, eid);
-			local attr = SquadLib.GetEquipAttr(1, eqid, 2);
-			local def = 0;
+			local attr = SquadLib.GetEquipAttr(2, eqid, 5);
 			if attr < 0 then
-				def = -attr;
+				mid = SquadLib.ApplyModifier(sid, 0, 0.0, 0.0, 0.0, 0.0, 0.0, -attr, 0.0, 0.0, 0.0, 0.0);
 			end
-			if def > 1 + lv then
-				def = 1 + lv;
-			end
-			attr = SquadLib.GetEquipAttr(1, eqid, 9);
-			local cot = 0;
-			if attr < 0 then
-				cot = -attr;
-			end
-			if cot > 2 + lv then
-				cot = 2 + lv;
-			end
-			mid = SquadLib.ApplyModifier(sid, 0, 0.0, 0.0, def, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, cot);
+				mid = SquadLib.ApplyModifier(sid, 0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+			else		
 			ScriptCommonLib.SetString("modifierid", mid);
 		end
 	end
@@ -107,7 +85,7 @@ function removeequip()
 	local eqtype = ScriptCommonLib.GetTempInt("equiptype");
 	local eqid = ScriptCommonLib.GetTempString("equipid");
 	local mid = ScriptCommonLib.GetString("modifierid");
-	if eqtype == 1 then
+	if eqtype == 2 then
 		if mid ~= "" then
 			SquadLib.RemoveModifier(sid, mid);
 			ScriptCommonLib.SetString("modifierid", "");

@@ -3402,6 +3402,9 @@
 				<Fortification type="Int" value="4">
 					<Effect type="String" value="Fortification"/>
 				</Fortification>
+				<ArmorImprove type="Int" value="7">
+					<Effect type="String" value="ArmorImprove"/>
+				</ArmorImprove>
 				<Unshakable type="Int" value="7">
 					<Effect type="String" value="Unshakable"/>
 				</Unshakable>
@@ -3452,6 +3455,9 @@
 				<HideIn type="Int" value="4">
 					<Effect type="String" value="HideIn"/>
 				</HideIn>
+				<CloseShoot type="Int" value="7">
+					<Effect type="String" value="CloseShoot"/>
+				</CloseShoot>
 				<BreakArmor type="Int" value="7">
 					<Effect type="String" value="BreakArmor"/>
 				</BreakArmor>
@@ -3459,6 +3465,8 @@
 			<Equip>
 				<OneHandSword type="Int" value="6"/>
 				<OneHandBlunt type="Int" value="6"/>
+				<TwoHandSword type="Int" value="6"/>
+				<TwoHandBlunt type="Int" value="6"/>
 				<ShortSpear type="Int" value="6"/>
 				<Bow type="Int" value="6"/>
 				<XBow type="Int" value="6"/>
@@ -3476,6 +3484,9 @@
 				<Inspire type="Int" value="2"/>
 				<Break type="Int" value="2"/>
 				<UrgentOrder type="Int" value="5"/>
+				<TimeToAttack type="Int" value="5"/>
+				<Regroup type="Int" value="8"/>
+				<JointAttack type="Int" value="8"/>
 			</Active>
 			<Passive>
 				<AttackTrain type="Int" value="1">
@@ -3493,9 +3504,12 @@
 				<Trample type="Int" value="4">
 					<Effect type="String" value="Trample"/>
 				</Trample>
-				<HorseCombat type="Int" value="7">
-					<Effect type="String" value="HorseCombat"/>
-				</HorseCombat>
+				<FormUp type="Int" value="4">
+					<Effect type="String" value="FormUp"/>
+				</FormUp>
+				<ArmorImprove type="Int" value="7">
+					<Effect type="String" value="ArmorImprove"/>
+				</ArmorImprove>
 			</Passive>
 			<Equip>
 				<OneHandSword type="Int" value="6"/>
@@ -3519,6 +3533,7 @@
 				<FastAttack type="Int" value="2"/>
 				<ForcedMarch type="Int" value="2"/>
 				<Chaos type="Int" value="5"/>
+				<Chase type="Int" value="5"/>
 				<Assault type="Int" value="8"/>
 			</Active>
 			<Passive>
@@ -3568,22 +3583,23 @@
 				<MagicShield type="Int" value="1"/>
 				<Penance type="Int" value="3"/>
 				<LifeGuard type="Int" value="3"/>
-				<HolyFury type="Int" value="7"/>
+				<Confidence type="Int" value="5"/>
+				<HolyFury type="Int" value="5"/>
 			</Active>
 			<Passive>
 				<Faith type="Int" value="2">
 					<Effect type="String" value="Faith"/>
 				</Faith>
-				<StrengthenSprite type="Int" value="2">
-					<Effect type="String" value="StrengthenSprite"/>
-				</StrengthenSprite>
 				<KindnessImprove type="Int" value="2">
 					<Effect type="String" value="KindnessImprove"/>
 				</KindnessImprove>
 				<FaithImprove type="Int" value="4">
 					<Effect type="String" value="FaithImprove"/>
 				</FaithImprove>
-				<ReligiousnessImprove type="Int" value="4">
+				<StrengthenSprite type="Int" value="4">
+					<Effect type="String" value="StrengthenSprite"/>
+				</StrengthenSprite>
+				<ReligiousnessImprove type="Int" value="6">
 					<Effect type="String" value="ReligiousnessImprove"/>
 				</ReligiousnessImprove>
 				<MagicImprove type="Int" value="6">
@@ -3601,6 +3617,7 @@
 				<Attack type="Int" value="1"/>
 				<FuryPuppet type="Int" value="3"/>
 				<LightningChain type="Int" value="5"/>
+				<Earthquake type="Int" value="5"/>
 			</Active>
 			<Passive>
 				<StrengthenPuppet type="Int" value="2">
@@ -3653,6 +3670,9 @@
 				<MagicImprove type="Int" value="6">
 					<Effect type="String" value="MagicImprove"/>
 				</MagicImprove>
+				<AlchemyImprove type="Int" value="6">
+					<Effect type="String" value="AlchemyImprove"/>
+				</AlchemyImprove>
 				<PuppetShield type="Int" value="8">
 					<Effect type="String" value="PuppetShield"/>
 				</PuppetShield>
@@ -4056,6 +4076,78 @@
 			<Script type="String" value="Assault.lua"/>
 			<SkillRole type="Int" value="5"/>
 		</Assault>
+		<TimeToAttack>
+			<Type type="Int" value="1"/>
+			<MaxRange type="Int" value="2"/>
+			<MinRange type="Int" value="0"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="0"/>
+			<APCost type="float" value="3.0"/>
+			<CoolDown type="Int" value="3"/>
+			<Icon type="String" value="skill_act1_extrusion"/>
+			<Script type="String" value="TimeToAttack.lua"/>
+			<SkillRole type="Int" value="5"/>
+		</TimeToAttack>
+		<Regroup>
+			<Type type="Int" value="1"/>
+			<MaxRange type="Int" value="1"/>
+			<MinRange type="Int" value="0"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="0"/>
+			<APCost type="float" value="4.0"/>
+			<CoolDown type="Int" value="3"/>
+			<Icon type="String" value="skill_act1_inspire"/>
+			<Script type="String" value="Regroup.lua"/>
+			<SkillRole type="Int" value="5"/>
+		</Regroup>
+		<JointAttack>
+			<Type type="Int" value="4"/>
+			<MaxRange type="Int" value="1"/>
+			<MinRange type="Int" value="1"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="1"/>
+			<APCost type="float" value="4.0"/>
+			<CoolDown type="Int" value="3"/>
+			<Icon type="String" value="skill_act1_strike"/>
+			<Script type="String" value="JointAttack.lua"/>
+			<SkillRole type="Int" value="5"/>
+		</JointAttack>
+		<Chase>
+			<Type type="Int" value="4"/>
+			<MaxRange type="Int" value="1"/>
+			<MinRange type="Int" value="1"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="1"/>
+			<APCost type="float" value="3.0"/>
+			<CoolDown type="Int" value="2"/>
+			<Icon type="String" value="skill_act1_break"/>
+			<Script type="String" value="Chase.lua"/>
+			<SkillRole type="Int" value="5"/>
+		</Chase>
+		<Confidence>
+			<Type type="Int" value="0"/>
+			<MaxRange type="Int" value="2"/>
+			<MinRange type="Int" value="0"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="0"/>
+			<APCost type="float" value="4.0"/>
+			<CoolDown type="Int" value="0"/>
+			<Icon type="String" value="skill_act2_protect"/>
+			<Script type="String" value="Confidence.lua"/>
+			<SkillRole type="Int" value="515"/>
+		</Confidence>
+		<Earthquake>
+			<Type type="Int" value="0"/>
+			<MaxRange type="Int" value="2"/>
+			<MinRange type="Int" value="1"/>
+			<Area type="Int" value="1"/>
+			<APType type="Int" value="2"/>
+			<APCost type="float" value="3.0"/>
+			<CoolDown type="Int" value="1"/>
+			<Icon type="String" value="skill_act1_disturb"/>
+			<Script type="String" value="Earthquake.lua"/>
+			<SkillRole type="Int" value="1"/>
+		</Earthquake>
 	</SkillData>
 	<EffectData>
 		<DetectionTrain>
@@ -4471,6 +4563,48 @@
 			<EffectRole type="Int" value="1"/>
 			<ShowOnBattleSquad type="Int" value="1"/>
 		</PuppetShield1>
+		<ArmorImprove>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_APUp"/>
+			<Script type="String" value="ArmorImprove.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
+		</ArmorImprove>
+		<FormUp>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_FormUp"/>
+			<Script type="String" value="FormUp.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="0"/>
+		</FormUp>
+		<FormUp1>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_FormUp"/>
+			<Script type="String" value="FormUp1.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
+		</FormUp1>
+		<AlchemyImprove>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_gas"/>
+			<Script type="String" value="CommonMark.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="0"/>
+		</AlchemyImprove>
+		<LifeGuard1>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_ToughfUp"/>
+			<Script type="String" value="LifeGuard1.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
+		</LifeGuard1>
+		<TimeToAttack>
+			<Type type="Int" value="0"/>
+			<Icon type="String" value="skill_pass_FormUp"/>
+			<Script type="String" value="TimeToAttack.lua"/>
+			<EffectRole type="Int" value="1"/>
+			<ShowOnBattleSquad type="Int" value="1"/>
+		</TimeToAttack>
 	</EffectData>
 	<GroundData>
 		<Grass>
