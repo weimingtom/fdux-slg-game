@@ -2,7 +2,7 @@ function useskill()
 	local caster  = ScriptCommonLib.GetTempString("squadid");
 	local target  = ScriptCommonLib.GetTempString("targetsquadid");
 	local unitnum = SquadLib.GetUnitNum(caster);
-	local cost = 3;
+	local cost = 4;
 	local improvelv, improve = SquadLib.GetEffectLevelByName(caster, "KindnessImprove");
 	if improvelv > 0 then
 		cost = 2;
@@ -12,17 +12,18 @@ function useskill()
 		unitnum = unitnum - cost;
 		SquadLib.SetUnitNum(caster, unitnum);
 		SquadLib.PlayParticle(target, 3, "mp_streak_01", "none", 2500);
+	
 		local ep = 0;
-		local maxnum = SquadLib.GetUnitMaxNum(target);
-		local num = SquadLib.GetUnitNum(target);
-		num = num + 12;
-		if num > maxnum then
-			ep = ep + (maxnum + 12 - num) * 5;
-			num = maxnum;
-		else
-			ep = ep + 50;
+		local wlv, wid = SquadLib.GetEffectLevelByName(target, "Waver");
+		for i = 1, wlv then
+			SquadLib.RemoveEffect(target, wid);
+			ep = ep + 10;
 		end
-		SquadLib.SetUnitNum(target, num);
+		local clv, cid = SquadLib.GetEffectLevelByName(target, "Chaos");
+		if clv > 0 then
+			SquadLib.RemoveEffect(target, cid);
+			ep = ep + 30;
+		end
 		SquadLib.AddExp(caster, ep);	
 		ScriptCommonLib.SetTempInt("castsuccess", 1);
 	else

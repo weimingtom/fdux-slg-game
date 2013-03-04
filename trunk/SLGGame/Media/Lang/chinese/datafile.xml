@@ -844,39 +844,63 @@
 			<Name type="String" value="乘乱袭击"/>
 			<Describe type="String" value="（进行一次近战攻击，攻击力根据目标动摇和混乱等级增加）"/>
 		</Assault>
+		<TimeToAttack>
+			<Name type="String" value="列阵进攻"/>
+			<Describe type="String" value="（范围内部队阵列增加1直到回合结束）"/>
+		</TimeToAttack>
+		<Regroup>
+			<Name type="String" value="重整士气"/>
+			<Describe type="String" value="（范围内部队动摇减少2层）"/>
+		</Regroup>
+		<JointAttack>
+			<Name type="String" value="联合进攻"/>
+			<Describe type="String" value="（目标周围每多一支友军，攻击力增加2点）"/>
+		</JointAttack>
+		<Chase>
+			<Name type="String" value="追击"/>
+			<Describe type="String" value="（进行一次进攻，同时杀掉敌部队最多10名伤员）"/>
+		</Chase>
+		<Confidence>
+			<Name type="String" value="恢复信心"/>
+			<Describe type="String" value="（移除目标部队所有动摇效果，以及最多1层混乱效果）"/>
+		</Confidence>
+		<Earthquake>
+			<Name type="String" value="地震"/>
+			<Describe type="String" value="（根据目标最高AP值进行一次魔法攻击）"/>
+		</Earthquake>
 	</SkillData>
 	<EffectData>
 		<DetectionTrain>
 			<Name type="String" value="侦查训练"/>
-			<Describe type="String" value="部队士兵接受过一定的侦查训练，可以更快的发现敌军的踪迹（侦查值增加）"/>
+			<Describe type="String" value="部队士兵接受过一定的侦查训练，可以更快的发现敌军的踪迹（侦查值增加1/2点）"/>
 		</DetectionTrain>
 		<AttackTrain>
 			<Name type="String" value="进攻训练"/>
-			<Describe type="String" value="部队士兵接受过一定的进攻训练，可以更有效的在近战中杀伤敌军（攻击力增加）"/>
+			<Describe type="String" value="部队士兵接受过一定的进攻训练，可以更有效的在近战中杀伤敌军（攻击力增加1/2点）"/>
 		</AttackTrain>
 		<DefenceTrain>
 			<Name type="String" value="防御训练"/>
-			<Describe type="String" value="部队士兵接受过一定的防御训练，可以更有效的在战斗中保护自己（防御力增加）"/>
+			<Describe type="String" value="部队士兵接受过一定的防御训练，可以更有效的在战斗中保护自己（防御力增加1/2点）"/>
 		</DefenceTrain>
 		<RangedAttackTrain>
 			<Name type="String" value="射击训练"/>
-			<Describe type="String" value="部队士兵接受过一定的射击训练，可以更有效的使用远程武器杀伤敌军（远程攻击力增加）"/>
+			<Describe type="String" value="部队士兵接受过一定的射击训练，可以更有效的使用远程武器杀伤敌军（远程攻击力增加1/2点）"/>
 		</RangedAttackTrain>
 		<FormationTrain>
 			<Name type="String" value="列阵训练"/>
-			<Describe type="String" value="部队士兵接受过一定的列阵训练，部队可以更好的发挥阵型优势（阵列值增加）"/>
+			<Describe type="String" value="部队士兵接受过一定的列阵训练，部队可以更好的发挥阵型优势（阵列值增加1/2点）"/>
 		</FormationTrain>
 		<ConterAttackTrain>
 			<Name type="String" value="反击训练"/>
-			<Describe type="String" value="部队士兵接受过一定的反击训练，部队在受到攻击时能更好的组织反击（反击值增加）"/>			
+			<Describe type="String" value="部队士兵接受过一定的反击训练，部队在受到攻击时能更好的组织反击（反击值增加1/2点）"/>			
 		</ConterAttackTrain>
 		<MarchingTrain>
 			<Name type="String" value="行军训练"/>
-			<Describe type="String" value="部队士兵接受过一定的行军训练，部队可以以更快的速度行动（行动值增加）"/>			
+			<Describe type="String" value="部队士兵接受过一定的行军训练，部队可以以更快的速度行动（行动值增加1/2点）"/>			
 		</MarchingTrain>
 		<HidingTrain>
 			<Name type="String" value="隐蔽训练"/>
-			<Describe type="String" value="部队士兵接受过一定的隐蔽训练，部队在行动中更不容易被敌部队发现（隐蔽值增加）"/>			
+			<Describe type="String" value="部队士兵接受过一定的隐蔽训练，部队在行动中更不容易被敌部队发现（隐蔽值增加1/2点）"/>			
 		</HidingTrain>		
 		<Defence>
 			<Name type="String" value="防御"/>
@@ -884,23 +908,23 @@
 		</Defence>
 		<Inspired>
 			<Name type="String" value="被激励"/>
-			<Describe type="String" value="部队受到鼓舞（攻击力，远程攻击力增加）"/>
+			<Describe type="String" value="部队受到鼓舞（攻击力，远程攻击力增加1点）"/>
 		</Inspired>
 		<Waver>
 			<Name type="String" value="动摇"/>
-			<Describe type="String" value="部队士气受挫，战斗力开始下降（各项数值随动摇等级下降，4级以后会向周围部队蔓延）"/>
+			<Describe type="String" value="部队士气受挫，战斗力开始下降（各项数值随动摇效果层数下降，4级以后会向周围部队蔓延）"/>
 		</Waver>
 		<Charge>
 			<Name type="String" value="冲锋"/>
-			<Describe type="String" value="部队可以通过一段助跑冲向敌人加强进攻的威力（部队如果在进攻之前直线移动一格，则攻击力增加）"/>
+			<Describe type="String" value="部队可以通过一段助跑冲向敌人加强进攻的威力（部队如果在进攻之前直线移动经过一格无障碍地形，则攻击力增加2/3点，阵列值和主动性增加1/2点）"/>
 		</Charge>
 		<MagicShield>
 			<Name type="String" value="圣灵守护"/>
-			<Describe type="String" value="该部队受到圣灵守护效果保护（防御力增加）"/>
+			<Describe type="String" value="该部队受到圣灵守护效果保护（防御力增加2点）"/>
 		</MagicShield>
 		<Suppressed>
 			<Name type="String" value="受到压制"/>
-			<Describe type="String" value="行动受到一定的干扰（攻击力和行动值降低）"/>
+			<Describe type="String" value="行动受到一定的干扰（攻击力和行动值降低2点）"/>
 		</Suppressed>
 		<Faith>
 			<Name type="String" value="信念"/>
@@ -908,11 +932,11 @@
 		</Faith>
 		<StrengthenSprite>
 			<Name type="String" value="加强圣灵"/>
-			<Describe type="String" value="强化圣灵守卫，使之能更好的保护圣法师（防御力增加）"/>
+			<Describe type="String" value="强化圣灵守卫，使之能更好的保护圣法师（防御力增加4/8点）"/>
 		</StrengthenSprite>
 		<AntiCav>
 			<Name type="String" value="对抗骑兵"/>
-			<Describe type="String" value="部队受过对抗骑兵的特殊训练或者使用适合对抗骑兵的武器（与骑兵进行近距离作战时，攻击力增加）"/>
+			<Describe type="String" value="部队受过对抗骑兵的特殊训练或者使用适合对抗骑兵的武器（与骑兵进行近距离作战时，攻击力增加3/5点）"/>
 		</AntiCav>
 		<MoveThroughCover>
 			<Name type="String" value="穿越障碍"/>
@@ -920,7 +944,7 @@
 		</MoveThroughCover>
 		<Trample>
 			<Name type="String" value="践踏"/>
-			<Describe type="String" value="部队士兵擅长控制坐骑攻击敌步行的士兵（与对非骑兵单位进行近距离作战时，攻击力增加）"/>
+			<Describe type="String" value="部队士兵擅长控制坐骑攻击敌步行的士兵（与对非骑兵单位进行近距离作战时，攻击力增加2/3点）"/>
 		</Trample>
 		<Camp>
 			<Name type="String" value="营地"/>
@@ -932,7 +956,7 @@
 		</Unshakable>
 		<Chaos>
 			<Name type="String" value="混乱"/>
-			<Describe type="String" value="部队指挥陷入混乱（行动值降低）"/>
+			<Describe type="String" value="部队指挥陷入混乱（行动值降低3/4点，其他属性同时降低1/2点）"/>
 		</Chaos>
 		<Prepare>
 			<Name type="String" value="战斗准备"/>
@@ -940,27 +964,27 @@
 		</Prepare>
 		<ForcedMarch>
 			<Name type="String" value="强行军"/>
-			<Describe type="String" value="部队做好强制行军的准备（部队该会合获得穿越障碍效果）"/>
+			<Describe type="String" value="部队做好强制行军的准备（部队该回合获得穿越障碍效果）"/>
 		</ForcedMarch>
 		<Tired>
 			<Name type="String" value="魔法疲劳"/>
-			<Describe type="String" value="（行动值降低）"/>	
+			<Describe type="String" value="（行动值效果层数*0.5）"/>	
 		</Tired>
 		<StrengthenPuppet>
 			<Name type="String" value="硬化傀儡"/>
-			<Describe type="String" value="（防御值增加）"/>	
+			<Describe type="String" value="（防御值增加4/8点）"/>	
 		</StrengthenPuppet>
 		<EnchantWeapon>
 			<Name type="String" value="魔化武器"/>
-			<Describe type="String" value="（攻击力增加）"/>	
+			<Describe type="String" value="（攻击力增加效果层数+1）"/>	
 		</EnchantWeapon>
 		<EnchantArrow>
 			<Name type="String" value="魔化箭矢"/>
-			<Describe type="String" value="（远程攻击力增加）"/>	
+			<Describe type="String" value="（远程攻击力增加效果层数+1）"/>	
 		</EnchantArrow>
 		<EnchantArmor>
 			<Name type="String" value="魔化盔甲"/>
-			<Describe type="String" value="（防御力增加）"/>	
+			<Describe type="String" value="（防御力增加效果层数+1）"/>	
 		</EnchantArmor>
 		<EnchantWImprove>
 			<Name type="String" value="武器附魔强化"/>
@@ -972,19 +996,19 @@
 		</EnchantAImprove>
 		<BattlePuppet>
 			<Name type="String" value="战斗傀儡"/>
-			<Describe type="String" value="（攻击力和反击值增加）"/>	
+			<Describe type="String" value="（攻击力增加4/8点和反击值增加2/4点）"/>	
 		</BattlePuppet>
 		<AutoRepair>
 			<Name type="String" value="自动修复"/>
-			<Describe type="String" value="（回合开始和结束各恢复一定数量的傀儡）"/>	
+			<Describe type="String" value="（回合开始和结束各恢复1/2个傀儡）"/>	
 		</AutoRepair>
 		<FuryPuppet>
 			<Name type="String" value="狂化傀儡"/>
-			<Describe type="String" value="（攻击值增加，并获得践踏效果）"/>	
+			<Describe type="String" value="（攻击值增加2点，并获得践踏效果）"/>	
 		</FuryPuppet>
 		<Blind>
 			<Name type="String" value="被致盲"/>
-			<Describe type="String" value="（攻击值和远程攻击值降低）"/>	
+			<Describe type="String" value="（攻击值和远程攻击值降低2点）"/>	
 		</Blind>
 		<DoubleShoot>
 			<Name type="String" value="双重射击"/>
@@ -996,7 +1020,7 @@
 		</CloseShoot>
 		<Delay>
 			<Name type="String" value="拖延"/>
-			<Describe type="String" value="（受到进攻时，进攻部队行动值降低）"/>	
+			<Describe type="String" value="（受到进攻时，进攻部队行动值降低2点）"/>	
 		</Delay>
 		<Horsemanship>
 			<Name type="String" value="骑射"/>
@@ -1012,26 +1036,26 @@
 		</AtkImprove>
 		<Fortification>
 			<Name type="String" value="坚守"/>
-			<Describe type="String" value="（获得的地形防御增加）"/>				
+			<Describe type="String" value="（获得的地形防御增加，最高2点）"/>				
 		</Fortification>
 		<FortificationMark>
 			<Name type="String" value="坚守"/>
-			<Describe type="String" value="（获得的地形防御增加）"/>				
+			<Describe type="String" value="（获得的地形防御增加，最高2点）"/>				
 		</FortificationMark>
 		<HideIn>
 			<Name type="String" value="地形隐藏"/>
-			<Describe type="String" value="（获得的地形隐蔽增加）"/>				
+			<Describe type="String" value="（获得的地形隐蔽增加，最高2点）"/>				
 		</HideIn>
 		<HideInMark>
 			<Name type="String" value="地形隐藏"/>
-			<Describe type="String" value="（获得的地形隐蔽增加）"/>				
+			<Describe type="String" value="（获得的地形隐蔽增加，最高2点）"/>				
 		</HideInMark>
 		<BreakFortification>
 			<Name type="String" value="攻坚"/>
-			<Describe type="String" value="（进行进攻时忽视目标部队地形防御）"/>	
+			<Describe type="String" value="（进行进攻时忽视目标部队地形防御，最高2/3点）"/>	
 		</BreakFortification>
 		<HorseCombat>
-			<Name type="String" value="马上战斗"/>
+			<Name type="String" value="骑马作战"/>
 			<Describe type="String" value="（抵消部分马匹造成的防御和反击降低效果）"/>	
 		</HorseCombat>
 		<KindnessImprove>
@@ -1048,11 +1072,11 @@
 		</ReligiousnessImprove>
 		<ImprovedBlind>
 			<Name type="String" value="被致盲（增效）"/>
-			<Describe type="String" value="（攻击值和远程攻击值降低）"/>	
+			<Describe type="String" value="（攻击值和远程攻击值降低3点）"/>	
 		</ImprovedBlind>
 		<ImprovedInspired>
 			<Name type="String" value="被激励（增效）"/>
-			<Describe type="String" value="（攻击值和远程攻击值增加）"/>	
+			<Describe type="String" value="（攻击值和远程攻击值增加2点）"/>	
 		</ImprovedInspired>
 		<WeakImprove>
 			<Name type="String" value="干扰加强"/>
@@ -1060,28 +1084,52 @@
 		</WeakImprove>
 		<LighterArmor>
 			<Name type="String" value="轻化盔甲"/>
-			<Describe type="String" value="（行动值主动性提高）"/>
+			<Describe type="String" value="（行动值提高1点主动性提高1点）"/>
 		</LighterArmor>
 		<LifeGuard>
 			<Name type="String" value="生命守护"/>
-			<Describe type="String" value="（坚韧值提高）"/>
+			<Describe type="String" value="（坚韧值提高3点）"/>
 		</LifeGuard>
 		<MagicImprove>
 			<Name type="String" value="魔法提升"/>
-			<Describe type="String" value="（行动值增加）"/>
+			<Describe type="String" value="（行动值增加1点）"/>
 		</MagicImprove>
 		<BreakArmor>
 			<Name type="String" value="破甲"/>
-			<Describe type="String" value="（近战攻击时，根据对手盔甲防御增加攻击力）"/>
+			<Describe type="String" value="（近战攻击时，对手盔甲防御越高，攻击力增加越高）"/>
 		</BreakArmor>
 		<PuppetShield>
 			<Name type="String" value="傀儡护盾"/>
-			<Describe type="String" value="（每回合受到的头2/3次攻击防御力增加）"/>
+			<Describe type="String" value="（每回合受到的头2/3次攻击防御力增加6点）"/>
 		</PuppetShield>
 		<PuppetShield1>
 			<Name type="String" value="傀儡护盾"/>
-			<Describe type="String" value="（防御力增加）"/>
+			<Describe type="String" value="（防御力增加6点）"/>
 		</PuppetShield1>
+		<ArmorImprove>
+			<Name type="String" value="盔甲精通"/>
+			<Describe type="String" value="（抵消盔甲的行动值减值或增加1点主动值）"/>
+		</ArmorImprove>
+		<FormUp>
+			<Name type="String" value="整队"/>
+			<Describe type="String" value="（每回合第一次战斗攻击力2点）"/>
+		</FormUp>
+		<FormUp1>
+			<Name type="String" value="整队"/>
+			<Describe type="String" value="（攻击力2点）"/>
+		</FormUp1>
+		<AlchemyImprove>
+			<Name type="String" value="炼金加强"/>
+			<Describe type="String" value="（体质下降和感染加强）"/>
+		</AlchemyImprove>
+		<LifeGuard1>
+			<Name type="String" value="生命守护（被动）"/>
+			<Describe type="String" value="（坚韧值提高2点）"/>
+		</LifeGuard1>
+		<TimeToAttack>
+			<Name type="String" value="列阵进攻"/>
+			<Describe type="String" value="（范围内部队阵列增加1点直到回合结束）"/>
+		</TimeToAttack>
 	</EffectData>
 	<GroundData>
 		<Grass>

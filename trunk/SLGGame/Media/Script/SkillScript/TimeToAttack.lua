@@ -1,6 +1,6 @@
 function useskill()
 	local sid = ScriptCommonLib.GetTempString("squadid");
-	
+
 	SquadLib.Animation(sid, 1, "Skill", "none", "none", 0, 1);
 	
 	local ep = 0;
@@ -14,17 +14,12 @@ function useskill()
 		{tgtx + 1, tgty},
 		{tgtx, tgty + 1},
 	};
-	local lv = SquadLib.GetSkillLevel(caster, "Inspire");
 	for i = 1, 5 do
 		local tgtsid = BattleLib.GetSquadAt(croodlist[i][1], croodlist[i][2], 1, sf);
 		if tgtsid ~= "" then
 			local tgtf = SquadLib.GetFaction(tgtsid);
 			if tgtf == sf then
-				if lv > 1 then
-					SquadLib.ApplyEffect(tgtsid, "ImprovedInspired");
-				else
-					SquadLib.ApplyEffect(tgtsid, "Inspired");
-				end
+				SquadLib.ApplyEffect(tgtsid, "TimeToAttack");
 				ep = ep + 20;
 			end
 		end
@@ -45,9 +40,13 @@ function validaffectarea()
 	local tgtsid = BattleLib.GetSquadAt(tgtx, tgty, 1, sf);
 	if tgtsid ~= "" then
 		local tgtf = SquadLib.GetFaction(tgtsid);
-		if tgtf == sf then
+		if tgtf ~= sf then
+			ScriptCommonLib.SetTempInt("validaffectarea", 0);
+		else
 			ScriptCommonLib.SetTempInt("validaffectarea", 1);
 		end
+	else
+		ScriptCommonLib.SetTempInt("validaffectarea", 1);
 	end
 end
 
@@ -56,54 +55,35 @@ function onaffect()
 	local eid = ScriptCommonLib.GetTempString("effectid");
 	local mid = ScriptCommonLib.GetString("modifierid");
 	local tid = ScriptCommonLib.GetString("triggerid");
-	--pid = ScriptCommonLib.GetString("particleid");
 	if mid ~= "" then
 		SquadLib.RemoveModifier(sid, mid);
 	end
-	local lv = SquadLib.GetEffectLevel(sid, eid);
-	mid = SquadLib.ApplyModifier(sid, 1, lv, lv, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+	mid = SquadLib.ApplyModifier(sid, 1, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 	ScriptCommonLib.SetString("modifierid", mid);
 	if tid == "" then
-		tid = SquadLib.AddSquadTrigger(sid, "TurnStart", "onturnstart");
+		tid = SquadLib.AddSquadTrigger(sid, "TurnEnd", "onturnend");
 		SquadLib.ActiveSquadTrigger(sid, tid);
 		ScriptCommonLib.SetString("triggerid", tid);
 	end
 	ScriptCommonLib.SetString("effectid", eid);
-	--if pid == "" then
-	--	pid = SquadLib.AddParticle(sid, "mp_spell_effect_06", 3);
-	--end
-	--ScriptCommonLib.SetString("particleid", pid);
-	
-	SquadLib.ShowValue1(sid, "Skills_Inspire", lv, 1.0, 1.0, 1.0);
-	
-	ScriptCommonLib.SetInt("turn", 0);
 end
 
 function onremove()
 	local sid = ScriptCommonLib.GetTempString("squadid");
 	local mid = ScriptCommonLib.GetString("modifierid");
 	local tid = ScriptCommonLib.GetString("triggerid");
-	--pid = ScriptCommonLib.GetString("particleid");
 	if mid ~= "" then
 		SquadLib.RemoveModifier(sid, mid);
 	end
 	if tid ~= "" then
 		SquadLib.RemoveSquadTrigger(sid, tid);
 	end
-	--if pid ~= "" then
-	--	SquadLib.DelParticle(sid, pid);
-	--end
 end
 
-function onturnstart()
+function onturnend()
 	local sid = ScriptCommonLib.GetTempString("squadid");
-	local turn = ScriptCommonLib.GetInt("turn");
-	if turn == 2 then
-		local eid = ScriptCommonLib.GetString("effectid");
-		SquadLib.RemoveEffect(sid, eid);
-	else
-		ScriptCommonLib.SetInt("turn", turn + 1);
-	end
+	local eid = ScriptCommonLib.GetString("effectid");
+	SquadLib.RemoveEffect(sid, eid);
 end
 
 function canaffect()

@@ -8,23 +8,30 @@ function useskill()
 	local tgty = ScriptCommonLib.GetTempInt("targety");
 	local sf = SquadLib.GetFaction(sid);
 	local croodlist = {
+		{tgtx, tgty},
 		{tgtx - 1, tgty},
 		{tgtx, tgty - 1},
 		{tgtx + 1, tgty},
 		{tgtx, tgty + 1},
 	};
-	for i = 1, 4 do
+	local lv = SquadLib.GetSkillLevel(caster, "Inspire");
+	for i = 1, 5 do
 		local tgtsid = BattleLib.GetSquadAt(croodlist[i][1], croodlist[i][2], 1, sf);
 		if tgtsid ~= "" then
 			local tgtf = SquadLib.GetFaction(tgtsid);
-			if tgtf ~= sf then
-				SquadLib.ApplyEffect(tgtsid, "Waver");
-				SquadLib.ApplyEffect(tgtsid, "Waver");
-				local sklv = SquadLib.GetSkillLevel(caster, "Overawe");
-				if sklv > 1 then
-					SquadLib.ApplyEffect(tgtsid, "Waver");
+			if tgtf == sf then
+				local elv, eid = SquadLib.GetEffectLevelByName(tgtsid, "Waver");
+				if elv > 2 and lv > 1 then
+					SquadLib.RemoveEffect(tgtsid, eid);
 				end
-				ep = ep + 30;
+				if elv > 1 then
+					SquadLib.RemoveEffect(tgtsid, eid);
+					ep = ep + 10;
+				end
+				if elv > 0 then
+					SquadLib.RemoveEffect(tgtsid, eid);
+					ep = ep + 10;
+				end
 			end
 		end
 	end	
@@ -44,7 +51,7 @@ function validaffectarea()
 	local tgtsid = BattleLib.GetSquadAt(tgtx, tgty, 1, sf);
 	if tgtsid ~= "" then
 		local tgtf = SquadLib.GetFaction(tgtsid);
-		if tgtf ~= sf then
+		if tgtf == sf then
 			ScriptCommonLib.SetTempInt("validaffectarea", 1);
 		end
 	end

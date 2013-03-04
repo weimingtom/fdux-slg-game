@@ -188,6 +188,21 @@ static int RemoveModifier(lua_State* L)
 	return 0;
 }
 
+static int GetMaxActionPoint(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	BattleSquad* squad = NULL;
+	float ap = 0.0f;
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+	{
+		squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+		if(squad)
+			ap = squad->getAttr(ATTR_ACTIONPOINT, ATTRCALC_FULL);
+	}
+	lua_pushnumber(L, ap);
+	return 1;
+}
+
 static int GetActionPoint(lua_State* L)
 {
 	std::string squadid(luaL_checkstring(L, 1));
@@ -245,6 +260,20 @@ static int GetUnitMaxNum(lua_State* L)
 		maxnum = squad->getUnitMaxNum();
 	lua_pushnumber(L, maxnum);
 	return 1;
+}
+
+static int SetUnitMaxNum(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	int num = luaL_checkinteger(L, 2);
+	BattleSquad* squad = NULL;
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+		squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+	else
+		squad = NULL;
+	if(squad)
+		squad->setUnitMaxNum(num);
+	return 0;
 }
 
 static int GetUnitNum(lua_State* L)
@@ -691,10 +720,12 @@ static const struct luaL_Reg SquadLib[] =
 	{"GetEffectLevel",GetEffectLevel},
 	{"ApplyModifier",ApplyModifier},
 	{"RemoveModifier",RemoveModifier},
+	{"GetMaxActionPoint",GetMaxActionPoint},
 	{"GetActionPoint",GetActionPoint},
 	{"SetActionPoint",SetActionPoint},
 	{"GetFaction",GetFaction},
 	{"GetUnitMaxNum",GetUnitMaxNum},
+	{"SetUnitMaxNum",SetUnitMaxNum},
 	{"GetUnitNum",GetUnitNum},
 	{"SetUnitNum",SetUnitNum},
 	{"ChangeFormation",ChangeFormation},
