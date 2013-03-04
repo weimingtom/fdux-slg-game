@@ -415,10 +415,13 @@ void SquadGraphics::setInitAnimation( UnitType object )
 		}
 	case UNITTYPE_LEADER:
 		{
-			mCommanderUnit->mAniBlender->BackToInit();
-			if (mCommanderUnit->mHorseAniBlender!=NULL)
+			if(mCommanderUnit!=NULL)
 			{
-				mCommanderUnit->mHorseAniBlender->BackToInit();
+				mCommanderUnit->mAniBlender->BackToInit();
+				if (mCommanderUnit->mHorseAniBlender!=NULL)
+				{
+					mCommanderUnit->mHorseAniBlender->BackToInit();
+				}
 			}
 			if (object!=UNITTYPE_ALL)
 			{
@@ -620,6 +623,11 @@ void SquadGraphics::getFormationPosition(int f,int d,Ogre::Vector3& CommanderVec
 
 void SquadGraphics::setFormation( int f,bool isAnim )
 {
+	if (mCommanderUnit==NULL)
+	{
+		return;
+	}
+
 	mFormation=f;
 	Ogre::Vector3 CommanderVector;
 	Ogre::Vector3 SoldierVector[4];
@@ -628,6 +636,11 @@ void SquadGraphics::setFormation( int f,bool isAnim )
 
 	if (isAnim)
 	{
+		if(mSceneMgr->hasAnimation(mNode->getName()+"_Ani"))
+		{
+			mSceneMgr->destroyAnimation(mNode->getName()+"_Ani");
+		}
+
 		mNodeAnimation = mSceneMgr->createAnimation(mNode->getName()+"_Ani",FORMATION_KEYFRAME_TIME);
 		mNodeAnimation->setInterpolationMode(Ogre::Animation::IM_LINEAR);
 		Ogre::NodeAnimationTrack* track = mNodeAnimation->createNodeTrack(0,mCommanderUnit->mNode);
@@ -684,6 +697,11 @@ void SquadGraphics::setFormation( int f,bool isAnim )
 			kf->setScale((*it)->mNode->getScale());
 			(*it)->mFormationPosition=i;
 			i++;
+		}
+
+		if(mSceneMgr->hasAnimationState(mNode->getName()+"_Ani"))
+		{
+			mSceneMgr->destroyAnimationState(mNode->getName()+"_Ani");
 		}
 
 		mNodeAnimationState = mSceneMgr->createAnimationState(mNode->getName()+"_Ani");
@@ -820,6 +838,11 @@ void SquadGraphics::setScale( Ogre::Vector3 scale,bool isAnim )
 
 void SquadGraphics::setDirection( Direction d,bool isAnim )
 {	
+	if (mCommanderUnit==NULL)
+	{
+		return;
+	}
+
 	if (isAnim)
 	{
 		if (d==mDirection)
@@ -964,6 +987,11 @@ void SquadGraphics::setCheckUnitHeight( bool enable )
 
 void SquadGraphics::setWeaponMode( WeaponMode mode )
 {
+	if (mCommanderUnit==NULL)
+	{
+		return;
+	}
+
 	UnitGrap::WeaponType type;
 	UnitGrap::BoneType bonetype;
 	std::string anigroup;
@@ -1148,6 +1176,16 @@ void SquadGraphics::doDeathStep()
 	case moveUnit:
 		{
 			int i=0;
+			if(mSceneMgr->hasAnimation(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i)))
+			{
+				mSceneMgr->destroyAnimation(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i));
+			}
+
+			if (mSceneMgr->hasAnimationState(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i)))
+			{
+				mSceneMgr->destroyAnimationState(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i));
+			}
+
 			mNodeAnimation = mSceneMgr->createAnimation(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i), RELIEF_MOVE_TIME);
 			mNodeAnimationState = mSceneMgr->createAnimationState(mNode->getName()+"_Ani"+Ogre::StringConverter::toString(i));
 			bool haveMove=false;
@@ -1543,6 +1581,11 @@ void SquadGraphics::idlePosition(bool isAnim)
 
 void SquadGraphics::changeUnitPosition( Direction d,Ogre::Vector3 offsetVector,bool isAnim)
 {
+	if (mCommanderUnit==NULL)
+	{
+		return;
+	}
+
 	//È¡µÃÎ»ÖÃ
 	Ogre::Quaternion q;
 
@@ -1577,6 +1620,10 @@ void SquadGraphics::changeUnitPosition( Direction d,Ogre::Vector3 offsetVector,b
 
 	if (isAnim)
 	{
+		if (mSceneMgr->hasAnimation(mNode->getName()+"_Ani"))
+		{
+			mSceneMgr->destroyAnimation(mNode->getName()+"_Ani");
+		}
 		mNodeAnimation = mSceneMgr->createAnimation(mNode->getName()+"_Ani",FORMATION_KEYFRAME_TIME);
 		mNodeAnimation->setInterpolationMode(Ogre::Animation::IM_LINEAR);
 		Ogre::NodeAnimationTrack* track = mNodeAnimation->createNodeTrack(0,mCommanderUnit->mNode);
@@ -1620,6 +1667,10 @@ void SquadGraphics::changeUnitPosition( Direction d,Ogre::Vector3 offsetVector,b
 			i++;
 		}
 
+		if (mSceneMgr->hasAnimationState(mNode->getName()+"_Ani"))
+		{
+			mSceneMgr->destroyAnimationState(mNode->getName()+"_Ani");
+		}
 		mNodeAnimationState = mSceneMgr->createAnimationState(mNode->getName()+"_Ani");
 
 		setCheckUnitHeight(true);

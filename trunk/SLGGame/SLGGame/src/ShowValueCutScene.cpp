@@ -19,7 +19,7 @@ void ShowValueCutScene::startCutScence()
 
 bool ShowValueCutScene::endCutScene()
 {
-	return false;
+	return true;
 }
 
 void ShowValueCutScene::skipCutScene()
