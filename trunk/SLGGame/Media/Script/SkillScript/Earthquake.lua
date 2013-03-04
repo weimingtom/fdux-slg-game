@@ -3,7 +3,7 @@ function useskill()
 	local target  = ScriptCommonLib.GetTempString("targetsquadid");
 	local atlv, atid = SquadLib.GetEffectLevelByName(caster, "AtkTimeImprove");
 	local alv, aid = SquadLib.GetEffectLevelByName(caster, "AtkImprove");
-	local atknum = 25 + atlv * 5;
+	local atknum = 15 + atlv * 5;
 	local atk  = 14 + alv - SquadLib.GetMaxActionPoint(target);
 	local ap = SquadLib.GetActionPoint(caster);
 	atk = ap * atk;
@@ -13,6 +13,7 @@ function useskill()
 	SkillLib.MagicAttack(caster, target, atknum , atk, 30);
 	SquadLib.AddExp(caster, atk * 2.0);	
 	
+	SquadLib.ApplyEffect(caster, "Tired");
 	SquadLib.ApplyEffect(caster, "Tired");
 	SquadLib.ApplyEffect(caster, "Tired");
 	ScriptCommonLib.SetTempInt("castsuccess", 1);

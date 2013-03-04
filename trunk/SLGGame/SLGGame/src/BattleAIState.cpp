@@ -414,54 +414,83 @@ void BattleAIState::findOtherSquadGroup()
 		mOtherSquadGroupVec.insert(std::make_pair(index, squadgroup));
 	}
 
-	//验证之前的队伍信息（多队脱队未实现）
+	//验证之前的队伍信息
 	int vaildid = 0;
 	datalib->getData(str(boost::format("GameData/BattleData/AIData/Team%1%/OtherSquadGroup")%mTeam), vaildid);
 	std::map<int, OtherSquadGroupInfo>::iterator osgite = mOtherSquadGroupVec.begin();
 	for(; osgite != mOtherSquadGroupVec.end(); )
 	{
+		std::vector<std::vector<std::string>> squadgroups;
+		unsigned int sgsite = 0;
 		for(unsigned int n = 0; n < osgite->second.mSquadList.size(); n++)
 		{
 			BattleSquad* squad1 = squadmgr->getBattleSquad(osgite->second.mSquadList[n]);
 			if(squad1 && squad1->getUnitNum() > 0)
 			{
-				if(osgite->second.mSquadList.size() > 1)
+				bool find = false;
+				for(sgsite = 0; sgsite < squadgroups.size(); sgsite++)
 				{
-					bool separate = true;
-					for(unsigned int m = 0; m < osgite->second.mSquadList.size(); m++)
+					std::vector<std::string>::iterator sgsstie = 
+						std::find(squadgroups[sgsite].begin(), squadgroups[sgsite].end(),osgite->second.mSquadList[n]);
+					if(sgsstie != squadgroups[sgsite].end())
 					{
-						if(m == n)
-							continue;
-						BattleSquad* squad2 = squadmgr->getBattleSquad(osgite->second.mSquadList[m]);
-						if(squad2 && squad2->getUnitNum() > 0)
+						find = true;
+						break;
+					}
+				}
+				if(!find)
+				{
+					std::vector<std::string> newsg;
+					newsg.push_back(osgite->second.mSquadList[n]);
+					squadgroups.push_back(newsg);
+				}
+				for(unsigned int m = n + 1; m < osgite->second.mSquadList.size(); m++)
+				{
+					BattleSquad* squad2 = squadmgr->getBattleSquad(osgite->second.mSquadList[m]);
+					if(squad2 && squad2->getUnitNum() > 0)
+					{
+						int x1,y1,x2,y2;
+						x1 = squad1->getGridX();
+						y1 = squad1->getGridY();
+						x2 = squad2->getGridX();
+						y2 = squad2->getGridY();
+						if(GetDistance(x1, y1, x2, y2) < 3)
 						{
-							int x1,y1,x2,y2;
-							x1 = squad1->getGridX();
-							y1 = squad1->getGridY();
-							x2 = squad2->getGridX();
-							y2 = squad2->getGridY();
-							if(GetDistance(x1, y1, x2, y2) < 3)
+							std::vector<std::string>::iterator sgsstie = 
+								std::find(squadgroups[sgsite].begin(), squadgroups[sgsite].end(),osgite->second.mSquadList[m]);
+							if(sgsstie == squadgroups[sgsite].end())
 							{
-								separate = false;
-								break;
+								squadgroups[sgsite].push_back(osgite->second.mSquadList[m]);
 							}
 						}
 					}
-					if(separate)
-					{
-						osgite->second.mSquadList.erase(osgite->second.mSquadList.begin() + n);
-						n--;
-					}
 				}
 			}
-			else
-			{
-				osgite->second.mSquadList.erase(osgite->second.mSquadList.begin() + n);
-				n--;
-			}
 		}
-		if(osgite->second.mSquadList.size() > 0)
+		if(squadgroups.size() > 0)
 		{
+			unsigned int highest = 0;
+			for(sgsite = 1; sgsite < squadgroups.size(); sgsite++)
+			{
+				if(squadgroups[sgsite].size() > squadgroups[highest].size())
+				{
+					highest = sgsite;
+				}
+			}
+			std::vector<std::string>::iterator sgsstie = osgite->second.mSquadList.begin();
+			for( ; sgsstie != osgite->second.mSquadList.end(); )
+			{
+				std::vector<std::string>::iterator sgsstie1 = 
+					std::find(squadgroups[highest].begin(), squadgroups[highest].end(), (*sgsstie));
+				if(sgsstie1 == squadgroups[highest].end())
+				{
+					sgsstie = osgite->second.mSquadList.erase(sgsstie);
+				}
+				else
+				{
+					sgsstie++;
+				}
+			}
 			osgite++;
 		}
 		else
@@ -685,7 +714,7 @@ void BattleAIState::findOtherSquadGroup()
 		if(osgmite1 == missionlist.end())
 		{
 			osgite->second.mCurMission.missionType = OSGM_IDLE;
-			osgite->second.mCurMission.possibility = 20.0f;
+			osgite->second.mCurMission.possibility = 5.0f;
 		}
 		else
 		{
@@ -696,7 +725,7 @@ void BattleAIState::findOtherSquadGroup()
 					if((*osgmite1).missionType == osgite->second.mCurMission.missionType &&
 						(*osgmite1).missionArea == osgite->second.mCurMission.missionArea)
 					{
-						(*osgmite1).possibility += 10.0f;
+						(*osgmite1).possibility += 5.0f;
 						break;
 					}
 				}
@@ -795,6 +824,26 @@ float BattleAIState::OSGMoveToAreaFactor::calcDecision(int &decision)
 			mArea->getCenter().mY - osgite->second.mCenterCrood.mY);
 		float strength = vec1.dotProduct(vec2) * 100.0f;
 		return strength;
+	}
+	return 0.0f;
+}
+
+//OSGIsThisMissionFactor
+BattleAIState::OSGIsThisMissionFactor::OSGIsThisMissionFactor(std::map<int, OtherSquadGroupInfo>* othersquadgroup, std::string missionid)
+:mOtherSquadGroup(othersquadgroup),mMissionId(missionid)
+{
+
+}
+
+float BattleAIState::OSGIsThisMissionFactor::calcDecision(int &decision)
+{
+	std::map<int, OtherSquadGroupInfo>::iterator osgite = mOtherSquadGroup->find(decision);
+	if(osgite != mOtherSquadGroup->end())
+	{
+		if(osgite->second.mCurMission.missionType != OSGM_IDLE && 
+			osgite->second.mCurMission.missionArea == mMissionId)
+			return 100.0f;
+		return 0.0f;
 	}
 	return 0.0f;
 }
@@ -996,18 +1045,18 @@ void BattleAIState::SquadAI::updateSkill()
 		case SGM_ATTACK:
 			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.75f);
 			skilldecision.addFactor(new SquadSkillbySptEffectiveFactor(mSquad) , 0.05f);
-			skilldecision.addFactor(new SquadSkillbyRoleFactor(mSquad, ROLETYPE_MAINFORCE | ROLETYPE_ANTI_HIGHARMOR | ROLETYPE_ANTI_CAV | ROLETYPE_SUPPORT_AP), 0.15f);
+			skilldecision.addFactor(new SquadSkillbyRoleFactor(mSquad, ROLETYPE_MAINFORCE | ROLETYPE_ANTI_HIGHARMOR | ROLETYPE_ANTI_CAV | ROLETYPE_SUPPORT_AP| ROLETYPE_SUPPORT_DEF), 0.15f);
 			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(0.0f, 100.0f) , 0.05f);
 			break;
 		case SGM_SUPPORT_RANGE:
-			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.75f);
-			skilldecision.addFactor(new SquadSkillbySptEffectiveFactor(mSquad) , 0.05f);
-			skilldecision.addFactor(new SquadSkillbyRoleFactor(mSquad, ROLETYPE_SUPPORT_RANGE | ROLETYPE_ANTI_HIGHFORM ), 0.15f);
+			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.65f);
+			skilldecision.addFactor(new SquadSkillbySptEffectiveFactor(mSquad) , 0.15f);
+			skilldecision.addFactor(new SquadSkillbyRoleFactor(mSquad, ROLETYPE_SUPPORT_RANGE | ROLETYPE_ANTI_HIGHFORM  | ROLETYPE_SUPPORT_WOUND | ROLETYPE_SUPPORT_WAVER), 0.15f);
 			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(0.0f, 100.0f) , 0.05f);
 			break;
 		case SGM_SUPPORT_CLOSE:
-			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.75f);
-			skilldecision.addFactor(new SquadSkillbySptEffectiveFactor(mSquad) , 0.05f);
+			skilldecision.addFactor(new SquadSkillbyAtkEffectiveFactor(mSquad) , 0.65f);
+			skilldecision.addFactor(new SquadSkillbySptEffectiveFactor(mSquad) , 0.15f);
 			skilldecision.addFactor(new SquadSkillbyRoleFactor(mSquad, ROLETYPE_SUPPORT_CLOSE | ROLETYPE_ANTI_MAGE | ROLETYPE_SUPPORT_AP), 0.15f);
 			skilldecision.addFactor(new RandomFactor<UseSkillInfo>(0.0f, 100.0f) , 0.05f);
 			break;
@@ -1400,7 +1449,7 @@ void BattleAIState::DefendCommander::analyzeMission(OtherSquadGroupInfo& othersq
 			missionlist.push_back(osgm);
 		}
 		osgm.missionType = OSGM_MOVE_ATTACK;
-		osgm.possibility = osgclosetoarea.calcDecision(decision) * 0.25f + osgmovetoarea.calcDecision(decision) * 0.75f;
+		osgm.possibility = osgmovetoarea.calcDecision(decision) * 0.5f;
 		ite = missionlist.begin();
 		for(; ite != missionlist.end(); ite++)
 		{
@@ -1439,7 +1488,7 @@ void BattleAIState::DefendCommander::analyzeMission(OtherSquadGroupInfo& othersq
 			missionlist.push_back(osgm);
 		}
 		osgm.missionType = OSGM_MOVE_DEFEND;
-		osgm.possibility = osgclosetoarea.calcDecision(decision) * 0.25f + osgmovetoarea.calcDecision(decision) * 0.75f;
+		osgm.possibility = osgmovetoarea.calcDecision(decision) * 0.5f;
 		ite = missionlist.begin();
 		for(; ite != missionlist.end(); ite++)
 		{
@@ -1473,11 +1522,11 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 			{
 				osgite = othersquadgroup.end();
 			}
-			else if(osgite->second.mCurMission.missionType == OSGM_IDLE ||
-				osgite->second.mCurMission.missionArea != mMissionAreaId)
-			{
-				osgite = othersquadgroup.end();
-			}
+//			else if(osgite->second.mCurMission.missionType == OSGM_IDLE ||
+//				osgite->second.mCurMission.missionArea != mMissionAreaId)
+//			{
+//				osgite = othersquadgroup.end();
+//			}
 		}
 		if(osgite == othersquadgroup.end())
 		{
@@ -1518,11 +1567,11 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 		{
 			continue;
 		}
-		else if(osgite->second.mCurMission.missionType == OSGM_IDLE ||
-			osgite->second.mCurMission.missionArea != mMissionAreaId)
-		{
-			continue;
-		}
+//		else if(osgite->second.mCurMission.missionType == OSGM_IDLE ||
+//			osgite->second.mCurMission.missionArea != mMissionAreaId)
+//		{
+//			continue;
+//		}
 		tite = mThreatensVec.begin();
 		for( ; tite != mThreatensVec.end(); tite++)
 		{
@@ -1548,6 +1597,7 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 	threatendecision.addFactor(new OSGStrengthFactor(&othersquadgroup), 0.25f);
 	threatendecision.addFactor(new OSGMoveToAreaFactor(&othersquadgroup, &mMissionArea), 0.25f);
 	threatendecision.addFactor(new OSGCloseToAreaFactor(&othersquadgroup, &mMissionArea), 0.5f);
+	threatendecision.addFactor(new OSGIsThisMissionFactor(&othersquadgroup, mMissionAreaId), 1.0f);
 	threatendecision.calcDecision();
 	osgvec = threatendecision.getSortedDecisions();
 
@@ -1565,6 +1615,34 @@ void BattleAIState::DefendCommander::plan(std::map<int, OtherSquadGroupInfo>& ot
 				oldthreaten.erase(tite);
 				break;
 			}
+		}
+	}
+
+	//如果当前有部队以当前任务区域为目标,则移出所有不是以当前任务区域为目标的威胁的指派
+	bool removesgc = false;
+	tite = mThreatensVec.begin();
+	for( ; tite != mThreatensVec.end(); tite++)
+	{
+		osgite = othersquadgroup.find((*tite).otherSquadGroupIndex);
+		if(osgite->second.mCurMission.missionType == OSGM_IDLE ||
+			osgite->second.mCurMission.missionArea != mMissionAreaId)
+		{
+			if(removesgc)
+			{
+				for(unsigned int m = 0;  m < (*tite).assignSquadGroupVec.size(); m++)
+				{
+					sgcite = mSquadGroupList.find((*tite).assignSquadGroupVec[m]);
+					if(sgcite != mSquadGroupList.end())
+					{
+						mSquadGroupList.erase(sgcite);
+					}
+				}
+				(*tite).assignSquadGroupVec.clear();
+			}
+		}
+		else
+		{
+			removesgc = true;
 		}
 	}
 
