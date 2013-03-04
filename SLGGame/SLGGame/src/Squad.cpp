@@ -655,7 +655,6 @@ bool Squad::applyEffect(std::string effectid, std::string &eid)
 						int effectlevel = 0;
 						datalib->getData(str(boost::format("%1%/%2%")%distpath%(*ite)), effectlevel);
 						effectlevel += 1;
-						datalib->setData(str(boost::format("%1%/%2%")%distpath%(*ite)), effectlevel);
 						//调用效果脚本
 						std::string contexpath = str(boost::format("%1%/%2%/ScriptContext")%distpath%eid);
 
@@ -670,6 +669,8 @@ bool Squad::applyEffect(std::string effectid, std::string &eid)
 							return false;
 						}
 						delete luatempcontext;
+
+						datalib->setData(str(boost::format("%1%/%2%")%distpath%(*ite)), effectlevel);
 
 						LuaTempContext* tempcontext = new LuaTempContext;
 						tempcontext->strMap.insert(std::make_pair("squadid", mSquadId));
@@ -696,7 +697,7 @@ bool Squad::applyEffect(std::string effectid, std::string &eid)
 				eid = std::string("e") + Ogre::StringConverter::toString(x);
 				ite = std::find(effectlist.begin(), effectlist.end(),eid);
 			}
-			datalib->setData(str(boost::format("%1%/%2%")%distpath%eid), 1);
+			datalib->setData(str(boost::format("%1%/%2%")%distpath%eid), 0);
 			datalib->setData(str(boost::format("%1%/%2%/EffectId")%distpath%eid), effectid);
 			//调用效果脚本
 			std::string contexpath = str(boost::format("%1%/%2%/ScriptContext")%distpath%eid);
@@ -708,10 +709,13 @@ bool Squad::applyEffect(std::string effectid, std::string &eid)
 			LuaSystem::getSingleton().executeFunction(scriptpath, "canaffect", contexpath, luatempcontext);
 			if(luatempcontext->intMap["affect"] == 0)
 			{
+				datalib->delNode(str(boost::format("%1%/%2%")%distpath%eid));
 				delete luatempcontext;
 				return false;
 			}
 			delete luatempcontext;
+
+			datalib->setData(str(boost::format("%1%/%2%")%distpath%eid), 1);
 
 			LuaTempContext* tempcontext = new LuaTempContext;
 			tempcontext->strMap.insert(std::make_pair("squadid", mSquadId));

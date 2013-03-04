@@ -1,4 +1,5 @@
 function onaffect()
+	ScriptCommonLib.SetInt("spread", 1);
 	local mid = ScriptCommonLib.GetString("modifierid");
 	local sid = ScriptCommonLib.GetTempString("squadid");
 	local eid = ScriptCommonLib.GetTempString("effectid");
@@ -11,7 +12,7 @@ function onaffect()
 	if lv > 4 then
 		apdown = -lv + 4;
 	end
-	mid = SquadLib.ApplyModifier(sid, 1, -lv * 0.5, -lv * 0.5, -lv * 0.5, 0.0, 0.0, apdown, 0.0, 0.0, 0.0, 0.0);
+	mid = SquadLib.ApplyModifier(sid, 1, -lv * 0.5, -lv * 0.5, -lv * 0.5, 0.0, 0.0, apdown * 0.5, 0.0, 0.0, 0.0, 0.0);
 	ScriptCommonLib.SetString("modifierid", mid);
 	if tid == "" then
 		tid = SquadLib.AddSquadTrigger(sid, "TurnStart", "onturnstart");
@@ -26,8 +27,7 @@ function onaffect()
 	-- ScriptCommonLib.SetInt("curlevel", lv);
 	
 	--´«²¥¶¯Ò¡
-	ScriptCommonLib.SetInt("spread", 1);
-	if lv > 4 then
+	if lv > 3 then
 		local sf = SquadLib.GetFaction(sid);
 		local croodx, croody = SquadLib.GetSquadCoord(sid);
 		local croodlist = {
@@ -68,10 +68,12 @@ function onturnstart()
 end
 
 function canaffect()
+	local eid  = ScriptCommonLib.GetString("effectid");
 	local squadid = ScriptCommonLib.GetTempString("squadid");
 	local spread = ScriptCommonLib.GetInt("spread");
+	local lv = SquadLib.GetEffectLevel(sid, eid);
 	local unshakable, eid = SquadLib.GetEffectLevelByName(squadid, "Unshakable");
-	if unshakable > 0 or spread == 1 then
+	if unshakable > 0 or spread == 1  then
 		ScriptCommonLib.SetTempInt("affect", 0);
 	else
 		ScriptCommonLib.SetTempInt("affect", 1);
