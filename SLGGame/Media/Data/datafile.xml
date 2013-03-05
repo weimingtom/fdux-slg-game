@@ -105,8 +105,8 @@
 		</Kareena>
 		<Welvss>
 			<Picture type="String" value="weierh.png"/>
-			<Mesh type="String" value="Elementalist.mesh"/>
-			<Mat type="String" value="Elementalist"/>
+			<Mesh type="String" value="Warmage.mesh"/>
+			<Mat type="String" value="Warmage"/>
 		</Welvss>
 		<Elementalist>
 			<Picture type="String" value="aofah.png"/>
@@ -210,13 +210,13 @@
 		</Nothfate>
 		<DarkKnight>
 			<Picture type="String" value="heiqishih.png"/>
-			<Mesh type="String" value="HeavyInfOf.mesh"/>
-			<Mat type="String" value="HeavyInfOf"/>
+			<Mesh type="String" value="HeavyCavalry.mesh"/>
+			<Mat type="String" value="HeavyCavalry"/>
 		</DarkKnight>
 		<Datura>
-			<Picture type="String" value="datanah.png"/>
-			<Mesh type="String" value="HeavyInfOf.mesh"/>
-			<Mat type="String" value="HeavyInfOf"/>
+			<Picture type="String" value="datenah.png"/>
+			<Mesh type="String" value="HeavyCavalry.mesh"/>
+			<Mat type="String" value="HeavyCavalry"/>
 		</Datura>
 		<Syrin>
 			<Picture type="String" value="xiwenh.png"/>
@@ -851,24 +851,21 @@
 		</Kareena>
 		<Welvss>
 			<Type type="Int" value="1"/>
-			<SquadType type="Int" value="6"/>
+			<SquadType type="Int" value="5"/>
 			<SoilderId type="String" value="Magician2"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="Staves3"/>
+			<PweaponId type="String" value="Staves2"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="none"/>
-			<ArmorId type="String" value="none"/>
+			<ArmorId type="String" value="LightArmor5"/>
 			<SkillTable>
 				<StrengthenPuppet type="Int" value="0" />
-				<EnchantWImprove type="Int" value="0" />
-				<EnchantAImprove type="Int" value="0" />
-				<MagicImprove type="Int" value="0" />
-				<WeakImprove type="Int" value="0" />
-				<EnchantWeapon type="Int" value="1" />		
-				<EnchantArmor type="Int" value="1" />
-				<LighterArmor type="Int" value="1" />
-				<EnchantArrow type="Int" value="1" />
-				<Blind type="Int" value="1" />
+				<AtkImprove type="Int" value="0" />
+				<AtkTimeImprove type="Int" value="0" />
+				<Attack type="Int" value="1" />	
+				<Earthquake type="Int" value="1" />	
+				<LightningChain type="Int" value="1" />
+				<Fire type="Int" value="1" />	
 			</SkillTable>
 			<LeaderId type="String" value="Welvss"/>
 			<RetainerId type="String" value="Scout"/>
@@ -887,7 +884,7 @@
 			<SquadType type="Int" value="5"/>
 			<SoilderId type="String" value="Magician2"/>
 			<HorseId type="String" value="none"/>
-			<PweaponId type="String" value="Staves3"/>
+			<PweaponId type="String" value="Staves2"/>
 			<SweaponId type="String" value="none"/>
 			<ShieldId type="String" value="none"/>
 			<ArmorId type="String" value="none"/>
@@ -1577,7 +1574,7 @@
 				<Formation type="Float" value="2.0" />
 				<Initiative type="Float" value="5.0" />
 				<ActionPoint type="Float" value="7.0" />
-				<Detection type="Float" value="6.0" />
+				<Detection type="Float" value="4.0" />
 				<Covert type="Float" value="2.0" />
 				<Toughness type="Float" value="3.0" />
 				<Conter type="Float" value="2.0" />
@@ -1596,7 +1593,7 @@
 				<Formation type="Float" value="1.0" />
 				<Initiative type="Float" value="4.0" />
 				<ActionPoint type="Float" value="7.0" />
-				<Detection type="Float" value="5.0" />
+				<Detection type="Float" value="3.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="2.0" />
 				<Conter type="Float" value="2.0" />
@@ -1615,7 +1612,7 @@
 				<Formation type="Float" value="3.0" />
 				<Initiative type="Float" value="2.0" />
 				<ActionPoint type="Float" value="7.0" />
-				<Detection type="Float" value="5.0" />
+				<Detection type="Float" value="3.0" />
 				<Covert type="Float" value="1.0" />
 				<Toughness type="Float" value="3.0" />
 				<Conter type="Float" value="2.0" />
@@ -1634,7 +1631,7 @@
 				<Formation type="Float" value="0.0" />
 				<Initiative type="Float" value="2.0" />
 				<ActionPoint type="Float" value="6.0" />
-				<Detection type="Float" value="5.0" />
+				<Detection type="Float" value="3.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="2.0" />
@@ -1653,7 +1650,7 @@
 				<Formation type="Float" value="2.0" />
 				<Initiative type="Float" value="3.0" />
 				<ActionPoint type="Float" value="7.0" />
-				<Detection type="Float" value="5.0" />
+				<Detection type="Float" value="3.0" />
 				<Covert type="Float" value="1.0" />
 				<Toughness type="Float" value="2.0" />
 				<Conter type="Float" value="2.0" />
@@ -1672,7 +1669,7 @@
 				<Formation type="Float" value="0.0" />
 				<Initiative type="Float" value="0.0" />
 				<ActionPoint type="Float" value="7.0" />
-				<Detection type="Float" value="4.0" />
+				<Detection type="Float" value="2.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="0.0" />
@@ -1691,7 +1688,7 @@
 				<Formation type="Float" value="0.0" />
 				<Initiative type="Float" value="1.0" />
 				<ActionPoint type="Float" value="7.0" />
-				<Detection type="Float" value="4.0" />
+				<Detection type="Float" value="2.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="0.0" />
 				<Conter type="Float" value="1.0" />
@@ -1704,13 +1701,13 @@
 			<Randomness type="Int" value="40" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="8.0" />
-				<RangedAttack type="Float" value="0.0" />
+				<Attack type="Float" value="6.0" />
+				<RangedAttack type="Float" value="2.0" />
 				<Defence type="Float" value="3.0" />
 				<Formation type="Float" value="1.0" />
 				<Initiative type="Float" value="5.0" />
 				<ActionPoint type="Float" value="8.0" />
-				<Detection type="Float" value="6.0" />
+				<Detection type="Float" value="4.0" />
 				<Covert type="Float" value="3.0" />
 				<Toughness type="Float" value="3.0" />
 				<Conter type="Float" value="3.0" />
@@ -1729,7 +1726,7 @@
 				<Formation type="Float" value="1.0" />
 				<Initiative type="Float" value="4.0" />
 				<ActionPoint type="Float" value="7.0" />
-				<Detection type="Float" value="5.0" />
+				<Detection type="Float" value="3.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="1.0" />
 				<Conter type="Float" value="2.0" />
@@ -1748,7 +1745,7 @@
 				<Formation type="Float" value="2.0" />
 				<Initiative type="Float" value="4.0" />
 				<ActionPoint type="Float" value="7.0" />
-				<Detection type="Float" value="5.0" />
+				<Detection type="Float" value="3.0" />
 				<Covert type="Float" value="0.0" />
 				<Toughness type="Float" value="2.0" />
 				<Conter type="Float" value="2.0" />
@@ -1761,13 +1758,13 @@
 			<Randomness type="Int" value="20" />
 			<AttrModifer>
 				<Type type="Int" value="0" />
-				<Attack type="Float" value="7.0" />
+				<Attack type="Float" value="6.0" />
 				<RangedAttack type="Float" value="1.0" />
-				<Defence type="Float" value="7.0" />
+				<Defence type="Float" value="8.0" />
 				<Formation type="Float" value="2.0" />
 				<Initiative type="Float" value="6.0" />
 				<ActionPoint type="Float" value="8.0" />
-				<Detection type="Float" value="7.0" />
+				<Detection type="Float" value="5.0" />
 				<Covert type="Float" value="3.0" />
 				<Toughness type="Float" value="4.0" />
 				<Conter type="Float" value="4.0" />
