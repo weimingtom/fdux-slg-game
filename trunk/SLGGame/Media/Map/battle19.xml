@@ -2,7 +2,7 @@
 <MapName>map19</MapName>
 <MapTeam>
     <Team2 TeamType="enemy1" TeamFaction="法卫队" />
-    <Team3 TeamType="enemy2" TeamFaction="黑骑士" />
+    <Team3 TeamType="enemy1" TeamFaction="黑骑士" />
     <Team4 TeamType="none" TeamFaction="none" />
 </MapTeam>
 <MapScript>mapscript19.lua</MapScript>

@@ -96,12 +96,17 @@ function turnstart()
 	local turn = ScriptCommonLib.GetTempInt("turn");
 	local team = ScriptCommonLib.GetTempInt("team");
 	if team == 1 and turn == 1 then
+		MapLib.MoveCameraTo( 10, 9);
 	    BattleLib.Story("cp37_1.lua");
 	end
-	if team == 1 and turn == 4 then
-		BattleLib.Story("cp37_1.lua");
+	if team == 1 and turn == 2 then
+		MapLib.MoveCameraTo( 11, 6);
+	    BattleLib.Story("cp37_2.lua");
 	end
-	if team == 1 and turn == 8 then		
+	if team == 1 and turn == 4 then
+		BattleLib.Story("cp37_3.lua");
+	end
+	if team == 1 and turn == 6 then		
 		BattleLib.Story("cp37_5.lua");
 		BattleLib.AssignAIMission(2,"Guard", "Attack3");
 		BattleLib.AssignAIMission(3,"DarkKnight", "Attack4");

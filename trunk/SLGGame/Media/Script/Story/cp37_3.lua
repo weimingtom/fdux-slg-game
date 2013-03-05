@@ -1,9 +1,11 @@
 GUI.ButtonLock();
 GUI.SetDialogVisible(1);
-GUI.ShowImage("qitaw_ys.png",right,300);
-GUI.ShowRoleName("齐塔");
-GUI.ShowText("敌军已经从东港出发！",2);
-GUI.ShowText("立即率队突袭东港堡垒！",1);
+GUI.ShowImage("xiwen.png",right,300);
+GUI.ShowRoleName("黑法师");
+GUI.ShowText("这是……",2);
+GUI.ShowText("翼骑团……",1);
+GUI.ClearText();
+GUI.ShowText("你终于来了吗……",1);
 GUI.ClearText();
 GUI.ShowRoleName("");
 GUI.ShowImage("",right,300);

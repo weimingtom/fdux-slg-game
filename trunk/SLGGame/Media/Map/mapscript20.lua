@@ -53,6 +53,7 @@ function finishdeploy()
 	--创建任务(missionname,missionstate)
 	local mainmission = BattleLib.AddPlayerMission("map20mission1",0);
 	ScriptCommonLib.SetInt("mainmission", mainmission);
+	ScriptCommonLib.SetInt("addedgold", 0);
 end
 
 --部队被歼灭触发器
@@ -86,28 +87,32 @@ function turnstart()
 	local turn = ScriptCommonLib.GetTempInt("turn");
 	local team = ScriptCommonLib.GetTempInt("team");
 	if team == 1 and turn == 1 then
+		MapLib.MoveCameraTo( 1, 5);
 	    BattleLib.Story("cp39_1.lua");
 	end
-	if team == 1 and turn == 6 then
+	if team == 1 and turn == 3 then
 		MapLib.MoveCameraTo( 1, 5);
 		BattleLib.AddBattleSquad("GuardHeavySpear", "Team2Squad_11", 1, 5, 2, 50);
 		BattleLib.AddBattleSquad("GuardHeavySpear", "Team2Squad_12", 1, 7, 2, 50);
 		BattleLib.AddBattleSquad("GuardCrossBow", "Team2Squad_13", 0, 5, 2, 50);
 		BattleLib.AddBattleSquad("GuardCrossBow", "Team2Squad_14", 0, 6, 2, 50);
 		BattleLib.AddBattleSquad("GuardCrossBow", "Team2Squad_15", 0, 7, 2, 50);
-		BattleLib.AssignAIGroup(2, "Team3Squad_0", "Guard");
-		BattleLib.AssignAIGroup(2, "Team3Squad_1", "Guard");
-		BattleLib.AssignAIGroup(2, "Team3Squad_2", "Guard");
-		BattleLib.AssignAIGroup(2, "Team3Squad_3", "Guard");
-		BattleLib.AssignAIGroup(2, "Team3Squad_3", "Guard");
-		BattleLib.Story("cp39_2.lua");
-		
+		BattleLib.AddBattleSquad("GuardHeavySpear", "Team2Squad_16", 1, 6, 2, 50);
+		BattleLib.AddBattleSquad("GuardHeavySpear", "Team2Squad_17", 1, 4, 2, 50);
+		BattleLib.AssignAIGroup(2, "Team2Squad_11", "Guard");
+		BattleLib.AssignAIGroup(2, "Team2Squad_12", "Guard");
+		BattleLib.AssignAIGroup(2, "Team2Squad_13", "Guard");
+		BattleLib.AssignAIGroup(2, "Team2Squad_14", "Guard");
+		BattleLib.AssignAIGroup(2, "Team2Squad_15", "Guard");
+		BattleLib.AssignAIGroup(2, "Team2Squad_16", "Guard");
+		BattleLib.AssignAIGroup(2, "Team2Squad_17", "Guard");
+		BattleLib.Story("cp39_2.lua");		
 	end
 	
-	if team == 1 and turn == 9 then
+	if team == 1 and turn == 5 then
 		MapLib.MoveCameraTo( 5, 13);
 		BattleLib.AddBattleSquad("Datura", "Team3Squad_0", 5, 13, 3, 50);
-		BattleLib.AddBattleSquad("Syrin", "Team3Squad_1", 5, 14, 3, 50);
+		BattleLib.AddBattleSquad("Syrin", "Team3Squad_1", 5, 14, 3, 20);
 		BattleLib.AddBattleSquad("DarkKnight", "Team3Squad_2", 6, 13, 3, 50);
 		BattleLib.AddBattleSquad("DarkKnight", "Team3Squad_3", 4, 13, 3, 50);
 		BattleLib.AssignAIGroup(3, "Team3Squad_0", "DarkKnight");
@@ -118,7 +123,7 @@ function turnstart()
 		BattleLib.Story("cp39_3.lua");
 	end
 	
-	if team == 1 and turn == 13 then
+	if team == 1 and turn == 8 then
 		MapLib.MoveCameraTo( 10, 8);
 	    BattleLib.Story("cp39_4.lua");
 		BattleLib.CreateMapParticle(10, 8, "mapfire");
@@ -126,26 +131,19 @@ function turnstart()
 		BattleLib.CreateMapParticle(10, 9, "mapfire");
 	end
 	
-	if team == 1 and turn == 15 then
+	if team == 1 and turn == 9 then
 	    BattleLib.Story("cp39_5.lua");
-		BattleLib.RemoveBattleSquad("Dandelion");
-		BattleLib.RemoveBattleSquad("Olivia");
-		BattleLib.RemoveBattleSquad("Cossa");
-		BattleLib.RemoveBattleSquad("Caster");
-		BattleLib.RemoveBattleSquad("WingsLightCavalry");
-		BattleLib.RemoveBattleSquad("WingsHeavyInf");
-		BattleLib.RemoveBattleSquad("WingsCrossBow");
 	end
 	
-	if team == 2 and turn == 15 then
+	if team == 2 and turn == 9 then
 	    BattleLib.Story("cp39_8.lua");
-		BattleLib.AddGold(10000);
+		BattleLib.AddGold(20000);
 		BattleLib.DumpSquadData();
 		local addedgold = ScriptCommonLib.GetInt("addedgold");
-		addedgold = addedgold + 10000;
+		addedgold = addedgold + 20000;
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		--胜利(storyscript,gold,exp)
-		BattleLib.Win("cp40.lua", "0", "0");
+		BattleLib.Win("cp40.lua", addedgold);
 	end
 end	
 		
@@ -171,5 +169,6 @@ function inarea()
 			BattleLib.Story("cp39_6.lua");
 			--失败(storyscript,gold,exp)
 			BattleLib.Lost("GameOver.lua","0","0");
+		end
 	end
 end

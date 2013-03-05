@@ -42,12 +42,14 @@ function finishdeploy()
 	BattleLib.AssignAIGroup(3, "Team3Squad_2", "Guard");
 	BattleLib.AssignAIGroup(3, "Team3Squad_3", "Guard");
 	BattleLib.AssignAIGroup(3, "Team3Squad_4", "Guard");
+	BattleLib.AssignAIGroup(3, "Team3Squad_5", "Guard");
 	--创建AI任务(team,missionname,missiontype,missiontargetarea)
-	BattleLib.CreateAIMission(2, "Attack", 0, "DeployArea");
+	BattleLib.CreateAIMission(2, "Attack1", 0, "DeployArea");
+	BattleLib.CreateAIMission(3, "Attack2", 0, "DeployArea");
 
 	--指派AI分组任务(team,groupname,missionname)
-	BattleLib.AssignAIMission(3,"DarkKnight", "Attack");
-	BattleLib.AssignAIMission(3,"Guard", "Attack");
+	BattleLib.AssignAIMission(2,"DarkKnight", "Attack1");
+	BattleLib.AssignAIMission(3,"Guard", "Attack2");
 	
 	--创建任务(missionname,missionstate)
 	local mainmission = BattleLib.AddPlayerMission("map18mission1",0);
@@ -73,7 +75,7 @@ function unitdead()
 		addedgold = addedgold + 400;
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		local mission1state = ScriptCommonLib.GetInt("mission1state");
-		if BattleLib.TeamSquadLeft(2) <= 2 and mission1state == 0 then
+		if BattleLib.TeamSquadLeft(2) <= 3 and mission1state == 0 then
 			local mission1 = ScriptCommonLib.GetInt("mission1");
 			--完成任务(missionindex, missionstate)
 			BattleLib.SetPlayerMission(mission1, 1);
@@ -97,7 +99,7 @@ end
 function turnend()
 	local turn = ScriptCommonLib.GetTempInt("turn");
 	local team = ScriptCommonLib.GetTempInt("team");
-	if team == 1 and turn == 10 then
+	if team == 1 and turn == 6 then
 		BattleLib.Story("cp36_5.lua");
 		BattleLib.AddGold(7000);
 		BattleLib.DumpSquadData();
