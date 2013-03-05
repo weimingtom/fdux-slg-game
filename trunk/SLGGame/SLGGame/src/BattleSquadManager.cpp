@@ -1232,6 +1232,9 @@ bool BattleSquadManager::dealMeleeDamage(BattleSquad* attacksquad, BattleSquad* 
 			}
 			int squaduga = squad->getUnitGrapNum();
 			int squadRealNumA=squad->getUnitNum();
+
+			Ogre::LogManager::getSingletonPtr()->logMessage(str(boost::format("squadugb:%1%,squadRealNumB:%2%,squaduga:%3%,squadRealNumA:%4%")%squadugb%squadRealNumB%squaduga%squadRealNumA),Ogre::LML_NORMAL);
+
 			if(squaduga <= squadugb)
 			{
 				//setCutScene(new SquadDeadCutScene(squad->getGrapId(), squadugb - squaduga));
@@ -1318,6 +1321,8 @@ bool BattleSquadManager::dealMagicDamage(BattleSquad* attacksquad, BattleSquad* 
 	int squaduga = defenesquad->getUnitGrapNum();
 	int squadRealNumA = defenesquad->getUnitNum();
 
+	Ogre::LogManager::getSingletonPtr()->logMessage(str(boost::format("squadugb:%1%,squadRealNumB:%2%,squaduga:%3%,squadRealNumA:%4%")%squadugb%squadRealNumB%squaduga%squadRealNumA),Ogre::LML_NORMAL);
+
 		CombineCutScene* showValueCutScenes=new CombineCutScene();
 		if(squaduga>0)
 			showValueCutScenes->addCutScene(new ShowValueCutScene(defenesquad->getSquadId(),str(boost::format(StringTable::getSingletonPtr()->getString("BattleInfo"))%(squadRealNumB-squadRealNumA)),Ogre::ColourValue::Red));
@@ -1387,6 +1392,8 @@ bool BattleSquadManager::dealRangedDamage(BattleSquad* attacksquad, BattleSquad*
 	defenesquad->applyAttackRolls(true, defenesquad->getDirection(), atkinfo);
 	int squaduga = defenesquad->getUnitGrapNum();
 	int squadRealNumA = defenesquad->getUnitNum();
+
+	Ogre::LogManager::getSingletonPtr()->logMessage(str(boost::format("squadugb:%1%,squadRealNumB:%2%,squaduga:%3%,squadRealNumA:%4%")%squadugb%squadRealNumB%squaduga%squadRealNumA),Ogre::LML_NORMAL);
 
 	CombineCutScene* showValueCutScenes=new CombineCutScene();
 	if(squaduga>0)
