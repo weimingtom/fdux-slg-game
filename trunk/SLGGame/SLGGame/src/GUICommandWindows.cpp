@@ -50,7 +50,7 @@ GUICommandWindows::GUICommandWindows(MyGUI::Window* window,int Width,int Height)
 	assignWidget(mAPLabel,"APLabel");
 	assignWidget(mSkillName,"SkillName");
 
-	for(int i=0;i<12;i++)
+	for(int i=0;i<18;i++)
 	{
 		mSkill[i]->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUICommandWindows::onSkillClick);
 		mSkill[i]->eventMouseSetFocus+= MyGUI::newDelegate(this, &GUICommandWindows::onSkillHighlighted);
