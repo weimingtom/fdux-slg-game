@@ -3,8 +3,8 @@ function useskill()
 	local target  = ScriptCommonLib.GetTempString("targetsquadid");
 	local atlv, atid = SquadLib.GetEffectLevelByName(caster, "AtkTimeImprove");
 	local alv, aid = SquadLib.GetEffectLevelByName(caster, "AtkImprove");
-	local atknum = 15 + atlv * 5;
-	local atk  = 14 + alv - SquadLib.GetMaxActionPoint(target);
+	local atknum = 20 + atlv * 5;
+	local atk  = 14 + 2 * alv - SquadLib.GetMaxActionPoint(target);
 	local ap = SquadLib.GetActionPoint(caster);
 	atk = ap * atk;
 	
