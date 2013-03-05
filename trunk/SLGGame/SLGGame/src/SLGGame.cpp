@@ -3,7 +3,7 @@
 #ifdef NDEBUG
 	#include "CrashRpt.h"
 	#include <tchar.h>
-	#pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" )
+	//#pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" )
 	#define VER_Crash _T("1.0a")
 	#define VER_Subject _T("ForgottenBattlefield 1.0a Error Report")
 #endif

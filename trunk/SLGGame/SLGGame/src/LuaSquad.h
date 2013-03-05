@@ -680,17 +680,21 @@ static int MoveSquad(lua_State* L)
 	std::string squadid(luaL_checkstring(L, 1));
 	int x =  luaL_checknumber(L,2);
 	int y =  luaL_checknumber(L,3);
-	unsigned int eventflag = MOVEEVENT_WRONG;
+	int re = 0;
 	if(StateManager::getSingleton().curState() == StateManager::Battle)
 	{
 		BattleSquad* squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
 		if(squad)
 		{
-			eventflag = 0;
+			unsigned int eventflag = 0;
 			BattleSquadManager::getSingleton().forceMoveSquad(squad, Crood(x, y), eventflag);
+			if(~(eventflag &(MOVEEVENT_WRONG | MOVEEVENT_AMBUSH | MOVEEVENT_MAPEVENT) ) )
+			{
+				re = 1;
+			}
 		}
 	}
-	lua_pushnumber(L, eventflag);
+	lua_pushnumber(L, re);
 	return 1;
 }
 static int ChangeDirection(lua_State* L)
@@ -706,6 +710,38 @@ static int ChangeDirection(lua_State* L)
 		}
 	}
 	return 0;
+}
+
+static int GetFormation(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	int formation = -1;
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+	{
+		BattleSquad* squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+		if(squad)
+		{
+			formation = squad->getFormation();
+		}
+	}
+	lua_pushnumber(L, formation);
+	return 1;
+}
+
+static int SquadGetDirection(lua_State* L)
+{
+	std::string squadid(luaL_checkstring(L, 1));
+	int direction = 0;
+	if(StateManager::getSingleton().curState() == StateManager::Battle)
+	{
+		BattleSquad* squad = BattleSquadManager::getSingleton().getBattleSquad(squadid);
+		if(squad)
+		{
+			direction = squad->getDirection();
+		}
+	}
+	lua_pushnumber(L, direction);
+	return 1;
 }
 
 static const struct luaL_Reg SquadLib[] =
@@ -748,5 +784,7 @@ static const struct luaL_Reg SquadLib[] =
 	{"PlayParticle", PlayParticle},
 	{"MoveSquad", MoveSquad},
 	{"ChangeDirection", ChangeDirection},
+	{"GetFormation",GetFormation},
+	{"GetDirection",SquadGetDirection},
 	{NULL,NULL}
 };

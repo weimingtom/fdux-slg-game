@@ -448,7 +448,7 @@ void Squad::forgetSkill(std::string skillid)
 void Squad::addExp(int exp)
 {
 	int squadtype = getType() ;
-	int maxlv = (squadtype == SQUAD_NORMAL)?10:8;
+	int maxlv = 10;
 	int expperlv = 1000;
 	int curlevel = getLevel();
 	if(exp < 0 || curlevel == maxlv)
@@ -471,6 +471,7 @@ void Squad::addExp(int exp)
 			case 4:
 			case 6:
 			case 8:
+			case 10:
 				skillpoint = getSkillPointPassive();
 				skillpoint += 1;
 				setSkillPointPassive(skillpoint);
@@ -479,6 +480,7 @@ void Squad::addExp(int exp)
 			case 3:
 			case 5:
 			case 7:
+			case 9:
 				skillpoint = getSkillPointAction();
 				skillpoint += 1;
 				setSkillPointAction(skillpoint);

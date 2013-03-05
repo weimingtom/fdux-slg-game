@@ -319,5 +319,8 @@
 		<Skills_Suppressed type="String" value="被压制"/>
 		<Skills_Inspire type="String" value="攻击力+%1%&#x0D;远程攻击力+%1%"/>
 		<Skills_NotEnoughGuard type="String" value="圣灵守卫不足"/>
+		<Skills_Charge type="String" value="冲锋"/>
+		<Skills_Chaos type="String" value="混乱"/>
+		<Skills_ForceMarch type="String" value="强行军"/>
 	</StringTable>
 </StaticData>

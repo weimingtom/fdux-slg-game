@@ -1,8 +1,11 @@
 function useskill()
 	local caster  = ScriptCommonLib.GetTempString("squadid");
-	SquadLib.ApplyEffect(caster, "ForceMarch");
+	
+	SquadLib.Animation(caster, 1, "Skill", "none", "none", 0, 1);
+		
+	SquadLib.ApplyEffect(caster, "ForcedMarch");
 	SquadLib.AddExp(caster, 50);
-	SquadLib.ShowValue1(caster, "Skills_ForceMarch", 1.0, 1.0, 1.0);
+	SquadLib.ShowValue(caster, "Skills_ForceMarch", 1.0, 1.0, 1.0);
 	ScriptCommonLib.SetTempInt("castsuccess", 1);
 end
 
