@@ -12,6 +12,7 @@ Boost:基于Boost Software 协议发布,协议内容详情Boost.txt文件
 Lua:基于MIT协议发布,协议内容详情Lua.txt文件
 rapidxml:基于Boost Software 协议发布,协议详情rapidxml.txt文件
 audiere:基于LGPL协议发布,协议详情audiere.txt文件
+irrKlang:基于irrKlang License发布,协议详情irrKlang.txt文件
 CrashRpt:详情CrashRpt.txt文件
 Particle Universe以及其Mediapack 1,2:
 Copyright (C) 2006-2010 Henry van Merode. All rights reserved.
