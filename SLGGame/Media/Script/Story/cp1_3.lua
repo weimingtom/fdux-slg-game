@@ -12,6 +12,14 @@ GUI.ShowText("这种情况对我军也一样，在遭到围攻时最好切换成均衡防守的圆阵，而遭到
 GUI.ClearText();
 GUI.ShowText("请妥善利用阵型的特点。",1);
 GUI.ClearText();
+GUI.ShowText("此外，如果线性阵的侧面和背面遭到打击还会使部队产生动摇效果，每一层动摇效果都会降低部队的能力，",1);
+GUI.ClearText();
+GUI.ShowText("对于其它阵型来说，产生动摇的方法也不一样，圆阵受到远程攻击时将产生动摇，散列受到近身攻击时将产生动摇。",1);
+GUI.ClearText();
+GUI.ShowText("动摇效果一旦叠加到五成将向周围的单位扩散，但效果每回合会固定减少一层。",1);
+GUI.ClearText();
+GUI.ShowText("请注意观察部队的动摇情况，避免因动摇导致溃败！",1);
+GUI.ClearText();
 GUI.ShowRoleName("");
 GUI.ShowImage("",right,300);
 GUI.ShowImage("",left,300);
