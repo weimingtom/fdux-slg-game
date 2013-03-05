@@ -50,8 +50,7 @@ function finishdeploy()
 	BattleLib.AssignAIGroup(2, "Team2Squad_15", "Winfred");
 	BattleLib.AssignAIGroup(2, "Team2Squad_16", "Winfred");
 	BattleLib.AssignAIGroup(2, "Team2Squad_17", "Winfred");
-	BattleLib.AssignAIGroup(2, "Team2Squad_18", "Winfred");
-	BattleLib.AssignAIGroup(2, "Team2Squad_19", "Winfred");
+
 	
 
 	--创建AI任务(team,missionname,missiontype,missiontargetarea)
@@ -88,7 +87,7 @@ function unitdead()
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		local mission1state = ScriptCommonLib.GetInt("mission1state");
 		mission1state = mission1state + 1;
-		if mission1state >= 10 then
+		if mission1state >= 8 then
 			local mission1 = ScriptCommonLib.GetInt("mission1");
 			--完成任务(missionindex, missionstate)
 			BattleLib.SetPlayerMission(mission1, 1);
@@ -100,7 +99,7 @@ function unitdead()
 			BattleLib.DumpSquadData();
 			addedgold = ScriptCommonLib.GetInt("addedgold");
 			addedgold = addedgold + 6500;
-			if mission1state >= 10 then
+			if mission1state >= 8 then
 				BattleLib.AddGold(3900);
 				addedgold = addedgold + 3900;
 			end

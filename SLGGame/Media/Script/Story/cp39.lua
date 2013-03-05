@@ -361,7 +361,7 @@ GUI.ClearText();
 GUI.ShowRoleName("");
 GUI.ShowRoleName("齐塔");
 GUI.ShowText("你不是已经下决心放弃法师塔了吗？",2);
-GUI.ShowText("即使这个港口无比重要对你来说又有什么意义？",1);
+GUI.ShowText("即使这个无比重要的港口对你来说又有什么意义？",1);
 GUI.ClearText();
 GUI.ShowRoleName("");
 GUI.ShowImage("ashaniyaw_sx.png",left,10);
@@ -417,7 +417,6 @@ GUI.ShowImage("",right,600);
 GUI.ShowImage("",left,600);
 GUI.CM(3000);
 GUI.ShowImage("black.png",4,3000);
-
 AVGLib.SetPlayerFaction("Wing");
 StateLib.BattleState("battle20.xml");
 #GUI.NextScene("cp40.lua");

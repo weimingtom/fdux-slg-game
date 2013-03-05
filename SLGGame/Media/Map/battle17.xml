@@ -288,9 +288,8 @@
         <Team2Squad_14 Type="WinfredLightBow" GridX="2" GridY="3" Direction="1" UnitNum="0" />
         <Team2Squad_15 Type="WinfredLightBow" GridX="2" GridY="9" Direction="1" UnitNum="0" />
         <Team2Squad_16 Type="WinfredHeavyCavalry" GridX="7" GridY="5" Direction="1" UnitNum="0" />
-        <Team2Squad_17 Type="WinfredHeavyCavalry" GridX="7" GridY="7" Direction="1" UnitNum="0" />
-		<Team2Squad_18 Type="WinfredLightCavalry" GridX="5" GridY="5" Direction="1" UnitNum="0" />
-		<Team2Squad_19 Type="WinfredLightCavalry" GridX="5" GridY="7" Direction="1" UnitNum="0" />
+        <Team2Squad_17 Type="WinfredLightCavalry" GridX="5" GridY="7" Direction="1" UnitNum="0" />
+
     </Team2>
     <Team3 />
     <Team4 />
