@@ -2,7 +2,7 @@ function useskill()
 	local caster  = ScriptCommonLib.GetTempString("squadid");
 	local target  = ScriptCommonLib.GetTempString("targetsquadid");
 	local atknum = SquadLib.GetUnitNum(target);
-	local atk = SquadLib.GetActionPoint(caster) * 3;
+	local atk = SquadLib.GetActionPoint(caster) * 4;
 	local atlv, atid = SquadLib.GetEffectLevelByName(caster, "AtkTimeImprove");
 	local alv, aid = SquadLib.GetEffectLevelByName(caster, "AtkImprove");
 	atknum = atknum * 1.0 + (0.2 * atlv);

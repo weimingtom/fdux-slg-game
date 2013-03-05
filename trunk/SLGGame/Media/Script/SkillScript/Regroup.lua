@@ -53,6 +53,10 @@ function validaffectarea()
 		local tgtf = SquadLib.GetFaction(tgtsid);
 		if tgtf == sf then
 			ScriptCommonLib.SetTempInt("validaffectarea", 1);
+		else
+			ScriptCommonLib.SetTempInt("validaffectarea", 0);
 		end
+	else
+		ScriptCommonLib.SetTempInt("validaffectarea", 1);
 	end
 end

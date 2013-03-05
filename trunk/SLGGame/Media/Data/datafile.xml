@@ -1474,7 +1474,6 @@
 				<FormUp type="Int" value="0"/>
 				<Trample type="Int" value="0"/>
 				<ArmorImprove type="Int" value="0"/>
-				<Unshakable type="Int" value="0"/>
 				<Break type="Int" value="1"/>
 				<JointAttack type="Int" value="1"/>
 				<OneHandBlunt type="Int" value="2"/>
@@ -1509,7 +1508,6 @@
 				<FormUp type="Int" value="0"/>
 				<Trample type="Int" value="0"/>
 				<ArmorImprove type="Int" value="0"/>
-				<Unshakable type="Int" value="0"/>
 				<Break type="Int" value="1"/>
 				<JointAttack type="Int" value="1"/>
 				<TimeToAttack type="Int" value="1"/>
@@ -1670,7 +1668,7 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="0.0" />
 				<RangedAttack type="Float" value="12.0" />
-				<Defence type="Float" value="16.0" />
+				<Defence type="Float" value="14.0" />
 				<Formation type="Float" value="0.0" />
 				<Initiative type="Float" value="0.0" />
 				<ActionPoint type="Float" value="7.0" />
@@ -1689,7 +1687,7 @@
 				<Type type="Int" value="0" />
 				<Attack type="Float" value="8.0" />
 				<RangedAttack type="Float" value="18.0" />
-				<Defence type="Float" value="14.0" />
+				<Defence type="Float" value="12.0" />
 				<Formation type="Float" value="0.0" />
 				<Initiative type="Float" value="1.0" />
 				<ActionPoint type="Float" value="7.0" />
@@ -1948,7 +1946,7 @@
 		<HeavySword3>
 			<Type type="Int" value="2" />
 			<Value type="Int" value="50" />
-			<Script type="String" value="none" />
+			<Script type="String" value="chargeweapon1.lua" />
 			<Mesh type="String" value="twosword.mesh" />
 			<Mat type="String" value="twosword" />
 			<PU type="String" value="none" />
@@ -1972,7 +1970,7 @@
 		<HeavySword4>
 			<Type type="Int" value="2" />
 			<Value type="Int" value="90" />
-			<Script type="String" value="none" />
+			<Script type="String" value="chargeweapon1.lua" />
 			<Mesh type="String" value="twosword.mesh" />
 			<Mat type="String" value="twosword" />
 			<PU type="String" value="none" />
@@ -1996,7 +1994,7 @@
 		<HeavySword5>
 			<Type type="Int" value="2" />
 			<Value type="Int" value="150" />
-			<Script type="String" value="none" />
+			<Script type="String" value="chargeweapon1.lua" />
 			<Mesh type="String" value="twosword.mesh" />
 			<Mat type="String" value="twosword" />
 			<PU type="String" value="none" />
@@ -2116,7 +2114,7 @@
 		<ShortAxe5>
 			<Type type="Int" value="1" />
 			<Value type="Int" value="98" />
-			<Script type="String" value="none" />
+			<Script type="String" value="BreakArmorWeapon1.lua" />
 			<Mesh type="String" value="Axes.mesh" />
 			<Mat type="String" value="axes" />
 			<PU type="String" value="none" />
@@ -2188,7 +2186,7 @@
 		<HeavyAxe3>
 			<Type type="Int" value="3" />
 			<Value type="Int" value="45" />
-			<Script type="String" value="none" />
+			<Script type="String" value="BreakArmorWeapon1.lua" />
 			<Mesh type="String" value="DAxes.mesh" />
 			<Mat type="String" value="axes" />
 			<PU type="String" value="none" />
@@ -2212,7 +2210,7 @@
 		<HeavyAxe4>
 			<Type type="Int" value="3" />
 			<Value type="Int" value="85" />
-			<Script type="String" value="none" />
+			<Script type="String" value="BreakArmorWeapon1.lua" />
 			<Mesh type="String" value="DAxes.mesh" />
 			<Mat type="String" value="axes" />
 			<PU type="String" value="none" />
@@ -2236,7 +2234,7 @@
 		<HeavyAxe5>
 			<Type type="Int" value="3" />
 			<Value type="Int" value="140" />
-			<Script type="String" value="none" />
+			<Script type="String" value="BreakArmorWeapon1.lua" />
 			<Mesh type="String" value="DAxes.mesh" />
 			<Mat type="String" value="axes" />
 			<PU type="String" value="none" />
@@ -2881,7 +2879,7 @@
 		<LightHorse3>
 			<Type type="Int" value="0" />
 			<Value type="Int" value="44" />
-			<Script type="String" value="none" />
+			<Script type="String" value="chargeweapon1.lua" />
 			<Mesh type="String" value="LightCavalryHorse.mesh" />
 			<Mat type="String" value="LightCavalryHorse" />
 			<Icon type="String" value="eqp_lighthorse" />
@@ -2902,7 +2900,7 @@
 		<LightHorse4>
 			<Type type="Int" value="0" />
 			<Value type="Int" value="82" />
-			<Script type="String" value="none" />
+			<Script type="String" value="chargeweapon1.lua" />
 			<Mesh type="String" value="LightCavalryHorse.mesh" />
 			<Mat type="String" value="LightCavalryHorse" />
 			<Icon type="String" value="eqp_lighthorse" />
@@ -2923,7 +2921,7 @@
 		<LightHorse5>
 			<Type type="Int" value="0" />
 			<Value type="Int" value="128" />
-			<Script type="String" value="none" />
+			<Script type="String" value="chargeweapon1.lua" />
 			<Mesh type="String" value="LightCavalryHorse.mesh" />
 			<Mat type="String" value="LightCavalryHorse" />
 			<Icon type="String" value="eqp_lighthorse" />
@@ -2986,7 +2984,7 @@
 		<HeavyHorse3>
 			<Type type="Int" value="1" />
 			<Value type="Int" value="48" />
-			<Script type="String" value="none" />
+			<Script type="String" value="chargeweapon1.lua" />
 			<Mesh type="String" value="HeavyCavalryHorse.mesh" />
 			<Mat type="String" value="HeavyCavalryHorse" />
 			<Icon type="String" value="eqp_heavyhorse" />
@@ -3007,7 +3005,7 @@
 		<HeavyHorse4>
 			<Type type="Int" value="1" />
 			<Value type="Int" value="86" />
-			<Script type="String" value="none" />
+			<Script type="String" value="chargeweapon1.lua" />
 			<Mesh type="String" value="HeavyCavalryHorse.mesh" />
 			<Mat type="String" value="HeavyCavalryHorse" />
 			<Icon type="String" value="eqp_heavyhorse" />
@@ -3028,7 +3026,7 @@
 		<HeavyHorse5>
 			<Type type="Int" value="1" />
 			<Value type="Int" value="140" />
-			<Script type="String" value="none" />
+			<Script type="String" value="Trampleweapon1.lua" />
 			<Mesh type="String" value="HeavyCavalryHorse.mesh" />
 			<Mat type="String" value="HeavyCavalryHorse" />
 			<Icon type="String" value="eqp_heavyhorse" />

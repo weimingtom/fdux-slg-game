@@ -6,8 +6,8 @@ function useskill()
 	local clv, cid = SquadLib.GetEffectLevelByName(target, "Chaos");
 	local sklv = SquadLib.GetSkillLevel(caster, "Assault");
 	atk = wlv + clv;
-	if atk >  2 + 2 * lv then
-		atk = 2 + 2 * lv;
+	if atk >  2 + 2 * sklv then
+		atk = 2 + 2 * sklv;
 	end
 	local mid = SquadLib.ApplyModifier(caster, 0, atk, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 	local re = SkillLib.MeleeCombat(caster,target);
