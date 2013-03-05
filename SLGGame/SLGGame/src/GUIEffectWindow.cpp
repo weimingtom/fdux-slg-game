@@ -46,6 +46,9 @@ void GUIEffectWindow::setEffectList(std::vector<std::string> list,std::vector<in
 	int skilllvindex = 0;
 	for (std::vector<std::string>::iterator it=list.begin();it!=list.end();it++,skilllvindex++)
 	{
+		if(i==10)
+			return;
+
 		DataLibrary::getSingletonPtr()->getData(effectPath+(*it)+std::string("/Icon"),data);
 		DataLibrary::getSingletonPtr()->getData(effectPath+(*it)+std::string("/Describe"),skillTips);
 		int showonbattlesquad = 0;

@@ -1127,7 +1127,8 @@ void SquadGraphics::setDeath(int num)
 	{
 		mSquadBB->setNode(NULL);
 		mSquadBB->setVisible(false);
-		mDeathUnits[mCommanderUnit]=NULL;
+		if(mCommanderUnit!=NULL)
+			mDeathUnits[mCommanderUnit]=NULL;
 	}
 
 	for (std::map<UnitGrap*,UnitGrap*>::iterator it=mDeathUnits.begin();it!=mDeathUnits.end();it++)
@@ -1147,7 +1148,8 @@ void SquadGraphics::setDeath(int num)
 
 	}
 
-	mDeathStep=playAni;
+	if(mDeathUnits.size()!=0)
+		mDeathStep=playAni;
 
 }
 
