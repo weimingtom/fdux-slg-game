@@ -14,7 +14,7 @@ function useskill()
 		{tgtx + 1, tgty},
 		{tgtx, tgty + 1},
 	};
-	local lv = SquadLib.GetSkillLevel(caster, "Inspire");
+	local lv = SquadLib.GetSkillLevel(sid, "Inspire");
 	for i = 1, 5 do
 		local tgtsid = BattleLib.GetSquadAt(croodlist[i][1], croodlist[i][2], 1, sf);
 		if tgtsid ~= "" then

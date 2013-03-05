@@ -614,6 +614,10 @@ void BattleSquadManager::forceMoveSquad(BattleSquad* squad, Crood target, unsign
 		return;
 	}
 
+	bool cutscnen = false;
+	bool find = false;
+	CombineCutScene* combineCutScenes=new CombineCutScene();
+
 	BattleSquadIte ite = mSquadList.begin();
 	for(;ite != mSquadList.end(); ite++)
 	{
@@ -632,11 +636,13 @@ void BattleSquadManager::forceMoveSquad(BattleSquad* squad, Crood target, unsign
 				if(faction == 0)
 				{
 					InterruptMove();
-					CombineCutScene* showValueCutScenes=new CombineCutScene();
-					showValueCutScenes->addCutScene(new ShowValueCutScene(squad->getSquadId(),StringTable::getSingletonPtr()->getString("SquadFindEnemy"),Ogre::ColourValue(1,1,0,1)));
-					showValueCutScenes->addCutScene(new SquadStateCutScene(ite->second,SQUAD_STATE_VISIBLE,"none",1));
-					CutSceneBuilder::getSingleton().addCutScene(showValueCutScenes);
-					return;
+					if(!find)
+					{
+						find = true;
+						combineCutScenes->addCutScene(new ShowValueCutScene(squad->getSquadId(),StringTable::getSingletonPtr()->getString("SquadFindEnemy"),Ogre::ColourValue(1,1,0,1)));
+					}
+					combineCutScenes->addCutScene(new SquadStateCutScene(ite->second,SQUAD_STATE_VISIBLE,"none",1));
+					cutscnen = true;
 				}
 			}
 		}
@@ -654,11 +660,24 @@ void BattleSquadManager::forceMoveSquad(BattleSquad* squad, Crood target, unsign
 				{
 					InterruptMove();
 					CutSceneBuilder::getSingleton().addCutScene(new SquadStateCutScene(squad, SQUAD_STATE_VISIBLE,"none",1));
+					cutscnen = true;
 					m_moveInterrupt = false;
 					m_startPoint.x = squad->getGridX();
 					m_startPoint.y = squad->getGridY();
 				}
 			}
+		}
+	}
+
+	if(m_moveInterrupt)
+	{
+		if(cutscnen)
+		{
+			CutSceneBuilder::getSingleton().addCutScene(combineCutScenes);
+		}
+		else
+		{
+			delete combineCutScenes;
 		}
 	}
 

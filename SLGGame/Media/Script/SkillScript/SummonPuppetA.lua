@@ -4,7 +4,7 @@ function useskill()
 	SquadLib.Animation(caster, 1, "Skill", "none", "mp_seal_04", 0, 1);
 	local num = SquadLib.GetUnitNum(caster);
 	local sklv = SquadLib.GetSkillLevel(caster, "SummonPuppetA");
-	num = num + 3 + sklv * 2;
+	num = num + 4 + sklv * 2;
 	if num > maxnum then
 		num = maxnum;
 	end

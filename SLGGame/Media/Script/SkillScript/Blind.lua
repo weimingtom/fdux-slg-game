@@ -4,7 +4,7 @@ function useskill()
 		
 	SquadLib.Animation(caster, 1, "Skill", "none", "mp_seal_04", 0, 1);
 	local improvelv, improve = SquadLib.GetEffectLevelByName(caster, "WeakImprove");
-	if improvelv > 1 then
+	if improvelv > 0 then
 		SquadLib.ApplyEffect(target, "ImprovedBlind");
 	else
 		SquadLib.ApplyEffect(target, "Blind");
@@ -13,9 +13,9 @@ function useskill()
 	
 	local casterlv = SquadLib.GetSquadLevel(caster);
 	local targetlv = SquadLib.GetSquadLevel(target);
-	local ep = 40;
+	local ep = 50;
 	if targetlv > casterlv then
-		ep = ep + (targetlv - casterlv) * 4;
+		ep = ep + (targetlv - casterlv) * 5;
 	end	
 	SquadLib.AddExp(caster, ep);
 	ScriptCommonLib.SetTempInt("castsuccess", 1);

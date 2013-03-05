@@ -13,6 +13,7 @@ function useskill()
 		local squad2lost = squad2num - SquadLib.GetUnitNum(target);
 		local point = squad2lost + ScriptCommonLib.GetRand(0, 20);
 		if point > 10 then
+			SquadLib.ShowValue(target, "Skills_Chaos", 1.0, 1.0, 1.0);
 			SquadLib.ApplyEffect(target, "Chaos");
 			ep = ep + 20;
 		end

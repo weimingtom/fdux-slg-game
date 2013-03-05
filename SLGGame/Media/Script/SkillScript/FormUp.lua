@@ -24,7 +24,7 @@ function turnstart()
 	local sid = ScriptCommonLib.GetTempString("squadid");
 	local lv, eid = SquadLib.GetEffectLevelByName(sid, "FormUp1");
 	local sklv = SquadLib.GetSkillLevel(sid, "FormUp");
-	for i = lv, sklv + 1 do
+	for i = lv, sklv  do
 		SquadLib.ApplyEffect(sid, "FormUp1");
 	end
 end

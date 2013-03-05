@@ -6,7 +6,7 @@ function useskill()
 		local atk = 0;
 		local def = MapLib.GetGroundAttr(x, y, 0);
 		if def > 0 then
-			atk = atk + def + 1;
+			atk = atk + def * 1.5;
 		end
 		local mid = SquadLib.ApplyModifier(caster, 0, 0.0, atk, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 		re = SkillLib.RangedAttack(caster,target);
@@ -17,6 +17,7 @@ function useskill()
 					SkillLib.RangedAttack(caster,target);
 				end
 			end
+			SquadLib.PlayParticle(target, 1, "mp_explosion_02", "none", 2500);
 			local casterlv = SquadLib.GetSquadLevel(caster);
 			local targetlv = SquadLib.GetSquadLevel(target);
 			local ep = 50;

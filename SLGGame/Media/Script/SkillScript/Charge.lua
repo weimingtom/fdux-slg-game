@@ -46,6 +46,7 @@ function oncharge()
 	local lv = SquadLib.GetEffectLevel(sid, eid);
 	mid = SquadLib.ApplyModifier(sid, 0, 1 + lv, 0.0, 0.0, lv, lv, 0.0, 0.0, 0.0, 0.0, 0.0);
 	ScriptCommonLib.SetString("modifierid", mid);
+	SquadLib.ShowValue(sid, "Skills_Charge", 1.0, 1.0, 1.0);
 end
 
 function aftercharge()
