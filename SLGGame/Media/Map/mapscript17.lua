@@ -95,10 +95,10 @@ function unitdead()
 		ScriptCommonLib.SetInt("mission1state", mission1state);
 		if squad == "Team2Squad_3" then
 			BattleLib.Story("cp34_5.lua");
-			BattleLib.AddGold(6500);
+			BattleLib.AddGold(7300);
 			BattleLib.DumpSquadData();
 			addedgold = ScriptCommonLib.GetInt("addedgold");
-			addedgold = addedgold + 6500;
+			addedgold = addedgold + 7300;
 			if mission1state >= 8 then
 				BattleLib.AddGold(3900);
 				addedgold = addedgold + 3900;

@@ -75,10 +75,10 @@ function unitdead()
 		local mission1 = ScriptCommonLib.GetInt("mission1");
 		ScriptCommonLib.SetInt("mission1state", 1);
 		BattleLib.SetPlayerMission(mission1, 1);
-		BattleLib.AddGold(3000);
+		BattleLib.AddGold(3500);
 		BattleLib.DumpSquadData();
 		local addedgold = ScriptCommonLib.GetInt("addedgold");
-		addedgold = addedgold + 3000;
+		addedgold = addedgold + 3500;
 		local mission1state = ScriptCommonLib.GetInt("mission1state");
 		local mission2state = ScriptCommonLib.GetInt("mission2state");
 		if mission1state == 1 then
@@ -107,10 +107,10 @@ function turnend()
 	team = ScriptCommonLib.GetTempInt("team");
 	
 	if team == 1 and turn >= 8 then
-		BattleLib.AddGold(3000);
+		BattleLib.AddGold(3500);
 		BattleLib.DumpSquadData();
 		local addedgold = ScriptCommonLib.GetInt("addedgold");
-		addedgold = addedgold + 3000;
+		addedgold = addedgold + 3500;
 		local mission1state = ScriptCommonLib.GetInt("mission1state");
 		local mission2state = ScriptCommonLib.GetInt("mission2state");
 		if mission1state == 1 then
