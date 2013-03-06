@@ -108,7 +108,12 @@ function turnstart()
 	if team == 1 and turn == 5 then
 		MapLib.MoveCameraTo( 14, 3);
 		AVGLib.SetCanSupply("Fay",1);
-		BattleLib.AddStorySquad ("Fay", "Fay", 14, 3, 0);
+		if BattleLib.AddStorySquad("Fay", "Fay", 14, 3, 0) == 0 then
+            BattleLib.AddStorySquad("Fay", "Fay", 15, 4, 0)
+            MapLib.MoveCameraTo( 15, 4);
+        else
+            MapLib.MoveCameraTo( 14, 3);
+        end
 		BattleLib.Story("cp26_5.lua");
 	end
 end	
