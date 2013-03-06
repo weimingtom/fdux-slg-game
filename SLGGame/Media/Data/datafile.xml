@@ -5065,7 +5065,7 @@
 			<Script type="String" value="none"/>
 			<GroundModifier>
 				<Passable type="Int" value="2"/>
-				<Covert type="Float" value="-1.0"/>
+				<Covert type="Float" value="-2.0"/>
 				<Defence type="Float" value="-1.0"/>
 				<CavAp type="Float" value="0.0"/>
 				<InfAp type="Float" value="0.0"/>
