@@ -105,6 +105,8 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
+				Description="Éú³É°æ±¾ºÅ"
+				CommandLine="SubWCRev $(SolutionDir) $(ProjectDir)\src\Ver.h $(ProjectDir)\src\Versions.h"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -278,6 +280,10 @@
 			</File>
 			<File
 				RelativePath=".\src\UtilsOgreDshow_private.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\Versions.h"
 				>
 			</File>
 		</Filter>

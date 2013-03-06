@@ -3,9 +3,8 @@
 #ifdef NDEBUG
 	#include "CrashRpt.h"
 	#include <tchar.h>
-	//#pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" )
-	#define VER_Crash _T("1.0a")
-	#define VER_Subject _T("ForgottenBattlefield 1.0a Error Report")
+	#pragma comment( linker, "/subsystem:\"windows\" /entry:\"mainCRTStartup\"" )
+	#include "Versions.h"
 #endif
 
 int main(int argc,char* argv[])
