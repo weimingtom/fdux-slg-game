@@ -21,7 +21,7 @@ function onaffect()
 		SquadLib.RemoveModifier(sid, mid);
 	end
 	local lv = SquadLib.GetSkillLevel(sid, "Prepare");
-	local ap = SquadLib.GetActionPoint(sid);
+	local ap = SquadLib.GetActionPoint(sid) / 2.0;
 	if ap > 1 + 2 * lv then
 		ap = 1 + 2 * lv;
 	end

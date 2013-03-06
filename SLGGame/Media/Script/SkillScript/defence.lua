@@ -15,7 +15,7 @@ function onaffect()
 	if mid ~= "" then
 		SquadLib.RemoveModifier(sid, mid);
 	end
-	local lv = SquadLib.GetEffectLevel(sid, eid);
+	local lv = SquadLib.GetSkillLevel(sid, "Defence");
 	local ap = SquadLib.GetActionPoint(sid);
 	local defence = lv + (ap - 2) / 2;
 	if defence > 2 + lv then

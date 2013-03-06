@@ -5,7 +5,7 @@ function useskill()
 	local alv, aid = SquadLib.GetEffectLevelByName(sid, "AtkImprove");
 	local atknum = 30 + atlv * 10;
 	local atk = SquadLib.GetActionPoint(sid) + 5;
-	atk  = atk + alv * 2;
+	atk  = atk + alv * 3;
 	
 	SquadLib.Animation(sid, 1, "Skill", "none", "mp_seal_05", 0, 1);
 	

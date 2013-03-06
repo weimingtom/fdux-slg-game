@@ -5,12 +5,12 @@ function useskill()
 	local atlv, atid = SquadLib.GetEffectLevelByName(caster, "AtkTimeImprove");
 	local alv, aid = SquadLib.GetEffectLevelByName(caster, "AtkImprove");
 	atknum = atknum + atlv * 6;
-	local atk  = 18 + alv * 4;
+	local atk  = 18 + alv * 3;
 	
 	local croodx, croody = SquadLib.GetSquadCoord(target);
 	local def = MapLib.GetGroundAttr(croodx, croody, 0);
 	if def > 0 then
-		atk = atk + def * ( 2 + 2 * alv);
+		atk = atk + def * ( 2 + 1 * alv);
 	end
 	
 	SquadLib.Animation(caster, 1, "Skill", "none", "mp_seal_05", 0, 1);

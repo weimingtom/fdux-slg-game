@@ -12,7 +12,7 @@ function useskill()
 		end
 		local squad2lost = squad2num - SquadLib.GetUnitNum(target);
 		local point = squad2lost + ScriptCommonLib.GetRand(0, 20);
-		if point > 10 then
+		if point > 15 then
 			SquadLib.ShowValue(target, "Skills_Chaos", 1.0, 1.0, 1.0);
 			SquadLib.ApplyEffect(target, "Chaos");
 			ep = ep + 20;
@@ -42,7 +42,7 @@ function onaffect()
 		SquadLib.RemoveModifier(sid, mid);
 	end
 	local lv = SquadLib.GetEffectLevel(sid, eid);
-	mid = SquadLib.ApplyModifier(sid, 1, -lv, -lv, -lv, 0.0, -1.0 - lv, -2.0 - lv, 0.0, 0.0, 0.0, -1.0 - lv);
+	mid = SquadLib.ApplyModifier(sid, 1, -lv, -lv, -lv, 0.0, -1.0 - lv, -1.0 - lv, 0.0, 0.0, 0.0, -1.0 - lv);
 	ScriptCommonLib.SetString("modifierid", mid);
 	
 	if tid == "" then
