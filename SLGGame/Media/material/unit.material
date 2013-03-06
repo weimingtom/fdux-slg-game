@@ -56,6 +56,11 @@ material HeavyCavalry : Skinned/CastShadow/OneTexture
     set_texture_alias Diffuse HeavyCavalry.dds
 }
 
+material DarkHeavyCavalry : Skinned/CastShadow/OneTexture
+{
+    set_texture_alias Diffuse DarkHeavyCavalry.tga
+}
+
 material HeavyCavalryHorse : Skinned/CastShadow/OneTexture
 {
     set_texture_alias Diffuse HeavyCavalryHorse.dds

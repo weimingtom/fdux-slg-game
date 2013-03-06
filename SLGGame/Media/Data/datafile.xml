@@ -211,12 +211,12 @@
 		<DarkKnight>
 			<Picture type="String" value="heiqishih.png"/>
 			<Mesh type="String" value="HeavyCavalry.mesh"/>
-			<Mat type="String" value="HeavyCavalry"/>
+			<Mat type="String" value="DarkHeavyCavalry"/>
 		</DarkKnight>
 		<Datura>
 			<Picture type="String" value="datenah.png"/>
 			<Mesh type="String" value="HeavyCavalry.mesh"/>
-			<Mat type="String" value="HeavyCavalry"/>
+			<Mat type="String" value="DarkHeavyCavalry"/>
 		</Datura>
 		<Syrin>
 			<Picture type="String" value="xiwenh.png"/>
@@ -1486,7 +1486,7 @@
 			<SkillPointPassive type="Int" value="0"/>
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="HeavyCavalry.mesh"/>
-			<UnitMat type="String" value="HeavyCavalry"/>
+			<UnitMat type="String" value="DarkHeavyCavalry"/>
 			<MoveSound type="String" value="HeavyCavalry.ogg"/>
 		</DarkKnight>
 		<Datura>
@@ -1522,7 +1522,7 @@
 			<SkillPointPassive type="Int" value="0"/>
 			<SkillPointEquip type="Int" value="0"/>
 			<UnitMesh type="String" value="HeavyCavalry.mesh"/>
-			<UnitMat type="String" value="HeavyCavalry"/>
+			<UnitMat type="String" value="DarkHeavyCavalry"/>
 			<MoveSound type="String" value="HeavyCavalry.ogg"/>
 		</Datura>
 		<Syrin>
