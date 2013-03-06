@@ -724,7 +724,7 @@
 		</UrgentOrder>
 		<Regroup>
 			<Name type="String" value="军号手"/>
-			<Describe type="String" value="嘹亮的号角声能让失落的部队重新感到希望。"/>		
+			<Describe type="String" value="来自友军嘹亮的号角声能让失落的部队重新感到希望。"/>		
 		</Regroup>
 		<Defence>
 			<Name type="String" value="防御大师"/>
@@ -834,7 +834,7 @@
 		</Chaos>
 		<LightningChain>
 			<Name type="String" value="闪电链"/>
-			<Describe type="String" value="消耗所有行动值，根据消耗掉的行动值对目标部队造成一次攻击次数等于它们人数的攻击。产生2层魔法疲劳"/>
+			<Describe type="String" value="消耗所有行动值，根据消耗掉的行动值对目标部队造成一次攻击次数等于它们人数的攻击。产生1层魔法疲劳"/>
 		</LightningChain>
 		<Fire>
 			<Name type="String" value="纵火"/>
@@ -906,7 +906,7 @@
 		</Zeal>
 		<Wind>
 			<Name type="String" value="唤风"/>
-			<Describe type="String" value="消耗所有行动值，对目标敌部队及周围的敌部队进行一次魔法攻击。产生1层魔法疲劳。"/>
+			<Describe type="String" value="消耗所有行动值，对目标敌部队及周围的敌部队进行一次魔法攻击。产生2层魔法疲劳。"/>
 		</Wind>
 		<Water>
 			<Name type="String" value="洪水"/>
@@ -980,7 +980,7 @@
 		</Suppressed>
 		<Faith>
 			<Name type="String" value="信念"/>
-			<Describe type="String" value="增加祷告恢复的圣灵守卫上限。"/>
+			<Describe type="String" value="增加每次祷告恢复的圣灵守卫上限。"/>
 		</Faith>
 		<StrengthenSprite>
 			<Name type="String" value="加强圣灵"/>
@@ -1056,7 +1056,7 @@
 		</AutoRepair>
 		<FuryPuppet>
 			<Name type="String" value="狂化傀儡"/>
-			<Describe type="String" value="攻击值增加2点，并获得践踏效果。"/>	
+			<Describe type="String" value="攻击值增加4点，并获得践踏效果。"/>	
 		</FuryPuppet>
 		<Blind>
 			<Name type="String" value="被致盲"/>

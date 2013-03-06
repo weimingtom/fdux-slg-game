@@ -4147,7 +4147,7 @@
 			<Area type="Int" value="1"/>
 			<APType type="Int" value="1"/>
 			<APCost type="float" value="4.0"/>
-			<CoolDown type="Int" value="1"/>
+			<CoolDown type="Int" value="2"/>
 			<Icon type="String" value="skill_act1_check"/>
 			<Script type="String" value="Chaos.lua"/>
 			<SkillRole type="Int" value="4"/>
@@ -4290,7 +4290,7 @@
 			<MinRange type="Int" value="1"/>
 			<Area type="Int" value="1"/>
 			<APType type="Int" value="1"/>
-			<APCost type="float" value="4.0"/>
+			<APCost type="float" value="5.0"/>
 			<CoolDown type="Int" value="3"/>
 			<Icon type="String" value="skill_act1_strike"/>
 			<Script type="String" value="JointAttack.lua"/>
@@ -4995,7 +4995,7 @@
 			<Script type="String" value="CampArea.lua"/>
 			<GroundModifier>
 				<Passable type="Int" value="1"/>
-				<Covert type="Float" value="1.0"/>
+				<Covert type="Float" value="2.0"/>
 				<Defence type="Float" value="3.0"/>
 				<CavAp type="Float" value="1.0"/>
 				<InfAp type="Float" value="0.0"/>
@@ -5005,7 +5005,7 @@
 			<Script type="String" value="CampArea.lua"/>
 			<GroundModifier>
 				<Passable type="Int" value="1"/>
-				<Covert type="Float" value="1.0"/>
+				<Covert type="Float" value="2.0"/>
 				<Defence type="Float" value="4.0"/>
 				<CavAp type="Float" value="1.0"/>
 				<InfAp type="Float" value="0.0"/>
@@ -5025,7 +5025,7 @@
 			<Script type="String" value="none"/>
 			<GroundModifier>
 				<Passable type="Int" value="1"/>
-				<Covert type="Float" value="2.0"/>
+				<Covert type="Float" value="3.0"/>
 				<Defence type="Float" value="2.0"/>
 				<CavAp type="Float" value="1.0"/>
 				<InfAp type="Float" value="1.0"/>
@@ -5055,7 +5055,7 @@
 			<Script type="String" value="none"/>
 			<GroundModifier>
 				<Passable type="Int" value="1"/>
-				<Covert type="Float" value="1.0"/>
+				<Covert type="Float" value="2.0"/>
 				<Defence type="Float" value="4.0"/>
 				<CavAp type="Float" value="0.0"/>
 				<InfAp type="Float" value="0.0"/>
