@@ -109,8 +109,8 @@ function turnstart()
 		MapLib.MoveCameraTo( 14, 3);
 		AVGLib.SetCanSupply("Fay",1);
 		if BattleLib.AddStorySquad("Fay", "Fay", 14, 3, 0) == 0 then
-            BattleLib.AddStorySquad("Fay", "Fay", 15, 4, 0)
-            MapLib.MoveCameraTo( 15, 4);
+            BattleLib.AddStorySquad("Fay", "Fay", 15, 5, 0)
+            MapLib.MoveCameraTo( 15, 5);
         else
             MapLib.MoveCameraTo( 14, 3);
         end
