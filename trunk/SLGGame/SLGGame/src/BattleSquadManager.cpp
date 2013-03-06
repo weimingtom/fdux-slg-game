@@ -188,6 +188,8 @@ void BattleSquadManager::turnEnd(int team)
 				{
 					if(veiwbyfaction[ite1->second->getFaction()])
 						continue;
+					if(!ite->second->getViewByFaction(ite1->second->getFaction()))
+						continue;
 
 					int range = GetDistance(x, y, ite1->second->getGridX(), ite1->second->getGridY());
 					int ditectrange = (int)ite1->second->getAttr(ATTR_DETECTION,ATTRCALC_FULL) + 2;
@@ -197,20 +199,20 @@ void BattleSquadManager::turnEnd(int team)
 						veiwbyfaction[ite1->second->getFaction()] = true;
 					}
 				}
-				if(veiwbyfaction[0] == false)
+				if(veiwbyfaction[0] == false && ite->second->getViewbyPlayer() == 1)
 				{
 					ite->second->setViewbyPlayer(0);
 					CutSceneBuilder::getSingleton().addCutScene(new SquadStateCutScene(ite->second,SQUAD_STATE_VISIBLE,"none",0));
 				}
-				if(veiwbyfaction[1] == false)
+				if(veiwbyfaction[1] == false && ite->second->getViewbyEnemy1() == 1)
 				{
 					ite->second->setViewbyEnemy1(0);
 				}
-				if(veiwbyfaction[2] == false)
+				if(veiwbyfaction[2] == false && ite->second->getViewbyEnemy2() == 1 )
 				{
 					ite->second->setViewbyEnemy2(0);
 				}
-				if(veiwbyfaction[3] == false)
+				if(veiwbyfaction[3] == false&& ite->second->getViewbyEnemy3() == 1)
 				{
 					ite->second->setViewbyEnemy3(0);
 				}
