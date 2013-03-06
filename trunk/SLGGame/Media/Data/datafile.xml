@@ -1707,7 +1707,7 @@
 				<Initiative type="Float" value="5.0" />
 				<ActionPoint type="Float" value="8.0" />
 				<Detection type="Float" value="4.0" />
-				<Covert type="Float" value="3.0" />
+				<Covert type="Float" value="2.0" />
 				<Toughness type="Float" value="3.0" />
 				<Conter type="Float" value="3.0" />
 			</AttrModifer>
