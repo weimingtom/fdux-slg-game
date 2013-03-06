@@ -37,7 +37,6 @@ function finishdeploy()
 	BattleLib.AssignAIGroup(2, "Team2Squad_2", "DuxRaider");
 	BattleLib.AssignAIGroup(2, "Team2Squad_3", "DuxRaider");
 	BattleLib.AssignAIGroup(2, "Team2Squad_4", "DuxRaider");
-	BattleLib.AssignAIGroup(2, "Team2Squad_5", "DuxRaider");
 	--创建AI任务(team,missionname,missiontype,missiontargetarea)
 	BattleLib.CreateAIMission(2, "DefendCamp", 0, "CampArea");
 	--指派AI分组任务(team,groupname,missionname)
@@ -59,7 +58,7 @@ end
 function unitdead()
 	local squad = ScriptCommonLib.GetTempString("squadid");
 	
-	if squad == "Cheetah" or squad == "Dandelion" then
+	if BattleLib.TeamSquadLeft(1) == 0 then
 		--失败(storyscript,gold,exp)
 		BattleLib.Lost("GameOver.lua","0");
 	end

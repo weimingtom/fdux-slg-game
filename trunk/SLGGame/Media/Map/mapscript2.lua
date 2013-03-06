@@ -67,7 +67,7 @@ end
 function unitdead()
 	local squad = ScriptCommonLib.GetTempString("squadid");
 	
-	if squad == "Cheetah" or squad == "Dandelion" or squad == "Cossa" then
+	if BattleLib.TeamSquadLeft(1) == 0 then
 		--Ê§°Ü(storyscript,gold,exp)
 		BattleLib.Lost("GameOver.lua","0");
 	end
