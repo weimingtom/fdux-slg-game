@@ -10,7 +10,7 @@
 #include <boost/format.hpp>
 #include <ticpp.h>
 
-#include <Shiny.h>
+//#include <Shiny.h>
 
 MapDataManager::MapDataManager()
 {
@@ -61,7 +61,7 @@ void MapDataManager::getCrood(int gridid, int &x, int &y)
 
 bool MapDataManager::getPassable(int x, int y, int faction)
 {
-	PROFILE_FUNC();
+	//PROFILE_FUNC();
 	if(x < 0 || x >= mMapSize || y < 0 || y >= mMapSize)
 		return false;
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();

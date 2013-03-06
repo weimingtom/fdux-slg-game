@@ -41,7 +41,7 @@
 
 #include "resource.h"
 #include <windows.h>
-#include <Shiny.h>
+//#include <Shiny.h>
 
 #include "Versions.h"
 

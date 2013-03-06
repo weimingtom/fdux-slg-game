@@ -40,7 +40,7 @@
 #include "GUITargetWindow.h"
 #include "GUISquadWindows.h"
 
-#include <Shiny.h>
+//#include <Shiny.h>
 
 BattleSquadManager::BattleSquadManager()
 {
@@ -223,7 +223,7 @@ void BattleSquadManager::turnEnd(int team)
 
 std::map<int, BattleSquadManager::MoveNode> BattleSquadManager::getMoveArea(BattleSquad* squad)
 {
-	PROFILE_FUNC();
+	//PROFILE_FUNC();
 	MapDataManager* mapdatamanager = MapDataManager::getSingletonPtr();
 	std::map<int, MoveNode> movrarea;
 	std::vector<int> idlist; 
@@ -240,7 +240,7 @@ std::map<int, BattleSquadManager::MoveNode> BattleSquadManager::getMoveArea(Batt
 	unsigned int idnum = 0;
 	while(idnum < idlist.size())
 	{
-		PROFILE_BLOCK(w);
+		//PROFILE_BLOCK(w);
 		std::map<int, MoveNode>::iterator ite = movrarea.find(idlist[idnum]);
 		int x[4] = {ite->second.x - 1, ite->second.x + 1, ite->second.x, ite->second.x};
 		int y[4] = {ite->second.y, ite->second.y, ite->second.y - 1, ite->second.y + 1};
@@ -276,7 +276,7 @@ std::map<int, BattleSquadManager::MoveNode> BattleSquadManager::getMoveArea(Batt
 		}
 		idnum++;
 	}
-	PROFILER_UPDATE();
+	//PROFILER_UPDATE();
 	return movrarea;
 }
 

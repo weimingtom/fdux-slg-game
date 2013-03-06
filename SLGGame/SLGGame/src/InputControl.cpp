@@ -8,7 +8,7 @@
 #include "Core.h"
 
 #include <iostream>
-#include <Shiny.h>
+//#include <Shiny.h>
 
 InputControl::InputControl(void)
 {
@@ -27,18 +27,18 @@ bool InputControl::keyPressed( const OIS::KeyEvent &arg )
 		if (Core::getSingletonPtr()->mDebugOverlay->isVisible())
 		{
 			Core::getSingletonPtr()->mDebugOverlay->hide();
-			GUIDebugWindow* debug=(GUIDebugWindow*)GUISystem::getSingletonPtr()->getScene(DebugWindowsScene);
-			debug->hideScene();
-			GUISystem::getSingletonPtr()->destoryScene(DebugWindowsScene);
+		//	GUIDebugWindow* debug=(GUIDebugWindow*)GUISystem::getSingletonPtr()->getScene(DebugWindowsScene);
+		//	debug->hideScene();
+		//	GUISystem::getSingletonPtr()->destoryScene(DebugWindowsScene);
 		}
 		else
 		{
 			Core::getSingletonPtr()->mDebugOverlay->show();
-			GUIDebugWindow* debug=(GUIDebugWindow*)GUISystem::getSingletonPtr()->createScene(DebugWindowsScene);
-			debug->showScene("");
+		//	GUIDebugWindow* debug=(GUIDebugWindow*)GUISystem::getSingletonPtr()->createScene(DebugWindowsScene);
+		//	debug->showScene("");
 		}
 
-		PROFILER_OUTPUT();
+		//PROFILER_OUTPUT();
 	}
 
 	if (!mGUISystem->keyPressed(arg))
