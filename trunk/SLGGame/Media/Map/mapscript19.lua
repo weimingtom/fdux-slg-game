@@ -133,10 +133,10 @@ function inarea()
 	local faction = SquadLib.GetFaction(squad);
 	
 	if faction == 0 and area == "TargetArea" then
-		BattleLib.AddGold(7500);
+		BattleLib.AddGold(9000);
 		BattleLib.DumpSquadData();
 		local addedgold = ScriptCommonLib.GetInt("addedgold");
-		addedgold = addedgold + 7500;
+		addedgold = addedgold + 9000;
 		local mission1state = ScriptCommonLib.GetInt("mission1state");
 		if mission1state == 1 then
 			BattleLib.AddGold(4800);

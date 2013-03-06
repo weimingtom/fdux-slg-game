@@ -109,10 +109,10 @@ function turnend()
 	
 	if team == 1 and win == 2 then
 		BattleLib.Story("cp24_5.lua");
-		BattleLib.AddGold(4000);
+		BattleLib.AddGold(4800);
 		BattleLib.DumpSquadData();
 		local addedgold = ScriptCommonLib.GetInt("addedgold");
-		addedgold = addedgold + 4000;
+		addedgold = addedgold + 4800;
 		local mission1state = ScriptCommonLib.GetInt("mission1state");
 		if mission1state == 1 then
 			BattleLib.AddGold(2400);

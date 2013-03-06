@@ -154,11 +154,11 @@ function turnend()
 			BattleLib.AddBattleSquad("WinfredLightBow", "Team3Squad_10", 0, 4, 3, 50);
 			BattleLib.AddBattleSquad("WinfredLightBow", "Team3Squad_11", 0, 7, 3, 50);
 			BattleLib.Story("cp30_5.lua");
-			BattleLib.AddGold(5400);
+			BattleLib.AddGold(6200);
 			BattleLib.DumpSquadData();
 			local addedgold = ScriptCommonLib.GetInt("addedgold");
 			addedgold = ScriptCommonLib.GetInt("addedgold");
-			addedgold = addedgold + 5400;
+			addedgold = addedgold + 6200;
 			if mission1state == 1 then
 				BattleLib.AddGold(3200);
 				addedgold = addedgold + 3200;
@@ -183,10 +183,10 @@ function inarea()
 	local mission1state = ScriptCommonLib.GetInt("mission1state");
 	
 	if faction == 0 and area == "TargetArea" and mission1state == 0 then
-		BattleLib.AddGold(5400);
+		BattleLib.AddGold(6200);
 		BattleLib.DumpSquadData();
 		local addedgold = ScriptCommonLib.GetInt("addedgold");
-		addedgold = addedgold + 5400;
+		addedgold = addedgold + 6200;
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		--Ê¤Àû(storyscript,gold,exp)
 		BattleLib.Win("cp31.lua",  addedgold);

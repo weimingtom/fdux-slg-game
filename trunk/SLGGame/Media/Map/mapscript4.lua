@@ -70,10 +70,10 @@ function unitdead()
 		addedgold = addedgold + 120;
 		ScriptCommonLib.SetInt("addedgold", addedgold);
 		if BattleLib.TeamSquadLeft(2) == 0 then
-			BattleLib.AddGold(1850);
+			BattleLib.AddGold(2150);
 			BattleLib.DumpSquadData();
 			addedgold = ScriptCommonLib.GetInt("addedgold");
-			addedgold = addedgold + 1850;
+			addedgold = addedgold + 2150;
 			local mission1state = ScriptCommonLib.GetInt("mission1state");
 			local mission2state = ScriptCommonLib.GetInt("mission2state");
 			if mission1state == 1 then

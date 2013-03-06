@@ -101,10 +101,10 @@ function turnend()
 	local team = ScriptCommonLib.GetTempInt("team");
 	if team == 1 and turn == 6 then
 		BattleLib.Story("cp36_5.lua");
-		BattleLib.AddGold(7000);
+		BattleLib.AddGold(8000);
 		BattleLib.DumpSquadData();
 		local addedgold = ScriptCommonLib.GetInt("addedgold");
-		addedgold = addedgold + 7000;
+		addedgold = addedgold + 8000;
 		local mission1state = ScriptCommonLib.GetInt("mission1state");
 		if mission1state == 1 then
 				BattleLib.AddGold(4300);

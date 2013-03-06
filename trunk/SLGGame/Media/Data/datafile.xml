@@ -3488,8 +3488,8 @@
 		</BattlePuppet>
 		<Saint>
 			<Type type="Int" value="0"/>
-			<Value type="Int" value="800"/>
-			<Wage type="Int" value="500"/>
+			<Value type="Int" value="700"/>
+			<Wage type="Int" value="300"/>
 			<Skill type="String" value="LifeGuard1"/>
 			<SkillType type="Int" value="0"/>
 			<Picture type="String" value="qingbuh.png"/>
@@ -3509,7 +3509,7 @@
 		<UrgentOrder>
 			<Type type="Int" value="0"/>
 			<Value type="Int" value="700"/>
-			<Wage type="Int" value="300"/>
+			<Wage type="Int" value="250"/>
 			<Skill type="String" value="UrgentOrder"/>
 			<SkillType type="Int" value="1"/>
 			<Picture type="String" value="qingbuh.png"/>
@@ -3518,8 +3518,8 @@
 		</UrgentOrder>
 		<Regroup>
 			<Type type="Int" value="0"/>
-			<Value type="Int" value="2000"/>
-			<Wage type="Int" value="1000"/>
+			<Value type="Int" value="1000"/>
+			<Wage type="Int" value="400"/>
 			<Skill type="String" value="Regroup"/>
 			<SkillType type="Int" value="1"/>
 			<Picture type="String" value="qingbuh.png"/>
@@ -3528,8 +3528,8 @@
 		</Regroup>
 		<Defence>
 			<Type type="Int" value="0"/>
-			<Value type="Int" value="2000"/>
-			<Wage type="Int" value="1000"/>
+			<Value type="Int" value="1000"/>
+			<Wage type="Int" value="400"/>
 			<Skill type="String" value="Defence"/>
 			<SkillType type="Int" value="1"/>
 			<Picture type="String" value="qingbuh.png"/>
@@ -3538,8 +3538,8 @@
 		</Defence>
 		<BreakFortification>
 			<Type type="Int" value="0"/>
-			<Value type="Int" value="2000"/>
-			<Wage type="Int" value="1000"/>
+			<Value type="Int" value="1000"/>
+			<Wage type="Int" value="400"/>
 			<Skill type="String" value="BreakFortification"/>
 			<SkillType type="Int" value="0"/>
 			<Picture type="String" value="qingbuh.png"/>
@@ -4117,9 +4117,9 @@
 			<SkillRole type="Int" value="515"/>
 		</EnchantArmor>
 		<FuryPuppet>
+			<MinRange type="Int" value="0"/>
 			<Type type="Int" value="0"/>
 			<MaxRange type="Int" value="0"/>
-			<MinRange type="Int" value="0"/>
 			<Area type="Int" value="1"/>
 			<APType type="Int" value="0"/>
 			<APCost type="float" value="0.0"/>
