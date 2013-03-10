@@ -8,7 +8,7 @@
 #include "Core.h"
 
 #include <iostream>
-//#include <Shiny.h>
+#include "DataLibrary.h"
 
 InputControl::InputControl(void)
 {
@@ -26,16 +26,24 @@ bool InputControl::keyPressed( const OIS::KeyEvent &arg )
 	{
 		if (Core::getSingletonPtr()->mDebugOverlay->isVisible())
 		{
+			int i=0;
+			if(DataLibrary::getSingletonPtr()->getData("SystemConfig/DebugMode",i))
+			{
+				GUIDebugWindow* debug=(GUIDebugWindow*)GUISystem::getSingletonPtr()->getScene(DebugWindowsScene);
+				debug->hideScene();
+				GUISystem::getSingletonPtr()->destoryScene(DebugWindowsScene);
+			}
 			Core::getSingletonPtr()->mDebugOverlay->hide();
-		//	GUIDebugWindow* debug=(GUIDebugWindow*)GUISystem::getSingletonPtr()->getScene(DebugWindowsScene);
-		//	debug->hideScene();
-		//	GUISystem::getSingletonPtr()->destoryScene(DebugWindowsScene);
 		}
 		else
 		{
+			int i=0;
+			if(DataLibrary::getSingletonPtr()->getData("SystemConfig/DebugMode",i))
+			{
+				GUIDebugWindow* debug=(GUIDebugWindow*)GUISystem::getSingletonPtr()->createScene(DebugWindowsScene);
+				debug->showScene("");
+			}
 			Core::getSingletonPtr()->mDebugOverlay->show();
-		//	GUIDebugWindow* debug=(GUIDebugWindow*)GUISystem::getSingletonPtr()->createScene(DebugWindowsScene);
-		//	debug->showScene("");
 		}
 
 		//PROFILER_OUTPUT();
