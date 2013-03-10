@@ -1,10 +1,10 @@
 ; 脚本由 Inno Setup 脚本向导 生成！
 ; 有关创建 Inno Setup 脚本文件的详细资料请查阅帮助文档！
 
-#define MyAppName "忘却的战场-测试版"
-#define MyAppVersion "1.5"
+#define MyAppName "忘却的战场-翼骑团"
+#define MyAppVersion "609"
 #define MyAppPublisher "幻爵工作室"
-#define MyAppURL "http://fdux.xoom.it/"
+#define MyAppURL "http://fdux.sinaapp.com/"
 #define MyAppExeName "ForgottenBattlefield.exe"
 
 [Setup]
@@ -25,7 +25,7 @@ OutputDir=F:\C++\SLGGame\Deploy
 OutputBaseFilename=setup
 Compression=lzma/Max
 SolidCompression=true
-WizardImageFile=F:\C++\SLGGame\Deploy\Title.png
+WizardImageFile=F:\C++\SLGGame\Deploy\Title.bmp
 AppVerName=v1.0
 
 [Languages]
@@ -35,14 +35,14 @@ Name: "chinesesimp"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
-Source: "F:\C++\SLGGame\Demo\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "F:\C++\SLGGame\Deploy\CD11\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; 注意: 不要在任何共享系统文件上使用“Flags: ignoreversion”
 
 [Icons]
 Name: {group}\{#MyAppName}启动器; Filename: {app}\Release\Launcher.exe; WorkingDir: {app}\Release; 
 Name: {group}\{#MyAppName}; Filename: {app}\Release\{#MyAppExeName}; WorkingDir: {app}\Release; 
 Name: {group}\{#MyAppName}(全屏模式); Filename: "{app}\Release\{#MyAppExeName}";Parameters:"-FullScene"; WorkingDir: {app}\Release;
-Name: {group}\ReadMe; Filename: {app}\readme不看木小JJ.txt; WorkingDir: {app}\; 
+Name: {group}\ReadMe; Filename: {app}\readme不读木有小JJ.txt; WorkingDir: {app}\; 
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
 Name: {userdesktop}\{#MyAppName}; Filename: {app}\Release\Launcher.exe; WorkingDir: {app}\Release; 
 

@@ -899,6 +899,8 @@ void GUISupply::onSoilder(MyGUI::Widget* _sender)
 	if(m_CurrSquadIndex!=-1)
 	{
 		Squad* army=mBattleSquad.at(m_CurrSquadIndex);
+		if(army->getType()==1)
+			return ;
 		if(army->getUnitNum()!=50)
 		{
 			std::string tempstr = army->getSoilderId();
