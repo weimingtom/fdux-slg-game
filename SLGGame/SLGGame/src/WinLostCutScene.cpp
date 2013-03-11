@@ -20,6 +20,9 @@ void WinLostCutScene::startCutScence()
 		GameOver->showScene("win");
 	else
 		GameOver->showScene("lost");
+
+	if(mNextScene)
+		mNextScene->skipall();
 }
 
 bool WinLostCutScene::endCutScene()
