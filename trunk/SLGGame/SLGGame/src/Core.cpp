@@ -186,6 +186,11 @@ bool Core::initialize(bool isFullScene)
 bool Core::testHardwareSupport()
 {
 	const Ogre::RenderSystemCapabilities* caps=mRoot->getRenderSystem()->getCapabilities();
+
+	Ogre::GPUVendor vendor=caps->getVendor();
+	if(vendor==Ogre::GPU_INTEL)
+		MessageBoxA(NULL, StringTable::getSingleton().getAnsiString("InterGPUWarning").c_str(),StringTable::getSingleton().getAnsiString("gamename").c_str(), MB_OK | MB_ICONWARNING | MB_TASKMODAL);
+
 	if (!caps->hasCapability(Ogre::RSC_VERTEX_PROGRAM) || !caps->hasCapability(Ogre::RSC_FRAGMENT_PROGRAM))
 	{
 		MessageBoxA(NULL, StringTable::getSingleton().getAnsiString("NotSupportGPUPrograms").c_str(),StringTable::getSingleton().getAnsiString("gamename").c_str(), MB_OK | MB_ICONERROR | MB_TASKMODAL);
