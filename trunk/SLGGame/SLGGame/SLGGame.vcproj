@@ -64,7 +64,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="irrKlang.lib ticppd.lib OgreMain_d.lib OIS_d.lib SubSystem.lib MyGUI.OgrePlatform_d.lib MyGUIEngine_d.lib lua51.lib ParticleUniverse_d.lib strmiids.lib ShinyDebug.lib CrashRpt1401.lib"
+				AdditionalDependencies="irrKlang.lib OgreMain_d.lib OIS_d.lib SubSystem.lib MyGUI.OgrePlatform_d.lib MyGUIEngine_d.lib lua51.lib ParticleUniverse_d.lib strmiids.lib ShinyDebug.lib CrashRpt1401.lib"
 				OutputFile="$(OutDir)\ForgottenBattlefield.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\..\CrashRpt\lib;&quot;..\..\irrKlang-1.4.0\lib\Win32-visualStudio&quot;;&quot;$(OGRE_HOME)\lib\debug\&quot;;&quot;$(OGRE_HOME)\boost_1_44\lib&quot;;..\debug;&quot;..\..\lua-5.1.4\bin&quot;;..\..\MyGUI3.2\lib\Debug;..\..\ticpp\lib;&quot;..\..\Particle Universe\Particle Universe Plugin\VCBuild\lib\Debug&quot;;&quot;$(DXSDK_DIR)\Lib\x86&quot;;..\Shiny\lib"
@@ -143,7 +143,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="irrKlang.lib ticpp.lib OgreMain.lib OIS.lib SubSystem.lib MyGUI.OgrePlatform.lib MyGUIEngine.lib lua51.lib ParticleUniverse.lib CrashRpt1401.lib strmiids.lib Shiny.lib"
+				AdditionalDependencies="irrKlang.lib OgreMain.lib OIS.lib SubSystem.lib MyGUI.OgrePlatform.lib MyGUIEngine.lib lua51.lib ParticleUniverse.lib CrashRpt1401.lib strmiids.lib Shiny.lib"
 				OutputFile="$(OutDir)\ForgottenBattlefield.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;..\..\irrKlang-1.4.0\lib\Win32-visualStudio&quot;;..\..\CrashRpt\lib;&quot;$(OGRE_HOME)\lib\release\&quot;;&quot;$(OGRE_HOME)\boost_1_44\lib&quot;;..\release;&quot;..\..\lua-5.1.4\bin&quot;;..\..\MyGUI3.2\lib\Release;..\..\ticpp\lib;&quot;..\..\Particle Universe\Particle Universe Plugin\VCBuild\lib\Release&quot;;&quot;$(DXSDK_DIR)\Lib\x86&quot;;..\Shiny\lib"
