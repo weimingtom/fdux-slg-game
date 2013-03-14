@@ -5,7 +5,7 @@ class Versions(models.Model):
     createTime = models.DateTimeField()
     size = models.IntegerField()
     content = models.CharField(max_length=100)
-    objectName = models.CharField(max_length=100)
+    objectName = models.CharField(max_length=300)
 
 class DownloadLog(models.Model):
     GUID = models.CharField(max_length=200)

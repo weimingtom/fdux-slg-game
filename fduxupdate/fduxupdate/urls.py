@@ -16,5 +16,6 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
     
-    url(r'^fduxupdate/$', views.getVersions),
+    url(r'^fduxupdate/getVersions/$', views.getVersions),
+    url(r'^fduxupdate/download/$', views.download),
 )
