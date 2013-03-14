@@ -10,7 +10,6 @@ Launcher::Launcher(QWidget *parent, Qt::WFlags flags)
 	bgimage.load("menubg.png");
 	this->connect(ui.commandLinkButton,SIGNAL(clicked(bool)),this,SLOT(windowRunGame()));
 	this->connect(ui.commandLinkButton_2,SIGNAL(clicked(bool)),this,SLOT(fullSceneRunGame()));
-	this->connect(ui.commandLinkButton_3,SIGNAL(clicked(bool)),this,SLOT(gameManual()));
 	this->connect(ui.commandLinkButton_4,SIGNAL(clicked(bool)),this,SLOT(readMe()));
 	this->connect(ui.commandLinkButton_5,SIGNAL(clicked(bool)),this,SLOT(setupDirectx()));
 	this->connect(ui.commandLinkButton_6,SIGNAL(clicked(bool)),this,SLOT(visitWebSite()));
@@ -59,12 +58,12 @@ void Launcher::fullSceneRunGame()
 
 void Launcher::gameManual()
 {
-	ShellExecute(NULL,NULL,L"..\\游戏手册.doc",NULL,NULL,SW_SHOWNORMAL);
+	
 }
 
 void Launcher::readMe()
 {
-	ShellExecute(NULL,NULL,L"..\\readme不看木小JJ.txt",NULL,NULL,SW_SHOWNORMAL);
+	ShellExecute(NULL,NULL,L"..\\readme不读木有小JJ.txt",NULL,NULL,SW_SHOWNORMAL);
 }
 
 void Launcher::setupDirectx()

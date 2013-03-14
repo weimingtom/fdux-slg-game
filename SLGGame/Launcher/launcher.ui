@@ -109,20 +109,6 @@
       </widget>
      </item>
      <item>
-      <widget class="QCommandLinkButton" name="commandLinkButton_3">
-       <property name="styleSheet">
-        <string notr="true">QCommandLinkButton{
-	font: 75 12pt &quot;微软雅黑&quot;;
-	
-	color: rgb(0, 0, 0);
-}</string>
-       </property>
-       <property name="text">
-        <string>游戏手册</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QCommandLinkButton" name="commandLinkButton_4">
        <property name="styleSheet">
         <string notr="true">QCommandLinkButton{
