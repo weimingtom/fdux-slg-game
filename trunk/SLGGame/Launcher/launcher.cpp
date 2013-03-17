@@ -3,6 +3,7 @@
 #include <windows.h>
 
 #include <QDomDocument>
+#include <QSettings>
 Launcher::Launcher(QWidget *parent, Qt::WFlags flags)
 	: QMainWindow(parent, flags)
 {
