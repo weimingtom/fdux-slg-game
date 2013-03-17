@@ -101,6 +101,7 @@ void BattlePlayerState::reactiveState()
 		mGUISquad->setSquad(mSelectSquad);
 		mGUICommand->setSquad(mSelectSquad);
 		setSelectPlanePosition();
+		mGUIState->setAllowNextTurn(true);
 		break;
 	case PLAYERCONTROL_CHOOSETARGET:
 		mGUISquad->setSquad(mSelectSquad);
@@ -114,6 +115,11 @@ void BattlePlayerState::reactiveState()
 	}
 }
 
+void BattlePlayerState::backFromMenu()
+{
+	mControlState = PLAYERCONTROL_NONE;
+}
+
 bool BattlePlayerState::keyPressed(const OIS::KeyEvent &arg)
 {
 	if (arg.key==OIS::KC_ESCAPE )
@@ -122,7 +128,8 @@ bool BattlePlayerState::keyPressed(const OIS::KeyEvent &arg)
 		{
 		case PLAYERCONTROL_NONE:
 			mGUIMenu->setAllowSave(true);
-			mGUIMenu->showScene("");
+			mGUIMenu->setNotifyState(this);
+			mGUIMenu->showScene("PlayerState");
 			mControlState = PLAYERCONTROL_MENU;
 			break;
 		case PLAYERCONTROL_CHOOSESKILL:
@@ -371,6 +378,7 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 						mTargetAreaGrap = NULL;
 					}
 					hideSelectPlane();
+					mGUIState->setAllowNextTurn(false);
 					mControlState = PLAYERCONTROL_CHOOSESKILL;
 				}
 			}

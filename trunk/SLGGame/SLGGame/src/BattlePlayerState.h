@@ -40,6 +40,8 @@ public:
 	Ogre::SceneNode* planeNode;
 
 	void useSkill(std::string skillid);
+
+	void backFromMenu();
 private:
 	GUIBattle* mGUIBattle;
 	GUIGameStateWindows* mGUIState;

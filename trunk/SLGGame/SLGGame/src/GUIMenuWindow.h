@@ -1,6 +1,8 @@
 #pragma once
 #include "guiscene.h"
 
+class BattlePlayerState;
+
 class GUIMenuWindow :
 	public GUIScene
 {
@@ -22,6 +24,8 @@ public:
 
 	bool getVisible();
 
+	void setNotifyState(BattlePlayerState* state){mPlayerState=state;}
+
 	void onOtherSceneNotify(std::string arg);
 
 private:
@@ -38,6 +42,9 @@ private:
 	MyGUI::Button* mLoadButton;
 	MyGUI::Button* mOptionButton;
 	MyGUI::Button* mExitButton;
+
+	BattlePlayerState* mPlayerState;
+	bool mNeedNotify;
 
 };
 
