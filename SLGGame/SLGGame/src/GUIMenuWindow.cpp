@@ -7,6 +7,8 @@
 #include "GUISLWindow.h"
 #include "GUIOptionWindow.h"
 
+#include "BattlePlayerState.h"
+
 GUIMenuWindow::GUIMenuWindow(int Width,int Height):GUIScene("SystemMenu.layout",Width,Height)
 {
 	assignWidget(mWindow,"BlackGround");
@@ -27,6 +29,8 @@ GUIMenuWindow::GUIMenuWindow(int Width,int Height):GUIScene("SystemMenu.layout",
 	mLoadButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenuWindow::onLoad);
 	mOptionButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenuWindow::onOption);
 	mExitButton->eventMouseButtonClick+= MyGUI::newDelegate(this, &GUIMenuWindow::onExit);
+
+	mNeedNotify=false;
 }
 
 GUIMenuWindow::~GUIMenuWindow(void)
@@ -35,6 +39,11 @@ GUIMenuWindow::~GUIMenuWindow(void)
 
 void GUIMenuWindow::showScene( std::string arg )
 {
+	if (arg=="PlayerState")
+	{
+		mNeedNotify=true;
+	}
+
 	mWindow->setVisible(true);
 }
 
@@ -55,6 +64,11 @@ void GUIMenuWindow::FrameEvent()
 
 void GUIMenuWindow::onRestart( MyGUI::Widget* _sender )
 {
+	if (mNeedNotify)
+	{
+		mPlayerState->backFromMenu();
+	}
+
 	hideScene();
 }
 
