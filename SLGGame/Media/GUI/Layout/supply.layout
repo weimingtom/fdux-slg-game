@@ -413,6 +413,7 @@
                 <Property key="ImageResource" value="eqp"/>
                 <Property key="ImageGroup" value="eqp_soldier"/>
                 <Property key="TextAlign" value="Center"/>
+                <Property key="ModeImage" value="true"/>
             </Widget>
             <Widget type="TextBox" skin="TextBox" position="580 20 135 45" name="TEXT_SoldierSupply">
                 <Property key="FontName" value="fireflysung"/>

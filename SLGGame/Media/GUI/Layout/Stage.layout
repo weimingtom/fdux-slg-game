@@ -108,8 +108,9 @@
         <Property key="ReadOnly" value="true"/>
         <Property key="Static" value="true"/>
         <Property key="VisibleHScroll" value="false"/>
+        <Property key="MaxTextLength" value="100000"/>
     </Widget>
-    <Widget type="ImageBox" skin="ImageBox" position="1230 5 32 32" layer="Middle" name="HistoryBoxExit">
+    <Widget type="ImageBox" skin="ImageBox" position="1215 5 47 45" layer="Middle" name="HistoryBoxExit">
         <Property key="ImageGroup" value="Button"/>
         <Property key="ImageName" value="normal"/>
         <Property key="ImageResource" value="34"/>

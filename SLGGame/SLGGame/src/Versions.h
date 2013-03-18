@@ -1,3 +1,3 @@
-#define VER_Crash _T("Build618")
-#define VER_Subject _T("ForgottenBattlefield Build618 Error Report")
-#define VER "Build:618 "
+#define VER_Crash _T("Build619")
+#define VER_Subject _T("ForgottenBattlefield Build619 Error Report")
+#define VER "Build:619 "

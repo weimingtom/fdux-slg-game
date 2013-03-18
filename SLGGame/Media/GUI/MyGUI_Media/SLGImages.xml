@@ -1037,6 +1037,14 @@
             <Index name="normal">
                 <Frame point="0 0"/>
             </Index>
+            
+            <Index name="highlighted">
+				<Frame point="45 0"/>
+			</Index>
+			
+			<Index name="pushed">
+				<Frame point="45 0"/>
+			</Index>
         </Group>
 
 
