@@ -10,6 +10,8 @@ GUISquadBillBoard::GUISquadBillBoard(Ogre::SceneNode* node):GUIBillBoard("SquadB
 	assignWidget(mBIcon,"BIcon");
 	assignWidget(mP1,"P1");
 	assignWidget(mP2,"P2");
+	assignWidget(mP1P,"P1P");
+	assignWidget(mP2P,"P2P");
 }
 
 GUISquadBillBoard::~GUISquadBillBoard(void)
@@ -80,10 +82,12 @@ void GUISquadBillBoard::setVisible( bool v )
 	mIsVisible=v;
 }
 
-void GUISquadBillBoard::setName( std::string name,MyGUI::Colour c)
+void GUISquadBillBoard::setName( std::string name,MyGUI::Colour c,std::string p1,std::string p2)
 {
 	mBName->setCaption(name);
 	mBName->setTextColour(c);
+	mP1P->setImageTexture(p1);
+	mP2P->setImageTexture(p2);
 }
 
 
