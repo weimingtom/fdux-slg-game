@@ -1817,16 +1817,18 @@ void SquadGraphics::updateBB()
 {
 	BattleSquad* squad=BattleSquadManager::getSingletonPtr()->getBattleSquad(mNode->getName());
 	float v;
+	float v1;
 	if(squad->getType()==0)
 	{
 		v=((float)squad->getUnitNum())/50.0f;
+		v1=((float)squad->getUnitMaxNum())/50.f;
 	}
 	else
 	{
 		v=((float)squad->getUnitNum())/20.0f;
+		v1=v;
 	}
-	v*=100;
-	mSquadBB->setBar(v);
+	mSquadBB->setBar(v,v1);
 }
 
 

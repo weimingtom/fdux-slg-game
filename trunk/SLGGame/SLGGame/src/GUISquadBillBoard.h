@@ -24,7 +24,7 @@ public:
 
 	void setIcon(int type);
 
-	void setBar(int v);
+	void setBar(float v,float v1);
 
 	void setVisible(bool v);
 
@@ -41,7 +41,8 @@ private:
 	MyGUI::TextBox* mBName;
 	MyGUI::ImageBox* mBImage;
 	MyGUI::ImageBox* mBIcon;
-	MyGUI::ProgressBar* mBBar;
+	MyGUI::ImageBox* mP1;
+	MyGUI::ImageBox* mP2;
 	
 	bool mIsVisible;
 };
