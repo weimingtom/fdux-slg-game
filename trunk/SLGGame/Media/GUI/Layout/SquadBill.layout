@@ -15,10 +15,10 @@
         <Widget type="ImageBox" skin="ImageBox" position="27 23 125 14">
             <Property key="ImageTexture" value="p3.png"/>
             <Widget type="ImageBox" skin="ImageBox" position="0 0 125 14" name="P2">
-                <Widget type="ImageBox" skin="ImageBox" position="0 0 125 14">
+                <Widget type="ImageBox" skin="ImageBox" position="0 0 125 14" name="P2P">
                     <Property key="ImageTexture" value="P2.png"/>
                     <Widget type="ImageBox" skin="ImageBox" position="0 0 125 14" name="P1">
-                        <Widget type="ImageBox" skin="ImageBox" position="0 0 125 14">
+                        <Widget type="ImageBox" skin="ImageBox" position="0 0 125 14" name="P1P">
                             <Property key="ImageTexture" value="P1.png"/>
                         </Widget>
                     </Widget>

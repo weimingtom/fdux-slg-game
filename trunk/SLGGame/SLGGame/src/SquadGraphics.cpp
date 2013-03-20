@@ -151,25 +151,25 @@ mDirection(direction)
 	datalib->getData(str(boost::format("GameData/BattleData/Team/Team%1%/Relation")%team), tempid);
 	if (tempid=="player")
 	{
-		mSquadBB->setName(name,MyGUI::Colour::Blue);
+		mSquadBB->setName(name,MyGUI::Colour::Blue,"p1.png","p2.png");
 		mSquadBB->mHasApColor=MyGUI::Colour::Blue;
 		mSquadBB->mNoneApColor=MyGUI::Colour(0,0,0.5);
 	}
 	else if (tempid=="enemy1" || tempid=="enemy2" ||tempid=="enemy3")
 	{
-		mSquadBB->setName(name,MyGUI::Colour::Red);
+		mSquadBB->setName(name,MyGUI::Colour::Red,"p1-1.png","p2-2.png");
 		mSquadBB->mHasApColor=MyGUI::Colour::Red;
 		mSquadBB->mNoneApColor=MyGUI::Colour(0.5,0,0);
 	}
 	else if (tempid=="alliance")
 	{
-		mSquadBB->setName(name,MyGUI::Colour(0.0143634,0.614035,0.0307607));
+		mSquadBB->setName(name,MyGUI::Colour(0.0143634,0.614035,0.0307607),"p1.png","p2.png");
 		mSquadBB->mHasApColor=MyGUI::Colour(0.0143634,0.614035,0.0307607);
 		mSquadBB->mNoneApColor=MyGUI::Colour(0,0.5,0);
 	}
 	else
 	{
-		mSquadBB->setName(name,MyGUI::Colour::Black);
+		mSquadBB->setName(name,MyGUI::Colour::Black,"p1.png","p2.png");
 	}
 
 	mSquadBB->setIcon(type);

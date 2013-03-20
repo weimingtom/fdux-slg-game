@@ -20,7 +20,7 @@ public:
 
 	void hideScene();//Òþ²Ø³¡¾°
 
-	void setName(std::string name,MyGUI::Colour c);
+	void setName(std::string name,MyGUI::Colour c,std::string p1,std::string p2);
 
 	void setIcon(int type);
 
@@ -43,6 +43,8 @@ private:
 	MyGUI::ImageBox* mBIcon;
 	MyGUI::ImageBox* mP1;
 	MyGUI::ImageBox* mP2;
+	MyGUI::ImageBox* mP1P;
+	MyGUI::ImageBox* mP2P;
 	
 	bool mIsVisible;
 };
