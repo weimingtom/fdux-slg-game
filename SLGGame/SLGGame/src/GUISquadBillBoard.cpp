@@ -8,7 +8,8 @@ GUISquadBillBoard::GUISquadBillBoard(Ogre::SceneNode* node):GUIBillBoard("SquadB
 	assignWidget(mBImage,"BImage");
 	assignWidget(mBName,"BName");
 	assignWidget(mBIcon,"BIcon");
-	assignWidget(mBBar,"BProgressBar");
+	assignWidget(mP1,"P1");
+	assignWidget(mP2,"P2");
 }
 
 GUISquadBillBoard::~GUISquadBillBoard(void)
@@ -130,9 +131,10 @@ void GUISquadBillBoard::setIcon( int type )
 
 }
 
-void GUISquadBillBoard::setBar(int v)
+void GUISquadBillBoard::setBar(float v,float v1)
 {
-	mBBar->setProgressPosition(v);
+	mP1->setSize(7+110*v,mP1->getHeight());
+	mP2->setSize(7+110*v1,mP2->getHeight());
 }
 
 void GUISquadBillBoard::changeColor(MyGUI::Colour c)
