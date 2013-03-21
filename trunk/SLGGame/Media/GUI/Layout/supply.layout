@@ -1,5 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MyGUI type="Layout" version="3.2.0">
+    <Widget type="Window" skin="SLGMiniWindowSkin" position="5 5 245 105" layer="ToolTip" name="TipsWindow">
+        <Property key="Visible" value="false"/>
+        <Widget type="EditBox" skin="TextBox" position="15 17 215 70" align="HStretch VStretch" name="TipsTextBox">
+            <Property key="Static" value="true"/>
+            <Property key="MultiLine" value="true"/>
+            <Property key="VisibleVScroll" value="true"/>
+            <Property key="VisibleHScroll" value="true"/>
+            <Property key="TextColour" value="1 1 1"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="TextAlign" value="HCenter Top"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+    </Widget>
     <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="Main" name="SupplyBG">
         <Property key="ImageTexture" value="yingdi.png"/>
         <Widget type="Window" skin="SLGWindow" position="0 0 235 580" name="ArmyWindow">

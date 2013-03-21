@@ -6,6 +6,7 @@
 #include "AVGSquadManager.h"
 
 #include "GUIMessageBox.h"
+#include "GUITipsWindow.h"
 
 #include "boost/format.hpp"
 #include <string>
@@ -31,6 +32,10 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 	setSceneLanguage();
 
 	assignWidget(mSupplyBG,"SupplyBG");
+	MyGUI::Window* window;
+	assignWidget(window,"TipsWindow");
+	
+	mTipsWindows=new GUITipsWindow(window,width,height);
 
 	//assignWidget(mSaveButton,"T_SupplySave");
 	//assignWidget(mLoadButton,"T_SupplyLoad");
@@ -280,13 +285,30 @@ void GUISupply::showArmy( int index )
 				mRetainerSkill1->setItemResource("skill");
 				mRetainerSkill1->setItemGroup(skillIcon);
 				mRetainerSkill1->setItemName("normal");
+				mRetainerSkill1->setNeedToolTip(true);
+				std::string skillDes;
+				std::string desPath=str(boost::format("StaticData/SkillData/%1%/Describe")%p);
+				DataLibrary::getSingletonPtr()->getData(desPath, skillDes);
+
+				mRetainerSkill1->setUserString("Tips",skillDes);
+				GUITipsWindow::getSingletonPtr()->addToolTipEvent(mRetainerSkill1);
+
 			}
 			else if(DataLibrary::getSingletonPtr()->getData(temppath2, skillIcon))
 			{
 				mRetainerSkill1->setItemResource("skillpass");
 				mRetainerSkill1->setItemGroup(skillIcon);
 				mRetainerSkill1->setItemName("normal");
+				mRetainerSkill1->setNeedToolTip(true);
+				std::string skillDes;
+				std::string desPath=str(boost::format("StaticData/EffectData/%1%/Describe")%p);
+				DataLibrary::getSingletonPtr()->getData(desPath, skillDes);
+
+				mRetainerSkill1->setUserString("Tips",skillDes);
+				GUITipsWindow::getSingletonPtr()->addToolTipEvent(mRetainerSkill1);
 			}
+
+			
 		}
 	}
 
@@ -453,6 +475,13 @@ void GUISupply::showAttribute(int index,int itemType,std::string itemID)
 			mSquadSkillIcon[m_SquadSkillNum]->setItemResource("skill");
 			mSquadSkillIcon[m_SquadSkillNum]->setItemGroup(icon);
 			mSquadSkillIcon[m_SquadSkillNum]->setItemName("normal");
+			mSquadSkillIcon[m_SquadSkillNum]->setNeedToolTip(true);
+			std::string skillDes;
+			std::string desPath=str(boost::format("StaticData/SkillData/%1%/Describe")%it->first);
+			DataLibrary::getSingletonPtr()->getData(desPath, skillDes);
+
+			mSquadSkillIcon[m_SquadSkillNum]->setUserString("Tips",skillDes);
+			GUITipsWindow::getSingletonPtr()->addToolTipEvent(mSquadSkillIcon[m_SquadSkillNum]);
 			m_SquadSkillNum++;
 		}
 		else if(it->second==SKILLTYPE_PASSIVE)
@@ -462,6 +491,13 @@ void GUISupply::showAttribute(int index,int itemType,std::string itemID)
 			mSquadPassiveSkillIcon[m_SquadPassiveSkillNum]->setItemResource("skillpass");
 			mSquadPassiveSkillIcon[m_SquadPassiveSkillNum]->setItemGroup(icon);
 			mSquadPassiveSkillIcon[m_SquadPassiveSkillNum]->setItemName("normal");
+			mSquadPassiveSkillIcon[m_SquadPassiveSkillNum]->setNeedToolTip(true);
+			std::string skillDes;
+			std::string desPath=str(boost::format("StaticData/EffectData/%1%/Describe")%it->first);
+			DataLibrary::getSingletonPtr()->getData(desPath, skillDes);
+
+			mSquadPassiveSkillIcon[m_SquadPassiveSkillNum]->setUserString("Tips",skillDes);
+			GUITipsWindow::getSingletonPtr()->addToolTipEvent(mSquadPassiveSkillIcon[m_SquadPassiveSkillNum]);
 			m_SquadPassiveSkillNum++;
 		}
 		else if (it->second==SKILLTYPE_EQUIP)
@@ -500,6 +536,10 @@ void GUISupply::showAttribute(int index,int itemType,std::string itemID)
 			mSquadUseEquipIcon[m_SquadUseEquipNum]->setItemResource("eqp");
 			mSquadUseEquipIcon[m_SquadUseEquipNum]->setItemGroup(mGroup);
 			mSquadUseEquipIcon[m_SquadUseEquipNum]->setItemName("normal");
+			mSquadUseEquipIcon[m_SquadUseEquipNum]->setNeedToolTip(true);
+
+			mSquadUseEquipIcon[m_SquadUseEquipNum]->setUserString("Tips",StringTable::getSingletonPtr()->getString(id));
+			GUITipsWindow::getSingletonPtr()->addToolTipEvent(mSquadUseEquipIcon[m_SquadUseEquipNum]);
 			m_SquadUseEquipNum++;
 		}
 	}
@@ -507,16 +547,19 @@ void GUISupply::showAttribute(int index,int itemType,std::string itemID)
 	for(int i=m_SquadSkillNum;i<SQUAD_SKILL_NUM;i++)
 	{
 		mSquadSkillIcon[i]->setItemGroup("");
+		mSquadSkillIcon[i]->setNeedToolTip(false);
 	}
 
 	for(int i=m_SquadPassiveSkillNum;i<SQUAD_SKILL_NUM;i++)
 	{
 		mSquadPassiveSkillIcon[i]->setItemGroup("");
+		mSquadPassiveSkillIcon[i]->setNeedToolTip(false);
 	}
 
 	for(int i=m_SquadUseEquipNum;i<SQUAD_SKILL_NUM;i++)
 	{
 		mSquadUseEquipIcon[i]->setItemGroup("");
+		mSquadUseEquipIcon[i]->setNeedToolTip(false);
 	}
 
 	if(itemID!="")
