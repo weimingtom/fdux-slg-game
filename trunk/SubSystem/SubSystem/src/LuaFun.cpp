@@ -120,6 +120,7 @@ extern "C"
 		}
 		else if(stage->mTimerWork==GUIStage::NoneWork)//ÏÔÊ¾ÍêÁË
 		{
+			stage->resetAutoTimer();
 			LuaSystem::getSingletonPtr()->LuaBreakupFun=NULL;
 		}
 	}
@@ -148,6 +149,7 @@ extern "C"
 		{
 			stage->showTextCursor(true);
 			mIsShowTextOver=false;
+			stage->resetAutoTimer();
 		}
 	}
 
@@ -490,6 +492,12 @@ extern "C"
 
 	static int NextScene(lua_State* L)
 	{
+		GUIStage* stage=static_cast<GUIStage*>(GUISystem::getSingletonPtr()->getScene(StageScene));
+		if(stage!=NULL)
+		{
+			stage->addToHistoryBox(L"------------------------------------------------------------\n");
+		}
+
 		std::string name = std::string(luaL_checkstring(L, 1));
 		
 		LuaSystem::getSingletonPtr()->runScriptFromFile(name,0);
