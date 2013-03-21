@@ -17,6 +17,7 @@
 
 #define DefaultDialogVisibleTime 500//默认对话框渐出时间
 #define DefaultRoleNameVisibleTime 100//默认角色名渐变时间
+#define AutoWaitTime 1500//自动等待时间
 #define LineCursorFileName "LineCursor.png"//默认行光标文件名
 #define PageCursorFileName "PageCursor.png"//默认换页光标文件名
 
@@ -706,7 +707,15 @@ bool GUIStage::isCanAuto()
 		return false;
 	}
 
-	return true;
+	if (mIsAuto && isClearAutoTimer && mAutoTimer.getMilliseconds()>=AutoWaitTime)
+	{
+		isClearAutoTimer=false;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 bool GUIStage::isCanClick()
@@ -1096,6 +1105,15 @@ void GUIStage::onHistory( MyGUI::Widget* _sender )
 void GUIStage::onAuto( MyGUI::Widget* _sender )
 {
 	mIsAuto=!mIsAuto;
+
+	if (!mIsAuto)
+	{
+		mAutoButton->setCaption(StringTable::getSingletonPtr()->getString("AutoButton"));
+	}
+	else
+	{
+		mAutoButton->setCaption(StringTable::getSingletonPtr()->getString("AutoBeginButton"));
+	}
 }
 
 void GUIStage::onSystem( MyGUI::Widget* _sender )

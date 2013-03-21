@@ -58,6 +58,10 @@ public:
 
 	void eventSupplyTipsFade(MyGUI::Widget* _sender);
 
+	void resetAutoTimer(){mAutoTimer.reset();isClearAutoTimer=true;}
+
+	void addToHistoryBox(std::wstring text);
+
 	GUISceneType getType()
 	{
 		return StageScene;
@@ -83,6 +87,8 @@ public:
 private:
 
 	MyGUI::Timer mTimer;//定时器
+	MyGUI::Timer mAutoTimer;//自动等待计时器
+	bool isClearAutoTimer;
 	float mTickTime;//单次触发时间
 
 	void eventMouseButtonClick(MyGUI::Widget* _sender);
@@ -114,8 +120,6 @@ private:
 	bool isCanFastForward();
 	bool isCanAuto();
 	bool isCanClick();
-
-	void addToHistoryBox(std::wstring text);
 
 	int mTextX;
 	int mTextY;
