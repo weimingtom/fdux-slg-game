@@ -2,6 +2,7 @@
 
 #include "GUIScene.h"
 #include "GUISLWindow.h"
+#include "GUISubWindows.h"
 
 #include "Squad.h"
 
@@ -80,6 +81,7 @@ private:
 	MyGUI::TextBox* mSoilderButtonText;
 
 	MyGUI::ImageBox* mSupplyBG;
+	GUISubWindows* mTipsWindows;
 
 	WeaponItemBox* mPWeaponItemBox;
 	WeaponItemBox* mSWeaponItemBox;
