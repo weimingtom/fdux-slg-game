@@ -11,6 +11,9 @@
 #include "SquadGrapManager.h"
 #include "SquadGraphics.h"
 
+#include "GUIBattle.h"
+#include "GUIMapWindow.h"
+
 void split(const std::string& s, std::string c,std::queue<std::string>& v) 
 {
 	std::string::size_type i = 0;
@@ -90,200 +93,11 @@ bool GUICommandWindows::SceneInputEvent( float x,float y )
 
 bool GUICommandWindows::GridInputEvent( int x,int y )
 {
-	/*
-	std::vector<std::string> squadList=DataLibrary::getSingletonPtr()->getChildList("GameData/BattleData/SquadList");
-
-	std::string squadId="";
-	bool flag=false;
-	for (std::vector<std::string>::iterator it=squadList.begin();it!=squadList.end();it++)
-	{
-		squadId=str(boost::format("GameData/BattleData/SquadList/%1%/GridX")%(*it));
-		int value=0;
-		DataLibrary::getSingletonPtr()->getData(squadId,value);
-		if (value==x)
-		{
-			squadId=str(boost::format("GameData/BattleData/SquadList/%1%/GridY")%(*it));
-			DataLibrary::getSingletonPtr()->getData(squadId,value);
-			if (value==y)
-			{
-				squadId=str(boost::format("GameData/BattleData/SquadList/%1%/")%(*it));
-				flag=true;
-				break;
-			}
-		}
-	}
-
-	if (flag)
-	{
-		mWindow->setVisible(true);
-		mWindow->setPosition(mSceneX,mSceneY);
-	}
-	else
-	{
-		mWindow->setVisible(false);
-	}
-	*/
 	return true;
 }
 
 void GUICommandWindows::setSquad(BattleSquad* squad)
 {
-// 	mSelectSquad = squad;
-// 	if(mSelectSquad == NULL)
-// 	{
-// 		for(int n =0; n <9; n++)
-// 		{
-// 			mSkill[n]->setVisible(false);
-// 			mSkill[n]->setImageResource("");
-// 			mSkillId[n] = "none";
-// 		}
-// 		hideScene();
-// 		return;
-// 	}
-// 	showScene("");
-// 
-// 	for(int n =0; n <9; n++)
-// 	{
-// 		mSkill[n]->setImageResource("");
-// 	}
-// 
-// 	//移动技能
-// 	float apleft = mSelectSquad->getActionPoint();
-// 	mAPLabel->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("APLabel"))%(int)apleft));
-// 	int skillno = 0;
-// 	mSkill[skillno]->setVisible(true);
-// 
-// 	mSkill[skillno]->setCaption(StringTable::getSingletonPtr()->getString("Move"));
-// 	mSkill[skillno]->setUserString("Tips",StringTable::getSingletonPtr()->getString("Tips_Move"));
-// 	GUITipsWindow::getSingletonPtr()->addToolTipEvent(mSkill[skillno]);
-// 	//mSkill[skillno]->eventToolTip += MyGUI::newDelegate(GUITipsWindow::getSingletonPtr(), &GUITipsWindow::eventToolTip);
-// 
-// 	mSkill[skillno]->setImageResource("Move");
-// 	mSkillId[skillno] = "move";
-// 	skillno++;
-// 	if(mSelectSquad->getType()==SQUAD_NORMAL)
-// 	{
-// 		//队列切换技能
-// 		float apcost = mSelectSquad->getActionPointCost(SKILLAPTYPE_SETUP) + 2.0f;
-// 		Formation f = mSelectSquad->getFormation();
-// 		if(f != Line)
-// 		{
-// 			mSkill[skillno]->setVisible(true);
-// 			mSkill[skillno]->setImageResource("Defence");
-// 			mSkill[skillno]->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("FormationLineButton"))%apcost));
-// 			mSkill[skillno]->setUserString("Tips",StringTable::getSingletonPtr()->getString("Tips_FormationLineButton"));
-// 			GUITipsWindow::getSingletonPtr()->addToolTipEvent(mSkill[skillno]);
-// 			//mSkill[skillno]->eventToolTip += MyGUI::newDelegate(GUITipsWindow::getSingletonPtr(), &GUITipsWindow::eventToolTip);
-// 			if(apleft >= apcost)
-// 				mSkill[skillno]->setEnabled(true);
-// 			else
-// 				mSkill[skillno]->setEnabled(false);
-// 			mSkillId[skillno] = "line";
-// 			skillno++;
-// 		}
-// 		if(f != Circular)
-// 		{
-// 			mSkill[skillno]->setVisible(true);
-// 			mSkill[skillno]->setImageResource("Defence");
-// 			mSkill[skillno]->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("FormationCircButton"))%apcost));
-// 			mSkill[skillno]->setUserString("Tips",StringTable::getSingletonPtr()->getString("Tips_FormationCircButton"));
-// 			GUITipsWindow::getSingletonPtr()->addToolTipEvent(mSkill[skillno]);
-// 			//mSkill[skillno]->eventToolTip += MyGUI::newDelegate(GUITipsWindow::getSingletonPtr(), &GUITipsWindow::eventToolTip);
-// 			if(apleft >= apcost)
-// 				mSkill[skillno]->setEnabled(true);
-// 			else
-// 				mSkill[skillno]->setEnabled(false);
-// 			mSkillId[skillno] = "circular";
-// 			skillno++;
-// 		}
-// 		if(f != Loose)
-// 		{
-// 			mSkill[skillno]->setVisible(true);
-// 			mSkill[skillno]->setImageResource("Defence");
-// 			mSkill[skillno]->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("FormationLoosButton"))%apcost));
-// 			mSkill[skillno]->setUserString("Tips",StringTable::getSingletonPtr()->getString("Tips_FormationLoosButton"));
-// 			GUITipsWindow::getSingletonPtr()->addToolTipEvent(mSkill[skillno]);
-// 			//mSkill[skillno]->eventToolTip += MyGUI::newDelegate(GUITipsWindow::getSingletonPtr(), &GUITipsWindow::eventToolTip);
-// 			if(apleft >= apcost)
-// 				mSkill[skillno]->setEnabled(true);
-// 			else
-// 				mSkill[skillno]->setEnabled(false);
-// 			mSkillId[skillno] = "loose";
-// 			skillno++;
-// 		}
-// 	}
-// 	//其他技能
-// 	std::string skilltablepath = mSelectSquad->getPath() + std::string("/SkillTable");
-// 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
-// 	std::vector<std::string>::iterator ite;
-// 	std::vector<std::string> skilllist = datalib->getChildList(skilltablepath);
-// 	for(ite = skilllist.begin(); ite != skilllist.end(); ite++)
-// 	{
-// 		int skilltype;
-// 		bool re = datalib->getData(std::string("StaticData/SkillData/")+ (*ite)+ std::string("/Type"),skilltype);
-// 		if(skilltype == SKILLTARGETTYPE_PASSIVE)
-// 			continue;
-// 		mSkill[skillno]->setVisible(true);
-// 		std::string skillpath = skilltablepath + std::string("/") + (*ite);
-// 		int cooldown;
-// 		std::string skillname;
-// 		std::string skillTips;
-// 		std::string skillIcon;
-// 		datalib->getData(std::string("StaticData/SkillData/")+ (*ite)+ std::string("/Name"),skillname);
-// 
-// 		datalib->getData(std::string("StaticData/SkillData/")+ (*ite)+ std::string("/Describe"),skillTips);
-// 		mSkill[skillno]->setUserString("Tips",skillTips);
-// 		GUITipsWindow::getSingletonPtr()->addToolTipEvent(mSkill[skillno]);
-// 		//mSkill[skillno]->eventToolTip += MyGUI::newDelegate(GUITipsWindow::getSingletonPtr(), &GUITipsWindow::eventToolTip);
-// 
-// 		datalib->getData(skillpath + std::string("/CoolDown"),cooldown);
-// 		datalib->getData(std::string("StaticData/SkillData/")+ (*ite) + std::string("/Icon"),skillIcon);
-// 		if (skillIcon!="none")
-// 		{
-// 			mSkill[skillno]->setImageResource(skillIcon);
-// 		}
-// 		else
-// 		{
-// 			mSkill[skillno]->setImageResource("None");
-// 		}
-// 		if(cooldown > 0)
-// 		{
-// 			mSkill[skillno]->setEnabled(false);
-// 			mSkill[skillno]->setCaption(str(boost::format("%1%\n(%2%)")%skillname%cooldown));
-// 		}
-// 		else
-// 		{
-// 			int aptype ;
-// 			datalib->getData(std::string("StaticData/SkillData/")+ (*ite)+ std::string("/APType"),aptype);
-// 			float apcost;
-// 			datalib->getData(std::string("StaticData/SkillData/")+ (*ite)+ std::string("/APCost"),apcost);
-// 			if(aptype != SKILLAPTYPE_DEFENCE)
-// 			{
-// 				apcost += mSelectSquad->getActionPointCost(aptype);
-// 				mSkill[skillno]->setCaption(str(boost::format("%1%\nAP:%2%")%skillname%apcost));
-// 			}
-// 			else
-// 			{
-// 				float ap = apcost;
-// 				apcost = std::max(apcost,apleft);
-// 				mSkill[skillno]->setCaption(str(boost::format("%1%\nAP:%2%(%3%)")%skillname%apcost%ap));
-// 			}
-// 
-// 			if(apleft >= apcost)
-// 			{
-// 				mSkill[skillno]->setEnabled(true);
-// 				mSkillId[skillno] = (*ite);
-// 			}
-// 			else
-// 				mSkill[skillno]->setEnabled(false);
-// 		}
-// 		skillno++;
-// 	}
-// 	for(;skillno < 9; skillno++)
-// 	{
-// 		mSkill[skillno]->setVisible(false);
-// 		mSkill[skillno]->setEnabled(false);
-// 	}
 	mSelectSquad = squad;
 	if(mSelectSquad == NULL)
 	{
@@ -303,6 +117,12 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 		SquadGrapManager::getSingletonPtr()->getSquad(mSelectSquad->getSquadId())->setSquadBillBoardState(false);
 	else
 		SquadGrapManager::getSingletonPtr()->getSquad(mSelectSquad->getSquadId())->setSquadBillBoardState(true);
+
+	GUIBattle* guibattle=static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
+	GUIMapWindow* mapwindow=(GUIMapWindow*)guibattle->getSubWindow("MapWindow");
+	mapwindow->updatePointState(mSelectSquad);
+	mapwindow->setSelectPoint(mSelectSquad);
+
 	mAPLabel->setCaption(str(boost::format(StringTable::getSingletonPtr()->getString("APLabel"))%(int)apleft%mSelectSquad->getAttr(ATTR_ACTIONPOINT,ATTRCALC_FULL)));
 	std::vector<BattleSquad::ActiveSkillInfo> skilllist = mSelectSquad->GetActiveSkillList();
 	std::vector<BattleSquad::ActiveSkillInfo>::iterator ite = skilllist.begin();

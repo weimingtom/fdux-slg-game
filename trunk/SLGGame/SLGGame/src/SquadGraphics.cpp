@@ -190,6 +190,7 @@ mDirection(direction)
 
 	updateBB();
 
+
 	//读取现有效果
  	std::vector<std::string> particlelist = datalib->getChildList(datapath + std::string("/ParticleList"));
  	std::vector<std::string>::iterator ite;

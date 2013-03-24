@@ -11,6 +11,7 @@
 #include "GUIMissionWindow.h"
 #include "GUIEffectWindow.h"
 #include "GUIGameOver.h"
+#include "GUIMapWindow.h"
 
 #include "Terrain.h"
 
@@ -27,12 +28,12 @@ GUIBattle::GUIBattle(int Width,int Height):GUIScene("Battle.layout",Width,Height
 
 	assignWidget(window,"TipsWindow");
 	mSubWindows.push_back(new GUITipsWindow(window,Width,Height));
+	assignWidget(window,"MapWindow");
+	mSubWindows.push_back(new GUIMapWindow(window,Width,Height));
 	assignWidget(window,"EffectWindow1");
 	mSubWindows.push_back(new GUIEffectWindow(window,Width,Height,1));
 	assignWidget(window,"EffectWindow2");
 	mSubWindows.push_back(new GUIEffectWindow(window,Width,Height,2));
-	assignWidget(window,"Terrain");
-	mSubWindows.push_back(new GUITerrainWindows(window,Width,Height));
 	assignWidget(window,"TargetWindow");
 	mSubWindows.push_back(new GUITargetWindows(window,Width,Height));
 	assignWidget(window,"SquadWindow");
