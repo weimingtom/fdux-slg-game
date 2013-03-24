@@ -68,6 +68,25 @@ bool Core::initialize(bool isFullScene)
 	if(!rSys)
 		return false;
 	
+	Ogre::ConfigOptionMap mConfigMap=rSys->getConfigOptions();
+
+	Ogre::ConfigOption mConfig=mConfigMap["Rendering Device"];
+
+	bool isFind=false;
+	for (Ogre::StringVector::iterator it=mConfig.possibleValues.begin(); it!=mConfig.possibleValues.end();it++)
+	{
+		if ((*it).find("Intel")==std::string::npos)
+		{
+			rSys->setConfigOption("Rendering Device",(*it));
+			isFind=true;
+		}
+	}
+
+	if (!isFind)
+	{
+		MessageBoxA(NULL, "检测到你的显卡为因特尔集成显卡,可能会无法进入游戏或者进入战斗画面.","忘却的战场", MB_OK | MB_ICONWARNING | MB_TASKMODAL);
+	}
+
 	mRoot->setRenderSystem(rSys);
 
 	mRoot->initialise(false);
@@ -187,13 +206,13 @@ bool Core::testHardwareSupport()
 {
 	const Ogre::RenderSystemCapabilities* caps=mRoot->getRenderSystem()->getCapabilities();
 
-	Ogre::GPUVendor vendor=caps->getVendor();
-	if(vendor==Ogre::GPU_INTEL)
-		MessageBoxA(NULL, StringTable::getSingleton().getAnsiString("InterGPUWarning").c_str(),StringTable::getSingleton().getAnsiString("gamename").c_str(), MB_OK | MB_ICONWARNING | MB_TASKMODAL);
+	//Ogre::GPUVendor vendor=caps->getVendor();
+//	if(vendor==Ogre::GPU_INTEL)
+	//	MessageBoxA(NULL, StringTable::getSingleton().getAnsiString("InterGPUWarning").c_str(),StringTable::getSingleton().getAnsiString("gamename").c_str(), MB_OK | MB_ICONWARNING | MB_TASKMODAL);
 
 	if (!caps->hasCapability(Ogre::RSC_VERTEX_PROGRAM) || !caps->hasCapability(Ogre::RSC_FRAGMENT_PROGRAM))
 	{
-		MessageBoxA(NULL, StringTable::getSingleton().getAnsiString("NotSupportGPUPrograms").c_str(),StringTable::getSingleton().getAnsiString("gamename").c_str(), MB_OK | MB_ICONERROR | MB_TASKMODAL);
+		MessageBoxA(NULL,"抱歉,你的显卡不支持Shader程序,无法运行.","忘却的战场", MB_OK | MB_ICONERROR | MB_TASKMODAL);
 		return false;
 	}
 
@@ -201,7 +220,7 @@ bool Core::testHardwareSupport()
 		!Ogre::GpuProgramManager::getSingleton().isSyntaxSupported("ps_2_x") &&
 		!Ogre::GpuProgramManager::getSingleton().isSyntaxSupported("vs_2_0"))
 	{
-		MessageBoxA(NULL, StringTable::getSingleton().getAnsiString("NotSupportSM2_0").c_str(),StringTable::getSingleton().getAnsiString("gamename").c_str(), MB_OK | MB_ICONERROR | MB_TASKMODAL);
+		MessageBoxA(NULL, "抱歉,你的显卡不支持Shader model2.0,无法运行.","忘却的战场", MB_OK | MB_ICONERROR | MB_TASKMODAL);
 		return false;
 	}
 
@@ -209,7 +228,7 @@ bool Core::testHardwareSupport()
 
 	if (ptrTexture->getWidth()!=4096)//如果不支持至少4096的贴图,那么将报错
 	{
-		MessageBoxA(NULL, StringTable::getSingleton().getAnsiString("NotSupportBigTexture").c_str(),StringTable::getSingleton().getAnsiString("gamename").c_str(), MB_OK | MB_ICONERROR | MB_TASKMODAL);
+		MessageBoxA(NULL, "抱歉,你的显卡不支持大尺寸的纹理,无法运行.","忘却的战场", MB_OK | MB_ICONERROR | MB_TASKMODAL);
 		return false;
 	}
 
