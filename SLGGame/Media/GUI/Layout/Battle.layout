@@ -241,91 +241,6 @@
             <Property key="FontHeight" value="22"/>
         </Widget>
     </Widget>
-    <Widget type="Window" skin="SLGMiniWindowSkin" position="700 0 274 125" layer="Main" name="Terrain">
-        <Property key="Caption" value="Terrain"/>
-        <Property key="FontName" value="fireflysung"/>
-        <Property key="FontHeight" value="20"/>
-        <Widget type="TextBox" skin="TextBox" position="75 10 60 20" name="TerrainType">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="40 35 60 20" name="DefenceLabel">
-            <Property key="Caption" value="Defence:"/>
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="105 35 30 20" name="TerrainDefenceLabel">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="40 60 60 20" name="CavApLabel">
-            <Property key="Caption" value="CavAp:"/>
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="105 60 30 20" name="TerrainCavApLabel">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="170 60 60 20" name="InfApLabel">
-            <Property key="Caption" value="InfAp:"/>
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="235 60 30 20" name="TerrainInfApLabel">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="170 35 60 20" name="CovertLabel">
-            <Property key="Caption" value="Covert:"/>
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="235 35 30 20" name="TerrainCovertLabel">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="10 10 60 20" name="GroundType">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="140 10 60 20" name="GroundObj">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="205 10 60 20" name="Passable">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="40 85 60 20" name="TerrainGridX">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-        </Widget>
-        <Widget type="TextBox" skin="TextBox" position="140 85 60 20" name="TerrainGridY">
-            <Property key="FontName" value="fireflysung"/>
-            <Property key="FontHeight" value="20"/>
-        </Widget>
-        <Widget type="ImageBox" skin="ImageBox" position="145 35 20 20">
-            <Property key="ImageResource" value="state"/>
-            <Property key="ImageName" value="normal"/>
-            <Property key="ImageGroup" value="state_hide"/>
-        </Widget>
-        <Widget type="ImageBox" skin="ImageBox" position="15 35 20 20">
-            <Property key="ImageGroup" value="state_def"/>
-            <Property key="ImageName" value="normal"/>
-            <Property key="ImageResource" value="state"/>
-        </Widget>
-        <Widget type="ImageBox" skin="ImageBox" position="145 60 20 20">
-            <Property key="ImageResource" value="state"/>
-            <Property key="ImageName" value="normal"/>
-            <Property key="ImageGroup" value="state_ap"/>
-        </Widget>
-        <Widget type="ImageBox" skin="ImageBox" position="15 60 20 20">
-            <Property key="ImageResource" value="state"/>
-            <Property key="ImageName" value="normal"/>
-            <Property key="ImageGroup" value="state_ap"/>
-        </Widget>
-    </Widget>
     <Widget type="Window" skin="ImageBox" position="645 335 339 376" layer="Popup" name="DeployWindow">
         <Property key="Caption" value="DeployWindow"/>
         <Property key="FontName" value="fireflysung"/>
@@ -928,6 +843,69 @@
         <Widget type="TextBox" skin="TextBox" position="195 210 325 25" name="SquadWage">
             <Property key="FontName" value="fireflysung"/>
             <Property key="FontHeight" value="20"/>
+        </Widget>
+    </Widget>
+    <Widget type="ImageBox" skin="ImageBox" position="0 0 1280 720" layer="ToolTip" name="Tutorials">
+        <Property key="Visible" value="false"/>
+    </Widget>
+    <Widget type="Window" skin="SLGMiniWindowSkin" position="950 0 330 205" layer="Main" name="MapWindow">
+        <Property key="Visible" value="true"/>
+        <Widget type="ImageBox" skin="ImageBox" position="130 10 185 185" name="Map"/>
+        <Widget type="TextBox" skin="TextBox" position="30 15 60 20" name="DefenceLabel">
+            <Property key="Caption" value="Defence:"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="95 15 30 20" name="TerrainDefenceLabel">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="30 65 60 20" name="CavApLabel">
+            <Property key="Caption" value="CavAp:"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="95 65 30 20" name="TerrainCavApLabel">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="30 90 60 20" name="InfApLabel">
+            <Property key="Caption" value="InfAp:"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="95 90 30 20" name="TerrainInfApLabel">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="30 40 60 20" name="CovertLabel">
+            <Property key="Caption" value="Covert:"/>
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="TextBox" skin="TextBox" position="95 40 30 20" name="TerrainCovertLabel">
+            <Property key="FontName" value="fireflysung"/>
+            <Property key="FontHeight" value="20"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="10 40 20 20">
+            <Property key="ImageResource" value="state"/>
+            <Property key="ImageName" value="normal"/>
+            <Property key="ImageGroup" value="state_hide"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="10 15 20 20">
+            <Property key="ImageGroup" value="state_def"/>
+            <Property key="ImageName" value="normal"/>
+            <Property key="ImageResource" value="state"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="10 90 20 20">
+            <Property key="ImageResource" value="state"/>
+            <Property key="ImageName" value="normal"/>
+            <Property key="ImageGroup" value="state_ap"/>
+        </Widget>
+        <Widget type="ImageBox" skin="ImageBox" position="10 65 20 20">
+            <Property key="ImageResource" value="state"/>
+            <Property key="ImageName" value="normal"/>
+            <Property key="ImageGroup" value="state_ap"/>
         </Widget>
     </Widget>
 </MyGUI>

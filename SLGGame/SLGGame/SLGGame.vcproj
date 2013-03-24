@@ -967,6 +967,14 @@
 								>
 							</File>
 							<File
+								RelativePath=".\src\GUIMapWindow.cpp"
+								>
+							</File>
+							<File
+								RelativePath=".\src\GUIMapWindow.h"
+								>
+							</File>
+							<File
 								RelativePath=".\src\GUIMissionWindow.cpp"
 								>
 							</File>
