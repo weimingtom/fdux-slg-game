@@ -75,6 +75,7 @@ bool Core::initialize(bool isFullScene)
 	bool isFind=false;
 	for (Ogre::StringVector::iterator it=mConfig.possibleValues.begin(); it!=mConfig.possibleValues.end();it++)
 	{
+		Ogre::LogManager::getSingletonPtr()->logMessage((*it));
 		if ((*it).find("Intel")==std::string::npos)
 		{
 			rSys->setConfigOption("Rendering Device",(*it));
