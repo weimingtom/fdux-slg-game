@@ -10,6 +10,7 @@ class CameraContral;
 class GUIBattle;
 class GUIDeployWindows;
 class GUIMenuWindow;
+class GUIMapWindow;
 class BattleSquad;
 class AreaGrap;
 class GUISquadWindows;
@@ -38,6 +39,7 @@ private:
 	GUIDeployWindows* mDeployWindow;
 	GUISquadWindows* mSquadWindow;
 	GUIMenuWindow* mMenuWindow;
+	GUIMapWindow* mMapWindow;
 	std::vector<BattleSquad*> mDeployList;
 	BattleSquad* mSelectSquad;
 	int mSelectIndex;

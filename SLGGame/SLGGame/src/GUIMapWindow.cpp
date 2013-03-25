@@ -236,11 +236,7 @@ bool GUIMapWindow::GridInputEvent( int x,int y )
 
 void GUIMapWindow::setSelectPoint(BattleSquad* squad)
 {
-	if (mSelectPoint!=NULL)
-	{
-		MyGUI::ControllerManager::getInstance().removeItem(mSelectPoint);
-		mSelectPoint->setAlpha(1);
-	}
+	clearSelect();
 
 	MyGUI::ImageBox* point=mPoints[squad];
 	mSelectPoint=point;
@@ -262,4 +258,29 @@ void GUIMapWindow::setSelectPoint(BattleSquad* squad)
 void GUIMapWindow::eventUpdateAction(MyGUI::Widget* sender)
 {
 	mIsFadeEnd=true;
+}
+
+void GUIMapWindow::updateAllPlayerPointState()
+{
+	BattleSquadManager* battlesquadmanager = BattleSquadManager::getSingletonPtr();
+
+	for (std::map<std::string, BattleSquad*>::iterator it=battlesquadmanager->mSquadList.begin();it!=battlesquadmanager->mSquadList.end();it++)
+	{
+		std::string tempid;
+		DataLibrary::getSingletonPtr()->getData(str(boost::format("GameData/BattleData/Team/Team%1%/Relation")%it->second->getTeam()), tempid);
+		if (tempid=="player")
+		{
+			updatePointState(it->second);
+		}
+	}
+}
+
+void GUIMapWindow::clearSelect()
+{
+	if (mSelectPoint!=NULL)
+	{
+		MyGUI::ControllerManager::getInstance().removeItem(mSelectPoint);
+		mSelectPoint->setAlpha(1);
+		mSelectPoint=NULL;
+	}
 }

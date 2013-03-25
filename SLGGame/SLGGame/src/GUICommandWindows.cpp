@@ -98,6 +98,11 @@ bool GUICommandWindows::GridInputEvent( int x,int y )
 
 void GUICommandWindows::setSquad(BattleSquad* squad)
 {
+	GUIBattle* guibattle=static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
+	GUIMapWindow* mapwindow=NULL;
+	if(guibattle!=NULL)
+		mapwindow=(GUIMapWindow*)guibattle->getSubWindow("MapWindow");
+
 	mSelectSquad = squad;
 	if(mSelectSquad == NULL)
 	{
@@ -109,6 +114,8 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 			mSkillId[n] = "none";
 		}
 		hideScene();
+		if(mapwindow!=NULL)
+			mapwindow->clearSelect();
 		return;
 	}
 	DataLibrary* datalib = DataLibrary::getSingletonPtr();
@@ -118,8 +125,7 @@ void GUICommandWindows::setSquad(BattleSquad* squad)
 	else
 		SquadGrapManager::getSingletonPtr()->getSquad(mSelectSquad->getSquadId())->setSquadBillBoardState(true);
 
-	GUIBattle* guibattle=static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
-	GUIMapWindow* mapwindow=(GUIMapWindow*)guibattle->getSubWindow("MapWindow");
+
 	mapwindow->updatePointState(mSelectSquad);
 	mapwindow->setSelectPoint(mSelectSquad);
 

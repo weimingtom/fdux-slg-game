@@ -18,6 +18,7 @@
 #include "AreaGrap.h"
 #include "MapDataManager.h"
 #include "GUISquadWindows.h"
+#include "GUIMapWindow.h"
 #include "CommonFunction.h"
 
 BattleDeployState::BattleDeployState()
@@ -41,6 +42,7 @@ BattleDeployState::BattleDeployState()
 	mDeployWindow->setDeployState(this);
 	mSquadWindow = static_cast<GUISquadWindows *>(mGUIBattle->getSubWindow("SquadWindow"));
 	mSquadWindow->setSquad(NULL);
+	mMapWindow =  static_cast<GUIMapWindow *>(mGUIBattle->getSubWindow("MapWindow"));
 	BattleSquadManager* squadmanager = BattleSquadManager::getSingletonPtr();
 	mSelectSquad = NULL;
 	//建立部署小队列表
@@ -158,6 +160,7 @@ bool BattleDeployState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 				mSelectSquad->setGridX(GX);
 				mSelectSquad->setGridY(GY);
 				mDeployWindow->setDeployInfo(mSelectIndex,StringTable::getSingleton().getString("DeployConfirm"));
+				mMapWindow->updatePoint();
 				if(BattleSquadManager::getSingleton().allDeployed())
 					mDeployWindow->setAllowConfirm(true);
 			}
