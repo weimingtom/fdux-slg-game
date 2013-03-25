@@ -29,8 +29,10 @@ public:
 
 	void addPoint(BattleSquad* squad);
 	void updatePoint();
+	void updateAllPlayerPointState();
 	void updatePointState(BattleSquad* squad,MyGUI::ImageBox* point=NULL);
 	void updateInfo( int x,int y );
+	void clearSelect();
 
 	void setSelectPoint(BattleSquad* squad);
 	void eventUpdateAction(MyGUI::Widget* sender);

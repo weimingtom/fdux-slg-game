@@ -18,6 +18,7 @@
 #include "GUISquadWindows.h"
 #include "GUICommandWindows.h"
 #include "GUITargetWindow.h"
+#include "GUIMapWindow.h"
 #include "SquadGrapManager.h"
 
 #include "Terrain.h"
@@ -44,6 +45,10 @@ BattlePlayerState::BattlePlayerState()
 	mGUICommand = static_cast<GUICommandWindows *>(mGUIBattle->getSubWindow("CommandWindow"));
 	mGUICommand->setSquad(NULL);
 	mGUICommand->setPlayerState(this);
+
+	GUIMapWindow* mMapWindow =  static_cast<GUIMapWindow *>(mGUIBattle->getSubWindow("MapWindow"));
+	mMapWindow->updateAllPlayerPointState();
+
 	GUIInfoWindow* infoWindow=(GUIInfoWindow*)mGUIBattle->getSubWindow("InfoWindow");
 	infoWindow->setCaption("PlayerTurn.png",MyGUI::Colour::White);
 	infoWindow->showScene("");
@@ -361,6 +366,7 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 						CutSceneDirector* cutscenedirector = new CutSceneDirector(CutSceneBuilder::getSingleton().getCutScenes());
 						mMainState->PushState(cutscenedirector);
 						mGUICommand->setSquad(NULL);
+						mGUIState->setAllowNextTurn(false);
 					}
 	 				else
 	 				{
@@ -378,7 +384,6 @@ bool BattlePlayerState::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButto
 						mTargetAreaGrap = NULL;
 					}
 					hideSelectPlane();
-					mGUIState->setAllowNextTurn(false);
 					mControlState = PLAYERCONTROL_CHOOSESKILL;
 				}
 			}
