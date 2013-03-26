@@ -85,7 +85,7 @@ bool Core::initialize(bool isFullScene)
 
 	if (!isFind)
 	{
-		MessageBoxA(NULL, "检测到你的显卡为因特尔集成显卡,可能会无法进入游戏或者进入战斗画面.","忘却的战场", MB_OK | MB_ICONWARNING | MB_TASKMODAL);
+		MessageBoxA(NULL, "检测到你的显卡为因特尔集成显卡,可能会无法进入游戏或者进入战斗画面.\n如果你的机器是双显卡配置(例如笔记本一般配备了英特尔集成显卡+高性能显卡),请检查你的系统设置,确保启用了高性能显卡.","忘却的战场", MB_OK | MB_ICONWARNING | MB_TASKMODAL);
 	}
 
 	mRoot->setRenderSystem(rSys);
