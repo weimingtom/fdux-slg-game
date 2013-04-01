@@ -17,7 +17,31 @@ GUIMapWindow::GUIMapWindow(MyGUI::Window* window,int Width,int Height):GUISubWin
 {
 	assignWidget(mMap,"Map");
 
-	mMap->setImageTexture("MiniMap1.png");
+	std::string mapName;
+	DataLibrary::getSingletonPtr()->getData("GameData/BattleData/MapData/MapMini",mapName);
+	if(mapName!="")
+		mMap->setImageTexture(mapName);
+	else
+	{
+		DataLibrary::getSingletonPtr()->getData("GameData/BattleData/MapData/MapInfo",mapName);
+		mapName=mapName.erase(0,7);
+		mapName=std::string("battle")+mapName+".xml";
+		rapidxml::xml_document<> doc;
+		//doc.LoadFile(path,TIXML_ENCODING_UTF8);
+		Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(mapName, "Data", true);
+		char* s=new char[stream->size()+1];
+		stream->read(s,stream->size());
+		s[stream->size()]='\0';
+		doc.parse<0>(s);
+
+		std::string str1;
+		rapidxml::xml_node<> * element = doc.first_node("MapMini");
+		str1 = element->value();
+		DataLibrary::getSingletonPtr()->setData("GameData/BattleData/MapData/MapMini", str1);
+		
+		mMap->setImageTexture(str1);
+		delete []s;
+	}
 
 	mSelect=mMap->createWidget<MyGUI::ImageBox>(MyGUI::WidgetStyle::Overlapped, "ImageBox", MyGUI::IntCoord(-20,-20,10,10), MyGUI::Align::Default);
 	mSelect->setImageTexture("Select.png");

@@ -25,6 +25,12 @@ public:
 	void setMoveRect(float minx, float miny);
 
 	Ogre::Camera* getShadowMapCamera() {return mShadowMapCamera;}
+
+	void print();
+
+	 Ogre::Vector3 mTranslateVector;
+	 float mDx;
+	 float mDy;
 private:
 
 	void setCamera();

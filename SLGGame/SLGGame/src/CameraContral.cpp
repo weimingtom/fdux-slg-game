@@ -1,6 +1,10 @@
 #include "CameraContral.h"
 
 #include "Terrain.h"
+#include "BillboardManager.h"
+#include "SquadGrapManager.h"
+
+//#define MAPCREATE
 
 CameraContral::CameraContral()
 {
@@ -21,6 +25,7 @@ CameraContral::CameraContral()
 	sharedparams->setNamedConstant("texProj",cameraproj);
 	mMinX = 0.0f;
 	mMinY = 0.0f;
+	mTranslateVector=Ogre::Vector3::ZERO;
 }
 
 CameraContral::~CameraContral()
@@ -36,6 +41,14 @@ void CameraContral::setMoveRect(float minx, float miny)
 
 void CameraContral::moveCamera(float dx,float dy)
 {
+#ifdef MAPCREATE
+	 mCamera->setPosition(mCamera->getPosition()+(mCamera->getOrientation()*mTranslateVector));
+	 if (dx==1)
+	 {
+		 mCamera->yaw(Ogre::Radian(mDx));
+		 mCamera->pitch(Ogre::Radian(mDy));
+	 }
+#else
 	mX +=  dx * 0.5f + dy * 0.5f;
 	mY +=  -dx * 0.5f + dy * 0.5f;
 	mX = (mX > -mMinX)? -mMinX: mX;
@@ -43,6 +56,7 @@ void CameraContral::moveCamera(float dx,float dy)
 	mY = (mY > -mMinY)? -mMinY: mY;
 	mY = (mY < mMinY)? mMinY: mY;
 	setCamera();
+#endif
 }
 
 void ::CameraContral::riseCamera(float dh)
@@ -91,3 +105,14 @@ void CameraContral::setCamera()
 	mShadowMapCamera->lookAt(mX - 18.0f, 0.0f, mY - 18.0f );
 }
 
+void CameraContral::print()
+{
+	std::cout<<"D:"<<mCamera->getDirection().x<<","<<mCamera->getDirection().y<<","<<mCamera->getDirection().z<<std::endl;
+	std::cout<<"O:"<<mCamera->getOrientation().x<<","<<mCamera->getOrientation().y<<","<<mCamera->getOrientation().z<<","<<mCamera->getOrientation().w<<std::endl;
+	std::cout<<"P:"<<mCamera->getPosition().x<<","<<mCamera->getPosition().y<<","<<mCamera->getPosition().z<<std::endl;
+
+	mCamera->setOrientation(Ogre::Quaternion(0.701285,-0.712852,0.00189269,0.00192394));
+	mCamera->setPosition(0,400,0);
+	BillboardManager::getSingletonPtr()->hideBillBoard();
+	SquadGrapManager::getSingletonPtr()->hideSquad();
+}

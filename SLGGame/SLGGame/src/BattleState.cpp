@@ -2,7 +2,6 @@
 
 #include "Core.h"
 
-#include <ticpp.h>
 #include <stdlib.h>
 #include "Terrain.h"
 #include "DataLibrary.h"

@@ -22,6 +22,8 @@ public:
 
 	void destroyBillBoard(GUIBillBoard* billBoard);
 
+	void hideBillBoard();
+
 private:
 	std::vector<GUIBillBoard*> mBillBoards;
 

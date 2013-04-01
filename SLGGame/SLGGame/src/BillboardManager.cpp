@@ -71,4 +71,10 @@ void BillboardManager::destroyBillBoard( GUIBillBoard* billBoard )
 	}
 }
 
-
+void BillboardManager::hideBillBoard()
+{
+	for (std::vector<GUIBillBoard*>::iterator it=mBillBoards.begin();it!=mBillBoards.end();it++)
+	{
+		(*it)->hideScene();
+	}
+}

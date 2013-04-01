@@ -31,6 +31,8 @@
 #include "cutscenediretor.h"
 #include "StateManager.h"
 
+//#define MAPCREATE
+
 BattlePlayerState::BattlePlayerState()
 {
 	mGUIBattle = static_cast<GUIBattle *>(GUISystem::getSingleton().getScene(BattleScene));
@@ -69,6 +71,8 @@ BattlePlayerState::BattlePlayerState()
 	mLastTargetX = -1;
 	mLastTargetY = -1;	
 
+	isPassLC=false;
+
 	createSelectPlane();
 }
 BattlePlayerState::~BattlePlayerState()
@@ -83,6 +87,7 @@ BattlePlayerState::~BattlePlayerState()
 
 void BattlePlayerState::update(unsigned int deltaTime)
 {
+#ifndef MAPCREATE
 	float dx = 0.0f,dy = 0.0f;
 	float dt = (float)deltaTime / 5.0f;
 	if(mMouseX < 20)
@@ -94,6 +99,16 @@ void BattlePlayerState::update(unsigned int deltaTime)
 	if(mMouseY > 680)
 		dy = dt;
 	mCameraContral->moveCamera(dx,dy);
+#else
+	if (isPassLC)
+	{
+		mCameraContral->moveCamera(1,0);
+	}
+	else
+	{
+		mCameraContral->moveCamera(0,0);
+	}
+#endif // MAPCREATE
 }
 
 void BattlePlayerState::reactiveState()
@@ -127,6 +142,53 @@ void BattlePlayerState::backFromMenu()
 
 bool BattlePlayerState::keyPressed(const OIS::KeyEvent &arg)
 {
+#ifdef MAPCREATE
+	switch(arg.key)
+	{
+	case OIS::KC_W:
+		{
+			mCameraContral->mTranslateVector.z=-1;
+			break;
+		}
+	case OIS::KC_S:
+		{
+			mCameraContral->mTranslateVector.z=1;
+			break;
+		}
+	case OIS::KC_A:
+		{
+			mCameraContral->mTranslateVector.x=-1;
+			break;
+		}
+	case OIS::KC_D:
+		{
+			mCameraContral->mTranslateVector.x=1;
+			break;
+		}
+	case OIS::KC_Q:
+		{
+			mCameraContral->mTranslateVector.y=1;
+			break;
+		}
+	case OIS::KC_E:
+		{
+			mCameraContral->mTranslateVector.y=-1;
+			break;
+		}
+	case OIS::KC_LCONTROL:
+		{
+			isPassLC=true;
+			break;
+		}
+	case OIS::KC_R:
+		{
+			mCameraContral->print();
+			break;
+		}
+	}
+#endif
+
+
 	if (arg.key==OIS::KC_ESCAPE )
 	{
 		switch(mControlState)
@@ -174,6 +236,45 @@ bool BattlePlayerState::keyPressed(const OIS::KeyEvent &arg)
 
 bool BattlePlayerState::keyReleased(const OIS::KeyEvent &arg)
 {
+#ifdef MAPCREATE
+	switch(arg.key)
+	{
+	case OIS::KC_W:
+		{
+			mCameraContral->mTranslateVector.z=0;
+			break;
+		}
+	case OIS::KC_S:
+		{
+			mCameraContral->mTranslateVector.z=0;
+			break;
+		}
+	case OIS::KC_A:
+		{
+			mCameraContral->mTranslateVector.x=0;
+			break;
+		}
+	case OIS::KC_D:
+		{
+			mCameraContral->mTranslateVector.x=0;
+			break;
+		}
+	case OIS::KC_Q:
+		{
+			mCameraContral->mTranslateVector.y=0;
+			break;
+		}
+	case OIS::KC_E:
+		{
+			mCameraContral->mTranslateVector.y=0;
+			break;
+		}
+	case OIS::KC_LCONTROL:
+		{
+			isPassLC=false;
+		}
+	}
+#endif
 	return false;
 }
 
@@ -181,6 +282,24 @@ bool BattlePlayerState::mouseMoved(const OIS::MouseEvent &arg)
 {
 	mMouseX = arg.state.X.abs;
 	mMouseY = arg.state.Y.abs;
+
+	if(mX < mMouseX)
+		mCameraContral->mDx = -0.01;
+	else if(mX > mMouseX)
+		mCameraContral->mDx = 0.01;
+	else
+		mCameraContral->mDx = 0.00;
+
+	if(mY < mMouseY)
+		mCameraContral->mDy = -0.01;
+	else if(mY > mMouseY)
+		mCameraContral->mDy = 0.01;
+	else
+		mCameraContral->mDy = 0.00;
+
+	mX = mMouseX;
+	mY = mMouseY;
+
 	mGUIBattle->SceneInputEvent(arg.state.X.abs,arg.state.Y.abs);
 	if(mControlState == PLAYERCONTROL_CHOOSETARGET)
 	{

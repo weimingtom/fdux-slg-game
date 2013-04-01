@@ -58,6 +58,20 @@ bool MapLoader::loadMapFormFile(std::string mapname)
 	datalibrary->setData("GameData/BattleData/MapData/MapScript", str1);
 	//delete element;
 
+	element = doc.first_node("MapMini");
+	//element->GetText(&str1);
+	
+	if (element!=NULL)
+	{
+		str1 = element->value();
+	}
+	else
+	{
+		str1="MiniMap1.png";
+	}
+	
+	datalibrary->setData("GameData/BattleData/MapData/MapMini", str1);
+
 	//element = doc.FirstChildElement("MapInfo");
 	element = doc.first_node("MapInfo");
 	//element->GetText(&str1);

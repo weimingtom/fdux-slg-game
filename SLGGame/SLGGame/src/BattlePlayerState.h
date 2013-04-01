@@ -70,5 +70,9 @@ private:
 	AreaGrap* mRangeGrap;
 	AreaGrap* mTargetAreaGrap;
 	int mLastTargetX;
-	int mLastTargetY;	
+	int mLastTargetY;
+
+	bool isPassLC;
+	int mX;
+	int mY;
 };

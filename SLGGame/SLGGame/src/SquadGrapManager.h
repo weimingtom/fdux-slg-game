@@ -35,6 +35,8 @@ public:
 	SquadGraphics* getSquad(std::string squadid);
 	void clearBBState();
 
+	void hideSquad();
+
 private:
 	std::map<std::string, SquadGraphics*> mSquadGrapMap;
 // 	std::vector<SquadGraphics*> mUnitList;
