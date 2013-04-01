@@ -128,3 +128,12 @@ void SquadGrapManager::clearBBState()
 		ite->second->setSquadBillBoardState(true);
 	}
 }
+
+void SquadGrapManager::hideSquad()
+{
+	std::map<std::string, SquadGraphics*>::iterator ite;
+	for(ite = mSquadGrapMap.begin(); ite != mSquadGrapMap.end(); ite++)
+	{
+		ite->second->setVisible(false);
+	}
+}
