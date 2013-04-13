@@ -8,7 +8,6 @@
 <MapScript>mapscript16.lua</MapScript>
 <MapInfo>mapinfo16</MapInfo>
 <MapLoadBG>map3.png</MapLoadBG>
-<MapMini>MiniMap16.png</MapMini>
 <MapSize>20</MapSize>
 <MapGround>
     <G0 Type="Grass" Texture="Grass1Blur.dds" />
@@ -279,12 +278,12 @@
         <Team2Squad_5 Type="WinfredHeavyHalberd" GridX="15" GridY="4" Direction="1" UnitNum="50" />
     </Team2>
     <Team3>
-		<Team3Squad_0 Type="Elementalist" GridX="16" GridY="5" Direction="1" UnitNum="20" />
-		<Team3Squad_1 Type="GuardCrossBow" GridX="14" GridY="5" Direction="1" UnitNum="50" />
+        <Team3Squad_0 Type="Elementalist" GridX="16" GridY="5" Direction="1" UnitNum="20" />
+        <Team3Squad_1 Type="GuardCrossBow" GridX="14" GridY="5" Direction="1" UnitNum="50" />
         <Team3Squad_2 Type="GuardHeavySpear" GridX="14" GridY="3" Direction="1" UnitNum="50" />
-		<Team3Squad_3 Type="Warmage" GridX="12" GridY="5" Direction="1" UnitNum="20" />
-		<Team3Squad_4 Type="GuardCrossBow" GridX="14" GridY="4" Direction="1" UnitNum="50" />
-	</Team3>
+        <Team3Squad_3 Type="Warmage" GridX="12" GridY="5" Direction="1" UnitNum="20" />
+        <Team3Squad_4 Type="GuardCrossBow" GridX="14" GridY="4" Direction="1" UnitNum="50" />
+    </Team3>
     <Team4 />
 </MapSquad>
 <MapArea>
@@ -297,4 +296,31 @@
         <c5 X="15" Y="12" />
         <c6 X="14" Y="14" />
     </DeployArea>
+    <TargetArea>
+        <c0 X="14" Y="12" />
+        <c1 X="14" Y="13" />
+        <c2 X="14" Y="14" />
+        <c3 X="15" Y="14" />
+        <c4 X="16" Y="14" />
+        <c5 X="16" Y="13" />
+        <c6 X="15" Y="13" />
+        <c7 X="15" Y="12" />
+        <c8 X="16" Y="12" />
+        <c9 X="16" Y="11" />
+        <c10 X="16" Y="10" />
+        <c11 X="17" Y="10" />
+        <c12 X="17" Y="8" />
+        <c13 X="16" Y="9" />
+        <c14 X="17" Y="9" />
+        <c15 X="16" Y="8" />
+        <c16 X="15" Y="11" />
+        <c17 X="14" Y="11" />
+        <c18 X="13" Y="11" />
+        <c19 X="14" Y="10" />
+        <c20 X="13" Y="10" />
+        <c21 X="15" Y="10" />
+        <c22 X="14" Y="9" />
+        <c23 X="13" Y="9" />
+        <c24 X="15" Y="15" />
+    </TargetArea>
 </MapArea>

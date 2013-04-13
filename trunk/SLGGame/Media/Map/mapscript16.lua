@@ -46,8 +46,8 @@ function finishdeploy()
 	BattleLib.AssignAIGroup(3, "Team3Squad_4", "Guard");
 	
 	--创建AI任务(team,missionname,missiontype,missiontargetarea)
-	BattleLib.CreateAIMission(2, "Attack1", 0, "DeployArea");
-	BattleLib.CreateAIMission(3, "Attack2", 0, "DeployArea");
+	BattleLib.CreateAIMission(2, "Attack1", 0, "TargetArea");
+	BattleLib.CreateAIMission(3, "Attack2", 0, "TargetArea");
 	--指派AI分组任务(team,groupname,missionname)
 	BattleLib.AssignAIMission(2,"Winfred", "Attack1");
 	BattleLib.AssignAIMission(3,"Guard", "Attack2");
