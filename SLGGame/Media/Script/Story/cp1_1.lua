@@ -1,5 +1,6 @@
 GUI.ButtonLock();
 GUI.SetDialogVisible(1);
+GUI.ShowImage("zhiyin1.png",4,1000);
 GUI.ShowImage("qitaw_zc.png",left,300);
 GUI.ShowRoleName("齐塔");
 GUI.ShowText("凡塔斯的部队就在前方的树林中，利用好地形的特点谨慎地靠近他们。",1);
@@ -11,6 +12,7 @@ GUI.ClearText();
 GUI.ShowText("那么点击移动命令，开始行军吧！",1);
 GUI.ClearText();
 GUI.ShowRoleName("");
+GUI.ShowImage("",4,1000);
 GUI.ShowImage("",right,300);
 GUI.ShowImage("",left,300);
 GUI.SetDialogVisible(0);
