@@ -1,6 +1,6 @@
 GUI.ButtonLock();
 GUI.SetDialogVisible(1);
-GUI.ShowImage("zhiyin3.png",4,1000);
+GUI.ShowImage("zhiyin5.png",4,1000);
 GUI.ShowImage("qitaw_zc.png",left,300);
 GUI.ShowRoleName("齐塔");
 GUI.ShowText("部队遭到近身攻击后将进行反击，部队的反击值将决定反击能力的强弱。",1);
