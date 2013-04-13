@@ -1,5 +1,6 @@
 GUI.ButtonLock();
 GUI.SetDialogVisible(1);
+GUI.ShowImage("zhiyin2.png",4,1000);
 GUI.ShowImage("qitaw_zc.png",left,300);
 GUI.ShowRoleName("齐塔");
 GUI.ShowText("敌人在树林之中隐蔽着一些部队，在行军时发现它们将使我军行军被迫停止，而对方将获得突袭效果加成。",1);
@@ -11,5 +12,6 @@ GUI.ClearText();
 GUI.ShowRoleName("");
 GUI.ShowImage("",right,300);
 GUI.ShowImage("",left,300);
+GUI.ShowImage("",4,1000);
 GUI.SetDialogVisible(0);
 GUI.StoryOver();
