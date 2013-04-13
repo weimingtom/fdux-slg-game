@@ -8,7 +8,7 @@
 <MapScript>mapscript9.lua</MapScript>
 <MapInfo>mapinfo9</MapInfo>
 <MapLoadBG>map4.png</MapLoadBG>
-<MapMini>MiniMap4.png</MapMini>
+<MapMini>MiniMap9.png</MapMini>
 <MapSize>20</MapSize>
 <MapGround>
     <G0 Type="Grass" Texture="Grass1Blur.dds" />
