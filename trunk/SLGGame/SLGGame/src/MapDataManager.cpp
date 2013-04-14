@@ -8,8 +8,6 @@
 #include "LuaSystem.h"
 
 #include <boost/format.hpp>
-#include <ticpp.h>
-
 //#include <Shiny.h>
 
 MapDataManager::MapDataManager()

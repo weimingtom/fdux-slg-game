@@ -97,7 +97,8 @@ void GUIBattle::hideAllWindows()
 			||(*it)->getName()=="TargetWindow"
 			||(*it)->getName()=="Terrain"
 			||(*it)->getName()=="GameState"
-			||(*it)->getName()=="InfoWindow")
+			||(*it)->getName()=="InfoWindow"
+			||(*it)->getName()=="MapWindow")
 		{
 			(*it)->hideScene();
 		}
@@ -115,7 +116,8 @@ void GUIBattle::showAllWindows()
 	for(std::list<GUISubWindows*>::iterator it=mSubWindows.begin();it!=mSubWindows.end();it++)
 	{
 		if ((*it)->getName()=="Terrain"
-			||(*it)->getName()=="GameState")
+			||(*it)->getName()=="GameState"
+			||(*it)->getName()=="MapWindow")
 		{
 			(*it)->showScene("");
 		}
