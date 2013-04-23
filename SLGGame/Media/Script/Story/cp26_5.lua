@@ -28,3 +28,4 @@ GUI.ShowRoleName("");
 GUI.ShowImage("",right,500);
 GUI.ShowImage("",left,500);
 GUI.SetDialogVisible(0);
+GUI.StoryOver();
