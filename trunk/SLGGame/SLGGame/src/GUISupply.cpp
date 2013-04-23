@@ -208,6 +208,7 @@ GUISupply::GUISupply(int width,int height):GUIScene("supply.layout",width,height
 GUISupply::~GUISupply(void)
 {
 	clearBattleSquad();
+	delete mTipsWindows;
 }
 
 void GUISupply::clearBattleSquad()
