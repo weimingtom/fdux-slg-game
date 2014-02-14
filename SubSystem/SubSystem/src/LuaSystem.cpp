@@ -154,6 +154,15 @@ bool LuaSystem::executeFunction(std::string filename, std::string funcname, std:
 {
 	if(context == "\0")
 		return false;
+
+	Ogre::String logstr("filename:");
+	logstr.append(filename);
+	logstr.append(" funcname:");
+	logstr.append(funcname);
+	logstr.append(" context:");
+	logstr.append(context);
+	Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::String("LUASYSLOG START ") + logstr);
+
 	mContextStack.push_back(context);
 	mFileNameStack.push_back(filename);
 	mTempContextStack.push_back(tempcontext);
@@ -190,6 +199,9 @@ bool LuaSystem::executeFunction(std::string filename, std::string funcname, std:
 	mTempContextStack.pop_back();
 	mFileNameStack.pop_back();
 	mContextStack.pop_back();
+
+	Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::String("LUASYSLOG END ") + logstr);
+
 	return !result;
 }
 

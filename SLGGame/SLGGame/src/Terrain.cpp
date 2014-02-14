@@ -40,12 +40,12 @@ bool Terrain::createTerrain()
 	sharedparams->setNamedConstant("border", border);
 
 	//创建灯光
-	Core::getSingleton().mSceneMgr->setAmbientLight(Ogre::ColourValue(0.3f, 0.3f, 0.3f));
+	Core::getSingleton().mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5f, 0.5f, 0.5f));
 	mLight = Core::getSingleton().mSceneMgr->createLight("TerrainLight");
 	mLight->setType(Ogre::Light::LT_DIRECTIONAL);
 	mLight->setPosition(-500.0f,500.0f, 500.0f);
 	mLight->setDirection(1.0f, -1.0f, -1.0f);
-	mLight->setDiffuseColour(Ogre::ColourValue(0.7f, 0.7f,0.7f));
+	mLight->setDiffuseColour(Ogre::ColourValue(0.5f, 0.5f,0.5f));
 	mLight->setSpecularColour(Ogre::ColourValue(0.8f, 0.8f,0.8f));
 
 	//设置深度图投影
