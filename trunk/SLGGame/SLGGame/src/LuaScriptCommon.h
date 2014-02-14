@@ -167,6 +167,13 @@ static int GetRand(lua_State* L)
 	return 1;
 }
 
+static int Log(lua_State* L)
+{
+	std::string logstr(luaL_checkstring(L, 1));
+	Ogre::LogManager::getSingletonPtr()->logMessage(logstr);
+	return 0;
+}
+
 static const struct luaL_Reg ScriptCommonLib[] =
 {
 	{"SetInt", SetInt},
@@ -183,5 +190,6 @@ static const struct luaL_Reg ScriptCommonLib[] =
 	{"SetTempFloat", SetTempFloat},
 	{"PlayMusic", PlayMusic},
 	{"GetRand", GetRand},
+	{"Log", Log},
 	{NULL,NULL}
 };

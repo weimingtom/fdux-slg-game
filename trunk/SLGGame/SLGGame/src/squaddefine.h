@@ -145,7 +145,7 @@ const int MOVEEVENT_CHARGE_DIR_2 = 64; //³å·æ·½ÏòÎ»2
 const int MOVEEVENT_SPOTBYPLAYER = 128;
 
 #define SetChargeDir(d) (d << 6)
-#define GetChargeDir(f) ((f >> 6) && 0x03)
+#define GetChargeDir(f) ((f >> 6) & 0x03)
 
 enum SkillType
 {

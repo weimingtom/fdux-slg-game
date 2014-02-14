@@ -1527,8 +1527,57 @@ void BattleSquadManager::rangedCutScene(BattleSquad* attacksquad, int x, int y, 
 
 bool BattleSquadManager::createStorySquad(std::string squadid, std::string suqadtypeid, int x, int y,bool NoCreate)
 {
+	MapDataManager* mapdatamanager = MapDataManager::getSingletonPtr();
 	if(getBattleSquadAt(x, y, 0, false) != NULL)
-		return false;
+	{
+		//寻找合适的位置
+		int startx = x, starty = y;
+		bool findpos = false;
+		int findcricle = 1;
+		while (findcricle < 5)
+		{
+			x = startx;
+			y = starty - findcricle;
+			if ( mapdatamanager->getPassable(x, y, 0) && getBattleSquadAt(x, y, 0, false) == NULL)
+			{
+				findpos = true;
+				findcricle = 5;
+				break;
+			}
+			for (int n = 1; n <= 2 * findcricle - 1; n++ )
+			{
+				x = startx - n;
+				y = starty - findcricle + n;
+				if ( mapdatamanager->getPassable(x, y, 0) && getBattleSquadAt(x, y, 0, false) == NULL)
+				{
+					findpos = true;
+					findcricle = 5;
+					break;
+				}
+				x = startx + n;
+				if ( mapdatamanager->getPassable(x, y, 0) && getBattleSquadAt(x, y, 0, false) == NULL)
+				{
+					findpos = true;
+					findcricle = 5;
+					break;
+				}
+			}
+			if (findcricle == 5)
+			{
+				break;
+			}
+			x = startx;
+			y = starty + findcricle;
+			if ( mapdatamanager->getPassable(x, y, 0) && getBattleSquadAt(x, y, 0, false) == NULL)
+			{
+				findpos = true;
+				findcricle = 5;
+				break;
+			}
+		}
+		if (!findpos)
+			return false;
+	}
 	if(!NoCreate)
 		AVGSquadManager::getSingleton().addNewSquad(squadid, suqadtypeid);
 
@@ -1555,8 +1604,57 @@ bool BattleSquadManager::createStorySquad(std::string squadid, std::string suqad
 }
 bool BattleSquadManager::createNormalSquad(std::string squadid, std::string suqadtypeid, int x, int y, int team, int unitnum)
 {
+	MapDataManager* mapdatamanager = MapDataManager::getSingletonPtr();
 	if(getBattleSquadAt(x, y, 0, false) != NULL)
-		return false;
+	{
+		//寻找合适的位置
+		int startx = x, starty = y;
+		bool findpos = false;
+		int findcricle = 1;
+		while (findcricle < 5)
+		{
+			x = startx;
+			y = starty - findcricle;
+			if ( mapdatamanager->getPassable(x, y, 0) && getBattleSquadAt(x, y, 0, false) == NULL)
+			{
+				findpos = true;
+				findcricle = 5;
+				break;
+			}
+			for (int n = 1; n <= 2 * findcricle - 1; n++ )
+			{
+				x = startx - n;
+				y = starty - findcricle + n;
+				if ( mapdatamanager->getPassable(x, y, 0) && getBattleSquadAt(x, y, 0, false) == NULL)
+				{
+					findpos = true;
+					findcricle = 5;
+					break;
+				}
+				x = startx + n;
+				if ( mapdatamanager->getPassable(x, y, 0) && getBattleSquadAt(x, y, 0, false) == NULL)
+				{
+					findpos = true;
+					findcricle = 5;
+					break;
+				}
+			}
+			if (findcricle == 5)
+			{
+				break;
+			}
+			x = startx;
+			y = starty + findcricle;
+			if ( mapdatamanager->getPassable(x, y, 0) && getBattleSquadAt(x, y, 0, false) == NULL)
+			{
+				findpos = true;
+				findcricle = 5;
+				break;
+			}
+		}
+		if (!findpos)
+			return false;
+	}
 	SquadGrapManager* suqadgrapmanager = SquadGrapManager::getSingletonPtr();
 	std::string path = "GameData/BattleData/SquadList";
 	BattleSquad* battlesquad = new BattleSquad(str(boost::format("%1%/%2%")%path%squadid));

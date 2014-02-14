@@ -510,7 +510,7 @@ void Squad::addExp(int exp)
 				break;
 			case 6:
 				skillpoint = getSkillPointEquip();
-				skillpoint += 1;
+				skillpoint += 2;
 				setSkillPointEquip(skillpoint);
 				break;
 			}

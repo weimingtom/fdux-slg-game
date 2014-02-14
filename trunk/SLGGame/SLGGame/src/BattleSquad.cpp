@@ -649,6 +649,7 @@ bool BattleSquad::move(int tgx, int tgy, unsigned int &eventflag, bool costap)
 				{
 					eventflag |= MOVEEVENT_CHARGE;
 					int curdir = GetDirection(getGridX(), getGridY(), tgx, tgy);
+					eventflag &= 0x03f;
 					eventflag |= SetChargeDir(curdir);
 				}
 				else
